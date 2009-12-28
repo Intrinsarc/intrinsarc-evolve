@@ -1,1 +1,4 @@
 glob:bin/
+glob:.metadata/
+glob:.JETEmitters/
+relre:.*\.orig
