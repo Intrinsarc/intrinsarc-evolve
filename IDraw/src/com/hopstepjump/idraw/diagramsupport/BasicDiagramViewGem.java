@@ -37,7 +37,7 @@ public final class BasicDiagramViewGem implements Gem
 	private ZLayerGroup parentLayer; // top layer
 	private ZLayerGroup pickLayer;
 	// used for selection and to group the object layer
-	private ZGroup objectLayer; // containes the linkingLayer and layer
+	private ZGroup objectLayer; // contains the linkingLayer and layer
 	private ZGroup layer; // layer to add figures to
 	private ZGroup globalLayer; // linking elements alway go here
 	private ZGroup debugLayer;
