@@ -1,0 +1,19 @@
+package com.hopstepjump.idraw.arcfacilities.creationbase;
+
+import com.hopstepjump.idraw.foundation.*;
+import com.hopstepjump.idraw.foundation.persistence.*;
+
+
+public interface ArcCreateFacet extends PersistentFigureRecreatorFacet, ArcAcceptanceFacet
+{
+  public String getFigureName();
+
+  public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties);
+  public void uncreateNewSubject(Object previouslyCreated);
+  public Object extractRawSubject(Object previouslyCreated);
+  
+  public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties);
+  public void unCreate(Object memento);
+  public void initialiseExtraProperties(PersistentProperties properties);
+	public void aboutToMakeCommand(ToolCoordinatorFacet coordinator);
+}

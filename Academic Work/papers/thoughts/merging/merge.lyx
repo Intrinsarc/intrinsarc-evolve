@@ -1,0 +1,532 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\float_placement h
+\paperfontsize default
+\spacing single
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle plain
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Merging Redefinitions from Independently Developed Stratum
+\end_layout
+
+\begin_layout Standard
+concepts:
+\end_layout
+
+\begin_layout Itemize
+stratum.
+ can-see, relaxed.
+\end_layout
+
+\begin_layout Itemize
+components.
+\end_layout
+
+\begin_layout Itemize
+resemblance
+\end_layout
+
+\begin_layout Itemize
+redefinition: wrap/replace (redef only) and altering (redef + resemble)
+\end_layout
+
+\begin_layout Standard
+explain algorithm:
+\end_layout
+
+\begin_layout Itemize
+define notion of independence in terms of stratum.
+ define application as a collection of stratum (and what can be seen) and
+ a component to instantiate.
+\end_layout
+
+\begin_layout Itemize
+order of merge: stratum order, wrapping after modifying + propagating, otherwise
+ errors result.
+\end_layout
+
+\begin_layout Itemize
+resolution of merge conflicts -- adding order.
+\end_layout
+
+\begin_layout Standard
+explain modelling:
+\end_layout
+
+\begin_layout Itemize
+based on notion of indendence and what you 
+\begin_inset Quotes eld
+\end_inset
+
+can see
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+open questions:
+\end_layout
+
+\begin_layout Itemize
+what is the model of replacement? is it just delete and add or is it more
+ complex?
+\end_layout
+
+\begin_layout Itemize
+if it is delete and add, how do we avoid renaming problems? do we have to
+ rely on names?
+\end_layout
+
+\begin_layout Itemize
+does local redef ever get more complex than adding an extra redef in layers
+ to each part?
+\end_layout
+
+\begin_layout Itemize
+what are the rules about illegal constructs?
+\end_layout
+
+\begin_layout Itemize
+support multiple resemblance? if so, provide a way to replace 2 parts with
+ one?
+\end_layout
+
+\begin_layout Itemize
+do we need to separate out wrapping from replacing?
+\end_layout
+
+\begin_layout Standard
+Rules known so far:
+\end_layout
+
+\begin_layout Itemize
+something in a stratum must have all redefs done in can-see stratum before
+ its redefs are applied.
+\end_layout
+
+\begin_layout Standard
+Ideas and approaches:
+\end_layout
+
+\begin_layout Itemize
+transform graph somehow into something with no ambiguity.
+ i.e.
+ resemblance graph with renaming.
+\end_layout
+
+\begin_layout Itemize
+use delete/add for replace.
+ makes it simpler.
+\end_layout
+
+\begin_layout Itemize
+allow 
+\begin_inset Quotes eld
+\end_inset
+
+port renaming
+\begin_inset Quotes erd
+\end_inset
+
+ when adding a port.
+ this way replace can be del/add.
+\end_layout
+
+\begin_layout Itemize
+renaming is only needed outside of the stratum that the definition occurs
+ in.
+\end_layout
+
+\begin_layout Itemize
+idea of the 
+\begin_inset Quotes eld
+\end_inset
+
+app
+\begin_inset Quotes erd
+\end_inset
+
+ as a top level package that can-see all orphans.
+\end_layout
+
+\begin_layout Itemize
+wrapping/replacing and altering are important concepts.
+ don't lose these.
+\end_layout
+
+\begin_layout Itemize
+must be able to fully replace a component.
+ e.g.
+ to reflect a new version of a class.
+\end_layout
+
+\begin_layout Itemize
+local redefs are difficult.
+ these could maybe be jettisoned.
+\end_layout
+
+\begin_layout Itemize
+to detect overlap between peers when merged, hold a flag/number indicating
+ if each bit has been replaced/altered already or not.
+\end_layout
+
+\begin_layout Itemize
+how can circularity be handled? does it collapse down? is it disallowed?
+ allowed in a separate stratum?
+\end_layout
+
+\begin_layout Itemize
+must be able to resolve any issue via further redefinition.
+\newpage
+
+\end_layout
+
+\begin_layout Section
+Simple Cases
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+wrapping versus adjusting
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/wrapping-versus-adjusting.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+wrapping and resemblance together
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/wrapping-and-resemblance.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+replacing / deep wrapping
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/deep-wrapping.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+multiple wrapping
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/multiple-wrapping.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+simple circularity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/circular.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Looks like circularity can be turned into resemblance + a wrapping redefine.
+ Then we get the problem of self-composition.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+self-composition
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/self-composition.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\newpage
+
+\end_layout
+
+\begin_layout Section
+Intermediate Cases
+\end_layout
+
+\begin_layout Standard
+(need better / simpler / clearer examples)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+simple conflict + resolution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/simple-resolution.eps
+	width 100col%
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+circularity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/circularity.eps
+	scale 80
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+involved chains
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/chains.eps
+	width 100col%
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\end_layout
+
+\begin_layout Section
+Local Redefinition
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+local redefinition
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/local.eps
+	width 100col%
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+2-level local redef
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/2-level-local-redef.eps
+	width 100col%
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

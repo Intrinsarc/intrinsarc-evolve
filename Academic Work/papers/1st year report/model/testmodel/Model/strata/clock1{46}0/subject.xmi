@@ -1,0 +1,68 @@
+            <UML:Package xmi.id="a1" xmi.uuid="DCE-1145309671765-300" name="clock1.0" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a10" xmi.uuid="DCE-1145311282187-43" isActive="false" name="HourlyBeeper" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a11" xmi.uuid="DCE-1145311846718-503" isActive="false" name="Alarm" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Comment xmi.id="a118" xmi.uuid="DCE-1149083374642-733" name="" visibility="public" isSpecification="false">
+                  <UML:Comment.body>component *TimeManager
+{
+  properties:
+    Long currentTime;
+		
+  ports:
+    mgr provides ITimerClient requires IDisplay, ITimer;
+    clock provides IClock;
+}
+
+protocol TimeManager
+{
+  actors:
+    self: TimeManager; 
+    display: IDisplay of mgr; timerClient: ITimerClient of mgr;
+    clock: IClock of clock;
+	
+  interactions:
+    par
+    {
+      loop
+      {
+        clock -&gt; self.changeTime;
+        self &lt;~-&gt; display.displayDigits;
+        clock &lt;~ self.changeTime;
+      }
+      ----
+      loop
+      {
+        timerClient -&gt; self.notifyOfNewSecond;
+        opt
+        {
+          self &lt;~-&gt; display.displayDigits;
+        }
+        timerClient &lt;~ self.notifyOfNewSecond;
+      }
+    }
+}</UML:Comment.body>
+                </UML:Comment>
+                <UML:Class xmi.id="a12" xmi.uuid="DCE-1145311929843-83" isActive="false" name="MulticlientTimer" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a13" xmi.uuid="DCE-1145386071904-467" name="ITimeControl" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a14" xmi.uuid="DCE-1145312024703-849" name="IAlarm" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a16" xmi.uuid="DCE-1145314141890-861" isActive="false" name="&#171;mc&#187; Timer^" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a17" xmi.uuid="DCE-1145314174640-245" isActive="false" name="TimeManager'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a18" xmi.uuid="DCE-1145315261859-855" name="IManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a2" xmi.uuid="DCE-1145309788937-205" isActive="false" name="Clock" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a20" xmi.uuid="DCE-1145356790571-720" name="ITimerClient" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a21" xmi.uuid="DCE-1145357075758-332" name="IDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a23" xmi.uuid="DCE-1145386345395-562" name="IFineTimerClient" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a29" xmi.uuid="DCE-1145358273883-19" isActive="false" name="&lt;&lt;mca-manager&gt;&gt; ModeManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a3" xmi.uuid="DCE-1145309802062-81" isActive="true" name="Timer" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a30" xmi.uuid="DCE-1145358285352-64" name="IDisplayManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a31" xmi.uuid="DCE-1145358881477-651" name="IMulticlientDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a4" xmi.uuid="DCE-1145309807000-39" isActive="false" name="Display" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a5" xmi.uuid="DCE-1145310019921-628" isActive="false" name="TimeManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a6" xmi.uuid="DCE-1145310070140-113" name="IClock" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a7" xmi.uuid="DCE-1145310339968-306" isActive="false" name="Audio" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a77" xmi.uuid="DCE-1146497819335-627" isActive="false" name="LowBatteryIndicator" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a78" xmi.uuid="DCE-1146497852132-544" name="IIndicator" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a8" xmi.uuid="DCE-1145310358703-585" name="IAudio" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a9" xmi.uuid="DCE-1145314901906-796" isActive="true" name="RFAdjuster" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

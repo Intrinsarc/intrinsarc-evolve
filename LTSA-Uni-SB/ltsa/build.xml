@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+<project name="LTSA" default="jar" basedir=".">
+	<description>LTSA Build</description>
+
+	<!-- global properties for this build -->
+	<property name="src" value="src" />
+	<property name="src_ltlcheck" value="../ltlcheck/src" />
+	<property name="src_ltl2buchi" value="../ltl2buchi/src" />
+	<property name="build" value="build/classes" />
+	<property name="build_ltlcheck" value="build/classes_ltlcheck" />
+	<property name="build_ltl2buchi" value="build/classes_ltl2buchi" />
+	<property name="libdir" value="lib" />
+	<property name="jarfile" value="dist/LTSA.jar" />
+	<property name="mainclass" value="ltsa.ui.HPWindow" />
+
+	<!-- jar signing properties -->
+	<!-- certificate location and alias can be overridden on commandline (using option -D) -->
+	<property name="signcertificate" value="${user.home}/certificates/clemens@hammacher.name_codesign.p12" />
+	<property name="signalias" value="cl-hamm" />
+
+	<path id="classpath">
+		<fileset dir="${libdir}" includes="*.jar" />
+	</path>
+
+	<target name="clean">
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${build}" />
+			<fileset dir="${build_ltlcheck}" />
+			<fileset dir="${build_ltl2buchi}" />
+		</delete>
+	</target>
+
+	<target name="init">
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" classpathref="classpath"
+			source="1.5" target="1.5" debug="true" />
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar destfile="${jarfile}">
+			<manifest>
+				<attribute name="Main-Class" value="${mainclass}" />
+				<attribute name="Built-By" value="${user.name}" />
+			</manifest>
+			<fileset dir="${build}" />
+			<fileset dir="resources" />
+			<zipfileset src="${libdir}/ltl2buchi.jar" />
+			<zipfileset src="${libdir}/ltlcheck.jar" />
+			<zipfileset src="${libdir}/scenebeans.jar" />
+			<zipfileset src="${libdir}/grappa.jar" />
+		</jar>
+	</target>
+
+	<target name="signjar" depends="jar">
+		<input message="Please enter keystore password:" addproperty="keypass" />
+		<signjar
+			storetype="pkcs12"
+			keystore="${signcertificate}"
+			jar="${jarfile}"
+			alias="${signalias}"
+			storepass="${keypass}" />
+	</target>
+
+	<!--
+	#############################################################
+	### Below are the targets for building dependant libraries:
+	### ltlcheck.jar and ltl2buchi.jar
+    #############################################################
+	-->
+
+	<target name="libs" depends="ltl2buchi_jar, ltlcheck_jar" />
+
+	<target name="ltl2buchi_jar" depends="ltl2buchi_compile">
+		<jar destfile="${libdir}/ltl2buchi.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+			</manifest>
+			<fileset dir="${build_ltl2buchi}" />
+		</jar>
+	</target>
+
+	<target name="ltl2buchi_compile" depends="ltl2buchi_init">
+		<javac srcdir="${src_ltl2buchi}" destdir="${build_ltl2buchi}"
+			source="1.5" target="1.5" debug="true" />
+	</target>
+
+	<target name="ltl2buchi_init">
+		<mkdir dir="${build_ltl2buchi}" />
+	</target>
+
+	<target name="ltlcheck_jar" depends="ltlcheck_compile">
+		<jar destfile="${libdir}/ltlcheck.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+			</manifest>
+			<fileset dir="${build_ltlcheck}" />
+		</jar>
+	</target>
+
+	<target name="ltlcheck_compile" depends="ltlcheck_init, ltl2buchi_jar">
+		<javac srcdir="${src_ltlcheck}" destdir="${build_ltlcheck}"
+			classpath="${libdir}/ltl2buchi.jar"
+			source="1.5" target="1.5" debug="true" />
+	</target>
+
+	<target name="ltlcheck_init">
+		<mkdir dir="${build_ltlcheck}" />
+	</target>
+
+</project>

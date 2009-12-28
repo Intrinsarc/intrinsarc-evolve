@@ -1,0 +1,138 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+    <UML:Diagram xmi.id="a0" id="DCE-1141049873742-964" figureId="31">
+      <UML:FigureContainer.properties>
+        <UML:Property xmi.id="a1" n="PackageUUID" v="DCE-1141049873742-964"></UML:Property>
+      </UML:FigureContainer.properties>
+      <UML:FigureContainer.figures>
+        <UML:Figure xmi.id="a10" id="11" recreator="Dependency" anchor1Id="18" anchor2Id="16" vtl="697.5 485.5" pts="3 772 439 772 572 667 572"></UML:Figure>
+        <UML:Figure xmi.id="a11" id="15" recreator="Note" subjectUUID="DCE-1140441521109-727" auto="false" pt="232 692" dim="448 195">
+          <UML:Figure.text>Features of base:
+
+- creation of nodes + edges (1 type each, no containment)
+
+
+Features of extension:
+
+- selection, no movement
+- incremental auto-layout
+- animated node (active objects)
+- contained objects
+- persistence of graph</UML:Figure.text>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a21" id="3" recreator="SimpleContainer" pt="-628 148" off="2 2"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a12" id="4" recreator="Dependency" anchor1Id="17" anchor2Id="16" vtl="547.5 485.5" pts="3 476 439 476 572 580 572"></UML:Figure>
+        <UML:Figure xmi.id="a13" id="23" recreator="Package" subjectUUID="DCE-1140441710310-128" auto="false" pt="900 64" dim="87 75">
+          <UML:Figure.name>&lt;&lt;stratum&gt;&gt;
+selection</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a22" n="owner" v="Model"></UML:Property>
+            <UML:Property xmi.id="a23" n="fill" v="255 204 0"></UML:Property>
+            <UML:Property xmi.id="a24" n="showVis" v="true"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a25" id="21" recreator="SimpleContainer" pt="900 79" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a14" id="30" recreator="Package" subjectUUID="DCE-1140441743247-755" auto="false" pt="580 264" dim="87 75">
+          <UML:Figure.name>&lt;&lt;stratum&gt;&gt;
+containment</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a26" n="owner" v="Model"></UML:Property>
+            <UML:Property xmi.id="a27" n="fill" v="255 204 51"></UML:Property>
+            <UML:Property xmi.id="a28" n="showVis" v="true"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a29" id="24" recreator="SimpleContainer" pt="580 279" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a15" id="18" recreator="Package" subjectUUID="DCE-1140441367689-727" auto="false" pt="728 364" dim="87 75">
+          <UML:Figure.name>&lt;&lt;stratum&gt;&gt;
+editor</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a30" n="owner" v="Model"></UML:Property>
+            <UML:Property xmi.id="a31" n="showVis" v="true"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a32" id="7" recreator="SimpleContainer" pt="728 379" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a16" id="10" recreator="Dependency" anchor1Id="30" anchor2Id="16" vtl="620 435.5" pts="2 620 339 620 532"></UML:Figure>
+        <UML:Figure xmi.id="a17" id="13" recreator="Dependency" anchor1Id="14" anchor2Id="16" vtl="465.5 531.5" pts="3 320 531 320 592 580 592"></UML:Figure>
+        <UML:Figure xmi.id="a18" id="9" recreator="Dependency" anchor1Id="19" anchor2Id="17" vtl="337.5 361.5" pts="3 208 359 208 424 428 424"></UML:Figure>
+        <UML:Figure xmi.id="a19" id="19" recreator="Package" subjectUUID="DCE-1140441420767-672" auto="false" pt="160 284" dim="87 75">
+          <UML:Figure.name>&lt;&lt;stratum&gt;&gt;
+layout</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a33" n="owner" v="Model"></UML:Property>
+            <UML:Property xmi.id="a34" n="fill" v="255 204 0"></UML:Property>
+            <UML:Property xmi.id="a35" n="showVis" v="true"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a36" id="29" recreator="SimpleContainer" pt="160 299" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a2" id="28" recreator="Dependency" anchor1Id="14" anchor2Id="17" vtl="389.5 447.5" pts="3 351 484 440 484 440 439"></UML:Figure>
+        <UML:Figure xmi.id="a20" id="8" recreator="Dependency" anchor1Id="6" anchor2Id="18" vtl="697.5 277.5" pts="3 667 164 772 164 772 364"></UML:Figure>
+        <UML:Figure xmi.id="a3" id="27" recreator="Dependency" anchor1Id="23" anchor2Id="18" vtl="857.5 251.5" pts="3 944 139 944 412 815 412"></UML:Figure>
+        <UML:Figure xmi.id="a4" id="0" recreator="Dependency" anchor1Id="30" anchor2Id="17" vtl="547.5 351.5" pts="2 579.9 330.2 515.9 372.3"></UML:Figure>
+        <UML:Figure xmi.id="a5" id="14" recreator="Package" subjectUUID="DCE-1141047658524-875" auto="false" pt="264 456" dim="87 75">
+          <UML:Figure.name>&lt;&lt;stratum&gt;&gt;
+persistence</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a37" n="owner" v="Model"></UML:Property>
+            <UML:Property xmi.id="a38" n="fill" v="255 204 51"></UML:Property>
+            <UML:Property xmi.id="a39" n="showVis" v="true"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a40" id="25" recreator="SimpleContainer" pt="264 471" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a6" id="17" recreator="Package" subjectUUID="DCE-1140441366783-935" auto="false" pt="428 364" dim="87 75">
+          <UML:Figure.name>&lt;&lt;stratum&gt;&gt;
+viewer</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a41" n="owner" v="Model"></UML:Property>
+            <UML:Property xmi.id="a42" n="showVis" v="true"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a43" id="2" recreator="SimpleContainer" pt="428 379" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a7" id="6" recreator="Package" subjectUUID="DCE-1140441368533-67" auto="false" pt="580 116" dim="87 75">
+          <UML:Figure.name>&lt;&lt;stratum&gt;&gt;
+application</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a44" n="owner" v="Model"></UML:Property>
+            <UML:Property xmi.id="a45" n="showVis" v="true"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a46" id="26" recreator="SimpleContainer" pt="580 131" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a8" id="1" recreator="Dependency" anchor1Id="6" anchor2Id="17" vtl="547.5 277.5" pts="3 580 164 476 164 476 364"></UML:Figure>
+        <UML:Figure xmi.id="a9" id="16" recreator="Package" subjectUUID="DCE-1140441365596-382" auto="false" pt="580 532" dim="87 75">
+          <UML:Figure.name>&lt;&lt;stratum&gt;&gt;
+graph</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a47" n="owner" v="Model"></UML:Property>
+            <UML:Property xmi.id="a48" n="showVis" v="true"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a49" id="5" recreator="SimpleContainer" pt="580 547" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+      </UML:FigureContainer.figures>
+    </UML:Diagram>
+  </XMI.content>
+</XMI>
+

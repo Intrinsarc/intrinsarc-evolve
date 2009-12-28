@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo SYSTEM "http://java.sun.com/dtd/jdo_1_0.dtd">
+
+<jdo>
+    <package name="com.hopstepjump.emflist">
+
+        <class name="PersistentEListClone" persistence-modifier="persistence-capable" >
+        </class>
+
+        <class name="PersistentEList" persistence-modifier="persistence-capable" >
+            <field name="list" persistence-modifier="persistent" />
+            <field name="owner" persistence-modifier="persistent" />
+            <field name="featureID" persistence-modifier="persistent" />
+        </class>
+        
+    </package>
+</jdo>

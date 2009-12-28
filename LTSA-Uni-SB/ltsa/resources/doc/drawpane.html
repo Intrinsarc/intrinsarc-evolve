@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <TITLE>Draw Pane</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000" BACKGROUND="Image16.jpg">
+
+<DIV ALIGN=right><A HREF="outputpane.html"><IMG SRC="p2hprev.gif" BORDER=0 HEIGHT=35 WIDTH=35></A><A HREF="User-manual.html"><IMG SRC="p2hup.gif" BORDER=0 HEIGHT=35 WIDTH=35></A><A HREF="alphabetpane.html"><IMG SRC="p2hnext.gif" BORDER=0 HEIGHT=35 WIDTH=35></A></DIV>
+
+<H2>
+<FONT FACE="Arial">Draw Pane</FONT></H2>
+
+<HR>
+<P><font face="Arial, Helvetica, sans-serif">This pane is available by default. 
+  It can be removed using the <B>Window</B> menu. </font></P>
+<P><font face="Arial, Helvetica, sans-serif"> The draw pame consists of two areas, 
+  a list of the constituent processes of the target composition displayed on the 
+  left and a blank canvas for depicting LTS graphs on the right. </font></P>
+<P><font face="Arial, Helvetica, sans-serif"> The display operates in two modes 
+  selectable from the <B>Options</B> menu. In the default mode, when an item in 
+  the process list is selected, its LTS graph is displayed in the canvas area. 
+  The graph can be stretched horizontally and vertically using the arrow keys 
+  or by clicking on the icons in the vertical toolbar. </font></P>
+<P><font face="Arial, Helvetica, sans-serif"> In the multiple LTS mode, the graphs 
+  for more than one process can be displayed in the canvas area. To stretch a 
+  graph it must first be selected by clicking somewhere within the graph. A rectangle 
+  is drawn around the currently selected graph. A graph can be remove from the 
+  display either by clicking on its entry in the list or by selecting it and pressing 
+  the backspace key. </font></P>
+<P><font face="Arial, Helvetica, sans-serif"> During animation, the current state 
+  of a displayed graph is colored red as is the last executed transition. In addition, 
+  any process that has a transition labeled by the last executed action is colored 
+  red in the process list. </font></P>
+<P><font face="Arial, Helvetica, sans-serif"> The <b>Dot Layout</b> is only selectable
+  if the <i>graphviz</i> layouting tools are installed on your system and <tt>dot</tt> is
+  on your <b>PATH</b>. </font></P>
+<BR>
+<P><font face="Arial, Helvetica, sans-serif"> These are the options available at the
+  Draw View: </font></P>
+  
+<table border=1>
+<tr>
+  <td><img border=0 src="../icon/simpleLayout.gif"></img></td>
+  <td>Use the <b>Simple Layout</b> where the states are just placed in a row.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/stretchHorizontal.gif"></img></td>
+  <td><i>(Only available in Simple Layout)</i><br>
+      Stretch the layout horizontally.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/compressHorizontal.gif"></img></td>
+  <td><i>(Only available in Simple Layout)</i><br>
+      Shrink the layout horizontally.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/stretchVertical.gif"></img></td>
+  <td><i>(Only available in Simple Layout)</i><br>
+      Stretch the layout vertically.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/compressVertical.gif"></img></td>
+  <td><i>(Only available in Simple Layout)</i><br>
+      Shrink the layout vertically.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/dotLayoutLR.gif"></img></td>
+  <td>Use the <b>Dot Layout</b> with preferred direction <b>left to right</b>.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/dotLayoutTB.gif"></img></td>
+  <td>Use the <b>Dot Layout</b> with preferred direction <b>top to bottom</b>.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/zoomin.gif"></img></td>
+  <td><i>(Only available in Dot Layout)</i><br>
+      Zoom in the graph.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/zoomout.gif"></img></td>
+  <td><i>(Only available in Dot Layout)</i><br>
+      Zoom out the graph.</td>
+</tr>
+<tr>
+  <td><img border=0 src="../icon/zoomfit.gif"></img></td>
+  <td><i>(Only available in Dot Layout)</i><br>
+      Zoom the graph so that it fits into the display area.</td>
+</tr>
+</table>
+</BODY>
+</HTML>

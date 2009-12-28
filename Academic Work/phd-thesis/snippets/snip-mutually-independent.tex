@@ -1,0 +1,9 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={base\_facts.als, lines 54-59}, label=alloy:mutually-independent, captionpos=b]
+pred independent[a, b: Stratum] {
+  a not in b + b.transitive and b not in a + a.transitive
+}
+pred independentOnCommonBase[a, b: Stratum] {
+  independent[a, b] and some a.transitive & b.transitive
+}
+\end{lstlisting}

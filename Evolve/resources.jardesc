@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="Academic Work/latest-evolve-distribution/gui/resources.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Evolve/resources.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="/Evolve/Evolve-manifest.MF" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/Resources/uml-palette-icons/model.png"/>
+        <file path="/Resources/resources/error.png"/>
+        <file path="/Resources/uml-palette-icons/part.png"/>
+        <file path="/Resources/resources/error-decorator.png"/>
+        <file path="/Resources/resources/alert.png"/>
+        <file path="/Resources/uml-palette-icons/autoconnect.png"/>
+        <file path="/Resources/resources/evolve-border.png"/>
+        <file path="/Resources/uml-palette-icons/replacement.png"/>
+        <file path="/Resources/resources/evolve.png"/>
+        <javaElement handleIdentifier="=Resources/window-icons"/>
+        <file path="/Resources/uml-palette-icons/constraint.gif"/>
+        <file path="/Resources/uml-palette-icons/nary.gif"/>
+        <file path="/Resources/resources/blank.png"/>
+        <file path="/Resources/uml-palette-icons/port.png"/>
+        <file path="/Resources/uml-palette-icons/htmlnote.png"/>
+        <file path="/Resources/uml-palette-icons/section.gif"/>
+        <file path="/Resources/uml-palette-icons/leaf.png"/>
+        <file path="/Resources/uml-palette-icons/start-state.png"/>
+        <file path="/Resources/uml-palette-icons/composite.png"/>
+        <file path="/Resources/uml-palette-icons/resemblance.png"/>
+        <file path="/Resources/uml-palette-icons/hyperport-end.png"/>
+        <file path="/Resources/uml-palette-icons/send.gif"/>
+        <javaElement handleIdentifier="=RichPalette/resources"/>
+        <file path="/Resources/uml-palette-icons/call.gif"/>
+        <file path="/Resources/resources/warning.png"/>
+        <file path="/Resources/uml-palette-icons/required.png"/>
+        <file path="/Resources/uml-palette-icons/profile.png"/>
+        <file path="/Resources/resources/warning-decorator2.png"/>
+        <file path="/Resources/uml-palette-icons/state.png"/>
+        <file path="/Resources/uml-palette-icons/strict-stratum.png"/>
+        <file path="/Resources/uml-palette-icons/return.gif"/>
+        <file path="/Resources/uml-palette-icons/association.gif"/>
+        <file path="/Resources/uml-palette-icons/end-state.png"/>
+        <file path="/Resources/uml-palette-icons/composition.gif"/>
+        <file path="/Resources/uml-palette-icons/notelink.gif"/>
+        <file path="/Resources/uml-palette-icons/relaxed-stratum.png"/>
+        <file path="/Resources/uml-palette-icons/baseline.gif"/>
+        <file path="/Resources/uml-palette-icons/create-port.png"/>
+        <file path="/Resources/uml-palette-icons/aggregation.gif"/>
+        <file path="/Resources/uml-palette-icons/portlink.png"/>
+        <file path="/Resources/uml-palette-icons/note.png"/>
+        <file path="/Resources/uml-palette-icons/composite-state.png"/>
+        <file path="/Resources/uml-palette-icons/containment.gif"/>
+        <file path="/Resources/uml-palette-icons/strict-destructive-stratum.png"/>
+        <file path="/Resources/uml-palette-icons/factory.png"/>
+        <file path="/Resources/uml-palette-icons/safe-dependency.png"/>
+        <file path="/Resources/uml-palette-icons/relaxed-destructive-stratum.png"/>
+        <file path="/Resources/uml-palette-icons/hyperport-start.png"/>
+        <file path="/Resources/uml-palette-icons/class.png"/>
+        <file path="/Resources/uml-palette-icons/inheritance.gif"/>
+        <file path="/Resources/uml-palette-icons/dependency.png"/>
+        <file path="/Resources/uml-palette-icons/interface.png"/>
+        <javaElement handleIdentifier="=Resources/toolbar-icons"/>
+        <file path="/Resources/resources/warning-decorator.png"/>
+        <file path="/Resources/uml-palette-icons/stereotype.gif"/>
+        <file path="/Resources/uml-palette-icons/provided.png"/>
+        <file path="/Resources/uml-palette-icons/lifeline.gif"/>
+        <javaElement handleIdentifier="=Resources/non-uml-palette-icons"/>
+        <javaElement handleIdentifier="=Resources/help"/>
+        <file path="/Resources/uml-palette-icons/package.png"/>
+        <javaElement handleIdentifier="=Resources/tree-icons"/>
+        <file path="/Resources/uml-palette-icons/region.gif"/>
+        <file path="/Resources/uml-palette-icons/evolution.png"/>
+        <file path="/Resources/uml-palette-icons/connectorend.gif"/>
+        <file path="/Resources/uml-palette-icons/realisation.gif"/>
+        <file path="/Resources/uml-palette-icons/node.gif"/>
+        <javaElement handleIdentifier="=Resources/tree-delta-icons"/>
+        <file path="/Resources/uml-palette-icons/placeholder.png"/>
+        <file path="/Resources/uml-palette-icons/connector.png"/>
+        <file path="/Resources/uml-palette-icons/transition.png"/>
+        <file path="/Resources/uml-palette-icons/component.png"/>
+        <file path="/Resources/resources/exclamation.png"/>
+    </selectedElements>
+</jardesc>

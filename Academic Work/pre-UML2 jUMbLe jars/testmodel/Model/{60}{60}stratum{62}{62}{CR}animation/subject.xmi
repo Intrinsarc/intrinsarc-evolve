@@ -1,0 +1,4 @@
+        <UML:Package xmi.id="a9" xmi.uuid="DCE-1140441787622-161" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+animation</UML:ModelElement.name>
+        </UML:Package>

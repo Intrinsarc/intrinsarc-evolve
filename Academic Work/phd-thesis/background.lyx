@@ -1,0 +1,5132 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\end_preamble
+\use_default_options false
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Background"
+
+\end_inset
+
+Background
+\end_layout
+
+\begin_layout Standard
+This chapter presents a survey of existing work that is relevant to the
+ creation of extensible applications, including application variant and
+ large scale software reuse techniques.
+\end_layout
+
+\begin_layout Standard
+We start by reviewing existing approaches to extensibility in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Approaches-to-Extensibility"
+
+\end_inset
+
+, indicating how these fare against the requirements of the previous chapter.
+ When an implicit reference is made to a requirement, its name will be put
+ in brackets after the text.
+ E.g.
+ (
+\noun on
+Alter
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Component-Based-Software-Engineering"
+
+\end_inset
+
+ and beyond focus primarily on a component-based and architectural perspective,
+ along with the issues that prevent components from being reused and their
+ architectures from being extended.
+ The link between components and this thesis is that our approach relies
+ on replaceable components to permit principled alteration of a base application.
+\end_layout
+
+\begin_layout Standard
+Detecting unwanted interference, when combining extensions, has a structural
+ and also a behavioural perspective.
+ We focus primarily on the structural side in this literature review and
+ thesis.
+ Explicit discussion of behavioural concerns is deferred to section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Further-Work"
+
+\end_inset
+
+ where we consider further work, which builds on the structural foundation
+ we establish.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Approaches-to-Extensibility"
+
+\end_inset
+
+Approaches to Extensibility and Large Scale Reuse
+\end_layout
+
+\begin_layout Subsection
+Scripting
+\end_layout
+
+\begin_layout Standard
+In an influential article by Ousterhout 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ousterhout1998"
+
+\end_inset
+
+, scripting is presented as a way to integrate components implemented in
+ conventional compiled languages.
+ The argument is that scripting languages are more flexible and faster to
+ develop in than their statically typed and compiled counterparts.
+ This approach can be used to produce systems which are extensible via customisa
+tion of scripts.
+ Scripting has also been used as glue code to ease the integration of components
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Schneider1999"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A number of prominent extensible applications have followed this architectural
+ style, whereby blackbox implementation components are glued together with
+ scripts.
+ Firefox follows this model and uses extensions which can consist of JavaScript
+ code and optional implementation-level components or plugins
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The use of plugins in Firefox is covered in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Plugin-Architectures"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+.
+ These scripts are used to customise the user interface and can call into
+ the underlying application or added implementation plugins.
+\end_layout
+
+\begin_layout Standard
+Other systems have opted for a pure scripting approach in order to provide
+ an extensible base.
+ An important and complex example is Emacs, a feature-rich text editor which
+ uses a Lisp-like scripting language for writing extensions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blandy2009"
+
+\end_inset
+
+.
+ Much of the Emacs system is also developed in the same scripting language.
+\end_layout
+
+\begin_layout Standard
+Scripting approaches have the limitation of requiring pre-planned extension
+ points to facilitate extensibility.
+ Emacs calls these 
+\begin_inset Quotes eld
+\end_inset
+
+hooks
+\begin_inset Quotes erd
+\end_inset
+
+, and scripts can register with these to be called at certain points in
+ the application processing logic.
+ If these hooks are not sufficient, then it is possible to copy and edit
+ the script source code for the underlying base application, as much of
+ this is often also expressed as scripts.
+ However, this violates the 
+\noun on
+NoSource
+\noun default
+ requirement.
+ Emacs allows modified scripts to live in a parallel installation-specific
+ directory to avoid overwriting the original script sources, but although
+ this allows freedom to make changes (
+\noun on
+Alter
+\noun default
+), it can also cause issues with upgrading and conflicts can ensue if multiple
+ scripts make changes to the same part of the base (
+\noun on
+Combine
+\emph on
+\noun default
+, 
+\emph default
+\noun on
+DetectAndCorrect
+\noun default
+, 
+\noun on
+Upgrade
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Scripts from different extensions can conflict, and the interference can
+ be subtle and difficult to detect.
+ Conventions and ad-hoc rules for scripts have been proposed to ameliorate
+ conflicts in extensible systems such as Firefox, however it is commonly
+ the case that extension conflicts are detected first by users and cannot
+ be foreseen in advance by extension creators 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Barnabe2007"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Excel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Microsoft2006a"
+
+\end_inset
+
+ can be extended by a mix of Visual Basic scripts and compiled implementation
+ COM components 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bullen2005"
+
+\end_inset
+
+.
+ This approach has the same limitations as other scripting systems.
+ Further, if a change is required to a COM component, then it must be replaced
+ or evolved, leading to a conflict if different scripts require different
+ versions (
+\noun on
+Combine
+\noun default
+, 
+\noun on
+NoSource
+\noun default
+).
+ These versioning issues are discussed in more detail in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Component-Object-Model"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Object-Oriented Frameworks
+\end_layout
+
+\begin_layout Standard
+Frameworks are a large scale reuse technique allowing a semi-complete applicatio
+n to be customised and extended into a complete application 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fayad1997"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A framework allows objects implementing specified interfaces to be registered
+ at pre-planned extension points, and it calls out to these objects at various
+ points in its processing logic.
+ This is known as inversion of control 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Johnson1997,Johnson1997a"
+
+\end_inset
+
+, where program flow is handed over to the framework.
+ Framework extension points are also referred to as 
+\begin_inset Quotes eld
+\end_inset
+
+hooks
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Froehlich1997"
+
+\end_inset
+
+.
+ The underlying mechanism of a framework has been codified as the open-closed
+ principle 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Meyer1997,Martin2000"
+
+\end_inset
+
+: frameworks are open to extension via inheritance, but closed to modification
+ of the source code of the framework.
+\end_layout
+
+\begin_layout Standard
+Frameworks are able to be extended without having the implementation source
+ code, as long as the extension has been accommodated by the provision of
+ the appropriate extension points.
+ Many complex graphical interaction frameworks are distributed in this way
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Vlissides1989,Hoy2002"
+
+\end_inset
+
+.
+ As long as the specification of the interfaces is available, the framework
+ can be delivered in binary object form.
+\end_layout
+
+\begin_layout Standard
+Frameworks offer an effective and large-scale form of reuse, but in practice
+ a number of fundamental issues limit the approach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Codenie1997"
+
+\end_inset
+
+.
+ Many of these issues stem from ownership of changes to the base framework.
+ Alterations must be performed by the framework (base) developers, or else
+ the framework's source code must be copied and independently modified leading
+ to subsequent maintenance problems (
+\noun on
+NoSource
+\noun default
+, 
+\noun on
+NoImpact
+\noun default
+).
+ In many cases, timescales for application delivery will bias towards the
+ latter solution.
+ The net effect is that version proliferation and architectural drift of
+ the base framework tends to occur 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Codenie1997"
+
+\end_inset
+
+, making ongoing maintenance of the framework extremely difficult.
+\end_layout
+
+\begin_layout Standard
+Evolving a framework as a single, unified version is difficult because the
+ base framework must be aware of the different uses that it is being put
+ to before it can be reliably upgraded.
+ Various techniques have been proposed to mitigate this situation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cortes2003,Hou2001,Mattsson1997"
+
+\end_inset
+
+, however these rely on placing constraints or conditions on the framework
+ and preventing it evolving in a direction which breaks existing usage by
+ clients 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hou2001,Cortes2003"
+
+\end_inset
+
+.
+ This limits the type of change that can be introduced for reuse (
+\noun on
+Alter
+\noun default
+) in order to minimise impact on existing clients (
+\noun on
+Upgrade
+\noun default
+, 
+\noun on
+NoImpact
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+In the process of creating a complex application, it is often necessary
+ to combine and integrate two or more independently developed frameworks
+ (
+\noun on
+Combine
+\noun default
+).
+ This is problematic because each framework assumes under the inversion
+ of control paradigm that it will have complete control of the 
+\begin_inset Quotes eld
+\end_inset
+
+event loop
+\begin_inset Quotes erd
+\end_inset
+
+.
+ As pointed out succinctly in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mattsson1997"
+
+\end_inset
+
+, frameworks are designed for extension and not composition, and source
+ code access and modification is often required to integrate the control
+ loops of different frameworks (
+\noun on
+NoSource
+\noun default
+).
+ Further, the frameworks may overlap, requiring some functionality to be
+ removed from one (or perhaps both) in order to ensure deep integration
+ between them.
+\end_layout
+
+\begin_layout Standard
+Some guidelines are issued in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gurp2001"
+
+\end_inset
+
+ to allow frameworks to be more easily composed and extended.
+ One of the suggestions is to use small components at a lower level of abstracti
+on.
+ This recommendation makes the assumption that larger components are necessarily
+ monolithic, and violates the 
+\noun on
+AppropriateLevel
+\noun default
+ requirement.
+\end_layout
+
+\begin_layout Standard
+The above issues show that there are many problems involved in reusing,
+ extending and combining frameworks, particularly as they require that extension
+ points be pre-planned and built into the original design.
+ Further extension may require modifications to the source code to the framework
+, and this will either place an undue burden on the framework developers
+ or result in a variant management problem due to the many different framework
+ versions.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Plugin-Architectures"
+
+\end_inset
+
+Plugin Architectures
+\end_layout
+
+\begin_layout Standard
+Plugins are pre-packaged units of software that can be 
+\begin_inset Quotes eld
+\end_inset
+
+plugged into
+\begin_inset Quotes erd
+\end_inset
+
+ a base application to extend its functionality.
+ This architectural style provides a lightweight way to reduce the size
+ of a base system and simultaneously cater for a wider spectrum of requirements
+ via extensibility 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Volter1999"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In its simplest form, a plugin can take the form of a compiled class conforming
+ to an interface.
+ The application discovers all plugins at startup time, and calls out to
+ them via existing extension points at appropriate stages in its processing
+ logic 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mayer2003"
+
+\end_inset
+
+.
+ The need to pre-plan and design extension points into the base application
+ leads to limitations on the types of extensions that can be accommodated
+ (
+\noun on
+Alter
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Advanced plugin systems allow plugins themselves to also offer extension
+ points 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chatley2003,Object2001"
+
+\end_inset
+
+.
+ This turns the concept of a base application into a relative one, meaning
+ that the original application and any collection of extensible plugins
+ could be considered a new base to build on.
+ Taken to its logical extreme, the base for a pure plugin architecture is
+ simply a plugin discovery and load mechanism, which is how the Eclipse
+ system is structured 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001a"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A recurring problem with plugin architectures is that independently developed
+ plugins can interact in unforeseen ways when combined into the same base
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Beaton2005,Fireheadaches2005"
+
+\end_inset
+
+.
+ This problem is exacerbated because testing a group of plugins for interference
+ involves a combinatorial explosion of manual checks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Beaton2005"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+By providing a versioning scheme for plugins, Eclipse allows parts of an
+ application to be replaced to accommodate a new feature.
+ This resolves some of the 
+\emph on
+\noun on
+Alter
+\emph default
+\noun default
+ limitations regarding pre-planned extension points.
+ It also leads to a greater likelihood of conflict when plugins are combined.
+ In essence, plugin architectures reveal a tension between being allowed
+ to make changes to the base (
+\noun on
+Alter
+\noun default
+) and preventing structural and behavioural conflicts when plugins are combined
+ (
+\noun on
+Combine
+\noun default
+).
+ Granting the power to make extensive changes to the base increases the
+ likelihood of conflict and exposes the weakness of the style regarding
+ the lack of automated checks.
+\end_layout
+
+\begin_layout Standard
+MagicBeans does provide a way to check if plugins are behaviourally compatible,
+ by allowing each plugin to specify its actions via an finite state process
+ (FSP) expression 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1999,Chatley2004"
+
+\end_inset
+
+, although it provides no way to repair any conflicts detected.
+\end_layout
+
+\begin_layout Standard
+Plugin approaches are non-hierarchical: plugins cannot be composed of other
+ plugins.
+ This violates the 
+\noun on
+AppropriateLevel
+\noun default
+ requirement, where as the number of plugins becomes large it is not always
+ possible to replace or modify base functionality at the correct level of
+ abstraction.
+ A tension becomes evident between making plugins fine-grained at a low
+ level of abstraction to allow ease of replacement for extension, and making
+ them coarse-grained at a high level of abstraction to allow the architecture
+ to be managed and understood more easily.
+ To indicate the scale of the problem, consider that a typical Eclipse environme
+nt contains over 200 plugins, and an enterprise development environment
+ based around Eclipse is known to contain over 500 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma2003"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The availability of an application's source code does not reduce the need
+ for, or the effectiveness of, a plugin architecture or other extensibility
+ approach.
+ Many prominent and successful open-source applications use plugins for
+ extension, including Firefox 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Firefoxplugins2008"
+
+\end_inset
+
+, Eclipse and Wordpress 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wordpress"
+
+\end_inset
+
+.
+ Although the source code for each of these applications can be freely modified
+ and redistributed, the effort involved in copying and maintaining a variant
+ of these applications would be large and disproportionate for all but the
+ largest extensions.
+ As such (and somewhat surprisingly), the extensibility requirements presented
+ in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+ are not fully addressed by complete source code availability.
+ Instead, the requirements are more a product of the constraints and interaction
+s present in common extension scenarios rather than an inevitable outcome
+ of the lack of source code access.
+\end_layout
+
+\begin_layout Standard
+The Backbone approach is compared and contrasted with a plugin architectural
+ style in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Evaluation-plugin"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The Common Lisp Metaobject Protocol
+\end_layout
+
+\begin_layout Standard
+We examine the Metaobject Protocol (MOP) not as a way of creating an extensible
+ system, but as a useful exercise in how an important extensible system
+ has been constructed.
+ 
+\end_layout
+
+\begin_layout Standard
+The goal of the MOP is to allow the Common-Lisp Object System (CLOS) and
+ language to be extended, without compromising performance and other features
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kiczales1991,Kiczales1993"
+
+\end_inset
+
+.
+ This is achieved through a set of interfaces (protocols) which allow the
+ runtime system to be accessed and augmented.
+ Augmentation is achieved through a set of hooks that allow user-level programs
+ to participate in the runtime of a program.
+\end_layout
+
+\begin_layout Standard
+This approach is related to the way that extensible systems use scripting
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ousterhout1998,Blandy2009"
+
+\end_inset
+
+, but provides a deeper and more powerful way of expressing system changes
+ due to the fact that the full runtime and extensions are in the same language.
+ The line between the runtime and user-level is blurred.
+\end_layout
+
+\begin_layout Standard
+Kiczales and Lamping further examine the underlying issues facing object-oriente
+d systems in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kiczales1992"
+
+\end_inset
+
+ and partially conclude that a facility for the replacement of units in
+ a system is necessary for extensibility.
+ There is again the predictable tension between having coarse-grained replaceabl
+e units for making large changes whilst also allowing the system to be managed
+ easily, and making the units smaller for ease of customisation.
+ Layered protocols are proposed as a way of addressing this tension.
+ In effect, this is a hierarchy of facilities where the user can change
+ behaviour at the correct level of abstraction (
+\noun on
+AppropriateLevel
+\noun default
+).
+ However, they note that arbitrary replacement will almost certainly lead
+ to chaos, and seek to constrain what can be replaced (
+\noun on
+Alter
+\noun default
+).
+ Unconstrained alteration of the system is not permitted -- instead system
+ addition is primarily covered.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Aspect-Oriented-Programming"
+
+\end_inset
+
+Aspect-Oriented Programming and Separation of Concerns
+\end_layout
+
+\begin_layout Standard
+Aspects offer a way to weave cross-cutting concerns into an application,
+ allowing it to be extended without modifying the source code.
+\end_layout
+
+\begin_layout Standard
+Following from metaobject protocols, it was observed that the features added
+ via such protocols cut across the base level computation of a program 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kiczales97aspectoriented"
+
+\end_inset
+
+.
+ Aspect-oriented programming (AOP) is a language, built on top of the facilities
+ of a MOP, to specify cross-cutting features to a base program.
+ These features are specified separately from the base and then woven together
+ into the application at a later stage.
+ The underlying intuition is that cross-cutting features are usually spread
+ throughout a conventional codebase, and this creates maintenance, reuse
+ and clarity issues: aspects allow these features to be untangled and represente
+d in a single place.
+\end_layout
+
+\begin_layout Standard
+Aspects have been proposed as a mechanism to improve the extensibility and
+ reusability of frameworks and product lines 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kulesza2006,Figueiredo2008"
+
+\end_inset
+
+.
+ Aspects are also sometimes used to patch and adapt code that cannot be
+ modified 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Robinson2007"
+
+\end_inset
+
+, partly addressing the 
+\emph on
+\noun on
+Alter
+\emph default
+\noun default
+ requirement.
+\end_layout
+
+\begin_layout Standard
+Before assessing AOP fully against our extensibility requirements, consider
+ how AspectJ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Team2002-2003"
+
+\end_inset
+
+, an AOP approach for Java, works.
+ AspectJ uses the 
+\begin_inset Quotes eld
+\end_inset
+
+join point
+\begin_inset Quotes erd
+\end_inset
+
+ model.
+ A join point identifies the type of language construct that can have additional
+ functionality woven into it, such as a method or field modification.
+ A pointcut then selects instances of a join point according to a lexical
+ pattern match.
+ e.g.
+ 
+\family typewriter
+call(void Point.set*(int))
+\family default
+.
+ Finally, an advice adds functionality to a pointcut and can be invoked
+ before or after the call, or be sandwiched around the call.
+\end_layout
+
+\begin_layout Standard
+AspectJ relies on lexical conventions such as prefixing all methods which
+ cause mutation to an object with 
+\begin_inset Quotes eld
+\end_inset
+
+set*
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This is a fragile approach which could easily select more or less methods
+ than desired through failure to follow the convention or when additional
+ code is added (
+\noun on
+Combine
+\noun default
+).
+ The base code may not have the convention required to support a new feature,
+ which limits unplanned extension.
+ Further, despite a reasonable set of join point possibilities, only certain
+ alterations can be performed (
+\noun on
+Alter
+\noun default
+).
+ Subsequent upgrading of the base is also problematic as the lexical structure
+ of selected join points may alter in a new version (
+\noun on
+Upgrade
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Combining independently developed aspects into a single base is also troublesome.
+ Although AspectJ offers a default combination order for advices based on
+ a set of rules, and also supplies a precedence operator, the order can
+ inadvertently change by adding extra advices to the application.
+ Conflict detection is difficult and subsequent repair involves modifying
+ the advices and their precedence (
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+).
+ Further, aspects are not composable and cannot directly refer to each other
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ossher2001"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In an empirical study looking at using aspects to evolve a software product
+ line, it was found that the source code of the base had to be changed in
+ certain situations to allow aspects to be introduced, that the lexical
+ specification of aspects was fragile, and that the use of aspects harmed
+ the modularity of features in the base 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Figueiredo2008"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Multi-dimensional separation of concerns (MDSOC) is a generalised form of
+ AOP where there is no principal axis.
+ This provides an extension developer with the same power as a base developer,
+ unlike in the AspectJ model.
+ This approach has been used to create, evolve and extend systems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ossher2001"
+
+\end_inset
+
+.
+ Hyper/J 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tarr2002"
+
+\end_inset
+
+ uses hyperslices where each slice contains the full code for a particular
+ cross-cutting concern, in such a way that it can exist as a program in
+ its own right.
+ Hyperslices can be composed by specifying the order of composition and
+ instructions on how each slice maps onto a unified class hierarchy.
+ As one hyperslice may selectively replace methods in another slice, order
+ is important and no guarantee can be made when combining slices that the
+ result will be correct (
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+).
+ This ordering may require modification as other slices are composed in.
+ Further, modification of methods is necessary when the concern does not
+ cover the entire body of the method 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lai2000"
+
+\end_inset
+
+.
+ Overlapping features between slices can lead to complex interactions which
+ cannot be understood in isolation, leading to inconsistencies and undesired
+ interference when slices are combined 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Nelson2003"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Product-Line Architectures
+\end_layout
+
+\begin_layout Standard
+A product-line architecture focuses on a set of reusable components that
+ can be shared by many systems in a product family 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eriksson2006"
+
+\end_inset
+
+.
+ The development of components is driven by a hierarchical feature model
+ which specifies fine-grained variants which deal with different use cases.
+ Products are created by adding to the feature graph if required, and then
+ choosing the appropriate set of features to assemble into the new application.
+\end_layout
+
+\begin_layout Standard
+Concurrent evolution of single components in a product line is problematic
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Svahnberg1999"
+
+\end_inset
+
+, and work to merge and propagate changes from one branch to another is
+ still required if the code for a component is branched 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ping2004"
+
+\end_inset
+
+ (
+\noun on
+Combine
+\noun default
+).
+ In addition, this approach usually involves maintaining a single feature
+ graph for all product variants, which makes decentralised development difficult
+ (
+\noun on
+NoImpact
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+GenVoca is an approach and environment for generating product lines 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2002"
+
+\end_inset
+
+.
+ The primitive element of composition is called a 
+\emph on
+gluon
+\emph default
+ and these are arranged in layer-like structures called 
+\emph on
+constants
+\emph default
+.
+ GenVoca allows class extension, which is a where a subclass assumes the
+ name of its parent class and this allows existing functionality to be extended
+ via inheritance and replacement.
+ This approach shares many of the features and limitations of the MixJuice
+ approach outlined in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Difference-Based-Modules"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A related product line approach is AHEAD 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2003"
+
+\end_inset
+
+.
+ This is evaluated in more detail in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Evaluation-compositional"
+
+\end_inset
+
+ where it is compared and contrasted with Backbone.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Difference-Based-Modules"
+
+\end_inset
+
+Difference-Based Modules
+\end_layout
+
+\begin_layout Standard
+MixJuice adds a module system to Java, where modules describe the difference
+ between the base application and the desired application 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ichisugi2002"
+
+\end_inset
+
+.
+ The intention is to allow a Java program to be extended in unplanned ways.
+\end_layout
+
+\begin_layout Standard
+MixJuice relies on a total module loading order to be specified, although
+ it can use implicitly included 
+\begin_inset Quotes eld
+\end_inset
+
+complementary
+\begin_inset Quotes erd
+\end_inset
+
+ modules to resolve several common types of conflict.
+ Inheritance features prominently, and any alterations and corrections for
+ conflict are constrained by the limits of this construct.
+ In particular field deletion or replacement, and method signature change
+ and removal cannot occur (
+\noun on
+Alter
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Because it relies on the Java class model, MixJuice also does not offer
+ a true architectural approach with separate levels of abstraction (
+\noun on
+AppropriateLevel
+\noun default
+).
+ MixJuice uses a naming system of 
+\emph on
+module::class
+\emph default
+ to prevent accidental name collisions in independently developed modules.
+ 
+\end_layout
+
+\begin_layout Standard
+A graphical approach to depicting MixJuice architectures has been proposed
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ichisugi2002a"
+
+\end_inset
+
+.
+ The issues and limitations involved in using MixJuice to refactor an existing
+ system are described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chern2006"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Viewpoint-Oriented-Approaches"
+
+\end_inset
+
+Viewpoint-Oriented Approaches
+\end_layout
+
+\begin_layout Standard
+Viewpoints allow multiple perspectives on a single system to be constructed
+ separately and combined at a later point 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Finkelstein1992"
+
+\end_inset
+
+.
+ This enables independent development of different aspects of an application,
+ supporting the different roles and expertise within a team.
+ A viewpoint is not restricted to the structural side of a system, and can
+ encompass requirements, architecture and also functional and non-functional
+ concerns.
+\end_layout
+
+\begin_layout Standard
+Viewpoints encode partial knowledge about a system and are based around
+ a representational schema of a particular domain.
+ Consistency checks are used to ensure that the combined viewpoints represent
+ a coherent system.
+ Viewpoints represent a compelling approach to the construction of a system
+ with multiple facets, but are not explicitly oriented towards the creation
+ of extensible applications.
+ In particular, a constructive approach is taken, which prevents the modificatio
+n of existing features (
+\noun on
+Alter
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+A more structurally-oriented approach is taken in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Engels1997"
+
+\end_inset
+
+.
+ In this model, views also encode partial knowledge about a system, based
+ on a reference model.
+ In practice, these structural views are object instance graphs which are
+ combined at a later point into a unified model.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Parameterisation-and-Product"
+
+\end_inset
+
+Parametrisation and Product Diversity
+\end_layout
+
+\begin_layout Standard
+Koala 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ommering2000"
+
+\end_inset
+
+ is a component model for embedded systems based on Darwin 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1995"
+
+\end_inset
+
+ that allows for extension of an architecture through variation points and
+ parametrisation.
+ Component variants can be plugged into the variation points, supporting
+ a family of applications.
+ The points must be decided in advance, limiting this to a technique for
+ planned extension.
+ This does not fully satisfy the 
+\emph on
+\noun on
+Alter
+\emph default
+\noun default
+ requirement.
+\end_layout
+
+\begin_layout Standard
+Parametrisation is used in Koala to capture options supported by a component
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ommering2000"
+
+\end_inset
+
+.
+ This approach can result in a combinatorial explosion of options if the
+ parameters of the constituent parts of a composite component are also exposed.
+ Further, any changes need to be factored into a new version of the base
+ application, violating the 
+\noun on
+NoImpact
+\noun default
+ requirement and reducing the clarity of the architecture.
+\end_layout
+
+\begin_layout Standard
+Koala features HORCOM, a software bus which mirrors the functionality of
+ an electronic hardware bus 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ommering2003"
+
+\end_inset
+
+.
+ Components are decoupled from each other by the bus, and understand a standard
+ protocol.
+ Additional components can be plugged into the bus, extending the behaviour
+ of the system in an additive way only (
+\noun on
+Alter
+\noun default
+).
+ Feature interaction is not handled explicitly (
+\noun on
+Combine
+\noun default
+).
+\end_layout
+
+\begin_layout Subsection
+Mixins
+\end_layout
+
+\begin_layout Standard
+Mixins are a language feature for expressing abstract subclasses that can
+ be reused in different parent classes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bracha1990"
+
+\end_inset
+
+.
+ Any number of mixins can be combined into a parent class, and methods of
+ the mixin may invoke methods of that class.
+ This implies that the mixin must make assumptions about the names of the
+ parent methods that it will call, which presents an integration issue.
+ Further, multiple mixins may conflict or interact in unforeseen ways when
+ combined into the a single parent class (
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Scala is a language with mixins which aims to support the combination of
+ independently developed extensions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zenger2004"
+
+\end_inset
+
+.
+ It provides two dimensions of extension: data extension for the object-oriented
+ view, and behavioural extension for the functional view.
+ Scala does not resolve or ameliorate the name collision problem suffered
+ by mixin and multiple inheritance approaches.
+\end_layout
+
+\begin_layout Standard
+Units and mixins are used in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Findler1998"
+
+\end_inset
+
+ to separate component creation and dependency binding, providing a significant
+ level of reuse for large units or modules.
+ However, once a binding has been made, it cannot be replaced or removed,
+ which limits this approach for extensible systems.
+ The result is a variant of the abstraction problem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Greenfield2004"
+
+\end_inset
+
+ where buried abstractions cannot be altered (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Abstraction-Problem"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection
+Virtual Classes and Nested Inheritance
+\end_layout
+
+\begin_layout Standard
+The BETA language allows virtual patterns, which are a type of virtual class
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lehrmann1993"
+
+\end_inset
+
+.
+ A pattern can specify other nested patterns, and sub-patterns can refine
+ nested types through inheritance, allowing large patterns to be reused
+ and extended.
+ 
+\end_layout
+
+\begin_layout Standard
+Nested inheritance provides a similar facility, which allows a class to
+ override any inherited nested types 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Nystrom2004"
+
+\end_inset
+
+.
+ This extends the BETA facilities by guaranteeing type safety through static
+ analysis.
+ The example scenario of an extensible parsing system demonstrates considerable
+ reuse for a compiler family.
+\end_layout
+
+\begin_layout Standard
+In practice, both approaches are limited by the need for pre-planned extension
+ points (where appropriate classes have been explicitly nested or marked
+ as virtual) and are subject to the limitations of the inheritance construct
+ (only additions and compatible overrides).
+\end_layout
+
+\begin_layout Subsection
+Feature Composition
+\end_layout
+
+\begin_layout Standard
+Feature composition has been proposed to allow independently developed features
+ to be added to a telecommunications system, where existing services must
+ not be affected in an adverse way by any newly added functionality 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hay2000"
+
+\end_inset
+
+.
+ This approach uses a series of relational assertions to model states and
+ events, along with invariants which characterise the intended effects of
+ the added features.
+ It is possible for a newly added feature to adjust another feature already
+ present in the system.
+\end_layout
+
+\begin_layout Standard
+Feature interaction is detected at runtime by examining whether one feature
+ has invalidated the invariants of another.
+ A lower priority feature is not allowed to violate the invariants of a
+ higher priority feature.
+\end_layout
+
+\begin_layout Standard
+This work does not explicitly model an architecture, and limits the types
+ of application extension allowed to ensure that unwanted feature interaction
+ can either be prevented or contained (
+\noun on
+Alter
+\noun default
+).
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Component-Based-Software-Engineering"
+
+\end_inset
+
+Component-Based Software Engineering (CBSE)
+\end_layout
+
+\begin_layout Standard
+A longstanding goal of software engineering has been the ability to efficiently
+ and reliably construct software systems from prefabricated components.
+ An early reference to the general concept and vision was outlined by M.
+ D.
+ McIlroy at the 1968 NATO Software Engineering Conference 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McIlroy1968"
+
+\end_inset
+
+.
+ In this influential white paper, software production techniques are compared
+ unfavourably to industrial manufacturing techniques in electronics and
+ hardware.
+ A key element is found to be the idea of a component, or interchangeable
+ part, which provides a level of modularity.
+ The lack of support (at that time) for a component industry where component
+ producers provide catalogues of parametrised components was taken as a
+ sign of the lack of maturity of software production techniques relative
+ to other fields.
+\end_layout
+
+\begin_layout Standard
+Following from this, a vision of the production of systems through the customisa
+tion, 
+\begin_inset Quotes eld
+\end_inset
+
+transliteration
+\begin_inset Quotes erd
+\end_inset
+
+ and assembly of parametrised software components is proposed.
+ The proposal outlines options such as space-versus-time trade-offs for
+ algorithms, and considers the need to automatically translate algorithms
+ into different languages for different operating systems.
+\end_layout
+
+\begin_layout Standard
+Apart from the generation and translation perspective, this vision of components
+ is similar in many ways to the modern concept of a class library.
+ The examples chosen are based very much around algorithmic concerns, and
+ parametrisation and generation are proposed as ways to handle the level
+ of choice required.
+ The wider concerns of a component-based architecture, such as dynamic structure
+s and multiple levels of architectural abstraction, are not discussed although
+ dynamic memory allocation is briefly mentioned.
+\end_layout
+
+\begin_layout Standard
+The modern definition of a software component varies depending on the context,
+ with some literature emphasising the notion of third party deployment and
+ composition 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Szyperski2002"
+
+\end_inset
+
+, whereas other models focus on inter-language communication and interoperabilit
+y 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMG2004,OMG2006a"
+
+\end_inset
+
+.
+ The minimal consensus that we adopt for this thesis, however, is far simpler:
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+A component is a unit of software that can be instantiated, and explicitly
+ declares the interfaces (or services) it provides and requires.
+\end_layout
+
+\begin_layout Standard
+This definition is at the heart of most component approaches 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1995,Councill2001"
+
+\end_inset
+
+.
+ It does not mention implementation language, architectural hierarchy, distribut
+ed systems or the how components are assembled to form a system.
+ These aspects are important to many component models, and can be layered
+ on top of this definition.
+ Of particular interest, is that a software component can be represented
+ by an object-oriented class as long as some convention or mechanism is
+ used to explicitly denote provided and required interfaces, and constrain
+ communication between components to those interfaces.
+\end_layout
+
+\begin_layout Subsection
+Issues Preventing Component Reuse, Extension and Integration
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cox1991"
+
+\end_inset
+
+, CBSE is compared to the production of muskets in the pre-industrial era,
+ where hand crafting of parts was routine.
+ The lack of both interchangeability and standard methods of measuring component
+ specification compliance are cited as being key impediments to the development
+ of component catalogues.
+ The aim of these catalogues is to facilitate large scale reuse, and allow
+ rapid construction of applications via component composition.
+\end_layout
+
+\begin_layout Standard
+However, a more fundamental problem preventing reuse and integration is
+ an inability to specify component alterations to accommodate for new requiremen
+ts (
+\noun on
+Alter
+\noun default
+).
+ As pointed out in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Holzle1993"
+
+\end_inset
+
+, even minor syntactic mismatches prevent component integration.
+ The full spectrum of issues ranges from simple naming issues through to
+ more complex behavioural interactions and testability concerns 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kiczales1992,Szyperski2006,Stuckenholz2005"
+
+\end_inset
+
+.
+ Component versioning and deployment approaches have been proposed as a
+ way of mitigating some of these issues 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Meijer2002"
+
+\end_inset
+
+, where multiple versions of a component may be deployed into in a running
+ system.
+ This does not address the issue of migration to the newer component version,
+ or the problem when a single version of the component must always be enforced.
+ The latter situation occurs when a component is managing a resource that
+ requires a single controlling entity in a system, or when the component
+ is managing shared state.
+\end_layout
+
+\begin_layout Standard
+A common theme of several approaches is to solve the integration issue by
+ wrapping the original component and delegating selectively to it.
+ Wrapping is proposed in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Holzle1993"
+
+\end_inset
+
+ in order to adapt an interface for naming mismatches, although it is pointed
+ out that this introduces a performance problem.
+ It also introduces a problem with identity as both the wrapped object and
+ the original need to assume the same identity in some situations.
+ The desire to wrap components is more focused on solving the problem at
+ the implementation level, where maintaining compatibility with existing
+ languages and paradigms is either implicitly or explicitly considered to
+ be of paramount importance.
+ Superimposition 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bosch1999"
+
+\end_inset
+
+ is a variation on this theme which aims to address the identity problem
+ (referred to also as the 
+\begin_inset Quotes eld
+\end_inset
+
+self problem
+\begin_inset Quotes erd
+\end_inset
+
+).
+ The aims of adaptation, in this case, are that the changes can be applied
+ transparently, and that the wrappers can be reused in other contexts.
+ This does not solve the fundamental problem that wrapping is a blackbox
+ reuse technique 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Buchi1999,Szyperski2002"
+
+\end_inset
+
+ which cannot adjust fundamental characteristics of a component, only hide
+ them.
+ Other wrapping approaches are outlined in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jorgensen2004,Truyen2001"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Another approach to adaptation is to use glue code written in a scripting
+ language to handle any component integration issues 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Schneider1999"
+
+\end_inset
+
+.
+ This is a blackbox technique also, and suffers from the limitations outlined
+ above.
+\end_layout
+
+\begin_layout Standard
+In a far reaching article, Szyperski lists some of the challenges of extensibili
+ty in a component context 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Szyperski2006"
+
+\end_inset
+
+.
+ Extensible systems are not open to total program analysis due to their
+ open nature and therefore all variants cannot be exhaustively tested (
+\noun on
+Combine
+\noun default
+).
+ The (possibly mutual) interdependence between extension providers and the
+ interaction between independently developed extensions must also be considered
+ (
+\noun on
+DetectAndCorrect
+\noun default
+).
+ Another problem noted is the tension between fine-grained components for
+ ease of extension, and coarse-grained components for ease of architectural
+ management (
+\noun on
+AppropriateLevel
+\noun default
+).
+ A system that can be extended with independently developed extensions and
+ remain verifiably correct is known as 
+\emph on
+independently extensible
+\emph default
+.
+ Interestingly, Szyperski proposes that modules be used as the unit of extension
+ in a component system.
+ Feature removal is not discussed.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:The-Abstraction-Problem"
+
+\end_inset
+
+The Abstraction Problem
+\end_layout
+
+\begin_layout Standard
+In a hierarchical model, composite components can be assembled out of instances
+ of other components, forming a composition hierarchy.
+ Reuse of components in this type of model is progressively more complex
+ if a composite requires a change to a component deep in its hierarchy,
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Compositional-component-hierarchy,"
+
+\end_inset
+
+.
+ It is difficult to replace the single component requiring change (X in
+ composite A) as it is deeply buried.
+ Replacing X globally is not necessarily a solution, as it is also being
+ used elsewhere and it may be desired that B be unaffected by the change.
+\end_layout
+
+\begin_layout Standard
+The strength of hierarchical models is that they can deal with multiple
+ abstraction levels, satisfying requirement 
+\emph on
+\noun on
+AppropriateLevel
+\emph default
+\noun default
+.
+ However, because abstractions can be deeply buried in a compositional hierarchy
+, alterations may be difficult (
+\noun on
+Alter
+\noun default
+).
+ This is a variant of the abstraction problem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Greenfield2004"
+
+\end_inset
+
+: components are more valuable when they represent higher-level abstractions
+ targeted at a particular domain but this specificity and the hierarchy
+ implied limits their potential for reuse.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/composition.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Compositional-component-hierarchy,"
+
+\end_inset
+
+Two composition hierarchies, showing a buried abstraction
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using hierarchy, an entire system can be modelled as a single composite
+ component 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Garlan1997,Kramer1989"
+
+\end_inset
+
+.
+ As such, component reuse and extensibility are closely related to system
+ reuse and extensibility, and problems at component level often translate
+ to analogous problems at system level.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Component-Technologies"
+
+\end_inset
+
+Component Technologies
+\end_layout
+
+\begin_layout Standard
+A number of component runtime, packaging and deployment technologies exist.
+ These are widely used in industry, and in some cases have led to significant
+ commercial marketplaces for components adhering to their respective models.
+ The following technologies are reviewed along with their support for extensibil
+ity based on the requirements in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+CORBA and the CORBA Component Model (CCM)
+\end_layout
+
+\begin_layout Standard
+CORBA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMG2004"
+
+\end_inset
+
+ provides a platform-independent communications format and distributed component
+ model.
+ Interfaces are specified using an interface definition language (IDL),
+ which can then be compiled for a specific language and platform choice
+ into stubs and skeletons.
+ Component references can be passed at runtime as object references or turned
+ into a textual form as inter-operable references (IORs).
+ Bindings between components are formed via service location 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fowler2004"
+
+\end_inset
+
+ and are not specified using connectors.
+ A hierarchical model is not supported.
+\end_layout
+
+\begin_layout Standard
+The CCM is a component model for CORBA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMG2006a"
+
+\end_inset
+
+.
+ Components may provide and require interfaces (called facets and receptacles
+ respectively) through ports, and an event model for asynchronous communication
+ is supported (sources and sinks).
+ The model is non-hierarchical, and does not feature connectors in the standard
+ specification 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Robert2005"
+
+\end_inset
+
+.
+ There is a considerable amount of similarity between the CCM and the Enterprise
+ JavaBeans specification (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Java-Component-Models"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Neither CORBA nor CCM are particularly suitable for building extensible
+ systems.
+ Alterations to existing components are only possibly via source code modificati
+on or component wrapping (
+\noun on
+NoSource
+\noun default
+,
+\emph on
+ 
+\emph default
+\noun on
+Alter
+\noun default
+).
+ Further, as a non-hierarchical approach, extensions cannot modify or replace
+ components at varying levels of abstraction (
+\noun on
+AppropriateLevel
+\noun default
+).
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Java-Component-Models"
+
+\end_inset
+
+Java Component Models
+\end_layout
+
+\begin_layout Standard
+JavaBeans 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Network2006,O'Neill1998"
+
+\end_inset
+
+ is a minimalist client-side technology for the creation and configuration
+ of reusable Java components.
+ Fundamentally, a bean is just a class that conforms to a lexical convention
+ for getting and setting attribute
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+An attribute is also known as a bean property.
+\end_layout
+
+\end_inset
+
+ values.
+ This approach is primarily focused on graphical components, and supports
+ an event model where clients are notified of changes to bean attributes.
+ Connectors are not explicit, but are instead modelled as references from
+ a bean to clients interested in changes in its state.
+ JavaBeans supports a limited form of hierarchical composition through object
+ aggregation.
+ It does not support explicitly required interfaces.
+\end_layout
+
+\begin_layout Standard
+Enterprise JavaBeans (EJB) is the distributed server-side Java component
+ model 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Network2006a"
+
+\end_inset
+
+, and despite the naming similarity does not build on the JavaBeans specificatio
+n.
+ Component hierarchy is not supported in any version of EJB.
+ In EJB version 2.1 and below, there was no way for one component instance
+ to be declaratively connected to another.
+ Connections are instead implicitly formed by each component using a registry
+ called JNDI (Java Naming and Directory Interface) to locate required services,
+ which effectively forces the embedding of connector information inside
+ component instances.
+ This severely limits the extensibility of EJB models, as vital connection
+ information is embedded in the code making it difficult to change without
+ altering the implementation (
+\noun on
+Alter
+\noun default
+, 
+\noun on
+NoSource
+\noun default
+).
+ The embedded service location code also makes testing of EJB systems problemati
+c, as it is difficult to replace the components in the environment of the
+ component being tested.
+\end_layout
+
+\begin_layout Standard
+As an alternative to the EJB model, so-called 
+\begin_inset Quotes eld
+\end_inset
+
+lightweight frameworks
+\begin_inset Quotes erd
+\end_inset
+
+ have become popular for implementing enterprise systems.
+ The Spring framework 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Johnson2005"
+
+\end_inset
+
+ uses XML configuration files to connect JavaBeans together declaratively.
+ Provided interfaces are denoted by the class type of the bean and any implement
+ed interfaces.
+ Required interfaces are specified by stretching the notion of a bean attribute
+ to refer to required bean instances.
+ Used in this way, JavaBeans provides a functioning component model and
+ this style has become known as dependency injection, in contrast to service
+ location where each component uses a registry or directory to locate services
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fowler2004"
+
+\end_inset
+
+.
+ Hierarchical composition is not explicitly supported in Spring and connectors
+ are implicitly defined through bean references.
+ Despite these limitations, the Spring XML configuration facility can be
+ used in an ADL-like fashion 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2008"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The binding of components using service location is known as first-party
+ binding because the components themselves play an active part in resolving
+ the services required (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Darwin"
+
+\end_inset
+
+).
+ Dependency injection is an example of third-party binding, so named because
+ an external third party creates the connections.
+ Much of the evolution of EJB and enterprise Java frameworks can explained
+ in terms of the progression between these different styles of binding.
+\end_layout
+
+\begin_layout Standard
+A Spring child bean definition can inherit from a single parent bean definition,
+ and can selectively replace some parts of the configuration giving a level
+ of configuration reuse analogous to class-based inheritance.
+ This allows a new Spring component to be defined in terms of an existing
+ one, where existing references can be overridden and new references added.
+ Each bean is associated with one implementation class, so any configuration
+ evolution must generally be matched at the implementation level via source
+ code evolution (
+\noun on
+Alter
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Spring can also use aliases, which function as replaceable names.
+ Aliases are part of a flat, global namespace.
+ Through careful organisation of included configuration files, it is possible
+ to use this to provide extension points.
+ This, along with overriding, offers a form of pre-planned extension similar
+ to the use of variation points in Koala (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Parameterisation-and-Product"
+
+\end_inset
+
+), and suffers from the same extensibility limitations.
+\end_layout
+
+\begin_layout Standard
+Spring provides aspect-oriented programming facilities, which can be used
+ to customise the behaviour of a system without directly modifying the structura
+l configuration or implementation source code.
+ This suffers from the same issues as other aspect approaches (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Aspect-Oriented-Programming"
+
+\end_inset
+
+).
+ Extension in the Spring system is not uniform, sometimes involving adjusting
+ the structural configuration and sometimes involving the development of
+ aspects.
+\end_layout
+
+\begin_layout Standard
+Spring does not provide support for analysing or resolving conflicts caused
+ through combining independently developed extensions (
+\noun on
+Combine, DetectAndCorrect
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+EJB version 3.0 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DeMichiel2006"
+
+\end_inset
+
+ has adopted many of the dependency injection ideas from lightweight frameworks,
+ bringing JavaBeans and EJB closer together conceptually.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Component-Object-Model"
+
+\end_inset
+
+Component Object Model (COM)
+\end_layout
+
+\begin_layout Standard
+COM is a component model and runtime infrastructure built into the Windows
+ operating system 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Box1997"
+
+\end_inset
+
+.
+ It forms a powerful extensibility mechanism for many applications, including
+ influential programs such as Excel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Microsoft2006a"
+
+\end_inset
+
+.
+ COM supports a hierarchical model, and composition of instances is via
+ a registry based approach for indirectly locating service providers.
+ Components must explicitly declare provided and required interfaces.
+\end_layout
+
+\begin_layout Standard
+COM and its successor ActiveX 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Microsoft2006"
+
+\end_inset
+
+ have successfully produced a sizable commercial marketplace for Windows
+ user interface components.
+\end_layout
+
+\begin_layout Standard
+In COM, component versions are held in a global registry, which leads to
+ a situation called 
+\begin_inset Quotes eld
+\end_inset
+
+DLL Hell
+\begin_inset Quotes erd
+\end_inset
+
+, when multiple applications require different versions of the same component
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eisenbach2004,Stuckenholz2005"
+
+\end_inset
+
+.
+ This approach restricts evolution to always guaranteeing backwards compatibilit
+y, although techniques such as providing both the original interface and
+ also an upgraded interface in the same component allow some mitigation
+ against this.
+ Registration-Free COM 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Templin2005"
+
+\end_inset
+
+ improves this situation by allowing a single application to maintain and
+ control its own local registry thereby avoiding conflict with other application
+s.
+ However the problem of version conflict still occurs when combining multiple
+ components into a single application as different extensions may require
+ different versions of a subcomponent (
+\noun on
+Combine
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+The COM model does not focus on supporting or resolving extension conflicts,
+ and the obscure and indirect nature of the registry-based configuration
+ makes models difficult to visualise and evolve architecturally (
+\noun on
+Upgrade
+\noun default
+, 
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+).
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Open-Services-Gateway"
+
+\end_inset
+
+Open Services Gateway Initiative (OSGi) and the Eclipse Plugin Framework
+\end_layout
+
+\begin_layout Standard
+OSGi defines a module-based environment for the deployment of network-enabled
+ services 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Alliance2005"
+
+\end_inset
+
+.
+ It is used as the basis of the Eclipse plugin architecture 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001a"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+OSGi provides facilities to manage the deployment and life-cycle of bundles
+ (analogous to modules) and services, and these may be updated or removed
+ at runtime without restarting the system.
+ Bundles may depend on and also provide interfaces, although OSGi has not
+ provided any form of explicit connection facility until very recently 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Alliance2005,Escoffier2007"
+
+\end_inset
+
+.
+ Generally, services are found via a locator pattern 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fowler2004"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The OSGi model does not offer support for bundle composition, and any architectu
+ral hierarchy must be inferred through the names of the bundles which conform
+ to Java package naming conventions.
+ This lack of hierarchy and the difficulty in managing a large 
+\begin_inset Quotes eld
+\end_inset
+
+flat
+\begin_inset Quotes erd
+\end_inset
+
+ architecture tends to bias the developers towards more coarse grained bundles,
+ increasing the footprint of potential conflicts when these must be replaced
+ or evolved (
+\noun on
+Combine
+\emph on
+\noun default
+, 
+\emph default
+\noun on
+AppropriateLevel
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Eclipse uses an implementation of the OSGi standard for its plugin architecture,
+ along with a registry based approach for matching up extension providers
+ with extension points.
+ In this approach, bundles are synonymous with plugins.
+ Bundles therefore form the unit of versioning and grouping, and also the
+ unit of replacement.
+ However, classes rather than bundles form the unit of instantiation and
+ are passed around as references.
+ This pushes much of the architecture into service location code contained
+ within classes, obscuring the clarity of the system.
+ The registration approach has similar limitations to the COM registration
+ model (
+\emph on
+\noun on
+Combine, DetectAndCorrect
+\emph default
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+The lack of architectural hierarchy and the subsequent coarse-grained nature
+ of components in Eclipse interacts badly with the plugin versioning system,
+ meaning that some changes require inordinate effort as well as source code
+ modification.
+ A full critique of the Eclipse plugin model is provided in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Evaluation-plugin"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Extensibility platforms based around OSGi demonstrate that modules (information
+ hiding, grouping, coarse-grained dependency management) and components
+ (instantiation, explicit service dependencies) are both useful in their
+ own right.
+ The need for both and their interplay is clearly expressed in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bruce1998"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Architecture Description Languages (ADLs)
+\end_layout
+
+\begin_layout Standard
+ADLs evolved out of the desire to describe the architecture of a software
+ system as a set of explicitly connected components.
+ Many ADLs exist, and the general consensus is that they must support hierarchic
+al composition of components, explicit connectors and an underlying formal
+ model which can be analysed 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Medvidovic2000"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The use of connectors and declarative connector bindings sets ADLs apart
+ from earlier module interconnection language approaches 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Allen1994"
+
+\end_inset
+
+, as well as the component models in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Component-Technologies"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In this section we review some of the influential ADLs and examine their
+ support for building extensible systems.
+ Tool support and graphical component representations are also reviewed.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Darwin"
+
+\end_inset
+
+Darwin
+\end_layout
+
+\begin_layout Standard
+Darwin 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1995,Kramer2000"
+
+\end_inset
+
+ is an ADL for specifying the architecture of distributed systems.
+ It focuses on the structural side of a system, but also offers support
+ for multiple views and allows information to be added to the specification
+ in order to aid analysis.
+ The separation of the structural description from the implementation is
+ referred to as a configuration-based approach.
+ Koala 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ommering2002"
+
+\end_inset
+
+ is a variant of Darwin used for describing the software architecture of
+ embedded electronics in appliances such as television sets (see section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Parameterisation-and-Product"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Darwin components can be either primitive or composite.
+ Primitive (or leaf) components have no further decomposition, and can be
+ supplied with a behavioural specification as opposed to a structural descriptio
+n.
+ Composite components are used to compose and connect instances of other
+ components into a new structure.
+ An architectural hierarchy follows from this.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-Darwin-primitive"
+
+\end_inset
+
+ shows the Darwin graphical depiction of a leaf filter component along with
+ the textual definition 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1995"
+
+\end_inset
+
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-Darwin-composite"
+
+\end_inset
+
+ shows a composite pipeline component.
+ The circles refer to input or output ports, and all interaction with an
+ environment is conducted through these gateways.
+\end_layout
+
+\begin_layout Standard
+Darwin supports four different mechanisms for creating connections between
+ the provided and required services of components 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Crane1995"
+
+\end_inset
+
+.
+ In 
+\emph on
+first-party binding
+\emph default
+, the components themselves play an active role in establishing their own
+ connections by utilising an external registry or name server to look up
+ any required services.
+ The drawback of this is that the information is now encoded implicitly
+ inside the components themselves, constraining their reuse in different
+ scenarios.
+ In contrast, 
+\emph on
+third-party
+\emph default
+ 
+\emph on
+binding
+\emph default
+ is where a external party creates the connections, allowing the connection
+ information to reside in a configuration and be subject to architectural
+ analysis.
+ 
+\emph on
+Second-party binding
+\emph default
+ separates the configuration into two parts: the core architecture (which
+ can specify virtual components at points in the architecture) and the final
+ deployment target (which substitutes the virtual components for specific
+ components available in the target environment).
+ The final binding type is known as 
+\emph on
+dynamic invocation binding
+\emph default
+, whereby a component reference is passed as a parameter between components.
+ This type of binding is generally discouraged, as it can lead to complex,
+ dynamic architectures which cannot be described by a static configuration.
+\end_layout
+
+\begin_layout Standard
+Darwin supports dynamically instantiated components in one of two ways.
+ Lazily instantiated components are created upon receipt of their first
+ message.
+ Secondly, components may be programmatically instantiated via a 
+\emph on
+dyn
+\emph default
+ port, which allows for multiple instantiation subject to some limitations
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Crane1995"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Formula $\prod$
+\end_inset
+
+-calculus 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Milner1999"
+
+\end_inset
+
+ is used as the underlying formalism to describe what a structural configuration
+ means, and the formal specification uses channel names to represent Darwin
+ port addresses 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kramer1995"
+
+\end_inset
+
+.
+ This precisely describes how a configuration is flattened and instantiated
+ in a distributed setting.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/darwin-leaf.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-Darwin-primitive"
+
+\end_inset
+
+A Darwin primitive component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/darwin-composite.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-Darwin-composite"
+
+\end_inset
+
+A Darwin composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Software Architect's Assistant (SAA) is a graphical design environment
+ for the development of Darwin programs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ng1995,Ng1996"
+
+\end_inset
+
+.
+ It understands the hierarchical structure and distributed nature of Darwin
+ systems, and provides integrated graphical and textual views.
+ A composition hierarchy view is supported as well as component diagrams.
+ Libraries can be created, facilitating a compositional approach to system
+ building which involves constructing new components from a set of existing
+ ones.
+ A key focus is on supporting the distributed nature of Darwin programs,
+ and components can be mapped onto machine nodes in a topology.
+\end_layout
+
+\begin_layout Standard
+Behavioural information in Darwin is specified using finite state processes
+ (FSP), a process calculus 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1999"
+
+\end_inset
+
+.
+ The Labelled Transition System Analyser (LTSA) tool can process FSP into
+ labelled transition systems, allowing deadlock checking, the checking of
+ safety and progress properties, and other types of analysis to be performed.
+\end_layout
+
+\begin_layout Standard
+Darwin supports a form of port type inference, where the interfaces of ports
+ of composite components do not have to be explicitly specified, but can
+ instead be determined from the internal connections.
+ Type parametrisation is also featured 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DSE1997"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dynamic reconfiguration of architectures specified in Darwin is explored
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kramer1990,Magee1996"
+
+\end_inset
+
+.
+ This work considers how to accommodate evolutionary change to the structure
+ of an architecture, whilst the system is running.
+ Configuration changes are modelled as deltas: component and link creation
+ and removal are supported.
+ The property of system quiescence, indicating that a given component is
+ not currently involved in a transaction, is used to determine when to transfer
+ application state from the old components to the new ones.
+\end_layout
+
+\begin_layout Standard
+Darwin can be used to model extensible systems through the use of type parametri
+sation.
+ This is a form of pre-planned extension that relies on the correct types
+ being parametrised in order to accommodate extension needs, and limits
+ the alterations and types of extensions that are possible (
+\noun on
+Alter
+\noun default
+).
+ Although the work in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1996"
+
+\end_inset
+
+ develops the intuition that all change in a system can be accomplished
+ through deltas affecting the components and connections between them, these
+ change facilities were not explicitly added back into the Darwin design
+ language.
+\end_layout
+
+\begin_layout Standard
+The work in this thesis started with the insight that adding these architectural
+ change facilities into a Darwin-like design language, in a way that respects
+ hierarchical component specification, would allow system reuse and extensibilit
+y according to the requirements listed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The C2 Family
+\end_layout
+
+\begin_layout Standard
+C2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Taylor1995"
+
+\end_inset
+
+ is an ADL designed to support the explicit requirements of graphical user
+ interface (GUI) software, including the reuse of GUI elements.
+ It provides support for the separation of graphical views and underlying
+ data using the model-view-controller paradigm 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Reenskaug2007,Taylor2010"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A component has a top and bottom domain.
+ The top domain specifies the notifications that the component can accept
+ and the requests that can be issued to the rest of the architecture.
+ In essence, the domain concept models both the notions of provided interfaces
+ for the handling of notifications, and also required interfaces for issuing
+ requests.
+ 
+\end_layout
+
+\begin_layout Standard
+The bottom domain indicates the notifications that will be emitted, essentially
+ modelling the required interfaces for sending events to the rest of the
+ architecture.
+ Each domain may be connected to only one connector, but connectors can
+ accept links from many components.
+ A key principle is one of substrate independence, where the component knows
+ of the components that are connected to its top domain, but does not know
+ which components are connected to the bottom domain.
+ An architecture can be reused by slicing it horizontally at a certain level
+ and taking the components and connections above this level as a reusable
+ set.
+ Each C2 component may be active, with its own thread.
+\end_layout
+
+\begin_layout Standard
+C2 SADL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Medvidovic1996"
+
+\end_inset
+
+ is a variant of C2 designed to express the dynamic instantiation of components.
+ It supports upgrading components and the removal of unwanted components
+ via reconfiguration in a running system.
+ C2 SADL also defines the concept of 
+\emph on
+placeholder
+\emph default
+ components 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Medvidovic1996a"
+
+\end_inset
+
+, for representing conceptual entities which have not been fully elaborated.
+ This provides support for top-down design in addition to bottom-up construction
+ of an architecture.
+\end_layout
+
+\begin_layout Standard
+Later work in this area developed C2 SADEL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Medvidovic1999"
+
+\end_inset
+
+ which explicitly provides support for expressing and analysing the architectura
+l evolution of a system at specification time.
+ The protocol of a component is modelled via state, invariants, and pre-
+ and post-conditions.
+ Further, this approach is used to implement the design environment and
+ language, demonstrating its applicability.
+\end_layout
+
+\begin_layout Standard
+Much of the work on C2 implies a non-hierarchical
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The C2 literature sometimes uses the term 
+\begin_inset Quotes eld
+\end_inset
+
+hierarchy
+\begin_inset Quotes erd
+\end_inset
+
+ to refer to the connection of component instances in a flat, non-compositional
+ setting.
+ This thesis avoids this usage, and only uses the word in conjunction with
+ a true compositional hierarchy.
+\end_layout
+
+\end_inset
+
+ architecture, although C2 SADEL specifically mentions that composite components
+ are possible by eliding the internal structure of a complex configuration
+ and exposing any required top and bottom domains 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Medvidovic1999a"
+
+\end_inset
+
+.
+ C2 SADEL does not include facilities for expressing the evolution or extension
+ of composite components (
+\noun on
+Alter
+\noun default
+).
+ As much of the structure of a complex system is encoded in these components,
+ any architectural extensibility approach must provide support for reuse
+ and alteration of composite components and configurations.
+\end_layout
+
+\begin_layout Standard
+Work on C2 runtime software evolution describes operators which can remake
+ an architecture 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Oreizy1998"
+
+\end_inset
+
+.
+ Architectural hierarchy is not mentioned or dealt with, limiting the scope
+ of this work.
+\end_layout
+
+\begin_layout Subsection
+ROOM
+\end_layout
+
+\begin_layout Standard
+ROOM 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic1994a"
+
+\end_inset
+
+ is an ADL for modelling and constructing real-time software systems.
+ Components are called actors, and must specify any required or provided
+ interfaces via ports.
+ Each actor is concurrent, as per the original model specified in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Agha1986"
+
+\end_inset
+
+.
+ Actors are hierarchical, and protocols are described using extended state
+ machines (ESMs), which are a type of automata allowing variables.
+\end_layout
+
+\begin_layout Standard
+The presence of variables makes it difficult to analyse protocols using
+ model checking, as the state space can be prohibitively large.
+ From an engineering perspective however, ESMs are more attractive to design
+ with because the number of specified states is usually far smaller than
+ in the equivalent finite automata.
+ ROOM also includes a concept of structural inheritance that allows for
+ component reconfiguration in a sub-actor.
+ Features to handle conflict due to multiple actor inheritance and conflict
+ resolution are not described in the ROOM literature.
+ No component replacement facilities are offered, limiting the types of
+ extension possible to pre-planned (
+\noun on
+Alter
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+ROOM outlines a pragmatic and wide-ranging vision of CBSE which includes
+ a virtual machine for model debugging and execution, and tools to translate
+ models into implementation languages.
+ This vision led directly to the ObjecTime toolset which eventually was
+ developed into the Rational Rose Realtime toolset, and later renamed as
+ Rational Rose Technical Developer 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RationalRealtime"
+
+\end_inset
+
+.
+ This work has had a far reaching impact on graphical modelling techniques,
+ and is one of the key influences that led to the vision of Model Driven
+ Architecture (MDA) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMG2006"
+
+\end_inset
+
+.
+ The ROOM approach and similar techniques have been successfully used in
+ the real-time software arena for many years.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:The-Unified-Modeling"
+
+\end_inset
+
+The Unified Modelling Language and the Stereotype Extensibility Mechanism
+\end_layout
+
+\begin_layout Standard
+The Unified Modelling Language (UML) is a graphical language for describing
+ the structure and behaviour of object-oriented systems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMGUML"
+
+\end_inset
+
+.
+ UML was standardised by the Object Management Group (OMG), which subsequently
+ evolved it from version 1.0 through to version 2.0.
+\end_layout
+
+\begin_layout Standard
+UML2.0 (abbreviated to UML2) introduced a number of component-oriented diagram
+ types which allow it to be feasibly used as the basis of an ADL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goulo2003"
+
+\end_inset
+
+.
+ The design of these diagram types and underlying model have been heavily
+ influenced by Darwin, ROOM and several other ADLs.
+ Composite structure diagrams can be used to model composite and leaf components
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Oliver2006"
+
+\end_inset
+
+.
+ Component diagrams are also provided, but these are essentially a syntactic
+ variant of composite structure diagrams and are not considered further
+ in this thesis.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:UML2-notation"
+
+\end_inset
+
+ shows the leaf filter component (cf.
+ figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-Darwin-primitive"
+
+\end_inset
+
+) and composite pipeline component (cf.
+ figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-Darwin-composite"
+
+\end_inset
+
+) depicted using the UML2 composite structure notation.
+ Of particular note is that UML2 does not include textual facilities for
+ model representation or computational instantiation as per the Darwin example,
+ and hence only a fixed-length pipeline can be shown.
+ Ports are shown as square rather than round, and interfaces are explicitly
+ shown as circles (provided) or half circles (required).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/uml2-figures.eps
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:UML2-notation"
+
+\end_inset
+
+UML2 depiction of a leaf and composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Component protocols in UML2 are modelled either as sequence diagrams 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic2003"
+
+\end_inset
+
+ or activity diagrams.
+ Essentially, this amounts to modelling protocols as ESMs, with the same
+ engineering advantages and limitations on their formal analysis.
+ UML2 sequence diagrams can feature looping and alternation as well as other
+ operators.
+\end_layout
+
+\begin_layout Standard
+UML2 introduced package merge which provides a way to specify extensions
+ to a package via other packages.
+ This was provided to allow the UML2 specification itself to be phrased
+ as a set of layers where upper layers can add to and amend lower layers
+ in a backwards compatible way.
+ As pointed out in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zito2006"
+
+\end_inset
+
+, this construct can only add features to a model and contains a number
+ of issues which prevent its use as a general approach to creating extensible
+ applications.
+\end_layout
+
+\begin_layout Standard
+The UML2 language can be extended through stereotypes.
+ Consider that a 
+\begin_inset Quotes eld
+\end_inset
+
+heavyweight
+\begin_inset Quotes erd
+\end_inset
+
+ extension is made by editing the underlying metamodel (schema) of the UML2
+ language.
+ To allow a 
+\begin_inset Quotes eld
+\end_inset
+
+lightweight
+\begin_inset Quotes erd
+\end_inset
+
+ form of this type of extension, stereotypes are provided which allow 
+\begin_inset Quotes eld
+\end_inset
+
+virtual subtyping
+\begin_inset Quotes erd
+\end_inset
+
+ of the metamodel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Henderson-Sellers2006"
+
+\end_inset
+
+.
+ Stereotypes are effectively a class, and can have named attributes.
+ This powerful approach allows a user model to extend the metamodel for
+ the purposes of a particular domain.
+ A collection of stereotypes is known as a profile.
+\end_layout
+
+\begin_layout Standard
+UML2 represents an amalgam of loosely integrated and overlapping techniques
+ and graphical diagrams from many areas, showing its heritage as standard
+ designed by a committee with the associated politics.
+ The metamodel is complex, featuring over two hundred separate elements.
+ Part of the challenge of applying the UML to a software system is to choose
+ an appropriate subset of the language and give it a more precise meaning.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Extensible-Architectural-Interchange"
+
+\end_inset
+
+Extensible Architectural Interchange Languages
+\end_layout
+
+\begin_layout Standard
+ACME is a (non-XML) ADL which can represent component and connector architecture
+s 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Garlan1997"
+
+\end_inset
+
+.
+ A key feature of ACME is that it provides a core which can capture the
+ set of architectural structural concepts, whilst also permitting the inclusion
+ of other information via annotations which refer to externally defined
+ sub-languages.
+ It provides an interchange format, which allows a common set of tools to
+ be built which work with multiple architectural styles and representations.
+\end_layout
+
+\begin_layout Standard
+In a similar vein, xADL (Extensible ADL) is an XML schema for representing
+ architectural descriptions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dashofy2007"
+
+\end_inset
+
+.
+ It uses the XML schema facility and its associated extension features to
+ allow additional architectural information to be added for a particular
+ context.
+ An example is the adding of variant information for product line architectures
+ to the core schema of xADL 2.0 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dashofy2002"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The core xADL schema represents a generic architecture description language,
+ biased towards the C2 style.
+ A toolset has been built around this language, using data interchange in
+ xADL to facilitate loose-coupling and tool extensibility 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Khare2001"
+
+\end_inset
+
+.
+ ArchStudio is the modelling environment at the heart of this suite.
+\end_layout
+
+\begin_layout Standard
+The extension facilities in xADL are comparable to the so-called heavyweight
+ extension facilities of UML2 where the metamodel is directly edited in
+ such a way as to remain compatible with the original language.
+ xADL does not provide a facility analogous to the lightweight approach
+ of UML2 stereotypes where a model may actually 
+\begin_inset Quotes eld
+\end_inset
+
+virtually
+\begin_inset Quotes erd
+\end_inset
+
+ extend the metamodel (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Unified-Modeling"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Architectural Evolution
+\end_layout
+
+\begin_layout Standard
+Various trends in approaches to architectural evolution are discussed in
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Avgeriou2006"
+
+\end_inset
+
+.
+ Topics include graph rewriting approaches, generation-based approaches,
+ ways of assessing architectural stability in the presence of new requirements
+ and the safe integration of new concerns through aspect-oriented techniques
+ applied at the architectural level.
+\end_layout
+
+\begin_layout Standard
+A box and line representation of architectural evolution and branches, based
+ on an underlying formal model, is covered in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Erdogmus1998"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+File-Based Configuration Management Approaches
+\end_layout
+
+\begin_layout Standard
+Conventional file-based CM (configuration management) systems have been
+ successfully used to manage and evolve component architectures 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Stuckenholz2005"
+
+\end_inset
+
+, and offer a lowest-common denominator approach to extending a system by
+ modifying the source code.
+\end_layout
+
+\begin_layout Standard
+Combining structurally conflicting extensions in such an approach has the
+ disadvantage of requiring the developer to fully understand the source
+ code and any changes made in order to perform a sensible source code merge.
+ It also offers no guarantees that the properties of the each extension
+ will be preserved in the combined system or that apparently independent
+ extensions will not interfere after merging.
+\end_layout
+
+\begin_layout Subsection
+MAE
+\end_layout
+
+\begin_layout Standard
+MAE addresses architectural evolution by integrating architectural concepts
+ into a centralised CM system 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hoek2001,Roshandel2004"
+
+\end_inset
+
+.
+ This permits the explicit evolution and merging of architectural configurations
+ via version control, at the level of architectural concepts such as connectors
+ and components.
+\end_layout
+
+\begin_layout Standard
+This approach provides an overarching CM system which can support the creation
+ of variants in branches using architectural deltas.
+ For instance, to accommodate a new extension, a branch of the architecture
+ could be produced which introduces the new variation points required.
+ Like in a source code CM system, the changes will be held as deltas against
+ the architectural configuration and multiple variants will eventually be
+ merged to form a new baseline with no variants.
+ Patches can be issued from these deltas to update a system to a new configurati
+on.
+\end_layout
+
+\begin_layout Standard
+The ability to introduce variants, however, does not fundamentally solve
+ the 
+\noun on
+NoImpact
+\noun default
+ requirement: we are still over time introducing many variation points and
+ baselining into a notionally unified base architecture.
+ This leads eventually to a complex, overly generic architecture with many
+ extension points to satisfy all extension developers.
+\end_layout
+
+\begin_layout Standard
+The approach also assumes that all components are available via a unified
+ and consistent CM system, which is not feasible in a decentralised environment
+ with many (possibly commercial) component providers.
+ It has been suggested that the centralised CM system can be decentralised
+ using inter-file branching which requires a map between original and derived
+ artifacts 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Seiwald1996"
+
+\end_inset
+
+.
+ This is a little known technique which has not been evaluated by the literature.
+ Further, it is unlikely that industrial practices and robust commercial
+ CM systems will be displaced by the MAE CM system.
+\end_layout
+
+\begin_layout Standard
+MAE does not understand or handle the mapping from architecture to implementatio
+n or the implementation evolution, which prevents this approach from being
+ used as a general extensibility mechanism 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Nistor2005"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Easel
+\end_layout
+
+\begin_layout Standard
+Easel is an extensibility and modelling approach for product line architectures.
+ It builds on the ArchStudio toolset 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dashofy2007"
+
+\end_inset
+
+, and allows a set of architectural deltas, called a change set, to be expressed
+ against an architecture 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hendrickson2007"
+
+\end_inset
+
+.
+ The base architecture can actually be expressed as a change set also.
+ Different change sets can then be associated directly with features, and
+ boolean guards can be used to indicate which change sets (and hence features)
+ can be combined to produce a given variant.
+\end_layout
+
+\begin_layout Standard
+This is a powerful architectural approach which allows change layers to
+ be overlaid on top of an architecture, creating variants of a system.
+ This works for both planned and pre-planned alterations, fulfilling the
+ 
+\emph on
+\noun on
+Alter
+\emph default
+\noun default
+ and 
+\noun on
+NoImpact
+\noun default
+ requirements at the architectural level.
+ Change sets can correct architectural errors caused by the combination
+ of different variants (
+\noun on
+Combine, DetectAndCorrect
+\noun default
+), although no support is provided to include these automatically, as per
+ the complementary modules in MixJuice 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ichisugi2002"
+
+\end_inset
+
+.
+ No structural checks are present in Easel, although these are provided
+ in the underlying ArchStudio approach and associated tools.
+\end_layout
+
+\begin_layout Standard
+Easel allows change sets to be edited at any point, and uses globally unique
+ identifiers to track modified architectural elements over time.
+ As long as the same unique identifier is always associated with the same
+ architectural element, merges can always be performed with a predictable
+ result.
+ Currently, a single merge algorithm is defined, although others may be
+ provided in the future.
+\end_layout
+
+\begin_layout Standard
+The addition and removal of components, component instances and connectors
+ are supported.
+ Unfortunately, a replace must be synthesised by a deletion and an addition.
+ This destroys the identity of any component instance being replaced, requiring
+ all connectors binding to that component instance to also be deleted and
+ re-added.
+ As will be shown in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:The-Backbone-ADL"
+
+\end_inset
+
+, an explicit replace construct retains logical identity which preserves
+ existing connectors and other artifacts.
+ This minimises the alterations required for an extension.
+ 
+\end_layout
+
+\begin_layout Standard
+Change sets in Easel have been compared to a module facility 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hendrickson2007"
+
+\end_inset
+
+.
+ However, although they support some of the features of modules (a level
+ of grouping, coarse-grained dependency management), they do not support
+ exporting of publicly accessible elements or hiding of private ones.
+ As such, modules 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bruce1998"
+
+\end_inset
+
+ are still required to manage medium sized and large architectures with
+ multiple levels of abstraction (
+\noun on
+AppropriateLevel
+\noun default
+).
+ Although it would be possible to add modules to the underlying ADL, these
+ would have to be integrated in some way with change sets, with subsequent
+ overlap.
+ xADL has a group construct which offers namespace features but no dependency
+ management or export control.
+\end_layout
+
+\begin_layout Standard
+Easel and MAE are closely related approaches.
+ In the MAE system, branches hold variants as architectural deltas and branches
+ are merged to combine these.
+ In Easel, change sets hold variants as architectural deltas and combining
+ change sets merges these and the features they represent.
+\end_layout
+
+\begin_layout Standard
+Easel, like MAE, also does not understand or handle the mapping from architectur
+e to implementation or underlying implementation evolution.
+ This prevents the approach from being used as a general extensibility mechanism
+, although it has many of the required characteristics at the level of architect
+ural configuration.
+\end_layout
+
+\begin_layout Subsection
+Merging Approaches for Combining Extensions and Variants
+\end_layout
+
+\begin_layout Standard
+An approach to merging UML models is presented in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Alanen2003"
+
+\end_inset
+
+.
+ This considers only the structure of the models at a basic level, and does
+ not address well-formedness or conflict at an architectural level.
+\end_layout
+
+\begin_layout Standard
+Product line architectures have to use merging when it is required that
+ changes in one part of the product line are propagated to another part.
+ Automated support for merging has been provided in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ping2004"
+
+\end_inset
+
+, which works by determining the delta changes between different parts of
+ the product line and applying these changes elsewhere.
+ Much of the work involves computing differences between two architectural
+ variants.
+ For example, lexical names are used to establish commonality between variants,
+ which means that merging renamed elements is problematic and must rely
+ on structural heuristics (
+\noun on
+Upgrade
+\noun default
+, 
+\noun on
+Combine
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+Critical pair analysis, a technique derived from graph rewriting, has been
+ used to detect incompatibilities between parallel branches of a system
+ that each refactor the same elements before being merged 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mens2005"
+
+\end_inset
+
+.
+ The technique is currently restricted to a fixed set of refactorings, and
+ relies on having changes expressed in graph form.
+\end_layout
+
+\begin_layout Subsection
+TranSAT: Using Aspects to Evolve Architecture
+\end_layout
+
+\begin_layout Standard
+TranSAT (Transform Software Architecture Technologies) allows architectural
+ concerns to be specified independently from a core software architecture
+ as aspects, and woven into a coherent whole at a later stage 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Barais2004"
+
+\end_inset
+
+.
+ The aim is to allow further architectural concerns to be added in a modular
+ fashion.
+ The aspect model used is very much in line with the AspectJ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kiczales97aspectoriented,Team2002-2003"
+
+\end_inset
+
+ terminology and approach.
+\end_layout
+
+\begin_layout Standard
+Each aspect in TranSAT can modify the underlying architectural structure
+ (components, connectors, interfaces) using a small language where join
+ points are specified declaratively as a set of structure and behaviour
+ matches 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Barais2006"
+
+\end_inset
+
+.
+ The set of architectural instructions for remaking the architecture are
+ similar to those expressed in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1996"
+
+\end_inset
+
+.
+ Unlike some other approaches, an aspect can remove an instance of a component
+ thereby removing behaviour.
+ The encapsulated concerns can be reused between architectures, and structural
+ and behavioural verifications are performed after weaving.
+\end_layout
+
+\begin_layout Standard
+This approach shares limitations with other aspect approaches (see section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Aspect-Oriented-Programming"
+
+\end_inset
+
+).
+ The definition of aspects (architectural instructions) is less intuitive
+ than the definition of the primary axis (components and interfaces).
+ Application of the aspects can also lead to architectural errors.
+ Alternatively, structural and behavioural checks may rule out application
+ of an aspect due to interference reasons, despite it being notionally otherwise
+ applicable to a particular situation.
+\end_layout
+
+\begin_layout Section
+Enforcing Implementation and Architecture Consistency
+\end_layout
+
+\begin_layout Standard
+It is important that an architectural representation is an accurate description
+ of the system that it represents.
+ If this is not the case, then analysing the architectural specification
+ will not produce results which are representative of the actual system.
+ This area is relevant to this thesis because an architectural approach
+ to extensibility must connect to the implementation level and be able to
+ track its evolution.
+\end_layout
+
+\begin_layout Subsection
+ArchJava and AliasJava
+\end_layout
+
+\begin_layout Standard
+An architectural description of a system aims to specify all legal communication
+ paths between components.
+ We have communication integrity when a component may communicate directly
+ only with those components that it is connected to in the architecture.
+ This property is notoriously difficult to enforce as it is possible to
+ bypass most integrity mechanisms by something as simple as passing component
+ references as parameters in method calls to other components.
+\end_layout
+
+\begin_layout Standard
+ArchJava (supplemented with AliasJava) is a type system and language extension
+ for Java that ensures that implementation components only communicate via
+ the specified communication paths, guaranteeing that they cannot use unspecifie
+d mechanisms or illegal aliases 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Aldrich2002,Aldrich2008"
+
+\end_inset
+
+.
+ The type system allows objects to be divided into hierarchical ownership
+ domains.
+ Each object belongs to one domain, and the approach supports hierarchical
+ aliasing.
+ Domain policies specify whether objects in another domain can be accessed.
+\end_layout
+
+\begin_layout Standard
+ArchJava enhances the Java language with architectural constructs.
+ The architectural specification information is added to classes as they
+ are elaborated, ensuring the architecture and implementation are kept fully
+ synchronised.
+ Although the type system is powerful, a downside of this approach is that
+ the implementation language has been modified.
+ As a consequence, ArchJava programs do not work with existing Java integrated
+ development environments.
+\end_layout
+
+\begin_layout Standard
+ArchJava adds no extensibility constructs to Java.
+ A framework approach must therefore be used for extensibility, with the
+ subsequent limitation that only pre-planned extension will be catered for.
+\end_layout
+
+\begin_layout Subsection
+ArchEvol
+\end_layout
+
+\begin_layout Standard
+ArchEvol allows an architectural specification to hold version information
+ about the implementation components used in the application.
+ The mapping between architectural and implementation entities is maintained
+ by integrating Eclipse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001a"
+
+\end_inset
+
+, ArchStudio 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dashofy2007"
+
+\end_inset
+
+ and a conventional CM system.
+ Implementation components are each assigned a separate subdirectory in
+ a conventional CM repository.
+ The architectural specification is held in a single xADL file which is
+ versioned.
+\end_layout
+
+\begin_layout Standard
+It is possible to navigate from an architectural representation of a component
+ in ArchStudio to the implementation code in Eclipse via a URL held in the
+ ArchStudio model.
+ Upon modification of the source, a representation of the component's structure
+ is passed into ArchStudio and merged back into the architecture.
+\end_layout
+
+\begin_layout Standard
+Because each component is identified via a separate URL, this approach can
+ use multiple, possibly geographically separated underlying repositories.
+ However, this is not a true decentralised approach and does not permit
+ multiple independent repositories to be separately evolved and synchronised
+ later as per Mercurial 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "O'Sullivan2009"
+
+\end_inset
+
+ or Darcs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Roundy2005"
+
+\end_inset
+
+.
+ For instance, all parties using the system must check out the same component
+ from its owning repository and sharing is further complicated by the fact
+ that the entire architecture is kept in one file.
+\end_layout
+
+\begin_layout Standard
+ArchEvol does not explicitly support extensibility, although this could
+ potentially be combined with the variant xADL extension 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dashofy2002"
+
+\end_inset
+
+ to allow product lines to be expressed and synchronised with the implementation.
+ This approach would have the same limitations as product lines, in that
+ only pre-planned extension would be supported.
+ ArchEvol does not integrate with Easel but conceptually this seems possible.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+Many existing extensibility approaches require pre-planned extension points,
+ violating the 
+\emph on
+\noun on
+Alter
+\emph default
+\noun default
+ and 
+\noun on
+NoImpact
+\noun default
+ requirements and limiting the types of extensions that can be added.
+ Other approaches avoid this problem by allowing replacement of individual
+ elements in the base, but do not support a compositional hierarchy.
+ This causes a tension between making the architecture fine-grained for
+ easy extension via replacement, or coarse-grained for easy management.
+\end_layout
+
+\begin_layout Standard
+Architectural CM approaches allow variants to be created via architectural
+ deltas in the design stage, permitting unplanned modifications to an architectu
+re.
+ Although satisfying the 
+\emph on
+\noun on
+Alter
+\emph default
+\noun default
+ and part of the 
+\noun on
+Combine
+\noun default
+ requirements they only cover the architectural level, and provide no way
+ to express or understand the evolution of the underlying implementation.
+ As such these cannot be assessed against the 
+\noun on
+NoSource
+\noun default
+ or 
+\noun on
+Upgrade
+\noun default
+ requirements.
+ Various other approaches allow the architecture and implementation to be
+ synchronised which allows for implementation evolution to be tracked, but
+ no explicit extensibility facilities are provided.
+\end_layout
+
+\begin_layout Standard
+Several of the approaches utilise existing CM systems or provide their own.
+ The latter is a problem in any commercial setting as existing, mature CM
+ systems are well entrenched and not likely to be displaced.
+ These centralised CM-based extensibility approaches also offer a rigid
+ view of change ownership and control: a full extensibility solution needs
+ to provide more flexible ways of sharing and distributing subsets of the
+ architectural definitions and implementation.
+ For instance, it is feasible that an extension developer may never want
+ to share back alterations of the base application into a central system.
+ The solution must recognise these possibilities, and still provide facilities
+ to handle upgrading and combination of extensions.
+\end_layout
+
+\begin_layout Standard
+In summary, no existing extensibility approach satisfies all of the requirements
+ outlined in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="23" columns="3">
+<features islongtable="true">
+<column alignment="left" valignment="top" width="3cm">
+<column alignment="left" valignment="top" width="4.75cm">
+<column alignment="left" valignment="top" width="8.25cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Extensibility approach
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Strengths
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Weaknesses
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Scripting
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limited 
+\noun on
+Alter
+\noun default
+.
+\begin_inset Newline newline
+\end_inset
+
+Pre-planned extension via hooks.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Further 
+\noun on
+Alter
+\noun default
+ requires source modifications, leading to issues with 
+\noun on
+NoSource
+\noun default
+, 
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+,
+\noun on
+ 
+\noun default
+and 
+\noun on
+Upgrade
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frameworks
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limited 
+\noun on
+Alter
+\noun default
+.
+\begin_inset Newline newline
+\end_inset
+
+Pre-planned extension via extension points
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Further 
+\noun on
+Alter
+\noun default
+ requires new framework version, leading to issues with 
+\noun on
+NoSource
+\noun default
+, 
+\noun on
+NoImpact
+\noun default
+, 
+\noun on
+Combine
+\noun default
+, and 
+\noun on
+Upgrade
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Plugin architectures
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+Pre-planned extension via plugin extension points, unplanned extension via
+ plugin replacement.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Plugins are not hierarchical, biasing towards coarse granularity and revealing
+ tension between 
+\noun on
+Alter
+\noun default
+ and 
+\noun on
+AppropriateLevel
+\noun default
+.
+ 
+\noun on
+Combine
+\noun default
+ and
+\noun on
+ DetectAndCorrect
+\noun default
+ issues.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aspect-oriented programming
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limited 
+\noun on
+Alter
+\noun default
+.
+\begin_inset Newline newline
+\end_inset
+
+Some unplanned extension via aspects.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Many 
+\noun on
+Alter
+\noun default
+ changes cannot be made using aspects.
+ 
+\noun on
+NoSource, Combine
+\noun default
+, 
+\noun on
+Upgrade
+\noun default
+ and 
+\noun on
+DetectAndCorrect
+\noun default
+ issues.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Product lines
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subset of 
+\noun on
+Alter
+\noun default
+ via refinement, limited by inheritance-like constructs used.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limitations of refinement means full 
+\noun on
+Alter
+\noun default
+ requires source alterations.
+ Issues with 
+\noun on
+NoSource, NoImpact
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+, 
+\noun on
+Upgrade
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Difference-based modules
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subset of 
+\noun on
+Alter
+\noun default
+ via extends, limited by inheritance-like construct.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lack of architectural hierarchy leads to 
+\noun on
+AppropriateLevel
+\noun default
+ issues.
+ Full 
+\noun on
+Alter
+\noun default
+ violates NoSource.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viewpoints
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Additive subset of 
+\noun on
+Alter
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ is limited by additive approach taken, violating 
+\noun on
+NoSource
+\noun default
+ and others.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Parametrisation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limited 
+\noun on
+Alter
+\noun default
+.
+ Pre-planned extension only.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+New parameters violate 
+\noun on
+NoSource
+\noun default
+, 
+\noun on
+NoImpact
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mixins
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limited 
+\noun on
+Alter
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full Alter violates 
+\noun on
+NoSource
+\noun default
+.
+ Poor support for 
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Virtual classes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subset of 
+\noun on
+Alter
+\noun default
+, limited by use of inheritance.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ violates 
+\noun on
+NoSource
+\noun default
+ and others.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature composition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limited 
+\noun on
+Alter
+\noun default
+, based on critical runtime requirements.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ is not catered for.
+ Lack of explicit architecture.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JavaBeans and Spring
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bean inheritance gives a limited form of 
+\noun on
+Alter
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ violates 
+\noun on
+NoSource
+\noun default
+ and has issues with 
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Microsoft COM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ via component versions.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Registry approach leads to 
+\noun on
+Upgrade
+\noun default
+, 
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+ issues.
+ COM model is limited architecturally, with no explicit connectors.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Darwin
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subset of 
+\noun on
+Alter
+\noun default
+ via type parametrisation and interface inference.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Adding parameters violates 
+\noun on
+NoSource
+\noun default
+.
+ Limited support for 
+\noun on
+Combine
+\noun default
+, 
+\noun on
+Upgrade
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C2SADEL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Extensions must be pre-planned.
+ Support for description of leaf evolution.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No true hierarchical architectures, violating 
+\noun on
+AppropriateLevel
+\noun default
+.
+ No way to express evolution of composites (
+\noun on
+Alter
+\noun default
+).
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ROOM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subset of 
+\noun on
+Alter
+\noun default
+ via structural inheritance.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ violates 
+\noun on
+NoSource
+\noun default
+, as no way is provided to evolve components without source.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+File-based CM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mature approach.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\noun on
+Alter
+\noun default
+ always violates 
+\noun on
+NoSource
+\noun default
+.
+ 
+\noun on
+Combine
+\noun default
+, 
+\noun on
+Upgrade
+\noun default
+ and 
+\noun on
+DetectAndCorrect
+\noun default
+ must be performed at the textual level.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ via branching.
+ Works at architectural level.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Adding extension points is notionally creating versions of a component,
+ causing problems with 
+\noun on
+NoImpact
+\noun default
+.
+ Requires consistent use of MAE CM across extenders.
+ No implementation mapping.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Easel
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ via change sets.
+ Works at architectural level.
+ Supports 
+\noun on
+NoImpact, Combine
+\noun default
+, 
+\noun on
+Upgrade
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Change sets overlap with modules, causing issues for 
+\noun on
+AppropriateLevel
+\noun default
+.
+ No explicit architectural hierarchy.
+ No mapping to implementation means 
+\noun on
+NoSource
+\noun default
+ cannot be assessed.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TranSAT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ via architectural primitives.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Issues with combining aspects (
+\noun on
+Combine
+\noun default
+, 
+\noun on
+DetectAndCorrect
+\noun default
+).
+ Aspects are less intuitive to work with than primary axis.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ArchJava and AliasJava
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Extensions must be pre-planned.
+ Support for architectural integrity.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ violates 
+\noun on
+NoSource
+\noun default
+ and others.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ArchEvol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limited 
+\noun on
+Alter
+\noun default
+.
+ Supports mapping from architecture to implementation.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full 
+\noun on
+Alter
+\noun default
+ violates 
+\noun on
+NoSource
+\noun default
+ and others.
+ No hierarchy.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Extensibility approaches
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "../read papers/references"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

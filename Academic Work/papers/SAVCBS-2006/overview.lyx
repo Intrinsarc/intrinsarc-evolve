@@ -1,0 +1,408 @@
+#LyX 1.4.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+introduction
+\end_layout
+
+\begin_layout Itemize
+problem setting: focus on need to modify components to solve abstraction
+ problem
+\end_layout
+
+\begin_layout Itemize
+briefly discuss other work
+\end_layout
+
+\begin_layout Standard
+concepts
+\end_layout
+
+\begin_layout Itemize
+describe UML2 focussed Backbone ADL.
+ graphical and textual form.
+\end_layout
+
+\begin_layout Standard
+a motivating problem
+\end_layout
+
+\begin_layout Itemize
+ideally something from case tool.
+ part of a larger system.
+ show how we are impeded in reuse.
+\end_layout
+
+\begin_layout Itemize
+present options: copy source + fork, ask provider to make a change & retest
+ implications.
+\end_layout
+
+\begin_layout Standard
+conceptual approach
+\end_layout
+
+\begin_layout Itemize
+present requirements
+\end_layout
+
+\begin_layout Itemize
+schematic showing original component in stratum, redef in other stratum
+ as having renaming, and adjustment primitives.
+\end_layout
+
+\begin_layout Standard
+resemblance
+\end_layout
+
+\begin_layout Itemize
+explain constructs
+\end_layout
+
+\begin_layout Itemize
+explain how this is like a decentralise cm system
+\end_layout
+
+\begin_layout Itemize
+briefly discuss formlisation in alloy
+\end_layout
+
+\begin_layout Standard
+related work
+\end_layout
+
+\begin_layout Itemize
+compare and contrast with Mae / CM approach, product-line approach
+\end_layout
+
+\begin_layout Standard
+conclusion and future work
+\end_layout
+
+\begin_layout Itemize
+multiple redefs, patterns for transformations
+\end_layout
+
+\begin_layout Itemize
+compression of 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+changes: baselining
+\end_layout
+
+\begin_layout Itemize
+behavioural approach: protocols and goals
+\end_layout
+
+\begin_layout Subsection
+snippets
+\end_layout
+
+\begin_layout Standard
+To fix defects and add functionality, the provider will periodically release
+ a new version of the component, generally aiming for backwards compatibility
+ with previous releases.
+\end_layout
+
+\begin_layout Standard
+1 Introduction
+\end_layout
+
+\begin_layout Standard
+Using a recursive approach to component definition, a composite component
+ is formed by composing and wiring together other components [koala, jeffs].
+ Complex subsystems, and even an entire system can be represented as a composite
+ component which can then be further reused as a constituent part of other
+ systems.
+ This promises a compelling approach to software construction and reuse,
+ where systems can be assembled from increasingly higher-level components.
+\end_layout
+
+\begin_layout Standard
+Systems are usually built from a combination of existing components, and
+ components developed specifically for that system.
+ Existing components are obtained from a component provider (which may be
+ a vendor), or reused from an existing system.
+ It is unlikely that changes can be made to an existing component specifically
+ to accommodate a single system, as existing usages place constraints on
+ what can be changed.
+ This may even be the case when the provider is in the same organisation.
+ To fix defects and add functionality, the provider will periodically release
+ a new version of the component, generally aiming for backwards compatibility
+ with previous releases.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, existing components usually need modifications before they
+ can be successfully reused and integrated into a new architecture.
+ The more complex a component, the less the likelihood that it will be suitable
+ for reuse in an unaltered form.
+ This situation is closely related to the abstraction problem [Jac001, Greenf]:
+ components are more valuable when they represent higher-level abstractions
+ targeted at a particular domain, but this specificity limits their reuse.
+ This is particularly a problem with composite components which hide their
+ constituent components and abstractions.
+\end_layout
+
+\begin_layout Standard
+In order to deal with this type of variability, a number of approaches have
+ been used.
+ Amongst other mechanisms, parameterisation is used in Koala to capture
+ options supported by a component [ommering].
+ This approach only supports planned variation, and also suffers from combinator
+ial explosion if the parameters of the constituent parts of a composite
+ component are also exposed.
+\end_layout
+
+\begin_layout Standard
+Another approach is to explicitly allow for variation in an architecture
+ [Ommering, others ref] through the use of variation points which capture
+ possible component variants in an architecture.
+ The points must be planned in advance and designed into a system.
+\end_layout
+
+\begin_layout Standard
+Currently, if deep modifications or new variation points are required for
+ an existing component, these must be introduced by forming a new revision
+ of the component.
+ This type of modification has been made more feasible through systems like
+ Mae which have integrated CM and architectural concepts.
+ This approach assumes that the component is available via a CM system,
+ although most providers will have their own CM systems and not be willing
+ to introduce changes to their components.
+ Further, any revision made for integration purposes may conflict with any
+ evolved component releases from the provider.
+\end_layout
+
+\begin_layout Standard
+By analysing these and other issues, we form a set of requirements that
+ a solution must provide in order to ease the definition, reuse and evolution
+ of components.
+ We then present the resemblance construct, which is an inheritance-like
+ construct for components in an ADL, which allows architectural changes
+ to be held against the component in its reuse context in the new system.
+ This permits the following:
+\end_layout
+
+\begin_layout Standard
+* A component to be defined in terms of changes from an existing component.
+\end_layout
+
+\begin_layout Standard
+* An evolution of an existing component to be defined in terms of changes
+ from the previous version.
+\end_layout
+
+\begin_layout Standard
+We demonstrate how this satisfies the requirements and ameliorates the issues
+ outlined above.
+\end_layout
+
+\begin_layout Standard
+From one perspective, resemblance provides a decentralised form of version
+ control, which integrates well with existing CM systems.
+ Changes are managed by the team that desires the change rather than the
+ providers of the component.
+\end_layout
+
+\begin_layout Standard
+From another perspective, resemblance provide a modelling construct which
+ allows inheritance-like notions to be applied to components at all levels,
+ including the architectural level where a composite component represents
+ an entire system.
+ It also makes it possible to derive many other components from a base component
+, with changes to reflect new requirements.
+ This partially addresses the abstraction problem, as a highly specific
+ component can be altered to be reused for a new context.
+\end_layout
+
+\begin_layout Standard
+By providing uniform reuse and evolution support, Backbone prevents the
+ need to compulsively genericise and parameterise components that are intended
+ for reuse.
+ Unplanned changes can be catered for at the time when the change is required,
+ rather than requiring a costly and sometimes unused upfront investment.
+\end_layout
+
+\begin_layout Standard
+The rest of the paper is organised as follows.
+ We begin by presenting a simplified example of a component reuse problem
+ from a working system.
+ We show that using resemblance, the component can be adapted for new requiremen
+ts, without losing the link back to the original definition.
+ A conceptual view of the approach is then presented before explaining the
+ language and tool support.
+ We conclude with a discussion of related work and look at future direction.
+\end_layout
+
+\begin_layout Standard
+---------------
+\end_layout
+
+\begin_layout Standard
+1 Introduction
+\end_layout
+
+\begin_layout Standard
+Using a recursive approach to component definition, a composite component
+ is formed by composing and wiring together other components [koala, jeffs].
+ Complex subsystems, and even an entire system can be represented as a composite
+ component which can then be further reused as a constituent part of other
+ systems.
+ This promises a compelling approach to software construction and reuse,
+ where systems can be assembled from increasingly higher-level components.
+\end_layout
+
+\begin_layout Standard
+Systems are usually built from a combination of existing components, and
+ components developed specifically for that system.
+ Existing components are obtained from a component provider (which may be
+ a vendor), or reused from an existing system.
+ It is unlikely that changes can be made to an existing component specifically
+ to accommodate a single system, as existing usages place constraints on
+ what can be changed.
+ This may even be the case when the provider is in the same organisation.
+ To fix defects and add functionality, the provider will periodically release
+ a new version of the component, generally aiming for backwards compatibility
+ with previous releases.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, existing components usually need modifications before they
+ can be successfully reused and integrated into a new architecture.
+ The more complex a component, the less the likelihood that it will be suitable
+ for reuse in an unaltered form.
+ This situation is closely related to the abstraction problem [Jac001, Greenf]:
+ components are more valuable when they represent higher-level abstractions
+ targeted at a particular domain, but this specificity limits their reuse.
+ This is particularly a problem with composite components which hide their
+ constituent components and abstractions.
+\end_layout
+
+\begin_layout Standard
+In order to deal with this type of variability, a number of approaches have
+ been used.
+ Amongst other mechanisms, parameterisation is used in Koala to capture
+ options supported by a component [ommering].
+ This approach only supports planned variation, and also suffers from combinator
+ial explosion if the parameters of the constituent parts of a composite
+ component are also exposed.
+\end_layout
+
+\begin_layout Standard
+Another approach is to explicitly allow for variation in an architecture
+ [Ommering, others ref] through the use of variation points which capture
+ possible component variants in an architecture.
+ The points must be planned in advance and designed into a system.
+\end_layout
+
+\begin_layout Standard
+Currently, if deep modifications or new variation points are required for
+ an existing component, these must be introduced by forming a new revision
+ of the component.
+ This type of modification has been made more feasible through systems like
+ Mae which have integrated CM and architectural concepts.
+ This approach assumes that the component is available via a CM system,
+ although most providers will have their own CM systems and not be willing
+ to introduce changes to their components.
+ Further, any revision made for integration purposes may conflict with any
+ evolved component releases from the provider.
+\end_layout
+
+\begin_layout Standard
+By analysing these and other issues, we form a set of requirements that
+ a solution must provide in order to ease the definition, reuse and evolution
+ of components.
+ We then present the resemblance construct, which is an inheritance-like
+ construct for components in an ADL, which allows architectural changes
+ to be held against the component in its reuse context in the new system.
+ This permits the following:
+\end_layout
+
+\begin_layout Standard
+* A component to be defined in terms of changes from an existing component.
+\end_layout
+
+\begin_layout Standard
+* An evolution of an existing component to be defined in terms of changes
+ from the previous version.
+\end_layout
+
+\begin_layout Standard
+We demonstrate how this satisfies the requirements and ameliorates the issues
+ outlined above.
+\end_layout
+
+\begin_layout Standard
+From one perspective, resemblance provides a decentralised form of version
+ control, which integrates well with existing CM systems.
+ Changes are managed by the team that desires the change rather than the
+ providers of the component.
+\end_layout
+
+\begin_layout Standard
+From another perspective, resemblance provide a modelling construct which
+ allows inheritance-like notions to be applied to components at all levels,
+ including the architectural level where a composite component represents
+ an entire system.
+ It also makes it possible to derive many other components from a base component
+, with changes to reflect new requirements.
+ This partially addresses the abstraction problem, as a highly specific
+ component can be altered to be reused for a new context.
+\end_layout
+
+\begin_layout Standard
+By providing uniform reuse and evolution support, Backbone prevents the
+ need to compulsively genericise and parameterise components that are intended
+ for reuse.
+ Unplanned changes can be catered for at the time when the change is required,
+ rather than requiring a costly and sometimes unused upfront investment.
+\end_layout
+
+\begin_layout Standard
+The rest of the paper is organised as follows.
+ We begin by presenting a simplified example of a component reuse problem
+ from a working system.
+ We show that using resemblance, the component can be adapted for new requiremen
+ts, without losing the link back to the original definition.
+ A conceptual view of the approach is then presented before explaining the
+ language and tool support.
+ We conclude with a discussion of related work and look at future direction.
+\end_layout
+
+\end_body
+\end_document

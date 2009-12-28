@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+    <UML:Diagram xmi.id="a0" id="DCE-1140441366783-935" figureId="1153">
+      <UML:FigureContainer.properties>
+        <UML:Property xmi.id="a1" n="PackageUUID" v="DCE-1140441366783-935"></UML:Property>
+      </UML:FigureContainer.properties>
+      <UML:FigureContainer.figures>
+        <UML:Figure xmi.id="a2" id="1143" recreator="Package" subjectUUID="DCE-1141392723793-940" auto="false" pt="472 240" dim="87 75">
+          <UML:Figure.name>graph
+viewer</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a5" n="owner">
+              <UML:Property.v>&lt;&lt;stratum&gt;&gt;
+viewer</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a6" id="1143c" recreator="SimpleContainer" pt="472 255" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a3" id="1147" recreator="Package" subjectUUID="DCE-1141392770996-778" auto="false" pt="472 412" dim="87 75">
+          <UML:Figure.name>simple
+viewers</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a7" n="owner">
+              <UML:Property.v>&lt;&lt;stratum&gt;&gt;
+viewer</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a8" id="1147c" recreator="SimpleContainer" pt="472 427" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a4" id="1146" recreator="Dependency" anchor1Id="1143" anchor2Id="1147" vtl="516 363.5" pts="2 516 315 516 412"></UML:Figure>
+      </UML:FigureContainer.figures>
+    </UML:Diagram>
+  </XMI.content>
+</XMI>
+

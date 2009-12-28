@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svnroot/mtsa/!svn/ver/150/trunk/MTSTools
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/.classpath
+END
+MTSA-build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/MTSA-build.xml
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/.project
+END

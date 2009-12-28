@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter4_lts
+END
+Counter.lts
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter4_lts/Counter.lts
+END
+Counter_lockvar.lts
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter4_lts/Counter_lockvar.lts
+END
+Garden.lts
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter4_lts/Garden.lts
+END
+Garden_lockvar.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter4_lts/Garden_lockvar.lts
+END
+Display_Counter.lts
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter4_lts/Display_Counter.lts
+END
+contents.txt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter4_lts/contents.txt
+END

@@ -1,0 +1,53 @@
+        <UML:Package xmi.id="a43" xmi.uuid="DCE-1145897850638-100" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>evolution
+primitives</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Comment xmi.id="a47" xmi.uuid="DCE-1145900122191-971" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Intent: add new functionality.
+
+component, port, part, property, connection.
+
+Need to check for duplication of functionality in separate components.</UML:Comment.body>
+            </UML:Comment>
+            <UML:Class xmi.id="a48" xmi.uuid="DCE-1145897991840-933" isActive="false" name="structural delta" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a49" xmi.uuid="DCE-1145897997138-214" isActive="false" name="add" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a50" xmi.uuid="DCE-1145897998154-430" isActive="false" name="adapt" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a52" xmi.uuid="DCE-1145897998701-250" isActive="false" name="omit" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a53" xmi.uuid="DCE-1145897999327-170" isActive="false" name="customize" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a54" xmi.uuid="DCE-1145897999827-76" isActive="false" name="replace" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a57" xmi.uuid="DCE-1145898056857-312" isActive="false" name="wrap and hide" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a58" xmi.uuid="DCE-1145898058092-108" isActive="false" name="front" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a59" xmi.uuid="DCE-1145898059436-393" isActive="false" name="ignore" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a60" xmi.uuid="DCE-1145898059905-702" isActive="false" name="delete" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a61" xmi.uuid="DCE-1145898062061-768" isActive="false" name="adjust property" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a62" xmi.uuid="DCE-1145898062968-388" isActive="false" name="add/del property" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a63" xmi.uuid="DCE-1145900389501-238" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Intent: to intercept and alter functionality.
+
+can adapt one or more...  have a path syntax to find original.</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a64" xmi.uuid="DCE-1145900407376-624" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>intent: to omit features by ignoring or forcibly deleting.
+
+can omit one or more</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a65" xmi.uuid="DCE-1145900420314-185" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>intent: to change properties.
+
+can selectively adjust properties</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a66" xmi.uuid="DCE-1145900506079-389" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>intent: to replace parts completely.
+
+last resort.</UML:Comment.body>
+            </UML:Comment>
+            <UML:Class xmi.id="a72" xmi.uuid="DCE-1145901655165-918" isActive="false" name="rename" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a73" xmi.uuid="DCE-1145901725368-975" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Intent: to change the name of something, but keep everything else the same.
+
+component, port, part, property,connection...
+
+Can track name back to original and preserve identity even if names are different.  first stratum takes precedence.</UML:Comment.body>
+            </UML:Comment>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

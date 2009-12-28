@@ -1,0 +1,973 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\end_preamble
+\use_default_options false
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Introduction"
+
+\end_inset
+
+Introduction
+\end_layout
+
+\begin_layout Quote
+\paragraph_spacing single
+\noindent
+
+\shape italic
+It seems impossible to predict change, and very often, a successful system
+ will change in ways which are inconceivable to the original designers.
+\end_layout
+
+\begin_layout Quote
+\paragraph_spacing single
+\noindent
+\align right
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-0.5cm}
+\end_layout
+
+\end_inset
+
+Keith Bennett et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bennett2004"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
+\paragraph_spacing single
+\noindent
+
+\shape italic
+Any time you build an extensible system ...
+ you can't predict in advance what changes your users will want to make
+ to your system.
+ You can go to any length — even expose every single line of code in your
+ system as its own virtual function — and your users will inevitably run
+ into something that they can't specialize.
+\end_layout
+
+\begin_layout Quote
+\paragraph_spacing single
+\noindent
+\align right
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-0.5cm}
+\end_layout
+
+\end_inset
+
+Steve Yegge 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Yegge2004"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Motivation"
+
+\end_inset
+
+Motivation
+\end_layout
+
+\begin_layout Standard
+An extensible application is one which allows functionality to be added,
+ replaced or even removed without requiring modification or access to its
+ source code 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Krishnamurthi1998"
+
+\end_inset
+
+.
+ The benefit of architecting a system in this style is that it allows developers
+ to create an extension, which adds features to a base application and customise
+s it, without further involvement from the original creators of the application.
+ The extensible system forms a platform on which a family of applications
+ can be built, servicing a much larger market than would otherwise be possible.
+\end_layout
+
+\begin_layout Standard
+Eclipse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001,Object2005"
+
+\end_inset
+
+, Firefox 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fireextensions2007,Firefoxplugins2008"
+
+\end_inset
+
+, Emacs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blandy2009"
+
+\end_inset
+
+ and Excel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bullen2005"
+
+\end_inset
+
+ are prominent examples of this approach.
+ These applications support extensibility via (sometimes subtly) different
+ mechanisms, but the basic concept is the same.
+ They allow third party developers to add to (and sometimes remove from)
+ a base application in order to extend it, and each has spawned a significant
+ set of extensions.
+ The extension concept has shown itself to be of significant value: the
+ original application creators can service a broadened market, extension
+ developers gain a mature base to build on, and end users get increased
+ choice in order to meet their needs.
+ Interestingly, even though the implementation source code is freely available
+ for three out of the four example applications mentioned at the start of
+ the paragraph, this does not diminish the need for, or effectiveness of,
+ an extensibility approach.
+ Extending a substantial application is usually simpler, and incurs less
+ maintenance overhead, than directly altering the source code of the system.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, however, existing extensibility approaches have limitations
+ and unwelcome side effects.
+ Most of the approaches assume that pre-planned hooks or extension points
+ will be built into the base application in order to accommodate for any
+ possible future extension requirements.
+ Predicting these points in advance can never cover all eventualities 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bennett2004"
+
+\end_inset
+
+, and building excess points into the application 
+\begin_inset Quotes eld
+\end_inset
+
+just in case
+\begin_inset Quotes erd
+\end_inset
+
+ pollutes the architecture and reduces clarity and manageability.
+ Other approaches construct an application as a fine-grained arrangement
+ of components, allowing arbitrary replacement of any part, but end up exposing
+ great complexity to the application creators and extension developers alike.
+\end_layout
+
+\begin_layout Standard
+Developers building on an extensible base application may also wish to remove
+ or replace existing functionality in order to simplify and streamline the
+ system and improve performance 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Parnas1978"
+
+\end_inset
+
+, even as they add other features.
+ Current approaches either forbid this or only support this implicitly via
+ hiding the presence of features or by allowing end users to perform deletion
+ of previously installed parts of the application.
+\end_layout
+
+\begin_layout Standard
+There is a further, more pernicious, problem.
+ The ability to extend an application leads naturally to the requirement
+ to combine two or more independently-developed extensions (and base application
+ alterations) into a single application.
+ However, as extension developers are given more flexibility to adapt and
+ customise the base, the potential increases for extensions to conflict
+ when they are combined.
+ This tension is often resolved by placing unwelcome limitations on extensions,
+ in part because conflict between them is hard to detect and correct.
+\end_layout
+
+\begin_layout Standard
+These issues and limitations present real difficulties when creating, extending
+ and upgrading an extensible application.
+ We rephrase these concerns as the following research question.
+\end_layout
+
+\begin_layout Quote
+Can we devise an architectural approach to software that naturally builds
+ extensibility into a system as it is constructed, which also respects the
+ underlying forces and constraints between extension and base application
+ developers?
+\end_layout
+
+\begin_layout Standard
+We investigate this question by presenting an example development scenario,
+ and using it to discern the underlying issues that arise between developers
+ in an extensibility setting.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Example-Scenario"
+
+\end_inset
+
+Example Scenario
+\end_layout
+
+\begin_layout Standard
+The Audiosoft company develops 
+\begin_inset Quotes eld
+\end_inset
+
+desk version 1.0
+\begin_inset Quotes erd
+\end_inset
+
+, an extensible application for controlling digital audio devices via a
+ software mixer
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This example is simplified from a commercial product that the author previously
+ worked on.
+\end_layout
+
+\end_inset
+
+.
+ The application is used by radio studios to control a set of devices for
+ on-air transmission, and comes configured with two microphone devices by
+ default.
+\end_layout
+
+\begin_layout Standard
+Other developers can extend this base application to add further features,
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-desk-application"
+
+\end_inset
+
+.
+ The reason for developing the application as extensible is that Audiosoft
+ does not have the resources to add a software controller for every audio
+ device on the market, and wishes to allow third party developers to accomplish
+ this task instead.
+ 
+\end_layout
+
+\begin_layout Standard
+Audiosoft does not wish to release the implementation code for the product
+ due to several proprietary algorithms used in the mixer.
+ For the sake of the example, suppose that the application is complex and
+ contains many components at varying levels of abstraction.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename models/example-scenario.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-desk-application"
+
+\end_inset
+
+The desk application with various extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Developer X is a third party developer contracted to add support for a turntable
+ to version 1.0 of the desk application.
+ However, there is a problem.
+ The turntable requires audio cuing, where audio can be sent to an off-air
+ bus so that the start of a track can be found.
+ Desk version 1.0 does not provide a cue feature, and as a consequence X
+ must somehow adjust the base application to add support for this before
+ integrating in the turntable device controller.
+\end_layout
+
+\begin_layout Standard
+Another developer (Y) decides to extend the application by adding a software
+ device controller for a CD player to desk 1.0.
+ In the meantime, Audiosoft upgrades the desk application to version 1.1,
+ which features an improved mixer.
+\end_layout
+
+\begin_layout Standard
+Finally, a radio station (R) wishes to use version 1.1 combined with the
+ turntable and CD devices in a single desk.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Requirements"
+
+\end_inset
+
+Requirements for Extensibility
+\end_layout
+
+\begin_layout Standard
+Even though this scenario is relatively simple, it presents clearly the
+ challenges that an extensibility approach must deal with.
+ This section analyses the scenario in order to distill requirements for
+ an ideal extensibility mechanism.
+\end_layout
+
+\begin_layout Standard
+Firstly, even though the desk application doesn't provide audio cuing, developer
+ X must add this in order to allow the turntable device to be fully supported.
+ In this case, the existing extension points and parametrisation in the
+ desk 1.0 application cannot support this.
+ It is very common for an extension developer to be faced with the situation
+ where the design of the base simply has not foreseen the needs of the extension.
+ This leads to our first requirement:
+\end_layout
+
+\begin_layout Quote
+Requirement: 
+\series bold
+\noun on
+Alter
+\series default
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+It should be possible to alter a base application to accommodate new features
+ introduced by an extension.
+ The changes to the base application may be unplanned, and therefore the
+ ability to make arbitrary changes is required.
+ The extension developer should be afforded the same power to amend the
+ architecture that the developers of the base application had when they
+ created it.
+ Further, the alterations required for an extension should be proportionate
+ to the functionality added or changed.
+\end_layout
+
+\begin_layout Standard
+The key point is that the required changes may be unanticipated by the base
+ developers (unplanned), and will require (possibly extensive) base changes
+ which could involve addition, deletion or replacement of parts of the base.
+ As an example of the need for deletion, consider that an extension developer
+ adding output limiting to the desk may wish to remove the mixer's existing
+ frequency equalisation capability.
+\end_layout
+
+\begin_layout Standard
+Although we need to make potentially deep changes to accommodate an extension,
+ as per the earlier definition of extensibility the system must be able
+ to be extended without requiring modification or access to its source code.
+ In some cases the driver for this is that the implementation is proprietary.
+ Another goal is to shield extension developers from the full complexity
+ of the application at the source code level.
+\end_layout
+
+\begin_layout Quote
+Requirement: 
+\series bold
+\noun on
+NoSource
+\series default
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+It should be possible to extend the base application without requiring modificat
+ion or access to its implementation source code.
+ 
+\end_layout
+
+\begin_layout Standard
+It is worth unpacking this requirement, as it may seem at first glance that
+ we are unnecessarily constraining ourselves.
+ By modifying the source code, it is true that any required alterations
+ could be made for an extension.
+ However, giving extension developers full access to the source code and
+ allowing them to make the requisite changes (via source code control branching
+ or simply 
+\begin_inset Quotes eld
+\end_inset
+
+copy and paste
+\begin_inset Quotes erd
+\end_inset
+
+) creates many variants of the base application, causing maintenance and
+ ongoing evolution issues.
+\end_layout
+
+\begin_layout Standard
+Furthermore, the ability to make extensions without modifying the base source
+ code is important even in organisations which have full rights to modify
+ the source.
+ This is because despite best intentions, producing a new variant quickly
+ for time-to-market concerns usually involves a fork of the codebase to
+ prevent impact on existing clients.
+ By allowing extension without base source code modification, we prevent
+ the need for proliferation of base variants and the difficulties involved
+ with the management, upgrade and and later merging of these.
+\end_layout
+
+\begin_layout Standard
+Another potential alternative, given that the base source is not available
+ to extension developers, is to ask the base developers to evolve the applicatio
+n to incorporate a new set of extension points.
+ However, this causes a problem for the base application as the architecture
+ gets polluted with extension points of each and every extension.
+ This is not tenable if there are many extensions, particularly as it pushes
+ all of the maintenance and variant management work onto the base developers.
+ It also results in an ongoing stream of evolutions to the base, which are
+ visible to all parties even if they are not interested in the extension
+ that necessitated the changes.
+ Existing users of a base will not want to have to upgrade and retest on
+ a new base with changes that have only been made to support a feature needed
+ for another user.
+\end_layout
+
+\begin_layout Standard
+These points lead to the next requirement, which is that those who do not
+ care about a particular base alteration required for an extension should
+ neither be required to have visibility of the change, nor be constrained
+ by it.
+\end_layout
+
+\begin_layout Quote
+Requirement: 
+\series bold
+\noun on
+NoImpact
+\series default
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+The changes made to the base for an extension should not constrain the ongoing
+ development of the base, nor the development of any unrelated extensions.
+ An extension should not place the maintenance burden for any part of the
+ added features onto the developers of the base application.
+\end_layout
+
+\begin_layout Standard
+To illustrate the above requirement via our scenario, consider that Audiosoft
+ does not wish to see the changes that X introduces for audio cue support,
+ as these are not planned for incorporation into the general desk product.
+ Similarly, Y does not wish to see or have to adapt their extension for
+ the changes that X wants to make to the base application.
+\end_layout
+
+\begin_layout Standard
+However, although we require that those who do not wish to see changes are
+ not affected by them, at some point we may wish to combine multiple extensions
+ into a single application.
+ In our scenario, the radio station wishes to combine the CD player and
+ turntable support.
+ This leads to a further requirement.
+\end_layout
+
+\begin_layout Quote
+Requirement: 
+\series bold
+\noun on
+Combine
+\series default
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+It should be possible to combine multiple, independently developed extensions
+ to a base application, so as to form a unified system.
+ It should be possible to detect and correct any conflicts between extensions,
+ including conflicts between the base alterations required for each extension.
+\end_layout
+
+\begin_layout Standard
+Although all of the extensions discussed so far have been built on the desk
+ version 1.0 application, we cannot ignore the evolution of the base.
+ As stated earlier, Audiosoft eventually decides to upgrade the base application
+ with an improved mixer.
+ It may do this by evolving the application using traditional source modificatio
+n techniques, or it may structure the upgrade as a further extension.
+ Either way, we would like to be able to use existing extensions with the
+ new upgrade, leading to our next requirement.
+\end_layout
+
+\begin_layout Quote
+Requirement: 
+\series bold
+\noun on
+Upgrade
+\series default
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+It should be possible to combine existing extensions with an upgraded or
+ evolved version of the base application.
+ It should be possible to detect and correct any conflicts caused when existing
+ extensions are combined with the upgraded base.
+\end_layout
+
+\begin_layout Standard
+Both 
+\noun on
+Combine
+\noun default
+ and 
+\noun on
+Upgrade
+\noun default
+ require the ability to detect and correct any conflicts between independently
+ developed extensions to the system.
+ In order to emphasise this important notion, we elevate it into a separate
+ requirement.
+\end_layout
+
+\begin_layout Quote
+Requirement: 
+\series bold
+\noun on
+DetectAndCorrect
+\series default
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+It should be possible to detect and correct any conflicts that occur when
+ upgrades, and independently-developed extensions (and their alterations
+ to the common base) are combined into a single application.
+\end_layout
+
+\begin_layout Standard
+Our final requirement is that extensions can be added at the appropriate
+ level of abstraction, without necessarily exposing the extension developer
+ to the full complexity of the system.
+ If a complex application consists only of very coarse-grained components,
+ then making a simple unplanned change targeted at a low level of abstraction
+ may involve an inordinate amount of work and be very difficult to achieve:
+ we will need to replace a lot of functionality for a small change.
+ On the other hand, if an application contains many fine-grained components,
+ it will be simpler to add a small extension, but the architecture will
+ be difficult to manage and understand.
+\end_layout
+
+\begin_layout Quote
+Requirement: 
+\series bold
+\noun on
+AppropriateLevel
+\series default
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+Extension developers should be shielded from the full complexity of the
+ underlying application, and only exposed to the relevant parts of the base
+ architecture, at the appropriate abstraction level, for the alterations
+ they wish to make.
+\end_layout
+
+\begin_layout Standard
+At first glance some of these requirements seem to be in direct conflict,
+ and it will be shown that this tension causes issues for existing extensibility
+ approaches.
+ As previously pointed out, the ability to make fine-grained alterations
+ (
+\noun on
+Alter)
+\noun default
+ apparently conflicts with the aim of keeping the application architecture
+ manageable (
+\noun on
+AppropriateLevel
+\noun default
+).
+ The ability to make substantial alterations to the base seems to conflict
+ with the requirement that no base source be modified (
+\noun on
+NoSource
+\noun default
+).
+ Further, 
+\noun on
+NoImpact
+\noun default
+ says that any changes to the base for an extension must not be visible
+ unless desired to the base application or other extension developers.
+ Shielding those not interested from these changes implies the creation
+ of many base application variants, leading seemingly to an inability to
+ upgrade (
+\noun on
+Upgrade
+\noun default
+).
+\end_layout
+
+\begin_layout Section
+Research Contributions
+\end_layout
+
+\begin_layout Standard
+This thesis describes (and formally specifies) a design-time technique for
+ manipulating the hierarchical structure of a base application architecture
+ using structural deltas.
+ This allows an extension developer to adjust any part of a base application
+ architecture, permitting a system to be restructured even for requirements
+ that were not considered when the base was initially developed.
+\end_layout
+
+\begin_layout Standard
+This architectural manipulation is economically enabled by adding three
+ concepts to a conventional architecture description language.
+ By keeping the structural deltas of an extension separate from the base,
+ the concepts resolve or ameliorate the unwanted constraints between developers
+ in an extension setting, and hence address the requirements outlined earlier
+ in this chapter.
+\end_layout
+
+\begin_layout Standard
+A secondary contribution is the development of a modelling tool and runtime
+ platform, based on the formal specification, to support the approach.
+ The modelling tool integrates our structural delta approach with conventional
+ UML2 composite structure diagrams.
+ Component structures are shown as fully expanded at all times, even whilst
+ deltas are recorded in the underlying architecture, providing a uniform
+ approach to both construction and extension.
+\end_layout
+
+\begin_layout Section
+Thesis Structure
+\end_layout
+
+\begin_layout Standard
+The requirements are used to define and justify the Backbone extensibility
+ model presented in this thesis.
+ The essence of the approach is to allow extensions to make alterations
+ to the compositional structure of the base application.
+ This allows any part of the system to be remade to accommodate an extension,
+ and provides a structural foundation for checking and correcting conflicts
+ when extensions are combined.
+ The following chapters discuss how and why Backbone is suitable for creating,
+ extending and upgrading applications.
+\end_layout
+
+\begin_layout Standard
+The remainder of this thesis is structured as follows.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Background"
+
+\end_inset
+
+ presents existing work in the area of extensible applications and architectural
+ variants and examines how these approaches match up against the requirements.
+\end_layout
+
+\begin_layout Standard
+Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:The-Backbone-ADL"
+
+\end_inset
+
+ presents the Backbone component model and architecture description language
+ (ADL).
+ By working through an expanded form of the example scenario, we show how
+ Backbone deals with the structural aspects of extension and conflict resolution.
+ Backbone is assessed against the requirements in the context of the example.
+\end_layout
+
+\begin_layout Standard
+Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Backbone-specification"
+
+\end_inset
+
+ presents an outline of the Backbone formal specification.
+ This is written in Alloy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jackson2002,Jackson2005"
+
+\end_inset
+
+, a logic language well suited to model finding.
+ Some of the more interesting properties to emerge are discussed, particularly
+ in relation to tool support for the approach.
+\end_layout
+
+\begin_layout Standard
+Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Tool-Support-for"
+
+\end_inset
+
+ outlines the Backbone modelling tool and runtime platform.
+ The relationship between these and the formal specification is explained,
+ showing how architectural alterations are handled in an intuitive way.
+ The UML2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMGUML"
+
+\end_inset
+
+ composite structure diagram form is used as the graphical modelling notation,
+ and a critique of the UML2 model is provided in the context of extensible
+ systems.
+ A mapping between Backbone and UML2 is provided.
+\end_layout
+
+\begin_layout Standard
+Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Advanced-Modelling-in"
+
+\end_inset
+
+ builds on the foundation of the the extensibility approach to demonstrate
+ several advanced modelling techniques.
+ Stereotypes are introduced as a way of expanding the structure of elements
+ automatically, providing a convenience that allows us to omit common connectors
+ and parts when defining a component.
+ Several component-based variants of object-oriented design patterns are
+ presented, focusing particularly on improved extensibility.
+\end_layout
+
+\begin_layout Standard
+Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Evaluation"
+
+\end_inset
+
+ evaluates Backbone against prominent approaches to building extensible
+ systems and application variants.
+ In particular, plugin architectures 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Volter1999,Birsan2005"
+
+\end_inset
+
+ and product lines 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2002"
+
+\end_inset
+
+ are examined in depth.
+ As a case study, we introduce the Backbone approach into a mature application
+ that has spawned a number of variants, demonstrating that a system does
+ not have to be modelled from the ground up in Backbone to obtain the benefits
+ of extensibility.
+\end_layout
+
+\begin_layout Standard
+By way of conclusion, chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Conclusions"
+
+\end_inset
+
+ summarises the contributions of this thesis and suggests further work that
+ builds on the structural foundations of our approach.
+\end_layout
+
+\begin_layout Standard
+Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-Informal"
+
+\end_inset
+
+ discusses some areas of the Backbone formal specification in more detail
+ and catalogues the structural and well-formedness rules.
+ The specification itself is divided into two parts: a base that describes
+ the extensibility concepts (appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Backbone-formal-base"
+
+\end_inset
+
+) and a component model built on this (appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-formal-component"
+
+\end_inset
+
+).
+ The specification is written using Alloy, and this is briefly introduced
+ in appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Alloy-introduction"
+
+\end_inset
+
+ for readers unfamiliar with this logic.
+\end_layout
+
+\begin_layout Standard
+Finally, appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Software"
+
+\end_inset
+
+ describes how to obtain the software and models discussed in this thesis,
+ including the Evolve modelling tool and the Backbone runtime platform.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "../read papers/references"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

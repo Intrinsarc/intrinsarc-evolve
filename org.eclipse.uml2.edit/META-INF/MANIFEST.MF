@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.uml2.edit
+Bundle-Version: 1.1.1.M200509151108
+Bundle-ClassPath: org.eclipse.uml2.edit_1.1.1.M200509151108.jar
+Bundle-Activator: org.eclipse.uml2.provider.UML2EditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.uml2.common.edit;visibility:=reexport,org.eclipse.uml2;visibility:=reexport,org.eclipse.emf.ecore.change.edit;visibility:=reexport,org.eclipse.core.runtime
+Bundle-ManifestVersion: 2
+Eclipse-AutoStart: true
+Export-Package: org.eclipse.uml2.edit.internal.command;x-internal:=true,org.eclipse.uml2.edit.internal.provider;x-friends:="org.eclipse.uml2.editor",org.eclipse.uml2.edit.util,org.eclipse.uml2.provider

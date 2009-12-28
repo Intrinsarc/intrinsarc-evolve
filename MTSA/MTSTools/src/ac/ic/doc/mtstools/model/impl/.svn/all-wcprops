@@ -1,0 +1,335 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/mtsa/!svn/ver/110/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl
+END
+BranchingBackwardSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/mtsa/!svn/ver/48/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/BranchingBackwardSimulation.java
+END
+PlusCRRulesApplier.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/PlusCRRulesApplier.java
+END
+BranchingSemantics.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/mtsa/!svn/ver/76/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/BranchingSemantics.java
+END
+LTSAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/106/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/LTSAdapter.java
+END
+PathBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/PathBuilder.java
+END
+WeakSimulationSemantics.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svnroot/mtsa/!svn/ver/107/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakSimulationSemantics.java
+END
+MTSAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/106/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSAdapter.java
+END
+WeakAlphabetConsistencyForwardSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnroot/mtsa/!svn/ver/54/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakAlphabetConsistencyForwardSimulation.java
+END
+ExecutorServiceFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/ExecutorServiceFactory.java
+END
+AbstractBackwardSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnroot/mtsa/!svn/ver/48/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/AbstractBackwardSimulation.java
+END
+WeakConsistency.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/47/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakConsistency.java
+END
+BaseSemanticsByRelation.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/mtsa/!svn/ver/76/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/BaseSemanticsByRelation.java
+END
+WeakAlphabetConsistency.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/mtsa/!svn/ver/48/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakAlphabetConsistency.java
+END
+MTSComposer.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/110/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSComposer.java
+END
+BranchingConsistency.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/mtsa/!svn/ver/51/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/BranchingConsistency.java
+END
+BranchingAlphabetConsistency.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/mtsa/!svn/ver/51/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/BranchingAlphabetConsistency.java
+END
+WeakBisimulationSemantics.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnroot/mtsa/!svn/ver/107/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakBisimulationSemantics.java
+END
+PlusCARulesApplier.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/PlusCARulesApplier.java
+END
+MTSMinimiser.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/91/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSMinimiser.java
+END
+MTSQuickClone.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSQuickClone.java
+END
+TransitionRulesApplier.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/TransitionRulesApplier.java
+END
+AbstractTransitionSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svnroot/mtsa/!svn/ver/106/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/AbstractTransitionSystem.java
+END
+RelationConstructor.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/RelationConstructor.java
+END
+LTSImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/LTSImpl.java
+END
+MTSMultipleComposer.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/mtsa/!svn/ver/92/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSMultipleComposer.java
+END
+BranchingImplementationNotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/BranchingImplementationNotion.java
+END
+Minimiser.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/Minimiser.java
+END
+WeakAlphabetPlusCROperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnroot/mtsa/!svn/ver/55/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakAlphabetPlusCROperator.java
+END
+CompositionState.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/CompositionState.java
+END
+SimulationPredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/SimulationPredicate.java
+END
+CompositionRuleApplier.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/CompositionRuleApplier.java
+END
+EquivalenceClassImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/EquivalenceClassImpl.java
+END
+PlusOperatorApplier.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/mtsa/!svn/ver/47/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/PlusOperatorApplier.java
+END
+FixedPointRelationConstructor.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnroot/mtsa/!svn/ver/74/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/FixedPointRelationConstructor.java
+END
+MTSTransition.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSTransition.java
+END
+MTSDeterminiser.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSDeterminiser.java
+END
+WeakAlphabetConsistencyBackwardSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnroot/mtsa/!svn/ver/54/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakAlphabetConsistencyBackwardSimulation.java
+END
+StrongPlusCROperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/mtsa/!svn/ver/55/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/StrongPlusCROperator.java
+END
+WeakForwardSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/mtsa/!svn/ver/48/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakForwardSimulation.java
+END
+AbstractConsistencyRelation.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/mtsa/!svn/ver/47/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/AbstractConsistencyRelation.java
+END
+BranchingByTransformationSemantics.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svnroot/mtsa/!svn/ver/45/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/BranchingByTransformationSemantics.java
+END
+Simulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/Simulation.java
+END
+MTSImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSImpl.java
+END
+BranchingForwardSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnroot/mtsa/!svn/ver/48/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/BranchingForwardSimulation.java
+END
+ClousurePathBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/mtsa/!svn/ver/63/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/ClousurePathBuilder.java
+END
+EquivalenceClass.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/EquivalenceClass.java
+END
+AlphabetSemantics.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/mtsa/!svn/ver/75/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/AlphabetSemantics.java
+END
+SimulationChain.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/SimulationChain.java
+END
+MTSCompositionAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/MTSCompositionAdapter.java
+END
+StateSucessors.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/StateSucessors.java
+END
+Transition.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/Transition.java
+END
+WeakBackwardSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/mtsa/!svn/ver/48/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakBackwardSimulation.java
+END
+CompositionStateFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/CompositionStateFactory.java
+END
+AbstractForwardSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svnroot/mtsa/!svn/ver/48/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/AbstractForwardSimulation.java
+END
+WeakSemantics.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/76/trunk/MTSTools/src/ac/ic/doc/mtstools/model/impl/WeakSemantics.java
+END

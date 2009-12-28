@@ -1,0 +1,105 @@
+        <UML:Package xmi.id="a71" xmi.uuid="DCE-1148855902935-267" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>component
+model</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+
+<packageImportLink xlink:type="simple" xlink:href="resolution" />
+
+            <UML:Class xmi.id="a101" xmi.uuid="DCE-1148910734334-418" isActive="false" name="&lt;&lt;upversion&gt;&gt; LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a116" xmi.uuid="DCE-1148910819492-536" name="Interface3" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a119" xmi.uuid="DCE-1148912086922-294" isActive="false" name="&lt;&lt;supplant&gt;&gt; LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a123" xmi.uuid="DCE-1148918318115-863" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>component LeafComponent
+{
+  attributes:
+    attribute1: Integer = 10;
+    attribute2: String;
+
+  ports:
+    port1 provides Interface1;
+    port2[0..*] requires Interface2;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Class xmi.id="a74" xmi.uuid="DCE-1148855916404-524" isActive="false" name="LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a75" xmi.uuid="DCE-1148855961092-105" name="Interface1" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a76" xmi.uuid="DCE-1148855977670-250" name="Interface2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a79" xmi.uuid="DCE-1148857200498-882" isActive="false" name="CompositeComponent2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a80" xmi.uuid="DCE-1148858789342-827" isActive="false" name="CompositeComponent2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a89" xmi.uuid="DCE-1148858838951-147" isActive="false" name="CompositeComponent3" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a90" xmi.uuid="DCE-1148858865889-95" isActive="false" name="CompositeComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a91" xmi.uuid="DCE-1148900158906-888" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>upversion LeafComponent
+  is-like [previous]LeafComponent
+  rename-to AdjustedLeafComponent
+{
+  delete-ports:
+    port2;
+  ports:
+    port3 provides Interface3;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a92" xmi.uuid="DCE-1148900366298-372" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>supplant LeafComponent
+  is-like [previous]LeafComponent
+{
+  parts:
+    [previous]LeafComponent part
+      set attribute1(attribute1),
+             attribute2(attribute2);
+
+  connectors:
+    connection joins port1@part to port1;
+    delegator delegates-from port2 to port2@part;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a94" xmi.uuid="DCE-1148901364920-952" body="" name="" visibility="public" isSpecification="false"></UML:Comment>
+            <UML:Comment xmi.id="a95" xmi.uuid="DCE-1149074711822-34" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>component CompositeComponent
+{
+  attributes:
+    Integer attribute = 7;
+
+  parts:
+    LeafComponent part
+      set attribute2("test");
+
+  ports:
+    cport1 provides Interface1;
+    cport2[0..*] requires Interface2;
+
+  connectors:
+    connector joins cport1 to port1@part;
+    delegaor delegates from cport2 to port2@part;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a98" xmi.uuid="DCE-1148902784549-72" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>interface Interface1
+{
+  operation1;
+  operation2 is-threadsafe;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a99" xmi.uuid="DCE-1148903997946-931" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>protocol LeafComponent
+{
+  actors:
+    self: LeafComponent;
+    port1: Interface1 of port1; port2: Interface2 of port2;
+
+  interactions:
+    par
+    {
+      opt loop
+      {
+        port1 -&gt; self.operation1;
+        port1 &lt;~ self.operation1;
+      }
+      ----
+     loop
+     {
+       self &lt;~-&gt; port2.operationX;
+     }
+}</UML:Comment.body>
+            </UML:Comment>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

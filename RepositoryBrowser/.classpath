@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Geometry"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/IDraw"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/UML2Repository"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DeltaEngine-UML2"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

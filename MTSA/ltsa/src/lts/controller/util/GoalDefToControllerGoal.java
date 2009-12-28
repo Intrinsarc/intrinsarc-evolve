@@ -1,0 +1,112 @@
+package lts.controller.util;
+
+import java.util.*;
+
+import lts.*;
+import lts.controller.*;
+import lts.ltl.*;
+import ar.dc.uba.model.condition.*;
+import ar.dc.uba.model.condition.Formula;
+import controller.model.*;
+import controller.model.gr.*;
+
+public class GoalDefToControllerGoal {
+	private static GoalDefToControllerGoal instance = new GoalDefToControllerGoal();
+
+	public static GoalDefToControllerGoal getInstance() {
+		return instance;
+	}
+
+	public ControllerGoal buildControllerGoal(
+			ControllerGoalDefinition controllerGoalDefinition) {
+		ControllerGoal result = new GRControllerGoal();
+
+		this.buildSubGoals(result, controllerGoalDefinition);
+		this.buildControllableActionSet(result, controllerGoalDefinition);
+
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void buildControllableActionSet(
+			controller.model.ControllerGoal goal,
+			ControllerGoalDefinition controllerGoalDefinition) {
+
+		Hashtable constants = LabelSet.getConstants();
+		Symbol controllableActionSet = controllerGoalDefinition
+				.getControllableActionSet();
+		LabelSet labelSet = (LabelSet) constants.get(controllableActionSet
+				.toString());
+		if (labelSet == null) {
+			Diagnostics.fatal("Controllable actions set not defined.");
+		}
+		Vector actions = labelSet.getActions(null);
+		goal.addAllControllableActions(new HashSet<String>(actions));
+	}
+
+	private void buildSubGoals(controller.model.ControllerGoal result,
+			ControllerGoalDefinition controllerGoalDefinition) {
+		Set<Fluent> involvedFluents = new HashSet<Fluent>();
+
+		// Convert faults to Set<Formula>
+		for (lts.Symbol faultDefinition : controllerGoalDefinition
+				.getFaultsDefinitions()) {
+			AssertDefinition def = AssertDefinition
+					.getDefinition(faultDefinition.getName());
+			if (def != null) {
+				result.addFault(this.adaptFormulaAndCreateFluents(def
+						.getFormula(true), involvedFluents));
+			} else {
+				Diagnostics.fatal("Assertion not defined ["
+						+ faultDefinition.getName() + "].");
+			}
+		}
+
+		// Convert assumptions to Set<Formula>
+		for (lts.Symbol assumeDefinition : controllerGoalDefinition
+				.getAssumeDefinitions()) {
+			AssertDefinition def = AssertDefinition
+					.getDefinition(assumeDefinition.getName());
+			if (def != null) {
+				result.addAssume(this.adaptFormulaAndCreateFluents(def
+						.getFormula(true), involvedFluents));
+			} else {
+				Diagnostics.fatal("Assertion not defined ["
+						+ assumeDefinition.getName() + "].");
+			}
+		}
+
+		// Convert guarantees to Set<Formula>
+		for (lts.Symbol guaranteeDefinition : controllerGoalDefinition
+				.getGuaranteeDefinitions()) {
+			AssertDefinition def = AssertDefinition
+					.getDefinition(guaranteeDefinition.getName());
+			if (def != null) {
+				result.addGuarantee(this.adaptFormulaAndCreateFluents(def
+						.getFormula(true), involvedFluents));
+			} else {
+				Diagnostics.fatal("Assertion not defined ["
+						+ guaranteeDefinition.getName() + "].");
+			}
+		}
+
+		result.addAllFluents(involvedFluents);
+	}
+
+	/*
+	 * //DIPI: Refactor needed This is a copy of the same method in
+	 * TriggeredScenarioDefinitionToTriggeredScenario Fluent should be
+	 * parametrised with <Action> type
+	 */
+	private Formula adaptFormulaAndCreateFluents(lts.ltl.Formula formula,
+			Set<Fluent> involvedFluents) {
+		// create a visitor for the formula
+		FormulaTransformerVisitor formulaTransformerVisitor = new FormulaTransformerVisitor();
+		formula.accept(formulaTransformerVisitor);
+
+		// After visiting the formula, the visitor has the transformed formula
+		// and the involved fluents
+		involvedFluents.addAll(formulaTransformerVisitor.getInvolvedFluents());
+		return formulaTransformerVisitor.getTransformedFormula();
+	}
+}

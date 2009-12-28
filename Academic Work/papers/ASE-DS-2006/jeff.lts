@@ -1,0 +1,25 @@
+
+
+CLIENT = (call.tx.setVolume -> return.rx.setVolume -> CLIENT
+         |call.tx.beep -> return.rx.beep -> CLIENT).
+set Clients = {c1,c2}
+AUDIO1 =
+ ([c:Clients].call.rx.setVolume -> [c].return.tx.setVolume -> AUDIO1).
+AUDIO2 =
+ ([c:Clients].call.rx.beep -> [c].return.tx.beep -> AUDIO2).
+property ||AUDIO = (AUDIO1 || AUDIO2).
+||SYS = (Clients:CLIENT || AUDIO) / {[Clients].call.tx/[Clients].call.rx, [Clients].return.rx/[Clients].return.tx}.
+
+
+
+
+//CLIENT = (call.transmit.beep -> return.receive.beep -> CLIENT).
+//
+//set Clients = {c1,c2}
+//property
+//  AUDIO = ([c:Clients].call.receive.beep -> [c].return.transmit.beep -> AUDIO).
+//
+//||SYS = (Clients:CLIENT || AUDIO)/
+
+deterministic X = (a -> b -> X | a -> c -> X).
+property ||PROT = X.

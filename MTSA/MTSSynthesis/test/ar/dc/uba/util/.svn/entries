@@ -1,0 +1,52 @@
+8
+
+dir
+171
+https://mtsa.svn.sourceforge.net/svnroot/mtsa/trunk/MTSSynthesis/test/ar/dc/uba/util
+https://mtsa.svn.sourceforge.net/svnroot/mtsa
+
+
+
+2008-12-09T15:01:12.283276Z
+23
+gsibay
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fcb65440-8149-0410-bc05-9de0824cdfc8
+
+LanguageUtilsTest.java
+file
+
+
+
+
+2009-07-07T21:26:38.000000Z
+e88c4835e24c4373aa9710a3ec5c37a2
+2008-12-09T15:01:12.283276Z
+23
+gsibay
+
+WordUtilsTest.java
+file
+
+
+
+
+2009-07-07T21:26:38.000000Z
+32003712f06cabc1b0fcfa2df2a2bcfa
+2008-12-09T15:01:12.283276Z
+23
+gsibay
+

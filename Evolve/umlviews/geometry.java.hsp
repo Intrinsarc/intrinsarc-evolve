@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local-project language="java" flavor="j2se">
+   <property name="hide-externals" value="true" />
+   <property name="detail-mode" value="true" />
+   <classpath>
+      <classpathentry kind="lib" path="../../Geometry/bin" />
+      <classpathentry kind="src" path="../../Geometry/src" />
+   </classpath>
+</local-project>
+

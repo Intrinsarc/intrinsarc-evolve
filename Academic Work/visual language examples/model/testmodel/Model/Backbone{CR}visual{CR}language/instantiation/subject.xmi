@@ -1,0 +1,12 @@
+            <UML:Package xmi.id="a46" xmi.uuid="DCE-1139491729011-106" name="instantiation" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a63" xmi.uuid="DCE-1139491751698-339" name="Parent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a64" xmi.uuid="DCE-1139491759433-565" name="Child" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a65" xmi.uuid="DCE-1139491878886-245" name="ChildInstantiator" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a66" xmi.uuid="DCE-1139492899714-455" name="InterfaceX" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a67" xmi.uuid="DCE-1139492906792-7" name="InterfaceY" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a68" xmi.uuid="DCE-1139493011480-83" name="Instantiator" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a69" xmi.uuid="DCE-1139493043448-775" name="Manager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a70" xmi.uuid="DCE-1139493694901-246" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

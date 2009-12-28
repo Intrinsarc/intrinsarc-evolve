@@ -1,0 +1,12 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={wellformed\_components.als, lines 175-183}, label=alloy:WF_PORT_PROVIDES_ONLY, captionpos=b]
+(some o.required.c.s or isFalse[Model::providesIsOptional]) =>
+{
+  idx in o.mandatory =>
+    -- must have a connection
+    one ends
+  else
+    -- can only have at most one connection
+    lone ends
+}
+\end{lstlisting}

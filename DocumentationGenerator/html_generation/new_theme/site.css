@@ -1,0 +1,46 @@
+
+td.link-style1
+{
+	background-color: #7567cd;
+	color: white;
+	text-decoration: none;
+}
+
+a
+{ 
+	text-decoration: none;
+	color: #7567cd;
+}
+
+a.link-style1
+{
+	text-decoration: none;
+	color: white;
+}
+
+a:hover
+{
+	text-decoration: none;
+	color: orange
+}
+
+.content
+{
+	background-color:#ffffea;
+}
+
+.innercontent
+{
+	margin:10px;
+}
+
+.title
+{
+	font-size: x-large;
+}
+
+body
+{
+	font-size: 12pt;
+	font-family: arial, sans-serif;
+}

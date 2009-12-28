@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.uml2.codegen.ecore; singleton:=true
+Bundle-Version: 1.1.1.M200509151108
+Bundle-ClassPath: org.eclipse.uml2.codegen.ecore_1.1.1.M200509151108.jar
+Bundle-Activator: org.eclipse.uml2.codegen.ecore.CodeGenEcorePlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.emf.codegen.ecore;visibility:=reexport,org.eclipse.jdt.core
+Bundle-ManifestVersion: 2
+Eclipse-AutoStart: true
+Export-Package: org.eclipse.uml2.codegen.ecore,org.eclipse.uml2.codegen.ecore.genmodel,org.eclipse.uml2.codegen.ecore.genmodel.impl;x-internal:=true,org.eclipse.uml2.codegen.ecore.genmodel.util,org.eclipse.uml2.codegen.ecore.templates.edit,org.eclipse.uml2.codegen.ecore.templates.model,org.eclipse.uml2.codegen.ecore.templates.model.tests

@@ -1,0 +1,143 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+
+\usepackage{listings}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--}
+}
+
+\lstset{language=Alloy}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\paragraph_spacing single
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Backbone-formal-base"
+
+\end_inset
+
+The Backbone Formal Specification: Stratum, Element and Deltas
+\end_layout
+
+\begin_layout Section
+Stratum and Element Signatures: 
+\family typewriter
+base_structure.als
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+
+\family typewriter
+\size scriptsize
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/base_structure.als.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Stratum and Element Facts: 
+\family typewriter
+base_facts.als
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+
+\family typewriter
+\size scriptsize
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/base_facts.als.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Deltas Signature: 
+\family typewriter
+base_deltas.als
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+
+\family typewriter
+\size scriptsize
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/base_deltas.als.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

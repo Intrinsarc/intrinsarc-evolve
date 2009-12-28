@@ -1,0 +1,747 @@
+/*  
+Theme Name: Cubit 
+Theme URI: htp://www.kriesi.at/archives/wordpress-theme-cubit
+Description: Modern Business Wordpress Theme
+Version: 1.0
+Author: Christian Budschedl
+Author URI: http://www.kriesi.at 
+	
+ */
+/*small reset*/
+body, ul, ol, li, p, h1,h2, h3, h4, h5, h6, form, blockquote, dl, dd, dt{
+margin:0;
+padding:0;
+}
+
+body, input, textarea{
+font: normal 13px Arial, Helvetice, Verdana, sans-serif;
+line-height:1.7em;
+}
+
+
+/*Basic classed and ids, used on pretty much every page*/
+#top{
+	width:940px;
+	margin:0 auto;
+	position:relative;
+	}
+	
+#frontpage #head{
+	height:425px;
+	}
+	
+#head{
+	height:205px;
+	position:relative;
+	z-index:1;
+
+	}
+	
+#logo{
+	position:relative;
+	height:127px;
+	width:313px;
+	left:25px;
+	padding:0;
+	}
+#logo a{
+	display:block;
+	height:127px;
+	width:313px;
+	text-indent:-9999px;
+	position:absolute;
+	outline:none;
+	}
+	
+#main_transition{
+	position:relative;
+	width:940px;
+	height:275px;
+	}
+	
+#transition-container{
+	height:240px;
+	left:19px;
+	overflow:hidden;
+	position:absolute;
+	top:16px;
+	width:900px;
+	}
+	
+#top #transition-container a img{
+	border:none;
+	}
+
+#main{
+	position:relative;
+	padding:0 20px 0px 20px;
+	float:left;
+	}
+
+.content{
+	float:left;
+	position:relative;
+	width:570px;
+	overflow:hidden;
+	}
+	
+.entry{
+	width:100%;
+	float:left;
+	clear:both;
+	padding-bottom:30px;
+	position:relative;
+	}
+	
+.breadcrumb{
+	font-size:11px;
+	left:22px;
+	line-height:12px;
+	position:absolute;
+	top:147px;
+	width:850px;
+	}
+
+.breadcrumb a{
+	text-decoration:none;
+	}
+	
+#footer{
+	clear:both;
+	margin:20px 0 0 0;
+	padding:2px 0 20px 0;
+	width:100%;
+	text-align:center;
+	font-size:11px;
+	float:left;
+	}
+/*Basic styles fonts, images, links, etc*/
+
+p{
+	padding-bottom:1.5em;
+	}
+
+h1,h2,h3,h4,h5,h6, legend{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight:normal;
+	padding-bottom:5px;
+	}
+	
+	h1{font-size:22px; clear:both;}
+	h2{font-size:20px; clear:both;}
+	h3, legend{font-size:18px; clear:both;}
+	h4{font-size:16px; clear:both;}
+	h5{font-size:14px; clear:both;}
+	h6{font-size:13px; clear:both;}
+
+#top .post_title a{
+text-decoration:none;
+}
+	
+#top .post_title a:hover{
+text-decoration:underline;
+	}
+
+.meta{
+	font-size:11px;
+	line-height:11px;
+	}
+	
+.meta_subpage{
+	display:block;
+	padding:0 0 5px;
+	}
+.meta_date{
+	padding:0px 5px 0 0;
+	}
+
+.meta_comment, .meta_cat{
+	padding:0px 5px;
+	}
+	
+.more-link{
+	display:block;
+	padding:0 0 0 16px;
+	line-height:20px;
+	text-decoration:none;
+	width:75px;
+	clear:both;
+	}
+	
+#top #main .button, #cancel-comment-reply-link{
+	border:none;
+	width:116px;
+	height:27px;
+	line-height:27px;
+	text-align:center;
+	display:block;
+	padding:0;
+	font-size:11px;
+	}
+	
+#top #main #commentform .button, #cancel-comment-reply-link{
+	float:left;
+	}	
+	
+.floatleft{
+	float:left;
+	}
+
+.floatright{
+	float:right;
+	}
+	
+.clearboth{
+	clear:both;
+	}
+	
+.alignleft{
+float:left;
+margin:0px 10px 10px 0pt;
+overflow:hidden;
+max-width:588px;
+}
+.alignright{
+float:right;
+margin:0px 0pt 10px 10px;
+overflow:hidden;
+max-width:588px;
+}
+.aligncenter{
+clear:both;
+display:block;
+margin:0pt auto 1.5em;
+overflow:hidden;
+max-width:588px;
+}
+
+#top .wp-smiley{
+	border:none;
+	padding:0;
+	}
+
+.content img, .content img a{
+	padding:3px;
+	text-decoration:none;
+	}
+	
+#top .content .noborder, #top .content .noborder a{
+	border:none;
+	padding:0;
+	background:transparent;
+	}
+	
+
+
+/*Mainpage */
+
+.info_box, .sidebar{
+	float:left;
+	margin-right:30px;
+	overflow:hidden;
+	padding-bottom:5px;
+	position:relative;
+	width:280px;
+	}
+	
+#top .sidebar{
+	margin-right:70px;
+	width:260px;
+	}
+	
+.info_box h2{
+	padding-bottom:10px;
+	font-size:18px;
+	}
+	
+#top .box3{
+	margin-right:0px;
+	}
+	
+.box_image{
+	width:100%;
+	height:60px;
+	overflow:hidden;
+	margin-bottom:10px;
+	}
+
+
+
+/* navigation */
+
+#top #nav{
+float:left;
+position:absolute;
+top:107px;
+right:20px;
+}
+
+
+#nav, #nav ul{
+margin:0;
+padding:0;
+list-style-type:none;
+list-style-position:outside;
+position:relative;
+line-height:36px; 
+z-index:5;
+
+}
+
+
+#top #nav a{
+display:block;
+padding:0 15px 3px 15px;
+text-decoration:none;
+text-align:center;
+line-height:29px; 
+outline:none;
+z-index:35;
+position:relative;
+}
+
+#top #nav li{
+float:left;
+position:relative;
+z-index:20;
+}
+
+#top #nav li li{
+border-left:none;
+}
+
+#top #nav ul {
+position:absolute;
+display:none;
+width:170px;
+top:29px;
+
+}
+
+#top #nav li ul a{
+width:140px;
+height:auto;
+float:left;
+text-align:left;
+padding:0 15px;
+}
+
+#top #nav ul ul{
+top:auto;
+border-top:none;
+}	
+
+#top #nav li ul ul {
+left:170px;
+top:0px;
+}
+
+#top #nav li:hover ul ul, #top #nav li:hover ul ul ul,#top  #nav li:hover ul ul ul ul{
+display:none;
+}
+#top #nav li:hover ul, #top #nav li li:hover ul, #top #nav li li li:hover ul, #top #nav li li li li:hover ul{
+display:block;
+}
+
+
+#top #nav .sub_list, #top #nav .sub_sub_list{
+display:none;
+}
+
+#top #nav li.back {
+width: 9px; 
+height: 32px;
+z-index: 8;
+position: absolute;
+}
+#top #nav li.back .left {
+height: 32px;
+margin-right: 9px;
+}
+
+/*subnavi*/
+
+#subnav{
+	padding-bottom:20px;
+	}
+
+#subnav ul{
+	width:260px;
+	list-style-type:none;
+	list-style-position:outside;
+	clear:both;
+	}
+	
+#subnav li{
+	width:100%;
+	}
+	
+#subnav li a{
+	text-decoration:none;
+	display:block;
+	width:225px;
+	padding:5px 5px 5px 30px;
+	}
+#subnav ul li a{
+/*if you want your subnav 2nd level items to have another style edit here*/
+}
+
+
+
+
+
+.sidebar ul, .sidebar ol, .footer ul, .footer ol  {
+list-style-position:outside;
+list-style-type:none;
+position:relative;
+}
+
+
+.widget{
+clear:both;
+padding-bottom:20px;
+width:100%;
+float:left;
+overflow:hidden;
+position:relative;
+}
+
+.widget a, .widget a:visited{
+padding:5px;
+display:block;
+text-decoration:none;
+width:260px; /*change if sidebarwidth changes*/
+}
+
+.widget a:hover, .widget li:hover a {
+text-indent:0;
+}
+
+.widget h3{
+padding:0px 4px 4px;
+margin:0;
+}
+
+.widget div{
+padding:5px;
+}
+
+
+/* ####### rss widget ####### */
+.rss-date{
+padding:0px 5px;
+font-size:10px;
+}
+
+.widget_rss cite{
+padding:0px 5px 10px 5px;
+font-size:10px;
+display:block;
+}
+
+/* ####### rss widget ####### */
+
+
+/* ####### recentcomments + widget_archive + textwidget+ categorylink ####### */
+#top .widget_archive a, #top .recentcomments a, #top .textwidget a, #top .widget_categories a{
+display:inline;
+margin:0;
+padding:0;
+}
+
+.textwidget a{
+border:none;
+text-decoration:underline;
+}
+.textwidget a:hover{
+text-decoration:none;
+}
+
+#top .recentcomments, #top .widget_archive li, #top .widget_categories li{
+padding:5px;
+display:block;
+text-decoration:none;
+}
+
+#top .recentcomments a, #top .widget_archive li a, #top .widget_categories li a{
+border-bottom:none;
+}
+
+/* ####### recentcomments ####### */
+
+
+
+/*--------------------calendar--------------------*/
+#wp-calendar a, #wp-calendar a:visited {
+display:block;
+text-decoration:none;
+padding:0;
+border:none;
+width:auto;
+}
+
+#wp-calendar a:hover{
+display:block;
+}
+
+
+
+
+#wp-calendar {
+empty-cells: show;
+width:100%;
+text-align:center;
+
+}
+
+#wp-calendar #next a,#wp-calendar #prev a {
+text-decoration:none;
+display:block;
+border:none;
+}
+#wp-calendar #next a:hover,#wp-calendar #prev a:hover {
+}
+
+#wp-calendar caption {
+margin-bottom:5px;
+}
+
+/*-------------------- end calendar--------------------*/
+
+/*-------------------- tag cloud--------------------*/
+#top .widget_tag_cloud a{
+display:inline;
+line-height:2em;
+border:none;
+}
+
+
+/*-------------------- end cloud--------------------*/
+
+
+#s, .text_input, .text_area{
+padding:5px;
+font: normal 12px Verdana, Helvetica, Arial, sans-serif;
+}
+
+#searchsubmit, #send, #submit{
+padding:4px 20px;
+font: normal 12px Verdana, Helvetica, Arial, sans-serif;
+}
+
+.hidden{
+	display:none;
+	}
+#commentform{
+	padding-bottom:20px;
+	}
+
+#top .commentlist, #top .commentlist li {
+clear:both;
+position:relative;
+list-style-type:none;
+width:520px;
+left:25px;
+padding:10px 0 0 0;
+background-image:none;
+	}
+
+#respond{
+	clear:both;
+	margin:20px 0 0 0;
+	padding:20px 0 20px 0;
+	width:100%;
+	}
+	
+#comment, fieldset textarea{
+	height:150px;
+	padding:5px;
+	width:97%;
+	}
+#commentform p, fieldset p{
+	padding:2px 0;
+	clear:both;
+	}	
+	
+#commentform input{
+	padding:5px;
+	}
+	
+.commentlist li h3{
+	float:left;
+	}
+
+
+.commentlist .says{
+	display:none;
+	}
+
+.commentlist .avatar{
+position:absolute;
+z-index:3;
+left:-50px;
+	}
+	
+.commentlist .commentmetadata{
+font-size:11px;	
+	}
+	
+.commentlist .commentmetadata a{
+	float:right;
+	position:relative;
+	top:-18px;
+	}
+	
+.reply{
+font-size:11px;
+left:-43px;
+position:absolute;
+top:47px;
+	}
+
+.reply a{
+	text-decoration:none;
+	}
+.reply a:hover{
+	text-decoration:underline;
+	}
+	
+.comment_nav{
+	width:100%;
+	float:left;
+	height:38px;
+	padding-top:20px;
+	}
+	
+.comment_nav a{
+	text-decoration:none;
+	cursor:pointer;
+	}
+	
+.comment_next{float:right;}
+
+.comment_prev{float:left;}
+	
+	
+.commentlist .children{
+	padding-left:25px;
+	}
+	
+
+#top .commentlist .depth-2{
+	width:470px;
+	}
+	
+#top .commentlist .depth-3{
+	width:420px;
+	}
+	
+#top .commentlist .depth-4{
+	width:370px;
+	}
+	
+#top .commentlist .depth-5{
+	width:320px;
+	}
+	
+#top .commentlist .depth-6{
+	width:270px;
+	}
+	
+#top .commentlist .depth-7{
+	width:220px;
+	}
+	
+#top .commentlist .depth-8, #top  .commentlist .depth-9, #top .commentlist .depth-10 {
+	width:170px;
+	}
+
+
+#cancel-comment-reply-link{
+	float:right;
+	margin-right:3px;
+	}
+
+
+
+/* ---------------------- Pagination -------------------*/
+
+.pagination{
+clear:both;
+display:block;
+position:relative;
+z-index:3;
+}
+.pagination span, .pagination a{
+display:block;
+float:left;
+font-size:11px;
+line-height:13px;
+margin: 2px 2px 2px 0;
+display:block;
+padding:3px 6px;
+text-decoration:none;
+}
+
+.pagination .current{
+font-size:11px;
+padding:3px 6px;
+}
+
+/*CONTACT FORM*/
+
+fieldset{
+border:none;
+padding:0;
+margin:0;
+}
+
+fieldset label{
+	padding-left:7px;
+	}
+.blocklabel{
+	display:block;
+	padding:10px 0 0 0;
+}
+
+
+
+
+/*Post styles*/
+
+blockquote{
+	clear:both;
+	padding:0 0 0 50px;
+	}
+	
+	
+blockquote p{
+	padding-right:55px;
+	padding-top:20px;
+	}
+	
+#top blockquote em, #top blockquote em a{
+	display:block;
+	text-align:right;
+	font-weight:bold;
+	font-style:italic;
+	}
+	
+.entry ul{
+	list-style-type:none;
+	list-style-position:outside;
+	padding:0 0 15px 0;
+	}
+	
+.entry ul li{
+	padding:0 0 0 25px;
+	}
+	
+.entry ol{
+	list-style-type:decimal;
+	list-style-position:outside;
+	padding:0 0 15px 25px;	}	
+	
+.preview_pic a img{
+	width:562px;
+	}

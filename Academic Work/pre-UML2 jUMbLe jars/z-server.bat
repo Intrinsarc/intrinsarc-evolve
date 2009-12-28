@@ -1,0 +1,1 @@
+run.bat ..\jUMbLe "-DServerHostName=localhost" com.hopstepjump.jumble.gui.LocalApplication

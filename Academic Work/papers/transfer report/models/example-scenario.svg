@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="496.96613"
+   height="391.60089"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   sodipodi:docbase="/home/amcveigh/work/workspace/Academic Work/papers/transfer report/models"
+   sodipodi:docname="example-scenario.ps"
+   inkscape:output_extension="org.inkscape.output.ps"
+   inkscape:export-filename="/home/amcveigh/work/workspace/Academic Work/papers/transfer report/models/example-scenario.png"
+   inkscape:export-xdpi="360.72144"
+   inkscape:export-ydpi="360.72144"
+   version="1.0"
+   inkscape:dataloss="true">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutL"
+       style="overflow:visible">
+      <path
+         id="path4213"
+         d="M 5.77,0 L -2.88,5 L -2.88,-5 L 5.77,0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="scale(0.8,0.8)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="335.40916"
+     inkscape:cy="157.61456"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1280"
+     inkscape:window-height="1000"
+     inkscape:window-x="1280"
+     inkscape:window-y="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-120.86396,-68.375732)">
+    <rect
+       style="fill:#feff82;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2162"
+       width="202"
+       height="138"
+       x="230"
+       y="306.36218"
+       rx="6"
+       ry="6" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#7f7f7f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="260"
+       y="436.36218"
+       id="text2164"><tspan
+         sodipodi:role="line"
+         id="tspan2166"
+         x="260"
+         y="436.36218">Desk 1.0 Application</tspan></text>
+    <rect
+       style="fill:#87fc84;fill-opacity:1;stroke:#000000;stroke-width:0.61952966;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3139"
+       width="118.38047"
+       height="90.38047"
+       x="121.17372"
+       y="123.75774"
+       rx="3.5162516"
+       ry="3.9295857" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#TriangleOutL);stroke-opacity:1"
+       d="M 203,226.36218 C 260,295.36218 260,295.36218 260,295.36218"
+       id="path3149" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#7f7f7f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="124.78652"
+       y="207.14461"
+       id="text4318"><tspan
+         sodipodi:role="line"
+         id="tspan4320"
+         x="124.78652"
+         y="207.14461">CD player support</tspan></text>
+    <rect
+       style="fill:#87fc84;fill-opacity:1;stroke:#000000;stroke-width:0.61952966;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4322"
+       width="118.38047"
+       height="90.38047"
+       x="261.12912"
+       y="123.28845"
+       rx="3.5162516"
+       ry="3.9295857" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#7f7f7f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="266.99237"
+       y="207.8517"
+       id="text4324"><tspan
+         sodipodi:role="line"
+         id="tspan4326"
+         x="266.99237"
+         y="207.8517">Turntable support</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-mid:none;marker-end:url(#TriangleOutL);stroke-opacity:1"
+       d="M 324.44069,220.92593 C 324.44069,295.87925 324.44069,295.87925 324.44069,295.87925"
+       id="path4330" />
+    <rect
+       style="fill:#feff82;fill-opacity:1;stroke:#000000;stroke-width:1.00131595;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4332"
+       width="211.19107"
+       height="132.34184"
+       x="406.13837"
+       y="85.337242"
+       rx="6.2730021"
+       ry="5.7539921" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#7f7f7f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="414.84244"
+       y="209.07858"
+       id="text4334"><tspan
+         sodipodi:role="line"
+         id="tspan4336"
+         x="414.84244"
+         y="209.07858">Desk 1.1 Application (with mic)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#TriangleOutL);stroke-opacity:1"
+       d="M 452.69048,225.04725 C 408.84986,297.17214 408.84986,297.17214 408.84986,297.17214"
+       id="path4338" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="178.89803"
+       y="267.47366"
+       id="text4358"><tspan
+         sodipodi:role="line"
+         id="tspan4360"
+         x="178.89803"
+         y="267.47366">extends</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="328.7601"
+       y="267.70462"
+       id="text4362"><tspan
+         sodipodi:role="line"
+         id="tspan4364"
+         x="328.7601"
+         y="267.70462">extends</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="432.70483"
+       y="267.82596"
+       id="text4366"><tspan
+         sodipodi:role="line"
+         id="tspan4368"
+         x="432.70483"
+         y="267.82596">evolves</tspan></text>
+    <image
+       y="128.84265"
+       x="130.06096"
+       id="image5440"
+       height="62.942627"
+       width="102.62385"
+       sodipodi:absref="/home/amcveigh/Desktop/cd.jpg"
+       xlink:href="/home/amcveigh/Desktop/cd.jpg" />
+    <image
+       y="316.35336"
+       x="245.52396"
+       id="image5498"
+       height="96.694916"
+       width="176.45058"
+       sodipodi:absref="/home/amcveigh/Desktop/desk.jpg"
+       xlink:href="/home/amcveigh/Desktop/desk.jpg" />
+    <image
+       y="99.091713"
+       x="410.45804"
+       id="image5501"
+       height="96.694916"
+       width="176.45058"
+       sodipodi:absref="/home/amcveigh/Desktop/desk.jpg"
+       xlink:href="/home/amcveigh/Desktop/desk.jpg" />
+    <image
+       y="104.45181"
+       x="569.67682"
+       id="image5558"
+       height="46.354706"
+       width="36.789452"
+       sodipodi:absref="/home/amcveigh/Desktop/microphone.jpg"
+       xlink:href="/home/amcveigh/Desktop/microphone.jpg" />
+    <image
+       y="128.12695"
+       x="276.18079"
+       id="image5691"
+       height="63.025867"
+       width="84.034485"
+       sodipodi:absref="/home/amcveigh/Desktop/turntable.jpg"
+       xlink:href="/home/amcveigh/Desktop/turntable.jpg" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="142.91237"
+       y="116.96957"
+       id="text5694"><tspan
+         sodipodi:role="line"
+         id="tspan5696"
+         x="142.91237"
+         y="116.96957">Developer X</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="277.89297"
+       y="116.1528"
+       id="text5698"><tspan
+         sodipodi:role="line"
+         id="tspan5700"
+         x="277.89297"
+         y="116.1528">Developer Y</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="290.62088"
+       y="459.8067"
+       id="text5702"><tspan
+         sodipodi:role="line"
+         id="tspan5704"
+         x="290.62088"
+         y="459.8067">AudioSoft</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="476.79422"
+       y="77.49292"
+       id="text5706"><tspan
+         sodipodi:role="line"
+         id="tspan5708"
+         x="476.79422"
+         y="77.49292">AudioSoft</tspan></text>
+  </g>
+</svg>

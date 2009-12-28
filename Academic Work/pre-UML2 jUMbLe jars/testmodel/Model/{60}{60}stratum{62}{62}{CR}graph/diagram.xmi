@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+    <UML:Diagram xmi.id="a0" id="DCE-1140441365596-382" figureId="1535">
+      <UML:FigureContainer.properties>
+        <UML:Property xmi.id="a1" n="PackageUUID" v="DCE-1140441365596-382"></UML:Property>
+      </UML:FigureContainer.properties>
+      <UML:FigureContainer.figures>
+        <UML:Figure xmi.id="a2" id="1531" recreator="Package" subjectUUID="DCE-1141391751503-571" name="Graph" auto="false" pt="396 236" dim="87 75">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a5" n="owner">
+              <UML:Property.v>&lt;&lt;stratum&gt;&gt;
+graph</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a6" id="1531c" recreator="SimpleContainer" pt="396 251" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a3" id="1532" recreator="Package" subjectUUID="DCE-1141391758506-165" auto="false" pt="396 476" dim="87 75">
+          <UML:Figure.name>Graph
+Elements</UML:Figure.name>
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a7" n="owner">
+              <UML:Property.v>&lt;&lt;stratum&gt;&gt;
+graph</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a8" id="1532c" recreator="SimpleContainer" pt="396 491" dim="87 60" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a4" id="1534" recreator="Dependency" anchor1Id="1531" anchor2Id="1532" vtl="440 393.5" pts="2 440 311 440 476"></UML:Figure>
+      </UML:FigureContainer.figures>
+    </UML:Diagram>
+  </XMI.content>
+</XMI>
+

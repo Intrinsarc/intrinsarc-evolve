@@ -1,0 +1,7 @@
+            <UML:Package xmi.id="a36" xmi.uuid="DCE-1145361201727-548" name="alarm" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a67" xmi.uuid="DCE-1146496361969-84" isActive="false" name="DisplayTimerManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a68" xmi.uuid="DCE-1146496167908-909" isActive="false" name="DisplayTimer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a69" xmi.uuid="DCE-1146496459562-358" name="IMode" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

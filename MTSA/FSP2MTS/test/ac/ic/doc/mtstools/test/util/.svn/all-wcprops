@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/mtsa/!svn/ver/100/trunk/FSP2MTS/test/ac/ic/doc/mtstools/test/util
+END
+TestLTSOuput.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/test/util/TestLTSOuput.java
+END
+LTSATestUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/100/trunk/FSP2MTS/test/ac/ic/doc/mtstools/test/util/LTSATestUtils.java
+END
+MTSTestUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/49/trunk/FSP2MTS/test/ac/ic/doc/mtstools/test/util/MTSTestUtils.java
+END
+MTSTestBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/test/util/MTSTestBase.java
+END

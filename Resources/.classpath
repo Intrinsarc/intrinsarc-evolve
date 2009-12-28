@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="non-uml-palette-icons"/>
+	<classpathentry kind="lib" path="toolbar-icons"/>
+	<classpathentry kind="lib" path="tree-icons"/>
+	<classpathentry kind="lib" path="uml-palette-icons"/>
+	<classpathentry kind="lib" path="window-icons"/>
+	<classpathentry kind="lib" path="help"/>
+	<classpathentry kind="lib" path="tree-delta-icons"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

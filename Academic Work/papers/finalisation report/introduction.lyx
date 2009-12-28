@@ -1,0 +1,365 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Section
+Creating Extensible Applications
+\end_layout
+
+\begin_layout Standard
+It has become increasingly common for applications to be designed so that
+ they can be extended by third parties.
+ The aim is to allow developers to add features to the base application,
+ without further involvement from the original creators of the application.
+ The application then forms an extensible platform on which a family of
+ applications can be built, servicing a wider audience than would otherwise
+ be possible.
+\end_layout
+
+\begin_layout Standard
+Eclipse 
+\begin_inset LatexCommand \cite{Object2001}
+
+\end_inset
+
+, Excel 
+\begin_inset LatexCommand \cite{Microsoft2006a}
+
+\end_inset
+
+ and Firefox 
+\begin_inset LatexCommand \cite{Fireextensions2007}
+
+\end_inset
+
+ are three prominent examples of this approach.
+ They all support extension by different mechanisms, but the basic concept
+ is the same: they allow third party developers to add functionality to
+ the base application.
+ These application have each spawned a significant set of extensions, and
+ in some cases have created a sizeable commercial marketplace for third-party
+ add-ons.
+ The concept has shown itself to be of significant value to the original
+ application creators, extension developers and end users.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, the approaches underlying extensible applications place unwelcome
+ limitations on the types of extensions possible.
+ Some approaches supply a monolithic base application and pre-planned extension
+ points that limit the functionality that can be added.
+ Other approaches construct an application as a fine-grained arrangement
+ of components, allowing arbitrary replacement of any part, but end up exposing
+ great complexity to extension developers.
+\end_layout
+
+\begin_layout Standard
+There is a further problem.
+ Extensible applications naturally lead to the desire to combine two or
+ more independently-developed extensions into a single product.
+ However, as extension developers are given greater flexibility to adapt
+ the base application, the potential for multiple extensions to conflict
+ when they are combined goes up proportionately.
+ This limits the value of the approach.
+\end_layout
+
+\begin_layout Standard
+Backbone is presented as an architectural approach which addresses or ameliorate
+s many of the issues outlined above.
+ It has its heritage is in the architectural component models of Darwin
+ 
+\begin_inset LatexCommand \cite{Magee1995}
+
+\end_inset
+
+ and UML2 
+\begin_inset LatexCommand \cite{OMGUML}
+
+\end_inset
+
+, allowing complex architectures to be described, managed and reasoned about.
+ It contains a small number of additional constructs which ease the tension
+ between architectural management, freedom of extension and the potential
+ for conflict between combined extensions 
+\begin_inset LatexCommand \cite{McVeigh2006,McVeigh2007}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Example Scenario
+\end_layout
+
+\begin_layout Standard
+The AudioSoft company produces a studio desk application for controlling
+ digital audio devices via a software mixer.
+ This software is used by radio studios to control a set of devices for
+ on-air transmission.
+ Unwilling to add a software controller for every device on the market,
+ AudioSoft develops an extensible base application so that other device
+ controllers can be added by third party developers.
+ The company is not prepared to release the source code for the product
+ due to several proprietary algorithms used in the mixer.
+ The application is complex, and contains many components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename models/example-scenario.ps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-desk-application}
+
+\end_inset
+
+The desk application along with various extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Developer X is a third party developer contracted by a radio station to
+ add support for a particular make of CD player to version 1.0 of the desk
+ application.
+ However, there is a problem.
+ The CD player supports cueing, where the audio is sent to an off-air audio
+ bus so that the start of a track can be found.
+ The desk does not support cueing.
+ As a consequence, X must adjust the base application to add cue support
+ before integrating in the CD player controller.
+\end_layout
+
+\begin_layout Standard
+Other developers are independently tasked with creating software controllers
+ for a variety of other devices such as turntables, and these are separately
+ incorporated into the 1.0 desk component as well.
+\end_layout
+
+\begin_layout Standard
+In the meantime, AudioSoft upgrades the desk application to version 1.1 and
+ add support for a microphone device.
+ Unlike the CD player, the microphone does not require cue facilities.
+ However, it does require support to monitor audio levels from the output,
+ requiring a mixer upgrade.
+\end_layout
+
+\begin_layout Standard
+Finally, a radio station using desk 1.0 wishes to upgrade to version 1.1 and
+ use the CD player and all other device controllers in a single desk.
+ The situation is shown in figure 
+\begin_inset LatexCommand \ref{fig:The-desk-application}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset LatexCommand \label{sec:Requirements}
+
+\end_inset
+
+Requirements for Approach
+\end_layout
+
+\begin_layout Standard
+Analysing the example scenario gives the following requirements for an approach
+ to creating extensible applications:
+\end_layout
+
+\begin_layout Enumerate
+MANAGE
+\newline
+It should be possible to define and manage a complex architecture
+ using the approach.
+ Extension developers should be shielded from the full complexity of the
+ underlying application, and only exposed to the relevant parts of the architect
+ure at the appropriate abstraction level.
+\end_layout
+
+\begin_layout Enumerate
+EXTEND
+\newline
+It should be possible to extend an application to accommodate new
+ features.
+ The changes to the base application may be unplanned, and therefore the
+ ability to make arbitrary changes is required.
+ In addition, the approach must work even if the implementation source code
+ for the application is not available.
+ Ideally the extension developer is afforded the same power to amend the
+ architecture as the developers of the base application.
+\end_layout
+
+\begin_layout Enumerate
+NO_IMPACT
+\newline
+The changes made by one extension should constrain the ongoing
+ development of the application, or the development of any other extensions.
+ An extension should not place the maintenance burden for any part of the
+ added features onto the developers of the base application.
+\end_layout
+
+\begin_layout Enumerate
+COMBINE
+\newline
+It should be possible to combine multiple, independently developed
+ extensions to a base application, so as to form a unified architecture.
+\end_layout
+
+\begin_layout Enumerate
+UPGRADE
+\newline
+It should be possible to combine extensions with an upgraded version
+ of the application.
+ 
+\end_layout
+
+\begin_layout Enumerate
+VERIFY_AND_REPAIR
+\newline
+It should be possible to verify that the system has the
+ correct structure and behaviour after combining extensions and upgrades.
+ Any conflicts should be detected and should be reparable, without violating
+ the other requirements.
+\end_layout
+
+\begin_layout Standard
+Some of these requirements appear to be in direct conflict.
+ For instance, EXTEND indicates that arbitrary changes must be possible
+ implying a fine grained-decomposition of features which can be removed
+ or substituted, whilst the application architecture must stay manageable
+ and expressed at the appropriate level of abstraction (MANAGE).
+ Backbone addresses this issue by providing a hierarchical component model
+ with full support for composition and encapsulation.
+\end_layout
+
+\begin_layout Standard
+Further, EXTEND implies that the application architecture can be modified,
+ but NO_IMPACT says that this must not be visible to or constrain the base
+ application developers.
+ Backbone ameliorates this tension by allowing alterations to components
+ to be expressed as deltas which are applied at runtime.
+ A set of well-formedness rules pick up any conflicts, which can further
+ be repaired by applying other deltas (VERIFY_AND_REPAIR).
+ The deltas are packaged as components, giving an intuitive approach to
+ the development of extensions.
+\end_layout
+
+\begin_layout Standard
+Future work will allow components to express a behavioural protocol which
+ will be translated into FSP 
+\begin_inset LatexCommand \cite{Magee1999}
+
+\end_inset
+
+.
+ Protocols will be composed reflecting the structural composition of components
+ and safety and liveness properties will be checked to ensure that the behaviour
+ of the system is correct.
+\end_layout
+
+\begin_layout Section
+Thesis Structure
+\end_layout
+
+\begin_layout Standard
+This thesis presents the Backbone component model and discusses why it is
+ suitable for developing and extending extensible applications.
+ The core constructs of resemblance and redefinition are shown to address
+ (or ameliorate) the extensibility requirements in the previous section.
+\end_layout
+
+\begin_layout Standard
+The remainder of this thesis is structured as follows.
+ Chapter 2 examines existing work in the area of extensible applications
+ and architectures and examines how they match up against the requirements
+ outlined.
+\end_layout
+
+\begin_layout Standard
+Chapter 3 presents an expanded form of the example scenario and shows how
+ it can be modeled using Backbone, focusing on the structural aspects and
+ conflict resolution.
+ How Backbone addresses the requirements is considered in the context of
+ the example.
+\end_layout
+
+\begin_layout Standard
+Appendix A presents an informal overview of all the Backbone structural
+ constructs.
+ Appendix B elaborates on this by presenting the highlights of the Backbone
+ formal structure specification in Alloy.
+ The approach for the translation of human-readable names to UUIDs is also
+ described, allowing independently developed extensions to avoid introducing
+ identical identities for separate components.
+ This is an important part of the approach.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{../../read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

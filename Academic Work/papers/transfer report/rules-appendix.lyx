@@ -1,0 +1,3252 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\usepackage{listings}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--}
+}
+
+\lstset{language=Alloy}
+\end_preamble
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+appendix
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\begin_inset LatexCommand \label{cha:Backbone-Structural-Reference}
+
+\end_inset
+
+Backbone Structural Reference
+\end_layout
+
+\begin_layout Standard
+Backbone is an ADL for modeling component architectures.
+ The focus is on reducing the limitations on the extension and reuse of
+ existing applications and components.
+ It is also designed to allow static analysis of the structure and behaviour
+ of combinations of extensions.
+\end_layout
+
+\begin_layout Standard
+This chapter describes the structural side of Backbone.
+ The structural model is informally outlined in this chapter, and both the
+ textual and graphical forms are presented.
+ In appendix 
+\begin_inset LatexCommand \ref{cha:The-Formal-Backbone}
+
+\end_inset
+
+, an Alloy specification is used to formally describe the rules that govern
+ the correct structure of components, as well as to show how the redefinition
+ and resemblance constructs operate.
+\end_layout
+
+\begin_layout Section
+Components and Interfaces
+\end_layout
+
+\begin_layout Standard
+In keeping with Darwin 
+\begin_inset LatexCommand \cite{Magee1995}
+
+\end_inset
+
+ and UML2 
+\begin_inset LatexCommand \cite{OMGUML}
+
+\end_inset
+
+, we define a component as an instantiable, class-like construct which describes
+ the services it requires and provides via interfaces.
+ An interface represents a collection of methods defining a service.
+ Interfaces can only be provided or required via ports, and each port has
+ a name and a multiplicity.
+ If not multiplicity is specified, it is assumed to be 
+\emph on
+[1]
+\emph default
+.
+ Ports serve to name the role of interfaces as services offered or required
+ by a component.
+\end_layout
+
+\begin_layout Standard
+A component may have attributes, which can only be of primitive type.
+ These present a view, or projection, onto the internal state of the component.
+\end_layout
+
+\begin_layout Standard
+Components are either leaf or composite, where a leaf component cannot be
+ further decomposed and is associated directly with an implementation in
+ (currently) Java.
+ 
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset LatexCommand \ref{fig:Definition-leaf}
+
+\end_inset
+
+ shows a leaf component with two attributes and two ports.
+ A provided interface is shown as a circle, and a required interface is
+ shown as a semi-circle.
+ Note that each leaf is directly associated with a Java implementation class.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/leaf.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Definition-leaf}
+
+\end_inset
+
+Definition of a leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Port3 is shown as having a multiplicity of [0..2].
+ This means that the port can have between 0 and 2 connections.
+ The number of connections is allowed to change during runtime, as long
+ as the mandatory set (described by the lower bound) are always connected.
+ The upper bound restricts the total number of connectors.
+ The number of mandatory indices is 
+\emph on
+(lower)
+\emph default
+, and the number of optional indices is 
+\emph on
+(upper - lower + 1)
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+A composite component (figure 
+\begin_inset LatexCommand \ref{fig:Definition-composite}
+
+\end_inset
+
+) contains a number of component instances, each of which is shown as a
+ box within the component.
+ These instances are called 
+\emph on
+parts
+\emph default
+.
+ Each part has a name (part1), and a type (LeafComponent) which is the component
+ that the part is an instance of.
+ Further, a part can define slots, which hold values for the attributes
+ of the type.
+ The parts of a composite represent its initial configuration and state.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/composite.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Definition-composite}
+
+\end_inset
+
+Definition of a composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In part1, the attr1 slot is set to 10.
+ Attr2 is aliased to cAttr2 of the enclosing component, as shown by the
+ brackets and the empty box next to the slot.
+ This aliasing offers a way to propagate the state of constituent parts
+ into a higher level component.
+ Attr3 is not aliased to another attribute and holds its own state, but
+ will initially be set to the value of cAttr3.
+\end_layout
+
+\begin_layout Standard
+The ports of a part are referred to as port instances.
+ These are shown as small boxes on the outline of a part.
+ Often port instances are simply referred to as ports when the context makes
+ the meaning obvious.
+\end_layout
+
+\begin_layout Standard
+Components and interfaces are referred to collectively as elements.
+ A composite component is not associated with an implementation class --
+ it only has a Backbone definition.
+\end_layout
+
+\begin_layout Section
+\begin_inset LatexCommand \label{sub:Connectors}
+
+\end_inset
+
+Connectors
+\end_layout
+
+\begin_layout Standard
+Ports and port instances are 
+\begin_inset Quotes eld
+\end_inset
+
+joined
+\begin_inset Quotes erd
+\end_inset
+
+ together using connectors.
+ In Backbone (as in UML2 
+\begin_inset LatexCommand \cite{Goulo2003}
+
+\end_inset
+
+, and Darwin 
+\begin_inset LatexCommand \cite{Magee1995}
+
+\end_inset
+
+), connectors represent little more than an aliasing of two different ports.
+ A port that only provides interfaces can have an arbitrary number of connection
+s (including none), for any given index.
+ If a port has some required interfaces, it may only have one (or perhaps
+ none, if the port multiplicity indicates it is optional) connector for
+ a given index.
+\end_layout
+
+\begin_layout Standard
+A single delegation connector can be used to alias 2 ports together, for
+ all indices, rather than having to have multiple ordinary, indexed connectors.
+ Figure 
+\begin_inset LatexCommand \ref{fig:A-composite-resem}
+
+\end_inset
+
+ shows a delegate connector between cport3 and cport3@part1.
+\end_layout
+
+\begin_layout Standard
+If an ordinary connector goes to a port which has a multiplicity of other
+ than 
+\emph on
+[1]
+\emph default
+ or 
+\emph on
+[0..1]
+\emph default
+, then it must indicate an index.
+ It can use
+\emph on
+ [+]
+\emph default
+ as the index, which takes up any available index left and increments a
+ counter.
+\end_layout
+
+\begin_layout Section
+Stratum
+\end_layout
+
+\begin_layout Standard
+A stratum is a module-like construct, which contains a set of elements.
+ Each element is owned by exactly one stratum.
+ Each stratum may have dependencies on other strata, and these represent
+ visibility constraints that elements must adhere to.
+ Stratum are non-hierarchical, for reasons of simplicity rather than any
+ technical limitation.
+ Amongst other things, a stratum can represent an application layer, an
+ extension, an evolution of a system, a subsystem or library definition
+ or simply a namespace.
+\end_layout
+
+\begin_layout Standard
+Stratum can be marked as relaxed.
+ Relaxed stratum transitively promote their dependencies.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/stratum.eps
+	scale 50
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Strata-dependencies}
+
+\end_inset
+
+Strata dependencies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In figure 
+\begin_inset LatexCommand \ref{fig:Strata-dependencies}
+
+\end_inset
+
+, only stratum B is relaxed.
+ Elements in A can refer to elements in A, B, C and D.
+ B's elements can refer to elements in B and C.
+ C and D can refer to no other stratum's elements apart from their own.
+\end_layout
+
+\begin_layout Standard
+When running a Backbone application, we specify a set (or subset) of strata.
+ For instance, it is valid to specify strata B and D.
+ The application always includes transitive dependencies, making the full
+ set included as B, C and D.
+ Alternatively, specifying A alone would include A, B, C and D.
+\end_layout
+
+\begin_layout Standard
+Strata dependencies define a partial order, and must always be acyclic.
+ Dependencies are allowed to be redundant.
+ For instance, it is legal for A to further express a dependency to C, even
+ though it can already see C's elements.
+\end_layout
+
+\begin_layout Section
+Resemblance and Redefinition
+\end_layout
+
+\begin_layout Standard
+Composite components and interfaces, can be redefined and resembled.
+\end_layout
+
+\begin_layout Standard
+Resemblance is an inheritance like construct.
+ For composite components, it allows one composite to be defined in terms
+ of differences to other composites.
+ Parts, ports, attributes and connectors can be added, deleted and replaced.
+ For instance, in figure 
+\begin_inset LatexCommand \ref{fig:A-composite-resem}
+
+\end_inset
+
+, NewComposite has introduced another port.
+\end_layout
+
+\begin_layout Standard
+Note that multiple resemblance is permitted.
+ The resemblance graph cannot be cyclic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/resemblance.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:A-composite-resem}
+
+\end_inset
+
+A composite can resemble another composite
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Redefinition is a separate concept that allows an existing element in one
+ stratum to be replaced by a definition in another stratum.
+ It literally takes over the logical identity of the element being redefined,
+ and replaces it with another definition.
+ Redefinition can be combined with resemblance to apply incremental changes
+ to an existing definition, which is used to model component and interface
+ evolution.
+ Consider figure 
+\begin_inset LatexCommand \ref{fig:A-composite-redef}
+
+\end_inset
+
+, which shows a redefinition of CompositeComponent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/redefinition.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:A-composite-redef}
+
+\end_inset
+
+A composite can be redefined in another stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If only stratum B is included when running the application, then CompositeCompon
+ent will be as defined in figure 
+\begin_inset LatexCommand \ref{fig:Definition-composite}
+
+\end_inset
+
+.
+ If however, stratum A and B are included, then the definition will be as
+ shown at the top of figure 
+\begin_inset LatexCommand \ref{fig:A-composite-redef}
+
+\end_inset
+
+.
+ This shows an important point about redefinition -- it provides the facility
+ to change an element in an existing system by the inclusion of another
+ stratum.
+ A practical application of this is when a developer changes the definition
+ of an element in a system supplied by another developer or vendor.
+\end_layout
+
+\begin_layout Standard
+A redefinition cannot be referred to directly, and is not named.
+ All references must be to the redefined element.
+\end_layout
+
+\begin_layout Standard
+Note that a leaf component cannot be redefined or resembled.
+ Generally, a leaf component should be composed (wrapped) by a composite
+ component which represents it, and only the composite should be further
+ used in composition (section 
+\begin_inset LatexCommand \ref{sub:Wrap}
+
+\end_inset
+
+).
+ This sidesteps the issues related to a composite redefining or resembling
+ a leaf and vice versa.
+\end_layout
+
+\begin_layout Standard
+Interfaces can also be resembled and redefined by other interfaces.
+ In this case, operations can added, deleted and replaced.
+ Inheritance, where operations can only be added, is not necessary as it
+ is as a subset of resemblance.
+ If an interface resembles another, and does not delete or replace any operation
+s, then the subtype relationship is preserved.
+ In figure 
+\begin_inset LatexCommand \ref{fig:InterfaceB-resembles-InterfaceA}
+
+\end_inset
+
+, InterfaceB resembles InterfaceA and is also a subtype of it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/interface-resem.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:InterfaceB-resembles-InterfaceA}
+
+\end_inset
+
+InterfaceB adds operation2, and is a subtype of InterfaceA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Port Type Inference
+\end_layout
+
+\begin_layout Standard
+In the definition of CompositeComponent (figure 
+\begin_inset LatexCommand \ref{fig:Definition-composite}
+
+\end_inset
+
+), cport1 did not specify its interfaces, as these can be inferred from
+ the connections.
+ It is always necessary, however, to indicate the interfaces for ports of
+ leaf components.
+\end_layout
+
+\begin_layout Standard
+A port link, such as that defined between port1 and port2 (figure 
+\begin_inset LatexCommand \ref{fig:Definition-leaf}
+
+\end_inset
+
+), indicates that if a required interface is actually supplied a subtype,
+ then this propagates through to any linked port's provided interfaces.
+ This also works the other way around.
+\end_layout
+
+\begin_layout Standard
+As an example, consider if we have an additional leaf as in figure 
+\begin_inset LatexCommand \ref{fig:Another-leaf-component}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/anotherleaf.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Another-leaf-component}
+
+\end_inset
+
+Another leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now redefine CompositeComponent to remove cport2 and add in part2 of
+ type AnotherLeaf (figure 
+\begin_inset LatexCommand \ref{fig:Port-inference-to}
+
+\end_inset
+
+).
+ Cport1 is now inferred to provide InterfaceB, which has propagated through
+ LeafComponent via the port link.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/inference.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Port-inference-to}
+
+\end_inset
+
+Port inference to a subtype after redefinition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Port type inference minimises the redefinitions required when redefining
+ and resembling components.
+ Port types will be updated automatically to reflect any altered parts or
+ connections.
+\end_layout
+
+\begin_layout Standard
+In order to support top-down definition, it is possible to explicitly indicate
+ a composite's port interfaces (as with cport2 in figure 
+\begin_inset LatexCommand \ref{fig:Definition-composite}
+
+\end_inset
+
+).
+ This will then be cross-checked against the inferred interfaces, but only
+ in the home stratum for that component.
+ If, for example, a redefinition in stratum X meant that cport2 was now
+ inferred to require InterfaceB, then this would be acceptable as the check
+ against InterfaceA only occurs in stratum B, which does not see the redefinitio
+n.
+\end_layout
+
+\begin_layout Section
+Factories and Placeholders
+\end_layout
+
+\begin_layout Standard
+A factory is a composite component whose parts are lazily instantiated on
+ demand, and can be instantiated more than once if required.
+ As a composite, it can be redefined and resembled.
+ A factory must have a port, which provides a 
+\begin_inset Quotes eld
+\end_inset
+
+create
+\begin_inset Quotes erd
+\end_inset
+
+ interface which is not connected.
+ The Backbone interpreter generates the appropriate instantiation code for
+ this port.
+ Figure 
+\begin_inset LatexCommand \ref{fig:A-factory-is}
+
+\end_inset
+
+ shows a factory which instantiates a leaf when the create method on the
+ interface is programmatically invoked from another component.
+ Note that any 
+\begin_inset Quotes eld
+\end_inset
+
+non-create
+\begin_inset Quotes erd
+\end_inset
+
+ ports of the factory must be optional to deal with lazy instantiation.
+ Repeated instantiation will either overwite existing connections, or taken
+ the next index if [+] is used for the connector end (section
+\begin_inset LatexCommand \ref{sub:Connectors}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Factories are 
+\emph on
+isomorphic
+\emph default
+, because the structure of the lazily created parts is the same as their
+ internal structure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/factory.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:A-factory-is}
+
+\end_inset
+
+A factory is used to instantiate parts lazily.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A placeholder is a component which can be used to defer the definition of
+ a component, supporting top-down development.
+ It can also be used to indicate the 
+\begin_inset Quotes eld
+\end_inset
+
+shape
+\begin_inset Quotes erd
+\end_inset
+
+ of the component which must replace it, and to allow semi-finished components
+ to be packaged.
+ A placeholder is a composite which has no parts, but which may have attributes.
+ It can be redefined and resembled by other composites.
+ A component containing a placeholder may not be instantiated via the Backbone
+ interpreter.
+\end_layout
+
+\begin_layout Standard
+Through redefinition, a placeholder can also be made into a normal composite.
+ Figure 
+\begin_inset LatexCommand \ref{fig:A-placeholder-component}
+
+\end_inset
+
+ shows a placeholder.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/placeholder.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:A-placeholder-component}
+
+\end_inset
+
+A placeholder component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\begin_inset LatexCommand \label{cha:The-Formal-Backbone}
+
+\end_inset
+
+The Formal Backbone Structural Specification
+\end_layout
+
+\begin_layout Section
+Approach
+\end_layout
+
+\begin_layout Standard
+The formal specification is described using Alloy, a modeling language based
+ on first order logic 
+\begin_inset LatexCommand \cite{Jackson2002,Jackson2005}
+
+\end_inset
+
+.
+ Alloy is supplied with a model finder which can check assertions and find
+ counterexamples within a finite model space.
+\end_layout
+
+\begin_layout Standard
+The formal specification has two primary goals.
+\end_layout
+
+\begin_layout Standard
+Firstly, it states the full set of structural rules governing well-formedness.
+ These rules show how errors can occur when multiple independently developed,
+ but overlapping, redefinitions are combined.
+ Further, it shows how redefinitions can resolve these errors.
+ An important point of the specification is that it explicitly models errors
+ due to conflicts between independently developed strata, as well as the
+ resolution of those errors.
+\end_layout
+
+\begin_layout Standard
+Secondly, the specification must be usable for developing a case tool.
+ We desire to graphically show the full, expanded component definition at
+ all times, including any artifacts which have been acquired through resemblance
+ or redefinition.
+ This allows definition and redefinition to appear the same graphically.
+ This is despite the fact that the CASE tool must record deltas.
+ A secondary concern is to show any errors as they occur without requiring
+ an explicit checking phase if possible.
+\end_layout
+
+\begin_layout Standard
+In order to meet these goals, this specification does not flatten the compositio
+n and resemblance hierarchy into connections between leaf component instances.
+ Instead, it defines the well-formedness of a component in terms of any
+ deltas it contains, in conjunction with the well-formedness of any components
+ it is directly composed of, or resembles.
+ The benefit is that this allows an incremental and modular approach to
+ checking which is computationally inexpensive.
+ This is feasible to present in the CASE tool as interactions happen, without
+ requiring an explicit checking phase.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{UUIDs}
+
+\end_inset
+
+Names, Renaming and UUIDs
+\end_layout
+
+\begin_layout Standard
+Although the Backbone code presented in appendix 
+\begin_inset LatexCommand \ref{cha:Backbone-Structural-Reference}
+
+\end_inset
+
+ contains human-readable names such as 
+\begin_inset Quotes eld
+\end_inset
+
+port1
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+attr1
+\begin_inset Quotes erd
+\end_inset
+
+, this approach does not work well in practice.
+ Independently developed stratum can easily contain elements which use the
+ same textual names, leading to conflicts.
+ This has been an issue for multiple inheritance in textual programming
+ languages for some time 
+\begin_inset LatexCommand \cite{Taivalsaari1996}
+
+\end_inset
+
+ and also causes problems for mixins 
+\begin_inset LatexCommand \cite{mezini97dynamic}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In order to resolve this dilemma, we use universally unique identifiers
+ (UUIDs) to identify elements.
+ An element retains the same UUID always as its logical identity.
+ Each time a new UUID is introduced, it is 
+\emph on
+guaranteed
+\emph default
+ to be universally unique and a developer can be assured that their UUIDs
+ will not conflict with anyone else's.
+ This approach works well within a graphical CASE tool, where conventionally
+ each element is assigned a unique identifier as well as a human-readable
+ name.
+\end_layout
+
+\begin_layout Standard
+In order to deal with the fact that UUIDs are not particularly easy for
+ a designer to understand, we do not present these to the user and instead
+ allow each UUID to be mapped onto a human-readable name.
+ This mapping is referred to as the 
+\emph on
+name dictionary
+\emph default
+.
+ In the CASE tool, each stratum contains part of the dictionary, and holds
+ the mapping for the UUIDs introduced in that stratum.
+\end_layout
+
+\begin_layout Standard
+Renaming is supported by allowing a new name to be associated with an existing
+ UUID visible to a given stratum.
+ In the case of a name clash, where multiple strata rename the same UUID
+ to different names, both names will be shown, allowing a further stratum
+ to rename to a single name.
+ 
+\emph on
+It is important to note that any conflicts are presentational in nature
+ only, and do not cause an error in the underlying Backbone model.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset LatexCommand \ref{fig:Renaming-as-a}
+
+\end_inset
+
+ shows an example where a component is redefined in 2 independent stratum,
+ and then further merged in the top stratum.
+ Although the both attributes have the name 
+\begin_inset Quotes eld
+\end_inset
+
+number
+\begin_inset Quotes erd
+\end_inset
+
+, in practice these are separately identified by different UUIDs, and through
+ the name dictionary the attributes can be renamed in stratum Top.
+ In the graphical presentation, the user of the case tool will only see
+ the names not UUIDs.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/rename.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Renaming-as-a}
+
+\end_inset
+
+Renaming as a presentational issue
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the formal specification only deals with UUIDs (modeled as PortID
+ etc).
+ The treatment of names is considered to be purely a presentation issue.
+\end_layout
+
+\begin_layout Subsection
+Stratum Perspective
+\end_layout
+
+\begin_layout Standard
+In a stratum, it is possible to redefine components in depended-upon stratum.
+ For instance, in figure 
+\begin_inset LatexCommand \ref{fig:Renaming-as-a}
+
+\end_inset
+
+, if we only include stratum Independent1 and Base in our application, then
+ the Car component will look as in figure 
+\begin_inset LatexCommand \ref{fig:Car-viewed1}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/perspective1.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Car-viewed1}
+
+\end_inset
+
+Car viewed from the perspective of stratum Independent1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, if we include Top and all other strata, the Car component will
+ look as in figure 
+\begin_inset LatexCommand \ref{fig:Car-viewed2}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/perspective2.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Car-viewed2}
+
+\end_inset
+
+Car viewed from the perspective of stratum Top
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is known as 
+\emph on
+stratum perspective
+\emph default
+.
+ When designing graphically in a diagram owned by a stratum, the designer
+ sees the component from that stratum's perspective, showing what the components
+ would be like if only that stratum (and others it transitively depends
+ on) were loaded.
+\end_layout
+
+\begin_layout Subsection
+Modeling Conflicts
+\end_layout
+
+\begin_layout Standard
+A naive approach to structural well-formedness would identify a set of rules,
+ that if not satisfied would indicate that a given model is not suitable.
+ This was the initial approach taken, but this cannot show both conflicts
+ and how further redefinitions resolve those conflicts which is a key aim
+ of the specification.
+\end_layout
+
+\begin_layout Standard
+To handle this dilemma, we have modeled errors as part of the specification,
+ dividing the logic between a setting up stage which constructs various
+ structures through predicates, and the checking stage which examines these
+ structures and marks any errors.
+\end_layout
+
+\begin_layout Section
+Concepts
+\end_layout
+
+\begin_layout Standard
+The following concepts (apart from constituent and r-element) are represented
+ by signatures in the Alloy specification.
+\end_layout
+
+\begin_layout Description
+Model A model is collection of strata representing an application.
+\end_layout
+
+\begin_layout Description
+Stratum A stratum is a non-hierarchical package construct, that contains
+ elements.
+ It must explicitly indicate which other strata it depends on.
+\end_layout
+
+\begin_layout Description
+Element An element is the base signature for components and interfaces.
+\end_layout
+
+\begin_layout Description
+R-element An r-element is an element which is allowed to participate in
+ resemblance and redefinition relationships.
+ Composite component and interface are r-elements, but leaf component is
+ not.
+ All element rules also apply to r-elements, but not vice versa.
+ This is not an explicit signature in the specification.
+\end_layout
+
+\begin_layout Description
+Constituent A constituent refers to a port, part, attribute or connector
+ of a component, or an operation of an interface.
+ It is not an explicit signature in the specification.
+\end_layout
+
+\begin_layout Description
+Interface An interface represents a service and contains a collection of
+ methods describing that service.
+\end_layout
+
+\begin_layout Description
+Component A component is a unit of software composition.
+ A leaf component is atomic (not further decomposable into parts) and is
+ directly associated with an implementation.
+ A composite component contains parts, which are instances of other components.
+ Components expose interfaces via ports, and expose a projection onto their
+ internal state via attributes.
+ Parts are connected internally to ports or to other parts (via port instances)
+ using connectors.
+\end_layout
+
+\begin_layout Description
+Part A part is an instance of a component.
+ Parts are only constituents of composite components.
+\end_layout
+
+\begin_layout Description
+Port A port is a constituent of a component, describing which interfaces
+ are offered or provided.
+ A port may also have a multiplicity, with a lower and upper bound.
+ A part has port instances reflecting the ports of the part's type.
+\end_layout
+
+\begin_layout Description
+Connector A connector is a constituent of a composite component, used to
+ wire up the internals by connecting the component to parts or parts to
+ parts (always via ports or port instances).
+\end_layout
+
+\begin_layout Description
+ConnectorEnd A connector has two connector ends, each of which represents
+ where the connector attaches to a port or port instance.
+ A connector end is the base signature for component and port connector
+ ends.
+\end_layout
+
+\begin_layout Description
+ComponentConnectorEnd A component connector end is a connector end which
+ is attached to the port of a component.
+\end_layout
+
+\begin_layout Description
+PartConnectorEnd A part connector end is a connector end which is attached
+ to the port instance of a part.
+\end_layout
+
+\begin_layout Description
+Attribute An attribute is a constituent of a component which exposes a projectio
+n onto the component's internal state.
+ An attribute is associated with a single attribute type.
+\end_layout
+
+\begin_layout Description
+AttributeType An attribute type is the type of an attribute.
+\end_layout
+
+\begin_layout Description
+AttributeValue An attribute value represents a literal value of an attribute.
+ It has an attribute type.
+\end_layout
+
+\begin_layout Description
+Operation An operation is a constituent of an interface, defining a single
+ method.
+\end_layout
+
+\begin_layout Description
+InterfaceImplementation An interface implementation represents an interface
+ in an implementation language.
+ It is specified only for an interface.
+\end_layout
+
+\begin_layout Description
+ComponentImplementation A component implementation represents a class in
+ an implementation language that implements the functionality of a leaf
+ component.
+ It is a specified only for a leaf component.
+\end_layout
+
+\begin_layout Description
+Link A link indicates the typing relationships between two ports in a leaf
+ component, for inference purposes.
+ It is not represented by a signature in the specification, but by a tuple
+ in the component definition.
+ A link has two link ends.
+ Links are required to indicate the internal connections inside a leaf.
+\end_layout
+
+\begin_layout Description
+LinkEnd A link end is one end of a link.
+ It is the base signature of component link end and part link end.
+\end_layout
+
+\begin_layout Description
+ComponentLinkEnd A component link end is the end of a link connected to
+ the port of a component.
+\end_layout
+
+\begin_layout Description
+PartLinkEnd A part link end is the end of a link connected to the port instance
+ of a part.
+\end_layout
+
+\begin_layout Description
+Deltas This is a structure for holding constituents of an element, capable
+ of reflecting changes due to redefinition and stratum perspective.
+\end_layout
+
+\begin_layout Description
+PartID\InsetSpace ~
+/\InsetSpace ~
+PortID\InsetSpace ~
+/\InsetSpace ~
+ConnectorID\InsetSpace ~
+/\InsetSpace ~
+AttributeID\InsetSpace ~
+/\InsetSpace ~
+OperationID These signatures represent
+ the UUIDs of constituents.
+\end_layout
+
+\begin_layout Subsection
+Additional Terms
+\end_layout
+
+\begin_layout Description
+Independence A stratum is independent from another if it does not transitively
+ depend on it.
+\end_layout
+
+\begin_layout Description
+Top\InsetSpace ~
+stratum There is one top stratum per model, bringing together all otherwise
+ independent strata.
+ Nothing may depend on the top stratum.
+ This stratum will be implicitly created if the model does not include a
+ suitable candidate.
+\end_layout
+
+\begin_layout Description
+Home An element's home is the single stratum that owns it.
+\end_layout
+
+\begin_layout Description
+Stratum\InsetSpace ~
+persective A view of an element from a particular stratum is known
+ as stratum perspective.
+\end_layout
+
+\begin_layout Description
+Conflict A conflict occurs when an independent extensions are combined,
+ and changes made in one branch are not compatible with assumptions or changes
+ in another.
+ A key well-formedness rule is that the number of constituents present for
+ a given UUID in an element should be exactly one.
+\end_layout
+
+\begin_layout Description
+Redefinition This refers to an r-element which takes the logical identity
+ of another r-element.
+\end_layout
+
+\begin_layout Description
+Port\InsetSpace ~
+instance This refers to a particular port of a part.
+ i.e.
+ the instantiation of a port.
+\end_layout
+
+\begin_layout Description
+Interface\InsetSpace ~
+scope The scope of an interface is the set comprising that interface,
+ and all its sub and super-interfaces.
+\end_layout
+
+\begin_layout Description
+Interface\InsetSpace ~
+overlap Two interfaces are said to be overlapping if their scopes
+ intersect.
+\end_layout
+
+\begin_layout Description
+One-to-one\InsetSpace ~
+interface\InsetSpace ~
+mapping A one-to-one mapping between two sets of interfaces
+ exists only when it is possible to construct a unique and complete set
+ of tuples (first, second) where the first and second interfaces overlap.
+\end_layout
+
+\begin_layout Description
+Provides\InsetSpace ~
+enough\InsetSpace ~
+/\InsetSpace ~
+requires\InsetSpace ~
+less Interface B provides enough for interface A
+ if B is A or a sub-interface of A.
+ We also say that A requires less than B provides.
+\end_layout
+
+\begin_layout Description
+Incoming\InsetSpace ~
+port\InsetSpace ~
+instance An incoming port instance is a port instance which
+ is found by traveling along a connector.
+ Incoming refers to the direction we are traveling in.
+\end_layout
+
+\begin_layout Description
+Outgoing\InsetSpace ~
+port\InsetSpace ~
+instance An outgoing port instance is a port instance which
+ is found by traveling along a link (i.e.
+ traveling inside a part, away from another port instance, through to an
+ outgoing port instance).
+ Outgoing refers to the direction we are traveling in.
+\end_layout
+
+\begin_layout Description
+Terminal\InsetSpace ~
+port\InsetSpace ~
+instance A port instance which has no links.
+\end_layout
+
+\begin_layout Section
+\begin_inset LatexCommand \label{sec:Rules}
+
+\end_inset
+
+Rules
+\end_layout
+
+\begin_layout Standard
+Rules which are prefixed by WF_ are well-formedness rules.
+ These may be violated in the case of a conflict, and must be corrected
+ using a further redefinition.
+\end_layout
+
+\begin_layout Standard
+Stratum rules:
+\end_layout
+
+\begin_layout Enumerate
+STRATUM_ACYCLIC
+\newline
+No stratum dependency cycles are allowed.
+\end_layout
+
+\begin_layout Enumerate
+STRATUM_VISIBILITY
+\newline
+A stratum has visibility of the strata it is dependent
+ on, and any strata that these transitively depend on.
+ The exception is that if a strata is not relaxed, then a stratum depending
+ on it cannot see through to the strata that it depends on.
+\end_layout
+
+\begin_layout Enumerate
+STRATUM_TOP
+\newline
+All strata must be transitively reachable from the top stratum.
+ Nothing can depend on the top stratum, and there must be exactly one top.
+\end_layout
+
+\begin_layout Standard
+Element rules:
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_HOME
+\newline
+Each element is owned by one stratum (its home).
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_VISIBILITY
+\newline
+Elements in a stratum can refer only to elements in their
+ home, and the stratum that the home can see.
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_OK_AT_HOME
+\newline
+An element must be well-formed from its home stratum's
+ perspective.
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_CONSTITUENTS
+\newline
+A constituent (port, part etc.) must be associated with
+ at least one of the correct type of element (component or interface).
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_RESEMBLES
+\newline
+An r-element can resemble zero of more other r-elements
+ of the same kind.
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_REDEF
+\newline
+An r-element can redefine another r-element of the same kind,
+ but only if it is in a different stratum.
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_REDEF_PER_STRATUM
+\newline
+An r-element can only be redefined once per stratum,
+ and an r-element cannot be redefined in its home.
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_REDEF_NOT_REFERENCED
+\newline
+Nothing can resemble, redefine or otherwise
+ refer to a redefinition.
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_NO_RESEMBLANCE_REDUNDANCY
+\newline
+There can be no redundancy in the resemblance
+ relationship.
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_REDEF_RESEMBLE
+\newline
+From the perspective of each stratum, redefinition
+ is turned into resemblance and a possible rename.
+\end_layout
+
+\begin_layout Enumerate
+ELEMENT_INHERITS
+\newline
+An r-element contains the constituents it 
+\begin_inset Quotes eld
+\end_inset
+
+inherits
+\begin_inset Quotes erd
+\end_inset
+
+ from any elements it resembles, and then adds, deletes or replaces constituents
+ to get the full set.
+\end_layout
+
+\begin_layout Enumerate
+WF_ELEMENT_ACYCLIC
+\newline
+Redefinition and resemblance must be acyclic, even after
+ redefinitions have been applied.
+\end_layout
+
+\begin_layout Standard
+Interface rules:
+\end_layout
+
+\begin_layout Enumerate
+INTERFACE_CONSTITUENTS
+\newline
+The constituents of an interface are operations.
+\end_layout
+
+\begin_layout Enumerate
+INTERFACE_IMPLEMENTATION
+\newline
+An interface is associated with an implementation
+ interface.
+\end_layout
+
+\begin_layout Enumerate
+INTERFACE_SUBTYPE
+\newline
+An interface is a subtype of any interfaces it resembles,
+ unless it replaces or deletes the operations it has inherited from those
+ interfaces.
+\end_layout
+
+\begin_layout Enumerate
+WF_INTERFACE_SOME_OPERATIONS
+\newline
+A well-formed interface must have some operations.
+\end_layout
+
+\begin_layout Enumerate
+WF_INTERFACE_ONE_OPERATION_PER_UUID
+\newline
+A well-formed interface must have only
+ one operation per specified or referenced UUID.
+\end_layout
+
+\begin_layout Enumerate
+WF_INTERFACE_ONE_IMPLEMENTATION
+\newline
+A well-formed interface should only have
+ one implementation interface.
+\end_layout
+
+\begin_layout Standard
+Component rules:
+\end_layout
+
+\begin_layout Enumerate
+COMPONENT_TYPE
+\newline
+A component is leaf or composite.
+\end_layout
+
+\begin_layout Enumerate
+COMPONENT_NO_LEAF_REDEF_RESEMBLANCE
+\newline
+Leaf components cannot participate in
+ redefinition or resemblance.
+\end_layout
+
+\begin_layout Enumerate
+COMPONENT_LEAF_IMPLEMENTATION
+\newline
+A leaf component is associated directly with
+ an implementation.
+\end_layout
+
+\begin_layout Enumerate
+COMPONENT_LEAF_CONSTITUENTS
+\newline
+The constituents of a leaf component are ports,
+ attributes and links.
+\end_layout
+
+\begin_layout Enumerate
+COMPONENT_COMPOSITE_CONSTITUENTS
+\newline
+The constituents of a composite component
+ are ports, attributes, connectors and parts.
+\end_layout
+
+\begin_layout Enumerate
+WF_COMPONENT_CONTAINMENT
+\newline
+A well-formed component can never (transitively)
+ contain itself, after taking resemblance and redefinition into account.
+\end_layout
+
+\begin_layout Enumerate
+WF_COMPONENT_SOME_PORTS
+\newline
+A well-formed component must have some ports.
+\end_layout
+
+\begin_layout Enumerate
+WF_COMPONENT_ONE_CONSTITUENT_PER_UUID
+\newline
+A well-formed component must have only
+ one constituent per specified or referenced UUID.
+\end_layout
+
+\begin_layout Enumerate
+WF_COMPONENT_SOME_PARTS
+\newline
+A well-formed composite component must have some
+ parts, and some connectors.
+\end_layout
+
+\begin_layout Enumerate
+WF_COMPONENT_CONSTITUENTS_OK
+\newline
+A well-formed component must have well-formed
+ constituents.
+\end_layout
+
+\begin_layout Standard
+Part rules:
+\end_layout
+
+\begin_layout Enumerate
+PART_TYPE
+\newline
+A part is an instance of a component, which is called its type.
+\end_layout
+
+\begin_layout Enumerate
+PART_SLOTS
+\newline
+A part's slots can either be aliased, have a literal value, or
+ be set to the value of an enclosing attribute in the containing component.
+\end_layout
+
+\begin_layout Enumerate
+PART_SLOT_LITERALS_OK
+\newline
+Any attribute values must be of the correct type.
+\end_layout
+
+\begin_layout Enumerate
+PART_PORT_REMAP
+\newline
+In a redefinition, the port instances of the replacing part
+ can be mapped onto the port instances of the part that is being replaced.
+\end_layout
+
+\begin_layout Enumerate
+WF_PART_SLOTS_DEFAULT
+\newline
+Any slot that does not have a value or an alias, must
+ be of an attribute with a default value.
+\end_layout
+
+\begin_layout Enumerate
+WF_PARTS_SLOT_REFERENCE
+\newline
+If a slot is aliased or set to the value of an enclosing
+ attribute, that attribute must exist and be of the correct type.
+\end_layout
+
+\begin_layout Enumerate
+WF_PART_NO_ISLANDS
+\newline
+A well-formed part must be eventually linked to a port,
+ ensuring no 
+\begin_inset Quotes eld
+\end_inset
+
+islands
+\begin_inset Quotes erd
+\end_inset
+
+ occur where there are no connections back to the component's ports.
+\end_layout
+
+\begin_layout Standard
+Connector rules:
+\end_layout
+
+\begin_layout Enumerate
+WF_CONN_JOIN
+\newline
+A connector connects from a port or a port instance to another
+ port instance.
+ A port to port connector is not allowed in order to simplify the port type
+ inference specification.
+\end_layout
+
+\begin_layout Enumerate
+WF_CONN_MANDATORY
+\newline
+A connector from a mandatory port instance must connect
+ to a mandatory port instance or mandatory port.
+\end_layout
+
+\begin_layout Enumerate
+WF_CONN_OPTIONAL
+\newline
+A connector from an optional port instance must connect
+ to an optional port instance or optional port.
+\end_layout
+
+\begin_layout Enumerate
+WF_CONN_INDEX
+\newline
+The index of a connector end must match with a possible index
+ of the port or port instance.
+\end_layout
+
+\begin_layout Standard
+Port and port instance rules:
+\end_layout
+
+\begin_layout Enumerate
+PORT_MULTIPLICITY
+\newline
+A port has a multiplicity 
+\emph on
+[lowerbound, upperbound]
+\emph default
+.
+ Indices (0..lowerbound-1) are mandatorily connected and indices (lowerbound..upperb
+ound-1) are optionally connected.
+\end_layout
+
+\begin_layout Enumerate
+WF_PORT_CONNECTED_ALWAYS
+\newline
+A port must have a connection on each index regardless
+ of whether it is mandatory or optional.
+\end_layout
+
+\begin_layout Enumerate
+WF_PORT_PROVIDES_ONLY
+\newline
+If a port instance has only provides, it can have zero
+ or more connections for the same index even if it is mandatory.
+\end_layout
+
+\begin_layout Enumerate
+WF_PORT_COMPLEX
+\newline
+If a port instance doesn't have only provides, it must have
+ at exactly one connection on each mandatory index, and at most one connection
+ on each optional index.
+\end_layout
+
+\begin_layout Standard
+Port type inference rules:
+\end_layout
+
+\begin_layout Enumerate
+PI_LINKS
+\newline
+A leaf component may have explicit links between ports.
+\end_layout
+
+\begin_layout Enumerate
+PI_SPECIFIC
+\newline
+All interfaces for ports of a leaf component must be explicitly
+ specified.
+\end_layout
+
+\begin_layout Enumerate
+PI_LINKS_COMPLEMENTARY
+\newline
+Two ports that are explicitly linked in a leaf component
+ must have exactly complementary interfaces (provided mapped to required
+ and vice versa).
+\end_layout
+
+\begin_layout Enumerate
+PI_INFERRED_LINKS
+\newline
+A composite component does not specify links explicitly.
+ They have inferred links which are formed by following connectors and links
+ of the part types between ports and port instances.
+\end_layout
+
+\begin_layout Enumerate
+PI_PROVIDE_MORE
+\newline
+If a sub-interface is provided to a port instance's required
+ interface, then this propagates through to any provided interfaces on linked
+ port instances.
+\end_layout
+
+\begin_layout Enumerate
+PI_BROKEN_LINKS
+\newline
+Two ports may not have an inferred link if following the
+ connectors and links from one of those ports terminates on a port instance
+ with a provided interface.
+\end_layout
+
+\begin_layout Enumerate
+PI_INFERRED_INTERFACES
+\newline
+The interfaces of a composite's ports can always be
+ inferred from the connectors, and do not need to be specified.
+\end_layout
+
+\begin_layout Enumerate
+PI_CHECKED
+\newline
+If the interfaces of the port of a composite component are specified,
+ they will be checked against the inferred interfaces, but only for the
+ home stratum perspective.
+\end_layout
+
+\begin_layout Enumerate
+PI_INFER_REQUIRED
+\newline
+The required interfaces for each composite's port are inferred
+ by traversing connectors and links from the port to incoming port instances
+ only.
+ The required interfaces is the set of lowest common sub-interfaces that
+ satisfy these and have a one-to-one mapping.
+\end_layout
+
+\begin_layout Enumerate
+PI_INFER_PROVIDED
+\newline
+The provided interfaces for each composite's port are inferred
+ by traversing connectors and links from the port to terminal port instances
+ and other ports.
+ The port's provided interfaces is the set of highest common super-interfaces
+ that satisfy the provided interfaces of the port instances and the required
+ interfaces of the ports, and have a one-to-one mapping.
+\end_layout
+
+\begin_layout Enumerate
+WF_PI_SOME_INTERFACES
+\newline
+Every port must have some provided and/or required
+ interfaces.
+\end_layout
+
+\begin_layout Enumerate
+WF_PI_NO_OVERLAP
+\newline
+No two interfaces in a port's required interfaces may overlap.
+ The same situation holds between provided interfaces.
+\end_layout
+
+\begin_layout Enumerate
+WF_PI_PROVIDES_ENOUGH
+\newline
+The provided interfaces for each port instance must
+ provide enough for any port provided interfaces or any terminal port instance
+ required interfaces that are reachable by following connectors and links
+ outward from the port instance.
+\end_layout
+
+\begin_layout Enumerate
+WF_PI_ONE_TO_ONE
+\newline
+There must be a one-to-one mapping for the provided (required)
+ interfaces of a port instance and any port provided (required) interfaces
+ or port instance required (provided) interfaces that are reachable by following
+ connectors and links outwards from the port instance.
+\end_layout
+
+\begin_layout Section
+Interesting Properties of the Specification
+\end_layout
+
+\begin_layout Enumerate
+PROP_PARTIAL_ORDER
+\newline
+Stratum dependencies form a partial order.
+\end_layout
+
+\begin_layout Enumerate
+PROP_NO_CONFLICT
+\newline
+Two elements which are newly defined cannot cause a conflict,
+ regardless of which stratum they are defined in.
+\end_layout
+
+\begin_layout Enumerate
+PROP_LEAF_IMMUTABLE
+\newline
+A leaf component does not change with stratum perspective,
+ as it cannot be redefined.
+\end_layout
+
+\begin_layout Enumerate
+PROP_COMPOSITE_CHANGING
+\newline
+A composite component or interface can change with
+ stratum perspective, because of redefinition.
+\end_layout
+
+\begin_layout Enumerate
+PROP_REDEF_PARTIAL_ORDER
+\newline
+The order in which redefinition rewrites the resemblance
+ graph takes into account the partial stratum order.
+\end_layout
+
+\begin_layout Enumerate
+PROP_REDEF_CONFLICT
+\newline
+A redefinition conflict occurs when multiple redefinitions
+ from independent stratum must be merged, causing the rewritten resemblance
+ graph to feature multiple resemblance.
+\end_layout
+
+\begin_layout Enumerate
+PROP_REDEF_RESOLUTION
+\newline
+Any redefinition conflict can be resolved through further
+ redefinition.
+\end_layout
+
+\begin_layout Enumerate
+PROP_RESEMBLANCE_CONFLICT
+\newline
+A resemblance conflict occurs when using multiple
+ resemblance, which can be resolved by adding, deleting or replacing constituent
+s in the definition.
+\end_layout
+
+\begin_layout Enumerate
+PROP_RESEMBLANCE_NO_SUPERSET
+\newline
+It can be shown that the resemblance graph of
+ a stratum is not always a superset of the resemblance graph of each strata
+ it depends on.
+ This is because a stratum may redefine a component that something else
+ depends upon, in effect inserting an r-element into the middle of a resemblance
+ graph.
+\end_layout
+
+\begin_layout Enumerate
+PROP_REDEF_RESEMBLANCE
+\newline
+Redefinition and resemblance can be used alone or
+ in concert.
+ When used together, it is possible to have incremental redefinition, where
+ a component is defined in terms of deltas from its definition in another
+ stratum.
+\end_layout
+
+\begin_layout Enumerate
+PROP_DIAMOND
+\newline
+Diamond resemblance does not result in multiple base elements.
+\end_layout
+
+\begin_layout Enumerate
+PROP_INFERRED_LINKS_COMPLEMENTARY
+\newline
+Two ports that are joined by an inferred
+ link must have exactly complementary interfaces.
+\end_layout
+
+\begin_layout Section
+Definitions
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Definition-of-Terms}
+
+\end_inset
+
+Terms
+\end_layout
+
+\begin_layout Standard
+Where appropriate, the terms are explained using the formal specification.
+\end_layout
+
+\begin_layout Standard
+Stratum 
+\emph on
+a
+\emph default
+ is independent of stratum 
+\emph on
+b
+\emph default
+ if it is not transitively dependent on 
+\emph on
+b
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-independent.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Two strata are mutually independent when neither has a transitive dependency
+ on the other.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-mutually-independent.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stratum visibility is unimportant for the definition of independence, as
+ it is possible for one stratum to not be visible to another but to still
+ contribute component and part definitions indirectly.
+\end_layout
+
+\begin_layout Standard
+The top stratum represents a
+\emph on
+ single
+\emph default
+ stratum that brings together all the strata in a model that would otherwise
+ be independent.
+ The purpose of the top stratum is to ensure that we have a place to merge
+ any competing redefinitions from independent strata.
+ All strata are reachable by transitively following the dependencies of
+ the top stratum.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-top.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In actual architectures, there is sometimes an explicit top stratum that
+ has been created as part of the application.
+ In others, there is no explicit top and we must create an implicit one.
+\end_layout
+
+\begin_layout Standard
+Each element is owned by a single stratum called its home, or owner.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-element-home.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The scope of an interface is the full set of sub and super-interfaces (and
+ the interface itself) present in the model.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-overlap.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Two strata overlap if their scopes intersect.
+\end_layout
+
+\begin_layout Standard
+The presence of a one-to-one interface mapping is ensured by the oneToOneMapping
+Exists[] predicate.
+ An interface is constrained to provide enough by the provideEnough[] predicate
+ which tests a single interface against a set of other interfaces for enough
+ provision.
+\end_layout
+
+\begin_layout Standard
+The stratum perspective of an r-element can change due to redefinition.
+ To keep track of this, the specification determines the constituents of
+ each element for each stratum that transitively depends on its home.
+ For an element, this information is held in the delta structures, and also
+ propagated higher into the component structure itself.
+ For a component, for instance, it can be seen that the constituents depend
+ on which stratum the perspective is being taken from.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-component.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Each delta is able to hold more than one constituent per UUID, to represent
+ the redefinition conflicts that can occur when multiple independent redefinitio
+ns are merged.
+ The addObjects, deleteObjects and replaceObjects of Deltas holds the add,
+ delete and replace instructions respectively.
+ A new UUID (ID parameterised type) can be introduced only when adding a
+ new constituent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-delta-instructions.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After redefinition has been written as resemblance (ELEMENT_REDEF_RESEMBLE)
+ then the deltas for each element are combined and possibly merged to create
+ a perspective of that constituent for the given element, in a given stratum.
+ The final constituents are held in objects_e.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-objects_e.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Stratum Rules
+\end_layout
+
+\begin_layout Standard
+A stratum 
+\emph on
+s
+\emph default
+ is not involved in a dependency cycle if following transitive dependencies
+ does not lead back to itself (STRATUM_ACYCLIC).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-STRATUM_ACYCLIC.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stratum visibility is managed by having each stratum keep track of which
+ dependencies are exposed to other stratum which depend on them (STRATUM_VISIBIL
+ITY).
+ If a stratum is not relaxed, it only exposes itself.
+ If a stratum is relaxed, it exposes itself and any stratum that are exposed
+ to it by the stratum it depends upon in turn.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-STRATUM_VISIBILITY.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The rules for top stratum have already been shown in section 
+\begin_inset LatexCommand \ref{sub:Definition-of-Terms}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Element-Rules}
+
+\end_inset
+
+Element Rules
+\end_layout
+
+\begin_layout Standard
+Components are prevented from accessing elements in stratum that are not
+ visible to their home (ELEMENT_VISIBILITY).
+ Interfaces have a similar constraint.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-ELEMENT_VISIBILITY.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+R-elements are prevented from resembling or redefining r-elements which
+ are not visible (ELEMENT_VISIBILITY).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-ELEMENT_VISIBIILITY_2.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Redefinition is handled by rewriting all the resemblance graphs for each
+ stratum perspective (ELEMENT_REDEF_RESEMBLE).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-ELEMENT_REDEF_RESEMBLE.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Multiple redefinition of the same element, viewed from the perspective of
+ a stratum that merges these two definitions, will find that the rewrite
+ produces multiple resemblance in keeping with the partial strata order.
+ Figure 
+\begin_inset LatexCommand \ref{fig:Independent-redefinitions-require}
+
+\end_inset
+
+ shows such a situation, where W has combined X and Y which were previously
+ independent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/merge.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Independent-redefinitions-require}
+
+\end_inset
+
+Independent redefinitions require a merge
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The resemblance graph from W's perspective is rewritten to take account
+ of the partial order of the stratum dependencies, and in this case multiple
+ resemblance results.
+ From the stratum perspective of W, A_W acts as the definition of A as shown
+ in figure 
+\begin_inset LatexCommand \ref{fig:Redefinition-is-turned}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/rewritten-resemblance.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Redefinition-is-turned}
+
+\end_inset
+
+Redefinition is turned into resemblance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After redefinition has been turned into resemblance for a given stratum
+ perspective, the set of constituents can be determined for each element
+ in that perspective.
+ This is accomplished by the mergeAndApplyChangesForResemblance[] and mergeAndAp
+plyChangesForRedefinition[] predicates.
+\end_layout
+
+\begin_layout Standard
+When merging, it is possible that two r-elements independently replace the
+ same constituent, and we may get two constituents for the same UUID.
+ Another possibility is that through deletion, one constituent may refer
+ to another by its UUID even thought that constituent is no longer present
+ in the merged element.
+ An element must have exactly one constituent for any required UUID in order
+ to be well-formed.
+ This condition is necessary, but not sufficient.
+ For example, the component rules are as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-WF_COMPONENT_ONE_CONSTITUENT_PER_UUID.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When merging two branches of a resemblance graph, one branch may delete
+ a constituent and another may replace it.
+ In this case, the replacement has priority and the deletion will be ignored.
+\end_layout
+
+\begin_layout Subsection
+Interface Rules
+\end_layout
+
+\begin_layout Standard
+An interface is a subtype of any interfaces it resembles, as long as none
+ of the operations inherited are deleted or replaced (INTERFACE_SUBTYPE).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-INTERFACE_SUBTYPE.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Component Rules
+\end_layout
+
+\begin_layout Standard
+Leaf components may not participate in resemblance or redefinition (COMPONENT_NO
+_LEAF_REDEF_RESEMBLANCE).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-COMPONENT_NO_LEAF_REDEF_RESEMBLANCE.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A well-formed component can never transitively contain itself (WF_COMPONENT_CONT
+AINMENT).
+ To enforce this, we must take resemblance and redefinition into account,
+ and recurse down the containment hierarchy.
+ For instance, a part's type of a component cannot contain that component
+ and so on.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-WF_COMPONENT_CONTAINMENT.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Part Rules
+\end_layout
+
+\begin_layout Standard
+A part that is replacing another (via redefinition) can remap its port instances
+ onto the port instances of the previous part (PART_PORT_REMAP).
+ This allows us to replace a part, but retain any connections to that part.
+ To support this, each part has a remap structure which indicates how the
+ new port instance UUIDs maps onto the old UUIDs.
+ The information is consolidated into portMap, which holds all the UUID
+ to port mappings for the part.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-PART_PORT_REMAP.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We cannot have a part, or an island of connected parts which are not eventually
+ connected back to the component (WF_PART_NO_ISLANDS).
+ If this were allowed there would be no way to communicate with the parts.
+ To prevent this from occurring, we travel from part to part looking for
+ a direct connection to the component:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-WF_PART_NO_ISLANDS.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Connector Rules
+\end_layout
+
+\begin_layout Standard
+Port to port connectors are not allowed, as it would then not be possible
+ to seed the inferencing algorithm when both port types were unspecified
+ (WF_CONN_JOIN).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-WF_CONN_JOIN.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Port and Port Instance Rules
+\end_layout
+
+\begin_layout Standard
+All ports have a multiplicity, which may be as simple as 
+\emph on
+[1] 
+\emph default
+representing a single mandatory connection (PORT_MULTIPLICITY).
+ The lower and upper bounds of a port are each represented as a finite set
+ of indices.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-PORT_MULTIPLICITY.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These sets are constrained to be contiguous and so that the lower bound
+ is less than or equal to the upper bound.
+ Finally, a port must have at least one possible index.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-PORT_MULTIPLICITY2.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If a port instance only provides interfaces, connections to it are not enforced
+ and can be zero to many (WF_PORT_PROVIDES_ONLY).
+ If a port instance has some required interfaces, then it must have exactly
+ one connection for a mandatory index, and at most one connection for an
+ optional index.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-WF_PORT_PROVIDES_ONLY.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Port Type Inference Rules
+\end_layout
+
+\begin_layout Standard
+The aim of the port type inference rules are to describe how the type constraint
+s propagate between ports.
+ Intuitively, if more is provided to a required interface on a port instance,
+ then more can then be provided from a linked provided interface on a port
+ instance linked to that port.
+ This is supported by the use of links which propagate typing information
+ between port instances (PI_PROVIDE_MORE) and the predicate providesEnough[].
+\end_layout
+
+\begin_layout Standard
+Transitive closure is used in the Alloy specification to traverse the graphs
+ formed by the connectors, links and parts of a composite.
+\end_layout
+
+\begin_layout Standard
+To infer the required interfaces of a port, we find all ingoing port instances
+ that we can reach from the port.
+ The required interfaces is the set of lowest common sub-interfaces that
+ satisfy these and have a one-to-one mapping.
+ Provided interfaces are found by traversing to any terminal port instances
+ or ports which are reachable from the port.
+ The provided interfaces is the set of highest common super-interfaces that
+ satisfy these and have a one-to-one mapping.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-port_inference.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The required interfaces are not inferred from ports, whereas provided interfaces
+ are.
+ This has been found to be necessary for when a situation as in figure 
+\begin_inset LatexCommand \ref{fig:The-inference-rules}
+
+\end_inset
+
+ occurs.
+ In this case, we can 
+\begin_inset Quotes eld
+\end_inset
+
+bootstrap
+\begin_inset Quotes erd
+\end_inset
+
+ the inferring of the port's required interfaces by using only the port
+ instances.
+ Then, the provided interfaces can be inferred using the port instances
+ and the already inferred required interfaces.
+\end_layout
+
+\begin_layout Standard
+Note that any part's type will either be a leaf in which case the port type
+ information is available, or a composite in which case the port type informatio
+n will have already been inferred.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/inference-bootstrapping.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-inference-rules}
+
+\end_inset
+
+The inference rules prevent ambiguity in common situations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Each port instance is checked to ensure that it provides enough to satisfy
+ any required interfaces which are reachable from it.
+ Finally, it is verified that each port instance matches one-to-one with
+ the provided (required) and required (provided) interfaces of any port
+ (port instance) that it is connected or linked to.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-WF_PI_PROVIDES_ENOUGH.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rule PI_BROKEN_LINKS breaks an inferred link when the internal provision
+ of an interface from a terminal port instance can be traced back to a port.
+ That port may not then participate in any inferred links.
+ To see why this is necessary, consider figure 
+\begin_inset LatexCommand \ref{fig:Internal-provision-of}
+
+\end_inset
+
+.
+ If ports P1 and P2 were allowed to have an inferred link, then provision
+ of a sub-interface B to P1 would involve inferring P2 as providing B also.
+ However, component Y can only provide A, resulting in a mismatch.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/break.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Internal-provision-of}
+
+\end_inset
+
+Internal provision of an interface can break an inferred link
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This rule is enforced when the inferred links are constructed by the following
+ predicate logic:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-PI_BROKEN_LINKS.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Explanation of Properties
+\end_layout
+
+\begin_layout Standard
+A leaf component is immutable because it cannot be redefined (PROP_LEAF_IMMUTABL
+E).
+ Hence, a leaf's stratum perspective stays constant However, an r-element
+ can change from one stratum perspective to another due to redefinition
+ (PROP_COMPOSITE_CHANGING).
+\end_layout
+
+\begin_layout Standard
+The dependency structure of strata form a partial order (PROP_PARTIAL_ORDER).
+ This is apparent from the fact that it is possible to structure a set of
+ stratum as in figure 
+\begin_inset LatexCommand \ref{fig:Independent-redefinitions-require}
+
+\end_inset
+
+.
+ This implies that if the architecture includes two or more mutually independent
+ strata that redefine the same element, then it will be necessary at some
+ stage to merge the redefinitions into a coherent definition in at least
+ one stratum perspective.
+ This may be the top stratum perspective if no other stratum 
+\begin_inset Quotes eld
+\end_inset
+
+merges
+\begin_inset Quotes erd
+\end_inset
+
+ the two independent strata, according to rule STRATUM_TOP.
+\end_layout
+
+\begin_layout Standard
+As redefinition is rewritten as resemblance, the resemblance graph will
+ form a partial order in a similar way to the strata dependency graph, as
+ shown in figures 
+\begin_inset LatexCommand \ref{fig:Independent-redefinitions-require}
+
+\end_inset
+
+ and 
+\begin_inset LatexCommand \ref{fig:Redefinition-is-turned}
+
+\end_inset
+
+ (PROP_REDEF_PARTIAL_ORDER).
+ This means that the rewritten resemblance graph may feature multiple resemblanc
+e.
+\end_layout
+
+\begin_layout Standard
+Conflict can occur because a situation is created where two independent
+ redefinitions of a structure conflict (PROP_REDEF_CONFLICT).
+ For instance, one redefinition could delete a port, and another could independe
+ntly add in a new connector to that port.
+ When they are merged, the port will be deleted but the connector will still
+ reference it (via its UUID).
+ In this case, the connector must be removed or replaced.
+ Redefinition can be used to correct any structural flaw resulting from
+ conflict (figure 
+\begin_inset LatexCommand \ref{fig:Redefinition-can-always}
+
+\end_inset
+
+, PROP_REDEF_RESOLUTION).
+\end_layout
+
+\begin_layout Standard
+Conflict can also occur when merges due to redefinition cause an overlapping
+ stratum's definition to violate a well-formedness rule.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/redef-resolve.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Redefinition-can-always}
+
+\end_inset
+
+Redefinition can always resolve redefinition conflicts
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If a model contains no redefinitions of the same element in mutually independent
+ strata, then the resemblance graph for the element can be linearised and
+ does not require merging.
+ To see this, consider if the dependencies in figure 
+\begin_inset LatexCommand \ref{fig:Independent-redefinitions-require}
+
+\end_inset
+
+ were restructured as in figure 
+\begin_inset LatexCommand \ref{fig:Merging-is-never}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/no-merge.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Merging-is-never}
+
+\end_inset
+
+Merging is never necessary if the dependency graph can be linearised
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The dependency link between X and Y causes the resemblance graph to be rewritten
+ to indicate that A_X resembles A_Y which resembles A_Z (figure 
+\begin_inset LatexCommand \ref{fig:No-multiple-resemblance}
+
+\end_inset
+
+).
+ In effect, it is stating that the changes in X were made with full knowledge
+ of the changes made in Y.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/rewritten-resemblance-no-merge.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:No-multiple-resemblance}
+
+\end_inset
+
+A linear resemblance graph contains no conflicts
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Two newly defined elements (i.e.
+ not redefinitions) cannot cause a conflict because they can cannot refer
+ to one another, and cannot impact any elements in overlapping strata.
+\end_layout
+
+\begin_layout Standard
+It is possible for a design to incorporate multiple resemblance which causes
+ a conflict (PROP_RESEMBLANCE_CONFLICT).
+ However, due to the ELEMENT_OK_AT_HOME it is necessary to resolve any structura
+l issues by adding, deleting or replacing constituents directly in the definitio
+n featuring the multiple resemblance.
+\end_layout
+
+\begin_layout Standard
+Diamond shaped resemblance does not result in multiple base elements, as
+ with non-virtual diamond inheritance in C++ 
+\begin_inset LatexCommand \cite{Taivalsaari1996}
+
+\end_inset
+
+.
+ The rules are defined to ensure that any element included from a base via
+ multiple resemblance paths will lead to only a single copy of that element,
+ and the use of UUIDs avoids inadvertent name clashes.
+\end_layout
+
+\begin_layout Standard
+The PROP_INFERRED_LINKS_COMPLEMENTARY property is a consequence of the way
+ that the port inference rules are defined for inferring provided and required
+ interfaces.
+ It also follows from PI_LINKS_COMPLEMENTARY.
+\end_layout
+
+\begin_layout Standard
+In the early stages of creating the formal specification, it was envisaged
+ that it would be possible to create a set of resemblance graphs representing
+ the superset of every stratum perspective.
+ However, this does not work when resemblance and redefinition can be mixed
+ (PROP_RESEMBLANCE_NO_SUPERSET).
+ Consider figure 
+\begin_inset LatexCommand \ref{fig:Redefinition-and-resemblance}
+
+\end_inset
+
+ which contains both resemblance and redefinition.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/resemblance-and-redef.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Redefinition-and-resemblance}
+
+\end_inset
+
+Redefinition and resemblance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The resemblance graph from X's perspective is shown in figure 
+\begin_inset LatexCommand \ref{fig:Stratum-perspective-X}
+
+\end_inset
+
+, and the graph from W's perspective is shown in figure 
+\begin_inset LatexCommand \ref{fig:Stratum-perspective-W}
+
+\end_inset
+
+.
+ They cannot be formed into a unified superset because the redefinition
+ in Y has caused A_Y to be inserted into the resemblance graph between B
+ and A_Z.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/perspective-X.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Stratum-perspective-X}
+
+\end_inset
+
+Stratum perspective of X
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/perspective-W.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Stratum-perspective-W}
+
+\end_inset
+
+Stratum perspective of W inserts A_Y between B and A_Z
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As a consequence of this, the resemblance graphs for a stratum perspective
+ must be determined separately for each stratum.
+\end_layout
+
+\begin_layout Standard
+This example also demonstrates the utility of redefinition.
+ It provides a principled way of inserting definitions into a resemblance
+ graph, allowing for changes to be made at the correct point.
+\end_layout
+
+\begin_layout Section
+Additional Concepts
+\end_layout
+
+\begin_layout Standard
+The following concepts are not described by the specification:
+\end_layout
+
+\begin_layout Enumerate
+Placeholder
+\newline
+A placeholder is an composite component without parts, which
+ is used to describe the general shape of a future component in order to
+ support top down development 
+\begin_inset LatexCommand \cite{Medvidovic1996a}
+
+\end_inset
+
+.
+ A component with parts of a placeholder type must have these parts replaced
+ before it can be used in a running application.
+ Placeholders can be redefined into normal composites, and resembled.
+ It would be straight forward to extend the specification to allow this,
+ but it was felt it would add little to the exposition.
+\end_layout
+
+\begin_layout Enumerate
+Factory
+\newline
+A factory is a composite component that can instantiate its parts
+ lazily, and more than once if required.
+ The major constraint that a factory would entail over a composite is ensuring
+ that any ports have only optional indices, reflecting the possibility that
+ the parts may not have been instantiated.
+\end_layout
+
+\begin_layout Enumerate
+Delegate connectors
+\newline
+Delegate connectors alias two ports together.
+ They can be used to connect a port with an upper bound > 1 to a port instance
+ with the same multiplicity, avoiding the need for many indexed connectors.
+ In the specification, the number of possible indices is finite and as such
+ a delegate connector can be represented by explicit connectors each with
+ explicit indices.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Standard
+
+\lang british
+\begin_inset LatexCommand \bibtex[plain]{../../read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

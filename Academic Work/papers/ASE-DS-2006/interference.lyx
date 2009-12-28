@@ -1,0 +1,2500 @@
+#LyX 1.4.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinelanguage{Backbone}
+{
+morekeywords={depends-on, stratum},
+sensitive=true,
+morecomment=[l]{//},
+morecomment=[s]{/*}{*/},
+}
+
+\lstset{
+language=Backbone,
+basicstyle=\ttfamily,
+commentstyle=\color{purple},
+keywordstyle=\color{blue},
+%	xleftmargin=15pt,
+%	xrightmargin=15pt,
+frame=lines,
+%	aboveskip=0pt,
+%	belowskip=0pt,
+%	lineskip=-5pt,
+%	abovecaptionskip=10pt,
+%	belowcaptionskip=10pt,
+%	framesep=5pt,
+%	rulesep=10pt
+}
+\end_preamble
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 8 -1
+\bullet 2 0 8 -1
+\bullet 3 0 8 -1
+\tracking_changes false
+\output_changes true
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Detecting and resolving conflicts and interference between independently
+ developed extensions to an architecture
+\end_layout
+
+\begin_layout Section
+Terminology
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Model definitions
+\series default
+ 
+\series medium
+(
+\series default
+must be compatible with
+\series medium
+ Eclipse
+\series default
+ definitions
+\series medium
+)
+\end_layout
+
+\begin_layout Itemize
+An extension extends an architecture, by adding, adjusting or removing features.
+ In doing so, it may evolve parts of the architecture to make it possible
+ to add the features.
+\end_layout
+
+\begin_layout Itemize
+An extension point is an explicit place in the architecture which accomodates
+ planned extension through a required interface.
+\end_layout
+
+\begin_layout Itemize
+An extension consists of a coherent set of component definitions, evolutions
+ and merges.
+ A component evolution adjusts a component in the architecture in some way
+ to better accommodate a new feature.
+ It may introduce new extension points to the architecture.
+\end_layout
+
+\begin_layout Itemize
+A plugin is a degenerate form of an extension, which contains only definitions
+ and connections to integrate new components into existing extension points.
+\end_layout
+
+\begin_layout Itemize
+An extension can further expose its own extension points which can be used
+ by other extensions which explicitly depend upon this extension.
+\end_layout
+
+\begin_layout Itemize
+An extension may define or evolve code artifacts such as classes and interfaces.
+ An extension may evolve just some of these artifacts rather than 
+\begin_inset Quotes eld
+\end_inset
+
+owning
+\begin_inset Quotes erd
+\end_inset
+
+ the entire code base.
+\end_layout
+
+\begin_layout Itemize
+Extension A may depend on the presence of extension B.
+ From the perspective of extension A, the architecture consists of the original
+ architecture and the changes and new features provided by extension B.
+\end_layout
+
+\begin_layout Itemize
+The constructs can model plugin architectures, frameworks and component-based
+ architectures.
+ The technique naturally produces extensible systems, where unplanned extension
+ can be accommodated.
+ In the case of unplanned extension, the level of alteration of the existing
+ architecture determines how feasible it is to extend the system to add
+ the features.
+ In general, the granularity of description of the architecture determines
+ how much alteration is required in order to add a new feature.
+\end_layout
+
+\begin_layout Itemize
+The constructs are design-time rather than run-time.
+ Reconfiguration occurs to the definition of the architecture.
+\end_layout
+
+\begin_layout Itemize
+A progression is a type of extension that evolves the system forward.
+ Rather than adding extra features, it may significantly alter the architecture.
+ An extension is analogous to a version control branch.
+ A progression is more like the trunk.
+ There is no real distinction between a progression and an extension, apart
+ from a tendency for a progression to 
+\begin_inset Quotes eld
+\end_inset
+
+own
+\begin_inset Quotes erd
+\end_inset
+
+ the code base and evolve significantly more code artifacts than an extension.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Feature types
+\series default
+ (can only have one)
+\end_layout
+
+\begin_layout Itemize
+Deeply cross-cutting (best dealt with at a meta-level).
+\end_layout
+
+\begin_layout Itemize
+Conventional.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Relative strata concepts
+\series default
+ (can only have one per stratum)
+\end_layout
+
+\begin_layout Standard
+Generally, extensions are done to a base architecture.
+ The base architecture is defined in one or more stratum and represents
+ the starting point before the system is extended.
+ A 
+\begin_inset Quotes eld
+\end_inset
+
+progression
+\begin_inset Quotes erd
+\end_inset
+
+ is another name for an extension, but where the intention is to evolve
+ the system going forward.
+\end_layout
+
+\begin_layout Itemize
+Base architecture (The main architecture being extended or progressed.
+ The intention is to define the system.)
+\end_layout
+
+\begin_layout Itemize
+Extension (An extension to a base architecture, analogous to a version control
+ branch of the system.
+ The intention is to add features.)
+\end_layout
+
+\begin_layout Itemize
+Progression (A type of extension, analogous to the version control trunk
+ of the system.
+ The intention is to evolve the system.)
+\end_layout
+
+\begin_layout Standard
+These concepts are largely descriptive, representing an intention rather
+ than a fixed set of rules.
+ An analogy is with a version control system, where a branch is often created
+ to add a feature to an existing system or to fix a defect.
+ The trunk represents the ongoing evolution of the system.
+ However, sometimes the system is progressed along multiple branches, blurring
+ the notion of a main trunk.
+\end_layout
+
+\begin_layout Standard
+The terms above are also relative.
+ An extension combined with a base architecture may together represent the
+ base architecture for another extension.
+ A progression combined with the base architecture may represent the new
+ base architecture for future extensions.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Conflict and interference
+\end_layout
+
+\begin_layout Itemize
+Conflict is when two extensions conflict structurally
+\end_layout
+
+\begin_layout Itemize
+Interference is where two extensions conflict at a behavioural or goal level
+ to prevent one or more extensions from accomplishing their objectives
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Incompatibilities between extensions 
+\series default
+(can have one or more)
+\end_layout
+
+\begin_layout Itemize
+Low-level (code related, subject to limitations that a system must have
+ a unified view of a leaf component name, or an interface name)
+\end_layout
+
+\begin_layout Itemize
+Structural (perhaps structural change is required for an extension because
+ not all information is present at the level of change).
+\end_layout
+
+\begin_layout Itemize
+Behavioural (detectable by regular protocols with non-deterministic behaviour.
+ at the level of a component)
+\end_layout
+
+\begin_layout Itemize
+Goal-level (detectable by assertions reflecting the goals of the extension?
+ c.f.
+ the weak invariants of the Atlee paper in telecomms.
+ at the level of an extension)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Interaction possibilities
+\series default
+ 
+\series bold
+between extensions 
+\series default
+(can only have one)
+\end_layout
+
+\begin_layout Itemize
+Independent (no interaction is needed or is possible)
+\end_layout
+
+\begin_layout Itemize
+Desirable (it would be desirable to enhance one or both features in the
+ other's presence)
+\end_layout
+
+\begin_layout Itemize
+Required (having the feature means that it is required to update the other
+ features, even though it may work in isolation)
+\end_layout
+
+\begin_layout Itemize
+Forbidden (both features can not be allowed to exist in the same architecture)
+\end_layout
+
+\begin_layout Standard
+An extension adds, removes or modifies features of an existing architecture.
+ Sometimes the architecture must be restructured in order to accommodate
+ the feature.
+ Evolution constructs exists to allow this type of alteration.
+ This works well for an isolated extension, where the assumption is that
+ the team responsible for the extension understands all features contained
+ within and has made them work architecturally together.
+\end_layout
+
+\begin_layout Standard
+Usually, it is necessary to combine multiple extensions in order to create
+ a product.
+ Two (or more) of these extensions may contain evolutions which interfere
+ with each because they alter the architecture in incompatible ways.
+ For instance, an extension may require the architecture to be altered in
+ a way which is structurally incompatible with the architecture of another
+ extension.
+\end_layout
+
+\begin_layout Standard
+These constructs can model the natural process of extending and architecture
+ where the architecture has been designed for planned extension.
+ They also allow a system which has not been designed this way to be extended.
+ In this way, the constructs allow for the creation of naturally extensible
+ systems.
+ The constructs can also model the evolution of a system.
+\end_layout
+
+\begin_layout Section
+Examples of constructs
+\end_layout
+
+\begin_layout Standard
+Definition:
+\end_layout
+
+\begin_layout LyX-Code
+component A [is-cluster] [is-incomplete] [is-factory] [resembles]
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+ 
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Section
+Modelling extensions: definition, evolution and merge constructs
+\end_layout
+
+\begin_layout Standard
+Backbone provides constructs to support for the following:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Definition
+\series default
+ - covers the creation of new components and interfaces
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Defining
+\series default
+ a stratum (a strata depends on other strata, but does not contain them.
+ All other constructs must be contained in a strata)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+A stratum can hold the original architecture, or an extension.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Defining
+\series default
+ a new interface
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Defining
+\series default
+ a new leaf or composite component (possibly in terms of differences from
+ an existing component using the is-like construct)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Evolution
+\series default
+ - covers evolution in code-related artifacts and changes to composite component
+s
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Upversioning
+\series default
+ an interface (incrementing the version of an interface; to reflect changes
+ at a code level to a named interface)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The new interface can be marked as a subtype of the old interface.
+ This implies that ports that require this interface do not need to be upgraded.
+\end_layout
+
+\begin_layout Enumerate
+This implies that the interface has been changed at a code level.
+ Affected code-level components will require change.
+ There can only be a single code-level version at a time and adapters are
+ not possible.
+\end_layout
+
+\begin_layout Enumerate
+Carries limitations for combining extensions.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Upversioning
+\series default
+ a leaf component.
+ (incrementing the version of an existing leaf component to reflect changes
+ at a code level)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Is-like may be used to indicate delta changes to an existing leaf component.
+\end_layout
+
+\begin_layout Enumerate
+This implies that the component has been changed at a code level and combined
+ with the existing system.
+ There can only be a single code-level version at a time.
+\end_layout
+
+\begin_layout Enumerate
+Carries limitations for combining extensions.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Supplanting
+\series default
+ an interface (globally replacing a code-level interface with another code-level
+ interface and taking its identity)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Can define a subtype relation between the old and new interfaces.
+\end_layout
+
+\begin_layout Enumerate
+Code-level requires of old interfaces do not need to be altered if there
+ is a subtype relation.
+\end_layout
+
+\begin_layout Enumerate
+Can define a global adapter for converting old requires and provides.
+ Adapters are not required for old requires where there is a subtype relation.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Supplanting
+\series default
+ a component (globally replacing a leaf or composite component with a new
+ composite)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If a component supplants a leaf, the new composite may wrap it and delegate
+ to it.
+\end_layout
+
+\begin_layout Enumerate
+If a leaf supplants another leaf, in the code it may inherit from it.
+\end_layout
+
+\begin_layout Enumerate
+The new composite may use the is-like construct to structurally inherit,
+ and adjust, the features of another composite component.
+\end_layout
+
+\begin_layout Enumerate
+Supplanting and is-like work together to allow delta changes to be expressed
+ to a component, reflecting evolutionary change, even at the leaf level.
+\end_layout
+
+\begin_layout Enumerate
+Supplanting implies taking on the identity of another component.
+\end_layout
+
+\begin_layout Enumerate
+Provide a way to refer to the unsupplanted component, i.e.
+ the component before the strata redefined it.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Merging
+\series default
+ - combining multiple, independently developed extensions and resolving
+ conflicts
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Detecting and resolving
+\series default
+ conflicts between multiple versions of a single interface.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Must definitively upversion (with a code artifact) and either declare to
+ be a subtype of all existing versions, or define a new version and replace
+ the old versions in the architecture.
+ Only one version can exist for a given code name, which implies code-level
+ merging.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Detecting and resolving
+\series default
+ conflicts between multiple versions of an existing leaf component.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Must definitively upversion (with a code artifact), or potentially supplant
+ parts of the architecture to resolve.
+\end_layout
+
+\begin_layout Enumerate
+Avoid this by reducing the need to monolithically replace through granular
+ decomposition into small leaves.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Detecting, merging
+\series default
+ and 
+\series bold
+resolving
+\series default
+ conflicts between multiple supplantings of a leaf or composite component.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Also affects any components that compose this.
+\end_layout
+
+\begin_layout Enumerate
+Structure and/or interfaces may be affected.
+\end_layout
+
+\begin_layout Enumerate
+Need to define interference and conflict
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Detecting, merging and resolving
+\series default
+ interference at a behavioural level
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The constructs cover defining an architecture, extending an architecture
+ through the addition of new features and evolution (possibly at the code
+ level), and the merging of independently developed extensions into a coherent
+ system.
+ The need for merging is a consequence of allowing independent extensions
+ of an architecture, which must be later combined to produce a single product.
+ When combining extensions, it is possible to use the constructs to integrate
+ the features of both to provide any desired interaction.
+\end_layout
+
+\begin_layout Standard
+Composition is supported through the definition constructs.
+ Decomposition is supported through the definition and evolution constructs
+ which allow an existing component to be replaced by a broken down set of
+ components which have been composed back into something compatible with
+ the original.
+\end_layout
+
+\begin_layout Section
+Stereotypes as annotations
+\end_layout
+
+\begin_layout Standard
+Stereotypes can be applied to components, interfaces, properties, parts,
+ connections and ports.
+ The stereotype concept has been expanded to allow a list of tagged values
+ to follow the stereotype name, giving a similar power to annotations in
+ Java.
+ [Java ref, UML-F ref].
+\end_layout
+
+\begin_layout Section
+Pattern constructs
+\end_layout
+
+\begin_layout Standard
+Certain patterns occur again and again when defining extensions.
+ As a result, Backbone reifies some of these patterns in order to capture
+ the intent and allow this to be taken into account when combining extensions.
+\end_layout
+
+\begin_layout Subsection
+The multiple-client adapter pattern
+\end_layout
+
+\begin_layout Standard
+When extending an architecture, it is common to come across a service component
+ which expects that it will only be used by a single client.
+ In order to use this from multiple clients, the service component must
+ be altered to support extra clients, whilst still preserving the illusion
+ to existing clients that they are the sole client.
+ In some cases, this involves adapting required interfaces (for notification)
+ and provided interfaces (for services).
+ The pattern encapsulates the service component and introduces a mode, represent
+ing the current client to have exclusive access.
+\end_layout
+
+\begin_layout Standard
+This is represented by a stereotype of «mca» on the adapting component.
+ This enforces the interfaces that must be present, although it does not
+ dictate the logic of the manager component.
+ An example of a single client is shown below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+A single client with single service and notification interfaces
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/single-client.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This can be adapted by the following component.
+ The stereotype «mca» (multi-client adapter) is used for the composite.
+ The manager must be marked with the «mca-manager» stereotype.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+Adapting a single client service for multiple clients
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/multiple-client-adapter.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sometimes it is necessary for an adapter to remember some state of the service
+ for a client.
+ For instance, if we are creating a multi-client LED display from a single-clien
+t one, it will be necessary to store the digits for the previous client
+ so that when the client is re-chosen, the display can be restored correctly.
+ This is necessary to support the illusion that existing clients 
+\begin_inset Quotes eld
+\end_inset
+
+own
+\begin_inset Quotes erd
+\end_inset
+
+ the service.
+ In this case, the «mca-stateful» stereotype is used for the adapter.
+ The name of the adapter is contrained to be 
+\begin_inset Quotes eld
+\end_inset
+
+Multiclient
+\begin_inset Quotes erd
+\end_inset
+
+ as a prefix in front of the original service name.
+\end_layout
+
+\begin_layout Standard
+The stereotype «mc» can be applied to an upversioned service component to
+ indicate that it supersedes the multi-client adapters.
+ The «mc-stateful» stereotype indicates that this remembers some aspect
+ of client state for when a client is chosen again.
+\end_layout
+
+\begin_layout Section
+Examples of constructs
+\end_layout
+
+\begin_layout Standard
+A stratum contains definitions, evolution and merging constructs.
+ A stratum depends on other stratum, and the constructs within may only
+ access constructs contained in stratum that is visible to this stratum.
+ If a stratum is relaxed, it exposes its dependent strata to any strata
+ depending on it.
+\end_layout
+
+\begin_layout Subsection
+Examples of definitions
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+begin{lstlisting}[caption=Defining a stratum]
+\end_layout
+
+\begin_layout Standard
+
+// defining a stratum
+\end_layout
+
+\begin_layout Standard
+
+stratum X 
+\end_layout
+
+\begin_layout Standard
+
+ depends-on Y, Z 
+\end_layout
+
+\begin_layout Standard
+
+ is-relaxed;
+\end_layout
+
+\begin_layout Standard
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An interface must have an associated code-level interface.
+ Any subtype relations must be explicitly declared.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+begin{lstlisting}[caption=Defining an interface]
+\end_layout
+
+\begin_layout Standard
+
+define-interface I associated-with-code-level CI
+\end_layout
+
+\begin_layout Standard
+
+                   is-subtype-of SI1, SI2...
+\end_layout
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\begin_layout Standard
+
+  // reserved: possibly for behavioural specification?
+\end_layout
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\begin_layout Standard
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A leaf component must have an associated code-level class.
+ It can define ports and properties which must match up with the code-level
+ class counterpart.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+begin{lstlisting}[caption=Defining a leaf component]
+\end_layout
+
+\begin_layout Standard
+
+define-leaf-component LC associated-with-code-level C
+\end_layout
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\begin_layout Standard
+
+  properties:
+\end_layout
+
+\begin_layout Standard
+
+    String name(test);
+\end_layout
+
+\begin_layout Standard
+
+  ports:
+\end_layout
+
+\begin_layout Standard
+
+    portA provides interfaceP requires interfaceR;
+\end_layout
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\begin_layout Standard
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A leaf component may declare itself to be like another leaf component.
+ The is-like construct allows one component to be defined in terms of another.
+ Properties and ports can be added, removed and redefined.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+begin{lstlisting}[caption=Defining a leaf component to be like another leaf]
+\end_layout
+
+\begin_layout Standard
+
+define-leaf-component LC2 associated-with-code-level C2
+\end_layout
+
+\begin_layout Standard
+
+                         is-like L
+\end_layout
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\begin_layout Standard
+
+  properties:
+\end_layout
+
+\begin_layout Standard
+
+    String title;
+\end_layout
+
+\begin_layout Standard
+
+  redefine-properties:
+\end_layout
+
+\begin_layout Standard
+
+    String name(new test); 
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+
+  ports:
+\end_layout
+
+\begin_layout Standard
+
+    portB provides interface P1;
+\end_layout
+
+\begin_layout Standard
+
+  delete-ports:
+\end_layout
+
+\begin_layout Standard
+
+    portA;
+\end_layout
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\begin_layout Standard
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A composite component is a compositional construct with no associated code-level
+ class.
+ It can additionally define parts and connections, in addition to properties
+ and ports.
+ Each part can have its properties set.
+ If the properties are not set, they get the default value (if any) specified
+ in the parts component type.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+begin{lstlisting}[caption=Defining a leaf component to be like another leaf]
+\end_layout
+
+\begin_layout Standard
+
+define-composite-component CC
+\end_layout
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\begin_layout Standard
+
+  properties:
+\end_layout
+
+\begin_layout Standard
+
+    String title;
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+
+  ports:
+\end_layout
+
+\begin_layout Standard
+
+    portA provides interfaceP requires interfaceR;
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+
+  parts:
+\end_layout
+
+\begin_layout Standard
+
+    LC leaf
+\end_layout
+
+\begin_layout Standard
+
+      set name(title);
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+
+  connections:
+\end_layout
+
+\begin_layout Standard
+
+    c joins portA to portA@leaf;
+\end_layout
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\begin_layout Standard
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Composite components may be declared like another composite, again using
+ the is-like construct.
+ This acts as a form of structural inheritance, and the composite can redefine
+ any aspect of the original composite.
+ Properties, ports, parts and connections can be added, removed or redefined
+ (an implicit add and remove).
+\end_layout
+
+\begin_layout Subsection
+Examples of evolution constructs
+\end_layout
+
+\begin_layout Standard
+Upversioning a leaf interface relies on a new interface definition, which
+ reflects the new version of the interface.
+ This new definition can then upversion the old definition.
+ The original definition of the interface must reside in a different stratum.
+ No upversioning can occur within the same stratum as it is assumed that
+ as a coherent entity, the extension will have no need to upversion any
+ construct defined within.
+ The new interface is accessible through its name (NewI) and the name it
+ has upversioned.
+ The previous interface definition can be referred to by placing [old] before
+ the name.
+ i.e.
+ [old]I.
+ Each interface can only be upversioned once in a stratum.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+begin{lstlisting}[caption=Upversioning an interface]
+\end_layout
+
+\begin_layout Standard
+
+define-interface NewI is-associated-with-code-level CI
+\end_layout
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+
+upversion-interface I using NewI;
+\end_layout
+
+\begin_layout Standard
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Upversioning of a leaf component is similar.
+ The upversion-leaf-component replaces an old version of a component with
+ a new version.
+ The previous version is still accessible by prefixing [old] as with interfaces.
+ Because the definition refers to the old version of LC, it must be explicitly
+ marked this way.
+ To not do this in this case would result in an error, as NewLC would be
+ effectively replacing itself.
+ The upversion below reflects that a new code-level property has been added
+ to component LC.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+begin{lstlisting}[caption=Upversioning a leaf component]
+\end_layout
+
+\begin_layout Standard
+
+define-leaf-component NewLC associated-with-code-level C
+\end_layout
+
+\begin_layout Standard
+
+                            is-like [old]LC
+\end_layout
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\begin_layout Standard
+
+  properties:
+\end_layout
+
+\begin_layout Standard
+
+    String title;
+\end_layout
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+
+upversion-leaf-component LC using NewLC
+\end_layout
+
+\begin_layout Standard
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Components can also be supplanted.
+ Again, [old] allows direct reference to the previous definitions.
+ A maxmimum of one supplanting of each component is allowed within a stratum,
+ and any components supplanted cannot be defined in the stratum doing the
+ supplanting.
+ The following listing shows a composite supplanting a leaf.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+begin{lstlisting}[caption=Upversioning a leaf component]
+\end_layout
+
+\begin_layout Standard
+
+define-composite-component NewLC
+\end_layout
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\begin_layout Standard
+
+  ...
+\end_layout
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+
+supplant-component L using NewLC
+\end_layout
+
+\begin_layout Standard
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All combinations of this construct are supported: acomposite can supplant
+ a composite, a leaf can supplant a leaf, a leaf can supplant a composite,
+ and composite can supplant a leaf.
+ A stratum may both upversion a leaf and supplant it, if necessary.
+\end_layout
+
+\begin_layout Section
+Interaction with version control
+\end_layout
+
+\begin_layout Standard
+How does it work in allowing someone to stay on an old version of the system,
+ but pick up some new changes? Idea is to interact with version control
+ allowing advantages of both approaches.
+\end_layout
+
+\begin_layout Itemize
+Idea of baselining to form a definitive architecture which rolls up evolutions
+ into definitions.
+ Baseline may not be most current version, but may 
+\begin_inset Quotes eld
+\end_inset
+
+Roll up part of the tail
+\begin_inset Quotes erd
+\end_inset
+
+ to reflect older versions which are no longer used.
+\end_layout
+
+\begin_layout Section
+Comparing and contrasting with existing mechanisms
+\end_layout
+
+\begin_layout Itemize
+With frameworks and plugin architectures (pros: BB allows for unplanned
+ extension, supports fine and coarse grained composition, higher level semantic
+ checks)
+\end_layout
+
+\begin_layout Itemize
+With OO - automatic enforcement and monitoring of dependencies.
+\end_layout
+
+\begin_layout Itemize
+With versioning systems (c.f.
+ Mae.
+ Must explain also how this ties into a version control system)
+\end_layout
+
+\begin_layout Itemize
+With mutiple dimensions of concerns.
+ i.e.
+ aspects and Batory feature combination.
+\end_layout
+
+\begin_layout Itemize
+With OSGI (c.f.
+ upgrading etc)
+\end_layout
+
+\begin_layout Itemize
+With runtime reconfiguration
+\end_layout
+
+\begin_layout Standard
+Pros and cons of approach.
+\end_layout
+
+\begin_layout Standard
+Advantages?
+\end_layout
+
+\begin_layout Itemize
+Makes more flexible plugin systems where full source code is not available.
+ Lowers burden of comprehensive extension.
+\end_layout
+
+\begin_layout Itemize
+Separation of architecture from code allows simpler extension.
+\end_layout
+
+\begin_layout Itemize
+Higher semantic level can involve protocol and property checks.
+\end_layout
+
+\begin_layout Itemize
+Expressing change as deltas allows a fine grained form of change which doesn't
+ imply source ownership of entire component.
+ Can still pick up changes to base.
+\end_layout
+
+\begin_layout Itemize
+As architecture becomes finer grained, cost of change is lower as only small
+ leaf components require change.
+\end_layout
+
+\begin_layout Standard
+Limitations?
+\end_layout
+
+\begin_layout Itemize
+Cross-cutting not handled well?
+\end_layout
+
+\begin_layout Itemize
+Code related to do with upversioning components and interfaces - must have
+ a system-wide view of a code interface or leaf.
+ How about defining new interfaces as the new version allowing multiple
+ to coexist? Defining a new class?
+\end_layout
+
+\begin_layout Section
+Implementation
+\end_layout
+
+\begin_layout Itemize
+Can this be implemented on top of an OSGI base? Possible later runtime reconfigu
+ration? Is runtime reconfiguration too much, and we don't want to complicate
+ the picture by introducing it? What about runtime application of extensions?
+ Future work? :-)
+\end_layout
+
+\begin_layout Itemize
+What about implementation in a dynamic language like Python? Does this ease
+ version problems? Interfaces specified using BB?
+\end_layout
+
+\begin_layout Section
+Clock example
+\end_layout
+
+\begin_layout Standard
+The following example presents architecture of a digital clock.
+ This provides a basic digital readout of the time and updates every minute.
+\end_layout
+
+\begin_layout Standard
+Two extensions are presented that extend the architecture by adding a beep
+ on each hour, and an alarm.
+ These extensions are developed independently.
+ A progression is then defined, evolving the original clock architecture
+ to include a feature where the time is automatically adjusted by listening
+ to a radio signal.
+\end_layout
+
+\begin_layout Standard
+The figure below shows each of the strata containing the base architecture,
+ the two extensions and the progression.
+ Each extension will work when combined with the clock1.0 base architecture.
+ Note that the bracketed terms are relative concepts - for another extension,
+ the clock1.0 and alarm strata could represent the base architecture.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The core clock architecture, two extensions and a progression.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/4 strata.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The table below shows that seven possible strata combinations are possible:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+Mapping system features onto combinations of strata
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="5">
+<features>
+<column alignment="left" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+System features
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+clock1.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+clock1.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+beep
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+alarm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+clock
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+clock + beep
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+clock + beep + alarm
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+updating clock
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" endfirsthead="true" endlastfoot="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+updating clock + beep
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" endfirsthead="true" endlastfoot="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+updating clock + alarm
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" bottomline="true" endfirsthead="true" endlastfoot="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+updating clock + beep + alarm
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In an ideal world, the extensions would combine to produce a coherent system
+ where all the combined features behave as intended.
+ As the example will show, in general and in this situation this is not
+ the case due to a number of issues.
+ The issues that prevent the correct combination of extensions are:
+\end_layout
+
+\begin_layout Enumerate
+Structural issues
+\newline
+This situation occurs when one extension makes structural
+ changes to a component in the base architecture that overlap and are incompatib
+le with the structural changes to that component by another extension.
+ In the example below, both alarm and hourly-beep adjust the Timer component
+ in incompatible ways to add required functionality.
+ Combining extensions implies we must arrive at a consolidated structural
+ view that works for both extensions.
+ Structural issues also arise where each extension has added a required
+ piece of infrastructure.
+ When the extensions are combined, we have two or more equivalent parts.
+ In most cases it is desirable or even necessary to combine the multiple
+ copies of infrastructure into a single, unified entity.
+\end_layout
+
+\begin_layout Enumerate
+Protocol issues
+\newline
+This situation occurs when two extensions use a shared component
+ in a way which violates its protocol, even though individually the extensions
+ respect the protocol.
+ An example of this is when a beep is issued whilst the alarm is sounding,
+ even though the protocol of the tone generator stipulates that this is
+ not allowed to happen.
+ This situation must be remedied by mediating between the multiple users
+ of the shared resource.
+\end_layout
+
+\begin_layout Enumerate
+Conflicting Goals
+\newline
+This occurs when the goal of an extension is frustrated
+ or rendered unreachable in the presence of another extension.
+ The example that will be explored below is when an hourly beep terminates
+ the alarm tone early, violating the alarm's intention to sound for a given
+ time interval.
+ Although all protocols have been respected, the higher level behaviour
+ of the extensions has been frustrated by the interaction of the two extensions.
+\end_layout
+
+\begin_layout Subsection
+The base clock architecture
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The basic clock as core architecture (clock1.0)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/basic-clock.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The base architecture describes a basic digital clock.
+ It has a timer, which notifies a single client each second and a display,
+ which can show a series of 8 digits for hh:mm:ss time format.
+ The TimeManager holds the current time and acts as a client to the timer.
+ Each second it increases the time and displays it.
+ The internal components are shown in the following diagram.
+ They are all leaf components, as evidenced by the black prongs on the component
+ icons.
+ Composites have white prongs, as with Clock above.
+ Timer is active, and has its own thread of control for notifying the client.
+ Note that only one client is supported.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The internal components of the clock
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/basic-clock-parts.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The IClock interface allows the time to be adjusted.
+ The buttons that allow this are not part of this architecture.
+\end_layout
+
+\begin_layout Subsection
+Adding an hourly beep
+\end_layout
+
+\begin_layout Standard
+The beep stratum is an extension to allow the clock to beep every hour.
+ The figure below shows the evolved Clock component that achieves this
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The evolved Clock component to add an hourly beep (beep)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/basic-clock+beep.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The HourlyBeeper needs to be notified of timer updates, but the problem
+ is that the existing Timer only supports a single client.
+ As a result the beep extension introduces a component called MulticlientTimer.
+ As it turns out, it is a prevalent requirement to 
+\end_layout
+
+\begin_layout Standard
+Audio is a component that produces a beep of a fixed pitch, at a fixed volume,
+ for a duration of 1 second.
+ HourlyBeeper is a control class that monitors the current time (based on
+ being a client of MultiTimer) and sounds the been when the hour has been
+ reached.
+\end_layout
+
+\begin_layout Standard
+The internal components are shown below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The internal components of the beeping clock
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/basic-clock-parts+beep.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The two main problems facing the designer of this extension were:
+\end_layout
+
+\begin_layout Enumerate
+The timer could only have one client
+\end_layout
+
+\begin_layout Enumerate
+The current time information was not available via the TimeManager
+\end_layout
+
+\begin_layout Standard
+In order to solve the first problem, the Timer was replaced by a new composite
+ called MulticlientTimer which conforms to the multi-client adapter pattern.
+ Turning a single client component into a multi-client alternative is a
+ common theme in the extension of architectures.
+ This will be revisited in 
+\begin_inset LatexCommand \ref{sub:Adding-an-alarm}
+
+\end_inset
+
+ when the display must be evolved to handle both the alarm and time display.
+\end_layout
+
+\begin_layout Standard
+To solve the second problem, currentTime in TimeManager was made to be an
+ environment property.
+ This pushes the definition of the property 
+\begin_inset Quotes eld
+\end_inset
+
+up to the environment
+\begin_inset Quotes erd
+\end_inset
+
+ where it can then be aliased by the currentTime property of HourlyBeeper.
+ Another common problem encountered is that information is localised and
+ needs to be made available to another part of the architecture.
+ Environment variables are one basic way of achieving this dispersal.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Adding-an-alarm}
+
+\end_inset
+
+Adding an alarm
+\end_layout
+
+\begin_layout Standard
+The alarm extension builds on the base architecture and adds an alarm which
+ makes a continuous tone for a fixed duration of 20 minutes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+Adding an alarm to the base architecture (alarm)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/basic-clock+alarm.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This extension faces the same problem as the beep extension: the Timer supports
+ only one client.
+ Again, sensible usage of the multiple-client adapter pattern solves the
+ problem.
+ In addition Display must be adapted to support multiple display clients.
+ Unlike the timer, though, the display needs a stateful adapter.
+\end_layout
+
+\begin_layout Standard
+Another problem shared with the beep extension is that Alarm requires the
+ current time.
+ This extension has also turned the current time into an environment property,
+ but has chosen a different name.
+ Although this is a contrived situation, even a simple name difference can
+ make it difficult to integrate two sets of independently developed components
+ [hoezle ref].
+\end_layout
+
+\begin_layout Standard
+The alarm also needs to make an audible sound.
+ This is accomplished through the ToneGenerator component which is further
+ described below.
+ The use of ToneGenerator here and Audio in the beep extension indicates
+ another issue with independent development: duplication of effort to achieve
+ the same goal.
+ In this case, Audio offers a strict subset of the features of ToneGenerator.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The internal components of the alarm clock
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/basic-clock-parts+alarm.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Progressing the base: adjusting the time from a radio signal
+\end_layout
+
+\begin_layout Standard
+The clock1.1 stratum represents an extension that progresses the architecture.
+ The maintainers of this architecture reviewed some of the extensions and
+ decided to rework the architecture to be more extensible.
+ In addition, it was decided to synchronise the time with a radio signal,
+ as available in some European countries.
+ The changes made to the architecture are:
+\end_layout
+
+\begin_layout Enumerate
+Integrate the ToneGenerator directly into the architecture as a base component,
+ even though it is not connected by default.
+\end_layout
+
+\begin_layout Enumerate
+Upversioned the Timer to support multiple clients.
+\end_layout
+
+\begin_layout Enumerate
+Upgraded Timer to only support the IFineTimer interface, which notifies
+ each tenth of a second (not a subtype of previous interface).
+\end_layout
+
+\begin_layout Enumerate
+Added an interface ITimeControl on the TimeManager, to allow setting and
+ getting the time.
+\end_layout
+
+\begin_layout Enumerate
+Add the radio signal (RF) synchronisation facility.
+\end_layout
+
+\begin_layout Standard
+Items 1, 2 and 3 illustrate a common process: when evolving a base architecture,
+ the developers may decide new features based on issues or requirements
+ that existing extensions have had to deal with.
+ This feedback cycle produces a strong evolution path for the architecture,
+ but has the undesirable effect of requiring rework of existing extensions.
+ In many systems, this process acts as a significant deterrent for existing
+ systems to move onto an evolved architecture.
+\end_layout
+
+\begin_layout Standard
+For added readability, the upversioned leaf components are shown with a
+ ^ after their name.
+ Supplanting is shown by a ' after the name.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The progressed architecture (clock1.1)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/progressed-clock.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The internal component definitions are shown below.
+ The upversioned Timer is marked with the «mca-added» stereotype to indicate
+ that it has added multiple-client capabilities, and supersedes any MulticlientT
+imer components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The internal components of the progressed architecture
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/progressed-clock-parts.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Combining the extensions
+\end_layout
+
+\begin_layout Standard
+Applying the extensions to the base architecture and flattening to remove
+ composites reveals the discord between the three scenarios.
+ Although they are not dissimilar, the differences are enough to cause major
+ integration problems.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Caption
+The internal parts of the three extensions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/three-in-a-row.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The combination rules progress as follows:
+\end_layout
+
+\begin_layout Enumerate
+Copy each component in the progressed stratum into the new stratum.
+\end_layout
+
+\begin_layout Enumerate
+For any extensions:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Replace any «mca» or «mca-stateful» components with possible progressed
+ counterparts.
+\end_layout
+
+\begin_layout Enumerate
+Merge the internals 
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,137 @@
+--HELP FILE TEMPLATE--
+
+CUBIT WORDPRESS THEME
+Created: 20/04/2009
+By: Kriesi
+
+
+Thank you for purchasing my theme. 
+--TABLE OF CONTENTS--
+
+A) Installation
+B) CSS Files
+C) Javascript 
+D) PSD Files
+
+
+E) Setting up the Main Page
+F) Setting up your Blog/News Page
+G) Setting up your Portfolio Page
+H) Setting up the Contact Page
+I) Setting up your Menu
+
+
+----------------------------------------------------------------------------------------------------------
+
+A) Installation
+
+The Theme comes with 6 different styles wich can be activated at your wordpress admin panel. First activate the theme as you would activate any other theme at Appearence->Themes.
+Cubit Light Blue is now the active theme. if you want to change this go to the Cubit Options Panel (Appearence->Cubit options) and choose your favorite skin.
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+B) CSS
+
+The CSS for each theme is split into two files: one that holds the basic markup for layout and one that contains all information on color and images. The fist one (style.css) is shared among all 6 Cubit skins, but each skin has 
+a separate second file for the aforementioned color and image information. If you want to create a unique layout just change the settings in on of the stylessheets of folder "CSS"
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+C) Javascript
+
+The theme uses advanced jQuery functions to create the image transition animation, as well as the dropdown menu and the ajax contact form.
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+D) PSD Files
+
+Among with the theme come all psd files needed to edit the different skins. With these psds you can even create your own unique Cubit skin.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+E) Setting up the Main Page
+
+a) Mainpage Images. 
+
+If you choose to only display one image no transition will be displayed.
+
+You can add or remove images in 2 ways: either you can edit the header.php file directly (editable area starts at line 89) and add the images there. This is the default option when you first activate the theme.
+
+You can also choose the more advanced version and create a single page that holds all of the images. 
+Create the page, then upload your images (which should be 900px in width and 240px in height) and add them to the page. Do not add paragrahps, line breaks, text or anything else. Just add the images directly one after another. What you can do is: adding links to these images will work without problems.
+
+Then save the page and head over to the cubit options page. here you will find a dropdown menu called "Cubit Starting Page Image Slider". select the page you just created and save your settings.
+This page will automatically excluded from any menu.
+
+
+b.) Mainpage Content
+
+You may edit the content of the starting page in 2 ways as well. By default you have to directly edit the index.php file (editable area starts at line 8).
+
+The more advanced way is using posts of a specific category.
+First create a category with a name of your choice. Then open the cubit options page and at "Cubit Starting Page Content" select "Use Posts". Then choose the category you just created. This category will be automatically excluded from your normal blog and portfolio page.
+
+Now head over to the write new post panelto add a post to your starting page.
+Select the category you just created, add text and name. You might notice that there are some new input fields directly below the contet area of the write post page.
+
+The new "Cubit Mainpage options" helps to add additional content in an easy way: here you can add a small pic and a catchy punchline that appears above the title.
+Just take a look at the Themeforest live preview of my page.
+
+
+
+F) Setting up your Blog/News Page
+
+Since the Mainpage only displays 3 posts you might want to set up a real blog page. Create a new Page! and in the page template tab choose the "News Section Template" template. This page now displays your blog/news entries. 
+
+
+
+G) Setting up a Portfolio Page
+
+Create POST category which will hold your portfolio items. Head over to the cubit options panel and at "Cubit Portfolio Page Content" select the category of your choice. 
+Now create a new PAGE and in the page template tab choose the "Portfolio Template" template. 
+This page now displays your portfolio items. 
+
+
+If you want to add items create new posts and add them to the portfolio category.
+When writing new posts for your portfolio category you will notice that there are some new input fields directly below the contet area of the write post page. Here you can add the link to an already uploaded image. This image will be displayed as big preview image.
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+H) Setting up the Contact Page
+
+Create a new Page and choose the Page template Contact Form. If someone sends you a mail it will be automatically sent to the email adress you entered as the admin adress of your blog. Sometimes there are issues with sending the mail. this happened to some of my earlier customers and it always happened to be a problem with the server configuration. Please ask your server admin/support if that doesnt work out correctly.
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+I) Setting up your menu
+
+a) main menu
+
+The main menu by default displays all PAGES you create. If you nest them a dropdown menu will be createt. this dropdown menu is able to handle multipe nestings.
+So if you want to display blog/news or portfolio items and have a direct link in your mainmenu you have to create a page first and choose the appropriate template (as mentioned abovein "F" and "G")
+
+You can include and exlude pages if you want to by entering a specific query string at the cubit options page:
+
+for example:
+include=9,16,22,24,33 (this would display 5 menu items for the pages with the id 9, 16, 22, 24, 33)
+
+exclude=2,6,12 (this would display menu itemsfor all pages except those with id 2, 6, 12)
+
+b) Sub Menus
+Sub menus for pages are created automatically if the page has any child pages. 
+
+The order of your menu items is defined by the page order you add to your page when writing them.
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Once again, thank you so much for purchasing this theme ;)
+Cheers Kriesi

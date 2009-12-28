@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/mtsa/!svn/ver/33/trunk/MTSSynthesis/src/ar/dc/uba/model/language
+END
+Alphabet.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/language/Alphabet.java
+END
+Language.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/language/Language.java
+END
+Symbol.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/language/Symbol.java
+END
+SingleSymbol.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/language/SingleSymbol.java
+END
+Word.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/mtsa/!svn/ver/33/trunk/MTSSynthesis/src/ar/dc/uba/model/language/Word.java
+END
+CanonicalSymbol.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/language/CanonicalSymbol.java
+END

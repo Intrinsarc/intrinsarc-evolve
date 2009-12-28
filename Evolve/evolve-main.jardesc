@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="Academic Work/latest-evolve-distribution/gui/evolve-main.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Evolve/evolve-main.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="/Evolve/Evolve-manifest.MF" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=Evolve/src"/>
+        <javaElement handleIdentifier="=RepositoryBrowser/src"/>
+        <javaElement handleIdentifier="=BackboneGenerator/src"/>
+        <javaElement handleIdentifier="=LeanFoundation/src"/>
+        <folder path="/DocumentationGenerator/html_generation/hopstepjump_theme"/>
+        <javaElement handleIdentifier="=RichPalette/src"/>
+        <javaElement handleIdentifier="=WMFWriter/src&lt;com.hopstepjump.wmf.records"/>
+        <javaElement handleIdentifier="=BeanImporter/src"/>
+        <javaElement handleIdentifier="=Geometry/src"/>
+        <javaElement handleIdentifier="=UML2Repository/src"/>
+        <javaElement handleIdentifier="=UML2RepositoryBase/src"/>
+        <javaElement handleIdentifier="=DocumentationGenerator/src"/>
+        <javaElement handleIdentifier="=WMFWriter/src&lt;com.hopstepjump.wmf"/>
+        <javaElement handleIdentifier="=Utilities/src"/>
+        <javaElement handleIdentifier="=WMFWriter/src&lt;com.hopstepjump.wmf.utility"/>
+        <file path="/DocumentationGenerator/html_generation/banner.svg"/>
+        <javaElement handleIdentifier="=IDraw/src"/>
+        <javaElement handleIdentifier="=DeltaEngine-UML2/src"/>
+    </selectedElements>
+    <fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
+</jardesc>

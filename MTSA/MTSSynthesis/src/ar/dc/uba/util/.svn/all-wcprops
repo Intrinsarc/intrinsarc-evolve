@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/85/trunk/MTSSynthesis/src/ar/dc/uba/util
+END
+SynthesiserHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/mtsa/!svn/ver/85/trunk/MTSSynthesis/src/ar/dc/uba/util/SynthesiserHelper.java
+END
+IsCanonicalLinearisationPrefixPredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/mtsa/!svn/ver/66/trunk/MTSSynthesis/src/ar/dc/uba/util/IsCanonicalLinearisationPrefixPredicate.java
+END
+LanguageUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/util/LanguageUtils.java
+END
+WordUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/mtsa/!svn/ver/33/trunk/MTSSynthesis/src/ar/dc/uba/util/WordUtils.java
+END
+MTS2FSP.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/util/MTS2FSP.java
+END

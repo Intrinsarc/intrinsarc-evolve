@@ -1,0 +1,3 @@
+#!/bin/sh
+APPDIR=`dirname $0`;
+java  -Xmx256M -cp "$APPDIR/src:$APPDIR/bin:/home/andrew/installed/gwt/gwt-linux-1.6.4/gwt-user.jar:/home/andrew/installed/gwt/gwt-linux-1.6.4/gwt-dev-linux.jar:/home/andrew/installed/gwt/gwt-incubator.jar" com.google.gwt.dev.GWTCompiler -out "$APPDIR/www" "$@" com.mycompany.MyApplication;

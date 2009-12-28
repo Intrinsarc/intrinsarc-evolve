@@ -1,0 +1,1058 @@
+#LyX 1.4.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\language british
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing onehalf
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes true
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset LatexCommand \label{cha:Analysis-of-protocols}
+
+\end_inset
+
+Analysing the Combination of Extensions
+\end_layout
+
+\begin_layout Standard
+In order to analyse the combination of extensions, we must perform the following
+ steps:
+\end_layout
+
+\begin_layout Enumerate
+Unify the structural view after considering reconfigurations.
+\end_layout
+
+\begin_layout Enumerate
+Check that component protocols in the unified architecture are observed
+ for all leaf and composite components
+\end_layout
+
+\begin_layout Enumerate
+Check that goal-level properties are preserved.
+\end_layout
+
+\begin_layout Standard
+These steps correspond loosely to the representations and steps presented
+ in 
+\begin_inset LatexCommand \cite{Hay2000}
+
+\end_inset
+
+ in order to handle conflicting runtime transitions and invariants in a
+ telecommunications system with many independently developed features.
+\end_layout
+
+\begin_layout Section
+Forming a Unified Structural View
+\end_layout
+
+\begin_layout Standard
+Each extension can potentially reconfigure the base architecture.
+ Because of this, it is easy to arrive at a situation where each extension
+ expects a different structure of the base, and if we are to combine the
+ extensions we need to form a unified structural view.
+\end_layout
+
+\begin_layout Standard
+Structural conflict can be detected by flattening the graph down to connected
+ leaf components for each extension and comparing.
+ The delta information provided by the reconfigurations is not sufficient
+ alone to be able to resolve the extensions into a single view, however.
+ In this case, we propose allowing deltas to be annotated to indicate why
+ changes were made.
+ A key theme that has emerged in the example systems modelled so far is
+ one of sharing services: problems occur when a component which expects
+ sole access to a service is forced to share with another component.
+ It appears that much of the time, the reason for a structural change is
+ to permit this form of sharing.
+ Our approach is to expand on this to allow sharing components to be annotated
+ with information representing sharing patterns, allowing the merge algorithm
+ to deal with these situations automatically.
+ If the architecture cannot be unified automatically, the developer will
+ be guided through the process by a CASE tool.
+\end_layout
+
+\begin_layout Standard
+When two components are forced to share a single service, they often together
+ violate the intended protocol of the service.
+ To detect this situation, we require protocol information to be specified
+ for leaf components.
+\end_layout
+
+\begin_layout Section
+Modelling the Protocol of a Leaf Component
+\end_layout
+
+\begin_layout Standard
+A leaf component's protocol is specified using a subset of UML2.0 sequence
+ diagrams (see section 
+\begin_inset LatexCommand \ref{sec:Component-Protocols}
+
+\end_inset
+
+).
+ No variables or extended state are allowed, which allows the behaviour
+ to be translated into an automaton with a (reasonably) manageable number
+ of states.
+ One of the aims is to construct a composite component's protocol from the
+ composition of the protocols of its constituent parts, and limiting the
+ states allows this to be accomplished in an acceptable time.
+\end_layout
+
+\begin_layout Standard
+We translate the protocols into FSP 
+\begin_inset LatexCommand \cite{Magee1999}
+
+\end_inset
+
+, a process calculus intended for describing and reasoning about concurrency.
+ The LTSA tool is used to translate an FSP programs into a labelled transition
+ systems (LTS).
+ An LTS is a non-deterministic finite automaton (NFA), as two or more transition
+s from one state are allowed to have the same action label.
+ FSP also includes the ability to force an LTS to be deterministic.
+ The deterministic form is needed for checking for bad activity errors
+\begin_inset LatexCommand \cite{Adamek2005}
+
+\end_inset
+
+, as will be demonstrated below.
+\end_layout
+
+\begin_layout Standard
+As a working example, consider the translation of an example component.
+ The TimeManager component is from the architecture of a digital clock.
+ At the top of figure 
+\begin_inset LatexCommand \ref{fig:The-TimerManager-leaf}
+
+\end_inset
+
+ is the composite structure view of the TimeManager leaf component, showing
+ that it has two ports: mgr, and clock.
+ The mgr port provides the ITimerClient interface (for receiving a notification
+ every second) and requires IDisplay (which represents a display to show
+ the new time on).
+ The clock port is provided for use by a client to adjust the time.
+\end_layout
+
+\begin_layout Standard
+The lower part of the figure shows the protocol.
+ The actors are the component (in grey) and the interfaces for each of the
+ ports.
+ To the right is the Backbone textual equivalent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/timermanager-protocol+component.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-TimerManager-leaf}
+
+\end_inset
+
+The TimerManager leaf component and protocol
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Sequential Operations
+\end_layout
+
+\begin_layout Standard
+A sequential list of operations is modelled using a single FSP process consistin
+g of actions to model the operations.
+ In order to represent the differences between a client calling a service,
+ a service receiving the call, the service sending the return and the client
+ receiving the return, we use the following action prefixes:
+\end_layout
+
+\begin_layout Itemize
+call.tx (the client calls a service)
+\end_layout
+
+\begin_layout Itemize
+call.rx (the service receives or accepts the call)
+\end_layout
+
+\begin_layout Itemize
+ret.tx (the service transmits the return)
+\end_layout
+
+\begin_layout Itemize
+ret.rx (the client receives the return)
+\end_layout
+
+\begin_layout Standard
+When two components' ports are connected together, the FSP from each protocol
+ is composed together and the call.rx will be relabelled to call.tx and ret.tx
+ will be relabelled to ret.rx.
+ This ensures that a call from a client will always be handled by the service
+ and that the return from the service will always be accepted by the client.
+\end_layout
+
+\begin_layout Standard
+The list of sequential operations from the first loop of the protocol translates
+ into the following FSP snippet.
+ This will be combined into an FSP process at some point.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+clock.iclock.call.rx.changeTime -> mgr.idisplay.call.tx.displayDigits ->
+\newline
+mgr.idisplay.ret.rx.
+displayDigits -> clock.iclock.ret.tx.changeTime ->
+\end_layout
+
+\begin_layout Standard
+Note that further prefixes of the port name and interface name have been
+ added.
+ This is necessary to prevent unwanted action synchronisation, in case multiple
+ ports provide or require the same interface, or multiple interfaces on
+ a port share the same action names.
+ The port / interface combination is guaranteed to be unique within the
+ scope of a component.
+\end_layout
+
+\begin_layout Standard
+Threadsafe operations (Java synchronised methods) are modelled with a unique
+ start and end action that surround the call.
+ This does not model re-entrant locks but this situation is not considered
+ to be common in protocol descriptions.
+ Both the client and service must include these actions.
+ In Java, the implementation of a method is synchronised, not the interface
+ method.
+ Backbone requires the interface method definition to be marked as threadsafe
+ so that both the client and service know to include the start and end actions.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+syncstart_1 -> clock.iclock.call.rx.changeTime -> syncend_1 -> 
+\end_layout
+
+\begin_layout Subsection
+Par Operator
+\end_layout
+
+\begin_layout Standard
+The par operator is translated by breaking out of the current FSP process
+ and forming a process for each operand, which will be composed together
+ with all other generated processes in the last stage of forming the protocol.
+ Each operand starts with a shared synchronisation action, in order to guarantee
+ that operations from all operands will start executing concurrently.
+ Each operand ends with a shared synchronisation action, in order to guarantee
+ that the operator is only exited when all the operands have completed.
+\end_layout
+
+\begin_layout Standard
+The following text shows how the two parallel operands are translated into
+ FSP processes.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+Par1 = (_.start.a -> _.start.b -> _.end.b -> _.end.a -> Par1).
+\newline
+Par3 = (_.start.a ->
+ _.start.c -> _.end.c -> _.end.a -> Par3).
+\end_layout
+
+\begin_layout Standard
+The process that includes the par operator must synchronise on the start
+ and end actions, in order to compose correctly:
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+TimeManager_internal = (_.start.a -> _.end.a -> TimeManager_end_loop).
+\end_layout
+
+\begin_layout Standard
+Both Par1 and Par2 contain internal start and end symbols.
+ These have been inserted to synchronise with the internal loop operators
+ of each operand.
+ If each par operand contained only sequential operations, these would be
+ included directly in the Par1 and Par3 processes.
+\end_layout
+
+\begin_layout Subsection
+Infinite Loops
+\end_layout
+
+\begin_layout Standard
+The loop operator (with no parameter) allows an infinite loop to be expressed.
+ There are several constraints governing the use of infinite loops.
+ For instance, it is not possible to nest them.
+ No actions are allowed to follow an infinite loop, as these could never
+ get executed.
+\end_layout
+
+\begin_layout Standard
+An infinite loop is translated into two processes: the first process contains
+ a synchronisation action, and the second process loops indefinitely.
+ The second process must have the alphabet extended to include an end synchronis
+ation action in order to compose correctly with its parent process.
+ The first infinite loop in the protocol translates to:
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+Iloop4 = (_.start.c -> Iloop4_loop),
+\newline
+Iloop4_loop = (comp_4.mgr.itimerclient.call.rx.noti
+fyOfNewSecond ->
+\newline
+_.start.d -> _.end.d ->
+\newline
+comp_4.mgr.itimerclient.ret.tx.notifyOfNewSecond
+ -> Iloop4_loop) + {_.end.c}.
+\end_layout
+
+\begin_layout Standard
+Several points are worth noting.
+ First, the mgr.itimerclient.call.rx.notifyOfNewSecond action has had a further
+ prefix added.
+ This is referred to as a composition prefix and prevents the action from
+ being shared with another parallel region.
+ It models that operations from parallel operands of the same protocol are
+ not synchronised.
+\end_layout
+
+\begin_layout Subsection
+Finite Loops
+\end_layout
+
+\begin_layout Standard
+If the loop operator has a parameter, it is regarded as finite---i.e.
+ the loop will execute one or more times.
+ This is modelled using the FSP choice operator to either go back to the
+ start of the loop or exit.
+ For instance, if the first infinite loop were actually finite, it would
+ be translated to:
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+Floop2 = (_.start.b -> Floop2_loop),
+\newline
+Floop2_loop = (comp_2.clock.iclock.call.rx.changeTi
+me ->
+\newline
+ comp_2.mgr.idisplay.call.tx.displayDigits ->
+\newline
+ comp_2.mgr.idisplay.ret.rx.displayDigit
+s ->
+\newline
+ comp_2.clock.iclock.ret.tx.changeTime -> Floop2_exit),
+\newline
+Floop2_exit = (_.mytau.a
+ -> Floop2_loop | _.end.b -> Floop2).
+\end_layout
+
+\begin_layout Standard
+The mytau action represents a dummy action which will be hidden at a later
+ stage.
+\end_layout
+
+\begin_layout Subsection
+Opt and Alt Operators
+\end_layout
+
+\begin_layout Standard
+These operators represent choice, and are modelled using the FSP choice
+ operator.
+ The opt operator in the protocol translates to:
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+Opt5 = (_.start.d -> _.end.d -> Opt5 |_.start.d ->
+\newline
+ comp_5.mgr.idisplay.call.tx.displayDigit
+s ->
+\newline
+ comp_5.mgr.idisplay.ret.rx.displayDigits ->
+\newline
+ _.end.d -> Opt5).
+\end_layout
+
+\begin_layout Standard
+Although the process loops, it will only start again when the parent process
+ that it is composed with shares the _.start.d action.
+\end_layout
+
+\begin_layout Standard
+A variant of the opt operator is opt (port) which will include the operand
+ if the port is bound when used inside a composite component.
+ If the port is not bound, then the operand is not included in the translation.
+\end_layout
+
+\begin_layout Subsection
+Composing the Processes
+\end_layout
+
+\begin_layout Standard
+In the final step, the processes are composed together and any start and
+ end synchronisation actions and dummy actions are hidden.
+ Any composition prefixes are also suppressed.
+ The final LTS of TimeManager contains 22 states, and the graphical representati
+on is complex.
+ The transition view of the LTS is somewhat more easy to read:
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+TimeManager = Q0,
+\newline
+Q0 = (c.clock.iclock.call.rx.changeTime -> Q1
+\newline
+ |c.mgr.itimerclient.call.r
+x.notifyOfNewSecond -> Q2),
+\newline
+Q1 = (c.mgr.idisplay.call.tx.displayDigits -> Q3
+\newline
+ |c.mgr.itime
+rclient.call.rx.notifyOfNewSecond -> Q4),
+\newline
+Q2 = (c.mgr.itimerclient.ret.tx.notifyOfNewSeco
+nd -> Q0
+\newline
+ |c.clock.iclock.call.rx.changeTime -> Q4
+\newline
+...
+ (many lines omitted)
+\end_layout
+
+\begin_layout Subsection
+Multiple Protocols for a Single Leaf Component
+\end_layout
+
+\begin_layout Standard
+The single protocol models the way that the component can handle parallel
+ calls of changeTime and notifyOfNewSecond.
+ However, analysing the LTS shows that the protocol produces traces where
+ a displayDigits call is immediately followed by another displayDigits call
+ without waiting for the first return to arrive.
+ This does not reflect the implementation of the component, which is either
+ in 
+\begin_inset Quotes eld
+\end_inset
+
+set time mode
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+display time mode
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To correct this, we can express the mode directly in the protocol using
+ an alt operator, which involves a more complex description.
+ Alternatively, we can express an additional protocol which will be composed
+ with the first, allowing us to further limit traces.
+ The FSP translation of this is:
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+Display_dependency = (c.disp.idisplay.call.rx.displayDigits ->
+\newline
+ c.disp.idisplay.ret.tx.disp
+layDigits -> Display_dependency).
+\end_layout
+
+\begin_layout Standard
+Composing the main protocol with additional protocols allows us to express
+ dependencies which are not possible or simple with a single protocol.
+\end_layout
+
+\begin_layout Section
+Modelling the Protocol of a Composite Component
+\end_layout
+
+\begin_layout Standard
+By composing the protocols of the internal parts of a composite component
+ and hiding the internal actions, we can form an LTS for the composite.
+ If any parts do not compose together well, we will get transitions to the
+ error state (-1).
+ Hiding all but the externally visible actions greatly simplifies the resultant
+ LTS.
+\end_layout
+
+\begin_layout Standard
+A goal is to turn the composite component's LTS back into a sequence diagram.
+ Because the consent operator preserves regularity over composition
+\begin_inset LatexCommand \cite{Adamek2005}
+
+\end_inset
+
+, this is definitely possible to do although the resultant diagrams may
+ not be particularly attractive or useful.
+ Based on the example problems worked through so far, the composite LTS
+ diagrams are very simple and only become complex when there are complex
+ dependencies between externally visible actions.
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset LatexCommand \cite{Adamek2005}
+
+\end_inset
+
+, three error types are shown to occur when composing protocols: no activity,
+ bad activity and divergence.
+ The first type can be detected by using FSP composition and analysing the
+ resultant LTS for deadlock, as in 
+\begin_inset LatexCommand \cite{Chatley2004}
+
+\end_inset
+
+.
+ The second type can be detected by using FSP composition of LTSs which
+ have had additional error transitions added.
+ The third type is applicable for runtime component updates, and is not
+ discussed further here.
+\end_layout
+
+\begin_layout Standard
+The following section considers how to form the protocol of the composite
+ Clock component, which combines the TimeManager and Display components,
+ as shown in figure 
+\begin_inset LatexCommand \ref{fig:The-composite-Clock}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/simple-clock-component.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-composite-Clock}
+
+\end_inset
+
+The composite Clock component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Detecting Bad Activity Errors
+\end_layout
+
+\begin_layout Standard
+The protocol of the Display component (figure 
+\begin_inset LatexCommand \ref{fig:The-Display-component}
+
+\end_inset
+
+) accepts repeated calls to displayDigits, but does not allow these to be
+ interleaved.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/display-protocol+component.eps
+	width 35col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-Display-component}
+
+\end_inset
+
+The Display component protocol
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This can be expressed as:
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+Display = (c.disp.idisplay.call.rx.displayDigits ->
+\newline
+ c.disp.idisplay.ret.tx.displayDigits
+ -> Display).
+\end_layout
+
+\begin_layout Standard
+However, there is a problem.
+ This protocol will not detect errors in a client which can send in two
+ displayDigits calls in succession, without waiting for the return.
+ The protocol in figure 
+\begin_inset LatexCommand \ref{fig:The-TimerManager-leaf}
+
+\end_inset
+
+ is capable of doing exactly that, and if this protocol is composed with
+ the display protocol, then these erroneous transitions are omitted from
+ the resultant LTS.
+\end_layout
+
+\begin_layout Standard
+The solution is to augment the LTS with error transitions, for any input
+ action (call.rx) which is handled elsewhere in the protocol but is not allowed
+ from the current state.
+ The augmented LTS for Display is shown in figure 
+\begin_inset LatexCommand \ref{fig:The-augmented-Display}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/lts-for-augmented-display.jpg
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-augmented-Display}
+
+\end_inset
+
+The augmented Display LTS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The FSP property construct can be used to construct error transitions, but
+ it does not distinguish between input and output actions.
+ This makes it unsuitable for this task.
+ A way of restricting the alphabet used to construct error transitions for
+ FSP properties would give the required effect, and it is envisaged that
+ a facility similar to this will be added in the future to deal with this
+ situation.
+\end_layout
+
+\begin_layout Standard
+The LTS must be deterministic before adding error paths.
+ To see why this is so, consider the the following non-deterministic FSP
+ expression for a service:
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+Service = (a -> (b -> Service | c -> Service).
+\end_layout
+
+\begin_layout Standard
+Translating this and adding error paths gives us the LTS in figure 
+\begin_inset LatexCommand \ref{fig:An-augmented-non-deterministic}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/augmented-nfa.jpg
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:An-augmented-non-deterministic}
+
+\end_inset
+
+An augmented non-deterministic LTS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the client FSP is
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+\size footnotesize
+Client = (a -> b -> Client) + {c}.
+\end_layout
+
+\begin_layout Standard
+and we compose both together, we get an LTS that reduces to the diagram
+ shown in figure 
+\begin_inset LatexCommand \ref{fig:Composing-a-client}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/composed-service-nfa.jpg
+	width 35col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Composing-a-client}
+
+\end_inset
+
+Composing a client and augmented non-deterministic service LTS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To correct this situation, we must only augment deterministic automatons.
+ This leads to the assumption that if it is possible to compose the client
+ and service together correctly, even in the presence of non-deterministic
+ choice, then this is the correct action.
+ This is not necessarily the case, as the actual implementation of the client
+ may loop for 10 times calling a service, and the service may only accept
+ the call 5 times.
+ The protocols used are not powerful enough to express this distinction
+ or catch this type of error.
+\end_layout
+
+\begin_layout Subsection
+Composing the Constituent Protocols
+\end_layout
+
+\begin_layout Standard
+To form the protocol of Clock, the protocols for the two parts are composed,
+ and the internal events are hidden.
+ We get the LTS in figure 
+\begin_inset LatexCommand \ref{fig:The-Clock-LTS}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/simple-clock-composite-lts.jpg
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-Clock-LTS}
+
+\end_inset
+
+The Clock LTS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This reduces down to a protocol of a parallel operator with two operands:
+ one for handling the changeTime calls, and one for handling notifyOfNewSecond
+ calls.
+ The LTS shown is slightly incorrect due to the lack of correct error transition
+s of the constituent protocols.
+ The LTS currently accepts multiple call.rx.notifyOfNewSecond actions, which
+ should be disallowed by an error transition.
+\end_layout
+
+\begin_layout Standard
+By producing a sequence diagram for the composite, we can hide the complex
+ internals and show back a convenient form to the developer.
+ We can also use the generated sequence diagram as the protocol for this
+ component when it forms an internal part of another composite component.
+\end_layout
+
+\begin_layout Section
+Protocol Handling of Indexed Ports
+\end_layout
+
+\begin_layout Standard
+Indexed ports present a difficulty for protocol modelling.
+ A request arriving at a component on input_port[5] may trigger a request
+ being sent from output_port[10], for instance.
+ Many other combinations are possible.
+ This is difficult to model, because the relationships between the ports
+ must be fully understood in order to look for protocol adherence.
+\end_layout
+
+\begin_layout Standard
+Rather than requiring the protocol to state the exact relationships between
+ indexed ports, an analysis of the problems worked through so far show that
+ primarily there are four relationships between indexed ports in a component:
+\end_layout
+
+\begin_layout Enumerate
+Broadcast
+\newline
+In this situation, the indexed ports represent clients who must
+ all be notified of changes.
+ We can model this effectively as a single port.
+\end_layout
+
+\begin_layout Enumerate
+Mode
+\newline
+In this situation, the component deals with a single index until it
+ changes mode, whereupon it will deal with another index.
+ This models the state pattern 
+\begin_inset LatexCommand \cite{Gamma1995}
+
+\end_inset
+
+, and can be used to decompose a composite object into different constituent
+ parts each representing a separate mode.
+\end_layout
+
+\begin_layout Enumerate
+Per-call
+\newline
+In this situation, each call from a client entails using a single
+ index for the entire call.
+\end_layout
+
+\begin_layout Enumerate
+One-to-one
+\newline
+In this situation, a call received on an indexed port, can only
+ communicate with other indexed ports with the same index.
+\end_layout
+
+\begin_layout Standard
+Further analysis is required to determine if other modes exist, or if these
+ modes are actually useful in practice.
+ The current intention is for a component to indicate which one of the above
+ situations apply, which will guide the protocol analysis.
+\end_layout
+
+\begin_layout Section
+Goal-Level Properties of Extensions
+\end_layout
+
+\begin_layout Standard
+Some interference problems cannot be detected by protocols alone, and we
+ intend to provide a way to express the goal of an extension as a set of
+ properties that must be preserved after any transformation.
+ An example where this occurs in one of the systems analysed so far is when
+ an alarm extension and an hourly beep extension are added to the same clock
+ architecture.
+ In this case, although all the protocols are observed, it is possible for
+ the alarm to be cancelled by a beep on the hour.
+ The goal of the alarm is to sound for 20 minutes, and the other extension
+ frustrates this aim.
+\end_layout
+
+\begin_layout Standard
+We intend to allow any part of the architecture to specify a goal, possibly
+ in terms of expected interactions that must be preserved.
+ This is analogous to the invariants of 
+\begin_inset LatexCommand \cite{Hay2000}
+
+\end_inset
+
+ and may also take the form of additional FSP properties that must hold
+ for the architecture to be considered to be correct.
+\end_layout
+
+\begin_layout Standard
+Another possibility is the use of sequence diagrams to show the intended
+ effects of an extension as a series of interactions between multiple components
+ in the architecture.
+ It would be necessary to show that the same effect was still preserved
+ in a combined system.
+ It is anticipated that this approach will lead to implied scenarios 
+\begin_inset LatexCommand \cite{Uchitel2004a}
+
+\end_inset
+
+ which the specified interactions neither cover or rule out.
+ These will require either validation or rejection by the developer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status collapsed
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{../../read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

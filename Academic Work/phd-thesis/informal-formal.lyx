@@ -1,0 +1,2345 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "app:Backbone-Informal"
+
+\end_inset
+
+The Backbone Specification in Detail
+\end_layout
+
+\begin_layout Standard
+This appendix augments the outline of the formal specification presented
+ in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Backbone-specification"
+
+\end_inset
+
+, and explains some of the logic from appendices 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Backbone-formal-base"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-formal-component"
+
+\end_inset
+
+ in more detail.
+\end_layout
+
+\begin_layout Standard
+We start by describing the logic contained within the 
+\family typewriter
+Deltas
+\family default
+ signature.
+ The formal model is then used to generate an extension conflict and its
+ subsequent resolution using a further extension, and the result is imported
+ into Backbone for visualisation.
+\end_layout
+
+\begin_layout Standard
+The port type inference logic is also explained, and some interesting test
+ cases are examined.
+ 
+\end_layout
+
+\begin_layout Standard
+Finally, the set of rules which govern the correct structure of an architecture
+ are presented.
+ A subset of these are known as well-formedness rules: they are structural
+ validations that can be violated when combining extensions.
+ Any issues must be addressed by a further extension in order to produce
+ a structurally correct architecture.
+\end_layout
+
+\begin_layout Section
+The Deltas Logic
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+Deltas
+\family default
+ signature is specified by 160 lines of Alloy code in the file 
+\family typewriter
+bb_deltas.als
+\family default
+, in appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Backbone-formal-base"
+
+\end_inset
+
+.
+ This section explains this in more detail.
+\end_layout
+
+\begin_layout Standard
+As described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Delta-formal"
+
+\end_inset
+
+, an element is composed of constituents.
+ A constituent can be added, deleted or replaced in an element by using
+ a delta alteration.
+ Each 
+\family typewriter
+Deltas
+\family default
+ instance holds a number of these alterations for a single constituent type.
+\end_layout
+
+\begin_layout Standard
+Alterations in a 
+\family typewriter
+Deltas
+\family default
+ instance are held in the 
+\family typewriter
+addObjects
+\family default
+, 
+\family typewriter
+deleteObjects
+\family default
+ and 
+\family typewriter
+replaceObjects
+\family default
+ fields as shown in the listing below.
+ These inputs correspond to the alterations that a developer makes when
+ adjusting the inherited structure of a component or interface in Evolve.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-deltainputs.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+newIDs
+\family default
+ field holds any new UUIDs which have been allocated for added or replacing
+ constituents.
+ These identifiers are forced to be globally unique.
+ Further, any new objects from adds or replaces are owned by a single 
+\family typewriter
+Delta
+\family default
+ instance and cannot be shared.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-uniqueids.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\family typewriter
+Deltas
+\family default
+ instance cannot delete any object that it is simultaneously replacing.
+ A constituent that is being deleted or replaced must be present lower down
+ in the resemblance graph, when looking from the owning element's home perspecti
+ve.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-wellformeddeltas.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Merging and Applying Changes
+\end_layout
+
+\begin_layout Standard
+The core logic for 
+\family typewriter
+Deltas
+\family default
+ is contained in two predicates.
+ The aim of these predicates is to apply the delta alterations of an element,
+ from a given stratum perspective, in order to construct the fully expanded
+ form of the element.
+ For each perspective, we then have a mapping of UUID (
+\family typewriter
+ID)
+\family default
+ to constituent (
+\family typewriter
+Object
+\family default
+) for the given stratum.
+ This is held in the 
+\family typewriter
+objects_e
+\family default
+ field, and represents the final output of the delta application logic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-fieldobjects_e.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The two predicates are described below.
+\end_layout
+
+\begin_layout Subsubsection
+Applying Changes for Resemblance: 
+\family typewriter
+mergeAndApplyChangesForResemblance
+\end_layout
+
+\begin_layout Standard
+This predicate uses the expanded resemblance graph, from a given perspective,
+ to apply the deltas and form the expanded constituents.
+ Components that replace others are treated as part of this graph, as per
+ 
+\family typewriter
+B'
+\family default
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-expanded-resemblance"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The parameters to the predicate are listed below.
+ The 
+\family typewriter
+s
+\family default
+ parameter is the stratum perspective, 
+\family typewriter
+c
+\family default
+ is the element we are expanding and 
+\family typewriter
+iResembleDeltas_e
+\family default
+ contains the deltas from the elements under this one in the expanded element
+ graph.
+ For the last parameter, if we were expanding 
+\family typewriter
+A
+\family default
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-expanded-resemblance"
+
+\end_inset
+
+, the value would hold the deltas for both 
+\family typewriter
+extension1::B'
+\family default
+ and 
+\family typewriter
+extension2::B'
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-mergeresemblance.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We cannot use the 
+\family typewriter
+objects_e
+\family default
+ field to hold the results of this predicate, as that field is used when
+ we copy the expanded results from any replacements back into the base element.
+ As such, the following fields are used to hold these interim results.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-originals.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+originalDeletedObjects_e
+\family default
+ field holds all of the constituents that have been deleted for the expanded
+ graph so far.
+ It is necessary to keep track of all deleted constituents, and reapply
+ them to handle the situation where the resemblance graph merges a delete
+ and non-delete of the same constituent from parallel evolutions.
+ In this case, we do not wish to add back the constituent.
+ Note that a parallel application of delete and replace will always favour
+ replace.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+originalObjects_e
+\family default
+ field holds the expanded constituents for the stratum perspective.
+ It coalesces the original constituents from elements it resembles in the
+ expanded graph, removes any deleted constituents and then applies the adds
+ and replaces that it holds locally.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-originalobjects_e.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Applying Changes for Replacement: 
+\family typewriter
+mergeAndApplyChangesForElementReplacement
+\end_layout
+
+\begin_layout Standard
+This predicate copies over the expanded constituents from replacements into
+ the original base component.
+ This removes the need to redirect existing references from the base to
+ an evolution or replacement, as explained at the end of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Delta-formal"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The key expression is listed below.
+ This first part of the expression copies over the constituents from any
+ replacements, for the given perspective.
+ The second part applies the deletes and replaces to again ensure that parallel
+ evolutions are handled correctly.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-objects_e.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Structural Conflict at the Deltas Level
+\end_layout
+
+\begin_layout Standard
+Structural conflict at the 
+\family typewriter
+Deltas
+\family default
+ level occurs when there is more than one constituent for a given 
+\family typewriter
+ID
+\family default
+, after the alterations have been fully applied.
+ Freedom from delta conflict is checked by the following predicate.
+ This ensures that there is only at most one constituent per 
+\family typewriter
+ID
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-oneconstituent.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Delta conflict occurs when independently developed extensions, that both
+ replace the same constituent of an element, are combined.
+ This is not explicitly checked in the base level, but results in a series
+ of checks for each constituent type in the ADL level.
+\end_layout
+
+\begin_layout Section
+Generating Conflict and Resolution from the Specification
+\end_layout
+
+\begin_layout Standard
+We can use the formal specification and the Alloy analyser to generate a
+ witness showing conflict from combining independently developed extensions,
+ and subsequent resolution in a further extension.
+\end_layout
+
+\begin_layout Standard
+This scenario can be generated by the following Alloy expression.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-conflictandresolution.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The use of the 
+\family typewriter
+exactly
+\family default
+ keyword limits the state space for checking, allowing a witness to be found
+ more quickly at the cost of sometimes missing a solution if the state space
+ is too small.
+ The 
+\begin_inset Quotes erd
+\end_inset
+
+
+\family typewriter
+some isInvalid_e
+\family default
+
+\begin_inset Quotes eld
+\end_inset
+
+ statement will force a conflict.
+ As each stratum has to be well-formed when it is defined, this can only
+ occur by combining two stratum that are mutually independent.
+ Further, to get conflict, the extensions must replace or evolve an element
+ in a common base strata.
+\end_layout
+
+\begin_layout Standard
+Backbone can import witnesses from the formal specification.
+ An example witness generated by the above is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-witness-showing"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/witness-conflict-resolution.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-witness-showing"
+
+\end_inset
+
+A witness showing conflict and subsequent resolution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The source of the conflict is that 
+\family typewriter
+Component1
+\family default
+ and 
+\family typewriter
+Component2
+\family default
+ both replace the same part (
+\family typewriter
+PartID0
+\family default
+) in independent evolutions of 
+\family typewriter
+Component4
+\family default
+.
+ The conflict is resolved by a further evolution in 
+\family typewriter
+Stratum4
+\family default
+ which replaces 
+\family typewriter
+PartID0
+\family default
+ again.
+\end_layout
+
+\begin_layout Standard
+As the state space is restricted to five components, there cannot be enough
+ instances to allow each evolution to replace the part with one of a different
+ type.
+ The conflict occurs even though the replacing parts are all of the same
+ type, as they are logically different instances of that type.
+\end_layout
+
+\begin_layout Standard
+Another interesting witness generated in the same way featured a base leaf
+ component that was separately evolved into a composite component by one
+ of the independent extension strata.
+\end_layout
+
+\begin_layout Section
+Port Type Inference
+\end_layout
+
+\begin_layout Standard
+Port type inference is used to automatically determine the interfaces provided
+ and required by ports of a composite component.
+ This facility is important for extensibility in a hierarchical component
+ model, as it removes the need to respecify all the ports of composites
+ when a leaf is evolved and its ports are altered.
+ Without this, a single evolution deep in the base of the compositional
+ hierarchy could require a cascade of many other evolutions, all the way
+ up to the top of the compositional tree.
+\end_layout
+
+\begin_layout Subsection
+Inference Logic
+\end_layout
+
+\begin_layout Standard
+The aim of the inference logic is to describe how interface type constraints
+ propagate between the ports of a component, reflecting the connectors and
+ port links in the compositional hierarchy.
+\end_layout
+
+\begin_layout Standard
+In essence the inference logic states that if more (i.e.
+ a subinterface) is provided to a required interface on a component port
+ then, depending on the connectors and ports links, more may also be provided
+ by another port on the component.
+\end_layout
+
+\begin_layout Standard
+Consider figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Leaf-port-link"
+
+\end_inset
+
+ as an example.
+ Component 
+\family typewriter
+X
+\family default
+ has a port 
+\family typewriter
+rt
+\family default
+ which provides interface 
+\family typewriter
+A
+\family default
+.
+ This port also has a port link to port 
+\family typewriter
+lt
+\family default
+ which requires interface 
+\family typewriter
+A
+\family default
+.
+ Port type information can propagate along this link to 
+\family typewriter
+rt
+\family default
+ if more is provided to 
+\family typewriter
+lt
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/inference-simple1.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Leaf-port-link"
+
+\end_inset
+
+A leaf component with a port link
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can see this propagation in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Type-propagation-sub"
+
+\end_inset
+
+, where interface 
+\family typewriter
+B
+\family default
+ (a subinterface of 
+\family typewriter
+A
+\family default
+) has been provided to the 
+\family typewriter
+lt
+\family default
+ port of the part of type 
+\family typewriter
+X
+\family default
+.
+ The type information has propagated through to 
+\family typewriter
+rt
+\family default
+, which also now provides 
+\family typewriter
+B
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/inference-simple2.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Type-propagation-sub"
+
+\end_inset
+
+Type propagation of a provided subinterface
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To infer the provided interfaces of a port, the inference logic traverses
+ to any terminal ports of parts, or ports of the component which are reachable
+ from that port by following connectors and port links.
+ A terminal port is a leaf component port that does have a port link.
+ In our previous example, the port of 
+\family typewriter
+Y
+\family default
+ was terminal, but not ports 
+\family typewriter
+lt
+\family default
+ or 
+\family typewriter
+rt
+\family default
+.
+ The provided interface for port 
+\family typewriter
+Z
+\family default
+ was then determined by traversing the connectors and port links back to
+ the provided port of the 
+\family typewriter
+Y
+\family default
+ part.
+ The logic ensures that the interfaces along the traversal routes are compatible.
+\end_layout
+
+\begin_layout Standard
+To infer the required interfaces of a port, the logic also traverses to
+ any ports of parts that can be reached from that port by following connectors
+ or port links.
+ Note that unlike for provided interfaces, this does not consider other
+ ports of the component.
+\end_layout
+
+\begin_layout Standard
+Alloy provides the reflexive-transitive operator (
+\family typewriter
+*
+\family default
+), and this is used to succinctly form the full set of navigation paths
+ between ports and parts in a component.
+ Some of this logic is shown below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-portnavigation.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Links and Connectors in the Compositional Hierarchy
+\end_layout
+
+\begin_layout Standard
+In theory, the inference logic involves traversing all possible links and
+ connectors in the entire component hierarchy.
+ To simplify this, each component instead summarises the relationships between
+ its ports and stores this in the 
+\family typewriter
+inferredLinks
+\family default
+ field of the 
+\family typewriter
+Component
+\family default
+ signature.
+ This is analogous to the port link information provided by a leaf.
+ This field can then be used by the next level up in the compositional hierarchy
+ as an alternative to navigating further down into the structures.
+ The field needs to be determined for each component from each relevant
+ stratum perspective, as it can change as extensions are applied.
+\end_layout
+
+\begin_layout Standard
+The predicate for determining the inferred links for a composite is 
+\family typewriter
+setupLinks
+\family default
+, which takes the following parameters.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-setuplinks.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This contains logic to traverse the connectors of the composite to infer
+ the port interfaces, using the 
+\family typewriter
+inferredLinks
+\family default
+ of each part type.
+ The 
+\family typewriter
+inferredLinks
+\family default
+ field can also be cached in the implementation, avoiding the need to traverse
+ deeply into the same part types many times when determining port interfaces
+ in a large system
+\end_layout
+
+\begin_layout Subsection
+Two Interesting Test Cases
+\end_layout
+
+\begin_layout Standard
+We now present two of the more interesting test cases used to evaluate the
+ inference logic.
+\end_layout
+
+\begin_layout Standard
+The first involves component 
+\family typewriter
+Case1
+\family default
+, shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Internal-provisions-can"
+
+\end_inset
+
+, where a port and internal part separately constrain the propagation of
+ a subinterface.
+ Interface 
+\family typewriter
+C
+\family default
+ resembles interface 
+\family typewriter
+B
+\family default
+ which resembles interface 
+\family typewriter
+A
+\family default
+.
+ The 
+\family typewriter
+BProv
+\family default
+ part provides interface 
+\family typewriter
+B
+\family default
+.
+ The component 
+\family typewriter
+AThrough
+\family default
+ requires 
+\family typewriter
+A
+\family default
+ via the 
+\family typewriter
+lt
+\family default
+ port and provides 
+\family typewriter
+A
+\family default
+ via the 
+\family typewriter
+rt
+\family default
+ port.
+ 
+\family typewriter
+AThrough
+\family default
+ has a port link between the two ports.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/inference-case1.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Internal-provisions-can"
+
+\end_inset
+
+Internal provisions can constrain port type propagation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this case, the inference logic has determined that port 
+\family typewriter
+right
+\family default
+ of 
+\family typewriter
+Case1
+\family default
+ can only provide interface 
+\family typewriter
+A
+\family default
+ despite the 
+\family typewriter
+BProv
+\family default
+ part providing 
+\family typewriter
+B
+\family default
+.
+ This is because when the traversals from the 
+\family typewriter
+right
+\family default
+ port are considered we end up navigating to the port of 
+\family typewriter
+BProv
+\family default
+ (provides 
+\family typewriter
+B
+\family default
+) and the 
+\family typewriter
+left
+\family default
+ port (requires 
+\family typewriter
+A
+\family default
+).
+ We can then only propagate the lowest common superinterface
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Lowest and highest refer to positions in an inheritance graph where supertypes
+ are placed above subtypes.
+\end_layout
+
+\end_inset
+
+ of 
+\family typewriter
+B
+\family default
+ and 
+\family typewriter
+A
+\family default
+, which is 
+\family typewriter
+A
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+If a part of type 
+\family typewriter
+Case1
+\family default
+ was to configured so that 
+\family typewriter
+left
+\family default
+ was connected to something providing interface 
+\family typewriter
+B
+\family default
+, then this would propagate through to 
+\family typewriter
+right
+\family default
+.
+ However, if something provided interface 
+\family typewriter
+C
+\family default
+ to 
+\family typewriter
+left
+\family default
+, then only interface 
+\family typewriter
+B
+\family default
+ would propagate through as 
+\family typewriter
+BProv
+\family default
+'s provided interface constrains the end result to be the lowest superinterface
+ of 
+\family typewriter
+B
+\family default
+ and 
+\family typewriter
+C
+\family default
+, which is 
+\family typewriter
+B
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+The second test case examines how required interfaces affect type propagation.
+ Consider the composite component 
+\family typewriter
+Case2
+\family default
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Internal-parts-can"
+
+\end_inset
+
+, where the two parts require interfaces which are not subtypes.
+ In this example, interfaces 
+\family typewriter
+X
+\family default
+ and 
+\family typewriter
+Y
+\family default
+ both resemble 
+\family typewriter
+Z,
+\family default
+ and interface 
+\family typewriter
+Q
+\family default
+ resembles both 
+\family typewriter
+X
+\family default
+ and 
+\family typewriter
+Y
+\family default
+.
+ Component 
+\family typewriter
+ZThrough
+\family default
+ requires 
+\family typewriter
+Z
+\family default
+ through the 
+\family typewriter
+lt
+\family default
+ port and provides 
+\family typewriter
+Z
+\family default
+ through the 
+\family typewriter
+rt
+\family default
+ port.
+ There is a port link between the two ports of 
+\family typewriter
+ZThrough
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/inference-case2.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Internal-parts-can"
+
+\end_inset
+
+Internal interface requirements can result in the need for a common subinterface
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As we can see, the inference logic has determined that port 
+\family typewriter
+p
+\family default
+ of 
+\family typewriter
+Case2
+\family default
+ requires interface 
+\family typewriter
+Q
+\family default
+.
+ According to the traversal logic described previously, by navigating from
+ the port of 
+\family typewriter
+Case2
+\family default
+ we reach the ports of 
+\family typewriter
+XReq
+\family default
+ and 
+\family typewriter
+YReq
+\family default
+.
+ We can only propagate an interface which satisfies both of these required
+ interfaces, which is 
+\family typewriter
+Q
+\family default
+.
+ If there was no interface that resembled both 
+\family typewriter
+X
+\family default
+ and 
+\family typewriter
+Y
+\family default
+, then the inference logic would determine that the port was in error.
+ If multiple interfaces resembled 
+\family typewriter
+X
+\family default
+ and 
+\family typewriter
+Y
+\family default
+ then an error would also result, unless there was a single highest superinterfa
+ce of all candidates that also resembled 
+\family typewriter
+X
+\family default
+ and 
+\family typewriter
+Y
+\family default
+.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Structural-Rules-of"
+
+\end_inset
+
+Structural Rules of the Specification
+\end_layout
+
+\begin_layout Standard
+The formal specification contains a number of structural rules.
+ These verify that an architecture is structurally correct.
+\end_layout
+
+\begin_layout Standard
+As previously discussed, it is possible for an element to be in error from
+ a stratum perspective even if it has no errors from its home perspective.
+ This can occur when two independently developed (and correct) strata that
+ modify a common base are combined.
+ To allow these errors to be represented in the specification (rather than
+ just outlawed from generated witnesses), we have devised a set of well-formedne
+ss rules to model the possible errors that can occur.
+ These are a subset of the structural rules.
+\end_layout
+
+\begin_layout Standard
+Well-formedness rules for an element must be checked from every relevant
+ perspective, unlike the other structural rules that can just be checked
+ for an element in its home stratum.
+ A relevant perspective is the element's home stratum or any strata that
+ can transitively reach this through dependencies.
+ A component, for instance, can change from a leaf in its home stratum to
+ a composite in an extension.
+ The well-formedness rules will have to be run on this component for both
+ perspectives; in the first case treating it as a leaf and in the second
+ case treating it as a composite.
+\end_layout
+
+\begin_layout Standard
+The rest of this section describes the rules, and also references the relevant
+ Alloy listings.
+ Note that the well-formedness rules have a WF_ prefix.
+\end_layout
+
+\begin_layout Subsection
+Stratum Rules
+\end_layout
+
+\begin_layout Itemize
+STRATUM_ACYCLIC
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-STRATUM_ACYCLIC.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+No strata dependency cycles are permitted.
+ As a stratum automatically depends on nested strata, a stratum cannot depend
+ on its parent without breaking this rule.
+\end_layout
+
+\begin_layout Itemize
+STRATUM_ELEMENT_REPLACEMENT
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-STRATUM_ELEMENT_REPLACEMENT.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A stratum can only contain at most one replacement for any given element.
+ The replaced element cannot be owned by the same stratum as the replacement.
+\end_layout
+
+\begin_layout Subsection
+Element Rules
+\end_layout
+
+\begin_layout Itemize
+ELEMENT_HOME
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-ELEMENT_HOME.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+Each element has a single home stratum, which owns it.
+\end_layout
+
+\begin_layout Itemize
+ELEMENT_VISIBILITY
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-ELEMENT_VISIBILITY.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+An element only has visibility of definitions in other strata if its home
+ stratum can see these strata via its dependency relationships.
+ For rules on what a stratum can see, refer to section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Stratum-and-Dependency"
+
+\end_inset
+
+.
+ This visibility rule constrains what an element can resemble or replace,
+ the part types that can be used, the attribute types that are visible and
+ the interfaces that a port can refer to.
+\end_layout
+
+\begin_layout Itemize
+ELEMENT_OK_AT_HOME
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-COMPONENT_OK_AT_HOME.tex"
+
+\end_inset
+
+ for components)
+\begin_inset Newline newline
+\end_inset
+
+An element must conform to all the structural rules (including the well-formedne
+ss rules) from its home perspective.
+\end_layout
+
+\begin_layout Itemize
+ELEMENT_RESEMBLANCE
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-COMPONENT_RESEMBLANCE.tex"
+
+\end_inset
+
+ for components)
+\begin_inset Newline newline
+\end_inset
+
+An element can resemble one or more elements of the same type.
+ For instance, a component can resemble other components, but cannot resemble
+ interfaces.
+\end_layout
+
+\begin_layout Itemize
+ELEMENT_REPLACEMENT
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-COMPONENT_RESEMBLANCE.tex"
+
+\end_inset
+
+ for components)
+\begin_inset Newline newline
+\end_inset
+
+An element can replace at most one other element of the same type.
+ The element being replaced must not be in the same stratum as the element
+ doing the replacing.
+\end_layout
+
+\begin_layout Itemize
+ELEMENT_REPLACEMENT_NOT_REFERENCED
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-COMPONENT_REPLACEMENT_NOT_REFERENCED.tex"
+
+\end_inset
+
+ for components)
+\begin_inset Newline newline
+\end_inset
+
+An element cannot refer directly to a replacement or an evolution.
+ As described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Delta-formal"
+
+\end_inset
+
+, all references must be made to the original element that was replaced
+ rather than its replacement.
+\end_layout
+
+\begin_layout Itemize
+WF_ELEMENT_EXPANDED_RESEMBLANCE_ACYCLIC
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_ELEMENT_EXPANDED_RESEMBLANCE_ACYCLIC.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+The expanded resemblance graph must always be acyclic.
+ When this rule is checked from the home perspective of an element, this
+ also verifies that the normal resemblance graph is acyclic.
+\end_layout
+
+\begin_layout Subsection
+Delta Rules
+\end_layout
+
+\begin_layout Itemize
+DELTA_DELETE
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-DELTA_DELETE.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A delta deletion must refer to an inherited constituent, when viewed from
+ the perspective of the owning element's home stratum.
+\end_layout
+
+\begin_layout Itemize
+DELTA_REPLACE
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-DELTA_DELETE.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+In the same fashion, a delta replacement must also refer to an inherited
+ constituent.
+\end_layout
+
+\begin_layout Subsection
+Interface Rules
+\end_layout
+
+\begin_layout Itemize
+WF_INTERFACE_ONE_IMPLEMENTATION
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_INTERFACE_ONE_IMPLEMENTATION.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+An interface must have a single implementation interface name constituent.
+\end_layout
+
+\begin_layout Itemize
+WF_INTERFACE_OPERATION_PER_UUID
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_INTERFACE_OPERATION_PER_UUID.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+An interface must have at most one operation constituent per UUID.
+\end_layout
+
+\begin_layout Subsection
+Primitive Type Rules
+\end_layout
+
+\begin_layout Itemize
+WF_PRIMITIVE_IMPLEMENTATION
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_PRIMITIVE_IMPLEMENTATION.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A primitive type must have a single implementation class name constituent.
+\end_layout
+
+\begin_layout Subsection
+Component Rules
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_NO_SELF_COMPOSITION
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_NO_SELF_COMPOSITION.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A fully expanded component cannot contain an instance of itself.
+ This rule covers possibly inheriting an instance via resemblance or when
+ replacements are applied, or having parts which indirectly contain an instance.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_PORTS
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_PORTS.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A component must have at least one port.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_LINKS_OK
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_LINKS_OK.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A composite component cannot have port link constituents.
+ There must be no duplication between port links.
+ For instance, two port links cannot connect between the same ports.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_LEAF_IMPLEMENTATION
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WC_COMPONENT_LEAF_IMPLEMENTATION.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A leaf must must have a single implementation class name constituent.
+ Composite components must have no implementation class name constituents.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_PORT_PER_UUID
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_PORT_PER_UUID.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A component must have at most one port constituent per UUID.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_PART_PER_UUID
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_PART_PER_UUID.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A component must have at most one part constituent per UUID.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_ATTRIBUTE_PER_UUID
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_ATTRIBUTE_PER_UUID.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A component must have at most one attribute constituent per UUID.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_CONNECTOR_PER_UUID
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_CONNECTOR_PER_UUID.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A component must have at most one connector constituent per UUID.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_PORTLINK_PER_UUID
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_LINK_PER_UUID.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A component must have at most one port link constituent per UUID.
+\end_layout
+
+\begin_layout Subsection
+Part Rules
+\end_layout
+
+\begin_layout Itemize
+PART_TYPE_VISIBLE
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-PART_TYPE_VISIBLE.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A part's type must be visible from the home stratum of the element that
+ owns it.
+\end_layout
+
+\begin_layout Itemize
+WF_PART_TYPE
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_PART_TYPE.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A part must have a type.
+\end_layout
+
+\begin_layout Itemize
+WF_PART_SLOT_LITERAL
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_PART_SLOT_LITERAL.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+If a part slot contains a literal value, it must be of the correct type
+ for the attribute.
+ This is a well-formedness rule because although a slot cannot change with
+ perspective, the attribute that it refers to can.
+\end_layout
+
+\begin_layout Itemize
+WF_PART_SLOT_ALIAS_COPY
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_PART_SLOT_ALIAS_COPY.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+If a part slot is aliased or copied, then the attribute must exist in the
+ expanded definition of the enclosing component.
+\end_layout
+
+\begin_layout Itemize
+WF_PART_SLOT_DEFAULT
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_PART_SLOT_DEFAULT.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A slot must exist for each attribute of the part's type that has no default
+ value.
+ The slot must have a literal value, or alternatively copy or alias an attribute.
+\end_layout
+
+\begin_layout Itemize
+WF_PART_NO_ISLANDS
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_PART_NO_ISLANDS.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+By following connectors between the ports of a component and its parts,
+ we must be able to reach all parts of a component.
+ It is not allowable to have a 
+\begin_inset Quotes eld
+\end_inset
+
+part island
+\begin_inset Quotes erd
+\end_inset
+
+ which is not anchored back to the component eventually via connectors.
+\end_layout
+
+\begin_layout Itemize
+WF_COMPONENT_LEAF_PORTS
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_COMPONENT_LEAF_PORTS.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+If a component is a leaf, the interfaces that the ports provide and require
+ must be explicitly specified.
+ Leaf component ports do not use type inference to determine their interfaces.
+ Composite component ports may also specify their interfaces explicitly,
+ but this is only used or checked from the home perspective.
+ Type inference is used in all other perspectives.
+\end_layout
+
+\begin_layout Subsection
+Connector and Port Link Rules
+\end_layout
+
+\begin_layout Itemize
+WF_CONNECTOR_NO_PORT_TO_PORT
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_CONNECTOR_NO_PORT_TO_PORT.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+Connectors cannot join one port of a composite to another.
+ They must connect a port to a part (via the part's port) or a part to a
+ part.
+\end_layout
+
+\begin_layout Itemize
+WF_CONNECTOR_OPTIONAL
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_CONNECTOR_OPTIONAL.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+If one end of a connector binds to an optional index of a component port,
+ then the other end must also bind to an optional index of a part's port.
+\end_layout
+
+\begin_layout Itemize
+WF_CONNECTOR_SAME
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_CONNECTOR_SAME.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A connector between two parts must have both ends binding to the same type
+ of port index; either both optional or both mandatory.
+\end_layout
+
+\begin_layout Itemize
+WF_CONNECTOR_INDEX
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_CONNECTOR_INDEX.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+Each index of a connector end must be within the range of the port multiplicity.
+\end_layout
+
+\begin_layout Itemize
+WF_CONNECTOR_ONE_TO_ONE
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_CONNECTOR_ONE_TO_ONE.tex"
+
+\end_inset
+
+ and other locations)
+\begin_inset Newline newline
+\end_inset
+
+There must be an unambiguous, one-to-one mapping between the provided and
+ required interfaces of one connector end, and the required and provided
+ interfaces of the other end.
+ This is described in more detail in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Port-Compatibility-for"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+WF_LINK_COMPLEMENTARY
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_LINK_COMPLEMENTARY.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+Two ports that are joined by a port link must have complementary (i.e.
+ reversed) provided and required interfaces.
+\end_layout
+
+\begin_layout Itemize
+WF_CONNECTOR_PROVIDES_ENOUGH
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_CONNECTOR_PROVIDES_ENOUGH.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+Each end of a connector must provide the same interfaces (or subtypes) to
+ satisfy the required interfaces of the ports on the other end.
+\end_layout
+
+\begin_layout Subsection
+Port Rules
+\end_layout
+
+\begin_layout Itemize
+PORT_MULTIPLICITY
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-PORT_MULTIPLICITY.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+The upper bound of the port multiplicity must be greater than or equal to
+ the lower bound.
+ The lower bound must be greater than or equal to 0.
+\end_layout
+
+\begin_layout Itemize
+PORT_INTERFACE_VISIBILITY
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-PORT_INTERFACE_VISIBIILITY.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+If the interfaces that are required and provided by a port are explicitly
+ declared, these must be visible to the home stratum of the component that
+ adds the port.
+\end_layout
+
+\begin_layout Itemize
+WF_PORT_SOME_INTERFACES
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_PORT_SOME_INTERFACES.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+A port must provide or require some interfaces, either by explicitly declaring
+ these or alternatively via port type inference.
+\end_layout
+
+\begin_layout Subsection
+Attribute Rules
+\end_layout
+
+\begin_layout Itemize
+ATTRIBUTE_TYPE_VISIBILITY
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-ATTRIBUTE_TYPE_VISIBILITY.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+The primitive type of the attribute must be visible to the home stratum
+ of the component that adds the attribute.
+\end_layout
+
+\begin_layout Itemize
+WF_ATTRIBUTE_TYPE
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_ATTRIBUTE_TYPE.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+An attribute must have a type.
+\end_layout
+
+\begin_layout Itemize
+WF_ATTRIBUTE_DEFAULT
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/rule-WF_ATTRIBUTE_DEFAULT.tex"
+
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+If an attribute specifies a default value, then the literal or attribute
+ reference must be of the correct type.
+\end_layout
+
+\end_body
+\end_document

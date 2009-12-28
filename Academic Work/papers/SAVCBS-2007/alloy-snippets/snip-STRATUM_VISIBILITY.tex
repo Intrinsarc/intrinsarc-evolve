@@ -1,0 +1,7 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={facts.als, lines 21-24}, label=alloy:STRATUM_VISIBILITY, captionpos=b]
+isTrue[s$\cdot$isRelaxed] $\Longrightarrow$
+  s$\cdot$exposesStrata = s $\cup$ s$\cdot$dependsOn$\cdot$exposesStrata
+else
+  s$\cdot$exposesStrata = s
+\end{lstlisting}

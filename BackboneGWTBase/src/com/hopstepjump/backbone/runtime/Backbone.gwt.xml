@@ -1,0 +1,4 @@
+<module>
+	<!-- to use Backbone, add an inherits name="com.hopstepjump.backbone.runtime.api.Backbone" to the module file -->
+	<source path="api/"/>
+</module>

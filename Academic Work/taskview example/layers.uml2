@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208771869456_9034" name="model">
+  <appliedBasicStereotypeValues uuid="mitchell_1208771870182_1836" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.0">
+    <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208771870208_8281" value="true"/>
+  </appliedBasicStereotypeValues>
+  <j_diagramHolder uuid="mitchell_1208773458112_6099" saveTime="Mon Apr 21, 2008 at 07:01:42 BST" savedBy="Andrew">
+    <diagram uuid="mitchell_1208800902979_7519" lastFigureId="174">
+      <figures uuid="mitchell_1208800902983_4741" id="78" recreator="dependency" anchor1Id="13" anchor2Id="6" virtualPoint="417.5 207.5" points="2 515.2 104 319 311.9" subject="//@childPackages.14/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902985_2738" id="78_M" recreator="Linked Text" containedName="text" text="" show="false" point="401.5 193.9" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902985_9447" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902983_573" id="33" recreator="dependency" anchor1Id="4" anchor2Id="3" virtualPoint="559.5 537.5" points="2 520 484.1 599.7 591.9" subject="//@childPackages.5/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902984_4281" id="33_M" recreator="Linked Text" containedName="text" text="" show="false" point="518.2 483.1" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902984_9595" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902984_2794" id="43" recreator="dependency" anchor1Id="6" anchor2Id="5" virtualPoint="280 413.5" points="2 280 387 280 440" subject="//@childPackages.7/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902984_2980" id="43_M" recreator="Linked Text" containedName="text" text="" show="false" point="269 401.3" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902984_921" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902984_9901" id="83" recreator="dependency" anchor1Id="13" anchor2Id="81" virtualPoint="617.5 217.5" points="2 568.2 104.1 667.2 332.1" subject="//@childPackages.14/@ownedAnonymousDependencies.2">
+        <figures uuid="mitchell_1208800902986_8944" id="83_M" recreator="Linked Text" containedName="text" text="" show="false" point="601.5 197.7" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902986_4919" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902984_8078" id="80" recreator="dependency" anchor1Id="13" anchor2Id="3" virtualPoint="588 347.5" points="2 588 103 588 592" subject="//@childPackages.14/@ownedAnonymousDependencies.1">
+        <figures uuid="mitchell_1208800902991_7914" id="80_M" recreator="Linked Text" containedName="text" text="" show="false" point="568.4 297.5" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902991_9528" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902984_787" id="81" recreator="Package" autosized="false" point="640 332" dimensions="87 75" subject="//@childPackages.15">
+        <figures uuid="mitchell_1208800902985_3655" id="81_C" recreator="SimpleContainer" point="640 347" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902984_1378" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902984_1774" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902984_8809" id="86" recreator="dependency" anchor1Id="13" anchor2Id="11" virtualPoint="508 175.5" points="2 508 103 508 248" subject="//@childPackages.14/@ownedAnonymousDependencies.3">
+        <figures uuid="mitchell_1208800902990_5496" id="86_M" recreator="Linked Text" containedName="text" text="" show="false" point="527 160.6" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902990_8684" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902985_8186" id="3" recreator="Package" point="584 592" dimensions="87 75" subject="//@childPackages.4">
+        <figures uuid="mitchell_1208800902984_4810" id="3_C" recreator="SimpleContainer" point="584 607" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902985_5835" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902985_784" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902985_6717" id="2" recreator="Package" autosized="false" point="104 620" dimensions="87 75" subject="//@childPackages.3">
+        <figures uuid="mitchell_1208800902983_5146" id="2_C" recreator="SimpleContainer" point="104 635" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902985_2319" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902985_8554" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902985_5604" id="1" recreator="Package" autosized="false" point="844 648" dimensions="87 75" subject="//@childPackages.2">
+        <figures uuid="mitchell_1208800902983_6513" id="1_C" recreator="SimpleContainer" point="844 663" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902985_3601" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902985_4538" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902985_8593" id="0" recreator="Package" autosized="false" point="232 620" dimensions="87 75" subject="//@childPackages.1">
+        <figures uuid="mitchell_1208800902992_5236" id="0_C" recreator="SimpleContainer" point="232 635" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902985_449" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902985_1413" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902985_7244" id="30" recreator="dependency" anchor1Id="3" anchor2Id="1" virtualPoint="757.5 648" points="2 671 648 844 648" subject="//@childPackages.4/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902985_2205" id="30_M" recreator="Linked Text" containedName="text" text="" show="false" point="777 622.9" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902985_7127" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902986_9013" id="6" recreator="Package" point="240 312" dimensions="87 75" subject="//@childPackages.7">
+        <figures uuid="mitchell_1208800902989_3808" id="6_C" recreator="SimpleContainer" point="240 327" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902986_7035" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902986_4205" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902986_3082" id="5" recreator="Package" autosized="false" point="236 440" dimensions="87 75" subject="//@childPackages.6">
+        <figures uuid="mitchell_1208800902989_5476" id="5_C" recreator="SimpleContainer" point="236 455" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902986_5748" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902989_9466" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902989_4341" id="4" recreator="Package" point="448 408" dimensions="87 75" subject="//@childPackages.5">
+        <figures uuid="mitchell_1208800902983_6529" id="4_C" recreator="SimpleContainer" point="448 423" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902989_8570" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902989_3776" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902989_1826" id="31" recreator="dependency" anchor1Id="3" anchor2Id="0" virtualPoint="451.5 624" points="2 584 624 319 624" subject="//@childPackages.4/@ownedAnonymousDependencies.1">
+        <figures uuid="mitchell_1208800902983_9679" id="31_M" recreator="Linked Text" containedName="text" text="" show="false" point="393.5 606.7" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902983_6740" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902989_2166" id="9" recreator="Package" autosized="false" point="896 140" dimensions="105.6 75" subject="//@childPackages.10">
+        <figures uuid="mitchell_1208800902991_3492" id="9_C" recreator="SimpleContainer" point="896 155" dimensions="105.6 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902989_1604" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902989_5236" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902989_4403" id="8" recreator="Package" point="120 132" dimensions="87 75" subject="//@childPackages.9">
+        <figures uuid="mitchell_1208800902984_8733" id="8_C" recreator="SimpleContainer" point="120 147" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902989_507" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902989_6514" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902989_9653" id="76" recreator="dependency" anchor1Id="11" anchor2Id="5" virtualPoint="385.5 381.5" points="2 449 324 320.9 440" subject="//@childPackages.12/@ownedAnonymousDependencies.1">
+        <figures uuid="mitchell_1208800902984_9534" id="76_M" recreator="Linked Text" containedName="text" text="" show="false" point="381.1 367.6" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902985_6767" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902989_4920" id="19" recreator="dependency" anchor1Id="8" anchor2Id="4" virtualPoint="327.5 307.5" points="2 207.9 206.9 448 408.9" subject="//@childPackages.9/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902984_4720" id="19_M" recreator="Linked Text" containedName="text" text="" show="false" point="317.1 291.4" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902984_4091" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902990_8396" id="18" recreator="dependency" anchor1Id="11" anchor2Id="4" virtualPoint="492 365.5" points="2 492 323 492 408" subject="//@childPackages.12/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902991_7827" id="18_M" recreator="Linked Text" containedName="text" text="" show="false" point="554.9 346.9" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902991_8483" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902990_5034" id="13" recreator="Package" autosized="false" point="508 28" dimensions="87 75" subject="//@childPackages.14">
+        <figures uuid="mitchell_1208800902989_534" id="13_C" recreator="SimpleContainer" point="508 43" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902990_5011" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902990_4616" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902990_3512" id="11" recreator="Package" point="448 248" dimensions="87 75" subject="//@childPackages.12">
+        <figures uuid="mitchell_1208800902983_727" id="11_C" recreator="SimpleContainer" point="448 263" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902990_6465" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902990_559" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902990_3619" id="12" recreator="Package" autosized="false" point="768 160" dimensions="87 75" subject="//@childPackages.13">
+        <figures uuid="mitchell_1208800902982_2759" id="12_C" recreator="SimpleContainer" point="768 175" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902990_680" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902990_3628" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902990_282" id="170" recreator="Package" autosized="false" point="228 768" dimensions="87 75" subject="//@childPackages.0">
+        <figures uuid="mitchell_1208800902991_6443" id="170_C" recreator="SimpleContainer" point="228 783" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902990_1564" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902990_4481" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902990_3534" id="172" recreator="dependency" anchor1Id="0" anchor2Id="170" virtualPoint="276 731.5" points="2 276 695 276 768" subject="//@childPackages.1/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902983_5839" id="172_M" recreator="Linked Text" containedName="text" text="" show="false" point="260 716" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902983_1734" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902990_2532" id="108" recreator="dependency" anchor1Id="6" anchor2Id="4" virtualPoint="387.5 397.5" points="2 328 370 447.9 425.4" subject="//@childPackages.7/@ownedAnonymousDependencies.1">
+        <figures uuid="mitchell_1208800902983_9220" id="108_M" recreator="Linked Text" containedName="text" text="" show="false" point="382.5 385.5" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902983_4254" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902990_9177" id="173" recreator="Package" autosized="false" point="68 28" dimensions="87 75" subject="//@childPackages.17">
+        <figures uuid="mitchell_1208800902983_646" id="173_C" recreator="SimpleContainer" point="68 43" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902990_2218" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902990_3945" id="106" recreator="dependency" anchor1Id="10" anchor2Id="1" virtualPoint="785.5 455.5" points="2 700.5 263.9 870.9 648" subject="//@childPackages.11/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902992_7721" id="106_M" recreator="Linked Text" containedName="text" text="" show="false" point="762 440.3" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902992_5603" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_7280" id="103" recreator="dependency" anchor1Id="8" anchor2Id="0" virtualPoint="219.5 413.5" points="2 172.4 208.1 266.9 619.9" subject="//@childPackages.9/@ownedAnonymousDependencies.2">
+        <figures uuid="mitchell_1208800902984_9881" id="103_M" recreator="Linked Text" containedName="text" text="" show="false" point="199.9 397.8" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902984_4731" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_4186" id="99" recreator="dependency" anchor1Id="13" anchor2Id="9" virtualPoint="750.2 121.5" points="2 596 78 896 162.6" subject="//@childPackages.14/@ownedAnonymousDependencies.6">
+        <figures uuid="mitchell_1208800902991_8283" id="99_M" recreator="Linked Text" containedName="text" text="" show="false" point="730 100.7" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902991_6846" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_8046" id="101" recreator="dependency" anchor1Id="13" anchor2Id="8" virtualPoint="357.5 117.5" points="2 508 77.2 207.9 157.6" subject="//@childPackages.14/@ownedAnonymousDependencies.7">
+        <figures uuid="mitchell_1208800902983_8763" id="101_M" recreator="Linked Text" containedName="text" text="" show="false" point="340.1 102" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902983_3497" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_5446" id="97" recreator="dependency" anchor1Id="9" anchor2Id="3" virtualPoint="788.2 403.5" points="2 921.5 216 654.1 592" subject="//@childPackages.10/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902991_9625" id="97_M" recreator="Linked Text" containedName="text" text="" show="false" point="781.5 352" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902991_7095" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_1751" id="45" recreator="dependency" anchor1Id="8" anchor2Id="2" virtualPoint="140 413.5" points="2 140 207 140 620" subject="//@childPackages.9/@ownedAnonymousDependencies.1">
+        <figures uuid="mitchell_1208800902984_1164" id="45_M" recreator="Linked Text" containedName="text" text="" show="false" point="145.4 397.1" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902984_1517" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_4340" id="93" recreator="dependency" anchor1Id="11" anchor2Id="81" virtualPoint="587.5 327.5" points="2 535.9 304.9 640 350.5" subject="//@childPackages.12/@ownedAnonymousDependencies.2">
+        <figures uuid="mitchell_1208800902992_1355" id="93_M" recreator="Linked Text" containedName="text" text="" show="false" point="594.9 313" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902992_4693" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_2010" id="47" recreator="dependency" anchor1Id="5" anchor2Id="2" virtualPoint="213.5 567.5" points="2 251.3 516 175 620" subject="//@childPackages.6/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902985_2551" id="47_M" recreator="Linked Text" containedName="text" text="" show="false" point="208 546" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902985_9285" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_4800" id="90" recreator="dependency" anchor1Id="12" anchor2Id="1" virtualPoint="844 441.5" points="2 844 235 844 648" subject="//@childPackages.13/@ownedAnonymousDependencies.0">
+        <figures uuid="mitchell_1208800902990_6552" id="90_M" recreator="Linked Text" containedName="text" text="" show="false" point="830.6 419.5" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902990_1682" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="mitchell_1208800902991_5268" id="10" recreator="Package" autosized="false" point="640 188" dimensions="87 75" subject="//@childPackages.11">
+        <figures uuid="mitchell_1208800902985_1992" id="10_C" recreator="SimpleContainer" point="640 203" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1208800902992_690" name="fill" value="193 206 236"/>
+        <properties uuid="mitchell_1208800902992_8056" name="owner" value="model"/>
+      </figures>
+      <figures uuid="mitchell_1208800902992_8898" id="88" recreator="dependency" anchor1Id="13" anchor2Id="12" virtualPoint="681.5 131.5" points="2 596 88.1 768.1 175.4" subject="//@childPackages.14/@ownedAnonymousDependencies.4">
+        <figures uuid="mitchell_1208800902992_5065" id="88_M" recreator="Linked Text" containedName="text" text="" show="false" point="665.8 112" dimensions="3.8 14">
+          <properties uuid="mitchell_1208800902992_3039" name="suppress" value="true"/>
+        </figures>
+      </figures>
+    </diagram>
+  </j_diagramHolder>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="backbone" name="backbone" readOnly="true">
+    <appliedBasicStereotypeValues uuid="mitchell_1208771870208_473" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.3">
+      <value xsi:type="uml:Expression" uuid="mitchell_1208771870208_8313" body="#application-package-hint components&#xA;{&#xA;}&#xA;&#xA;#system-class-hint basics&#xA;{&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IAnotherRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.Placeholder&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.constructor.PartHandle&quot;,&#xA;&#x9;&quot;java.lang.Integer&quot;,&#xA;&#x9;&quot;java.lang.Long&quot;,&#xA;&#x9;&quot;java.lang.Double&quot;,&#xA;&#x9;&quot;java.lang.String&quot;,&#xA;&#x9;&quot;java.awt.Point&quot;,&#xA;&#x9;&quot;java.awt.Dimension&quot;,&#xA;&#x9;&quot;java.awt.Rectangle&quot;,&#xA;&#x9;&quot;java.util.Date&quot;,&#xA;&#x9;&quot;java.awt.Color&quot;&#xA;}"/>
+    </appliedBasicStereotypeValues>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.5" uuid="IRun" name="IRun">
+      <appliedBasicStereotypeValues uuid="mitchell_1208771870222_9368" property="//@childPackages.0/@childPackages.1/@ownedMember.5/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1208771870222_2433" body="com.hopstepjump.backbone.api.IRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="mitchell_1208771870222_7188" property="//@childPackages.0/@childPackages.1/@ownedMember.5/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208771870222_2589" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.5" uuid="IAnotherRun" name="IAnotherRun">
+      <appliedBasicStereotypeValues uuid="mitchell_1208771870222_9259" property="//@childPackages.0/@childPackages.1/@ownedMember.5/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1208771870222_6767" body="com.hopstepjump.backbone.api.IAnotherRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="mitchell_1208771870222_6960" property="//@childPackages.0/@childPackages.1/@ownedMember.5/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208771870222_9868" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <childPackages uuid="primitives" name="primitive types">
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="type" name="type">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870133_7518" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870151_6112" body="Type"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="boolean" name="boolean">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870151_62" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870152_3079" body="Boolean"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="int" name="int">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870152_1444" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870152_6308" body="Integer"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="long" name="long">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870152_278" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870152_7868" body="Long"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="float" name="float">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870152_7510" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870152_8064" body="Float"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="double" name="double">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870152_2261" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870152_9435" body="Double"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="String" name="String">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870152_7986" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870152_4639" body="String"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="Date" name="Date">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870153_3448" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870153_1154" body="Date"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="Time" name="Time">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870153_4987" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870153_3194" body="Long"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="DateTime" name="DateTime">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870153_979" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870153_8018" body="Date"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="Interval" name="Interval">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870153_7015" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870153_1043" body="Long"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="PartHandle" name="PartHandle">
+        <appliedBasicStereotypeValues uuid="mitchell_1208771870153_4354" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="mitchell_1208771870153_148" body="PartHandle"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+    </childPackages>
+    <childPackages xsi:type="uml:Profile" documentation="The profile for Backbone modelling" uuid="backbone-profile" name="backbone profile">
+      <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of all backbone definitions that live in strata." uuid="backbone-element" name="backbone-element" reverseGeneralizations="//@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.1/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.5/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.10/@generalization.0" isAbstract="true" extendsMetaModelElement="'Class'">
+        <ownedAttribute documentation="An override to insert Backbone directly into the generated output." uuid="backbone-element-definitionOverride" name="definitionOverride" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of leaf and composite components.  Not used directly." uuid="backbone-component" name="backbone-component" reverseGeneralizations="//@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.2/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.7/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.11/@generalization.0" isAbstract="true" extendsMetaModelElement="'Class'">
+        <generalization uuid="mitchell_1208771870124_7971" general="//@childPackages.0/@childPackages.1/@ownedMember.0"/>
+        <ownedAttribute documentation="Can we navigate to direct neighbours via this component?" uuid="backbone-component-navigable" name="navigable" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute documentation="The protocol(s) for this component" uuid="backbone-component-protocols" name="protocols" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="Indicates that an element is directly tied to an implementation artifact" uuid="backbone-implementation" name="backbone-implementation" reverseGeneralizations="//@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.3/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.4/@generalization.0" extendsMetaModelElement="'Class'">
+        <generalization uuid="mitchell_1208771870125_2022" general="//@childPackages.0/@childPackages.1/@ownedMember.1"/>
+        <ownedAttribute documentation="The implementation class for this type" uuid="backbone-implementation-implementation class" name="implementation class" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="Is this a system leaf, that won't have implementation code generated?" uuid="backbone-implementation-systemLeaf" name="systemLeaf" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A parameter or attribute.  It can be substituted, but only with another primitive type." uuid="backbone-primitive-type" name="backbone-primitive-type" extendsMetaModelElement="'Class'">
+        <generalization uuid="mitchell_1208771870125_1452" general="//@childPackages.0/@childPackages.1/@ownedMember.2"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A component which wraps an implementation component.  This is done for uniformity.  It cannot be substituted or resembled." uuid="backbone-leaf" name="backbone-leaf" extendsMetaModelElement="'Class'">
+        <generalization uuid="mitchell_1208771870126_1913" general="//@childPackages.0/@childPackages.1/@ownedMember.2"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  An interface which is visible to backbone." uuid="backbone-interface" name="backbone-interface" reverseGeneralizations="//@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.6/@generalization.0" extendsMetaModelElement="'Interface'">
+        <generalization uuid="mitchell_1208771870126_8239" general="//@childPackages.0/@childPackages.1/@ownedMember.0"/>
+        <ownedAttribute documentation="The implementation class that this interface is associated with." uuid="backbone-interface-implementation class" name="implementation class" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="Is this a system interface, that won't have implementation code generated?" uuid="backbone-interface-systemInterface" name="systemInterface" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  A factory interface which is visible to backbone." uuid="backbone-factory-interface" name="backbone-factory-interface" extendsMetaModelElement="'Interface'">
+        <generalization uuid="mitchell_1208771870127_1949" general="//@childPackages.0/@childPackages.1/@ownedMember.5"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A composite component which can contain parts." uuid="backbone-composite" name="backbone-composite" reverseGeneralizations="//@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0 //@childPackages.0/@childPackages.1/@ownedMember.8/@generalization.0" extendsMetaModelElement="'Class'">
+        <generalization uuid="mitchell_1208771870127_7676" general="//@childPackages.0/@childPackages.1/@ownedMember.1"/>
+        <ownedAttribute documentation="Does this expose references to internal parts?" uuid="backbone-composite-cluster" name="cluster" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A factory component which can instantiate parts lazily." uuid="backbone-factory" name="backbone-factory" extendsMetaModelElement="'Class'">
+        <generalization documentation="A factory is a type of composite, which instantiates its parts on demand." uuid="mitchell_1208771870127_6152" general="//@childPackages.0/@childPackages.1/@ownedMember.7"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A (possibly hierarchical) container of Backbone definitions." uuid="backbone-stratum" name="backbone-stratum" extendsMetaModelElement="'Package', 'Model'">
+        <ownedAttribute documentation="Can this stratum contain destructive (replace, delete) substitutions?" uuid="backbone-stratum-destructive" name="destructive" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute documentation="If another stratum depends on this, can it also see this stratum's dependencies?) ?" uuid="backbone-stratum-relaxed" name="relaxed" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute documentation="The group to find the load directory from" uuid="backbone-stratum-stratumGroup" name="stratumGroup" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="A preamble which is inserted into the Backbone code for this stratum" uuid="backbone-stratum-preamble" name="preamble" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A port allows a component to provide or require services." uuid="backbone-port" name="backbone-port" extendsMetaModelElement="'Port'">
+        <generalization documentation="A port offers or requires services." uuid="mitchell_1208771870128_8900" general="//@childPackages.0/@childPackages.1/@ownedMember.0"/>
+        <ownedAttribute documentation="Does this port require callbacks?" uuid="backbone-port-callbacks" name="callbacks" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A placeholder defines the shape of something that must be replaced later.  It 'stands in' until the replacement is made." uuid="backbone-placeholder" name="backbone-placeholder" extendsMetaModelElement="'Class'">
+        <generalization documentation="A port offers or requires services." uuid="mitchell_1208771870129_6574" general="//@childPackages.0/@childPackages.1/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A port link indicates how port type dependencies propagate in leaves.  Not used for composites, as connections suffice." uuid="backbone-port-link" name="backbone-port-link" extendsMetaModelElement="'Dependency'"/>
+      <ownedMember xsi:type="uml:Stereotype" documentation="Indication that the item is a delta from the resembled definition." uuid="backbone-delta" name="backbone-delta" extendsMetaModelElement="'Class', 'Property', 'Interface'"/>
+      <ownedMember xsi:type="uml:Stereotype" documentation="The overide data for a slot so we can show alloy errors." uuid="backbone-overriden-slot" name="backbone-overriden-slot" extendsMetaModelElement="'Slot'">
+        <ownedAttribute documentation="An override so we can control how the slot string displays." uuid="backbone-overriden-slot-overriddenSlotText" name="overriddenSlotText" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="An override so we can make the slot look aliased." uuid="backbone-overriden-slot-overriddenSlotAlias" name="overriddenSlotAlias" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A marker stereotype to indicate that this traces an element from one perspective to another." uuid="trace" name="trace" extendsMetaModelElement="'Dependency'"/>
+    </childPackages>
+    <childPackages xsi:type="uml:Profile" documentation="The profile for documenting a model" uuid="documentation-profile" name="documentation profile">
+      <ownedMember xsi:type="uml:Stereotype" documentation="The top level documentation package" uuid="documentation-top" name="documentation-top" extendsMetaModelElement="'Package'">
+        <ownedAttribute documentation="The name of the document." uuid="documentation-top-documentName" name="documentName" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The owner of document." uuid="documentation-top-owner" name="owner" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The email address of the owner." uuid="documentation-top-email" name="email" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The copyright period of the document." uuid="documentation-top-copyrightYears" name="copyrightYears" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="Number of non-breaking spaces to pad the home navigation entry with." uuid="documentation-top-numberOfSpacesForPadding" name="numberOfSpacesForPadding" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The prefix to add for each page title, apart from home." uuid="documentation-top-pageTitlePrefix" name="pageTitlePrefix" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The index to add to the htmlTemplate and htmlGenerateTo slots to extract the folders.  Allows more than one site to be generated from a given model." uuid="documentation-top-siteIndex" name="siteIndex" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A sub-package of the top-level documentation package." uuid="documentation-included" name="documentation-included" extendsMetaModelElement="'Package'"/>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A figure to reproduce in the documentation." uuid="documentation-figure" name="documentation-figure" extendsMetaModelElement="'Comment'"/>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A comment visually containing a set of other documentation packages to refer to." uuid="documentation-see-also" name="documentation-see-also" extendsMetaModelElement="'Comment'"/>
+    </childPackages>
+    <childPackages xsi:type="uml:Profile" documentation="The profile for a standard jUMbLe model." uuid="standard-profile" name="standard profile">
+      <ownedMember xsi:type="uml:Stereotype" documentation="Indicates that the element is in error." uuid="error" name="error" extendsMetaModelElement="'Class', 'Interface', 'Package', 'Property', 'Operation'">
+        <ownedAttribute documentation="The explanation of this error." uuid="error-error-description" name="error-description" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+    </childPackages>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773145887_5054" name="gem" clientDependency="//@childPackages.1/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773145889_8972" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773145889_7456" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208784981523_9077" client="//@childPackages.1" dependencyTarget="//@childPackages.0"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773146627_3905" name="geometry">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773146629_3006" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773146629_3899" value="true"/>
+    </appliedBasicStereotypeValues>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773147415_5484" name="delta engine">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773147416_9667" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773147416_9140" value="true"/>
+    </appliedBasicStereotypeValues>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773148121_5938" name="idraw" clientDependency="//@childPackages.4/@ownedAnonymousDependencies.0 //@childPackages.4/@ownedAnonymousDependencies.1 //@childPackages.4/@ownedAnonymousDependencies.2 //@childPackages.4/@ownedAnonymousDependencies.3 //@childPackages.4/@ownedAnonymousDependencies.4 //@childPackages.4/@ownedAnonymousDependencies.5">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773148123_6963" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773148123_6170" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773336327_371" client="//@childPackages.4" dependencyTarget="//@childPackages.2"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773337575_3777" client="//@childPackages.4" dependencyTarget="//@childPackages.1"/>
+    <ownedAnonymousDependencies j_deleted="1" uuid="mitchell_1208784879160_4614" client="//@childPackages.4" dependencyTarget="//@childPackages.4/@childPackages.0"/>
+    <ownedAnonymousDependencies j_deleted="1" uuid="mitchell_1208784881337_250" client="//@childPackages.4" dependencyTarget="//@childPackages.4/@childPackages.1"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208784935376_1017" client="//@childPackages.4" dependencyTarget="//@childPackages.4/@childPackages.0"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208784938098_953" client="//@childPackages.4" dependencyTarget="//@childPackages.4/@childPackages.1"/>
+    <j_diagramHolder uuid="mitchell_1208784963677_974" saveTime="Mon Apr 21, 2008 at 02:36:03 BST" savedBy="Andrew">
+      <diagram uuid="mitchell_1208784963679_3336" lastFigureId="89">
+        <figures uuid="mitchell_1208784963679_7244" id="79" recreator="Package" autosized="false" point="728 668" dimensions="87 75" subject="//@childPackages.4/@childPackages.6">
+          <figures uuid="mitchell_1208784963679_5953" id="43" recreator="SimpleContainer" point="728 683" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208784963679_2658" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963679_9029" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963679_7020" id="78" recreator="dependency" anchor1Id="69" anchor2Id="82" virtualPoint="355.5 381.8" points="2 396 346.1 315.9 416.6" subject="//@childPackages.4/@childPackages.2/@ownedAnonymousDependencies.2">
+          <figures uuid="mitchell_1208784963680_3925" id="66" recreator="Linked Text" containedName="text" text="" show="false" point="346 370" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963680_5926" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963679_2474" id="39" recreator="dependency" anchor1Id="58" anchor2Id="73" virtualPoint="389.5 134.7" points="2 440 99.6 340 168.9" subject="//@childPackages.4/@ownedAnonymousDependencies.4">
+          <figures uuid="mitchell_1208784963680_8389" id="40" recreator="Linked Text" containedName="text" text="" show="false" point="376.1 119.8" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963680_25" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963679_4392" id="42" recreator="Package" autosized="false" point="636 820" dimensions="87 75" subject="//@childPackages.4/@childPackages.8">
+          <figures uuid="mitchell_1208784963681_9350" id="70" recreator="SimpleContainer" point="636 835" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208784963680_8766" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963680_8334" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963680_9095" id="41" recreator="dependency" anchor1Id="82" anchor2Id="44" virtualPoint="371.5 539.8" points="2 316.1 493.2 428.1 587.3" subject="//@childPackages.4/@childPackages.3/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208784963682_2102" id="60" recreator="Linked Text" containedName="text" text="" show="false" point="362.2 522" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963682_4785" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963680_2518" id="82" recreator="Package" autosized="false" point="228 416" dimensions="87 79.6" subject="//@childPackages.4/@childPackages.3">
+          <figures uuid="mitchell_1208784963681_9469" id="68" recreator="SimpleContainer" point="228 431" dimensions="87 64.6" offset="4 4"/>
+          <properties uuid="mitchell_1208784963680_7725" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963680_663" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963680_7354" id="83" recreator="dependency" anchor1Id="69" anchor2Id="42" virtualPoint="559.5 582.7" points="2 457.3 348.7 663.2 820.1" subject="//@childPackages.4/@childPackages.2/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208784963683_792" id="53" recreator="Linked Text" containedName="text" text="" show="false" point="544.1 572.1" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963683_1229" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963680_3372" id="80" recreator="Package" autosized="false" point="168 640" dimensions="87 75" subject="//@childPackages.4/@childPackages.5">
+          <figures uuid="mitchell_1208784963682_6296" id="45" recreator="SimpleContainer" point="168 655" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208784963680_1517" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963680_7614" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963680_6652" id="86" recreator="dependency" anchor1Id="85" anchor2Id="69" virtualPoint="563.5 253.3" points="2 644.1 217.9 484 288.2" subject="//@childPackages.4/@childPackages.1/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208784963682_8802" id="48" recreator="Linked Text" containedName="text" text="" show="false" point="548 240" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963682_4396" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963680_3473" id="87" recreator="dependency" anchor1Id="80" anchor2Id="76" virtualPoint="263.5 767.5" points="2 233.8 716 293.8 820" subject="//@childPackages.4/@childPackages.5/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208784963681_5211" id="72" recreator="Linked Text" containedName="text" text="" show="false" point="248 752" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963681_3473" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963680_2278" id="85" recreator="Package" autosized="false" point="644 152" dimensions="87 93.6" subject="//@childPackages.4/@childPackages.1">
+          <figures uuid="mitchell_1208784963682_1474" id="46" recreator="SimpleContainer" point="644 167" dimensions="87 78.6" offset="4 4"/>
+          <properties uuid="mitchell_1208784963680_7217" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963680_3620" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963680_8056" id="67" recreator="dependency" anchor1Id="79" anchor2Id="42" virtualPoint="725.5 781.5" points="2 748.2 744 702.2 820" subject="//@childPackages.4/@childPackages.6/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208784963683_9968" id="88" recreator="Linked Text" containedName="text" text="" show="false" point="708 768" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963683_6286" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963680_8675" id="69" recreator="Package" autosized="false" point="396 268" dimensions="87 79.6" subject="//@childPackages.4/@childPackages.2">
+          <figures uuid="mitchell_1208784963682_7719" id="61" recreator="SimpleContainer" point="396 283" dimensions="87 64.6" offset="4 4"/>
+          <properties uuid="mitchell_1208784963680_3265" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963680_2207" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963681_4112" id="73" recreator="Package" autosized="false" point="252 160" dimensions="87 79.6" subject="//@childPackages.4/@childPackages.0">
+          <figures uuid="mitchell_1208784963681_4881" id="55" recreator="SimpleContainer" point="252 175" dimensions="87 64.6" offset="4 4"/>
+          <properties uuid="mitchell_1208784963681_4613" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963681_8377" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963681_4284" id="74" recreator="dependency" anchor1Id="80" anchor2Id="42" virtualPoint="445.5 767.5" points="2 256 694.6 636.1 840.8" subject="//@childPackages.4/@childPackages.5/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208784963681_7115" id="75" recreator="Linked Text" containedName="text" text="" show="false" point="432 752" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963681_9342" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963681_9873" id="76" recreator="Package" autosized="false" point="272 820" dimensions="87 75" subject="//@childPackages.4/@childPackages.7">
+          <figures uuid="mitchell_1208784963682_6846" id="63" recreator="SimpleContainer" point="272 835" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208784963681_6027" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963681_2138" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963681_1121" id="59" recreator="dependency" anchor1Id="58" anchor2Id="85" virtualPoint="585.5 134.2" points="2 528 97.7 644 171.2" subject="//@childPackages.4/@ownedAnonymousDependencies.5">
+          <figures uuid="mitchell_1208784963682_2057" id="64" recreator="Linked Text" containedName="text" text="" show="false" point="568 116.1" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963682_3311" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963681_3032" id="58" recreator="Package" autosized="false" point="440 32" dimensions="87 75" subject="//@childPackages.4">
+          <figures uuid="mitchell_1208784963682_2401" id="62" recreator="SimpleContainer" point="440 47" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208784963681_8777" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963681_2822" name="showVis" value="true"/>
+          <properties uuid="mitchell_1208784963681_3302" name="owner" value="model"/>
+        </figures>
+        <figures uuid="mitchell_1208784963681_6108" id="56" recreator="dependency" anchor1Id="73" anchor2Id="69" virtualPoint="367.5 253.8" points="2 340.1 233.2 396 275.1" subject="//@childPackages.4/@childPackages.0/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208784963681_8480" id="71" recreator="Linked Text" containedName="text" text="" show="false" point="352 240" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963681_1039" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963682_8161" id="49" recreator="dependency" anchor1Id="85" anchor2Id="42" virtualPoint="676 532.8" points="2 676 245.6 676 820" subject="//@childPackages.4/@childPackages.1/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208784963681_5856" id="57" recreator="Linked Text" containedName="text" text="" show="false" point="660 512" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963681_696" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963682_3452" id="44" recreator="Package" autosized="false" point="428 584" dimensions="87 79.6" subject="//@childPackages.4/@childPackages.4">
+          <figures uuid="mitchell_1208784963680_5301" id="81" recreator="SimpleContainer" point="428 599" dimensions="87 64.6" offset="4 4"/>
+          <properties uuid="mitchell_1208784963682_9442" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208784963682_2438" name="owner" value="idraw"/>
+        </figures>
+        <figures uuid="mitchell_1208784963682_1304" id="47" recreator="dependency" anchor1Id="73" anchor2Id="44" virtualPoint="383.5 411.8" points="2 312.4 240.5 455 584" subject="//@childPackages.4/@childPackages.0/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208784963682_3635" id="65" recreator="Linked Text" containedName="text" text="" show="false" point="368 400" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963682_1587" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963682_2858" id="51" recreator="dependency" anchor1Id="44" anchor2Id="42" virtualPoint="575.5 740.7" points="2 507.9 664.7 646.1 820" subject="//@childPackages.4/@childPackages.4/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208784963682_3157" id="52" recreator="Linked Text" containedName="text" text="" show="false" point="560 724" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963682_8435" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963683_4254" id="54" recreator="dependency" anchor1Id="44" anchor2Id="80" virtualPoint="341.5 660" points="2 428 660 255 660" subject="//@childPackages.4/@childPackages.4/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208784963680_554" id="84" recreator="Linked Text" containedName="text" text="" show="false" point="324 644" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963680_9774" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208784963683_5029" id="50" recreator="dependency" anchor1Id="69" anchor2Id="44" virtualPoint="452 465.8" points="2 452 347.6 452 584" subject="//@childPackages.4/@childPackages.2/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208784963679_7085" id="77" recreator="Linked Text" containedName="text" text="" show="false" point="436 456" dimensions="3.8 14">
+            <properties uuid="mitchell_1208784963679_1481" name="suppress" value="true"/>
+          </figures>
+        </figures>
+      </diagram>
+    </j_diagramHolder>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784603433_3461" name="arc&#xA;facilities" clientDependency="//@childPackages.4/@childPackages.0/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.0/@ownedAnonymousDependencies.1">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784603433_5972" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784603434_3820" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208784806767_3893" client="//@childPackages.4/@childPackages.0" dependencyTarget="//@childPackages.4/@childPackages.4"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208784835978_2201" client="//@childPackages.4/@childPackages.0" dependencyTarget="//@childPackages.4/@childPackages.2"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784604032_6735" name="simple&#xA;container&#xA;node" clientDependency="//@childPackages.4/@childPackages.1/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.1/@ownedAnonymousDependencies.1">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784604032_4156" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784604032_2617" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208784760037_1710" client="//@childPackages.4/@childPackages.1" dependencyTarget="//@childPackages.4/@childPackages.8"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208784834072_8142" client="//@childPackages.4/@childPackages.1" dependencyTarget="//@childPackages.4/@childPackages.2"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784605432_5939" name="node&#xA;facilities" clientDependency="//@childPackages.4/@childPackages.2/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.2/@ownedAnonymousDependencies.1 //@childPackages.4/@childPackages.2/@ownedAnonymousDependencies.2">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784605432_860" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784605432_3761" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208784762741_9550" client="//@childPackages.4/@childPackages.2" dependencyTarget="//@childPackages.4/@childPackages.8"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208784789135_4642" client="//@childPackages.4/@childPackages.2" dependencyTarget="//@childPackages.4/@childPackages.4"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208784814561_2731" client="//@childPackages.4/@childPackages.2" dependencyTarget="//@childPackages.4/@childPackages.3"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784607088_5694" name="figure&#xA;facilities" clientDependency="//@childPackages.4/@childPackages.3/@ownedAnonymousDependencies.0">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784607088_2504" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784607088_8945" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208784817920_7188" client="//@childPackages.4/@childPackages.3" dependencyTarget="//@childPackages.4/@childPackages.4"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784607842_4189" name="diagram&#xA;support" clientDependency="//@childPackages.4/@childPackages.4/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.4/@ownedAnonymousDependencies.1">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784607842_7736" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784607842_4094" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208784744140_2106" client="//@childPackages.4/@childPackages.4" dependencyTarget="//@childPackages.4/@childPackages.8"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208784787238_8345" client="//@childPackages.4/@childPackages.4" dependencyTarget="//@childPackages.4/@childPackages.5"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784608456_3859" name="environment" clientDependency="//@childPackages.4/@childPackages.5/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.5/@ownedAnonymousDependencies.1">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784608456_3952" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784608456_8631" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208784754533_6045" client="//@childPackages.4/@childPackages.5" dependencyTarget="//@childPackages.4/@childPackages.8"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208784770885_6103" client="//@childPackages.4/@childPackages.5" dependencyTarget="//@childPackages.4/@childPackages.7"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784609115_5789" name="utility" clientDependency="//@childPackages.4/@childPackages.6/@ownedAnonymousDependencies.0">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784609116_3989" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784609116_2786" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208784756885_7822" client="//@childPackages.4/@childPackages.6" dependencyTarget="//@childPackages.4/@childPackages.8"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784609896_6102" name="uifixes">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784609897_3874" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784609897_4817" value="true"/>
+      </appliedBasicStereotypeValues>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784610371_176" name="foundation">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784610371_8344" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784610371_3345" value="true"/>
+      </appliedBasicStereotypeValues>
+    </childPackages>
+    <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784908399_45">
+      <appliedBasicStereotypeValues uuid="mitchell_1208784908400_9211" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784908400_4845" value="true"/>
+      </appliedBasicStereotypeValues>
+    </childPackages>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773149177_6058" name="repository&#xA;base" clientDependency="//@childPackages.5/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773149181_5895" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773149181_9128" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773348089_3486" client="//@childPackages.5" dependencyTarget="//@childPackages.4"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773149683_6703" name="backbone" clientDependency="//@childPackages.6/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773149684_1291" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773149684_3889" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773400501_6295" client="//@childPackages.6" dependencyTarget="//@childPackages.3"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773150376_2952" name="uml2&#xA;delta engine" clientDependency="//@childPackages.7/@ownedAnonymousDependencies.0 //@childPackages.7/@ownedAnonymousDependencies.1">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773150377_4258" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773150377_5296" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773384401_6795" client="//@childPackages.7" dependencyTarget="//@childPackages.6"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773680004_697" client="//@childPackages.7" dependencyTarget="//@childPackages.5"/>
+  </childPackages>
+  <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773151012_6477" name="backbone">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773151012_5293" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773151012_2999" value="true"/>
+    </appliedBasicStereotypeValues>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773154154_1570" name="repository" clientDependency="//@childPackages.9/@ownedAnonymousDependencies.0 //@childPackages.9/@ownedAnonymousDependencies.1 //@childPackages.9/@ownedAnonymousDependencies.2">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773154155_9177" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773154155_2798" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773328544_2680" client="//@childPackages.9" dependencyTarget="//@childPackages.5"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773392385_6964" client="//@childPackages.9" dependencyTarget="//@childPackages.3"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773613049_6279" client="//@childPackages.9" dependencyTarget="//@childPackages.1"/>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.7" uuid="mitchell_1208803969076_6304"/>
+    <j_diagramHolder uuid="mitchell_1208804094736_6524" saveTime="Mon Apr 21, 2008 at 07:54:54 BST" savedBy="Andrew">
+      <diagram uuid="mitchell_1208804094737_6153" lastFigureId="3">
+        <figures uuid="mitchell_1208804094737_5464" id="2" recreator="Class" name="" icon="true" point="204 520" dimensions="24 24" suppressAttributes="true" suppressOperations="true" subject="//@childPackages.9/@ownedMember.0">
+          <figures uuid="mitchell_1208804094737_1799" id="2_A" recreator="Attributes" containedName="attrs" point="204 566" dimensions="40 8">
+            <properties uuid="mitchell_1208804094737_5697" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="mitchell_1208804094737_5312" id="2_C" recreator="SimpleContainer" containedName="contents" show="false" point="204 520" offset="4 4"/>
+          <figures uuid="mitchell_1208804094737_7858" id="2_P" recreator="PortCompartment" containedName="ports" show="false" point="204 520" dimensions="24 46">
+            <properties uuid="mitchell_1208804094737_5647" name="deletedUuids" value=""/>
+            <properties uuid="mitchell_1208804094737_9843" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="mitchell_1208804094737_640" id="2_O" recreator="Operations" containedName="ops" point="216 566" dimensions="40 8">
+            <properties uuid="mitchell_1208804094737_1988" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="mitchell_1208804094737_4606" name="deletedUuids" value=""/>
+          <properties uuid="mitchell_1208804094737_9120" name="owner" value="repository"/>
+        </figures>
+        <figures uuid="mitchell_1208804094737_5371" id="1" recreator="Model" point="120 312" dimensions="87 75" subject="/">
+          <figures uuid="mitchell_1208804094737_462" id="0" recreator="SimpleContainer" point="120 327" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208804094737_9363" name="fill" value="255 213 255"/>
+          <properties uuid="mitchell_1208804094737_2310" name="displayType" value="LAYER"/>
+          <properties uuid="mitchell_1208804094737_4781" name="owner" value=""/>
+          <properties uuid="mitchell_1208804094737_5139" name="suppVis" value="true"/>
+        </figures>
+      </diagram>
+    </j_diagramHolder>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773154892_3983" name="enhanced&#xA;swing" clientDependency="//@childPackages.10/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773154892_2576" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773154892_6048" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773594738_109" client="//@childPackages.10" dependencyTarget="//@childPackages.4"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773155476_2456" name="wmf" clientDependency="//@childPackages.11/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773155477_4915" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773155478_451" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773632746_1592" client="//@childPackages.11" dependencyTarget="//@childPackages.2"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773155996_7747" name="backbone&#xA;generator" clientDependency="//@childPackages.12/@ownedAnonymousDependencies.0 //@childPackages.12/@ownedAnonymousDependencies.1 //@childPackages.12/@ownedAnonymousDependencies.2">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773155997_1013" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773155997_6715" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773324046_9976" client="//@childPackages.12" dependencyTarget="//@childPackages.5"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773439843_1174" client="//@childPackages.12" dependencyTarget="//@childPackages.6"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773578048_7096" client="//@childPackages.12" dependencyTarget="//@childPackages.15"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773156513_3335" name="layout" clientDependency="//@childPackages.13/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773156514_8241" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773156514_4312" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773566432_4886" client="//@childPackages.13" dependencyTarget="//@childPackages.2"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773157253_6785" name="jumble" clientDependency="//@childPackages.14/@ownedAnonymousDependencies.1 //@childPackages.14/@ownedAnonymousDependencies.2 //@childPackages.14/@ownedAnonymousDependencies.3 //@childPackages.14/@ownedAnonymousDependencies.4 //@childPackages.14/@ownedAnonymousDependencies.5 //@childPackages.14/@ownedAnonymousDependencies.6 //@childPackages.14/@ownedAnonymousDependencies.7 //@childPackages.14/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773157254_6525" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773157254_8244" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="mitchell_1208773444908_9781" client="//@childPackages.14" dependencyTarget="//@childPackages.7"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773448347_6618" client="//@childPackages.14" dependencyTarget="//@childPackages.4"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773544039_1370" client="//@childPackages.14" dependencyTarget="//@childPackages.15"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773554119_6690" client="//@childPackages.14" dependencyTarget="//@childPackages.12"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773556617_4502" client="//@childPackages.14" dependencyTarget="//@childPackages.13"/>
+    <ownedAnonymousDependencies j_deleted="1" uuid="mitchell_1208773584792_3284" client="//@childPackages.14" dependencyTarget="//@childPackages.11"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773597633_5487" client="//@childPackages.14" dependencyTarget="//@childPackages.10"/>
+    <ownedAnonymousDependencies uuid="mitchell_1208773605065_8531" client="//@childPackages.14" dependencyTarget="//@childPackages.9"/>
+    <j_diagramHolder uuid="mitchell_1208783979358_8388" saveTime="Mon Apr 21, 2008 at 02:19:39 BST" savedBy="Andrew">
+      <diagram uuid="mitchell_1208783979363_5436" lastFigureId="53">
+        <figures uuid="mitchell_1208783979363_7705" id="35" recreator="dependency" anchor1Id="5" anchor2Id="7" virtualPoint="367.5 517.5" points="2 159.9 461.5 576 573.8" subject="//@childPackages.14/@childPackages.5/@ownedAnonymousDependencies.2">
+          <figures uuid="mitchell_1208783979365_8857" id="35_M" recreator="Linked Text" containedName="text" text="" show="false" point="352 500" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979365_9075" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979363_4948" id="36" recreator="dependency" anchor1Id="0" anchor2Id="7" virtualPoint="549.5 353.5" points="2 491.1 160.1 608.2 548.1" subject="//@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.2">
+          <figures uuid="mitchell_1208783979365_5420" id="36_M" recreator="Linked Text" containedName="text" text="" show="false" point="532 340" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979366_1055" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979363_5163" id="34" recreator="dependency" anchor1Id="7" anchor2Id="10" virtualPoint="707.5 669.5" points="2 659.9 624.1 756.2 716" subject="//@childPackages.14/@childPackages.7/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208783979364_8601" id="34_M" recreator="Linked Text" containedName="text" text="" show="false" point="692 656" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979364_9046" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979363_9307" id="39" recreator="dependency" anchor1Id="0" anchor2Id="5" virtualPoint="297.5 285.5" points="2 436.7 160.1 157.2 411.9" subject="//@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.3">
+          <figures uuid="mitchell_1208783979363_360" id="39_M" recreator="Linked Text" containedName="text" text="" show="false" point="280 268" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979363_8938" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979363_4773" id="42" recreator="dependency" anchor1Id="2" anchor2Id="5" virtualPoint="311.5 361.5" points="2 464 293 159.9 429.5" subject="//@childPackages.14/@childPackages.2/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208783979364_6755" id="42_M" recreator="Linked Text" containedName="text" text="" show="false" point="296 344" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979364_8486" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979363_3346" id="40" recreator="dependency" anchor1Id="3" anchor2Id="5" virtualPoint="429.5 361.5" points="2 699.9 285.7 160 437" subject="//@childPackages.14/@childPackages.3/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208783979364_1205" id="40_M" recreator="Linked Text" containedName="text" text="" show="false" point="412 344" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979364_7203" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979364_481" id="22" recreator="dependency" anchor1Id="9" anchor2Id="20" virtualPoint="325.5 787.5" points="2 351.4 752.1 298.9 823.9" subject="//@childPackages.14/@childPackages.9/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208783979366_7246" id="22_M" recreator="Linked Text" containedName="text" text="" show="false" point="309.1 770.5" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979366_265" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979364_3028" id="24" recreator="dependency" anchor1Id="2" anchor2Id="9" virtualPoint="443.5 493.5" points="2 496.3 312 390.4 676" subject="//@childPackages.14/@childPackages.2/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208783979368_8813" id="24_M" recreator="Linked Text" containedName="text" text="" show="false" point="428 476" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979368_4672" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979364_2133" id="26" recreator="dependency" anchor1Id="6" anchor2Id="9" virtualPoint="364 655.5" points="2 364 635 364 676" subject="//@childPackages.14/@childPackages.6/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208783979367_8734" id="26_M" recreator="Linked Text" containedName="text" text="" show="false" point="348 640" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979367_7979" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979365_3362" id="29" recreator="dependency" anchor1Id="5" anchor2Id="8" virtualPoint="167.5 581.5" points="2 130.6 487.9 204.7 676" subject="//@childPackages.14/@childPackages.5/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208783979366_528" id="29_M" recreator="Linked Text" containedName="text" text="" show="false" point="152.6 568" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979366_4492" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979365_7858" id="3" recreator="Package" autosized="false" point="700 236" dimensions="87 75" subject="//@childPackages.14/@childPackages.3">
+          <figures uuid="mitchell_1208783979364_6718" id="3_C" recreator="SimpleContainer" point="700 251" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979365_6897" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979365_6585" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979365_9756" id="2" recreator="Package" autosized="false" point="464 236" dimensions="87 75" subject="//@childPackages.14/@childPackages.2">
+          <figures uuid="mitchell_1208783979363_4061" id="2_C" recreator="SimpleContainer" point="464 251" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979365_1346" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979365_7750" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979365_912" id="1" recreator="Package" autosized="false" point="184 236" dimensions="87 75" subject="//@childPackages.14/@childPackages.1">
+          <figures uuid="mitchell_1208783979363_6412" id="1_C" recreator="SimpleContainer" point="184 251" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979365_278" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979365_789" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979365_4257" id="0" recreator="Package" autosized="false" point="436 84" dimensions="87 75" subject="//@childPackages.14/@childPackages.0">
+          <figures uuid="mitchell_1208783979368_9576" id="0_C" recreator="SimpleContainer" point="436 99" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979365_4899" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979365_1192" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979365_1439" id="7" recreator="Package" autosized="false" point="576 548" dimensions="87 75" subject="//@childPackages.14/@childPackages.7">
+          <figures uuid="mitchell_1208783979364_3048" id="7_C" recreator="SimpleContainer" point="576 563" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979365_2066" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979365_3765" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979365_8635" id="6" recreator="Package" autosized="false" point="296 560" dimensions="87 75" subject="//@childPackages.14/@childPackages.6">
+          <figures uuid="mitchell_1208783979366_1528" id="6_C" recreator="SimpleContainer" point="296 575" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979365_1748" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979365_8599" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979366_3166" id="5" recreator="Package" autosized="false" point="72 412" dimensions="87 75" subject="//@childPackages.14/@childPackages.5">
+          <figures uuid="mitchell_1208783979366_112" id="5_C" recreator="SimpleContainer" point="72 427" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979366_2752" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979366_6265" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979366_5906" id="4" recreator="Package" autosized="false" point="904 236" dimensions="87 75" subject="//@childPackages.14/@childPackages.4">
+          <figures uuid="mitchell_1208783979363_87" id="4_C" recreator="SimpleContainer" point="904 251" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979366_9420" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979366_6785" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979366_9410" id="31" recreator="dependency" anchor1Id="6" anchor2Id="8" virtualPoint="279.5 655.5" points="2 299.7 636 258.2 676" subject="//@childPackages.14/@childPackages.6/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208783979363_9968" id="31_M" recreator="Linked Text" containedName="text" text="" show="false" point="264 640" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979363_5610" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979366_3547" id="9" recreator="Package" autosized="false" point="336 676" dimensions="87 75" subject="//@childPackages.14/@childPackages.9">
+          <figures uuid="mitchell_1208783979367_699" id="9_C" recreator="SimpleContainer" point="336 691" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979366_9683" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979366_7506" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979366_6621" id="8" recreator="Package" autosized="false" point="176 676" dimensions="87 75" subject="//@childPackages.14/@childPackages.8">
+          <figures uuid="mitchell_1208783979363_8279" id="8_C" recreator="SimpleContainer" point="176 691" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979366_9129" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979366_5894" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979366_5428" id="18" recreator="dependency" anchor1Id="0" anchor2Id="10" virtualPoint="637.5 437.5" points="2 498.7 160 776.8 716.1" subject="//@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.1">
+          <figures uuid="mitchell_1208783979367_4036" id="18_M" recreator="Linked Text" containedName="text" text="" show="false" point="620 424" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979367_8597" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979367_7702" id="15" recreator="dependency" anchor1Id="0" anchor2Id="11" virtualPoint="448 487.5" points="2 448 159 448 816" subject="//@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208783979364_6505" id="15_M" recreator="Linked Text" containedName="text" text="" show="false" point="432 472" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979364_4989" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979367_9241" id="13" recreator="dependency" anchor1Id="10" anchor2Id="11" virtualPoint="627.5 803.5" points="2 751.9 766.5 504.1 840.2" subject="//@childPackages.14/@childPackages.10/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208783979364_5865" id="13_M" recreator="Linked Text" containedName="text" text="" show="false" point="612 788" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979364_5764" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979367_6408" id="14" recreator="dependency" anchor1Id="5" anchor2Id="11" virtualPoint="287.5 651.5" points="2 148.4 488.1 427.6 816" subject="//@childPackages.14/@childPackages.5/@ownedAnonymousDependencies.0">
+          <figures uuid="mitchell_1208783979364_2014" id="14_M" recreator="Linked Text" containedName="text" text="" show="false" point="272 636.6" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979365_8857" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979367_1223" id="11" recreator="Package" autosized="false" point="416 816" dimensions="87 75" subject="//@childPackages.14/@childPackages.11">
+          <figures uuid="mitchell_1208783979363_475" id="11_C" recreator="SimpleContainer" point="416 831" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979367_2981" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979367_6031" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979367_5349" id="20" recreator="Package" autosized="false" point="228 824" dimensions="87 75" subject="//@childPackages.11">
+          <figures uuid="mitchell_1208783979366_2993" id="19" recreator="SimpleContainer" point="228 839" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979367_7716" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979367_7782" name="showVis" value="true"/>
+          <properties uuid="mitchell_1208783979367_300" name="owner" value="model"/>
+        </figures>
+        <figures uuid="mitchell_1208783979367_2117" id="49" recreator="dependency" anchor1Id="2" anchor2Id="6" virtualPoint="423.5 435.5" points="2 487.6 311.9 359 560" subject="//@childPackages.14/@childPackages.2/@ownedAnonymousDependencies.2">
+          <figures uuid="mitchell_1208783979367_493" id="49_M" recreator="Linked Text" containedName="text" text="" show="false" point="408 420" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979367_2069" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979367_7351" id="45" recreator="dependency" anchor1Id="0" anchor2Id="4" virtualPoint="713.5 197.5" points="2 524 135.9 904 259.4" subject="//@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.4">
+          <figures uuid="mitchell_1208783979363_7247" id="45_M" recreator="Linked Text" containedName="text" text="" show="false" point="696 180" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979364_3415" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979367_7125" id="46" recreator="dependency" anchor1Id="0" anchor2Id="3" virtualPoint="611.5 197.5" points="2 524.1 147.2 700 248.5" subject="//@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.5">
+          <figures uuid="mitchell_1208783979364_7466" id="46_M" recreator="Linked Text" containedName="text" text="" show="false" point="596 180" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979364_3171" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="mitchell_1208783979368_7275" id="10" recreator="Package" autosized="false" point="752 716" dimensions="87 75" subject="//@childPackages.14/@childPackages.10">
+          <figures uuid="mitchell_1208783979364_196" id="10_C" recreator="SimpleContainer" point="752 731" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1208783979368_9722" name="fill" value="193 206 236"/>
+          <properties uuid="mitchell_1208783979368_1908" name="owner" value="jumble"/>
+        </figures>
+        <figures uuid="mitchell_1208783979368_6264" id="52" recreator="dependency" anchor1Id="0" anchor2Id="1" virtualPoint="353.5 197.5" points="2 436.1 147.7 272 246.7" subject="//@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.6">
+          <figures uuid="mitchell_1208783979367_2650" id="52_M" recreator="Linked Text" containedName="text" text="" show="false" point="340 180" dimensions="3.8 14">
+            <properties uuid="mitchell_1208783979367_8816" name="suppress" value="true"/>
+          </figures>
+        </figures>
+      </diagram>
+    </j_diagramHolder>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783656838_3849" name="gui" clientDependency="//@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.0 //@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.1 //@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.2 //@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.3 //@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.4 //@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.5 //@childPackages.14/@childPackages.0/@ownedAnonymousDependencies.6">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783656838_1943" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783656839_6128" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208783736879_5699" client="//@childPackages.14/@childPackages.0" dependencyTarget="//@childPackages.14/@childPackages.11"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783755424_2143" client="//@childPackages.14/@childPackages.0" dependencyTarget="//@childPackages.14/@childPackages.10"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783909709_178" client="//@childPackages.14/@childPackages.0" dependencyTarget="//@childPackages.14/@childPackages.7"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783916702_6802" client="//@childPackages.14/@childPackages.0" dependencyTarget="//@childPackages.14/@childPackages.5"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783937959_3189" client="//@childPackages.14/@childPackages.0" dependencyTarget="//@childPackages.14/@childPackages.4"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783939054_3826" client="//@childPackages.14/@childPackages.0" dependencyTarget="//@childPackages.14/@childPackages.3"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783966152_2342" client="//@childPackages.14/@childPackages.0" dependencyTarget="//@childPackages.14/@childPackages.1"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783657638_8761" name="import/&#xA;export">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783657639_3383" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783657639_2862" value="true"/>
+      </appliedBasicStereotypeValues>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783658151_2726" name="freeform" clientDependency="//@childPackages.14/@childPackages.2/@ownedAnonymousDependencies.0 //@childPackages.14/@childPackages.2/@ownedAnonymousDependencies.1 //@childPackages.14/@childPackages.2/@ownedAnonymousDependencies.2">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783658151_9719" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783658151_8076" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208783798859_581" client="//@childPackages.14/@childPackages.2" dependencyTarget="//@childPackages.14/@childPackages.9"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783928190_4545" client="//@childPackages.14/@childPackages.2" dependencyTarget="//@childPackages.14/@childPackages.5"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783952999_6156" client="//@childPackages.14/@childPackages.2" dependencyTarget="//@childPackages.14/@childPackages.6"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783658598_7373" name="alloy" clientDependency="//@childPackages.14/@childPackages.3/@ownedAnonymousDependencies.0">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783658599_1445" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783658599_1949" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208783918095_1529" client="//@childPackages.14/@childPackages.3" dependencyTarget="//@childPackages.14/@childPackages.5"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783659133_5671" name="html">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783659134_2715" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783659134_8498" value="true"/>
+      </appliedBasicStereotypeValues>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783662476_6399" name="uml&#xA;diagrams" clientDependency="//@childPackages.14/@childPackages.5/@ownedAnonymousDependencies.0 //@childPackages.14/@childPackages.5/@ownedAnonymousDependencies.1 //@childPackages.14/@childPackages.5/@ownedAnonymousDependencies.2">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783662477_2157" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783662477_8408" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208783732951_7715" client="//@childPackages.14/@childPackages.5" dependencyTarget="//@childPackages.14/@childPackages.11"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783817051_7868" client="//@childPackages.14/@childPackages.5" dependencyTarget="//@childPackages.14/@childPackages.8"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783903462_4929" client="//@childPackages.14/@childPackages.5" dependencyTarget="//@childPackages.14/@childPackages.7"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783663054_5310" name="package&#xA;view" clientDependency="//@childPackages.14/@childPackages.6/@ownedAnonymousDependencies.0 //@childPackages.14/@childPackages.6/@ownedAnonymousDependencies.1">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783663054_7517" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783663054_5796" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208783803426_4106" client="//@childPackages.14/@childPackages.6" dependencyTarget="//@childPackages.14/@childPackages.9"/>
+      <ownedAnonymousDependencies uuid="mitchell_1208783893694_8102" client="//@childPackages.14/@childPackages.6" dependencyTarget="//@childPackages.14/@childPackages.8"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783663752_1833" name="delta&#xA;view" clientDependency="//@childPackages.14/@childPackages.7/@ownedAnonymousDependencies.0">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783663752_8027" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783663752_4057" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208783901125_9422" client="//@childPackages.14/@childPackages.7" dependencyTarget="//@childPackages.14/@childPackages.10"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783664838_182" name="guibase">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783664838_8755" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783664838_4949" value="true"/>
+      </appliedBasicStereotypeValues>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783665268_9243" name="clipboard&#xA;actions" clientDependency="//@childPackages.14/@childPackages.9/@ownedAnonymousDependencies.0">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783665269_7231" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783665269_6230" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208783790041_1205" client="//@childPackages.14/@childPackages.9" dependencyTarget="//@childPackages.11"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783666005_786" name="error&#xA;checking" clientDependency="//@childPackages.14/@childPackages.10/@ownedAnonymousDependencies.0">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783666005_9518" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783666005_8655" value="true"/>
+      </appliedBasicStereotypeValues>
+      <ownedAnonymousDependencies uuid="mitchell_1208783728616_3637" client="//@childPackages.14/@childPackages.10" dependencyTarget="//@childPackages.14/@childPackages.11"/>
+    </childPackages>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208783666534_1167" name="repository&#xA;browser">
+      <appliedBasicStereotypeValues uuid="mitchell_1208783666534_3812" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208783666534_7714" value="true"/>
+      </appliedBasicStereotypeValues>
+    </childPackages>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208773537799_2671" name="easydock">
+    <appliedBasicStereotypeValues uuid="mitchell_1208773537800_2632" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208773537800_2253" value="true"/>
+    </appliedBasicStereotypeValues>
+  </childPackages>
+  <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208784974651_1240">
+    <appliedBasicStereotypeValues uuid="mitchell_1208784974651_9121" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208784974651_6028" value="true"/>
+    </appliedBasicStereotypeValues>
+  </childPackages>
+  <childPackages uuid="mitchell_1208800893309_7440">
+    <j_diagramHolder uuid="mitchell_1208800903001_3370" saveTime="Wed Apr 23, 2008 at 09:08:04 BST" savedBy="Andrew">
+      <diagram uuid="superfly2_1208981284809_9083" lastFigureId="9">
+        <figures uuid="superfly2_1208981284810_4" id="1" recreator="Package" autosized="false" point="104 344" dimensions="87 75" subject="//@childPackages.17/@childPackages.1">
+          <figures uuid="superfly2_1208981284811_6243" id="1_C" recreator="SimpleContainer" point="104 359" dimensions="87 60" offset="4 4"/>
+          <properties uuid="superfly2_1208981284810_3334" name="fill" value="193 206 236"/>
+          <properties uuid="superfly2_1208981284811_7260" name="owner" value=""/>
+        </figures>
+        <figures uuid="superfly2_1208981284811_3697" id="4" recreator="Model" point="384 172" dimensions="87 75" subject="/">
+          <figures uuid="superfly2_1208981284810_4324" id="3" recreator="SimpleContainer" point="384 187" dimensions="87 60" offset="4 4"/>
+          <properties uuid="superfly2_1208981284811_8520" name="fill" value="255 213 255"/>
+          <properties uuid="superfly2_1208981284811_8069" name="displayType" value="LAYER"/>
+          <properties uuid="superfly2_1208981284811_5306" name="owner" value=""/>
+          <properties uuid="superfly2_1208981284811_1670" name="suppVis" value="true"/>
+        </figures>
+      </diagram>
+    </j_diagramHolder>
+    <childPackages xsi:type="uml:Model" j_deleted="1" uuid="mitchell_1208800897203_7566"/>
+    <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208800988811_6806">
+      <appliedBasicStereotypeValues uuid="mitchell_1208800988813_8019" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1208800988814_9399" value="true"/>
+      </appliedBasicStereotypeValues>
+    </childPackages>
+    <childPackages xsi:type="uml:Model" j_deleted="1" uuid="mitchell_1208801114794_1471"/>
+    <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="mitchell_1208802075024_6915"/>
+    <childPackages xsi:type="uml:Model" j_deleted="1" uuid="mitchell_1208802772149_8889"/>
+  </childPackages>
+</uml:Model>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="MTSSynthesis/src"/>
+	<classpathentry kind="src" path="MTSTools/src"/>
+	<classpathentry kind="src" path="MTSAClient/src"/>
+	<classpathentry kind="src" path="ltsa/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="ltsa/lib/animator.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/commons-lang-2.2.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/framework.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/gnu-regexp-1.1.1.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/jdom.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/jel.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/LTL2Buchi.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/natutil.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/scenebeans.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/swing-layout-1.0.jar"/>
+	<classpathentry kind="lib" path="ltsa/lib/xml.jar"/>
+	<classpathentry kind="lib" path="/CommonResources/JTattoo.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts
+END
+Primes.lts
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts/Primes.lts
+END
+BoxMover.lts
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts/BoxMover.lts
+END
+AbstractPrimes.lts
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts/AbstractPrimes.lts
+END
+AnnouncerLstener.lts
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts/AnnouncerLstener.lts
+END
+TupleSpace.lts
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts/TupleSpace.lts
+END
+SupervisorWorker-non-term.lts
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts/SupervisorWorker-non-term.lts
+END
+SupervisorWorker-revised.lts
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts/SupervisorWorker-revised.lts
+END
+contents.txt
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter11_lts/contents.txt
+END

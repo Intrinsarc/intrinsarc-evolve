@@ -1,0 +1,10 @@
+        <UML:Package xmi.id="a32" xmi.uuid="DCE-1145391293790-594" name="patterns" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a38" xmi.uuid="DCE-1145391299994-23" isActive="false" name="Service" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a39" xmi.uuid="DCE-1145391315025-326" name="IService" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a40" xmi.uuid="DCE-1145391322338-7" name="INotify" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a44" xmi.uuid="DCE-1145391403215-577" isActive="false" name="&#171;mca&#187; MulticlientService" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a45" xmi.uuid="DCE-1145391456591-310" isActive="false" name="&#171;mca-manager&#187; Manager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a46" xmi.uuid="DCE-1145391653917-367" name="IMulticlientService" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

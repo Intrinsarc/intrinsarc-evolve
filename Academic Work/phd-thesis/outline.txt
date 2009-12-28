@@ -1,0 +1,90 @@
+Organisation of thesis:
+
+Introduction
+	The motivation for extensible applications
+	Example Scenario
+	Requirements for Approach
+	Thesis Outline
+
+Background
+	Architecture Description Languages
+	Component Technologies
+	System Extensibility
+		(includes resolution of conflicts)
+		Object-oriented Language approaches (frameworks, mixins, units, nested inheritance)
+		Aspects
+		Parametrisation (Koala)
+		Architecturally aware CM systems
+		Plugin Architectures
+  		Scripting
+		Product Lines / Families
+	Summary
+
+Requirements for Extensibility in an Architectural Context
+  (from SAVCBS 2006 paper)
+
+The Backbone Model (merge into single chapter with next)
+	(introduces the model gradually)
+	Defining the desk application
+	Extending the Application: Adding a CD Player
+	Evolving the Application: Upgrading to add a new facility
+	Combining Extensions
+	Summary
+
+The Backbone Model
+	(use example to introduce model and show how it meets requirements)
+	The Basic Component Model
+		Explain full model using previous example
+		Dynamicity
+	Extension Constructs
+		Resemblance
+		Replacement
+		Stratum
+		Concept of perspective
+		Baselining
+	Techniques and Patterns
+		Visitor, Factory, Singleton, State machines
+	Formal Specification
+		Coverage of specification (component + interfaces + stratum + constructs + rules + conflict handling)
+		Type inference
+		What's missing
+		Explain how replacement and resemblance are combined with strata dependencies to give constituents
+		Explain conflict detection and handling
+		Explain significant properties
+
+Tool Support for Backbone
+	Requirements (manageability, support for large models, inference, sharing models)
+	Mapping onto UML2
+	Explain facilities of CASE tool
+
+Comparisons to Existing Approaches
+	Compare and contrast with plugin architectures
+	Compare and contrast with COM
+	Compare and contrast with Koala and parametrised approaches
+
+Modeling the LTSA Product Family
+	Show parts of LTSA and how Backbone could model this
+	Compare and contrast with Rob's plugin approach + other ad-hoc approaches
+
+Building on the Structural Foundation
+	Describing behaviour in an extensible system using sequence charts and FSP
+	Detecting behavioural conflicts
+
+Conclusions and Future Work
+
+Appendix A: The Backbone Structural Specification
+	Approach
+	Concepts
+	Rules
+	Properties
+	Mapping onto advanced features: indices, factories, hyperports
+
+Appendix B: Mapping Protocols onto FSP
+
+Appendix C: Full Alloy Models
+
+Appendix D: Implementation of DeltaEngine from specification
+
+
+
+

@@ -1,0 +1,47 @@
+8
+
+dir
+171
+https://mtsa.svn.sourceforge.net/svnroot/mtsa/trunk/ltsa/dist
+https://mtsa.svn.sourceforge.net/svnroot/mtsa
+
+
+
+2009-07-02T10:54:59.261764Z
+170
+srdipi78
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fcb65440-8149-0410-bc05-9de0824cdfc8
+
+mtsa.jar
+file
+
+
+
+
+2009-07-07T21:26:14.000000Z
+ff7ee1bbb9a2ac329ff05c27f8be6940
+2009-07-02T10:46:44.143318Z
+169
+srdipi78
+has-props
+
+lib
+dir
+
+examples
+dir
+

@@ -1,0 +1,749 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Conclusions"
+
+\end_inset
+
+Conclusions
+\end_layout
+
+\begin_layout Standard
+The thesis presents an architectural approach for extensible applications,
+ allowing a system to be extended and customised without direct access to
+ its implementation code.
+ This chapter summarises the contributions of our approach and outlines
+ future work.
+\end_layout
+
+\begin_layout Section
+Contributions
+\end_layout
+
+\begin_layout Subsection
+A Formally Specified, Structural Technique for Application Extensibility
+\end_layout
+
+\begin_layout Standard
+The primary contribution of this work is to describe and formally specify
+ a design-time technique for extending an application by manipulating the
+ hierarchical structure of its architecture.
+ This technique accommodates both planned extension, where the original
+ application developers had foreseen the type of changes required, and unplanned
+ extension where they had not.
+\end_layout
+
+\begin_layout Standard
+A key point of differentiation from other approaches is that extensibility
+ does not need to be explicitly factored into an architecture, but instead
+ accrues as the architecture is naturally elaborated into deeper hierarchical
+ structures.
+\end_layout
+
+\begin_layout Standard
+Extensibility is achieved whilst satisfying or ameliorating a number of
+ requirements which relate to the impact of any extension changes upon other
+ developers.
+ These requirements capture the forces and constraints between developers
+ involved in common extension scenarios.
+ Existing techniques for creating variants, such as plugin architectures,
+ product lines and aspect-oriented approaches, do not address these issues
+ in a satisfactory way.
+\end_layout
+
+\begin_layout Standard
+Architectural restructuring and manipulation is enabled by adding three
+ concepts to a conventional UML2-based hierarchical ADL.
+ Resemblance allows a new component to be defined in terms of structural
+ similarity to other components.
+ Replacement substitutes one component definition for another, allowing
+ for structural change at multiple places in a compositional hierarchy.
+ A stratum groups related definitions, forming a unit of extension.
+ Together, these facilities allow the compositional hierarchy of an application
+ to be restructured incrementally to accommodate architectural changes for
+ new requirements.
+ The same constructs can be used to correct any well-formedness conflicts
+ that are detected when combining independently developed extensions that
+ share a common base.
+\end_layout
+
+\begin_layout Standard
+As the approach works by treating a system as a hierarchically structured
+ component, it is equally applicable to the reuse of components within an
+ architecture.
+ As well as providing for extensibility, therefore, the constructs are useful
+ for general software construction.
+\end_layout
+
+\begin_layout Standard
+The three extensibility concepts are formally specified using the Alloy
+ logic language, without reference to the component model which is specified
+ on top of this foundation.
+ As such, replacement and resemblance are general concepts that can be applied
+ to elements other than components.
+ In the approach, we also allow interfaces to be replaced and resembled
+ to describe the evolution and substitutability of services in an architecture.
+\end_layout
+
+\begin_layout Subsection
+A Modelling Environment for Application Creation and Extension
+\end_layout
+
+\begin_layout Standard
+A secondary contribution is the provision of a modelling environment and
+ runtime execution platform based directly on the formal specification.
+ The use of the formal specification has proven to be invaluable in avoiding
+ the corner cases and inconsistencies associated with previous implementations.
+\end_layout
+
+\begin_layout Standard
+The modelling environment integrates the change model of our approach with
+ UML2 composite structure diagrams, providing a familiar and intuitive workbench
+ for application creation and extension.
+ Strata import and export facilitate the sharing that occurs in an extension
+ setting.
+ Unlike many other techniques for handling architectural variation, the
+ link between architectural components and implementation classes is captured
+ naturally as part of the wider approach.
+\end_layout
+
+\begin_layout Standard
+The runtime platform uses the mapping from leaf components to underlying
+ implementation classes to instantiate and execute an application.
+\end_layout
+
+\begin_layout Section
+Critical Review Against Requirements
+\end_layout
+
+\begin_layout Standard
+In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Motivation"
+
+\end_inset
+
+, we established the research question for this area of work.
+\end_layout
+
+\begin_layout Quote
+Can we devise an architectural approach to software that naturally builds
+ extensibility into a system as it is constructed, which also respects the
+ underlying forces and constraints between extension and base application
+ developers?
+\end_layout
+
+\begin_layout Standard
+To answer this question, we examined an extensibility scenario and established
+ seven requirements that an ideal extensibility approach should satisfy.
+ We now review our approach against these.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Alter
+\noun default
+ The compositional structure of an application can be arbitrarily adjusted
+ using replacement and resemblance, allowing alterations to be made for
+ both planned and unplanned changes.
+ The key factor determining whether the architectural alterations required
+ are proportionate to the size of the functionality added, replaced or removed
+ is the granularity of component decomposition.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+NoSource
+\noun default
+ Implementation source code of the base application is not required for
+ extension.
+ Source code does not have to be changed to handle replacement as the architectu
+ral description and runtime platform control component instantiation.
+ If components are too coarse-grained, however, replacement can incur a
+ cost penalty relative to the size of the added or changed functionality.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+NoImpact
+\noun default
+ No base or extension developer is affected by an extension, unless they
+ choose to include it in their model.
+ As the approach can handle unplanned extension, an extension developer
+ is able to make changes without placing the architectural burden on the
+ base application developers.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Combine
+\noun default
+ Alterations made using replacement and resemblance are held as deltas against
+ base components, allowing extensions to be combined.
+ Combining extensions merges the deltas for each component using the strata
+ dependency graph to control application order.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Upgrade
+\noun default
+ An upgrade can be phrased as an extension, and combined with other extensions.
+ Conflict can be detected in the same way, and corrected using a further
+ extension.
+ Alternatively, an upgrade can be performed by destructively modifying the
+ base architecture.
+ In this case the use of UUIDs to preserve the logical identity of components
+ and their internal constituents reduces the disruption to existing extensions.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+DetectAndCorrect
+\noun default
+ Structural conflict between extensions occurs when two independently developed
+ extensions make incompatible changes to a common base architecture.
+ This can be detected by a set of structural rules, and corrected by evolutions
+ in a further extension.
+ The use of UUIDs for logical identity removes the possibility of naming
+ conflicts between extensions.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+AppropriateLevel
+\noun default
+ The use of a compositional hierarchy resolves the tension between having
+ fine-grained components for ease of extension, and having coarse-grained
+ components for ease of architectural management.
+ An extension can be phrased at the appropriate level of composition, whilst
+ permitting access to deeper levels when required.
+\end_layout
+
+\begin_layout Standard
+The answer to the research question is in the affirmative.
+ It is possible to align the forces of application creation and extension
+ in an architectural setting, such that each activity benefits the other.
+ In the Backbone approach, natural points of extension arise as hierarchical
+ component construction of the base application takes place, and extensions
+ can take advantage of this to remake the architecture as required.
+ Conversely, the constructs added to allow extensibility are useful in their
+ own right for general software construction.
+\end_layout
+
+\begin_layout Standard
+A key insight to emerge from the case studies and evaluation is that an
+ architecture must be decomposed to a relatively fine-grained level in order
+ to accommodate small extension changes without incurring a disproportionate
+ cost due to replacement.
+ In practice, the granularity of components will be expressed at a level
+ which is natural for a given system, and can never be perfectly aligned
+ to every possible change.
+ This invariably leads to some development overhead when creating an extension.
+\end_layout
+
+\begin_layout Standard
+In mature systems that are not structured as deep component hierarchies,
+ gradual decomposition of the architecture is recommended as a way of easing
+ the approach into the architecture.
+ This requires modification of the base source until the decomposition is
+ fine-grained enough, but this is an architectural elaboration activity
+ rather than a predictive exercise in adding extension points.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Further-Work"
+
+\end_inset
+
+Future Work
+\end_layout
+
+\begin_layout Standard
+This section examines future work in the area of extensible applications,
+ building on the structural foundation provided by our approach.
+\end_layout
+
+\begin_layout Subsection
+Behavioural Checking of Extensions
+\end_layout
+
+\begin_layout Standard
+Our work so far has focused on a structural approach to extensibility, including
+ the detection and correction of conflict between extensions.
+ We plan to build on this foundation, by incorporating existing research
+ on the behavioural analysis of component systems.
+ The aim is to allow the behaviour of extensions to be specified, and their
+ interaction with the base application and other extensions to be analysed
+ for certain properties.
+ This will also allow concurrent component behaviour to be modelled.
+\end_layout
+
+\begin_layout Standard
+The motivation is that whilst resolving structural conflict is necessary
+ for extensions to work together, it is not sufficient to guarantee correct
+ behaviour of the extended system.
+ As shown in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hay2000"
+
+\end_inset
+
+, behavioural conflicts can result at both a protocol and overall goal level
+ after functionality has been added, even if a system is notionally structurally
+ correct.
+ 
+\end_layout
+
+\begin_layout Standard
+Component-based behavioural analysis has a rich research history and been
+ considered in depth in an architectural context 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Adamek2004,Adamek2005,Magee1999,Medvidovic1999a"
+
+\end_inset
+
+.
+ Protocol checking in extensible systems has been considered in a plugin
+ context in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chatley2004a"
+
+\end_inset
+
+, although this does not cover hierarchical composition and does not provide
+ a particularly intuitive way to specify behaviour.
+ 
+\end_layout
+
+\begin_layout Standard
+In keeping with a practical, engineering approach, we plan to allow protocols
+ to be specified at the leaf component level using UML2 sequence diagrams
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMGUML"
+
+\end_inset
+
+.
+ A sequence chart can have looping, parallel, alternate and optional regions
+ in the style of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Plasil2002"
+
+\end_inset
+
+, which can then be used to form a conservative 
+\begin_inset Quotes eld
+\end_inset
+
+upper bound
+\begin_inset Quotes erd
+\end_inset
+
+ of worst-case component behaviour.
+ The protocols of composite components can be formed automatically from
+ the leaf protocols using composition and hiding 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1999"
+
+\end_inset
+
+.
+ In this way, the behavioural properties of a system can be analysed automatical
+ly by composing protocols after an extension has been applied.
+\end_layout
+
+\begin_layout Standard
+We have done some initial work towards an automated translation from sequence
+ diagrams into FSP expressions.
+ The interfaces provided and required by the ports of a component are modelled
+ as separate actors, as is the component itself, allowing interactions between
+ ports to be represented.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Protocol-representations-as"
+
+\end_inset
+
+ shows the protocol of an alarm component modelled using an earlier incarnation
+ of Evolve, and the resultant LTS after this was composed with a timer leaf
+ component to form an alarm clock system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/protocol.png
+	lyxscale 50
+	scale 32
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Protocol-representations-as"
+
+\end_inset
+
+ A component protocol and LTS after composition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have not yet determined a suitable form for expressing the behavioural
+ goals of an extension.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Feature-Modelling-in"
+
+\end_inset
+
+Extensible Feature Modelling in Backbone
+\end_layout
+
+\begin_layout Standard
+Currently there is no consideration in Backbone for the link between requirement
+s and the elements of an architecture.
+ To rectify this we plan to incorporate feature modelling into our approach,
+ where an extension can define features which refer to associated components
+ and interfaces.
+ Features can be composed of other features, allowing feature trees to be
+ built in a similar way to feature-oriented domain analysis techniques 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kang1990"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In keeping with our extensibility approach, we plan to represent features
+ as elements which can therefore be replaced and resembled.
+ This will allow the compositional structure of the feature tree to be adjusted
+ via extensions.
+ We anticipate that this will ameliorate the current need to specify a feature
+ tree with optional and mandatory elements for an entire domain up front,
+ allowing a more gradual approach to feature modelling
+\end_layout
+
+\begin_layout Subsection
+Baselining For Delta Compression
+\end_layout
+
+\begin_layout Standard
+Backbone allows extensions to be built on top of other extensions, making
+ the concept of base application a relative one.
+ This can create a situation where the original base is buried under many
+ layers of deltas.
+ To address this, we plan to specify and develop a way to merge the original
+ base and a number of extensions into a new base application with no deltas.
+ This is known as a baseline.
+\end_layout
+
+\begin_layout Standard
+Investigation into a baselining operation revealed an intriguing possibility:
+ by merging an application and an extension and placing the result into
+ what was previously the extension stratum, we can use the original base
+ stratum as an extension which reverts the upgraded system back to its original
+ structure.
+ This allows the architecture to move forward, but retain the previous incarnati
+on of the system as an extension for maintenance and backwards compatibility
+ purposes.
+\end_layout
+
+\begin_layout Standard
+The effect of this on a strata graph is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Baselining-reverses-the"
+
+\end_inset
+
+.
+ In (a) the original 
+\family typewriter
+system1.0
+\family default
+ base is extended by applying the deltas from 
+\family typewriter
+system2.0
+\family default
+.
+ In (b), after baselining, the extension and the base have been merged,
+ and the new application without deltas is stored in the 
+\family typewriter
+system2.0
+\family default
+ stratum.
+ That stratum is the new base and the 
+\family typewriter
+system1.0
+\family default
+ stratum now holds an automatically created extension containing deltas
+ that revert the new base back to the original 1.0 system.
+ Note that the dependency has been reversed.
+ The 
+\family typewriter
+combine
+\family default
+ extension in (c) applies a new extension built on the new base, to the
+ old base.
+ Any structural issues that result can be corrected in the 
+\family typewriter
+combine
+\family default
+ extension stratum.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/baseline.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Baselining-reverses-the"
+
+\end_inset
+
+Baselining reverses the relationship between a base and an extension
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Integration with Existing Module Systems
+\end_layout
+
+\begin_layout Standard
+Conflict in Backbone occurs when independently developed strata, operating
+ on the same base, evolve a base element in incompatible ways.
+ Our approach deals with this conflict by allowing a further stratum to
+ correct errors, resulting in an application-wide consensus on the final
+ structure of all components.
+\end_layout
+
+\begin_layout Standard
+Existing module systems used in industry, such as OSGi 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OSGi2003"
+
+\end_inset
+
+, cannot correct structure in this way and instead permit multiple versions
+ of a component to run in parallel under certain circumstances.
+ Whilst this causes obvious problems if a single instance of a component
+ must be shared widely throughout an application, it is useful for handling
+ different versions of library infrastructure such as XML parsers.
+\end_layout
+
+\begin_layout Standard
+We plan to integrate our system with OSGi in the future, and are investigating
+ a way to allow Backbone to represent parallel versions where required.
+ A 
+\begin_inset Quotes eld
+\end_inset
+
+frozen
+\begin_inset Quotes erd
+\end_inset
+
+ stereotype has been considered for constituent parts of a component in
+ order to prevent further extensions being applied to the part's type.
+ This facility could be added to or removed from a part by an evolution
+ in an extension.
+ Further work is needed to determine if this will allow Backbone and OSGi
+ to interoperate effectively.
+\end_layout
+
+\begin_layout Standard
+OSGi allows bundles (modules) to be dynamically loaded and unloaded whilst
+ a program is running.
+ As part of the integration, we plan to investigate whether Backbone can
+ be used for runtime architectural changes in addition to its current handling
+ of design-time changes.
+\end_layout
+
+\begin_layout Subsection
+Applying Backbone to Evolve and the Runtime Platform
+\end_layout
+
+\begin_layout Standard
+Although our extensibility ideas arose from experience creating and extending
+ earlier versions of Evolve, neither the modelling tool nor the runtime
+ are currently structured as Backbone architectures.
+ This was the result of a bootstrapping dilemma: we required an existing
+ tool to develop and refine the approach, but the approach was not yet in
+ existence when the applications were developed.
+\end_layout
+
+\begin_layout Standard
+We plan to restructure both the modelling tool and runtime platform using
+ Backbone.
+ The benefit to the modelling tool is that Backbone can then serve as the
+ extension architecture.
+ The benefit of expressing the runtime using Backbone is that it will let
+ applications extend and customise the runtime behaviour of the platform.
+ We further plan to allow user-defined stereotypes with expansion rules
+ and visual customisations.
+\end_layout
+
+\begin_layout Section
+Closing Remarks
+\end_layout
+
+\begin_layout Standard
+Creating an extensible system can be a complex and difficult endeavour.
+ Current techniques require a great deal of insight into possible future
+ changes, and this type of predictive work results in a large amount of
+ development overhead.
+ There is also no guarantee that the predictions will be accurate, and future
+ requirements can be difficult to realise even in an extensible system that
+ notionally provides much of the functionality already.
+ These limitations are a concern, because in several other respects application
+ extensibility has proven to be an effective technique for delivering a
+ system which can be quickly adapted for new needs.
+\end_layout
+
+\begin_layout Standard
+We have described an approach where extensibility is naturally built into
+ a system as it is constructed.
+ The same elements that form the building blocks of development also form
+ the units of replacement, allowing alterations to be performed on an architectu
+re to restructure it in ways which were not necessarily planned for.
+ This is a robust, architectural approach that avoids the need to predict
+ future requirements, thereby simplifying the task of creating extensible
+ systems.
+\end_layout
+
+\end_body
+\end_document

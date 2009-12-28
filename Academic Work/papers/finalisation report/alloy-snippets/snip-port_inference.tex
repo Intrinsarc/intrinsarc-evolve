@@ -1,0 +1,14 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={port\_inference.als, lines 86-111}, label=alloy:port_inference, captionpos=b]
+matchingRequires = extractLowestCommonSubtypes[s, requiresFromEnds],
+      ...
+matchingProvides = extractHighestCommonSupertypes[s, providesFromEnds]
+{
+  infReq = matchingRequires
+  infProv = matchingProvides
+
+  s -> c not in end.linkError <=>
+    (oneToOneProvidedMappingExists[s, c, infProv, reqEnds] and
+     oneToOneRequiredMappingExists[s, c, infReq, reqEnds])
+}
+\end{lstlisting}

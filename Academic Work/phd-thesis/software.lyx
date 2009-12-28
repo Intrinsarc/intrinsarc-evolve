@@ -1,0 +1,120 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+
+\usepackage{listings}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--}
+}
+
+\lstset{language=Alloy}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Software"
+
+\end_inset
+
+Obtaining the Software and Example Models
+\end_layout
+
+\begin_layout Standard
+The following location allows files and software relating to this thesis
+ to be downloaded.
+\end_layout
+
+\begin_layout Quotation
+
+\family typewriter
+http://www.tanarc.com/phd
+\end_layout
+
+\begin_layout Standard
+The following downloads are available.
+\end_layout
+
+\begin_layout Itemize
+An electronic copy of this thesis.
+\end_layout
+
+\begin_layout Itemize
+The Evolve modelling tool and Backbone runtime platform.
+\end_layout
+
+\begin_layout Itemize
+A number of the example models used in this thesis, along with related source
+ code where appropriate.
+\end_layout
+
+\begin_layout Itemize
+The formal specification.
+\end_layout
+
+\begin_layout Standard
+The site may be password protected to prevent search engine indexing.
+ If prompted for a username and password, enter 
+\family typewriter
+phd
+\family default
+ for both.
+\end_layout
+
+\begin_layout Standard
+Further instructions for using Evolve to execute the example applications
+ are contained on the site.
+ Evolve is compatible with any platform that has a recent Java runtime.
+ JRE1.6 or greater is preferred, although the software also works with JRE1.5.
+\end_layout
+
+\end_body
+\end_document

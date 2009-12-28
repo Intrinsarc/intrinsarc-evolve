@@ -1,0 +1,13 @@
+            <UML:Package xmi.id="a45" xmi.uuid="DCE-1139488467073-412" name="connections" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a54" xmi.uuid="DCE-1139488476151-888" name="ComponentX" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a55" xmi.uuid="DCE-1139488487448-584" name="ComponentY" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a56" xmi.uuid="DCE-1139488698198-247" name="ComponentZ" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a57" xmi.uuid="DCE-1139490042433-349" name="IProvided" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a58" xmi.uuid="DCE-1139490044495-680" name="IRequired" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a59" xmi.uuid="DCE-1139490146651-439" name="ComponentC" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a60" xmi.uuid="DCE-1139490419714-966" name="OtherLeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a61" xmi.uuid="DCE-1139490464355-946" name="Interface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a62" xmi.uuid="DCE-1139490888605-524" name="OtherInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

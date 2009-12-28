@@ -1,0 +1,7500 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Evaluation"
+
+\end_inset
+
+Evaluation
+\end_layout
+
+\begin_layout Standard
+In this chapter we evaluate Backbone against other techniques for creating
+ extensible systems and system variants.
+ In particular, we compare and contrast Backbone to an advanced plugin system
+ and assess how well each approach handles the same extension scenario.
+ We then turn our attention to a compositional approach for producing product
+ lines, and model the desk scenario from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Modelling-the-Audio"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In the previous chapter, we showed how Backbone could be used to produce
+ more extensible variants of common object-oriented patterns and idioms.
+ We now further demonstrate the applicability of our approach to other environme
+nts by showing how Backbone can also be used to construct web-based user
+ interfaces.
+ The intention is not to propose Backbone as a superior way to construct
+ user interfaces, but to demonstrate the flexibility and applicability of
+ the extensibility approach even in domains which are conventionally regarded
+ as a natural 
+\begin_inset Quotes eld
+\end_inset
+
+home
+\begin_inset Quotes erd
+\end_inset
+
+ for objects.
+ We also make the point that Backbone can fully leverage existing investment
+ in object-oriented libraries.
+\end_layout
+
+\begin_layout Standard
+Backbone naturally builds extensibility into an architecture as the system
+ is decomposed hierarchically into fine-grained components.
+ This approach works well if a system is designed using Backbone from the
+ start.
+ However, it is often desirable to retrofit an extensibility architecture
+ into a mature system.
+ In the last section of this chapter, we look at restructuring a complex,
+ mature system using Backbone in order to extend it.
+ We consider the advantages and limitations of the approach in this context.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Evaluation-plugin"
+
+\end_inset
+
+Backbone versus Plugin Architectures
+\end_layout
+
+\begin_layout Standard
+In this section we compare and contrast Backbone to plugin architectures,
+ using a common extension scenario.
+\end_layout
+
+\begin_layout Standard
+Plugins are pre-packaged units of software that can be 
+\begin_inset Quotes eld
+\end_inset
+
+plugged into
+\begin_inset Quotes erd
+\end_inset
+
+ a base application to extend its functionality, as described in section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Plugin-Architectures"
+
+\end_inset
+
+.
+ This architectural style offers a powerful (and very popular) way of structurin
+g an extensible application.
+ One of the best known applications in this style is the Eclipse integrated
+ development environment 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001"
+
+\end_inset
+
+, which places all significant functionality, outside of the plugin system
+ itself, into plugins.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\emph on
+We examine the characteristics of plugin architectures in detail, and consider
+ how well they meet the extensibility requirements listed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+.
+ To assess how these architectures cope with the different facets of extension,
+ we extend a part of Eclipse.
+ By also modelling the same extension in Backbone model, we are able to
+ compare and contrast the two approaches.
+ We show that our approach encourages a more flexible and granular architecture,
+ with the advantage that the cost of introducing an extension is more closely
+ aligned to the size of the change required to the architecture.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:The-Plugin-Approach"
+
+\end_inset
+
+The Plugin Approach
+\end_layout
+
+\begin_layout Standard
+A plugin architecture is structured around a base application with predefined
+ extension points where the application can be extended.
+ Developers create plugins, which 
+\begin_inset Quotes eld
+\end_inset
+
+plug into
+\begin_inset Quotes erd
+\end_inset
+
+ the extension points, and these plugins can then be selectively added to
+ an installation of the application to customise it.
+ The base application acts as a platform, providing a substrate for a family
+ of applications.
+ The basic concepts can be succinctly described using a simple design pattern
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mayer2003"
+
+\end_inset
+
+.
+ The notion of a set of plugins is loosely analogous to the Backbone extension
+ concept, in that both are added to a base application in order to extend
+ and customise it.
+\end_layout
+
+\begin_layout Standard
+Plugin architectures work at two levels: the addition of new plugins (level
+ 1), and the upgrade of existing plugins (level 2).
+\end_layout
+
+\begin_layout Standard
+The addition of new plugins to a system (level 1) allows simple additive
+ change, where the added plugins hook into extension points defined already
+ in the base.
+ Plugins can be created by developers who are not affiliated with the creators
+ of the original application.
+ The original creators are then free to concentrate on the base platform
+ without having to continually expand the system to cater for every requirement.
+\end_layout
+
+\begin_layout Standard
+The upgrade of existing plugins (level 2) is needed when the base application
+ (including plugins already added) do not provide the required extension
+ points.
+ To allow this, advanced plugin architectures utilise a versioning scheme
+ that allows for plugin evolution.
+ Adding a new version of a plugin to a system may result in the previous
+ version being completely replaced, or a situation where more than one version
+ is instantiated simultaneously.
+\end_layout
+
+\begin_layout Subsection
+The Eclipse Plugin Architecture
+\end_layout
+
+\begin_layout Standard
+At the heart of Eclipse is an advanced plugin architecture, which allows
+ plugins to be versioned and also to have extension points themselves.
+ This allows plugins to be extended by further plugins.
+ Each plugin is an OSGi 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Consortium2006"
+
+\end_inset
+
+ bundle which must fully specify any other plugins that it depends upon,
+ allowing a plugin to be reliably added to a system knowing that all the
+ dependencies are satisfied.
+ The Eclipse plugin system is mature and production-tested, and has supported
+ the creation and evolution of a number of prominent applications including
+ the rejuvenated Rational modelling tool family 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "IBM,IBMa"
+
+\end_inset
+
+.
+ An impressive number of applications use the Eclipse Rich Client Platform,
+ which is also based on the same plugin approach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Foundation"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In terms of extension capabilities, the Eclipse plugin architecture represents
+ a superset of other plugin platforms we have investigated.
+ Therefore, the insights we can gather by analysing this system also apply,
+ to a greater or lesser degree, to other plugin systems.
+ As such, we study the Eclipse plugin model in detail in this section in
+ order to compare and contrast it to the Backbone approach.
+ Eclipse version 3.3 was used for the analysis and evaluation in this chapter.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-UML-class"
+
+\end_inset
+
+ expands on the basic plugin design pattern of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mayer2003"
+
+\end_inset
+
+ to present a UML class diagram of the Eclipse plugin model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/model-plugin.eps
+	width 100col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-UML-class"
+
+\end_inset
+
+The plugin model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SystemLoader
+\family default
+ is the class which bootstraps the initial system, discovers any 
+\family typewriter
+Plugin
+\family default
+s and registers them with the 
+\family typewriter
+PluginRegistry
+\family default
+.
+ The registry knows about all 
+\family typewriter
+Plugin
+\family default
+s, and can be used to query for a specific 
+\family typewriter
+Plugin
+\family default
+ via the 
+\family typewriter
+id
+\family default
+ and 
+\family typewriter
+version
+\family default
+ attributes.
+\end_layout
+
+\begin_layout Standard
+A 
+\family typewriter
+Plugin
+\family default
+ is a versioned entity that contains packages, classes and interfaces.
+ A 
+\family typewriter
+Plugin
+\family default
+ may depend on other 
+\family typewriter
+Plugin
+\family default
+s, for extension points, services and library classes.
+ The 
+\family typewriter
+VersionBounds
+\family default
+ association class shows that this dependency can be expressed as a reference
+ to a specific 
+\family typewriter
+Plugin
+\family default
+ version, a bounded set of versions, or no version in particular (
+\family typewriter
+don'tCare
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+A 
+\family typewriter
+Plugin
+\family default
+ may provide a set of 
+\family typewriter
+PluginExtension
+\family default
+s
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+In Eclipse, the actual terminology for a PluginExtension is 
+\begin_inset Quotes eld
+\end_inset
+
+extension
+\begin_inset Quotes erd
+\end_inset
+
+.
+ We have used PluginExtension to differentiate this from the Backbone extension
+ concept.
+\end_layout
+
+\end_inset
+
+ which 
+\begin_inset Quotes eld
+\end_inset
+
+plug into
+\begin_inset Quotes erd
+\end_inset
+
+ the 
+\family typewriter
+ExtensionPoints
+\family default
+ of other 
+\family typewriter
+Plugin
+\family default
+s.
+ A 
+\family typewriter
+PluginExtension
+\family default
+ uniquely identifies the relevant 
+\family typewriter
+ExtensionPoint
+\family default
+ by its identifier (
+\family typewriter
+id
+\family default
+).
+ A 
+\family typewriter
+Plugin
+\family default
+ may further define its own set of 
+\family typewriter
+ExtensionPoint
+\family default
+s, each of which declares which parameters must be supplied (conforming
+ to 
+\family typewriter
+schema
+\family default
+) by a 
+\family typewriter
+PluginExtension
+\family default
+.
+ The model allows an 
+\family typewriter
+ExtensionPoint
+\family default
+ to accept multiple 
+\family typewriter
+PluginExtension
+\family default
+s, although each 
+\family typewriter
+PluginExtension
+\family default
+ can only plug into one 
+\family typewriter
+ExtensionPoint
+\family default
+.
+ The motivation is that if an 
+\family typewriter
+Extension\SpecialChar \-
+Point
+\family default
+ could only accommodate a single 
+\family typewriter
+PluginExtension
+\family default
+, then multiple 
+\family typewriter
+Plugin
+\family default
+s could all try to fill the point, and conflict structurally
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Eclipse does actually allow an 
+\family typewriter
+ExtensionPoint
+\family default
+ to be defined with single multiplicity, but this is discouraged for the
+ reason indicated in the text.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+At runtime, the 
+\family typewriter
+Plugin
+\family default
+s are discovered and registered, and the 
+\family typewriter
+PluginExtension
+\family default
+s matched up to 
+\family typewriter
+ExtensionPoint
+\family default
+s.
+ Control is then passed to a distinguished 
+\family typewriter
+Plugin
+\family default
+ for bootstrapping.
+ Each 
+\family typewriter
+Plugin
+\family default
+ is able to query the 
+\family typewriter
+PluginExtension
+\family default
+s which extend its points, and the parameters passed can include class names
+ (for object instantiation) and values.
+\end_layout
+
+\begin_layout Standard
+Normally the latest version of a plugin is instantiated.
+ The exception to this is when other plugins explicitly indicate their dependenc
+e on an older version.
+ In this case we can arrive at a situation where different versions of a
+ single plugin must be loaded simultaneously.
+ Eclipse outlaws the instantiation of multiple versions if the 
+\family typewriter
+Plugin
+\family default
+ contributes to any extension points.
+\end_layout
+
+\begin_layout Standard
+The extensibility of the approach arises because 
+\family typewriter
+Plugin
+\family default
+s do not need to know what 
+\family typewriter
+PluginExtension
+\family default
+s will be provided for their extension points until runtime.
+ The actual 
+\family typewriter
+PluginExtension
+\family default
+s for a
+\family typewriter
+n
+\family default
+ extension point is a function of how many extending 
+\family typewriter
+Plugin
+\family default
+s are discovered in the environment.
+\end_layout
+
+\begin_layout Standard
+An 
+\family typewriter
+ExtensionPoint
+\family default
+ is equivalent to a Backbone port with a required interface and 
+\family typewriter
+[0..*]
+\family default
+ multiplicity, and a 
+\family typewriter
+PluginExtension
+\family default
+ is equivalent to a port with a provided interface.
+ Rather than model these concepts directly using interfaces, however, the
+ Eclipse model expresses the data required and provided via metadata (XML
+ files).
+ Some of this data can refer directly to class names, and a 
+\family typewriter
+Plugin
+\family default
+ can choose to instantiate an object based on a class name passed to its
+ extension point.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Extending-Eclipse:-Adding"
+
+\end_inset
+
+Extending Eclipse Using Plugins: Adding a Column to the Task View
+\end_layout
+
+\begin_layout Standard
+As a case study, we chose to enhance a small aspect of the Eclipse task
+ view.
+ As shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-task-view"
+
+\end_inset
+
+, this displays a list of tasks along with certain columns.
+ Consider that we wish to
+\emph on
+ insert
+\emph default
+ a further column 
+\begin_inset Quotes eld
+\end_inset
+
+Assigned to
+\begin_inset Quotes erd
+\end_inset
+
+ between the 
+\begin_inset Quotes eld
+\end_inset
+
+Path
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Location
+\begin_inset Quotes erd
+\end_inset
+
+ columns.
+ Our new column is designed to show which person has been allocated a particular
+ task.
+ We chose this scenario based on a belief that it represented a relatively
+ simple and reasonable type of extension to the functionality of Eclipse.
+ To prevent bias, at the time of choosing the scenario we had no knowledge
+ of the underlying implementation structures.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/original-images/tasks.jpg
+	lyxscale 60
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-task-view"
+
+\end_inset
+
+The Eclipse task view
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The first step in making our alteration was to find the plugin responsible
+ for viewing tasks, and see if an extension point existed for registering
+ extra columns and controlling the order they are shown in.
+ Finding the plugin proved to be straight forward: a class called 
+\family typewriter
+TaskView
+\family default
+ existed in the
+\emph on
+ org.eclipse.ui.ide
+\emph default
+ plugin.
+ Unfortunately, looking at the source code for this class showed that the
+ set of columns was hard-coded.
+\end_layout
+
+\begin_layout Standard
+
+\size scriptsize
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout LyX-Code
+
+\size scriptsize
+public class TaskView extends MarkerView {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    ...
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    private final IField[] VISIBLE_FIELDS =
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+       { new FieldDone(), new FieldPriority(),
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+         new FieldMessage(), new FieldResource(),
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+         new FieldFolder(), new FieldLineNumber() };
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    ...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The developers clearly did not anticipate this scenario by providing an
+ extension point for the extra column.
+ Both the fields and the order are hardcoded.
+ As we clearly cannot use the addition of a new plugin to add the column
+ (level 1), we had to use component replacement (level 2).
+\end_layout
+
+\begin_layout Standard
+Creating a new, replacement version is not a perfect solution, however,
+ due to other characteristics of the model.
+ Firstly, the plugin consists of around 300 Java classes.
+ The effort required in forking this plugin to create a new version is heavily
+ out of proportion to the small architectural addition required.
+\end_layout
+
+\begin_layout Standard
+Introducing a new version will also cause a problem if any other plugins
+ explicitly declare a dependency on the old version.
+ We will end up in that case with two referenced versions of the plugin
+ (old and new), and simultaneous versions of the same plugin are not allowed
+ in Eclipse for anything that contributes to extension points.
+ Even if this were allowed, having two versions of a plugin holding shared
+ state would not be a desirable outcome.
+\end_layout
+
+\begin_layout Standard
+To prevent the situation where different versions of the same plugin are
+ required, Eclipse plugin versions tend to follow a convention.
+ All dependencies on plugins are expressed as a bounded version range from
+ 3.0.0 up to (but not including) 4.0.0.
+ The leftmost digit of the versioning scheme indicates API-breaking
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+A breaking change is one which makes the public API incompatible with previous
+ versions.
+\end_layout
+
+\end_inset
+
+ changes.
+ Without this approach, we would not be able to easily introduce even a
+ minor, non-breaking change as explicit dependencies on the old plugin version
+ would mean having both old and new present.
+\end_layout
+
+\begin_layout Standard
+It is also not possible to introduce a breaking change without also creating
+ a new version of all plugins (incrementing the leftmost digit) which depend
+ on this plugin, and so on in cascade fashion.
+ This certainly constrains the type of change we can introduce, even if
+ we are willing to update any upstream plugins which have issues with the
+ change.
+ We will end up having to update most of the plugins in the system.
+\end_layout
+
+\begin_layout Standard
+Even creating a new non-breaking version is likely to be a short term solution.
+ A future version of Eclipse will likely introduce a new version of this
+ plugin, to fix defects and enhance functionality
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Eclipse 3.4 was recently released with an updated version of the 
+\emph on
+org.eclipse.ui.ide
+\emph default
+ plugin.
+\end_layout
+
+\end_inset
+
+.
+ As it is not possible to instantiate the two versions at the same time,
+ we will have to accept the fact that we must merge our source changes into
+ each new release of the plugin.
+ Regardless of how important we view our change, it is unlikely that the
+ maintainer (the Eclipse Foundation) will incorporate our (and everyone
+ else's) changes into the plugin that they own and maintain.
+ Our version will be superseded by any new ones from the maintainer, and
+ our changes will be overwritten.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Coarse-Grained-Plugins"
+
+\end_inset
+
+Coarse-Grained Plugins
+\end_layout
+
+\begin_layout Standard
+A key problem in the above scenario is the coarseness of plugins.
+ If the plugins could somehow be made more fine-grained then the problem
+ would be easier to solve, as we would be creating a new version of a smaller
+ artifact.
+\end_layout
+
+\begin_layout Standard
+A tension exists, however, between making the architecture fine-grained
+ and making it manageable and understandable.
+ If we make plugins too small, we will end up with literally many thousands.
+ As shown by figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Part-of-the"
+
+\end_inset
+
+, the plugin structure for Eclipse is already complex even though most plugins
+ are coarse-grained.
+ The figure shows around 80 plugins: a typical environment contains around
+ 200, and an enterprise product based on Eclipse is known to contain over
+ 500 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma2003"
+
+\end_inset
+
+.
+ Having more plugins implies a less manageable system.
+ Some form of nesting or composition would address this, providing a way
+ to view the system at multiple levels of abstraction
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Eclipse plugins have names conforming to Java-like conventions.
+ However, like Java packages, the name is just a convention and does not
+ indicate any form of composition.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/tangle.jpg
+	lyxscale 30
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Part-of-the"
+
+\end_inset
+
+A partial plugin dependency graph of Eclipse
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As plugins are necessarily coarse-grained then, plugin replacement also
+ works at a coarse-grained level leading to extra overhead if a plugin must
+ be replaced.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Characteristics-of-the"
+
+\end_inset
+
+Characteristics of the Plug-In Model
+\end_layout
+
+\begin_layout Standard
+As discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Plugin-Approach"
+
+\end_inset
+
+, the plugin model operates at two levels.
+ Adding functionality via a new plugin (level 1) relies on existing extension
+ points in the application.
+ If, however, these points do not allow for the type of extension required,
+ then we must upgrade or replace an existing plugin with a newer version
+ (level 2) and introduce the extension points.
+ As shown, even minor changes can move us into the need for plugin replacement.
+\end_layout
+
+\begin_layout Standard
+Our small extension necessitated a new version of a plugin.
+ This presented several problems.
+ Firstly, the plugin is a necessarily sizable artifact due to the lack of
+ composition, and creating a new version requires effort that is out of
+ proportion to the size of the small architectural change actually required.
+ Next, introducing a new version can lead to a situation where multiple
+ versions of a plugin need to be instantiated, which is usually prohibited
+ according to the rules of the platform.
+ Finally, creating a new version leads to its own problems in that we are
+ not the main developers of this plugin and will therefore have to acquiesce
+ to performing a source level merge of our changes whenever a new version
+ is published by the Eclipse Foundation.
+\end_layout
+
+\begin_layout Standard
+As it turns out, our small change was not planned for -- the creators of
+ the 
+\family typewriter
+TaskView
+\family default
+ plugin did not anticipate or cater for this type of change via extension
+ points.
+ This is an interesting characteristic in that unplanned changes, even those
+ notionally adding a feature, must be modelled as as coarse-grained plugin
+ replacement.
+ If the requirement had been foreseen, an extension point could have been
+ provided to allow the registration of extra columns for the task view.
+ Clearly, however, anticipating all future changes is a costly and largely
+ unrewarding exercise.
+ The architecture will become polluted with extension points, creating a
+ lot of extra development work, which in turn may not in fact capture all
+ possible future requirements.
+\end_layout
+
+\begin_layout Standard
+An underlying problem when using the plugin model is that extension points
+ do not arise naturally out of development of an architecture.
+ The points have to be explicitly planned for.
+ Further, code needs to be written for extension points to utilize any registere
+d 
+\family typewriter
+PluginExtension
+\family default
+s, which increases the development overhead of this approach.
+\end_layout
+
+\begin_layout Standard
+It is a useful exercise to consider how well the Eclipse plugin architecture
+ meets the requirements outlined in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+.
+ In our scenario, the system fails to provide sufficient flexibility because
+ we are unable to make changes without copying and modifying the source
+ code for the plugin to handle the upgrade (
+\noun on
+Alter
+\noun default
+, 
+\noun on
+NoSource
+\noun default
+).
+ We are also unable to seamlessly accept a new version without having to
+ perform a source level merge of our version with the newer, official one
+ (
+\noun on
+Upgrade
+\noun default
+).
+ The requirement that changes have no impact (
+\noun on
+NoImpact
+\noun default
+) on existing consumers of the plugin is partially met, as there is no need
+ to force the upgrade on those who do not wish to see the new version.
+ However, introducing an upgrade may require multiple versions to be simultaneou
+sly loaded which is not possible when a plugin contributes to extension
+ points.
+\end_layout
+
+\begin_layout Standard
+As it is, the plugin model contains practical and undesirable limitations
+ on how easily a system can be extended, understood and managed.
+ Plugin addition (level 1) is simple, but is only applicable if the required
+ extension points are already available.
+ Essentially we are saying that extension is easy if the type of extension
+ has already been planned for.
+ Even simple extension requirements move beyond this, however, leading to
+ the need to use coarse-grained plugin upgrade or replacement (level 2).
+\end_layout
+
+\begin_layout Subsection
+Modeling the Task View in Backbone
+\end_layout
+
+\begin_layout Standard
+In this section, we model the task view scenario in Backbone.
+ We then show how an extension can use evolution to add the extra column,
+ avoiding the issues from the plugin example.
+\end_layout
+
+\begin_layout Standard
+Going back to the task view example of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Extending-Eclipse:-Adding"
+
+\end_inset
+
+, consider modeling the concept of a grid (view) column (e.g.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Description
+\begin_inset Quotes erd
+\end_inset
+
+) in Backbone.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-component-definition"
+
+\end_inset
+
+ shows 
+\family typewriter
+GridColumn
+\family default
+ as a leaf component.
+ It has a single attribute 
+\family typewriter
+name
+\family default
+ and provides the 
+\family typewriter
+IGridColumn
+\family default
+ interface.
+ It requires the 
+\family typewriter
+IGridDataProvider
+\family default
+ interface which it uses to retrieve data in order to populate the column.
+ We will later use instances of this component to configure the task view's
+ visible columns.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/column-taskview.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-component-definition"
+
+\end_inset
+
+A column component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+GridWidget
+\family default
+ component, defined in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-grid-widget"
+
+\end_inset
+
+, is the user interface widget that displays the grid.
+ The grid is made up of a set of columns, and this information is supplied
+ by the 
+\family typewriter
+r
+\family default
+ port.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gridwidget-taskview.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-grid-widget"
+
+\end_inset
+
+A grid widget component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Backbone ports that require interfaces are analogous to extension points
+ in the plugin model.
+ Ports that provide interfaces are analogous to 
+\family typewriter
+PluginExtensions
+\family default
+, which provide data to extension points.
+ Interfaces are more expressive however, as object references can be passed
+ in addition to data and class references.
+\end_layout
+
+\begin_layout Standard
+To handle the logic of the task view display, we define a controller component,
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-controller-handles"
+
+\end_inset
+
+.
+ Although not shown here, it has become established practice in Backbone
+ to break down this type of logic using a state machine.
+ This allows for decomposition of a component featuring complex logic into
+ smaller states (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Extensible-State-Machines"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/controller-taskview.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-controller-handles"
+
+\end_inset
+
+The controller handles the display logic of the task view
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now use the components to form the task view as a composite component,
+ as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-task-viewer"
+
+\end_inset
+
+.
+ We have configured four columns (
+\begin_inset Quotes eld
+\end_inset
+
+Description
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Resource
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Path
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Location
+\begin_inset Quotes erd
+\end_inset
+
+) up to the 
+\family typewriter
+GridWidget
+\family default
+ part.
+ Note the use of alphanumeric indices to control the order: 
+\family typewriter
+GridWidget
+\family default
+'s 
+\family typewriter
+r
+\family default
+ port is ordered.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/taskview-taskview.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-task-viewer"
+
+\end_inset
+
+The task view component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Running the backbone example gives the screenshot shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:four-columns"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/four-column-taskview.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:four-columns"
+
+\end_inset
+
+The Backbone task view example, showing four columns
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Adding the Extra Column Using an Extension
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+TaskView
+\family default
+ component and associated elements model the existing Eclipse task view,
+ before the requirement to add the 
+\begin_inset Quotes eld
+\end_inset
+
+Assigned to
+\begin_inset Quotes erd
+\end_inset
+
+ column.
+ Our extension will need to insert the extra column in between two existing
+ columns.
+\end_layout
+
+\begin_layout Standard
+To achieve the above effect, we create an extension stratum, called 
+\family typewriter
+enhanced
+\family default
+, which contains an evolution of TaskView.
+ This evolution is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-component-that"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/evolved-taskview.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-component-that"
+
+\end_inset
+
+Evolving TaskView to insert another column
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+TaskView`
+\family default
+ evolution has added a 
+\family typewriter
+GridColumn
+\family default
+ part for our new column.
+ All other parts and structure are inherited from the original 
+\family typewriter
+TaskView
+\family default
+.
+ To insert the column in the correct place, the 
+\family typewriter
+[ca]
+\family default
+ index is chosen.
+ The effect of the extension can be seen in the screenshot of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:five-columns"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/five-column-taskview.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:five-columns"
+
+\end_inset
+
+The Backbone task view example, showing the inserted column
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The evolved component is packaged into an extension stratum as shown in
+ figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Packaging-up-the"
+
+\end_inset
+
+.
+ We can create a system that includes both this stratum and 
+\family typewriter
+taskview
+\family default
+, thereby applying the replacement and getting the additional column, or
+ we can exclude it and recreate the original list of columns.
+\end_layout
+
+\begin_layout Standard
+
+\series medium
+The Backbone extension facilities are more flexible than this example can
+ demonstrate.
+ For instance, by replacing connectors, we could switch the order of the
+ columns.
+ We could upgrade the controller part, add in extra display logic or even
+ remove or rename columns.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/strata-taskview.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Packaging-up-the"
+
+\end_inset
+
+Packaging up the extension
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Characteristics of the Backbone Model
+\end_layout
+
+\begin_layout Standard
+The Backbone component model is hierarchical, allowing components to be
+ decomposed to a fine-grained level.
+ This in turn allows any replacement to be more targeted than in the plugin
+ model.
+ Changes can be made at the appropriate level of abstraction (
+\noun on
+AppropriateLevel
+\noun default
+).
+ Large architectures can be represented and managed using hierarchy, as
+ it is a scalable concept.
+\end_layout
+
+\begin_layout Standard
+Further, any element of the model (component, part, attribute, connector
+ etc) is a natural extension point, as it can be replaced or evolved.
+ Unlike the plugin model which requires advance planning even for addition
+ or insertion, the ability to extend is a seamless part of creating a system
+ in the Backbone model.
+ As developers model and refine a Backbone architecture, extension point
+ possibilities become naturally more numerous.
+\end_layout
+
+\begin_layout Standard
+The analog of the plugin model level 1 (addition of functionality using
+ predefined extension points) is Backbone evolution where constituents are
+ only added to existing components.
+ The analog of level 2 (plugin upgrade) is evolution with alterations to
+ delete or replace parts and connectors.
+\end_layout
+
+\begin_layout Standard
+As all component creation in Backbone is expressed via parts, the architecture
+ is more explicit than a class-based model that hides object instantiation
+ in code.
+ This allows and extension to adjust the configuration through the replacement
+ construct to make any changes required to component instantiation.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Plugin-summary"
+
+\end_inset
+
+Summary
+\end_layout
+
+\begin_layout Standard
+The plugin model facilitates additive change, via plugging into existing
+ extension points (level 1).
+ If modification of existing plugins is required, because the required extension
+ points are not present, then a new plugin version must be created (level
+ 2).
+ This characteristic of turning notionally additive change into replacement
+ interacts badly with the coarse-grained nature of the plugins, leading
+ to a disproportionate effort for simple changes.
+ Further, distributing a new version of a plugin can lead to version conflict,
+ particularly if others (including the primary source) are also releasing
+ independently updated versions.
+ Key to these limitations is the lack of plugin composition, leading to
+ a trade-off between plugin size and manageability.
+\end_layout
+
+\begin_layout Standard
+The plugin model blurs the distinction between component and module concepts.
+ In the Eclipse model, a plugin is akin to a module as as it controls dependenci
+es and packages up a set of classes, interfaces and other resources.
+ A class (contained within a plugin) is akin to a component, as it forms
+ the unit of instantiation and composition.
+ However, the unit of upgrade or replacement is a plugin (module) rather
+ than a class (component).
+ As noted above, replacing a plugin can be very expensive.
+\end_layout
+
+\begin_layout Standard
+Backbone offers a more flexible alternative, ameliorating or directly addressing
+ the extensibility limitations of the plugin model.
+ The replacement and resemblance constructs, coupled with a hierarchical
+ component model, allow an extension to perform 
+\begin_inset Quotes eld
+\end_inset
+
+surgery
+\begin_inset Quotes erd
+\end_inset
+
+ on the architecture at the appropriate level of abstraction.
+ Unlike the plugin model where extension points must be pre-planned, in
+ Backbone extension points arise naturally out of normal system decomposition.
+\end_layout
+
+\begin_layout Standard
+Although the Backbone facilities are useful for creating extensions, the
+ constructs are also valuable in their own right for system modelling and
+ design.
+ Resemblance, in particular, allows component structures to be inherited
+ and altered which facilitates reuse.
+\end_layout
+
+\begin_layout Standard
+Another benefit of the Backbone approach is that it encourages and supports
+ the explication of system structure to a fine-grained level.
+ Whereas the plugin variant of the task view encoded much of the system
+ structure inside code, the Backbone model was explicit about the structure
+ and connections.
+ This allowed us to alter the structure without changing the implementation
+ code.
+ It is important to make the point that this is not a situation that can
+ be rectified in the plugin model by providing more, or finer-grained plugins.
+ The plugin model simply does not cover architectural connection or composition,
+ and as such must rely on implementation to instantiate and connect various
+ parts of the system.
+ This type of instantiation cannot be easily visualised or controlled by
+ configuration.
+\end_layout
+
+\begin_layout Standard
+The expressiveness of the Backbone approach has a cost, which is also present
+ in the plugin model: we cannot guarantee that combining independently developed
+, but potentially structurally overlapping, extensions into a single application
+ will not produce some conflicts.
+ To address this, we previously demonstrated (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Combining-All-Extensions"
+
+\end_inset
+
+) that a further extension can be used to rectify structural conflicts.
+ As mentioned, a form of this dilemma occurs also in plugin architectures
+ when plugin versions collide in a single application, caused by combining
+ independently developed plugins which have conflicting dependencies.
+ In this situation, however, there can be no guarantee that a further plugin
+ can resolve the situation, and a cascade of plugin replacements may be
+ required.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Evaluation-compositional"
+
+\end_inset
+
+Backbone versus a Software Product Line Approach
+\end_layout
+
+\begin_layout Standard
+A software product line (SPL) can be used to create a portfolio of closely
+ related system variants 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Clements2001"
+
+\end_inset
+
+.
+ We create a variant by choosing from a set of possible features, and then
+ assembling the application by combining the software artifacts representing
+ each feature.
+ Clements and Northrop show how organisations using this technique have
+ been able to demonstrate dramatically improved software metrics over traditiona
+l approaches for managing a set of related applications.
+\end_layout
+
+\begin_layout Standard
+The first step in creating a product line is to perform an analysis of the
+ target domain.
+ This is used to produce a feature model which defines a tree of optional
+ and mandatory features.
+ This technique is known as feature-oriented domain analysis 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kang1990,Batory2005"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A number of different techniques exist for assembling a variant once the
+ features have been chosen 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Krueger2006"
+
+\end_inset
+
+.
+ These compositional approaches rely on a mapping from features to software
+ artifacts.
+ Further, the artifacts must be phrased so that the assembly process can
+ allow different implementation sections (corresponding to features) to
+ be combined.
+ An SPL approach must therefore take a strategic and planned view towards
+ the creation and reuse of underlying assets.
+\end_layout
+
+\begin_layout Standard
+A prominent technique and toolset for creating product lines is AHEAD (Algebraic
+ Hierarchical Equations for Application Design) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2003a"
+
+\end_inset
+
+.
+ In this section, we model the audio desk extension scenario from section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Example-Scenario"
+
+\end_inset
+
+ using AHEAD, allowing us to compare and contrast this to the Backbone model
+ of the same scenario.
+ AHEAD uses the concept of refinement to express variations in existing
+ classes, in order to adjust them for new features.
+ We show that the characteristics of refinement result in a poor match against
+ the extensibility requirements of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Using AHEAD to Model a Product Line
+\end_layout
+
+\begin_layout Standard
+AHEAD is a compositional technique and toolset for modelling a product line.
+ It is able to manage and assemble more than just source code artifacts:
+ it provides a general approach which can also apply to other implementation
+ artifacts (e.g.
+ makefiles) and domain-specific languages.
+\end_layout
+
+\begin_layout Standard
+AHEAD introduces 
+\emph on
+constants
+\emph default
+ and 
+\emph on
+functions
+\emph default
+, and allows these to be combined using a simple algebra.
+ A constant is a base program.
+ A function refines a constant, according to a notion of refinement which
+ is specific for each type of artifact.
+ Functions can be concatenated.
+ The order of concatenation is important because some forms of refinement
+ involve overriding parts of other artifacts.
+ A 
+\emph on
+collective
+\emph default
+ can be used to group constants, functions and other collectives, providing
+ a level of composition.
+\end_layout
+
+\begin_layout Standard
+To assemble a system, we first choose the set of features we wish to have,
+ and next choose the collectives corresponding to these.
+ Finally we use the toolset to combine the constants and functions to create
+ a complete system.
+\end_layout
+
+\begin_layout Standard
+This is easier to understand in concrete form.
+ When using AHEAD with Java, a constant is simply a set of class definitions.
+ A function can contain both class definitions and refinements of existing
+ class constants: each refinement comprises a list of field additions, method
+ additions, and method overrides to a base class.
+ This works in a similar way to defining a class via inheritance, although
+ refinement affects the existing class definition rather than making a new
+ class.
+\end_layout
+
+\begin_layout Standard
+Consider applying AHEAD to a small calculator program in order to augment
+ it with additional features.
+ This example is a subset of the one given in the AHEAD tutorial 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2006"
+
+\end_inset
+
+.
+ The language actually used is JAK, which is a conservative extension of
+ Java that supports the approach.
+\end_layout
+
+\begin_layout Standard
+Firstly, we define the base calculator as a constant.
+ This class holds a result, but cannot yet perform any operations.
+\end_layout
+
+\begin_layout LyX-Code
+// calculator.jak
+\end_layout
+
+\begin_layout LyX-Code
+class Calculator {
+\end_layout
+
+\begin_layout LyX-Code
+  double result = 0;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  public String result() {
+\end_layout
+
+\begin_layout LyX-Code
+    return 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ + result; }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Consider the 
+\family typewriter
+addition
+\family default
+ refinement below, which adds the ability to perform addition to the calculator.
+ The 
+\family typewriter
+result()
+\family default
+ function is also overridden to return more information.
+ The invocation of 
+\family typewriter
+Super().result()
+\family default
+ refers to the base calculator's 
+\family typewriter
+result()
+\family default
+ method defined in the constant.
+\end_layout
+
+\begin_layout LyX-Code
+// addition.jak
+\end_layout
+
+\begin_layout LyX-Code
+refines Calculator {
+\end_layout
+
+\begin_layout LyX-Code
+  public void add(double val) {
+\end_layout
+
+\begin_layout LyX-Code
+    result += val; }
+\end_layout
+
+\begin_layout LyX-Code
+  public String result() {
+\end_layout
+
+\begin_layout LyX-Code
+    return 
+\begin_inset Quotes eld
+\end_inset
+
+Result is: 
+\begin_inset Quotes erd
+\end_inset
+
+ + Super().result(); }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+subtraction
+\family default
+ refinement gives the ability to perform subtraction.
+\end_layout
+
+\begin_layout LyX-Code
+// subtraction.jak
+\end_layout
+
+\begin_layout LyX-Code
+refines Calculator {
+\end_layout
+
+\begin_layout LyX-Code
+  public void subtract(double val) {
+\end_layout
+
+\begin_layout LyX-Code
+    result -= val; }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+We can combine the constant and both functions by using the following equation.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+addition(subtraction(calculator))
+\end_layout
+
+\begin_layout Standard
+The same variant is also produced by a permutation, showing that order is
+ not always important.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+subtraction(addition(calculator))
+\end_layout
+
+\begin_layout Standard
+These equations both result in the following system variant
+\end_layout
+
+\begin_layout LyX-Code
+class Calculator {
+\end_layout
+
+\begin_layout LyX-Code
+  double result = 0;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  public void add(double val) {
+\end_layout
+
+\begin_layout LyX-Code
+    result += val; }
+\end_layout
+
+\begin_layout LyX-Code
+  public void subtract(double val) {
+\end_layout
+
+\begin_layout LyX-Code
+    result -= val; }
+\end_layout
+
+\begin_layout LyX-Code
+  public String result$$calculator() {
+\end_layout
+
+\begin_layout LyX-Code
+    return 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ + result;
+\end_layout
+
+\begin_layout LyX-Code
+  public String result() {
+\end_layout
+
+\begin_layout LyX-Code
+    return 
+\begin_inset Quotes eld
+\end_inset
+
+Result is: 
+\begin_inset Quotes erd
+\end_inset
+
+ + result$$calculator(); }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Overriding the 
+\family typewriter
+result()
+\family default
+ method in 
+\family typewriter
+addition
+\family default
+ has caused the base calculator's method to be renamed to 
+\family typewriter
+result$$calculator()
+\family default
+.
+ The 
+\family typewriter
+Super().result()
+\family default
+ invocation inside 
+\family typewriter
+addition
+\family default
+ now redirects to this method, reflecting that if structured as an inheritance
+ hierarchy, the super call would invoke the method in the base class.
+\end_layout
+
+\begin_layout Standard
+Alternatively, we could use 
+\family typewriter
+subtract(calculator)
+\family default
+ to create a variant which just features subtraction.
+\end_layout
+
+\begin_layout LyX-Code
+class Calculator {
+\end_layout
+
+\begin_layout LyX-Code
+  double result = 0;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  public void subtract(double val) {
+\end_layout
+
+\begin_layout LyX-Code
+    result -= val; }
+\end_layout
+
+\begin_layout LyX-Code
+  public String result() {
+\end_layout
+
+\begin_layout LyX-Code
+    return 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ + result }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+AHEAD allows each feature to be modelled as a set of new classes and refinements
+ to other classes.
+ Design rules can then express feature dependencies and whether or not certain
+ features can be combined.
+ The result is a powerful and flexible way to assemble a collection of system
+ variants.
+\end_layout
+
+\begin_layout Standard
+In the AHEAD literature, an extensible system is defined as one where a
+ change to a system requires a proportionate effort to modify its source
+ code 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2002a"
+
+\end_inset
+
+.
+ This definition is more or less contained within our 
+\noun on
+Alter
+\noun default
+ requirement for extensibility, where the cost of an extension should be
+ proportionate to the size of the extension.
+ The AHEAD papers do not specify an equivalent of the 
+\noun on
+NoSource
+\noun default
+ requirement, although it is implied that extension should primarily involve
+ the refinement of classes and definition of new classes rather than the
+ direct modification of existing source code.
+\end_layout
+
+\begin_layout Standard
+A constant or function is represented by a directory with a set of files.
+\end_layout
+
+\begin_layout Subsection
+Modelling the Audio Desk Scenario in AHEAD
+\end_layout
+
+\begin_layout Standard
+Consider an AHEAD representation of the audio desk scenario from section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Example-Scenario"
+
+\end_inset
+
+.
+ As we have previously modelled this in Backbone in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Modelling-the-Audio"
+
+\end_inset
+
+, we can compare and contrast the two solutions.
+\end_layout
+
+\begin_layout Standard
+Reproducing the strata diagram from figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Strata-are-structured"
+
+\end_inset
+
+, we now label it with a set of constants and functions, as shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-AHEAD-functions"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/constants-and-functions.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-AHEAD-functions"
+
+\end_inset
+
+The AHEAD functions and constant for the desk scenario
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Modelling the Base Application
+\end_layout
+
+\begin_layout Standard
+The base application consists of a desk with a mixer, device controller
+ and two microphones.
+\end_layout
+
+\begin_layout Standard
+To start, we create a constant, which defines a minimal 
+\family typewriter
+Desk
+\family default
+ class with a single method which connects up required devices.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout LyX-Code
+// constant desk
+\end_layout
+
+\begin_layout LyX-Code
+class Desk {
+\end_layout
+
+\begin_layout LyX-Code
+  void connectUp() {}
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To add the mixer and device controller, we refine the constant using the
+ 
+\family typewriter
+mixer_controller
+\family default
+ function.
+\end_layout
+
+\begin_layout LyX-Code
+// function mixer_controller
+\end_layout
+
+\begin_layout LyX-Code
+class Mixer {
+\end_layout
+
+\begin_layout LyX-Code
+  int volume = ...
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+ }
+\end_layout
+
+\begin_layout LyX-Code
+class DeviceController {
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+ }
+\end_layout
+
+\begin_layout LyX-Code
+refines Desk
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  Mixer mixer = new Mixer();
+\end_layout
+
+\begin_layout LyX-Code
+  DeviceController controller = new DeviceController();
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+To add the first microphone, we define a 
+\family typewriter
+MicrophoneDevice
+\family default
+ class and refine the 
+\family typewriter
+connectUp()
+\family default
+ operation to connect it to the device controller and mixer.
+ As the controller represents a set of physical controls, we must be careful
+ to specify an index for this.
+ We use 0 in the 
+\family typewriter
+controller.connect()
+\family default
+ method, to indicate that this microphone is in the zeroth position.
+\end_layout
+
+\begin_layout LyX-Code
+// function microphone1
+\end_layout
+
+\begin_layout LyX-Code
+class MicrophoneDevice {
+\end_layout
+
+\begin_layout LyX-Code
+...
+ }
+\end_layout
+
+\begin_layout LyX-Code
+refines Desk
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  MicrophoneDevice firstMic = new MicrophoneDevice();
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  public void connectUp() {
+\end_layout
+
+\begin_layout LyX-Code
+    Super().connectUp();
+\end_layout
+
+\begin_layout LyX-Code
+    controller.connect(firstMic.getAudio(), 0);
+\end_layout
+
+\begin_layout LyX-Code
+    mixer.add(firstMic.getAudio());
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+We now add the second microphone using a similar function, except that we
+ connect it up to the first position in the device controller.
+ Although it may seem strange to describe the two microphones separately,
+ there is an underlying rationale that will shortly be revealed.
+\end_layout
+
+\begin_layout LyX-Code
+// function microphone2
+\end_layout
+
+\begin_layout LyX-Code
+refines Desk
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  MicrophoneDevice secondMic = new MicrophoneDevice();
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  public void connectUp() {
+\end_layout
+
+\begin_layout LyX-Code
+    Super().connectUp();
+\end_layout
+
+\begin_layout LyX-Code
+    controller.connect(secondMic.getControl(), 1);
+\end_layout
+
+\begin_layout LyX-Code
+    mixer.addAudio(secondMic.getAudio());
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+We can now combine the constant and functions to create the base desk applicatio
+n.
+ The following equation produces an equivalent program to the Backbone model
+ of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Desk-component"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+microphone2(microphone1(mixer_controller(desk)))
+\end_layout
+
+\begin_layout Subsubsection
+Modelling the CD and Turntable Extensions
+\end_layout
+
+\begin_layout Standard
+We now model the CD extension using refinement.
+\end_layout
+
+\begin_layout LyX-Code
+// function CD
+\end_layout
+
+\begin_layout LyX-Code
+class CDDevice {
+\end_layout
+
+\begin_layout LyX-Code
+...
+ }
+\end_layout
+
+\begin_layout LyX-Code
+refines Desk
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  CDDevice cd = new CDDevice();
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  public void connectUp() {
+\end_layout
+
+\begin_layout LyX-Code
+    Super().connectUp();
+\end_layout
+
+\begin_layout LyX-Code
+    controller.connect(cd.getControl(), 1);
+\end_layout
+
+\begin_layout LyX-Code
+    mixer.addAudio(cd.getAudio());
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Now consider if we wanted to create a desk with a single microphone at position
+ zero, and a CD player at position 1.
+ We can do this by adding the 
+\family typewriter
+CD
+\family default
+ function to the equation and omitting 
+\family typewriter
+microphone2
+\family default
+, as per the following equation.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+CD(microphone1(mixer_controller(desk)))
+\end_layout
+
+\begin_layout Standard
+Refinement is limited in that it cannot remove fields from a class -- the
+ only way to omit something is to not include the function in an equation.
+ This is our rationale for separating out the two microphone functions previousl
+y.
+ If the two microphone functions were combined into one, we would have to
+ either have no microphones (i..e.
+ omit the function from the equation) or both microphones together (i.e.
+ add the function to the equation).
+ As we want only one microphone, we must separate the two functions.
+ This type of pre-planning required for extensibility will be shown to be
+ a consequence of how refinement in AHEAD works.
+\end_layout
+
+\begin_layout Standard
+Now consider how an extension developer might choose to phrase the addition
+ of a turntable device.
+ The mixer must be upgraded to support cuing (as per section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Turntable-Extension"
+
+\end_inset
+
+) and the developer has chosen to express the entire extension as a single
+ function called 
+\family typewriter
+turntable
+\family default
+.
+ Suppose also that the cuing mixer can be defined as a refinement to the
+ original mixer.
+\end_layout
+
+\begin_layout LyX-Code
+// function turntable
+\end_layout
+
+\begin_layout LyX-Code
+class TurntableDevice {
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+ }
+\end_layout
+
+\begin_layout LyX-Code
+refines Mixer {
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+ add cuing support }
+\end_layout
+
+\begin_layout LyX-Code
+refines Desk
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  TurntableDevice tt = new TurntableDevice();
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  void connectUp() {
+\end_layout
+
+\begin_layout LyX-Code
+    Super().connectUp();
+\end_layout
+
+\begin_layout LyX-Code
+    controller.connect(tt.getControl(), 2);
+\end_layout
+
+\begin_layout LyX-Code
+    mixer.addAudio(tt.getAudio());
+\end_layout
+
+\begin_layout LyX-Code
+    mixer.addCueAudio(tt.getCueAudio());
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+We can create a desk with a CD, turntable and microphone device using the
+ following equation.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+turntable(CD(microphone1(mixer_controller(desk))))
+\end_layout
+
+\begin_layout Subsubsection
+Modelling the Mixer Upgrade and Resolving Conflicts
+\end_layout
+
+\begin_layout Standard
+Our recreation of the desk scenario is not yet complete.
+ As per section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Upgraded-Desk"
+
+\end_inset
+
+, we wish to upgrade the mixer and device controller.
+ However, the new mixer implementation is obtained from an external party
+ as per the scenario.
+ It is not a refinement of the previous mixer
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+In the original scenario, the upgraded mixer is distributed as a binary
+ component to protect the intellectual property.
+ JAK currently requires the source code for all constants and functions,
+ but this is a limitation of the current toolset rather than a conceptual
+ issue.
+ As such, we do not consider this issue further.
+\end_layout
+
+\end_inset
+
+.
+ As such, we have the following function called 
+\family typewriter
+upgrade
+\family default
+d.
+\end_layout
+
+\begin_layout LyX-Code
+// function upgraded
+\end_layout
+
+\begin_layout LyX-Code
+class Mixer {
+\end_layout
+
+\begin_layout LyX-Code
+  CommercialMixerAlgorithm cm = ...
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+ upgraded mixer }
+\end_layout
+
+\begin_layout LyX-Code
+class DeviceController {
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+ }
+\end_layout
+
+\begin_layout LyX-Code
+refines Desk {
+\end_layout
+
+\begin_layout LyX-Code
+  Mixer mixer = new Mixer();
+\end_layout
+
+\begin_layout LyX-Code
+  Mixer cueMixer = new Mixer();
+\end_layout
+
+\begin_layout LyX-Code
+  DeviceController controller = new DeviceController();
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+An upgraded desk with a CD and microphone device is assembled using the
+ following equation.
+ Note that this omits the 
+\family typewriter
+mixer_controller
+\family default
+ function -- the upgraded mixer and controller are provided by the 
+\family typewriter
+upgraded
+\family default
+ function.
+\end_layout
+
+\begin_layout Quote
+
+\family typewriter
+CD(microphone1(upgraded(desk))))
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Limitations-of-AHEAD"
+
+\end_inset
+
+Limitations of the AHEAD Approach
+\end_layout
+
+\begin_layout Standard
+Although we can combine the CD, microphone and upgraded desk, other combinations
+ are not possible and reveal the limitations of AHEAD as an extensibility
+ approach.
+ For instance, we cannot combine the 
+\family typewriter
+upgraded
+\family default
+ and 
+\family typewriter
+turntable
+\family default
+ functions in an equation.
+ They are incompatible because the former provides a different mixer definition
+ to the one that the latter refines.
+ Although there is a chance that these would work together and that the
+ new definition would define exactly the same methods needed for overriding,
+ this is highly unlikely because neither were created with knowledge of
+ the other.
+\end_layout
+
+\begin_layout Standard
+In general if a function defines a class, then it cannot be concatenated
+ with a function that refines a different definition of that class.
+ Field definitions are particularly problematic here as combining a class
+ and all refinements gives us the union of all fields, and removing a field
+ involves changing the source code or omitting the function that adds it.
+\end_layout
+
+\begin_layout Standard
+We could potentially ameliorate this problem by expressing every single
+ change (particularly field additions) as a separate AHEAD function, and
+ then composing these fine-grained functions into a manageable set of collective
+s.
+ Unfortunately, however, if one of the functions in a collective conflicts
+ with a function in another collective, then the two collectives cannot
+ be used together.
+ Resolution involves defining a new collective, which may involve significant
+ work as there may be an arbitrary amount of composition involved.
+\end_layout
+
+\begin_layout Standard
+The issue of function granularity now surfaces.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2003a"
+
+\end_inset
+
+, the JTS system consists of 33k lines of JAK code and is modelled using
+ 69 distinct features illustrating that a single function can be relatively
+ large.
+ However, if any part of a function conflicts with another, then we cannot
+ include both functions in an equation and we must choose between the two.
+ If we do wish to include the features of both, we then need to adapt or
+ recreate a potentially coarse-grained artifact.
+ Even a small syntactical conflict can result in the need to rewrite an
+ entire function.
+ The ever-present tension between making replaceable elements small for
+ ease of extension and making them large for ease of management is a problem
+ for the AHEAD approach, just as it is for the plugin approach (section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Coarse-Grained-Plugins"
+
+\end_inset
+
+), although for subtly different reasons.
+ Function composition does not fully address the problem.
+\end_layout
+
+\begin_layout Standard
+The granularity problems of AHEAD are further illustrated in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kastner2008"
+
+\end_inset
+
+, where it is shown that even going down to the level of method granularity
+ is sometimes not sufficient for certain changes.
+ If we did put every method in a separate AHEAD function this would result
+ in many fine-grained functions for even small programs, which would prove
+ difficult to manage.
+ The use of coarse-grained features in AHEAD and the potential difficulty
+ of managing large numbers of small-scale refinements is discussed in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2002a"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The use of names for identity in AHEAD makes refinement fragile, and means
+ that naming conflicts between independently-developed refinements are possible.
+ Once chosen, the name of a class or interface must stay constant or otherwise
+ identity is lost.
+ Backbone deals with this by using UUIDs to represent logical identity,
+ which allows an extension to rename elements and constituents.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+AHEAD is a powerful and flexible way to structure a product line.
+ An AHEAD program consists of a set of constants, and functions which add
+ to and refine those constants.
+ When applied to Java, a function can refine the definition of an existing
+ class.
+ A variant is specified using a concatenation of functions and constants.
+\end_layout
+
+\begin_layout Standard
+Refinement is related to inheritance in that it can add fields, and add
+ or override methods.
+ These characteristics colour the AHEAD approach.
+ If one feature includes a definition or refinement that conflicts with
+ those contained in another feature, then the features cannot generally
+ be combined.
+ Further, a conflict cannot usually be resolved by a refinement in another
+ feature, as refinement provides no way to remove or rename objectionable
+ fields.
+ This characteristic interacts badly with the granularity of features --
+ we can get into a situation where a coarse-grained feature must be recreated
+ or destructively edited in order to allow it to be combined with another.
+\end_layout
+
+\begin_layout Standard
+These characteristics violate a number of our extensibility requirements
+ from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+.
+ In particular, only certain alterations can be expressed by refinement
+ (
+\noun on
+Alter
+\noun default
+) and more complex changes involve changing the source code (
+\noun on
+NoSource
+\noun default
+).
+ Introducing a feature with a new class or refinement can cause a conflict
+ with the definitions of another feature, which means that the latter feature
+ must be recreated or edited which will impact existing usage (
+\noun on
+NoImpact
+\noun default
+).
+ It is not always possible to fix the conflict by a further refinement (
+\noun on
+DetectAndCorrect
+\noun default
+).
+ This means that a disproportionate amount of work can result from the introduct
+ion of a feature.
+ Upgrades in particular, where the change cannot be expressed as refinement,
+ can lead to this situation (
+\noun on
+Upgrade
+\noun default
+).
+\end_layout
+
+\begin_layout Standard
+As such, AHEAD necessitates a strategic and premeditated outlook towards
+ reuse.
+ This is noted in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2002a"
+
+\end_inset
+
+.
+ It does not cope well with unplanned extension.
+ 
+\end_layout
+
+\begin_layout Standard
+By way of contrast, a Backbone strata is loosely analogous to an AHEAD constant
+ or function.
+ Evolution is analogous to AHEAD refinement.
+ A conflict between two strata can always be resolved using a further strata.
+ The effort to do so is proportional to the change required to allow the
+ definitions to work together, limited by how fine-grained the underlying
+ components are.
+ This characteristic can be traced back to the fact that resemblance allows
+ deletion and non-compatible constituent replace.
+\end_layout
+
+\begin_layout Standard
+In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Feature-Modelling-in"
+
+\end_inset
+
+, we discuss the relationship between extensions and features and indicate
+ how feature modelling could be incorporated into a future revision of the
+ Backbone approach.
+\end_layout
+
+\begin_layout Standard
+Finally, AHEAD relies on a conservative extension of Java called JAK, in
+ order to provide refinement.
+ This prevents existing Java tools being used for the approach.
+ In contrast, Backbone uses Java, with a set of lexical conventions for
+ the leaf implementations.
+ Composites are specified using the Backbone ADL.
+\end_layout
+
+\begin_layout Section
+Using Backbone to Create and Extend a User Interface
+\end_layout
+
+\begin_layout Standard
+In this section we demonstrate how Backbone can be used to construct a user
+ interface, by utilising a complex, existing toolkit structured around an
+ object-oriented perspective.
+ We show that the full extensibility benefits of the Backbone approach apply
+ even in this environment, allowing an extension to evolve the user interface
+ to accommodate new requirements.
+\end_layout
+
+\begin_layout Standard
+The underlying toolkit used is the Google Web Toolkit (GWT) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GWT"
+
+\end_inset
+
+.
+ This works by converting an underlying Java program into JavaScript.
+ The code generated by Backbone can be used as a GWT program, thereby allowing
+ a Backbone application (including all advanced facilities such as factories)
+ to run completely within a web browser on the client side.
+ This further demonstrates the applicability and flexibility of the Backbone
+ approach.
+\end_layout
+
+\begin_layout Standard
+In presenting this example, we are not advocating that Backbone represents
+ a superior way to build user interfaces.
+ Our intention is simply to demonstrate that Backbone is flexible enough
+ to work with complex object-oriented libraries, bringing the full benefits
+ of extensibility, in an unusual setting.
+ Although the libraries chosen are made up of JavaBeans which can already
+ be represented as Backbone components (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Mapping-JavaBeans-onto"
+
+\end_inset
+
+), the more complex beans require a level of restructuring in order to make
+ their hidden structures explicit.
+\end_layout
+
+\begin_layout Subsection
+Constructing the Base User Interface
+\end_layout
+
+\begin_layout Standard
+GWT is a library for creating web user interfaces featuring rich interaction
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GWT"
+
+\end_inset
+
+.
+ Programs are written in Java, and then translated into JavaScript where
+ they can be run in a web browser.
+ A number of impressive applications and Google products are written using
+ this toolkit 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GWT-Apps"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As GWT is packaged as a JavaBeans library, Evolve can import and use the
+ widgets.
+ For the translation into JavaScript to work, programs need to adhere to
+ certain conventions and respect the limitations of the approach.
+ For instance, only limited reflection facilities are available.
+ The Backbone code generator can generate Java code for a configuration
+ (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Configuration-generation"
+
+\end_inset
+
+) and this is suitable for the translator.
+ Although state machines normally use reflection for the 
+\family typewriter
+StateDispatcher
+\family default
+ component (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Extensible-State-Machines"
+
+\end_inset
+
+), GWT provides a facility whereby a program generator can be registered
+ with the runtime and this was used to work around the limitation.
+\end_layout
+
+\begin_layout Standard
+Importing the GWT toolkit into Evolve results in around 220 components and
+ interfaces.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GWT-widgets"
+
+\end_inset
+
+ shows some of the widget components after import, with their most important
+ features visible.
+ 
+\family typewriter
+HorizontalPanel
+\family default
+ is a container widget that arranges its child widgets in a horizontal orientati
+on.
+ A 
+\family typewriter
+VerticalPanel
+\family default
+ container also exists.
+ 
+\family typewriter
+Label
+\family default
+ allows a textual label to be shown, and 
+\family typewriter
+TextBox
+\family default
+ allows a line of text to be entered by the user.
+ 
+\family typewriter
+Button
+\family default
+ presents a button that sends out events via the 
+\family typewriter
+clickListeners
+\family default
+ port when it is pressed.
+ 
+\family typewriter
+TabPanel
+\family default
+ is a container that can display multiple tab pages.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-widgets-ui.eps
+	scale 86
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GWT-widgets"
+
+\end_inset
+
+Some GWT widgets as Backbone Components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Using the TabPanel Container Widget
+\end_layout
+
+\begin_layout Standard
+We wish to use the 
+\family typewriter
+TabPanel
+\family default
+ widget to display a user interface.
+ Looking at that component's structure, however, it does not appear that
+ a port exists for adding tabs.
+ Inspecting the documentation, it becomes apparent that when adding a tab
+ that we must also specify a title at the same time.
+ This is shown in the following listing.
+\end_layout
+
+\begin_layout LyX-Code
+TabPanel tp = new TabPanel();
+\end_layout
+
+\begin_layout LyX-Code
+tp.add(new Button(
+\begin_inset Quotes eld
+\end_inset
+
+Hello
+\begin_inset Quotes erd
+\end_inset
+
+), 
+\begin_inset Quotes eld
+\end_inset
+
+Page1
+\begin_inset Quotes erd
+\end_inset
+
+);  // add a button to tab 
+\begin_inset Quotes eld
+\end_inset
+
+page1
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is not a convention that Backbone understands, and for this reason
+ the extra port has not been configured correctly upon import.
+ In short, 
+\family typewriter
+TabPanel
+\family default
+ does not make all of its structure explicit in a way that Backbone can
+ use, and we need to work around this.
+\end_layout
+
+\begin_layout Standard
+To allow tabs to be added via connectors, we must build on 
+\family typewriter
+TabPanel
+\family default
+.
+ The easiest way to do this is to create a new leaf, resembling 
+\family typewriter
+TabPanel
+\family default
+, that provides a 
+\family typewriter
+titleTab
+\family default
+ port to add the extra widgets.
+ The title for each tab can be taken from the 
+\family typewriter
+getTitle()
+\family default
+ method on the existing GWT 
+\family typewriter
+IWidget
+\family default
+ interface.
+ We define the 
+\family typewriter
+SimpleTabPanel
+\family default
+ component in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SimpleTabPanel"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/simpletab-ui.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SimpleTabPanel"
+
+\end_inset
+
+SimpleTabPanel allows ordinary widgets to be added as tabs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The implementation of this component is trivial.
+ It inherits from the 
+\family typewriter
+TabPanel
+\family default
+ class and adds each widget connected to the 
+\family typewriter
+titleTab
+\family default
+ port as a separate tab.
+\end_layout
+
+\begin_layout Standard
+As an example, we can now connect up two different tabs, each having a single
+ button, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Two-buttons"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/two-button-ui.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Two-buttons"
+
+\end_inset
+
+Using SimpleTabPanel to configure two buttons as tabs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Running this example in a browser produces the screenshot in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Two-buttons-arranged"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/two-buttons.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Two-buttons-arranged"
+
+\end_inset
+
+Screenshot of tabs using SimpleTabPanel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is interesting to note that 
+\family typewriter
+TwoButtonPanel
+\family default
+ is actually a composite widget.
+ The creation and reuse of composite widgets in user interface toolkits
+ is generally not a trivial task.
+ However, this is intuitive and simple in our component model.
+ If required, we could expose further services and ports, or use resemblance
+ to reuse our composite's structure.
+\end_layout
+
+\begin_layout Subsubsection
+A More Complex Interface
+\end_layout
+
+\begin_layout Standard
+Consider that we now wish to construct a more involved user interface that
+ allows a user to enter their name and address.
+ We create two widgets -- one for entering a name, and another for entering
+ an address.
+ The 
+\family typewriter
+GWTNameWidget
+\family default
+ component is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:name-entry"
+
+\end_inset
+
+.
+ It uses a 
+\family typewriter
+VerticalPanel
+\family default
+ part to create a vertical arrangement of labels and text fields for entry
+ of the user's first and last names.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-name-widget-ui.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:name-entry"
+
+\end_inset
+
+A composite widget for name entry
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The widget for entering in an address is structured similarly, as shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:address-entry"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-address-widget-ui.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:address-entry"
+
+\end_inset
+
+A composite widget for address entry
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now bring these together in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:name-address-entry"
+
+\end_inset
+
+ to create a composite widget which allows both the name and address to
+ be entered.
+ We have used 
+\family typewriter
+HorizontalPanel
+\family default
+ to place the child widgets alongside each other.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-customer-widget.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:name-address-entry"
+
+\end_inset
+
+A widget that allows name and address entry
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Running this gives the screen shot in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Screenshot-name-address"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/customer.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Screenshot-name-address"
+
+\end_inset
+
+Screenshot of the name and address entry widget
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Evolving the User Interface in an Extension
+\end_layout
+
+\begin_layout Standard
+Suppose that an additional requirement is presented after using the base
+ interface in applications for a while: commercial customers should be able
+ to specify a billing address.
+\end_layout
+
+\begin_layout Standard
+One way to achieve this is to use separate tabs for the normal and billing
+ address, where the billing tab is created using dynamic instantiation.
+ To accomplish this, we first define the 
+\family typewriter
+AddressFactory
+\family default
+ component using an isomorphic factory as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Address-factory"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-address-factory-ui.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Address-factory"
+
+\end_inset
+
+A factory to create address widgets
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To incorporate this into our interface, we evolve 
+\family typewriter
+GWTCustomerWidget
+\family default
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-a-billing"
+
+\end_inset
+
+.
+ The textual definition is also provided to show the deltas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-commercial-customer-widget-ui.eps
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adding-a-billing"
+
+\end_inset
+
+Adding a billing address entry
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have replaced part 
+\family typewriter
+d
+\family default
+, which was previously a 
+\family typewriter
+DecoratorPanel
+\family default
+, with an instance of 
+\family typewriter
+SimpleTab\SpecialChar \-
+Panel
+\family default
+.
+ We have also added a 
+\family typewriter
+Button
+\family default
+ part, which appears on the first tab, to the right of the existing fields.
+ Upon clicking this button, the 
+\family typewriter
+ButtonLogic
+\family default
+ part receives the event and instantiates the factory.
+ This creates a further tab with a 
+\family typewriter
+GWTAddressWidget
+\family default
+ part for entering in the billing address.
+\end_layout
+
+\begin_layout Standard
+Running this results in the screenshot of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Screenshot-of-billing"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/commercial-customer.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Screenshot-of-billing"
+
+\end_inset
+
+Screenshot of the extended widget with billing address button
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Clicking on the button adds the extra tab and brings it into focus, as shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Screenshot-of-billing-1"
+
+\end_inset
+
+, allowing the billing address to be entered.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/commercial-customer-billing.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Screenshot-of-billing-1"
+
+\end_inset
+
+Screenshot of the extended widget with billing address tab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have successfully created an extension that evolves the user interface
+ to allow additional information to be entered, as per the new requirement.
+ Any developer utilising the original, base interface can include this extension
+ to add the facility for entering billing addresses.
+\end_layout
+
+\begin_layout Subsection
+Combining Extensions to Form User Interface Variants
+\end_layout
+
+\begin_layout Standard
+Suppose that another developer decides, independently of the billing address
+ extension, to extend the 
+\family typewriter
+GWTNameWidget
+\family default
+ to add a field for the next of kin, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Next-of-kin"
+
+\end_inset
+
+.
+ This is done by evolving the name widget to add an extra label and entry
+ field.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-kin-ui.eps
+	scale 95
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Next-of-kin"
+
+\end_inset
+
+Adding a next of kin field
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As a side point, it is worth noting that the Evolve modelling tool allows
+ us to visually elide constituents from a view, in order to reduce visual
+ complexity.
+ The view shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:elided-kin"
+
+\end_inset
+
+ is equivalent, but omits all of the inherited textbox and label parts allowing
+ us to concentrate on the parts and connections that are added.
+ The ellipsis in the bottom right corner of the component indicates that
+ some constituents are not being shown.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-elided-kin-ui.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:elided-kin"
+
+\end_inset
+
+The next of kin extension with inherited widgets elided
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now have two independent extensions: one to add a billing address and
+ another to add a next of kin field.
+ We can structure these as per the strata diagram in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:UI-strata"
+
+\end_inset
+
+, where the initial name and address entry components reside in the 
+\family typewriter
+GWTaddress
+\family default
+ stratum, the billing extension resides in 
+\family typewriter
+GWTbilling
+\family default
+, and the next of kin extension resides in 
+\family typewriter
+GWTkin
+\family default
+.
+ The 
+\family typewriter
+GWTall
+\family default
+ stratum is empty, serving to simply combine both extensions.
+ If the two extensions conflicted, evolutions to correct the structure would
+ be placed in 
+\family typewriter
+GWTall
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/gwt-strata-ui.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:UI-strata"
+
+\end_inset
+
+Strata organisation of extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This allows us to form four different variants, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:User-interface-variants"
+
+\end_inset
+
+.
+ If we run the system from the perspective of 
+\family typewriter
+GWTaddress
+\family default
+, we get the original user interface as depicted in (a).
+ If we run from the 
+\family typewriter
+GWTbilling
+\family default
+ perspective, we apply the billing address extension (b).
+ If we run from the 
+\family typewriter
+GWTkin
+\family default
+ perspective, we apply the next of kin extension (c).
+ Finally, if we run the system from the 
+\family typewriter
+GWTall
+\family default
+ perspective, we get both extensions applied (d).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/gwt-variants.png
+	lyxscale 50
+	scale 38
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:User-interface-variants"
+
+\end_inset
+
+User interface variants formed by combining extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Rapid Turnaround of Changes
+\end_layout
+
+\begin_layout Standard
+Evolve works well with the GWT environment to allow the rapid re-execution
+ of the model when a change is made.
+ After an Evolve model is modified, the developer regenerates the flattened
+ representation as Java code.
+ If the existing GWT hosted browser is currently displaying the previous
+ version of the application, we can now simply refresh to display the new
+ version immediately.
+ GWT translates the Java into JavaScript on demand, avoiding the need for
+ an explicit compile phase.
+\end_layout
+
+\begin_layout Standard
+In practice, the turnaround time for these sorts of changes is around five
+ seconds, depending on the size of the model.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+In this case study, we created and evolved a component-based web user interface
+ using two extensions.
+ This demonstrates the flexibility and applicability of Backbone, in that
+ it can adapt to an exotic environment and utilize a complex, existing library.
+ The full benefits of the extensibility approach are retained.
+ All facilities, including factories, autoconnection, hyperports, state
+ machines and evolution, are available even in the limited GWT environment.
+\end_layout
+
+\begin_layout Standard
+Some modelling and development work is generally needed to use complex libraries
+ from Backbone, in order to make explicit the more advanced structures hidden
+ inside implementation code.
+ In our example we had to provide the 
+\family typewriter
+SimpleTabPanel
+\family default
+ component, via resemblance from 
+\family typewriter
+TabPanel
+\family default
+, in order to allow tabbed interfaces.
+ This type of adaptation can be accomplished without perturbing the libraries,
+ and it allowed us to use connectors and parts instead of Java code to configure
+ the requisite object-oriented structures.
+\end_layout
+
+\begin_layout Standard
+We are not advocating Backbone as a superior method of creating user interfaces,
+ although it could conceivably complement the more traditional use of a
+ direct manipulation user interface builder.
+ As opposed to Backbone, builders typically cannot model the entire application
+ (or even entire user interface) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jacko2003"
+
+\end_inset
+
+, and have trouble representing dynamically created structures 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li2008"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Case-study-LTSA"
+
+\end_inset
+
+Using Backbone to Extend a Mature Application
+\end_layout
+
+\begin_layout Standard
+The premise of Backbone is that if a system is structured as a hierarchical
+ component architecture, then it can be extended by adding, deleting or
+ replacing components (and their constituents) at the appropriate level
+ of abstraction.
+\end_layout
+
+\begin_layout Standard
+Underlying this approach is an assumption that the leaf components (i.e.
+ those at the bottom of the hierarchy) will be relatively fine-grained in
+ order to accommodate small changes in a convenient manner.
+ If the leaves are too coarse-grained, then an extension that requires their
+ replacement may need to duplicate much of their functionality to make the
+ requisite changes.
+ For modest extensions, the effort may be disproportionate to the change
+ required.
+\end_layout
+
+\begin_layout Standard
+Fine-grained leaves imply a deep compositional structure.
+ This is feasible for an application that is developed from the start using
+ the Backbone approach and tools which are designed to support this.
+ Existing, mature object-oriented applications will rarely be structured
+ in such a way, however.
+ Many of these applications could still benefit from an extensibility architectu
+re, even though it is not feasible to completely rearchitect them in the
+ Backbone style.
+\end_layout
+
+\begin_layout Standard
+To investigate restructuring a mature application using Backbone, we apply
+ our approach to the LTSA behavioural analysis tool 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1999"
+
+\end_inset
+
+.
+ We focus particularly on gaining benefits quickly and with a modest amount
+ of effort, without the need to completely remake the architecture.
+ We further indicate how an existing architecture can evolve over time to
+ support successively finer-grained components, eventually realising the
+ full benefits of the approach.
+\end_layout
+
+\begin_layout Subsection
+The Labelled Transition System Analyser (LTSA)
+\end_layout
+
+\begin_layout Standard
+LTSA is a tool that allows the behaviour of concurrent programs to be specified
+ using a process algebra called Finite State Processes (FSP).
+ A specification can then be analysed for certain properties.
+ An FSP expression is translated into a labelled transition system (LTS),
+ which can be analysed using model checking.
+ LTSA can verify that a model satisfies certain desirable properties such
+ as safety and liveness, whilst avoiding other undesirable properties such
+ as deadlock.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-original"
+
+\end_inset
+
+ shows the LTSA tool with the 
+\begin_inset Quotes eld
+\end_inset
+
+draw
+\begin_inset Quotes erd
+\end_inset
+
+ window indicating the transitions of an LTS.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-original.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-original"
+
+\end_inset
+
+LTSA showing the draw window
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+LTSA is a mature system that has spawned a number of variants.
+ Of these the most prominent are the Ames
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The Ames variant originated from the NASA Ames Research centre.
+\end_layout
+
+\end_inset
+
+ variant, which adds two extra safety checks, and the MTSA (Modal Transition
+ System Analyser) variant 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "D'Ippolito2008"
+
+\end_inset
+
+ which allows the behaviour of a system to be analysed even if it is only
+ partially specified.
+\end_layout
+
+\begin_layout Standard
+LTSA was developed in Java in an object-oriented style.
+ The codebase is around 16k physical lines of code
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Physical lines of code measured using SLOCCount 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wheeler"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ and consists of over 200 classes.
+ To understand the overall architecture, we started by visualising the Java
+ package structure using two commercial analysis tools 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Stan4J,Headway"
+
+\end_inset
+
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-packages"
+
+\end_inset
+
+ shows the dependency relationships between the packages.
+ Note in particular that the 
+\family typewriter
+lts
+\family default
+ and 
+\family typewriter
+lts.ltl
+\family default
+ packages are mutually dependent due to their classes referencing each other.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-packages.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-packages"
+
+\end_inset
+
+The LTSA package dependencies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+ui
+\family default
+ package contains the presentation classes.
+ Graphing the classes in this package and their dependencies in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-ui-classes"
+
+\end_inset
+
+, we see that the (large) 
+\family typewriter
+HPWindow
+\family default
+ class coordinates and controls the application.
+ It is tightly coupled to the definition of the different window types and
+ adding an extra type would involve changes to this class.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-ui.png
+	lyxscale 80
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-ui-classes"
+
+\end_inset
+
+The major classes in the 
+\family typewriter
+ui
+\family default
+ package
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Most of the underlying logic of the application is contained inside classes
+ in the 
+\family typewriter
+lts
+\family default
+ and 
+\family typewriter
+lts.ltl
+\family default
+ packages.
+ These packages are too complex to show in a single diagram.
+ A subset of the classes from the 
+\family typewriter
+lts
+\family default
+ package is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ltsa-lts-package"
+
+\end_inset
+
+.
+ The dependencies in this diagram are shown by arrows, and the thick box
+ marked 
+\begin_inset Quotes eld
+\end_inset
+
+Tangle of 3
+\begin_inset Quotes erd
+\end_inset
+
+ partitions the classes which have cyclic dependencies.
+ The 
+\family typewriter
+LTSCompiler
+\family default
+ class (not shown), parses and compiles an FSP expression into an LTS and
+ produces an instance of 
+\family typewriter
+CompositeState
+\family default
+.
+ The 
+\family typewriter
+Analyser
+\family default
+ class, which can model check an LTS for certain properties, is closely
+ coupled to the 
+\family typewriter
+CompositeState
+\family default
+ class.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-composite-state.png
+	lyxscale 75
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ltsa-lts-package"
+
+\end_inset
+
+Some of the classes from the 
+\family typewriter
+lts
+\family default
+ package
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In general the system is reasonably structured, although a number of complex
+ dependency cycles exist.
+ Further, as the system has evolved, some classes have become large and
+ logic has become centralised.
+ In our experience, neither of these traits are unusual in complex systems,
+ although they do complicate analysis and subsequent architectural reclamation.
+\end_layout
+
+\begin_layout Standard
+It is worth noting that the system contains significant and involved functionali
+ty.
+ The cycles in the architecture also make componentisation difficult, as
+ this makes the boundaries between component candidates less obvious.
+ As such, LTSA forms a good testbed for the realistic introduction of Backbone
+ into an architecture.
+\end_layout
+
+\begin_layout Subsection
+Restructuring LTSA Using Backbone
+\end_layout
+
+\begin_layout Standard
+The methodology used to introduce Backbone was to perform a top-down hierarchica
+l decomposition of the LTSA architecture into coarse-grained components.
+ This allowed us to represent the entire application at a shallow level
+ of composition in Evolve.
+ As we show later, further decomposition could then occur in a controlled
+ manner.
+\end_layout
+
+\begin_layout Standard
+Once the architecture was structured as components, it was able to be extended
+ using the resemblance and replacement constructs, subject to the limitations
+ of the granularity of the components.
+\end_layout
+
+\begin_layout Subsubsection
+A Starting Point
+\end_layout
+
+\begin_layout Standard
+To start the decomposition process, we first made the 
+\family typewriter
+HPWindow
+\family default
+ class into a Backbone component, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-start"
+
+\end_inset
+
+, and phrased the LTSA application as a composite which contained an 
+\family typewriter
+HPWindow
+\family default
+ part.
+ Clearly this was not a useful architecture for extension, but merely served
+ as a starting point to allows LTSA to be run from inside the Evolve modelling
+ tool.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-initial.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-start"
+
+\end_inset
+
+The start of LTSA componentisation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+HPWindow
+\family default
+ component had its implementation class set to 
+\family typewriter
+ui.HPWindow
+\family default
+.
+ We then added a 
+\family typewriter
+run
+\family default
+ port, providing the 
+\family typewriter
+IRun
+\family default
+ interface in order to allow Backbone to invoke the program.
+\end_layout
+
+\begin_layout Standard
+On the source code side, the changes required to the 
+\family typewriter
+HPWindow
+\family default
+ class were minimal.
+ We added the code generation markers, as described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Generating-Leaf-Skeletons"
+
+\end_inset
+
+, and then regenerated the skeleton from Evolve.
+ After generation, the class looked as shown in the following listing.
+ The 
+\family typewriter
+IRunRunImpl
+\family default
+ nested class contained the implementation of the 
+\family typewriter
+IRun
+\family default
+ interface, as provided by 
+\family typewriter
+HPWindow
+\family default
+'s 
+\family typewriter
+run
+\family default
+ port.
+\end_layout
+
+\begin_layout LyX-Code
+public class HPWindow {
+\end_layout
+
+\begin_layout LyX-Code
+// start generated code
+\end_layout
+
+\begin_layout LyX-Code
+// attributes
+\end_layout
+
+\begin_layout LyX-Code
+  private Attribute<java.lang.String> title;
+\end_layout
+
+\begin_layout LyX-Code
+// provided ports
+\end_layout
+
+\begin_layout LyX-Code
+  private IRunRunImpl run_IRunProvided = new IRunRunImpl();
+\end_layout
+
+\begin_layout LyX-Code
+// end generated code
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+ existing code ...
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Subsubsection
+Top-Level Decomposition
+\end_layout
+
+\begin_layout Standard
+Once we had LTSA running inside the Evolve tool, the next step was to look
+ for obvious component candidates at the top level of the compositional
+ hierarchy.
+ This process was aided by a number of prominent interfaces in the LTSA
+ architecture, such as 
+\family typewriter
+LTSInput
+\family default
+, 
+\family typewriter
+LTSOutput
+\family default
+, 
+\family typewriter
+Automata
+\family default
+ and 
+\family typewriter
+Animator
+\family default
+.
+ Classes which implemented or required these interfaces tended to be good
+ component candidates as they were somewhat insulated from their environment
+ via those interfaces.
+\end_layout
+
+\begin_layout Standard
+One of the more obvious candidates was the event manager.
+ This accepted events (
+\family typewriter
+events
+\family default
+ port), and broadcasted them to interested listeners (
+\family typewriter
+clients
+\family default
+ port).
+ As the need to connect to this was clearly going to be pervasive throughout
+ the levels of the architecture, we used start hyperports as per figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-event-manager"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-event-manager.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-event-manager"
+
+\end_inset
+
+The event manager component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the next candidates, we settled on the 
+\family typewriter
+AlphabetWindow
+\family default
+, 
+\family typewriter
+PrintWindow
+\family default
+ and 
+\family typewriter
+LTSDrawWindow
+\family default
+ classes of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-ui-classes"
+
+\end_inset
+
+.
+ These contained the logic for the alphabet, transition and draw windows
+ in LTSA respectively.
+ Although the 
+\family typewriter
+HPWindow
+\family default
+ class was heavily reliant on the specific window class implementations,
+ it was a relatively simple matter to decouple this by the introduction
+ of a new interface called 
+\family typewriter
+IWindow
+\family default
+, as shown below.
+ This represented all that 
+\family typewriter
+HPWindow
+\family default
+ needed to know to control the other windows.
+\end_layout
+
+\begin_layout LyX-Code
+public interface IWindow {
+\end_layout
+
+\begin_layout LyX-Code
+  String getName();
+\end_layout
+
+\begin_layout LyX-Code
+  boolean isActive();
+\end_layout
+
+\begin_layout LyX-Code
+  void activate(CompositeState cs);
+\end_layout
+
+\begin_layout LyX-Code
+  JComponent getComponent();
+\end_layout
+
+\begin_layout LyX-Code
+  void copy();
+\end_layout
+
+\begin_layout LyX-Code
+  void saveFile(String directory); 
+\end_layout
+
+\begin_layout LyX-Code
+  void deactivate(); }
+\end_layout
+
+\begin_layout Standard
+Each window had a number of options displayed as checkbox menu items inside
+ the 
+\family typewriter
+HPWindow
+\family default
+ frame.
+ To model this, we imported the Java Swing user interface toolkit into Evolve
+ and created the 
+\family typewriter
+BooleanOption
+\family default
+ component, shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-BooleanOption-component"
+
+\end_inset
+
+.
+ This wrapped a single instance of 
+\family typewriter
+JCheckBoxMenuItem
+\family default
+ (a check box menu widget from the Swing toolkit), which could be shared
+ between the 
+\family typewriter
+HPWindow
+\family default
+ component (which needed to display it) and any window which needed to read
+ or be notified of changes to its state.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-boolean-option.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-BooleanOption-component"
+
+\end_inset
+
+The BooleanOption component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then turned the 
+\family typewriter
+AlphabetWindow
+\family default
+ class into a leaf component, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-alphabet-window"
+
+\end_inset
+
+.
+ Note that 
+\family typewriter
+events
+\family default
+ was created as an end hyperport, which automatically connected to the 
+\family typewriter
+clients
+\family default
+ port of the event manager.
+ The 
+\family typewriter
+AlphabetWindowFactory
+\family default
+ component was created to dynamically instantiate and destroy the window.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-alphabet-window.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-alphabet-window"
+
+\end_inset
+
+The alphabet window component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, by adding extra ports to HPWindow we were able to include the alphabet
+ window in the architecture as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-the-alphabet"
+
+\end_inset
+
+.
+ Note that 
+\family typewriter
+WindowManager
+\family default
+ was a small convenience component created to hold a small amount of glue
+ logic for creating the window instance.
+ It delegated any 
+\family typewriter
+IWindow
+\family default
+ calls onto the actual instantiated window, and was reused for the other
+ window types.
+ The alphabet window was connected up to index 
+\family typewriter
+[a]
+\family default
+ of the 
+\family typewriter
+window
+\family default
+ port of the 
+\family typewriter
+HPWindow
+\family default
+ part.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-alphabet-window-ltsa.eps
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adding-the-alphabet"
+
+\end_inset
+
+Adding the alphabet window to LTSA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+BooleanOption
+\family default
+ part allowed the user to select whether a big font was used for the display,
+ and it was connected to the 
+\family typewriter
+bigFont
+\family default
+ port of 
+\family typewriter
+HPWindow
+\family default
+ and the alphabet window.
+ Both the 
+\family typewriter
+HPWindow
+\family default
+ and 
+\family typewriter
+AlphabetWindow
+\family default
+ parts were thus notified of any state changes to this option.
+ The 
+\family typewriter
+options
+\family default
+ port allowed an arbitrary option to be connected, but we did not use this
+ for the big font option as 
+\family typewriter
+HPWindow
+\family default
+ specifically needed to know if a big font should be used for its input
+ and output text windows.
+\end_layout
+
+\begin_layout Standard
+The transitions and draw windows were turned into components using a similar
+ approach.
+ After the three windows were componentised, the compositional hierarchy
+ of LTSA looked like that shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:composition-hierarchy-windows"
+
+\end_inset
+
+.
+ This type of compositional view is the same form as that in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Basic-Concepts"
+
+\end_inset
+
+, but rotated for ease of presentation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-hierarchy-simple.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:composition-hierarchy-windows"
+
+\end_inset
+
+The compositional hierarchy after turning the window classes into components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Removing Object Instantiation from Code
+\end_layout
+
+\begin_layout Standard
+In turning a class into a component, it is vital that its instantiation
+ is achieved via Backbone parts and factories, rather than via the 
+\family typewriter
+new
+\family default
+ operator in implementation code.
+ This allows Backbone to control which actual implementation class is instantiat
+ed: replacement of a component in an extension can affect the actual class
+ that will be instantiated, and this cannot easily be expressed in code.
+\end_layout
+
+\begin_layout Standard
+In the original version of LTSA, the 
+\family typewriter
+HPWindow
+\family default
+ code instantiated the 
+\family typewriter
+AlphabetWindow
+\family default
+ class directly.
+\end_layout
+
+\begin_layout LyX-Code
+private void newAlphabetWindow(boolean disp)
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+\end_layout
+
+\begin_layout LyX-Code
+  alphabet = new AlphabetWindow(current, eman);
+\end_layout
+
+\begin_layout Standard
+In the Backbone version of LTSA, the instantiation was instead performed
+ via the 
+\family typewriter
+create
+\family default
+ port of the factory that the 
+\family typewriter
+WindowManager
+\family default
+ part was connected to.
+\end_layout
+
+\begin_layout Standard
+Removing object instantiation from code can have a cascade effect -- turning
+ one class into a component can force the componentisation of any classes
+ that need to instantiate that class.
+ Turning these related classes also into components is the preferred way
+ to give them access to the relevant create port in order to perform instantiati
+on.
+ A more expedient approach is to simply pass around a reference to the create
+ port between classes.
+ The use of this particular technique should be seen as an interim measure
+ until the relevant components can be extracted from the architecture.
+\end_layout
+
+\begin_layout Standard
+A further point worth noting is that it sometimes makes sense to treat a
+ class as a primitive type rather than a component.
+ This is a temporary measure that can introduce a class into a Backbone
+ architecture, and allow instances to be shared between components, without
+ the effort required to turn it into a full component.
+ We used this technique for the 
+\family typewriter
+CompositeState
+\family default
+ instance referred to by the 
+\family typewriter
+top
+\family default
+ attribute in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-the-alphabet"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Using Strata to Organise the Architecture
+\end_layout
+
+\begin_layout Standard
+After working with the architecture for a couple of days, the underlying
+ organisational structure became clear.
+ We created a strata graph and moved each component to the appropriate stratum.
+ For instance, the 
+\family typewriter
+LTSA
+\family default
+ composite and 
+\family typewriter
+HPWindow
+\family default
+ leaf were placed in the 
+\family typewriter
+ui
+\family default
+ stratum and the window components were placed in to the 
+\family typewriter
+windows
+\family default
+ stratum.
+ The strata diagram is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-LTSA-strata"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-strata.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-LTSA-strata"
+
+\end_inset
+
+The LTSA strata organisation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Strata provide an organisational structure to a system, and ensure appropriate
+ places for the definition of any new elements.
+\end_layout
+
+\begin_layout Subsubsection
+Turning Actions and Checks into Components
+\end_layout
+
+\begin_layout Standard
+Examining the architecture further, it became apparent that the classes
+ that performed actions (parse, compile, compose, minimise) and property
+ checks (safety, liveness, progress) could also be made into components
+ with modest effort.
+ We created the 
+\family typewriter
+IAction
+\family default
+ interface, and an 
+\family typewriter
+Action
+\family default
+ placeholder to define the general shape of an action or check.
+ The compose action component is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-compose-action"
+
+\end_inset
+
+.
+ Note that a compiler action (via the 
+\family typewriter
+compiler
+\family default
+ port) is used in order to ensure that the FSP expression is compiled before
+ it is composed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-compose.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-compose-action"
+
+\end_inset
+
+The compose action component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then connected this up to 
+\family typewriter
+HPWindow
+\family default
+ in the context of the 
+\family typewriter
+LTSA
+\family default
+ composite, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-the-compose"
+
+\end_inset
+
+.
+ This is a partial view, as denoted by the ellipsis in the bottom right
+ corner.
+ Evolve allows multiple, partial views of a component, which enables complex
+ components to be specified more conveniently.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-compose-ltsa.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adding-the-compose"
+
+\end_inset
+
+Adding the compose action to LTSA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The other actions and checks were turned into components using a similar
+ process.
+ The parse and compile action definitions were more complex, and the reader
+ is referred to appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Software"
+
+\end_inset
+
+ for instructions on downloading the full model used in the example.
+\end_layout
+
+\begin_layout Standard
+Various other prominent candidates were also turned into components, including
+ the 
+\family typewriter
+LTSCompiler
+\family default
+, 
+\family typewriter
+Analyser
+\family default
+ and animator window classes.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Analyser-and"
+
+\end_inset
+
+ shows the 
+\family typewriter
+Analyser
+\family default
+ and 
+\family typewriter
+AnalyserFactory
+\family default
+ components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-analyser.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Analyser-and"
+
+\end_inset
+
+The Analyser and AnalyserFactory components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+The Compositional Hierarchy After the First Pass
+\end_layout
+
+\begin_layout Standard
+At this point, we had a good first pass component architecture for LTSA.
+ Executing the LTSA system from within Evolve produced the screenshot shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-plain-screenshot"
+
+\end_inset
+
+.
+ Any window, menu or toolbar icon with an exclamation mark after it was
+ controlled via Backbone.
+ This included the check, build, window and options menus.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-screenshot-plain.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-plain-screenshot"
+
+\end_inset
+
+An screenshot of LTSA running inside Evolve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The entire effort required was under a week and would have been less had
+ we been more familiar with the application architecture at the start of
+ the process.
+ The compositional hierarchy (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:compositional-hierarchy-initial"
+
+\end_inset
+
+) was shallow and wide at this point.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-hierarchy-plain.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:compositional-hierarchy-initial"
+
+\end_inset
+
+The compositional hierarchy of the initial component architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+A Modest Extension: Adding a New Window Type
+\end_layout
+
+\begin_layout Standard
+As LTSA was now expressed as a component architecture, it was possible to
+ extend it using the Backbone constructs.
+ We decided to create a 
+\begin_inset Quotes eld
+\end_inset
+
+dual window
+\begin_inset Quotes erd
+\end_inset
+
+ extension which would place both the alphabet and transitions windows in
+ a single tab.
+ Firstly, we defined a trivial 
+\family typewriter
+WindowCombiner
+\family default
+ leaf component, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:wiindow-combiner"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-window-combiner.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:wiindow-combiner"
+
+\end_inset
+
+A component to combine windows
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This provided a single 
+\family typewriter
+IWindow
+\family default
+ interface and and hence could act as an LTSA window.
+ Any method called on this interface simply resulted in a delegated call
+ to the required 
+\family typewriter
+IWindow
+\family default
+ interfaces of the 
+\family typewriter
+windows
+\family default
+ port.
+ This gave a fan-out effect that allowed multiple windows to act as a single
+ window.
+\end_layout
+
+\begin_layout Standard
+We then defined the 
+\family typewriter
+DualWindow
+\family default
+ composite and its factory, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-DualWindow-component"
+
+\end_inset
+
+.
+ This connected a 
+\family typewriter
+WindowCombiner
+\family default
+ part to the transitions and alphabet windows.
+ We could have used any other combination of window parts desired.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-dual-window.eps
+	scale 95
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-DualWindow-component"
+
+\end_inset
+
+The DualWindow component combined the transitions and alphabet windows
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we evolved the 
+\family typewriter
+LTSA
+\family default
+ composite and connected the window into the architecture, shown in the
+ partial view of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-LTSA-dual"
+
+\end_inset
+
+.
+ From the textual view, it can be seen that we also removed the existing
+ alphabet and transitions window managers, factories and connectors, which
+ were no longer required.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-dualwindow-evolution.eps
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-LTSA-dual"
+
+\end_inset
+
+Evolving LTSA to add in the dual window
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Running this in Evolve gave the screenshot of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-dual-window"
+
+\end_inset
+
+.
+ The dual window positioned the transitions window at the top and the alphabet
+ window under this, respecting the indices used in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-DualWindow-component"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-dual-screenshot.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-dual-window"
+
+\end_inset
+
+LTSA showing the dual window
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We placed all of the strata of the base LTSA application (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-LTSA-strata"
+
+\end_inset
+
+) inside the 
+\family typewriter
+LTSA
+\family default
+ stratum, and placed the extension components and evolutions inside the
+ 
+\family typewriter
+dualwindow
+\family default
+ stratum.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Placing-the-extension"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-dualwindow-strata.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Placing-the-extension"
+
+\end_inset
+
+Placing the extension in a stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adding the dual window was a relatively modest extension, in that we worked
+ with the architecture at the existing, coarse-grained level of composition.
+ If we had wanted both windows in the dual view to always show the same
+ process name, then we would have had to decompose the 
+\family typewriter
+TransitionsWindow
+\family default
+ and 
+\family typewriter
+AlphabetWindow
+\family default
+ further to make this explicit in the architecture.
+ Even that variation could have been performed without further decomposition,
+ but this would have entailed completely replacing the implementation of
+ either of the window components.
+\end_layout
+
+\begin_layout Standard
+This extension demonstrates that with a relatively small investment, even
+ a complex architecture can be expressed as Backbone components, and hence
+ extended via the resemblance and replacement constructs.
+ The full facilities of our approach and environment were made available
+ in this way to the LTSA architecture.
+\end_layout
+
+\begin_layout Subsection
+Extending Deeply: Modelling the Ames LTSA Variant in Backbone
+\end_layout
+
+\begin_layout Standard
+The Ames LTSA variant adds two enhanced safety checks.
+ The first checks for safety whilst producing multiple counterexamples.
+ The second checks for safety but ignores deadlock.
+ This variant was produced by researchers copying and modifying the source
+ code of the original LTSA application, resulting in two separate codebases.
+\end_layout
+
+\begin_layout Standard
+Our goal was to express these differences as a Backbone extension to the
+ LTSA system.
+ We started by comparing the source code of the original to the variant
+ and discarding changes which were inconsequential to the added functionality.
+ After a day of analysis, we determined that most of the substantial changes
+ were made in the logic of the 
+\family typewriter
+Analyser
+\family default
+ class.
+ For instance, two new parameters (
+\family typewriter
+deadlock
+\family default
+, 
+\family typewriter
+multiCE
+\family default
+) and extra logic were added to the 
+\family typewriter
+newState_analyse()
+\family default
+ method deep in the heart of the analyser's logic.
+ Extra state was added for holding counterexamples, and existing logic was
+ adjusted to utilise this.
+\end_layout
+
+\begin_layout Subsubsection
+Enabling Fine-Grained Change Via Decomposition
+\end_layout
+
+\begin_layout Standard
+The Ames changes to the 
+\family typewriter
+Analyser
+\family default
+ component represented a modest proportion of its overall implementation.
+ Unfortunately, the size of these changes did not match up well with the
+ coarse granularity of the components in the architecture at this point
+ in time.
+\end_layout
+
+\begin_layout Standard
+The ideal way to accommodate this type of situation is to hierarchically
+ decompose existing components until the leaves are at a level where the
+ change can be made easily.
+ For instance, we could have further decomposed 
+\family typewriter
+Analyser
+\family default
+ into subcomponents allowing us to replace one of these components in the
+ extension.
+ This activity fits in well with the normal process of architectural elaboration
+, and would happen naturally over time as more of the architecture was turned
+ into components.
+ As we explicate the architecture, so we add the potential for greater extensibi
+lity and vice versa.
+ These two activities are closely related in the Backbone approach.
+\end_layout
+
+\begin_layout Standard
+An alternative to decomposition would have been to replace the entire 
+\family typewriter
+Analyser
+\family default
+ component with an Ames specific one.
+ As replacing the component outright in this case would involve disproportionate
+ effort relative to the size of the change, this was not an attractive option.
+\end_layout
+
+\begin_layout Standard
+We chose to take a slightly different approach to both of the above.
+ As we did not have the domain knowledge to decompose 
+\family typewriter
+Analyser
+\family default
+ into subcomponents, we instead used the decorator pattern 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma1995"
+
+\end_inset
+
+ to allow the Ames-specific analyser to intercept methods before selectively
+ delegating them to the existing analyser.
+ The definition of the 
+\family typewriter
+AmesAnalyserDecorator
+\family default
+ is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-extended-analyser"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-ames-decorator.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-extended-analyser"
+
+\end_inset
+
+The extended analyser and Ames decorator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then moved the existing analyser logic into the 
+\family typewriter
+ExtendedAnalyser
+\family default
+ component.
+ This was done by assigning 
+\family typewriter
+lts.Analyser
+\family default
+ as the implementation class, and did not involve any source code changes
+ at this point.
+ However, the decorator required access to some of the previously private
+ methods of the analyser, so the interface to this component was 
+\begin_inset Quotes eld
+\end_inset
+
+widened
+\begin_inset Quotes erd
+\end_inset
+
+ by declaring a subinterface called 
+\family typewriter
+IExtendedAnalyser
+\family default
+.
+ This did require source code changes and is discussed in further detail
+ below.
+\end_layout
+
+\begin_layout Standard
+Having created these components, were were now able to evolve the 
+\family typewriter
+Analyser
+\family default
+ component into a composite, allowing it to offer the Ames-specific functionalit
+y.
+ This evolution is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-the-analyser"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-ames-analyser.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-the-analyser"
+
+\end_inset
+
+Evolving the analyser to add the Ames decorator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that two extra attributes were added to 
+\family typewriter
+Analyser
+\family default
+: 
+\family typewriter
+checkDeadlock
+\family default
+ and 
+\family typewriter
+multiCE
+\family default
+.
+ These controlled whether or not the analyser checked for deadlocks and
+ produced multiple counterexamples.
+ The attribute defaults allowed the component to be used as it was before.
+\end_layout
+
+\begin_layout Standard
+We then added the extra safety checks to LTSA.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-LTSA-without"
+
+\end_inset
+
+ shows a partial view where a 
+\family typewriter
+SafetyCheck
+\family default
+ part has been connected to an 
+\family typewriter
+AnalyserFactory
+\family default
+ with 
+\family typewriter
+checkDeadlock
+\family default
+ set to false.
+ This provided a safety check that did not detect deadlock.
+ The other check was connected in a similar way.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-safety-without.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-LTSA-without"
+
+\end_inset
+
+Evolving LTSA to include the new safety without deadlock check
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As discussed earlier, we had to widen the 
+\family typewriter
+IAnalyser
+\family default
+ interface to accommodate the decorator -- the Ames logic required access
+ to a number of the methods that were previously private to the 
+\family typewriter
+Analyser
+\family default
+ component.
+ This involved small changes to the underlying source code of the 
+\family typewriter
+Analyser
+\family default
+ class, which violated our 
+\noun on
+NoSource
+\noun default
+ requirement.
+ This is the cost of not having a fully elaborated architecture -- until
+ the leaf components in the architecture become relatively fine-grained,
+ then unplanned extensions possibly require source code changes to the coarse-gr
+ained components in the base.
+\end_layout
+
+\begin_layout Standard
+To test the Ames extension, we used the FSP expression 
+\family typewriter
+A = (a -> STOP)
+\family default
+ which is guaranteed to result in deadlock.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-original-safety"
+
+\end_inset
+
+ shows the original LTSA running a safety check and finding the deadlock,
+ and the Ames variant running the 
+\begin_inset Quotes eld
+\end_inset
+
+safety without deadlock check
+\begin_inset Quotes erd
+\end_inset
+
+ and not detecting the deadlock.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-safety1-screenshot.png
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-original-safety"
+
+\end_inset
+
+The original and Ames safety checks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Combining the Extensions
+\end_layout
+
+\begin_layout Standard
+After packaging the Ames extension in an appropriate extension stratum (
+\family typewriter
+Ames
+\family default
+), we then combined both extensions using a further stratum (
+\family typewriter
+combined
+\family default
+).
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-combined-strata"
+
+\end_inset
+
+ shows the strata diagram.
+ Note that the 
+\family typewriter
+combined
+\family default
+ stratum depends on both extensions.
+ Running a full check of the system revealed no errors -- there were no
+ structural conflicts.
+ As such, we were able to form a system with both the Ames and dual window
+ extensions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/ltsa-stratum-extensions.eps
+	lyxscale 60
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-combined-strata"
+
+\end_inset
+
+The combined strata depends on both extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We could then examine the compositional history of the LTSA system over
+ time, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-compositional-history"
+
+\end_inset
+
+.
+ In (a), we have the original system after the windows and actions were
+ componentised.
+ Applying the dual window extension resulted in the compositional hierarchy
+ of (b).
+ Applying the AMES extension gave (c).
+ Finally, combining both extensions gave (d).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/ltsa-compositions.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-compositional-history"
+
+\end_inset
+
+The compositional history of the LTSA extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Summary: Applying Backbone to LTSA
+\end_layout
+
+\begin_layout Standard
+LTSA is a complex, mature system that provides significant functionality.
+ It has been developed over a number of years in an object-oriented style,
+ and several significant variants of this analysis tool exist in completely
+ separate codebases.
+ Our goal was to express and extend this system using the Backbone approach,
+ in order to demonstrate Backbone's applicability to existing systems that
+ are not already structured as deep component hierarchies.
+\end_layout
+
+\begin_layout Standard
+After a first pass, involving modest effort, we were able to extract components
+ for windows, actions and checks from the LTSA architecture.
+ This enabled us to visualise the architecture in Evolve and run LTSA from
+ within this environment.
+ The compositional hierarchy at this point was shallow and wide, reflecting
+ the coarse-grained nature of the components.
+\end_layout
+
+\begin_layout Standard
+For the first extension, we replaced the alphabet and transition windows
+ with a window showing both views simultaneously.
+ This was a conservative extension, as it worked with the existing, coarse-grain
+ed components without requiring further decomposition.
+ This extension was able to be accomplished without access to the source
+ code, by using the resemblance and replacement constructs.
+\end_layout
+
+\begin_layout Standard
+For the second extension, we modelled the Ames variant of LTSA which introduced
+ two extra safety checks.
+ This variant was created several years ago when researchers forked the
+ source code of the original application.
+ In order to phrase this as an extension we first analysed the differences
+ between the two codebases.
+ It transpired that the extension relied on replacing part of the logic
+ of the analyser component.
+ To accommodate this change we further hierarchically decomposed the component
+ so that the granularity of the architecture matched up with the size of
+ the change required.
+ At this point the compositional hierarchy became deeper, reflecting that
+ some of the components had evolved from leaves to composites.
+\end_layout
+
+\begin_layout Standard
+The two extensions were then able to be combined without structural conflict,
+ resulting in a system that had both a dual alphabet/transitions window
+ and the Ames safety checks.
+\end_layout
+
+\begin_layout Standard
+The Ames extension gave an interesting insight into the applicability of
+ our approach.
+ Implicitly, Backbone assumes that an architecture will be structured as
+ a compositional hierarchy with relatively fine-grained leaf components
+ at the base.
+ The motivation is that this allows small changes to the system to be reflected
+ by a commensurate replacement of a small leaf component.
+ Although this level of granularity is encouraged by the Evolve toolset,
+ existing systems are rarely structured in this way.
+ For these applications, a gradual process of architectural elaboration
+ is more practical, focusing on the decomposition in expected areas of extension.
+ Until a more complete architectural structure is achieved, some changes
+ cannot be accommodated easily without recourse to changing the source code
+ of various base components.
+\end_layout
+
+\begin_layout Standard
+Some unplanned extensions can be handled, however, with a coarse-grained
+ architecture.
+ The first pass LTSA component architecture allowed the dual window extension,
+ which involved addition and removal of parts in the hierarchy.
+ In this respect, Backbone formed an adequate extensibility architecture
+ for the mature application.
+ A benefit of Backbone in this situation, over conventional approaches,
+ is that the ability to handle unplanned change accrues increasingly as
+ the architecture is decomposed more thoroughly.
+\end_layout
+
+\begin_layout Standard
+Our approach to further decomposition is similar to that taken when evolving
+ a legacy system into fine-grained components 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mehta02evolving"
+
+\end_inset
+
+.
+ In this context, system features that have historically exhibited large
+ maintenance costs or have already been shown to vary significantly are
+ focused on and decomposed into a number of small components, facilitating
+ greater reuse between variants.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+In this chapter, we compared and contrasted Backbone to two commonly used
+ approaches for creating and extending systems: a plugin approach and a
+ compositional technique for describing product lines.
+\end_layout
+
+\begin_layout Standard
+In the first evaluation, we chose to model the addition of columns to the
+ task view in the Eclipse development tool.
+ We examined how the Eclipse plugin architecture would handle this extension
+ requirement.
+ The result was that the change was not foreseen by the designers of this
+ part of Eclipse, and accordingly this necessitated the replacement of a
+ large plugin.
+ This replacement in turn interacted badly with the plugin version system,
+ in that an updated version of the plugin from the Eclipse Foundation would
+ force the later removal of our changes.
+ Effecting the extension turned out to be impractical.
+ In contrast, the Backbone architecture for the same extension allowed the
+ columns to be added via an evolution of the view component.
+\end_layout
+
+\begin_layout Standard
+The Backbone approach separates out the notion of unit of extension (stratum)
+ from the unit of replacement (component or interface).
+ Further, it allows hierarchical decomposition of an architecture which
+ resolves the tension between component size and architectural manageability.
+ The plugin approach, however, fuses the notions of extension and replacement
+ together in the plugin concept and biases plugins towards a coarse granularity
+ for ease of architectural management.
+ This increases the potential for conflict between plugins, resulting in
+ plugins which can never be used together.
+ In contrast, Backbone deals with conflict between strata by allowing another
+ strata to correct the structural issues via component evolution.
+ Conflicting strata therefore do not become mutually exclusive.
+ 
+\end_layout
+
+\begin_layout Standard
+For the product line approach, we chose to model the audio desk scenario
+ (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Example-Scenario"
+
+\end_inset
+
+) using the AHEAD toolkit.
+ This used constants, representing base programs, and allowed functions
+ to refine these to produce system variants.
+ Unfortunately, if two functions or constants conflicted in certain ways,
+ they could not be used together and there was no guarantee that a further
+ function could correct the situation.
+ AHEAD had trouble modelling the mixer upgrade scenario from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Upgraded-Desk"
+
+\end_inset
+
+, leading to a situation where the extensions could not be combined or corrected.
+ Backbone does not suffer from this limitation, as structural conflicts
+ can always be remedied using evolution in a further extension.
+\end_layout
+
+\begin_layout Standard
+Following on from these evaluations, we presented two case studies examining
+ the applicability of the Backbone approach to other environments, and also
+ to mature systems.
+\end_layout
+
+\begin_layout Standard
+We examined the applicability of Backbone to an unusual environment: the
+ Google Web Toolkit.
+ GWT works by translating Java programs into JavaScript, allowing them to
+ run on the client side in a web browser.
+ We showed that Backbone was able to generate GWT programs, utilising the
+ toolkit library with a small amount of work.
+ The intention was not to show that Backbone provides a superior way of
+ building user interfaces, but to demonstrate that the approach is flexible
+ enough to work in exotic and constrained environments, with existing libraries.
+ The full extensibility benefits of Backbone apply to this environment.
+\end_layout
+
+\begin_layout Standard
+The underlying limitation behind the Backbone approach is that it assumes
+ that the compositional hierarchy of a system will be deep enough to apply
+ any required changes at the appropriate level of abstraction.
+ For small changes, this implies that leaf components should be fine-grained.
+ Existing systems are not generally structured in this way, although they
+ could often benefit from an extensibility architecture.
+\end_layout
+
+\begin_layout Standard
+As a case study for applying our extensibility approach to a mature system,
+ we restructured LTSA using Backbone.
+ Even with a coarse-grained component architecture, we were able to demonstrate
+ extension of the application.
+ A more complex extension required further component decomposition leading
+ to the insight that Backbone requires a relatively fine-grained hierarchical
+ architecture to accommodate some unplanned changes.
+ If this decomposition is not present, a level of reimplementation effort
+ will be required when creating an extension.
+ Ideally, gradual hierarchical decomposition will occur as part of the natural
+ elaboration of the architecture, and the ability to handle unplanned extension
+ will start to accrue accordingly.
+\end_layout
+
+\end_body
+\end_document

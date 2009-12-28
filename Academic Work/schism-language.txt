@@ -1,0 +1,87 @@
+Principle: a thin layer on scheme with nicer syntax.  layer on top of existing mechanisms, don't build new scheme infrastructure.
+Target SRFIs where possible.
+=================================================================================================================================
+
+e.g. from
+
+(* test *)
+(let ((a 10) (b (+ 20 a)))
+  (if (> a 5)
+	(write 'greater)
+	(write 'lesser)))
+
+to:
+
+# test
+  let
+    a = (10 20 30),
+    b = 20 + 5 * 10
+  {
+    fun test?(a, b: float)
+    {
+      return a + b
+    }
+
+    let sum = 0
+    {
+      apply((100 200 300), [n: sum += n])
+
+      if (a > 5)
+        write 'greater;
+      else
+        write 'lesser;
+
+    for (let a = 10; a < 20; a++)
+      ;
+
+    scheme
+    {
+      (set! a 20)
+      (write 'hello)
+    }
+
+    a += 20;
+
+    fun a(b, c, d)
+    {
+      write("hello");
+    }
+  }
+
+
+features
+----------------
+let statement and assignment
+closures like smalltalk: [a, b | a + b]
+tie into macros -- very important -- perhaps have a special syntax translating into a scheme macro / special form
+enumerations (as symbols, therefore extensible)
+scheme for values, but schism constructs nested inside also
+yield (using call/cc)
+thread primitives (fork, join, par/seq constructs)
+selector :a syntax
+allow variables + names to have ? in
+oper=, ++, -- etc -- possibly as generic functions
+handle mutual recursion in definitions
+exceptions (srfi 34)
+pattern matching (srfi 16, make flexible for handling return types etc)
+syntax extension framework? (look into ruby for this one)
+include system (based on use)
+eval of schism (translate into scheme, then eval the scheme)
+use of generic functions to get polymorphism, including operator overloading
+  -- use same syntax as for functions, but use <type> to guess whether we need to make it generic or not
+lazy as a primitive?
+syntax for maps, sets
+class-like notation -- for hooking into generic functions
+iterator primitives e.g. for, while
+{ instead of begin??  or indentation?
+constants
+
+---------------------------------
+
+some type of arrays?  probably not, as these primitives exist in an SRFI
+indent a la python or curly brackets?
+regular expressions + compile support?
+
+
+
+

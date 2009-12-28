@@ -1,0 +1,7 @@
+    <UML:Model xmi.id="a0" xmi.uuid="DCE-1139481251228-435" name="Model" visibility="public" isSpecification="false" isRoot="true" isLeaf="false" isAbstract="false">
+      <UML:Namespace.ownedElement>
+
+<packageImportLink xlink:type="simple" xlink:href="Backbone{CR}visual{CR}language" />
+
+      </UML:Namespace.ownedElement>
+    </UML:Model>

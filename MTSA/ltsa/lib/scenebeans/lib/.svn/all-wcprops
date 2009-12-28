@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/scenebeans/lib
+END
+scenebeans.jar
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/scenebeans/lib/scenebeans.jar
+END
+animator.jar
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/scenebeans/lib/animator.jar
+END
+jel.jar
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/scenebeans/lib/jel.jar
+END
+natutil.jar
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/scenebeans/lib/natutil.jar
+END
+xml.jar
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/scenebeans/lib/xml.jar
+END

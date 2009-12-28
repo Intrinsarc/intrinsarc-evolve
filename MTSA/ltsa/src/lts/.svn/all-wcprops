@@ -1,0 +1,353 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/mtsa/!svn/ver/165/trunk/ltsa/src/lts
+END
+Expression.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Expression.java
+END
+AutCompactState.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/AutCompactState.java
+END
+LTSEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LTSEvent.java
+END
+ProgressTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/ProgressTest.java
+END
+StateMachine.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/165/trunk/ltsa/src/lts/StateMachine.java
+END
+Diagnostics.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Diagnostics.java
+END
+Automata.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Automata.java
+END
+MyStack.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/MyStack.java
+END
+EventManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/EventManager.java
+END
+ProgressDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/ProgressDefinition.java
+END
+SuperTrace.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/SuperTrace.java
+END
+EmptyLTSOuput.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/102/trunk/ltsa/src/lts/EmptyLTSOuput.java
+END
+EventClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/EventClient.java
+END
+MyHashProg.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/MyHashProg.java
+END
+LTSException.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LTSException.java
+END
+LTSOutput.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LTSOutput.java
+END
+MyHash.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/MyHash.java
+END
+RunMenu.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/RunMenu.java
+END
+CounterExample.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/CounterExample.java
+END
+Minimiser.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Minimiser.java
+END
+Range.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Range.java
+END
+ActionLabels.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/ActionLabels.java
+END
+Determinizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Determinizer.java
+END
+ProgressCheck.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/ProgressCheck.java
+END
+CompositeState.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/102/trunk/ltsa/src/lts/CompositeState.java
+END
+RelabelDefn.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/RelabelDefn.java
+END
+StackCheck.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/StackCheck.java
+END
+MyIntHash.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/MyIntHash.java
+END
+Symbol.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/mtsa/!svn/ver/134/trunk/ltsa/src/lts/Symbol.java
+END
+LTSInputString.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LTSInputString.java
+END
+Animator.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Animator.java
+END
+LTSError.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LTSError.java
+END
+Value.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Value.java
+END
+MenuDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/MenuDefinition.java
+END
+Relation.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Relation.java
+END
+SymbolTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/134/trunk/ltsa/src/lts/SymbolTable.java
+END
+Analyser.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Analyser.java
+END
+StateCodec.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/StateCodec.java
+END
+Counter.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Counter.java
+END
+MyHashStack.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/MyHashStack.java
+END
+Alphabet.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/93/trunk/ltsa/src/lts/Alphabet.java
+END
+MyList.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/MyList.java
+END
+LTSInput.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LTSInput.java
+END
+EventState.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/EventState.java
+END
+DrawMachine.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/102/trunk/ltsa/src/lts/DrawMachine.java
+END
+CompositionExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/145/trunk/ltsa/src/lts/CompositionExpression.java
+END
+Declaration.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/80/trunk/ltsa/src/lts/Declaration.java
+END
+CompactState.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/102/trunk/ltsa/src/lts/CompactState.java
+END
+Lex.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Lex.java
+END
+PartialOrder.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/PartialOrder.java
+END
+PrintTransitions.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/PrintTransitions.java
+END
+StackChecker.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/StackChecker.java
+END
+Transition.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/Transition.java
+END
+LabelSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LabelSet.java
+END
+LTSManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LTSManager.java
+END
+LTSCompiler.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/134/trunk/ltsa/src/lts/LTSCompiler.java
+END
+LTSCanvas.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/LTSCanvas.java
+END
+MyHashQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/lts/MyHashQueue.java
+END

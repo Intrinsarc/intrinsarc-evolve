@@ -1,0 +1,187 @@
+module wellformed_components
+
+open util/boolean as boolean
+open util/relation as relation
+open util/ternary as ternary
+open structure
+
+
+-- check that the component is well formed
+pred componentIsWellFormed(s: Stratum, c: Component)
+{
+  -- ***RULE W4: the type of the part must not be in a cyclic relationship with itself through containment
+  -- it also cannot be cyclical with respect to resemblance
+  c $\not\subseteq$ c$\cdot$ $\!\!\!^\wedge\!$(resembles_e$\cdot$s)
+  -- the original (either the thing being redefined or the original)
+  -- is not in the composition hierarchy taking resemblance into account
+  -- NOTE: if c cannot be composed if it is a redefinition
+  -- NOTE: a further constraint is that we cannot be composed of the thing we
+  --       are redefining
+  let
+    resembling = resembles_e$\cdot$s, partTypes = parts$\cdot$s$\cdot$partType,
+    original = no c$\cdot$redefines $\Longrightarrow$ c else c$\cdot$redefines
+  {
+    original $\not\subseteq$ c$\cdot$ $\!\!\!^\ast\!$(resembling $\cup$ partTypes)$\cdot$partTypes
+  }
+  -- ***RULE W6: a component must have some ports
+  $\exists\,$c$\cdot$ports$\cdot$s
+  
+  -- to be well formed, we must have one element per ID
+  c$\cdot$myPorts$\cdot$oneObjectPerID[s]
+  c$\cdot$myAttributes$\cdot$oneObjectPerID[s]
+  
+  // if this is composite, ensure the ports, parts $\wedge$ connectors are well formed
+  isTrue[c$\cdot$isComposite] $\Longrightarrow$
+  {
+    -- must always have some parts
+    $\exists\,$c$\cdot$parts$\cdot$s
+  
+    -- to be well formed, we must have one element per ID
+    c$\cdot$myParts$\cdot$oneObjectPerID[s]
+    c$\cdot$myConnectors$\cdot$oneObjectPerID[s]
+
+    -- don't require any parts -- e.g. junction components for altering connection interfaces
+    partsAreWellFormed[s, c]
+    connectorsAreWellFormed[s, c]
+    portAndPortInstancesAreConnected[s, c]
+  }
+}
+
+pred portAndPortInstancesAreConnected(s: Stratum, c: Component)
+{
+  $\forall\,$port: c$\cdot$ports$\cdot$s |
+    portIsConnected[s, c, port]
+    
+  $\forall\,$cpart: c$\cdot$parts$\cdot$s |
+    $\forall\,$port: cpart$\cdot$partType$\cdot$ports$\cdot$s |
+      portInstanceIsConnected[s, c, port, cpart]
+}
+
+
+pred partsAreWellFormed(s: Stratum, c: Component)
+{
+  $\forall\,$pPart: c$\cdot$parts$\cdot$s
+  {
+    -- ***RULE C8: it must be possible to reach this part from a series of connections from the owning component
+    -- otherwise, this part will be completely internally connected -- an island
+    s$\,\times\,$c $\subseteq$ pPart$\cdot$ $\!\!\!^\ast\!$(linkedToParts$\cdot$c$\cdot$s)$\cdot$linkedToOutside
+    -- check the attributes
+    let
+      valueIDs = dom[pPart$\cdot$attributeValues],
+      aliasIDs = dom[pPart$\cdot$attributeAliases],
+      copyIDs = dom[pPart$\cdot$attributeCopyValues],
+      parentAttrs = c$\cdot$myAttributes$\cdot$objects_e[s],
+      partAttrs = pPart$\cdot$partType$\cdot$myAttributes$\cdot$objects_e[s],
+      partAttrIDs = dom[partAttrs]
+    {
+      -- should have no overlap between the different types of possibilities
+      disj[valueIDs, aliasIDs, copyIDs]
+      -- all the IDs must exist in the list of attributes
+      (valueIDs $\cup$ aliasIDs $\cup$ copyIDs) $\subseteq$ partAttrIDs
+
+      -- any new values must have the correct type
+      $\forall\,$ID: valueIDs |
+        pPart$\cdot$attributeValues[ID]$\cdot$valueType = partAttrs[ID]$\cdot$attributeType
+
+      -- any aliased or copied attributes must exist and have the correct type
+      $\forall\,$ID: aliasIDs |
+        partAttrs[ID]$\cdot$attributeType =
+          parentAttrs[pPart$\cdot$attributeAliases[ID]]$\cdot$attributeType
+      $\forall\,$ID: copyIDs |
+        partAttrs[ID]$\cdot$attributeType =
+          parentAttrs[pPart$\cdot$attributeCopyValues[ID]]$\cdot$attributeType
+        
+      -- anything left over must have a default value or else the parts attribute is unspecified
+      $\forall\,$ID: partAttrIDs - (valueIDs $\cup$ aliasIDs $\cup$ copyIDs) |
+        one partAttrs[ID]$\cdot$defaultValue
+    }
+  }  
+} 
+
+
+pred setupConnectors(s: Stratum, c: Component)
+{
+  $\forall\,$end: c$\cdot$connectors$\cdot$s$\cdot$ends |
+  let other = end$\cdot$otherEnd, aport = end$\cdot$port$\cdot$c$\cdot$s, otherPort = other$\cdot$port$\cdot$c$\cdot$s |
+  {
+    -- if just one end of the connector goes to the component, it must be mandatory
+    -- if the part end is mandatory
+    end $\subseteq$ ComponentConnectorEnd $\Longrightarrow$
+    {
+      end$\cdot$port$\cdot$c$\cdot$s = (end $\cap$ ComponentConnectorEnd)::getPort[s, c]
+    }
+    else
+    {
+      -- this is a part connector end, make sure we connect to a single port instance
+      let
+        portAndPart = (end $\cap$ PartConnectorEnd)::getPortInstance[s, c],
+        resolvedPort = dom[portAndPart]
+        {
+          end$\cdot$port$\cdot$c$\cdot$s = resolvedPort
+          end$\cdot$cpart$\cdot$c$\cdot$s = ran[portAndPart]
+        }
+    }
+  }
+}
+
+pred connectorsAreWellFormed(s: Stratum, c: Component)
+{
+  $\forall\,$end: c$\cdot$connectors$\cdot$s$\cdot$ends |
+  let other = end$\cdot$otherEnd, aport = end$\cdot$port$\cdot$c$\cdot$s, otherPort = other$\cdot$port$\cdot$c$\cdot$s |
+  {
+    end$\cdot$index $\subseteq$ end$\cdot$port$\cdot$c$\cdot$s$\cdot$(mandatory $\cup$ optional)
+    one end$\cdot$port$\cdot$c$\cdot$s
+    
+    -- if just one end of the connector goes to the component, it must be mandatory
+    -- if the part end is mandatory
+    end $\subseteq$ ComponentConnectorEnd $\Longrightarrow$
+    {
+      -- note: other end must be a part connector end, as no component to component connectors are allowed
+      -- if the outside is optional, the inside cannot be mandatory...
+      end$\cdot$index $\subseteq$ aport$\cdot$optional $\Longrightarrow$ other$\cdot$index $\subseteq$ otherPort$\cdot$optional
+    }
+    else
+    {
+      one end$\cdot$cpart$\cdot$c$\cdot$s
+      end$\cdot$index $\subseteq$ aport$\cdot$optional $\Longleftrightarrow$ other$\cdot$index $\subseteq$ otherPort$\cdot$optional
+    }
+  }
+}
+
+
+
+----------- support predicates
+
+pred portIsConnected(s: Stratum, c: Component, o: Port)
+{
+  -- ports on the component must always be connected internally
+  $\forall\,$idx: o$\cdot$mandatory $\cup$ o$\cdot$optional |
+  one end: c$\cdot$connectors$\cdot$s$\cdot$ends $\cap$ ComponentConnectorEnd |
+  {
+    end$\cdot$port$\cdot$c$\cdot$s = o
+    idx = end$\cdot$index
+  }
+}
+
+pred portInstanceIsConnected(s: Stratum, c: Component, o: Port, p: Part)
+{
+  -- don't need to check any provided interfaces -- as these are always optional
+  -- match up any mandatory required interfaces on the port with a single connector
+  $\forall\,$idx: o$\cdot$mandatory $\cup$ o$\cdot$optional |
+  let ends =
+  { end: c$\cdot$connectors$\cdot$s$\cdot$ends $\cap$ PartConnectorEnd |
+    end$\cdot$port$\cdot$c$\cdot$s = o $\wedge$ end$\cdot$cpart$\cdot$c$\cdot$s = p $\wedge$ idx = end$\cdot$index
+  }
+  {
+    ($\exists\,$o$\cdot$required$\cdot$c$\cdot$s $\vee$ isFalse[Model::providesIsOptional]) $\Longrightarrow$
+    {
+      idx $\subseteq$ o$\cdot$mandatory $\Longrightarrow$
+        -- must have a connection
+        one ends
+      else
+        -- can only have at most one connection
+        lone ends
+    }
+  }
+}
+

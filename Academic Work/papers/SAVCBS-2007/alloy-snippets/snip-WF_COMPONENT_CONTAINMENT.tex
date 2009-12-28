@@ -1,0 +1,9 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={wellformed\_components.als, lines 19-24}, label=alloy:WF_COMPONENT_CONTAINMENT, captionpos=b]
+let
+  resembling = resembles_e$\cdot$s, partTypes = parts$\cdot$s$\cdot$partType,
+  original = no c$\cdot$redefines $\Longrightarrow$ c else c$\cdot$redefines
+{
+  original $\not\subseteq$ c$\cdot$ $\!\!\!^\ast\!$(resembling $\cup$ partTypes)$\cdot$partTypes
+}
+\end{lstlisting}

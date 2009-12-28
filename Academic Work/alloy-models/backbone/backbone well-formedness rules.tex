@@ -1,0 +1,52 @@
+%% LyX 1.4.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\setlength\parskip{\medskipamount}
+\setlength\parindent{0pt}
+
+\makeatletter
+\usepackage{babel}
+\makeatother
+\begin{document}
+Composition rules:
+
+\begin{enumerate}
+\item Strata compose Components, Interfaces
+\item Components compose Ports, Properties, Parts, Connectors
+\item Parts compose PropertyBindings, (PortInstances)
+\item Connectors compose ConnectorEnds 
+\end{enumerate}
+Well-formedness rules:
+
+\begin{enumerate}
+\item No Stratum cycles are allowed
+\item Ports must have visibility of their required and provided Interfaces
+\item Parts must have visibility of their Component type
+\item The Component-Part relation must not be cyclic
+\item A Port must have at least 1 provided or required Interface
+\item A Component must have at least 1 Port 
+\end{enumerate}
+Connection rules:
+
+\begin{enumerate}
+\item A ComponentConnectorEnd must reference a Port of the Component that
+owns the Connector
+\item A PortConnectorEnd must reference a valid Port of the Part's Component
+type
+\item ConnectorEnds in a single Connector must be fully symmetric (provides
++ requires) with regards to Interfaces
+\item For each Part, a PortInstance must be present for each Port of the
+Part's Component type
+\item Each PortInstance must be fully connected with Connectors such that
+the provided and required interfaces match exactly against PartConnectorEnds
+\item Each (non-internal) Port must be fully connected with Connectors such
+that the provided and required interfaces match exactly against ComponentConnectorEnds,
+but with reverse polarity
+\item Internal Ports must not have any Connectors
+\item Parts must be eventually traceable back to a Port, following Connectors
+\item There may only be 1 self-Connector per Port or PortInstance
+\end{enumerate}
+
+\end{document}

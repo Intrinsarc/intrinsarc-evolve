@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="JUNIT_HOME/junit.jar"/>
+	<classpathentry kind="var" path="GWT/gwt-dev-linux.jar"/>
+	<classpathentry kind="var" path="GWT/gwt-user.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BackboneGWTBase"/>
+	<classpathentry kind="lib" path="/BackboneGWTBase/src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BackboneInterpreter"/>
+	<classpathentry kind="lib" path="/BackboneInterpreter/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

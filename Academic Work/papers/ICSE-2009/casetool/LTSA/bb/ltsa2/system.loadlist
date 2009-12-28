@@ -1,0 +1,40 @@
+<LoadList>
+  <variables>
+    <name>BBONE</name>
+    <value>/home/andrew/work/workspace/BackboneInterpreter/test/base</value>
+  </variables>
+  <variables>
+    <name>LTSA</name>
+    <value>/home/andrew/work/LTSA-workspace/LTSA-Jeff</value>
+  </variables>
+  <directories>
+    <path>$LTSA/bb/ltsa2</path>
+    <stratumName>ltsa variant
+(no alphabet
+window)</stratumName>
+  </directories>
+  <directories>
+    <path>$LTSA/bb/ltsa</path>
+    <stratumName>ltsa</stratumName>
+  </directories>
+  <directories>
+    <path>$BBONE</path>
+    <stratumName>backbone</stratumName>
+  </directories>
+  <directories>
+    <path>$BBONE/documentation profile</path>
+    <stratumName>backbone :: documentation profile</stratumName>
+  </directories>
+  <directories>
+    <path>$BBONE/standard profile</path>
+    <stratumName>backbone :: standard profile</stratumName>
+  </directories>
+  <directories>
+    <path>$BBONE/api</path>
+    <stratumName>backbone :: api</stratumName>
+  </directories>
+  <directories>
+    <path>$BBONE/backbone profile</path>
+    <stratumName>backbone :: backbone profile</stratumName>
+  </directories>
+</LoadList>

@@ -1,0 +1,38 @@
+<LoadList>
+  <variables>
+    <name>TASKVIEW</name>
+    <value>/home/amcveigh/work/workspace/TaskView</value>
+  </variables>
+  <directories>
+    <path>$TASKVIEW/bb</path>
+    <stratumName>taskview</stratumName>
+  </directories>
+  <directories>
+    <path>$TASKVIEW/bb</path>
+    <stratumName>markerview</stratumName>
+  </directories>
+  <directories>
+    <path>/home/amcveigh/work/workspace/TaskView/bb/base</path>
+    <stratumName>backbone</stratumName>
+  </directories>
+  <directories>
+    <path>/home/amcveigh/work/workspace/TaskView/bb/base/documentation profile</path>
+    <stratumName>backbone :: documentation profile</stratumName>
+  </directories>
+  <directories>
+    <path>/home/amcveigh/work/workspace/TaskView/bb/base/standard profile</path>
+    <stratumName>backbone :: standard profile</stratumName>
+  </directories>
+  <directories>
+    <path>/home/amcveigh/work/workspace/TaskView/bb/base/api</path>
+    <stratumName>backbone :: api</stratumName>
+  </directories>
+  <directories>
+    <path>/home/amcveigh/work/workspace/TaskView/bb/base/primitive types</path>
+    <stratumName>backbone :: primitive types</stratumName>
+  </directories>
+  <directories>
+    <path>/home/amcveigh/work/workspace/TaskView/bb/base/backbone profile</path>
+    <stratumName>backbone :: backbone profile</stratumName>
+  </directories>
+</LoadList>

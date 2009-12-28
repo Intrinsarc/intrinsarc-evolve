@@ -1,0 +1,19 @@
+        <UML:Package xmi.id="a2" xmi.uuid="DCE-1140441367689-727" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+editor</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Interface xmi.id="a14" xmi.uuid="DCE-1141053468774-437" name="IGraphEditor" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a56" xmi.uuid="DCE-1141401093753-411" name="ITool" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a71" xmi.uuid="DCE-1141050270977-423" isActive="false" name="GraphEditor" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a72" xmi.uuid="DCE-1141050291071-247" isActive="true" name="Manager" visibility="private" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+            <UML:Class xmi.id="a73" xmi.uuid="DCE-1141050340586-32" isActive="false" name="SimpleNodeCreatorTool" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a57" xmi.uuid="DCE-1141401134216-368" isActive="false" name="Manager" visibility="private" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+            <UML:Class xmi.id="a74" xmi.uuid="DCE-1141050352383-663" isActive="false" name="SimpleEdgeCreatorTool" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

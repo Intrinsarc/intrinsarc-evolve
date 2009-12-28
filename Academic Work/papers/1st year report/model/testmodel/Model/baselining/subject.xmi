@@ -1,0 +1,93 @@
+        <UML:Package xmi.id="a70" xmi.uuid="DCE-1145970894000-536" name="baselining" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+
+<packageImportLink xlink:type="simple" xlink:href="base1" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="base2" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="otherbase1" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="otherbase2" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="base1{39}" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="base2{39}" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="h" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="d" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="g" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="b" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="a" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="e" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="c" />
+
+            <UML:Comment xmi.id="a115" xmi.uuid="DCE-1145981918765-518" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Notes:
+
+- merge is based on "versioned-off" children...
+
+- if there is no possibility of conflict, then no merge is needed
+
+- checking and remerging can be run at any time to allow for updates to be handled.
+
+- common elements of d and f must result from a and e. must be able to trace this web to track the history.
+
+- due to renames, merge has an order: it is not commutative.  rename of first included always wins.
+
+- merge must be between 2 consistent architectures.
+
+- a merge between A &amp; B can be used with C as basis for A &amp; B &amp; C merge.  Order is important here.
+
+- merge on a component-by-component basis?  only merge if they are an evolved version of the same thing?
+        - need to look upwards at propagated changes to components with this as a part
+        - can we introduce cycles by merging?
+
+</UML:Comment.body>
+            </UML:Comment>
+
+<packageImportLink xlink:type="simple" xlink:href="otherbase2{39}" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="old" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="new" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="old{39}" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="new{39}" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="base" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="extension1" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="extension2" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="merge" />
+
+          </UML:Namespace.ownedElement>
+        </UML:Package>

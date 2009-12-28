@@ -1,0 +1,13 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={base\_structure.als, lines 61-73}, label=alloy:element, captionpos=b]
+abstract sig Element
+{
+  home: Stratum,
+  replaces: lone Element,
+  resembles: set Element,
+-- derived state
+  resembles_e: Element -> Stratum,
+  actsAs_e: Element -> Stratum,
+  isInvalid_e: set Stratum
+}
+\end{lstlisting}

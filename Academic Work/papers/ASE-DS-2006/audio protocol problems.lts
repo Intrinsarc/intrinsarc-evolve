@@ -1,0 +1,35 @@
+// the protocol for the hourly beeper
+BEEPER =
+  (mrx.notifyOfNewSecond1 -> mtx.beep -> rrx.beep -> rtx.notifyOfNewSecond1 -> BEEPER |
+   mrx.notifyOfNewSecond1 -> rtx.notifyOfNewSecond1 -> BEEPER).
+
+// the protocol for the timer
+TIMER1 =
+  (mtx.notifyOfNewSecond1 -> rrx.notifyOfNewSecond1 -> TIMER).
+TIMER2 =
+  (mtx.notifyOfNewSecond2 -> rrx.notifyOfNewSecond2 -> TIMER).
+
+// the protocol for the audio device
+AUDIO =
+  (mrx.beep -> rrx.beep -> AUDIO).
+
+// the protocol for the alarm
+ALARM =
+  (mrx.notifyOfNewSecond2 -> rtx.notifyOfNewSecond2 -> ALARM
+  |mrx.notifyOfNewSecond2 -> rtx.notifyOfNewSecond2 -> mtx.beep -> HANDLE_NOTIFIES),
+HANDLE_NOTIFIES = 
+  (mrx.notifyOfNewSecond2 -> rtx.notifyOfNewSecond2 -> HANDLE_NOTIFIES
+  |rrx.beep -> ALARM).
+
+
+// composition of timer, beeper and audio
+||TIMER_BEEPER_AUDIO = (TIMER1 || BEEPER || AUDIO)/{mtx/mrx, rtx/rrx}.
+
+// composition of timer, alarm and audio
+||TIMER_ALARM_AUDIO = (TIMER2 || ALARM || AUDIO)/{mtx/mrx, rtx/rrx}.
+
+||TIMER_BEEPER_ALARM_AUDIO = (TIMER1 || TIMER2 || BEEPER || ALARM || AUDIO)/{mtx/mrx, rtx/rrx}.
+
+
+
+

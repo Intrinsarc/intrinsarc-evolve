@@ -1,0 +1,5425 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\end_preamble
+\use_default_options false
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:The-Backbone-ADL"
+
+\end_inset
+
+The Backbone Architecture Description Language
+\end_layout
+
+\begin_layout Standard
+The Backbone extensibility approach consists of an ADL, a modelling tool
+ and an optional runtime environment.
+ This chapter concentrates specifically on the ADL and its constructs for
+ supporting extensibility.
+\end_layout
+
+\begin_layout Section
+Basic Concepts
+\end_layout
+
+\begin_layout Standard
+In keeping with the definition in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Component-Based-Software-Engineering"
+
+\end_inset
+
+, a Backbone component is minimally defined as a unit of software that can
+ be instantiated, which explicitly declares the interfaces that it provides
+ and requires.
+
+\emph on
+ 
+\emph default
+Building on this foundation, a composite component is one which is made
+ up of instances of other components.
+ As discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Abstraction-Problem"
+
+\end_inset
+
+, an entire application can be structured as a complex composite component.
+\end_layout
+
+\begin_layout Standard
+Consider a composite component representation of the Desk 1.0 application
+ (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-desk-application"
+
+\end_inset
+
+), configured with two microphone devices as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-compositional-structure"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/naive-desk.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-compositional-structure"
+
+\end_inset
+
+The compositional structure of the desk application
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a simplified UML2 composite structure diagram showing components
+ and instances only.
+ The 
+\family typewriter
+Desk
+\family default
+ component is composed of two separate instances of the 
+\family typewriter
+MicDevice
+\family default
+ component (each instance has a colon in front of its name), one instance
+ of the 
+\family typewriter
+DeviceController
+\family default
+ component and one instance of the 
+\family typewriter
+Mixer
+\family default
+ component.
+ Diving down a further level in the compositional hierarchy, the 
+\family typewriter
+Mixer
+\family default
+ is composed of an instance of the 
+\family typewriter
+Equaliser
+\family default
+ component and an instance of the 
+\family typewriter
+Combiner
+\family default
+ component.
+\end_layout
+
+\begin_layout Standard
+The underlying intuition of the Backbone approach is that we can make any
+ alterations required to extend an application, by modifying the compositional
+ structure of a base application expressed as a composite component.
+\end_layout
+
+\begin_layout Standard
+Rather than directly editing the composite components to effect any required
+ structural changes, however, we instead provide constructs to express alteratio
+ns in an intuitive way in an compositional hierarchy.
+ Our alterations are then kept separately from the base application and
+ can be selectively combined with the base at program startup to produce
+ the required changes required for the extension.
+\end_layout
+
+\begin_layout Standard
+Suppose that we wish to extend the base application of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-compositional-structure"
+
+\end_inset
+
+ to support cuing, a turntable device and a CD device.
+ To achieve this, we must alter the composition hierarchy as shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Extending-the-desk"
+
+\end_inset
+
+.
+ The top of the figure shows the composition hierarchy of the base, and
+ the extended application is shown underneath.
+ The mixer is replaced with an improved, integrated version and a further
+ mixer is added for cue support.
+ One of the microphones is replaced with an instance of the 
+\family typewriter
+TurntableDevice
+\family default
+ component, and a 
+\family typewriter
+CDDevice
+\family default
+ is added.
+ We also wish to retain all of the other aspects of the 
+\family typewriter
+Desk
+\family default
+ component, including any connectors and attributes (not shown), the existing
+ 
+\family typewriter
+DeviceController
+\family default
+ and one of the existing 
+\family typewriter
+MicDevice
+\family default
+ instances.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/a-to-a-dash.eps
+	lyxscale 80
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Extending-the-desk"
+
+\end_inset
+
+Extending the desk application by adjusting its composition hierarchy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+Backbone provides the facilities to remake a composition hierarchy, in this
+ manner, by adding three extensibility concepts to an underlying 
+\begin_inset Quotes eld
+\end_inset
+
+core
+\begin_inset Quotes erd
+\end_inset
+
+ ADL.
+ The core is a conventional, Darwin-like language which has been adjusted
+ to map more closely onto UML2 and object-oriented terminology and concepts.
+\end_layout
+
+\begin_layout Standard
+The extensibility concepts are listed below.
+\end_layout
+
+\begin_layout Itemize
+Resemblance
+\begin_inset Newline newline
+\end_inset
+
+Resemblance allows a new component (or interface) to be incrementally defined
+ in terms of deltas (add, delete, replace) from one or more existing components
+ (or interfaces).
+ For instance, 
+\family typewriter
+Desk'
+\family default
+ could be defined using resemblance from 
+\family typewriter
+Desk
+\family default
+ in terms of four delta instructions: one to replace the 
+\family typewriter
+Mixer
+\family default
+ instance with an instance of 
+\family typewriter
+IntegratedMixer
+\family default
+, a second to add another mixer, a third to replace the 
+\family typewriter
+MicDevice
+\family default
+ instance with an instance of 
+\family typewriter
+TurntableDevice
+\family default
+, and a fourth to add a 
+\family typewriter
+CDDevice
+\family default
+.
+ The other 
+\family typewriter
+MicDevice
+\family default
+ instance and the 
+\family typewriter
+DeviceController
+\family default
+ instance will be inherited
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Resemblance subsumes the notion of inheritance, and retains much of its
+ terminology.
+\end_layout
+
+\end_inset
+
+ from the original 
+\family typewriter
+Desk
+\family default
+ definition.
+\end_layout
+
+\begin_layout Itemize
+Replacement
+\begin_inset Newline newline
+\end_inset
+
+Replacement allows a component (or interface) to be globally substituted
+ for another in the architecture.
+ For instance, we could use replacement to substitute 
+\family typewriter
+Desk'
+\family default
+ for 
+\family typewriter
+Desk
+\family default
+ in the architecture.
+ Anything that previously referenced 
+\family typewriter
+Desk
+\family default
+ would be redirected to now reference 
+\family typewriter
+Desk'
+\family default
+.
+ The combination of resemblance and replacement allows us to evolve components
+ incrementally without destructively modifying the original definition.
+\end_layout
+
+\begin_layout Itemize
+Stratum
+\begin_inset Newline newline
+\end_inset
+
+A stratum is a module in the ADL.
+ It groups definitions, declares explicit dependencies on other strata,
+ and controls the visibility of any nested strata.
+ In our example, the 
+\family typewriter
+Desk
+\family default
+, 
+\family typewriter
+Mixer
+\family default
+, 
+\family typewriter
+Combiner
+\family default
+, 
+\family typewriter
+Equaliser
+\family default
+, 
+\family typewriter
+DeviceController
+\family default
+ and 
+\family typewriter
+MicDevice
+\family default
+ components would be defined in one stratum (
+\family typewriter
+base
+\family default
+), and the 
+\family typewriter
+TurntableDevice
+\family default
+, 
+\family typewriter
+IntegratedMixer
+\family default
+, 
+\family typewriter
+CDDevice
+\family default
+ and 
+\family typewriter
+Desk'
+\family default
+ components would be defined in another (
+\family typewriter
+extension
+\family default
+) which depends upon the 
+\family typewriter
+base
+\family default
+ stratum.
+ If we include both strata in our application, we get the extended system.
+ If, however, we only include the 
+\family typewriter
+base
+\family default
+ stratum, we get the original application desk application without the turntable
+, CD or cuing support, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Grouping-elements-using"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/strata.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Grouping-elements-using"
+
+\end_inset
+
+The extension stratum depends on the base stratum and modifies the architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In essence, the Backbone approach builds extensibility into an application
+ by allowing (and encouraging) it to be structured as a hierarchical component
+ architecture, and at the same time providing a way to rework the composition
+ hierarchy.
+ Any part of the hierarchy acts as an extension point, and these points
+ arise naturally out of the system decomposition.
+ Resemblance and replacement are used to modify the composition tree, at
+ the appropriate abstraction level, to adapt and extend the architecture
+ (
+\emph on
+APPROPRIATE_LEVEL
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+Several points are worth noting in the example above.
+ We have not destructively edited the definition of 
+\family typewriter
+Desk
+\family default
+ itself, yet we have been able to profoundly change the structure of the
+ application to accommodate our changes (
+\emph on
+ALTER
+\emph default
+).
+ The replacement of 
+\family typewriter
+Mixer
+\family default
+ with 
+\family typewriter
+IntegratedMixer
+\family default
+ in the compositional hierarchy has somewhat flattened the hierarchy.
+ In practice, it is common that both compression and expansion of the hierarchy
+ may result from an extension.
+\end_layout
+
+\begin_layout Standard
+The changes for the extension will only be applied if we form a system by
+ including both the base and extension strata.
+ If someone chooses to only include the base stratum, they will be left
+ with the original base application (
+\emph on
+NO_IMPACT
+\emph default
+).
+ We can choose the combination of features to include in a system by structuring
+ and choosing strata with the appropriate dependencies.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Backbone-Component-Model"
+
+\end_inset
+
+The Backbone Component Model
+\end_layout
+
+\begin_layout Standard
+This section explains the Backbone component model in detail.
+ UML2 composite structure diagrams are used to depict the graphical form.
+\end_layout
+
+\begin_layout Standard
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Backbone-core"
+
+\end_inset
+
+ shows the graphical symbols for the core Backbone ADL.
+ Apart from 
+\emph on
+port links, aliased slots
+\emph default
+ and 
+\emph on
+placeholders
+\emph default
+, these are standard UML2 constructs.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="17" columns="2">
+<features>
+<column alignment="center" valignment="middle" width="0">
+<column alignment="left" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Symbol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Backbone core construct
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/leaf.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leaf component
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/interface.png
+	BoundingBox -1bp 1bp 15bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interface
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/operation.png
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation (inside an interface)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/port.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Port
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/required.png
+	BoundingBox -1bp 0bp 16bp 16bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Required interface (from a port)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/provided.png
+	BoundingBox -1bp 0bp 17bp 16bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Provided interface (from a port)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/attribute.png
+	BoundingBox 0bp 1bp 16bp 16bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attribute (inside a component)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/primitive.png
+	BoundingBox 1bp 2bp 17bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Primitive type (of an attribute)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/portlink.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Port link (between ports inside a leaf component)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/composite.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Composite component
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/part.png
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Part (inside a composite component)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/connector.png
+	BoundingBox 0bp 0bp 16bp 16bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Connector (between ports inside a composite component)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/slot.png
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Slot (inside a part)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/aliased-slot.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aliased slot (inside a part)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/placeholder.png
+	BoundingBox 0bp 2bp 16bp 18bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Placeholder component
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/delegate.png
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Delegation connector (between ports inside a composite component) or
+\begin_inset Newline newline
+\end_inset
+
+Dependency (between strata)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Backbone-core"
+
+\end_inset
+
+The graphical symbols for the Backbone core constructs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Backbone-extensibility"
+
+\end_inset
+
+ shows the graphical symbols for the primary Backbone extensibility constructs,
+ which are derived from the three extensibility concepts discussed earlier.
+ These constructs are not part of UML2.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features>
+<column alignment="center" valignment="top" width="0">
+<column alignment="left" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Symbol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Backbone primary extensibility construct
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/resemblance.png
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Resemblance (between components or interfaces)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/replacement.png
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Replacement (between components or interfaces)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/stratum.png
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stratum
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Backbone-extensibility"
+
+\end_inset
+
+The graphical symbols for the primary Backbone extensibility constructs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Backbone-secondary"
+
+\end_inset
+
+ shows two further extensibility constructs, which are secondary in that
+ they are 
+\begin_inset Quotes eld
+\end_inset
+
+syntactic sugar
+\begin_inset Quotes erd
+\end_inset
+
+ for a combination, or selective application, of the primary extensibility
+ constructs.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features>
+<column alignment="center" valignment="top" width="0">
+<column alignment="left" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Symbol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Backbone secondary extensibility construct
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/evolution.png
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Evolution (resemblance and replacement used together)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/retire.png
+	BoundingBox 0bp 2bp 16bp 19bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Retirement (of a component or interface)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Backbone-secondary"
+
+\end_inset
+
+Graphical symbols for secondary Backbone extensibility constructs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Backbone has a textual form also, and this is sometimes shown to the right
+ in the diagrams.
+ A full mapping between UML2 and Backbone is outlined in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Mapping-Backbone-onto"
+
+\end_inset
+
+, including restrictions placed on the UML2 model to support extensibility.
+\end_layout
+
+\begin_layout Subsection
+Core Constructs
+\end_layout
+
+\begin_layout Standard
+In keeping with the definition in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Component-Based-Software-Engineering"
+
+\end_inset
+
+, a Backbone component is a unit of software that can be instantiated, and
+ explicitly declares the interfaces that it provides and requires.
+ Components can be composite, leaf, factory
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Factories are discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Factory-Pattern"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ or placeholder.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Leaf Components
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename models/icons/leaf.png
+	scale 70
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+leaf component
+\emph default
+ is atomic and not further decomposed into other component instances.
+ It is associated directly with an implementation class as shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-leaf-component"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/leaf.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-leaf-component"
+
+\end_inset
+
+A leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+
+\noun on
+Interfaces
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/interface.png
+	BoundingBox 0bp 3bp 16bp 19bp
+	rotateOrigin leftTop
+
+\end_inset
+
+and Operations
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/operation.png
+	scale 60
+	BoundingBox 0bp 1bp 16bp 17bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An 
+\emph on
+interface
+\emph default
+ denotes a contract between two parties for a service.
+ Each interface can contain a set of 
+\emph on
+operations
+\emph default
+, and is associated directly with an implementation class, as shown in the
+ textual form of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-leaf-component"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Ports
+\begin_inset Graphics
+	filename models/icons/port.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+, Required Interfaces
+\begin_inset Graphics
+	filename models/icons/required.png
+	BoundingBox -1bp 0bp 16bp 16bp
+	rotateOrigin leftTop
+
+\end_inset
+
+and Provided Interfaces
+\begin_inset Graphics
+	filename models/icons/provided.png
+	BoundingBox -1bp 0bp 17bp 16bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Ports
+\emph default
+ serve to fully insulate a component from its environment, and can specify
+ any number of 
+\emph on
+provided 
+\emph default
+and 
+\emph on
+required interfaces
+\emph default
+.
+ A port can be denoted as 
+\emph on
+indexed
+\emph default
+ by specifying a multiplicity of either a single fixed bound, or a lower
+ and upper bound together.
+ A single port can specify any number of provided and required interfaces,
+ and the default multiplicity of a port is 
+\family typewriter
+[1]
+\family default
+.
+ A port with a multiplicity of 
+\family typewriter
+[0..*] 
+\family default
+means that it can support any number of connections to it.
+\end_layout
+
+\begin_layout Standard
+An indexed port can be marked as 
+\emph on
+ordered
+\emph default
+ by using the 
+\family typewriter
+is-ordered
+\family default
+ keyword in the port definition, which means that the order of connections
+ to the port is significant.
+ This is related to the subject of connector indices, and discussed further
+ below.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Attributes
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/attribute.png
+	scale 60
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+ and Primitive Types
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/primitive.png
+	scale 60
+	BoundingBox 1bp 2bp 17bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A component may have 
+\emph on
+attributes
+\emph default
+ of 
+\emph on
+primitive type
+\emph default
+, which represent a projection onto the internal state of the component.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Port Links
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/portlink.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although a leaf has no further decomposition in the architectural description,
+ it may have internal logic and structure that relate the provided and required
+ interfaces of several ports together.
+ These internal linkages can be expressed by a 
+\emph on
+port link,
+\emph default
+ in lieu of explicit connectors, as shown in the leaf example.
+ Links propagate interface information between ports for the purposes of
+ type inference, when an instance of the leaf is used inside a composite
+ component.
+ Port links can be between ports of different multiplicity, and are always
+ optional.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Composite Components
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/composite.png
+	scale 70
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+, Parts
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/part.png
+	scale 70
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+ and Connectors
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/connector.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+composite component
+\emph default
+ contains 
+\emph on
+parts
+\emph default
+, which are instances of other components, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-composite-component"
+
+\end_inset
+
+.
+ Parts can either be wired together, or back to one of the component ports,
+ using connectors.
+ A connector has exactly two 
+\emph on
+connector ends
+\emph default
+.
+ The parts of a component represent its initial configuration.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/composite.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-composite-component"
+
+\end_inset
+
+A composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As with leaf components, a composite may also specify ports and attributes.
+ A composite has no need to specify port links, as the structure is fully
+ described by the parts and connectors.
+\end_layout
+
+\begin_layout Standard
+A composite component does not specify an implementation class; the composite
+ exists only in the ADL and is a purely structural entity.
+ In this sense, a composite differs from the conventional UML2 usage where
+ it is denotes an implementation class that can have its own behaviour 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Oliver2006"
+
+\end_inset
+
+.
+ A composite in Backbone (and Darwin) is shorthand for a set of wiring instructi
+ons, and can always be flattened into a connected graph of leaf parts 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kramer1995"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We refer to components and interfaces collectively as 
+\emph on
+elements
+\emph default
+.
+ We refer to the insides of components or interfaces (i.e.
+ ports, parts, attributes, operations etc) as 
+\emph on
+constituents
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+
+\noun on
+Connector Indices: Numeric and Alphanumeric
+\end_layout
+
+\begin_layout Standard
+When connecting to an non-ordered port, a connector end does not have to
+ explicitly specify an index.
+ In this case, the connections will be made in an arbitrary order reflecting
+ the fact that order is not important to the port.
+\end_layout
+
+\begin_layout Standard
+When connecting to an ordered port, however, an index must always be supplied.
+ 
+\emph on
+A numeric
+\emph default
+ 
+\emph on
+index
+\emph default
+ (e.g.
+ 
+\family typewriter
+[2]
+\family default
+) or an 
+\emph on
+alphanumeric index 
+\emph default
+(e.g.
+ 
+\family typewriter
+[A1]
+\family default
+) can be used.
+ The latter type is always preferred, as it is possible for an extension
+ to insert a new connection between any existing connection ends by choosing
+ an index that is lexically between the existing indices.
+ For example, if the base architecture has connectors that use indices of
+ 
+\family typewriter
+[a]
+\family default
+ and 
+\family typewriter
+[b]
+\family default
+ to connect to a port, then an extension could use 
+\family typewriter
+[Z]
+\family default
+ to insert a connection before in the ordering, 
+\family typewriter
+[aa]
+\family default
+ to insert between, and 
+\family typewriter
+[c]
+\family default
+ to add the connection after the existing ones.
+\end_layout
+
+\begin_layout Standard
+If numeric and alphanumeric indices are both used to connect to a given
+ port, the numeric indices will be applied completely first.
+ Using indices on a non-ordered port is allowed, but not mandatory.
+\end_layout
+
+\begin_layout Subsubsection
+
+\noun on
+Slots
+\begin_inset Graphics
+	filename models/icons/slot.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+and Aliased Slots
+\begin_inset Graphics
+	filename models/icons/aliased-slot.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+slot
+\emph default
+ is an attribute of a part that has been bound to a value, such as the slot
+ 
+\family typewriter
+attribute
+\family default
+ in 
+\family typewriter
+part
+\family default
+ of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-composite-component"
+
+\end_inset
+
+.
+ The value can either be a literal (e.g.
+ 
+\family typewriter
+100
+\family default
+) or a copy of an enclosing attribute (e.g.
+ 
+\family typewriter
+= cAttribute
+\family default
+).
+ A slot may also be 
+\emph on
+aliased
+\emph default
+ onto an enclosing attribute (as per the slot shown in the figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-composite-component"
+
+\end_inset
+
+).
+ If the same enclosing attribute of the composite is aliased onto several
+ slots of different parts, they will all literally share the same variable.
+ This allows buried instance state to be propagated up to the composite
+ level and shared between parts.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Delegation Connectors
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/delegate.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+delegation connector
+\emph default
+ establishes that one port is an alias for another.
+ In our example, 
+\family typewriter
+cPort
+\family default
+ is an alias for 
+\family typewriter
+port1
+\family default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Placeholder Components
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+\noun default
+
+\begin_inset Graphics
+	filename models/icons/placeholder.png
+	scale 70
+	BoundingBox 0bp 2bp 16bp 18bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+placeholder component 
+\emph default
+represents a component that has not been fully elaborated in the architecture,
+ supporting top down architectural specification.
+ It cannot contain parts and is not associated with an implementation class,
+ but may contain port links, attributes and ports.
+\end_layout
+
+\begin_layout Standard
+Placeholders are useful for defining the general 
+\begin_inset Quotes eld
+\end_inset
+
+shape
+\begin_inset Quotes erd
+\end_inset
+
+ required of other components, and resemblance can be used to inherit constituen
+ts from a placeholder when forming a new concrete component.
+ A placeholder can also be evolved into a concrete component using replacement.
+ Parts of placeholder type can be used to represent unelaborated sections
+ of a composite, with the caveat that a composite with placeholder parts
+ cannot be instantiated as part of the composition hierarchy of an application.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-placeholder-component"
+
+\end_inset
+
+ shows a placeholder definition with the same shape as 
+\family typewriter
+LeafComponent
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/placeholder.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-placeholder-component"
+
+\end_inset
+
+A placeholder component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Port Type Inference
+\end_layout
+
+\begin_layout Standard
+The provided interface of 
+\family typewriter
+cPort
+\family default
+ was inferred in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-composite-component"
+
+\end_inset
+
+, and hence there is no need to specify this explicitly.
+ An 
+\family typewriter
+AdvancedLeaf
+\family default
+ part is connected to an instance of a 
+\family typewriter
+LeafComponent
+\family default
+ part.
+ 
+\family typewriter
+AdvancedLeaf
+\family default
+'s port provides a subtype of 
+\family typewriter
+BasicInterface
+\family default
+, called
+\family typewriter
+ AdvancedInterface,
+\family default
+ and this propagates through 
+\family typewriter
+part1
+\family default
+ using that leaf's port link information.
+\end_layout
+
+\begin_layout Standard
+Port type inference completely removes the need to specify provided and
+ required interfaces for composite ports.
+ This is useful because when even a small number of component structures
+ are remade using the extensibility constructs, many port interfaces can
+ change quite dramatically as the changes propagate to many component definition
+s.
+ With inference, updates to the port specification are handled automatically
+ and we do not further have to adjust the affected composite component definitio
+ns.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Unique Identifiers
+\end_layout
+
+\begin_layout Standard
+Although figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-leaf-component"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-composite-component"
+
+\end_inset
+
+ show elements and constituents with names, these are purely descriptive.
+ In actuality, each element or constituent has a mandatory universally unique
+ identifier (UUID) allocated to it that remains constant even as the name
+ changes, allowing Backbone to robustly track logical identity even when
+ elements are evolved or moved between strata.
+ UUIDs also provides a way to robust way to reference individual constituents
+ of a component for the resemblance construct.
+\end_layout
+
+\begin_layout Standard
+The Backbone modelling tool handles the allocation of UUIDs and completely
+ hides these from the user interface, and only descriptive names are presented.
+ Although in the remainder of this thesis we will continue to show names
+ for reasons of clarity, in all cases UUIDs would be allocated also in practice.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Extensibility-constructs"
+
+\end_inset
+
+Extensibility constructs
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Resemblance
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/resemblance.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Resemblance 
+\emph default
+is used to define a new element in terms of similarity to other elements,
+ using deltas (add, delete, replace) to add or change any inherited constituents.
+ For instance, we can use resemblance to define a new component in terms
+ of changes to the part and connectors structures of existing ones.
+\end_layout
+
+\begin_layout Standard
+Consider figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Using-resemblance-to"
+
+\end_inset
+
+, where we have defined 
+\family typewriter
+NewComposite
+\family default
+ in terms of 
+\family typewriter
+CompositeComponent
+\family default
+.
+ We have deleted 
+\family typewriter
+part2
+\family default
+, added 
+\family typewriter
+cPort2
+\family default
+ and replaced 
+\family typewriter
+connector
+\family default
+.
+ Other constituents such as 
+\family typewriter
+part1
+\family default
+ and 
+\family typewriter
+delegation_connector
+\family default
+ were inherited.
+ Note how the removal of 
+\family typewriter
+part2
+\family default
+ has caused the interface provided by 
+\family typewriter
+cPort
+\family default
+ to change back to 
+\family typewriter
+BasicInterface
+\family default
+ via type inference.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/newcomposite.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Using-resemblance-to"
+
+\end_inset
+
+Using resemblance to define a new component in terms of deltas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The constituents of a component that can be added, deleted or replaced using
+ resemblance are component name, parts, ports, connectors, attributes, port
+ links, retirement status, implementation class and stereotype
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Stereotypes are explained in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Using-Stereotypes-for"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Interface constituents are interface name, implementation class and operations.
+\end_layout
+
+\begin_layout Standard
+Resemblance can be used to define a composite from a leaf (and vice versa).
+ Defining a composite from a leaf involves deleting the inherited implementation
+ class and adding parts and other structure.
+ Defining a leaf from a composite involves deleting the structure and adding
+ an implementation class delta.
+\end_layout
+
+\begin_layout Standard
+The use of deltas even for descriptive names and implementation class mappings
+ allows us to take a consistent approach to change, merging and conflict
+ resolution for any constituent of a component or interface.
+ For instance, we can resemble a leaf component and inherit the ports, attribute
+s and port links, but replace the name and implementation class.
+ Deltas are used uniformly in all cases, although the textual and graphical
+ forms hide the nature of these deltas for name and implementation class.
+\end_layout
+
+\begin_layout Standard
+Resemblance subsumes the inheritance construct completely, and a subtype
+ relationship is a resemblance relationship where no deletions or replacements
+ have been performed.
+ For instance, 
+\family typewriter
+AdvancedInterface
+\family default
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-composite-component"
+
+\end_inset
+
+ would be defined using resemblance from 
+\family typewriter
+BasicInterface
+\family default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Replacement
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/replacement.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+and Evolution
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/evolution.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Replacement 
+\emph default
+globally replaces all existing references to an element with references
+ to another, thereby substituting one element for another in the architecture.
+ 
+\emph on
+Evolution
+\emph default
+ is expressed by combining resemblance and replacement: we can define a
+ new component incrementally in terms of one or more existing ones (resemblance)
+, and then redirect references from the existing component to the new one
+ (replacement).
+ Evolution is regarded as a secondary construct in Backbone as it is simply
+ a combination of resemblance and replacement.
+ The graphical symbol for evolution is the overlay of the resemblance and
+ replacement symbols.
+\end_layout
+
+\begin_layout Standard
+Although we previously used resemblance to define 
+\family typewriter
+NewComponent
+\family default
+ in terms of changes to 
+\family typewriter
+CompositeComponent
+\family default
+, thereby incrementally altering the inherited structure, this did not affect
+ the definition of 
+\family typewriter
+CompositeComponent
+\family default
+.
+ If a component contained 
+\family typewriter
+CompositeComponent
+\family default
+ parts, its structure would be unaffected by the presence of 
+\family typewriter
+NewComponent
+\family default
+.
+ Replacement, on the other hand, allows us to globally change the definition
+ of an existing component, by redirecting all existing references to our
+ new definition.
+\end_layout
+
+\begin_layout Standard
+Consider how this works in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-a-component"
+
+\end_inset
+
+.
+ We create another component, in the spirit of 
+\family typewriter
+NewComponent
+\family default
+, via resemblance from 
+\family typewriter
+CompositeComponent
+\family default
+.
+ Simultaneously, we use replacement to redirect any references from the
+ existing component to our new component.
+ In this case we did not specify a new name, so the old one is reused and
+ the component name is shown with a prime symbol after it to denote that
+ it evolves the original.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/replace.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-a-component"
+
+\end_inset
+
+Evolving a component with resemblance and replace
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Resemblance is useful as a construct in its own right for effecting component
+ reuse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2006"
+
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2006"
+
+\end_inset
+
+ refers to 
+\emph on
+replacement
+\emph default
+ as 
+\emph on
+redefinition
+\emph default
+.
+\end_layout
+
+\end_inset
+
+.
+ Replacement used on its own is possible, but rarely useful as it always
+ introduces breaking changes because no structure or ports (including their
+ UUIDs) will be inherited from the component being replaced.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Retirement
+\begin_inset Graphics
+	filename models/icons/retire.png
+	scale 70
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Retirement
+\emph default
+ allows a component (or interface) to be retired, and it is an error to
+ further refer to something that has been retired.
+ Retirement is not a primary construct in the ADL per se, but is instead
+ modelled as a boolean which is subject to replacement via deltas.
+ As such, retirement is achieved by evolving the element we wish to retire,
+ and creating a replace delta to set the retirement status to true.
+\end_layout
+
+\begin_layout Standard
+The graphical and textual form are shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Retirement"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/retire.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Retirement"
+
+\end_inset
+
+Retiring a component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+
+\noun on
+Strata
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/stratum.png
+	scale 70
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+ and Strata Dependencies
+\emph on
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\emph default
+
+\begin_inset Graphics
+	filename models/icons/delegate.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+stratum 
+\emph default
+is a nested module in Backbone.
+ It is used to group related definitions and control their dependencies.
+ A stratum must explicitly declare which other strata it depends on, and
+ which child strata are exported as visible to others.
+\end_layout
+
+\begin_layout Standard
+Combinations of strata are used to represent application variants.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Grouping-elements-using"
+
+\end_inset
+
+ demonstrates how a base application can be placed in one strata, and an
+ extension in another.
+ If we take the {
+\family typewriter
+base, extension
+\family default
+} strata combination, we get the variant corresponding to the extended applicati
+on.
+ If we just take the {
+\family typewriter
+base
+\family default
+} combination, however, we are left with the original application.
+\end_layout
+
+\begin_layout Standard
+Strata are also the unit of ownership and sharing in Backbone.
+ It is presumed that each stratum is owned by a single party that has modificati
+on rights to it.
+ We can therefore use strata to model the ownership structure of an architecture
+, and map this onto a community of base and extension developers.
+ The modeling tool and runtime environment are centred around the import
+ and export of strata for distributing subsets of an architecture.
+\end_layout
+
+\begin_layout Standard
+A system is assembled out of strata, and it is not possible to selectively
+ include only some elements in a stratum.
+ As such, it is not sensible to package both a definition and any replacements
+ for it in the same stratum, as only the evolved version would be visible
+ and the original definition would be hidden.
+ For this reason, replacement, evolution or retirement of an element must
+ be in a different stratum to the original definition.
+\end_layout
+
+\begin_layout Standard
+A stratum can either be 
+\emph on
+relaxed
+\emph default
+ or 
+\emph on
+strict
+\emph default
+.
+ If stratum S is relaxed, then any stratum that depends on S also has visibility
+ of the strata that S depends on, and so forth in a transitive manner.
+ This allows us to use Backbone to model strict and relaxed layered architecture
+s as described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Buschmann1996"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Further, a stratum that contains a replacement of any sort (including evolution
+ and retirement) must be marked as 
+\emph on
+destructive
+\emph default
+, and and strata with nested destructive strata must be marked as destructive
+ also.
+ This allows an architect to quickly see which parts of a system involve
+ destructive changes to components or interfaces which may cause problems
+ with the merging of independently developed extensions at a later point.
+ In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Replacement-merge-errors"
+
+\end_inset
+
+ we use the formal model to show that if replacement is not present in a
+ system, merging errors cannot result.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Strata-symbols"
+
+\end_inset
+
+ shows the symbols for the different permutations of the relaxed and destructive
+ options.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features>
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Strata-symbols"
+
+\end_inset
+
+Strata symbols
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The stratum concept is similar to UML2 packages.
+ Unfortunately, packages suffer from limitations which restrict their usage
+ as a unit of import and export from a modeling environment 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Schurr1998"
+
+\end_inset
+
+.
+ This is explained in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Mapping-Backbone-onto"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+The Backbone ADL consists of a set of three primary extensibility constructs,
+ added to a conventional Darwin-like ADL which has been aligned to UML2
+ terminology and concepts.
+\end_layout
+
+\begin_layout Standard
+The extensibility constructs derive from the intuition of manipulating a
+ component composition hierarchy in order to change and adapt it for and
+ extension.
+ Resemblance allows the reuse of existing composition hierarchies, by permitting
+ a new element to be defined in terms of deltas from existing elements.
+\end_layout
+
+\begin_layout Standard
+Used on its own, however, resemblance always makes a new element (and compositio
+n hierarchy) from existing ones.
+ We also need the ability to remake the hierarchy of an existing component.
+ At the same time, we must prevent direct editing of the original definition
+ by extension developers who are not the owners of that definition, to respect
+ the NO_IMPACT requirement for existing users of the component.
+ To accomplish this, we add the replacement construct which redirects references
+ from the existing definition to our new definition.
+ Combined together, resemblance and replacement can express the incremental
+ evolution of a component or interface.
+\end_layout
+
+\begin_layout Standard
+Finally, strata can be used to group definitions, such that we can keep
+ extensions in a separate place from the original definitions.
+ Strata can also be used to model the ownership structure of the architecture.
+ We use combinations of strata to express variants of the architecture.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Modelling the Audio Desk Scenario in Backbone
+\end_layout
+
+\begin_layout Standard
+In this section, we work through the audi desk scenario from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Example-Scenario"
+
+\end_inset
+
+, to demonstrate how the extensibility constructs satisfy the requirements
+ outlined in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Requirements"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Relationships in an Extension Setting
+\end_layout
+
+\begin_layout Standard
+Before modeling the desk application itself, let us examine the relationship
+ between the parties involved in the extension setting, as shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flow-of"
+
+\end_inset
+
+.
+ The arrows show the flow of software between parties.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/parties.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-flow-of"
+
+\end_inset
+
+The flow of software between parties in the desk scenario
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The base desk application is developed by Audiosoft.
+ Audiosoft distributes the base to Developer X who creates an extension
+ to add turntable and cuing support.
+ Developer Y also receives the base and creates an extension that adds CD
+ player support.
+\end_layout
+
+\begin_layout Standard
+Audiosoft have also recently produced an extension which upgrades the mixer.
+ X and Y have not seen this upgrade or adapted their extensions for this
+ version.
+ Finally radio station R wishes to run a unified, upgraded desk with a microphon
+e, CD player and turntable.
+\end_layout
+
+\begin_layout Standard
+To further complicate matters, consider that R wishes to potentially patch
+ or fix the upgraded desk version and feed these changes back to Audiosoft.
+\end_layout
+
+\begin_layout Standard
+The relationships between the parties reveal a number of issues which occur
+ frequently in an extension setting.
+ The extensions of X and Y are created independently, but must eventually
+ be combined despite neither X nor Y having visibility of, nor a particular
+ interest in adapting their extension for the other.
+ The job of combining these extensions and correcting any issues falls eventuall
+y to another party further towards the eventual user of the application;
+ R in this case.
+ Secondly, upgrades to the base may be packaged as an extension also
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Audiosoft could simply edit the desk application directly to produce the
+ upgrade, but this may violate the NO_IMPACT requirement for existing users.
+\end_layout
+
+\end_inset
+
+, and not all parties may have access to the upgrade.
+ It is common to want to combine a number of extensions, each originally
+ developed against a different version of the base.
+\end_layout
+
+\begin_layout Standard
+A further issue is that R wishes to send fixes back to Audiosoft.
+ However, any fixes cannot reference the extensions from X and Y as Audiosoft
+ has no exposure to these.
+\end_layout
+
+\begin_layout Standard
+Finally, we cannot assume that a common configuration management (CM) system
+ exists to allow all parties uniform access to the architectural definitions
+ and implementations.
+ Some software may be distributed by simply sending it to others.
+ Other parties may use CM systems internally and control the evolution of
+ their own software in this way, but will generally not share a repository
+ with other companies.
+\end_layout
+
+\begin_layout Subsection
+Using Strata to Model Ownership and Relationships
+\end_layout
+
+\begin_layout Standard
+We now turn our attention to structuring a set of strata and their dependencies,
+ such that each party owns associated strata to contain the software that
+ they produce.
+ After reversing the direction of the arrows in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flow-of"
+
+\end_inset
+
+ to represent dependencies rather than software distribution, we arrive
+ at the structure shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Strata-are-structured"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/strata-ownership.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Strata-are-structured"
+
+\end_inset
+
+Strata dependencies reflect the relationships between parties
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Each stratum contains both architectural descriptions and related leaf and
+ interface implementations, and has a single owner.
+ The owner is the only one permitted to do any direct modification of the
+ definitions in the stratum.
+ Strata can then be distributed to non-owning parties, in the reverse direction
+ of the dependencies, who must treat them as read-only and use the extensibility
+ constructs to effect any alterations required.
+ This approach guarantees that each strata has a single definitive source
+ and no merging or common CM system is required to manage branches of a
+ single stratum.
+ Of course, this arrangement does not prevent parties from using a CM system
+ to manage the evolution of a stratum they own, if this is desired.
+\end_layout
+
+\begin_layout Standard
+In our strata graph, Audiosoft owns the 
+\family typewriter
+desk 1.0
+\family default
+ stratum.
+ X and Y each own their own strata which depend on 
+\family typewriter
+desk 1.0
+\family default
+.
+ Audiosoft also owns a separate stratum 
+\family typewriter
+upgraded
+\family default
+ which is used for the extension corresponding to the upgrade.
+ In this way, both the base and upgraded desk are available.
+ The 
+\family typewriter
+unified desk
+\family default
+ stratum is owned by R, and its dependencies combine all extensions into
+ a single application
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Strata dependencies are transitive by default.
+\end_layout
+
+\end_inset
+
+.
+ To reflect that Audiosoft cannot see the 
+\family typewriter
+turntable
+\family default
+ or 
+\family typewriter
+CD
+\family default
+ extensions, the dependency structure of 
+\family typewriter
+fixes
+\family default
+ ensures that it cannot contain references to these.
+ Other variants could be similarly structured as strata with the appropriate
+ dependencies.
+\end_layout
+
+\begin_layout Standard
+Parties do not need generally need to see strata upwards in their dependency
+ graph, and do not have to concern themselves with the maintenance of these.
+ An exception to this is stratum 
+\family typewriter
+fixes
+\family default
+, which is used by R to send fixes back to Audiosoft.
+\end_layout
+
+\begin_layout Subsection
+The Base Application
+\end_layout
+
+\begin_layout Standard
+Audiosoft defines the 
+\family typewriter
+Desk
+\family default
+ component in the 
+\family typewriter
+desk 1.0
+\family default
+ stratum, which it owns.
+ This forms the base application that others will extend.
+ In this section, we will elaborate the 
+\family typewriter
+Desk
+\family default
+ using a top-down decomposition.
+\end_layout
+
+\begin_layout Standard
+The audio desk (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Desk-component"
+
+\end_inset
+
+) contains a number of volume knobs and switches (
+\family typewriter
+DeviceController
+\family default
+), which control a set of audio devices.
+ The desk is configured with two microhpone devices (
+\family typewriter
+MicDevice
+\family default
+).
+ The audio from the devices is fed into the mixer (
+\family typewriter
+Mixer
+\family default
+), which combines them and produces a single audio output channel.
+ Order is important for the 
+\family typewriter
+controllers
+\family default
+ port of 
+\family typewriter
+DeviceController
+\family default
+, as this determines which knobs and switches control which device.
+ As this port is marked as ordered, we need to specify an index for each
+ connection end to it (
+\family typewriter
+[a][b]
+\family default
+).
+ Note that the 
+\family typewriter
+out
+\family default
+ port definition does not need to specify an interface, as this is inferred
+ from the parts and connections.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/desk-1.0.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Desk-component"
+
+\end_inset
+
+The Desk component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-AudioDevice-and"
+
+\end_inset
+
+ shows the 
+\family typewriter
+AudioDevice
+\family default
+ placeholder and 
+\family typewriter
+DeviceController
+\family default
+ leaf component definitions.
+ The placeholder serves to describe the general shape of an audio device:
+ it should provide an 
+\family typewriter
+IDevice
+\family default
+ interface for device control, and require an 
+\family typewriter
+IAudioChannel
+\family default
+ interface for outputting its audio packets.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+DeviceController
+\family default
+ requires an ordered collection of 
+\family typewriter
+IDevice
+\family default
+ interfaces, representing the devices it controls via the 
+\family typewriter
+play
+\family default
+ and 
+\family typewriter
+stop
+\family default
+ operations.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/audio-device-and-device-controller.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-AudioDevice-and"
+
+\end_inset
+
+The AudioDevice and DeviceController components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+MicDevice
+\family default
+ leaf is defined using resemblance from 
+\family typewriter
+AudioDevice
+\family default
+, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:The-MicDevice-component"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/mic-device.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-MicDevice-component"
+
+\end_inset
+
+The MicDevice component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MicDevice
+\family default
+ is implemented by the 
+\family typewriter
+audiosoft.MicDevice
+\family default
+ class
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Currently, the implementation is required to be in Java, although the approach
+ is equally applicable to other object-oriented languages.
+\end_layout
+
+\end_inset
+
+.
+ The implementation of this class must follow a convention, which the Backbone
+ runtime engine expects.
+ The class definition would start as follows:
+\end_layout
+
+\begin_layout LyX-Code
+package audiosoft;
+\end_layout
+
+\begin_layout LyX-Code
+public class MicDevice {
+\end_layout
+
+\begin_layout LyX-Code
+  public void setAudio_IAudioChannel(IAudioChannel channel) { ...
+ }
+\end_layout
+
+\begin_layout LyX-Code
+  public void getControl_IDevice() { ...
+ }
+\end_layout
+
+\begin_layout Standard
+The method names are formed by concatenating a 
+\family typewriter
+get
+\family default
+ (for provided) or 
+\family typewriter
+set
+\family default
+ (for required) with the port name and the interface name.
+ Backbone will instantiate an instance of the class and connect to it using
+ this method during program execution.
+\end_layout
+
+\begin_layout Standard
+The leaf implementations logically form a part of the stratum and must be
+ distributed when sending the stratum to another party.
+ In keeping with the NO_SOURCE requirement, the implementation source is
+ not required when distributing.
+ The compiled artifacts suffice, as no direct modification of implementation
+ source is required when extending or evolving.
+\end_layout
+
+\begin_layout Standard
+The definition of the 
+\family typewriter
+Mixer
+\family default
+ composite is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Mixer-definition"
+
+\end_inset
+
+.
+ It provides a number of audio channels for accepting multiple audio inputs
+ and combining them into a single output (
+\family typewriter
+Combiner
+\family default
+) and also has an frequency equaliser so that the signal can be adjusted
+ (
+\family typewriter
+Equaliser
+\family default
+).
+ Note that the 
+\family typewriter
+Combiner
+\family default
+ 
+\family typewriter
+volume
+\family default
+ attribute has been aliased onto the 
+\family typewriter
+mixerVolume
+\family default
+ attribute.
+ This is a way of 
+\begin_inset Quotes eld
+\end_inset
+
+pushing up
+\begin_inset Quotes erd
+\end_inset
+
+ attributes, to avoid having them buried in the compositional hierarchy.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/mixer.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Mixer-definition"
+
+\end_inset
+
+The Mixer component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+Combiner
+\family default
+ and 
+\family typewriter
+Equaliser
+\family default
+ leaf definitions are shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Combiner-and"
+
+\end_inset
+
+.
+ Note that the 
+\family typewriter
+in
+\family default
+ port of 
+\family typewriter
+Combiner
+\family default
+ is not ordered, as the manner in which the audio signals are combined makes
+ no difference to the output.
+ 
+\family typewriter
+Equaliser
+\family default
+ has an attribute with a default value.
+ As such, it is not necessary to specify a slot for this in the 
+\family typewriter
+Equaliser
+\family default
+ part of 
+\family typewriter
+Mixer
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/combiner-equaliser.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Combiner-and"
+
+\end_inset
+
+The Combiner and Equaliser components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The final composition hierarchy of Desk is shown in the top of figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Extending-the-desk"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The CD Player Extension
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+desk 1.0
+\family default
+ stratum is distributed to developer Y who is tasked with adding an audio
+ device to control a CD player.
+ This is a type of planned extension as the application was specifically
+ designed to allow new devices to be defined and connected into the desk.
+\end_layout
+
+\begin_layout Standard
+Developer Y owns the CD stratum, and this is used to contain their component
+ definitions and implementations.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+CDDevice
+\family default
+ is defined in terms of resemblance from the 
+\family typewriter
+AudioDevice
+\family default
+ placeholder, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-CD-device"
+
+\end_inset
+
+.
+ Resemblance allows the component to reuse the shape of the placeholder,
+ resulting in a terse definition.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/cd-device.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-CD-device"
+
+\end_inset
+
+The CD device component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Y then uses evolution of the Desk component to connect in a CDDevice part
+ (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:desk-with-CD"
+
+\end_inset
+
+), leaving all the other structure intact.
+ Note that the textual form uses a combination of resemblance and replacement,
+ in keeping with the definition of evolution as a secondary construct (table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Backbone-secondary"
+
+\end_inset
+
+).
+ Even if the graphical view does not explicitly show the evolution relation
+ (
+\noun on
+
+\begin_inset Graphics
+	filename models/icons/evolution.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\noun default
+), the definition can be seen to be an evolution due to the prime after
+ the name.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/desk-with-cd.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:desk-with-CD"
+
+\end_inset
+
+The evolved desk with CD support
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The addition of a CD device was accomplished using only the extensibility
+ constructs, without directly editing the definitions in the base stratum.
+ The 
+\family typewriter
+Desk'
+\family default
+ and 
+\family typewriter
+CDDevice
+\family default
+ definitions (and implementation artifacts) can now be packaged into the
+ CD stratum and distributed to upstream parties who wish to incorporate
+ this extension into their system.
+\end_layout
+
+\begin_layout Standard
+The composition hierarchy of the evolved desk application is not shown,
+ as it is the same as the hierarchy of the base, with the single addition
+ of a CDDevice part.
+\end_layout
+
+\begin_layout Subsection
+The Turntable Extension
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+desk 1.0
+\family default
+ stratum is also distributed to developer X, who is tasked with adding an
+ audio device to control a turntable.
+ This device requires cuing facilities, where the audio can be sent to an
+ off-air bus so that the start of a track can be located before broadcasting.
+\end_layout
+
+\begin_layout Standard
+Unfortunately the base application does not provide cue support, so X must
+ extend the application to add this.
+ This is a type of unplanned extension as the base application did not foresee
+ or cater for this type of change.
+\end_layout
+
+\begin_layout Standard
+Developer X owns the 
+\family typewriter
+turntable
+\family default
+ stratum, and this is used to contain their component definitions and implementa
+tions.
+ The definition of 
+\family typewriter
+TurntableDevice
+\family default
+ is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-turntable-device"
+
+\end_inset
+
+.
+ Again, resemblance from the placeholder is used to inherit the shape, and
+ the 
+\family typewriter
+cue
+\family default
+ port is added.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/turntable.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-turntable-device"
+
+\end_inset
+
+The turntable device component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The mixer of the base application does not have a way to handle cue inputs
+ separately from on-air inputs.
+ To add this, we first create a 
+\family typewriter
+CuingCombiner
+\family default
+ component, which resembles the base 
+\family typewriter
+Combiner
+\family default
+ component, but adds 
+\family typewriter
+cueIn
+\family default
+ and 
+\family typewriter
+cueOut
+\family default
+ ports (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cuing-combiner"
+
+\end_inset
+
+).
+ Note that this is a leaf, and to add cuing support X must also create a
+ new implementation class named 
+\family typewriter
+x.CuingCombiner
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/cuing-combiner.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cuing-combiner"
+
+\end_inset
+
+The combiner with cue support
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The implementation class 
+\family typewriter
+x.CuingCombiner
+\family default
+ can be phrased in a number of ways, as long as it respects that the source
+ code of 
+\family typewriter
+audiosoft.Combiner
+\family default
+ is not available.
+ In this case, X makes 
+\family typewriter
+x.CuingCombiner
+\family default
+ inherit from 
+\family typewriter
+y.Combiner
+\family default
+, using implementation inheritance to avoid recreating the entire implementation.
+ This is not always possible, as inheritance is limited to additions and
+ selective overrides, whereas resemblance also allows deletions and replacements.
+ As reimplementing a coarse-grained leaf can be costly, Backbone intentionally
+ biases developers towards fine-grained leaf components.
+ As Backbone also allows for architectural hierarchy via composition, this
+ level of granularity does not pose a management or abstraction problem.
+\end_layout
+
+\begin_layout Standard
+X now needs to incorporate the new combiner into an updated mixer.
+ 
+\family typewriter
+CuingMixer
+\family default
+ is defined via resemblance from 
+\family typewriter
+Mixer
+\family default
+, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cuing-mixer"
+
+\end_inset
+
+.
+ X has replaced the inherited Combiner part with a CuingCombiner part.
+ Note that as part of the replace, the name was altered from 
+\family typewriter
+c
+\family default
+ to 
+\family typewriter
+cc
+\family default
+.
+ As described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Backbone-Component-Model"
+
+\end_inset
+
+, most names in Backbone are purely descriptive
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Except where the names are used to denote leaf and interface implementation
+ names.
+\end_layout
+
+\end_inset
+
+ and all artifacts also have a UUID.
+ Because the UUIDs of parts and other constituents remain constant even
+ when being replaced, a name change does not cause problems.
+\end_layout
+
+\begin_layout Standard
+The definition of 
+\family typewriter
+CuingMixer
+\family default
+ also shows the benefit of resemblance, in that we have inherited the definition
+ of the ports (and their UUIDs).
+ As such, the 
+\family typewriter
+d
+\family default
+ and 
+\family typewriter
+mixer1
+\family default
+ connectors do not have to be replaced, as they continue to point to the
+ correct ports even after the part has been replaced.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/cuing-mixer.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cuing-mixer"
+
+\end_inset
+
+Defining a mixer with cue support
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:turntable-desk"
+
+\end_inset
+
+ shows how 
+\family typewriter
+Desk
+\family default
+ has been evolved to replace the mixer with a 
+\family typewriter
+CuingMixer
+\family default
+ part, and that one of the microphones has been replaced with a 
+\family typewriter
+TurntableDevice
+\family default
+ part.
+ As 
+\family typewriter
+CuingMixer
+\family default
+ and 
+\family typewriter
+TurntableDevice
+\family default
+ both resemble elements in the base and hence inherit their constituents
+ and UUIDs, we can replace the parts in our evolution of Desk without having
+ to replace all the existing connectors.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/turntable-desk.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:turntable-desk"
+
+\end_inset
+
+The evolved desk provides cue support
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adding the turntable and cuing has involved making a number of deep changes
+ to the composition hierarchy of the desk application.
+ As shown in figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:turntable-hierarchy"
+
+\end_inset
+
+, the hierarchy has been changed at multiple levels.
+ This is accommodated by the resemblance and replacement constructs, which
+ handle deep change by permitting components at successive abstraction levels
+ to be restructured.
+ These constructs allows the hierarchy to be remade, whilst still permitting
+ a convenient graphical component representation in the spirit of UML2 composite
+ structure diagrams.
+\end_layout
+
+\begin_layout Standard
+Further, we have been able to make these changes even though the type of
+ extension was unanticipated by the base application.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/base-to-turntable.eps
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:turntable-hierarchy"
+
+\end_inset
+
+Changing the composition hierarchy for a turntable and cuing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The Upgraded Desk
+\end_layout
+
+\begin_layout Standard
+Audiosoft decides to upgrade the mixer component of the original desk, and
+ package it in the upgrade 
+\family typewriter
+stratum
+\family default
+.
+ They have recently purchased a superior mixer implementation with integrated
+ combiner and equalisation capabilities.
+ As they do not have the source code, they require to evolve the mixer from
+ a composite into a leaf component.
+ It is not uncommon for an extension to either expand (due to further decomposit
+ion) or compress the compositional hierarchy of an application when making
+ changes.
+\end_layout
+
+\begin_layout Standard
+Audiosoft also wish to change the name of the evolved mixer to IntegratedMixer.
+ This is accomplished by the usual dual application of resemblance and replace,
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Evolving-the-mixer"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/integrated-mixer.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-the-mixer"
+
+\end_inset
+
+Evolving the mixer component from a composite to a leaf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The upgrade also contains an evolved 
+\family typewriter
+DeviceController
+\family default
+, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Evolving-controller"
+
+\end_inset
+
+.
+ Previously the resolution of the volume controls was found to be to coarse,
+ and the 
+\family typewriter
+increaseResolution
+\family default
+ boolean attribute was added to indicate to the new implementation that
+ the resolution should be increased.
+ By default, this is set to 
+\family typewriter
+true
+\family default
+ so that existing parts of this type will automatically pick this up, although
+ an extension can turn this off if necessary.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/evolved-device-controller.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-controller"
+
+\end_inset
+
+Evolving the device controller to specify a new implementation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The evolution of the controller specifies a different implementation class
+ to the previous incarnation.
+ However, it is not always the case that a new class has to be used.
+ If no implementation class is specified in the evolution, then the inherited
+ one will be reused.
+ This is only useful if the implementation source is available to the party
+ defining the upgrade, as it implies that the source has evolved also
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Another approach is to use Java class shadowing and place an implementation
+ with the same name earlier in the class path.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As we are now using an integrated mixer and no longer require the Combiner
+ or Equaliser components, these can be retired.
+ After this point, it is an error to refer to continue to refer to these
+ components.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Obsolete-components-retire"
+
+\end_inset
+
+ shows that retirement is expressed in terms of resemblance and replacement,
+ in keeping with its status as a secondary construct.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/retiring.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Obsolete-components-retire"
+
+\end_inset
+
+Obsolete components can be retired
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Combining All Extension to Form a Unified Application
+\end_layout
+
+\begin_layout Standard
+Radio station R now wish to combine the upgrade, the CD player extension,
+ and the turntable extension into a single coherent application.
+\end_layout
+
+\begin_layout Standard
+According to the relationships between the parties, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:The-flow-of"
+
+\end_inset
+
+, no extending party has seen any other extension (including the upgrade
+ extension).
+ Each extension has been developed in isolation, and therefore there is
+ a possibility that the extensions may conflict structurally and behaviourally
+ when combined.
+ This is not particularly surprising -- by giving an extension the freedom
+ to radically alter a base application, we also provide the potential for
+ extensions to make changes that conflict with other extensions which are
+ independently developed.
+\end_layout
+
+\begin_layout Standard
+In practice, Backbone mitigates against the possibility of conflict by supportin
+g an architectural hierarchy with fine-grained leaf components.
+ This allows an alteration to be specified at the correct level of abstraction
+ (APPROPRIATE_LEVEL).
+ Further, fine-grained decomposition means that as small a part of the system
+ as possible can be altered.
+ These factors decrease the footprint of alterations, and hence reduce the
+ chance of structural overlap and conflict.
+\end_layout
+
+\begin_layout Standard
+Consider now the initial view of the 
+\family typewriter
+Desk
+\family default
+ component from R's 
+\family typewriter
+unified desk
+\family default
+ stratum.
+ The dependencies of this stratum mean that all extensions and upgrades
+ will be combined, which automatically results in the consolidated component
+ shown in figure X.
+ We call this the view of 
+\family typewriter
+Desk
+\family default
+ from the perspective of stratum 
+\family typewriter
+unified desk
+\family default
+.The merging of the changes has resulted in the Backbone error checking rules
+ picking up a number of bad connectors.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/desk-errors.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The consolidated desk component has errors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider how the consolidated 
+\family typewriter
+Desk
+\family default
+ component is formed.
+ Strata dependencies are used to order the definitions and evolutions from
+ the various extension, so as to form a consistent resemblance tree, as
+ shown in figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Consolidated-desk"
+
+\end_inset
+
+.
+ The evolutions from X and Y are parallel, because the 
+\family typewriter
+CD
+\family default
+ and 
+\family typewriter
+turntable
+\family default
+ strata are independent.
+ As such, the consolidated 
+\family typewriter
+Desk
+\family default
+ contains the 
+\family typewriter
+CuingMixer
+\family default
+ and 
+\family typewriter
+Turntable
+\family default
+ part replacements from the 
+\family typewriter
+turntable
+\family default
+ stratum, and the added 
+\family typewriter
+CDDevice
+\family default
+ part from the 
+\family typewriter
+CD
+\family default
+ stratum.
+ None of these changes conflict, though.
+ The problem is deeper, in that it is the consolidated definition of the
+ mixer components that is causing the issues.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/consolidated-desk-resemblance.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Consolidated-desk"
+
+\end_inset
+
+A consolidated view of resemblance for Desk definitions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Consolidated-mixer"
+
+\end_inset
+
+ shows the consolidated resemblance hierarchy for 
+\family typewriter
+CuingMixer
+\family default
+.
+ Note that in addition to using strata dependencies, any evolutions are
+ inserted before standard resemblances, often leading to a linear tree.
+ The intuition behind this is that 
+\family typewriter
+CuingMixer
+\family default
+ builds on top of the 
+\family typewriter
+Mixer
+\family default
+ definition, but the 
+\family typewriter
+Mixer
+\family default
+ component was subsequently evolved to 
+\family typewriter
+IntegratedMixer'
+\family default
+.
+ As such, 
+\family typewriter
+Cui
+\family default
+ngMixer should be built on top of 
+\family typewriter
+IntegratedMixer'
+\family default
+ in a consolidated view.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/consolidated-cuingmixer-resemblance.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Consolidated-mixer"
+
+\end_inset
+
+A consolidated view of resemblance for mixer definitions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These use of strata dependencies, and evolution insertion before resemblance,
+ for ordering consolidated resemblance graphs tends to linearise them in
+ an intuitive manner.
+ The exception to this is when we have multiple parallel evolutions of the
+ same component in independent strata, as per figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Consolidated-desk"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Upon examining the consolidated CuingMixer resemblance hierarchy, the problem
+ becomes clear: the evolution of Mixer into the IntegratedMixer' leaf has
+ removed the Combiner and Equaliser parts that CuingMixer previously relied
+ on (figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:cuing-mixer"
+
+\end_inset
+
+).
+ As such, the consolidated structure of CuingMixer flags up many errors.
+\end_layout
+
+\begin_layout Standard
+To resolve this, R needs to restructure either the 
+\family typewriter
+CuingMixer
+\family default
+ to cope with the newly evolved 
+\family typewriter
+IntegratedMixer'
+\family default
+, or needs to find another way to add cue support.
+ As the evolved mixer has superior performance to the previous incarnation,
+ R decides to retire the CuingMixer and restructure the Desk to include
+ another mixer to act as the cue audio bus.
+ The evolution of Desk that corrects the conflicts is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Unified-correction"
+
+\end_inset
+
+.
+ The evolution involves adding the extra 
+\family typewriter
+IntegratedMixer
+\family default
+ part, replacing the existing 
+\family typewriter
+CuingMixer
+\family default
+ part, and redirecting two connectors.
+\end_layout
+
+\begin_layout Standard
+The final composition hierarchy of the unified application is shown in the
+ lower part of figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:The-compositional-structure"
+
+\end_inset
+
+.
+ The extension developers have together succeeded in extending the base
+ application as shown.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/unified-desk.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Unified-correction"
+
+\end_inset
+
+Evolving the Desk to correct extension conflicts
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+The Backbone ADL consists of a conventional, UML2-based ADL, supplemented
+ with three primary extensibility constructs: resemblance, replacement and
+ stratum.
+ Resemblance allows a component (or interface) to be defined in terms of
+ deltas from existing components (or interfaces) and permits reuse of composite
+ components.
+ Replacement redirects references to an existing component (or interface)
+ to a newly defined one.
+ Combined together, resemblance and replacement enable evolution.
+\end_layout
+
+\begin_layout Standard
+The audio desk scenario was used to demonstrate how these constructs enable
+ complex extensions, regardless of whether or not the types of extensions
+ were foreseen and therefore factored into the underlying base application's
+ architecture.
+ Backbone copes well with unplanned extension, which permits the base architectu
+re to be naturally designed without being polluted by speculative extension
+ points in order to cope with all possible future scenarios.
+ In the natural process of architectural elaboration and decomposition into
+ more granular components over time, extensibility is naturally built into
+ an architecture modelled in Backbone.
+\end_layout
+
+\begin_layout Standard
+By allowing any part of the base to be replaced and restructured, Backbone
+ meets the ALTER requirement.
+ It meets the NO_IMPACT requirement by keeping evolutions and replacements
+ in separate strata from the components that they operate on.
+ If one party wishes to see the change, then they can choose both the evolution
+ strata and the base strata.
+ If another party only wishes to see only the base, then they can simply
+ ignore the evolution strata.
+\end_layout
+
+\begin_layout Standard
+Backbone satisfies the NO_SOURCE requirement, as it enables full extensibility
+ without requiring the implementation source code of components or interfaces.
+ The support of an architectural hierarchy encourages fine-grained component
+ decomposition, which reduces the cost if it is necessary to fully replace
+ a leaf implementation in an extension when the source code is not avialable.
+ Backbone also supports the evolution of leaf implementations via direct
+ source code modification if required.
+\end_layout
+
+\begin_layout Standard
+To form a consolidated component out of multiple, possibly parallel evolutions,
+ Backbone forms a consolidated resemblance graph based on several rules.
+ This allows the deltas for a component to be combined, meeting the COMBINE
+ requirement.
+ An upgrade can also be phrased as an extension and combined with other
+ extensions and upgrades, and hence Backbone also meets the UPGRADE requirement.
+\end_layout
+
+\begin_layout Standard
+Backbone contains a number of checks which can detect if a combination of
+ extensions has caused a structual error.
+ In the case of errors, which can occur when combining independently developed
+ extensions, the same extensibility constructs can be used to evolve, replace
+ and retire elements to form a corrected system.
+ This meets many of the facets of the DETECT_AND_CORRECT requirements.
+ Behavioural checks and verifications are not currently considered and are
+ discussed in future work.
+\end_layout
+
+\begin_layout Standard
+By allowing an architectural hierarchy, Backbone permits extension to occur
+ at the appropriate level in the hiearchy.
+ It therefore satisfies the APPROPRIATE_LEVEL requirement.
+ The use of a hierarchy also tends to diminish the likelihood of conflict,
+ as extensions can target and minimise the changes they need to make to
+ the base architecture.
+\end_layout
+
+\begin_layout Standard
+In contrast to other approaches such as MAE 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Roshandel2004"
+
+\end_inset
+
+ which integrate general architectural concepts into a CM system, Backbone
+ introduces extensibility constructs directly into the ADL.
+ The increased modeling support provides powerful facilities for extension,
+ but these facilities have shown themselves to be also relevant to general
+ system evolution and reuse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2006"
+
+\end_inset
+
+.
+ Backbone is agnostic as to the use of CM approaches and can work with existing
+ CM systems if required.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "../read papers/references"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

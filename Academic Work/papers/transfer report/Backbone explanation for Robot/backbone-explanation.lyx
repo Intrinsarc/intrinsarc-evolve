@@ -1,0 +1,1138 @@
+#LyX 1.4.3svn created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass extarticle
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+The Implementation of the Backbone Interpreter
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Backbone is an ADL based on the composite structure model of UML2.
+ A Backbone configuration (program) describes a system in terms of composite
+ and leaf components, their initial states at startup, and the initial connectio
+ns between them.
+ In this respect, it is very similar in concept to the Darwin ADL 
+\begin_inset LatexCommand \cite{Magee1995}
+
+\end_inset
+
+, although Backbone is focussed on objects in the same process space rather
+ than distributed objects.
+\end_layout
+
+\begin_layout Standard
+The purpose of the interpreter is to analyse a configuration and construct
+ a running Java system.
+ Each leaf component must have a corresponding Java class, and at startup
+ the interpreter instantiates these classes and joins them in the ways specified
+ by the connectors.
+ After this is done, control is passed to a selected class and execution
+ commences.
+\end_layout
+
+\begin_layout Standard
+During runtime, a class can call back into the Backbone system to dynamically
+ construct further component instances.
+ Factory components are provided for this purpose.
+ Deletion of instances is not currently supported.
+\end_layout
+
+\begin_layout Standard
+Backbone also includes an inheritance like construct called resemblance,
+ which allows new components to be defined in terms of changes to an existing
+ component.
+ Redefinition can be used to alter the definition of an existing component.
+ These are currently design-time constructs that can not be applied dynamically
+ during program execution, but effect the definition at startup time only.
+\end_layout
+
+\begin_layout Standard
+This document describes the implementation of the interpreter.
+\newpage
+
+\end_layout
+
+\begin_layout Section
+The Backbone ADL
+\end_layout
+
+\begin_layout Standard
+In keeping with Darwin and UML2 
+\begin_inset LatexCommand \cite{OMGUML}
+
+\end_inset
+
+, Backbone defines a component as an instantiable, class-like construct
+ which explicitly describes the interfaces that it provides and requires.
+ An interface represents a collection of methods defining a service and
+ may inherit from other interfaces.
+ Interfaces can only be provided or required via ports.
+ Ports serve to name the role of interfaces as services offered or required
+ by a component.
+\end_layout
+
+\begin_layout Standard
+The ADL is described in more detail in 
+\begin_inset LatexCommand \cite{McVeigh2006}
+
+\end_inset
+
+, which also contains the description of a small drawing framework.
+ This document uses the CPostitNote component from that paper for an example.
+ This is a composite component with two parts.
+ The graphical and textual form are shown in figure 
+\begin_inset LatexCommand \ref{fig:CPostitNote}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+
+\lang british
+\begin_inset Graphics
+	filename ../SAVCBS 2007 resemblance/images/cpostitnote.eps
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+
+\lang british
+\begin_inset LatexCommand \label{fig:CPostitNote}
+
+\end_inset
+
+
+\lang english
+Definition of CPostitNote
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Section
+Interpreting a Backbone Configuration
+\end_layout
+
+\begin_layout Standard
+The interpreter has three stages: parsing, creation and construction.
+ This is shown in figure 
+\begin_inset LatexCommand \ref{fig:The-three-stages}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename stages.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-three-stages}
+
+\end_inset
+
+The three interpreter stages
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In stage (1), the parser turns the textual Backbone configuration files
+ into a single abstract syntax tree (AST) consisting of parse nodes (P).
+ At this point, all references from one node to another are via textual
+ names.
+ Parsing includes checks to ensure that referenced elements actually exist.
+\end_layout
+
+\begin_layout Standard
+The creation phase (2) consists of walking the AST and generating a model
+ consisting of elements (M).
+ The model is similar to the AST, except that all references from one component
+ or interface to another have been resolved from names into direct relationships.
+ This makes navigation and analysis much easier.
+ The model represents the definitions, initial structure and state of the
+ system.
+ The model is always static -- even if more instances are dynamically added
+ during system execution, the model always stays unchanged.
+\end_layout
+
+\begin_layout Standard
+During the creation stage, any changes due to redefinitions are performed.
+ Redefinitions are explicitly represented in the AST as parse nodes, but
+ are not represented in the model.
+ The model represents the system after all redefinitions have taken place.
+ This approach will be revisited in the future as representing redefinitions
+ directly in the model will allow for easier analysis.
+\end_layout
+
+\begin_layout Standard
+The construction phase (3) uses the model to construct the Java objects
+ representing the leaves and connects these up according to the connectors
+ in the system.
+ An object is 
+\begin_inset Quotes eld
+\end_inset
+
+connected
+\begin_inset Quotes erd
+\end_inset
+
+ to another by Java references.
+ For instance, if leaf component A is connected to leaf B then the construction
+ stage will set a field in the Java object representing A to a reference
+ of the Java object representing B.
+\end_layout
+
+\begin_layout Standard
+Each Java object (representing a leaf component instance) has a reference
+ to a runtime object (R).
+ This object allows access to the Backbone runtime system for dynamic component
+ creation and it contains a link back to the object's Backbone component
+ in the model.
+ If component instances are dynamically created, the runtime objects are
+ updated, but the model is not.
+\end_layout
+
+\begin_layout Standard
+Once the system has been constructed, control is given to a nominated class,
+ and execution can commence.
+\end_layout
+
+\begin_layout Section
+The Parsing Stage
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Parsing takes text configuration files as input, and produces an in-memory
+ AST as output.
+ Error handling in the parser is basic, and the parsing stops at the first
+ syntax error.
+\end_layout
+
+\begin_layout Standard
+A Backbone configuration consists of a stratum load list specified as a
+ .combine file.
+ This contains the names of the strata names to load.
+ Each stratum is defined in its own directory, and the .bb files in that
+ directory contain the element definitions for that stratum.
+ See figure 
+\begin_inset LatexCommand \ref{fig:The-directory-and}
+
+\end_inset
+
+ for an example of what the configuration for the note taking application
+ 
+\begin_inset LatexCommand \cite{McVeigh2006}
+
+\end_inset
+
+ might look like.
+ CPostitNode is contained in the cpostit.bb file in the postit-note stratum.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename textfiles.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-directory-and}
+
+\end_inset
+
+The directory and file structure of the example configuration
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The parser is generated by JavaCC 
+\begin_inset LatexCommand \cite{JavaCC}
+
+\end_inset
+
+ from a grammar file.
+ JavaCC also generates the classes that represent the AST.
+\end_layout
+
+\begin_layout Standard
+See section 
+\begin_inset LatexCommand \ref{sub:Generating-the-Parse}
+
+\end_inset
+
+ for implementation notes on this stage.
+\end_layout
+
+\begin_layout Section
+The Creation Stage
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Creation takes the AST and produces an in-memory model.
+ This is very similar to the AST, with names turned into direct references.
+ The model can be thought of as a simplified AST which supports easier navigatio
+n and analysis.
+\end_layout
+
+\begin_layout Standard
+In the AST, a component must refer to another component or interface by
+ its name.
+ In the creation stage, all these names are resolved and the model contains
+ direct references to the elements.
+ If an element name does not exist an error will be generated.
+\end_layout
+
+\begin_layout Standard
+The other main function of this stage is to interpret the redefinition construct
+s and apply them to the model.
+ The AST has a representation of the redefinition changes, but the model
+ does not.
+ Hence, creation involves setting up the model to reflect these changes.
+ This situation is likely to change -- in order to make it simpler to reason
+ about redefinitions, it is likely that the model will also have to represent
+ redefinition constructs.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset LatexCommand \ref{fig:The-model-for}
+
+\end_inset
+
+ shows an object diagram of the CPostitNote model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-model-for}
+
+\end_inset
+
+The model for CPostitNode
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The Construction Stage
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Construction uses the information in the model to instantiate the Java objects
+ corresponding to the leaf component instances, and to connect these together
+ as per the configuration.
+ After construction, control is passed to a Java object and the program
+ can commence execution.
+\end_layout
+
+\begin_layout Standard
+As previously indicated, each leaf component must be associated with a Java
+ class which implements its functionality.
+ Each instantiated Java object holds a reference to a runtime object, which
+ allows the Java object to invoke services from the Backbone runtime.
+ An example of this is where an object calls the runtime to dynamically
+ instantiate a new component instance.
+\end_layout
+
+\begin_layout Standard
+Being a composite, CPostitNote does not have a Java representation.
+ However, the CNoteText Java class looks as follows:
+\end_layout
+
+\begin_layout LyX-Code
+public class CNoteText extends BackboneRelatedComponent
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  private BackboneProperty<String> text;
+\end_layout
+
+\begin_layout LyX-Code
+  private INoteText note = new INoteTextImpl();
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  public INoteText getINoteText_of_Data()
+\end_layout
+
+\begin_layout LyX-Code
+  {
+\end_layout
+
+\begin_layout LyX-Code
+    return note;
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout LyX-Code
+  
+\end_layout
+
+\begin_layout LyX-Code
+  private class INoteTextImpl implements INoteText
+\end_layout
+
+\begin_layout LyX-Code
+  {
+\end_layout
+
+\begin_layout LyX-Code
+    public string getText()
+\end_layout
+
+\begin_layout LyX-Code
+    {
+\end_layout
+
+\begin_layout LyX-Code
+      ....
+\end_layout
+
+\begin_layout LyX-Code
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+    public PartHandle getMyHandle()
+\end_layout
+
+\begin_layout LyX-Code
+    {
+\end_layout
+
+\begin_layout LyX-Code
+      return new PartHandle(me);
+\end_layout
+
+\begin_layout LyX-Code
+    } 
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout Standard
+Of interest is the BackboneProperty called text.
+ All attributes, which are settable from Backbone must be specified in this
+ way.
+ This allows the interpreter to set attributes to the specified state in
+ the configuration.
+\end_layout
+
+\begin_layout Standard
+This also provides a way to handle 
+\emph on
+environment
+\emph default
+ attributes, which allow the state of a part to be mapped onto the state
+ of a parent.
+ This provides a natural way to give the part access to its enclosing component
+ / environment and is a crucial part of the way that Backbone facilitates
+ component decomposition.
+ Environment variables will be described in more detail in a future paper.
+\end_layout
+
+\begin_layout Subsection
+Connectors
+\end_layout
+
+\begin_layout Standard
+Backbone connectors can be complex.
+ This is primarily due to three language features: indexed ports, dynamic
+ component instantiation and multiple connectors to a single port.
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Indexed Ports
+\end_layout
+
+\begin_layout Standard
+In the simple case, a connector simply joins two ports together.
+ At the code level this involves setting an attribute in an object to the
+ reference of another object.
+\end_layout
+
+\begin_layout Standard
+However, indexed ports are allowed.
+ An indexed port actually behaves like an array of ports.
+ For instance, in the case of the indexed port A[0..9] we actually have A[0],
+ A[1] and so on.
+\end_layout
+
+\begin_layout Standard
+A delegate connector can connect between two indexed ports, but this can
+ result in a complex scenario.
+ Consider the situation in figure 
+\begin_inset LatexCommand \ref{fig:Delegate-connectors-can}
+
+\end_inset
+
+.
+ The effect of delegateConnector between the two indexed ports can only
+ be determined by examining the connectors on either side of the delegate
+ connector.
+ In this case, only indices [3] and [2] should be connected.
+ The general case involves following the connector chain back to a direct
+ connection between non-indexed ports.
+ The logic to do this lives in the ConnectorChain class in the construction
+ phase.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename delegate.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Delegate-connectors-can}
+
+\end_inset
+
+Delegate connectors can lead to complex connection effects
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Dynamic Instantiation and Connectors
+\end_layout
+
+\begin_layout Standard
+The situation becomes more complex in the presence of dynamically instantiated
+ components.
+ Consider that instantiation could add new delegate connectors or new basic
+ connectors which could indirectly be joined to existing delegate connectors.
+ Backbone handles these situations by following the connector chains back
+ to a point where the precise connection effect is known.
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Multiple Connectors to a Single Port
+\end_layout
+
+\begin_layout Standard
+Two or more connectors can link to a single port.
+ The effect that each connector has depends on the port on the other side
+ of the connector, but this port may also have more than one connector linking
+ to it and so on.
+ In the future it is envisaged that this 
+\begin_inset Quotes eld
+\end_inset
+
+feature
+\begin_inset Quotes erd
+\end_inset
+
+ will be removed from the Backbone language to make reasoning about connectors
+ simpler.
+\end_layout
+
+\begin_layout Subsection
+Factory Components
+\end_layout
+
+\begin_layout Standard
+Dynamic instantiation occurs when a Java class asks the Backbone runtime
+ to dynamically construct new component instances.
+ The components to be instantiated are described by a factory component,
+ which is modelled after the factory design pattern 
+\begin_inset LatexCommand \cite{Gamma1995}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Consider figure 
+\begin_inset LatexCommand \ref{fig:Use-of-a}
+
+\end_inset
+
+ which shows ComponentA, which has a part partF which is an instance of
+ ComponentF.
+ ComponentF is a factory component, which means that its parts will not
+ be created immediately, but only on request through the creation port.
+ The factory has two attributes, 
+\begin_inset Quotes eld
+\end_inset
+
+existing
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+name
+\begin_inset Quotes erd
+\end_inset
+
+ which can both be set through the creation port.
+ However, 
+\begin_inset Quotes eld
+\end_inset
+
+existing
+\begin_inset Quotes erd
+\end_inset
+
+ must be set to the reference of an existing component.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename factory.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Use-of-a}
+
+\end_inset
+
+Use of a factory for dynamic instantiation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The effect of using the factory twice and setting 
+\begin_inset Quotes eld
+\end_inset
+
+existing
+\begin_inset Quotes erd
+\end_inset
+
+ to reference partB is shown in figure 
+\begin_inset LatexCommand \ref{fig:After-using-the}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename factory-2.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:After-using-the}
+
+\end_inset
+
+After using the factory twice
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Factories are phrased as components in Backbone so that they can be redefined
+ and transformed in the same way as other components.
+\end_layout
+
+\begin_layout Standard
+Instance deletion is not currently supported.
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\end_layout
+
+\begin_layout Section
+Current Status, Limitations and Future Direction
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Status
+\end_layout
+
+\begin_layout Standard
+The interpreter currently supports all three stages of interpretation as
+ discussed in this paper.
+ It also fully supports delegate connectors and indexed ports, environment
+ variables and factory components.
+\end_layout
+
+\begin_layout Standard
+The specification of message protocols at a component level is supported,
+ along with the translation of these specifications into a simple FSP equivalent.
+ This will be used in future phases to check that a redefined component
+ is still compatible with existing usage.
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Limitations
+\end_layout
+
+\begin_layout Standard
+Currently instance deletion is not supported.
+ Furthermore, although redefinition is supported, the [previous] construct
+ outlined in 
+\begin_inset LatexCommand \cite{McVeigh2006}
+
+\end_inset
+
+ is not yet implemented.
+\end_layout
+
+\begin_layout Standard
+Redefinition is currently handled in the creation stage, and only has a
+ representation in the AST and not the model or the runtime objects.
+ It is envisaged that this will need to change in order to support more
+ robust analysis of redefinitions than is currently being done.
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Future Direction
+\end_layout
+
+\begin_layout Standard
+A key aim of the interpreter is to fully support redefinition as the research
+ into this area matures.
+ Another main aim is to generate configurations directly from the jUMbLe
+ UML2 CASE tool.
+ This will also be upgraded to graphically depict and allow the modelling
+ of redefined components.
+\end_layout
+
+\begin_layout Standard
+Finally, connectors will be simplified and a form of type inferencing will
+ be added so that composite components need not specify the interfaces that
+ their ports provide and require.
+ A construct will also be added so that it is possible to indicate the type
+ relationships between ports in a leaf component.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+The Backbone interpreter is a Java program that includes parsing, creation
+ and construction stages.
+ Its main purpose is to instantiate the Java classes that correspond to
+ leaf components and connect them together in the way specified in the configura
+tion.
+ This allows a Backbone configuration to be executed.
+\end_layout
+
+\begin_layout Standard
+The implementation is functional but has only been tested on example and
+ test scenarios.
+ The interpreter will undergo significant changes to accommodate more robust
+ analysis of redefined components.
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\end_layout
+
+\begin_layout Section
+\start_of_appendix
+Implementation Notes
+\end_layout
+
+\begin_layout Standard
+This section explains some implementation details of the various stages.
+ This section is not necessary for understanding the high-level runtime
+ processing of the interpreter.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Generating-the-Parse}
+
+\end_inset
+
+Generating the Parse Node Classes
+\end_layout
+
+\begin_layout Standard
+The parse node classes are used by the parser to hold the AST.
+\end_layout
+
+\begin_layout Standard
+The JavaCC parser generator is used to create the parser and associated
+ node classes.
+ The input grammar file is generated from a UML class diagram which allows
+ the grammar to be represented visually.
+ This is then fed into JavaCC which produces the parse node classes.
+ See figure 
+\begin_inset LatexCommand \ref{fig:Producting-the-Parse}
+
+\end_inset
+
+.
+ The grammar consists of around 65 productions.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename parsenodes.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Producting-the-Parse}
+
+\end_inset
+
+Generating the Parse Node Classes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Generating the Model Classes
+\end_layout
+
+\begin_layout Standard
+In a similar process to above, the model classes are also generated directly
+ from a UML diagram.
+ The model classes represent a simplified variant of the UML2 composite
+ structure meta-model.
+ As such, composite structure diagrams can be used to represent a Backbone
+ configuration, giving a convenient graphical representation.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset LatexCommand \ref{fig:The-Backbone-model}
+
+\end_inset
+
+ shows the full set of model classes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename meta-model.jpg
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-Backbone-model}
+
+\end_inset
+
+The Backbone model classes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The Generation Gap Pattern
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+This pattern allows functionality to be added to generated classes such
+ that regeneration will not overwite the added methods.
+\end_layout
+
+\begin_layout Standard
+The generated parser node classes and the generated model classes use the
+ generation gap pattern 
+\begin_inset LatexCommand \cite{Vlissides1998}
+
+\end_inset
+
+.
+ This pattern works by generating classes with names prefixed by 
+\begin_inset Quotes eld
+\end_inset
+
+Abstract
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Another class is then created which inherits from the generated class.
+ This class contains the functionality added by the user.
+ This is shown in figure 
+\begin_inset LatexCommand \ref{fig:Example-of-the}
+
+\end_inset
+
+.
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+Abstract
+\begin_inset Quotes erd
+\end_inset
+
+ classes can be regenerated without overwriting the added methods.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename generation-gap.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Example-of-the}
+
+\end_inset
+
+Example of the generation gap pattern
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{C:/Andrew/Workspace/Academic Work/read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

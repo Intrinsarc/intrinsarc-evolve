@@ -1,0 +1,52 @@
+8
+
+dir
+171
+https://mtsa.svn.sourceforge.net/svnroot/mtsa/trunk/ltsa/src/com/cloudgarden/layout
+https://mtsa.svn.sourceforge.net/svnroot/mtsa
+
+
+
+2009-01-19T17:50:37.556255Z
+37
+srdipi78
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fcb65440-8149-0410-bc05-9de0824cdfc8
+
+AnchorConstraint.java
+file
+
+
+
+
+2009-07-07T21:26:31.000000Z
+84fa260886a72cd2829daf2e4d807395
+2009-01-19T17:50:37.556255Z
+37
+srdipi78
+
+AnchorLayout.java
+file
+
+
+
+
+2009-07-07T21:26:31.000000Z
+2d831326d2b35866d8535ba0310dd6e4
+2009-01-19T17:50:37.556255Z
+37
+srdipi78
+

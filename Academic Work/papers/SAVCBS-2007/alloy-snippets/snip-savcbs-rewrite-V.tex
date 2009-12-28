@@ -1,0 +1,22 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={facts.als, lines 92-116}, label=alloy:savcbs-rewrite-V, captionpos=b]
+all s: Stratum |
+let
+  -- who should I resemble
+  -- (taking redefinition into account)
+  iResemble = e.resembles_e.s,
+  -- if we resemble what we are redefining,
+  -- look for the original under here
+  topmostOfRedefined = getTopmost[
+    owner.simpleDependsOn,
+    e.redefines & e.resembles],
+  -- look for any other resembled components
+  -- from here down
+  topmostOfResemblances = getTopmost[
+    s,
+    e.resembles - e.redefines]
+{
+      ...
+    iResemble = topmostOfRedefined + topmostOfResemblances
+}
+\end{lstlisting}

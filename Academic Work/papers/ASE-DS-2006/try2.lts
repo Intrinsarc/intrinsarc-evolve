@@ -1,0 +1,37 @@
+
+
+CLIENT = (call.tx.setVolume -> return.rx.setVolume -> CLIENT
+         |call.tx.beep -> return.rx.beep -> CLIENT).
+set Clients = {c1,c2}
+deterministic AUDIO1 =
+ ([c:Clients].call.rx.setVolume -> [c].return.tx.setVolume -> AUDIO1
+ |[c:Clients].call.rx.setVolume -> [c].return.tx.setVolume -> AUDIO1).
+AUDIO2 =
+ ([c:Clients].call.rx.beep -> [c].return.tx.beep -> AUDIO2).
+property ||AUDIO = (AUDIO1 || AUDIO2).
+property ||CLIENTS = Clients:CLIENT.
+||SYS = (CLIENTS || AUDIO) / {[Clients].call.tx/[Clients].call.rx, [Clients].return.rx/[Clients].return.tx}.
+
+
+/*
+CLIENT = (beep -> return -> CLIENT).
+
+set Clients = {c1,c2}
+property
+  AUDIO = (beep -> return -> AUDIO).
+
+||SYS = (Clients:CLIENT || AUDIO) / {a/c1, a/c2}.
+
+||SYS1 = (c1:CLIENT || AUDIO) / {a/c1}.
+||SYS2 = (c2:CLIENT || AUDIO) / {a/c2}.
+||FINAL = (SYS1 || SYS2).
+*/
+
+
+Proc0 = (start -> Proc2),
+Proc2 = (
+  call.rx.displayDigits -> return.tx.displayDigits -> Proc2 |
+  call.rx.displayDigits -> return.tx.displayDigits -> end -> Proc0).
+Display = (start -> end -> Proc1),
+Proc1 = (act0 -> Proc1).
+||SYSP = (Display || Proc0)\{start, end, act0}.

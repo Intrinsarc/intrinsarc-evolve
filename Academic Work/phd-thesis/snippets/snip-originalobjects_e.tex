@@ -1,0 +1,7 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={base\_deltas.als, lines 125-128}, label=alloy:originalobjects_e, captionpos=b]
+this.originalObjects_e[s] = 
+  (((iResembleDeltas_e.originalObjects_e[s] - this.originalDeletedObjects_e[s]->Object)
+      ++ this.originalReplacedObjects_e[s]) + this.addObjects)
+        ++ this.replaceObjects  
+\end{lstlisting}

@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/mtsa/!svn/ver/90/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl
+END
+MTSAvsLTSATest.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSAvsLTSATest.java
+END
+PathBuilderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/PathBuilderTest.java
+END
+WeakAlphabetRefinement.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/mtsa/!svn/ver/63/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/WeakAlphabetRefinement.java
+END
+MTSMultipleComposertMemoryAndTimeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSMultipleComposertMemoryAndTimeTest.java
+END
+MTSPropertyTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSPropertyTest.java
+END
+MTSComposerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/90/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSComposerTest.java
+END
+RemoveUnreachableStatesTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/RemoveUnreachableStatesTest.java
+END
+MTSDeterminiserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/mtsa/!svn/ver/62/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSDeterminiserTest.java
+END
+MTSRemoveTransitionTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSRemoveTransitionTests.java
+END
+PlusCAAndCROperationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/PlusCAAndCROperationTest.java
+END
+MTSMinimiserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSMinimiserTest.java
+END
+PlusCROperatorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/mtsa/!svn/ver/55/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/PlusCROperatorTest.java
+END
+ConsistencyTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/mtsa/!svn/ver/64/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/ConsistencyTests.java
+END
+ClousurePathBuilderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/mtsa/!svn/ver/63/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/ClousurePathBuilderTest.java
+END
+MTSCompileBookExamplesTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSCompileBookExamplesTest.java
+END
+MTSMultipleComposerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/mtsa/!svn/ver/62/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/MTSMultipleComposerTest.java
+END
+CompositionStateTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/CompositionStateTests.java
+END
+BranchingImplementationNotionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/BranchingImplementationNotionTest.java
+END
+RefinementBetweenStatesTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/ac/ic/doc/mtstools/model/impl/RefinementBetweenStatesTest.java
+END

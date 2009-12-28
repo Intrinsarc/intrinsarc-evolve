@@ -1,0 +1,2095 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\usepackage{listings}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--}
+}
+
+\lstset{language=Alloy}
+
+\newtheorem{srule}{Structural rule}
+\newtheorem{sdef}{Definition}
+\newtheorem{sprop}{Property}
+\end_preamble
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Using Backbone to Define, Extend and Evolve an Architecture
+\end_layout
+
+\begin_layout Standard
+Backbone is an ADL for creating component-based, extensible applications.
+\end_layout
+
+\begin_layout Standard
+The aim of this chapter is to explain the constructs of Backbone and how
+ these address the requirements presented in section 
+\begin_inset LatexCommand \ref{sec:Requirements}
+
+\end_inset
+
+.
+ We do this through a heavily simplified, but realistic, example based on
+ the architecture of a commercially available application.
+ The author was one of the architects of the original application.
+\end_layout
+
+\begin_layout Standard
+The requirements for developing extensible applications represent a superset
+ of the requirements for component reuse in a component-based system.
+ This is because an application in such an approach is phrased as a complex,
+ composite component.
+ The techniques are equally applicable, and as such Backbone offers facilities
+ for component integration and reuse also by virtue of its focus.
+\end_layout
+
+\begin_layout Standard
+The application is an audio desk that controls a number of digital audio
+ devices.
+ We start by defining the audio desk without any devices, and then proceed
+ to extend the desk to add a CD player device.
+ The desk component is then evolved via another extension to always include
+ a microphone.
+ The two extensions are shown to structurally conflict when combined, and
+ the conflict is resolved through a further extension.
+\end_layout
+
+\begin_layout Standard
+Appendices A and B contain a complete description of Backbone's structural
+ concepts and rules.
+\end_layout
+
+\begin_layout Section
+Defining the Audio Desk Application
+\end_layout
+
+\begin_layout Standard
+The AudioSoft company develops and sells an audio desk application.
+\end_layout
+
+\begin_layout Standard
+An audio desk controls a number of digital audio devices which are connected
+ to a mixer.
+ For our example, we start by defining the mixer component, which accepts
+ audio packets on the input port, adjusts the overall volume and routes
+ the packets to both output1 and output2 (figure 
+\begin_inset LatexCommand \ref{fig:The-mixer-leaf}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/mixer-leaf.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-mixer-leaf}
+
+\end_inset
+
+The mixer leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The mixer is a leaf component, which means that is cannot be decomposed
+ further into other component instances.
+ Each leaf must be directly associated with a Java implementation class
+ which implements the logic.
+ The volume is held as an attribute, which is set to a default value.
+\end_layout
+
+\begin_layout Standard
+Instead of defining a device component at this point, we will define a placehold
+er (figure 
+\begin_inset LatexCommand \ref{fig:A-placeholder-device}
+
+\end_inset
+
+).
+ This is a dummy (composite) component which outlines the general shape
+ that any device should have.
+ A placeholder can be used to indicate something that must be concretely
+ defined later, and is intended to be descriptive rather than prescriptive.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/device-placeholder.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:A-placeholder-device}
+
+\end_inset
+
+A placeholder device shows the 
+\begin_inset Quotes eld
+\end_inset
+
+shape
+\begin_inset Quotes erd
+\end_inset
+
+ of an audio device
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now define the desk component (figure 
+\begin_inset LatexCommand \ref{fig:The-desk-composite}
+
+\end_inset
+
+).
+ The desk is a composite component, consisting of an instance of the mixer
+ component and an instance of the device placeholder.
+ These instances are also known as 
+\emph on
+parts
+\emph default
+.
+ They are wired together using connectors, which connect ports.
+\end_layout
+
+\begin_layout Standard
+A desk contains a mixer, and exposes its outputs.
+ It contains devices which are connected between the indexed 
+\emph on
+input
+\emph default
+ and 
+\emph on
+deviceControl
+\emph default
+ ports.
+ The latter is how the desk is controlled.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/desk-composite.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-desk-composite}
+
+\end_inset
+
+The desk composite has a mixer and a device part
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is worth noting that the desk component cannot be instantiated as it
+ contains a placeholder.
+ This must be replaced, through resemblance or redefinition, before use.
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+[+]
+\emph default
+ (pronounced 
+\begin_inset Quotes eld
+\end_inset
+
+take next
+\begin_inset Quotes erd
+\end_inset
+
+) is used to connect to an indexed port, and will assign the next available
+ index to the connector.
+ In this case, the assigned index will be zero.
+ The use of 
+\emph on
+[+]
+\emph default
+ prevents connectors from independently independent extensions from taking
+ the same index.
+\end_layout
+
+\begin_layout Standard
+A delegate connector is used to connect the 
+\emph on
+mixerInput
+\emph default
+ and 
+\emph on
+input
+\emph default
+ ports.
+ This aliases two ports together, and is used to prevent the need for many
+ indexed connectors between two indexed ports.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Port-Type-Inference}
+
+\end_inset
+
+Port Type Inference
+\end_layout
+
+\begin_layout Standard
+The function of port type inference is to automatically infer the interfaces
+ of a port in a composite component.
+ This minimises the changes required when later modifying components using
+ resemblance or redefinition.
+\end_layout
+
+\begin_layout Standard
+The port links (
+\emph on
+link1
+\emph default
+, 
+\emph on
+link2
+\emph default
+) in the leaf mixer component are used to propagate port type information
+ if 
+\begin_inset Quotes eld
+\end_inset
+
+more is provided than is required
+\begin_inset Quotes erd
+\end_inset
+
+.
+ For instance, if an instance of mixer is connected so that a sub-interface
+ of IAudio is provided to both 
+\emph on
+output1
+\emph default
+ and 
+\emph on
+output2
+\emph default
+ then this will result in 
+\emph on
+input
+\emph default
+ also providing the sub-interface -- the type information has propagated
+ via the links.
+ This also works the other way -- if input was connected to something that
+ required the sub-interface, then this would propagate through so that the
+ outputs also required that sub-interface.
+ Port links reflect the internal connections of a leaf, as leaves have no
+ explicit connectors.
+\end_layout
+
+\begin_layout Standard
+The interfaces required and provided by a port (the port's type) of a composite
+ component can always be inferred.
+ Whilst this is a trivial matter in the case of figure 
+\begin_inset LatexCommand \ref{fig:The-desk-composite}
+
+\end_inset
+
+, the inference rules are useful when replacing parts of a component using
+ the constructs provided for extension.
+ The changes will automatically propagate such that the port types update
+ also.
+\end_layout
+
+\begin_layout Standard
+Composites cannot explicitly specify port links: the links for a composite
+ can always be inferred from the connections between the component and the
+ parts.
+ To support an incremental approach, the port type inference algorithm will
+ determine a set of inferred links for each composite, which indicate how
+ any internal parts propagate type information between ports.
+ The inferred links for the desk are shown in figure 
+\begin_inset LatexCommand \ref{fig:The-inferred-links}
+
+\end_inset
+
+.
+ This shows that the 
+\emph on
+mixerInput
+\emph default
+ and 
+\emph on
+output1
+\emph default
+ and 
+\emph on
+output2
+\emph default
+ ports are linked, reflecting the links from the mixer part that they connect
+ via.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/inferred-links.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-inferred-links}
+
+\end_inset
+
+The inferred links of the desk component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Slots and Aliasing
+\end_layout
+
+\begin_layout Standard
+The mixer defines a volume attribute.
+ An attribute is of primitive type (int, boolean etc) and provides a view
+ on the internal configuration state of a component.
+ An attribute may have a default value, such as in figure 
+\begin_inset LatexCommand \ref{fig:The-mixer-leaf}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+When we create a part, we can assign values to each of the attributes of
+ the part's type.
+ These are known as slots.
+ When a slot has a value assigned, there are three possibilities:
+\end_layout
+
+\begin_layout Enumerate
+A literal assignment.
+\newline
+E.g.
+ volume = 100.
+ This will initialise the attribute with the literal value.
+\end_layout
+
+\begin_layout Enumerate
+A copy assignment from the environment.
+\newline
+E.g.
+ volume = mixerVolume.
+ This will copy the value of the attribute over from the parent component,
+ but the attribute values can then diverge.
+\end_layout
+
+\begin_layout Enumerate
+An attribute alias.
+\newline
+E.g.
+ volume(mixerVolume).
+ This aliases the part attribute with an attribute from the parent component.
+\end_layout
+
+\begin_layout Standard
+For the mixer part in figure 
+\begin_inset LatexCommand \ref{fig:The-desk-composite}
+
+\end_inset
+
+, the third option is used which binds the two attributes together into
+ a single one.
+ 
+\emph on
+This allows us to propagate state from one or more parts into the parent
+ component.
+ 
+\emph default
+This has allowed us to encapsulate the mixer in the desk, but still allow
+ the mixer's volume to be configured at the desk level.
+\end_layout
+
+\begin_layout Subsection
+Packaging the Application
+\end_layout
+
+\begin_layout Standard
+We now have our base application.
+ To package it into a single entity, we use a stratum which is a module-like
+ construct based around the UML2 package concept.
+ A stratum contains component and interface definitions.
+ A stratum may not contain other strata, for reasons of simplicity rather
+ than any technical necessity.
+\end_layout
+
+\begin_layout Standard
+Each stratum must explicitly express its dependencies on other strata.
+ These dependencies constrain the elements that are visible to the stratum's
+ elements.
+ In the case of our application there are no dependencies, as we package
+ everything into a single stratum called Desk (figure 
+\begin_inset LatexCommand \ref{fig:The-desk-stratum}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/desk-stratum.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-desk-stratum}
+
+\end_inset
+
+The desk stratum packages the application into a single entity
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+Backbone's architectural approach is similar to that provided by Darwin
+ 
+\begin_inset LatexCommand \cite{Magee1995}
+
+\end_inset
+
+.
+ It is based on the UML2 composite structure model 
+\begin_inset LatexCommand \cite{OMGUML}
+
+\end_inset
+
+.
+ Strata are not entirely dissimilar to modules, which serve to group elements
+ in an application.
+ The reasons for the existence of both strata and components are similar
+ to the ones outlined for the coexistence of modules and classes in 
+\begin_inset LatexCommand \cite{Bruce1998}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A hierarchy of components can be created through composition.
+ This focus on hierarchy, composition and encapsulation allows large architectur
+es to be defined, managed and reasoned about at the appropriate level of
+ abstraction (MANAGE).
+ This is one of the key aspects that differentiates Backbone over conventional
+ plugin architectures 
+\begin_inset LatexCommand \cite{Object2001}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Backbone describes a composite component as a connected configuration of
+ other component instances (parts).
+ This captures more of the architecture than an object-oriented description
+ of a system where the instantiations are contained within code.
+ Further, the requirement that a component express both provided and required
+ interfaces enforces a disciplined approach to dependencies.
+ It is often the case when using an object oriented approach that classes
+ have many code-defined dependencies on definitions of other classes, leading
+ many to a complex and implicit tangle of dependencies 
+\begin_inset LatexCommand \cite{Foote1999}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Port type inference allows the interfaces provided and required by ports
+ in a composite component to be inferred.
+ As well as saving time, this features limits the changes required when
+ altering parts of the application in order to extend it.
+ Port links provide a way to propagate type information through the ports
+ of a leaf, and are used to represent the internal connections.
+ This is necessary because leaves do not have explicit connectors.
+ This allows leaf components to be more reusable, as will be shown when
+ the mixer is able to automatically adjust for a sub-interface of IAudio
+ (section 
+\begin_inset LatexCommand \ref{sub:Port-Type-Inference}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Extending the Application: Adding a CD Player
+\end_layout
+
+\begin_layout Standard
+An independent developer, X, is asked by a radio station to extend the desk
+ so that it can operate a CD player device.
+ X must use the application as provided by AudioSoft.
+\end_layout
+
+\begin_layout Standard
+The controller for the CD player device is shown in figure 
+\begin_inset LatexCommand \ref{fig:The-CD-player}
+
+\end_inset
+
+.
+ Note that it does not conform exactly to the shape of the device placeholder
+ component, as it provides an additional interface (IDeviceCue).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/cd-player.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-CD-player}
+
+\end_inset
+
+The CD player component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Resemblance
+\end_layout
+
+\begin_layout Standard
+The developer decides to make an AudioDeskWithCD component which is similar
+ to AudioDesk, but adds a CD player.
+ To define this, the 
+\emph on
+resemblance
+\emph default
+ construct is used, which allows a new component to be defined in terms
+ of delta changes to one or more existing components.
+ Figure 
+\begin_inset LatexCommand \ref{fig:Defining-a-new}
+
+\end_inset
+
+ shows the graphical view of the new component, along with the textual view
+ underneath.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/audiodesk-with-cd.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Defining-a-new}
+
+\end_inset
+
+Defining a new desk component in terms of differences to the original one
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The placeholder device has been replaced by a CD player part, and the 
+\emph on
+mixerInput
+\emph default
+ port and 
+\emph on
+delegate
+\emph default
+ connector have been removed because they were not required by developer
+ X.
+ Port type inferencing has determined that the 
+\emph on
+deviceControl
+\emph default
+ port now provides both IDeviceControl and IDeviceCue.
+\end_layout
+
+\begin_layout Standard
+Note that this is a distinct component from AudioDesk.
+ However, since the new component is defined in terms of changes, if AudioDesk
+ changes, then the new component will change also.
+ This feature allows us to accept upgraded (UPGRADE) versions of AudioDesk
+ in the future, possibly defined using redefinition (section 
+\begin_inset LatexCommand \ref{sub:Redefinition}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection
+Packaging the Extension
+\end_layout
+
+\begin_layout Standard
+The two components are packaged in the DeskWithCD stratum.
+ The components depend on definitions in the Desk stratum, and so we must
+ explicitly indicate this using a dependency (figure 
+\begin_inset LatexCommand \ref{fig:The-DeskWithCD-stratum}
+
+\end_inset
+
+).
+ Another way to look at it is that the strata level dependencies constrain
+ what the elements in a stratum can refer to.
+ With the dependencies as shown, the elements in DeskWithCD can only refer
+ to elements in that stratum, or the Desk stratum.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/desk-extension-packaging.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-DeskWithCD-stratum}
+
+\end_inset
+
+The DeskWithCD stratum depends on the Desk stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Wrap}
+
+\end_inset
+
+Summary
+\end_layout
+
+\begin_layout Standard
+Using resemblance to define a new component in terms of another has several
+ advantages over a completely new definition.
+ It is economical and convenient -- only the changes need be specified.
+ In addition, if the resembled component changes at some point or is upgraded,
+ then so does the new component's definition (UPGRADE).
+\end_layout
+
+\begin_layout Standard
+For a composite component, changes can be addition, replacement or deletion
+ or ports, parts, connectors and attributes.
+ This gives the extension developer a large amount of flexibility to remodel
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+insides
+\begin_inset Quotes erd
+\end_inset
+
+ that it has inherited (EXTEND).
+ This is in contrast to object-oriented inheritance where only additions
+ and explicit overrides (limited replacement) can be performed 
+\begin_inset LatexCommand \cite{Taivalsaari1996}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Multiple resemblance is allowed, as long as the resemblance graph is acyclic
+ (see section 
+\begin_inset LatexCommand \ref{sec:Rules}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Resemblance is not allowed for leaf components.
+ This sidesteps the troublesome issue of a composite resembling a leaf and
+ vice versa.
+ To get around this restriction, in an actual system, leaf components are
+ wrapped immediately in an 
+\begin_inset Quotes eld
+\end_inset
+
+identity
+\begin_inset Quotes erd
+\end_inset
+
+ composite, which is then used instead of the leaf (E.g.
+ figure 
+\begin_inset LatexCommand \ref{fig:Leaves-are-always}
+
+\end_inset
+
+).
+ The composite wrapper can then be redefined or resembled.
+ The intention is to have this wrapping managed automatically by the graphical
+ CASE tool supporting the Backbone approach, freeing the designer from this
+ burden 
+\begin_inset LatexCommand \cite{McVeigh2006}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/wrapped-mixer.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Leaves-are-always}
+
+\end_inset
+
+Leaves are always wrapped by 
+\begin_inset Quotes eld
+\end_inset
+
+identity composites
+\begin_inset Quotes erd
+\end_inset
+
+ in reality
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Packaging a set of definitions as a stratum provides a useful, coarse-grained
+ view of the dependency structure of a large application.
+ Strata dependencies cannot be cyclic, and this focuses the developer on
+ maintaining a strict layering of the architecture.
+ A stratum can be understood in terms of its own elements and those of the
+ strata that it depends upon.
+ A single stratum can contain an arbitrary number of component and interface
+ definitions, and an extension is usually packaged as a single stratum that
+ depends on the strata defining the application that it is extending.
+\end_layout
+
+\begin_layout Section
+Evolving the Application: Adding a Microphone
+\end_layout
+
+\begin_layout Standard
+AudioSoft decides to evolve the desk application to version 1.1, adding a
+ microphone device as standard.
+ AudioSoft has no knowledge of developer X or the changes made to support
+ the CD player.
+\end_layout
+
+\begin_layout Standard
+The microphone component is shown in figure 
+\begin_inset LatexCommand \ref{fig:The-microphone-leaf}
+
+\end_inset
+
+.
+ Of particular interest is that it requires the IExtendedAudio interface
+ rather than just the IAudio interface.
+ This is because the microphone must continually monitor the output (via
+ getMaximumLevel) to ensure that its output does not exceed the maximum
+ level.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/mic.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-microphone-leaf}
+
+\end_inset
+
+The microphone leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Interface Resemblance
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset LatexCommand \ref{fig:Resembling-an-interface}
+
+\end_inset
+
+ shows that IExtendedAudio is defined in terms of resemblance from IAudio.
+ In this case, we have added a single operation (getMaximumLevel) and hence
+ IExtendedAudio is a sub-interface of IAudio.
+ It is also possible to delete and replace operations in the resembling
+ definition, but doing this will break the subtype relation.
+\end_layout
+
+\begin_layout Standard
+Inheritance is not used in Backbone.
+ This concept has been subsumed by resemblance, which allows deletion and
+ arbitrary replacement in addition to addition and overriding.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/extended-audio.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Resembling-an-interface}
+
+\end_inset
+
+Resembling an interface and adding operations preserves the subtype relation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Interfaces and composite components can redefine and resemble elements of
+ the same type.
+ Multiple resemblance is supported in both cases as long as the resemblance
+ graph is acyclic at all times.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Redefinition}
+
+\end_inset
+
+Redefinition
+\end_layout
+
+\begin_layout Standard
+Because they are evolving the platform, Audiosoft must change the desk component.
+ However, they do not wish to force existing users of the previous version
+ to upgrade.
+ 
+\emph on
+Redefinition
+\emph default
+ can be used to support this.
+\end_layout
+
+\begin_layout Standard
+Redefinition allows a new component definition to be substituted for an
+ existing one.
+ The reason for using redefinition in this case is that AudioDesk is being
+ evolved.
+ Simply producing a new component definition with a microphone in it would
+ mean that every product using the existing desk component would need to
+ be upgraded.
+\end_layout
+
+\begin_layout Standard
+In this case, resemblance and redefinition are used together to evolve the
+ AudioDesk component to include a new device (figure 
+\begin_inset LatexCommand \ref{fig:Redefining-the-desk}
+
+\end_inset
+
+).
+ The microphone and two connectors have been added, and the original placeholder
+ kept.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/redefined-desk.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Redefining-the-desk}
+
+\end_inset
+
+Redefining the desk component to add a microphone.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is important to note that the definition of 
+\emph on
+mixerInput
+\emph default
+, 
+\emph on
+output1
+\emph default
+ and 
+\emph on
+output2
+\emph default
+ have automatically been upgraded by the port type inferencing rules.
+ Because the output port of DigitalMicDevice requires IExtendedAudio, then
+ this requirement propagates through the port links to ensure that 
+\emph on
+output1
+\emph default
+ and 
+\emph on
+output2
+\emph default
+ now require the sub-interface.
+\end_layout
+
+\begin_layout Standard
+Similarly, the mixer 
+\emph on
+input
+\emph default
+ port must now provide IExtendedAudio.
+ This is also exposed outside of the component via the 
+\emph on
+mixerInput
+\emph default
+ port.
+\end_layout
+
+\begin_layout Standard
+The redefinition succeeded with only three additions because IExtendedAudio
+ is a sub-interface of IAudio.
+ It is possible for the mixer 
+\emph on
+input
+\emph default
+ port to provide IExtendedAudio, which satisfies both the microphone and
+ placeholder device.
+ If it were not a sub-interface, then it would still be possible to add
+ the microphone, but it would require the mixer and device components to
+ also be redefined to ensure compatibility with the new interface.
+\end_layout
+
+\begin_layout Subsection
+Packaging the Extension
+\end_layout
+
+\begin_layout Standard
+The extension is packaged in the EvolvedDesk (version 1.1) stratum, as shown
+ in figure 
+\begin_inset LatexCommand \ref{fig:Packaging-the-evolved}
+
+\end_inset
+
+.
+ To allow the evolved definitions to reference the original definitions
+ in the Desk stratum, a dependency must be present between the two strata.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/evolved-desk-packaging.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Packaging-the-evolved}
+
+\end_inset
+
+Packaging the evolved desk in a stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The EvolvedDesk stratum has a slightly different icon, indicating that it
+ is 
+\emph on
+relaxed
+\emph default
+ rather than 
+\emph on
+strict
+\emph default
+.
+ A relaxed stratum will propagate its dependencies to any stratum which
+ further depends on it.
+ In effect, it allows other stratum to 
+\begin_inset Quotes eld
+\end_inset
+
+see through it
+\begin_inset Quotes erd
+\end_inset
+
+ to the stratum that it depends on.
+ This can be used to support 
+\emph on
+strict
+\emph default
+ and 
+\emph on
+relaxed
+\emph default
+ styles of application layering, or a combination of the two 
+\begin_inset LatexCommand \cite{Buschmann1996}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The Overlapping Extensions Problem
+\end_layout
+
+\begin_layout Standard
+The Backbone interpreter must be provided with a list of included strata
+ in order to assemble a system.
+ If we provide it with only the Desk stratum, then the AudioDesk component
+ will be as defined in figure 
+\begin_inset LatexCommand \ref{fig:The-desk-composite}
+
+\end_inset
+
+.
+ If however, we provide it with the EvolvedDesk and Desk strata, then the
+ AudioDesk component will be defined as in figure 
+\begin_inset LatexCommand \ref{fig:Redefining-the-desk}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This is called stratum perspective.
+ The desk from the perspective of the Desk stratum is the original definition
+ (figure 
+\begin_inset LatexCommand \ref{fig:The-desk-composite}
+
+\end_inset
+
+).
+ From the perspective of EvolvedDesk, it is the redefined definition (figure
+ 
+\begin_inset LatexCommand \ref{fig:Redefining-the-desk}
+
+\end_inset
+
+).
+ The 
+\emph on
+home stratum 
+\emph default
+of a component is the stratum in which it is defined.
+\end_layout
+
+\begin_layout Standard
+The EvolvedDesk and DeskWithCD strata do not depend on each other.
+ X has developed the CD player extension directly against desk rather than
+ the evolved version.
+ The way that the dependencies are defined, no element from DeskWithCD can
+ refer to anything introduced in EvolvedDesk and vice versa.
+ The two strata are said to be 
+\emph on
+mutually independent
+\emph default
+ (section 
+\begin_inset LatexCommand \ref{sub:Definition-of-Terms}
+
+\end_inset
+
+), and the dependencies imply that the strata were developed independently
+ (without knowledge of each other).
+\end_layout
+
+\begin_layout Standard
+However, both strata share a common dependency in the Desk stratum.
+ The two strata are said to 
+\emph on
+overlap
+\emph default
+.
+ Mutually independent, overlapping strata are used to model architectural
+ extensions which have been developed independently.
+\end_layout
+
+\begin_layout Standard
+It is the case that mutually independent strata that overlap can cause conflicts
+ when combined.
+ This is because each stratum can make adjustments to the underlying overlapped
+ strata that will conflict when used together.
+ We call this potential for conflict the 
+\emph on
+overlapping extensions
+\emph default
+ 
+\emph on
+problem
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Port-Type-Inference}
+
+\end_inset
+
+Port Type Inference Revisited: Top Down Development
+\end_layout
+
+\begin_layout Standard
+The port type inferencing (section 
+\begin_inset LatexCommand \ref{sub:Port-Type-Inference}
+
+\end_inset
+
+) of Backbone works in concert with the redefinition and resemblance constructs.
+ When the microphone was added in this case, the 
+\emph on
+mixerInput
+\emph default
+, 
+\emph on
+output1
+\emph default
+ and 
+\emph on
+output2
+\emph default
+ ports were all automatically adjusted to cope with the sub-interface that
+ was required.
+\end_layout
+
+\begin_layout Standard
+This works well with bottom-up development where a composite is defined
+ after its constituent parts have already been defined.
+ In this case, the port types can be determined using inference.
+ However, this causes a problem for top-down development where the decomposition
+ of a composite is not yet available.
+\end_layout
+
+\begin_layout Standard
+To support top-down development, the interfaces provided and required by
+ a port may be explicitly specified for a composite (they must always be
+ specified for a leaf).
+ These will be checked against the inferred port interfaces for the home
+ stratum of the component, where they must be the same if the component
+ is considered to be well-formed.
+ However, from the perspective of other stratum, only the inferred port
+ interfaces are used (if available).
+ In our example, it was possible to explicitly define the desk's 
+\emph on
+mixerInput
+\emph default
+ port as providing IAudio if this was desired.
+ However, from the perspective of EvolvedDesk, the port provides IExtendedAudio
+ because of the port type inferencing rules.
+ The original, explicity indicated port type is ignored outside of its home
+ stratum.
+\end_layout
+
+\begin_layout Standard
+Placeholders can also be used to support top down development 
+\begin_inset LatexCommand \cite{Medvidovic1996a}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+Backbone provides the redefinition construct for representing the evolution
+ of a component.
+ This confers a similar level of flexibility to the extension developer
+ as is already available to the application developer (EXTEND).
+ Redefinition allows a component in an underlying stratum to be replaced
+ with a new definition.
+ When combined with resemblance, redefinition allows a component to be increment
+ally evolved.
+ A component can only redefine one other, which is not in the same stratum.
+ Note that a redefinition cannot be directly referred to -- we must instead
+ refer to the component being redefined.
+\end_layout
+
+\begin_layout Standard
+A redefinition does not affect the underlying application unless its owning
+ stratum is explicitly included in the graph that the Backbone interpreter
+ sees.
+ The original application developers do not need to see the changes, or
+ adjust their application to accommodate them (NO_IMPACT).
+ This also allows the extension developer freedom to add new features that
+ the base application developers would not normally consider.
+\end_layout
+
+\begin_layout Standard
+In this example, AudioSoft has used redefinition to evolve an application,
+ keeping the changes due to evolution separate from the original application.
+ Users of the original application are not affected, but can choose to upgrade
+ by combining their extensions with the evolving extension.
+\end_layout
+
+\begin_layout Standard
+Backbone does not limit the changes that can be made to an application and
+ can model the arbitrary evolution of components.
+ However, it is in the developer's best interest to keep the changes small,
+ in order to minimise the chance of conflicts between overlapping but mutually
+ independent extensions.
+ As will be shown later in this chapter, any conflicts can be resolved using
+ redefinition.
+\end_layout
+
+\begin_layout Section
+Combining Extensions: Adding a Microphone and a CD Player
+\end_layout
+
+\begin_layout Standard
+Unsurprisingly, another developer Z wishes to have a desk with both a CD
+ player and a microphone.
+ Z decides to use both extensions DeskWithCD and EvolvedDesk together .
+ As the two stratum are independently developed and overlapping, structural
+ and behavioural conflicts are possible when we try to use both at the same
+ time.
+ These conflicts are due to the different modifications and assumptions
+ that the independent developers made when adapting the base application.
+\end_layout
+
+\begin_layout Subsection
+Combining Two Overlapping Extensions
+\end_layout
+
+\begin_layout Standard
+All that is necessary to merge a number of overlapping strata is to create
+ a further stratum that depends on them.
+ If the Backbone interpreter is then given this stratum, it will construct
+ a system based on this perspective.
+\end_layout
+
+\begin_layout Standard
+For the example, we define the UnifiedDesk stratum to combine DeskWithCD
+ and EvolvedDesk (figure 
+\begin_inset LatexCommand \ref{fig:Combining-two-overlapping}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/unified.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Combining-two-overlapping}
+
+\end_inset
+
+Combining two overlapping extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Redefinition Is Rewritten as Resemblance
+\end_layout
+
+\begin_layout Standard
+Redefinition is handled by rewriting the resemblance graph of each component
+ to take any redefinitions into account (section 
+\begin_inset LatexCommand \ref{sub:Element-Rules}
+
+\end_inset
+
+).
+ All resemblance graphs are recalculated for each stratum perspective.
+ Figure 
+\begin_inset LatexCommand \ref{fig:Redefinition-is-rewritten}
+
+\end_inset
+
+ shows the resemblance graph of AudioDeskWithCD from the perspective of
+ UnifiedDesk.
+ The topmost element of the graph becomes the AudioDeskWithCD component.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/redefinition-rewritten.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Redefinition-is-rewritten}
+
+\end_inset
+
+Redefinition is rewritten into the resemblance graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Conflicts may occur because changes made in different branches of the resemblanc
+e graph conflict in some way.
+ This is not the only way that conflict occurs.
+ Another possibility is that a redefinition in one overlapping extension
+ is incompatible with a definition in another independently developed extension
+ causing a well-formedness rule to be violated.
+ In practice, conflicts can be subtle.
+\end_layout
+
+\begin_layout Standard
+From the perspective of UnifiedDesk, the AudioDesk component is the same
+ as the redefinition shown in figure 
+\begin_inset LatexCommand \ref{fig:Redefining-the-desk}
+
+\end_inset
+
+.
+ There are no conflicting redefinitions to this component that must be reconcile
+d.
+ However, the redefinition has changed the definition of the desk component
+ that AudioDeskWithCD resembles, thereby also changing the definition of
+ AudioDeskWithCD.
+\end_layout
+
+\begin_layout Standard
+The UnifiedDesk::AudioDeskWithCD component is implicitly created by the
+ Backbone system in order to form a complete graph.
+ The expanded structure of this component is shown in figure 
+\begin_inset LatexCommand \ref{fig:The-conflicted-AudioDeskWithCD}
+
+\end_inset
+
+.
+ The deletion of mixerInput has been applied as requested by AudioDeskWithCD,
+ and both devices are present.
+ However, there is no possible definition of the
+\emph on
+ deviceControl
+\emph default
+ port that can satisfy both the microphone (IDeviceControl) and the CD player
+ (IDeviceControl and IDeviceCue) and the component is marked as malformed.
+ We have a structural conflict that requires developer intervention.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/conflicted-audiocd.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-conflicted-AudioDeskWithCD}
+
+\end_inset
+
+The conflicted AudioDeskWithCD component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using a redefinition we can resolve the conflict neatly as shown in figure
+ 
+\begin_inset LatexCommand \ref{fig:Resolving-the-conflict}
+
+\end_inset
+
+.
+ A further port named 
+\emph on
+extendedControl
+\emph default
+ is created which provides both device and cue control.
+ The CD player's control port is routed to this new port.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/resolved-audiocd.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Resolving-the-conflict}
+
+\end_inset
+
+Resolving the conflict by creating another port
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+Conflicts can occur when mutually independent and overlapping extensions
+ are combined.
+ Combination is possible because changes are kept as deltas (COMBINE).
+ Conflict can always be resolved by further redefinitions, which make the
+ developer's intentions explicit (VERIFY_AND_REPAIR).
+ The key is to keep the number of changes as small as possible so that the
+ chance of further conflict with other extensions is minimised.
+ Well-formedness rules pick up structural conflict (VERIFY_AND_REPAIR).
+\end_layout
+
+\begin_layout Standard
+Redefinition is rewritten into each component's resemblance graph, for each
+ stratum perspective.
+ Multiple resemblance can occur when combining overlapping extensions, as
+ the rewritten graph must take into account the partial strata order.
+ The detection and resolution of conflicts does not rely on a total order
+ being specified for strata, unlike other approaches 
+\begin_inset LatexCommand \cite{Ichisugi2002}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Dynamic Instantiation: Adding Feed Devices
+\end_layout
+
+\begin_layout Standard
+The configurations presented so far have been static.
+ Component instantiation occurs at start-up time, when the interpreter creates
+ the required parts for the given configuration.
+ However, in most applications a level of dynamic instantiation is required.
+ To support this, Backbone provides 
+\emph on
+isomorphic factory 
+\emph default
+components.
+ These are composite components which lazily instantiate their parts on
+ demand, and can instantiate multiple times.
+ As composites, they can be redefined and resembled.
+ They are isomorphic because the structure of the factory mimics the structure
+ of the lazily created parts and connectors.
+\end_layout
+
+\begin_layout Standard
+Consider that a developer wishes to add a number of audio feed devices to
+ the desk.
+ There are up to ten feeds available, each requiring a separate controller,
+ and we wish to create these devices on demand.
+ The definition of AudioFeedDevice is shown in figure 
+\begin_inset LatexCommand \ref{fig:An-audio-feed}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/feed-device.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:An-audio-feed}
+
+\end_inset
+
+An audio feed device controls audio from feed inputs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to instantiate feed devices lazily, a factory must be created (figure
+ 
+\begin_inset LatexCommand \ref{fig:A-factory-for}
+
+\end_inset
+
+).
+ This is similar to a normal composite, except that it contains a create
+ port which is not attached internally.
+ The Backbone interpreter will locate this port and provide an internal
+ implementation with the correct factory behaviour.
+ The port will also contain functionality allowing the configuration attributes
+ of the factory to be set (setFeed).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/audio-feed-factory.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:A-factory-for}
+
+\end_inset
+
+A factory for instantiating audio feed devices
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, to configure this into the desk, we create a new component AudioDeskWit
+hFeeds which resembles AudioDesk (figure 
+\begin_inset LatexCommand \ref{fig:Wiring-up-the}
+
+\end_inset
+
+).
+ The factory's create port has been exposed on the outside of the desk,
+ and can be used to instantiate feeds.
+ It is necessary to explicitly set the feed attribute via the create port
+ before instantiating another part.
+ Note that 
+\emph on
+[+]
+\emph default
+ is used on the connections from the factory so that a different index will
+ be used each time.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename model-images/audiodesk-with-feeds.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Wiring-up-the}
+
+\end_inset
+
+Wiring up the feed factory into a desk component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+Dynamic component instantiation is supported by factory components.
+ As these are composite components, they can be redefined, resembled and
+ may contain placeholders.
+ This allows a number of useful architectural techniques to be used, including
+ creating a factory which acts as a base component for a set of factories
+ which resemble it.
+ The 
+\emph on
+[+] 
+\emph default
+construct helps with multiple instantiation, allowing separate instantiations
+ to take different indices.
+\end_layout
+
+\begin_layout Section
+Summary: Backbone as an Extension Architecture
+\end_layout
+
+\begin_layout Standard
+The Backbone approach is designed to support creating and managing architectures
+ and extending them.
+ Extension developers have the freedom to make arbitrary changes to the
+ underlying application, and the constructs support the division of concerns
+ between extension and application developers.
+ The hierarchical model simplifies the definition and management of the
+ complex application architectures (MANAGE).
+ By allowing an extension to adjust the architecture at the appropriate
+ level, change is kept to a minimum which also minimises the chances of
+ any conflicts between independently developed, overlapping extensions.
+\end_layout
+
+\begin_layout Standard
+The changes are specified to the architectural definition, not to the implementa
+tion code.
+ This allows the approach to work even when the implementation code is not
+ available, as long as the Backbone architectural description of the system
+ is given.
+ This partially addresses the requirement not to reveal source code in the
+ EXTEND requirement.
+\end_layout
+
+\begin_layout Standard
+Resemblance allows one component to be defined in terms of delta changes
+ to another.
+ Redefinition allows a new definition to be substituted for an existing
+ component, and models component evolution.
+ Redefinition and resemblance together allow existing components to be increment
+ally modified by an extension (EXTEND).
+ Port type inference cuts down the number of changes required when adding
+ or removing parts from existing components (UPGRADE).
+\end_layout
+
+\begin_layout Standard
+Note that the resembling and redefining components are kept in delta form,
+ and applied to the original definitions at application start-up time.
+ The use of deltas makes possible the combination of extensions, and subsequent
+ repair of conflicts.
+\end_layout
+
+\begin_layout Standard
+Overlapping extensions can be combined using a further extension which brings
+ them together via strata dependencies.
+ This allows multiple redefinitions to be combined into a unified system
+ (COMBINE).
+ Structural conflicts are picked up by well-formedness rules, and can be
+ resolved using further redefinitions (VERIFY_AND_REPAIR).
+\end_layout
+
+\begin_layout Standard
+The Backbone approach is also applicable for component reuse and integration,
+ given that the requirements for dealing with application extensibility
+ represent a superset of these requirements.
+ The constructs provided reduce the abstraction problem, which results from
+ trying to reuse highly specific components which encode assumptions deep
+ within their composition hierarchy 
+\begin_inset LatexCommand \cite{Greenfield2004}
+
+\end_inset
+
+.
+ Redefinition and reuse can be used to alter such components to fit into
+ a new context 
+\begin_inset LatexCommand \cite{McVeigh2006}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Limitations
+\end_layout
+
+\begin_layout Standard
+The approach has some limitations in practice:
+\end_layout
+
+\begin_layout Itemize
+Cross-cutting concerns are not handled well.
+\newline
+Like conventional component-based
+ systems, cross-cutting concerns such as logging and security must be handled
+ in the traditional manner where logic may be spread across many components.
+ Also, changing an interface may have a wide-ranging impact on the definition
+ of a system.
+ Redefinition can always handle the required 
+\begin_inset Quotes eld
+\end_inset
+
+repairs
+\begin_inset Quotes erd
+\end_inset
+
+, but these may be extensive and may cut through many component definitions.
+ Port type inference helps by propagating type changes, but this cannot
+ handle the implementation implications of deleting an operation of an interface
+, for example.
+\end_layout
+
+\begin_layout Itemize
+Modeling with deltas is sometimes inconvenient.
+\newline
+It is not always convenient
+ to model changes uniformly using the constructs provided.
+ For some types of change, it is often simpler just to modify the application
+ directly.
+ In circumstances where this type of modification is permissible or even
+ possible, Backbone provides support for checking that the changes are compatibl
+e with existing extensions.
+\end_layout
+
+\begin_layout Itemize
+Dynamic extension is not supported.
+\newline
+The Backbone runtime model does not support
+ the dynamic application of extensions.
+ This reflects a limitation of the runtime interpreter, rather than a fundamenta
+l issue with the approach.
+\end_layout
+
+\begin_layout Itemize
+The application must be specified using Backbone.
+\newline
+In order to take advantage
+ of the extensibility constructs, an application must be specified in Backbone.
+ To retrofit the Backbone approach onto an existing object-oriented application
+ can involve significant changes and refactoring.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{/home/amcveigh/work/workspace/Academic Work/read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

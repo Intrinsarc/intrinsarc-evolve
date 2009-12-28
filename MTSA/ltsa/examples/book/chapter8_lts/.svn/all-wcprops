@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter8_lts
+END
+contents.txt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter8_lts/contents.txt
+END
+CruiseControl.lts
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter8_lts/CruiseControl.lts
+END
+RevisedCruiseControl.lts
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter8_lts/RevisedCruiseControl.lts
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svnroot/mtsa/!svn/ver/155/trunk/MTSATests
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/mtsa/!svn/ver/142/trunk/MTSATests/.classpath
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/mtsa/!svn/ver/142/trunk/MTSATests/.project
+END
+GameFramework.cld
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/155/trunk/MTSATests/GameFramework.cld
+END

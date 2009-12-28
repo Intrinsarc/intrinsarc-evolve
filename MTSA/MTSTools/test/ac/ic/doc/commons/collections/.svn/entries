@@ -1,0 +1,52 @@
+8
+
+dir
+171
+https://mtsa.svn.sourceforge.net/svnroot/mtsa/trunk/MTSTools/test/ac/ic/doc/commons/collections
+https://mtsa.svn.sourceforge.net/svnroot/mtsa
+
+
+
+2008-09-14T14:21:09.839622Z
+11
+srdipi78
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fcb65440-8149-0410-bc05-9de0824cdfc8
+
+PowerSetTest.java
+file
+
+
+
+
+2009-07-07T21:26:32.000000Z
+43a7887dc801b72648bf3326170167f7
+2008-09-14T14:21:09.839622Z
+11
+srdipi78
+
+TestHierarchicalMap.java
+file
+
+
+
+
+2009-07-07T21:26:32.000000Z
+1e4592b41984b1240f79d3348f7738c9
+2008-09-14T14:21:09.839622Z
+11
+srdipi78
+

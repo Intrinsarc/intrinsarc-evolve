@@ -1,0 +1,414 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+
+    <UML:Model xmi.id="a0" xmi.uuid="DCE-1145309657406-918" name="Model" visibility="public" isSpecification="false" isRoot="true" isLeaf="false" isAbstract="false">
+      <UML:Namespace.ownedElement>
+
+        <UML:Package xmi.id="a24" xmi.uuid="DCE-1145387807077-763" name="flattened" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a19" xmi.uuid="DCE-1145389685162-530" isActive="false" name="Alarm'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a25" xmi.uuid="DCE-1145389690740-942" isActive="false" name="HourlyBeeper'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a26" xmi.uuid="DCE-1145389875356-992" isActive="false" name="AudioAdapter" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a27" xmi.uuid="DCE-1145389988853-605" isActive="false" name="TimerAdapter" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a51" xmi.uuid="DCE-1145395508180-320" isActive="false" name="Audio'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a28" xmi.uuid="DCE-1147269528899-121" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+        <UML:Package xmi.id="a32" xmi.uuid="DCE-1145391293790-594" name="patterns" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a38" xmi.uuid="DCE-1145391299994-23" isActive="false" name="Service" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a39" xmi.uuid="DCE-1145391315025-326" name="IService" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a40" xmi.uuid="DCE-1145391322338-7" name="INotify" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a44" xmi.uuid="DCE-1145391403215-577" isActive="false" name="&#171;mca&#187; MulticlientService" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a45" xmi.uuid="DCE-1145391456591-310" isActive="false" name="&#171;mca-manager&#187; Manager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a46" xmi.uuid="DCE-1145391653917-367" name="IMulticlientService" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a33" xmi.uuid="DCE-1145361169102-436" name="strata" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+
+            <UML:Package xmi.id="a1" xmi.uuid="DCE-1145309671765-300" name="clock1.0" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a10" xmi.uuid="DCE-1145311282187-43" isActive="false" name="HourlyBeeper" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a11" xmi.uuid="DCE-1145311846718-503" isActive="false" name="Alarm" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Comment xmi.id="a118" xmi.uuid="DCE-1149083374642-733" name="" visibility="public" isSpecification="false">
+                  <UML:Comment.body>component *TimeManager
+{
+  properties:
+    Long currentTime;
+		
+  ports:
+    mgr provides ITimerClient requires IDisplay, ITimer;
+    clock provides IClock;
+}
+
+protocol TimeManager
+{
+  actors:
+    self: TimeManager; 
+    display: IDisplay of mgr; timerClient: ITimerClient of mgr;
+    clock: IClock of clock;
+	
+  interactions:
+    par
+    {
+      loop
+      {
+        clock -&gt; self.changeTime;
+        self &lt;~-&gt; display.displayDigits;
+        clock &lt;~ self.changeTime;
+      }
+      ----
+      loop
+      {
+        timerClient -&gt; self.notifyOfNewSecond;
+        opt
+        {
+          self &lt;~-&gt; display.displayDigits;
+        }
+        timerClient &lt;~ self.notifyOfNewSecond;
+      }
+    }
+}</UML:Comment.body>
+                </UML:Comment>
+                <UML:Class xmi.id="a12" xmi.uuid="DCE-1145311929843-83" isActive="false" name="MulticlientTimer" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a13" xmi.uuid="DCE-1145386071904-467" name="ITimeControl" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a14" xmi.uuid="DCE-1145312024703-849" name="IAlarm" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a16" xmi.uuid="DCE-1145314141890-861" isActive="false" name="&#171;mc&#187; Timer^" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a17" xmi.uuid="DCE-1145314174640-245" isActive="false" name="TimeManager'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a18" xmi.uuid="DCE-1145315261859-855" name="IManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a2" xmi.uuid="DCE-1145309788937-205" isActive="false" name="Clock" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a20" xmi.uuid="DCE-1145356790571-720" name="ITimerClient" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a21" xmi.uuid="DCE-1145357075758-332" name="IDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a23" xmi.uuid="DCE-1145386345395-562" name="IFineTimerClient" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a29" xmi.uuid="DCE-1145358273883-19" isActive="false" name="&lt;&lt;mca-manager&gt;&gt; ModeManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a3" xmi.uuid="DCE-1145309802062-81" isActive="true" name="Timer" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a30" xmi.uuid="DCE-1145358285352-64" name="IDisplayManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a31" xmi.uuid="DCE-1145358881477-651" name="IMulticlientDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a4" xmi.uuid="DCE-1145309807000-39" isActive="false" name="Display" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a5" xmi.uuid="DCE-1145310019921-628" isActive="false" name="TimeManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a6" xmi.uuid="DCE-1145310070140-113" name="IClock" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a7" xmi.uuid="DCE-1145310339968-306" isActive="false" name="Audio" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a77" xmi.uuid="DCE-1146497819335-627" isActive="false" name="LowBatteryIndicator" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a78" xmi.uuid="DCE-1146497852132-544" name="IIndicator" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a8" xmi.uuid="DCE-1145310358703-585" name="IAudio" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a9" xmi.uuid="DCE-1145314901906-796" isActive="true" name="RFAdjuster" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+
+            <UML:Package xmi.id="a15" xmi.uuid="DCE-1146565995652-80" name="beep+alarm1.0" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a22" xmi.uuid="DCE-1146566013277-382" name="beep+alarm1.1" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a34" xmi.uuid="DCE-1145361181774-498" name="clock1.1" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a35" xmi.uuid="DCE-1145361194086-72" name="beep" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a36" xmi.uuid="DCE-1145361201727-548" name="alarm" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a67" xmi.uuid="DCE-1146496361969-84" isActive="false" name="DisplayTimerManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a68" xmi.uuid="DCE-1146496167908-909" isActive="false" name="DisplayTimer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a69" xmi.uuid="DCE-1146496459562-358" name="IMode" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+
+            <UML:Package xmi.id="a37" xmi.uuid="DCE-1145367874977-319" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a55" xmi.uuid="DCE-1145969839015-81" name="clock0.9" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a56" xmi.uuid="DCE-1145969857750-77" name="cd player" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a41" xmi.uuid="DCE-1145455441622-25" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a42" xmi.uuid="DCE-1145459010179-57" isActive="false" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a43" xmi.uuid="DCE-1145897850638-100" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>evolution
+primitives</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Comment xmi.id="a47" xmi.uuid="DCE-1145900122191-971" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Intent: add new functionality.
+
+component, port, part, property, connection.
+
+Need to check for duplication of functionality in separate components.</UML:Comment.body>
+            </UML:Comment>
+            <UML:Class xmi.id="a48" xmi.uuid="DCE-1145897991840-933" isActive="false" name="structural delta" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a49" xmi.uuid="DCE-1145897997138-214" isActive="false" name="add" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a50" xmi.uuid="DCE-1145897998154-430" isActive="false" name="adapt" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a52" xmi.uuid="DCE-1145897998701-250" isActive="false" name="omit" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a53" xmi.uuid="DCE-1145897999327-170" isActive="false" name="customize" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a54" xmi.uuid="DCE-1145897999827-76" isActive="false" name="replace" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a57" xmi.uuid="DCE-1145898056857-312" isActive="false" name="wrap and hide" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a58" xmi.uuid="DCE-1145898058092-108" isActive="false" name="front" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a59" xmi.uuid="DCE-1145898059436-393" isActive="false" name="ignore" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a60" xmi.uuid="DCE-1145898059905-702" isActive="false" name="delete" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a61" xmi.uuid="DCE-1145898062061-768" isActive="false" name="adjust property" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a62" xmi.uuid="DCE-1145898062968-388" isActive="false" name="add/del property" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a63" xmi.uuid="DCE-1145900389501-238" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Intent: to intercept and alter functionality.
+
+can adapt one or more...  have a path syntax to find original.</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a64" xmi.uuid="DCE-1145900407376-624" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>intent: to omit features by ignoring or forcibly deleting.
+
+can omit one or more</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a65" xmi.uuid="DCE-1145900420314-185" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>intent: to change properties.
+
+can selectively adjust properties</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a66" xmi.uuid="DCE-1145900506079-389" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>intent: to replace parts completely.
+
+last resort.</UML:Comment.body>
+            </UML:Comment>
+            <UML:Class xmi.id="a72" xmi.uuid="DCE-1145901655165-918" isActive="false" name="rename" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a73" xmi.uuid="DCE-1145901725368-975" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Intent: to change the name of something, but keep everything else the same.
+
+component, port, part, property,connection...
+
+Can track name back to original and preserve identity even if names are different.  first stratum takes precedence.</UML:Comment.body>
+            </UML:Comment>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a70" xmi.uuid="DCE-1145970894000-536" name="baselining" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+
+            <UML:Package xmi.id="a102" xmi.uuid="DCE-1145980083718-498" name="base1" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a103" xmi.uuid="DCE-1145980099062-613" name="base2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a104" xmi.uuid="DCE-1145980109531-433" name="otherbase1" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a105" xmi.uuid="DCE-1145980130781-941" name="otherbase2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a106" xmi.uuid="DCE-1145980167687-317" name="base1'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a107" xmi.uuid="DCE-1145980175093-369" name="base2'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a108" xmi.uuid="DCE-1145980388250-267" name="h" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a109" xmi.uuid="DCE-1145980388781-89" name="d" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a110" xmi.uuid="DCE-1145980389453-469" name="g" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a111" xmi.uuid="DCE-1145980392171-757" name="b" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a112" xmi.uuid="DCE-1145980392531-90" name="a" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a113" xmi.uuid="DCE-1145980392937-283" name="e" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a114" xmi.uuid="DCE-1145980432203-63" name="c" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+            <UML:Comment xmi.id="a115" xmi.uuid="DCE-1145981918765-518" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Notes:
+
+- merge is based on "versioned-off" children...
+
+- if there is no possibility of conflict, then no merge is needed
+
+- checking and remerging can be run at any time to allow for updates to be handled.
+
+- common elements of d and f must result from a and e. must be able to trace this web to track the history.
+
+- due to renames, merge has an order: it is not commutative.  rename of first included always wins.
+
+- merge must be between 2 consistent architectures.
+
+- a merge between A &amp; B can be used with C as basis for A &amp; B &amp; C merge.  Order is important here.
+
+- merge on a component-by-component basis?  only merge if they are an evolved version of the same thing?
+        - need to look upwards at propagated changes to components with this as a part
+        - can we introduce cycles by merging?
+
+</UML:Comment.body>
+            </UML:Comment>
+
+            <UML:Package xmi.id="a117" xmi.uuid="DCE-1145988136515-761" name="otherbase2'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a81" xmi.uuid="DCE-1145972998734-592" name="old" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a82" xmi.uuid="DCE-1145973001671-703" name="new" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a83" xmi.uuid="DCE-1145973018140-751" name="old'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a84" xmi.uuid="DCE-1145973025093-250" name="new'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a85" xmi.uuid="DCE-1145979325750-269" name="base" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a86" xmi.uuid="DCE-1145979342265-836" name="extension1" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a87" xmi.uuid="DCE-1145979350343-601" name="extension2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+            <UML:Package xmi.id="a88" xmi.uuid="DCE-1145979408640-101" name="merge" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a71" xmi.uuid="DCE-1148855902935-267" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>component
+model</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+
+            <UML:Package xmi.id="a100" xmi.uuid="DCE-1148910118838-58" name="resolution" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+            <UML:Class xmi.id="a101" xmi.uuid="DCE-1148910734334-418" isActive="false" name="&lt;&lt;upversion&gt;&gt; LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a116" xmi.uuid="DCE-1148910819492-536" name="Interface3" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a119" xmi.uuid="DCE-1148912086922-294" isActive="false" name="&lt;&lt;supplant&gt;&gt; LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a123" xmi.uuid="DCE-1148918318115-863" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>component LeafComponent
+{
+  attributes:
+    attribute1: Integer = 10;
+    attribute2: String;
+
+  ports:
+    port1 provides Interface1;
+    port2[0..*] requires Interface2;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Class xmi.id="a74" xmi.uuid="DCE-1148855916404-524" isActive="false" name="LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="true" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a75" xmi.uuid="DCE-1148855961092-105" name="Interface1" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a76" xmi.uuid="DCE-1148855977670-250" name="Interface2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a79" xmi.uuid="DCE-1148857200498-882" isActive="false" name="CompositeComponent2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a80" xmi.uuid="DCE-1148858789342-827" isActive="false" name="CompositeComponent2" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a89" xmi.uuid="DCE-1148858838951-147" isActive="false" name="CompositeComponent3" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a90" xmi.uuid="DCE-1148858865889-95" isActive="false" name="CompositeComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a91" xmi.uuid="DCE-1148900158906-888" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>upversion LeafComponent
+  is-like [previous]LeafComponent
+  rename-to AdjustedLeafComponent
+{
+  delete-ports:
+    port2;
+  ports:
+    port3 provides Interface3;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a92" xmi.uuid="DCE-1148900366298-372" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>supplant LeafComponent
+  is-like [previous]LeafComponent
+{
+  parts:
+    [previous]LeafComponent part
+      set attribute1(attribute1),
+             attribute2(attribute2);
+
+  connectors:
+    connection joins port1@part to port1;
+    delegator delegates-from port2 to port2@part;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a94" xmi.uuid="DCE-1148901364920-952" body="" name="" visibility="public" isSpecification="false"></UML:Comment>
+            <UML:Comment xmi.id="a95" xmi.uuid="DCE-1149074711822-34" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>component CompositeComponent
+{
+  attributes:
+    Integer attribute = 7;
+
+  parts:
+    LeafComponent part
+      set attribute2("test");
+
+  ports:
+    cport1 provides Interface1;
+    cport2[0..*] requires Interface2;
+
+  connectors:
+    connector joins cport1 to port1@part;
+    delegaor delegates from cport2 to port2@part;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a98" xmi.uuid="DCE-1148902784549-72" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>interface Interface1
+{
+  operation1;
+  operation2 is-threadsafe;
+}</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a99" xmi.uuid="DCE-1148903997946-931" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>protocol LeafComponent
+{
+  actors:
+    self: LeafComponent;
+    port1: Interface1 of port1; port2: Interface2 of port2;
+
+  interactions:
+    par
+    {
+      opt loop
+      {
+        port1 -&gt; self.operation1;
+        port1 &lt;~ self.operation1;
+      }
+      ----
+     loop
+     {
+       self &lt;~-&gt; port2.operationX;
+     }
+}</UML:Comment.body>
+            </UML:Comment>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+      </UML:Namespace.ownedElement>
+    </UML:Model>
+
+  </XMI.content>
+</XMI>
+

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/136/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc
+END
+ConditionLocation.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/41/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/ConditionLocation.java
+END
+Interaction.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/Interaction.java
+END
+ChartLanguageGenerationException.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/ChartLanguageGenerationException.java
+END
+TriggeredScenario.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/73/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/TriggeredScenario.java
+END
+Chart.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/mtsa/!svn/ver/136/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/Chart.java
+END
+LocationNamingStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/LocationNamingStrategy.java
+END
+LocationNamingStrategyImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/LocationNamingStrategyImpl.java
+END
+Location.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/Location.java
+END
+UniversalTriggeredScenario.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/mtsa/!svn/ver/73/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/UniversalTriggeredScenario.java
+END
+ExistentialTriggeredScenario.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/mtsa/!svn/ver/73/trunk/MTSSynthesis/src/ar/dc/uba/model/lsc/ExistentialTriggeredScenario.java
+END

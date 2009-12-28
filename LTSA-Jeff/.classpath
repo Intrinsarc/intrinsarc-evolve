@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/animator.jar"/>
+	<classpathentry kind="lib" path="libs/jel.jar"/>
+	<classpathentry kind="lib" path="libs/LTL2Buchi.jar"/>
+	<classpathentry kind="lib" path="libs/natutil.jar"/>
+	<classpathentry kind="lib" path="libs/scenebeans.jar"/>
+	<classpathentry kind="lib" path="libs/xml.jar"/>
+	<classpathentry kind="lib" path="libs/JTattoo.jar"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/home/andrew/work/workspace/Academic Work/latest-evolve-distribution/common/backbone-base.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

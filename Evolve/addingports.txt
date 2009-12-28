@@ -1,0 +1,150 @@
+Project Bootstrap:
+
+AIM: build a system where jUMbLe is able to describe and manipulate its data
+
+Phase 1: Diagrams Only
+----------------------
+AIM: support drawing of composite structure diagrams
+
+a.1. add a way to drop ports onto a class
+	-- should be able to drop anywhere on a class, even contents space
+	-- shouldn't be able to drop onto anything but a class (or object for connector end)
+	(done)
+		
+b.2. constrain ports to fit around the edges of a class
+	(done)
+
+c.3. constrain the size of a class to fit in to cover the ports
+	(working on)
+
+e.4. allow ports to be moved
+	-- handle vertical / horizontal sizing details
+	(done)
+		
+f.5. allow ports to factor into the size of a class for container boundary calculations
+
+a.6. add movable, editable text to a port
+	(done, except for delete)
+
+g.7. generalise ports into ports or connectors
+
+h.8. add an object node
+	-- generalise feature list to provide slots
+
+9. add requires and provides links
+	-- update interface to work with these
+		
+10. add connection links
+	-- with text for name
+		
+(at this point, all the diagrams can be drawn, just need to tie into model)
+
+(1/4/05 - all done!)
+
+Phase 2: Subjects
+-----------------
+AIM: provide subject support for composite structure diagrams
+
+1. upgrade to a UML2 compliant metamodel (most likely EMF, due to Atlantic using) (27/9/06 - completed using UML2/EMF and Objectdb)
+	-- options are NSUML, EMF, MDR
+	-- take quickest route by altering NSUML with a compliant meta-model?
+	-- do some tests with a tiny metamodel based only on diagrams
+
+2. tie all diagram elements into subjects (27/9/06 - started in earnest)
+	-- support in classes for attributes / operations / selecting compartments / all, none
+	-- links back to subjects	
+
+(at this point, we can draw diagrams & they mean something)
+
+
+Phase 3: Enhancements and bug fixing
+------------------------------------
+AIM: fix current bugs, provide enhancements for using tool in "anger"
+
+1. package delete bug, remote browser, enhance browser (27/9/06 - mostly done)
+
+2. expand elements facility (27/9/06 - combine 2 & 3 into the "expander")
+	-- expanding out any links
+
+3. adding named elements to diagram, with fully expanded features
+	-- i.e. existing class with all ports and ops/attrs
+
+4. (possibly) find way to have layered models
+	-- to support plugin models which build on jumble model
+
+
+Phase 3: Forward Generation
+---------------------------
+AIM: allow generation of backbone from jUMbLe and refactor architecture in terms of backbone
+
+1. add generator for Backbone
+	-- tie into error reporting mechanism, so we don't need to see backbone source
+			(via embedded uuids?)
+
+2a. add required dynamic, extra facilities to backbone to support jUMbLe
+
+(phd ended here)
+
+2b. refactor / redraw / restructure jUMbLe source in terms of backbone
+
+(Bootstrap is now complete, any further development is using jUMbLe in bootstrapped mode)
+
+
+Phase 4: Test Framework
+-----------------------
+AIM: create a test framework to allow checking of diagrams, subject creation, in terms of
+     interactive facilities
+
+1. create visual test framework
+	-- allows recording of interactions with jUMbLe
+	-- allows creation of checking criteria (i.e. which pts should be where, which elements present)
+	-- should be robust in presence of facilities added etc.
+	-- possibly cover selection etc
+	-- maybe scriptable?
+	
+2. create tests for major diagrams
+
+
+Phase 5: State Models
+---------------------
+AIM: allow state models for expression of tool behaviour
+
+1. add state model capability to jUMbLe
+
+2. add state support to backbone
+
+3. refactor / redraw / restructure jUMbLe source in terms of backbone state facilities
+
+4. add protocol diagram support (for documenation only) to jUMbLe
+
+
+Phase 6: Clean source, Document
+-------------------------------
+AIM: make jUMbLe presentable, sellable
+
+1. java doc all source, clean it up
+
+2. document architecture, using jUMbLe facilities
+	-- may need to find a way to publish / weave architecture diagrams into a book form
+	-- 100 to 150 pages of architecture documentation
+	-- nice binding, illustrations
+
+
+Phase 6: Distribution
+---------------------
+AIM: get the tool out, and sell it
+
+1. Sell!
+	-- USD$100 - 150 for price point + ongoing support arrangements
+	-- make sure that an onselling agreement is in place
+	-- prevent piracy, prevent onselling without reward back to us
+
+2. Market it
+	-- advertise in magazine(s) i.e. SIGS insert
+
+3. Support it
+	-- forum
+	-- encourage community to help out others as primary support (monetary incentive, ratings)
+
+4. Update it
+	-- add other diagrams, continuous improvements

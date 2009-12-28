@@ -1,0 +1,50 @@
+M_01 = (_tau? -> a -> STOP).
+M_01b = (_tau? -> ( _tau -> M_01b | a -> STOP)).
+N_01 = ( a? -> STOP).
+I_01_01 = STOP.
+I_01_02 = (_tau -> a -> _tau -> STOP).
+I_01_03 = (_tau -> ( a -> _tau -> STOP | _tau -> a ->STOP ) ).
+I_01_04 = (_tau -> a -> ( _tau -> STOP | _tau -> a ->STOP ) ).
+I_01_05 = (_tau -> ( _tau -> STOP | a -> STOP)).
+
+M_02 = ( b? -> STOP | _tau? -> a -> STOP ).
+N_02 = ( b  -> STOP | a? -> STOP ).
+I_02_01 = ( a  -> STOP | b -> STOP).
+
+M_03 = ( _tau? -> (a -> STOP | b -> STOP)).
+N_03 = ( a? -> STOP | b -> STOP).
+I_03_01 = ( b  -> STOP ).
+
+M_04 = ( b? -> STOP | _tau? -> (a -> STOP | b -> STOP)).
+N_04 = ( a? -> STOP | b -> STOP).
+I_04_01 = ( b -> STOP).
+I_04_02 = ( a -> STOP | b -> STOP).
+I_04_03 = ( b -> STOP | _tau -> a -> STOP ).
+I_04_04 = ( b -> STOP |  a -> STOP | _tau -> b -> STOP).
+
+
+M_05 = ( b? -> STOP | _tau? -> (a -> STOP | b -> STOP)).
+N_05 = ( a? -> STOP | b? -> STOP).
+I_05_01 = ( a  -> STOP ).
+
+M_06 = ( b -> STOP | _tau -> _tau? -> ( a -> STOP | b -> STOP ) ).
+N_06 = ( a? -> STOP | b -> STOP ).
+I_06_01 = ( b -> STOP ).
+
+M_07 = ( _tau? -> _tau? -> ( a -> STOP | b -> STOP ) ).
+N_07 = ( a  -> STOP | b -> STOP ).
+I_07_01 = ( a  -> STOP | b -> STOP ).
+I_07_02 = ( _tau -> ( a -> STOP | b -> STOP ) ).
+I_07_03 = ( a -> STOP ).
+
+M_08 = ( b? -> STOP | _tau? -> _tau? -> ( a -> STOP | b -> STOP ) ).
+N_08 = ( a? -> STOP | b -> STOP ).
+I_08_01 = ( a -> STOP | b -> STOP ).
+I_08_02 = ( _tau -> ( a -> STOP | b -> STOP ) ).
+I_08_03 = ( a -> STOP ).
+I_08_04 = ( b -> STOP | a -> STOP | _tau -> b -> STOP).
+
+M_09 = ( b? -> STOP | _tau? -> ( c -> STOP | _tau? -> (a -> STOP | b -> STOP))).
+N_09 = ( a? -> STOP | b -> STOP).
+I_09_01 = ( a  -> STOP | b -> STOP).
+

@@ -1,0 +1,40 @@
+    <UML:Model xmi.id="a6" xmi.uuid="DCE-1140436513345-686" name="Model" visibility="public" isSpecification="false" isRoot="true" isLeaf="false" isAbstract="false">
+      <UML:Namespace.ownedElement>
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}graph" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}viewer" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="undo{47}redo{63}" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}editor" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}persistence" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}application" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}layout" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="extensions" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}selection" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}containment{CR}persistence" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}containment" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="{60}{60}stratum{62}{62}{CR}animation" />
+
+      </UML:Namespace.ownedElement>
+    </UML:Model>

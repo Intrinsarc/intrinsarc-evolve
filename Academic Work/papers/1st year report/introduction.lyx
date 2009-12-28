@@ -1,0 +1,372 @@
+#LyX 1.4.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\sloppy
+\end_preamble
+\language british
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing onehalf
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes true
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+pagenumbering{arabic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Standard
+Software systems are increasingly based around architectures which allow
+ third party developers to extend them by adding new components and customising
+ existing components.
+ We call this type of architecture a 
+\emph on
+component-based extension architecture
+\emph default
+.
+ This approach allows a system to be used for a family of applications,
+ and extending it is possible without further involvement from the original
+ developers.
+ The original system, before it is extended, is termed the 
+\emph on
+base
+\emph default
+.
+ An 
+\emph on
+extension
+\emph default
+ is a packaged set of new components, along with instructions about how
+ to customise and reconfigure 
+\begin_inset LatexCommand \cite{Kramer1990}
+
+\end_inset
+
+ existing base components in order to integrate the new components into
+ the architecture.
+\end_layout
+
+\begin_layout Standard
+Many extensible systems use a variant of this type of architecture.
+ For instance, plugin architectures 
+\begin_inset LatexCommand \cite{Object2001}
+
+\end_inset
+
+ are a constrained form of component-based extension architecture, supporting
+ a non-hierarchical component model with limitations on the adjustment of
+ existing components.
+ A plugin is, therefore, a constrained form of an extension.
+ Eclipse 
+\begin_inset LatexCommand \cite{Object2001a}
+
+\end_inset
+
+ is a successful and sophisticated example of this approach, and has spawned
+ a vibrant ecosystem of commercial and open source plugins 
+\begin_inset LatexCommand \cite{Object2005}
+
+\end_inset
+
+.
+ Some of these plugins offer significant extra functionality over the base
+ Eclipse product, forming base systems in their own right.
+ Another prominent product using the plugin approach is Firefox 
+\begin_inset LatexCommand \cite{Corporation2006}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+By allowing third party developers the freedom to extend a base system,
+ component-based extension architectures lead naturally to a situation where
+ a number of independently developed extensions must be combined to form
+ a new, coherent product.
+ For instance, one developer might write a spell-checker extension for an
+ extensible word processor, and another might write a thesaurus extension.
+ Clearly, it is desirable to combine these into a new word processor product,
+ featuring both a dictionary and a thesaurus.
+ Unfortunately, combining independently developed extensions into a common
+ architecture often results in unexpected conflicts and behaviour.
+ We term this the 
+\shape italic
+independent extensions problem
+\shape default
+.
+\end_layout
+
+\begin_layout Standard
+Now suppose that the base word processor system is evolved from version
+ 1.0 to 1.1.
+ We would like to add the existing thesaurus extension into this new version,
+ but it has been written against the architecture of version 1.0 and various
+ aspects of 1.1 are no longer backward compatible.
+ It is not uncommon for existing extensions to no longer work correctly
+ when applied to an evolved base architecture.
+ We term this the 
+\shape italic
+old extensions problem
+\shape default
+.
+ In plugin architectures it is generally not possible to even detect many
+ types of problems and the plugins must simply be combined and manually
+ tested 
+\begin_inset LatexCommand \cite{Beaton2005}
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+There is evidence that these problems are of growing concern 
+\begin_inset LatexCommand \cite{Beaton2005,Birsan2005}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A further issue is that extension developers are currently not afforded
+ the same power to alter the system as the developers of the base.
+ Extension developers are able to extend the system, in general, in the
+ ways that the base developers have planned for.
+ For instance, a developer might wish to customise the way that characters
+ are displayed in the word processor.
+ Unless a component in the base architecture provides an extension point
+ to allow for this, the extension developer will find adding this feature
+ to be virtually impossible.
+ Of course, Eclipse-like architectures phrase the entire platform as a set
+ of components, allowing for arbitrary replacement.
+ This does not solve the problem, however, if the component to be replaced
+ is large and the feature to be added is relatively small.
+ It will not be practical to implement the feature, and even if it were
+ this does not solve the old extensions problem when an upgraded form of
+ the replaced component is delivered in version 1.1 of an evolved base.
+ In general, existing component-based extension architectures do not deal
+ well with unplanned extension.
+ We term this the 
+\shape italic
+unplanned extensions problem
+\shape default
+.
+ A variant of this problem is when an extension developer wishes to alter
+ a code-level interface or code-level component from the base architecture.
+ Generally, this will break the base system if it is even allowed.
+\end_layout
+
+\begin_layout Standard
+These three problems make existing component-based extension architectures
+ less extensible and more brittle than is desirable.
+ Resolving, or ameliorating these problems would make these software systems
+ more extensible and more useful.
+\end_layout
+
+\begin_layout Section
+Focus
+\end_layout
+
+\begin_layout Standard
+The aim of this work is to model component-based extension architectures
+ in a way that allows for the static analysis of the structural and behavioural
+ combination of extensions.
+ One important application of this analysis is to automate the detection
+ of issues, and automate or guide their resolution.
+\end_layout
+
+\begin_layout Standard
+The focus is on design-time analysis of extensions.
+ This work does not consider arbitrary run-time reconfiguration or allow
+ extensions to be dynamically applied to an architecture.
+\end_layout
+
+\begin_layout Section
+Approach
+\end_layout
+
+\begin_layout Standard
+The approach taken is to model component-based extension architectures using
+ an ADL, called Backbone, which has been specifically created to deal with
+ the issues mentioned above.
+\end_layout
+
+\begin_layout Standard
+Backbone is based heavily on the UML 2.0 
+\begin_inset LatexCommand \cite{OMGUML}
+
+\end_inset
+
+ composite structure meta-model and the graphical form of Backbone is represente
+d by various UML diagrams.
+ One of the benefits of this approach is that the visual form is familiar
+ to practising software engineers.
+ The language also has a textual form.
+\end_layout
+
+\begin_layout Standard
+A hierarchical component model is used, with leaf and composite components.
+ This allows for the fine-grained decomposition of a system.
+ By supporting multiple levels of abstraction, the hierarchical model offers
+ greater flexibility for extension developers to replace smaller and more
+ targeted base components at the correct level of abstraction than with
+ a standard plugin architecture.
+ This minimises the likelihood of overlapping structural changes between
+ extensions and partially addresses the unplanned extensions problem.
+\end_layout
+
+\begin_layout Standard
+Extending and evolving a system are modelled uniformly via extensions, giving
+ extension and base developers the same power.
+ This reduces the independent extensions problem and the old extensions
+ problem to the same issue: the ability to reason about the combination
+ of multiple extensions.
+\end_layout
+
+\begin_layout Standard
+In order to analyse the behaviour of a system, each leaf component must
+ specify its protocol, which describes the set of traces that it can produce.
+ Further, each extension specifies goal-level properties that must be preserved
+ when extensions are combined.
+\end_layout
+
+\begin_layout Standard
+The three stages involved in combining extensions are:
+\end_layout
+
+\begin_layout Enumerate
+Unifying the structural changes made to the base architecture by reconfiguration
+s.
+\end_layout
+
+\begin_layout Enumerate
+Checking that all component protocols are still observed.
+\end_layout
+
+\begin_layout Enumerate
+Checking that all goal-level properties are still preserved.
+\end_layout
+
+\begin_layout Standard
+The approach to resolving conflicts is to allow a further extension to correct
+ the issues.
+\end_layout
+
+\begin_layout Standard
+The reconfiguration instructions of an extension are described using an
+ intuitive component-like construct, which represents architectural deltas.
+ Modelling with deltas makes it possible to reason more clearly about structural
+ changes due to conflicting extensions.
+ Reconfigurations are not applied destructively to alter the base source.
+ Instead, the reconfigurations are performed just prior to system execution
+ to an in-memory representation of the architecture.
+\end_layout
+
+\begin_layout Standard
+Tool support for modelling using Backbone is provided by a graphical case
+ tool.
+ This will allow extensions to be constructed as a conventional set of component
+s, but will record a set of architectural deltas where appropriate.
+\end_layout
+
+\begin_layout Section
+Report Structure
+\end_layout
+
+\begin_layout Standard
+Chapter 
+\begin_inset LatexCommand \ref{cha:Background}
+
+\end_inset
+
+ presents background information and alternative approaches to creating
+ extensible systems.
+ Chapter 
+\begin_inset LatexCommand \ref{cha:The-Backbone-ADL}
+
+\end_inset
+
+ presents the graphical and textual form of the Backbone ADL.
+ Chapter 
+\begin_inset LatexCommand \ref{cha:Analysis-of-protocols}
+
+\end_inset
+
+ shows how extension combinations can be analysed.
+ A key issue is shown to be the need to share previously unshared base component
+s between extensions.
+ This is partially facilitated by the translation of protocols into FSP
+ 
+\begin_inset LatexCommand \cite{Magee1999}
+
+\end_inset
+
+ in order to detect behavioural problems.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status collapsed
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{../../read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
+	<classpathentry path="src" kind="src"/>
+	<classpathentry path="/EMF-Libraries" exported="true" combineaccessrules="false" kind="src"/>
+	<classpathentry path="/ODB-Libraries" combineaccessrules="false" kind="src"/>
+	<classpathentry path="/DeltaEngine" combineaccessrules="false" kind="src"/>
+	<classpathentry path="bin" kind="output"/>
+</classpath>

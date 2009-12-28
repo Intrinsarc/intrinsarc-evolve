@@ -1,0 +1,5 @@
+        <UML:Package xmi.id="a41" xmi.uuid="DCE-1145455441622-25" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a42" xmi.uuid="DCE-1145459010179-57" isActive="false" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

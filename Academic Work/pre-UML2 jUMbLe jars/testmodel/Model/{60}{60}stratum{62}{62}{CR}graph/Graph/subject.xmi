@@ -1,0 +1,9 @@
+            <UML:Package xmi.id="a15" xmi.uuid="DCE-1141391751503-571" name="Graph" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Comment xmi.id="a17" xmi.uuid="DCE-1141391892570-691" name="" visibility="public" isSpecification="false">
+                  <UML:Comment.body>Components automatically have an interface called IComponentName that is provided by a port "creation".
+
+This port allows the public variables of the component to be set, and a final call "instantiateParts" to instantiate any non-connected parts.</UML:Comment.body>
+                </UML:Comment>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

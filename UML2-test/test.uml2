@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" j_deleted="1" name="TopLevel" packageableElement_visibility="public">
+  <ownedComment body="This is a package"/>
+  <ownedMember xsi:type="uml:Class" name="TopClass"/>
+  <ownedMember xsi:type="uml:Class" name="ReplacementTopClass" packageableElement_visibility="public" isAbstract="true">
+    <ownedComment body="The rain in spain falls on the plain"/>
+    <generalization general="//@ownedMember.2" isSubstitutable="true"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" name="SuperClass"/>
+  <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@ownedMember.0" name="MyFactory">
+    <appliedBasicStereotypeValues property="//@childPackages.0/@ownedMember.0/@ownedAttribute.0">
+      <value xsi:type="uml:LiteralInteger" value="10"/>
+    </appliedBasicStereotypeValues>
+  </ownedMember>
+  <j_diagramHolder>
+    <diagram name="Diagram1">
+      <figures id="Figure" subject="/"/>
+    </diagram>
+  </j_diagramHolder>
+  <childPackages xsi:type="uml:Profile">
+    <ownedMember xsi:type="uml:Stereotype" name="Factory" extendsMetaModelElement="uml2.Class">
+      <ownedAttribute name="attr"/>
+    </ownedMember>
+  </childPackages>
+</uml:Package>

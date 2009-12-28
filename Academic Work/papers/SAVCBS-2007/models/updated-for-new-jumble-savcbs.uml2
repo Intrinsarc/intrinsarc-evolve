@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1197020419533_9055" name="model">
+  <j_diagramHolder uuid="acer-q9187dcvnj_1197020530923_2346" saveTime="Fri Dec 7, 2007 at 09:42:11 GMT" savedBy="Andrew">
+    <diagram uuid="acer-q9187dcvnj_1197020530993_9840" lastFigureId="9">
+      <figures uuid="acer-q9187dcvnj_1197020531013_4996" id="3" recreator="Package" autosized="false" point="340 156" dimensions="87 75" subject="//@childPackages.8">
+        <figures uuid="acer-q9187dcvnj_1197020531013_8299" id="3_C" recreator="SimpleContainer" point="340 171" dimensions="87 60" offset="4 4"/>
+        <properties uuid="acer-q9187dcvnj_1197020531013_7445" name="fill" value="193 206 236"/>
+        <properties uuid="acer-q9187dcvnj_1197020531013_1915" name="owner" value="model"/>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1197020531013_6666" id="2" recreator="Package" autosized="false" point="500 284" dimensions="87 75" subject="//@childPackages.7">
+        <figures uuid="acer-q9187dcvnj_1197020531003_5515" id="2_C" recreator="SimpleContainer" point="500 299" dimensions="87 60" offset="4 4"/>
+        <properties uuid="acer-q9187dcvnj_1197020531013_4579" name="fill" value="193 206 236"/>
+        <properties uuid="acer-q9187dcvnj_1197020531013_9676" name="owner" value="model"/>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1197020531013_5978" id="1" recreator="Package" autosized="false" point="204 284" dimensions="87 75" subject="//@childPackages.6">
+        <figures uuid="acer-q9187dcvnj_1197020531003_1829" id="1_C" recreator="SimpleContainer" point="204 299" dimensions="87 60" offset="4 4"/>
+        <properties uuid="acer-q9187dcvnj_1197020531013_6409" name="fill" value="193 206 236"/>
+        <properties uuid="acer-q9187dcvnj_1197020531013_4585" name="owner" value="model"/>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1197020531013_8402" id="0" recreator="Package" autosized="false" point="340 404" dimensions="87 75" subject="//@childPackages.5">
+        <figures uuid="acer-q9187dcvnj_1197020531013_144" id="0_C" recreator="SimpleContainer" point="340 419" dimensions="87 60" offset="4 4"/>
+        <properties uuid="acer-q9187dcvnj_1197020531013_7988" name="fill" value="193 206 236"/>
+        <properties uuid="acer-q9187dcvnj_1197020531013_5853" name="owner" value="model"/>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1197020531013_6926" id="7" recreator="dependency" anchor1Id="1" anchor2Id="0" virtualPoint="315.5 381.5" points="2 291.1 359.9 341.1 404.1" subject="//@childPackages.6/@ownedAnonymousDependencies.0">
+        <figures uuid="acer-q9187dcvnj_1197020531013_1683" id="7_M" recreator="Linked Text" containedName="text" text="" show="false" point="299.9 365.9" dimensions="3.3 15.1">
+          <properties uuid="acer-q9187dcvnj_1197020531013_3807" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1197020531013_6422" id="6" recreator="dependency" anchor1Id="3" anchor2Id="2" virtualPoint="463.5 257.5" points="2 428.1 229.2 500.1 286.8" subject="//@childPackages.8/@ownedAnonymousDependencies.1">
+        <figures uuid="acer-q9187dcvnj_1197020531013_5956" id="6_M" recreator="Linked Text" containedName="text" text="" show="false" point="448 240" dimensions="3.3 15.1">
+          <properties uuid="acer-q9187dcvnj_1197020531013_5566" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1197020531013_8292" id="5" recreator="dependency" anchor1Id="3" anchor2Id="1" virtualPoint="315.5 257.5" points="2 342.6 232 287.3 284.1" subject="//@childPackages.8/@ownedAnonymousDependencies.0">
+        <figures uuid="acer-q9187dcvnj_1197020531003_8334" id="5_M" recreator="Linked Text" containedName="text" text="" show="false" point="300 244" dimensions="3.3 15.1">
+          <properties uuid="acer-q9187dcvnj_1197020531013_328" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1197020531013_4099" id="8" recreator="dependency" anchor1Id="2" anchor2Id="0" virtualPoint="463.5 381.5" points="2 500 354.1 428 408.1" subject="//@childPackages.7/@ownedAnonymousDependencies.0">
+        <figures uuid="acer-q9187dcvnj_1197020531013_3128" id="8_M" recreator="Linked Text" containedName="text" text="" show="false" point="448 366" dimensions="3.3 15.1">
+          <properties uuid="acer-q9187dcvnj_1197020531013_1093" name="suppress" value="true"/>
+        </figures>
+      </figures>
+    </diagram>
+  </j_diagramHolder>
+  <childPackages uuid="acer-q9187dcvnj_1197020420074_5792" name="primitive types">
+    <ownedMember xsi:type="uml:PrimitiveType" uuid="acer-q9187dcvnj_1197020420144_1077" name="type"/>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_7269" name="boolean">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420244_2903" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_9903" body="Boolean"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_6121" name="int">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_2485" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_5300" body="Integer"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_9916" name="long">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_481" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_2250" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_8676" name="float">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_6732" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_3351" body="Float"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_1088" name="double">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_5475" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_3933" body="Double"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_8049" name="String">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_5374" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_6621" body="String"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_921" name="Date">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_3200" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_7934" body="Date"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_1678" name="Time">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_2193" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_5452" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_5572" name="DateTime">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_9148" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_2089" body="Date"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420144_6934" name="Interval">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420264_3342" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420264_895" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+  </childPackages>
+  <childPackages xsi:type="uml:Profile" documentation="The profile for Backbone modelling" uuid="acer-q9187dcvnj_1197020420154_9894" name="backbone profile">
+    <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of all backbone definitions that live in strata." uuid="acer-q9187dcvnj_1197020420194_1335" name="backbone-element" isAbstract="true" extendsMetaModelElement="'Class'">
+      <ownedAttribute documentation="An override to insert Backbone directly into the generated output." uuid="acer-q9187dcvnj_1197020420224_6136" name="definitionOverride" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of leaf and composite components.  Not used directly." uuid="acer-q9187dcvnj_1197020420224_4037" name="backbone-component" isAbstract="true" extendsMetaModelElement="'Class'">
+      <generalization uuid="acer-q9187dcvnj_1197020420234_9674" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="Can we navigate to direct neighbours via this component?" uuid="acer-q9187dcvnj_1197020420224_5608" name="navigable" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="The protocol(s) for this component" uuid="acer-q9187dcvnj_1197020420224_1460" name="protocols" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which is associated with a direct implementation class." uuid="acer-q9187dcvnj_1197020420234_440" name="backbone-implementation" extendsMetaModelElement="'Class'">
+      <generalization uuid="acer-q9187dcvnj_1197020420234_43" general="//@childPackages.1/@ownedMember.1"/>
+      <ownedAttribute documentation="The implementation class that this leaf is associated with." uuid="acer-q9187dcvnj_1197020420234_6061" name="implementationClass" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Is this a system leaf, that won't have implementation code generated?" uuid="acer-q9187dcvnj_1197020420234_4690" name="systemLeaf" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which wraps an implementation component.  This is done for uniformity." uuid="acer-q9187dcvnj_1197020420234_4743" name="backbone-leaf" extendsMetaModelElement="'Class'">
+      <generalization uuid="acer-q9187dcvnj_1197020420234_1205" general="//@childPackages.1/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  An interface which is visible to backbone." uuid="acer-q9187dcvnj_1197020420234_7715" name="backbone-interface" extendsMetaModelElement="'Interface'">
+      <generalization uuid="acer-q9187dcvnj_1197020420234_15" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="The implementation class that this interface is associated with." uuid="acer-q9187dcvnj_1197020420234_5356" name="implementationInterface" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Is this a system interface, that won't have implementation code generated?" uuid="acer-q9187dcvnj_1197020420234_7507" name="systemInterface" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  A factory interface which is visible to backbone." uuid="acer-q9187dcvnj_1197020420234_4399" name="backbone-factory-interface" extendsMetaModelElement="'Interface'">
+      <generalization uuid="acer-q9187dcvnj_1197020420234_3939" general="//@childPackages.1/@ownedMember.4"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A composite component which can contain parts." uuid="acer-q9187dcvnj_1197020420234_8088" name="backbone-composite" extendsMetaModelElement="'Class'">
+      <generalization uuid="acer-q9187dcvnj_1197020420234_3978" general="//@childPackages.1/@ownedMember.1"/>
+      <ownedAttribute documentation="Does this expose references to internal parts?" uuid="acer-q9187dcvnj_1197020420234_5014" name="cluster" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A factory component which can instantiate parts lazily." uuid="acer-q9187dcvnj_1197020420234_6380" name="backbone-factory" extendsMetaModelElement="'Class'">
+      <generalization documentation="A factory is a type of composite, which instantiates its parts on demand." uuid="acer-q9187dcvnj_1197020420234_7804" general="//@childPackages.1/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A type which can be used for an attribute." uuid="acer-q9187dcvnj_1197020420234_7059" name="backbone-attribute-type" extendsMetaModelElement="'PrimitiveType', 'Class'">
+      <ownedAttribute documentation="The implementation class for this attribute type." uuid="acer-q9187dcvnj_1197020420234_9380" name="implementationClass" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A non-hierarchical container of Backbone definitions." uuid="acer-q9187dcvnj_1197020420234_4009" name="backbone-stratum" extendsMetaModelElement="'Package', 'Model'">
+      <ownedAttribute documentation="Can this stratum contain destructive (replace, delete) redefines?" uuid="acer-q9187dcvnj_1197020420234_7013" name="destructive" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="If another stratum depends on this, can it also see this stratum's dependencies?) ?" uuid="acer-q9187dcvnj_1197020420234_1453" name="relaxed" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="The group to find the load directory from" uuid="acer-q9187dcvnj_1197020420234_6681" name="stratumGroup" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="A preamble which is inserted into the Backbone code for this stratum" uuid="acer-q9187dcvnj_1197020420234_8030" name="preamble" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A port allows a component to provide or require services." uuid="acer-q9187dcvnj_1197020420234_5600" name="backbone-port" extendsMetaModelElement="'Port'">
+      <generalization documentation="A port offers or requires services." uuid="acer-q9187dcvnj_1197020420244_5860" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="Does this port require callbacks?" uuid="acer-q9187dcvnj_1197020420244_6539" name="callbacks" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A placeholder defines the shape of something that must be replaced later.  It 'stands in' until the replacement is made." uuid="acer-q9187dcvnj_1197020420244_9518" name="backbone-placeholder" extendsMetaModelElement="'Class'">
+      <generalization documentation="A port offers or requires services." uuid="acer-q9187dcvnj_1197020420244_5070" general="//@childPackages.1/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A port link indicates how port type dependencies propagate in leaves.  Not used for composites, as connections suffice." uuid="acer-q9187dcvnj_1197020420244_9401" name="backbone-port-link" extendsMetaModelElement="'Dependency'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="Indication that the item is a delta from the resembled definition." uuid="acer-q9187dcvnj_1197020420244_6527" name="backbone-delta" extendsMetaModelElement="'Class', 'Property', 'Interface'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="The overide data for a slot so we can show alloy errors." uuid="acer-q9187dcvnj_1197020420244_8565" name="backbone-overriden-slot" extendsMetaModelElement="'Slot'">
+      <ownedAttribute documentation="An override so we can control how the slot string displays." uuid="acer-q9187dcvnj_1197020420244_7264" name="overriddenSlotText" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="An override so we can make the slot look aliased." uuid="acer-q9187dcvnj_1197020420244_6080" name="overriddenSlotAlias" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A marker stereotype to indicate that this traces an element from one perspective to another." uuid="acer-q9187dcvnj_1197020420274_5520" name="trace" extendsMetaModelElement="'Dependency'"/>
+  </childPackages>
+  <childPackages xsi:type="uml:Profile" documentation="The profile for documenting a model" uuid="acer-q9187dcvnj_1197020420264_5317" name="documentation profile">
+    <ownedMember xsi:type="uml:Stereotype" documentation="The top level documentation package" uuid="acer-q9187dcvnj_1197020420264_85" name="documentation-top" extendsMetaModelElement="'Package'">
+      <ownedAttribute documentation="The name of the document." uuid="acer-q9187dcvnj_1197020420264_8363" name="documentName" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The owner of document." uuid="acer-q9187dcvnj_1197020420264_4208" name="owner" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The email address of the owner." uuid="acer-q9187dcvnj_1197020420264_4971" name="email" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The copyright period of the document." uuid="acer-q9187dcvnj_1197020420264_5566" name="copyrightYears" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Number of non-breaking spaces to pad the home navigation entry with." uuid="acer-q9187dcvnj_1197020420274_2570" name="numberOfSpacesForPadding" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The prefix to add for each page title, apart from home." uuid="acer-q9187dcvnj_1197020420274_7275" name="pageTitlePrefix" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The index to add to the htmlTemplate and htmlGenerateTo slots to extract the folders.  Allows more than one site to be generated from a given model." uuid="acer-q9187dcvnj_1197020420274_1356" name="siteIndex" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A sub-package of the top-level documentation package." uuid="acer-q9187dcvnj_1197020420274_9397" name="documentation-included" extendsMetaModelElement="'Package'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A figure to reproduce in the documentation." uuid="acer-q9187dcvnj_1197020420274_4020" name="documentation-figure" extendsMetaModelElement="'Comment'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A comment visually containing a set of other documentation packages to refer to." uuid="acer-q9187dcvnj_1197020420274_5886" name="documentation-see-also" extendsMetaModelElement="'Comment'"/>
+  </childPackages>
+  <childPackages xsi:type="uml:Profile" documentation="The profile for a standard jUMbLe model." uuid="acer-q9187dcvnj_1197020420274_8106" name="standard profile">
+    <ownedMember xsi:type="uml:Stereotype" documentation="Indicates that the element is in error." uuid="acer-q9187dcvnj_1197020420274_6951" name="error" extendsMetaModelElement="'Class', 'Interface', 'Package', 'Property', 'Operation'">
+      <ownedAttribute documentation="The explanation of this error." uuid="acer-q9187dcvnj_1197020420274_336" name="error-description" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1197020420274_2852" name="backbone">
+    <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420274_990" property="//@childPackages.1/@ownedMember.9/@ownedAttribute.3">
+      <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420274_6259" body="#application-package-hint components&#xA;{&#xA;}&#xA;&#xA;#system-class-hint basics&#xA;{&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IAnotherRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.Placeholder&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.constructor.PartHandle&quot;,&#xA;&#x9;&quot;java.lang.Integer&quot;,&#xA;&#x9;&quot;java.lang.Long&quot;,&#xA;&#x9;&quot;java.lang.Double&quot;,&#xA;&#x9;&quot;java.lang.String&quot;,&#xA;&#x9;&quot;java.awt.Point&quot;,&#xA;&#x9;&quot;java.awt.Dimension&quot;,&#xA;&#x9;&quot;java.awt.Rectangle&quot;,&#xA;&#x9;&quot;java.util.Date&quot;,&#xA;&#x9;&quot;java.awt.Color&quot;&#xA;}"/>
+    </appliedBasicStereotypeValues>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1197020420284_1398" name="IRun">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420284_4481" property="//@childPackages.1/@ownedMember.4/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420284_4366" body="com.hopstepjump.backbone.api.IRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420284_8539" property="//@childPackages.1/@ownedMember.4/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1197020420294_4944" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1197020420294_2660" name="IAnotherRun">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420294_8192" property="//@childPackages.1/@ownedMember.4/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420294_6732" body="com.hopstepjump.backbone.api.IAnotherRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420294_5318" property="//@childPackages.1/@ownedMember.4/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1197020420294_4565" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.3" uuid="acer-q9187dcvnj_1197020420294_1047" name="Placeholder">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420294_5790" property="//@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420294_6715" body="com.hopstepjump.backbone.api.Placeholder"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420294_6275" property="//@childPackages.1/@ownedMember.2/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1197020420294_4565" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1197020420294_6766" name="PartHandle">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020420294_3461" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1197020420294_4193" body="PartHandle"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1197020464047_6475" name="Desk">
+    <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020464067_8873" property="//@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1197020464067_5190" value="true"/>
+    </appliedBasicStereotypeValues>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1197020464718_12" name="Mic" clientDependency="//@childPackages.6/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020464718_7408" property="//@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1197020464718_9578" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1197020502011_5347" client="//@childPackages.6" dependencyTarget="//@childPackages.5"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1197020465529_6955" name="CD" clientDependency="//@childPackages.7/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020465539_7495" property="//@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1197020465539_800" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1197020504064_338" client="//@childPackages.7" dependencyTarget="//@childPackages.5"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1197020466360_8117" name="CDAndMic" clientDependency="//@childPackages.8/@ownedAnonymousDependencies.0 //@childPackages.8/@ownedAnonymousDependencies.1">
+    <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1197020466370_910" property="//@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1197020466370_9651" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1197020497615_7191" client="//@childPackages.8" dependencyTarget="//@childPackages.6"/>
+    <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1197020499528_9417" client="//@childPackages.8" dependencyTarget="//@childPackages.7"/>
+  </childPackages>
+</uml:Model>

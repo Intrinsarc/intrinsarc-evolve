@@ -1,0 +1,1012 @@
+#LyX 1.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 221
+\textclass article
+\begin_preamble
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinelanguage{Backbone}
+{
+morekeywords={depends-on, stratum},
+sensitive=true,
+morecomment=[l]{//},
+morecomment=[s]{/*}{*/},
+}
+
+\lstset{
+language=Backbone,
+basicstyle=\ttfamily,
+commentstyle=\color{purple},
+keywordstyle=\color{blue},
+%	xleftmargin=15pt,
+%	xrightmargin=15pt,
+frame=lines,
+%	aboveskip=0pt,
+%	belowskip=0pt,
+%	lineskip=-5pt,
+%	abovecaptionskip=10pt,
+%	belowcaptionskip=10pt,
+%	framesep=5pt,
+%	rulesep=10pt
+}
+\end_preamble
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single 
+\papersize Default
+\paperpackage a4
+\use_geometry 0
+\use_amsmath 0
+\use_natbib 0
+\use_numerical_citations 0
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\quotes_times 2
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+
+\layout Title
+
+Basic Clock Example
+\layout Standard
+
+The base architecture represents a simple clock.
+ 3 independently developed extensions are combined, and conflict/interference
+ between them examined.
+\layout Section
+
+The architecture
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the base architecture and 3 extensions
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/4 strata.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The diagram above shows that the initial clock architecture (clock1.0) has
+ been extended in 2 independent extensions.
+ The beep extension adds an hourly beep.
+ The alarm extension adds a daily alarm.
+ Further, clock1.1 evolves the architecture to add a facility where the time
+ is synchronised with a radio signal.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+combining the different extensions
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/combined strata.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The aim is to combine the beep and alarm extensions with the clock1.0 architectur
+e.
+ This architecture will then be combined with the clock1.1 evolved architecture,
+ as shown in the above diagram.
+ Note that there are two other combinations which are not explored: clock1.1
+ and beep alone, clock1.1 and alarm alone.
+\layout Section
+
+Clock 1.0 (the base architecture)
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the basic clock
+\layout Standard
+
+
+\begin_inset Graphics
+	filename C:/Andrew/Workspace/Academic Work/papers/interference-ramblings/images/basic-clock.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The clock structure consists of various parts: an LED display, a timer,
+ and a manager to coordinate the logic.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+parts of the basic clock
+\layout Standard
+
+
+\begin_inset Graphics
+	filename C:/Andrew/Workspace/Academic Work/papers/interference-ramblings/images/basic-clock-parts.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The internals of the clock are shown in the diagram above.
+\layout Subsection
+
+Protocols
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the timer manager protocol
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/timermanager-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The protocol of the timer manager is the most complex.
+ It is also non-deterministic, as we do not know which mode the manager
+ is in until it decides to display the updating time in response to notifyOfNewS
+econd.
+ The timer manager has some internal logic to switch between modes, but
+ this has not been exposed.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the timer protocol
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/timer-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the display protocol
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/display-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The protocols for the timer and display are very simple, as shown in the
+ 2 diagrams above.
+\layout Subsection
+
+Composing protocols to form the clock protocol
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the clock protocol
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/clock-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The protocols of the parts can be checked against each other using composition.
+ Hiding internal events gives the (very simple) protocol of the clock.
+\layout Standard
+
+How can we quickly get the clock protocol? do we need to use FSP or is there
+ a simpler way...
+\layout Standard
+
+Idea is to allow component protocol to be specified directly, or to compose
+ the part protocols and elide internal events.
+ This supports top-down and bottom-up development.
+ Deadlock detection will find protocol composition problems.
+\layout Section
+
+Adding an hourly beep (the beep stratum)
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+clock + hourly beep facility
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/basic-clock+beep.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The structure of the clock component is altered to remove the low battery
+ indicator, and add a beep facility.
+ The aim is to produce a low-volume beep on the hour.
+\layout Standard
+
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+internal parts of the hourly beeping clock
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/basic-clock-parts+beep.eps
+	width 50col%
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The hourly beeper uses an Audio component to make a beep.
+ The timer has been replaced by a repimplemented timer (MulticlientTimer),
+ which supports any number of clients.
+\layout Subsection
+
+Protocols
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the Audio protocol
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/audio-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The audio component will beep, in a blocking fashion for the specified duration.
+ While it is beeping, another component is not allowed to call beep, although
+ they may call setVolume which will immediately affect any current beep.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the hourly beeper protocol
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/beeper-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The hourly beeper either beeps or ignores the notification.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the multi-client timer protocol
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/multiclienttimer-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+Note that the multi-client timer protocol uses [all] to indicate that it
+ is notifying all clients.
+ The protocol of the clock remains unaltered from the previous section.
+\layout Section
+
+Adding an alarm (the alarm stratum)
+\layout Standard
+
+When adding an alarm, the limitations of the single-client display and timer
+ become apparent.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+clock + alarm
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/basic-clock+alarm.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The alarm needs to be notified of seconds, as well as the time manager,
+ and the alarm also needs to use the display to show the alarm time when
+ it is being changed.
+ As a consequence of these requirements, the architecture bundles the timer
+ and display into a DisplayTimer component.
+\layout Standard
+
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+internal parts for the alarm clock
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/basic-clock-parts+alarm.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The internal parts are defined as above.
+ Note that the display timer supports many clients, via the concept of a
+ mode.
+\layout Subsection
+
+Protocols
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+protocol for display timer manager
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/displaytimermanager-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+The protocol for the display timer shows that the operation of the timer
+ is parallel to that of the display.
+ Depending if the client is the current mode, setting the display digits
+ will either be suppressed (and remembered for that client) or sent directly
+ to the display part.
+ On changing mode, the display is updated to the last set of digits that
+ the client sent in.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+protocol for the display timer composite
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/displaytimer-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The display timer shows the architecture protocol.
+\layout Standard
+
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+protocol for the alarm component
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/alarm-protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The alarm protocol shows that changing the alarm volume, the alarm time
+ and sounding the alarm are all independent activities.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+protocol for the alarm clock
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/alarm clock protocol.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+Suppressing internal events gives the protocol for the alarm clock, which
+ is simple as expected.
+\layout Section
+
+Merging beep and alarm
+\layout Subsection
+
+Structural merge
+\layout Standard
+
+A feasible structural merge is shown below.
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+merging the structure of beep + alarm on the clock1.0 base
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/beep+alarm.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+Several decisions had to be made in making this merge:
+\layout Enumerate
+
+Keep the LowBatteryIndicator or remove it (beep removes it, alarm keeps
+ it)
+\layout Enumerate
+
+Internalise the Audio component or push it to the external port?
+\layout Enumerate
+
+How do we know that the same Audio component should be shared?out the hierarchy
+ shows the problem:
+\layout Enumerate
+
+How do we choose between DisplayTimer and MultiClientTimer? Hierarchical
+ structure may have changed.
+\layout Enumerate
+
+The environment variable (actualTime / currentTime) conflicted between the
+ two extensions.
+\layout Standard
+
+As we are modeling with deltas, can we trace back to the common architecture
+ (clock1.0) to determine the intentions (smart 3-way diff), or do we need
+ a lot more information? Annotations («multi-client-adaptor» etc) with user-dire
+cted merging to form a consistent hierarchy?
+\layout Subsection
+
+Flattening the structure
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the flattened beep architecture
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/flattened beep.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+the flattened alarm architecture
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/flattened alarm.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The flattened structures give some hints as to a possible merge.
+ We are able to use some of the inherited commonality from clock1.0: the
+ mgr (TimeManager) has remained the same.
+ Further, it may be possible to detect commonality between the 2 displays,
+ by an annotation in the alarm clock definition to indicate what has happened
+ to the display and how to re-route existing display clients to it.
+ We could use a similar annotation to re-route timer clients.
+\layout Standard
+
+The choice of a common Audio component, and whether the LowBatteryIndicator
+ is removed or not is a question only the designer can answer.
+ The latter can be detected, and the former can possibly be detected.
+\layout Standard
+
+Solution = deltas + annotations indicating ways to merge, intentions etc
+ + user intervention?
+\layout Standard
+
+Many problems appear to come from multi-client use of a previously unshared
+ resource.
+ Support this directly in the language?
+\layout Subsection
+
+Checking protocols of the merged component
+\layout Standard
+
+Although the merged component is structurally sound, a protocol problem
+ has arisen owing to the shared use of the Audio component.
+ Both Alarm and HourlyBeeper guarantee not to send in a beep() when the
+ Audio instance is already beeping.
+ However, combining these offers no guarantee that the beeper won't beep
+ during an alarm.
+ This situation is easy to pick up with protocol composition.
+\layout Standard
+
+Q: will this be picked up by FSP composition or will it be omitted?
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+audio sharing leads to a protocol composition problem
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/audio conflicting protocols.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+In this case, the four relevant protocols are:
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+the protocols to demonstrate audio interference
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/beep + alarm relevant protocols.eps
+	scale 50
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+Questions:
+\layout Enumerate
+
+Handling PAR without combinatorial explosion -- is there an FSP construct
+ to help?
+\layout Enumerate
+
+Using a single shared resource e.g.
+ beep (1 provided interface, 2 required)
+\layout Enumerate
+
+Relation of NFAs/regexps to FSP.
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+begin{lstlisting}[caption=Audio protocols for the clock example]
+\newline 
+// the protocol for the hourly beeper
+\newline 
+BEEPER = 
+\newline 
+ (mrx.notifyOfNewSecond -> mtx.beep -> rrx.beep
+\newline 
+          -> rtx.notifyOfNewSecond -> BEEPER | 
+\newline 
+  mrx.notifyOfNewSecond -> rtx.notifyOfNewSecond -> BEEPER).
+\newline 
+
+\newline 
+// the protocol for the timer
+\newline 
+TIMER = 
+\newline 
+ (mtx.notifyOfNewSecond -> rrx.notifyOfNewSecond -> TIMER). 
+\newline 
+
+\newline 
+// the protocol for the audio device
+\newline 
+AUDIO = 
+\newline 
+ (mrx.beep -> rrx.beep -> AUDIO).
+\newline 
+
+\newline 
+// the protocol for the alarm
+\newline 
+ALARM = 
+\newline 
+ (mrx.notifyOfNewSecond -> rtx.notifyOfNewSecond -> ALARM 
+\newline 
+ |mrx.notifyOfNewSecond -> rtx.notifyOfNewSecond -> mtx.beep 
+\newline 
+                           -> HANDLE_NOTIFIES),
+\newline 
+HANDLE_NOTIFIES = 
+\newline 
+  (mrx.notifyOfNewSecond -> rtx.notifyOfNewSecond
+\newline 
+                  -> HANDLE_NOTIFIES 
+\newline 
+ |rrx.beep -> ALARM).
+\newline 
+
+\newline 
+// composition of timer, alarm and audio
+\newline 
+||TIMER_ALARM_AUDIO = (TIMER || ALARM || AUDIO)/{mtx/mrx, rtx/rrx}.
+\newline 
+
+\backslash 
+end{lstlisting}
+\end_inset 
+
+
+\layout Standard
+
+This produces the expected LTS for the combined timer + alarm + audio:
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+timer + alarm + audio truncated LTS
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/timer_alarm_audio.jpg
+	scale 40
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The timer + beeper + audio produces a similar LTS.
+ The difference is that there is no need to handle any notifications during
+ the beep, as it is 100ms in duration:
+\layout Standard
+
+
+\begin_inset Float figure
+placement H
+wide false
+collapsed false
+
+\layout Caption
+
+timer + beeper + audio truncated LTS
+\layout Standard
+
+
+\begin_inset Graphics
+	filename images/timer_beeper_audio.jpg
+	scale 40
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+Intuitively, the protocols conflict when an alarm is played over an hour
+ boundary.
+ The alarm will still be beeping over the hour boundary, and the beeper
+ will try to beep also.
+ This causes a conflict.
+ How can I capture this in FSP? Model it with 2 timers, representing the
+ separate usage? Model as a shared resource?
+\layout Standard
+
+Also how do I represent the shared Audio? Don't want to model it as 2 separate
+ processes as I want to show the conflict.
+ How can I get a conflict to produce a deadlock?
+\layout Subsection
+
+Goal conflicts of extensions
+\layout Standard
+
+Both alarm and beep set the volume.
+ Alarm sets it when the alarm volume is changed, beep sets it once an hour.
+ This will result in any alarm in playing at the incorrect volume (low)
+ instead of the set volume (presumably high).
+\layout Standard
+
+How can I express this expectation naturally as part of development? What
+ properties need preserving?
+\the_end

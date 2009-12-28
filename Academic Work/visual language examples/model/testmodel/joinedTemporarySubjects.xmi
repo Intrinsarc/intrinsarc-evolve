@@ -1,0 +1,114 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+
+    <UML:Model xmi.id="a0" xmi.uuid="DCE-1139481251228-435" name="Model" visibility="public" isSpecification="false" isRoot="true" isLeaf="false" isAbstract="false">
+      <UML:Namespace.ownedElement>
+
+        <UML:Package xmi.id="a2" xmi.uuid="DCE-1139482775959-502" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>Backbone
+visual
+language</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Interface xmi.id="a1" xmi.uuid="DCE-1139484040526-654" name="ISynchronous" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a10" xmi.uuid="DCE-1139484607448-655" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a11" xmi.uuid="DCE-1139484613089-132" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a12" xmi.uuid="DCE-1139484932276-566" name="LeafComponentA" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Class xmi.id="a13" xmi.uuid="DCE-1139484932761-175" name="ComponentB" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Interface xmi.id="a14" xmi.uuid="DCE-1139484958839-671" name="IInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a15" xmi.uuid="DCE-1139485005370-914" name="IInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+
+            <UML:Package xmi.id="a16" xmi.uuid="DCE-1107963812203-942" name="state pattern" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a17" xmi.uuid="DCE-1107963823625-391" name="Switch" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a19" xmi.uuid="DCE-1107963857843-315" name="StateEvents" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a20" xmi.uuid="DCE-1107963864406-719" name="StateChange" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a25" xmi.uuid="DCE-1107963951875-911" name="StateMachine" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a27" xmi.uuid="DCE-1107964043234-49" name="Initialise" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a28" xmi.uuid="DCE-1107964052687-862" name="ProcessFully" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a29" xmi.uuid="DCE-1107964056968-568" name="ProcessPartially" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a30" xmi.uuid="DCE-1107964062640-582" name="Notify" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a31" xmi.uuid="DCE-1107964252281-940" name="SuccessorStateFinder" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+
+            <UML:Package xmi.id="a21" xmi.uuid="DCE-1107959984484-898" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>type
+propagation</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Interface xmi.id="a22" xmi.uuid="DCE-1107960035046-454" name="Interface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a23" xmi.uuid="DCE-1107960044500-329" name="Interface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a24" xmi.uuid="DCE-1107960468046-318" name="SubInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+            <UML:Class xmi.id="a3" xmi.uuid="DCE-1139482784928-978" name="CompositeComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Interface xmi.id="a4" xmi.uuid="DCE-1139482796756-144" name="ProvidedInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+
+            <UML:Package xmi.id="a40" xmi.uuid="DCE-1139485259292-730" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>web
+browser</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a47" xmi.uuid="DCE-1139485269261-105" name="WebBrowser" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a48" xmi.uuid="DCE-1139485275636-807" name="IBrowser" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a49" xmi.uuid="DCE-1139485344542-934" name="IFileSystem" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a50" xmi.uuid="DCE-1139485412464-736" name="HtmlRenderer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a51" xmi.uuid="DCE-1139485419230-297" name="HttpProtocolEngine" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a52" xmi.uuid="DCE-1139486121401-767" name="RenderingEngine" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a53" xmi.uuid="DCE-1139486138355-794" name="ConfigurationManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+            <UML:Class xmi.id="a41" xmi.uuid="DCE-1139486726058-986" name="EnclosingComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Class xmi.id="a42" xmi.uuid="DCE-1139486740323-300" name="InnerComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Interface xmi.id="a43" xmi.uuid="DCE-1139486791620-830" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a44" xmi.uuid="DCE-1139486855651-528" name="InnerInnerComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+
+            <UML:Package xmi.id="a45" xmi.uuid="DCE-1139488467073-412" name="connections" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a54" xmi.uuid="DCE-1139488476151-888" name="ComponentX" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a55" xmi.uuid="DCE-1139488487448-584" name="ComponentY" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a56" xmi.uuid="DCE-1139488698198-247" name="ComponentZ" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a57" xmi.uuid="DCE-1139490042433-349" name="IProvided" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a58" xmi.uuid="DCE-1139490044495-680" name="IRequired" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a59" xmi.uuid="DCE-1139490146651-439" name="ComponentC" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a60" xmi.uuid="DCE-1139490419714-966" name="OtherLeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a61" xmi.uuid="DCE-1139490464355-946" name="Interface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a62" xmi.uuid="DCE-1139490888605-524" name="OtherInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+
+            <UML:Package xmi.id="a46" xmi.uuid="DCE-1139491729011-106" name="instantiation" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a63" xmi.uuid="DCE-1139491751698-339" name="Parent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a64" xmi.uuid="DCE-1139491759433-565" name="Child" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a65" xmi.uuid="DCE-1139491878886-245" name="ChildInstantiator" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a66" xmi.uuid="DCE-1139492899714-455" name="InterfaceX" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a67" xmi.uuid="DCE-1139492906792-7" name="InterfaceY" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a68" xmi.uuid="DCE-1139493011480-83" name="Instantiator" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a69" xmi.uuid="DCE-1139493043448-775" name="Manager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a70" xmi.uuid="DCE-1139493694901-246" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+            <UML:Class xmi.id="a5" xmi.uuid="DCE-1139482814021-624" name="LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Interface xmi.id="a6" xmi.uuid="DCE-1139482871801-755" name="RequiredInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a7" xmi.uuid="DCE-1139484047417-696" name="IAsynchronous" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a9" xmi.uuid="DCE-1139484591980-375" name="ComponentA" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+      </UML:Namespace.ownedElement>
+    </UML:Model>
+
+  </XMI.content>
+</XMI>
+

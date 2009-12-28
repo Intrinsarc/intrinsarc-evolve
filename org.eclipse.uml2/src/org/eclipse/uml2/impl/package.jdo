@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo SYSTEM "http://java.sun.com/dtd/jdo_1_0.dtd">
+
+<jdo>
+    <package name="">
+
+	<class name="org.eclipse.uml2.impl.ElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.EModelElementImpl" >
+		<field name="ownedComment" persistence-modifier="persistent"  />
+		<field name="j_deleted" persistence-modifier="persistent"  />
+		<field name="documentation" persistence-modifier="persistent"  />
+		<field name="appliedBasicStereotypes" persistence-modifier="persistent"  />
+		<field name="appliedBasicStereotypeValues" persistence-modifier="persistent"  />
+		<field name="uuid" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.MultiplicityElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="upperValue" persistence-modifier="persistent"  />
+		<field name="lowerValue" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.NamedElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TemplateableElementImpl" >
+		<field name="name" persistence-modifier="persistent"  />
+		<field name="visibility" persistence-modifier="persistent" embedded="true" />
+		<field name="clientDependency" persistence-modifier="persistent"  />
+		<field name="nameExpression" persistence-modifier="persistent"  />
+		<field name="ownedAnonymousDependencies" persistence-modifier="persistent"  />
+		<field name="reverseDependencies" persistence-modifier="persistent"  />
+		<field name="reverseGeneralizations" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.NamespaceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="ownedRule" persistence-modifier="persistent"  />
+		<field name="elementImport" persistence-modifier="persistent"  />
+		<field name="packageImport" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.OpaqueExpressionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ValueSpecificationImpl" >
+		<field name="body" persistence-modifier="persistent"  />
+		<field name="language" persistence-modifier="persistent"  />
+		<field name="behavior" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ValueSpecificationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TypedElementImpl" >
+		<field name="templateParameter" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ExpressionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.OpaqueExpressionImpl" >
+		<field name="symbol" persistence-modifier="persistent"  />
+		<field name="operand" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CommentImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TemplateableElementImpl" >
+		<field name="body" persistence-modifier="persistent"  />
+		<field name="annotatedElement" persistence-modifier="persistent"  />
+		<field name="bodyExpression" persistence-modifier="persistent"  />
+		<field name="binaryData" persistence-modifier="persistent" embedded="true" />
+		<field name="binaryFormat" persistence-modifier="persistent"  />
+		<field name="binaryCount" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DirectedRelationshipImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RelationshipImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.RelationshipImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ClassImpl" persistence-capable-superclass="org.eclipse.uml2.impl.BehavioredClassifierImpl" >
+		<field name="ownedAttribute" persistence-modifier="persistent"  />
+		<field name="ownedConnector" persistence-modifier="persistent"  />
+		<field name="deltaDeletedAttributes" persistence-modifier="persistent"  />
+		<field name="deltaReplacedAttributes" persistence-modifier="persistent"  />
+		<field name="deltaDeletedPorts" persistence-modifier="persistent"  />
+		<field name="deltaReplacedPorts" persistence-modifier="persistent"  />
+		<field name="deltaDeletedConnectors" persistence-modifier="persistent"  />
+		<field name="deltaReplacedConnectors" persistence-modifier="persistent"  />
+		<field name="deltaDeletedOperations" persistence-modifier="persistent"  />
+		<field name="deltaReplacedOperations" persistence-modifier="persistent"  />
+		<field name="ownedPort" persistence-modifier="persistent"  />
+		<field name="ownedOperation" persistence-modifier="persistent"  />
+		<field name="nestedClassifier" persistence-modifier="persistent"  />
+		<field name="ownedReception" persistence-modifier="persistent"  />
+		<field name="componentKind" persistence-modifier="persistent" embedded="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.TypeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageableElementImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.PropertyImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StructuralFeatureImpl" >
+		<field name="templateParameter" persistence-modifier="persistent"  />
+		<field name="end" persistence-modifier="persistent"  />
+		<field name="deployment" persistence-modifier="persistent"  />
+		<field name="redefinedProperty" persistence-modifier="persistent"  />
+		<field name="subsettedProperty" persistence-modifier="persistent"  />
+		<field name="association" persistence-modifier="persistent"  />
+		<field name="aggregation" persistence-modifier="persistent" embedded="true" />
+		<field name="defaultValue" persistence-modifier="persistent"  />
+		<field name="qualifier" persistence-modifier="persistent"  />
+		<field name="ownedAnonymousType" persistence-modifier="persistent"  />
+		<field name="defaultValues" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.OperationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.BehavioralFeatureImpl" >
+		<field name="upperValue" persistence-modifier="persistent"  />
+		<field name="lowerValue" persistence-modifier="persistent"  />
+		<field name="templateParameter" persistence-modifier="persistent"  />
+		<field name="precondition" persistence-modifier="persistent"  />
+		<field name="postcondition" persistence-modifier="persistent"  />
+		<field name="redefinedOperation" persistence-modifier="persistent"  />
+		<field name="bodyCondition" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TypedElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="type" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ParameterImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ConnectableElementImpl" >
+		<field name="type" persistence-modifier="persistent"  />
+		<field name="upperValue" persistence-modifier="persistent"  />
+		<field name="lowerValue" persistence-modifier="persistent"  />
+		<field name="direction" persistence-modifier="persistent" embedded="true" />
+		<field name="defaultValue" persistence-modifier="persistent"  />
+		<field name="effect" persistence-modifier="persistent" embedded="true" />
+		<field name="parameterSet" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PackageImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamespaceImpl" >
+		<field name="templateParameter" persistence-modifier="persistent"  />
+		<field name="ownedMember" persistence-modifier="persistent"  />
+		<field name="packageMerge" persistence-modifier="persistent"  />
+		<field name="appliedProfile" persistence-modifier="persistent"  />
+		<field name="packageExtension" persistence-modifier="persistent"  />
+		<field name="j_diagramHolder" persistence-modifier="persistent"  />
+		<field name="childPackages" persistence-modifier="persistent"  />
+		<field name="anonymousDeletedImportPlaceholders" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.EnumerationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DataTypeImpl" >
+		<field name="ownedLiteral" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DataTypeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+		<field name="ownedAttribute" persistence-modifier="persistent"  />
+		<field name="ownedOperation" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.EnumerationLiteralImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InstanceSpecificationImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.PrimitiveTypeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DataTypeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ClassifierImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamespaceImpl" >
+		<field name="templateParameter" persistence-modifier="persistent"  />
+		<field name="generalization" persistence-modifier="persistent"  />
+		<field name="redefinedClassifier" persistence-modifier="persistent"  />
+		<field name="substitution" persistence-modifier="persistent"  />
+		<field name="powertypeExtent" persistence-modifier="persistent"  />
+		<field name="ownedUseCase" persistence-modifier="persistent"  />
+		<field name="useCase" persistence-modifier="persistent"  />
+		<field name="representation" persistence-modifier="persistent"  />
+		<field name="occurrence" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.FeatureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RedefinableElementImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ConstraintImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageableElementImpl" >
+		<field name="specification" persistence-modifier="persistent"  />
+		<field name="constrainedElement" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.LiteralBooleanImpl" persistence-capable-superclass="org.eclipse.uml2.impl.LiteralSpecificationImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.LiteralSpecificationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ValueSpecificationImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.LiteralStringImpl" persistence-capable-superclass="org.eclipse.uml2.impl.LiteralSpecificationImpl" >
+		<field name="value" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.LiteralNullImpl" persistence-capable-superclass="org.eclipse.uml2.impl.LiteralSpecificationImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.LiteralIntegerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.LiteralSpecificationImpl" >
+		<field name="value" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.LiteralUnlimitedNaturalImpl" persistence-capable-superclass="org.eclipse.uml2.impl.LiteralSpecificationImpl" >
+		<field name="value" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.BehavioralFeatureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamespaceImpl" >
+		<field name="formalParameter" persistence-modifier="persistent"  />
+		<field name="returnResult" persistence-modifier="persistent"  />
+		<field name="raisedException" persistence-modifier="persistent"  />
+		<field name="method" persistence-modifier="persistent"  />
+		<field name="concurrency" persistence-modifier="persistent" embedded="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.StructuralFeatureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.FeatureImpl" >
+		<field name="type" persistence-modifier="persistent"  />
+		<field name="upperValue" persistence-modifier="persistent"  />
+		<field name="lowerValue" persistence-modifier="persistent"  />
+		<field name="readWrite" persistence-modifier="persistent" embedded="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.InstanceSpecificationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageableElementImpl" >
+		<field name="deployment" persistence-modifier="persistent"  />
+		<field name="slot" persistence-modifier="persistent"  />
+		<field name="classifier" persistence-modifier="persistent"  />
+		<field name="specification" persistence-modifier="persistent"  />
+		<field name="portRemap" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.SlotImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="value" persistence-modifier="persistent"  />
+		<field name="definingFeature" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InstanceValueImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ValueSpecificationImpl" >
+		<field name="instance" persistence-modifier="persistent"  />
+		<field name="ownedAnonymousInstanceValue" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.RedefinableElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.GeneralizationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DirectedRelationshipImpl" >
+		<field name="general" persistence-modifier="persistent"  />
+		<field name="generalizationSet" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PackageableElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="templateParameter" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ElementImportImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DirectedRelationshipImpl" >
+		<field name="visibility" persistence-modifier="persistent" embedded="true" />
+		<field name="alias" persistence-modifier="persistent"  />
+		<field name="importedElement" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PackageImportImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DirectedRelationshipImpl" >
+		<field name="visibility" persistence-modifier="persistent" embedded="true" />
+		<field name="importedPackage" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.AssociationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+		<field name="ownedEnd" persistence-modifier="persistent"  />
+		<field name="memberEnd" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PackageMergeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DirectedRelationshipImpl" >
+		<field name="mergedPackage" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.StereotypeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassImpl" >
+		<field name="extendsMetaModelElement" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ProfileImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageImpl" >
+		<field name="metaclassReference" persistence-modifier="persistent"  />
+		<field name="metamodelReference" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ProfileApplicationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageImportImpl" >
+		<field name="importedProfile" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ExtensionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.AssociationImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ExtensionEndImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PropertyImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.BehaviorImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassImpl" >
+		<field name="redefinedBehavior" persistence-modifier="persistent"  />
+		<field name="specification" persistence-modifier="persistent"  />
+		<field name="parameter" persistence-modifier="persistent"  />
+		<field name="precondition" persistence-modifier="persistent"  />
+		<field name="postcondition" persistence-modifier="persistent"  />
+		<field name="ownedParameterSet" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.BehavioredClassifierImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+		<field name="ownedBehavior" persistence-modifier="persistent"  />
+		<field name="classifierBehavior" persistence-modifier="persistent"  />
+		<field name="implementation" persistence-modifier="persistent"  />
+		<field name="ownedTrigger" persistence-modifier="persistent"  />
+		<field name="ownedStateMachine" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ActivityImpl" persistence-capable-superclass="org.eclipse.uml2.impl.BehaviorImpl" >
+		<field name="body" persistence-modifier="persistent"  />
+		<field name="language" persistence-modifier="persistent"  />
+		<field name="edge" persistence-modifier="persistent"  />
+		<field name="group" persistence-modifier="persistent"  />
+		<field name="node" persistence-modifier="persistent"  />
+		<field name="action" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PermissionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DependencyImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DependencyImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageableElementImpl" >
+		<field name="client" persistence-modifier="persistent"  />
+		<field name="supplier" persistence-modifier="persistent"  />
+		<field name="dependencyTarget" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.UsageImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DependencyImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.AbstractionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DependencyImpl" >
+		<field name="mapping" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.RealizationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.AbstractionImpl" >
+		<field name="realizingClassifier" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.SubstitutionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RealizationImpl" >
+		<field name="contract" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.GeneralizationSetImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageableElementImpl" >
+		<field name="powertype" persistence-modifier="persistent"  />
+		<field name="generalization" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.AssociationClassImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassImpl" >
+		<field name="ownedEnd" persistence-modifier="persistent"  />
+		<field name="memberEnd" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InformationItemImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+		<field name="represented" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InformationFlowImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageableElementImpl" >
+		<field name="realization" persistence-modifier="persistent"  />
+		<field name="conveyed" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ModelImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageImpl" >
+		<field name="viewpoint" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ConnectorEndImpl" persistence-capable-superclass="org.eclipse.uml2.impl.MultiplicityElementImpl" >
+		<field name="role" persistence-modifier="persistent"  />
+		<field name="partWithPort" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ConnectableElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="templateParameter" persistence-modifier="persistent"  />
+		<field name="end" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ConnectorImpl" persistence-capable-superclass="org.eclipse.uml2.impl.FeatureImpl" >
+		<field name="type" persistence-modifier="persistent"  />
+		<field name="redefinedConnector" persistence-modifier="persistent"  />
+		<field name="end" persistence-modifier="persistent"  />
+		<field name="kind" persistence-modifier="persistent" embedded="true" />
+		<field name="contract" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.StructuredClassifierImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+		<field name="ownedAttribute" persistence-modifier="persistent"  />
+		<field name="ownedConnector" persistence-modifier="persistent"  />
+		<field name="deltaDeletedAttributes" persistence-modifier="persistent"  />
+		<field name="deltaReplacedAttributes" persistence-modifier="persistent"  />
+		<field name="deltaDeletedPorts" persistence-modifier="persistent"  />
+		<field name="deltaReplacedPorts" persistence-modifier="persistent"  />
+		<field name="deltaDeletedConnectors" persistence-modifier="persistent"  />
+		<field name="deltaReplacedConnectors" persistence-modifier="persistent"  />
+		<field name="deltaDeletedOperations" persistence-modifier="persistent"  />
+		<field name="deltaReplacedOperations" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ActivityEdgeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RedefinableElementImpl" >
+		<field name="source" persistence-modifier="persistent"  />
+		<field name="target" persistence-modifier="persistent"  />
+		<field name="guard" persistence-modifier="persistent"  />
+		<field name="redefinedElement" persistence-modifier="persistent"  />
+		<field name="inPartition" persistence-modifier="persistent"  />
+		<field name="weight" persistence-modifier="persistent"  />
+		<field name="interrupts" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ActivityGroupImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ActivityNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RedefinableElementImpl" >
+		<field name="outgoing" persistence-modifier="persistent"  />
+		<field name="incoming" persistence-modifier="persistent"  />
+		<field name="redefinedElement" persistence-modifier="persistent"  />
+		<field name="inPartition" persistence-modifier="persistent"  />
+		<field name="inInterruptibleRegion" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ExecutableNodeImpl" >
+		<field name="effect" persistence-modifier="persistent"  />
+		<field name="localPrecondition" persistence-modifier="persistent"  />
+		<field name="localPostcondition" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ObjectNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActivityNodeImpl" >
+		<field name="type" persistence-modifier="persistent"  />
+		<field name="ordering" persistence-modifier="persistent" embedded="true" />
+		<field name="upperBound" persistence-modifier="persistent"  />
+		<field name="inState" persistence-modifier="persistent"  />
+		<field name="selection" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ControlNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActivityNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ControlFlowImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActivityEdgeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ObjectFlowImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActivityEdgeImpl" >
+		<field name="transformation" persistence-modifier="persistent"  />
+		<field name="selection" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InitialNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ControlNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.FinalNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ControlNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ActivityFinalNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.FinalNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DecisionNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ControlNodeImpl" >
+		<field name="decisionInput" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.MergeNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ControlNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ExecutableNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActivityNodeImpl" >
+		<field name="handler" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.OutputPinImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PinImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.InputPinImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PinImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.PinImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ObjectNodeImpl" >
+		<field name="upperValue" persistence-modifier="persistent"  />
+		<field name="lowerValue" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ActivityParameterNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ObjectNodeImpl" >
+		<field name="parameter" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ValuePinImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InputPinImpl" >
+		<field name="value" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InterfaceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+		<field name="ownedAttribute" persistence-modifier="persistent"  />
+		<field name="ownedOperation" persistence-modifier="persistent"  />
+		<field name="redefinedInterface" persistence-modifier="persistent"  />
+		<field name="nestedClassifier" persistence-modifier="persistent"  />
+		<field name="ownedReception" persistence-modifier="persistent"  />
+		<field name="protocol" persistence-modifier="persistent"  />
+		<field name="deltaDeletedOperations" persistence-modifier="persistent"  />
+		<field name="deltaReplacedOperations" persistence-modifier="persistent"  />
+		<field name="deltaDeletedAttributes" persistence-modifier="persistent"  />
+		<field name="deltaReplacedAttributes" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ImplementationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RealizationImpl" >
+		<field name="contract" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ArtifactImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+		<field name="fileName" persistence-modifier="persistent"  />
+		<field name="nestedArtifact" persistence-modifier="persistent"  />
+		<field name="manifestation" persistence-modifier="persistent"  />
+		<field name="ownedOperation" persistence-modifier="persistent"  />
+		<field name="ownedAttribute" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ManifestationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.AbstractionImpl" >
+		<field name="utilizedElement" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ActorImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ExtendImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="extendedCase" persistence-modifier="persistent"  />
+		<field name="condition" persistence-modifier="persistent"  />
+		<field name="extensionLocation" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.UseCaseImpl" persistence-capable-superclass="org.eclipse.uml2.impl.BehavioredClassifierImpl" >
+		<field name="include" persistence-modifier="persistent"  />
+		<field name="extend" persistence-modifier="persistent"  />
+		<field name="extensionPoint" persistence-modifier="persistent"  />
+		<field name="subject" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ExtensionPointImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RedefinableElementImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.IncludeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="addition" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CollaborationOccurrenceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="type" persistence-modifier="persistent"  />
+		<field name="roleBinding" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CollaborationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.BehavioredClassifierImpl" >
+		<field name="ownedAttribute" persistence-modifier="persistent"  />
+		<field name="ownedConnector" persistence-modifier="persistent"  />
+		<field name="deltaDeletedAttributes" persistence-modifier="persistent"  />
+		<field name="deltaReplacedAttributes" persistence-modifier="persistent"  />
+		<field name="deltaDeletedPorts" persistence-modifier="persistent"  />
+		<field name="deltaReplacedPorts" persistence-modifier="persistent"  />
+		<field name="deltaDeletedConnectors" persistence-modifier="persistent"  />
+		<field name="deltaReplacedConnectors" persistence-modifier="persistent"  />
+		<field name="deltaDeletedOperations" persistence-modifier="persistent"  />
+		<field name="deltaReplacedOperations" persistence-modifier="persistent"  />
+		<field name="collaborationRole" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PortImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PropertyImpl" >
+		<field name="redefinedPort" persistence-modifier="persistent"  />
+		<field name="protocol" persistence-modifier="persistent"  />
+		<field name="kind" persistence-modifier="persistent" embedded="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.EncapsulatedClassifierImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StructuredClassifierImpl" >
+		<field name="ownedPort" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CallTriggerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.MessageTriggerImpl" >
+		<field name="operation" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.MessageTriggerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TriggerImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ChangeTriggerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TriggerImpl" >
+		<field name="changeExpression" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TriggerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="port" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReceptionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.BehavioralFeatureImpl" >
+		<field name="signal" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.SignalImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+		<field name="ownedAttribute" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.SignalTriggerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.MessageTriggerImpl" >
+		<field name="signal" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TimeTriggerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TriggerImpl" >
+		<field name="when" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.AnyTriggerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.MessageTriggerImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.VariableImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ConnectableElementImpl" >
+		<field name="type" persistence-modifier="persistent"  />
+		<field name="upperValue" persistence-modifier="persistent"  />
+		<field name="lowerValue" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.StructuredActivityNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="ownedRule" persistence-modifier="persistent"  />
+		<field name="elementImport" persistence-modifier="persistent"  />
+		<field name="packageImport" persistence-modifier="persistent"  />
+		<field name="variable" persistence-modifier="persistent"  />
+		<field name="containedNode" persistence-modifier="persistent"  />
+		<field name="containedEdge" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ConditionalNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StructuredActivityNodeImpl" >
+		<field name="clause" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ClauseImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="test" persistence-modifier="persistent"  />
+		<field name="body" persistence-modifier="persistent"  />
+		<field name="predecessorClause" persistence-modifier="persistent"  />
+		<field name="successorClause" persistence-modifier="persistent"  />
+		<field name="decider" persistence-modifier="persistent"  />
+		<field name="bodyOutput" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.LoopNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StructuredActivityNodeImpl" >
+		<field name="bodyPart" persistence-modifier="persistent"  />
+		<field name="setupPart" persistence-modifier="persistent"  />
+		<field name="decider" persistence-modifier="persistent"  />
+		<field name="test" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+		<field name="loopVariable" persistence-modifier="persistent"  />
+		<field name="bodyOutput" persistence-modifier="persistent"  />
+		<field name="loopVariableInput" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InteractionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.BehaviorImpl" >
+		<field name="covered" persistence-modifier="persistent"  />
+		<field name="generalOrdering" persistence-modifier="persistent"  />
+		<field name="lifeline" persistence-modifier="persistent"  />
+		<field name="message" persistence-modifier="persistent"  />
+		<field name="fragment" persistence-modifier="persistent"  />
+		<field name="formalGate" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InteractionFragmentImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="covered" persistence-modifier="persistent"  />
+		<field name="generalOrdering" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.LifelineImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="coveredBy" persistence-modifier="persistent"  />
+		<field name="represents" persistence-modifier="persistent"  />
+		<field name="selector" persistence-modifier="persistent"  />
+		<field name="decomposedAs" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.MessageImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="messageSort" persistence-modifier="persistent"  />
+		<field name="receiveEvent" persistence-modifier="persistent"  />
+		<field name="sendEvent" persistence-modifier="persistent"  />
+		<field name="connector" persistence-modifier="persistent"  />
+		<field name="signature" persistence-modifier="persistent"  />
+		<field name="argument" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.GeneralOrderingImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="before" persistence-modifier="persistent"  />
+		<field name="after" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.MessageEndImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="receiveMessage" persistence-modifier="persistent"  />
+		<field name="sendMessage" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.EventOccurrenceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InteractionFragmentImpl" >
+		<field name="receiveMessage" persistence-modifier="persistent"  />
+		<field name="sendMessage" persistence-modifier="persistent"  />
+		<field name="startExec" persistence-modifier="persistent"  />
+		<field name="finishExec" persistence-modifier="persistent"  />
+		<field name="toAfter" persistence-modifier="persistent"  />
+		<field name="toBefore" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ExecutionOccurrenceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InteractionFragmentImpl" >
+		<field name="start" persistence-modifier="persistent"  />
+		<field name="finish" persistence-modifier="persistent"  />
+		<field name="behavior" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.StateInvariantImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InteractionFragmentImpl" >
+		<field name="invariant" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.StopImpl" persistence-capable-superclass="org.eclipse.uml2.impl.EventOccurrenceImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.TemplateSignatureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="parameter" persistence-modifier="persistent"  />
+		<field name="ownedParameter" persistence-modifier="persistent"  />
+		<field name="nestedSignature" persistence-modifier="persistent"  />
+		<field name="nestingSignature" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TemplateParameterImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="default_" persistence-modifier="none" />
+		<field name="parameteredElement" persistence-modifier="persistent"  />
+		<field name="ownedParameteredElement" persistence-modifier="persistent"  />
+		<field name="default" persistence-modifier="persistent"  />
+		<field name="ownedDefault" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TemplateableElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="templateBinding" persistence-modifier="persistent"  />
+		<field name="ownedTemplateSignature" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.StringExpressionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TemplateableElementImpl" >
+		<field name="subExpression" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ParameterableElementImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="templateParameter" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TemplateBindingImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DirectedRelationshipImpl" >
+		<field name="signature" persistence-modifier="persistent"  />
+		<field name="parameterSubstitution" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TemplateParameterSubstitutionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="formal" persistence-modifier="persistent"  />
+		<field name="actual" persistence-modifier="persistent"  />
+		<field name="ownedActual" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.OperationTemplateParameterImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TemplateParameterImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ClassifierTemplateParameterImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TemplateParameterImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ParameterableClassifierImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.RedefinableTemplateSignatureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RedefinableElementImpl" >
+		<field name="parameter" persistence-modifier="persistent"  />
+		<field name="ownedParameter" persistence-modifier="persistent"  />
+		<field name="nestedSignature" persistence-modifier="persistent"  />
+		<field name="nestingSignature" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TemplateableClassifierImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassifierImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ConnectableElementTemplateParameterImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TemplateParameterImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ForkNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ControlNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.JoinNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ControlNodeImpl" >
+		<field name="joinSpec" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.FlowFinalNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.FinalNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.CentralBufferNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ObjectNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ActivityPartitionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="containedEdge" persistence-modifier="persistent"  />
+		<field name="containedNode" persistence-modifier="persistent"  />
+		<field name="subgroup" persistence-modifier="persistent"  />
+		<field name="represents" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ExpansionNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ObjectNodeImpl" >
+		<field name="regionAsOutput" persistence-modifier="persistent"  />
+		<field name="regionAsInput" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ExpansionRegionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StructuredActivityNodeImpl" >
+		<field name="mode" persistence-modifier="persistent" embedded="true" />
+		<field name="outputElement" persistence-modifier="persistent"  />
+		<field name="inputElement" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ExceptionHandlerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="handlerBody" persistence-modifier="persistent"  />
+		<field name="exceptionInput" persistence-modifier="persistent"  />
+		<field name="exceptionType" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InteractionOccurrenceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InteractionFragmentImpl" >
+		<field name="refersTo" persistence-modifier="persistent"  />
+		<field name="actualGate" persistence-modifier="persistent"  />
+		<field name="argument" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.GateImpl" persistence-capable-superclass="org.eclipse.uml2.impl.MessageEndImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.PartDecompositionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InteractionOccurrenceImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.InteractionOperandImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamespaceImpl" >
+		<field name="covered" persistence-modifier="persistent"  />
+		<field name="generalOrdering" persistence-modifier="persistent"  />
+		<field name="guard" persistence-modifier="persistent"  />
+		<field name="fragment" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InteractionConstraintImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ConstraintImpl" >
+		<field name="minint" persistence-modifier="persistent"  />
+		<field name="maxint" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CombinedFragmentImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InteractionFragmentImpl" >
+		<field name="interactionOperator" persistence-modifier="persistent"  />
+		<field name="operand" persistence-modifier="persistent"  />
+		<field name="cfragmentGate" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ContinuationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InteractionFragmentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.StateMachineImpl" persistence-capable-superclass="org.eclipse.uml2.impl.BehaviorImpl" >
+		<field name="region" persistence-modifier="persistent"  />
+		<field name="connectionPoint" persistence-modifier="persistent"  />
+		<field name="extendedStateMachine" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.RegionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamespaceImpl" >
+		<field name="subvertex" persistence-modifier="persistent"  />
+		<field name="transition" persistence-modifier="persistent"  />
+		<field name="extendedRegion" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PseudostateImpl" persistence-capable-superclass="org.eclipse.uml2.impl.VertexImpl" >
+		<field name="kind" persistence-modifier="persistent" embedded="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.StateImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamespaceImpl" >
+		<field name="outgoing" persistence-modifier="persistent"  />
+		<field name="incoming" persistence-modifier="persistent"  />
+		<field name="submachine" persistence-modifier="persistent"  />
+		<field name="connection" persistence-modifier="persistent"  />
+		<field name="redefinedState" persistence-modifier="persistent"  />
+		<field name="deferrableTrigger" persistence-modifier="persistent"  />
+		<field name="region" persistence-modifier="persistent"  />
+		<field name="entry" persistence-modifier="persistent"  />
+		<field name="exit" persistence-modifier="persistent"  />
+		<field name="doActivity" persistence-modifier="persistent"  />
+		<field name="stateInvariant" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.VertexImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="outgoing" persistence-modifier="persistent"  />
+		<field name="incoming" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ConnectionPointReferenceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.VertexImpl" >
+		<field name="entry" persistence-modifier="persistent"  />
+		<field name="exit" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TransitionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RedefinableElementImpl" >
+		<field name="kind" persistence-modifier="persistent" embedded="true" />
+		<field name="source" persistence-modifier="persistent"  />
+		<field name="target" persistence-modifier="persistent"  />
+		<field name="redefinedTransition" persistence-modifier="persistent"  />
+		<field name="trigger" persistence-modifier="persistent"  />
+		<field name="guard" persistence-modifier="persistent"  />
+		<field name="effect" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.FinalStateImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StateImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.CreateObjectActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="classifier" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DestroyObjectActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="target" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TestIdentityActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="first" persistence-modifier="persistent"  />
+		<field name="second" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReadSelfActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.StructuralFeatureActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="structuralFeature" persistence-modifier="persistent"  />
+		<field name="object" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReadStructuralFeatureActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StructuralFeatureActionImpl" >
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.WriteStructuralFeatureActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StructuralFeatureActionImpl" >
+		<field name="value" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ClearStructuralFeatureActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StructuralFeatureActionImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.RemoveStructuralFeatureValueActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.WriteStructuralFeatureActionImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.AddStructuralFeatureValueActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.WriteStructuralFeatureActionImpl" >
+		<field name="insertAt" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.LinkActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="endData" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.LinkEndDataImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="value" persistence-modifier="persistent"  />
+		<field name="end" persistence-modifier="persistent"  />
+		<field name="qualifier" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReadLinkActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.LinkActionImpl" >
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.LinkEndCreationDataImpl" persistence-capable-superclass="org.eclipse.uml2.impl.LinkEndDataImpl" >
+		<field name="insertAt" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CreateLinkActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.WriteLinkActionImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.WriteLinkActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.LinkActionImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DestroyLinkActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.WriteLinkActionImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ClearAssociationActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="object" persistence-modifier="persistent"  />
+		<field name="association" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.VariableActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="variable" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReadVariableActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.VariableActionImpl" >
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.WriteVariableActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.VariableActionImpl" >
+		<field name="value" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ClearVariableActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.VariableActionImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.AddVariableValueActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.WriteVariableActionImpl" >
+		<field name="insertAt" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.RemoveVariableValueActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.WriteVariableActionImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ApplyFunctionActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="function" persistence-modifier="persistent"  />
+		<field name="argument" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PrimitiveFunctionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageableElementImpl" >
+		<field name="body" persistence-modifier="persistent"  />
+		<field name="language" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CallActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InvocationActionImpl" >
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.InvocationActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="argument" persistence-modifier="persistent"  />
+		<field name="onPort" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.SendSignalActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InvocationActionImpl" >
+		<field name="target" persistence-modifier="persistent"  />
+		<field name="signal" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.BroadcastSignalActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InvocationActionImpl" >
+		<field name="signal" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.SendObjectActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.InvocationActionImpl" >
+		<field name="target" persistence-modifier="persistent"  />
+		<field name="request" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CallOperationActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.CallActionImpl" >
+		<field name="operation" persistence-modifier="persistent"  />
+		<field name="target" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CallBehaviorActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.CallActionImpl" >
+		<field name="behavior" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TimeExpressionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ValueSpecificationImpl" >
+		<field name="event" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DurationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ValueSpecificationImpl" >
+		<field name="event" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TimeObservationActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.WriteStructuralFeatureActionImpl" >
+		<field name="now" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DurationIntervalImpl" persistence-capable-superclass="org.eclipse.uml2.impl.IntervalImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.IntervalImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ValueSpecificationImpl" >
+		<field name="min" persistence-modifier="persistent"  />
+		<field name="max" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.TimeConstraintImpl" persistence-capable-superclass="org.eclipse.uml2.impl.IntervalConstraintImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.IntervalConstraintImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ConstraintImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.TimeIntervalImpl" persistence-capable-superclass="org.eclipse.uml2.impl.IntervalImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DurationObservationActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.WriteStructuralFeatureActionImpl" >
+		<field name="duration" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DurationConstraintImpl" persistence-capable-superclass="org.eclipse.uml2.impl.IntervalConstraintImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DataStoreNodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.CentralBufferNodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.InterruptibleActivityRegionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActivityGroupImpl" >
+		<field name="interruptingEdge" persistence-modifier="persistent"  />
+		<field name="containedNode" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ParameterSetImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="parameter" persistence-modifier="persistent"  />
+		<field name="condition" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ComponentImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassImpl" >
+		<field name="realization" persistence-modifier="persistent"  />
+		<field name="ownedMember" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DeploymentImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DependencyImpl" >
+		<field name="deployedArtifact" persistence-modifier="persistent"  />
+		<field name="configuration" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DeployedArtifactImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeploymentTargetImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="deployment" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.NodeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ClassImpl" >
+		<field name="deployment" persistence-modifier="persistent"  />
+		<field name="nestedNode" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DeviceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ExecutionEnvironmentImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NodeImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.CommunicationPathImpl" persistence-capable-superclass="org.eclipse.uml2.impl.AssociationImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.ProtocolConformanceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DirectedRelationshipImpl" >
+		<field name="generalMachine" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ProtocolStateMachineImpl" persistence-capable-superclass="org.eclipse.uml2.impl.StateMachineImpl" >
+		<field name="conformance" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ProtocolTransitionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TransitionImpl" >
+		<field name="postCondition" persistence-modifier="persistent"  />
+		<field name="preCondition" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReadExtentActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="result" persistence-modifier="persistent"  />
+		<field name="classifier" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReclassifyObjectActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="oldClassifier" persistence-modifier="persistent"  />
+		<field name="newClassifier" persistence-modifier="persistent"  />
+		<field name="object" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReadIsClassifiedObjectActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="classifier" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+		<field name="object" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.StartOwnedBehaviorActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="object" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.QualifierValueImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="qualifier" persistence-modifier="persistent"  />
+		<field name="value" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReadLinkObjectEndActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="object" persistence-modifier="persistent"  />
+		<field name="end" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReadLinkObjectEndQualifierActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="object" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+		<field name="qualifier" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.CreateLinkObjectActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.CreateLinkActionImpl" >
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.AcceptEventActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="trigger" persistence-modifier="persistent"  />
+		<field name="result" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.AcceptCallActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.AcceptEventActionImpl" >
+		<field name="returnInformation" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.ReplyActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="replyToCall" persistence-modifier="persistent"  />
+		<field name="replyValue" persistence-modifier="persistent"  />
+		<field name="returnInformation" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.RaiseExceptionActionImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ActionImpl" >
+		<field name="exception" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DeploymentSpecificationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ArtifactImpl" >
+		<field name="deploymentLocation" persistence-modifier="persistent"  />
+		<field name="executionLocation" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.J_FigureContainerImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="figures" persistence-modifier="persistent" default-fetch-group="true" embedded="true" >
+		  <collection embedded-element="true" />
+		</field>
+		<field name="properties" persistence-modifier="persistent" default-fetch-group="true" embedded="true" >
+		  <collection embedded-element="true" />
+		</field>
+	</class>
+	<class name="org.eclipse.uml2.impl.J_FigureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.J_FigureContainerImpl" >
+		<field name="id" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="recreator" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="anchor1Id" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="anchor2Id" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="containedName" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="text" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="name" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="virtualPoint" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="points" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="brOffset" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="tlOffset" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="show" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="autosized" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="icon" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="point" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="dimensions" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="suppressAttributes" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="suppressOperations" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="suppressContents" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="offset" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="min" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="accessibility" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="classifierScope" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="type" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="subject" persistence-modifier="persistent" default-fetch-group="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.J_PropertyImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="name" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="value" persistence-modifier="persistent" default-fetch-group="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.J_DiagramImpl" persistence-capable-superclass="org.eclipse.uml2.impl.J_FigureContainerImpl" >
+		<field name="name" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="lastFigureId" persistence-modifier="persistent" default-fetch-group="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.J_DiagramHolderImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="diagram" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="saveTime" persistence-modifier="persistent" default-fetch-group="true" />
+		<field name="savedBy" persistence-modifier="persistent" default-fetch-group="true" />
+	</class>
+	<class name="org.eclipse.uml2.impl.AppliedBasicStereotypeValueImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="property" persistence-modifier="persistent"  />
+		<field name="value" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.PropertyValueSpecificationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ValueSpecificationImpl" >
+		<field name="property" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaReplacedConstituentImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="replaced" persistence-modifier="persistent"  />
+		<field name="replacement" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaDeletedConstituentImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="deleted" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaReplacedAttributeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaReplacedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaDeletedAttributeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaDeletedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaReplacedPortImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaReplacedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaDeletedPortImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaDeletedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaReplacedConnectorImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaReplacedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaDeletedConnectorImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaDeletedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaReplacedOperationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaReplacedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaDeletedOperationImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaDeletedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.PortRemapImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="originalPort" persistence-modifier="persistent"  />
+		<field name="newPort" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.SavedReferenceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PackageableElementImpl" >
+		<field name="to" persistence-modifier="persistent"  />
+		<field name="from" persistence-modifier="persistent"  />
+		<field name="toEClass" persistence-modifier="persistent"  />
+		<field name="feature" persistence-modifier="persistent"  />
+	</class>
+
+    </package>
+</jdo>

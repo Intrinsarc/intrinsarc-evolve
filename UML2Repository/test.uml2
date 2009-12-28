@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" j_deleted="true" name="TopLevel">
+  <ownedComment body="This is a package"/>
+  <ownedMember xsi:type="uml:Class" name="ReplacementTopClass">
+    <ownedComment body="The rain in spain falls on the plain"/>
+    <generalization general="//@ownedMember.1" isSubstitutable="true"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" name="SuperClass"/>
+  <j_diagram name="Diagram1">
+    <figures id="Figure" subject="/"/>
+  </j_diagram>
+</uml:Package>

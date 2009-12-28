@@ -1,0 +1,13 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={bb\_inference\_help.als, lines 6-16}, label=alloy:providesenough, captionpos=b]
+pred providesEnough(s: Stratum,
+    provided: set Interface, required: set Interface)
+{
+  all prov: provided |
+    one req: required |
+      req in prov.*(superTypes.s)
+  all req: required |
+    one prov: provided |
+      req in prov.*(superTypes.s)
+}
+\end{lstlisting}

@@ -1,0 +1,7 @@
+        <UML:Package xmi.id="a8" xmi.uuid="DCE-1140441743247-755" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+containment</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Interface xmi.id="a25" xmi.uuid="DCE-1141039344189-937" name="ICompositeFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

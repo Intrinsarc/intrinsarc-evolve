@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo SYSTEM "http://java.sun.com/dtd/jdo_1_0.dtd">
+
+<jdo>
+	<package name="org.eclipse.emf.common.util">
+	
+		<class name="PersistentAbstractEnumerator">
+			<field name="name" persistence-modifier="persistent" />
+			<field name="value" persistence-modifier="persistent" />
+		</class>
+		
+	</package>
+</jdo>

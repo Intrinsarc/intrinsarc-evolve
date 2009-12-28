@@ -1,0 +1,6 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={bb\_port\_inference.als, lines 62-64}, label=alloy:portnavigation, captionpos=b]
+fromPortToPart = portToPart.*(partInternal.partToPart),
+fromPartToPort = ~fromPortToPart,
+fromPartToPart = partToPart.*(partInternal.partToPart),
+\end{lstlisting}

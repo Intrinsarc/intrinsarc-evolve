@@ -1,0 +1,255 @@
+module port_inference
+
+open util/boolean as boolean
+open util/relation as relation
+open structure
+open inference_help
+
+pred setupLeafLinks(s: Stratum, c: Component)
+{
+  -- make sure we have enough link ends
+  ensureLinkEndsExist[s, c]
+
+  let
+    idToPorts = c$\cdot$myPorts$\cdot$objects_e[s],
+    inferred =
+      { p1, p2: ran[idToPorts] |
+        idToPorts$\cdot$p1$\,\times\,$idToPorts$\cdot$p2 $\subseteq$ c$\cdot$links }
+  {
+    -- copy over the links
+    c$\cdot$inferredLinks$\cdot$s = inferred
+
+    -- copy over the sets
+    $\forall\,$cport: c$\cdot$ports$\cdot$s |
+    let
+      end = getComponentLinkEnd[idToPorts$\cdot$cport],
+      errors =
+        $\exists\,$other: c$\cdot$ports$\cdot$s |
+          cport$\,\times\,$other $\subseteq$ c$\cdot$inferredLinks$\cdot$s and
+            (cport$\cdot$required$\cdot$c$\cdot$s $\neq$ other$\cdot$provided$\cdot$c$\cdot$s or
+             cport$\cdot$provided$\cdot$c$\cdot$s $\neq$ other$\cdot$required$\cdot$c$\cdot$s)
+    {
+      -- propagate the set value into the inferred value
+      cport$\cdot$required$\cdot$c$\cdot$s = cport$\cdot$setRequired
+      cport$\cdot$provided$\cdot$c$\cdot$s = cport$\cdot$setProvided
+  
+      -- we have no errors if all linked match up exactly
+      s$\,\times\,$c $\subseteq$ end$\cdot$linkError $\Longleftrightarrow$ errors
+    }
+  }
+}
+
+pred setupCompositeLinks(s: Stratum, c: Component)
+{
+  ensureLinkEndsExist[s, c]
+
+  let
+    allPorts = c$\cdot$ports$\cdot$s,
+    allParts = c$\cdot$parts$\cdot$s,
+    idToPorts = c$\cdot$myPorts$\cdot$objects_e[s],
+    idToParts = c$\cdot$myParts$\cdot$objects_e[s],
+    -- flatten everything into a LinkEnd->LinkEnd structure so we can
+    -- use transitive closure to navigate
+    portToPort =   makePortToPort[s, c],
+    partInternal = makePartInternal[s, c],
+    partToPart =   makePartToPart[s, c],
+    portToPart =   makePortToPart[s, c],
+    partToPort =    $\sim$portToPart,
+    -- we connect by going from a port to a port,
+    -- or from a port to part to possibly the other side of the part
+    -- and then onto another part etc, until we get to a final part,
+    -- or to a final port
+    fromPortToPart = portToPart$\cdot$ $\!\!\!^\ast\!$(partInternal$\cdot$partToPart),
+    fromPartToPort =  $\sim$fromPortToPart,
+    fromPartToPart = partToPart$\cdot$ $\!\!\!^\ast\!$(partInternal$\cdot$partToPart),
+    -- harsh allows us to bounce around looking for any possibly connected other elements.
+    -- used to disallow inferredLinks via tainting
+    harshFromPortToAny =
+      portToPart$\cdot$ $\!\!\!^\ast\!$(portToPart $\cup$ partToPort $\cup$ portToPort $\cup$ partInternal $\cup$ partToPart),
+    fromPortToPort = portToPort $\cup$ fromPortToPart$\cdot$partInternal$\cdot$partToPort
+  {
+    -- set up the inferred links, propagating the constraints to the next level
+    propagateInferredCompositeLinks[
+      s, c, harshFromPortToAny, fromPortToPort,
+      partInternal, portToPort]
+
+    -- get the provided and required interfaces of ports
+    $\forall\,$cport: allPorts |
+    let
+      end = getComponentLinkEnd[idToPorts$\cdot$cport],
+      
+      infReq = cport$\cdot$required$\cdot$c$\cdot$s,
+      reqEnds = end$\cdot$fromPortToPart,
+      requiresFromEnds =
+        { r: Interface  |
+          $\exists\,$ce: reqEnds |
+            r $\subseteq$ ce$\cdot$getPortInstanceRequired[s, c] },
+    matchingRequires = extractLowestCommonSubtypes[s, requiresFromEnds],
+      
+      infProv = cport$\cdot$provided$\cdot$c$\cdot$s,
+      provEnds = end$\cdot$fromPortToPort - end +
+        { e: PartLinkEnd |
+          e $\subseteq$ end$\cdot$fromPortToPart $\wedge$ no e$\cdot$partInternal
+        },
+      providesFromEnds =
+        { p: Interface |
+          {
+            ($\exists\,$e: provEnds $\cap$ ComponentLinkEnd |
+              p $\subseteq$ e$\cdot$getPort[s, c]$\cdot$required$\cdot$c$\cdot$s)
+            or
+            ($\exists\,$e: provEnds $\cap$ PartLinkEnd |
+              p $\subseteq$ e$\cdot$getPortInstanceProvided[s, c])
+          }
+        },
+    matchingProvides = extractHighestCommonSupertypes[s, providesFromEnds]
+    {
+      infReq = matchingRequires
+      infProv = matchingProvides
+
+      s$\,\times\,$c $\not\subseteq$ end$\cdot$linkError $\Longleftrightarrow$
+        (oneToOneProvidedMappingExists[s, c, infProv, reqEnds] and
+         oneToOneRequiredMappingExists[s, c, infReq, reqEnds])
+    }
+
+    -- enforce the constraints for each port instance
+    $\forall\,$cpart: allParts,
+      cport: cpart$\cdot$partType$\cdot$ports$\cdot$s |
+    let
+      type = cpart$\cdot$partType,
+      end = getPartLinkEnd[cpart$\cdot$portMap[s]$\cdot$cport, idToParts$\cdot$cpart]
+    {
+      
+      {
+        let
+          infReq = end$\cdot$getPortInstanceRequired[s, c],        
+          infProv = end$\cdot$getPortInstanceProvided[s, c],
+          terminalEnds = end$\cdot$fromPartToPort +
+            { e: PartLinkEnd |
+              e $\subseteq$ end$\cdot$fromPartToPart $\wedge$ no e$\cdot$partInternal
+            },
+          provFromTerminalEnds =
+            { p: Interface |
+              {
+                ($\exists\,$e: terminalEnds $\cap$ ComponentLinkEnd |
+                  p $\subseteq$ e$\cdot$getPort[s, c]$\cdot$provided$\cdot$c$\cdot$s)
+                or
+                ($\exists\,$e: terminalEnds $\cap$ PartLinkEnd |
+                  p $\subseteq$ e$\cdot$getPortInstanceRequired[s, c])
+              }
+            },
+          allEnds = end$\cdot$fromPartToPort +
+            { e: PartLinkEnd |
+              e $\subseteq$ end$\cdot$fromPartToPart
+            },
+          matchingTerminalProvides =
+            extractLowestCommonSubtypes[s, provFromTerminalEnds]
+        {
+          s$\,\times\,$c $\not\subseteq$ end$\cdot$linkError $\Longleftrightarrow$
+          {
+            no end$\cdot$partInternal $\Longrightarrow$
+              providesEnough[s, infProv, matchingTerminalProvides]
+            oneToOneRequiredMappingExists[s, c, infProv, allEnds]
+            oneToOneProvidedMappingExists[s, c, infReq, allEnds]
+          }
+        }
+      }
+    }
+  }
+}
+
+pred linksAreWellFormed(s: Stratum, c: Component)
+{
+  let
+    allPorts = c$\cdot$ports$\cdot$s,
+    allParts = c$\cdot$parts$\cdot$s,
+    idToParts = c$\cdot$myParts$\cdot$objects_e[s],
+    portToPort =   makePortToPort[s, c]
+  {
+    -- enforce that no ports connect directly to each other
+    -- as this can lead to indeterministic interface assigment
+    isTrue[c$\cdot$isComposite] $\Longrightarrow$
+      no portToPort
+
+    -- enforce the constraints for each port
+    $\forall\,$cport: allPorts |
+    let
+      infProv = cport$\cdot$provided$\cdot$c$\cdot$s,
+      infReq = cport$\cdot$required$\cdot$c$\cdot$s,
+      idToPorts = c$\cdot$myPorts$\cdot$objects_e[s],
+      end = getComponentLinkEnd[idToPorts$\cdot$cport],
+      amHome = c$\cdot$home = s,
+      setInterfaces = cport$\cdot$(setProvided $\cup$ setRequired)
+    {
+      -- check any set values only if we are "home"
+      (amHome $\wedge$ $\exists\,$setInterfaces) $\Longrightarrow$
+      {
+        infProv = cport$\cdot$setProvided
+        infReq = cport$\cdot$setRequired
+      }
+      
+      -- must have some interfaces
+      $\exists\,$infProv $\cup$ infReq
+      s$\,\times\,$c $\not\subseteq$ end$\cdot$linkError
+    }
+
+    -- enforce the constraints for each port instance
+    $\forall\,$cpart: allParts,
+      cport: cpart$\cdot$partType$\cdot$ports$\cdot$s |
+    let
+      end = getPartLinkEnd[cpart$\cdot$portMap[s]$\cdot$cport, idToParts$\cdot$cpart],
+      infReq = end$\cdot$getPortInstanceRequired[s, c],
+      infProv = end$\cdot$getPortInstanceProvided[s, c]
+    {
+      -- must have some interfaces
+      $\exists\,$infProv $\cup$ infReq
+      s$\,\times\,$c $\not\subseteq$ end$\cdot$linkError
+    }
+  }
+}
+
+
+-- set up the inferred links for this component for a leaf, just use the links
+-- for a composite, trace through from port to port, but only infer a link if there
+-- is no terminal part involve anywhere
+pred propagateInferredCompositeLinks(
+  s: Stratum,
+  c: Component,  
+  harshFromPortToAny:  ComponentLinkEnd$\,\times\,$LinkEnd,
+  fromPortToPort:      ComponentLinkEnd$\,\times\,$ComponentLinkEnd,
+  partInternal:        PartLinkEnd$\,\times\,$PartLinkEnd,
+  portToPort:          ComponentLinkEnd$\,\times\,$ComponentLinkEnd)
+{
+  let
+    idToPorts = c$\cdot$myPorts$\cdot$objects_e[s],
+    allPorts = c$\cdot$ports$\cdot$s,
+    terminateInternallyIDs =
+    { id: dom[idToPorts] $\cap$ PortID |
+      $\exists\,$end: PartLinkEnd |
+      let instance = end$\cdot$getPortInstance[s, c],
+        cport = dom[instance],
+        cpart = ran[instance]
+      {
+        getComponentLinkEnd[id] $\subseteq$ harshFromPortToAny$\cdot$end
+        no end$\cdot$partInternal
+        -- only provided terminals break linking
+        $\exists\,$cport$\cdot$provided$\cdot$(cpart$\cdot$partType)$\cdot$s
+      }
+    }
+  {
+    -- find all port->port combinations that go through a leaf part and link up
+    -- but which don't have a termination on a provided port instance interface
+    let inferred =
+    { p1, p2: Port |
+      $\exists\,$end: dom[fromPortToPort] | let other = end$\cdot$fromPortToPort
+      {
+        disj[end, other]
+        p1 = idToPorts[end$\cdot$linkPortID]
+        p2 = idToPorts[other$\cdot$linkPortID]
+        -- if we can reach a port which links internally,
+        -- do not create an alias
+        no (end $\cup$ other)$\cdot$ $\!\!\!^\ast\!$portToPort$\cdot$linkPortID $\cap$ terminateInternallyIDs
+      }
+    } |
+    c$\cdot$inferredLinks$\cdot$s = inferred
+  }
+}

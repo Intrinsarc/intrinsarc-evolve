@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo SYSTEM "http://java.sun.com/dtd/jdo_1_0.dtd">
+
+<jdo>
+  <package name="org.eclipse.emf.ecore.impl">
+  
+	<class name="EObjectImpl">
+		<field name="eContainer" persistence-modifier="persistent" />
+		<field name="eContainerFeatureID" persistence-modifier="persistent" />
+		<field name="eFlags" persistence-modifier="persistent" />
+		<field name="eProperties" persistence-modifier="none" />
+		<field name="eAdapters" persistence-modifier="none" />
+	</class>
+	
+	<class name="EModelElementImpl" persistence-capable-superclass="org.eclipse.emf.ecore.impl.EObjectImpl">
+		<field name="eAnnotations" persistence-modifier="none" />
+	</class>
+	
+	<class name="EListArrayList" persistence-capable-superclass="java.util.ArrayList">
+		<field name="elementData" persistence-modifier="persistent" />
+		<field name="size" persistence-modifier="persistent" />
+	</class>
+
+	</package>
+</jdo>

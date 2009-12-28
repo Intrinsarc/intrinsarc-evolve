@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!--
+ Copyright (c) 2003, 2005 IBM Corporation and others.
+ All rights reserved.   This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+ Contributors: 
+   IBM - initial API and implementation
+
+ $Id: welcome.xml,v 1.1 2009-03-04 23:06:48 andrew Exp $
+-->
+
+<welcomePage 
+	title="Unified Modeling Language 2.0">
+
+  <intro>
+    UML2 is an EMF-based implementation of the UML™ 2.0 metamodel for the Eclipse
+    platform.
+  </intro>
+
+  <item><b>Please Note</b>
+    The UML2 API and associated XMI schema are subject to (significant) change
+    until the UML™ 2.0 Specification is finalized.
+  </item>
+
+  <item><b>Learn More</b>
+    More information on UML2 is available at <topic href="http://www.eclipse.org/uml2">http://www.eclipse.org/uml2</topic>.
+  </item>
+
+</welcomePage>

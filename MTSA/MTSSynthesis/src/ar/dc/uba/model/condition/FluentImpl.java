@@ -1,0 +1,75 @@
+package ar.dc.uba.model.condition;
+
+import java.util.*;
+
+import org.apache.commons.lang.builder.*;
+
+import ar.dc.uba.model.language.*;
+
+/**
+ * Fluent default implementation
+ * 
+ * @author gsibay
+ * 
+ */
+public class FluentImpl implements Fluent {
+
+	private String name;
+	private Set<Symbol> initiatingActions;
+	private Set<Symbol> terminatingActions;
+	private boolean initialValue;
+
+	public FluentImpl(String name, Set<Symbol> initiatingActions,
+			Set<Symbol> terminatingActions, boolean initialValue) {
+		this.name = name;
+		this.initiatingActions = initiatingActions;
+		this.terminatingActions = terminatingActions;
+		this.initialValue = initialValue;
+	}
+
+	@Override
+	public Set<Symbol> getInitiatingActions() {
+		return this.initiatingActions;
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public Set<Symbol> getTerminatingActions() {
+		return this.terminatingActions;
+	}
+
+	@Override
+	public boolean initialValue() {
+		return this.initialValue;
+	}
+
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		result.append(this.getName()).append(" = <").append(
+				this.getInitiatingActions()).append(" , ").append(
+				this.getTerminatingActions()).append(" > initially ").append(
+				this.initialValue());
+		return result.toString();
+	}
+
+	public boolean equals(Object anObject) {
+		if (this == anObject) {
+			return true;
+		}
+		if (anObject instanceof FluentImpl) {
+			FluentImpl fluent = (FluentImpl) anObject;
+			return this.getName().equals(fluent.getName());
+		} else {
+			return false;
+		}
+	}
+
+	public int hashCode() {
+		return new HashCodeBuilder(19, 37).append(this.getName()).toHashCode();
+	}
+
+}

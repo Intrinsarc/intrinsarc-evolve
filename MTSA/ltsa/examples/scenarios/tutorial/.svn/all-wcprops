@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/scenarios/tutorial
+END
+webmail.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/scenarios/tutorial/webmail.xml
+END
+conditions.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/scenarios/tutorial/conditions.xml
+END
+stylesheet.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/scenarios/tutorial/stylesheet.xsl
+END

@@ -1,0 +1,9 @@
+        <UML:Package xmi.id="a3" xmi.uuid="DCE-1140441368533-67" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+application</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a65" xmi.uuid="DCE-1141049754586-959" isActive="false" name="GraphEditorApplication" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a75" xmi.uuid="DCE-1141051085664-212" isActive="true" name="GraphApplicationWindow" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a76" xmi.uuid="DCE-1141051110414-964" name="IRun" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

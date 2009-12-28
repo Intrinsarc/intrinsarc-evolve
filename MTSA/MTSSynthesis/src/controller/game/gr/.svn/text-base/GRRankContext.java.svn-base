@@ -1,0 +1,43 @@
+package controller.game.gr;
+
+import controller.game.model.RankContext;
+
+public class GRRankContext implements RankContext {
+
+	private int height;
+	private int width;
+	
+	public GRRankContext(int height, int width) {
+		this.height = height;
+		this.width = width;
+	}
+	
+	/* (non-Javadoc)
+	 * @see controller.game.gr.RankContext#inRange(int, int)
+	 */
+	public boolean inRange(int value, int assume) {
+		return ((value >= 0 && value <= this.height) &&
+		(assume > 0 && assume <= this.width) && 
+		(value < this.height || assume == 1)); 
+	}
+
+	/* (non-Javadoc)
+	 * @see controller.game.gr.RankContext#getHeight()
+	 */
+	public int getHeight() {
+		return this.height;
+	}
+
+	/* (non-Javadoc)
+	 * @see controller.game.gr.RankContext#getWidth()
+	 */
+	public int getWidth() {
+		return this.width;
+	}
+	
+	@Override
+	public String toString() {
+		return "[width:" + this.width + ", height:" + this.height + "]";
+	}
+
+}

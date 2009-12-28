@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/mtsa/!svn/ver/113/trunk/MTSSynthesis/src/ar/dc/uba/model/condition
+END
+FluentImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/FluentImpl.java
+END
+Valuation.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/Valuation.java
+END
+Formula.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/Formula.java
+END
+Condition.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/Condition.java
+END
+FluentPropositionalVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/FluentPropositionalVariable.java
+END
+NotFormula.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/NotFormula.java
+END
+OrFormula.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/OrFormula.java
+END
+AndFormula.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/AndFormula.java
+END
+ConditionImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/ConditionImpl.java
+END
+PropositionalVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/PropositionalVariable.java
+END
+ZetaFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/ZetaFunction.java
+END
+BinaryFormula.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/BinaryFormula.java
+END
+Fluent.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/Fluent.java
+END
+FluentUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/113/trunk/MTSSynthesis/src/ar/dc/uba/model/condition/FluentUtils.java
+END

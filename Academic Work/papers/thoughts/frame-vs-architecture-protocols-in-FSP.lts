@@ -1,0 +1,46 @@
+Prot_A = (port_a.rx_request.first -> port_b.tx_request.second -> port_b.tx_request.third -> port_b.rx_response.second -> port_a.tx_response.first -> Prot_A).
+
+Prot_B = (port_p.rx_request.second -> port_p.tx_response.second -> Prot_B).
+
+||Renamed_Prot_B = (Prot_B)
+	/{internal.port_bp.request/port_p.rx_request, internal.port_bp.response/port_p.tx_response}.
+
+||Renamed_Prot_A = (Prot_A)
+	/{internal.port_bp.request/port_b.tx_request, internal.port_bp.response/port_b.rx_response}.
+
+||Architecture_Prot = (Renamed_Prot_A || Renamed_Prot_B).
+
+||External_Architecture_Prot = (Architecture_Prot)
+	\{internal}.
+
+
+
+
+Prot_COMP = (port_z.rx_request.first -> port_z.tx_response -> Prot_COMP).
+
+
+Bad = (request -> response -> Bad | requestX -> responseX -> request -> foo -> Bad).
+Expected = (request -> response -> Expected).
+ExpectedX = (requestX -> responseX -> ExpectedX).
+||Test = (Bad || Expected).
+
+
+/* want to detect:
+
+
+1) incorrect interleaving of request & response of a single component
+	--> easy, just compose individually with a PERFECT = request->response->PERFECT process. 
+	--> Note, both request or response must be used somewhere.
+
+2) incorrect nesting of request and response on port
+	--> not really necessary, as it may be servicing different requests?!?
+
+3) unmatched request and response from other side
+	--> need to rename for linked ports
+	--> aim to turn bad requests into no activity errors
+
+
+4) infinite traces
+	--> is it even possible to get to this state using FSP?
+
+*/

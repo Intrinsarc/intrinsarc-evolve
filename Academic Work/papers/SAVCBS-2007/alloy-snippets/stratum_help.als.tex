@@ -1,0 +1,51 @@
+module stratum_help
+
+open structure
+
+
+-- some predicates to help with structuring a model
+pred Model::providesIsOptional()
+{
+  Model$\cdot$providesIsOptional = True
+}
+
+pred Model::providesIsNotOptional()
+{
+  Model$\cdot$providesIsOptional = False
+}
+
+pred Model::noErrorsAllowed()
+{
+  no this$\cdot$errorsAllowed
+}
+
+pred Model::errorsAllowedInTopOnly()
+{
+  this$\cdot$errorsAllowed = isTop$\cdot$True
+}
+
+pred Model::topDefinesNothing()
+{
+  no isTop$\cdot$True$\cdot$ownedElements
+}
+
+pred Model::definesNothing(s: Stratum)
+{
+  no s$\cdot$ownedElements
+}
+
+pred Model::errorsOnlyAllowedInTopAndOthers(others: set Stratum)
+{
+  this$\cdot$errorsAllowed = others $\cup$ isTop$\cdot$True
+}
+
+pred Model::errorsOnlyAllowedIn(others: set Stratum)
+{
+  this$\cdot$errorsAllowed = others
+}
+
+pred Model::forceErrors(errorStrata: set Stratum)
+{
+  $\forall\,$e: errorStrata |
+    $\exists\,$isInvalid_e$\cdot$e
+}

@@ -1,0 +1,527 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples
+END
+OneShot.lts
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/OneShot.lts
+END
+Allocator.lts
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Allocator.lts
+END
+Doubleclick.lts
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Doubleclick.lts
+END
+Buff.lts
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Buff.lts
+END
+Twocoin.lts
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Twocoin.lts
+END
+MasterSlave.lts
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/MasterSlave.lts
+END
+Timeout.lts
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Timeout.lts
+END
+CruiseControl.lts
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/CruiseControl.lts
+END
+BoundedBuffer_fixedSema.lts
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/BoundedBuffer_fixedSema.lts
+END
+SynchMsgDemo.lts
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/SynchMsgDemo.lts
+END
+High_low.lts
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/High_low.lts
+END
+Jitter.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Jitter.lts
+END
+client_server.lts
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/client_server.lts
+END
+Bill_ben.lts
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Bill_ben.lts
+END
+DeadlockFreePhilosophers.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/DeadlockFreePhilosophers.lts
+END
+resource_share.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/resource_share.lts
+END
+Port_recursive.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Port_recursive.lts
+END
+Calm.lts
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Calm.lts
+END
+Writer.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Writer.lts
+END
+User.lts
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/User.lts
+END
+Counter.lts
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Counter.lts
+END
+Timed_producer_consumer.lts
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Timed_producer_consumer.lts
+END
+Safe actuator.lts
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Safe%20actuator.lts
+END
+Semaphore.lts
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Semaphore.lts
+END
+Space_invaders.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Space_invaders.lts
+END
+SemaDemo.lts
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/SemaDemo.lts
+END
+CongestedSingleLaneBridge.lts
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/CongestedSingleLaneBridge.lts
+END
+Maze.lts
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Maze.lts
+END
+Counter_lockvar.lts
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Counter_lockvar.lts
+END
+BoxMover.lts
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/BoxMover.lts
+END
+GolfClubFifo.lts
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/GolfClubFifo.lts
+END
+Display_Counter.lts
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Display_Counter.lts
+END
+printer_share.lts
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/printer_share.lts
+END
+Move.lts
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Move.lts
+END
+trafficLight.lts
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/trafficLight.lts
+END
+Factory.lts
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Factory.lts
+END
+Thread.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Thread.lts
+END
+DiningPhilosophers.lts
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/DiningPhilosophers.lts
+END
+clock_radio.lts
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/clock_radio.lts
+END
+SupervisorWorker-revised.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/SupervisorWorker-revised.lts
+END
+thread_demo.lts
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/thread_demo.lts
+END
+Twobuff.lts
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Twobuff.lts
+END
+client_serverv2.lts
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/client_serverv2.lts
+END
+countDown.lts
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/countDown.lts
+END
+BoundedBuffer_nestedSema.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/BoundedBuffer_nestedSema.lts
+END
+CarPark.lts
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/CarPark.lts
+END
+AbstractPrimes.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/AbstractPrimes.lts
+END
+Interval.lts
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Interval.lts
+END
+AnnouncerLstener.lts
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/AnnouncerLstener.lts
+END
+Coin.lts
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Coin.lts
+END
+Switches.lts
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Switches.lts
+END
+RendezvousEntryDemo.lts
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/RendezvousEntryDemo.lts
+END
+SingleLaneBridge.lts
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/SingleLaneBridge.lts
+END
+Port_recursive_overflow.lts
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Port_recursive_overflow.lts
+END
+printer-scanner-timeout.lts
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/printer-scanner-timeout.lts
+END
+Garden.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Garden.lts
+END
+Switch.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Switch.lts
+END
+Sum.lts
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Sum.lts
+END
+Faulty.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Faulty.lts
+END
+ReadersWriters.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/ReadersWriters.lts
+END
+maker_userv2.lts
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/maker_userv2.lts
+END
+Parcel_router.lts
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Parcel_router.lts
+END
+Mutex_property.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Mutex_property.lts
+END
+ReadersWritersPriority.lts
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/ReadersWritersPriority.lts
+END
+printer-scanner-reorder.lts
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/printer-scanner-reorder.lts
+END
+printer-scanner.lts
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/printer-scanner.lts
+END
+Maximal_progress.lts
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Maximal_progress.lts
+END
+Garden_lockvar.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Garden_lockvar.lts
+END
+Actuator.lts
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Actuator.lts
+END
+Port.lts
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Port.lts
+END
+SingleLaneBridgeDeadlock.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/SingleLaneBridgeDeadlock.lts
+END
+Count.lts
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Count.lts
+END
+Drinks.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Drinks.lts
+END
+Polite.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Polite.lts
+END
+GolfClub.lts
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/GolfClub.lts
+END
+maker_user.lts
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/maker_user.lts
+END
+Tproducer_consumer_store.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Tproducer_consumer_store.lts
+END
+itch_scratch.lts
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/itch_scratch.lts
+END
+Primes.lts
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/Primes.lts
+END
+SingleLaneBridgeFair.lts
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/SingleLaneBridgeFair.lts
+END
+AsynchMsgDemo.lts
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/AsynchMsgDemo.lts
+END
+TupleSpace.lts
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/TupleSpace.lts
+END
+SynchMsgAdditionallts.lts
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/SynchMsgAdditionallts.lts
+END
+ReadersWritersFair.lts
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/ReadersWritersFair.lts
+END
+SupervisorWorker-non-term.lts
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/SupervisorWorker-non-term.lts
+END
+BoundedBuffer.lts
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/BoundedBuffer.lts
+END
+RevisedCruiseControl.lts
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/test/examples/RevisedCruiseControl.lts
+END

@@ -1,0 +1,127 @@
+#LyX 1.4.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Composition rules:
+\end_layout
+
+\begin_layout Enumerate
+Strata compose Components, Interfaces
+\end_layout
+
+\begin_layout Enumerate
+Components compose Ports, Properties, Parts, Connectors
+\end_layout
+
+\begin_layout Enumerate
+Parts compose PropertyBindings, (PortInstances)
+\end_layout
+
+\begin_layout Enumerate
+Connectors compose ConnectorEnds 
+\end_layout
+
+\begin_layout Standard
+Well-formedness rules:
+\end_layout
+
+\begin_layout Enumerate
+No Stratum cycles are allowed
+\end_layout
+
+\begin_layout Enumerate
+Ports must have visibility of their required and provided Interfaces
+\end_layout
+
+\begin_layout Enumerate
+Parts must have visibility of their Component type
+\end_layout
+
+\begin_layout Enumerate
+The Component-Part relation must not be cyclic
+\end_layout
+
+\begin_layout Enumerate
+A Port must have at least 1 provided or required Interface
+\end_layout
+
+\begin_layout Enumerate
+A Component must have at least 1 Port 
+\end_layout
+
+\begin_layout Standard
+Connection rules:
+\end_layout
+
+\begin_layout Enumerate
+A ComponentConnectorEnd must reference a Port of the Component that owns
+ the Connector
+\end_layout
+
+\begin_layout Enumerate
+A PortConnectorEnd must reference a valid Port of the Part's Component type
+\end_layout
+
+\begin_layout Enumerate
+ConnectorEnds in a single Connector must be fully symmetric (provides +
+ requires) with regards to Interfaces
+\end_layout
+
+\begin_layout Enumerate
+For each Part, a PortInstance must be present for each Port of the Part's
+ Component type
+\end_layout
+
+\begin_layout Enumerate
+Each PortInstance must be fully connected with Connectors such that the
+ provided and required interfaces match exactly against PartConnectorEnds
+\end_layout
+
+\begin_layout Enumerate
+Each (non-internal) Port must be fully connected with Connectors such that
+ the provided and required interfaces match exactly against ComponentConnectorEn
+ds, but with reverse polarity
+\end_layout
+
+\begin_layout Enumerate
+Internal Ports must not have any Connectors
+\end_layout
+
+\begin_layout Enumerate
+Parts must be eventually traceable back to a Port, following Connectors
+\end_layout
+
+\begin_layout Enumerate
+There may only be 1 self-Connector per Port or PortInstance
+\end_layout
+
+\end_body
+\end_document

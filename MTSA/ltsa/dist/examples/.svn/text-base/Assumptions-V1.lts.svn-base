@@ -1,0 +1,20 @@
+
+fluent Afluent = <a, {b, k, n}>
+fluent Bfluent = <b, {a, k, n}>
+
+assert A = Afluent
+assert B = Bfluent
+
+set Controllable = {b}
+
+goal G1 = {
+safety = {}
+fault = {}
+assume = {A}
+guarantee = {B}
+controllable = {Controllable} 
+}
+
+controller M = (a->b->M | k->n->M)~{G1}.
+
+minimal ||C = M.

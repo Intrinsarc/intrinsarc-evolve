@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="721"
+   height="290"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   sodipodi:docname="desk-with-singleton.svg"
+   sodipodi:docbase="/home/andrew/work/workspace/Academic Work/phd-thesis/models"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/andrew/work/workspace/Academic Work/phd-thesis/models/desk-with-singleton.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         id="path4225"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.97309,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lstart"
+       style="overflow:visible">
+      <path
+         id="path3366"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.97309,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="matrix(1.1,0,0,1.1,1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path3348"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="378.94882"
+     inkscape:cy="373.14153"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1680"
+     inkscape:window-height="1019"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     width="620px"
+     height="290px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(187.46829,-186.14427)">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2160"
+       width="67.388329"
+       height="48.138023"
+       x="-93.084862"
+       y="297.6655" />
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="105.35794"
+       y="230.78587"
+       id="text3181"><tspan
+         sodipodi:role="line"
+         id="tspan3183"
+         x="105.35794"
+         y="230.78587"
+         style="font-size:20px">Desk</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-87.389641"
+       y="330.31284"
+       id="text2292"><tspan
+         sodipodi:role="line"
+         id="tspan2294"
+         x="-87.389641"
+         y="330.31284"
+         style="font-size:20px">Mixer</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="177.3689"
+       y="330.68201"
+       id="text2296"><tspan
+         sodipodi:role="line"
+         id="tspan2298"
+         x="177.3689"
+         y="330.68201"
+         style="font-size:20px">MicDevice</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="299.57001"
+       y="331.47949"
+       id="text2308"><tspan
+         sodipodi:role="line"
+         id="tspan2310"
+         x="299.57001"
+         y="331.47949"
+         style="font-size:20px">MicDevice</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-37.305023"
+       y="440.08917"
+       id="text2216"><tspan
+         sodipodi:role="line"
+         id="tspan2218"
+         x="-37.305023"
+         y="440.08917"
+         style="font-size:20px">Equaliser</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-165.21542"
+       y="439.70667"
+       id="text2220"><tspan
+         sodipodi:role="line"
+         id="tspan2222"
+         x="-165.21542"
+         y="439.70667"
+         style="font-size:20px">Combiner</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2215"><flowRegion
+         id="flowRegion2217"><rect
+           id="rect2219"
+           width="4.0833974"
+           height="14.000219"
+           x="177.33611"
+           y="320.3338" /></flowRegion><flowPara
+         id="flowPara2221" /></flowRoot>    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2227"
+       width="113.31328"
+       height="47.47897"
+       x="171.1725"
+       y="297.87744" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2229"
+       width="112.32201"
+       height="47.487705"
+       x="295.79404"
+       y="297.9566" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2231"
+       width="109.34846"
+       height="47.514153"
+       x="-45.21907"
+       y="406.44568" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2233"
+       width="109.34846"
+       height="47.514153"
+       x="-170.46828"
+       y="406.36121" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3207"
+       width="67.388329"
+       height="48.138023"
+       x="95.509933"
+       y="197.62721" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect10105"
+       width="721"
+       height="290"
+       x="-187.46829"
+       y="186.14427">
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#9b9b9b;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:3.4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect13103"
+         width="1"
+         height="291"
+         x="375.53171"
+         y="141.1443" />
+    </rect>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-11.353317"
+       y="330.9234"
+       id="text2234"><tspan
+         sodipodi:role="line"
+         id="tspan2236"
+         x="-11.353317"
+         y="330.9234"
+         style="font-size:20px">DeviceController</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2238"
+       width="175.82634"
+       height="46.992031"
+       x="-14.881439"
+       y="297.64828" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 112,174 C 112,174 112,174 303,123 C 303,175 303,175 303,175"
+       id="path4280"
+       transform="translate(-173.46828,123.14427)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 400,175 C 400,175 400,175 302,123 C 519,175 519,175 519,175"
+       id="path4282"
+       transform="translate(-173.46828,123.14427)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 52,282 C 52,282 52,282 112,222 C 171.5,281.5 171.5,281.5 171.5,281.5"
+       id="path4284"
+       transform="translate(-173.46828,123.14427)" />
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="428.14667"
+       y="330.92331"
+       id="text2264"><tspan
+         sodipodi:role="line"
+         id="tspan2266"
+         x="428.14667"
+         y="330.92331"
+         style="font-size:20px">Logger</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2268"
+       width="87.551979"
+       height="47.717678"
+       x="420.25571"
+       y="297.28543" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.38720644;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow2Lstart);marker-end:url(#Arrow2Lend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 252.08233,440.00797 C 289.58444,440.00797 289.58444,440.00797 289.58444,440.00797"
+       id="path11269" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:OpenSymbol"
+       x="300.38873"
+       y="444.00659"
+       id="text12240"><tspan
+         sodipodi:role="line"
+         id="tspan12242"
+         x="300.38873"
+         y="444.00659">connector added for hyperports</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow2Lstart);marker-mid:none;marker-end:url(#Arrow2Lend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 76.071211,407.51324 C 430.9922,353.77531 430.9922,353.77531 430.9922,353.77531"
+       id="path7379" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 464,122 C 796,173 796,173 796,173"
+       id="path4378"
+       transform="translate(-334.46829,123.14427)" />
+  </g>
+</svg>

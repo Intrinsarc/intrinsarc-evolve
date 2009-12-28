@@ -1,0 +1,13 @@
+            <UML:Package xmi.id="a16" xmi.uuid="DCE-1107963812203-942" name="state pattern" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a17" xmi.uuid="DCE-1107963823625-391" name="Switch" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a19" xmi.uuid="DCE-1107963857843-315" name="StateEvents" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a20" xmi.uuid="DCE-1107963864406-719" name="StateChange" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a25" xmi.uuid="DCE-1107963951875-911" name="StateMachine" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a27" xmi.uuid="DCE-1107964043234-49" name="Initialise" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a28" xmi.uuid="DCE-1107964052687-862" name="ProcessFully" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a29" xmi.uuid="DCE-1107964056968-568" name="ProcessPartially" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a30" xmi.uuid="DCE-1107964062640-582" name="Notify" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a31" xmi.uuid="DCE-1107964252281-940" name="SuccessorStateFinder" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

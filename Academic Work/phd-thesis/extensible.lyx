@@ -1,0 +1,575 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+%\sloppy
+
+%  \let\oldthebibliography=\thebibliography
+% \let\endoldthebibliography=\endthebibliography
+%  \renewenvironment{thebibliography}[1]{%
+%    \begin{oldthebibliography}{#1}%
+%      \setlength{\parskip}{0ex}%
+%      \setlength{\itemsep}{0ex}%
+%  }%
+%  {%
+%    \end{oldthebibliography}%
+%  }
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{gray}{rgb}{0.35,0.35,0.35}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--},
+ commentstyle=\color{gray},
+ morekeywords={sig,all,pred,extends,some,abstract,fact,module,open,disj,disjoint,let,no,lone,one,not,as,in,set,and,or,fun,this,else},
+  keywordstyle=\bfseries
+}
+
+\lstset{language=Alloy}
+
+\newtheorem{srule}{Structural rule}
+\newtheorem{sdef}{Definition}
+\newtheorem{sprop}{Property}
+
+\include{thesis.preamble}
+\bibliographystyle{alpha-abbrev}
+
+\usepackage[left=2.3cm,right=1.7cm,top=3.5cm,bottom=2cm,twoside]{geometry}
+\usepackage{courier}
+\end_preamble
+\use_default_options false
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 2cm
+\topmargin 3cm
+\rightmargin 2cm
+\bottommargin 2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+LARGE{
+\end_layout
+
+\end_inset
+
+A Rigorous, Architectural Approach to
+\begin_inset Newline newline
+\end_inset
+
+Extensible Applications
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Andrew McVeigh
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+submitdate{August 2009} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+normallinespacing
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+preface
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Abstract}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+An extensible application is one which allows functionality to be added,
+ replaced or removed without requiring the source code of the application
+ to be revealed or modified.
+ The aim is to enable developers to add features and customise a substantial
+ base application for new requirements, without the direct involvement of
+ the application creators.
+\end_layout
+
+\begin_layout Abstract
+A recurring theme of existing extensibility approaches is that an application
+ must provide pre-planned extension points to accommodate expected future
+ extensions.
+ This results in a tension between keeping the architecture simple and potential
+ly inextensible, or providing many predictive extension points that cannot
+ be guaranteed to cover all future requirements despite best intentions.
+\end_layout
+
+\begin_layout Abstract
+The Backbone component model is presented as an architectural approach which
+ addresses these issues.
+ By augmenting an architecture description language with a small set of
+ constructs for modelling structural change, extensibility is naturally
+ built into an application as it is elaborated into a compositional hierarchy.
+ An extension can then restructure any part of the application architecture
+ it builds on, to meet new requirements.
+\end_layout
+
+\begin_layout Abstract
+The key contribution of this work is the consideration of both planned and
+ unplanned extensibility in a hierarchical component model.
+ A formal specification is given, describing the way that extensions can
+ alter an architecture, and how extensions can be combined in a way which
+ resolves any structural conflict.
+\end_layout
+
+\begin_layout Abstract
+Tool support is provided by a UML-based modelling workbench and runtime
+ platform, developed from the specification.
+ Integration with existing implementation components and their subsequent
+ evolution is fully supported.
+\end_layout
+
+\begin_layout Abstract
+For evaluation, the model is compared and contrasted with other approaches,
+ specifically plugin architectures and product lines.
+ Backbone is also used to restructure and extend a mature system.
+ These studies demonstrate that Backbone supports unplanned extension with
+ the proviso that if existing leaf components are not granular enough, then
+ some reimplementation may be required.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+cleardoublepage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Acknowledgements}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{acknowledgements}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I would like to express my gratitude to my supervisors, Jeff Magee and Jeff
+ Kramer, for their guidance and constant encouragement, and the sharing
+ of their deep insights into component structures and software architecture.
+ Their work and research has inspired, educated and humbled me.
+ They have also helped me to grasp the deep and sometimes subtle relationship
+ between intuitive understanding and formal specification in software engineerin
+g.
+ Their helpful critique has improved my writing style immeasurably.
+\end_layout
+
+\begin_layout Standard
+I would also like to thank Susan Eisenbach, who has supported my lectures
+ on the background to this thesis and on compositional modelling.
+ Special thanks to Naranker Dulay, who spent much time explaining to me
+ the details and history of the Darwin implementations.
+\end_layout
+
+\begin_layout Standard
+Thanks must be extended to my work colleagues at the various companies that
+ I did contract work for during my studies.
+ In particular Jitendra Shah, Kevin Smith, Julie Evans, Maria Buckley, Steve
+ Ashcroft and Jeremy Wilks have kindly allowed me to work whenever I needed
+ or wanted to.
+ Special thanks to Markus Tesch for agreeing to the amazingly flexible arrangeme
+nt in the first place.
+\end_layout
+
+\begin_layout Standard
+My family have been a source of constant encouragement throughout.
+ My wife Terri has supported me immensely during this time and has always
+ realised how important this work has been to me.
+ My two children, Maddie and Belle, have been wonderful and very understanding
+ when the studies meant that I could not spend so much time taking them
+ to the park or playing on the trampoline with them!
+\end_layout
+
+\begin_layout Standard
+Last, but not least, I would like to thank Ian Hodkinson for his helpful
+ words of advice in my first year.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{acknowledgements}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+cleardoublepage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{dedication}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+This thesis is dedicated to my lovely wife Terri, and my two wonderful daughters
+ Annabelle and Madeline.
+ Thanks to God for an answer to prayer, and for the fortuitous appearance
+ of a small book on software architecture in an obscure second-hand bookshop
+ in Perth.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+This thesis is also dedicated to my mum, who was so proud of my work.
+ Rest in peace.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{dedication}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+body
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "introduction.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "background.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "backbone-model.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "formal-outline.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "tool-approach.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "advanced-modelling.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "evaluation.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "conclusions.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "../read papers/references"
+options "bibtotoc,plain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtocontents{toc}{
+\backslash
+vspace{0.25in}Appendices
+\backslash
+protect
+\backslash
+par}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset CommandInset include
+LatexCommand include
+filename "informal-formal.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "formal-base.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "formal-component.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "alloy-intro.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "software.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage 
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+mbox{}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage 
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+mbox{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

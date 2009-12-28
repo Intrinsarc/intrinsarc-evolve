@@ -1,0 +1,38 @@
+package controller;
+
+import java.util.Map;
+import java.util.Set;
+
+import ac.ic.doc.commons.relations.Pair;
+import ac.ic.doc.mtstools.model.MTS;
+import controller.game.gr.GRGameSolver;
+import controller.game.gr.GRRankSystem;
+import controller.game.model.Game;
+import controller.game.model.GameSolver;
+import controller.game.util.GameStrategyToMTSBuilder;
+import controller.game.util.MTSToGRGameBuilder;
+import controller.model.ControllerGoal;
+
+public class ControllerSynthesiser {
+
+	private static ControllerSynthesiser instance = new ControllerSynthesiser();
+	public static ControllerSynthesiser getInstance() { return instance; }
+
+	private ControllerSynthesiser() {}
+
+	
+	public <State, Action> MTS<Pair<State, Integer>, Action> synthesise(MTS<State, Action> mts, ControllerGoal goal) {
+		
+		Game<State> game = MTSToGRGameBuilder.getInstance().buildGameFrom(mts, goal);
+		GRRankSystem<State> system = new GRRankSystem<State>(game.getStates(), game.getGuarantees(), game.getAssumptions(), game.getFaults());
+		
+		GameSolver<State, Pair<State, Integer>> solver = new GRGameSolver<State>(game, system);
+		solver.solveGame();
+		if (solver.isWinning(mts.getInitialState())) {
+			Map<Pair<State, Integer>, Set<Pair<State, Integer>>> strategy = solver.buildStrategy();
+			return GameStrategyToMTSBuilder.getInstance().buildMTSFrom(mts, strategy);
+		} else {
+			return null;
+		}
+	}
+}

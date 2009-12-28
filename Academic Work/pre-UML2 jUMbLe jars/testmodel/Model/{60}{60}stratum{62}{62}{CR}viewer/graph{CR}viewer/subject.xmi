@@ -1,0 +1,9 @@
+            <UML:Package xmi.id="a19" xmi.uuid="DCE-1141392723793-940" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>graph
+viewer</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Interface xmi.id="a40" xmi.uuid="DCE-1141399658083-357" name="INodeViewerMaker" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a41" xmi.uuid="DCE-1141399665444-715" name="IEdgeViewerMaker" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a43" xmi.uuid="DCE-1141399726069-306" name="IDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

@@ -1,0 +1,30 @@
+        <UML:Package xmi.id="a1" xmi.uuid="DCE-1140441366783-935" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+viewer</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a10" xmi.uuid="DCE-1140448516598-543" isActive="false" name="GraphViewer" visibility="private" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a12" xmi.uuid="DCE-1140448534723-302" isActive="false" name="Manager" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+            <UML:Interface xmi.id="a13" xmi.uuid="DCE-1140448557082-41" name="IGraph" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+
+<packageImportLink xlink:type="simple" xlink:href="graph{CR}viewer" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="figures" />
+
+            <UML:Class xmi.id="a22" xmi.uuid="DCE-1140449513179-564" isActive="false" name="SimpleNodeViewerInstantiator" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a23" xmi.uuid="DCE-1140449523460-310" isActive="false" name="SimpleEdgeViewerInstantiator" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a11" xmi.uuid="DCE-1140446474749-635" isActive="false" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+
+<packageImportLink xlink:type="simple" xlink:href="simple{CR}viewers" />
+
+            <UML:Interface xmi.id="a49" xmi.uuid="DCE-1141048528571-881" name="IDiagram" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a52" xmi.uuid="DCE-1141048652117-268" isActive="false" name="SimpleNodeViewerMaker" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a53" xmi.uuid="DCE-1141048788852-715" isActive="false" name="SimpleEdgeViewerMaker" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

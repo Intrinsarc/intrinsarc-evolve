@@ -1,0 +1,12 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={structure.als, lines 56-72}, label=alloy:element-home, captionpos=b]
+abstract sig Element
+{
+  home: Stratum,
+    ...
+}
+{
+  -- owned by a single stratum
+  home = ownedElements$\cdot$this
+}
+\end{lstlisting}

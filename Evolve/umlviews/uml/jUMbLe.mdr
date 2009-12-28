@@ -1,0 +1,71 @@
+MagicDrawUML "7.5"
+(RTManager
+	(RTManagerOptions
+		CODE_GENERATION_REVERSE_OPTION 0
+		DELETED_ELEMENT_GENERATION_OPTION 0
+		USE_CLASSPATH_FOR_JAVA_REVERSE TRUE
+		LAUNCH_WIZARD FALSE
+		MERGE_AFTER_REVERSE FALSE
+		CREATE_ATTRIBUTES TRUE
+		DEFAULT_WORKING_DIRECTORY "C:\\Program Files\\MagicDraw UML"
+		DEFAULT_LANGUAGE "Java"
+		(JavaLanguageOptions
+			mGenEmptyDoc FALSE
+			mBracketInNewLine TRUE
+			mAddSpaces TRUE
+			mUseJavaDoc FALSE
+			COLLECT_IMPORTS_ON_DEMAND TRUE
+			mGenerateDocumentation TRUE
+			(DocumentationProperties
+				DefaultDocumentationProcessor "STANDARD_PROCESSOR"
+				mCommentStyle 0
+				(Processors
+					(JAVA_DOC_PROCESSOR
+						(mDocumentationTagManager
+							(CLASSIFIER
+								(DocumentationTagProperty
+									mName "DESCRIPTION"
+									mGenerate "true"
+								)
+							)
+							(OPERARTION
+								(DocumentationTagProperty
+									mName "DESCRIPTION"
+									mGenerate "true"
+								)
+								(DocumentationTagProperty
+									mName "@param"
+									mGenerate "true"
+								)
+								(DocumentationTagProperty
+									mName "@return"
+									mGenerate "true"
+								)
+								(DocumentationTagProperty
+									mName "@throws"
+									mGenerate "true"
+								)
+							)
+							(ATTRIBUTE
+								(DocumentationTagProperty
+									mName "DESCRIPTION"
+									mGenerate "true"
+								)
+							)
+						)
+					)
+				)
+			)
+			mUseClassPath TRUE
+			mClassPath "c:\\program files\\magicdraw uml 5.5i\\jre\\lib\\rt.jar;c:\\program files\\magicdraw uml 5.5i\\jre\\lib\\i18n.jar;c:\\program files\\magicdraw uml 5.5i\\jre\\lib\\sunrsasign.jar;c:\\program files\\magicdraw uml 5.5i\\jre\\lib\\jsse.jar;c:\\program files\\magicdraw uml 5.5i\\jre\\lib\\jce.jar;c:\\program files\\magicdraw uml 5.5i\\jre\\lib\\charsets.jar;c:\\program files\\magicdraw uml 5.5i\\jre\\classes"
+			mClassCountForImportOnDemand 10
+		)
+		DEFAULT_WORKING_DIRECTORY "C:\\Program Files\\MagicDraw UML"
+		TEMP_DIRECTORY "Active Directory"
+		mResultToDiagram 1
+	)
+	(RTProjectGroupObject
+		mID "Andrew_1053285119171_782640_1118"
+		mName "Code engineering sets"
+	)
+)

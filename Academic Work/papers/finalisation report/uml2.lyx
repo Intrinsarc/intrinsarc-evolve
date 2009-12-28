@@ -1,0 +1,504 @@
+#LyX 1.5.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 276
+\begin_document
+\begin_header
+\textclass report
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Backbone and UML2
+\end_layout
+
+\begin_layout Standard
+Things I want to say:
+\end_layout
+
+\begin_layout Enumerate
+Backbone started as an exploration of using UML2 as a working ADL
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+focus is on scaling the approach to deal with lifecycle from analysis through
+ to implementation
+\end_layout
+
+\begin_layout Enumerate
+strong ties to implementation
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+UML2 explanation
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+History of UML: 3 amigos
+\end_layout
+
+\begin_layout Enumerate
+Composite structure: ROOM, Garlan etc.
+\end_layout
+
+\begin_layout Enumerate
+Grab bag, cite papers on lack of precision, complexity etc.
+ Overlap of composite structure and component models.
+\end_layout
+
+\begin_layout Enumerate
+Explain composite structure, package merge, redefinition, visibility rules
+ of packages.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Backbone started as a subset of the UML2 composite structure model
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+It is a subset of the model: parts are single multiplicity etc.
+\end_layout
+
+\begin_layout Enumerate
+It makes the subset far more precise through a formal model.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+As the focus changed to architectural extension, the models diverged slightly:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Extended to deal with architectural extension requirements
+\end_layout
+
+\begin_layout Enumerate
+Redefinition becomes add/del/replace, substitution is added.
+ It takes redefinition to its logical extreme.
+\end_layout
+
+\begin_layout Enumerate
+Package visibility rules adjusted to reflect modularity requirements
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Summary
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Backbone is an interpretation of the UML2 composite structure model.
+\end_layout
+
+\begin_layout Enumerate
+It subsets, extends and amends UML2.
+ It can not be expressed purely as a profile due to visibility rules.
+\end_layout
+
+\begin_layout Standard
+Must explain: issues with package merge.
+ Use of Alloy instead of OCL.
+ Why only a subset supported.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+----------------------------------------------------------
+\end_layout
+
+\begin_layout Standard
+The Backbone component model and modeling approach started as an exploration
+ of the use of the UML2 composite structure model as an ADL.
+ As Backbone's focus changed to include architectural extension also, it
+ became necessary to change the model in certain ways which extend, constrain
+ and occasionally contradict the UML2 rules.
+ This chapter explains the relationship between Backbone and UML2 and the
+ motivation for deviations from the standard.
+\end_layout
+
+\begin_layout Section
+The Unified Modeling Language, version 2.x
+\end_layout
+
+\begin_layout Standard
+Prior to the creation of the Unified Modeling Language (UML), there was
+ no standardised graphical notation for the depiction of object-oriented
+ models.
+ There were many different approaches, with the leading contenders being
+ arguably the Booch notation [ref], the Object Modeling Technique (OMT)
+ [ref] and Objectory [ref].
+ In the late 1990's, the three principals for these approaches collaborated
+ to create the UML [omg].
+\end_layout
+
+\begin_layout Standard
+A key point is that UML did not standardise the underlying methods and approache
+s to software development.
+ The UML is intended to be method neutral.
+ The Unified Process (UP) provides a framework for the standardisation of
+ method-related work streams and deliverables [ref], but is outside of the
+ scope of this thesis.
+\end_layout
+
+\begin_layout Standard
+The UML1.x standard describes eight diagram types: use case, class, state,
+ activity, sequence, collaboration, component and deploymeny diagrams [jeckle
+ ref].
+ UML explains the graphical appearance of the different diagrams and the
+ structure of the models behind these graphical forms.
+ The semantics are described using natural language, leading to many different
+ interpretations [ref].
+ The diagrams cover both the static and dynamic aspects of a software system.
+\end_layout
+
+\begin_layout Standard
+In UML1.1 the Object Constraint Language (OCL) was introduced to allow modeling
+ constraints to be precisely described using a textual language.
+ This gave an added level of precision to the standard.
+ The standard provided a set of constraints describing the model, although
+ subsequent analysis showed a number of contradictions [ref to romanian
+ paper].
+\end_layout
+
+\begin_layout Standard
+As a result of the experience with UML1, the OMG issued a set of proposals
+ to address limitations of the standard.
+ UML2 is evolutionary in nature, but introduces composite structures (known
+ as structured classifiers) which are essentially design-time components.
+ Components in UML1 were units of deployment only.
+\end_layout
+
+\begin_layout Standard
+UML2 contains many other changes, such as more powerful sequence diagrams
+ and a restructuring of the meta-model to align UML with the Model Driven
+ Architecture (MDA) initiative.
+ MDA is an elaborative approach to the translation of models directly into
+ executable artifacts.
+ In total, UML2 has 13 diagram types.
+\end_layout
+
+\begin_layout Subsection
+Composite Structures
+\end_layout
+
+\begin_layout Standard
+Significantly, UML2 classes are composite structures which can contain instances
+ of other classes (parts) along with connectors between these.
+ Classes may also define ports which encapsulate the interaction between
+ a class and its environment [ref to Rumbaugh].
+ A port may provide or require interfaces.
+\end_layout
+
+\begin_layout Standard
+[picture of a composite structure from UML2 spec]
+\end_layout
+
+\begin_layout Standard
+Connectors are shown as lines between ports.
+ They represent possible interaction paths at a peer level between parts.
+ These interactions are described using sequence diagrams with operators
+ allowing for loops and conditionals to be expressed.
+\end_layout
+
+\begin_layout Standard
+[sequence diagram from the UML2 spec]
+\end_layout
+
+\begin_layout Standard
+Effectively, UML classes have become synonymous with the architectural definitio
+n of a component [darwin, ROOM ref].
+ This allows UML2 to function as an ADL albeit with some limitations [ref].
+\end_layout
+
+\begin_layout Subsection
+Redefinition
+\end_layout
+
+\begin_layout Standard
+UML2 introduces the concept of redefinition.
+ This is where an element defined within a classifier can be selectively
+ replaced in an inheriting classifer.
+ A classifier is the base class in the meta-model for both an interface
+ an a class.
+\end_layout
+
+\begin_layout Standard
+Redefinition has always been implicitly present in UML.
+ For instance, it has long been possible to covariantly override a base
+ class' method in a subclass.
+ Redefinition makes this concept explicit, and extends it to any other element
+ which can be nested inside a classifier.
+ The rule is that the redefining element should be substitutable for the
+ redefined element.
+\end_layout
+
+\begin_layout Standard
+For an operation, UML2 allows for covariant input parameter specialisation
+ [ref to nice UML overriding paper].
+ Although this is seen to be more useful than the statically type safe alternati
+ve of contravariant specialisation, it is not type safe and can lead to
+ runtime errors as shown by experience with the Eiffel language which also
+ allows this type of specialisation [ref to eiffel].
+ The UML specification defines a set of rules for each type of element,
+ although in the case of nested classifiers, the nature of what is and isn't
+ allowed to be added is a subject of speculation even to the specifications
+ primary authors [rumbaugh, p561].
+\end_layout
+
+\begin_layout Standard
+Redefinition is allowed for operations, nested classifiers, operations,
+ properties and templates.
+ Parts are just properties initialised with a classifier instance, and therefore
+ parts can be redefined also.
+\end_layout
+
+\begin_layout Subsection
+Package Import and Element Visibility
+\end_layout
+
+\begin_layout Standard
+A UML2 package is a container (namespace) that holds other definitions,
+ including other package definitions.
+ If one package imports another packge, then the contents of the second
+ package are visible to elements in the first.
+ Importing adds the names of the elements contained in the second package
+ to the contents of the first.
+\end_layout
+
+\begin_layout Standard
+Alternatively, a package can have an access relationship to another, allowing
+ it to refer to the second packages elements via a fully qualified name.
+ Elements may have visibility of public, protected, package or private.
+ These visibilities interact with import visibility (imports are also elements)
+ in obscure and sometimes contradictory ways [ref to schurr] leading to
+ complex scenarios.
+\end_layout
+
+\begin_layout Standard
+The treatment of nested packages has changed over time.
+ In UML1.1 and its predecessor, a parent package could automatically see
+ all the public elements of its child packages.
+ In UML1.3 and beyond this rule was reversed so that children see all the
+ public elements of their parents and not vice versa.
+ A critique of this situation is contained in [schurr].
+\end_layout
+
+\begin_layout Standard
+Packages are an important concept for organising large models.
+ As pointed out in [schurr], packages have many of the characteristics of
+ programming language modules.
+\end_layout
+
+\begin_layout Subsection
+Package Merge
+\end_layout
+
+\begin_layout Standard
+One of the issues with UML1 was that the meta-model was effectively a complex
+ monolith.
+ It contained hundreds of concepts, and no way was provided to differentiate
+ advanced from more basic usage.
+ To address this, the definition of UML2 uses a construct known as package
+ merge.
+ This allows two packages to be merged, and any elements with the same names
+ are coalesced into a unified definition.
+\end_layout
+
+\begin_layout Standard
+[picture of UML infra and superstructure]
+\end_layout
+
+\begin_layout Standard
+As shown in figure X, the different levels of compliance of the UML meta-model
+ are described using package merge.
+ Using packages in this way is related to the notion of a viewpoint [viewpoint
+ paper] where each view may contain separate attributes that are unified
+ into a single definition.
+\end_layout
+
+\begin_layout Standard
+[smaller example, showing how redefinition is handled]
+\end_layout
+
+\begin_layout Standard
+Package merge defines rules for resolving name conflicts that occur due
+ to inheritance and redefinition.
+ It is an advanced modeling construct and is considerd too complex for conventio
+nal modeling [rumbaugh 508].
+ As pointed out in [Zito], a formalisation of package merge has shown that
+ it does not preserve data model compatibility when a package is merged
+ with another.
+ The ramification is that there is no guarantee that a model where packages
+ have been merged is backwards compatible a model where the packages have
+ not been merged.
+\end_layout
+
+\begin_layout Standard
+As an general mechanism for handling extension of a system, package merge
+ allows for additions and merging of redefinitions.
+\end_layout
+
+\begin_layout Subsection
+Extending the UML
+\end_layout
+
+\begin_layout Standard
+The UML meta-model defines the possible structure of UML models.
+ It is analogous to a UML grammar.
+ However, it is often necessary for modelers to express concepts which cannot
+ be accommodated by the constructs provided.
+ It is clearly possible to extend the meta-model to add these concepts,
+ or define a new meta-model completely, but this is a time consuming endeavour.
+\end_layout
+
+\begin_layout Standard
+UML provides the stereotype concept to allow a type of 
+\begin_inset Quotes eld
+\end_inset
+
+lightweight
+\begin_inset Quotes erd
+\end_inset
+
+ extension without physically adjusting the meta-model.
+ A stereotype defines a 
+\begin_inset Quotes eld
+\end_inset
+
+virtual subclass
+\begin_inset Quotes erd
+\end_inset
+
+ of a meta-model class [rumbaugh 617], and allows a model to effectively
+ extend the meta-model to cope with advanced concepts.
+ A stereotype is part of a model.
+ Elements can have zero or more stereotypes.
+\end_layout
+
+\begin_layout Standard
+[example of stereotype]
+\end_layout
+
+\begin_layout Standard
+A profile is a type of package which contains a coherent set of stereotypes.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+UML has been criticised for being too complex [ref], too imprecise [ref]
+ or contradictory [ref].
+ It certainly contains overlapping concepts with similar intent [ref] and
+ although simplification was a key goal for UML2, this was only achieved
+ to a very limited extent [ref].
+\end_layout
+
+\begin_layout Standard
+UML2 contains a workable ADL and has full design-time component concepts
+ embedded in it.
+ Unfortunately, these concepts are contained within a very large set of
+ other concepts.
+\end_layout
+
+\begin_layout Section
+Backbone as a UML2 Profile
+\end_layout
+
+\begin_layout Standard
+Backbone initially started as an exploration of using UML2 as an ADL.
+ The aim at that point was to allow a set of implementation components to
+ be connected into a running system and analysed for structural completeness.
+ To achieve this goal, a subset of the UML2 composite structure model was
+ used, along with composite structure diagrams to describe the models.
+\end_layout
+
+\begin_layout Standard
+As the focus of Backbone expanded to include architectural extension and
+ evolution, it became apparent that the package import and element visibility
+ rules were not appropriate.
+ As such, Backbone changes these so that parent packages can see elements
+ of their child packages, as was the case with UML1.0 and UML1.1.
+ Apart from this point, Backbone could be considered to be a UML2 profile,
+ consisting of a set of stereotypes and constraints.
+\end_layout
+
+\begin_layout Subsection
+Components and Interfaces
+\end_layout
+
+\begin_layout Subsection
+Alteration
+\end_layout
+
+\begin_layout Subsection
+Substitution
+\end_layout
+
+\begin_layout Subsection
+Package Import and Visibility Rules
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Standard
+\begin_inset LatexCommand bibtex
+options "plain"
+bibfiles "../../read papers/references"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

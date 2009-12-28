@@ -1,0 +1,80 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={base\_structure.als}, numbers=left]
+module base_structure
+
+open util/boolean as boolean
+open util/relation as relation
+
+
+one sig Model
+{
+  -- normally this should be set to none
+  errorsAllowed: set Stratum,
+  providesIsOptional: Bool
+}
+
+sig Stratum
+{
+  parent: lone Stratum,
+  
+  -- external strata that this depends directly on
+  dependsOn: set Stratum,
+  -- any child packages that are explicitly depended on
+  dependsOnNested: set Stratum,
+  -- nested stratum are any with this as the direct parent
+  nestedStrata: set Stratum,
+  
+  -- does this export stratum it depends on?
+  isRelaxed: Bool,
+  ownedElements: set Element,
+
+  -- derived state -- export strata includes this and canSee
+  exportsStrata: set Stratum,
+  canSee: set Stratum,
+
+  -- simple is all that we directly depend on
+  -- taking away what any children depend on
+  simpleDependsOn: set Stratum,
+
+  -- a single top exists which binds directly
+  -- any independent stratum
+  isTop: Bool,
+  -- this is every stratum that can be seen from here down
+  transitive: set Stratum,
+  -- elements that replace others
+  replacing: set Element,
+  canSeePlusMe: set Stratum,
+  transitivePlusMe: set Stratum,
+
+  -- components that are new definitions
+  defining: set Element
+}
+{
+  defining = ownedElements - replacing
+  canSeePlusMe = canSee + this
+  transitivePlusMe = transitive + this
+  nestedStrata = {n: Stratum | n.@parent = this}
+}
+
+---------------------------------------------------
+-- handle the basics of resemblance and replacement
+---------------------------------------------------
+
+abstract sig Element
+{
+  home: Stratum,
+  replaces: lone Element,
+  resembles: set Element,
+
+  -- for a given stratum, a component resembles other components in a given stratum view
+  resembles_e: Element -> Stratum,
+  -- does this act as a non-primed for a particular stratum
+  actsAs_e: Element -> Stratum,
+  -- is this element valid for a given stratum?
+  isInvalid_e: set Stratum
+}
+{
+  -- rule: ELEMENT_HOME -- element is owned by a single stratum
+  home = ownedElements.this
+}
+\end{lstlisting}

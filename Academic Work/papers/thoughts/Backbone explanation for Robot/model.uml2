@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" name="Model">
+  <ownedComment/>
+  <ownedMember xsi:type="uml:Class" name="AbstractComponentNode"/>
+  <ownedMember xsi:type="uml:Class" name="AbstractPortNode"/>
+  <ownedMember xsi:type="uml:Class" name="ComponentNode"/>
+  <ownedMember xsi:type="uml:Class" name="PortNode"/>
+  <ownedMember xsi:type="uml:Class" name="BBComponent"/>
+  <ownedMember xsi:type="uml:Class" name="BBPort"/>
+  <ownedMember xsi:type="uml:Class" name="BBInterface"/>
+  <ownedMember xsi:type="uml:Class" name="BBConnector"/>
+  <ownedMember xsi:type="uml:Class" name="BBPart"/>
+  <ownedMember xsi:type="uml:Class" name="BBConnectorEnd"/>
+  <ownedMember xsi:type="uml:Class" name="ComponentA"/>
+  <ownedMember xsi:type="uml:Class" name="B" isLeaf="true"/>
+  <ownedMember xsi:type="uml:Class" name="ComponentF"/>
+  <ownedMember xsi:type="uml:Class" name="C"/>
+  <j_diagramHolder saveTime="Saved on Thu Oct 5, 2006 at 02:16:28 BST" savedBy="Andrew">
+    <diagram lastFigureId="210">
+      <figures id="39" recreator="Class" name="BBConnectorEnd" point="528 700" dimensions="129.4 37.4" subject="//@ownedMember.9">
+        <figures id="39_P" recreator="PortContainer" containedName="ports" point="528 700" dimensions="129.4 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <figures id="39_O" recreator="Operations" containedName="ops" point="528 729.4" dimensions="40 8"/>
+        <figures id="39_A" recreator="Attributes" containedName="attrs" point="528 721.4" dimensions="40 8"/>
+        <figures id="39_C" recreator="SimpleContainer" containedName="contents" point="528 737.4" dimensions="129.4 0" offset="4 4"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="43" recreator="Connector" anchor1Id="35" anchor2Id="30" virtualPoint="480 531.2" points="2 480 514.4 480 548">
+        <figures id="43E" recreator="Linked Text" containedName="endText" text="end" show="false" point="411.2 533.5" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="43S" recreator="Linked Text" containedName="startText" text="start" show="false" point="411.2 505.5" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="43_M" recreator="Linked Text" containedName="text" text="from" point="487.2 525.5" dimensions="25 13.4"/>
+      </figures>
+      <figures id="41" recreator="Connector" anchor1Id="35" anchor2Id="20" virtualPoint="540 457.2" points="2 540 476 540 438.4">
+        <figures id="41_M" recreator="Linked Text" containedName="text" text="to" point="517.9 451.5" dimensions="10 13.4"/>
+        <figures id="41E" recreator="Linked Text" containedName="endText" text="end" show="false" point="533.9 431.5" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="41S" recreator="Linked Text" containedName="startText" text="start" show="false" point="533.9 451.5" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="25" recreator="Connector" anchor1Id="17" anchor2Id="20" virtualPoint="445.5 420" points="2 367 420 524 420">
+        <figures id="25E" recreator="Linked Text" containedName="endText" text="end" show="false" point="508 400" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="25S" recreator="Linked Text" containedName="startText" text="start" show="false" point="420 400" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="25_M" recreator="Linked Text" containedName="text" text="ports" point="464 400" dimensions="28 13.4"/>
+      </figures>
+      <figures id="206" recreator="Connector" anchor1Id="173" anchor2Id="189" virtualPoint="268 1314.7" points="2 284.7 1294.4 250.5 1336.1">
+        <figures id="206S" recreator="Linked Text" containedName="startText" text="start" show="false" point="268 1280" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="206E" recreator="Linked Text" containedName="endText" text="end" show="false" point="236 1320" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="206_M" recreator="Linked Text" containedName="text" text="" show="false" point="252 1300" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="208" recreator="Connector" anchor1Id="173" anchor2Id="197" virtualPoint="328 1314.7" points="2 301 1292.7 356.1 1337.5">
+        <figures id="208_M" recreator="Linked Text" containedName="text" text="" show="false" point="312 1300" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="208S" recreator="Linked Text" containedName="startText" text="start" show="false" point="284 1276" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="208E" recreator="Linked Text" containedName="endText" text="end" show="false" point="340 1320" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="28" recreator="Connector" anchor1Id="20" anchor2Id="22" virtualPoint="628 473.2" points="2 628 438.4 628 508">
+        <figures id="28E" recreator="Linked Text" containedName="endText" text="end" show="false" point="614.1 494.1" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="28_M" recreator="Linked Text" containedName="text" text="provides" point="634.1 478.1" dimensions="47 13.4"/>
+        <figures id="28S" recreator="Linked Text" containedName="startText" text="start" show="false" point="614.1 422.1" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="209" recreator="Package" name="" autosized="false" point="180 32" dimensions="87 75" subject="//@childPackages.2">
+        <figures id="209_C" recreator="SimpleContainer" point="180 47" dimensions="87 60" offset="4 4"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="29" recreator="Class" name="BBConnector" point="100 736" dimensions="111.4 37.4" subject="//@ownedMember.7">
+        <figures id="29_O" recreator="Operations" containedName="ops" point="100 765.4" dimensions="40 8"/>
+        <figures id="29_P" recreator="PortContainer" containedName="ports" point="100 736" dimensions="107.4 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <figures id="29_A" recreator="Attributes" containedName="attrs" point="100 757.4" dimensions="40 8"/>
+        <figures id="29_C" recreator="SimpleContainer" containedName="contents" point="100 773.4" dimensions="107.4 0" offset="4 4"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="163" recreator="Grouper" name="export factory-2.eps" point="176 1168" dimensions="485.4 287.8">
+        <figures id="178" recreator="SimpleContainer" point="180 1172" dimensions="477.4 266.4" min="10 10">
+          <figures id="159" recreator="Class" name="ComponentA" autosized="false" point="180 1172" dimensions="477.4 266.4" suppressAttributes="true" suppressOperations="true" subject="//@ownedMember.10">
+            <figures id="156" recreator="Operations" containedName="ops" show="false" point="180 1193.4" dimensions="40 8"/>
+            <figures id="188" recreator="Attributes" containedName="attrs" show="false" point="180 1193.4" dimensions="40 8"/>
+            <figures id="180" recreator="SimpleContainer" containedName="contents" point="180 1193.4" dimensions="477.4 245" offset="4 4">
+              <figures id="204" recreator="Part" name=" : C" point="308 1344" dimensions="108 50.4" suppressOperations="true" subject="//@ownedMember.13">
+                <figures id="202" recreator="Attributes" containedName="attrs" point="316 1369.4" dimensions="92 17">
+                  <figures id="198" recreator="Slot" name="name = &quot;two&quot;" point="319 1371.4" dimensions="86 13"/>
+                </figures>
+                <figures id="203" recreator="SimpleContainer" containedName="contents" point="316 1386.4" dimensions="92 0" offset="4 4"/>
+                <figures id="200" recreator="Operations" containedName="ops" point="316 1386.4" dimensions="40 8"/>
+                <figures id="199" recreator="PortContainer" containedName="ports" point="308 1344" dimensions="108 50.4">
+                  <figures id="197" recreator="Port" autosized="false" point="356 1336" dimensions="16 16">
+                    <figures id="201" recreator="Linked Text" containedName="text" text="" show="false" point="356 1320" dimensions="3.3 13.8">
+                      <properties name="suppress" value="true"/>
+                    </figures>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <properties name="fill" value="255 153 153"/>
+                <properties name="owner" value="Model"/>
+              </figures>
+              <figures id="168" recreator="Part" name="&lt;&lt;factory>> partF : ComponentF" autosized="false" point="428 1216" dimensions="225.4 218.4" suppressOperations="true" subject="//@ownedMember.12">
+                <figures id="155" recreator="Operations" containedName="ops" point="436 1271.4" dimensions="40 8"/>
+                <figures id="161" recreator="PortContainer" containedName="ports" point="428 1216" dimensions="225.4 218.4">
+                  <figures id="170" recreator="Port" autosized="false" point="420 1256" dimensions="16 16">
+                    <figures id="162" recreator="Linked Text" containedName="text" text="creation" point="372 1240" dimensions="44 13.4"/>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <figures id="177" recreator="Attributes" containedName="attrs" point="436 1241.4" dimensions="62 30">
+                  <figures id="175" recreator="Slot" name="existing" point="439 1243.4" dimensions="56 13"/>
+                  <figures id="182" recreator="Slot" name="name" point="439 1256.4" dimensions="46 13"/>
+                </figures>
+                <figures id="148" recreator="SimpleContainer" containedName="contents" point="436 1271.4" dimensions="209.4 155" offset="4 4">
+                  <figures id="158" recreator="Part" name="partC : C" point="456 1372" dimensions="108 50.4" suppressOperations="true" subject="//@ownedMember.13">
+                    <figures id="166" recreator="SimpleContainer" containedName="contents" point="464 1414.4" dimensions="92 0" offset="4 4"/>
+                    <figures id="165" recreator="Attributes" containedName="attrs" point="464 1397.4" dimensions="92 17">
+                      <figures id="185" recreator="Slot" name="name(name)" point="467 1399.4" dimensions="86 13"/>
+                    </figures>
+                    <figures id="145" recreator="Operations" containedName="ops" point="464 1414.4" dimensions="40 8"/>
+                    <figures id="149" recreator="PortContainer" containedName="ports" point="456 1372" dimensions="108 50.4">
+                      <figures id="179" recreator="Port" autosized="false" point="504 1364" dimensions="16 16">
+                        <figures id="141" recreator="Linked Text" containedName="text" text="" show="false" point="504 1348" dimensions="3.3 13.8">
+                          <properties name="suppress" value="true"/>
+                        </figures>
+                        <properties name="classScope" value="true"/>
+                      </figures>
+                    </figures>
+                    <properties name="fill" value="255 153 153"/>
+                    <properties name="owner" value="Model"/>
+                  </figures>
+                  <figures id="144" recreator="Part" name="existing : " point="464 1276" dimensions="91 41.4" suppressOperations="true">
+                    <figures id="154" recreator="SimpleContainer" containedName="contents" point="472 1309.4" dimensions="75 0" offset="4 4"/>
+                    <figures id="150" recreator="Attributes" containedName="attrs" point="472 1301.4" dimensions="40 8"/>
+                    <figures id="160" recreator="PortContainer" containedName="ports" point="464 1276" dimensions="91 41.4">
+                      <figures id="176" recreator="Port" autosized="false" point="504 1309.4" dimensions="16 16">
+                        <figures id="174" recreator="Linked Text" containedName="text" text="portB" point="524 1321.4" dimensions="29 13.4"/>
+                        <properties name="classScope" value="true"/>
+                      </figures>
+                    </figures>
+                    <figures id="183" recreator="Operations" containedName="ops" point="472 1309.4" dimensions="40 8"/>
+                    <properties name="owner" value=""/>
+                  </figures>
+                </figures>
+                <properties name="owner" value="Model"/>
+              </figures>
+              <figures id="172" recreator="Part" name="partB : B" point="244 1244" dimensions="97.1 41.4" suppressOperations="true" subject="//@ownedMember.11">
+                <figures id="152" recreator="Operations" containedName="ops" point="252 1277.4" dimensions="40 8"/>
+                <figures id="153" recreator="Attributes" containedName="attrs" point="252 1269.4" dimensions="40 8"/>
+                <figures id="151" recreator="SimpleContainer" containedName="contents" point="252 1277.4" dimensions="81.1 0" offset="4 4"/>
+                <figures id="146" recreator="PortContainer" containedName="ports" point="244 1244" dimensions="97.1 41.4">
+                  <figures id="167" recreator="Port" autosized="false" point="333.1 1256" dimensions="16 16">
+                    <figures id="157" recreator="Linked Text" containedName="text" text="" show="false" point="333.1 1240" dimensions="3.3 13.8">
+                      <properties name="suppress" value="true"/>
+                    </figures>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                  <figures id="173" recreator="Port" autosized="false" point="284 1277.4" dimensions="16 16">
+                    <figures id="142" recreator="Linked Text" containedName="text" text="portB[0..*]" point="216 1289.4" dimensions="53.4 13.4"/>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <properties name="owner" value="Model"/>
+              </figures>
+              <figures id="196" recreator="Part" name=" : C" point="188 1344" dimensions="110 50.4" suppressOperations="true" subject="//@ownedMember.13">
+                <figures id="195" recreator="SimpleContainer" containedName="contents" point="196 1386.4" dimensions="94 0" offset="4 4"/>
+                <figures id="194" recreator="Attributes" containedName="attrs" point="196 1369.4" dimensions="94 17">
+                  <figures id="190" recreator="Slot" name="name = &quot;one&quot;" point="199 1371.4" dimensions="88 13"/>
+                </figures>
+                <figures id="191" recreator="PortContainer" containedName="ports" point="188 1344" dimensions="110 50.4">
+                  <figures id="189" recreator="Port" autosized="false" point="236 1336" dimensions="16 16">
+                    <figures id="193" recreator="Linked Text" containedName="text" text="" show="false" point="236 1320" dimensions="3.3 13.8">
+                      <properties name="suppress" value="true"/>
+                    </figures>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <figures id="192" recreator="Operations" containedName="ops" point="196 1386.4" dimensions="40 8"/>
+                <properties name="fill" value="255 153 153"/>
+                <properties name="owner" value="Model"/>
+              </figures>
+            </figures>
+            <figures id="143" recreator="PortContainer" containedName="ports" point="180 1172" dimensions="477.4 266.4">
+              <properties name="classScope" value="true"/>
+            </figures>
+            <properties name="owner" value="Model"/>
+          </figures>
+        </figures>
+        <properties name="fill" value="246 233 233"/>
+      </figures>
+      <figures id="7" recreator="Inheritance" anchor1Id="3" anchor2Id="1" virtualPoint="444 223" points="2 444 284 444 162"/>
+      <figures id="5" recreator="Inheritance" anchor1Id="2" anchor2Id="0" virtualPoint="188 223" points="2 188 284 188 162"/>
+      <figures id="31" recreator="Class" name="BBPart" point="24 740" dimensions="72.4 37.4" subject="//@ownedMember.8">
+        <figures id="31_A" recreator="Attributes" containedName="attrs" point="24 761.4" dimensions="40 8"/>
+        <figures id="31_C" recreator="SimpleContainer" containedName="contents" point="24 777.4" dimensions="72.4 0" offset="4 4"/>
+        <figures id="31_O" recreator="Operations" containedName="ops" point="24 769.4" dimensions="40 8"/>
+        <figures id="31_P" recreator="PortContainer" containedName="ports" point="24 740" dimensions="72.4 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="9" recreator="Association" anchor1Id="0" anchor2Id="3" virtualPoint="319.8 223" points="2 220 162.9 420.9 283.9">
+        <figures id="9_M" recreator="Linked Text" containedName="text" text="defines" point="316 200" dimensions="41 13.4"/>
+        <figures id="9S" recreator="Linked Text" containedName="startText" text="start" show="false" point="204 148" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="9E" recreator="Linked Text" containedName="endText" text="end" show="false" point="404 268" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <properties name="uni" value="true"/>
+      </figures>
+      <figures id="15" recreator="Class" name="BBPort" point="352 736" dimensions="72.4 37.4" subject="//@ownedMember.5">
+        <figures id="15_P" recreator="PortContainer" containedName="ports" point="352 736" dimensions="72.4 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <figures id="15_O" recreator="Operations" containedName="ops" point="352 765.4" dimensions="40 8"/>
+        <figures id="15_C" recreator="SimpleContainer" containedName="contents" point="352 773.4" dimensions="72.4 0" offset="4 4"/>
+        <figures id="15_A" recreator="Attributes" containedName="attrs" point="352 757.4" dimensions="40 8"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="16" recreator="Class" name="BBInterface" point="436 736" dimensions="97.4 37.4" subject="//@ownedMember.6">
+        <figures id="16_P" recreator="PortContainer" containedName="ports" point="436 736" dimensions="97.4 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <figures id="16_O" recreator="Operations" containedName="ops" point="436 765.4" dimensions="40 8"/>
+        <figures id="16_A" recreator="Attributes" containedName="attrs" point="436 757.4" dimensions="40 8"/>
+        <figures id="16_C" recreator="SimpleContainer" containedName="contents" point="436 773.4" dimensions="97.4 0" offset="4 4"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="13" recreator="Grouper" name="export generation-gap.eps" point="104 116" dimensions="590 215.4">
+        <figures id="13_C" recreator="SimpleContainer" point="112 132" dimensions="578 182" min="10 10">
+          <figures id="3" recreator="Class" name="PortNode" point="408 284" dimensions="76 30" suppressAttributes="true" suppressOperations="true" subject="//@ownedMember.3">
+            <figures id="3_A" recreator="Attributes" containedName="attrs" show="false" point="408 305.4" dimensions="40 8"/>
+            <figures id="3_C" recreator="SimpleContainer" containedName="contents" point="408 305.4" dimensions="76 8.6" offset="4 4"/>
+            <figures id="3_P" recreator="PortContainer" containedName="ports" point="408 284" dimensions="76 30">
+              <properties name="classScope" value="true"/>
+            </figures>
+            <figures id="3_O" recreator="Operations" containedName="ops" show="false" point="408 305.4" dimensions="40 8"/>
+            <properties name="fill" value="255 255 204"/>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="2" recreator="Class" name="ComponentNode" point="128 284" dimensions="119 30" suppressAttributes="true" suppressOperations="true" subject="//@ownedMember.2">
+            <figures id="2_P" recreator="PortContainer" containedName="ports" point="128 284" dimensions="119 30">
+              <properties name="classScope" value="true"/>
+            </figures>
+            <figures id="2_O" recreator="Operations" containedName="ops" show="false" point="128 305.4" dimensions="40 8"/>
+            <figures id="2_A" recreator="Attributes" containedName="attrs" show="false" point="128 305.4" dimensions="40 8"/>
+            <figures id="2_C" recreator="SimpleContainer" containedName="contents" point="128 305.4" dimensions="119 8.6" offset="4 4"/>
+            <properties name="fill" value="255 255 204"/>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="1" recreator="Class" name="AbstractPortNode" point="380 132" dimensions="120 30" suppressAttributes="true" suppressOperations="true" subject="//@ownedMember.1">
+            <figures id="1_A" recreator="Attributes" containedName="attrs" show="false" point="380 153.4" dimensions="40 8"/>
+            <figures id="1_C" recreator="SimpleContainer" containedName="contents" point="380 153.4" dimensions="120 8.6" offset="4 4"/>
+            <figures id="1_P" recreator="PortContainer" containedName="ports" point="380 132" dimensions="120 30">
+              <properties name="classScope" value="true"/>
+            </figures>
+            <figures id="1_O" recreator="Operations" containedName="ops" show="false" point="380 153.4" dimensions="40 8"/>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="0" recreator="Class" name="AbstractComponentNode" point="112 132" dimensions="163 30" suppressAttributes="true" suppressOperations="true" subject="//@ownedMember.0">
+            <figures id="0_A" recreator="Attributes" containedName="attrs" show="false" point="112 153.4" dimensions="40 8"/>
+            <figures id="0_C" recreator="SimpleContainer" containedName="contents" point="112 153.4" dimensions="163 8.6" offset="4 4"/>
+            <figures id="0_O" recreator="Operations" containedName="ops" show="false" point="112 153.4" dimensions="40 8"/>
+            <figures id="0_P" recreator="PortContainer" containedName="ports" point="112 132" dimensions="163 30">
+              <properties name="classScope" value="true"/>
+            </figures>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="11" recreator="Freetext" text="&lt;-- Add functionality here" autosized="false" point="556 292" dimensions="134 13.4"/>
+          <figures id="10" recreator="Freetext" text="&lt;-- Generated classes" autosized="false" point="556 140" dimensions="123 13.4"/>
+        </figures>
+        <properties name="fill" value="247 224 224"/>
+      </figures>
+      <figures id="14" recreator="Class" name="BBComponent" point="232 736" dimensions="105 37.4" subject="//@ownedMember.4">
+        <figures id="14_P" recreator="PortContainer" containedName="ports" point="232 736" dimensions="105 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <figures id="14_O" recreator="Operations" containedName="ops" point="232 765.4" dimensions="40 8"/>
+        <figures id="14_A" recreator="Attributes" containedName="attrs" point="232 757.4" dimensions="40 8"/>
+        <figures id="14_C" recreator="SimpleContainer" containedName="contents" point="232 773.4" dimensions="105 0" offset="4 4"/>
+        <properties name="owner" value="Model"/>
+        <properties name="showStereo" value="false"/>
+      </figures>
+      <figures id="187" recreator="Connector" anchor1Id="176" anchor2Id="179" virtualPoint="512 1344.7" points="2 512 1325.4 512 1364">
+        <figures id="171" recreator="Linked Text" containedName="endText" text="end" show="false" point="496 1340" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="181" recreator="Linked Text" containedName="text" text="" show="false" point="496 1324" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="186" recreator="Linked Text" containedName="startText" text="start" show="false" point="496 1308" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="110" recreator="Connector" anchor1Id="55" anchor2Id="66" virtualPoint="1242 400" points="2 1272 387.4 1212.9 412.2">
+        <figures id="116" recreator="Linked Text" containedName="startText" text="start" show="false" point="1256 372" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="73" recreator="Linked Text" containedName="text" text="" show="false" point="1228 384" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="105" recreator="Linked Text" containedName="endText" text="[3]" point="1212 392" dimensions="13.3 13.4">
+          <properties name="majorPt" value="2"/>
+        </figures>
+      </figures>
+      <figures id="121" recreator="Class" name="B" point="48 1060" dimensions="50 37.4" subject="//@ownedMember.11">
+        <figures id="121_P" recreator="PortContainer" containedName="ports" point="48 1060" dimensions="50 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <figures id="121_O" recreator="Operations" containedName="ops" point="48 1089.4" dimensions="40 8"/>
+        <figures id="121_C" recreator="SimpleContainer" containedName="contents" point="48 1097.4" dimensions="50 0" offset="4 4"/>
+        <figures id="121_A" recreator="Attributes" containedName="attrs" point="48 1081.4" dimensions="40 8"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="122" recreator="Class" name="ComponentF" point="24 1120" dimensions="106.4 37.4" subject="//@ownedMember.12">
+        <figures id="122_C" recreator="SimpleContainer" containedName="contents" point="24 1157.4" dimensions="106.4 0" offset="4 4"/>
+        <figures id="122_A" recreator="Attributes" containedName="attrs" point="24 1141.4" dimensions="40 8"/>
+        <figures id="122_P" recreator="PortContainer" containedName="ports" point="24 1120" dimensions="106.4 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <figures id="122_O" recreator="Operations" containedName="ops" point="24 1149.4" dimensions="40 8"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="129" recreator="Connector" anchor1Id="125" anchor2Id="127" virtualPoint="360.5 904" points="2 325.1 904 396 904">
+        <figures id="129E" recreator="Linked Text" containedName="endText" text="end" show="false" point="378 888" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="129S" recreator="Linked Text" containedName="startText" text="start" show="false" point="310 888" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="129_M" recreator="Linked Text" containedName="text" text="" show="false" point="346 888" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="72" recreator="Connector" anchor1Id="67" anchor2Id="66" virtualPoint="1126 416" points="2 1056 416 1196 416">
+        <figures id="113" recreator="Linked Text" containedName="startText" text="start" show="false" point="1044 400" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="118" recreator="Linked Text" containedName="text" text="delegateConnector" point="1076 420" dimensions="105 13.4"/>
+        <figures id="83" recreator="Linked Text" containedName="endText" text="end" show="false" point="1172 400" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="133" recreator="Class" name="C" point="48 992" dimensions="50 37.4" subject="//@ownedMember.13">
+        <figures id="133_P" recreator="PortContainer" containedName="ports" point="48 992" dimensions="50 37.4">
+          <properties name="classScope" value="true"/>
+        </figures>
+        <figures id="133_O" recreator="Operations" containedName="ops" point="48 1021.4" dimensions="40 8"/>
+        <figures id="133_C" recreator="SimpleContainer" containedName="contents" point="48 1029.4" dimensions="50 0" offset="4 4"/>
+        <figures id="133_A" recreator="Attributes" containedName="attrs" point="48 1013.4" dimensions="40 8"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="59" recreator="Connector" anchor1Id="78" anchor2Id="67" virtualPoint="1015.3 402" points="2 991.6 391.8 1040.1 412.6">
+        <figures id="71" recreator="Linked Text" containedName="startText" text="start" show="false" point="976 376" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="57" recreator="Linked Text" containedName="endText" text="[3]" point="1024 388" dimensions="13.3 13.4">
+          <properties name="majorPt" value="2"/>
+        </figures>
+        <figures id="93" recreator="Linked Text" containedName="text" text="" show="false" point="1000 388" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="137" recreator="Connector" anchor1Id="135" anchor2Id="134" virtualPoint="488 982.7" points="2 488 965.4 488 1000">
+        <figures id="137E" recreator="Linked Text" containedName="endText" text="end" show="false" point="472 980" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="137S" recreator="Linked Text" containedName="startText" text="start" show="false" point="472 948" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="137_M" recreator="Linked Text" containedName="text" text="" show="false" point="472 964" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="63" recreator="Connector" anchor1Id="62" anchor2Id="67" virtualPoint="1015.3 440" points="2 991.6 457.5 1040 421.9">
+        <figures id="115" recreator="Linked Text" containedName="startText" text="start" show="false" point="976 440" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="100" recreator="Linked Text" containedName="text" text="" show="false" point="1000 424" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="90" recreator="Linked Text" containedName="endText" text="[2]" point="1028 432" dimensions="13.3 13.4">
+          <properties name="majorPt" value="2"/>
+        </figures>
+      </figures>
+      <figures id="147" recreator="Connector" anchor1Id="167" anchor2Id="170" virtualPoint="384.5 1264" points="2 349.1 1264 420 1264">
+        <figures id="169" recreator="Linked Text" containedName="text" text="" show="false" point="370 1248" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="164" recreator="Linked Text" containedName="startText" text="start" show="false" point="334 1248" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="184" recreator="Linked Text" containedName="endText" text="end" show="false" point="402 1248" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="45" recreator="Connector" anchor1Id="33" anchor2Id="36" virtualPoint="237.5 613.2" points="2 199.7 587.4 276.9 640">
+        <figures id="45_M" recreator="Linked Text" containedName="text" text="from" point="248.4 606.6" dimensions="25 13.4"/>
+        <figures id="45E" recreator="Linked Text" containedName="endText" text="end" show="false" point="224.4 610.6" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="45S" recreator="Linked Text" containedName="startText" text="start" show="false" point="224.4 578.6" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures id="47" recreator="Connector" anchor1Id="36" anchor2Id="30" virtualPoint="368.5 613.2" points="2 331.6 639.9 404.2 587.3">
+        <figures id="47S" recreator="Linked Text" containedName="startText" text="start" show="false" point="348.2 590.6" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="47E" recreator="Linked Text" containedName="endText" text="end" show="false" point="348.2 610.6" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="47_M" recreator="Linked Text" containedName="text" text="to" point="372.2 610.6" dimensions="10 13.4"/>
+      </figures>
+      <figures id="52" recreator="Connector" anchor1Id="17" anchor2Id="30" virtualPoint="364.8 496.5" points="2 322.9 452.5 413.8 548">
+        <figures id="52E" recreator="Linked Text" containedName="endText" text="end" show="false" point="318.4 544.1" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="52S" recreator="Linked Text" containedName="startText" text="start" show="false" point="318.4 432.1" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="52_M" recreator="Linked Text" containedName="text" text="parts" point="370.4 484.1" dimensions="28 13.4"/>
+      </figures>
+      <figures id="53" recreator="Grouper" name="export model.eps" point="108 396" dimensions="612 299.8">
+        <figures id="53_C" recreator="SimpleContainer" point="124 400" dimensions="592 278.4" min="10 10">
+          <figures id="35" recreator="Part" name=" : BBConnector" point="464 476" dimensions="108 38.4" suppressOperations="true" subject="//@ownedMember.7">
+            <figures id="35_C" recreator="SimpleContainer" containedName="contents" point="464 514.4" dimensions="108 0" offset="4 4"/>
+            <figures id="35_A" recreator="Attributes" containedName="attrs" point="464 497.4" dimensions="108 17">
+              <figures id="37" recreator="Slot" name="name = &quot;shape&quot;" point="467 499.4" dimensions="102 13"/>
+            </figures>
+            <figures id="35_O" recreator="Operations" containedName="ops" point="464 514.4" dimensions="40 8"/>
+            <figures id="35_P" recreator="PortContainer" containedName="ports" point="464 476" dimensions="108 38.4"/>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="36" recreator="Part" name=" : BBConnector" point="252 640" dimensions="106 38.4" suppressOperations="true" subject="//@ownedMember.7">
+            <figures id="36_C" recreator="SimpleContainer" containedName="contents" point="252 678.4" dimensions="106 0" offset="4 4"/>
+            <figures id="36_A" recreator="Attributes" containedName="attrs" point="252 661.4" dimensions="92 17">
+              <figures id="38" recreator="Slot" name="name = &quot;text&quot;" point="255 663.4" dimensions="86 13"/>
+            </figures>
+            <figures id="36_P" recreator="PortContainer" containedName="ports" point="252 640" dimensions="106 38.4"/>
+            <figures id="36_O" recreator="Operations" containedName="ops" point="252 678.4" dimensions="40 8"/>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="33" recreator="Part" name=" : BBPart" point="124 548" dimensions="92 38.4" suppressOperations="true" subject="//@ownedMember.8">
+            <figures id="33_O" recreator="Operations" containedName="ops" point="124 586.4" dimensions="40 8"/>
+            <figures id="33_P" recreator="PortContainer" containedName="ports" point="124 548" dimensions="92 38.4"/>
+            <figures id="33_C" recreator="SimpleContainer" containedName="contents" point="124 586.4" dimensions="92 0" offset="4 4"/>
+            <figures id="33_A" recreator="Attributes" containedName="attrs" point="124 569.4" dimensions="92 17">
+              <figures id="34" recreator="Slot" name="name = &quot;text&quot;" point="127 571.4" dimensions="86 13"/>
+            </figures>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="22" recreator="Part" name=" : BBInterface" point="604 508" dimensions="112 38.4" suppressOperations="true" subject="//@ownedMember.6">
+            <figures id="22_A" recreator="Attributes" containedName="attrs" point="604 529.4" dimensions="112 17">
+              <figures id="23" recreator="Slot" name="name = &quot;IShape&quot;" point="607 531.4" dimensions="106 13"/>
+            </figures>
+            <figures id="22_C" recreator="SimpleContainer" containedName="contents" point="604 546.4" dimensions="112 0" offset="4 4"/>
+            <figures id="22_P" recreator="PortContainer" containedName="ports" point="604 508" dimensions="112 38.4"/>
+            <figures id="22_O" recreator="Operations" containedName="ops" point="604 546.4" dimensions="40 8"/>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="30" recreator="Part" name=" : BBPart" point="376 548" dimensions="112 38.4" suppressOperations="true" subject="//@ownedMember.8">
+            <figures id="30_A" recreator="Attributes" containedName="attrs" point="376 569.4" dimensions="112 17">
+              <figures id="32" recreator="Slot" name="name = &quot;display&quot;" point="379 571.4" dimensions="106 13"/>
+            </figures>
+            <figures id="30_O" recreator="Operations" containedName="ops" point="376 586.4" dimensions="40 8"/>
+            <figures id="30_P" recreator="PortContainer" containedName="ports" point="376 548" dimensions="112 38.4"/>
+            <figures id="30_C" recreator="SimpleContainer" containedName="contents" point="376 586.4" dimensions="112 0" offset="4 4"/>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="17" recreator="Part" name=" : BBComponent" point="228 400" dimensions="139 51.4" suppressOperations="true" subject="//@ownedMember.4">
+            <figures id="17_A" recreator="Attributes" containedName="attrs" point="228 421.4" dimensions="139 30">
+              <figures id="19" recreator="Slot" name="composite = true" point="231 436.4" dimensions="106 13"/>
+              <figures id="18" recreator="Slot" name="name = &quot;CPostitNote&quot;" point="231 423.4" dimensions="133 13"/>
+            </figures>
+            <figures id="17_C" recreator="SimpleContainer" containedName="contents" point="228 451.4" dimensions="139 0" offset="4 4"/>
+            <figures id="17_P" recreator="PortContainer" containedName="ports" point="228 400" dimensions="139 51.4"/>
+            <figures id="17_O" recreator="Operations" containedName="ops" point="228 451.4" dimensions="40 8"/>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+          <figures id="20" recreator="Part" name=" : BBPort" point="524 400" dimensions="112 38.4" suppressOperations="true" subject="//@ownedMember.5">
+            <figures id="20_O" recreator="Operations" containedName="ops" point="524 438.4" dimensions="40 8"/>
+            <figures id="20_P" recreator="PortContainer" containedName="ports" point="524 400" dimensions="112 38.4"/>
+            <figures id="20_C" recreator="SimpleContainer" containedName="contents" point="524 438.4" dimensions="112 0" offset="4 4"/>
+            <figures id="20_A" recreator="Attributes" containedName="attrs" point="524 421.4" dimensions="112 17">
+              <figures id="21" recreator="Slot" name="name = &quot;IShape&quot;" point="527 423.4" dimensions="106 13"/>
+            </figures>
+            <properties name="owner" value="Model"/>
+            <properties name="showStereo" value="false"/>
+          </figures>
+        </figures>
+        <properties name="fill" value="249 235 235"/>
+      </figures>
+      <figures id="54" recreator="Package" name="delegate" autosized="false" point="56 32" dimensions="87 75" subject="//@childPackages.1">
+        <figures id="54_C" recreator="SimpleContainer" point="56 47" dimensions="87 60" offset="4 4"/>
+        <properties name="owner" value="Model"/>
+      </figures>
+      <figures id="140" recreator="Grouper" name="export factory.eps" point="152 808" dimensions="485.4 283.8">
+        <figures id="140_C" recreator="SimpleContainer" point="156 812" dimensions="477.4 262.4" min="10 10">
+          <figures id="120" recreator="Class" name="ComponentA" autosized="false" point="156 812" dimensions="477.4 262.4" suppressAttributes="true" suppressOperations="true" subject="//@ownedMember.10">
+            <figures id="120_P" recreator="PortContainer" containedName="ports" point="156 812" dimensions="477.4 262.4">
+              <properties name="classScope" value="true"/>
+            </figures>
+            <figures id="120_C" recreator="SimpleContainer" containedName="contents" point="156 833.4" dimensions="477.4 241" offset="4 4">
+              <figures id="126" recreator="Part" name="&lt;&lt;factory>> partF : ComponentF" autosized="false" point="404 856" dimensions="225.4 214.4" suppressOperations="true" subject="//@ownedMember.12">
+                <figures id="126_A" recreator="Attributes" containedName="attrs" point="412 881.4" dimensions="62 30">
+                  <figures id="132" recreator="Slot" name="existing" point="415 883.4" dimensions="56 13"/>
+                  <figures id="139" recreator="Slot" name="name" point="415 896.4" dimensions="46 13"/>
+                </figures>
+                <figures id="126_C" recreator="SimpleContainer" containedName="contents" point="412 911.4" dimensions="209.4 151" offset="4 4">
+                  <figures id="131" recreator="Part" name="existing : " point="440 916" dimensions="91 41.4" suppressOperations="true">
+                    <figures id="131_O" recreator="Operations" containedName="ops" point="448 949.4" dimensions="40 8"/>
+                    <figures id="131_C" recreator="SimpleContainer" containedName="contents" point="448 949.4" dimensions="75 0" offset="4 4"/>
+                    <figures id="131_A" recreator="Attributes" containedName="attrs" point="448 941.4" dimensions="40 8"/>
+                    <figures id="131_P" recreator="PortContainer" containedName="ports" point="440 916" dimensions="91 41.4">
+                      <figures id="135" recreator="Port" autosized="false" point="480 949.4" dimensions="16 16">
+                        <figures id="135_T" recreator="Linked Text" containedName="text" text="portB" point="500 961.4" dimensions="29 13.4"/>
+                        <properties name="classScope" value="true"/>
+                      </figures>
+                    </figures>
+                    <properties name="owner" value=""/>
+                  </figures>
+                  <figures id="130" recreator="Part" name="partC : C" point="432 1008" dimensions="108 50.4" suppressOperations="true" subject="//@ownedMember.13">
+                    <figures id="130_P" recreator="PortContainer" containedName="ports" point="432 1008" dimensions="108 50.4">
+                      <figures id="134" recreator="Port" autosized="false" point="480 1000" dimensions="16 16">
+                        <figures id="134_T" recreator="Linked Text" containedName="text" text="" show="false" point="480 984" dimensions="3.3 13.8">
+                          <properties name="suppress" value="true"/>
+                        </figures>
+                        <properties name="classScope" value="true"/>
+                      </figures>
+                    </figures>
+                    <figures id="130_O" recreator="Operations" containedName="ops" point="440 1050.4" dimensions="40 8"/>
+                    <figures id="130_C" recreator="SimpleContainer" containedName="contents" point="440 1050.4" dimensions="92 0" offset="4 4"/>
+                    <figures id="130_A" recreator="Attributes" containedName="attrs" point="440 1033.4" dimensions="92 17">
+                      <figures id="138" recreator="Slot" name="name(name)" point="443 1035.4" dimensions="86 13"/>
+                    </figures>
+                    <properties name="fill" value="255 153 153"/>
+                    <properties name="owner" value="Model"/>
+                  </figures>
+                </figures>
+                <figures id="126_O" recreator="Operations" containedName="ops" point="412 911.4" dimensions="40 8"/>
+                <figures id="126_P" recreator="PortContainer" containedName="ports" point="404 856" dimensions="225.4 214.4">
+                  <figures id="127" recreator="Port" autosized="false" point="396 896" dimensions="16 16">
+                    <figures id="127_T" recreator="Linked Text" containedName="text" text="creation" point="348 880" dimensions="44 13.4"/>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <properties name="owner" value="Model"/>
+              </figures>
+              <figures id="123" recreator="Part" name="partB : B" point="220 884" dimensions="97.1 41.4" suppressOperations="true" subject="//@ownedMember.11">
+                <figures id="123_A" recreator="Attributes" containedName="attrs" point="228 909.4" dimensions="40 8"/>
+                <figures id="123_C" recreator="SimpleContainer" containedName="contents" point="228 917.4" dimensions="81.1 0" offset="4 4"/>
+                <figures id="123_O" recreator="Operations" containedName="ops" point="228 917.4" dimensions="40 8"/>
+                <figures id="123_P" recreator="PortContainer" containedName="ports" point="220 884" dimensions="97.1 41.4">
+                  <figures id="125" recreator="Port" autosized="false" point="309.1 896" dimensions="16 16">
+                    <figures id="125_T" recreator="Linked Text" containedName="text" text="" show="false" point="309.1 880" dimensions="3.3 13.8">
+                      <properties name="suppress" value="true"/>
+                    </figures>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                  <figures id="124" recreator="Port" autosized="false" point="260 917.4" dimensions="16 16">
+                    <figures id="124_T" recreator="Linked Text" containedName="text" text="portB[0..*]" point="200 929.4" dimensions="53.4 13.4"/>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <properties name="owner" value="Model"/>
+              </figures>
+            </figures>
+            <figures id="120_A" recreator="Attributes" containedName="attrs" show="false" point="156 833.4" dimensions="40 8"/>
+            <figures id="120_O" recreator="Operations" containedName="ops" show="false" point="156 833.4" dimensions="40 8"/>
+            <properties name="owner" value="Model"/>
+          </figures>
+        </figures>
+        <properties name="fill" value="244 224 224"/>
+      </figures>
+      <figures id="50" recreator="Connector" anchor1Id="17" anchor2Id="33" virtualPoint="233.8 496.5" points="2 273.4 452.4 187.3 548">
+        <figures id="50E" recreator="Linked Text" containedName="endText" text="end" show="false" point="199.5 484" dimensions="21 13.4">
+          <properties name="majorPt" value="2"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="50S" recreator="Linked Text" containedName="startText" text="start" show="false" point="235.5 484" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="50_M" recreator="Linked Text" containedName="text" text="parts" point="191.5 484" dimensions="28 13.4"/>
+      </figures>
+      <figures id="101" recreator="Grouper" name="export delegate.eps" point="824 320" dimensions="596 197.4">
+        <figures id="108" recreator="SimpleContainer" point="844 324" dimensions="572 176" min="10 10">
+          <figures id="69" recreator="Class" name="ComponentY" autosized="false" point="1204 324" dimensions="212 176" suppressAttributes="true" suppressOperations="true" subject="//@childPackages.1/@ownedMember.1">
+            <figures id="77" recreator="Attributes" containedName="attrs" show="false" point="1212 349.4" dimensions="40 8"/>
+            <figures id="87" recreator="Operations" containedName="ops" show="false" point="1212 349.4" dimensions="40 8"/>
+            <figures id="76" recreator="SimpleContainer" containedName="contents" point="1212 349.4" dimensions="196 142.6" offset="4 4">
+              <figures id="56" recreator="Part" name="partD : " point="1276 440" dimensions="79.3 41.4" suppressOperations="true">
+                <figures id="112" recreator="PortContainer" containedName="ports" point="1276 440" dimensions="79.3 41.4">
+                  <figures id="61" recreator="Port" autosized="false" point="1268 452" dimensions="16 16">
+                    <figures id="109" recreator="Linked Text" containedName="text" text="" show="false" point="1268 436" dimensions="3.3 13.8">
+                      <properties name="suppress" value="true"/>
+                    </figures>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <figures id="111" recreator="Operations" containedName="ops" point="1284 473.4" dimensions="40 8"/>
+                <figures id="65" recreator="SimpleContainer" containedName="contents" point="1284 473.4" dimensions="63.3 0" offset="4 4"/>
+                <figures id="60" recreator="Attributes" containedName="attrs" point="1284 465.4" dimensions="40 8"/>
+                <properties name="owner" value=""/>
+              </figures>
+              <figures id="64" recreator="Part" name="partC : " point="1280 368" dimensions="79.3 41.4" suppressOperations="true">
+                <figures id="68" recreator="Attributes" containedName="attrs" point="1288 393.4" dimensions="40 8"/>
+                <figures id="58" recreator="SimpleContainer" containedName="contents" point="1288 401.4" dimensions="63.3 0" offset="4 4"/>
+                <figures id="98" recreator="Operations" containedName="ops" point="1288 401.4" dimensions="40 8"/>
+                <figures id="97" recreator="PortContainer" containedName="ports" point="1280 368" dimensions="79.3 41.4">
+                  <figures id="55" recreator="Port" autosized="false" point="1272 376" dimensions="16 16">
+                    <figures id="102" recreator="Linked Text" containedName="text" text="" show="false" point="1272 360" dimensions="3.3 13.8">
+                      <properties name="suppress" value="true"/>
+                    </figures>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <properties name="owner" value=""/>
+              </figures>
+            </figures>
+            <figures id="88" recreator="PortContainer" containedName="ports" point="1204 324" dimensions="212 176">
+              <figures id="66" recreator="Port" autosized="false" point="1196 408" dimensions="16 16">
+                <figures id="117" recreator="Linked Text" containedName="text" text="Port2[0..9]" point="1144 392" dimensions="55.4 13.4"/>
+                <properties name="classScope" value="true"/>
+              </figures>
+              <properties name="classScope" value="true"/>
+            </figures>
+            <properties name="owner" value="delegate"/>
+          </figures>
+          <figures id="70" recreator="Class" name="ComponentX" autosized="false" point="844 324" dimensions="204 176" suppressAttributes="true" suppressOperations="true" subject="//@childPackages.1/@ownedMember.0">
+            <figures id="74" recreator="PortContainer" containedName="ports" point="844 324" dimensions="204 176">
+              <figures id="67" recreator="Port" autosized="false" point="1040 408" dimensions="16 16">
+                <figures id="103" recreator="Linked Text" containedName="text" text="Port1[0..9]" point="1056 392" dimensions="55.4 13.4"/>
+                <properties name="classScope" value="true"/>
+              </figures>
+              <properties name="classScope" value="true"/>
+            </figures>
+            <figures id="75" recreator="Operations" containedName="ops" show="false" point="852 349.4" dimensions="40 8"/>
+            <figures id="106" recreator="Attributes" containedName="attrs" show="false" point="852 349.4" dimensions="40 8"/>
+            <figures id="104" recreator="SimpleContainer" containedName="contents" point="852 349.4" dimensions="188 142.6" offset="4 4">
+              <figures id="84" recreator="Part" name="partA : " point="904 368" dimensions="78.7 41.4" suppressOperations="true">
+                <figures id="79" recreator="SimpleContainer" containedName="contents" point="912 401.4" dimensions="62.7 0" offset="4 4"/>
+                <figures id="114" recreator="Operations" containedName="ops" point="912 401.4" dimensions="40 8"/>
+                <figures id="80" recreator="Attributes" containedName="attrs" point="912 393.4" dimensions="40 8"/>
+                <figures id="107" recreator="PortContainer" containedName="ports" point="904 368" dimensions="78.7 41.4">
+                  <figures id="78" recreator="Port" autosized="false" point="974.7 380" dimensions="16 16">
+                    <figures id="99" recreator="Linked Text" containedName="text" text="" show="false" point="974.7 364" dimensions="3.3 13.8">
+                      <properties name="suppress" value="true"/>
+                    </figures>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <properties name="owner" value=""/>
+              </figures>
+              <figures id="92" recreator="Part" name="partB : " point="904 444" dimensions="78.7 41.4" suppressOperations="true">
+                <figures id="82" recreator="PortContainer" containedName="ports" point="904 444" dimensions="78.7 41.4">
+                  <figures id="62" recreator="Port" autosized="false" point="974.7 456" dimensions="16 16">
+                    <figures id="85" recreator="Linked Text" containedName="text" text="" show="false" point="974.7 440" dimensions="3.3 13.8">
+                      <properties name="suppress" value="true"/>
+                    </figures>
+                    <properties name="classScope" value="true"/>
+                  </figures>
+                </figures>
+                <figures id="96" recreator="SimpleContainer" containedName="contents" point="912 477.4" dimensions="62.7 0" offset="4 4"/>
+                <figures id="95" recreator="Operations" containedName="ops" point="912 477.4" dimensions="40 8"/>
+                <figures id="91" recreator="Attributes" containedName="attrs" point="912 469.4" dimensions="40 8"/>
+                <properties name="owner" value=""/>
+              </figures>
+            </figures>
+            <properties name="owner" value="delegate"/>
+          </figures>
+        </figures>
+      </figures>
+      <figures id="94" recreator="Connector" anchor1Id="61" anchor2Id="66" virtualPoint="1240 438" points="2 1267.9 455.1 1213 421.5">
+        <figures id="81" recreator="Linked Text" containedName="endText" text="[2]" point="1208 426" dimensions="13.3 13.4">
+          <properties name="majorPt" value="2"/>
+        </figures>
+        <figures id="86" recreator="Linked Text" containedName="startText" text="start" show="false" point="1252 434" dimensions="24 13.4">
+          <properties name="majorPt" value="1"/>
+          <properties name="suppress" value="true"/>
+        </figures>
+        <figures id="89" recreator="Linked Text" containedName="text" text="" show="false" point="1224 422" dimensions="3.3 13.8">
+          <properties name="suppress" value="true"/>
+        </figures>
+      </figures>
+    </diagram>
+  </j_diagramHolder>
+  <childPackages name="Primitive Types">
+    <ownedMember xsi:type="uml:PrimitiveType" name="type"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="boolean"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="int"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="float"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="double"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="String"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="Date"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="Time"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="DateTime"/>
+    <ownedMember xsi:type="uml:PrimitiveType" name="Interval"/>
+  </childPackages>
+  <childPackages name="delegate">
+    <ownedMember xsi:type="uml:Class" name="ComponentX"/>
+    <ownedMember xsi:type="uml:Class" name="ComponentY"/>
+    <j_diagramHolder saveTime="Saved on Wed Oct 4, 2006 at 12:05:46 BST" savedBy="Andrew">
+      <diagram lastFigureId="27"/>
+    </j_diagramHolder>
+  </childPackages>
+  <childPackages>
+    <ownedMember xsi:type="uml:Class"/>
+    <j_diagramHolder saveTime="Saved on Thu Oct 5, 2006 at 02:16:28 BST" savedBy="Andrew">
+      <diagram lastFigureId="6">
+        <figures id="0" recreator="Class" name="" autosized="false" point="176 132" dimensions="340 288" subject="//@childPackages.2/@ownedMember.0">
+          <figures id="0_O" recreator="Operations" containedName="ops" point="184 165.4" dimensions="40 8"/>
+          <figures id="0_P" recreator="PortContainer" containedName="ports" point="176 132" dimensions="340 288">
+            <figures id="1" recreator="Port" autosized="false" point="168 264" dimensions="16 16">
+              <figures id="1_T" recreator="Linked Text" containedName="text" text="" show="false" point="168 248" dimensions="3.3 13.8">
+                <properties name="suppress" value="true"/>
+              </figures>
+              <properties name="classScope" value="true"/>
+            </figures>
+            <properties name="classScope" value="true"/>
+          </figures>
+          <figures id="0_A" recreator="Attributes" containedName="attrs" point="184 157.4" dimensions="40 8"/>
+          <figures id="0_C" recreator="SimpleContainer" containedName="contents" point="184 173.4" dimensions="324 238.6" offset="4 4">
+            <figures id="2" recreator="Part" name="" point="308 252" dimensions="56 41.4" suppressOperations="true">
+              <figures id="2_A" recreator="Attributes" containedName="attrs" point="316 277.4" dimensions="40 8"/>
+              <figures id="2_C" recreator="SimpleContainer" containedName="contents" point="316 285.4" dimensions="40 0" offset="4 4"/>
+              <figures id="2_P" recreator="PortContainer" containedName="ports" point="308 252" dimensions="56 41.4">
+                <figures id="3" recreator="Port" autosized="false" point="300 264" dimensions="16 16">
+                  <figures id="3_T" recreator="Linked Text" containedName="text" text="" show="false" point="300 248" dimensions="3.3 13.8">
+                    <properties name="suppress" value="true"/>
+                  </figures>
+                  <properties name="classScope" value="true"/>
+                  <properties name="elided" value="2"/>
+                </figures>
+              </figures>
+              <figures id="2_O" recreator="Operations" containedName="ops" point="316 285.4" dimensions="40 8"/>
+              <properties name="owner" value=""/>
+            </figures>
+          </figures>
+          <properties name="owner" value=""/>
+        </figures>
+        <figures id="5" recreator="Connector" anchor1Id="1" anchor2Id="3" virtualPoint="242 272" points="2 184 272 300 272">
+          <figures id="5_M" recreator="Linked Text" containedName="text" text="" show="false" point="228 256" dimensions="3.3 13.8">
+            <properties name="suppress" value="true"/>
+          </figures>
+          <figures id="5E" recreator="Linked Text" containedName="endText" text="end" show="false" point="284 256" dimensions="21 13.4">
+            <properties name="majorPt" value="2"/>
+            <properties name="suppress" value="true"/>
+          </figures>
+          <figures id="5S" recreator="Linked Text" containedName="startText" text="start" show="false" point="168 256" dimensions="24 13.4">
+            <properties name="majorPt" value="1"/>
+            <properties name="suppress" value="true"/>
+          </figures>
+        </figures>
+      </diagram>
+    </j_diagramHolder>
+  </childPackages>
+</uml:Model>

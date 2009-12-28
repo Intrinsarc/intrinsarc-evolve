@@ -1,0 +1,430 @@
+module facts
+
+open util/boolean as boolean
+open util/relation as relation
+open util/ternary as ternary
+open structure
+open port_inference
+open wellformed_components
+open wellformed_interfaces
+open stratum_help
+open redefinition_types
+
+--------------------------------------------------------------------
+
+fact StratumFacts
+{
+  invalidateUnseenPorts[]
+  one isTop$\cdot$True
+  $\forall\,$s: Stratum
+  {
+    -- for relaxed, expose what it depends on and their exposures
+    isTrue[s$\cdot$isRelaxed] $\Longrightarrow$
+      s$\cdot$exposesStrata = s $\cup$ s$\cdot$dependsOn$\cdot$exposesStrata
+    else
+      s$\cdot$exposesStrata = s
+
+    -- used for partial ordering
+    -- contains nothing the children already depend on
+    s$\cdot$simpleDependsOn = s$\cdot$dependsOn -
+      s$\cdot$dependsOn$\cdot$transitive
+
+    -- no cycles
+    s $\not\subseteq$ s$\cdot$ $\!\!\!^\wedge\!$dependsOn
+
+    -- can only see what others expose
+    s$\cdot$canSee = s$\cdot$dependsOn$\cdot$exposesStrata
+  
+    -- the strata we can see using the dependency graph
+    s$\cdot$transitive = s$\cdot$ $\!\!\!^\wedge\!$dependsOn
+
+    -- a stratum is called top if no stratum depends on it
+    isTrue[s$\cdot$isTop] $\Longleftrightarrow$ no simpleDependsOn$\cdot$s
+    
+    -- have max of one redefinition of an element per stratum
+    $\forall\,$e: Element |
+      lone s$\cdot$ownedElements $\cap$ redefines$\cdot$e
+    -- ties up redefining and redefines
+    s$\cdot$redefining = s$\cdot$ownedElements $\cap$ dom[redefines]
+  }
+}
+
+pred independent[stratum1, stratum2: Stratum]
+{
+  stratum2 $\not\subseteq$ stratum1$\cdot$ $\!\!\!^\ast\!$dependsOn
+}
+
+pred mutuallyIndependent[a, b: Stratum]
+{
+  independent[a, b] $\wedge$ independent[b, a]
+}
+
+fun stratumPerspective[stratum: Stratum]: set Stratum
+{
+  stratum$\cdot$ $\!\!\!^\ast\!$dependsOn
+}
+
+--------------------------------------------------------------------
+-- handle the basics of resemblance(specialisation) and redefinition
+--------------------------------------------------------------------
+
+fact ElementFacts
+{
+  -- nothing can resemble a redefinition -- check to see that the things we resemble don't redefine
+  no resembles$\cdot$redefines
+  
+  all
+    e: Element |
+  let
+    owner = e$\cdot$home,
+    -- strata that can see the component
+    resemblingOwningStratum = e$\cdot$resembles$\cdot$home,
+    redefiningOwningStratum = e$\cdot$redefines$\cdot$home
+  {
+    -- no circularities in resemblance or redefinition, and must be visible
+    e $\not\subseteq$ (e$\cdot$ $\!\!\!^\wedge\!$resembles $\cup$ e$\cdot$redefines)
+    resemblingOwningStratum $\subseteq$ owner$\cdot$canSeePlusMe
+    redefiningOwningStratum $\subseteq$ owner$\cdot$canSee
+    
+    -- tie up the owning stratum and the elements owned by that stratum
+    e$\cdot$home = ownedElements$\cdot$e
+
+    -- we only need to form a definition for stratum that can see us
+    $\forall\,$s: Stratum |
+    let
+      -- who should I resemble
+      -- (taking redefinition into account)
+      iResemble = e$\cdot$resembles_e$\cdot$s,
+      -- if we resemble what we are redefining,
+      -- look for the original under here
+      topmostOfRedefined = getTopmost[
+        owner$\cdot$simpleDependsOn,
+        e$\cdot$redefines $\cap$ e$\cdot$resembles],
+      -- look for any other resembled components
+      -- from here down
+      topmostOfResemblances = getTopmost[
+        s,
+        e$\cdot$resembles - e$\cdot$redefines]
+    {
+      -- who do we act as in this stratum?
+      e$\cdot$actsAs_e$\cdot$s =
+        { real: Element | no real$\cdot$redefines $\wedge$ e $\subseteq$ getTopmost[s, real] }
+      -- rewrite the resemblance graph to handle redefinition
+      owner $\not\subseteq$ s$\cdot$transitivePlusMe $\Longrightarrow$
+        no iResemble
+      else
+        iResemble = topmostOfRedefined $\cup$ topmostOfResemblances
+    }
+  }
+}
+
+fun getTopmost(s: set Stratum, e: Element): set Element
+{
+  let redefined = redefines$\cdot$e $\cap$ s$\cdot$transitivePlusMe$\cdot$redefining,
+    topmostRedefined = redefined - redefined$\cdot$resembles_e$\cdot$s
+      { $\exists\,$topmostRedefined $\Longrightarrow$ topmostRedefined else e }
+}
+
+--------------------------------------------------------------------
+-- handle any extra rules for interfaces
+--------------------------------------------------------------------
+
+fact InterfaceFacts
+{
+  $\forall\,$i: Interface |
+  let
+    owner = i$\cdot$home
+  {
+    -- we only need to form a definition for stratum that can see us
+    $\forall\,$s: Stratum |
+    let
+      invalid = s $\subseteq$ i$\cdot$isInvalid_e,
+      visible = owner $\subseteq$ s$\cdot$transitivePlusMe
+    {
+      -- if we can see this component, test to see if it is valid in this stratum
+      $\neg$visible $\Longrightarrow$
+        invalidateUnseenInterface[s, i]
+      else
+      {
+        -- ensure that the subtypes are set up correctly
+        -- this is a subtype of an interface if we can reach it transitively and
+        -- our set of operations are a super-set of the super type's
+        -- of operationID -> Operation.  i.e. if you replace an operationID you are breaking subtype
+        -- so the operationID is the name, and the Operation is the full spec which is assumed to have
+        -- changed in a redef...
+        -- NOTE: the super types are direct -- to follow use closure
+        --       also note that we only need/want supertypes for non-primes
+        no i$\cdot$redefines $\Longrightarrow$
+        {
+          i$\cdot$superTypes$\cdot$s =
+            { super: i$\cdot$resembles |
+              super$\cdot$myOperations$\cdot$objects_e[s] in
+                i$\cdot$myOperations$\cdot$objects_e[s] }
+        }
+        else
+          no i$\cdot$superTypes$\cdot$s
+      
+        -- merge any parts and apply changes
+        let topmost = getTopmost[s, i] $\cap$ Interface
+        {
+          i$\cdot$myOperations::mergeAndApplyChangesForResemblance[
+            s, i, i$\cdot$resembles_e$\cdot$s$\cdot$myOperations]
+          i$\cdot$myOperations::mergeAndApplyChangesForRedefinition[
+            s, i, topmost, topmost$\cdot$myOperations]
+          i$\cdot$myImplementation::mergeAndApplyChangesForResemblance[
+            s, i, i$\cdot$resembles_e$\cdot$s$\cdot$myImplementation]
+          i$\cdot$myImplementation::mergeAndApplyChangesForRedefinition[
+            s, i, topmost, topmost$\cdot$myImplementation]
+        }
+
+        -- the component must be valid in the place it was defined
+        -- also, in any stratum (apart from the top one), a visible component must be valid
+        (s = owner $\vee$ s $\not\subseteq$ Model$\cdot$errorsAllowed) $\Longrightarrow$ !invalid
+        s = owner $\Longrightarrow$
+        {
+          i$\cdot$myOperations$\cdot$deltasIsWellFormed[s]
+          i$\cdot$myImplementation$\cdot$deltasIsWellFormed[s]
+        }
+        
+        -- a component is valid if it is well formed...
+        !invalid $\Longleftrightarrow$ interfaceIsWellFormed[s, i]
+      }
+    }
+  }
+}
+
+
+--------------------------------------------------------------------
+-- handle any extra rules for components
+--------------------------------------------------------------------
+
+fact ComponentFacts
+{
+  -- no part or port can refer explicitly to a redefined component or interface
+  no partType$\cdot$redefines
+  no (setProvided $\cup$ setRequired)$\cdot$redefines
+
+  $\forall\,$c: Component |
+  let
+    owner = c$\cdot$home,
+    -- strata that the component can see
+    iCanSeePlusMe = owner$\cdot$canSeePlusMe,
+    types = c$\cdot$myParts$\cdot$newObjects$\cdot$partType,
+    attrTypes = c$\cdot$myAttributes$\cdot$newObjects$\cdot$attributeType,
+    interfaces = c$\cdot$myPorts$\cdot$addedObjects$\cdot$(setRequired $\cup$ setProvided)
+  {
+    -- resemblance has no redundancy
+    c$\cdot$resembles = c$\cdot$resembles - c$\cdot$resembles$\cdot$ $\!\!\!^\wedge\!$resembles
+
+  
+    -- component implementations stay the same...
+    isFalse[c$\cdot$isComposite] $\Longrightarrow$
+    {
+      -- no resemblance, redef, parts + noone resembles or redefines it
+      no c$\cdot$myParts
+      no c$\cdot$myConnectors
+      no resembles$\cdot$c
+      no c$\cdot$resembles
+    }
+    else
+      no c$\cdot$links
+
+    -- parts can only have types from here down, excluding myself...
+    -- attribute types can only be from here down
+    -- ports can only refer to interfaces from here down
+    types$\cdot$home $\subseteq$ iCanSeePlusMe
+    attributeTypes$\cdot$attrTypes $\subseteq$ iCanSeePlusMe
+    interfaces$\cdot$home $\subseteq$ iCanSeePlusMe
+    
+    -- ensure that the port remaps are correctly formed for the stratum they are owned by
+    let delta = c$\cdot$myParts |
+    all p: delta.newObjects | -- parts of the delta
+    let
+      partID = delta$\cdot$replaceObjects$\cdot$p,
+      oldPart = delta$\cdot$oldObjects_e[owner][partID],
+      remap = p$\cdot$portRemap,
+      newPortIDs = dom[remap],
+      oldPortIDs = ran[remap]
+    {
+      -- we can only alias ports that we actually have
+      newPortIDs $\subseteq$ dom[p$\cdot$partType$\cdot$myPorts$\cdot$objects_e[owner]]
+      -- we can only use port ids of the component we are replacing
+      oldPortIDs $\subseteq$ dom[oldPart$\cdot$partType$\cdot$myPorts$\cdot$objects_e[owner]]
+      
+      -- each port we remap should have a different id, or there's no point
+      -- this is not strictly needed, but ensures nice witnesses
+      bijection[remap, newPortIDs, oldPortIDs]
+      
+      -- can't map a port id onto the same id
+      no remap $\cap$ iden
+    }
+    
+    -- we only need to form a definition for stratum that can see us
+    $\forall\,$s: Stratum |
+    let
+      invalid = s $\subseteq$ c$\cdot$isInvalid_e,
+      visible = owner $\subseteq$ s$\cdot$transitivePlusMe
+    {
+      -- if we can see this component, test to see if it is valid in this stratum
+      $\neg$visible $\Longrightarrow$
+        invalidateUnseenComponent[s, c]
+      else
+      let topmost = getTopmost[s, c] $\cap$ Component
+      {  
+        -- merge any parts and apply changes
+        c$\cdot$myParts::mergeAndApplyChangesForResemblance[
+          s, c, c$\cdot$resembles_e$\cdot$s$\cdot$myParts]
+        c$\cdot$myParts::mergeAndApplyChangesForRedefinition[
+          s, c, topmost, topmost$\cdot$myParts]
+          
+        -- merge any ports and apply changes
+        c$\cdot$myPorts::mergeAndApplyChangesForResemblance[
+          s, c, c$\cdot$resembles_e$\cdot$s$\cdot$myPorts]
+        c$\cdot$myPorts::mergeAndApplyChangesForRedefinition[
+          s, c, topmost, topmost$\cdot$myPorts]
+          
+        -- merge any connectors and apply changes
+        c$\cdot$myConnectors::mergeAndApplyChangesForResemblance[
+          s, c, c$\cdot$resembles_e$\cdot$s$\cdot$myConnectors]
+        c$\cdot$myConnectors::mergeAndApplyChangesForRedefinition[
+          s, c, topmost, topmost$\cdot$myConnectors]
+          
+        -- merge any attributes and apply changes
+        c$\cdot$myAttributes::mergeAndApplyChangesForResemblance[
+          s, c, c$\cdot$resembles_e$\cdot$s$\cdot$myAttributes]
+        c$\cdot$myAttributes::mergeAndApplyChangesForRedefinition[
+          s, c, topmost, topmost$\cdot$myAttributes]
+          
+        -- if we are "home", all the deltas must be well formed...
+        -- this is not necessarily the case if we are not home
+        s = owner $\Longrightarrow$
+        {
+          c$\cdot$myParts$\cdot$deltasIsWellFormed[s]
+          c$\cdot$myPorts$\cdot$deltasIsWellFormed[s]
+          c$\cdot$myConnectors$\cdot$deltasIsWellFormed[s]
+          c$\cdot$myAttributes$\cdot$deltasIsWellFormed[s]
+        }
+        
+        setupParts[s, c]
+        setupConnectors[s, c]
+        isTrue[c$\cdot$isComposite] $\Longrightarrow$
+          setupCompositeLinks[s, c]
+        else
+          setupLeafLinks[s, c]
+        
+        -- the component must be valid in the place it was defined
+        -- also, in any stratum (apart from the top one), a visible
+        -- component must be valid
+        (s = owner $\vee$ s $\not\subseteq$ Model$\cdot$errorsAllowed) $\Longrightarrow$ !invalid
+        
+        -- a component is invalid iff it is not well formed
+        invalid $\Longleftrightarrow$
+          (!componentIsWellFormed[s, c] $\vee$ !linksAreWellFormed[s, c])
+      }
+    }
+  }
+}
+
+pred setupParts(s: Stratum, c: Component)
+{
+  -- reference the parts we are linked to and link to the outside if true
+  let allParts = c$\cdot$parts$\cdot$s
+  {
+    no (Part - allParts)$\cdot$linkedToParts$\cdot$c$\cdot$s
+    $\forall\,$pPart: allParts |
+    {
+      pPart$\cdot$linkedToParts$\cdot$c$\cdot$s =
+      { p: allParts - pPart |
+        $\exists\,$end: c$\cdot$connectors$\cdot$s$\cdot$ends |
+          end$\cdot$cpart$\cdot$c$\cdot$s = pPart $\wedge$ end$\cdot$otherEnd$\cdot$cpart$\cdot$c$\cdot$s = p }
+        
+      -- reference if we are linked to the outside of the component
+      s$\,\times\,$c $\subseteq$ pPart$\cdot$linkedToOutside $\Longleftrightarrow$
+      {
+        $\exists\,$end: c$\cdot$connectors$\cdot$s$\cdot$ends |
+          end$\cdot$cpart$\cdot$c$\cdot$s = pPart $\wedge$ end$\cdot$otherEnd $\subseteq$ ComponentConnectorEnd
+      }
+    }
+  }
+
+  -- form the full port map for this stratum, taking remap into account
+  $\forall\,$p: c$\cdot$myParts$\cdot$newObjects |
+  let
+    -- turn the remap from id -> id to id -> port
+    idToPort = p$\cdot$partType$\cdot$myPorts$\cdot$objects_e[s],
+    newPorts = idToPort[PortID],
+    remap =
+      { newPort: newPorts, oldID: PortID |
+        idToPort$\cdot$newPort$\,\times\,$oldID $\subseteq$ p$\cdot$portRemap }
+  {
+    -- remove the existing ID of the port before adding the new one
+     $\sim$(p$\cdot$portMap[s]) =
+       $\sim$(p$\cdot$partType$\cdot$myPorts$\cdot$objects_e[s]) ++ remap
+  }
+}
+
+
+-- if the connector is not visibile to a component in a stratum, it should be zeroed out to
+-- make it easier to interpret the results and and zeroOutUnseenElement[s, e] cut back on the state space for performance reasons
+fact ZeroOutUnseenConnectorsFact
+{
+  $\forall\,$conn: Connector, c: Component, s: Stratum |
+  conn $\not\subseteq$ c$\cdot$connectors$\cdot$s $\Longrightarrow$
+  {
+    $\forall\,$end: conn$\cdot$ends
+    {
+      no end$\cdot$port$\cdot$c$\cdot$s
+      no end$\cdot$cpart$\cdot$c$\cdot$s
+    }
+  }
+}
+
+-- if the part is not visible to a component in a stratum, it should also be zeroed out
+-- for understandability and performance reasons
+fact ZeroOutUnseenPartsFact
+{
+  $\forall\,$p: Part, c: Component, s: Stratum |
+  p $\not\subseteq$ c$\cdot$parts$\cdot$s $\Longrightarrow$
+  {
+    no p$\cdot$linkedToParts$\cdot$c$\cdot$s
+    s$\,\times\,$c $\not\subseteq$ p$\cdot$linkedToOutside
+  }
+}
+
+-- if the part is not visible to a component in a stratum, it should also be zeroed out
+-- for understandability and performance reasons
+-- NOTE: if you move the valid setting up into the main body, it gets slow for some bizarre reason
+pred invalidateUnseenComponent(s: Stratum, c: Component)
+{
+  s not in c.isInvalid_e -- it isn't valid here
+  no c$\cdot$parts$\cdot$s
+  no c$\cdot$iDParts$\cdot$s
+  no c$\cdot$ports$\cdot$s
+  no c$\cdot$connectors$\cdot$s
+  no c$\cdot$attributes$\cdot$s
+  no c$\cdot$inferredLinks$\cdot$s
+  c$\cdot$myParts::nothing[s]
+  c$\cdot$myAttributes::nothing[s]
+  c$\cdot$myPorts::nothing[s]
+  c$\cdot$myConnectors::nothing[s]
+}
+
+pred invalidateUnseenInterface(s: Stratum, i: Interface)
+{
+  s not in i.isInvalid_e -- it isn't valid here
+  no i$\cdot$operations$\cdot$s
+  no i$\cdot$implementation$\cdot$s
+  i$\cdot$myOperations::nothing[s]
+  i$\cdot$myImplementation::nothing[s]
+  no i$\cdot$superTypes$\cdot$s
+}
+
+pred invalidateUnseenPorts()
+{
+  $\forall\,$s: Stratum, c: Component
+  {
+    $\forall\,$p: Port |
+      p $\not\subseteq$ c$\cdot$ports$\cdot$s $\Longrightarrow$
+        no p$\cdot$(provided $\cup$ required)$\cdot$c$\cdot$s
+  }
+}

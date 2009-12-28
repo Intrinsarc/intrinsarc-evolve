@@ -1,0 +1,2387 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+
+\usepackage{listings}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--}
+}
+
+\lstset{language=Alloy}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Backbone-specification"
+
+\end_inset
+
+An Outline of the Backbone Formal Specification
+\end_layout
+
+\begin_layout Standard
+This chapter presents an outline of the Backbone formal specification (appendice
+s 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Backbone-formal-base"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-formal-component"
+
+\end_inset
+
+), focusing on how an extension is able to use replacement and resemblance
+ to alter the structure of an architecture.
+ It also describes how structural conflict occurs between extensions and
+ how this can be resolved in a further extension.
+\end_layout
+
+\begin_layout Standard
+It is worth making the point that the specification does not have to be
+ fully understood (or even considered) in order to make use of the Backbone
+ approach and supporting tools.
+ An understanding of the formal model is helpful, however, for advanced
+ use and tool development.
+\end_layout
+
+\begin_layout Standard
+The need for a formal specification first became clear after an early implementa
+tion of the Backbone toolset exhibited a number of unanticipated corner
+ cases and inconsistencies.
+ To resolve these issues, and allow the checking of expected properties,
+ a rigorous specification was constructed in the Alloy logic language.
+ The specification describes the Backbone component model at a manageable
+ level of abstraction, and indicates precisely how resemblance and replacement
+ interact to allow alterations to a base architecture.
+\end_layout
+
+\begin_layout Standard
+The specification also revealed that the resemblance and replacement constructs,
+ which were previously used only for components, were more generally applicable
+ than previously thought.
+ Resemblance and replacement have been subsequently used to express the
+ substitutability and evolution of interfaces.
+ Whereas a component has obvious structure which can be modelled as deltas,
+ an interface is structured as implementation and operation deltas.
+\end_layout
+
+\begin_layout Standard
+A key reason for using Alloy for the specification was its ability to generate
+ counterexamples and witnesses automatically by checking assertions and
+ predicates on a logical model.
+ This encouraged an iterative approach to the construction of the specification,
+ revealing the generality of the constructs.
+\end_layout
+
+\begin_layout Standard
+The Backbone modelling tool and runtime implementations have been completely
+ rewritten using the specification, as described in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Tool-Support-for"
+
+\end_inset
+
+.
+ This has been a productive endeavour resulting in a system with the expected
+ properties.
+ The corner cases that proved so problematic in the previous incarnations
+ have either been eliminated or have been found to be handled correctly
+ by the new implementation.
+\end_layout
+
+\begin_layout Section
+Organisation of the Formal Specification
+\end_layout
+
+\begin_layout Standard
+The specification is divided into base and ADL layers, with each layer consistin
+g of multiple Alloy modules as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-module-structure"
+
+\end_inset
+
+.
+ The dotted lines between the boxes show module dependencies.
+ The base layer specification is listed in appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Backbone-formal-base"
+
+\end_inset
+
+, and appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-formal-component"
+
+\end_inset
+
+ contains the ADL layer listings.
+ Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-Informal"
+
+\end_inset
+
+ explains important parts of the specification in more detail, and describes
+ the structural rules and well-formedness checks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/formal-modules.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-module-structure"
+
+\end_inset
+
+The module structure of the Backbone formal specification
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The base layer describes the 
+\family typewriter
+Stratum
+\family default
+, 
+\family typewriter
+Element
+\family default
+ and 
+\family typewriter
+Deltas
+\family default
+ signatures, and introduces the resemblance and replacement relationships.
+ These are general concepts which can be used to describe alterations to
+ the compositional structure of elements, resulting from extensions.
+\end_layout
+
+\begin_layout Standard
+The ADL layer builds on this foundation to describe the Backbone component
+ model.
+ 
+\family typewriter
+Component
+\family default
+, 
+\family typewriter
+Interface
+\family default
+ and 
+\family typewriter
+PrimitiveType
+\family default
+ are defined as subsignatures of
+\family typewriter
+ Element
+\family default
+.
+ The structural rules which describe a well-formed model are contained in
+ 
+\family typewriter
+bb_well_formed.als
+\family default
+.
+ Port type inference is described in 
+\family typewriter
+bb_port_inference.als
+\family default
+, and general facts about the model are described in 
+\family typewriter
+bb.als
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+This chapter focuses primarily on imparting an intuitive understanding of
+ the concepts in the (much smaller) base layer, also describing how the
+ ADL layer is specified using the base concepts.
+\end_layout
+
+\begin_layout Section
+Key Concepts of the Base Layer
+\end_layout
+
+\begin_layout Standard
+An 
+\emph on
+element 
+\emph default
+is a structural entity composed of 
+\emph on
+constituents
+\emph default
+.
+ It can 
+\emph on
+resemble
+\emph default
+ other elements of the same type, thereby inheriting their structure.
+ It can have a possible 
+\emph on
+replacement
+\emph default
+ relationship to another element, globally replacing it in the architecture.
+\end_layout
+
+\begin_layout Standard
+An element can contain a number of 
+\emph on
+delta
+\emph default
+ alterations, each of which can 
+\emph on
+add
+\emph default
+, 
+\emph on
+delete 
+\emph default
+or 
+\emph on
+replace 
+\emph default
+a constituent in order to modify the inherited structure.
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+stratum 
+\emph default
+is a module construct that can be used to group the definitions of an extension
+ or base application.
+ Strata can have 
+\emph on
+dependencies
+\emph default
+ on other strata.
+ Each element is owned by a single 
+\emph on
+stratum
+\emph default
+ which is known as its 
+\emph on
+home
+\emph default
+.
+ The dependencies of an element's home stratum determine what that element
+ has visibility of in the system.
+ Strata dependencies further govern the order in which replacements are
+ applied to form a complete architecture.
+ 
+\end_layout
+
+\begin_layout Standard
+Elements are described by the 
+\family typewriter
+Element
+\family default
+ signature, strata by the 
+\family typewriter
+Stratum
+\family default
+ signature, and deltas by the 
+\family typewriter
+Deltas
+\family default
+ parametrised signature.
+ The form of constituents is not prescribed by an Alloy signature -- instead
+ a constituent type is represented by a type parameter to 
+\family typewriter
+Deltas
+\family default
+.
+ The resemblance and replacement relationships are represented as fields
+ in the 
+\family typewriter
+Element
+\family default
+ signature.
+\end_layout
+
+\begin_layout Standard
+An example showing how replacement relationships and strata dependencies
+ affect resemblance graphs is shown in the desk scenario of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Combining-All-Extensions"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Stratum-and-Dependency"
+
+\end_inset
+
+Stratum and Dependency Rules
+\end_layout
+
+\begin_layout Standard
+A stratum is defined by the partial signature below.
+ It can contain nested strata (
+\family typewriter
+nestedStrata
+\family default
+) which are collectively known as its children, and therefore each stratum
+ has a single possible parent (
+\family typewriter
+parent
+\family default
+).
+ A stratum must explicitly declare any dependencies on any needed non-nested
+ strata (
+\family typewriter
+dependsOn
+\family default
+).
+ It can access any definitions in nested strata without requiring explicit
+ dependencies.
+\end_layout
+
+\begin_layout Standard
+The strata dependency rules control what a stratum's elements can see for
+ their resemblance and replacement relationships and constituents.
+ Informally, an element can access definitions in its home stratum, any
+ child strata of the home, and also any strata that the home or its parents
+ depend on.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-stratum.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+The Formal Dependency Rules
+\end_layout
+
+\begin_layout Standard
+An element can access definitions in its home stratum, or any strata that
+ its home stratum can see (
+\family typewriter
+canSee
+\family default
+) by its dependencies.
+ A strata can see any nested strata, any strata exported to it by those
+ it depends upon, and any strata that its parents depend upon.
+ The full set of reachable strata is held in 
+\family typewriter
+transitive
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-cansee.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A stratum exports its dependencies (
+\family typewriter
+exportsStrata
+\family default
+) to strata that depend on it.
+ This allows a stratum to selectively export nested strata that form part
+ of its public interface.
+ A relaxed stratum (
+\family typewriter
+isRelaxed
+\family default
+) exports itself, all dependencies exported to it, and any explicitly indicated
+ nested strata 
+\family typewriter
+(dependsOnNested
+\family default
+).
+ A strict stratum exports only itself and any explicitly indicated nested
+ strata.
+ The 
+\family typewriter
+dependsOnNested
+\family default
+ field is only needed for exporting nested child dependencies, as parents
+ implicitly depend on their children and therefore do not have to express
+ dependence otherwise.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-exports.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We remove any redundancy from the dependencies and hold this in 
+\family typewriter
+simpleDependsOn
+\family default
+.
+ We further rule out cycles, forcing the dependency structure to be a graph.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-simple-depends.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although seemingly complex, the rules are intuitive when considered in the
+ context of an example (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:A-Strata-Dependency"
+
+\end_inset
+
+).
+ The rules were distilled from architectural principles and practices where
+ implementation strata must be hidden, and strata representing public definition
+s selectively exported.
+ These facilities are useful when organising the architecture of a large
+ system.
+\end_layout
+
+\begin_layout Standard
+The rules also prevent a nested stratum from accessing the definitions in
+ its transitive parents.
+ This allows us to extract an extension stratum from one model and import
+ it into another, even if that model does not contain the parents.
+ This allows extensions to be shared between parties in an extension setting.
+\end_layout
+
+\begin_layout Subsubsection
+Independently Developed Strata
+\end_layout
+
+\begin_layout Standard
+Two strata are mutually independent, and hence cannot access each others'
+ definitions, if neither can reach the other through their full transitive
+ dependencies.
+ This is described by the predicate 
+\family typewriter
+independent
+\family default
+ below.
+\end_layout
+
+\begin_layout Standard
+Independent strata share a common base if their transitive dependencies
+ overlap in some way.
+ This is described by the 
+\family typewriter
+independentOnCommonBase
+\family default
+ predicate.
+ This allows us to model the situation as shown in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Relationships-in-an"
+
+\end_inset
+
+, where two extensions are 
+\emph on
+independently developed
+\emph default
+ by unrelated parties (X and Y) on top of a common base application.
+ X and Y each cannot access the definitions of the other, but can cause
+ conflict by altering the base in a way which results in problems for the
+ other party.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-mutually-independent.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+perspective
+\emph default
+ of stratum 
+\family typewriter
+s
+\family default
+ consists of the system after we have applied all of the definitions (including
+ replacements) contained within 
+\family typewriter
+s + s.transitive
+\family default
+, starting with strata lower down in the graph structure first.
+\end_layout
+
+\begin_layout Standard
+A stratum has 
+\family typewriter
+isTop
+\family default
+ set to true if no other strata depend on it.
+ This is usually the 
+\emph on
+top
+\emph default
+ stratum in a system as per 
+\family typewriter
+combined
+\family default
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Strata-are-structured"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:A-Strata-Dependency"
+
+\end_inset
+
+A Strata Dependency Example
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Strata-dependencies"
+
+\end_inset
+
+ shows two extension strata (
+\family typewriter
+extension1
+\family default
+, 
+\family typewriter
+extension2
+\family default
+) building on the common 
+\family typewriter
+base
+\family default
+ stratum.
+ The 
+\family typewriter
+extension2
+\family default
+ stratum contains two nested strata: 
+\family typewriter
+api
+\family default
+ to hold the public definitions and 
+\family typewriter
+implementation
+\family default
+ to hold hidden definitions.
+ The 
+\family typewriter
+unified
+\family default
+ stratum is the top stratum of the system, and combines the extensions.
+\end_layout
+
+\begin_layout Standard
+Consider the exports (
+\family typewriter
+exportsStrata
+\family default
+) of each stratum:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+extension1
+\family default
+ exports 
+\family typewriter
+[extension1, base]
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+extension2
+\family default
+ exports 
+\family typewriter
+[extension2, api, base]
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+api
+\family default
+ is strict and exports only [
+\family typewriter
+api
+\family default
+], although it can see 
+\family typewriter
+implementation
+\end_layout
+
+\begin_layout Standard
+The transitive dependencies of 
+\family typewriter
+unified
+\family default
+ are 
+\family typewriter
+[extension1, extension2, api, implementation, base]
+\family default
+.
+ However,
+\family typewriter
+ unified
+\family default
+ cannot see any definitions in 
+\family typewriter
+implementation
+\family default
+, as this is not visible to it.
+ Strata 
+\family typewriter
+direct
+\family default
+ shows that it is possible to access a buried stratum by directly depending
+ on it.
+ This type of deep access is often required in extensible systems, where
+ otherwise hidden implementations need to be altered for an extension.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/formal-strata.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Strata-dependencies"
+
+\end_inset
+
+Strata dependencies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The dependency rules describe how to form an equivalent non-nested arrangement
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flat-strata"
+
+\end_inset
+
+.
+ This shows that 
+\family typewriter
+extension2
+\family default
+, 
+\family typewriter
+api
+\family default
+, 
+\family typewriter
+implementation
+\family default
+ and 
+\family typewriter
+direct
+\family default
+ are mutually independent of 
+\family typewriter
+extension1
+\family default
+.
+ As such, to form the 
+\family typewriter
+unified
+\family default
+ perspective, we must apply any replacements in the following strata order.
+ Note that 
+\family typewriter
+direct
+\family default
+ does not feature in 
+\family typewriter
+unified
+\family default
+'s stratum perspective.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+base
+\family default
+ first
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+extension1
+\family default
+ in parallel with [
+\family typewriter
+implementation
+\family default
+ followed by 
+\family typewriter
+api
+\family default
+, followed by 
+\family typewriter
+extension2
+\family default
+]
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+unified
+\family default
+ last
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/formal-flat-strata.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flat-strata"
+
+\end_inset
+
+Nested strata can be flattened
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There is a possibility of structural conflict when combining independent
+ extensions that both alter the common base.
+ Consider that 
+\family typewriter
+extension1
+\family default
+ and 
+\family typewriter
+extension2
+\family default
+, each developed independently, are error free when combined on their own
+ with 
+\family typewriter
+base
+\family default
+.
+ When combining both extensions, we can get conflicts if replacements from
+ 
+\family typewriter
+extension1
+\family default
+ change the base in a way which causes structural errors for 
+\family typewriter
+extension2
+\family default
+ and vice versa.
+ The structural rules that detect these errors are described in section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Structural-Rules-of"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Elements"
+
+\end_inset
+
+Elements
+\end_layout
+
+\begin_layout Standard
+An 
+\family typewriter
+Element
+\family default
+ is a structural entity that can participate in resemblance and replacement
+ relationships.
+ It is the common base signature for components, interfaces and primitive
+ types in the ADL layer.
+\end_layout
+
+\begin_layout Standard
+An element is composed of constituents, which are added, deleted or replaced
+ by deltas (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Delta-formal"
+
+\end_inset
+
+).
+ An element can resemble one or more elements of the same type (
+\family typewriter
+resembles
+\family default
+), which means that it inherits their structure, which is then altered by
+ any deltas.
+ Each element may further use replacement to globally replace at most one
+ other element of the same type (
+\family typewriter
+replaces
+\family default
+) which cannot be defined in the same stratum.
+ Each element is owned by a single stratum, called its home 
+\family typewriter
+(home
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+Element replacement, and using a delta to replace an inherited constituent
+ are two different concepts.
+ When we need to differentiate between these two types of replace, we use
+ the term replacement which refers to the former.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "snippets/snip-element.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+The Expanded Resemblance Graph
+\end_layout
+
+\begin_layout Standard
+The resemblance graph of an element can change with each stratum perspective,
+ as replacements are applied using the strata dependency order graph as
+ a guide.
+ For each element, we form an 
+\emph on
+expanded resemblance
+\emph default
+ graph per stratum by inserting any replaced definitions into the existing
+ resemblance graph.
+ The expanded graph for each perspective is held in 
+\family typewriter
+resembles_e
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Consider how this works in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Replacements-adjust-the"
+
+\end_inset
+
+.
+ Component 
+\family typewriter
+A
+\family default
+ resembles 
+\family typewriter
+B
+\family default
+ in the 
+\family typewriter
+base
+\family default
+ stratum as shown, and the expanded graph for this perspective is (
+\family typewriter
+base::A
+\family default
+ resembles 
+\family typewriter
+base::B
+\family default
+).
+ The evolution of 
+\family typewriter
+B
+\family default
+ introduced by 
+\family typewriter
+extension1
+\family default
+ causes the expanded graph from perspective 
+\family typewriter
+extension1
+\family default
+ to become (
+\family typewriter
+base::A
+\family default
+ resembles 
+\family typewriter
+extension1::B'
+\family default
+ resembles 
+\family typewriter
+base::B
+\family default
+).
+ From the perspective of 
+\family typewriter
+extension2
+\family default
+, the expanded graph is (
+\family typewriter
+base::A
+\family default
+ resembles 
+\family typewriter
+extension2::B'
+\family default
+ resembles 
+\family typewriter
+base::B
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/formal-replacement-adjusts.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Replacements-adjust-the"
+
+\end_inset
+
+Replacements adjust the resemblance graph for each stratum perspective
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the 
+\family typewriter
+unified
+\family default
+ perspective, we get the diamond-shaped graph as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-expanded-resemblance"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Quote
+(
+\family typewriter
+base::A
+\family default
+ resembles 
+\family typewriter
+(extension1::B'
+\family default
+, 
+\family typewriter
+extension2::B')
+\family default
+ resembles 
+\family typewriter
+base::B
+\family default
+) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/formal-as-resemblance-from-unified.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-expanded-resemblance"
+
+\end_inset
+
+The expanded resemblance graph of A from the unified perspective
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider that 
+\family typewriter
+extension1::B'
+\family default
+ may change the inherited structure in ways which 
+\family typewriter
+extension2::B'
+\family default
+ finds unacceptable.
+ For example, if 
+\family typewriter
+base::B
+\family default
+ has a part 
+\family typewriter
+X
+\family default
+ and connectors in 
+\family typewriter
+extension2::B'
+\family default
+ bind to its ports, and if 
+\family typewriter
+extension1::B'
+\family default
+ replaces 
+\family typewriter
+X
+\family default
+ with part 
+\family typewriter
+Y
+\family default
+ which does not offer the same ports, then we will have structural errors
+ when combining the extensions to form 
+\family typewriter
+A
+\family default
+.
+ We call this a 
+\emph on
+structural conflict
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Simple plugin systems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Volter1999,Mayer2003"
+
+\end_inset
+
+ avoid the possibility of structural conflict by disallowing the equivalent
+ of replacement.
+ This violates the 
+\noun on
+Alter
+\noun default
+ requirement, however, as the underlying base cannot be remade unless replacemen
+t is allowed.
+ This reveals a trade-off between preventing conflict and allowing possibly
+ unplanned alterations.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Delta-formal"
+
+\end_inset
+
+Deltas
+\end_layout
+
+\begin_layout Standard
+Each instance of 
+\family typewriter
+Deltas
+\family default
+ hold a collection of adds, deletes and replaces for constituents of an
+ element, allowing alterations to the inherited structure to be expressed.
+ Each component definition contains separate instances of 
+\family typewriter
+Deltas
+\family default
+ for expressing port, part, connector, attribute and port link alterations
+ or additions.
+ Components which have no inherited structure are made up of added constituents
+ via deltas to establish the structure.
+\end_layout
+
+\begin_layout Standard
+For each stratum perspective, an element can be fully expanded by applying
+ all the deltas in the expanded resemblance graph to determine the final
+ structure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "snippets/snip-deltas.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The key fields of 
+\family typewriter
+Deltas
+\family default
+ are 
+\family typewriter
+addObjects
+\family default
+, 
+\family typewriter
+deleteObjects
+\family default
+ and 
+\family typewriter
+replaceObjects
+\family default
+: 
+\family typewriter
+addObjects
+\family default
+ are the constituents that the definition adds, 
+\family typewriter
+deleteObjects
+\family default
+ identifies any inherited constituents that are to be deleted, and 
+\family typewriter
+replaceObjects
+\family default
+ holds new constituents to replace existing inherited ones.
+ In all cases, inherited constituents to be deleted or replaced are identified
+ by their universally unique identifier.
+ 
+\family typewriter
+ID
+\family default
+ represents this identifier, and models UUIDs in the formal specification.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+Deltas
+\family default
+ are defined by an Alloy module, parametrised by constituent type (
+\family typewriter
+Object
+\family default
+) and UUID type (
+\family typewriter
+ID
+\family default
+).
+ For instance, the 
+\family typewriter
+Deltas
+\family default
+ used to represent component parts is parametrised by substituting 
+\family typewriter
+Part
+\family default
+ for 
+\family typewriter
+Object
+\family default
+ and 
+\family typewriter
+PartID
+\family default
+ for 
+\family typewriter
+ID
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Consider now how to apply the deltas to form an expanded component, by building
+ on the previous example as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Deltas-must-be"
+
+\end_inset
+
+.
+ The 
+\family typewriter
+base
+\family default
+ definition of 
+\family typewriter
+B
+\family default
+ adds 
+\family typewriter
+part1
+\family default
+ and 
+\family typewriter
+part2
+\family default
+.
+
+\family typewriter
+ A
+\family default
+ resembles 
+\family typewriter
+B
+\family default
+ and adds 
+\family typewriter
+part3
+\family default
+ and replaces the inherited 
+\family typewriter
+part1
+\family default
+ with 
+\family typewriter
+part4
+\family default
+.
+ The evolution of 
+\family typewriter
+B
+\family default
+ in 
+\family typewriter
+extension1
+\family default
+ replaces 
+\family typewriter
+part1
+\family default
+ with 
+\family typewriter
+part5
+\family default
+, and 
+\family typewriter
+part2
+\family default
+ with 
+\family typewriter
+part6
+\family default
+.
+ The evolution of 
+\family typewriter
+B
+\family default
+ in 
+\family typewriter
+extension2
+\family default
+ deletes 
+\family typewriter
+part1
+\family default
+ and replaces 
+\family typewriter
+part2
+\family default
+ with 
+\family typewriter
+part
+\family default
+7.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/formal-applying-deltas.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Deltas-must-be"
+
+\end_inset
+
+Deltas are applied to form a fully expanded element
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The expanded resemblance graph of 
+\family typewriter
+A
+\family default
+, from the perspective of 
+\family typewriter
+unified
+\family default
+, is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-expanded-resemblance"
+
+\end_inset
+
+.
+ The deltas are applied in the following order, reflecting the strata dependency
+ order and the original resemblance graphs.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+part1
+\family default
+ and 
+\family typewriter
+part2
+\family default
+ are added (
+\family typewriter
+base
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+part1
+\family default
+ is replaced with 
+\family typewriter
+part5
+\family default
+ and 
+\family typewriter
+part2
+\family default
+ is replaced with 
+\family typewriter
+part6
+\family default
+ (
+\family typewriter
+extension1::B'
+\family default
+)
+\begin_inset Newline newline
+\end_inset
+
+-in parallel with
+\family typewriter
+-
+\begin_inset Newline newline
+\end_inset
+
+part1
+\family default
+ being deleted and 
+\family typewriter
+part2
+\family default
+ being replaced by 
+\family typewriter
+part7
+\family default
+ (
+\family typewriter
+extension2::B'
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+part3
+\family default
+ is added and 
+\family typewriter
+part1
+\family default
+ is replaced with 
+\family typewriter
+part4
+\family default
+ (base::A)
+\end_layout
+
+\begin_layout Standard
+The second step involves both a replace and a delete of 
+\family typewriter
+part1
+\family default
+.
+ When this occurs, Backbone ignores the deletion.
+ We also see that 
+\family typewriter
+A
+\family default
+'s replacement of 
+\family typewriter
+part1
+\family default
+ with 
+\family typewriter
+part4
+\family default
+ supersedes the replacement of 
+\family typewriter
+part1
+\family default
+ with 
+\family typewriter
+part5
+\family default
+ in 
+\family typewriter
+extension1
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+The final component 
+\family typewriter
+A
+\family default
+ from the 
+\family typewriter
+unified
+\family default
+ perspective has the following mapping of 
+\family typewriter
+UUID
+\family default
+ to constituent.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+UUID
+\family default
+ (
+\family typewriter
+part1)
+\family default
+ → 
+\family typewriter
+part4
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+UUID(part2)
+\family default
+ → 
+\family typewriter
+part6, part7 
+\family default
+(conflict)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+UUID(part3)
+\family default
+ → 
+\family typewriter
+part3
+\end_layout
+
+\begin_layout Standard
+Note that we have two constituents for UUID
+\family typewriter
+(part2
+\family default
+), reflecting that both 
+\family typewriter
+extension1::B'
+\family default
+ and 
+\family typewriter
+extension2::B'
+\family default
+ replace the same constituent.
+ This is a structural conflict
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This conflict is detected by rule WF_COMPONENT_PART_PER_UUID described in
+ section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Structural-Rules-of"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+.
+ To resolve this situation, a definitive replace is required in another
+ evolution higher up in the resemblance graph.
+ For example, we could create 
+\family typewriter
+unified::B'
+\family default
+ and replace 
+\family typewriter
+part2
+\family default
+ with 
+\family typewriter
+part8
+\family default
+, which would supersede the conflicting constituent replaces, resolving
+ the problem.
+\end_layout
+
+\begin_layout Standard
+Even when replacing another, a constituent retains the 
+\family typewriter
+UUID
+\family default
+ of the original constituent, as shown for 
+\family typewriter
+part4
+\family default
+ which retains 
+\family typewriter
+UUID(part1)
+\family default
+.
+ This allows us to combine independent strata, where each only knows about
+ the UUIDs of the base elements and constituents.
+\end_layout
+
+\begin_layout Standard
+The final expanded component 
+\family typewriter
+B
+\family default
+ from the unified perspective, has the following makeup.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+UUID(part1)
+\family default
+ → 
+\family typewriter
+part5
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+UUID(part2)
+\family default
+ → 
+\family typewriter
+part6, part7
+\end_layout
+
+\begin_layout Standard
+The expanded deltas are pushed back into 
+\family typewriter
+B
+\family default
+'s 
+\family typewriter
+object_e
+\family default
+ field for the 
+\family typewriter
+unified
+\family default
+ perspective.
+ This means that existing references to 
+\family typewriter
+B
+\family default
+ from other components do not have to be redirected to an evolution when
+ replacement occurs, and we can instead pick up the full structure from
+ the definition of 
+\family typewriter
+B
+\family default
+ itself.
+ An earlier version of the specification used redirection, where a replacement
+ redirected existing component references to itself, but this led to a cumbersom
+e specification which further introduced an overhead into the graphical
+ modelling tool.
+ The current approach relies on never directly referencing an evolved component,
+ but instead always referencing the original element, which then holds the
+ full structure from each perspective.
+\end_layout
+
+\begin_layout Standard
+Although small in terms of number of Alloy lines, the 
+\family typewriter
+Deltas
+\family default
+ logic is reasonably involved.
+ This primarily a consequence of having to rewrite the expanded resemblance
+ graph for each element from each perspective.
+ This logic is explained in detail in appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-Informal"
+
+\end_inset
+
+.
+ Although our example focused on part deltas, the same logic applies for
+ any constituent type.
+\end_layout
+
+\begin_layout Section
+Key Concepts of the ADL Layer
+\end_layout
+
+\begin_layout Standard
+The ADL layer builds on the base layer to form a full component model, where
+ components, interfaces and primitive types are modelled as subsignatures
+ of 
+\family typewriter
+Element
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+A class diagram of the relationships between the main signatures is shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-main-signatures"
+
+\end_inset
+
+.
+ This diagram will be further explained in this section.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/component-model.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-main-signatures"
+
+\end_inset
+
+The main signatures in the specification
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Components
+\end_layout
+
+\begin_layout Standard
+Components are represented by the 
+\family typewriter
+Component
+\family default
+ signature, which inherits from the 
+\family typewriter
+Element
+\family default
+ signature.
+ 
+\family typewriter
+Component
+\family default
+ has a separate 
+\family typewriter
+Deltas
+\family default
+ instance for each constituent: parts, attributes, ports, connectors, and
+ port links.
+ As discussed earlier, full component expansion uses the strata dependency
+ order to insert replacements (
+\family typewriter
+replaces
+\family default
+) into the resemblance (
+\family typewriter
+resembles
+\family default
+) graph, and then the alterations from the deltas can be applied to form
+ a complete structure.
+\end_layout
+
+\begin_layout Standard
+The implementation class name (
+\family typewriter
+myCImplementation
+\family default
+) of a component is also phrased as a constituent in order to allow the
+ implementation class to be added, replaced or deleted by a delta alteration.
+ A leaf component must have a single implementation class name and no parts.
+ To turn a leaf component into a composite via evolution, parts must be
+ added and the implementation class name deleted via a delta.
+ Multiple conflicting implementation class names can result when independent
+ evolutions of a leaf are combined, and to resolve the situation a further
+ evolution is required which replaces both names with a new, definitive
+ one.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Port-Compatibility-for"
+
+\end_inset
+
+Interfaces
+\end_layout
+
+\begin_layout Standard
+Interfaces are represented by the 
+\family typewriter
+Interface
+\family default
+ signature, which also inherits from 
+\family typewriter
+Element
+\family default
+.
+ The constituents of an interface are operations and implementation interface
+ name.
+\end_layout
+
+\begin_layout Standard
+If an interface resembles another and does not delete or replace any of
+ the inherited operations, then the resembled interface is one of its supertypes.
+ This is described by the following logic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "snippets/snip-supertype.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Interface Compatibility for Connectors
+\end_layout
+
+\begin_layout Standard
+A provided interface is compatible, for connection purposes, with the same
+ required interface or any of its supertypes.
+ In essence, the rule is 
+\begin_inset Quotes eld
+\end_inset
+
+provide at least as much as is required
+\begin_inset Quotes erd
+\end_inset
+
+.
+ For a set of provided interfaces and a set of required interfaces, this
+ notion is expressed by the following logic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "snippets/snip-providesenough.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For two ports to be connected together, there must be a one-to-one, unambiguous
+ mapping between each provided interface of one port and a required interface
+ of the other port (and vice versa).
+ This is captured by the following logic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "snippets/snip-connectionok.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Human Readable Names and Renaming
+\end_layout
+
+\begin_layout Standard
+The formal specification does not model human readable names, and instead
+ uses unique identifiers which never change once assigned to an element
+ or constituent.
+ The implementation does need to deal with names (particularly to provide
+ support for the modelling tool) and does so by treating them as another
+ constituent type which can be inherited, deleted or replaced.
+ This neatly handles the renaming of an element in an extension, ensuring
+ that this cannot affect an element's logical identity.
+\end_layout
+
+\begin_layout Standard
+Unlike other constituent types however, no error results if two separate
+ names are introduced for the same element by independent extensions using
+ element replacement.
+ Instead, both names will be displayed against the graphical view of the
+ element, and a further replacement can be used to return back to a single
+ name.
+ This somewhat relaxed approach towards naming conflicts is in keeping with
+ the diminished importance of human readable names in Backbone, given that
+ they do not confer logical identity.
+\end_layout
+
+\begin_layout Standard
+Similarly, constituent replace can be used to evolve the human readable
+ name of a constituent such as an attribute or an operation.
+\end_layout
+
+\begin_layout Section
+Areas Not Covered By the Specification
+\end_layout
+
+\begin_layout Standard
+The component model of Backbone is specified at a level of abstraction that
+ allows the implementation concepts to map closely onto their formal counterpart
+s.
+ The implementation does, however, cover several concepts which are not
+ described by the specification.
+ In this section we briefly discuss these areas and indicate how they are
+ handled by the implementation.
+\end_layout
+
+\begin_layout Standard
+Firstly, it is important to reiterate that the primary aim of the specification
+ is to describe how deltas alter component architectures in the presence
+ of replacements from extensions.
+ The specification does not aim to deal with architectural flattening, in
+ either a local or distributed sense.
+ This area has been covered for hierarchical systems in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kramer1995,Magee1995"
+
+\end_inset
+
+.
+ As such, the Backbone formal specification does not cover hyperports (see
+ section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Hyperports:-Connecting-Across"
+
+\end_inset
+
+), which are handled in the implementation by adding connectors to the flattened
+ representation based on the previously discussed interface compatibility
+ rules for connectors between ports.
+\end_layout
+
+\begin_layout Standard
+The specification does not deal with the dynamic instantiation of parts
+ via factories (see section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Factory-Pattern"
+
+\end_inset
+
+).
+ In the implementation, factories are treated like normal components, except
+ that the connections and parts are instantiated on demand rather than at
+ program startup.
+\end_layout
+
+\begin_layout Standard
+Although the specification describes connector indices, it does not mention
+ delegate connectors.
+ These connectors can be used to connect two ports, potentially avoiding
+ the need for many indexed connectors.
+ In the specification a delegate can be modelled by a set of explicit connectors
+ each with explicit indices.
+ In the implementation a delegate connector establishes an alias between
+ two ports, and this notion may be incorporated back into the specification
+ at a later time.
+\end_layout
+
+\begin_layout Standard
+Finally, retirement is not covered.
+ This concept could be easily incorporated into the specification in the
+ future.
+ In the implementation, retirement of an element is represented by a boolean
+ delta.
+ In other words, retirement is handled by evolving an element and setting
+ its retirement flag constituent to true.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+The formal specification of Backbone is divided into two layers.
+ The base layer describes the general extensibility concepts of stratum,
+ element, deltas, resemblance and replacement.
+ Essentially, this explains how delta changes to the compositional structure
+ of elements can be applied, in the presence of replacements from extensions,
+ to form fully expanded elements.
+ It also describes how structural conflict occurs and how it can be remedied
+ by a further extension.
+ A key point is that replacements are applied in an order governed by strata
+ dependencies.
+\end_layout
+
+\begin_layout Standard
+The ADL layer builds a component model on top of the base layer.
+ The component, interface and primitive type concepts are each modelled
+ as elements, and can therefore participate in resemblance and replacement
+ relationships.
+ The component model is augmented by rules describing a structurally correct
+ architecture.
+ These rules are outlined in appendix 
+\lang british
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-Informal"
+
+\end_inset
+
+
+\lang english
+.
+\end_layout
+
+\begin_layout Standard
+The implementation class name (or interface name) of a leaf component (or
+ ADL interface) is also represented as a constituent.
+ This neatly expresses the mapping between architecture and implementation,
+ allowing an extension to adjust this for leaves or interfaces.
+ Although human readable names are not described in the formal specification,
+ these too are implemented as delta constituents.
+ This allows the renaming of elements and constituents by an extension.
+ Names have a diminished status in Backbone as they do not establish or
+ affect logical identity.
+\end_layout
+
+\begin_layout Standard
+The next chapter discusses tool support for Backbone.
+ The specification was initially written with the aim of reducing corner
+ cases and inconsistencies discovered in an earlier implementation of the
+ toolset.
+ We have now fully reimplemented the modelling tool and runtime platform
+ using the formal specification, and this has eliminated the earlier issues.
+ The writing of the specification also clarified many of the extensibility
+ ideas and led to the insight that resemblance and replacement were applicable
+ to more than just component structures.
+\end_layout
+
+\end_body
+\end_document

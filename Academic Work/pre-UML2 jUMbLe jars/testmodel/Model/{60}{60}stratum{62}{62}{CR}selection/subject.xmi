@@ -1,0 +1,4 @@
+        <UML:Package xmi.id="a7" xmi.uuid="DCE-1140441710310-128" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+selection</UML:ModelElement.name>
+        </UML:Package>

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="609.63672"
+   height="743.92871"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.44.1"
+   sodipodi:docbase="C:\Andrew\Workspace\Academic Work\papers\SAVCBS 2007 resemblance\images"
+   sodipodi:docname="conceptual-view.svg"
+   inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\SAVCBS 2007 resemblance\images\conceptual-view.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   version="1.0">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path2519"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z "
+         style="fill-rule:evenodd;stroke:black;stroke-width:1pt;marker-start:none"
+         transform="scale(0.8,0.8)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path2516"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z "
+         style="fill-rule:evenodd;stroke:black;stroke-width:1pt;marker-start:none"
+         transform="scale(-0.8,-0.8)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="404.30556"
+     inkscape:cy="382.70189"
+     inkscape:document-units="px"
+     inkscape:current-layer="g2200"
+     inkscape:window-width="1280"
+     inkscape:window-height="1005"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     width="744.09448px"
+     height="1052.3622px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-82.07812,-199.4794)">
+    <g
+       id="g2194">
+      <g
+         id="g2200"
+         transform="translate(-58.57143,-38.57143)">
+        <rect
+           style="fill:#dcdcdc;fill-opacity:1;stroke:#5c89b4;stroke-width:1.6619339;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1307"
+           width="239.91208"
+           height="309.02554"
+           x="903.49475"
+           y="258.05933"
+           transform="matrix(0.797895,0.602796,-0.857307,0.514805,0,0)"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <text
+           xml:space="preserve"
+           style="font-size:23.99999428px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+           x="933.80396"
+           y="527.70184"
+           id="text2184"
+           transform="matrix(0.828481,0.625903,-0.890157,0.53453,0,0)"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan2190"
+             x="933.80396"
+             y="527.70184">stratum 1</tspan><tspan
+             sodipodi:role="line"
+             id="tspan2192"
+             x="933.80396"
+             y="557.70184" /></text>
+        <rect
+           style="fill:#dcdcdc;fill-opacity:0.64197531;stroke:#5c89b4;stroke-width:1.6619339;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2226"
+           width="239.91208"
+           height="309.02554"
+           x="745.18524"
+           y="110.77712"
+           transform="matrix(0.797895,0.602796,-0.857307,0.514805,0,0)"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <text
+           xml:space="preserve"
+           style="font-size:23.99999428px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+           x="781.33875"
+           y="385.85468"
+           id="text2228"
+           transform="matrix(0.828481,0.625903,-0.890157,0.53453,0,0)"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan2230"
+             x="781.33875"
+             y="385.85468">stratum 2</tspan><tspan
+             sodipodi:role="line"
+             id="tspan2232"
+             x="781.33875"
+             y="415.85467" /></text>
+        <rect
+           style="fill:#dcdcdc;fill-opacity:0.54938271;stroke:#5c89b4;stroke-width:1.66192865;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2236"
+           width="239.91141"
+           height="309.02454"
+           x="533.13251"
+           y="-99.908958"
+           transform="matrix(0.797895,0.602796,-0.857307,0.514805,0,0)"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <text
+           xml:space="preserve"
+           style="font-size:23.99997711px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+           x="565.92041"
+           y="185.36217"
+           id="text2238"
+           transform="matrix(0.828481,0.625903,-0.890157,0.53453,0,0)"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan2240"
+             x="565.92041"
+             y="185.36217">stratum N</tspan><tspan
+             sodipodi:role="line"
+             id="tspan2242"
+             x="565.92041"
+             y="215.36214" /></text>
+        <rect
+           style="fill:#ddeb12;fill-opacity:1;stroke:#040000;stroke-width:1.03305876;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2258"
+           width="46.553917"
+           height="59.796535"
+           x="1008.8192"
+           y="269.57822"
+           transform="matrix(0.789587,0.613639,-0.850769,0.52554,0,0)"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           style="fill:#ddeb12;fill-opacity:1;stroke:#040000;stroke-width:1.03305793;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2334"
+           width="46.553837"
+           height="59.796509"
+           x="939.86151"
+           y="419.00128"
+           transform="matrix(0.789587,0.613639,-0.850769,0.52554,0,0)"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           style="fill:#ddeb12;fill-opacity:1;stroke:#040000;stroke-width:1.03305793;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2336"
+           width="46.553837"
+           height="59.796509"
+           x="1031.7574"
+           y="397.32657"
+           transform="matrix(0.789587,0.613639,-0.850769,0.52554,0,0)"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:2.00830507;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:2.0083052, 6.0249156;stroke-dashoffset:0;stroke-opacity:1"
+           d="M 422.71525,675.3401 L 460.29358,852.76998"
+           id="path2526"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="M 399,631.36218 L 438,603.36218"
+           id="path2542"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           transform="translate(58.57143,38.57143)" />
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="M 432,812.36218 L 486,776.36218"
+           id="path2544"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           transform="translate(58.57143,38.57143)" />
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="M 349,796.36218 L 381,824.36218"
+           id="path2546"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           transform="translate(58.57143,38.57143)" />
+        <text
+           xml:space="preserve"
+           style="font-size:23.99999428px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+           x="910.32819"
+           y="232.68076"
+           id="text2550"
+           transform="matrix(0.828481,0.625903,-0.890157,0.53453,0,0)"
+           sodipodi:linespacing="100%"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan2554"
+             x="910.32819"
+             y="232.68076">resemblance</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:15.99999619px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+           x="700.34778"
+           y="86.024651"
+           id="text2558"
+           transform="matrix(0.828481,0.625903,-0.890157,0.53453,0,0)"
+           sodipodi:linespacing="100%"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan2560"
+             x="700.34778"
+             y="86.024651"
+             style="font-size:23.99999619px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial">redefinition</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+           x="139.57143"
+           y="977.93359"
+           id="text1911"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             x="139.57143"
+             y="977.93359"
+             id="tspan1915">Strata load order</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+           x="590.41907"
+           y="255.52344"
+           id="text1923"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             x="590.41907"
+             y="255.52344"
+             id="tspan1925">View of system</tspan></text>
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 597,232.36218 L 597,297.36218"
+           id="path1927"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           transform="translate(58.57143,38.57143)"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 198.57143,947.93361 L 198.57143,886.93361"
+           id="path1929"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:2.09264755;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow1Lstart);stroke-miterlimit:4;stroke-dasharray:2.09264749, 4.18529495;stroke-dashoffset:0;stroke-opacity:1"
+           d="M 541.05697,668.52148 L 566.5251,788.88728"
+           id="path3707"
+           sodipodi:nodetypes="cc" />
+        <rect
+           style="fill:#ddeb12;fill-opacity:0.58823529;stroke:#040000;stroke-width:1.03305793;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2340"
+           width="46.553837"
+           height="59.796509"
+           x="826.31744"
+           y="264.25562"
+           transform="matrix(0.789587,0.613639,-0.850769,0.52554,0,0)"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           style="fill:#ddeb12;fill-opacity:0.58823529;stroke:#040000;stroke-width:1.03305817;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2338"
+           width="46.55386"
+           height="59.796516"
+           x="838.68921"
+           y="154.67027"
+           transform="matrix(0.789587,0.613639,-0.850769,0.52554,0,0)"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:2.03539276;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:2.03539288, 4.07078575;stroke-dashoffset:0;stroke-opacity:1"
+           d="M 491.77812,434.79191 L 527.97896,603.87701"
+           id="path2538"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           style="fill:#ddeb12;fill-opacity:1;stroke:#040000;stroke-width:1.03305805;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2342"
+           width="46.553848"
+           height="59.796513"
+           x="648.44501"
+           y="13.369821"
+           transform="matrix(0.789587,0.613639,-0.850769,0.52554,0,0)"
+           inkscape:export-filename="C:\Andrew\Workspace\Academic Work\papers\ICSE 2007 resemblance\images\rect1307.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:black;stroke-width:2.71550941;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow1Lstart);stroke-miterlimit:4;stroke-dasharray:2.71550944, 5.43101884;stroke-dashoffset:0;stroke-opacity:1"
+           d="M 444.8143,707.4068 L 479.30044,857.08761"
+           id="path1998"
+           sodipodi:nodetypes="cc" />
+      </g>
+    </g>
+  </g>
+</svg>

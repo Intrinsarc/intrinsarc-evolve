@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/parser
+END
+LanguageParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/parser/LanguageParser.java
+END
+SetParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/parser/SetParser.java
+END
+WordParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/parser/WordParser.java
+END
+AlphabetParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/src/ar/dc/uba/parser/AlphabetParser.java
+END

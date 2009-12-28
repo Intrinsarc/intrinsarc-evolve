@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1201178079218_8379" name="model">
+  <j_diagramHolder uuid="acer-q9187dcvnj_1201178390125_1582" saveTime="Thu Jan 24, 2008 at 12:39:50 GMT" savedBy="Andrew">
+    <diagram uuid="acer-q9187dcvnj_1201178390125_1139" lastFigureId="11">
+      <figures uuid="acer-q9187dcvnj_1201178390125_5279" id="3" recreator="Package" autosized="false" point="464 136" dimensions="87 75" subject="//@childPackages.8">
+        <figures uuid="acer-q9187dcvnj_1201178390125_9734" id="3_C" recreator="SimpleContainer" point="464 151" dimensions="87 60" offset="4 4"/>
+        <properties uuid="acer-q9187dcvnj_1201178390125_4158" name="fill" value="193 206 236"/>
+        <properties uuid="acer-q9187dcvnj_1201178390125_7264" name="owner" value="model"/>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1201178390125_1787" id="2" recreator="Package" autosized="false" point="604 320" dimensions="87 75" subject="//@childPackages.7">
+        <figures uuid="acer-q9187dcvnj_1201178390125_5828" id="2_C" recreator="SimpleContainer" point="604 335" dimensions="87 60" offset="4 4"/>
+        <properties uuid="acer-q9187dcvnj_1201178390125_6065" name="fill" value="193 206 236"/>
+        <properties uuid="acer-q9187dcvnj_1201178390125_7784" name="owner" value="model"/>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1201178390125_7184" id="10" recreator="dependency" anchor1Id="1" anchor2Id="0" virtualPoint="467.5 451.5" points="2 434.4 396 501.2 508.1" subject="//@childPackages.6/@ownedAnonymousDependencies.0">
+        <figures uuid="acer-q9187dcvnj_1201178390125_9527" id="10_M" recreator="Linked Text" containedName="text" text="" show="false" point="452 436" dimensions="3.3 15.1">
+          <properties uuid="acer-q9187dcvnj_1201178390125_9331" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1201178390125_2415" id="1" recreator="Package" autosized="false" point="368 320" dimensions="87 75" subject="//@childPackages.6">
+        <figures uuid="acer-q9187dcvnj_1201178390125_9200" id="1_C" recreator="SimpleContainer" point="368 335" dimensions="87 60" offset="4 4"/>
+        <properties uuid="acer-q9187dcvnj_1201178390125_4130" name="fill" value="193 206 236"/>
+        <properties uuid="acer-q9187dcvnj_1201178390125_4662" name="owner" value="model"/>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1201178390125_5191" id="0" recreator="Package" autosized="false" point="480 508" dimensions="87 75" subject="//@childPackages.5">
+        <figures uuid="acer-q9187dcvnj_1201178390125_8488" id="0_C" recreator="SimpleContainer" point="480 523" dimensions="87 60" offset="4 4"/>
+        <properties uuid="acer-q9187dcvnj_1201178390125_1961" name="fill" value="193 206 236"/>
+        <properties uuid="acer-q9187dcvnj_1201178390125_7837" name="owner" value="model"/>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1201178390125_8368" id="7" recreator="dependency" anchor1Id="3" anchor2Id="1" virtualPoint="459.5 265.5" points="2 487.4 212.1 431.1 320" subject="//@childPackages.8/@ownedAnonymousDependencies.0">
+        <figures uuid="acer-q9187dcvnj_1201178390125_9590" id="7_M" recreator="Linked Text" containedName="text" text="" show="false" point="444 252" dimensions="3.3 15.1">
+          <properties uuid="acer-q9187dcvnj_1201178390125_7954" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1201178390125_4842" id="9" recreator="dependency" anchor1Id="2" anchor2Id="0" virtualPoint="579.8 470.8" points="2 622 396.1 548.3 507.9" subject="//@childPackages.7/@ownedAnonymousDependencies.0">
+        <figures uuid="acer-q9187dcvnj_1201178390125_1799" id="9_M" recreator="Linked Text" containedName="text" text="" show="false" point="568 436" dimensions="3.3 15.1">
+          <properties uuid="acer-q9187dcvnj_1201178390125_2704" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="acer-q9187dcvnj_1201178390125_393" id="8" recreator="dependency" anchor1Id="3" anchor2Id="2" virtualPoint="577.5 265.5" points="2 536.8 212.1 618.9 319.9" subject="//@childPackages.8/@ownedAnonymousDependencies.1">
+        <figures uuid="acer-q9187dcvnj_1201178390125_6678" id="8_M" recreator="Linked Text" containedName="text" text="" show="false" point="560 248" dimensions="3.3 15.1">
+          <properties uuid="acer-q9187dcvnj_1201178390125_2079" name="suppress" value="true"/>
+        </figures>
+      </figures>
+    </diagram>
+  </j_diagramHolder>
+  <childPackages uuid="acer-q9187dcvnj_1201178079218_1580" name="primitive types">
+    <ownedMember xsi:type="uml:PrimitiveType" uuid="acer-q9187dcvnj_1201178079218_6507" name="type"/>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_463" name="boolean">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_8591" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_2751" body="Boolean"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_6615" name="int">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_1599" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_5373" body="Integer"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_3128" name="long">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_2244" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_1397" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_9297" name="float">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_1467" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_2119" body="Float"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_5441" name="double">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_4760" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_3022" body="Double"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_4185" name="String">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_4203" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_3860" body="String"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_3399" name="Date">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_6822" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_6220" body="Date"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_3346" name="Time">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_9160" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_2034" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_153" name="DateTime">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_9121" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_8333" body="Date"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_9555" name="Interval">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_6929" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_1052" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+  </childPackages>
+  <childPackages xsi:type="uml:Profile" documentation="The profile for Backbone modelling" uuid="acer-q9187dcvnj_1201178079218_9413" name="backbone profile">
+    <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of all backbone definitions that live in strata." uuid="acer-q9187dcvnj_1201178079218_5456" name="backbone-element" isAbstract="true" extendsMetaModelElement="'Class'">
+      <ownedAttribute documentation="An override to insert Backbone directly into the generated output." uuid="acer-q9187dcvnj_1201178079218_584" name="definitionOverride" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of leaf and composite components.  Not used directly." uuid="acer-q9187dcvnj_1201178079218_2013" name="backbone-component" isAbstract="true" extendsMetaModelElement="'Class'">
+      <generalization uuid="acer-q9187dcvnj_1201178079218_3604" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="Can we navigate to direct neighbours via this component?" uuid="acer-q9187dcvnj_1201178079218_9401" name="navigable" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="The protocol(s) for this component" uuid="acer-q9187dcvnj_1201178079218_7167" name="protocols" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which is associated with a direct implementation class." uuid="acer-q9187dcvnj_1201178079218_7124" name="backbone-implementation" extendsMetaModelElement="'Class'">
+      <generalization uuid="acer-q9187dcvnj_1201178079218_1020" general="//@childPackages.1/@ownedMember.1"/>
+      <ownedAttribute documentation="The implementation class that this leaf is associated with." uuid="acer-q9187dcvnj_1201178079218_9710" name="implementationClass" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Is this a system leaf, that won't have implementation code generated?" uuid="acer-q9187dcvnj_1201178079218_4493" name="systemLeaf" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which wraps an implementation component.  This is done for uniformity." uuid="acer-q9187dcvnj_1201178079218_4948" name="backbone-leaf" extendsMetaModelElement="'Class'">
+      <generalization uuid="acer-q9187dcvnj_1201178079218_1190" general="//@childPackages.1/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  An interface which is visible to backbone." uuid="acer-q9187dcvnj_1201178079218_9988" name="backbone-interface" extendsMetaModelElement="'Interface'">
+      <generalization uuid="acer-q9187dcvnj_1201178079218_8017" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="The implementation class that this interface is associated with." uuid="acer-q9187dcvnj_1201178079218_2801" name="implementationInterface" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Is this a system interface, that won't have implementation code generated?" uuid="acer-q9187dcvnj_1201178079218_9800" name="systemInterface" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  A factory interface which is visible to backbone." uuid="acer-q9187dcvnj_1201178079218_1364" name="backbone-factory-interface" extendsMetaModelElement="'Interface'">
+      <generalization uuid="acer-q9187dcvnj_1201178079218_3515" general="//@childPackages.1/@ownedMember.4"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A composite component which can contain parts." uuid="acer-q9187dcvnj_1201178079218_1600" name="backbone-composite" extendsMetaModelElement="'Class'">
+      <generalization uuid="acer-q9187dcvnj_1201178079218_9129" general="//@childPackages.1/@ownedMember.1"/>
+      <ownedAttribute documentation="Does this expose references to internal parts?" uuid="acer-q9187dcvnj_1201178079218_5069" name="cluster" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A factory component which can instantiate parts lazily." uuid="acer-q9187dcvnj_1201178079218_7431" name="backbone-factory" extendsMetaModelElement="'Class'">
+      <generalization documentation="A factory is a type of composite, which instantiates its parts on demand." uuid="acer-q9187dcvnj_1201178079218_6590" general="//@childPackages.1/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A type which can be used for an attribute." uuid="acer-q9187dcvnj_1201178079218_2205" name="backbone-attribute-type" extendsMetaModelElement="'PrimitiveType', 'Class'">
+      <ownedAttribute documentation="The implementation class for this attribute type." uuid="acer-q9187dcvnj_1201178079218_5516" name="implementationClass" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A non-hierarchical container of Backbone definitions." uuid="acer-q9187dcvnj_1201178079218_3309" name="backbone-stratum" extendsMetaModelElement="'Package', 'Model'">
+      <ownedAttribute documentation="Can this stratum contain destructive (replace, delete) redefines?" uuid="acer-q9187dcvnj_1201178079218_9590" name="destructive" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="If another stratum depends on this, can it also see this stratum's dependencies?) ?" uuid="acer-q9187dcvnj_1201178079218_5099" name="relaxed" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="The group to find the load directory from" uuid="acer-q9187dcvnj_1201178079218_8374" name="stratumGroup" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="A preamble which is inserted into the Backbone code for this stratum" uuid="acer-q9187dcvnj_1201178079218_9427" name="preamble" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A port allows a component to provide or require services." uuid="acer-q9187dcvnj_1201178079218_834" name="backbone-port" extendsMetaModelElement="'Port'">
+      <generalization documentation="A port offers or requires services." uuid="acer-q9187dcvnj_1201178079218_2652" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="Does this port require callbacks?" uuid="acer-q9187dcvnj_1201178079218_6612" name="callbacks" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A placeholder defines the shape of something that must be replaced later.  It 'stands in' until the replacement is made." uuid="acer-q9187dcvnj_1201178079218_3085" name="backbone-placeholder" extendsMetaModelElement="'Class'">
+      <generalization documentation="A port offers or requires services." uuid="acer-q9187dcvnj_1201178079218_7927" general="//@childPackages.1/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A port link indicates how port type dependencies propagate in leaves.  Not used for composites, as connections suffice." uuid="acer-q9187dcvnj_1201178079218_405" name="backbone-port-link" extendsMetaModelElement="'Dependency'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="Indication that the item is a delta from the resembled definition." uuid="acer-q9187dcvnj_1201178079218_8301" name="backbone-delta" extendsMetaModelElement="'Class', 'Property', 'Interface'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="The overide data for a slot so we can show alloy errors." uuid="acer-q9187dcvnj_1201178079218_6496" name="backbone-overriden-slot" extendsMetaModelElement="'Slot'">
+      <ownedAttribute documentation="An override so we can control how the slot string displays." uuid="acer-q9187dcvnj_1201178079218_7484" name="overriddenSlotText" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="An override so we can make the slot look aliased." uuid="acer-q9187dcvnj_1201178079218_7887" name="overriddenSlotAlias" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A marker stereotype to indicate that this traces an element from one perspective to another." uuid="acer-q9187dcvnj_1201178079218_7458" name="trace" extendsMetaModelElement="'Dependency'"/>
+  </childPackages>
+  <childPackages xsi:type="uml:Profile" documentation="The profile for documenting a model" uuid="acer-q9187dcvnj_1201178079218_8474" name="documentation profile">
+    <ownedMember xsi:type="uml:Stereotype" documentation="The top level documentation package" uuid="acer-q9187dcvnj_1201178079218_3419" name="documentation-top" extendsMetaModelElement="'Package'">
+      <ownedAttribute documentation="The name of the document." uuid="acer-q9187dcvnj_1201178079218_7583" name="documentName" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The owner of document." uuid="acer-q9187dcvnj_1201178079218_2751" name="owner" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The email address of the owner." uuid="acer-q9187dcvnj_1201178079218_1607" name="email" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The copyright period of the document." uuid="acer-q9187dcvnj_1201178079218_7069" name="copyrightYears" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Number of non-breaking spaces to pad the home navigation entry with." uuid="acer-q9187dcvnj_1201178079218_4719" name="numberOfSpacesForPadding" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The prefix to add for each page title, apart from home." uuid="acer-q9187dcvnj_1201178079218_9110" name="pageTitlePrefix" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The index to add to the htmlTemplate and htmlGenerateTo slots to extract the folders.  Allows more than one site to be generated from a given model." uuid="acer-q9187dcvnj_1201178079218_9962" name="siteIndex" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A sub-package of the top-level documentation package." uuid="acer-q9187dcvnj_1201178079218_7877" name="documentation-included" extendsMetaModelElement="'Package'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A figure to reproduce in the documentation." uuid="acer-q9187dcvnj_1201178079218_8362" name="documentation-figure" extendsMetaModelElement="'Comment'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A comment visually containing a set of other documentation packages to refer to." uuid="acer-q9187dcvnj_1201178079218_5309" name="documentation-see-also" extendsMetaModelElement="'Comment'"/>
+  </childPackages>
+  <childPackages xsi:type="uml:Profile" documentation="The profile for a standard jUMbLe model." uuid="acer-q9187dcvnj_1201178079218_9642" name="standard profile">
+    <ownedMember xsi:type="uml:Stereotype" documentation="Indicates that the element is in error." uuid="acer-q9187dcvnj_1201178079218_2924" name="error" extendsMetaModelElement="'Class', 'Interface', 'Package', 'Property', 'Operation'">
+      <ownedAttribute documentation="The explanation of this error." uuid="acer-q9187dcvnj_1201178079218_5222" name="error-description" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1201178079218_3276" name="backbone">
+    <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_6735" property="//@childPackages.1/@ownedMember.9/@ownedAttribute.3">
+      <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_6030" body="#application-package-hint components&#xA;{&#xA;}&#xA;&#xA;#system-class-hint basics&#xA;{&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IAnotherRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.Placeholder&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.constructor.PartHandle&quot;,&#xA;&#x9;&quot;java.lang.Integer&quot;,&#xA;&#x9;&quot;java.lang.Long&quot;,&#xA;&#x9;&quot;java.lang.Double&quot;,&#xA;&#x9;&quot;java.lang.String&quot;,&#xA;&#x9;&quot;java.awt.Point&quot;,&#xA;&#x9;&quot;java.awt.Dimension&quot;,&#xA;&#x9;&quot;java.awt.Rectangle&quot;,&#xA;&#x9;&quot;java.util.Date&quot;,&#xA;&#x9;&quot;java.awt.Color&quot;&#xA;}"/>
+    </appliedBasicStereotypeValues>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178079218_581" name="IRun">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_3394" property="//@childPackages.1/@ownedMember.4/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_7397" body="com.hopstepjump.backbone.api.IRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_275" property="//@childPackages.1/@ownedMember.4/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1201178079218_3212" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178079218_7887" name="IAnotherRun">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_6265" property="//@childPackages.1/@ownedMember.4/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_2748" body="com.hopstepjump.backbone.api.IAnotherRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_6974" property="//@childPackages.1/@ownedMember.4/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1201178079218_5804" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.3" uuid="acer-q9187dcvnj_1201178079218_7877" name="Placeholder">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_6493" property="//@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_2327" body="com.hopstepjump.backbone.api.Placeholder"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_5796" property="//@childPackages.1/@ownedMember.2/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="acer-q9187dcvnj_1201178079218_7526" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="acer-q9187dcvnj_1201178079218_4012" name="PartHandle">
+      <appliedBasicStereotypeValues uuid="acer-q9187dcvnj_1201178079218_1837" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="acer-q9187dcvnj_1201178079218_8647" body="PartHandle"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1201178086188_5355" name="base">
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.6" uuid="acer-q9187dcvnj_1201178120817_6539" name="StateMachine">
+      <ownedAttribute uuid="acer-q9187dcvnj_1201178466274_2666" type="//@childPackages.5/@ownedMember.1" aggregation="composite">
+        <defaultValue xsi:type="uml:InstanceValue" uuid="acer-q9187dcvnj_1201178466274_5865" instance="//@childPackages.5/@ownedMember.0/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+          <ownedAnonymousInstanceValue uuid="acer-q9187dcvnj_1201178466284_953" classifier="//@childPackages.5/@ownedMember.1"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute uuid="acer-q9187dcvnj_1201178503047_1358" type="//@childPackages.5/@ownedMember.2" aggregation="composite">
+        <defaultValue xsi:type="uml:InstanceValue" uuid="acer-q9187dcvnj_1201178503047_1748" instance="//@childPackages.5/@ownedMember.0/@ownedAttribute.1/@defaultValue/@ownedAnonymousInstanceValue">
+          <ownedAnonymousInstanceValue uuid="acer-q9187dcvnj_1201178503047_7194" classifier="//@childPackages.5/@ownedMember.2"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute uuid="acer-q9187dcvnj_1201178512040_3901" type="//@childPackages.5/@ownedMember.3" aggregation="composite">
+        <defaultValue xsi:type="uml:InstanceValue" uuid="acer-q9187dcvnj_1201178512040_5891" instance="//@childPackages.5/@ownedMember.0/@ownedAttribute.2/@defaultValue/@ownedAnonymousInstanceValue">
+          <ownedAnonymousInstanceValue uuid="acer-q9187dcvnj_1201178512040_1296" classifier="//@childPackages.5/@ownedMember.3"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedConnector uuid="acer-q9187dcvnj_1201178498841_2975">
+        <end uuid="acer-q9187dcvnj_1201178498841_3332" role="//@childPackages.5/@ownedMember.0/@ownedPort.0"/>
+        <end uuid="acer-q9187dcvnj_1201178498841_5011" role="//@childPackages.5/@ownedMember.1/@ownedPort.0" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.0"/>
+      </ownedConnector>
+      <ownedConnector uuid="acer-q9187dcvnj_1201178536816_3751">
+        <end j_deleted="1" uuid="acer-q9187dcvnj_1201178536816_4397" role="//@childPackages.5/@ownedMember.1/@ownedPort.2" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.0"/>
+        <end j_deleted="1" uuid="acer-q9187dcvnj_1201178536816_2583" role="//@childPackages.5/@ownedMember.3/@ownedPort.0" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.2"/>
+        <end uuid="acer-q9187dcvnj_1201178549063_6353" role="//@childPackages.5/@ownedMember.1/@ownedPort.1" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.0"/>
+        <end uuid="acer-q9187dcvnj_1201178549063_2754" role="//@childPackages.5/@ownedMember.3/@ownedPort.0" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.2"/>
+      </ownedConnector>
+      <ownedConnector uuid="acer-q9187dcvnj_1201178657389_5336">
+        <end uuid="acer-q9187dcvnj_1201178657389_138" role="//@childPackages.5/@ownedMember.2/@ownedPort.0" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.1"/>
+        <end uuid="acer-q9187dcvnj_1201178657389_2174" role="//@childPackages.5/@ownedMember.1/@ownedPort.1" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.0"/>
+      </ownedConnector>
+      <ownedConnector j_deleted="1" uuid="acer-q9187dcvnj_1201178978991_9106">
+        <end uuid="acer-q9187dcvnj_1201178978991_1657" role="//@childPackages.5/@ownedMember.2/@ownedPort.2" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.1"/>
+        <end uuid="acer-q9187dcvnj_1201178978991_1612" role="//@childPackages.5/@ownedMember.3/@ownedPort.2" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.2"/>
+      </ownedConnector>
+      <ownedConnector uuid="acer-q9187dcvnj_1201179148806_9968">
+        <end uuid="acer-q9187dcvnj_1201179148806_6076" role="//@childPackages.5/@ownedMember.2/@ownedPort.2" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.1"/>
+        <end uuid="acer-q9187dcvnj_1201179148806_9016" role="//@childPackages.5/@ownedMember.3/@ownedPort.2" partWithPort="//@childPackages.5/@ownedMember.0/@ownedAttribute.2"/>
+      </ownedConnector>
+      <ownedPort uuid="acer-q9187dcvnj_1201178462559_5294" type="//@childPackages.5/@ownedMember.0/@ownedPort.0/@ownedAnonymousType" end="//@childPackages.5/@ownedMember.0/@ownedConnector.0/@end.0">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178462559_2486" name="(port type)"/>
+      </ownedPort>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.3" uuid="acer-q9187dcvnj_1201178134968_2563" name="Switch">
+      <ownedPort uuid="acer-q9187dcvnj_1201178261330_3251" name="events" type="//@childPackages.5/@ownedMember.1/@ownedPort.0/@ownedAnonymousType" end="//@childPackages.5/@ownedMember.0/@ownedConnector.0/@end.1">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178261330_2065" name="(port type)" clientDependency="//@childPackages.5/@ownedMember.1/@ownedPort.0/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.12" uuid="acer-q9187dcvnj_1201178315588_8334" client="//@childPackages.5/@ownedMember.1/@ownedPort.0/@ownedAnonymousType" dependencyTarget="//@childPackages.5/@ownedMember.1/@ownedPort.1"/>
+          <implementation uuid="acer-q9187dcvnj_1201178279806_8090" supplier="//@childPackages.5/@ownedMember.1/@ownedPort.0/@ownedAnonymousType //@childPackages.5/@ownedMember.4" realizingClassifier="//@childPackages.5/@ownedMember.1/@ownedPort.0/@ownedAnonymousType" contract="//@childPackages.5/@ownedMember.4"/>
+        </ownedAnonymousType>
+      </ownedPort>
+      <ownedPort uuid="acer-q9187dcvnj_1201178282340_4975" type="//@childPackages.5/@ownedMember.1/@ownedPort.1/@ownedAnonymousType" end="//@childPackages.5/@ownedMember.0/@ownedConnector.1/@end.2 //@childPackages.5/@ownedMember.0/@ownedConnector.2/@end.1">
+        <upperValue xsi:type="uml:LiteralUnlimitedNatural" uuid="acer-q9187dcvnj_1201178298523_6594" value="-1"/>
+        <lowerValue xsi:type="uml:LiteralInteger" uuid="acer-q9187dcvnj_1201178298523_9901"/>
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178282340_4396" name="(port type)" clientDependency="//@childPackages.5/@ownedMember.1/@ownedPort.1/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178305102_5654" client="//@childPackages.5/@ownedMember.1/@ownedPort.1/@ownedAnonymousType" dependencyTarget="//@childPackages.5/@ownedMember.4"/>
+        </ownedAnonymousType>
+      </ownedPort>
+      <ownedPort uuid="acer-q9187dcvnj_1201178331581_8443" name="switch" type="//@childPackages.5/@ownedMember.1/@ownedPort.2/@ownedAnonymousType" end="//@childPackages.5/@ownedMember.0/@ownedConnector.1/@end.0">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178331581_7689" name="(port type)">
+          <implementation uuid="acer-q9187dcvnj_1201178357979_1707" supplier="//@childPackages.5/@ownedMember.1/@ownedPort.2/@ownedAnonymousType //@childPackages.5/@ownedMember.8" realizingClassifier="//@childPackages.5/@ownedMember.1/@ownedPort.2/@ownedAnonymousType" contract="//@childPackages.5/@ownedMember.8"/>
+        </ownedAnonymousType>
+      </ownedPort>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.3" uuid="acer-q9187dcvnj_1201178140115_4082" name="State1">
+      <ownedPort uuid="acer-q9187dcvnj_1201178421700_9415" type="//@childPackages.5/@ownedMember.2/@ownedPort.0/@ownedAnonymousType" end="//@childPackages.5/@ownedMember.0/@ownedConnector.2/@end.0">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178421700_5400" name="(port type)" clientDependency="//@childPackages.5/@ownedMember.2/@ownedPort.0/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies j_deleted="1" uuid="acer-q9187dcvnj_1201178747429_8451" client="//@childPackages.5/@ownedMember.2/@ownedPort.0/@ownedAnonymousType" dependencyTarget="//@childPackages.5/@ownedMember.9"/>
+          <implementation uuid="acer-q9187dcvnj_1201178442640_4182" supplier="//@childPackages.5/@ownedMember.2/@ownedPort.0/@ownedAnonymousType //@childPackages.5/@ownedMember.5" realizingClassifier="//@childPackages.5/@ownedMember.2/@ownedPort.0/@ownedAnonymousType" contract="//@childPackages.5/@ownedMember.5"/>
+        </ownedAnonymousType>
+      </ownedPort>
+      <ownedPort uuid="acer-q9187dcvnj_1201178615749_9191" type="//@childPackages.5/@ownedMember.2/@ownedPort.1/@ownedAnonymousType">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178615749_8254" name="(port type)" clientDependency="//@childPackages.5/@ownedMember.2/@ownedPort.1/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178646664_1372" client="//@childPackages.5/@ownedMember.2/@ownedPort.1/@ownedAnonymousType" dependencyTarget="//@childPackages.5/@ownedMember.8"/>
+        </ownedAnonymousType>
+      </ownedPort>
+      <ownedPort uuid="acer-q9187dcvnj_1201178909261_9206" type="//@childPackages.5/@ownedMember.2/@ownedPort.2/@ownedAnonymousType" end="//@childPackages.5/@ownedMember.0/@ownedConnector.3/@end.0 //@childPackages.5/@ownedMember.0/@ownedConnector.4/@end.0">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178909261_9650" name="(port type)" clientDependency="//@childPackages.5/@ownedMember.2/@ownedPort.2/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178928859_219" client="//@childPackages.5/@ownedMember.2/@ownedPort.2/@ownedAnonymousType" dependencyTarget="//@childPackages.5/@ownedMember.11"/>
+        </ownedAnonymousType>
+      </ownedPort>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.3" uuid="acer-q9187dcvnj_1201178147967_5502" name="State2">
+      <ownedPort uuid="acer-q9187dcvnj_1201178423873_2051" type="//@childPackages.5/@ownedMember.3/@ownedPort.0/@ownedAnonymousType" end="//@childPackages.5/@ownedMember.0/@ownedConnector.1/@end.1 //@childPackages.5/@ownedMember.0/@ownedConnector.1/@end.3">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178423873_8445" name="(port type)">
+          <implementation uuid="acer-q9187dcvnj_1201178458563_7854" supplier="//@childPackages.5/@ownedMember.3/@ownedPort.0/@ownedAnonymousType //@childPackages.5/@ownedMember.5" realizingClassifier="//@childPackages.5/@ownedMember.3/@ownedPort.0/@ownedAnonymousType" contract="//@childPackages.5/@ownedMember.5"/>
+        </ownedAnonymousType>
+      </ownedPort>
+      <ownedPort uuid="acer-q9187dcvnj_1201178541963_9814" type="//@childPackages.5/@ownedMember.3/@ownedPort.1/@ownedAnonymousType">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178541963_7223" name="(port type)" clientDependency="//@childPackages.5/@ownedMember.3/@ownedPort.1/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178650028_9992" client="//@childPackages.5/@ownedMember.3/@ownedPort.1/@ownedAnonymousType" dependencyTarget="//@childPackages.5/@ownedMember.8"/>
+        </ownedAnonymousType>
+      </ownedPort>
+      <ownedPort uuid="acer-q9187dcvnj_1201178855704_7559" type="//@childPackages.5/@ownedMember.3/@ownedPort.2/@ownedAnonymousType" end="//@childPackages.5/@ownedMember.0/@ownedConnector.3/@end.1 //@childPackages.5/@ownedMember.0/@ownedConnector.4/@end.1">
+        <ownedAnonymousType xsi:type="uml:Class" uuid="acer-q9187dcvnj_1201178855704_1474" name="(port type)">
+          <implementation uuid="acer-q9187dcvnj_1201178923992_3594" supplier="//@childPackages.5/@ownedMember.3/@ownedPort.2/@ownedAnonymousType //@childPackages.5/@ownedMember.11" realizingClassifier="//@childPackages.5/@ownedMember.3/@ownedPort.2/@ownedAnonymousType" contract="//@childPackages.5/@ownedMember.11"/>
+        </ownedAnonymousType>
+      </ownedPort>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178156359_8996" name="IEvents"/>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178171240_6754" name="ISpecificEvents" clientDependency="//@childPackages.5/@ownedMember.5/@ownedAnonymousDependencies.0">
+      <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178194644_8657" client="//@childPackages.5/@ownedMember.5" dependencyTarget="//@childPackages.5/@ownedMember.4" resemblance="1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Interface" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178272526_9045"/>
+    <ownedMember xsi:type="uml:Interface" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178289550_5476"/>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178338340_4124" name="ISwitch"/>
+    <ownedMember xsi:type="uml:Interface" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178742011_7757" name="X"/>
+    <ownedMember xsi:type="uml:Interface" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178860020_7590"/>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.4" uuid="acer-q9187dcvnj_1201178863425_7686" name="INext"/>
+    <j_diagramHolder uuid="acer-q9187dcvnj_1201178390125_6769" saveTime="Thu Jan 24, 2008 at 12:52:50 GMT" savedBy="Andrew">
+      <diagram uuid="acer-q9187dcvnj_1201179170287_1008" lastFigureId="154">
+        <figures uuid="acer-q9187dcvnj_1201179170287_3015" id="35" recreator="implementation" anchor1Id="27" anchor2Id="29" virtualPoint="1148 80" points="2 1168 80 1128.4 80" subject="//@childPackages.5/@ownedMember.2/@ownedPort.0/@ownedAnonymousType/@implementation.0"/>
+        <figures uuid="acer-q9187dcvnj_1201179170287_3027" id="36" recreator="Interface" autosized="false" icon="true" point="1112 268" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.5">
+          <figures uuid="acer-q9187dcvnj_1201179170287_169" id="39" recreator="Operations" containedName="ops" point="1074.5 314.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170287_1110" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170287_1861" id="37" recreator="Attributes" containedName="attrs" point="1074.5 314.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170287_8180" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170287_8765" id="38" recreator="PortCompartment" containedName="ports" point="1074.5 268" dimensions="99 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170287_9352" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170287_1001" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_6840" id="40" recreator="SimpleContainer" containedName="contents" point="1112 268" offset="4 4"/>
+          <properties uuid="acer-q9187dcvnj_1201179170287_9000" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_4683" id="152" recreator="Connector" anchor1Id="135" anchor2Id="130" virtualPoint="692 405.4" points="2 692 346.7 692 464" subject="//@childPackages.5/@ownedMember.0/@ownedConnector.4">
+          <figures uuid="acer-q9187dcvnj_1201179170297_1505" id="152E" recreator="Linked Text" containedName="endText" text="" point="676 448" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_5157" name="majorPt" value="2"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_9584" id="152_M" recreator="Linked Text" containedName="text" text="" point="676 392" dimensions="3.3 15.1"/>
+          <figures uuid="acer-q9187dcvnj_1201179170307_1924" id="152S" recreator="Linked Text" containedName="startText" text="" point="676 336" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170307_623" name="majorPt" value="1"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_8772" id="153" recreator="Connector" anchor1Id="134" anchor2Id="129" virtualPoint="968 985.4" points="2 968 930.7 968 1040" subject="//@childPackages.5/@ownedMember.0/@ownedConnector.4">
+          <figures uuid="acer-q9187dcvnj_1201179170297_3352" id="153_M" recreator="Linked Text" containedName="text" text="" point="950.1 969.5" dimensions="3.3 15.1"/>
+          <figures uuid="acer-q9187dcvnj_1201179170307_6178" id="153S" recreator="Linked Text" containedName="startText" text="" point="966.1 913.5" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170307_9122" name="majorPt" value="1"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_5521" id="153E" recreator="Linked Text" containedName="endText" text="" point="934.1 1025.5" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170307_4276" name="majorPt" value="2"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_6648" id="42" recreator="implementation" anchor1Id="28" anchor2Id="36" virtualPoint="1156 280" points="2 1176 280 1136.4 280" subject="//@childPackages.5/@ownedMember.3/@ownedPort.0/@ownedAnonymousType/@implementation.0"/>
+        <figures uuid="acer-q9187dcvnj_1201179170297_6407" id="22" recreator="Interface" autosized="false" icon="true" point="84 764" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.4">
+          <figures uuid="acer-q9187dcvnj_1201179170297_8281" id="23" recreator="PortCompartment" containedName="ports" point="68 764" dimensions="56 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170297_2814" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_5918" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_7302" id="24" recreator="Operations" containedName="ops" point="68 810.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_4366" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_9369" id="25" recreator="SimpleContainer" containedName="contents" point="84 764" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_6897" id="26" recreator="Attributes" containedName="attrs" point="68 810.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_4681" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_5039" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_7992" id="29" recreator="Interface" autosized="false" icon="true" point="1104 68" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.5">
+          <figures uuid="acer-q9187dcvnj_1201179170287_9467" id="33" recreator="SimpleContainer" containedName="contents" point="1104 68" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_7489" id="30" recreator="Attributes" containedName="attrs" point="1066.5 114.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_5786" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_3889" id="32" recreator="Operations" containedName="ops" point="1066.5 114.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_2357" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_7685" id="31" recreator="PortCompartment" containedName="ports" point="1066.5 68" dimensions="99 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170297_3607" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_5941" name="classScope" value="true"/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_6374" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_1762" id="3" recreator="Class" autosized="false" point="1184 256" dimensions="86.7 42.7" suppressOperations="true" subject="//@childPackages.5/@ownedMember.3">
+          <figures uuid="acer-q9187dcvnj_1201179170297_870" id="3_A" recreator="Attributes" containedName="attrs" point="1192 282.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9670" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_6136" id="3_C" recreator="SimpleContainer" containedName="contents" point="1192 290.7" dimensions="70.7 0" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_6302" id="3_P" recreator="PortCompartment" containedName="ports" point="1184 256" dimensions="86.7 42.7">
+            <figures uuid="acer-q9187dcvnj_1201179170297_6497" id="28" recreator="Port" autosized="false" point="1176 272" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.0">
+              <figures uuid="acer-q9187dcvnj_1201179170307_46" id="28_T" recreator="Linked Text" containedName="text" text="" point="1176 256" dimensions="3.3 15.1"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_2512" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_1778" name="classScope" value="true"/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170297_7227" id="128" recreator="Port" autosized="false" point="1212 248" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.2">
+              <figures uuid="acer-q9187dcvnj_1201179170307_8140" id="128_T" recreator="Linked Text" containedName="text" text="" point="1212 232" dimensions="3.3 15.1"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_1613" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_7114" name="classScope" value="true"/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170297_6584" id="57" recreator="Port" autosized="false" point="1262.7 268" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.1">
+              <figures uuid="acer-q9187dcvnj_1201179170297_1985" id="57_T" recreator="Linked Text" containedName="text" text="" point="1262.7 252" dimensions="3.3 15.1"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_7479" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_5532" name="classScope" value="true"/>
+            </figures>
+            <properties uuid="acer-q9187dcvnj_1201179170297_3694" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_3600" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_9551" id="3_O" recreator="Operations" containedName="ops" point="1192 290.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_7136" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_1948" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_1726" id="2" recreator="Class" autosized="false" point="1176 52" dimensions="86.7 46.7" suppressOperations="true" subject="//@childPackages.5/@ownedMember.2">
+          <figures uuid="acer-q9187dcvnj_1201179170297_315" id="2_P" recreator="PortCompartment" containedName="ports" point="1176 52" dimensions="86.7 46.7">
+            <figures uuid="acer-q9187dcvnj_1201179170297_1780" id="27" recreator="Port" autosized="false" point="1168 72" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.0">
+              <figures uuid="acer-q9187dcvnj_1201179170307_6188" id="27_T" recreator="Linked Text" containedName="text" text="" point="1168 56" dimensions="3.3 15.1"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_4960" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_2943" name="classScope" value="true"/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170297_845" id="133" recreator="Port" autosized="false" point="1216 90.7" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.2">
+              <figures uuid="acer-q9187dcvnj_1201179170297_3064" id="133_T" recreator="Linked Text" containedName="text" text="" point="1216 74.7" dimensions="3.3 15.1"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_9743" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_7656" name="classScope" value="true"/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170297_9972" id="60" recreator="Port" autosized="false" point="1254.7 72" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.1">
+              <figures uuid="acer-q9187dcvnj_1201179170307_8027" id="60_T" recreator="Linked Text" containedName="text" text="" point="1254.7 56" dimensions="3.3 15.1"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_8293" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_8554" name="classScope" value="true"/>
+            </figures>
+            <properties uuid="acer-q9187dcvnj_1201179170297_1719" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_6715" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_3403" id="2_O" recreator="Operations" containedName="ops" point="1184 86.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_864" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_8346" id="2_A" recreator="Attributes" containedName="attrs" point="1184 78.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_6557" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_3658" id="2_C" recreator="SimpleContainer" containedName="contents" point="1184 86.7" dimensions="70.7 4" offset="4 4"/>
+          <properties uuid="acer-q9187dcvnj_1201179170297_5836" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_4591" id="1" recreator="Class" autosized="false" point="160 800" dimensions="160 128" suppressOperations="true" subject="//@childPackages.5/@ownedMember.1">
+          <figures uuid="acer-q9187dcvnj_1201179170287_4784" id="1_A" recreator="Attributes" containedName="attrs" point="168 826.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170287_139" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170287_417" id="1_C" recreator="SimpleContainer" containedName="contents" point="168 834.7" dimensions="144 85.3" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_3137" id="1_P" recreator="PortCompartment" containedName="ports" point="160 800" dimensions="160 128">
+            <figures uuid="acer-q9187dcvnj_1201179170297_6809" id="8" recreator="Port" autosized="false" point="152 848" dimensions="16 16" subject="//@childPackages.5/@ownedMember.1/@ownedPort.0">
+              <figures uuid="acer-q9187dcvnj_1201179170297_4117" id="8_T" recreator="Linked Text" containedName="text" text="events" point="152 832" dimensions="36 14.7"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_1239" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_3793" name="classScope" value="true"/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170297_3291" id="18" recreator="Port" autosized="false" point="312 896" dimensions="16 16" subject="//@childPackages.5/@ownedMember.1/@ownedPort.2">
+              <figures uuid="acer-q9187dcvnj_1201179170307_8623" id="18_T" recreator="Linked Text" containedName="text" text="switch" point="312 880" dimensions="35 14.7"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_6937" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_4403" name="classScope" value="true"/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170297_4281" id="12" recreator="Port" autosized="false" point="312 848" dimensions="16 16" subject="//@childPackages.5/@ownedMember.1/@ownedPort.1">
+              <figures uuid="acer-q9187dcvnj_1201179170297_2132" id="12_T" recreator="Linked Text" containedName="text" text=" [0..*]" point="328 816" dimensions="24.7 14.7"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_9804" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_7104" name="classScope" value="true"/>
+            </figures>
+            <properties uuid="acer-q9187dcvnj_1201179170297_976" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_9241" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_4984" id="1_O" recreator="Operations" containedName="ops" point="168 834.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_2393" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_9308" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_2160" id="0" recreator="Class" autosized="false" point="332 188" dimensions="540 484" suppressOperations="true" subject="//@childPackages.5/@ownedMember.0">
+          <figures uuid="acer-q9187dcvnj_1201179170307_6497" id="0_A" recreator="Attributes" containedName="attrs" point="340 214.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170307_9468" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_1995" id="0_C" recreator="SimpleContainer" containedName="contents" point="340 222.7" dimensions="524 441.3" offset="4 4">
+            <figures uuid="acer-q9187dcvnj_1201179170297_5629" id="44" recreator="Part" autosized="false" point="376 256" dimensions="97 298.7" suppressOperations="true" subject="//@childPackages.5/@ownedMember.0/@ownedAttribute.0">
+              <figures uuid="acer-q9187dcvnj_1201179170287_4625" id="44_O" recreator="Operations" containedName="ops" point="384 290.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170287_7932" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170287_2277" id="44_P" recreator="PortCompartment" containedName="ports" point="376 256" dimensions="97 298.7">
+                <figures uuid="acer-q9187dcvnj_1201179170297_3954" id="45" recreator="PortInstance" autosized="false" point="368 400" dimensions="16 16" subject="//@childPackages.5/@ownedMember.1/@ownedPort.0">
+                  <figures uuid="acer-q9187dcvnj_1201179170287_9990" id="45_T" recreator="Linked Text" containedName="text" text="events" point="368 384" dimensions="36 14.7"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_2451" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170297_3674" id="47" recreator="PortInstance" autosized="false" point="465 484" dimensions="16 16" subject="//@childPackages.5/@ownedMember.1/@ownedPort.2">
+                  <figures uuid="acer-q9187dcvnj_1201179170307_7742" id="47_T" recreator="Linked Text" containedName="text" text="switch" point="465 468" dimensions="35 14.7"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_3262" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170297_6943" id="46" recreator="PortInstance" autosized="false" point="465 316" dimensions="16 16" subject="//@childPackages.5/@ownedMember.1/@ownedPort.1">
+                  <figures uuid="acer-q9187dcvnj_1201179170307_6479" id="46_T" recreator="Linked Text" containedName="text" text=" [0..*]" point="465 300" dimensions="28 14.7"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_2017" name="extraText" value=""/>
+                </figures>
+                <properties uuid="acer-q9187dcvnj_1201179170287_5783" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170297_7979" id="44_C" recreator="SimpleContainer" containedName="contents" point="384 290.7" dimensions="81 256" offset="4 4"/>
+              <figures uuid="acer-q9187dcvnj_1201179170297_8573" id="44_A" recreator="Attributes" containedName="attrs" point="384 282.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170297_3012" name="deletedUuids" value=""/>
+              </figures>
+              <properties uuid="acer-q9187dcvnj_1201179170297_1708" name="deletedUuids" value=""/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170297_4226" id="51" recreator="Part" autosized="false" point="640 296" dimensions="96.4 42.7" suppressOperations="true" subject="//@childPackages.5/@ownedMember.0/@ownedAttribute.1">
+              <figures uuid="acer-q9187dcvnj_1201179170297_6774" id="51_A" recreator="Attributes" containedName="attrs" point="648 322.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170297_1927" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170297_8066" id="51_C" recreator="SimpleContainer" containedName="contents" point="648 330.7" dimensions="80.4 0" offset="4 4"/>
+              <figures uuid="acer-q9187dcvnj_1201179170297_2808" id="51_P" recreator="PortCompartment" containedName="ports" point="640 296" dimensions="96.4 42.7">
+                <figures uuid="acer-q9187dcvnj_1201179170297_9763" id="135" recreator="PortInstance" autosized="false" point="684 330.7" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.2">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_4296" id="135_T" recreator="Linked Text" containedName="text" text="" point="684 314.7" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_7954" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170297_7143" id="61" recreator="PortInstance" autosized="false" point="728.4 304" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.1">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_2993" id="61_T" recreator="Linked Text" containedName="text" text="" point="728.4 288" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_7837" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170297_8494" id="52" recreator="PortInstance" autosized="false" point="632 312" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.0">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_593" id="52_T" recreator="Linked Text" containedName="text" text="" point="632 296" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_583" name="extraText" value=""/>
+                </figures>
+                <properties uuid="acer-q9187dcvnj_1201179170297_1362" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170297_891" id="51_O" recreator="Operations" containedName="ops" point="648 330.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170297_9406" name="deletedUuids" value=""/>
+              </figures>
+              <properties uuid="acer-q9187dcvnj_1201179170297_5038" name="deletedUuids" value=""/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170297_9439" id="53" recreator="Part" autosized="false" point="652 472" dimensions="96.4 42.7" suppressOperations="true" subject="//@childPackages.5/@ownedMember.0/@ownedAttribute.2">
+              <figures uuid="acer-q9187dcvnj_1201179170297_1017" id="53_P" recreator="PortCompartment" containedName="ports" point="652 472" dimensions="96.4 42.7">
+                <figures uuid="acer-q9187dcvnj_1201179170297_1250" id="58" recreator="PortInstance" autosized="false" point="680 506.7" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.1">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_5669" id="58_T" recreator="Linked Text" containedName="text" text="" point="680 490.7" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_5016" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170297_1490" id="130" recreator="PortInstance" autosized="false" point="684 464" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.2">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_928" id="130_T" recreator="Linked Text" containedName="text" text="" point="684 448" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_1271" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170297_9838" id="54" recreator="PortInstance" autosized="false" point="644 484" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.0">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_3002" id="54_T" recreator="Linked Text" containedName="text" text="" point="644 468" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_8440" name="extraText" value=""/>
+                </figures>
+                <properties uuid="acer-q9187dcvnj_1201179170297_4613" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170297_5659" id="53_O" recreator="Operations" containedName="ops" point="660 506.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170297_7975" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170297_916" id="53_C" recreator="SimpleContainer" containedName="contents" point="660 506.7" dimensions="80.4 0" offset="4 4"/>
+              <figures uuid="acer-q9187dcvnj_1201179170297_8519" id="53_A" recreator="Attributes" containedName="attrs" point="660 498.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170297_3403" name="deletedUuids" value=""/>
+              </figures>
+              <properties uuid="acer-q9187dcvnj_1201179170297_7988" name="deletedUuids" value=""/>
+            </figures>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_7198" id="0_O" recreator="Operations" containedName="ops" point="340 222.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170307_8128" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_1473" id="0_P" recreator="PortCompartment" containedName="ports" point="332 188" dimensions="540 484">
+            <figures uuid="acer-q9187dcvnj_1201179170297_7760" id="43" recreator="Port" autosized="false" point="324 400" dimensions="16 16" subject="//@childPackages.5/@ownedMember.0/@ownedPort.0">
+              <figures uuid="acer-q9187dcvnj_1201179170307_8115" id="43_T" recreator="Linked Text" containedName="text" text="" point="324 384" dimensions="3.3 15.1"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_5258" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_4263" name="classScope" value="true"/>
+            </figures>
+            <properties uuid="acer-q9187dcvnj_1201179170307_9219" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170307_5715" name="classScope" value="true"/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_2887" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_203" id="7" recreator="dependency" anchor1Id="5" anchor2Id="4" virtualPoint="84 136" points="2 84 179.4 84 110.6" subject="//@childPackages.5/@ownedMember.5/@ownedAnonymousDependencies.0">
+          <figures uuid="acer-q9187dcvnj_1201179170297_9270" id="7_M" recreator="Linked Text" containedName="text" text="" show="false" point="68 132" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_4390" name="suppress" value="true"/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_5657" name="resemblance" value="true"/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_3021" id="5" recreator="Interface" autosized="false" icon="true" point="72 180" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.5">
+          <figures uuid="acer-q9187dcvnj_1201179170297_7182" id="5_A" recreator="Attributes" containedName="attrs" point="34.5 226.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_174" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_1886" id="5_C" recreator="SimpleContainer" containedName="contents" point="72 180" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_8876" id="5_O" recreator="Operations" containedName="ops" point="34.5 226.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_8048" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_4682" id="5_P" recreator="PortCompartment" containedName="ports" point="34.5 180" dimensions="99 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170297_7163" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_1156" name="classScope" value="true"/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_1741" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_8994" id="4" recreator="Interface" autosized="false" icon="true" point="72 68" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.4">
+          <figures uuid="acer-q9187dcvnj_1201179170297_4789" id="4_O" recreator="Operations" containedName="ops" point="56 114.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_1075" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_8690" id="4_P" recreator="PortCompartment" containedName="ports" point="56 68" dimensions="56 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170297_751" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_1940" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_4790" id="4_C" recreator="SimpleContainer" containedName="contents" point="72 68" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170307_3199" id="4_A" recreator="Attributes" containedName="attrs" point="56 114.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170307_9514" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_7878" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_968" id="9" recreator="Interface" autosized="false" icon="true" point="72 844" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.4">
+          <figures uuid="acer-q9187dcvnj_1201179170297_1457" id="9_O" recreator="Operations" containedName="ops" point="56 890.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_6253" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_1858" id="9_P" recreator="PortCompartment" containedName="ports" point="56 844" dimensions="56 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170297_5677" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_8292" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_3808" id="9_C" recreator="SimpleContainer" containedName="contents" point="72 844" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_2286" id="9_A" recreator="Attributes" containedName="attrs" point="56 890.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_4644" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_4684" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_5207" id="19" recreator="Interface" autosized="false" icon="true" point="388 892" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.8">
+          <figures uuid="acer-q9187dcvnj_1201179170297_2882" id="19_O" recreator="Operations" containedName="ops" point="372.5 938.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9729" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_7116" id="19_P" recreator="PortCompartment" containedName="ports" point="372.5 892" dimensions="55 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170297_2611" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_4292" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_3034" id="19_C" recreator="SimpleContainer" containedName="contents" point="388 892" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_6703" id="19_A" recreator="Attributes" containedName="attrs" point="372.5 938.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_4673" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_2311" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_8903" id="17" recreator="dependency" anchor1Id="8" anchor2Id="12" virtualPoint="240 856" points="2 168 856 312 856" subject="//@childPackages.5/@ownedMember.1/@ownedPort.0/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <figures uuid="acer-q9187dcvnj_1201179170307_566" id="17_M" recreator="Linked Text" containedName="text" text="" show="false" point="224 840" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170307_1931" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_1291" id="15" recreator="dependency" anchor1Id="12" anchor2Id="13" virtualPoint="358 856" points="2 328 856 387.4 856" subject="//@childPackages.5/@ownedMember.1/@ownedPort.1/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <figures uuid="acer-q9187dcvnj_1201179170297_7342" id="15_M" recreator="Linked Text" containedName="text" text="" show="false" point="339.6 840" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_3512" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_1001" id="13" recreator="Interface" autosized="false" icon="true" point="388 844" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.4">
+          <figures uuid="acer-q9187dcvnj_1201179170297_8034" id="13_O" recreator="Operations" containedName="ops" point="372 890.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9975" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_4668" id="13_P" recreator="PortCompartment" containedName="ports" point="372 844" dimensions="56 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170307_2655" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170307_6214" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_7876" id="13_A" recreator="Attributes" containedName="attrs" point="372 890.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170307_6257" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_8126" id="13_C" recreator="SimpleContainer" containedName="contents" point="388 844" offset="4 4"/>
+          <properties uuid="acer-q9187dcvnj_1201179170297_5732" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_4091" id="11" recreator="implementation" anchor1Id="8" anchor2Id="9" virtualPoint="124 856" points="2 152 856 96.3 856" subject="//@childPackages.5/@ownedMember.1/@ownedPort.0/@ownedAnonymousType/@implementation.0"/>
+        <figures uuid="acer-q9187dcvnj_1201179170297_4584" id="21" recreator="implementation" anchor1Id="18" anchor2Id="19" virtualPoint="358 904" points="2 328 904 387.4 904" subject="//@childPackages.5/@ownedMember.1/@ownedPort.2/@ownedAnonymousType/@implementation.0"/>
+        <figures uuid="acer-q9187dcvnj_1201179170297_4140" id="86" recreator="Class" autosized="false" point="608 768" dimensions="540 484" suppressOperations="true" subject="//@childPackages.5/@ownedMember.0">
+          <figures uuid="acer-q9187dcvnj_1201179170297_2148" id="119" recreator="Operations" containedName="ops" point="616 802.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9955" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_6757" id="126" recreator="PortCompartment" containedName="ports" point="608 768" dimensions="540 484">
+            <figures uuid="acer-q9187dcvnj_1201179170307_1518" id="91" recreator="Port" autosized="false" point="600 980" dimensions="16 16" subject="//@childPackages.5/@ownedMember.0/@ownedPort.0">
+              <figures uuid="acer-q9187dcvnj_1201179170307_5789" id="98" recreator="Linked Text" containedName="text" text="" point="600 964" dimensions="3.3 15.1"/>
+              <properties uuid="acer-q9187dcvnj_1201179170307_1328" name="extraText" value=""/>
+              <properties uuid="acer-q9187dcvnj_1201179170307_5209" name="classScope" value="true"/>
+            </figures>
+            <properties uuid="acer-q9187dcvnj_1201179170297_9122" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_177" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_1535" id="105" recreator="SimpleContainer" containedName="contents" point="616 802.7" dimensions="524 441.3" offset="4 4">
+            <figures uuid="acer-q9187dcvnj_1201179170297_4190" id="84" recreator="Part" autosized="false" point="924 880" dimensions="96.4 42.7" suppressOperations="true" subject="//@childPackages.5/@ownedMember.0/@ownedAttribute.1">
+              <figures uuid="acer-q9187dcvnj_1201179170297_9596" id="82" recreator="SimpleContainer" containedName="contents" point="932 914.7" dimensions="80.4 0" offset="4 4"/>
+              <figures uuid="acer-q9187dcvnj_1201179170297_7516" id="122" recreator="Attributes" containedName="attrs" point="932 906.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170297_2707" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170307_5633" id="101" recreator="PortCompartment" containedName="ports" point="924 880" dimensions="96.4 42.7">
+                <figures uuid="acer-q9187dcvnj_1201179170297_9320" id="80" recreator="PortInstance" autosized="false" point="1012.4 892" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.1">
+                  <figures uuid="acer-q9187dcvnj_1201179170307_4985" id="103" recreator="Linked Text" containedName="text" text="" point="1012.4 876" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_4758" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170297_8886" id="134" recreator="PortInstance" autosized="false" point="968 914.7" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.2">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_676" id="134_T" recreator="Linked Text" containedName="text" text="" point="968 898.7" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_9238" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170307_6533" id="92" recreator="PortInstance" autosized="false" point="916 896" dimensions="16 16" subject="//@childPackages.5/@ownedMember.2/@ownedPort.0">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_1818" id="125" recreator="Linked Text" containedName="text" text="" point="916 880" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170307_3621" name="extraText" value=""/>
+                </figures>
+                <properties uuid="acer-q9187dcvnj_1201179170307_7086" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170307_5070" id="100" recreator="Operations" containedName="ops" point="932 914.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170307_5338" name="deletedUuids" value=""/>
+              </figures>
+              <properties uuid="acer-q9187dcvnj_1201179170297_7929" name="state" value="true"/>
+              <properties uuid="acer-q9187dcvnj_1201179170297_5276" name="deletedUuids" value=""/>
+            </figures>
+            <figures uuid="acer-q9187dcvnj_1201179170307_1743" id="90" recreator="Part" autosized="false" point="932 1048" dimensions="96.4 42.7" suppressOperations="true" subject="//@childPackages.5/@ownedMember.0/@ownedAttribute.2">
+              <figures uuid="acer-q9187dcvnj_1201179170297_4889" id="83" recreator="SimpleContainer" containedName="contents" point="940 1082.7" dimensions="80.4 0" offset="4 4"/>
+              <figures uuid="acer-q9187dcvnj_1201179170307_145" id="97" recreator="Attributes" containedName="attrs" point="940 1074.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170307_117" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170307_7136" id="95" recreator="PortCompartment" containedName="ports" point="932 1048" dimensions="96.4 42.7">
+                <figures uuid="acer-q9187dcvnj_1201179170297_190" id="118" recreator="PortInstance" autosized="false" point="960 1082.7" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.1">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_6720" id="81" recreator="Linked Text" containedName="text" text="" point="960 1066.7" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_8109" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170297_3812" id="129" recreator="PortInstance" autosized="false" point="964 1040" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.2">
+                  <figures uuid="acer-q9187dcvnj_1201179170307_8065" id="129_T" recreator="Linked Text" containedName="text" text="" point="964 1024" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170297_7819" name="extraText" value=""/>
+                </figures>
+                <figures uuid="acer-q9187dcvnj_1201179170307_4851" id="99" recreator="PortInstance" autosized="false" point="924 1060" dimensions="16 16" subject="//@childPackages.5/@ownedMember.3/@ownedPort.0">
+                  <figures uuid="acer-q9187dcvnj_1201179170297_2643" id="114" recreator="Linked Text" containedName="text" text="" point="924 1044" dimensions="3.3 15.1"/>
+                  <properties uuid="acer-q9187dcvnj_1201179170307_7889" name="extraText" value=""/>
+                </figures>
+                <properties uuid="acer-q9187dcvnj_1201179170307_93" name="deletedUuids" value=""/>
+              </figures>
+              <figures uuid="acer-q9187dcvnj_1201179170307_1012" id="89" recreator="Operations" containedName="ops" point="940 1082.7" dimensions="40 8">
+                <properties uuid="acer-q9187dcvnj_1201179170307_3846" name="deletedUuids" value=""/>
+              </figures>
+              <properties uuid="acer-q9187dcvnj_1201179170307_2607" name="state" value="true"/>
+              <properties uuid="acer-q9187dcvnj_1201179170307_6197" name="deletedUuids" value=""/>
+            </figures>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_7653" id="94" recreator="Attributes" containedName="attrs" point="616 794.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170307_6978" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_9307" name="state" value="true"/>
+          <properties uuid="acer-q9187dcvnj_1201179170297_9056" name="deletedUuids" value=" acer-q9187dcvnj_1201178657389_5336 acer-q9187dcvnj_1201178536816_3751 acer-q9187dcvnj_1201178498841_2975"/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_31" id="70" recreator="Interface" autosized="false" icon="true" point="1320 264" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.8">
+          <figures uuid="acer-q9187dcvnj_1201179170297_8352" id="67" recreator="Operations" containedName="ops" point="1304.5 310.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_7430" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_146" id="69" recreator="SimpleContainer" containedName="contents" point="1320 264" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_4517" id="68" recreator="Attributes" containedName="attrs" point="1304.5 310.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_6165" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_9336" id="71" recreator="PortCompartment" containedName="ports" point="1304.5 264" dimensions="55 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170297_7545" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_3602" name="classScope" value="true"/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_3229" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_982" id="73" recreator="dependency" anchor1Id="60" anchor2Id="65" virtualPoint="1285.4 80" points="2 1270.7 80 1299.4 80" subject="//@childPackages.5/@ownedMember.2/@ownedPort.1/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <figures uuid="acer-q9187dcvnj_1201179170297_4326" id="73_M" recreator="Linked Text" containedName="text" text="" show="false" point="1269.7 64.5" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9323" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_8319" id="74" recreator="dependency" anchor1Id="57" anchor2Id="70" virtualPoint="1299.4 277.4" points="2 1278.7 277.4 1319.7 277.4" subject="//@childPackages.5/@ownedMember.3/@ownedPort.1/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <figures uuid="acer-q9187dcvnj_1201179170307_2453" id="74_M" recreator="Linked Text" containedName="text" text="" show="false" point="1285.2 260.6" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170307_1399" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_7972" id="76" recreator="Connector" anchor1Id="52" anchor2Id="46" virtualPoint="556.5 324" points="2 632 324 481 324" subject="//@childPackages.5/@ownedMember.0/@ownedConnector.2">
+          <figures uuid="acer-q9187dcvnj_1201179170307_1694" id="76S" recreator="Linked Text" containedName="startText" text="" point="624 308" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170307_5109" name="majorPt" value="1"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_4960" id="76_M" recreator="Linked Text" containedName="text" text="" point="544 324" dimensions="3.3 15.1"/>
+          <figures uuid="acer-q9187dcvnj_1201179170307_7728" id="76E" recreator="Linked Text" containedName="endText" text="" point="460 308" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170307_1240" name="majorPt" value="2"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_3134" id="132" recreator="Interface" autosized="false" icon="true" point="1212 164" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.11">
+          <figures uuid="acer-q9187dcvnj_1201179170307_5486" id="132_C" recreator="SimpleContainer" containedName="contents" point="1212 164" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170307_4670" id="132_A" recreator="Attributes" containedName="attrs" point="1202 210.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170307_3057" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_2399" id="132_O" recreator="Operations" containedName="ops" point="1202 210.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170307_7481" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170307_8687" id="132_P" recreator="PortCompartment" containedName="ports" point="1202 164" dimensions="44 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170307_1412" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170307_3501" name="classScope" value="true"/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_588" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_642" id="139" recreator="dependency" anchor1Id="133" anchor2Id="132" virtualPoint="1224 135.4" points="2 1224 106.7 1224 163.5" subject="//@childPackages.5/@ownedMember.2/@ownedPort.2/@ownedAnonymousType/@ownedAnonymousDependencies.0">
+          <figures uuid="acer-q9187dcvnj_1201179170297_7559" id="139_M" recreator="Linked Text" containedName="text" text="" show="false" point="1208 121.8" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9333" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_505" id="56" recreator="Connector" anchor1Id="46" anchor2Id="54" virtualPoint="562.5 408" points="2 482.1 332.5 644 484.4" subject="//@childPackages.5/@ownedMember.0/@ownedConnector.1">
+          <figures uuid="acer-q9187dcvnj_1201179170297_6600" id="56_M" recreator="Linked Text" containedName="text" text="" point="546.5 392.5" dimensions="3.3 15.1"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_4600" id="56E" recreator="Linked Text" containedName="endText" text="" point="610.5 392.5" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_4713" name="majorPt" value="2"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_8263" id="56S" recreator="Linked Text" containedName="startText" text="" point="478.5 392.5" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9026" name="majorPt" value="1"/>
+          </figures>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_3635" id="137" recreator="implementation" anchor1Id="128" anchor2Id="132" virtualPoint="1224 218" points="2 1224 248 1224 206.8" subject="//@childPackages.5/@ownedMember.3/@ownedPort.2/@ownedAnonymousType/@implementation.0"/>
+        <figures uuid="acer-q9187dcvnj_1201179170297_5830" id="65" recreator="Interface" autosized="false" icon="true" point="1300 68" dimensions="24 24" suppressAttributes="true" subject="//@childPackages.5/@ownedMember.8">
+          <figures uuid="acer-q9187dcvnj_1201179170297_851" id="66" recreator="PortCompartment" containedName="ports" point="1284.5 68" dimensions="55 54.7">
+            <properties uuid="acer-q9187dcvnj_1201179170297_755" name="deletedUuids" value=""/>
+            <properties uuid="acer-q9187dcvnj_1201179170297_5633" name="classScope" value="true"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_5196" id="64" recreator="SimpleContainer" containedName="contents" point="1300 68" offset="4 4"/>
+          <figures uuid="acer-q9187dcvnj_1201179170297_4357" id="62" recreator="Operations" containedName="ops" point="1284.5 114.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9618" name="deletedUuids" value=""/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_2809" id="63" recreator="Attributes" containedName="attrs" point="1284.5 114.7" dimensions="40 8">
+            <properties uuid="acer-q9187dcvnj_1201179170297_7594" name="deletedUuids" value=""/>
+          </figures>
+          <properties uuid="acer-q9187dcvnj_1201179170297_7365" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="acer-q9187dcvnj_1201179170297_6527" id="50" recreator="Connector" anchor1Id="43" anchor2Id="45" virtualPoint="354 408" points="2 340 408 368 408" subject="//@childPackages.5/@ownedMember.0/@ownedConnector.0">
+          <figures uuid="acer-q9187dcvnj_1201179170297_8558" id="50E" recreator="Linked Text" containedName="endText" text="" point="352 392" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_9976" name="majorPt" value="2"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_1057" id="50S" recreator="Linked Text" containedName="startText" text="" point="324 392" dimensions="3.3 15.1">
+            <properties uuid="acer-q9187dcvnj_1201179170297_4187" name="majorPt" value="1"/>
+          </figures>
+          <figures uuid="acer-q9187dcvnj_1201179170297_3834" id="50_M" recreator="Linked Text" containedName="text" text="" point="340 392" dimensions="3.3 15.1"/>
+        </figures>
+      </diagram>
+    </j_diagramHolder>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1201178090404_9332" name="extension1" clientDependency="//@childPackages.6/@ownedAnonymousDependencies.0">
+    <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178116051_792" client="//@childPackages.6" dependencyTarget="//@childPackages.5"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1201178097734_7323" name="extension2" clientDependency="//@childPackages.7/@ownedAnonymousDependencies.0">
+    <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178113968_1241" client="//@childPackages.7" dependencyTarget="//@childPackages.5"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.9" uuid="acer-q9187dcvnj_1201178102341_5079" name="unified" clientDependency="//@childPackages.8/@ownedAnonymousDependencies.0 //@childPackages.8/@ownedAnonymousDependencies.1">
+    <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178110783_2407" client="//@childPackages.8" dependencyTarget="//@childPackages.6"/>
+    <ownedAnonymousDependencies uuid="acer-q9187dcvnj_1201178112405_8912" client="//@childPackages.8" dependencyTarget="//@childPackages.7"/>
+  </childPackages>
+</uml:Model>

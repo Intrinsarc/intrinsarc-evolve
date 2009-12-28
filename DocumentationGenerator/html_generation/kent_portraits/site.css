@@ -1,0 +1,47 @@
+
+td.link-style1
+{
+	color: white;
+	text-decoration: none;
+}
+
+a
+{ 
+	text-decoration: none;
+	color: white;
+}
+
+a.link-style1
+{
+	text-decoration: none;
+	color: white;
+}
+
+a:hover
+{
+	text-decoration: none;
+	color: red
+}
+
+.content
+{
+	background-color:#b0b0b0;
+}
+
+.innercontent
+{
+	margin:10px;
+}
+
+.title
+{
+	font-size: x-large;
+}
+
+body
+{
+	font-size: 12pt;
+	font-family: arial, sans-serif;
+	background-color:#a0a0a0
+}
+

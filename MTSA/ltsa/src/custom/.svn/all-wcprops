@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/mtsa/!svn/ver/116/trunk/ltsa/src/custom
+END
+AnimationControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/custom/AnimationControl.java
+END
+SceneAnimationController.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/custom/SceneAnimationController.java
+END
+AnimationMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/custom/AnimationMessage.java
+END
+CustomAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/custom/CustomAnimator.java
+END
+ControlActionRegistry.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/custom/ControlActionRegistry.java
+END
+OutputActionRegistry.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/custom/OutputActionRegistry.java
+END
+SceneAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/mtsa/!svn/ver/116/trunk/ltsa/src/custom/SceneAnimator.java
+END
+ImmutableList.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/custom/ImmutableList.java
+END
+AnimationAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/custom/AnimationAction.java
+END

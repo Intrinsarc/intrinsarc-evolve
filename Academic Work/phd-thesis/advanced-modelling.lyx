@@ -1,0 +1,4118 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\end_preamble
+\use_default_options false
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Advanced-Modelling-in"
+
+\end_inset
+
+Advanced Modelling in Backbone
+\end_layout
+
+\begin_layout Standard
+In this chapter we build on the foundation of the Backbone hierarchical
+ component model and extensibility concepts, in order to demonstrate several
+ advanced modelling techniques.
+\end_layout
+
+\begin_layout Standard
+Firstly, we introduce a Backbone-specific interpretation of stereotypes
+ as a convenience for automatically expanding the structure of a component.
+ We also show how hyperports allow connections across different levels of
+ the compositional hierarchy.
+\end_layout
+
+\begin_layout Standard
+We then use these facilities to build component-oriented variants of several
+ well known design patterns, with a strong emphasis on improved extensibility.
+ This permits an extension to extend any patterns used in a base architecture,
+ in a way which respects their intent.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Using-Stereotypes-for"
+
+\end_inset
+
+Stereotypes as a Modelling Convenience
+\end_layout
+
+\begin_layout Standard
+Stereotypes in Backbone are a way of tagging model elements, offering a
+ classification mechanism distinct from that provided by a resemblance hierarchy.
+ The stereotype that a component is tagged with can expand the component's
+ structure, and alter its visual form in diagrams.
+ This expansion facility offers a convenience that allows us to avoid the
+ manual creation of parts and connectors in common situations.
+ The importance of this facility is that it allows us to omit constituents
+ that can be created automatically, thereby reducing the number of alterations
+ that an extension must make.
+\end_layout
+
+\begin_layout Standard
+Although UML2 stereotypes have a more complex technical definition than
+ that of Backbone stereotypes (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Unified-Modeling"
+
+\end_inset
+
+), in practice these also tend to be used primarily for tagging purposes.
+ The mapping between the Backbone and UML2 stereotype concepts is described
+ in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Mapping-Backbone-onto"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The expansion performed by a stereotype occurs inside the DeltaEngine portion
+ of the runtime.
+ Constituents added in this way are not shown on diagrams, which allows
+ us to avoid cluttering up the visual presentation.
+\end_layout
+
+\begin_layout Standard
+Each Backbone component or interface can be tagged with at most one stereotype.
+ This constraint was added to prevent issues regarding the order of expansion
+ of multiple stereotypes.
+ As the stereotype applied to an element is modelled as a delta, it is inherited
+ from resembled elements, and can be deleted or replaced.
+\end_layout
+
+\begin_layout Standard
+Stereotypes in Backbone can have attributes.
+ Tagging an element with a stereotype means that we can also supply values
+ for these attributes, and these values are held with the element.
+\end_layout
+
+\begin_layout Standard
+Autoconnect ports provide a simple, but very useful example of the use of
+ stereotype expansion.
+\end_layout
+
+\begin_layout Subsection
+Autoconnect ports
+\end_layout
+
+\begin_layout Standard
+An 
+\emph on
+autoconnect port
+\emph default
+ is automatically connected to any compatible, unbound ports of a component's
+ parts.
+\end_layout
+
+\begin_layout Standard
+The concept of port compatibility is described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Port-Compatibility-for"
+
+\end_inset
+
+.
+ Essentially, two ports are compatible when for each required interface
+ on each port, the other port provides the same interface or a sub-interface.
+ Only compatible ports can be legally joined together using a connector.
+\end_layout
+
+\begin_layout Standard
+An autoconnect port can be used to make a service available to several parts,
+ without explicitly requiring connectors to that service.
+ Connectors for autoconnection are created by the «component» stereotype,
+ which all Backbone components are tagged with upon creation.
+\end_layout
+
+\begin_layout Standard
+Autoconnection is a convenience that allows us to omit common connectors
+ that would otherwise clutter up both diagrams and the model.
+ Connectors added by the expansion are not shown graphically.
+ Regardless, they are full constituents and therefore influence port type
+ inference and other features.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Autoconnect"
+
+\end_inset
+
+ shows the autoconnect port graphical symbol.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features>
+<column alignment="center" valignment="middle" width="0">
+<column alignment="left" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Symbol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Backbone port type
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/autoconnect.png
+	BoundingBox 0bp 4bp 16bp 20bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Autoconnect port
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Autoconnect"
+
+\end_inset
+
+The symbol for an autoconnect port
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the following example, we examine how autoconnection works.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Autoconnect-ports-allow"
+
+\end_inset
+
+(a) shows the definition of a 
+\family typewriter
+PrinterQueue
+\family default
+ component that requires a printer service via the 
+\family typewriter
+printer
+\family default
+ port.
+ Each of the three parts in the component also require this service, and
+ hence have direct connections to the port.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Autoconnect-ports-allow"
+
+\end_inset
+
+(b) shows that we can achieve the same structure using an autoconnect port,
+ freeing us from needing to create the connectors manually.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/autoconnect-advanced.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Autoconnect-ports-allow"
+
+\end_inset
+
+Autoconnect ports allow connections to be made automatically
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can take the presentation a step further by visually eliding any ports
+ which are autoconnected, giving figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visually-eliding-auto-connected"
+
+\end_inset
+
+.
+ In general, it is assumed that an autoconnect port will be connected wherever
+ needed, and we therefore purposely omit any ports of parts that will be
+ connected in this way.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/autoconnect-elide-advanced.eps
+	lyxscale 60
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Visually-eliding-auto-connected"
+
+\end_inset
+
+Visually eliding auto-connected ports
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+Stereotypes are a way to tag and classify elements, and each Backbone element
+ may be tagged with a stereotype.
+ The stereotype that an element is tagged with is able to expand that element's
+ structure.
+ Stereotypes also have a visual aspect, and can alter the presentation of
+ an element.
+ These facilities allow components to be shown with a customised appearance.
+ Backbone currently has a fixed repertoire of stereotypes, although we plan
+ to allow user defined stereotypes at a future time (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Further-Work"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+To prevent issues around order of expansion with multiple stereotypes, a
+ Backbone element can have at most one stereotype applied to it.
+ Stereotype application (or tagging) is handled using deltas, and the applied
+ stereotype is inherited via resemblance and can be replaced or deleted
+ if required.
+\end_layout
+
+\begin_layout Standard
+One example of the use of stereotypes is for the addition of connectors
+ for autoconnect ports.
+ These ports are automatically connected to any compatible, but unbound
+ ports of parts.
+ This is a useful convenience which allows us to omit the connectors for
+ commonly used services in a component, potentially reducing the number
+ of changes an extension has to make.
+\end_layout
+
+\begin_layout Standard
+Several other patterns and techniques listed in this chapter also make use
+ of stereotypes.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Hyperports:-Connecting-Across"
+
+\end_inset
+
+Hyperports: Connecting Across the Composition Hierarchy
+\end_layout
+
+\begin_layout Standard
+It is common to want to provide a service to an entire subtree of the compositio
+n hierarchy.
+ 
+\emph on
+Hyperports
+\emph default
+ support this by automatically establishing connectors which cut through
+ a hierarchy, allowing an extension to connect parts without having to create
+ the intermediate connectors and ports to facilitate this.
+\end_layout
+
+\begin_layout Standard
+Consider how this works: each 
+\emph on
+end hyperport
+\emph default
+ is automatically connected to at most one other compatible 
+\emph on
+start hyperport
+\emph default
+, either at the same level or above it in the composition hierarchy.
+ The choice of possible connections is decided on the basis of compositional
+ proximity, and a connection is preferred if it minimises the distance in
+ the hierarchy between the hyperports.
+\end_layout
+
+\begin_layout Standard
+A start hyperport must be capable of accepting multiple connectors, as it
+ represents a service that will be shared.
+ If the start hyperport only provides interfaces, this is no problem as
+ such a port can handle any number of connectors even if it has a multiplicity
+ of 
+\family typewriter
+[1]
+\family default
+.
+ If, however, the start hyperport also requires interfaces then it must
+ have a multiplicity of 
+\family typewriter
+[0..*]
+\family default
+.
+ Conversely, the end hyperport, must be optional (
+\family typewriter
+[0..1]
+\family default
+) if it involves any required interfaces to reflect that there may not be
+ a compatible hyperport above it in the hierarchy to make a connection with.
+\end_layout
+
+\begin_layout Standard
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:The-hyperport-symbols"
+
+\end_inset
+
+ shows the hyperport symbols.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features>
+<column alignment="center" valignment="middle" width="0">
+<column alignment="left" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Symbol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Backbone hyperport type
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/hyperport-start.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Start hyperport
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/hyperport-end.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+End hyperport
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:The-hyperport-symbols"
+
+\end_inset
+
+The hyperport symbols
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider how hyperports might be used to share a printer service with all
+ parts of the 
+\family typewriter
+PrinterQueue
+\family default
+ component of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Autoconnect-ports-allow"
+
+\end_inset
+
+(a).
+ To represent the printer service, we define the 
+\family typewriter
+Printer
+\family default
+ component in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-hyperport-definitions"
+
+\end_inset
+
+(a) as providing the 
+\family typewriter
+IPrinter
+\family default
+ interface through a start hyperport.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-hyperport-definitions"
+
+\end_inset
+
+(b) shows the definition of 
+\family typewriter
+Triage
+\family default
+ that consumes the printer service via an optional end hyperport which requires
+ 
+\family typewriter
+IPrinter
+\family default
+.
+ The definitions of the 
+\family typewriter
+UrgentList
+\family default
+ and 
+\family typewriter
+BackgroundList
+\family default
+ components can be inferred from the definition of 
+\family typewriter
+Triage
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/printer-triage-advanced.eps
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-hyperport-definitions"
+
+\end_inset
+
+The hyperport definitions for the Printer and Triage components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now express the 
+\family typewriter
+PrinterQueue
+\family default
+ component as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-PrinterQueue-component"
+
+\end_inset
+
+.
+ We do not need to create the 
+\family typewriter
+printer
+\family default
+ port that was required in the definition of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Autoconnect-ports-allow"
+
+\end_inset
+
+(a), as hyperports can cut through the hierarchy and we therefore have no
+ use for this intermediate port.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/hyper-printer-advanced.eps
+	lyxscale 70
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-PrinterQueue-component"
+
+\end_inset
+
+The PrinterQueue component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To complete the picture, we create the 
+\family typewriter
+Bureau
+\family default
+ component of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Bureau-provides-the"
+
+\end_inset
+
+, which features two 
+\family typewriter
+PrinterQueue
+\family default
+ parts and a single 
+\family typewriter
+Printer
+\family default
+ part.
+ The use of hyperports means that the single printer will be available throughou
+t the hierarchy.
+ This is shown in the composition hierarchy of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Hyperconnectors-cut-through"
+
+\end_inset
+
+, where each 
+\family typewriter
+Triage
+\family default
+, 
+\family typewriter
+UrgentList
+\family default
+ and 
+\family typewriter
+BackgroundList
+\family default
+ part is automatically connected to the start hyperport of the 
+\family typewriter
+Printer
+\family default
+ part, bypassing the boundaries of the 
+\family typewriter
+PrinterQueue
+\family default
+ parts.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/bureau-advanced.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Bureau-provides-the"
+
+\end_inset
+
+Autoconnection of the Printer part
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/bureau-hyperconnectors.png
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Hyperconnectors-cut-through"
+
+\end_inset
+
+Hyperports result in connectors that cut through the composition hierarchy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hyperports are handled inside the DeltaEngine by adding connectors to the
+ flattened representation of the system.
+ We can use Evolve to view the flattened structure as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flattened-Bureau"
+
+\end_inset
+
+.
+ The hyperports have resulted in six connectors being automatically added.
+ The first of these has been expanded, showing that it is between the 
+\family typewriter
+Printer
+\family default
+ part and a 
+\family typewriter
+BackgroundList
+\family default
+ part.
+\end_layout
+
+\begin_layout Standard
+If a hyperport of a part is already bound, no automatic connections will
+ be made to it.
+ This allows us to also treat a hyperport of a part as a normal port by
+ binding it with a connector.
+\end_layout
+
+\begin_layout Standard
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Singleton-Pattern"
+
+\end_inset
+
+ discusses the use of hyperports to provide an extensible and more flexible
+ variant of the Singleton design pattern.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/flat-hyperports.png
+	lyxscale 75
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-flattened-Bureau"
+
+\end_inset
+
+The flattened Bureau component, showing automatically added connectors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Design Patterns in Backbone
+\end_layout
+
+\begin_layout Standard
+A software design pattern is a solution to a recurring design problem, in
+ a particular context 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Budgen2003"
+
+\end_inset
+
+.
+ The aim is to convey and record design knowledge, rather than to act as
+ a precise implementation guide.
+ A well known catalogue of design patterns for object-oriented systems is
+ found in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma1995"
+
+\end_inset
+
+.
+ These patterns address the design of parts of an application, and their
+ names have formed a common lexicon for discussing the design intent in
+ a system.
+ Another consideration when using design patterns is how multiple patterns
+ can be combined in a coherent way to form larger designs.
+\end_layout
+
+\begin_layout Standard
+In this section, we show how Backbone can be used to model component-oriented
+ variants of several of the more common design patterns.
+ We particularly focus also on improving the extensibility of these patterns,
+ allowing an extension to alter a base pattern in a way which respects its
+ intent.
+ We also use the hierarchical model and extensibility constructs to mitigate
+ some of the other limitations.
+\end_layout
+
+\begin_layout Standard
+We address design patterns in this section, rather than architectural patterns
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Buschmann1996"
+
+\end_inset
+
+ which instead address architecture and architectural style.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:The-Singleton-Pattern"
+
+\end_inset
+
+The Singleton Design Pattern
+\end_layout
+
+\begin_layout Standard
+The Singleton pattern ensures that a class has only a single instance that
+ is globally accessible, modelling a resource that is shared over a system.
+ This is generally implemented by hiding the constructor of a class, and
+ providing a single static 
+\family typewriter
+getInstance()
+\family default
+ method which returns the single instance.
+\end_layout
+
+\begin_layout Subsubsection
+A Critique of the Object-Oriented Singleton Pattern
+\end_layout
+
+\begin_layout Standard
+Any class using a singleton must contain a direct reference to it: the class
+ is bound directly to the singleton via code reference.
+ This restricts extensibility, as there can be no guarantee that only a
+ single instance will be wanted in future iterations of a system.
+ This also prevents easy unit testing of the class, as the singleton cannot
+ be easily substituted for another in a test case.
+ 
+\end_layout
+
+\begin_layout Standard
+Spring 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Johnson2005"
+
+\end_inset
+
+ pushes the description of singletons into configuration.
+ A bean can be marked as a singleton in the configuration, and a reference
+ from a bean to a singleton can be configured rather than being embedded
+ in code.
+ This resolves the unit testing issue, as it allows the bean to be configured
+ differently for a test case.
+ However, Spring configurations are not hierarchical and this limits the
+ solution to a flattened architectural approach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2008"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+The Singleton Pattern in Backbone
+\end_layout
+
+\begin_layout Standard
+Rumbaugh insightfully notes that a singleton is simply an object instance
+ at a single point in the composition hierarchy of a system 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rumbaugh1996"
+
+\end_inset
+
+.
+ The notion of singleton therefore turns into a single instance which is
+ available to a subtree of the hierarchy.
+ This effect can be achieved by the use of hyperports, as illustrated in
+ figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Hyperconnectors-cut-through"
+
+\end_inset
+
+.
+ As such, Backbone uses a part with a start hyperport to represent the effect
+ of a singleton.
+ The benefit of our approach is that it fits well into the component and
+ extensibility model: the singleton part can be added, moved or replaced
+ using an extension.
+ Further, singletons are marked in the configuration rather than in the
+ implementation itself, allowing for unit testing via alternate configurations.
+\end_layout
+
+\begin_layout Standard
+Consider how we might add a singleton logging service to the original 
+\family typewriter
+Desk
+\family default
+ component of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Desk-component"
+
+\end_inset
+
+, whose compositional hierarchy is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-compositional-structure"
+
+\end_inset
+
+.
+ We start by defining the 
+\family typewriter
+Logger
+\family default
+ component to represent the logging service with a start hyperport, as shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Providing-and-requiring"
+
+\end_inset
+
+(a).
+ Suppose also that the 
+\family typewriter
+Equaliser
+\family default
+ component is evolved to use the logger, as in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Providing-and-requiring"
+
+\end_inset
+
+(b) where 
+\family typewriter
+ILogger
+\family default
+ is required using an end hyperport.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/logger.eps
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Providing-and-requiring"
+
+\end_inset
+
+Providing and requiring a logger via hyperports
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To make the logger available to the entire application, we use an extension
+ to evolve the 
+\family typewriter
+Desk
+\family default
+ component with an instance of the logger, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Desk-Singleton"
+
+\end_inset
+
+.
+ The logging service is now available to any part in the entire hierarchy
+ which declares an end hyperport requiring 
+\family typewriter
+ILogger
+\family default
+, including the 
+\family typewriter
+Equaliser
+\family default
+ part which is buried inside the mixer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/desk-singleton.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Desk-Singleton"
+
+\end_inset
+
+Evolving the Desk component to add a singleton logging service
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Examining the composition hierarchy of the desk with the logger present
+ (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Logger-Added-Hierarchy"
+
+\end_inset
+
+) shows how the hyperports have resulted in a connection which cuts across
+ the 
+\family typewriter
+Mixer
+\family default
+ compositional boundary.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/desk-with-singleton.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Logger-Added-Hierarchy"
+
+\end_inset
+
+The composition hierarchy of Desk with the logger added
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The hierarchical component model and extensibility constructs allow this
+ to be a flexible arrangement.
+ If at any point a single instance of 
+\family typewriter
+Logger
+\family default
+ is not enough, then it is a simple matter for an extension to evolve the
+ 
+\family typewriter
+Desk
+\family default
+ component such that multiple instances are present, with each potentially
+ being pushed further down the composition hierarchy to make them available
+ to different subtrees.
+ Other architectural possibilities are having multiple loggers at different
+ levels in the hierarchy, or explicitly connecting some parts to specific
+ loggers rather than relying on hyperports.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-a-private"
+
+\end_inset
+
+ shows an evolution of the 
+\family typewriter
+Mixer
+\family default
+ component of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Mixer-definition"
+
+\end_inset
+
+ which has instantiated its own private logger, connecting it directly to
+ the 
+\family typewriter
+Equaliser
+\family default
+ part's hyperport.
+ This arrangement is compatible with the logger at the higher level of compositi
+on, superseding that arrangement for this component only.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/mixer-singleton.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adding-a-private"
+
+\end_inset
+
+Adding a private logging service to the mixer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that hyperports can be used with ordinary connectors in which case
+ the hyperport symbol is removed.
+ This allows us to use a component with start or end hyperports as a conventiona
+l component if desired.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:The-Factory-Pattern"
+
+\end_inset
+
+Isomorphic Factories for Dynamic Instantiation
+\end_layout
+
+\begin_layout Standard
+We can dynamically instantiate sections of an architecture using 
+\emph on
+factory
+\emph default
+ components.
+ As per the Darwin ADL, which pioneered the approach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Crane1995,DSE1997"
+
+\end_inset
+
+, Backbone factories are also termed 
+\emph on
+isomorphic
+\emph default
+ as they have a similar port and connector 
+\begin_inset Quotes eld
+\end_inset
+
+shape
+\begin_inset Quotes erd
+\end_inset
+
+ to the set of components they instantiate.
+ The factory construct encompasses several of the creational patterns described
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma1995"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Factories are a type of composite component, which can be evolved and resembled
+ using the Backbone extensibility constructs.
+ This approach allows an extension to also alter the dynamic parts of a
+ base architecture.
+\end_layout
+
+\begin_layout Standard
+The insides of a factory are instantiated upon demand using the 
+\emph on
+create
+\emph default
+ port which every factory has as part of its structure.
+ This instantiation can occur multiple times.
+ The symbols for factory and the associated create port is shown in table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Factory-symbols"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features>
+<column alignment="center" valignment="middle" width="0">
+<column alignment="left" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Symbol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Backbone construct
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/factory.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Isomorphic factory component
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/create-port.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Create port
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Factory-symbols"
+
+\end_inset
+
+The symbols for the Backbone factory constructs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Consider how a factory works in the context of the 
+\family typewriter
+Desk
+\family default
+ component example of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-a-private"
+
+\end_inset
+
+.
+ We wish to dynamically instantiate the two microphone devices.
+ Firstly, we define a factory for the creation of the two devices, as per
+ figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Mic-factory"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/mic-factory.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Mic-factory"
+
+\end_inset
+
+A factory for instantiating two microphone device parts
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the create port does not appear to be internally connected.
+ In actuality, the «component» stereotype of the factory expands the structure
+ by inserting a 
+\family typewriter
+Creator
+\family default
+ part and a connector to the port: the added part handles the mechanics
+ of instantiation and the connector results in the inferred type of the
+ create port becoming the provision of 
+\family typewriter
+ICreate
+\family default
+.
+ Each factory automatically resembles the Backbone 
+\family typewriter
+FactoryBase
+\family default
+ component, from which it inherits the create port.
+\end_layout
+
+\begin_layout Standard
+We need a further component which requires the 
+\family typewriter
+ICreate
+\family default
+ interface, in order to programmatically request the instantiation of the
+ factory.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Factory-instantiation"
+
+\end_inset
+
+ defines such a component, which (hypothetically) uses some form of input
+ from the user to trigger an instantiation request.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/device-instantiator.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Factory-instantiation"
+
+\end_inset
+
+A component to trigger the factory instantiation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An extension can now evolve the original desk component to use this factory
+ and instantiator, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Desk-dynamic-mics"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/desk-mic-factory.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Desk-dynamic-mics"
+
+\end_inset
+
+The Desk component evolved to dynamically instantiate microphones
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After the first instantiation, two microphone devices will be connected
+ up.
+ After the second instantiation, a total of four microphones will be present.
+ Note that the connectors from the factory part are allowed to connect to
+ the ordered port of the 
+\family typewriter
+DeviceController
+\family default
+ part, even though they do not specify an index.
+ In this case, the index will be allocated when instantiation occurs.
+ It is allowable for such a connector to specify a fixed index, such as
+ 
+\family typewriter
+[2]
+\family default
+, but then multiple instantiation will result in any previously created
+ connections to that index being overwritten.
+\end_layout
+
+\begin_layout Standard
+A factory can make use of the Backbone features available to other component
+ types, including attributes, aliased slots, hyperports and autoconnect
+ ports.
+ This uniform treatment ties well into the Backbone extensibility approach,
+ allowing an extension to resemble, reuse and evolve factories.
+ We can also resemble a factory and use this to define a different kind
+ of component, and vice versa.
+ For instance, we can define a placeholder component which a set of factories
+ resemble.
+\end_layout
+
+\begin_layout Subsubsection
+Factories and Creational Design Patterns
+\end_layout
+
+\begin_layout Standard
+In effect, the internal architecture of a factory allows us to represent
+ a variant of the Prototype design pattern 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma1995"
+
+\end_inset
+
+, where a prototypical instance is copied upon demand.
+ In our case, the internal configuration of the factory is copied, and the
+ use of aliased slots allows attributes to be shared between instantiations.
+\end_layout
+
+\begin_layout Standard
+The Builder design pattern separates the construction of a complex object
+ from its representation, allowing the same process to create potentially
+ different structures.
+ This can be achieved in our simple example by using a placeholder instead
+ of the factory, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Desk-factory-placeholder"
+
+\end_inset
+
+.
+ We can then use resemblance or evolution to create variants of the 
+\family typewriter
+Desk
+\family default
+ component where the placeholder part is replaced with an appropriate factory
+ part.
+\end_layout
+
+\begin_layout Standard
+The components instantiated via a factory can also be destroyed.
+ Upon creation, a handle is passed to the instantiating component This can
+ be passed to the 
+\family typewriter
+destroy()
+\family default
+ method of the create port to destroy the created structures and remove
+ any connectors.
+\end_layout
+
+\begin_layout Standard
+No restrictions exist with regards to the nesting of factories.
+ A factory may further contain other factories and so on.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/device-factory-placeholder.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Desk-factory-placeholder"
+
+\end_inset
+
+Evolving Desk to use a placeholder instead of a concrete factory
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Factories in the Flattened Representation
+\end_layout
+
+\begin_layout Standard
+The flattened representation of the 
+\family typewriter
+Desk
+\family default
+ component with a factory is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flat-desk-mic"
+
+\end_inset
+
+.
+ The flattened structure is divided into a number of factory sections.
+ The top level 
+\family typewriter
+Desk
+\family default
+ component is represented by flattened factory 0, which is instantiated
+ when the application is started.
+ The 
+\family typewriter
+MicrophoneFactory
+\family default
+ component is represented by flattened factory 1.
+ The 
+\family typewriter
+Creator
+\family default
+ part, added for the 
+\family typewriter
+MicrophoneFactory
+\family default
+ component, is propagated up to level 0 where it is used to instantiate
+ flattened factory 1 on request.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/flattened-factory.png
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flat-desk-mic"
+
+\end_inset
+
+The flattened Desk with microphone factory
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Factories within factories are handled by inserting the 
+\family typewriter
+Creator
+\family default
+ part due to the expansion of the former, inside the latter.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Extensible-State-Machines"
+
+\end_inset
+
+Extensible State Machines
+\end_layout
+
+\begin_layout Standard
+The State design pattern allows an object to change its behaviour when its
+ internal state changes.
+ This provides a primitive and lightweight form of a state machine.
+\end_layout
+
+\begin_layout Standard
+We have built a variant of this pattern using Backbone components and stereotype
+s, as described below.
+ This is more extensible than the object-oriented version in that it allows
+ an extension to add or alter the events and also the states and transitions
+ of a state machine in a base application.
+ This in turn improves the extensibility of an application which uses state
+ machines to express its logic.
+\end_layout
+
+\begin_layout Subsubsection
+A Critique of the Object-Oriented State Pattern
+\end_layout
+
+\begin_layout Standard
+An example of the this pattern is shown in the UML class diagram of figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:OO-State-pattern"
+
+\end_inset
+
+, where the state of an audio device is modelled.
+ The three possible states (on, off, paused) are modelled as subclasses
+ of 
+\family typewriter
+DeviceState
+\family default
+, and the 
+\family typewriter
+DeviceStateMachine
+\family default
+ class represents the overall state machine, which holds a reference to
+ the 
+\family typewriter
+current
+\family default
+ state.
+\end_layout
+
+\begin_layout Standard
+Events (on button, pause button) are modelled as operations on the 
+\family typewriter
+DeviceStateMachine
+\family default
+ class.
+ This class simply delegates any operation onto the current state.
+ The current state object can effect a transition from one state to another
+ by requesting that the 
+\family typewriter
+DeviceStateMachine
+\family default
+ parent object switch to using another instance for 
+\family typewriter
+current
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/oo-state-advanced.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:OO-State-pattern"
+
+\end_inset
+
+The State pattern for modelling device states
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although undoubtedly useful, this pattern presents many restrictions and
+ unpleasant trade-offs which severely restrict extensibility.
+ Firstly, all state transitions are hardcoded inside the individual state
+ subclasses.
+ As an example, consider that when an 
+\family typewriter
+OnState
+\family default
+ instance receives an 
+\family typewriter
+onPressed()
+\family default
+ event call, it wants to effect a transition to the off state.
+ To do this, 
+\family typewriter
+OnState
+\family default
+ creates an 
+\family typewriter
+OffState
+\family default
+ instance and asks the 
+\family typewriter
+DeviceStateMachine
+\family default
+ object to change to this as the next state.
+ Both new state creation and transitions are embedded in code and therefore
+ difficult to visualise and change.
+\end_layout
+
+\begin_layout Standard
+Extending the state machine is problematic, whether we wish to add or change
+ states, adjust transitions or simply add events.
+ For instance, adding a cue state, to represent when a device's audio is
+ sent to the cue bus, is difficult because we have to alter the transition
+ logic inside the states.
+ Adding an event is cumbersome because we need to add the new event method
+ to every class.
+\end_layout
+
+\begin_layout Standard
+The problems extend further to the context required by each state.
+ A state requires a set of services and data from its surrounding environment:
+ this is its context.
+ As state creation is spread out and embedded in the other states, the connectio
+n between the state and its context is difficult to establish.
+ To remedy this, it is usual that all services and data are available through
+ a context object, which in our examples is the 
+\family typewriter
+DeviceStateMachine
+\family default
+ instance.
+ However, we need extend the context if any state requires another service,
+ which makes this arrangement fragile.
+ We effectively need to include the superset of all services and data required
+ for all states in the context.
+ This tends to bind the states together in dependence on a complex context
+ object.
+\end_layout
+
+\begin_layout Standard
+The tight coupling of states to their context (
+\family typewriter
+DeviceStateMachine
+\family default
+ in this case) prevents the reuse of the states in other machines and restricts
+ extensibility.
+ We can use a context interface to decouple in this case, but the state
+ will still be bound to that interface which limits the scope for reuse.
+\end_layout
+
+\begin_layout Standard
+The above limitations pose major problems when implementing anything but
+ a trivial state machine, which has little or no context required by states.
+ Nested state machines are difficult to build due to the need to propagate
+ complex context information between nested levels.
+\end_layout
+
+\begin_layout Subsubsection
+The State Pattern in Backbone
+\end_layout
+
+\begin_layout Standard
+Rather than present the final Backbone design straight away, we instead
+ build towards this by explaining how the underlying mechanism works.
+\end_layout
+
+\begin_layout Standard
+To model a naive representation of the device state machine, we first introduce
+ the dispatcher component of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Component-device-state"
+
+\end_inset
+
+.
+ This holds the index of the current state port in an attribute called 
+\family typewriter
+currentStatePort
+\family default
+, and acts as a switch by directing any 
+\family typewriter
+IDevice
+\family default
+ method calls to the currently selected 
+\family typewriter
+states
+\family default
+ port.
+ In this way, it acts to pass on the event to the currently selected state,
+ as per the 
+\family typewriter
+DeviceStateMachine
+\family default
+ class in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:OO-State-pattern"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/component-state-advanced.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Component-device-state"
+
+\end_inset
+
+The component form of the device state machine
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then model each state as a component providing 
+\family typewriter
+IDeviceEvents
+\family default
+.
+ We wish to use connectors to represent transitions between states, so we
+ also provide each state with one 
+\family typewriter
+in
+\family default
+ and several 
+\family typewriter
+out
+\family default
+ transition ports.
+ To effect a transition from the current state to another, the current state
+ asks via an 
+\family typewriter
+out
+\family default
+ port if the state at the other end of the connector is willing to be next.
+ If it accepts, the next state indicates this by answering 
+\family typewriter
+true
+\family default
+ to the 
+\family typewriter
+isCurrent()
+\family default
+ method call.
+ This is queried by the 
+\family typewriter
+DeviceStateDispatcher
+\family default
+ component between events, and the next state is then promoted to the current
+ state: its index is now stored in 
+\family typewriter
+currentStatePort
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-OnState-component"
+
+\end_inset
+
+ shows the definition of the 
+\family typewriter
+OnState
+\family default
+ component.
+ This has two 
+\family typewriter
+out
+\family default
+ ports -- one for when the on button is pressed, and another for when the
+ pause button is pressed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/component-onstate-advanced.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-OnState-component"
+
+\end_inset
+
+The OnState component models
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To demonstrate how context can be provided to states, we have also made
+ 
+\family typewriter
+OnState
+\family default
+ require access to an audio device via its 
+\family typewriter
+device
+\family default
+ port.
+ A final point worth noting is that a port link is used between the 
+\family typewriter
+in
+\family default
+ and 
+\family typewriter
+out
+\family default
+ ports.
+ Consequently if an 
+\family typewriter
+OnState
+\family default
+ part is placed in an environment where the 
+\family typewriter
+out
+\family default
+ ports are supplied with a subinterface of 
+\family typewriter
+IDeviceTransition
+\family default
+, then this interface will also be provided via the 
+\family typewriter
+in
+\family default
+ port.
+ This allows us to use more complex transition interfaces if required, without
+ perturbing the existing state components.
+ The 
+\family typewriter
+PausedState
+\family default
+ and 
+\family typewriter
+OffState
+\family default
+ components are defined in a similar way.
+\end_layout
+
+\begin_layout Standard
+We can now connect instances of these states up into a composite component
+ along with our state dispatcher part, using connectors to represent event
+ paths and state transitions.
+ This is shown in the somewhat busy component of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Full-component-statemachine"
+
+\end_inset
+
+, which details the complete state machine.
+ All possible transitions are shown by connectors between 
+\family typewriter
+in
+\family default
+ and 
+\family typewriter
+out
+\family default
+ ports.
+ To enter the state machine initially, we call into the 
+\family typewriter
+in
+\family default
+ port of the state machine, which makes 
+\family typewriter
+OnState
+\family default
+ active.
+ This is the start state.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/component-fullstate-advanced.eps
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Full-component-statemachine"
+
+\end_inset
+
+The full audio state machine as a composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If we are in the on state, and the on button is pressed, then the 
+\family typewriter
+OnState
+\family default
+ part will call through its 
+\family typewriter
+out
+\family default
+ port and attempt a transition.
+ This port is connected to the 
+\family typewriter
+OffState
+\family default
+ part, and the transition to this state will then occur.
+ If the on button is pushed again, 
+\family typewriter
+OffState
+\family default
+ uses its 
+\family typewriter
+out
+\family default
+ port to transition to the connected state which is 
+\family typewriter
+OnState
+\family default
+.
+ Similar transitions exist for 
+\family typewriter
+PausedState
+\family default
+.
+ Note that the transition protocol allows for a potential next state to
+ refuse the transition.
+ We can also loop from an 
+\family typewriter
+out
+\family default
+ port back to the 
+\family typewriter
+in
+\family default
+ port of the same state, expressing a self-transition.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+OffState
+\family default
+ is the terminal state of this machine.
+ Via the 
+\family typewriter
+outFinal
+\family default
+ port, we can exit this machine if the pause button is pressed while we
+ are in an off state.
+ This can potentially pass control onto another state machine if it is connected
+ up to the machine's 
+\family typewriter
+out
+\family default
+ port.
+ This is optional however, and if no further machine is available, then
+ 
+\family typewriter
+OffState
+\family default
+ will remain the current state but ignore all events indicating that the
+ state machine has completed.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+device
+\family default
+ port of the 
+\family typewriter
+OnState
+\family default
+ part has been connected to the 
+\family typewriter
+device
+\family default
+ port of 
+\family typewriter
+DeviceState\SpecialChar \-
+Machine
+\family default
+, thereby providing the required context for the state.
+ We can deal with any further context required for additional states via
+ evolution and extra connectors.
+ No cumbersome context object is required as per the object-oriented variant.
+\end_layout
+
+\begin_layout Subsubsection
+Simplifying State Machines Using Stereotypes
+\end_layout
+
+\begin_layout Standard
+The state machine of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Full-component-statemachine"
+
+\end_inset
+
+ has a number of connectors which obscure the actual transitions.
+ Further, there is a lot of design overhead involved in creating the states
+ and the state machine.
+ To simplify this, we have created a state machine profile for Backbone
+ using stereotypes.
+\end_layout
+
+\begin_layout Standard
+If a component has the «state» stereotype applied, its visual appearance
+ is altered to look like a UML2 state.
+ Evolve contains a palette entry which creates a leaf component with this
+ stereotype, inheriting its 
+\family typewriter
+in
+\family default
+, 
+\family typewriter
+out
+\family default
+ and 
+\family typewriter
+events
+\family default
+ ports from a base component.
+ Defining the 
+\family typewriter
+OnState
+\family default
+ component in this way, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:OnState-defined-using"
+
+\end_inset
+
+, is visually appealing and reduces the design effort considerably.
+ Leaf states can be created with a minimal effort.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/stereo-onstate-advanced.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:OnState-defined-using"
+
+\end_inset
+
+OnState defined using stereotypes and resemblance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The «state» stereotype also aids in the design of composite states.
+ The expansion rules for this stereotype automatically add a dispatcher
+ part to a composite, connecting it up to any state parts present.
+ The standard dispatcher component is defined using a port link between
+ its ports, ensuring it can be reused for any state machines whose event
+ interface resembles 
+\family typewriter
+IEvent
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Evolve contains a palette entry for creating a composite state component
+ with this stereotype, inheriting the 
+\family typewriter
+in
+\family default
+, 
+\family typewriter
+out
+\family default
+ and 
+\family typewriter
+events
+\family default
+ ports from a base component.
+ It also inherits the start and end states, which are pass-through states
+ with standard UML2 visual representations.
+ Defining the 
+\family typewriter
+DeviceStateMachine
+\family default
+ using this structure ensures that it visually resembles a UML2 state diagram,
+ and that any non-transition connectors can be generally omitted.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Full-state-stereo"
+
+\end_inset
+
+.
+ Note the use of the autoconnect port to connect 
+\family typewriter
+OnState
+\family default
+'s 
+\family typewriter
+device
+\family default
+ port.
+ We have named the connectors after the events that trigger them.
+ The duplicated connector names are not a problem in practice as Backbone
+ only considers the UUIDs of each element for logical identity.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/stereo-fullstate-advanced.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Full-state-stereo"
+
+\end_inset
+
+The full state machine using stereotypes and resemblance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the supplied stereotypes and base components means that the creation
+ of state machines in Backbone is visually appealing with low design overhead.
+ Creating a complex state machine in Backbone requires a similar level of
+ effort to creating the equivalent UML2 state diagram.
+ Despite the visual similarities with UML2 state machines, the underlying
+ structures are still Backbone components which can be used with resemblance
+ and replacement.
+ All of the advantages of our extensibility approach also therefore apply
+ to state machines, as we will soon demonstrate.
+\end_layout
+
+\begin_layout Subsubsection
+Composing and Chaining Backbone State Machines
+\end_layout
+
+\begin_layout Standard
+Backbone state machines can be nested and chained using the standard component
+ mechanisms.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Nesting-and-chaining"
+
+\end_inset
+
+ shows a state machine which chains two nested 
+\family typewriter
+DeviceStateMachine
+\family default
+ parts together.
+ This composite machine will start in the 
+\family typewriter
+first
+\family default
+ state machine, and then enter into 
+\family typewriter
+second
+\family default
+ when 
+\family typewriter
+first
+\family default
+ exits.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/nested-states.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Nesting-and-chaining"
+
+\end_inset
+
+Nesting and chaining state machines
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As they are components, it is possible to decompose states using standard
+ Backbone techniques.
+ We could, for instance, express a state using separate parts for entry
+ and exit logic.
+ This facilitates reuse via resemblance, or evolution when the logic requires
+ adaptation or enhancement in an extension.
+\end_layout
+
+\begin_layout Subsubsection
+Extending a Backbone State Machine
+\end_layout
+
+\begin_layout Standard
+An extension may wish to change a state machines in two ways.
+ Firstly, states and transitions may be added or altered.
+ Secondly, events may need to be added or altered.
+\end_layout
+
+\begin_layout Standard
+Backbone state machines can be extended in either way.
+ As state machines are components, they can participate in resemblance and
+ replacement relationships.
+ This, coupled with explicit transitions modelled as connectors, allows
+ a state machine to be conveniently augmented.
+\end_layout
+
+\begin_layout Standard
+By way of example, consider adding a cue state to 
+\family typewriter
+DeviceStateMachine
+\family default
+ in an extension.
+ Pressing the cue button in the off state results in a transition to the
+ cue state, where audio is played through the cue bus.
+ Pressing the on button in the cue state moves to the on state, where audio
+ is played through the main audio bus.
+ Pressing the cue button in the cue state moves back to the off state, turning
+ off the audio.
+ To incorporate this, we need to evolve the state machine to add the new
+ state and any transitions, and also to add the extra cue button event.
+\end_layout
+
+\begin_layout Standard
+Firstly, we define the 
+\family typewriter
+CueState
+\family default
+ component, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-CueState-definition"
+
+\end_inset
+
+.
+ Rather than evolve the 
+\family typewriter
+IDevice
+\family default
+ interface to add the cue button event, which would require us to then evolve
+ all other states to handle the upgrade, we have chosen to introduce a further
+ event interface called 
+\family typewriter
+ICueEvent
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/cue-state-advanced.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-CueState-definition"
+
+\end_inset
+
+The CueState definition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Transitions to the cue state can occur from the off state.
+ As such, we need to evolve the 
+\family typewriter
+OffState
+\family default
+ component to handle cue button events via provision of the 
+\family typewriter
+ICueEvent
+\family default
+ interface, and to allow a possible out transition via the 
+\family typewriter
+cueOut
+\family default
+ port.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-the-OffState"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/evolved-off-state.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-the-OffState"
+
+\end_inset
+
+Evolving the OffState component to handle cue button events
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now evolve the 
+\family typewriter
+DeviceStateMachine
+\family default
+ component to add in the transitions and the extra event interface as shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-the-cue"
+
+\end_inset
+
+.
+ Note that the presence of a second event interface will cause the «state»
+ stereotype to generate a second dispatcher part.
+ The underlying design of the dispatcher component allows multiple of these
+ to work correctly together.
+\end_layout
+
+\begin_layout Standard
+Using an extension, we have been able to add an extra event and state with
+ minimal impact.
+ Only the implementation code for 
+\family typewriter
+OffState
+\family default
+ required alteration, and this could be handled by defining a new class
+ if the source code is not available to the extension.
+ If, instead, 
+\family typewriter
+OffState
+\family default
+ happened to be a composite, then incorporating the change would have been
+ possible without source code via evolving and inserting an extra part into
+ its definition.
+\end_layout
+
+\begin_layout Standard
+In contrast, extending the object-oriented form of this pattern (figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:OO-State-pattern"
+
+\end_inset
+
+) is not possible unless we are prepared to change the source code for every
+ single class in an intrusive way.
+ We would have to adjust the hardcoded transitions encoded across the implementa
+tions, and alter the context class and every state class to handle the extra
+ event method.
+ In essence, the object-oriented form of this pattern is not readily extensible
+ in either dimension.
+ The Backbone form is naturally extensible because a composite state machine
+ decomposes neatly into hierarchical components, which can be restructured
+ using the extensibility constructs.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/added-cue-state-advanced.eps
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adding-the-cue"
+
+\end_inset
+
+Adding the cue state to DeviceStateMachine involves minimal changes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Summary of Backbone State Machines
+\end_layout
+
+\begin_layout Standard
+We have used stereotypes to allow Backbone to express state machines.
+ Although these machines look visually similar to UML2 state machines, they
+ are actually full component structures.
+ This meshes well with the extensibility approach allowing a state machine
+ to be augmented in an extension with the addition or customisation of states,
+ transitions and events.
+ Machines can also be nested and chained.
+ In effect, our approach builds an elementary and extensible subset of nested
+ statecharts 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Harel1987"
+
+\end_inset
+
+ into Backbone.
+\end_layout
+
+\begin_layout Standard
+Backbone component-based state machines have many advantages over the object-ori
+ented State pattern.
+ In particular, transitions are represented as connectors and are therefore
+ explicit and not hardcoded within each state implementation.
+ States and events can be added or altered easily, and handling the context
+ requirements of each state is possible via ports and connectors.
+ Resemblance of a state machine allows the reuse of potentially complex
+ structures.
+\end_layout
+
+\begin_layout Standard
+Both the ROOM ADL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic1994,Selic1994a"
+
+\end_inset
+
+ and UML2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic2003"
+
+\end_inset
+
+ allow for state machine inheritance.
+ Although these state machines are more expressive than their Backbone equivalen
+t, neither facility offers the same extension possibilities.
+ AHEAD 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2006"
+
+\end_inset
+
+ provides a way to refine state machines expressed in a domain-specific
+ language, although this has limitations related to how refinement works
+ (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Limitations-of-AHEAD"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection
+The Visitor Pattern
+\end_layout
+
+\begin_layout Standard
+The Visitor pattern allows an 
+\begin_inset Quotes eld
+\end_inset
+
+operation
+\begin_inset Quotes erd
+\end_inset
+
+ to be performed on the elements of a complex object structure, by allowing
+ the operation to visit each element of the structure in turn.
+ The aim of this pattern is to allow further operations to be created without
+ having to add logic to the classes representing the traversed object structure.
+ The operation is also known as a 
+\emph on
+visitor
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+This pattern has several facets.
+ Firstly, the traversal of the structure is encoded within the structure
+ itself, allowing us to reuse this logic between many visitors.
+ Secondly, the type information encoded within the structure is also managed
+ by the elements of the structure, such that the visitor is informed of
+ the type when it visits each element.
+\end_layout
+
+\begin_layout Standard
+This pattern suffers from extensibility problems when adding a new type
+ of element to the structure 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zenger2004"
+
+\end_inset
+
+.
+ This limitation can be ameliorated by our approach, which utilises components
+ and hyperports, allowing an extension to add both new elements and new
+ operations.
+\end_layout
+
+\begin_layout Subsubsection
+A Critique of the Object-Oriented Visitor Pattern
+\end_layout
+
+\begin_layout Standard
+As per 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma1995"
+
+\end_inset
+
+, consider that we have a set of classes whose instances can be structured
+ to represent a parse tree for a computer language.
+ This is shown in the UML2 object diagram of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-parse-tree"
+
+\end_inset
+
+.
+ We wish to create one operation to perform a type check of these parse
+ trees, and another to generate code from them.
+ Further operations will be added in the future.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/parse-tree-advanced.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-parse-tree"
+
+\end_inset
+
+A parse tree
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We could embed the logic for the type check and code generator directly
+ into the classes making up this tree.
+ However, this would lead to a problem when adding further operations, as
+ we would have to place the new logic into every tree class.
+\end_layout
+
+\begin_layout Standard
+The Visitor pattern addresses this by separating out the operation from
+ the traversal of the structure.
+ This allows a visitor object to be passed between all of the elements of
+ the structure, leaving the structural knowledge within the tree.
+ When an element receives a visitor, it calls back to provide it with informatio
+n (and the type) of the current node.
+ The visitor is then passed onto any children or related elements in the
+ structure for further visiting.
+\end_layout
+
+\begin_layout Standard
+To implement this we create an interface 
+\family typewriter
+IVisitor
+\family default
+, which any visitor must implement.
+ Consider the following Java code which contains a method per element type:
+\end_layout
+
+\begin_layout LyX-Code
+interface IVisitor {
+\end_layout
+
+\begin_layout LyX-Code
+  void visitExpression(Expression e);
+\end_layout
+
+\begin_layout LyX-Code
+  void visitVariableReference(VariableReference v);
+\end_layout
+
+\begin_layout LyX-Code
+  void visit LiteralInteger(LiteralInteger l);
+\end_layout
+
+\begin_layout LyX-Code
+  void visitOperation(Operation o);
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+The code for handling traversal inside the 
+\family typewriter
+Expression
+\family default
+ class then looks like the following, where 
+\family typewriter
+Term
+\family default
+ is the superclass of both 
+\family typewriter
+LiteralInteger
+\family default
+ and 
+\family typewriter
+VariableReference
+\family default
+:
+\end_layout
+
+\begin_layout LyX-Code
+class Expression {
+\end_layout
+
+\begin_layout LyX-Code
+  private Term t1;
+\end_layout
+
+\begin_layout LyX-Code
+  private Operation o;
+\end_layout
+
+\begin_layout LyX-Code
+  private Term t2;
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+\end_layout
+
+\begin_layout LyX-Code
+  public void accept(Visitor v) {
+\end_layout
+
+\begin_layout LyX-Code
+    v.visitExpression(this);  // (1)
+\end_layout
+
+\begin_layout LyX-Code
+    t1.accept(v);             // (2)
+\end_layout
+
+\begin_layout LyX-Code
+    o.accept(v);
+\end_layout
+
+\begin_layout LyX-Code
+    t2.accept(v);
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Line (1) in the listing above provides a form of double-dispatch, where
+ the visitor is given information and the type of the node it is currently
+ visiting.
+ The passing of the visitor further down the tree can be seen in (2).
+\end_layout
+
+\begin_layout Standard
+Although this pattern can easily be extended for further operations by implement
+ing a new visitor, it is brittle when faced with new element types.
+ To extend this with a new type, we have to add a further method to the
+ 
+\family typewriter
+IVisitor
+\family default
+ interface, and update every element class to cope.
+ The pattern is therefore extensible for adding operations, but not for
+ adding element types.
+\end_layout
+
+\begin_layout Subsubsection
+The Visitor Pattern in Backbone
+\end_layout
+
+\begin_layout Standard
+Using hyperports, we can make the connections between the visitor and the
+ elements in the tree without requiring explicit connectors.
+ This allows an extension to add both new element types and new operations.
+\end_layout
+
+\begin_layout Standard
+Consider how the 
+\family typewriter
+Expression
+\family default
+ component is defined in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Expression-component"
+
+\end_inset
+
+.
+ The 
+\family typewriter
+visit
+\family default
+ end hyperport provides 
+\family typewriter
+IExpression
+\family default
+, which is how the visitor accesses any services offered by this element
+ type.
+ The port requires 
+\family typewriter
+IVisitor
+\family default
+, which is the interface the visitor provides.
+ This hyperport will be connected up to start hyperport of the visitor,
+ allowing traversal to take place.
+\end_layout
+
+\begin_layout Standard
+The extra ports allow an expression to have structure: each expression is
+ made up of a term followed by an operation and another term.
+ The 
+\family typewriter
+LiteralInteger
+\family default
+, 
+\family typewriter
+Operation
+\family default
+ and 
+\family typewriter
+VariableReference
+\family default
+ components are defined similarly, except that they provide their own interface
+ via their own 
+\family typewriter
+visit
+\family default
+ port.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/expression-advanced.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Expression-component"
+
+\end_inset
+
+The Expression component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now define the visitor component in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:parse-tree-visitor"
+
+\end_inset
+
+.
+ This has a start hyperport for every element component type, mirroring
+ the visit ports provided by each element.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/tree-visitor-advanced.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:parse-tree-visitor"
+
+\end_inset
+
+The parse tree visitor component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we can add all of these definitions together into a composite,
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visiting-a-parse"
+
+\end_inset
+
+.
+ The configured structure of the parse tree is the same as that in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-parse-tree"
+
+\end_inset
+
+.
+ The end hyperports of each element part are automatically connected to
+ the appropriate hyperports of the visitor.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/parse-nodes-advanced.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Visiting-a-parse"
+
+\end_inset
+
+Visiting a parse tree using component structures
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider how visiting occurs in Backbone variant.
+ To start the visit going, we use the 
+\family typewriter
+top
+\family default
+ port, which is connected to the first 
+\family typewriter
+Expression
+\family default
+ part.
+ This part uses its end hyperport to inform the visitor that this element
+ is being visited.
+ The visitor is then able to use the same connector between the hyperports
+ to invoke any required operations on the 
+\family typewriter
+IExpression
+\family default
+ interface provided by the expression.
+ Control then returns to the 
+\family typewriter
+Expression
+\family default
+ part, and it then uses its connectors linking it to the other parts of
+ the parse tree to delegate visiting down the tree.
+\end_layout
+
+\begin_layout Subsubsection
+Extending the Backbone Visitor Pattern
+\end_layout
+
+\begin_layout Standard
+An extension can add a further element type by defining a new element interface
+ and evolving the visitor component to add a further start hyperport.
+ Note that if we do add a further element type (say an 
+\family typewriter
+Assignment
+\family default
+ element), then any existing visitor without a hyperport for this will still
+ work.
+ However, the visitor will not be told about the newer element type when
+ visiting occurs.
+\end_layout
+
+\begin_layout Standard
+Adding a further visitor type can be accomplished in a number of ways.
+ For instance, we could make the visitor part a placeholder, and replace
+ it with the correct operation in an extension.
+ Alternatively, we could use factories to instantiate the required operation
+ on demand.
+ Upon instantiation, the hyperports will be connected and visiting can then
+ commence.
+\end_layout
+
+\begin_layout Subsection
+Other Design Patterns
+\end_layout
+
+\begin_layout Standard
+A number of other design patterns have interesting variations in Backbone
+ which provide improved extensibility.
+ For instance, the Adapter pattern is used to wrap an existing class and
+ present the interface that clients expect.
+ In Backbone, an extension can instead evolve a composite component and
+ insert the adapting part directly into the structure, allowing us to work
+ with the existing component rather than a wrapper.
+\end_layout
+
+\begin_layout Standard
+The Strategy pattern, which allows for interchangeable algorithms can be
+ modelled in Backbone using a subset of the extensible state machine facilities.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+The Backbone component model allows us to create more extensible (and versatile)
+ counterparts of common object-oriented design patterns.
+ In several cases, hidden artifacts and structures are made explicit when
+ expressing the patterns using components.
+ For example, state transitions (which are implicit in the State design
+ pattern) become explicit connectors when modelled in Backbone.
+ An extension can then use evolution to add new states, transitions and
+ events with minimal effort.
+\end_layout
+
+\begin_layout Standard
+Others patterns are equally at home in the Backbone component model.
+ Singletons, which are problematic constructs in an object-oriented setting,
+ fit naturally into the notion of providing a service to a subtree of a
+ component composition hierarchy.
+ An extension can replace the singleton part, shift its location in the
+ composition hierarchy, or add direct connectors to parts requiring singletons.
+ This pattern is therefore extensible, unlike its object-oriented counterpart.
+\end_layout
+
+\begin_layout Standard
+Similar extensibility advantages were found with the Backbone visitor pattern
+ which, unlike the object-oriented variant, can be extended for both operations
+ and node types.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+This chapter has demonstrated a number of advanced modelling techniques,
+ which are built on the foundation of the Backbone hierarchical component
+ model and extensibility approach.
+\end_layout
+
+\begin_layout Standard
+We introduced stereotypes as a convenient way of automatically expanding
+ the structure of elements.
+ Stereotypes can also customise the appearance of the components that they
+ are applied to.
+ One use of stereotypes is for autoconnection, where common connectors are
+ created automatically.
+ The use of these facilities means that an extension often has to alter
+ less of the architectural structure in order to achieve its intended effect.
+\end_layout
+
+\begin_layout Standard
+We also introduced hyperports, which are a way of connecting across compositiona
+l boundaries.
+ Using hyperports an extension can flexibly make a service available to
+ a subtree of the compositional hierarchy.
+\end_layout
+
+\begin_layout Standard
+These techniques were combined to show how Backbone can model a number of
+ common design patterns.
+ We demonstrated that the Backbone variants are more extensible, and make
+ the structure of the solution more explicit than their object-oriented
+ counterparts.
+ For instance, Backbone state machines allow the addition and alteration
+ of states, events and transitions via an extension.
+ Backbone singletons utilise hyperports, and have the advantage of not tightly
+ coupling clients to the singleton implementation.
+ This facilitates unit testing.
+ It also allows an extension to replace the singleton, or move it around
+ the hierarchy.
+\end_layout
+
+\begin_layout Standard
+Backbone also provides isomorphic factories, which allow the dynamic instantiati
+on of parts of the architecture.
+ This facility can be used to represent several of the creational patterns,
+ with the advantage that the connections between the static and dynamic
+ parts of the architecture can be explicitly represented.
+ Factories are also composite components and can be evolved, allowing an
+ extension to alter the dynamically allocated structures.
+\end_layout
+
+\begin_layout Standard
+By building on the robust foundation of the Backbone model, we are able
+ to bring greater flexibility and extensibility to common design solutions.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,39 @@
+        <UML:Package xmi.id="a2" xmi.uuid="DCE-1139482775959-502" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>Backbone
+visual
+language</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Interface xmi.id="a1" xmi.uuid="DCE-1139484040526-654" name="ISynchronous" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a10" xmi.uuid="DCE-1139484607448-655" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a11" xmi.uuid="DCE-1139484613089-132" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a12" xmi.uuid="DCE-1139484932276-566" name="LeafComponentA" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Class xmi.id="a13" xmi.uuid="DCE-1139484932761-175" name="ComponentB" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Interface xmi.id="a14" xmi.uuid="DCE-1139484958839-671" name="IInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a15" xmi.uuid="DCE-1139485005370-914" name="IInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+
+<packageImportLink xlink:type="simple" xlink:href="state pattern" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="type{CR}propagation" />
+
+            <UML:Class xmi.id="a3" xmi.uuid="DCE-1139482784928-978" name="CompositeComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Interface xmi.id="a4" xmi.uuid="DCE-1139482796756-144" name="ProvidedInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+
+<packageImportLink xlink:type="simple" xlink:href="web{CR}browser" />
+
+            <UML:Class xmi.id="a41" xmi.uuid="DCE-1139486726058-986" name="EnclosingComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Class xmi.id="a42" xmi.uuid="DCE-1139486740323-300" name="InnerComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Interface xmi.id="a43" xmi.uuid="DCE-1139486791620-830" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a44" xmi.uuid="DCE-1139486855651-528" name="InnerInnerComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+
+<packageImportLink xlink:type="simple" xlink:href="connections" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="instantiation" />
+
+            <UML:Class xmi.id="a5" xmi.uuid="DCE-1139482814021-624" name="LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+            <UML:Interface xmi.id="a6" xmi.uuid="DCE-1139482871801-755" name="RequiredInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a7" xmi.uuid="DCE-1139484047417-696" name="IAsynchronous" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a9" xmi.uuid="DCE-1139484591980-375" name="ComponentA" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

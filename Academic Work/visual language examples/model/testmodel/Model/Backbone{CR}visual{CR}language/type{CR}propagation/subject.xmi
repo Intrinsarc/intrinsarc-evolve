@@ -1,0 +1,9 @@
+            <UML:Package xmi.id="a21" xmi.uuid="DCE-1107959984484-898" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>type
+propagation</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Interface xmi.id="a22" xmi.uuid="DCE-1107960035046-454" name="Interface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a23" xmi.uuid="DCE-1107960044500-329" name="Interface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a24" xmi.uuid="DCE-1107960468046-318" name="SubInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

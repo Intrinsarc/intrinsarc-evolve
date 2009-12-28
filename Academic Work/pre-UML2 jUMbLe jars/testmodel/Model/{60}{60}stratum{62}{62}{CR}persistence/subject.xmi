@@ -1,0 +1,4 @@
+        <UML:Package xmi.id="a21" xmi.uuid="DCE-1141047658524-875" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+persistence</UML:ModelElement.name>
+        </UML:Package>

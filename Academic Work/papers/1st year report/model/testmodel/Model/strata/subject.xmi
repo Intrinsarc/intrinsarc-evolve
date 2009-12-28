@@ -1,0 +1,31 @@
+        <UML:Package xmi.id="a33" xmi.uuid="DCE-1145361169102-436" name="strata" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+
+<packageImportLink xlink:type="simple" xlink:href="clock1{46}0" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="beep{43}alarm1{46}0" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="beep{43}alarm1{46}1" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="clock1{46}1" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="beep" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="alarm" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="DCE-1145367874977-319" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="clock0{46}9" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="cd player" />
+
+          </UML:Namespace.ownedElement>
+        </UML:Package>

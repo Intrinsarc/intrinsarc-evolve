@@ -1,0 +1,1 @@
+java -classpath ./jumble.jar:./uml2-odb-latest.jar:./jazz.jar:./JTattoo.jar:./l2fprod-common-all.jar:./vectorgraphics.jar:./jdo.jar:./odbse.jar:./org.eclipse.emf.common_2.1.0.jar:./org.eclipse.emf.ecore.edit_2.1.0.jar:./org.eclipse.emf.ecore.xmi_2.1.0.jar:./org.eclipse.emf.ecore_2.1.0.jar:./org.eclipse.emf.edit_2.1.0.jar com.hopstepjump.jumble.gui.jUMbLe

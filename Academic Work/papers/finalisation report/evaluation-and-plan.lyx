@@ -1,0 +1,333 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Work to Completion
+\end_layout
+
+\begin_layout Section
+Expected Thesis Contents
+\end_layout
+
+\begin_layout Enumerate
+Introduction
+\newline
+(phrasing of problem statement, example scenario, presentation
+ of requirements taken from scenario.
+ See actual chapter)
+\end_layout
+
+\begin_layout Enumerate
+Background
+\newline
+(focus on plugin architectures, component models such as Darwin,
+ and product family approaches.
+ See actual chapter)
+\end_layout
+
+\begin_layout Enumerate
+Using Backbone to Define, Extend and Evolve an Architecture
+\newline
+(extends on example
+ from (1) to show have Backbone is used in a real architecture, and how
+ it meets the requirements outlined.
+ Focus is on the structural side.
+ See actual chapter)
+\end_layout
+
+\begin_layout Enumerate
+The Formal Backbone Structural Specification
+\newline
+(a description of the interesting
+ parts of the Alloy specification of Backbone, showing various properties)
+\end_layout
+
+\begin_layout Enumerate
+Backbone and the Unified Modeling Language
+\newline
+(comparing and constrasting Backbone
+ and the composite structure model of UML)
+\end_layout
+
+\begin_layout Enumerate
+Describing and Checking Behaviour in an Extensible System
+\end_layout
+
+\begin_layout Enumerate
+Advanced Modeling in Backbone
+\newline
+(discussion about stereotypes, the breakdown
+ of behaviour into structural components resembling state machines, and
+ baselining)
+\end_layout
+
+\begin_layout Enumerate
+A Graphical Modeling Approach for Backbone
+\newline
+(the jUMbLE case tool will be
+ presented, showing how it supports modeling with deltas, and conflict resolutio
+n)
+\end_layout
+
+\begin_layout Enumerate
+Evaluation Criteria and Case Studies
+\newline
+(evaluation of part of the Eclipse architect
+ure, application to a JEE applications, and also a presentation of the jUMbLe
+ architecture specified using Backbone.
+ See evaluation criteria below)
+\end_layout
+
+\begin_layout Enumerate
+Conclusions and Future Work
+\newline
+(discussion of contribution, description of limitatio
+ns, and possible future work)
+\end_layout
+
+\begin_layout Enumerate
+Appendix A: Backbone Structural Concepts
+\newline
+(complete but informal description
+ of structural concepts.
+ see actual appendix)
+\end_layout
+
+\begin_layout Enumerate
+Appendix B: The Formal Backbone Structural Specification
+\newline
+(complete formal
+ description of structural concepts)
+\end_layout
+
+\begin_layout Enumerate
+Appendix C: Mapping Protocols and Goals to FSP
+\newline
+(description of the mapping
+ to finite state processes.
+ Work done, needs to be written up)
+\end_layout
+
+\begin_layout Enumerate
+Appendix D: Alloy Models
+\newline
+(the models that appendix B describe)
+\end_layout
+
+\begin_layout Section
+Expected Contribution
+\end_layout
+
+\begin_layout Standard
+The core contribution of this work is the addition of architectural hierarchy
+ to a plugin-like approach for creating extensible applications.
+ Support is provided for checking combinations of extensions for structural
+ and behavioural correctness, and repairing any conflicts.
+ The approach arguably offers a superior engineering tradeoff between flexibilit
+y of extension and architectural manageability than other approaches.
+ Conflicts, which plague conventional extension architectures, can be checked
+ at both a structural and behavioural level, and resolution can be performed
+ when mismatches occur.
+ These are significant problems in existing extension approaches.
+\end_layout
+
+\begin_layout Standard
+The constructs provided by Backbone also give rise to a set of advanced
+ architectural techniques (to be in chapter 6) which I have not found discussed
+ in the literature.
+ Two of these are (i) baselining which compresses deltas, forming extensions
+ which can reproduce previous versions of an application and (ii) behavioural
+ decomposition into structural components where control logic can be decomposed
+ into fine-grained structural components.
+ In the latter case, the diagrams can be made to look like state charts,
+ but offer all of the architectural advantages of components including support
+ for redefinition.
+\end_layout
+
+\begin_layout Section
+Evaluation Criteria
+\end_layout
+
+\begin_layout Standard
+The approach is to look at various applications expressed using existing
+ plugin and other extensibility approaches, and examine how Backbone's support
+ for architectural hierarchy and structural and behavioural checking could
+ describe and verify the architectures more appropriately.
+ The focus will be on detecting conflicts between extensions and evolved
+ versions of the application, and also using an architectural hierarchy
+ to describe the systems at the appropriate level of abstraction.
+\end_layout
+
+\begin_layout Itemize
+The Eclipse Integrated Development Environment (IDE) 
+\begin_inset LatexCommand \cite{Object2001}
+
+\end_inset
+
+
+\newline
+The Eclipse IDE contains a complex nest of components and connections due
+ to its lack of true architectural hierarchy.
+ The intention is to find an example in the current IDE's architecture where
+ this has led to a more complex description of part of the architecture,
+ and express it in Backbone to show the simplification.
+ Other possibilities are showing how Backbone allows for more flexibility
+ in making extensions, and allows old extensions to be checked against an
+ updated form of the application and also against other extensions for conflict.
+ These are all problems in the Eclipse extension model, which is generally
+ considered to be an example of a flexible and powerful model.
+\end_layout
+
+\begin_layout Itemize
+An Java Enterprise (JEE) Application
+\newline
+Backbone will be applied to the architecture
+ of a JEE application.
+ The Spring framework 
+\begin_inset LatexCommand \cite{Johnson2005}
+
+\end_inset
+
+ offers a hierarchical configuration approach for describing the structure
+ of JEE application.
+ This approach is in widespread industrial use, but offers limited support
+ for extension of an architecture.
+ The intention is to take an existing Spring application, and show how we
+ can model it in Backbone, describing a family of applications through extension
+s.
+ In addition, the evolution of the system will be modeled as an extension,
+ and baselining used to provide backwards compatibility with previous versions
+ of the architecture.
+ It is anticipated that it will be possible to modify Backbone so that it
+ generates Spring configuration files as part of its output, allowing the
+ two approaches to be directly compared.
+\end_layout
+
+\begin_layout Standard
+Finally, as part of this work, the jUMbLe architecture will be restructured
+ into a Backbone model and presented as an example of a complex system modeled
+ using this approach.
+ An example extension and evolution will be shown.
+\end_layout
+
+\begin_layout Section
+Plan
+\end_layout
+
+\begin_layout Standard
+The following work forms part of this thesis:
+\end_layout
+
+\begin_layout Enumerate
+Development of a graphical environment for modeling with Backbone
+\newline
+(work currently
+ underway, expected completion date December 2007)
+\end_layout
+
+\begin_layout Enumerate
+Backbone interpreter
+\newline
+(mostly completed, current adjusting for the results
+ in 2 and 3)
+\newline
+(complete December 2007)
+\end_layout
+
+\begin_layout Enumerate
+Case studies and writeup
+\newline
+(ongoing to March 2008)
+\end_layout
+
+\begin_layout Enumerate
+Translation of protocols into FSP
+\newline
+(completed)
+\end_layout
+
+\begin_layout Enumerate
+Specification of goals, and translation into FSP properties
+\newline
+(Completed by
+ May 2008)
+\end_layout
+
+\begin_layout Enumerate
+Modification of jUMbLe CASE tool to allow behavioural modeling
+\newline
+(Completed
+ by August 2008)
+\end_layout
+
+\begin_layout Enumerate
+Refactoring of jUMbLe CASE tool to allow structural modeling with deltas
+\newline
+(October
+ 2007 to February 2008.
+ Tool is currently written, but requires modifications to deal with results
+ of formal specification)
+\end_layout
+
+\begin_layout Enumerate
+Refactoring of jUMbLe's architecture to use the Backbone approach
+\newline
+(July to
+ August 2008.
+ The current architecture of jUMbLe was used to create the Backbone approach,
+ so this is not anticipated to involve large amounts of work)
+\end_layout
+
+\begin_layout Enumerate
+Final write up
+\newline
+(anticipated completion date December 2008)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{/home/amcveigh/work/workspace/Academic Work/read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

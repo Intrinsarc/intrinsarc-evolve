@@ -1,0 +1,67 @@
+package ac.ic.doc.mtstools.model.impl;
+
+import java.util.*;
+
+import ac.ic.doc.commons.relations.*;
+import ac.ic.doc.mtstools.model.*;
+
+public class LTSImpl<State, Action> extends
+		AbstractTransitionSystem<State, Action> implements LTS<State, Action> {
+
+	private Map<State, BinaryRelation<Action, State>> transitions;
+
+	public LTSImpl(State initialState, String name) {
+		super(initialState);
+	}
+
+	public boolean addState(State state) {
+		if (super.addState(state)) {
+			this.getInternalTransitions().put(state, this.newRelation());
+			return true;
+		}
+		return false;
+	}
+
+	protected Map<State, BinaryRelation<Action, State>> getInternalTransitions() {
+		if (this.transitions == null) {
+			this.transitions = new HashMap<State, BinaryRelation<Action, State>>();
+		}
+		return this.transitions;
+	}
+
+	public boolean addTransition(State from, Action label, State to) {
+		this.validateNewTransition(from, label, to);
+		return this.getTransitions(from).addPair(label, to);
+	}
+
+	public Map<State, BinaryRelation<Action, State>> getTransitions() {
+		return Collections.unmodifiableMap(this.transitions);
+	}
+
+	public BinaryRelation<Action, State> getTransitions(State state) {
+		return this.transitions.get(state);
+	}
+
+	public boolean removeTransition(State from, Action label, State to) {
+		return this.transitions.get(from).removePair(label, to);
+	}
+
+	protected BinaryRelation<Action, State> getTransitionsFrom(State state) {
+		return getTransitions(state);
+	}
+
+	public void removeAction(Action action) {
+		for (State state : getStates()) {
+			for (State stateTo : getTransitionsFrom(state).getImage(action)) {
+				removeTransition(state, action, stateTo);
+			}
+		}
+		getInternalActions().remove(action);
+	}
+
+	@Override
+	protected void removeTransitions(Collection<State> unreachableStates) {
+		this.removeTransitions(this.transitions, unreachableStates);
+	}
+
+}

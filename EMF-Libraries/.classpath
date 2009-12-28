@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.core.resources_3.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.core.runtime_3.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.emf.common_2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.emf.ecore_2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.emf.ecore.edit_2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.emf.ecore.editor_2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.emf.ecore.xmi_2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.emf.edit_2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.osgi_3.1.1.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

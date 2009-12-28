@@ -1,0 +1,359 @@
+module structure
+
+open util/boolean as boolean
+open util/relation as relation
+open deltas[Stratum, Component, PartID, Part] as Parts
+open deltas[Stratum, Component, PortID, Port] as Ports
+open deltas[Stratum, Component, ConnectorID, Connector] as Connectors
+open deltas[Stratum, Component, AttributeID, Attribute] as Attributes
+open deltas[Stratum, Interface, OperationID, Operation] as Operations
+open deltas[Stratum, Interface, InterfaceImplementationID, InterfaceImplementation] as InterfaceImplementation
+
+
+one sig Model
+{
+  -- normally this should be set to none
+  errorsAllowed: set Stratum,
+  providesIsOptional: Bool
+}
+
+sig Stratum
+{
+  -- strata that this directly depends on
+  dependsOn: set Stratum,
+  -- does this expose stratum it depends on?
+  isRelaxed: Bool,
+
+  -- derived state -- exposes strata includes this and canSee
+  exposesStrata: set Stratum,
+  canSee: set Stratum,
+  canSeePlusMe: set Stratum,
+
+  -- simple is all that we directly depend on
+  -- taking away what any children depend on
+  simpleDependsOn: set Stratum,
+
+  -- a single top exists which binds directly
+  -- any independent stratum
+  isTop: Bool,
+  -- this is every stratum that can be seen from here down
+  transitive: set Stratum,
+  transitivePlusMe: set Stratum,
+  ownedElements: set Element,
+  -- each attribute type is owned by a single stratum
+  attributeTypes: set AttributeType,
+
+  -- elements that redefine another
+  redefining: set Element,
+  -- components that are new definitions
+  defining: set Element
+}
+{
+  defining = ownedElements - redefining
+  canSeePlusMe = canSee $\cup$ this
+  transitivePlusMe = transitive $\cup$ this
+}
+
+abstract sig Element
+{
+  home: Stratum,
+  redefines: lone Element,
+  resembles: set Element,
+
+  -- for a given stratum, a component resembles other components in a given stratum view
+  resembles_e: Element$\,\times\,$Stratum,
+  -- does this act as a non-primed for a particular stratum
+  actsAs_e: Element$\,\times\,$Stratum,
+  -- is this element valid for a given stratum?
+  isInvalid_e: set Stratum
+}
+{
+  -- owned by a single stratum
+  home = ownedElements$\cdot$this
+}
+
+sig Component extends Element
+{
+  -- composite or leaf?
+  -- all components apart from direct impl components are always composite
+  isComposite: Bool,
+  implementation: lone ComponentImplementation,
+
+  -- the final result, after taking redef + resemblance into account
+  iDParts: PartID$\,\times\,$Part$\,\times\,$Stratum,
+  parts: Part$\,\times\,$Stratum,
+  ports: Port$\,\times\,$Stratum,
+  connectors: Connector$\,\times\,$Stratum,
+  attributes: Attribute$\,\times\,$Stratum,
+  
+  myParts: lone Parts/Deltas,
+  myPorts: lone Ports/Deltas,
+  myConnectors: lone Connectors/Deltas,
+  myAttributes: lone Attributes/Deltas,
+  
+  -- the internal links, used for port type inferencing
+  links: PortID$\,\times\,$PortID,
+  inferredLinks: Port$\,\times\,$Port$\,\times\,$Stratum
+}
+{
+  -- for components
+  redefines $\cup$ resembles $\subseteq$ Component
+  -- propagate up the objects from the delta into the sig, to make it more convenient
+  parts = myParts$\cdot$objects
+  ports = myPorts$\cdot$objects
+  connectors = myConnectors$\cdot$objects
+  attributes = myAttributes$\cdot$objects
+
+  -- a leaf has an implementation
+  isFalse[isComposite] $\Longleftrightarrow$ one implementation
+  
+  -- form idParts
+  iDParts = {n: PartID, p: Part, s: Stratum | s$\,\times\,$n$\,\times\,$p $\subseteq$ myParts$\cdot$objects_e}
+  
+  -- make sure links has no duplication
+  no  $\sim$links $\cap$ links
+  
+  -- we only have links for leaves, so all ports must be new
+  dom[links] $\cup$ ran[links] $\subseteq$ myPorts$\cdot$newIDs
+}
+
+-- ensure each delta is composed by only one component
+fact
+{
+  $\forall\,$p: Parts/Deltas | one myParts$\cdot$p
+  $\forall\,$p: Ports/Deltas | one myPorts$\cdot$p
+  $\forall\,$c: Connectors/Deltas | one myConnectors$\cdot$c
+  $\forall\,$a: Attributes/Deltas | one myAttributes$\cdot$a
+}
+
+sig Interface extends Element
+{
+  -- the expanded elements
+  operations: Operation$\,\times\,$Stratum,  
+  implementation: InterfaceImplementation$\,\times\,$Stratum,  
+  superTypes: Interface$\,\times\,$Stratum,
+
+  -- the deltas
+  myOperations: Operations/Deltas,
+  myImplementation: InterfaceImplementation/Deltas
+}
+{
+  -- for interfaces
+  redefines $\cup$ resembles $\subseteq$ Interface
+  -- propagate up the objects from the delta into the sig, to make it more convenient
+  operations = myOperations$\cdot$objects  
+  implementation = myImplementation$\cdot$objects
+}
+-- ensure each delta is composed by only one interface
+fact
+{
+  $\forall\,$p: Operations/Deltas | one myOperations$\cdot$p
+  $\forall\,$i: InterfaceImplementation/Deltas | one myImplementation$\cdot$i
+}
+
+
+-- each artifact must have a id, so it can be replaced or deleted
+sig PartID, PortID, ConnectorID, AttributeID, OperationID, InterfaceImplementationID {}
+
+sig Part
+{
+  partType: Component,
+  -- remap a port from this part onto the port of a part that we are replacing
+  -- (new port -> old, replaced port)
+  portRemap: PortID lone$\,\times\,$lone PortID,
+  portMap: Stratum$\,\times\,$PortID lone$\,\times\,$lone Port,
+
+  -- the values of the attributes are set in the part   (child id -> parent id)
+  -- although they don't have to be set if we want to take the default
+  attributeValues: AttributeID$\,\times\,$lone AttributeValue,
+  -- do we alias a parent attribute?
+  attributeAliases: AttributeID$\,\times\,$lone AttributeID,
+  -- or do we simply copy a parent attribute, but retain our own state?
+  attributeCopyValues: AttributeID$\,\times\,$lone AttributeID,
+
+  -- derived state -- the parts that the connectors link to
+  linkedToParts: Part$\,\times\,$Stratum$\,\times\,$Component,
+  -- derived state -- any componts that the connectors link to
+  linkedToOutside: Stratum$\,\times\,$Component
+}
+
+abstract sig Index {}
+one sig Zero, One, Two, Three extends Index {}
+
+pred isContiguousFromZero(indices: set Index)
+{
+  indices = indices$\cdot$ $\!\!\!^\ast\!$(Three$\,\times\,$Two $\cup$ Two$\,\times\,$One $\cup$ One$\,\times\,$Zero)
+}
+
+sig Port
+{
+  -- set values are what the user has explicitly set
+  setProvided, setRequired: set Interface,
+  -- provided and required are inferred
+  provided, required: Interface$\,\times\,$Stratum$\,\times\,$Component,
+  mandatory, optional: set Index
+}
+{
+  -- mandatory indices start at 0, optional start from mandatory end, no overlap
+  -- all contiguous and must have some indices
+  isContiguousFromZero[mandatory] and
+    isContiguousFromZero[mandatory $\cup$ optional]
+  no mandatory & optional      -- no overlap
+  some mandatory + optional    -- but must have some indices
+}
+
+
+sig Connector
+{
+    -- require 2 ends
+    ends: set ConnectorEnd
+}
+{
+  -- ensure 2 connector ends using a trick felix taught me
+  $\exists\,$disj end1, end2: ConnectorEnd | ends = end1 $\cup$ end2
+    $\forall\,$end: ends |
+        end$\cdot$otherEnd = ends - end
+}
+
+abstract sig ConnectorEnd
+{
+    portID: PortID,
+    port: Port$\,\times\,$Stratum$\,\times\,$Component,
+    index: Index,
+    otherEnd: ConnectorEnd
+}
+{
+    -- an end is owned by one connector
+    one ends$\cdot$this
+}
+
+sig ComponentConnectorEnd extends ConnectorEnd
+{
+}
+
+sig PartConnectorEnd extends ConnectorEnd
+{
+    partID: PartID,
+    cpart: Part$\,\times\,$Stratum$\,\times\,$Component
+}
+
+
+sig Attribute
+{
+  attributeType: AttributeType,
+  defaultValue: lone AttributeValue
+}
+{
+  $\exists\,$defaultValue $\Longrightarrow$
+    defaultValue$\cdot$valueType = attributeType
+}
+
+sig AttributeValue
+{
+  valueType: AttributeType
+}
+
+sig AttributeType
+{
+}
+{
+  -- owned by one stratum
+  one attributeTypes$\cdot$this
+}
+
+sig Operation
+{
+  -- this identifies the impelementation id and signature
+}
+
+sig InterfaceImplementation
+{
+  -- this identifies the interface implementation clas or no s.dependsOns...
+}
+
+sig ComponentImplementation
+{
+  -- this identifies the component implementation class...
+}
+
+-- used for port inference
+-- a bit like a connector, but multiplicity and optionality don't count
+abstract sig LinkEnd
+{
+  linkPortID: PortID,
+  linkError: Stratum$\,\times\,$Component
+  -- the internal interfaces are the interfaces presented inside the component content area
+  --   for a port, it is the interfaces seen internally (opposite)
+  --   for a port instance, it is the interfaces seen externally (same)
+}
+
+sig ComponentLinkEnd extends LinkEnd
+{
+}
+
+sig PartLinkEnd extends LinkEnd
+{
+  linkPartID: PartID
+}
+
+-- translate from port id to component link end -- guaranteed to be 1 per id
+fun getComponentLinkEnd(id: PortID): one ComponentLinkEnd
+{
+  { end: ComponentLinkEnd | end$\cdot$linkPortID = id }
+}
+
+-- translate from a port/part to a part link end -- guaranteed to be 1 per pair
+fun getPartLinkEnd(portID: PortID, partID: PartID): PartLinkEnd
+{
+  { end: PartLinkEnd | end$\cdot$linkPortID = portID $\wedge$ end$\cdot$linkPartID = partID }
+}
+
+fun ComponentLinkEnd::getPort(s: Stratum, c: Component): one Port
+{
+  c$\cdot$myPorts$\cdot$objects_e[s][this$\cdot$linkPortID]
+}
+
+fun PartLinkEnd::getPortInstance(s: Stratum, c: Component): Port$\,\times\,$Part
+{
+  let
+    cpart = c$\cdot$myParts$\cdot$objects_e[s][this$\cdot$linkPartID],
+    cport = cpart$\cdot$partType$\cdot$myPorts$\cdot$objects_e[s][this$\cdot$linkPortID] |
+  cport$\,\times\,$cpart
+}
+
+-- get the port of a component connector
+fun ComponentConnectorEnd::getPort(s: Stratum, c: Component): lone Port
+{
+    c$\cdot$myPorts$\cdot$objects_e[s][this$\cdot$portID]
+}
+
+-- should return only 1 Port, unless the component is invalid. NOTE: the component owns the part
+fun PartConnectorEnd::getPortInstance(s: Stratum, c: Component): Port$\,\times\,$Part
+{
+    let
+        ppart = c$\cdot$myParts$\cdot$objects_e[s][this$\cdot$partID],
+        port = ppart$\cdot$portMap[s][this$\cdot$portID] |
+    port$\,\times\,$ppart
+}
+
+fun PartLinkEnd::getPortInstanceRequired(s: Stratum, c: Component): set Interface
+{
+  let portPart = this$\cdot$getPortInstance[s, c],
+    pport = dom[portPart],
+    ppartType = ran[portPart]$\cdot$partType
+  {
+    pport$\cdot$required$\cdot$ppartType$\cdot$s
+  }
+}
+
+fun PartLinkEnd::getPortInstanceProvided(s: Stratum, c: Component): set Interface
+{
+  let portPart = this$\cdot$getPortInstance[s, c],
+    pport = dom[portPart],
+    ppartType = ran[portPart]$\cdot$partType
+  {
+    pport$\cdot$provided$\cdot$ppartType$\cdot$s
+  }
+}
+
+

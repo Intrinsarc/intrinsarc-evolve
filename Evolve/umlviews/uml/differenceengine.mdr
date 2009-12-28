@@ -1,0 +1,72 @@
+MagicDrawUML "7.5"
+(RTManager
+	(RTManagerOptions
+		CODE_GENERATION_REVERSE_OPTION 2
+		DELETED_ELEMENT_GENERATION_OPTION 0
+		USE_CLASSPATH_FOR_JAVA_REVERSE TRUE
+		LAUNCH_WIZARD FALSE
+		MERGE_AFTER_REVERSE FALSE
+		CREATE_ATTRIBUTES TRUE
+		DEFAULT_WORKING_DIRECTORY "/home/andrew/installed/magicdraw-7.8"
+		DEFAULT_LANGUAGE "Java"
+		(JavaLanguageOptions
+			mGenEmptyDoc FALSE
+			mBracketInNewLine TRUE
+			mAddSpaces TRUE
+			mUseJavaDoc FALSE
+			mDefaultHeader "@(#) $FILE_NAME"
+			COLLECT_IMPORTS_ON_DEMAND TRUE
+			mGenerateDocumentation TRUE
+			(DocumentationProperties
+				DefaultDocumentationProcessor "STANDARD_PROCESSOR"
+				mCommentStyle 0
+				(Processors
+					(JAVA_DOC_PROCESSOR
+						(mDocumentationTagManager
+							(CLASSIFIER
+								(DocumentationTagProperty
+									mName "DESCRIPTION"
+									mGenerate "true"
+								)
+							)
+							(OPERARTION
+								(DocumentationTagProperty
+									mName "DESCRIPTION"
+									mGenerate "true"
+								)
+								(DocumentationTagProperty
+									mName "@param"
+									mGenerate "true"
+								)
+								(DocumentationTagProperty
+									mName "@return"
+									mGenerate "true"
+								)
+								(DocumentationTagProperty
+									mName "@throws"
+									mGenerate "true"
+								)
+							)
+							(ATTRIBUTE
+								(DocumentationTagProperty
+									mName "DESCRIPTION"
+									mGenerate "true"
+								)
+							)
+						)
+					)
+				)
+			)
+			mUseClassPath TRUE
+			mClassPath "lib/xalan.jar:/home/andrew/installed/j2re1.4.2_13/lib/rt.jar:/home/andrew/installed/j2re1.4.2_13/lib/i18n.jar:/home/andrew/installed/j2re1.4.2_13/lib/sunrsasign.jar:/home/andrew/installed/j2re1.4.2_13/lib/jsse.jar:/home/andrew/installed/j2re1.4.2_13/lib/jce.jar:/home/andrew/installed/j2re1.4.2_13/lib/charsets.jar:/home/andrew/installed/j2re1.4.2_13/classes"
+			mClassCountForImportOnDemand 10
+		)
+		DEFAULT_WORKING_DIRECTORY "/home/andrew/installed/magicdraw-7.8"
+		TEMP_DIRECTORY "Active Directory"
+		mResultToDiagram 1
+	)
+	(RTProjectGroupObject
+		mID "_8990282_1192661287374_518364_81"
+		mName "Code engineering sets"
+	)
+)

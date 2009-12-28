@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/44/trunk/ltsa/examples/triggeredScenarios
+END
+universal.lts
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/mtsa/!svn/ver/44/trunk/ltsa/examples/triggeredScenarios/universal.lts
+END
+existential.lts
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/mtsa/!svn/ver/44/trunk/ltsa/examples/triggeredScenarios/existential.lts
+END

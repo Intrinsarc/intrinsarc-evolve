@@ -1,0 +1,35 @@
+
+// try 1: using sets -- combinatorial explosion as we move along???  doesn't cope with non-determinism...
+set ALL_C = {a, b}
+
+A(M='m) = ([M].in -> [M].out -> aa -> A).
+B(M='m) = ([M].in -> [M].out -> bb -> B).
+
+C=  ([m:ALL_C].in -> cc -> [m].out -> C
+    |[m:ALL_C].in -> [n:ALL_C].in -> ERROR
+    |[m:ALL_C].in -> cc -> [n:ALL_C].in -> ERROR).
+
+||D = (A('a) || B('b) || C).
+
+
+
+
+// try 2: using sharing
+P = (in -> out -> pp -> P).
+Q = (in -> out -> qq -> Q).
+R = (in -> rr -> out -> R).
+||S = (p:P || q:Q || {p,q}::R).
+
+
+
+// no determinism
+H = (a -> b -> H
+    |a -> c -> H).
+||I = (H)/{a/a}.
+
+
+
+AUDIO_PROTOCOL1 = (call.receive.setVolume -> return.transmit.setVolume -> AUDIO_PROTOCOL1).
+AUDIO_PROTOCOL2 = (call.receive.beep -> return.transmit.bepp -> AUDIO_PROTOCOL2).
+||FINAL_PROTOCOL = (AUDIO_PROTOCOL1 || AUDIO_PROTOCOL2).
+

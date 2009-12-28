@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animation/SceneAnimations/synchronous_demos
+END
+TimeSlice.lts
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animation/SceneAnimations/synchronous_demos/TimeSlice.lts
+END
+broadcast_sync.lts
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animation/SceneAnimations/synchronous_demos/broadcast_sync.lts
+END
+LCR.lts
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animation/SceneAnimations/synchronous_demos/LCR.lts
+END
+LCR-halt.lts
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animation/SceneAnimations/synchronous_demos/LCR-halt.lts
+END
+FloodMax.lts
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animation/SceneAnimations/synchronous_demos/FloodMax.lts
+END
+broadcast_terminate.lts
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animation/SceneAnimations/synchronous_demos/broadcast_terminate.lts
+END
+FloodMaxOpt.lts
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animation/SceneAnimations/synchronous_demos/FloodMaxOpt.lts
+END

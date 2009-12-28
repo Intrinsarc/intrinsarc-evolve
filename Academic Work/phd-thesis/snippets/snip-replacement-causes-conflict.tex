@@ -1,0 +1,10 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={facts.als, lines 62-68}, label=alloy:replacement-causes-conflict, captionpos=b]
+run noConflictPossibleWithoutReplacement
+assert noConflictPossibleWithoutReplacement {
+    Model.errorsAllowed = isTop.True  -- only errors when combining
+    no (isTop.True).ownedElements     -- ensure unifying stratum is empty
+//    no Stratum.redefining             -- disallow replacement
+    some isInvalid_e                  -- find an invalid element
+}
+\end{lstlisting}

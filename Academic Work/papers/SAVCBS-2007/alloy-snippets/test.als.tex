@@ -1,0 +1,357 @@
+module test
+
+/ $\!\!\!^\ast\!$open structure
+open facts
+
+
+run show for 8 but 5 int, 11 Element, 10 Port
+pred show()
+{
+  -- ask for a structure where the top level has 2 children
+  -- and each child descends on a final stratum
+  $\exists\,$st0, st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    st4$\cdot$dependsOn = st1
+    st3$\cdot$dependsOn = st2 $\cup$ st1
+    st2$\cdot$dependsOn = st1
+    st1$\cdot$dependsOn = st0
+    isTrue[st5$\cdot$relaxed]
+    isTrue[st4$\cdot$relaxed]
+    isTrue[st3$\cdot$relaxed]
+    isFalse[st2$\cdot$relaxed]
+    isTrue[st1$\cdot$relaxed]
+    
+    #st5$\cdot$ownedElements $\cap$ Interface = 1
+    #st5$\cdot$ownedElements $\cap$ Component = 1
+--    st5.ownedElements.resembles = st1.ownedElements & Component
+    no st5$\cdot$ownedElements$\cdot$redefines
+--    (st5.ownedElements & Component).redefines = st1.ownedElements & Component
+--    st5.ownedElements.specialises = st1.ownedElements & Interface
+    let c = st5$\cdot$ownedElements $\cap$ Component
+    {
+      no c$\cdot$myParts$\cdot$addObjects
+      no c$\cdot$myParts$\cdot$deleteObjects
+    }
+    
+    #st4$\cdot$ownedElements = 1
+    #st4$\cdot$ownedElements $\cap$ Component = 1
+    st4$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements $\cap$ Component
+    let c = st4$\cdot$ownedElements $\cap$ Component
+    {
+      one c$\cdot$myParts$\cdot$addObjects
+      one c$\cdot$myParts$\cdot$replaceObjects
+      no c$\cdot$myParts$\cdot$deleteObjects
+    }
+
+    #st3$\cdot$ownedElements = 2
+    #st3$\cdot$ownedElements $\cap$ Component = 2
+    no st3$\cdot$ownedElements$\cdot$redefines
+    $\exists\,$c1, c2: st3$\cdot$ownedElements $\cap$ Component |
+      let c = st1$\cdot$ownedElements $\cap$ Component
+    {
+      disj[c1, c2]
+      one c1$\cdot$myParts$\cdot$addObjects
+      one c1$\cdot$myParts$\cdot$replaceObjects
+      no c1$\cdot$myParts$\cdot$deleteObjects
+      c1$\cdot$resembles = c
+      
+      no c2$\cdot$resembles
+      c2$\cdot$myParts$\cdot$newObjects$\cdot$partType = c
+    }
+
+    #st2$\cdot$ownedElements = 2
+    #st2$\cdot$ownedElements $\cap$ Interface = 1
+    st2$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements $\cap$ Component  
+--    no st2.ownedElements.specialises
+    let c = st2$\cdot$ownedElements $\cap$ Component
+    {
+      no c$\cdot$myParts$\cdot$addObjects
+      one c$\cdot$myParts$\cdot$replaceObjects
+      ran[c$\cdot$myParts$\cdot$replaceObjects]$\cdot$partType $\neq$
+        ran[(st1$\cdot$ownedElements $\cap$ Component)$\cdot$myParts$\cdot$addObjects]$\cdot$partType
+      no c$\cdot$myParts$\cdot$deleteObjects      
+    }
+    
+    #st1$\cdot$ownedElements = 2
+    #st1$\cdot$ownedElements $\cap$ Interface = 1
+    #st1$\cdot$ownedElements $\cap$ Component = 1
+    let c = st1$\cdot$ownedElements $\cap$ Component
+    {
+      one c$\cdot$myParts$\cdot$addObjects
+      no c$\cdot$resembles
+      st5 $\not\subseteq$ c$\cdot$isValid_e      
+    }
+
+    #st0$\cdot$ownedElements = 2
+    #st0$\cdot$ownedElements $\cap$ Component = 2
+    let c = st0$\cdot$ownedElements $\cap$ Component
+    {
+      no c$\cdot$myParts$\cdot$addObjects
+      no c$\cdot$resembles
+      no resembles$\cdot$c
+    }
+  }
+
+  #Stratum = 6
+  #Component = 8
+  #Interface = 3
+  #redefines = 2
+--  #redefines = 3
+  #resembles > 2
+  $\exists\,$Port
+}
+
+
+pred show2()
+{
+  -- ask for a structure where the top level has 2 children
+  -- and each child descends on a final stratum
+  $\exists\,$st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    isTrue[st5$\cdot$isTop]
+    #st5$\cdot$ownedElements = 1
+    st5$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements
+    
+    st4$\cdot$dependsOn = st1
+    #st4$\cdot$ownedElements = 1
+    st4$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements
+
+    st3$\cdot$dependsOn = st1
+    #st3$\cdot$ownedElements = 2
+    st3$\cdot$dependsOn = st1
+    st2$\cdot$dependsOn = st1
+    #st5$\cdot$ownedElements = 1
+    st5$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements
+    no st5$\cdot$ownedElements$\cdot$redefines
+    
+    #st3$\cdot$ownedElements = 1
+    one st3$\cdot$ownedElements$\cdot$redefines
+    st3$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+
+    #st2$\cdot$ownedElements = 1
+    one st2$\cdot$ownedElements$\cdot$redefines
+    st2$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+    
+    #st1$\cdot$ownedElements = 1
+    let c = st1$\cdot$ownedElements $\cap$ Component
+    {
+      one c$\cdot$addObjects
+    }
+    no st3$\cdot$ownedElements$\cdot$redefines
+    $\exists\,$c1, c2: st3$\cdot$ownedElements |
+      c1$\cdot$resembles = c2 $\wedge$ c2$\cdot$resembles = st1$\cdot$ownedElements
+
+    #st1$\cdot$ownedElements = 1
+  }
+  
+  #Stratum = 4
+  #Component = 5
+  #Interface = 0
+  #redefines = 1
+  #resembles > 1
+}
+
+pred show3()
+{
+  -- ask for a structure where the top level has 2 children
+  -- and each child descends on a final stratum
+  $\exists\,$st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    st4$\cdot$dependsOn = st1
+    st3$\cdot$dependsOn = st2
+    st2$\cdot$dependsOn = st1
+    #st5$\cdot$ownedElements $\cap$ Interface = 1
+    #st5$\cdot$ownedElements $\cap$ Component = 1
+    st5$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+    st5$\cdot$ownedElements$\cdot$specialises = st1$\cdot$ownedElements $\cap$ Interface
+    
+    #st4$\cdot$ownedElements = 1
+    #st4$\cdot$ownedElements $\cap$ Component = 1
+    st4$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements $\cap$ Component
+
+    #st3$\cdot$ownedElements = 1
+    #st3$\cdot$ownedElements $\cap$ Component = 1
+    no st3$\cdot$ownedElements$\cdot$redefines
+    st3$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+
+    #st2$\cdot$ownedElements = 1
+    #st2$\cdot$ownedElements $\cap$ Interface = 1
+    #st2$\cdot$ownedElements$\cdot$specialises = 0
+    
+    #st1$\cdot$ownedElements = 2
+    #st1$\cdot$ownedElements $\cap$ Interface = 1
+    #st1$\cdot$ownedElements $\cap$ Component = 1
+  }
+  
+  #Stratum = 5
+  #Component = 4
+  #Interface = 3
+  #redefines = 1
+  #resembles > 1
+}
+
+
+pred show4()
+{
+  -- ask for a structure where the top level has 2 children
+  -- and each child descends on a final stratum
+  $\exists\,$st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    st4$\cdot$dependsOn = st1
+    st3$\cdot$dependsOn = st2
+    st2$\cdot$dependsOn = st1
+    #st5$\cdot$ownedElements $\cap$ Interface = 1
+    #st5$\cdot$ownedElements $\cap$ Component = 1
+    st5$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+    st5$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements $\cap$ Component
+    st5$\cdot$ownedElements$\cdot$specialises = st1$\cdot$ownedElements $\cap$ Interface
+    
+    #st4$\cdot$ownedElements = 1
+    #st4$\cdot$ownedElements $\cap$ Component = 1
+    st4$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements $\cap$ Component
+
+    #st3$\cdot$ownedElements = 1
+    #st3$\cdot$ownedElements $\cap$ Component = 1
+    no st3$\cdot$ownedElements$\cdot$redefines
+    st3$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+
+    #st2$\cdot$ownedElements = 2
+    #st2$\cdot$ownedElements $\cap$ Interface = 1
+    st2$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements $\cap$ Component  
+    #st2$\cdot$ownedElements$\cdot$specialises = 0
+    
+    #st1$\cdot$ownedElements = 2
+    #st1$\cdot$ownedElements $\cap$ Interface = 1
+    #st1$\cdot$ownedElements $\cap$ Component = 1
+  }
+  
+  #Stratum = 5
+  #Component = 5
+  #Interface = 3
+  #redefines = 3
+  #resembles > 2
+}
+
+pred show5()
+{
+  -- ask for a structure where the top level has 2 children
+  -- and each child descends on a final stratum
+  $\exists\,$st1, st2, st3, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st2
+    st3$\cdot$dependsOn = st1
+    st2$\cdot$dependsOn = st1
+    #st5$\cdot$ownedElements = 1
+    st5$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements
+    no st5$\cdot$ownedElements$\cdot$redefines
+    
+    #st3$\cdot$ownedElements = 1
+    one st3$\cdot$ownedElements$\cdot$redefines
+    st3$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+
+    #st2$\cdot$ownedElements = 1
+    one st2$\cdot$ownedElements$\cdot$redefines
+    st2$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+    
+    #st1$\cdot$ownedElements = 1
+    let c = st1$\cdot$ownedElements $\cap$ Component
+    {
+      one c$\cdot$addObjects
+    }
+  }
+  
+  #Stratum = 5
+  #Component = 3
+  #Interface = 0
+  #redefines = 2
+  #resembles = 1
+}
+
+run show2 for 11
+run show3 for 9
+run show4 for 11
+
+
+--assert NoResemblanceCycles_Z
+--{
+--  all z: Element_Z |
+--    z not in z.^resembles_Z and
+--    z not in z.^specialises_Z
+--}
+--check NoResemblanceCycles_Z for 5
+
+
+run oshow for 12
+pred oshow()
+{
+  -- ask for a structure where the top level has 2 children
+  -- and each child descends on a final stratum
+  $\exists\,$st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    st4$\cdot$dependsOn = st1
+    st3$\cdot$dependsOn = st2
+    st2$\cdot$dependsOn = st1
+    #st5$\cdot$ownedElements $\cap$ Interface = 1
+    #st5$\cdot$ownedElements $\cap$ Component = 1
+    st5$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+    no st5$\cdot$ownedElements$\cdot$redefines
+    st5$\cdot$ownedElements$\cdot$specialises = st1$\cdot$ownedElements $\cap$ Interface
+    
+    #st4$\cdot$ownedElements = 1
+    #st4$\cdot$ownedElements $\cap$ Component = 1
+    st4$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements $\cap$ Component
+
+    #st3$\cdot$ownedElements = 1
+    #st3$\cdot$ownedElements $\cap$ Component = 1
+    no st3$\cdot$ownedElements$\cdot$redefines
+    st3$\cdot$ownedElements$\cdot$resembles = st1$\cdot$ownedElements $\cap$ Component
+    let c = st3$\cdot$ownedElements $\cap$ Component
+    {
+      one c$\cdot$addObjects
+      one c$\cdot$replaceObjects
+      no c$\cdot$deleteObjects
+    }
+
+    #st2$\cdot$ownedElements = 2
+    #st2$\cdot$ownedElements $\cap$ Interface = 1
+    st2$\cdot$ownedElements$\cdot$redefines = st1$\cdot$ownedElements $\cap$ Component  
+    #st2$\cdot$ownedElements$\cdot$specialises = 0
+    let c = st2$\cdot$ownedElements $\cap$ Component
+    {
+      no c$\cdot$addObjects
+      one c$\cdot$replaceObjects
+      no c$\cdot$deleteObjects
+    }
+    
+    #st1$\cdot$ownedElements = 2
+    #st1$\cdot$ownedElements $\cap$ Interface = 1
+    #st1$\cdot$ownedElements $\cap$ Component = 1
+    let c = st1$\cdot$ownedElements $\cap$ Component
+    {
+      one c$\cdot$addObjects
+    }
+  }
+  
+  #Stratum = 5
+  #Component = 5
+  #Interface = 3
+  #redefines = 2
+  #resembles > 2
+}
+ $\!\!\!^\ast\!$/

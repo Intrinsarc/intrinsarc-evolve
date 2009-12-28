@@ -1,0 +1,784 @@
+#LyX 1.4.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Summary of Backbone Constructs
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Not described, uncertain about future: port types.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Not described, need to alter form: exposes, is-cluster.
+\end_layout
+
+\begin_layout Section
+Strata
+\end_layout
+
+\begin_layout Standard
+A stratum is a package-like construct, which contains other BB constructs.
+ Strata cannot be nested, and must explicitly declare dependencies on other
+ strata.
+ No dependency cycles are allowed.
+\end_layout
+
+\begin_layout LyX-Code
+stratum stratumName
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+is-relaxed]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+is-global]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+depends-on stratumName 
+\emph on
+[
+\emph default
+in-role roleName
+\emph on
+]
+\emph default
+, ...
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+recognises-roles roleName, ...
+\emph on
+]
+\emph default
+;
+\end_layout
+
+\begin_layout Standard
+If it is relaxed, then it allows any stratum that depend on it to also see
+ the stratum it depends on.
+ If it is global, then all stratum can see it without declaring a dependency.
+\end_layout
+
+\begin_layout Standard
+A system is described by a list of stratum to compose the system from:
+\end_layout
+
+\begin_layout LyX-Code
+stratum1
+\end_layout
+
+\begin_layout LyX-Code
+stratum2
+\end_layout
+
+\begin_layout LyX-Code
+...
+\end_layout
+
+\begin_layout LyX-Code
+stratumN
+\end_layout
+
+\begin_layout Standard
+In this list, a stratum must be eventually followed by the strata it depends
+ upon.
+\end_layout
+
+\begin_layout Section
+Components
+\end_layout
+
+\begin_layout Subsection
+Interfaces
+\end_layout
+
+\begin_layout LyX-Code
+interface InterfaceName describes JavaInterfaceName
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  methodName;
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+An interface describes all methods that can be called by a BB component.
+\end_layout
+
+\begin_layout Subsection
+Component definition
+\end_layout
+
+\begin_layout LyX-Code
+component ComponentName
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+describes JavaClassName
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+is-incomplete
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  attributes:
+\end_layout
+
+\begin_layout LyX-Code
+    PrimitiveType attrName
+\emph on
+[
+\emph default
+(param,...)
+\emph on
+]
+\emph default
+;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  ports:
+\end_layout
+
+\begin_layout LyX-Code
+    portName 
+\emph on
+[
+\emph default
+[bounds]
+\emph on
+]
+\emph default
+ provides Interface,...
+ [requires Interface...];
+\end_layout
+
+\begin_layout LyX-Code
+    portName 
+\emph on
+[
+\emph default
+[bound]
+\emph on
+]
+\emph default
+ requires Interface,...;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  parts:
+\end_layout
+
+\begin_layout LyX-Code
+    partName
+\end_layout
+
+\begin_layout LyX-Code
+      
+\emph on
+[
+\emph default
+set attributeName(param,...), set...
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+      
+\emph on
+[
+\emph default
+set attributeName aliases-environment-property propertyName, set...
+\emph on
+]
+\emph default
+;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  connectors:
+\end_layout
+
+\begin_layout LyX-Code
+    connectorName 
+\emph on
+(
+\emph default
+joins | delegates-from
+\emph on
+)
+\end_layout
+
+\begin_layout LyX-Code
+      portName
+\emph on
+[
+\emph default
+@partName
+\emph on
+]
+\emph default
+ to portName
+\emph on
+[
+\emph default
+@partName
+\emph on
+]
+\emph default
+;
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+A leaf component is one which describes an implementation class, introducing
+ it into the BB layer.
+ No parts or connectors are specified for a leaf component.
+ Unless the component is marked as incomplete, all the ports of the component
+ and parts need to be correctly connected.
+\end_layout
+
+\begin_layout Standard
+Incomplete components cannot be instantiated, but can be used for resemblance
+ purposes.
+ They are analogous to abstract classes.
+\end_layout
+
+\begin_layout Subsection
+Component factories
+\end_layout
+
+\begin_layout LyX-Code
+component ComponentName
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+describes ImplementationClassName
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+is-incomplete
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+is-factory
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  attributes:
+\end_layout
+
+\begin_layout LyX-Code
+    PartHandle partName;
+\end_layout
+
+\begin_layout LyX-Code
+    ...
+\end_layout
+
+\begin_layout LyX-Code
+  ports:
+\end_layout
+
+\begin_layout LyX-Code
+    create provides IBackboneFactory;  // or sub-interface
+\end_layout
+
+\begin_layout LyX-Code
+    ...
+\end_layout
+
+\begin_layout LyX-Code
+  parts:
+\end_layout
+
+\begin_layout LyX-Code
+    ...
+\end_layout
+
+\begin_layout LyX-Code
+  connectors:
+\end_layout
+
+\begin_layout LyX-Code
+    ...
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+A factory is used to dynamically instantiate new components.
+ Each attribute declared as a PartHandle must map onto a part with the same
+ name.
+ The parts of the component are not automatically created, as with a normal
+ component, but are lazily constructed when the construct::IBackboneFactory
+ method is called.
+ Before this happens, the attributes need to be correctly set to the PartHandles
+ identifying the parts that we are aliasing.
+\end_layout
+
+\begin_layout Standard
+Any method beginning with set...
+ or get...
+ in a sub-interface of IBackboneFactory or IBackbonePropertyHandler will
+ cause a proxy to be generated which handles the methods by setting and
+ getting the appropriate attribute.
+ The construct::IBackboneFactory method will also be automatically constructed.
+\end_layout
+
+\begin_layout Subsection
+Resemblance
+\end_layout
+
+\begin_layout Standard
+A component may resemble another component.
+ It 
+\begin_inset Quotes eld
+\end_inset
+
+inherits
+\begin_inset Quotes erd
+\end_inset
+
+ all of its internals, and can rename, delete and replace these.
+ It can also define new internals.
+\end_layout
+
+\begin_layout LyX-Code
+component ComponentName
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+  [
+\emph default
+describes ImplementationClassName
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+is-incomplete
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+is-factory
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+  
+\emph on
+[
+\emph default
+resembles AnotherComponentName
+\emph on
+]
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  rename-attributes:
+\end_layout
+
+\begin_layout LyX-Code
+    attrName changes-to newAttrName;
+\end_layout
+
+\begin_layout LyX-Code
+  delete-attributes:
+\end_layout
+
+\begin_layout LyX-Code
+    attrName;
+\end_layout
+
+\begin_layout LyX-Code
+    ...
+\end_layout
+
+\begin_layout LyX-Code
+  replace-attributes:
+\end_layout
+
+\begin_layout LyX-Code
+    PrimitiveType attrName
+\emph on
+[
+\emph default
+(param,...)
+\emph on
+]
+\emph default
+;
+\end_layout
+
+\begin_layout LyX-Code
+  attributes:
+\end_layout
+
+\begin_layout LyX-Code
+    PrimitiveType attrName
+\emph on
+[
+\emph default
+(param,...)
+\emph on
+]
+\emph default
+;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  (the same pattern follows for ports, parts, connectors)
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Resemblance can be used to define any type of component, including leaves
+ and factories.
+ A leaf component must resemble another leaf component, and similarly with
+ composites.
+ Replacement of an internal is currently equivalent to delete and add.
+\end_layout
+
+\begin_layout Section
+Component Identity and Evolution
+\end_layout
+
+\begin_layout Standard
+Rename a component or interface.
+ (One per stratum.
+ Affects all who depend on this.
+ If there are more than 1, then the last one wins, in the stratum order?)
+\end_layout
+
+\begin_layout LyX-Code
+rename StratumName.ComponentName to NewComponentName
+\end_layout
+
+\begin_layout Standard
+Change a BB component definition, possibly as a delta: composite = redefining
+ it, leaf = possibly reassociating it.
+ Can also be used to track code changes.
+\end_layout
+
+\begin_layout LyX-Code
+redefine-component StratumName.ComponentName...
+ resembles...
+\end_layout
+
+\begin_layout Standard
+Update an interface definition:
+\end_layout
+
+\begin_layout LyX-Code
+redefine-interface StratumName.InterfaceName...
+\end_layout
+
+\begin_layout Standard
+In the stratum, the previous definition for a redefined element can be referred
+ to as Stratum.[previous]ComponentName or Stratum.[previous]InterfaceName.
+ A definition and a redefinition cannot occur in the same stratum.
+ Resemblance can be used to redefine a component in terms of the previous
+ definition.
+\end_layout
+
+\begin_layout LyX-Code
+redefine-component StratumName.ComponentName resembles StratumName.[previous]Compo
+nentName...
+\end_layout
+
+\begin_layout Standard
+[previous] can be used anywhere, even to instantiate and delegate to.
+ For leaf components, [previous] may give an error as the previous definition
+ may now be incorrect.
+\end_layout
+
+\begin_layout Section
+Behavioural
+\end_layout
+
+\begin_layout Subsection
+Protocols
+\end_layout
+
+\begin_layout Standard
+One or more protocols may be specified for a leaf component:
+\end_layout
+
+\begin_layout LyX-Code
+protocol Display
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  actors:
+\end_layout
+
+\begin_layout LyX-Code
+    self: Display;
+\end_layout
+
+\begin_layout LyX-Code
+    display: IDisplay of display; 
+\end_layout
+
+\begin_layout LyX-Code
+  interactions:
+\end_layout
+
+\begin_layout LyX-Code
+    loop { display <~-> self.displayDigits; }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Quotes eld
+\end_inset
+
+self
+\begin_inset Quotes erd
+\end_inset
+
+ actor is the component that the protocol describes.
+ Other actors indicate provided and required interfaces of ports of the
+ self actor.
+\end_layout
+
+\begin_layout Standard
+The interactions describe the generated traces of the self, in terms of
+ the method names of the interfaces.
+ Loop, opt, alt and par are the supported operands.
+ Message sends are shown as 
+\begin_inset Quotes eld
+\end_inset
+
+->
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Returns are shown as 
+\begin_inset Quotes eld
+\end_inset
+
+<~
+\begin_inset Quotes erd
+\end_inset
+
+.
+ A combined send and return is 
+\begin_inset Quotes eld
+\end_inset
+
+<~->
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Operands can be compressed as in 
+\begin_inset Quotes eld
+\end_inset
+
+loop alt {...
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Opt can be followed by 
+\begin_inset Quotes eld
+\end_inset
+
+(portName)
+\begin_inset Quotes erd
+\end_inset
+
+ where the port is optionally bound.
+ If the port is not bound in a component, then the opt operand will be staticall
+y omitted.
+\end_layout
+
+\begin_layout Subsection
+Goals
+\end_layout
+
+\begin_layout Section
+Version Control Strata Operations
+\end_layout
+
+\begin_layout Standard
+Baseline, reverse, merge?
+\end_layout
+
+\begin_layout Section
+Development Methodology
+\end_layout
+
+\begin_layout Standard
+The implementation of leaf component should not use an interface that is
+ known to BB, unless the BB description of that component refers to the
+ interface.
+ Otherwise, BB cannot track that the component needs to be revised if the
+ interface changes.
+\end_layout
+
+\begin_layout Standard
+A component or interface cannot be defined and redefined in the same stratum.
+\end_layout
+
+\end_body
+\end_document

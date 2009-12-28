@@ -1,0 +1,58 @@
+8
+
+dir
+171
+https://mtsa.svn.sourceforge.net/svnroot/mtsa/trunk/ltsa/src
+https://mtsa.svn.sourceforge.net/svnroot/mtsa
+
+
+
+2009-07-02T10:45:45.988541Z
+167
+srdipi78
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fcb65440-8149-0410-bc05-9de0824cdfc8
+
+lts
+dir
+
+ac
+dir
+
+dclap
+dir
+
+mts
+dir
+
+doc
+dir
+
+dispatcher
+dir
+
+editor
+dir
+
+custom
+dir
+
+ui
+dir
+
+com
+dir
+

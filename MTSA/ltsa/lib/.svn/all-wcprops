@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svnroot/mtsa/!svn/ver/97/trunk/ltsa/lib
+END
+scenebeans.jar
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/scenebeans.jar
+END
+commons-collections-3.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/commons-collections-3.2.jar
+END
+collections-generic-4.01.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/collections-generic-4.01.jar
+END
+LTL2Buchi.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/LTL2Buchi.jar
+END
+commons-lang-2.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/commons-lang-2.2.jar
+END
+jdom.jar
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/jdom.jar
+END
+animator.jar
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/animator.jar
+END
+jel.jar
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/jel.jar
+END
+gnu-regexp-1.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/gnu-regexp-1.1.1.jar
+END
+framework.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/framework.jar
+END
+swing-layout-1.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/swing-layout-1.0.jar
+END
+natutil.jar
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/natutil.jar
+END
+xml.jar
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/xml.jar
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/mtsa/!svn/ver/12/trunk/ltsa/lib/.cvsignore
+END

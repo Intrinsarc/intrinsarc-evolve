@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="447"
+   height="243"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="/home/andrew/Desktop"
+   sodipodi:docname="extensible.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0"
+   inkscape:export-filename="/home/andrew/Desktop/extensible.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="766"
+     inkscape:cy="240"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1672"
+     inkscape:window-height="1016"
+     inkscape:window-x="270"
+     inkscape:window-y="0" />
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3136"
+       inkscape:collect="always">
+      <stop
+         offset="0"
+         style="stop-color:#000000;stop-opacity:1;"
+         id="stop3138" />
+      <stop
+         offset="1"
+         style="stop-color:#000000;stop-opacity:0;"
+         id="stop3140" />
+    </linearGradient>
+    <linearGradient
+       x1="264"
+       gradientTransform="translate(18,0)"
+       y1="448.11218"
+       inkscape:collect="always"
+       gradientUnits="userSpaceOnUse"
+       y2="448.11218"
+       xlink:href="#linearGradient3136"
+       id="linearGradient3142"
+       x2="340.6799" />
+    <linearGradient
+       x1="266"
+       gradientTransform="translate(16,0)"
+       y1="443.36218"
+       inkscape:collect="always"
+       gradientUnits="userSpaceOnUse"
+       y2="443.36218"
+       xlink:href="#linearGradient3136"
+       id="linearGradient3144"
+       x2="344.52448" />
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     id="layer1"
+     inkscape:groupmode="layer"
+     transform="translate(-193.5,-330.86218)">
+    <text
+       xml:space="preserve"
+       style="font-size:56px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:OpenSymbol"
+       id="text2160"
+       y="466.36218"
+       x="273"><tspan
+         sodipodi:role="line"
+         id="tspan2162"
+         y="466.36218"
+         x="273"><tspan
+   style="fill:#ff0000;fill-opacity:1"
+   id="tspan3134">e  </tspan>t<tspan
+   style="fill:#020000;fill-opacity:1"
+   id="tspan3164">e</tspan>nsibl<tspan
+   style="fill:#ff0000;fill-opacity:1"
+   id="tspan3184">e</tspan></tspan></text>
+    <path
+       style="fill:#d40000;fill-rule:evenodd;stroke:#000000;stroke-width:2.01851892;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 309.0186,474.36218 C 524.96279,474.36218 525.9814,474.36218 525.9814,474.36218"
+       id="path3286" />
+    <path
+       style="fill:url(#linearGradient3142);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 282,394.36218 C 382,494.36218 355.5,501.86218 355.5,501.86218"
+       sodipodi:nodetypes="cc"
+       id="path2180" />
+    <path
+       style="fill:url(#linearGradient3144);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 282,497.36218 C 382,397.36218 358,389.36218 358,389.36218"
+       sodipodi:nodetypes="cc"
+       id="path2182" />
+  </g>
+</svg>

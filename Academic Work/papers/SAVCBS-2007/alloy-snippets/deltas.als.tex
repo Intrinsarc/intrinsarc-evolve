@@ -1,0 +1,162 @@
+module deltas[Stratum, Element, ID, Object]
+
+open util/boolean as boolean
+open util/relation as relation
+
+sig Deltas
+{
+  -- the expanded objects for this stratum.  these 2 fields are the output of the merge!
+  objects:              Object$\,\times\,$Stratum,
+
+  -- old objects is what was what was there before any replacing was done
+  oldObjects_e:        Stratum$\,\times\,$ID$\,\times\,$Object,
+  originalOldObjects_e:    Stratum$\,\times\,$ID$\,\times\,$Object,
+
+  -- working variables to track the expansion of objects, and allow it to happen cumulatively
+  -- note: we need to keep track of what has been deleted and replaced to handle the cumulative effects
+  -- e.g. delete in one stream, not in the other.
+  -- NOTE: original is taking only resemblance_e into account, non-original is the full definition
+  --       taking redefinition into account also
+  objects_e: Stratum$\,\times\,$ID$\,\times\,$Object,
+  deletedObjects_e:            Stratum$\,\times\,$ID,
+  replacedObjects_e:           Stratum$\,\times\,$ID$\,\times\,$Object,  
+  originalObjects_e:           Stratum$\,\times\,$ID$\,\times\,$Object,
+  originalDeletedObjects_e:    Stratum$\,\times\,$ID,
+  originalReplacedObjects_e:   Stratum$\,\times\,$ID$\,\times\,$Object,
+  
+  -- newObjects is any objects added or replaced.  these fields allow new object creation to be controlled
+  newObjects:            set Object,
+  addedObjects:          set newObjects,
+  replacedObjects:       set Object,
+  -- newIDs are any new IDs added
+  newIDs:                set ID,  
+  -- the deltas that are to be applied.  these 3 fields are the input to the merge
+  deleteObjects:        set ID,
+  addObjects:           newIDs one$\,\times\,$one addedObjects,
+  replaceObjects:       ID one$\,\times\,$lone replacedObjects
+}
+{
+  -- cannot delete and replace
+  no dom[replaceObjects] $\cap$ deleteObjects
+  replacedObjects = newObjects - addedObjects
+}
+
+-- indicate that any new part/ID can only be introduced by one component
+fact Owned
+{
+  $\forall\,$o: Object |
+    one newObjects$\cdot$o
+  
+  -- do we also test for IDs?
+  $\forall\,$n: ID |
+    one newIDs$\cdot$n
+}
+
+
+pred Deltas::oneObjectPerID(s: Stratum)
+{
+  let objects = this$\cdot$objects_e[s] |
+    function[objects, dom[objects]]
+}
+
+pred Deltas::nothing(s: Stratum)
+{
+  no this$\cdot$objects$\cdot$s
+  no this$\cdot$objects_e[s]
+  no this$\cdot$oldObjects_e[s]
+  no this$\cdot$deletedObjects_e[s]
+  no this$\cdot$replacedObjects_e[s]
+  no this$\cdot$originalObjects_e[s]
+  no this$\cdot$originalDeletedObjects_e[s]
+  no this$\cdot$originalReplacedObjects_e[s]
+}
+
+-- ensure that deletes and replaces makes sense from the perspective of the original stratum
+pred Deltas::deltasIsWellFormed(owner: Stratum)
+{
+  -- no overlap between deleted and replaced IDs
+  let
+    deleteIDs = this$\cdot$deleteObjects,
+    replaceIDs = dom[this$\cdot$replaceObjects]
+  {
+    -- no overlap between deleted and replaced
+    no deleteIDs $\cap$ replaceIDs
+    -- anything we delete or replace must be there already
+    deleteIDs $\cup$ replaceIDs $\subseteq$ dom[this$\cdot$originalOldObjects_e[owner]]
+  }
+}
+
+-- ensures that this delta removes everything
+pred Deltas::cleanSlate(owner: Stratum)
+{
+  this$\cdot$deleteObjects = dom[this$\cdot$oldObjects_e[owner]]
+}
+
+-- ensures that we only have adds, no deletes or replaces
+pred Deltas::onlyAdds(owner: Stratum)
+{
+  no this$\cdot$deleteObjects
+  no this$\cdot$replaceObjects
+}
+
+
+-- the predicate to merge any underlying resembled entities and apply current changes
+-- this is driven off the newly computed resemblance graph for each component in each stratum
+pred Deltas::mergeAndApplyChangesForResemblance(
+  s: Stratum,
+  c: Element,
+  -- who should I resemble, taking redefinition into account
+  iResembleDeltas_e: set Deltas)
+{
+  -- handle add, delete etc as if we are only taking resemblance into account
+  -- nothing will ever resemble itself
+  this$\cdot$originalOldObjects_e[s] =
+    (iResembleDeltas_e$\cdot$originalObjects_e[s]
+      - iResembleDeltas_e$\cdot$originalDeletedObjects_e[s]$\,\times\,$Object)
+        ++ iResembleDeltas_e$\cdot$originalReplacedObjects_e[s]
+        
+  this$\cdot$originalDeletedObjects_e[s] =
+    iResembleDeltas_e$\cdot$originalDeletedObjects_e[s]
+      - dom[iResembleDeltas_e$\cdot$originalReplacedObjects_e[s]] $\cup$ this$\cdot$deleteObjects
+    
+  this$\cdot$originalReplacedObjects_e[s] =
+    (iResembleDeltas_e$\cdot$originalReplacedObjects_e[s] - this$\cdot$deleteObjects$\,\times\,$Object)
+      ++ this$\cdot$replaceObjects
+      
+  this$\cdot$originalObjects_e[s] = 
+    (((iResembleDeltas_e$\cdot$originalObjects_e[s] - this$\cdot$originalDeletedObjects_e[s]$\,\times\,$Object)
+        ++ this$\cdot$originalReplacedObjects_e[s]) $\cup$ this$\cdot$addObjects)
+          ++ this$\cdot$replaceObjects  
+}
+
+pred Deltas::mergeAndApplyChangesForRedefinition(
+  s: Stratum,
+  c: Element,
+  topmost: set Element,
+  -- who should I resemble, taking redefinition into account
+  iResembleDeltas_e: set Deltas)
+{
+  -- expand out into a easier form for expressing well-formedness rule, where IDs don't count
+  this$\cdot$objects = {p: Object, s: Stratum |
+    $\exists\,$n: ID | s$\,\times\,$n$\,\times\,$p $\subseteq$ this$\cdot$objects_e}
+
+  -- handle add, delete etc as if we are only taking resemblance into account
+  topmost = c $\Longrightarrow$
+    this$\cdot$oldObjects_e[s] = iResembleDeltas_e$\cdot$originalOldObjects_e[s]
+  else
+    this$\cdot$oldObjects_e[s] =
+      (iResembleDeltas_e$\cdot$originalObjects_e[s]
+        - iResembleDeltas_e$\cdot$originalDeletedObjects_e[s]$\,\times\,$Object)
+          ++ iResembleDeltas_e$\cdot$originalReplacedObjects_e[s]
+
+  this$\cdot$deletedObjects_e[s] =
+    iResembleDeltas_e$\cdot$originalDeletedObjects_e[s]
+      - dom[iResembleDeltas_e$\cdot$originalReplacedObjects_e[s]]
+    
+  this$\cdot$replacedObjects_e[s] = iResembleDeltas_e$\cdot$originalReplacedObjects_e[s]
+      
+  this$\cdot$objects_e[s] = 
+    (iResembleDeltas_e$\cdot$originalObjects_e[s] - this$\cdot$deletedObjects_e[s]$\,\times\,$Object)
+      ++ this$\cdot$replacedObjects_e[s]
+}
+

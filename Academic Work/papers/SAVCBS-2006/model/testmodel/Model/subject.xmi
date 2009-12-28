@@ -1,0 +1,29 @@
+    <UML:Model xmi.id="a0" xmi.uuid="DCE-1152613829599-143" name="Model" visibility="public" isSpecification="false" isRoot="true" isLeaf="false" isAbstract="false">
+      <UML:Namespace.ownedElement>
+
+<packageImportLink xlink:type="simple" xlink:href="component{CR}model" />
+
+        <UML:Class xmi.id="a10" xmi.uuid="DCE-1152615176279-204" isActive="false" name="UMLClassAppearance" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Interface xmi.id="a11" xmi.uuid="DCE-1152627693680-236" name="ILink" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Interface xmi.id="a12" xmi.uuid="DCE-1152616215833-264" name="IUMLClass" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Class xmi.id="a13" xmi.uuid="DCE-1152616238349-727" isActive="false" name="UMLClassFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Class xmi.id="a14" xmi.uuid="DCE-1152630568436-163" isActive="false" name="ClassContainer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Class xmi.id="a15" xmi.uuid="DCE-1152630630093-124" isActive="false" name="Autosizer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Interface xmi.id="a16" xmi.uuid="DCE-1152631657512-633" name="IAutoSizer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Class xmi.id="a17" xmi.uuid="DCE-1152633490327-933" isActive="false" name="UMLComponentFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Class xmi.id="a18" xmi.uuid="DCE-1152634086381-689" isActive="false" name="UMLComponentAppearance" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Interface xmi.id="a19" xmi.uuid="DCE-1152636290113-936" name="IUMLComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Class xmi.id="a20" xmi.uuid="DCE-1152637085576-991" isActive="false" name="EvolvedUMLClassFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a21" xmi.uuid="DCE-1152637536175-300" isActive="false" name="UMLMinimalClassAppearance" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Class>
+
+<packageImportLink xlink:type="simple" xlink:href="notes" />
+
+        <UML:Class xmi.id="a5" xmi.uuid="DCE-1152614159835-759" isActive="false" name="BasicFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Interface xmi.id="a6" xmi.uuid="DCE-1152614246430-940" name="IFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Interface xmi.id="a7" xmi.uuid="DCE-1152614264805-177" name="IAnchor" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Interface xmi.id="a9" xmi.uuid="DCE-1152614851793-635" name="IAppearance" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+      </UML:Namespace.ownedElement>
+    </UML:Model>

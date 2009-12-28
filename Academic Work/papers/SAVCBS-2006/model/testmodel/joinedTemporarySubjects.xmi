@@ -1,0 +1,77 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+
+    <UML:Model xmi.id="a0" xmi.uuid="DCE-1152613829599-143" name="Model" visibility="public" isSpecification="false" isRoot="true" isLeaf="false" isAbstract="false">
+      <UML:Namespace.ownedElement>
+
+        <UML:Package xmi.id="a1" xmi.uuid="DCE-1152622831965-791" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>component
+model</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a2" xmi.uuid="DCE-1152622840716-118" isActive="false" name="LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a3" xmi.uuid="DCE-1152622864450-65" name="ProvidedInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a4" xmi.uuid="DCE-1152622890404-527" name="RequiredInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a8" xmi.uuid="DCE-1152623250002-690" isActive="false" name="CompositeComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+        <UML:Class xmi.id="a10" xmi.uuid="DCE-1152615176279-204" isActive="false" name="UMLClassAppearance" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Interface xmi.id="a11" xmi.uuid="DCE-1152627693680-236" name="ILink" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Interface xmi.id="a12" xmi.uuid="DCE-1152616215833-264" name="IUMLClass" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Class xmi.id="a13" xmi.uuid="DCE-1152616238349-727" isActive="false" name="UMLClassFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Class xmi.id="a14" xmi.uuid="DCE-1152630568436-163" isActive="false" name="ClassContainer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Class xmi.id="a15" xmi.uuid="DCE-1152630630093-124" isActive="false" name="Autosizer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Interface xmi.id="a16" xmi.uuid="DCE-1152631657512-633" name="IAutoSizer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Class xmi.id="a17" xmi.uuid="DCE-1152633490327-933" isActive="false" name="UMLComponentFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Class xmi.id="a18" xmi.uuid="DCE-1152634086381-689" isActive="false" name="UMLComponentAppearance" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Interface xmi.id="a19" xmi.uuid="DCE-1152636290113-936" name="IUMLComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Class xmi.id="a20" xmi.uuid="DCE-1152637085576-991" isActive="false" name="EvolvedUMLClassFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a21" xmi.uuid="DCE-1152637536175-300" isActive="false" name="UMLMinimalClassAppearance" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Class>
+
+        <UML:Package xmi.id="a22" xmi.uuid="DCE-1153230928665-25" name="notes" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Comment xmi.id="a23" xmi.uuid="DCE-1153230946946-637" body="Feed the cat and the dog..." name="" visibility="public" isSpecification="false"></UML:Comment>
+            <UML:Comment xmi.id="a24" xmi.uuid="DCE-1153230973290-472" body="Buy some milk" name="" visibility="public" isSpecification="false"></UML:Comment>
+            <UML:Comment xmi.id="a25" xmi.uuid="DCE-1153231007838-996" body="Register the car @ DVLA" name="" visibility="public" isSpecification="false"></UML:Comment>
+            <UML:Class xmi.id="a28" xmi.uuid="DCE-1153235947323-433" isActive="false" name="CDrawing" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a29" xmi.uuid="DCE-1153235959995-331" isActive="false" name="CDrawingMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a30" xmi.uuid="DCE-1153235971182-283" isActive="false" name="CDrawingCanvas" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a31" xmi.uuid="DCE-1153235981261-759" isActive="false" name="CClipboardMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a32" xmi.uuid="DCE-1153235990417-862" isActive="false" name="CPersistenceMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a33" xmi.uuid="DCE-1153236053574-611" isActive="false" name="CPostitNote" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a34" xmi.uuid="DCE-1153236118466-856" name="IShape" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a35" xmi.uuid="DCE-1153236124841-625" name="IClip" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a37" xmi.uuid="DCE-1153236568674-525" isActive="false" name="CNoteDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a38" xmi.uuid="DCE-1153236569065-560" isActive="false" name="CBasicClipMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a39" xmi.uuid="DCE-1153236569456-791" isActive="false" name="CNoteText" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a40" xmi.uuid="DCE-1153241957462-642" isActive="false" name="CNullClipboardMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a41" xmi.uuid="DCE-1153241974697-716" isActive="false" name="CHyperlinkedNoteDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a42" xmi.uuid="DCE-1153243524435-862" isActive="false" name="CZoomMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a43" xmi.uuid="DCE-1153244429541-973" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Register the car
+http://www.dvla.gov.uk/</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a44" xmi.uuid="DCE-1153244431994-98" body="" name="" visibility="public" isSpecification="false"></UML:Comment>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+        <UML:Class xmi.id="a5" xmi.uuid="DCE-1152614159835-759" isActive="false" name="BasicFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+        <UML:Interface xmi.id="a6" xmi.uuid="DCE-1152614246430-940" name="IFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Interface xmi.id="a7" xmi.uuid="DCE-1152614264805-177" name="IAnchor" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+        <UML:Interface xmi.id="a9" xmi.uuid="DCE-1152614851793-635" name="IAppearance" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+      </UML:Namespace.ownedElement>
+    </UML:Model>
+
+  </XMI.content>
+</XMI>
+

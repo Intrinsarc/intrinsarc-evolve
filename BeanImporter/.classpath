@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/UML2Repository"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utilities"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Resources"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DeltaEngine"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DeltaEngine-UML2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BackboneInterpreter"/>
+	<classpathentry kind="lib" path="/CommonResources/asm-3.1/lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="/CommonResources/asm-3.1/lib/asm-tree-3.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="981"
+   height="711"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   sodipodi:docname="base-to-turntable.eps.svg"
+   sodipodi:docbase="/home/andrew/work/workspace/Academic Work/phd-thesis/models"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/andrew/work/workspace/Academic Work/phd-thesis/models/a-to-a-dash.png"
+   inkscape:export-xdpi="360.72144"
+   inkscape:export-ydpi="360.72144">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         id="path4225"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.97309,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lstart"
+       style="overflow:visible">
+      <path
+         id="path3366"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.97309,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="matrix(1.1,0,0,1.1,1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path3348"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="378.94882"
+     inkscape:cy="373.14153"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1680"
+     inkscape:window-height="1019"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     width="620px"
+     height="290px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(334.46829,-123.14427)">
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#c7c7c7;stroke-width:4.88684273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M -281.46992,489.06515 C 602.97533,489.06515 600.53333,490.22339 600.53333,490.22339"
+       id="path3205"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.12486792;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3249"
+       width="76.263458"
+       height="48.013157"
+       x="92.615173"
+       y="556.39032" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2160"
+       width="67.388329"
+       height="48.138023"
+       x="-93.084862"
+       y="297.6655" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="48.446716"
+       y="171.30611"
+       id="text3151"><tspan
+         sodipodi:role="line"
+         id="tspan3153"
+         x="48.446716"
+         y="171.30611">Base Application</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="105.35794"
+       y="230.78587"
+       id="text3181"><tspan
+         sodipodi:role="line"
+         id="tspan3183"
+         x="105.35794"
+         y="230.78587"
+         style="font-size:20px">Desk</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-87.389641"
+       y="330.31284"
+       id="text2292"><tspan
+         sodipodi:role="line"
+         id="tspan2294"
+         x="-87.389641"
+         y="330.31284"
+         style="font-size:20px">Mixer</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="177.3689"
+       y="330.68201"
+       id="text2296"><tspan
+         sodipodi:role="line"
+         id="tspan2298"
+         x="177.3689"
+         y="330.68201"
+         style="font-size:20px">MicDevice</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="299.57001"
+       y="331.47949"
+       id="text2308"><tspan
+         sodipodi:role="line"
+         id="tspan2310"
+         x="299.57001"
+         y="331.47949"
+         style="font-size:20px">MicDevice</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-82.489441"
+       y="530.52875"
+       id="text2364"><tspan
+         sodipodi:role="line"
+         id="tspan2366"
+         x="-82.489441"
+         y="530.52875">Extended Application with Turntable and Cuing</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-257.86169"
+       y="568.26611"
+       id="text4524"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="-257.86169"
+         y="568.26611"
+         style="text-align:center;text-anchor:middle"
+         id="tspan2235">The old mixer is</tspan><tspan
+         sodipodi:role="line"
+         x="-257.86169"
+         y="585.76611"
+         style="text-align:center;text-anchor:middle"
+         id="tspan4312">replaced by one</tspan><tspan
+         sodipodi:role="line"
+         x="-257.86169"
+         y="603.26611"
+         style="text-align:center;text-anchor:middle"
+         id="tspan5423">with cuing support</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-37.305023"
+       y="440.08917"
+       id="text2216"><tspan
+         sodipodi:role="line"
+         id="tspan2218"
+         x="-37.305023"
+         y="440.08917"
+         style="font-size:20px">Equaliser</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-165.21542"
+       y="439.70667"
+       id="text2220"><tspan
+         sodipodi:role="line"
+         id="tspan2222"
+         x="-165.21542"
+         y="439.70667"
+         style="font-size:20px">Combiner</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3.019;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-mid:none;marker-end:url(#Arrow2Lend);stroke-miterlimit:4;stroke-dasharray:3.019,3.019;stroke-dashoffset:0;stroke-opacity:1"
+       d="M -106.12128,322.31865 C -141.77075,309.34889 -261.87346,395.53116 -204.16614,528.89993 L -142.91465,634.48281"
+       id="path3230"
+       sodipodi:nodetypes="ccc" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2215"><flowRegion
+         id="flowRegion2217"><rect
+           id="rect2219"
+           width="4.0833974"
+           height="14.000219"
+           x="177.33611"
+           y="320.3338" /></flowRegion><flowPara
+         id="flowPara2221" /></flowRoot>    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2227"
+       width="113.31328"
+       height="47.47897"
+       x="171.1725"
+       y="297.87744" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2229"
+       width="112.32201"
+       height="47.487705"
+       x="295.79404"
+       y="297.9566" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2231"
+       width="109.34846"
+       height="47.514153"
+       x="-45.21907"
+       y="406.44568" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2233"
+       width="109.34846"
+       height="47.514153"
+       x="-170.46828"
+       y="406.36121" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3207"
+       width="67.388329"
+       height="48.138023"
+       x="95.509933"
+       y="197.62721" />
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="105.40076"
+       y="589.48651"
+       id="text3217"><tspan
+         sodipodi:role="line"
+         id="tspan3219"
+         x="105.40076"
+         y="589.48651"
+         style="font-size:20px">Desk'</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#9b9b9b;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 2;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3257"
+       width="169.86833"
+       height="47.034023"
+       x="308.77441"
+       y="656.85156"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="311.70923"
+       y="688.07465"
+       id="text3259"><tspan
+         sodipodi:role="line"
+         id="tspan3261"
+         x="311.70923"
+         y="688.07465"
+         style="font-size:20px">TurntableDevice</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect10105"
+       width="981"
+       height="711"
+       x="-334.46829"
+       y="123.14427">
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#9b9b9b;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:3.4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect13103"
+         width="1"
+         height="291"
+         x="375.53171"
+         y="141.1443" />
+    </rect>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-11.353317"
+       y="330.9234"
+       id="text2234"><tspan
+         sodipodi:role="line"
+         id="tspan2236"
+         x="-11.353317"
+         y="330.9234"
+         style="font-size:20px">DeviceController</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2238"
+       width="175.82634"
+       height="46.992031"
+       x="-14.881439"
+       y="297.64828" />
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="191.09845"
+       y="689.32391"
+       id="text3224"><tspan
+         sodipodi:role="line"
+         id="tspan3226"
+         x="191.09845"
+         y="689.32391"
+         style="font-size:20px">MicDevice</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3228"
+       width="113.31328"
+       height="47.47897"
+       x="184.90204"
+       y="656.51935" />
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="2.3762207"
+       y="689.56531"
+       id="text3230"><tspan
+         sodipodi:role="line"
+         id="tspan3232"
+         x="2.3762207"
+         y="689.56531"
+         style="font-size:20px">DeviceController</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3234"
+       width="175.82634"
+       height="46.992031"
+       x="-1.1518631"
+       y="656.29022" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="568.78125"
+       y="597.25659"
+       id="text3244"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="568.78125"
+         y="597.25659"
+         style="text-align:center;text-anchor:middle"
+         id="tspan3248">The 2nd microphone</tspan><tspan
+         sodipodi:role="line"
+         x="568.78125"
+         y="614.75659"
+         style="text-align:center;text-anchor:middle"
+         id="tspan3252"> is replaced by</tspan><tspan
+         sodipodi:role="line"
+         x="568.78125"
+         y="632.25659"
+         style="text-align:center;text-anchor:middle"
+         id="tspan11249">a turntable</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 112,174 C 112,174 112,174 303,123 C 303,175 303,175 303,175"
+       id="path4280"
+       transform="translate(-173.46828,123.14427)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 400,175 C 400,175 400,175 302,123 C 519,175 519,175 519,175"
+       id="path4282"
+       transform="translate(-173.46828,123.14427)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 52,282 C 52,282 52,282 112,222 C 171.5,281.5 171.5,281.5 171.5,281.5"
+       id="path4284"
+       transform="translate(-173.46828,123.14427)" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#9b9b9b;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4,2;stroke-opacity:1;stroke-dashoffset:0"
+       id="rect5401"
+       width="122.70863"
+       height="47.458317"
+       x="-134.04382"
+       y="656.18988" />
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-128.68848"
+       y="688.49731"
+       id="text5403"><tspan
+         sodipodi:role="line"
+         id="tspan5405"
+         x="-128.68848"
+         y="688.49731"
+         style="font-size:20px">CuingMixer</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-18.603882"
+       y="798.27362"
+       id="text5407"><tspan
+         sodipodi:role="line"
+         id="tspan5409"
+         x="-18.603882"
+         y="798.27362"
+         style="font-size:20px">Equaliser</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-204.51428"
+       y="797.89111"
+       id="text5411"><tspan
+         sodipodi:role="line"
+         id="tspan5413"
+         x="-204.51428"
+         y="797.89111"
+         style="font-size:20px">CuingCombiner</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect5415"
+       width="109.34846"
+       height="47.514153"
+       x="-26.517944"
+       y="764.63013" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#9b9b9b;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4,2;stroke-opacity:1;stroke-dashoffset:0"
+       id="rect5417"
+       width="167.88249"
+       height="47.048191"
+       x="-210.53418"
+       y="764.77863" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M -132.76712,763.32869 C -132.76712,763.32869 -132.76712,763.32869 -72.76712,703.32869 C -13.26712,762.82869 -13.26712,762.82869 -13.26712,762.82869"
+       id="path5419" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 280,532 C 280,532 280,532 464,481 C 464,532 464,532 464,532"
+       id="path11239"
+       transform="translate(-334.46829,123.14427)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 581,533 C 581,533 581,533 464,480 C 725,533 725,533 725,533"
+       id="path11241"
+       transform="translate(-334.46829,123.14427)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3.01886201;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-mid:none;marker-end:url(#Arrow2Lend);stroke-miterlimit:4;stroke-dasharray:3.0188621, 3.0188621;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 420.79123,336.74001 C 456.4407,323.77025 576.54341,409.95252 518.83609,543.32129 L 457.5846,648.90417"
+       id="path11243"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-mid:none;marker-end:url(#Arrow2Lend);stroke-miterlimit:4;stroke-dasharray:3,3;stroke-dashoffset:0;stroke-opacity:1"
+       d="M -161.11857,601.44533 C -182.386,595.38144 -254.03578,635.67511 -219.60927,698.03037 L -183.06842,747.3946"
+       id="path2966"
+       sodipodi:nodetypes="ccc" />
+  </g>
+</svg>

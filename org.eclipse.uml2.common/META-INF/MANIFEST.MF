@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.uml2.common
+Bundle-Version: 1.1.1.M200509151108
+Bundle-ClassPath: org.eclipse.uml2.common_1.1.1.M200509151108.jar
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.core.runtime
+Bundle-ManifestVersion: 2
+Eclipse-AutoStart: true
+Export-Package: org.eclipse.uml2.common.util

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local-project language="java" flavor="j2se">
+   <property name="hide-externals" value="true" />
+   <property name="detail-mode" value="true" />
+   <excludes>
+      <exclude expression="*.test.*" />
+      <exclude expression="*.*Exception" />
+   </excludes>
+   <classpath>
+      <classpathentry kind="lib" path="/home/amcveigh/work/workspace/jUMbLe/bin" />
+      <classpathentry kind="lib" path="/home/amcveigh/work/workspace/Foundation/bin" />
+      <classpathentry kind="lib" path="/home/amcveigh/work/workspace/Geometry/bin" />
+      <classpathentry kind="src" path="/home/amcveigh/work/workspace/jUMbLe/src" />
+   </classpath>
+</local-project>
+

@@ -1,0 +1,356 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+    <UML:Diagram xmi.id="a0" id="DCE-1145897850638-100" figureId="73">
+      <UML:FigureContainer.properties>
+        <UML:Property xmi.id="a1" n="PackageUUID" v="DCE-1145897850638-100"></UML:Property>
+      </UML:FigureContainer.properties>
+      <UML:FigureContainer.figures>
+        <UML:Figure xmi.id="a10" id="18" recreator="Class" subjectUUID="DCE-1145897998154-430" name="adapt" pt="276 256" dim="101 41.7" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a38" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a39" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a40" n="fill" v="255 255 204"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a41" id="18p" recreator="PortContainer" contName="ports" pt="276 256" dim="101 41.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a45" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a42" id="18c" recreator="SimpleContainer" contName="contents" pt="276 297.7" dim="101 0" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a43" id="18a" recreator="Attributes" contName="attrs" pt="276 278.7" dim="101 19">
+              <UML:FigureContainer.figures>
+                <UML:Figure xmi.id="a46" id="50" recreator="Attribute" name="pathToOriginal" pt="279 280.7" dim="95 15" acc="3"></UML:Figure>
+              </UML:FigureContainer.figures>
+            </UML:Figure>
+            <UML:Figure xmi.id="a44" id="18o" recreator="Operations" contName="ops" show="false" pt="276 297.7" dim="40 8"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a11" id="20" recreator="Class" subjectUUID="DCE-1145897999327-170" name="customize" pt="624 260" dim="80 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a47" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a48" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a49" n="fill" v="255 255 204"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a50" id="20c" recreator="SimpleContainer" contName="contents" pt="624 282.7" dim="80 7.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a51" id="20p" recreator="PortContainer" contName="ports" pt="624 260" dim="80 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a54" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a52" id="20a" recreator="Attributes" contName="attrs" show="false" pt="624 282.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a53" id="20o" recreator="Operations" contName="ops" show="false" pt="624 282.7" dim="40 8"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a12" id="42" recreator="Inheritance" anchor1Id="26" anchor2Id="18" vtl="348 326.9" pts="2 348 356 348 297.7"></UML:Figure>
+        <UML:Figure xmi.id="a13" id="64" recreator="NoteLink" anchor1Id="62" anchor2Id="21" vtl="796 401" pts="2 796 512 796 290"></UML:Figure>
+        <UML:Figure xmi.id="a14" id="25" recreator="Class" subjectUUID="DCE-1145898056857-312" name="wrap and hide" pt="280 408" dim="102 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a55" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a56" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a57" n="fill" v="255 255 255"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a58" id="25c" recreator="SimpleContainer" contName="contents" pt="280 430.7" dim="102 7.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a59" id="25p" recreator="PortContainer" contName="ports" pt="280 408" dim="102 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a62" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a60" id="25o" recreator="Operations" contName="ops" show="false" pt="280 430.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a61" id="25a" recreator="Attributes" contName="attrs" show="false" pt="280 430.7" dim="40 8"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a15" id="32" recreator="Inheritance" anchor1Id="17" anchor2Id="16" vtl="329.2 211" pts="3 183.8 260 236 144 412 144"></UML:Figure>
+        <UML:Figure xmi.id="a16" id="57" recreator="NoteLink" anchor1Id="52" anchor2Id="17" vtl="172 401" pts="3 149.4 512.1 104 316 152 289.1"></UML:Figure>
+        <UML:Figure xmi.id="a17" id="35" recreator="Inheritance" anchor1Id="20" anchor2Id="16" vtl="572.7 211" pts="3 656 260 656 204 551.8 170"></UML:Figure>
+        <UML:Figure xmi.id="a18" id="26" recreator="Class" subjectUUID="DCE-1145898058092-108" name="front" pt="324 356" dim="50 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a63" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a64" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a65" n="fill" v="255 255 255"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a66" id="26a" recreator="Attributes" contName="attrs" show="false" pt="324 378.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a67" id="26c" recreator="SimpleContainer" contName="contents" pt="324 378.7" dim="50 7.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a68" id="26p" recreator="PortContainer" contName="ports" pt="324 356" dim="50 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a70" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a69" id="26o" recreator="Operations" contName="ops" show="false" pt="324 378.7" dim="40 8"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a19" id="44" recreator="Inheritance" anchor1Id="27" anchor2Id="19" vtl="464 326.9" pts="2 464 352 464 301.7"></UML:Figure>
+        <UML:Figure xmi.id="a2" id="29" recreator="Class" subjectUUID="DCE-1145898062061-768" name="adjust property" pt="580 348" dim="105 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a71" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a72" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a73" n="fill" v="255 255 255"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a74" id="29p" recreator="PortContainer" contName="ports" pt="580 348" dim="105 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a78" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a75" id="29o" recreator="Operations" contName="ops" show="false" pt="580 370.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a76" id="29a" recreator="Attributes" contName="attrs" show="false" pt="580 370.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a77" id="29c" recreator="SimpleContainer" contName="contents" pt="580 370.7" dim="105 7.3" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a20" id="19" recreator="Class" subjectUUID="DCE-1145897998701-250" name="omit" pt="444 260" dim="63 41.7" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a79" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a80" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a81" n="fill" v="255 255 204"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a82" id="19p" recreator="PortContainer" contName="ports" pt="444 260" dim="63 41.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a86" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a83" id="19c" recreator="SimpleContainer" contName="contents" pt="444 301.7" dim="63 0" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a84" id="19o" recreator="Operations" contName="ops" show="false" pt="444 301.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a85" id="19a" recreator="Attributes" contName="attrs" pt="444 282.7" dim="63 19">
+              <UML:FigureContainer.figures>
+                <UML:Figure xmi.id="a87" id="46" recreator="Attribute" name="stubOut" pt="447 284.7" dim="57 15" acc="3"></UML:Figure>
+              </UML:FigureContainer.figures>
+            </UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a21" id="28" recreator="Class" subjectUUID="DCE-1145898059905-702" name="delete" pt="472 388" dim="58 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a88" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a89" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a90" n="fill" v="255 255 255"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a91" id="28o" recreator="Operations" contName="ops" show="false" pt="472 410.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a92" id="28c" recreator="SimpleContainer" contName="contents" pt="472 410.7" dim="58 7.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a93" id="28a" recreator="Attributes" contName="attrs" show="false" pt="472 410.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a94" id="28p" recreator="PortContainer" contName="ports" pt="472 388" dim="58 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a95" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a22" id="41" recreator="Inheritance" anchor1Id="25" anchor2Id="18" vtl="312 352.9" pts="2 312 408 312 297.7"></UML:Figure>
+        <UML:Figure xmi.id="a23" id="70" recreator="Inheritance" anchor1Id="68" anchor2Id="16" vtl="721.4 211" pts="3 953.4 260 884 132 550.7 132"></UML:Figure>
+        <UML:Figure xmi.id="a24" id="27" recreator="Class" subjectUUID="DCE-1145898059436-393" name="ignore" pt="424 352" dim="59 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a96" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a97" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a98" n="fill" v="255 255 255"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a100" id="27o" recreator="Operations" contName="ops" show="false" pt="424 374.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a101" id="27a" recreator="Attributes" contName="attrs" show="false" pt="424 374.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a102" id="27p" recreator="PortContainer" contName="ports" pt="424 352" dim="59 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a103" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a99" id="27c" recreator="SimpleContainer" contName="contents" pt="424 374.7" dim="59 7.3" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a25" id="17" recreator="Class" subjectUUID="DCE-1145897997138-214" name="add" pt="152 260" dim="50 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a104" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a105" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a106" n="fill" v="255 255 204"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a107" id="17c" recreator="SimpleContainer" contName="contents" pt="152 282.7" dim="50 7.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a108" id="17p" recreator="PortContainer" contName="ports" pt="152 260" dim="50 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a111" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a109" id="17a" recreator="Attributes" contName="attrs" show="false" pt="152 282.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a110" id="17o" recreator="Operations" contName="ops" show="false" pt="152 282.7" dim="40 8"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a26" id="60" recreator="NoteLink" anchor1Id="54" anchor2Id="19" vtl="472 406.9" pts="3 459.8 511.8 400 332 443.9 302.3"></UML:Figure>
+        <UML:Figure xmi.id="a27" id="36" recreator="Inheritance" anchor1Id="21" anchor2Id="16" vtl="638.9 211" pts="3 782.9 260 688 156 550.7 156"></UML:Figure>
+        <UML:Figure xmi.id="a28" id="59" recreator="NoteLink" anchor1Id="53" anchor2Id="18" vtl="308 404.9" pts="3 293.7 511.9 252 344 302.3 298.7"></UML:Figure>
+        <UML:Figure xmi.id="a29" id="16" recreator="Class" subjectUUID="DCE-1145897991840-933" name="structural delta" auto="false" pt="412 112" dim="138.7 70" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a112" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a113" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a114" n="fill" v="204 255 255"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a115" id="16a" recreator="Attributes" contName="attrs" show="false" pt="412 134.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a116" id="16p" recreator="PortContainer" contName="ports" pt="412 112" dim="138.7 70">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a119" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a117" id="16c" recreator="SimpleContainer" contName="contents" pt="412 134.7" dim="138.7 47.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a118" id="16o" recreator="Operations" contName="ops" show="false" pt="412 134.7" dim="40 8"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a3" id="49" recreator="Inheritance" anchor1Id="30" anchor2Id="20" vtl="692 337" pts="2 692 384 692 290"></UML:Figure>
+        <UML:Figure xmi.id="a30" id="55" recreator="Note" subjectUUID="DCE-1145900420314-185" pt="628 512" dim="78 131">
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a120" id="55c" recreator="SimpleContainer" pt="52 68" off="2 2"></UML:Figure>
+          </UML:FigureContainer.figures>
+          <UML:Figure.text>intent: to change properties.
+
+can selectively adjust properties</UML:Figure.text>
+        </UML:Figure>
+        <UML:Figure xmi.id="a31" id="33" recreator="Inheritance" anchor1Id="18" anchor2Id="16" vtl="403.9 211.9" pts="3 332 256 332 192 412 167.9"></UML:Figure>
+        <UML:Figure xmi.id="a32" id="62" recreator="Note" subjectUUID="DCE-1145900506079-389" pt="764 512" dim="88 99">
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a121" id="62c" recreator="SimpleContainer" pt="76 92" off="2 2"></UML:Figure>
+          </UML:FigureContainer.figures>
+          <UML:Figure.text>intent: to replace parts completely.
+
+last resort.</UML:Figure.text>
+        </UML:Figure>
+        <UML:Figure xmi.id="a33" id="45" recreator="Inheritance" anchor1Id="28" anchor2Id="19" vtl="492 344.9" pts="2 492 388 492 301.7"></UML:Figure>
+        <UML:Figure xmi.id="a34" id="53" recreator="Note" subjectUUID="DCE-1145900389501-238" pt="264 512" dim="100 163">
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a122" id="53c" recreator="SimpleContainer" pt="36 56" off="2 2"></UML:Figure>
+          </UML:FigureContainer.figures>
+          <UML:Figure.text>Intent: to intercept and alter functionality.
+
+can adapt one or more...  have a path syntax to find original.</UML:Figure.text>
+        </UML:Figure>
+        <UML:Figure xmi.id="a35" id="54" recreator="Note" subjectUUID="DCE-1145900407376-624" pt="448 512" dim="78 163">
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a123" id="54c" recreator="SimpleContainer" pt="84 104" off="2 2"></UML:Figure>
+          </UML:FigureContainer.figures>
+          <UML:Figure.text>intent: to omit features by ignoring or forcibly deleting.
+
+can omit one or more</UML:Figure.text>
+        </UML:Figure>
+        <UML:Figure xmi.id="a36" id="21" recreator="Class" subjectUUID="DCE-1145897999827-76" name="replace" pt="764 260" dim="65 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a124" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a125" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a126" n="fill" v="255 255 204"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a127" id="21c" recreator="SimpleContainer" contName="contents" show="false" pt="764 282.7" dim="65 7.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a128" id="21a" recreator="Attributes" contName="attrs" show="false" pt="764 282.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a129" id="21p" recreator="PortContainer" contName="ports" pt="764 260" dim="65 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a131" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a130" id="21o" recreator="Operations" contName="ops" show="false" pt="764 282.7" dim="40 8"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a37" id="48" recreator="Inheritance" anchor1Id="29" anchor2Id="20" vtl="644 319" pts="2 644 348 644 290"></UML:Figure>
+        <UML:Figure xmi.id="a4" id="72" recreator="Note" subjectUUID="DCE-1145901725368-975" pt="900 512" dim="128 275">
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a132" id="72c" recreator="SimpleContainer" pt="-36 160" off="2 2"></UML:Figure>
+          </UML:FigureContainer.figures>
+          <UML:Figure.text>Intent: to change the name of something, but keep everything else the same.
+
+component, port, part, property,connection...
+
+Can track name back to original and preserve identity even if names are different.  first stratum takes precedence.</UML:Figure.text>
+        </UML:Figure>
+        <UML:Figure xmi.id="a5" id="61" recreator="NoteLink" anchor1Id="55" anchor2Id="20" vtl="652 401" pts="3 638 512.1 560 336 636.8 291"></UML:Figure>
+        <UML:Figure xmi.id="a6" id="68" recreator="Class" subjectUUID="DCE-1145901655165-918" name="rename" pt="928 260" dim="67 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a133" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a134" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a135" n="fill" v="255 255 204"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a136" id="68o" recreator="Operations" contName="ops" show="false" pt="928 282.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a137" id="68c" recreator="SimpleContainer" contName="contents" pt="928 282.7" dim="67 7.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a138" id="68a" recreator="Attributes" contName="attrs" show="false" pt="928 282.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a139" id="68p" recreator="PortContainer" contName="ports" pt="928 260" dim="67 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a140" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a7" id="34" recreator="Inheritance" anchor1Id="19" anchor2Id="16" vtl="480 221" pts="2 480 260 480 182"></UML:Figure>
+        <UML:Figure xmi.id="a8" id="52" recreator="Note" subjectUUID="DCE-1145900122191-971" pt="116 512" dim="112 195">
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a141" id="52c" recreator="SimpleContainer" pt="40 -96" off="2 2"></UML:Figure>
+          </UML:FigureContainer.figures>
+          <UML:Figure.text>Intent: add new functionality.
+
+component, port, part, property, connection.
+
+Need to check for duplication of functionality in separate components.</UML:Figure.text>
+        </UML:Figure>
+        <UML:Figure xmi.id="a9" id="30" recreator="Class" subjectUUID="DCE-1145898062968-388" name="add/del property" pt="636 384" dim="112 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a142" n="owner">
+              <UML:Property.v>evolution
+primitives</UML:Property.v>
+            </UML:Property>
+            <UML:Property xmi.id="a143" n="showStereo" v="false"></UML:Property>
+            <UML:Property xmi.id="a144" n="fill" v="255 255 255"></UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a145" id="30a" recreator="Attributes" contName="attrs" show="false" pt="636 406.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a146" id="30c" recreator="SimpleContainer" contName="contents" pt="636 406.7" dim="112 7.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a147" id="30o" recreator="Operations" contName="ops" show="false" pt="636 406.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a148" id="30p" recreator="PortContainer" contName="ports" pt="636 384" dim="112 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a149" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+      </UML:FigureContainer.figures>
+    </UML:Diagram>
+  </XMI.content>
+</XMI>
+

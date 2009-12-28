@@ -1,0 +1,13 @@
+package ac.ic.doc.commons.relations;
+
+public class BinaryRelationUtils {
+
+	public static final <E1, E2> BinaryRelation<E2, E1> getInverseRelation(
+			BinaryRelation<E1, E2> relation) {
+		BinaryRelation<E2, E1> result = new MapSetBinaryRelation<E2, E1>();
+		for (Pair<E1, E2> pair : relation) {
+			result.add(Pair.create(pair.getSecond(), pair.getFirst()));
+		}
+		return result;
+	}
+}

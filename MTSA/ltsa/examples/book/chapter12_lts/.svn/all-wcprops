@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts
+END
+Tproducer_consumer_store.lts
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Tproducer_consumer_store.lts
+END
+CountDown.lts
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/CountDown.lts
+END
+Doubleclick.lts
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Doubleclick.lts
+END
+Timed_producer_consumer.lts
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Timed_producer_consumer.lts
+END
+Jitter.lts
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Jitter.lts
+END
+Interval.lts
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Interval.lts
+END
+Parcel_router.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Parcel_router.lts
+END
+Space_invaders.lts
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Space_invaders.lts
+END
+Timeout.lts
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Timeout.lts
+END
+contents.txt
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/contents.txt
+END
+Maximal_progress.lts
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter12_lts/Maximal_progress.lts
+END

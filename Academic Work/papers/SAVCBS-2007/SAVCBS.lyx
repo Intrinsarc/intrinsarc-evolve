@@ -1,0 +1,1784 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\sloppy
+%\usepackage{latex8}
+%\usepackage{times}
+%\documentclass[times,9pt,twocolumn]{article}
+
+
+% \bibliographystyle{latex8}
+
+\date{}
+
+%\usepackage{type1cm}
+%\renewcommand\normalsize{%
+%   \@setfontsize\normalsize{9pt}{12pt}
+%   \abovedisplayskip 10\p@ \@plus2\p@ %\@minus5\p@
+%   \abovedisplayshortskip \z@ \@plus3\p@
+%   \belowdisplayshortskip 6\p@ \@plus3\p@ %\@minus3\p@
+%   \belowdisplayskip \abovedisplayskip
+%   \let\@listi\@listI}
+%\normalsize  
+
+\sloppy
+
+  \let\oldthebibliography=\thebibliography
+ \let\endoldthebibliography=\endthebibliography
+  \renewenvironment{thebibliography}[1]{%
+    \begin{oldthebibliography}{#1}%
+      \setlength{\parskip}{0ex}%
+      \setlength{\itemsep}{0ex}%
+  }%
+  {%
+    \end{oldthebibliography}%
+  }
+
+\usepackage{listings}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--}
+}
+
+\lstset{language=Alloy}
+\end_preamble
+\language british
+\inputencoding auto
+\fontscheme times
+\graphics default
+\paperfontsize 10
+\spacing single
+\papersize a4paper
+\use_geometry true
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 1.5cm
+\topmargin 1.5cm
+\rightmargin 1.5cm
+\bottommargin 1.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Resolving Structural Conflict Between Independently Developed, Overlapping
+ Architectural Extensions
+\end_layout
+
+\begin_layout Author
+Andrew McVeigh, Jeff Kramer and Jeff Magee
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{4pt}
+\end_layout
+
+\end_inset
+
+
+\newline
+Department of Computing
+\newline
+Imperial College
+\newline
+London SW7 2BZ, United Kingdom
+\newline
+{amcveigh,
+ jk, jnm}@doc.ic.ac.uk
+\end_layout
+
+\begin_layout Abstract
+
+\emph on
+Applications based on an extensible component architecture allow third parties
+ to form extensions to them by connecting new components to existing extension
+ points and replacing existing components.
+ Plugin architectures are a prominent example of this approach and have
+ proven useful as a way to allow others to add functionality to a framework
+ or application.
+\end_layout
+
+\begin_layout Abstract
+
+\emph on
+An inevitable outcome of this approach is the desire to combine two or more
+ independently developed extensions which extend the same application.
+ Depending on the freedom allowed to the extension developer, this leads
+ to a situation where the changes to the application made by one extension
+ overlap with another extension's changes, resulting in structural conflicts
+ that prevent their use together.
+ This is part of a wider problem we call the overlapping extensions problem.
+ We address the structural side of this problem in this paper.
+\end_layout
+
+\begin_layout Abstract
+
+\emph on
+The Backbone component model is introduced as an alternative to non-hierarchical
+ plugin architectures, in order to ameliorate the overlapping extensions
+ problem without restricting the freedom of the extension developer.
+ Backbone uses a hierarchical model, allowing for unplanned change at the
+ appropriate level in the architectural hierarchy.
+ Conflicts are detected using well-formedness rules.
+ Further, the same constructs that allow for unplanned changes can be used
+ to resolve any structural conflicts and bring the combined extensions back
+ into a coherent, unified architecture which can be structured to minimally
+ conflict with any future extensions.
+\end_layout
+
+\begin_layout Abstract
+
+\emph on
+A formal specification of Backbone in Alloy is used to show how Backbone
+ can describe the overlapping extensions problem and guarantee predictable
+ merging.
+ Further it is demonstrated that conflicts can be modelled and that the
+ provided constructs can resolve any conflicts that occur.
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+An increasing number of applications are built around an extensible component
+ architecture.
+ This allows third party developers to treat an application as a platform,
+ and build on it by adding features.
+ This is typically done by connecting new components to existing, planned
+ extension points of the application's architecture.
+ In some advanced plugin architectures, it is possible to replace arbitrary
+ components from the application with new ones under certain conditions
+ 
+\begin_inset LatexCommand \cite{Delap2006}
+
+\end_inset
+
+.
+ Many applications use a variant of this approach, including the Eclipse
+ integrated development environment 
+\begin_inset LatexCommand \cite{Object2001}
+
+\end_inset
+
+, and the Firefox web browser 
+\begin_inset LatexCommand \cite{Fireextensions2007}
+
+\end_inset
+
+.
+ An extension is a set of components, packaged as a single entity, that
+ extends the feature set of an application.
+\end_layout
+
+\begin_layout Standard
+A natural consequence of this approach is that independent developers will
+ separately create extensions by adding a set of components, and possibly
+ altering the application's existing architecture through component replacement.
+ If we then try to combine these independent extensions into a single architectu
+re, it is often the case that they will conflict structurally due to overlapping
+ and conflicting changes made to the base application.
+ For instance, both extensions may try to replace the same component in
+ the application (figure 
+\begin_inset LatexCommand \ref{fig:Two-extensions-replacing}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename models/extensions.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Two-extensions-replacing}
+
+\end_inset
+
+Structural conflict can occur between extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We call this potential for conflicts the
+\emph on
+ overlapping extensions problem
+\emph default
+.
+ This has a structural and behavioural side.
+ In this paper, the focus is on the former.
+\end_layout
+
+\begin_layout Standard
+The component model we use is called Backbone.
+ We previously introduced Backbone in 
+\begin_inset LatexCommand \cite{McVeigh2006}
+
+\end_inset
+
+, where we showed that its constructs facilitate the reuse of complex components.
+ In this paper, we show how Backbone can be used as an extension architecture
+ and can detect structural conflicts between extensions.
+ Further, it allows any conflict to be corrected.
+ We use a formal specification written in Alloy to illustrate these properties.
+\end_layout
+
+\begin_layout Standard
+One way to prevent overlapping extensions is to simply restrict extensions
+ so that they cannot overlap.
+ This implies that components from the existing application architecture
+ cannot be replaced or modified.
+ Although this is a common feature of most plugin architectures, this (often
+ unacceptably) limits the features that a third party developer can add
+ to those which have been pre-planned and are explicitly supported by the
+ existing extension points.
+ It is also possible to allow a limited form of replacement where the replacemen
+t component must be backwards compatible with the previous one.
+ This is less restrictive on the types of extension possible, but does not
+ solve the problem where two overlapping extensions replace or modify the
+ same application component.
+\end_layout
+
+\begin_layout Standard
+Our approach to dealing with the overlapping extensions problem is to employ
+ a hierarchical component model along with constructs (redefinition and
+ resemblance) that allow for arbitrary modifications to existing components.
+ This grants an extension developer much flexibility, but offers no guarantee
+ that overlapping extensions will not conflict.
+ To address this problem, we show that the supplied constructs minimise
+ the chance of conflicts by allowing fine-grained incremental modification
+ at the appropriate level in the architectural hierarchy.
+ Merging of independent redefinitions is guaranteed to be predictable and
+ any conflicts are picked up using well-formedness rules.
+ The supplied constructs can can also be subsequently used to resolve any
+ structural conflicts.
+\end_layout
+
+\begin_layout Standard
+In contrast, non-hierarchical extension architectures (we know of no hierarchica
+l plugin architecture) only provide the choice of fully replacing an atomic
+ component.
+ In addition, the lack of a hierarchy and the need to present a manageable
+ architecture tends to lead to more coarse-grained components.
+ This further compounds the problem by magnifying the unit of possible conflict.
+ Backbone avoids the need for this trade-off through explicit support for
+ hierarchical composition.
+\end_layout
+
+\begin_layout Standard
+The rest of the paper is organised as follows.
+ The component model is briefly explained in section 
+\begin_inset LatexCommand \ref{sec:The-Component-Model}
+
+\end_inset
+
+.
+ An example is then described which shows how overlapping extensions can
+ conflict, requiring resolution.
+ The resolution is handled using redefinition.
+ The formal specification of the component model is presented, focusing
+ on how redefinition is rewritten as resemblance, with multiple resemblance
+ resulting from independent redefinitions.
+ Finally, the approach is summarised, related work is discussed and Backbone
+ is contrasted with CM (configuration management) systems and other approaches
+ to the problem.
+\end_layout
+
+\begin_layout Section
+\begin_inset LatexCommand \label{sec:The-Component-Model}
+
+\end_inset
+
+The Component Model
+\end_layout
+
+\begin_layout Standard
+The Backbone component model is a simplification of the UML2 composite structure
+ model 
+\begin_inset LatexCommand \cite{OMGUML}
+
+\end_inset
+
+.
+ Backbone uses the UML2 composite structure diagrams for its graphical view,
+ and has an equivalent textual view.
+ The Backbone ADL (architecture description language), runtime interpreter,
+ and supporting graphical case tool have been developed as part of this
+ work, to explore the use of UML2 as a component definition language.
+\end_layout
+
+\begin_layout Standard
+A component is a unit of software composition, which explicitly defines
+ the interfaces it requires and provides via ports.
+ Ports can be indexed by associating them with a multiplicity which has
+ a lower and upper bound.
+ A port may both require and provide interfaces.
+ Leaf components cannot be further decomposed and are associated directly
+ with an implementation class (figure 
+\begin_inset LatexCommand \ref{fig:A-leaf-component}
+
+\end_inset
+
+).
+ A component may have attributes which represent a projection onto the internal
+ state of the component.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename savcbs-images/savcbs-leaf.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:A-leaf-component}
+
+\end_inset
+
+A leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A composite component may contain parts, which are instances of other components
+ (figure 
+\begin_inset LatexCommand \ref{fig:A-composite-component}
+
+\end_inset
+
+).
+ Parts are wired together, or back to the component, using connectors.
+ The parts of a composite represent its initial configuration.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename savcbs-images/savcbs-composite.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:A-composite-component}
+
+\end_inset
+
+A composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For details on the textual language, refer to 
+\begin_inset LatexCommand \cite{McVeigh2006}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Resemblance and Redefinition
+\end_layout
+
+\begin_layout Standard
+Backbone contains resemblance and redefinition constructs which facilitate
+ the reuse of existing components and handle unplanned extension of an applicati
+on.
+\end_layout
+
+\begin_layout Standard
+Resemblance allows one component to be defined in terms of delta changes
+ to another.
+ One component may resemble one or more others, and then add, delete or
+ replace any inherited constituents (ports, parts etc).
+ They key point is that component definition is held as deltas, and these
+ are only applied at runtime.
+\end_layout
+
+\begin_layout Standard
+Redefinition allows a new definition to be substituted for an existing component.
+ This does not destroy the original definition, but substitutes the new
+ definition wherever the component is used, if the redefinition is included
+ in the architecture.
+ When combined with resemblance, we call this incremental redefinition and
+ it can be used to evolve the definition of a component in an application
+ to support a new feature.
+\end_layout
+
+\begin_layout Standard
+The example in the next section shows the practical use of these constructs,
+ illustrating how the freedom that they offer can cause conflicts.
+ Any conflicts can further be rectified using the same constructs.
+\end_layout
+
+\begin_layout Section
+Motivating Example
+\end_layout
+
+\begin_layout Standard
+The following example has been heavily simplified from the author's experience
+ as one of the architects of a commercial digital radio console.
+ This was designed to manage a set of audio devices for a radio studio.
+\end_layout
+
+\begin_layout Subsection
+A Digital Audio Desk Application
+\end_layout
+
+\begin_layout Standard
+The application is a digital audio desk, presented as a composite component
+ (figure 
+\begin_inset LatexCommand \ref{fig:The-digital-audio}
+
+\end_inset
+
+).
+ Its function is to control multiple audio devices, and integrate their
+ audio into a single output via a software mixer.
+\end_layout
+
+\begin_layout Standard
+No devices are configured into the desk by default.
+ Devices should be added between the 
+\emph on
+in
+\emph default
+ and 
+\emph on
+control
+\emph default
+ ports.
+ The control port has a multiplicity of 
+\emph on
+[0..*]
+\emph default
+ which means that any number of devices can connect to it.
+ The desk is composed of a mixer part.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/desk.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-digital-audio}
+
+\end_inset
+
+The digital audio desk component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The mixer (figure 
+\begin_inset LatexCommand \ref{fig:The-software-mixer}
+
+\end_inset
+
+) is a composite component which accepts audio packets from any number of
+ devices via the in port.
+ It mixes the audio together and outputs the audio via the out port.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/mixer.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-software-mixer}
+
+\end_inset
+
+The software mixer component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that these composites have internal parts and connections, but these
+ are not shown in order to simplify the presentation.
+\end_layout
+
+\begin_layout Subsection
+Adding Support for a CD Player
+\end_layout
+
+\begin_layout Standard
+Developer A is asked to use an existing CDPlayerDevice component and integrate
+ it with the audio desk.
+ This composite (figure 
+\begin_inset LatexCommand \ref{fig:The-CD-controller}
+
+\end_inset
+
+) acts as the controller for a physical CD player.
+ It supports control via the IControl interface, but also supports cueing
+ via the ICue interface.
+ Cueing a device plays it 
+\begin_inset Quotes eld
+\end_inset
+
+off-air
+\begin_inset Quotes erd
+\end_inset
+
+, allowing a presenter to find the right point of a song to start playing
+ from.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/CD.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-CD-controller}
+
+\end_inset
+
+The CD controller component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An obvious issue with integrating this with the desk component (figure 
+\begin_inset LatexCommand \ref{fig:The-digital-audio}
+
+\end_inset
+
+) is that the desk currently offers no support for cueing.
+ However, the developer cannot just modify the source code for the desk
+ component, as this is used by many other companies as the basis for their
+ products.
+ In reality, the developer may not even have access to the source if this
+ is a commercial application.
+\end_layout
+
+\begin_layout Standard
+Using incremental redefinition however, it is possible to make changes to
+ the desk component, but store the deltas separately from the original definitio
+n (figure 
+\begin_inset LatexCommand \ref{fig:Redefining-the-desk}
+
+\end_inset
+
+).
+ The ICue interface is added to the desk, and at the same time the CD controller
+ is wired in.
+ The textual Backbone redefinition is shown under the graphical view.
+ Note that in the graphical view of the redefinition, the name of the redefiniti
+on is shown with a prime (DigitalAudioDesk') reflecting the evolution of
+ the component.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/desk-with-CD.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Redefining-the-desk}
+
+\end_inset
+
+Redefining the desk to support a CD player
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The redefinition is phrased in terms of resemblance.
+ It represents a delta change to the previous definition, consisting of
+ three additions and one replacement.
+\end_layout
+
+\begin_layout Standard
+The architectural changes need to be packaged into a single extension and
+ applied somehow.
+ In Backbone this is done using a stratum.
+ A stratum is a module-like construct which is used to group a set of definition
+s and redefinitions.
+ If the original desk application is supplied in stratum Desk, then the
+ extension must be supplied in another stratum.
+ Stratum CD contains the CD player definition and the desk redefinition,
+ and depends on the definitions in stratum Desk (figure 
+\begin_inset LatexCommand \ref{fig:The-redefinition-is}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/CD-and-desk.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-redefinition-is}
+
+\end_inset
+
+The redefinition of desk is contained in the CD stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Backbone interpreter is given a set of stratum to run, and will apply
+ any redefinitions at start-up time.
+ If both strata are chosen, then the desk will contain a CD player component
+ because the redefinition will be applied.
+ However, if only stratum Desk is chosen, then it will not contain the player,
+ and the original application will run.
+\end_layout
+
+\begin_layout Subsection
+Adding Support for a Digital Microphone
+\end_layout
+
+\begin_layout Standard
+Developer B is independently tasked with integrating an existing DigitalMicDevic
+e component with the desk.
+ This component controls a digital microphone.
+ Unlike the CD player, no cue support is available.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/mic.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+The digital microphone controller
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The microphone can be wired into the desk using a redefinition of DigitalAudioDe
+sk to add the microphone and the new connectors (figure 
+\begin_inset LatexCommand \ref{fig:Wiring-the-microphone}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/desk-with-mic.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Wiring-the-microphone}
+
+\end_inset
+
+Wiring the microphone into the desk
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The microphone definition and desk redefinition are packaged into a stratum
+ Mic that depends on the Desk stratum (figure 
+\begin_inset LatexCommand \ref{fig:The-redefinitions-are}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/mic-and-desk.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-redefinitions-are}
+
+\end_inset
+
+The redefinitions are contained in stratum Mic
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Creating a Unified Application
+\end_layout
+
+\begin_layout Standard
+Unsurprisingly, someone eventually wishes to have a desk with both CD and
+ microphone support.
+ This involves merging the changes made to the desk together into a single
+ view.
+ This merge is simplified by the fact that the changes are held as fine-grained
+ deltas.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset LatexCommand \ref{fig:The-single-view}
+
+\end_inset
+
+ shows what would happen if the deltas were all combined.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/combined-desk.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-single-view}
+
+\end_inset
+
+A structural conflict results from combining the extensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This has produced a structural conflict, which will be picked up by the
+ Backbone well-formedness rules.
+ The desk's control port provides IControl and ICue, whereas the DigitalMic's
+ control port only provides IControl.
+ This is because the redefinition in the CD stratum added ICue to the desk's
+ port to support the CD's cue facility.
+ We cannot use both the CD and microphone together without correcting this
+ somehow.
+\end_layout
+
+\begin_layout Subsection
+Resolving Conflicts
+\end_layout
+
+\begin_layout Standard
+Structural conflict is a common occurrence when combining independently
+ developed, overlapping extensions.
+ Giving the freedom to add new features to existing components also provides
+ the possibility for one extension to be made incompatible with another.
+\end_layout
+
+\begin_layout Standard
+Limiting the types of features that can be added (i.e.
+ preserving backwards compatibility both internally as well as externally)
+ or preventing existing components from being modified will prevent the
+ possibility of structural conflict.
+ Predictably though, this constrains the types of features that can be added
+ to those which the designer of the original application had planned for.
+ In the previous example, it would not have been possible to add cueing
+ support until this was added into the original application.
+ If the developers of the original application are unwilling to add the
+ changes or cannot because the upgrade will cause too great an impact upon
+ existing users, then the features can never be added.
+\end_layout
+
+\begin_layout Standard
+The Mic and CD strata overlap in that they both depend on the Desk stratum.
+ They are independent because the stratum dependencies do not allow them
+ to refer to each other.
+ To resolve the conflict between the two extensions, we redefine the desk
+ component and package this in the CDAndMic stratum (figure 
+\begin_inset LatexCommand \ref{fig:Merging-the-CD}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/unified.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Merging-the-CD}
+
+\end_inset
+
+Merging the CD and Mic stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The redefined desk separates the ports into control and controlWithCue (figure
+ 
+\begin_inset LatexCommand \ref{fig:Correcting-the-structural}
+
+\end_inset
+
+).
+ The connector that used to join the CD control port has been rerouted to
+ connect to the controlWithCue port.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename savcbs-images/redefined-desk.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:Correcting-the-structural}
+
+\end_inset
+
+Correcting the structural flaw in the combined desk
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since redefinition can be used to arbitrarily remake a component, all structural
+ flaws can be corrected.
+ The key is to keep the conflict-resolving deltas as small as possible so
+ that they will be less likely to conflict with any further merges that
+ may be required when adding later features.
+\end_layout
+
+\begin_layout Standard
+Why is redefinition used at all, when it is possible to create DeskWithMic
+ and DeskWithCDPlayer using resemblance? Even if this were done, adding
+ the devices into the same desk will involve multiple resemblance (DeskWithMicAn
+dCDPlayer) which will lead to exactly the same structural conflicts as presented
+ already.
+ 
+\end_layout
+
+\begin_layout Standard
+Another use of redefinition is to allow us to make changes to a component
+ whose instantiation we have no control over.
+ For instance, the application may be 
+\begin_inset Quotes eld
+\end_inset
+
+hardwired
+\begin_inset Quotes erd
+\end_inset
+
+ to run by instantiating an instance of DigitalAudioDesk, in which case
+ we have no choice but to redefine it.
+\end_layout
+
+\begin_layout Section
+Formal Specification
+\end_layout
+
+\begin_layout Standard
+The structural side of the Backbone component model has been formally specified
+ using Alloy 
+\begin_inset LatexCommand \cite{Jackson2002}
+
+\end_inset
+
+, and is available at www.doc.ic.ac.uk/~amcveigh/papers/savcbs-2007.html.
+ Alloy is a modelling language based on first order logic, which is supplied
+ with a model finder which can check assertions and find counterexamples
+ within a finite model space.
+\end_layout
+
+\begin_layout Standard
+Note that this is the specification for the Backbone component model, illustrati
+ng general properties including predictable merging of extensions.
+ It is being used to develop the behaviour and rules governing the runtime
+ interpreter.
+ No actual Alloy model is constructed for each architecture described using
+ Backbone.
+ All the well-formedness rules in the interpreter are specified in the formal
+ model.
+\end_layout
+
+\begin_layout Standard
+The essence of the formal model is that resemblance graphs are rewritten
+ to take redefinition into account.
+ This must be done from the perspective of each stratum.
+ Conflicts occur when multiple branches of a single resemblance graph incompatib
+ly add, replace or delete component constituents.
+ Predictable merging is handled by the multiple resemblance rules.
+\end_layout
+
+\begin_layout Subsection
+Overlapping Strata and Extensions
+\end_layout
+
+\begin_layout Standard
+A stratum owns component and interface definitions and redefinitions.
+ It must explicitly declare any other strata it depends upon.
+ The dependencies constrain the elements that components and interfaces
+ (owned by that stratum) can refer to.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-stratum-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The dependencies of a stratum must be acyclic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-stratum-acyclic-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stratum 
+\emph on
+stratum1
+\emph default
+ is independent of stratum 
+\emph on
+stratum2
+\emph default
+ if it does not transitively depend on it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-independent-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Two extensions are considered to be overlapping if they share common dependencie
+s (representing the base application), but are mutually independent.
+ This is the case between CD and Mic in figure 
+\begin_inset LatexCommand \ref{fig:Merging-the-CD}
+
+\end_inset
+
+.
+ Two stratum have the 
+\emph on
+potential
+\emph default
+ to conflict if they overlap.
+ In this case, the overlap is the Desk stratum.
+\end_layout
+
+\begin_layout Standard
+Strata dependencies define a partial order.
+ Both {CDAndMic, CD, Mic, Desk} and {CDAndMic, Mic, CD, Desk} are valid
+ orders and the model must ensure that either order results in the same
+ architecture and conflicts when the extensions are merged.
+\end_layout
+
+\begin_layout Subsection
+Redefinition Rewrites the Resemblance Graph
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+perspective
+\emph default
+ from a given stratum is the application that would be formed if only the
+ definitions from that stratum and any that it transitively depends upon
+ are included, and all others were ignored.
+ The perspective of a stratum is the reflexive transitive closure of its
+ dependency graph:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-perspective-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Redefinition is turned into resemblance by rewriting the resemblance graph
+ for each component, for each stratum perspective.
+ For example, from perspective CDAndMic, the resemblance graph of the desk
+ component is shown by figure 
+\begin_inset LatexCommand \ref{fig:The-rewritten-resemblance}
+
+\end_inset
+
+.
+ Each component is prefixed by its stratum name, and resemblance is shown
+ as a large arrow between components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename savcbs-images/rewriting-resemblance.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{fig:The-rewritten-resemblance}
+
+\end_inset
+
+The rewritten resemblance graph of desk
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The rewritten graph contains multiple resemblance, and defines a partial
+ order consistent with the partial order of the strata dependencies.
+ The topmost component now acts as the DigitalAudioDesk component -- any
+ reference to the desk component will refer to this.
+ This is the effect of being the redefinition at the top of a resemblance
+ graph.
+\end_layout
+
+\begin_layout Standard
+The rewriting of the resemblance graph for each perspective is performed
+ by the following logic:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-rewrite-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+iResemble
+\family default
+ holds the components that the component 
+\family typewriter
+e
+\family default
+ resembles, from the perspective of stratum 
+\family typewriter
+s
+\family default
+.
+ This is determined by the 
+\family typewriter
+getTopMost[]
+\family default
+ function which uses the stratum dependency order to find any redefinitions
+ and resemblances that must be taken into account when rewriting the graph.
+ As an example, from the perspective of CDAndMic, the redefinition in this
+ stratum will find the redefinitions in the CD and Mic strata.
+\end_layout
+
+\begin_layout Subsection
+Merging
+\end_layout
+
+\begin_layout Standard
+To expand out a component definition, we must applying all of the deltas
+ in the resemblance graph.
+ This is performed by operations associated with the 
+\family typewriter
+Deltas
+\family default
+ signature, which is defined in a parametrised Alloy module.
+ It represents the deltas held by a definition or redefinition.
+ For a component, we have the following possible deltas:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-component-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Each delta holds a set of tuples (
+\family typewriter
+Stratum -> ID -> Object
+\family default
+) of a component, where 
+\family typewriter
+Object
+\family default
+ represents either 
+\family typewriter
+Port
+\family default
+, 
+\family typewriter
+Part
+\family default
+, 
+\family typewriter
+Attribute
+\family default
+ or 
+\family typewriter
+Connector
+\family default
+.
+ This is an 
+\family typewriter
+(ID -> Object)
+\family default
+ mapping from the perspective of each stratum.
+ 
+\family typewriter
+ID
+\family default
+ may be thought of as synonymous with the concept of a name, although in
+ practice, the graphical case tool uses a mapping layer to associate human
+ readable names with IDs.
+ IDs are generated artifacts that are guaranteed not to conflict between
+ independent extensions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-delta-constituents-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If, for example, two branches of a resemblance graph replaced the same port
+ P, then the merged result would hold both ports against the single name
+ P.
+ As we only want one constituent per name, a key well-formedness rule is
+ the following:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-deltas-ok-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This ensures that the 
+\family typewriter
+objects_e
+\family default
+ relation is a function with at most one constituent per name for a given
+ stratum.
+ Merging is predictable because independent redefinitions replacing the
+ same constituent will result in several constituents for a given name and
+ will not overwrite each other based on a partial order.
+ This can only be corrected through a further replace or delete.
+\end_layout
+
+\begin_layout Subsection
+Resolving Conflict
+\end_layout
+
+\begin_layout Standard
+The delta operations of add, replace and delete allow any conflict in a
+ multiple resemblance graph to be resolved.
+ If there are two or more constituents for a given name, then replace is
+ used to replace both with a new constituent.
+ Delete removes any constituents with a given name, and add provides a new
+ constituent for a new name.
+\end_layout
+
+\begin_layout Standard
+This logic is embodied in the following listing:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{alloy-snippets/snip-savcbs-resolve-V.tex}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+iResembleDeltas_e[s]
+\family default
+ is a set holding the components that are under a given component in the
+ rewritten resemblance graph, from the perspective of stratum 
+\family typewriter
+s
+\family default
+.
+ The logic takes the original objects (
+\family typewriter
+originalObjects_e
+\family default
+), removes any names and constituents that have been deleted, and replaces
+ all constituents with a given name by 
+\family typewriter
+replacedObjects
+\family default
+, using the Alloy override operator (
+\family typewriter
+++
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+It is interesting to note that even in simple cases, the nature of a conflict
+ produced by an overlap can be subtle.
+ In figure 
+\begin_inset LatexCommand \ref{fig:The-single-view}
+
+\end_inset
+
+, the multiple redefinition of the desk caused a structural issue with the
+ microphone component rather than a conflict directly in the desk component.
+\end_layout
+
+\begin_layout Section
+Related Work
+\end_layout
+
+\begin_layout Standard
+Eclipse supports a plugin model, based on OSGi 
+\begin_inset LatexCommand \cite{OSGi2003}
+
+\end_inset
+
+ where components (OSGi bundles) indicate how they are connected to the
+ service provisions of other components using a set of manifest files 
+\begin_inset LatexCommand \cite{Consortium2006}
+
+\end_inset
+
+.
+ The model is non-hierarchical in that it does not support composition of
+ other component instances in an architectural model.
+ Modifying the component connections in an existing application can involve
+ a considerable duplication of manifest entries and is not practical for
+ large applications.
+ Structural conflict is a problem in this model, although in practice it
+ is restricted because replacing individual components in a configuration
+ is difficult and not often done 
+\begin_inset LatexCommand \cite{Beaton2005}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Firefox uses both the terms plugin and extension.
+ Plugins are intended to display extra content to the screen in an extensible
+ way.
+ Extensions are synonymous with the extensions discussed in this document.
+ They are a way to extend the functionality of Firefox and customise the
+ feature set.
+ Versioning of extensions and assessing compatibility with previous versions
+ of the browser represents an ongoing concern 
+\begin_inset LatexCommand \cite{Fireheadaches2005}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+COM is a component model and infrastructure built into the Windows operating
+ system 
+\begin_inset LatexCommand \cite{Box1997}
+
+\end_inset
+
+.
+ It forms a common plugin architecture for many applications including the
+ Office suite applications such as Excel 
+\begin_inset LatexCommand \cite{Microsoft2006a}
+
+\end_inset
+
+.
+ COM supports a hierarchical model, and composition of instances is via
+ a registry based approach for indirectly locating service providers.
+ This model does not focus on supporting or resolving overlapping extensions,
+ and the obscure and implicit nature of the configuration (via the registry)
+ makes models difficult to evolve architecturally.
+ Multiple versions of a COM component are supported, although this leads
+ to the troublesome case known as 
+\begin_inset Quotes eld
+\end_inset
+
+DLL Hell
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset LatexCommand \cite{Eisenbach2004}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Backbone is related to ADLs such as Darwin 
+\begin_inset LatexCommand \cite{Magee1995}
+
+\end_inset
+
+.
+ The core of Backbone is very similar to the core of Darwin, even though
+ Backbone was initially developed independently.
+ This presumably reflects the influence that Darwin and other ADLs had on
+ the UML2 specification on which Backbone is based.
+\end_layout
+
+\begin_layout Standard
+Koala 
+\begin_inset LatexCommand \cite{Ommering2000}
+
+\end_inset
+
+ is a component model based on Darwin that allows for variation in an architectu
+re through variation points and parametrisation.
+ Component variants can be plugged into the variation points, supporting
+ a family of applications.
+ The points must be decided in advance and planned into the architecture,
+ limiting this to a technique for planned extension.
+\end_layout
+
+\begin_layout Standard
+Mae is an architecturally-aware CM system that understands how deltas can
+ be merged into a new revision of an architecture 
+\begin_inset LatexCommand \cite{Roshandel2004}
+
+\end_inset
+
+.
+ This approach presumes the use of a central version control system.
+ Further, if many extensions are made then the central version control graph
+ will get very complex.
+ Backbone avoids this by effectively providing a decentralised CM system
+ where the base application need not be aware in any way of the architectural
+ changes made by extensions.
+\end_layout
+
+\begin_layout Standard
+Mae provides a powerful unified architectural and CM approach.
+ Backbone in contrast provides a unified modelling foundation with explicit
+ modelling constructs for architectural definition and evolution.
+ Backbone models are expected to be version controlled using a conventional
+ CM system, reflecting the practical constraints of projects in an industrial
+ setting.
+\end_layout
+
+\begin_layout Standard
+The Backbone resemblance construct is similar to the structural inheritance
+ facility provided by ROOM 
+\begin_inset LatexCommand \cite{Selic1994}
+
+\end_inset
+
+.
+ Backbone extends this by adding support for redefinition, in order to model
+ the arbitrary evolution of components.
+\end_layout
+
+\begin_layout Standard
+The MixJuice system adds a module system to Java, supporting a variant of
+ redefinition.
+ Inheritance is used in place of resemblance 
+\begin_inset LatexCommand \cite{Ichisugi2002}
+
+\end_inset
+
+.
+ The intention is to allow an object-oriented system written in Java to
+ be extended in unplanned ways.
+ Resemblance is more powerful than inheritance as it allows constituents
+ to also be deleted and replaced, reflecting their evolution.
+ Further, MixJuice relies on a total order to be specified, although it
+ can use implicitly included 
+\begin_inset Quotes eld
+\end_inset
+
+complementary
+\begin_inset Quotes erd
+\end_inset
+
+ modules to resolve several common types of conflict.
+ Because it relies on Java, MixJuice also does not offer a true architectural
+ model.
+\end_layout
+
+\begin_layout Section
+Conclusions and Future Work
+\end_layout
+
+\begin_layout Standard
+Backbone offers a compelling, architecturally-focused model for component
+ extension architectures.
+ It explicitly supports composite components and composition, unlike conventiona
+l plugin architectures, allowing an extension to replace a component at
+ the appropriate level in an architectural hierarchy.
+ The redefinition and resemblance constructs offer the ability to arbitrarily
+ modify a base application, allowing new features to be added.
+ These constructs guarantee predictable merging when combining overlapping
+ extensions, and also allow any structural conflicts to be resolved by adding
+ another extension.
+\end_layout
+
+\begin_layout Standard
+The Backbone model also allows interfaces to be redefined and resembled.
+ Both components and interfaces are handled in the same way, as they are
+ both sub-signatures of Element in the formal model.
+\end_layout
+
+\begin_layout Standard
+The Backbone ADL, runtime interpreter and UML2 case tool have been implemented
+ as part of this work.
+ The formal specification of the structural model has been completed, and
+ has shown that the existing interpreter currently produces inconsistent
+ results with some partial strata orders.
+ We are now re-implementing this part of the interpreter to follow the results
+ of the formal model.
+ Similarly, the case tool is being upgraded to support the results also.
+\end_layout
+
+\begin_layout Standard
+Even if structural conflicts have been resolved, it is still possible for
+ extensions to behaviourally conflict.
+ We have already started modelling component protocols with FSP, a process
+ algebra 
+\begin_inset LatexCommand \cite{Magee1999}
+
+\end_inset
+
+.
+ The aim is to detect protocol errors when combining extensions by composing
+ together the FSP protocols and looking for violations of generated safety
+ properties.
+\end_layout
+
+\begin_layout Standard
+It is possible to statically express the evolution of an architecture using
+ resemblance and redefinition.
+ When this is done for multiple versions of a system, the result is multiple
+ 
+\begin_inset Quotes eld
+\end_inset
+
+chained
+\begin_inset Quotes erd
+\end_inset
+
+ strata expressing the changes to a base application as deltas.
+ This gets difficult to work with, and we are investigating a construct
+ called 
+\emph on
+baselining
+\emph default
+, which merges multiple redefinitions with the base application, creating
+ a new, evolved base.
+ An interesting property of this is that it is possible to produce extensions,
+ which when applied to the evolved base create 
+\emph on
+previous 
+\emph default
+versions of the application.
+ This allows legacy versions of the application to be reconstituted and
+ selectively combined with newer features.
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{../../read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

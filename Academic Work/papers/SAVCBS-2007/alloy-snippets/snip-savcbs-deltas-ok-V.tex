@@ -1,0 +1,8 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={deltas.als, lines 55-59}, label=alloy:savcbs-deltas-ok-V, captionpos=b]
+pred Deltas::oneObjectPerID(s: Stratum)
+{
+  let objects = this.objects_e[s] |
+    function[objects, dom[objects]]
+}
+\end{lstlisting}

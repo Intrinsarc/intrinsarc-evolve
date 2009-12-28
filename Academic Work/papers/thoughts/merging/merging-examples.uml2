@@ -1,0 +1,1291 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" uuid="mitchell_1169481088294_8175" name="model">
+  <j_diagramHolder uuid="mitchell_1169482664223_4159" saveTime="Mon Jan 22, 2007 at 04:17:44 GMT" savedBy="Andrew">
+    <diagram uuid="mitchell_1169482664223_4920" lastFigureId="1">
+      <figures uuid="mitchell_1169482664243_8260" id="0" recreator="Package" autosized="false" point="192 244" dimensions="87 75" subject="//@childPackages.4">
+        <figures uuid="mitchell_1169482664243_4410" id="0_C" recreator="SimpleContainer" point="192 259" dimensions="87 60" offset="4 4"/>
+        <properties uuid="mitchell_1169482664243_2879" name="owner" value="model"/>
+      </figures>
+    </diagram>
+  </j_diagramHolder>
+  <childPackages uuid="mitchell_1169481088295_1490" name="primitive types">
+    <ownedMember xsi:type="uml:PrimitiveType" uuid="mitchell_1169481088305_8728" name="type"/>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_5244" name="boolean">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088314_755" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088314_787" body="Boolean"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_7034" name="int">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088314_1921" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088314_4202" body="Integer"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_9705" name="long">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088314_216" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088314_1614" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_6425" name="float">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088314_1032" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088314_3087" body="Float"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_6615" name="double">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088315_1636" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088315_4323" body="Double"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_837" name="String">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088315_7320" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088315_7224" body="String"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_6526" name="Date">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088315_8631" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088315_4115" body="Date"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_980" name="Time">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088315_2846" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088315_6440" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_2015" name="DateTime">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088315_3544" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088315_3917" body="Date"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088305_5777" name="Interval">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088315_2596" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088315_4892" body="Long"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+  </childPackages>
+  <childPackages xsi:type="uml:Profile" documentation="The profile for Backbone modelling" uuid="mitchell_1169481088305_129" name="backbone profile">
+    <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of all backbone definitions that live in strata." uuid="mitchell_1169481088310_8213" name="backbone-element" isAbstract="true" extendsMetaModelElement="'Class'">
+      <ownedAttribute documentation="An override to insert Backbone directly into the generated output." uuid="mitchell_1169481088310_7147" name="definitionOverride" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of leaf and composite components.  Not used directly." uuid="mitchell_1169481088310_8554" name="backbone-component" isAbstract="true" extendsMetaModelElement="'Class'">
+      <generalization uuid="mitchell_1169481088312_3898" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="Can we navigate to direct neighbours via this component?" uuid="mitchell_1169481088310_3857" name="navigable" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="The protocol(s) for this component" uuid="mitchell_1169481088310_9509" name="protocols" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  Associated directly with an implementation class." uuid="mitchell_1169481088312_1788" name="backbone-leaf" extendsMetaModelElement="'Class'">
+      <generalization uuid="mitchell_1169481088313_2317" general="//@childPackages.1/@ownedMember.1"/>
+      <ownedAttribute documentation="The implementation class that this leaf is associated with." uuid="mitchell_1169481088313_9066" name="implementationClass" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Is this a system leaf, that won't have implementation code generated?" uuid="mitchell_1169481088313_8614" name="systemLeaf" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  An interface which is visible to backbone." uuid="mitchell_1169481088313_282" name="backbone-interface" extendsMetaModelElement="'Interface'">
+      <generalization uuid="mitchell_1169481088313_9721" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="The implementation class that this interface is associated with." uuid="mitchell_1169481088313_3251" name="implementationInterface" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Is this a system interface, that won't have implementation code generated?" uuid="mitchell_1169481088313_5282" name="systemInterface" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  A factory interface which is visible to backbone." uuid="mitchell_1169481088313_517" name="backbone-factory-interface" extendsMetaModelElement="'Interface'">
+      <generalization uuid="mitchell_1169481088313_8667" general="//@childPackages.1/@ownedMember.3"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A composite component which can contain parts." uuid="mitchell_1169481088313_6921" name="backbone-composite" extendsMetaModelElement="'Class'">
+      <generalization uuid="mitchell_1169481088313_7429" general="//@childPackages.1/@ownedMember.1"/>
+      <ownedAttribute documentation="Does this expose references to internal parts?" uuid="mitchell_1169481088313_5990" name="cluster" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A factory component which can instantiate parts lazily." uuid="mitchell_1169481088313_9079" name="backbone-factory" extendsMetaModelElement="'Class'">
+      <generalization documentation="A factory is a type of composite, which instantiates its parts on demand." uuid="mitchell_1169481088313_5588" general="//@childPackages.1/@ownedMember.5"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A type which can be used for an attribute." uuid="mitchell_1169481088313_2249" name="backbone-attribute-type" extendsMetaModelElement="'PrimitiveType', 'Class'">
+      <ownedAttribute documentation="The implementation class for this attribute type." uuid="mitchell_1169481088313_5787" name="implementationClass" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A non-hierarchical container of Backbone definitions." uuid="mitchell_1169481088313_8689" name="backbone-stratum" extendsMetaModelElement="'Package'">
+      <ownedAttribute documentation="Is this globally accessible?" uuid="mitchell_1169481088314_503" name="global" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="Is this stratum relaxed (i.e. if another stratum depends on this, can it also see this stratum's dependencies?) ?" uuid="mitchell_1169481088314_7386" name="relaxed" type="//@childPackages.0/@ownedMember.1"/>
+      <ownedAttribute documentation="The group to find the load directory from" uuid="mitchell_1169481088314_8296" name="stratumGroup" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="A preamble which is inserted into the Backbone code for this stratum" uuid="mitchell_1169481088314_7855" name="preamble" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A port allows a component to provide or require services." uuid="mitchell_1169481088314_5559" name="backbone-port" extendsMetaModelElement="'Port'">
+      <generalization documentation="A port offers or requires services." uuid="mitchell_1169481088314_3155" general="//@childPackages.1/@ownedMember.0"/>
+      <ownedAttribute documentation="Does this port require callbacks?" uuid="mitchell_1169481088314_8916" name="callbacks" type="//@childPackages.0/@ownedMember.1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component can resemble another, and make changes.  Like a form of structural inheritance for components." uuid="mitchell_1169481088314_4743" name="backbone-resemblance" extendsMetaModelElement="'Dependency'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A component can redefine another's definition" uuid="mitchell_1169481088314_7236" name="backbone-redefinition" extendsMetaModelElement="'Dependency'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A placeholder defines the shape of something that must be replaced later.  It 'stands in' until the replacement is made." uuid="mitchell_1169481088314_3970" name="backbone-placeholder" extendsMetaModelElement="'Class'">
+      <generalization documentation="A port offers or requires services." uuid="mitchell_1169481088314_7862" general="//@childPackages.1/@ownedMember.1"/>
+    </ownedMember>
+  </childPackages>
+  <childPackages xsi:type="uml:Profile" documentation="The profile for documenting a model" uuid="mitchell_1169481088315_5690" name="documentation profile">
+    <ownedMember xsi:type="uml:Stereotype" documentation="The top level documentation package" uuid="mitchell_1169481088315_5881" name="documentation-top" extendsMetaModelElement="'Package'">
+      <ownedAttribute documentation="The name of the document." uuid="mitchell_1169481088315_2786" name="documentName" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The owner of document." uuid="mitchell_1169481088315_2836" name="owner" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The email address of the owner." uuid="mitchell_1169481088315_9239" name="email" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The copyright period of the document." uuid="mitchell_1169481088315_7793" name="copyrightYears" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="Number of non-breaking spaces to pad the home navigation entry with." uuid="mitchell_1169481088315_7983" name="numberOfSpacesForPadding" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The prefix to add for each page title, apart from home." uuid="mitchell_1169481088316_8702" name="pageTitlePrefix" type="//@childPackages.0/@ownedMember.6"/>
+      <ownedAttribute documentation="The index to add to the htmlTemplate and htmlGenerateTo slots to extract the folders.  Allows more than one site to be generated from a given model." uuid="mitchell_1169481088316_2771" name="siteIndex" type="//@childPackages.0/@ownedMember.6"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A sub-package of the top-level documentation package." uuid="mitchell_1169481088316_3291" name="documentation-included" extendsMetaModelElement="'Package'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A figure to reproduce in the documentation." uuid="mitchell_1169481088316_2279" name="documentation-figure" extendsMetaModelElement="'Figure'"/>
+    <ownedMember xsi:type="uml:Stereotype" documentation="A comment visually containing a set of other documentation packages to refer to." uuid="mitchell_1169481088316_7696" name="documentation-see-also" extendsMetaModelElement="'Figure'"/>
+  </childPackages>
+  <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="mitchell_1169481088316_3724" name="backbone">
+    <appliedBasicStereotypeValues uuid="mitchell_1169481088316_9785" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.3">
+      <value xsi:type="uml:Expression" uuid="mitchell_1169481088316_6697" body="#application-package-hint components&#xA;{&#xA;}&#xA;&#xA;#system-class-hint basics&#xA;{&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IAnotherRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.Placeholder&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.constructor.PartHandle&quot;,&#xA;&#x9;&quot;java.lang.Integer&quot;,&#xA;&#x9;&quot;java.lang.Long&quot;,&#xA;&#x9;&quot;java.lang.Double&quot;,&#xA;&#x9;&quot;java.lang.String&quot;,&#xA;&#x9;&quot;java.awt.Point&quot;,&#xA;&#x9;&quot;java.awt.Dimension&quot;,&#xA;&#x9;&quot;java.awt.Rectangle&quot;,&#xA;&#x9;&quot;java.util.Date&quot;,&#xA;&#x9;&quot;java.awt.Color&quot;&#xA;}"/>
+    </appliedBasicStereotypeValues>
+    <appliedBasicStereotypeValues uuid="mitchell_1169481088316_5139" property="//@childPackages.1/@ownedMember.8/@ownedAttribute.0">
+      <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1169481088316_6128" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.3" uuid="mitchell_1169481088316_9500" name="IRun">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088316_987" property="//@childPackages.1/@ownedMember.3/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088316_6303" body="com.hopstepjump.backbone.api.IRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088316_9309" property="//@childPackages.1/@ownedMember.3/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1169481088316_7163" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.1/@ownedMember.3" uuid="mitchell_1169481088316_3021" name="IAnotherRun">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088317_9668" property="//@childPackages.1/@ownedMember.3/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088317_8560" body="com.hopstepjump.backbone.api.IAnotherRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088317_2501" property="//@childPackages.1/@ownedMember.3/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1169481088317_3094" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.2" uuid="mitchell_1169481088317_7164" name="Placeholder">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088317_6191" property="//@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088317_6958" body="com.hopstepjump.backbone.api.Placeholder"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088317_3639" property="//@childPackages.1/@ownedMember.2/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="mitchell_1169481088317_3266" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:PrimitiveType" appliedBasicStereotypes="//@childPackages.1/@ownedMember.7" uuid="mitchell_1169481088317_2792" name="PartHandle">
+      <appliedBasicStereotypeValues uuid="mitchell_1169481088317_1795" property="//@childPackages.1/@ownedMember.7/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="mitchell_1169481088317_7079" body="PartHandle"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+  </childPackages>
+  <childPackages uuid="mitchell_1169481799530_4089">
+    <ownedComment uuid="mitchell_1169484876226_3628" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      What is the model of replacement?&#xA;    &lt;/p>&#xA;    &lt;p>&#xA;      Is it just delete and add, or is it more complex?&#xA;    &lt;/p>&#xA;    &lt;p>&#xA;      Ideally it is, but how do we avoid renaming problems?&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+    <ownedComment uuid="mitchell_1169485114793_3639" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      Local redefinitions&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+    <ownedComment uuid="mitchell_1169486147254_3549" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      Does local redef ever get more complicated than adding an extra redef to &#xA;      the existing one implied by the part's type?&#xA;    &lt;/p>&#xA;    &lt;p>&#xA;      &#xA;    &lt;/p>&#xA;    &lt;p>&#xA;      What are the rules on illegal constructs?&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+    <j_diagramHolder uuid="mitchell_1169482664221_9742" saveTime="Tue Jan 23, 2007 at 04:27:56 GMT" savedBy="Andrew">
+      <diagram uuid="mitchell_1169569676842_3221" lastFigureId="14">
+        <figures uuid="mitchell_1169569676843_2049" id="13" recreator="Package" autosized="false" point="680 28" dimensions="87 75" subject="//@childPackages.4/@childPackages.10">
+          <figures uuid="mitchell_1169569676844_5622" id="13_C" recreator="SimpleContainer" point="680 43" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676843_7041" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676843_3626" id="11" recreator="Package" autosized="false" point="452 28" dimensions="87 75" subject="//@childPackages.4/@childPackages.8">
+          <figures uuid="mitchell_1169569676843_4405" id="11_C" recreator="SimpleContainer" point="452 43" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676843_9402" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676843_8209" id="12" recreator="Package" autosized="false" point="568 28" dimensions="87 75" subject="//@childPackages.4/@childPackages.9">
+          <figures uuid="mitchell_1169569676843_8543" id="12_C" recreator="SimpleContainer" point="568 43" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676843_4174" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676843_217" id="3" recreator="Note" autosized="false" point="480 380" dimensions="300 184" subject="//@childPackages.4/@ownedComment.0">
+          <figures uuid="mitchell_1169569676843_572" id="3_C" recreator="SimpleContainer" point="480 380" dimensions="300 184" offset="2 2">
+            <properties uuid="mitchell_1169569676843_7171" name="backdrop" value="false"/>
+          </figures>
+          <properties uuid="mitchell_1169569676844_2920" name="hideNote" value="true"/>
+          <properties uuid="mitchell_1169569676844_762" name="useHTML" value="true"/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_7757" id="2" recreator="Package" autosized="false" point="116 516" dimensions="87 75" subject="//@childPackages.4/@childPackages.2">
+          <figures uuid="mitchell_1169569676843_5557" id="2_C" recreator="SimpleContainer" point="116 531" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676844_7813" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_4956" id="1" recreator="Package" autosized="false" point="268 384" dimensions="87 75" subject="//@childPackages.4/@childPackages.1">
+          <figures uuid="mitchell_1169569676843_4423" id="1_C" recreator="SimpleContainer" point="268 399" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676844_8595" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_6465" id="10" recreator="Package" autosized="false" point="340 28" dimensions="87 75" subject="//@childPackages.4/@childPackages.7">
+          <figures uuid="mitchell_1169569676843_1357" id="10_C" recreator="SimpleContainer" point="340 43" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676844_8486" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_7954" id="0" recreator="Package" autosized="false" point="108 28" dimensions="87 75" subject="//@childPackages.4/@childPackages.0">
+          <figures uuid="mitchell_1169569676844_5277" id="0_C" recreator="SimpleContainer" point="108 43" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676844_1623" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_3483" id="7" recreator="Package" autosized="false" point="268 760" dimensions="87 75" subject="//@childPackages.4/@childPackages.5">
+          <figures uuid="mitchell_1169569676843_6121" id="7_C" recreator="SimpleContainer" point="268 775" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676844_3547" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_1623" id="6" recreator="Package" autosized="false" point="116 760" dimensions="87 75" subject="//@childPackages.4/@childPackages.4">
+          <figures uuid="mitchell_1169569676844_380" id="6_C" recreator="SimpleContainer" point="116 775" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676844_7180" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_4829" id="5" recreator="Package" autosized="false" point="876 700" dimensions="87 75" subject="//@childPackages.4/@childPackages.3">
+          <figures uuid="mitchell_1169569676844_2101" id="5_C" recreator="SimpleContainer" point="876 715" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676844_8485" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_5056" id="4" recreator="Note" autosized="false" point="148 680" dimensions="184 44" subject="//@childPackages.4/@ownedComment.1">
+          <figures uuid="mitchell_1169569676843_7305" id="4_C" recreator="SimpleContainer" point="148 680" dimensions="184 44" offset="2 2">
+            <properties uuid="mitchell_1169569676843_3680" name="backdrop" value="false"/>
+          </figures>
+          <properties uuid="mitchell_1169569676844_9849" name="hideNote" value="true"/>
+          <properties uuid="mitchell_1169569676844_3950" name="useHTML" value="true"/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_4313" id="9" recreator="Package" autosized="false" point="224 28" dimensions="87 75" subject="//@childPackages.4/@childPackages.6">
+          <figures uuid="mitchell_1169569676843_2429" id="9_C" recreator="SimpleContainer" point="224 43" dimensions="87 60" offset="4 4"/>
+          <properties uuid="mitchell_1169569676844_1459" name="owner" value=""/>
+        </figures>
+        <figures uuid="mitchell_1169569676844_4140" id="8" recreator="Note" autosized="false" point="480 684" dimensions="284 140" subject="//@childPackages.4/@ownedComment.2">
+          <figures uuid="mitchell_1169569676843_3748" id="8_C" recreator="SimpleContainer" point="480 684" dimensions="284 140" offset="2 2">
+            <properties uuid="mitchell_1169569676843_5986" name="backdrop" value="false"/>
+          </figures>
+          <properties uuid="mitchell_1169569676844_6671" name="hideNote" value="true"/>
+          <properties uuid="mitchell_1169569676844_7909" name="useHTML" value="true"/>
+        </figures>
+      </diagram>
+    </j_diagramHolder>
+    <childPackages uuid="mitchell_1169481865548_9114" name="wrapping&#xA;versus&#xA;adjusting">
+      <ownedComment uuid="mitchell_1169482157227_4080" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      Wrapping versus adjusting. Adjusting happens first, but any extra &#xA;      interfaces etc. are propagated.&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+      <ownedComment uuid="mitchell_1169486568876_123" body="export wrapping-versus-adjusting.eps"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482087092_8229" clientDependency="//@childPackages.4/@childPackages.0/@ownedMember.0/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10 //@childPackages.1/@ownedMember.11" uuid="mitchell_1169482092516_8867" client="//@childPackages.4/@childPackages.0/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169481884437_2935" name="A">
+        <ownedAttribute uuid="mitchell_1169482388377_7789" type="//@childPackages.4/@childPackages.1/@ownedMember.0">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169482388377_2183" instance="//@childPackages.4/@childPackages.0/@ownedMember.1/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169482388377_1183" classifier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute uuid="mitchell_1169485561847_3959" type="//@childPackages.4/@childPackages.1/@ownedMember.0">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169485561847_8516" instance="//@childPackages.4/@childPackages.0/@ownedMember.1/@ownedAttribute.1/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169485561847_716" classifier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute uuid="mitchell_1169485741710_8615" type="//@childPackages.4/@childPackages.1/@ownedMember.0">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169485741710_362" instance="//@childPackages.4/@childPackages.0/@ownedMember.1/@ownedAttribute.2/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169485741710_2167" classifier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+          </defaultValue>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482112237_2907" clientDependency="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAnonymousDependencies.1">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169482116692_7285" client="//@childPackages.4/@childPackages.0/@ownedMember.2" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169552104105_2101" client="//@childPackages.4/@childPackages.0/@ownedMember.2" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute uuid="mitchell_1169482121983_8655" type="//@childPackages.4/@childPackages.0/@ownedMember.1">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169482121983_140" instance="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169482121983_6149" classifier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute uuid="mitchell_1169551122942_3927" type="//@childPackages.4/@childPackages.1/@ownedMember.0">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169551122942_7904" instance="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAttribute.1/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169551122942_180" classifier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+          </defaultValue>
+        </ownedAttribute>
+      </ownedMember>
+      <j_diagramHolder uuid="mitchell_1169482664253_1889" saveTime="Tue Jan 23, 2007 at 11:38:11 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169552291595_2492" lastFigureId="14">
+          <figures uuid="mitchell_1169552291596_3672" id="13" recreator="Grouper" name="export wrapping-versus-adjusting.eps" autosized="false" point="144 160" dimensions="484 460" subject="//@childPackages.4/@childPackages.0/@ownedComment.1">
+            <figures uuid="mitchell_1169552291597_7649" id="13_C" recreator="SimpleContainer" point="144 160" dimensions="484 460" min="10 10">
+              <figures uuid="mitchell_1169552291596_7431" id="12" recreator="Note" autosized="false" point="192 172" dimensions="432 60" subject="//@childPackages.4/@childPackages.0/@ownedComment.0">
+                <figures uuid="mitchell_1169552291596_584" id="12_C" recreator="SimpleContainer" point="192 172" dimensions="432 60" offset="2 2">
+                  <properties uuid="mitchell_1169552291596_1081" name="backdrop" value="false"/>
+                </figures>
+                <properties uuid="mitchell_1169552291596_2780" name="hideNote" value="true"/>
+                <properties uuid="mitchell_1169552291596_2574" name="useHTML" value="true"/>
+              </figures>
+              <figures uuid="mitchell_1169552291596_4300" id="3" recreator="Class" autosized="false" point="236 332" dimensions="50.6 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.0">
+                <figures uuid="mitchell_1169552291596_1302" id="3_A" recreator="Attributes" containedName="attrs" point="236 354" dimensions="40 8"/>
+                <figures uuid="mitchell_1169552291596_8397" id="3_C" recreator="SimpleContainer" containedName="contents" point="236 362" dimensions="50.6 0" offset="4 4"/>
+                <figures uuid="mitchell_1169552291596_2928" id="3_P" recreator="PortContainer" containedName="ports" point="236 332" dimensions="50.6 30">
+                  <properties uuid="mitchell_1169552291596_7087" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169552291596_2697" id="3_O" recreator="Operations" containedName="ops" point="236 362" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169552291596_3739" id="1" recreator="Class" autosized="false" point="332 452" dimensions="62 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169552291596_4502" id="1_A" recreator="Attributes" containedName="attrs" point="332 474" dimensions="40 8"/>
+                <figures uuid="mitchell_1169552291596_6669" id="1_C" recreator="SimpleContainer" containedName="contents" point="332 482" dimensions="62 0" offset="4 4"/>
+                <figures uuid="mitchell_1169552291597_5260" id="1_P" recreator="PortContainer" containedName="ports" point="332 452" dimensions="62 30">
+                  <properties uuid="mitchell_1169552291597_250" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169552291597_1378" id="1_O" recreator="Operations" containedName="ops" point="332 482" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169552291597_4729" id="7" recreator="Class" autosized="false" point="408 304" dimensions="106.6 82" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2">
+                <figures uuid="mitchell_1169552291596_7625" id="7_P" recreator="PortContainer" containedName="ports" point="408 304" dimensions="106.6 82">
+                  <properties uuid="mitchell_1169552291596_9278" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169552291596_5334" id="7_O" recreator="Operations" containedName="ops" point="408 334" dimensions="40 8"/>
+                <figures uuid="mitchell_1169552291596_8126" id="7_C" recreator="SimpleContainer" containedName="contents" point="408 334" dimensions="106.6 52" offset="4 4">
+                  <figures uuid="mitchell_1169552291596_6092" id="10" recreator="Part" autosized="false" point="428 340" dimensions="55 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAttribute.0">
+                    <figures uuid="mitchell_1169552291596_9818" id="10_O" recreator="Operations" containedName="ops" point="428 370" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169552291596_1221" id="10_C" recreator="SimpleContainer" containedName="contents" point="428 370" dimensions="55 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169552291596_5631" id="10_A" recreator="Attributes" containedName="attrs" point="428 362" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169552291597_8777" id="10_P" recreator="PortContainer" containedName="ports" point="428 340" dimensions="55 30"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169552291596_7252" id="7_A" recreator="Attributes" containedName="attrs" point="408 326" dimensions="40 8"/>
+              </figures>
+              <properties uuid="mitchell_1169552291597_2930" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169552291596_2305" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169552291597_1483" id="5" recreator="dependency" anchor1Id="3" anchor2Id="1" virtualPoint="312.2 407" points="2 274.9 363 350.3 452.1" subject="//@childPackages.4/@childPackages.0/@ownedMember.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169552291596_6696" id="5_M" recreator="Linked Text" containedName="text" text="" show="false" point="290.1 387.8" dimensions="3.8 14">
+              <properties uuid="mitchell_1169552291596_8744" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169552291597_780" id="9" recreator="dependency" anchor1Id="7" anchor2Id="1" virtualPoint="412.2 406" points="2 427.4 387 375.1 452" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169552291596_8085" id="9_M" recreator="Linked Text" containedName="text" text="" show="false" point="388 398.1" dimensions="3.8 14">
+              <properties uuid="mitchell_1169552291596_5134" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169482220481_731" name="simple&#xA;conflict +&#xA;resolution">
+      <ownedComment uuid="mitchell_1169486592981_5964" body="export simple-resolution.eps"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482391511_5552" name="B" clientDependency="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.1 //@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.2 //@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.3 //@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.4 //@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.5">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169482748252_2811" client="//@childPackages.4/@childPackages.1/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169485479539_4295" client="//@childPackages.4/@childPackages.1/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169550976776_8064" client="//@childPackages.4/@childPackages.1/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169552230334_1204" client="//@childPackages.4/@childPackages.1/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169569533290_1935" client="//@childPackages.4/@childPackages.1/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169570029948_7860" client="//@childPackages.4/@childPackages.1/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute uuid="mitchell_1169485750574_3989" type="//@childPackages.4/@childPackages.4/@ownedMember.0">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169485750574_5248" instance="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169485750574_5769" classifier="//@childPackages.4/@childPackages.4/@ownedMember.0"/>
+          </defaultValue>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482394431_7534" clientDependency="//@childPackages.4/@childPackages.1/@ownedMember.1/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.1/@ownedMember.1/@ownedAnonymousDependencies.1">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169482772581_4984" client="//@childPackages.4/@childPackages.1/@ownedMember.1" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169482780245_8215" client="//@childPackages.4/@childPackages.1/@ownedMember.1" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482400911_1543" clientDependency="//@childPackages.4/@childPackages.1/@ownedMember.2/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.1/@ownedMember.2/@ownedAnonymousDependencies.1 //@childPackages.4/@childPackages.1/@ownedMember.2/@ownedAnonymousDependencies.2">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169482785141_5447" client="//@childPackages.4/@childPackages.1/@ownedMember.2" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169485471514_8115" client="//@childPackages.4/@childPackages.1/@ownedMember.2" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169485486603_72" client="//@childPackages.4/@childPackages.1/@ownedMember.2" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482677833_7202" name="E"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169485427185_428" clientDependency="//@childPackages.4/@childPackages.1/@ownedMember.4/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10 //@childPackages.1/@ownedMember.11" uuid="mitchell_1169485455979_6828" client="//@childPackages.4/@childPackages.1/@ownedMember.4" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+      </ownedMember>
+      <j_diagramHolder uuid="mitchell_1169482664243_7685" saveTime="Tue Jan 23, 2007 at 11:21:16 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169551285280_3773" lastFigureId="67">
+          <figures uuid="mitchell_1169551285281_9013" id="39" recreator="dependency" anchor1Id="35" anchor2Id="33" virtualPoint="503.2 549" points="2 561.2 474.9 450.7 616" subject="//@childPackages.4/@childPackages.1/@childPackages.2/@ownedMember.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285281_5158" id="39_M" recreator="Linked Text" containedName="text" text="" show="false" point="484 530" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285281_3984" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285282_5129" id="37" recreator="dependency" anchor1Id="34" anchor2Id="33" virtualPoint="349.2 547" points="2 303.1 470.9 391 616.1" subject="//@childPackages.4/@childPackages.1/@childPackages.0/@ownedMember.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285282_9683" id="37_M" recreator="Linked Text" containedName="text" text="" show="false" point="320.3 510" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285283_3640" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285282_6865" id="66" recreator="Grouper" name="export simple-resolution.eps" autosized="false" point="168 180" dimensions="520 572" subject="//@childPackages.4/@childPackages.1/@ownedComment.0">
+            <figures uuid="mitchell_1169551285295_2674" id="66_C" recreator="SimpleContainer" point="168 180" dimensions="520 572" min="10 10">
+              <figures uuid="mitchell_1169551285294_1514" id="30" recreator="Package" autosized="false" point="192 364" dimensions="184 120" subject="//@childPackages.4/@childPackages.1/@childPackages.0">
+                <figures uuid="mitchell_1169551285295_5791" id="30_C" recreator="SimpleContainer" point="192 387" dimensions="184 97" offset="4 4">
+                  <figures uuid="mitchell_1169551285281_8463" id="34" recreator="Class" autosized="false" point="232 400" dimensions="98.6 70" suppressAttributes="true" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@childPackages.0/@ownedMember.0">
+                    <figures uuid="mitchell_1169551285283_443" id="34_C" recreator="SimpleContainer" containedName="contents" point="232 422" dimensions="98.6 48" offset="4 4">
+                      <figures uuid="mitchell_1169551285295_3481" id="44" recreator="Part" autosized="false" point="252 432" dimensions="55 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@childPackages.0/@ownedMember.0/@ownedAttribute.0">
+                        <figures uuid="mitchell_1169551285281_9529" id="44_O" recreator="Operations" containedName="ops" point="252 462" dimensions="40 8"/>
+                        <figures uuid="mitchell_1169551285282_6621" id="44_P" recreator="PortContainer" containedName="ports" point="252 432" dimensions="55 30"/>
+                        <figures uuid="mitchell_1169551285282_2302" id="44_C" recreator="SimpleContainer" containedName="contents" point="252 462" dimensions="55 0" offset="4 4"/>
+                        <figures uuid="mitchell_1169551285282_4662" id="44_A" recreator="Attributes" containedName="attrs" point="252 454" dimensions="40 8"/>
+                      </figures>
+                    </figures>
+                    <figures uuid="mitchell_1169551285283_424" id="34_A" recreator="Attributes" containedName="attrs" show="false" point="232 422" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285295_3980" id="34_P" recreator="PortContainer" containedName="ports" point="232 400" dimensions="98.6 70">
+                      <properties uuid="mitchell_1169551285295_3740" name="classScope" value="true"/>
+                    </figures>
+                    <figures uuid="mitchell_1169551285295_6148" id="34_O" recreator="Operations" containedName="ops" point="232 422" dimensions="40 8"/>
+                  </figures>
+                </figures>
+                <properties uuid="mitchell_1169551285294_3867" name="fill" value="193 206 236"/>
+                <properties uuid="mitchell_1169551285294_2843" name="owner" value="simple&#xA;conflict +&#xA;resolution"/>
+              </figures>
+              <figures uuid="mitchell_1169551285294_1224" id="32" recreator="Package" autosized="false" point="504 364" dimensions="172 120" subject="//@childPackages.4/@childPackages.1/@childPackages.2">
+                <figures uuid="mitchell_1169551285281_9427" id="32_C" recreator="SimpleContainer" point="504 387" dimensions="172 97" offset="4 4">
+                  <figures uuid="mitchell_1169551285281_7472" id="35" recreator="Class" autosized="false" point="540 404" dimensions="98.6 70" suppressAttributes="true" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@childPackages.2/@ownedMember.0">
+                    <figures uuid="mitchell_1169551285282_972" id="35_C" recreator="SimpleContainer" containedName="contents" point="540 426" dimensions="98.6 48" offset="4 4">
+                      <figures uuid="mitchell_1169551285295_4424" id="45" recreator="Part" autosized="false" point="560 436" dimensions="56 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@childPackages.2/@ownedMember.0/@ownedAttribute.0">
+                        <figures uuid="mitchell_1169551285281_9954" id="45_O" recreator="Operations" containedName="ops" point="560 466" dimensions="40 8"/>
+                        <figures uuid="mitchell_1169551285281_7271" id="45_P" recreator="PortContainer" containedName="ports" point="560 436" dimensions="56 30"/>
+                        <figures uuid="mitchell_1169551285282_5473" id="45_A" recreator="Attributes" containedName="attrs" point="560 458" dimensions="40 8"/>
+                        <figures uuid="mitchell_1169551285282_9966" id="45_C" recreator="SimpleContainer" containedName="contents" point="560 466" dimensions="56 0" offset="4 4"/>
+                      </figures>
+                    </figures>
+                    <figures uuid="mitchell_1169551285282_9681" id="35_A" recreator="Attributes" containedName="attrs" show="false" point="540 426" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285283_6291" id="35_O" recreator="Operations" containedName="ops" point="540 426" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285283_4642" id="35_P" recreator="PortContainer" containedName="ports" point="540 404" dimensions="98.6 70">
+                      <properties uuid="mitchell_1169551285283_2305" name="classScope" value="true"/>
+                    </figures>
+                  </figures>
+                </figures>
+                <properties uuid="mitchell_1169551285294_2969" name="fill" value="193 206 236"/>
+                <properties uuid="mitchell_1169551285294_2588" name="owner" value="simple&#xA;conflict +&#xA;resolution"/>
+              </figures>
+              <figures uuid="mitchell_1169551285294_5966" id="31" recreator="Package" autosized="false" point="304 580" dimensions="236 136" subject="//@childPackages.4/@childPackages.1/@childPackages.1">
+                <figures uuid="mitchell_1169551285281_1713" id="31_C" recreator="SimpleContainer" point="304 603" dimensions="236 113" offset="4 4">
+                  <figures uuid="mitchell_1169551285281_1439" id="33" recreator="Class" autosized="false" point="360 616" dimensions="114 86" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                    <figures uuid="mitchell_1169551285281_7850" id="33_O" recreator="Operations" containedName="ops" point="360 646" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285282_449" id="33_P" recreator="PortContainer" containedName="ports" point="360 616" dimensions="114 86">
+                      <properties uuid="mitchell_1169551285282_1384" name="classScope" value="true"/>
+                    </figures>
+                    <figures uuid="mitchell_1169551285282_4563" id="33_C" recreator="SimpleContainer" containedName="contents" point="360 646" dimensions="114 56" offset="4 4">
+                      <figures uuid="mitchell_1169551285282_2519" id="40" recreator="Part" autosized="false" point="396 656" dimensions="54 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1/@ownedAttribute.0">
+                        <figures uuid="mitchell_1169551285282_7293" id="40_O" recreator="Operations" containedName="ops" point="396 686" dimensions="40 8"/>
+                        <figures uuid="mitchell_1169551285282_4108" id="40_P" recreator="PortContainer" containedName="ports" point="396 656" dimensions="54 30"/>
+                        <figures uuid="mitchell_1169551285283_1122" id="40_C" recreator="SimpleContainer" containedName="contents" point="396 686" dimensions="54 0" offset="4 4"/>
+                        <figures uuid="mitchell_1169551285295_1107" id="40_A" recreator="Attributes" containedName="attrs" point="396 678" dimensions="40 8"/>
+                      </figures>
+                    </figures>
+                    <figures uuid="mitchell_1169551285282_9980" id="33_A" recreator="Attributes" containedName="attrs" point="360 638" dimensions="40 8"/>
+                  </figures>
+                </figures>
+                <properties uuid="mitchell_1169551285294_4227" name="fill" value="193 206 236"/>
+                <properties uuid="mitchell_1169551285294_6654" name="owner" value="simple&#xA;conflict +&#xA;resolution"/>
+              </figures>
+              <figures uuid="mitchell_1169551285296_461" id="50" recreator="Package" autosized="false" point="336 184" dimensions="168 112" subject="//@childPackages.4/@childPackages.1/@childPackages.3">
+                <figures uuid="mitchell_1169551285295_5341" id="50_C" recreator="SimpleContainer" point="336 207" dimensions="168 89" offset="4 4">
+                  <figures uuid="mitchell_1169551285295_2253" id="51" recreator="Class" autosized="false" point="372 220" dimensions="106.6 66" suppressAttributes="true" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedMember.0">
+                    <figures uuid="mitchell_1169551285295_7926" id="51_A" recreator="Attributes" containedName="attrs" show="false" point="372 242" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285295_1995" id="51_C" recreator="SimpleContainer" containedName="contents" point="372 242" dimensions="106.6 44" offset="4 4">
+                      <figures uuid="mitchell_1169551285295_5160" id="62" recreator="Part" autosized="false" point="400 248" dimensions="54 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedMember.0/@ownedAttribute.0">
+                        <figures uuid="mitchell_1169551285282_754" id="62_C" recreator="SimpleContainer" containedName="contents" point="400 278" dimensions="54 0" offset="4 4"/>
+                        <figures uuid="mitchell_1169551285282_8602" id="62_P" recreator="PortContainer" containedName="ports" point="400 248" dimensions="54 30"/>
+                        <figures uuid="mitchell_1169551285282_9095" id="62_O" recreator="Operations" containedName="ops" point="400 278" dimensions="40 8"/>
+                        <figures uuid="mitchell_1169551285295_6070" id="62_A" recreator="Attributes" containedName="attrs" point="400 270" dimensions="40 8"/>
+                      </figures>
+                    </figures>
+                    <figures uuid="mitchell_1169551285296_33" id="51_P" recreator="PortContainer" containedName="ports" point="372 220" dimensions="106.6 66">
+                      <properties uuid="mitchell_1169551285296_3808" name="classScope" value="true"/>
+                    </figures>
+                    <figures uuid="mitchell_1169551285296_9886" id="51_O" recreator="Operations" containedName="ops" point="372 242" dimensions="40 8"/>
+                  </figures>
+                </figures>
+                <properties uuid="mitchell_1169551285296_6008" name="fill" value="193 206 236"/>
+                <properties uuid="mitchell_1169551285296_6178" name="owner" value="simple&#xA;conflict +&#xA;resolution"/>
+              </figures>
+              <properties uuid="mitchell_1169551285295_8385" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169551285282_8380" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169551285295_7011" id="59" recreator="dependency" anchor1Id="32" anchor2Id="31" virtualPoint="528 532" points="3 572 484 572 656 540 656" subject="//@childPackages.4/@childPackages.1/@childPackages.2/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285281_1441" id="59_M" recreator="Linked Text" containedName="text" text="" show="false" point="556 570" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285281_535" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285295_3581" id="57" recreator="dependency" anchor1Id="30" anchor2Id="31" virtualPoint="316 532" points="3 264 484 264 656 304 656" subject="//@childPackages.4/@childPackages.1/@childPackages.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285282_5935" id="57_M" recreator="Linked Text" containedName="text" text="" show="false" point="248 574" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285282_7369" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285295_777" id="55" recreator="dependency" anchor1Id="50" anchor2Id="32" virtualPoint="504 330" points="3 504 248 572 248 572 364" subject="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedAnonymousDependencies.1">
+            <figures uuid="mitchell_1169551285281_6558" id="55_M" recreator="Linked Text" containedName="text" text="" show="false" point="556.4 257.5" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285281_1055" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285295_3568" id="61" recreator="dependency" anchor1Id="51" anchor2Id="33" virtualPoint="424 451" points="2 424 286 424 616" subject="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedMember.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285282_892" id="61_M" recreator="Linked Text" containedName="text" text="" show="false" point="408 432" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285282_5464" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285296_3959" id="53" recreator="dependency" anchor1Id="50" anchor2Id="30" virtualPoint="336 330" points="3 336 248 264 248 264 364" subject="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285282_1699" id="53_M" recreator="Linked Text" containedName="text" text="" show="false" point="248 256" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285282_7151" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+      <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="mitchell_1169482279771_2966" clientDependency="//@childPackages.4/@childPackages.1/@childPackages.0/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies uuid="mitchell_1169482551360_7834" client="//@childPackages.4/@childPackages.1/@childPackages.0" supplier="//@childPackages.4/@childPackages.1/@childPackages.1"/>
+        <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482290628_7620" clientDependency="//@childPackages.4/@childPackages.1/@childPackages.0/@ownedMember.0/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11 //@childPackages.1/@ownedMember.10" uuid="mitchell_1169482341829_833" client="//@childPackages.4/@childPackages.1/@childPackages.0/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+          <ownedAttribute uuid="mitchell_1169482429906_785" type="//@childPackages.4/@childPackages.4/@ownedMember.0">
+            <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169482429906_9903" instance="//@childPackages.4/@childPackages.1/@childPackages.0/@ownedMember.0/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+              <ownedAnonymousInstanceValue uuid="mitchell_1169482429906_4957" classifier="//@childPackages.4/@childPackages.4/@ownedMember.0"/>
+            </defaultValue>
+          </ownedAttribute>
+        </ownedMember>
+      </childPackages>
+      <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="mitchell_1169482281109_595"/>
+      <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="mitchell_1169482283275_5806" clientDependency="//@childPackages.4/@childPackages.1/@childPackages.2/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies uuid="mitchell_1169482558757_4485" client="//@childPackages.4/@childPackages.1/@childPackages.2" supplier="//@childPackages.4/@childPackages.1/@childPackages.1"/>
+        <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482292700_2951" clientDependency="//@childPackages.4/@childPackages.1/@childPackages.2/@ownedMember.0/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11 //@childPackages.1/@ownedMember.10" uuid="mitchell_1169482348237_6614" client="//@childPackages.4/@childPackages.1/@childPackages.2/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+          <ownedAttribute uuid="mitchell_1169482435650_2856" type="//@childPackages.4/@childPackages.4/@ownedMember.1">
+            <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169482435651_906" instance="//@childPackages.4/@childPackages.1/@childPackages.2/@ownedMember.0/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+              <ownedAnonymousInstanceValue uuid="mitchell_1169482435651_2379" classifier="//@childPackages.4/@childPackages.4/@ownedMember.1"/>
+            </defaultValue>
+          </ownedAttribute>
+        </ownedMember>
+      </childPackages>
+      <childPackages appliedBasicStereotypes="//@childPackages.1/@ownedMember.8" uuid="mitchell_1169482524406_1112" name="resolving stratum" clientDependency="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.1/@childPackages.3/@ownedAnonymousDependencies.1">
+        <ownedAnonymousDependencies uuid="mitchell_1169482535364_3048" client="//@childPackages.4/@childPackages.1/@childPackages.3" supplier="//@childPackages.4/@childPackages.1/@childPackages.0"/>
+        <ownedAnonymousDependencies uuid="mitchell_1169482540677_668" client="//@childPackages.4/@childPackages.1/@childPackages.3" supplier="//@childPackages.4/@childPackages.1/@childPackages.2"/>
+        <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169482530197_999" clientDependency="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedMember.0/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169482584710_8502" client="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+          <ownedAttribute uuid="mitchell_1169482600777_3124" type="//@childPackages.4/@childPackages.1/@ownedMember.3">
+            <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169482600777_7008" instance="//@childPackages.4/@childPackages.1/@childPackages.3/@ownedMember.0/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+              <ownedAnonymousInstanceValue uuid="mitchell_1169482600777_2324" classifier="//@childPackages.4/@childPackages.1/@ownedMember.3"/>
+            </defaultValue>
+          </ownedAttribute>
+        </ownedMember>
+      </childPackages>
+    </childPackages>
+    <childPackages uuid="mitchell_1169482716675_4157" name="circularity&#xA;issues">
+      <ownedComment uuid="mitchell_1169482787388_1839" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      What does it &lt;u>mean&lt;/u> for D?&#xA;    &lt;/p>&#xA;    &lt;p>&#xA;      Presumably, The loop will compress A', B and A into the same definition. &#xA;      How can D make changes to B which get merged?&#xA;    &lt;/p>&#xA;    &lt;p>&#xA;      How do we build up the class A' in the first place?&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+      <ownedComment uuid="mitchell_1169486611421_7553" body="export circularity.eps"/>
+      <j_diagramHolder uuid="mitchell_1169482803234_7916" saveTime="Tue Jan 23, 2007 at 01:41:27 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169559687115_8342" lastFigureId="14">
+          <figures uuid="mitchell_1169559687115_4303" id="13" recreator="Grouper" name="export circularity.eps" autosized="false" point="84 164" dimensions="684 320" subject="//@childPackages.4/@childPackages.2/@ownedComment.1">
+            <figures uuid="mitchell_1169559687116_6607" id="13_C" recreator="SimpleContainer" point="84 164" dimensions="684 320" min="10 10">
+              <figures uuid="mitchell_1169559687116_7966" id="12" recreator="Note" autosized="false" point="448 168" dimensions="316 132" subject="//@childPackages.4/@childPackages.2/@ownedComment.0">
+                <figures uuid="mitchell_1169559687115_8276" id="12_C" recreator="SimpleContainer" point="448 168" dimensions="316 132" offset="2 2">
+                  <properties uuid="mitchell_1169559687115_8585" name="backdrop" value="false"/>
+                </figures>
+                <properties uuid="mitchell_1169559687116_3076" name="hideNote" value="true"/>
+                <properties uuid="mitchell_1169559687116_6322" name="useHTML" value="true"/>
+              </figures>
+              <figures uuid="mitchell_1169559687116_7422" id="1" recreator="Class" autosized="false" point="252 316" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0">
+                <figures uuid="mitchell_1169559687115_2745" id="1_A" recreator="Attributes" containedName="attrs" point="252 338" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687115_2049" id="1_C" recreator="SimpleContainer" containedName="contents" point="252 346" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169559687116_1469" id="1_P" recreator="PortContainer" containedName="ports" point="252 316" dimensions="50 30">
+                  <properties uuid="mitchell_1169559687116_1583" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169559687116_9533" id="1_O" recreator="Operations" containedName="ops" point="252 346" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169559687116_3805" id="0" recreator="Class" autosized="false" point="252 436" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169559687115_6835" id="0_O" recreator="Operations" containedName="ops" point="252 466" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687116_1183" id="0_P" recreator="PortContainer" containedName="ports" point="252 436" dimensions="50 30">
+                  <properties uuid="mitchell_1169559687116_8958" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169559687116_8935" id="0_A" recreator="Attributes" containedName="attrs" point="252 458" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687117_4984" id="0_C" recreator="SimpleContainer" containedName="contents" point="252 466" dimensions="50 0" offset="4 4"/>
+              </figures>
+              <figures uuid="mitchell_1169559687116_5433" id="5" recreator="Class" autosized="false" point="252 228" dimensions="50.6 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.1">
+                <figures uuid="mitchell_1169559687115_2391" id="5_O" recreator="Operations" containedName="ops" point="252 258" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687115_6694" id="5_P" recreator="PortContainer" containedName="ports" point="252 228" dimensions="50.6 30">
+                  <properties uuid="mitchell_1169559687115_511" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169559687116_1573" id="5_A" recreator="Attributes" containedName="attrs" point="252 250" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687116_5645" id="5_C" recreator="SimpleContainer" containedName="contents" point="252 258" dimensions="50.6 0" offset="4 4"/>
+              </figures>
+              <figures uuid="mitchell_1169559687116_8911" id="4" recreator="Class" autosized="false" point="112 316" dimensions="50.6 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.2">
+                <figures uuid="mitchell_1169559687115_9883" id="4_C" recreator="SimpleContainer" containedName="contents" point="112 346" dimensions="50.6 0" offset="4 4"/>
+                <figures uuid="mitchell_1169559687115_7869" id="4_A" recreator="Attributes" containedName="attrs" point="112 338" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687116_1069" id="4_O" recreator="Operations" containedName="ops" point="112 346" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687116_5920" id="4_P" recreator="PortContainer" containedName="ports" point="112 316" dimensions="50.6 30">
+                  <properties uuid="mitchell_1169559687116_298" name="classScope" value="true"/>
+                </figures>
+              </figures>
+              <properties uuid="mitchell_1169559687116_1541" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169559687115_5822" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169559687116_6757" id="11" recreator="dependency" anchor1Id="4" anchor2Id="1" virtualPoint="207.3 332" points="2 162.6 332 252 332" subject="//@childPackages.4/@childPackages.1/@ownedMember.2/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169559687115_4583" id="11_M" recreator="Linked Text" containedName="text" text="" show="false" point="194 316" dimensions="3.8 14">
+              <properties uuid="mitchell_1169559687115_1481" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169559687116_4202" id="3" recreator="dependency" anchor1Id="1" anchor2Id="0" virtualPoint="276 391" points="2 276 346 276 436" subject="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169559687116_1605" id="3_M" recreator="Linked Text" containedName="text" text="" show="false" point="260 376" dimensions="3.8 14">
+              <properties uuid="mitchell_1169559687116_3314" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169559687116_3142" id="7" recreator="dependency" anchor1Id="5" anchor2Id="1" virtualPoint="276 287" points="2 276 258 276 316" subject="//@childPackages.4/@childPackages.1/@ownedMember.1/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169559687116_190" id="7_M" recreator="Linked Text" containedName="text" text="" show="false" point="260 272" dimensions="3.8 14">
+              <properties uuid="mitchell_1169559687116_4722" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169559687116_5972" id="9" recreator="dependency" anchor1Id="5" anchor2Id="0" virtualPoint="284 347" points="3 296.6 259.1 384 332 290.6 435.9" subject="//@childPackages.4/@childPackages.1/@ownedMember.1/@ownedAnonymousDependencies.1">
+            <figures uuid="mitchell_1169559687116_1325" id="9_M" recreator="Linked Text" containedName="text" text="" show="false" point="360 324" dimensions="3.8 14">
+              <properties uuid="mitchell_1169559687116_3953" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169485136784_2748" name="involved&#xA;chains">
+      <ownedComment uuid="mitchell_1169486625982_5480" body="export chains.eps"/>
+      <j_diagramHolder uuid="mitchell_1169485708925_3622" saveTime="Tue Jan 23, 2007 at 11:21:16 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169551285302_5870" lastFigureId="16">
+          <figures uuid="mitchell_1169551285303_6596" id="15" recreator="Grouper" name="export chains.eps" autosized="false" point="308 140" dimensions="312 320" subject="//@childPackages.4/@childPackages.3/@ownedComment.0">
+            <figures uuid="mitchell_1169551285304_2251" id="15_C" recreator="SimpleContainer" point="308 140" dimensions="312 320" min="10 10">
+              <figures uuid="mitchell_1169551285304_816" id="2" recreator="Class" autosized="false" point="448 276" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0">
+                <figures uuid="mitchell_1169551285302_853" id="2_A" recreator="Attributes" containedName="attrs" point="448 298" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285303_2051" id="2_C" recreator="SimpleContainer" containedName="contents" point="448 306" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169551285304_3400" id="2_P" recreator="PortContainer" containedName="ports" point="448 276" dimensions="50 30">
+                  <properties uuid="mitchell_1169551285304_1444" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285304_188" id="2_O" recreator="Operations" containedName="ops" point="448 306" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169551285304_7574" id="1" recreator="Class" autosized="false" point="448 412" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169551285303_5219" id="1_A" recreator="Attributes" containedName="attrs" point="448 434" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285303_1505" id="1_C" recreator="SimpleContainer" containedName="contents" point="448 442" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169551285304_7439" id="1_P" recreator="PortContainer" containedName="ports" point="448 412" dimensions="50 30">
+                  <properties uuid="mitchell_1169551285304_1794" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285304_4855" id="1_O" recreator="Operations" containedName="ops" point="448 442" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169551285304_4020" id="6" recreator="Class" autosized="false" point="448 144" dimensions="50.6 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.2">
+                <figures uuid="mitchell_1169551285303_4599" id="6_O" recreator="Operations" containedName="ops" point="448 174" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285303_9903" id="6_P" recreator="PortContainer" containedName="ports" point="448 144" dimensions="50.6 30">
+                  <properties uuid="mitchell_1169551285303_246" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285304_6428" id="6_C" recreator="SimpleContainer" containedName="contents" point="448 174" dimensions="50.6 0" offset="4 4"/>
+                <figures uuid="mitchell_1169551285304_7389" id="6_A" recreator="Attributes" containedName="attrs" point="448 166" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169551285304_2972" id="5" recreator="Class" autosized="false" point="332 192" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.4">
+                <figures uuid="mitchell_1169551285303_9759" id="5_O" recreator="Operations" containedName="ops" point="332 222" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285303_3600" id="5_P" recreator="PortContainer" containedName="ports" point="332 192" dimensions="50 30">
+                  <properties uuid="mitchell_1169551285303_2070" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285304_8422" id="5_A" recreator="Attributes" containedName="attrs" point="332 214" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285304_5488" id="5_C" recreator="SimpleContainer" containedName="contents" point="332 222" dimensions="50 0" offset="4 4"/>
+              </figures>
+              <properties uuid="mitchell_1169551285304_6148" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169551285303_1327" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169551285303_3481" id="14" recreator="dependency" anchor1Id="6" anchor2Id="2" virtualPoint="468 225" points="2 468 174 468 276" subject="//@childPackages.4/@childPackages.1/@ownedMember.2/@ownedAnonymousDependencies.2">
+            <figures uuid="mitchell_1169551285303_6776" id="14_M" recreator="Linked Text" containedName="text" text="" show="false" point="452 208" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285303_5254" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285303_1174" id="12" recreator="dependency" anchor1Id="2" anchor2Id="1" virtualPoint="468 359" points="2 468 306 468 412" subject="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.1">
+            <figures uuid="mitchell_1169551285303_962" id="12_M" recreator="Linked Text" containedName="text" text="" show="false" point="452 344" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285303_9649" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285304_9831" id="10" recreator="dependency" anchor1Id="6" anchor2Id="1" virtualPoint="476 293" points="4 498.6 160 580 160 580 428 498 428" subject="//@childPackages.4/@childPackages.1/@ownedMember.2/@ownedAnonymousDependencies.1">
+            <figures uuid="mitchell_1169551285303_9450" id="10_M" recreator="Linked Text" containedName="text" text="" show="false" point="564 280" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285303_5416" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285304_2813" id="8" recreator="dependency" anchor1Id="5" anchor2Id="2" virtualPoint="415 249" points="2 379.2 223 452.4 276.1" subject="//@childPackages.4/@childPackages.1/@ownedMember.4/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285303_6860" id="8_M" recreator="Linked Text" containedName="text" text="" show="false" point="398.3 236.3" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285303_1285" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169485505781_4114" name="simple&#xA;local redef">
+      <ownedComment uuid="mitchell_1169486643279_4971" body="export local.eps"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169485618000_4184" name="C" clientDependency="//@childPackages.4/@childPackages.4/@ownedMember.0/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.4/@ownedMember.0/@ownedAnonymousDependencies.1">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169485633136_2134" client="//@childPackages.4/@childPackages.4/@ownedMember.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169570031900_2406" client="//@childPackages.4/@childPackages.4/@ownedMember.0" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+        <ownedAttribute uuid="mitchell_1169485643714_1163" type="//@childPackages.4/@childPackages.1/@ownedMember.0">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169485643714_7815" instance="//@childPackages.4/@childPackages.4/@ownedMember.0/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169485643714_9335" classifier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+          </defaultValue>
+        </ownedAttribute>
+        <nestedClassifier xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169485652179_3756" clientDependency="//@childPackages.4/@childPackages.4/@ownedMember.0/@nestedClassifier.0/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11 //@childPackages.1/@ownedMember.10" uuid="mitchell_1169485656865_3625" client="//@childPackages.4/@childPackages.4/@ownedMember.0/@nestedClassifier.0" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+        </nestedClassifier>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169485638473_7138" name="D" clientDependency="//@childPackages.4/@childPackages.4/@ownedMember.1/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169485641289_7901" client="//@childPackages.4/@childPackages.4/@ownedMember.1" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <j_diagramHolder uuid="mitchell_1169485708942_2069" saveTime="Mon Jan 22, 2007 at 05:24:39 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169551285297_4110" lastFigureId="30">
+          <figures uuid="mitchell_1169551285299_403" id="12" recreator="dependency" anchor1Id="10" anchor2Id="13" virtualPoint="412 345" points="2 412 274 412 416" subject="//@childPackages.4/@childPackages.4/@ownedMember.0/@nestedClassifier.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285299_2101" id="12_M" recreator="Linked Text" containedName="text" text="" show="false" point="397.5 329.5" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285299_3986" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285300_9445" id="29" recreator="Grouper" name="export local.eps" autosized="false" point="328 172" dimensions="378 366" subject="//@childPackages.4/@childPackages.4/@ownedComment.0">
+            <figures uuid="mitchell_1169551285299_6899" id="29_C" recreator="SimpleContainer" point="328 172" dimensions="378 366" min="10 10">
+              <figures uuid="mitchell_1169551285299_5292" id="13" recreator="Class" autosized="false" point="392 416" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0">
+                <figures uuid="mitchell_1169551285299_7333" id="13_O" recreator="Operations" containedName="ops" point="392 446" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285299_6198" id="13_P" recreator="PortContainer" containedName="ports" point="392 416" dimensions="50 30">
+                  <properties uuid="mitchell_1169551285299_3667" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285300_7468" id="13_A" recreator="Attributes" containedName="attrs" point="392 438" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285300_7127" id="13_C" recreator="SimpleContainer" containedName="contents" point="392 446" dimensions="50 0" offset="4 4"/>
+              </figures>
+              <figures uuid="mitchell_1169551285300_9426" id="3" recreator="Class" autosized="false" point="368 200" dimensions="208 92" suppressOperations="true" subject="//@childPackages.4/@childPackages.4/@ownedMember.0">
+                <figures uuid="mitchell_1169551285299_8317" id="3_A" recreator="Attributes" containedName="attrs" point="368 222" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285299_4017" id="3_C" recreator="SimpleContainer" containedName="contents" point="368 230" dimensions="208 62" offset="4 4">
+                  <figures uuid="mitchell_1169551285300_4868" id="10" recreator="Class" autosized="false" point="392 244" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.4/@ownedMember.0/@nestedClassifier.0">
+                    <figures uuid="mitchell_1169551285299_608" id="10_O" recreator="Operations" containedName="ops" point="392 274" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285300_6200" id="10_C" recreator="SimpleContainer" containedName="contents" point="392 274" dimensions="50 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169551285300_2405" id="10_A" recreator="Attributes" containedName="attrs" point="392 266" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285301_4205" id="10_P" recreator="PortContainer" containedName="ports" point="392 244" dimensions="50 30">
+                      <properties uuid="mitchell_1169551285301_7251" name="classScope" value="true"/>
+                    </figures>
+                  </figures>
+                  <figures uuid="mitchell_1169551285301_9782" id="9" recreator="Part" autosized="false" point="472 244" dimensions="54 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.4/@ownedMember.0/@ownedAttribute.0">
+                    <figures uuid="mitchell_1169551285299_7631" id="9_O" recreator="Operations" containedName="ops" point="472 274" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285299_6414" id="9_P" recreator="PortContainer" containedName="ports" point="472 244" dimensions="54 30"/>
+                    <figures uuid="mitchell_1169551285300_7189" id="9_C" recreator="SimpleContainer" containedName="contents" point="472 274" dimensions="54 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169551285300_8227" id="9_A" recreator="Attributes" containedName="attrs" point="472 266" dimensions="40 8"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169551285300_7894" id="3_P" recreator="PortContainer" containedName="ports" point="368 200" dimensions="208 92">
+                  <properties uuid="mitchell_1169551285300_8520" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285300_5276" id="3_O" recreator="Operations" containedName="ops" point="368 230" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169551285300_4882" id="0" recreator="Class" autosized="false" point="528 388" dimensions="136 108" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169551285299_9221" id="0_O" recreator="Operations" containedName="ops" point="528 418" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285299_2180" id="0_P" recreator="PortContainer" containedName="ports" point="528 388" dimensions="136 108">
+                  <properties uuid="mitchell_1169551285299_7327" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285301_2584" id="0_A" recreator="Attributes" containedName="attrs" point="528 410" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285301_902" id="0_C" recreator="SimpleContainer" containedName="contents" point="528 418" dimensions="136 78" offset="4 4">
+                  <figures uuid="mitchell_1169551285300_8944" id="1" recreator="Part" autosized="false" point="568 436" dimensions="54 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1/@ownedAttribute.1">
+                    <figures uuid="mitchell_1169551285298_6047" id="1_A" recreator="Attributes" containedName="attrs" point="568 458" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285298_9150" id="1_C" recreator="SimpleContainer" containedName="contents" point="568 466" dimensions="54 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169551285300_1143" id="1_P" recreator="PortContainer" containedName="ports" point="568 436" dimensions="54 30"/>
+                    <figures uuid="mitchell_1169551285300_9728" id="1_O" recreator="Operations" containedName="ops" point="568 466" dimensions="40 8"/>
+                  </figures>
+                </figures>
+              </figures>
+              <figures uuid="mitchell_1169551285300_1205" id="6" recreator="Class" autosized="false" point="624 244" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.4/@ownedMember.1">
+                <figures uuid="mitchell_1169551285299_6681" id="6_O" recreator="Operations" containedName="ops" point="624 274" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285299_8016" id="6_P" recreator="PortContainer" containedName="ports" point="624 244" dimensions="50 30">
+                  <properties uuid="mitchell_1169551285299_1971" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285301_4059" id="6_C" recreator="SimpleContainer" containedName="contents" point="624 274" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169551285301_4318" id="6_A" recreator="Attributes" containedName="attrs" point="624 266" dimensions="40 8"/>
+              </figures>
+              <properties uuid="mitchell_1169551285299_1398" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169551285300_4647" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169551285300_7498" id="5" recreator="dependency" anchor1Id="3" anchor2Id="0" virtualPoint="552 340" points="2 552 292 552 388" subject="//@childPackages.4/@childPackages.4/@ownedMember.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285298_2065" id="5_M" recreator="Linked Text" containedName="text" text="" show="false" point="536 324" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285298_9661" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285301_834" id="8" recreator="dependency" anchor1Id="6" anchor2Id="0" virtualPoint="652 331" points="2 652 274 652 388" subject="//@childPackages.4/@childPackages.4/@ownedMember.1/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285299_3361" id="8_M" recreator="Linked Text" containedName="text" text="" show="false" point="636 316" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285299_625" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169485715572_6459" name="2-level&#xA;local redef">
+      <ownedComment uuid="mitchell_1169486656767_9665" body="export 2-level-local-redef.eps"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169485779096_1804" name="F">
+        <ownedAttribute uuid="mitchell_1169485790568_4957" type="//@childPackages.4/@childPackages.0/@ownedMember.1">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169485790568_9466" instance="//@childPackages.4/@childPackages.5/@ownedMember.0/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169485790568_2673" classifier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+          </defaultValue>
+        </ownedAttribute>
+        <nestedClassifier xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169485989463_5051" clientDependency="//@childPackages.4/@childPackages.5/@ownedMember.0/@nestedClassifier.0/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169485993750_3714" client="//@childPackages.4/@childPackages.5/@ownedMember.0/@nestedClassifier.0" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        </nestedClassifier>
+        <nestedClassifier xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169485997760_6836" clientDependency="//@childPackages.4/@childPackages.5/@ownedMember.0/@nestedClassifier.1/@ownedAnonymousDependencies.0">
+          <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169486000838_3458" client="//@childPackages.4/@childPackages.5/@ownedMember.0/@nestedClassifier.1" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+        </nestedClassifier>
+      </ownedMember>
+      <j_diagramHolder uuid="mitchell_1169486131562_3441" saveTime="Mon Jan 22, 2007 at 05:24:39 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169551285271_8396" lastFigureId="14">
+          <figures uuid="mitchell_1169551285272_3512" id="13" recreator="Grouper" name="export 2-level-local-redef.eps" autosized="false" point="148 184" dimensions="360 338" subject="//@childPackages.4/@childPackages.5/@ownedComment.0">
+            <figures uuid="mitchell_1169551285274_7328" id="13_C" recreator="SimpleContainer" point="148 184" dimensions="360 338" min="10 10">
+              <figures uuid="mitchell_1169551285274_7419" id="2" recreator="Class" autosized="false" point="368 404" dimensions="116 84" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0">
+                <figures uuid="mitchell_1169551285272_7589" id="2_A" recreator="Attributes" containedName="attrs" point="368 426" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285272_4075" id="2_C" recreator="SimpleContainer" containedName="contents" point="368 434" dimensions="116 54" offset="4 4">
+                  <figures uuid="mitchell_1169551285273_9375" id="3" recreator="Part" autosized="false" point="400 444" dimensions="55 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAttribute.0">
+                    <figures uuid="mitchell_1169551285273_6533" id="3_A" recreator="Attributes" containedName="attrs" point="400 466" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285273_1585" id="3_C" recreator="SimpleContainer" containedName="contents" point="400 474" dimensions="55 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169551285273_1829" id="3_P" recreator="PortContainer" containedName="ports" point="400 444" dimensions="55 30"/>
+                    <figures uuid="mitchell_1169551285273_6278" id="3_O" recreator="Operations" containedName="ops" point="400 474" dimensions="40 8"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169551285274_4002" id="2_P" recreator="PortContainer" containedName="ports" point="368 404" dimensions="116 84">
+                  <properties uuid="mitchell_1169551285274_5755" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285274_470" id="2_O" recreator="Operations" containedName="ops" point="368 434" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169551285274_6073" id="0" recreator="Class" autosized="false" point="188 404" dimensions="116 84" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169551285272_7050" id="0_O" recreator="Operations" containedName="ops" point="188 434" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285272_2924" id="0_P" recreator="PortContainer" containedName="ports" point="188 404" dimensions="116 84">
+                  <properties uuid="mitchell_1169551285272_3966" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285274_5340" id="0_A" recreator="Attributes" containedName="attrs" point="188 426" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285275_9844" id="0_C" recreator="SimpleContainer" containedName="contents" point="188 434" dimensions="116 54" offset="4 4">
+                  <figures uuid="mitchell_1169551285274_1431" id="1" recreator="Part" autosized="false" point="216 444" dimensions="54 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1/@ownedAttribute.2">
+                    <figures uuid="mitchell_1169551285272_2804" id="1_A" recreator="Attributes" containedName="attrs" point="216 466" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285272_9548" id="1_C" recreator="SimpleContainer" containedName="contents" point="216 474" dimensions="54 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169551285274_2069" id="1_P" recreator="PortContainer" containedName="ports" point="216 444" dimensions="54 30"/>
+                    <figures uuid="mitchell_1169551285274_9175" id="1_O" recreator="Operations" containedName="ops" point="216 474" dimensions="40 8"/>
+                  </figures>
+                </figures>
+              </figures>
+              <figures uuid="mitchell_1169551285274_4225" id="4" recreator="Class" autosized="false" point="180 208" dimensions="300 140" suppressOperations="true" subject="//@childPackages.4/@childPackages.5/@ownedMember.0">
+                <figures uuid="mitchell_1169551285272_9518" id="4_C" recreator="SimpleContainer" containedName="contents" point="180 238" dimensions="300 110" offset="4 4">
+                  <figures uuid="mitchell_1169551285274_2199" id="6" recreator="Class" autosized="false" point="200 292" dimensions="50.6 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.5/@ownedMember.0/@nestedClassifier.0">
+                    <figures uuid="mitchell_1169551285273_9268" id="6_O" recreator="Operations" containedName="ops" point="200 322" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285273_4656" id="6_P" recreator="PortContainer" containedName="ports" point="200 292" dimensions="50.6 30">
+                      <properties uuid="mitchell_1169551285273_832" name="classScope" value="true"/>
+                    </figures>
+                    <figures uuid="mitchell_1169551285275_9386" id="6_C" recreator="SimpleContainer" containedName="contents" point="200 322" dimensions="50.6 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169551285275_7939" id="6_A" recreator="Attributes" containedName="attrs" point="200 314" dimensions="40 8"/>
+                  </figures>
+                  <figures uuid="mitchell_1169551285274_499" id="5" recreator="Part" autosized="false" point="300 244" dimensions="55 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.5/@ownedMember.0/@ownedAttribute.0">
+                    <figures uuid="mitchell_1169551285272_8257" id="5_O" recreator="Operations" containedName="ops" point="300 274" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285272_82" id="5_P" recreator="PortContainer" containedName="ports" point="300 244" dimensions="55 30"/>
+                    <figures uuid="mitchell_1169551285274_8927" id="5_A" recreator="Attributes" containedName="attrs" point="300 266" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285275_2713" id="5_C" recreator="SimpleContainer" containedName="contents" point="300 274" dimensions="55 0" offset="4 4"/>
+                  </figures>
+                  <figures uuid="mitchell_1169551285274_7475" id="9" recreator="Class" autosized="false" point="412 296" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.5/@ownedMember.0/@nestedClassifier.1">
+                    <figures uuid="mitchell_1169551285273_785" id="9_O" recreator="Operations" containedName="ops" point="412 326" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285273_3934" id="9_P" recreator="PortContainer" containedName="ports" point="412 296" dimensions="50 30">
+                      <properties uuid="mitchell_1169551285273_7857" name="classScope" value="true"/>
+                    </figures>
+                    <figures uuid="mitchell_1169551285273_9645" id="9_C" recreator="SimpleContainer" containedName="contents" point="412 326" dimensions="50 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169551285273_6767" id="9_A" recreator="Attributes" containedName="attrs" point="412 318" dimensions="40 8"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169551285272_4079" id="4_A" recreator="Attributes" containedName="attrs" point="180 230" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285273_7460" id="4_O" recreator="Operations" containedName="ops" point="180 238" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285273_1957" id="4_P" recreator="PortContainer" containedName="ports" point="180 208" dimensions="300 140">
+                  <properties uuid="mitchell_1169551285273_7162" name="classScope" value="true"/>
+                </figures>
+              </figures>
+              <properties uuid="mitchell_1169551285274_9816" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169551285272_8184" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169551285273_774" id="11" recreator="dependency" anchor1Id="9" anchor2Id="2" virtualPoint="436 365" points="2 436 326 436 404" subject="//@childPackages.4/@childPackages.5/@ownedMember.0/@nestedClassifier.1/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285272_776" id="11_M" recreator="Linked Text" containedName="text" text="" show="false" point="420 350" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285272_638" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285275_5113" id="8" recreator="dependency" anchor1Id="6" anchor2Id="0" virtualPoint="224 363" points="2 224 322 224 404" subject="//@childPackages.4/@childPackages.5/@ownedMember.0/@nestedClassifier.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285273_4843" id="8_M" recreator="Linked Text" containedName="text" text="" show="false" point="208 348" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285273_7914" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169550942135_6020" name="wrapping&#xA;and&#xA;resemblance">
+      <ownedComment uuid="mitchell_1169550996832_7639" body="export wrapping-and-resemblance.eps"/>
+      <ownedComment uuid="mitchell_1169551029409_1342" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      What does B see if it is in the same stratum?  Do we make it a rule that &#xA;      you can't have a wrapping redef and resemblance together?&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+      <j_diagramHolder uuid="mitchell_1169551276259_7059" saveTime="Tue Jan 23, 2007 at 11:21:16 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169551285258_5248" lastFigureId="22">
+          <figures uuid="mitchell_1169551285267_3755" id="19" recreator="dependency" anchor1Id="17" anchor2Id="11" virtualPoint="412 353" points="2 412 302 412 404" subject="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.2">
+            <figures uuid="mitchell_1169551285268_2032" id="19_M" recreator="Linked Text" containedName="text" text="" show="false" point="396 336" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285268_5879" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169551285268_5873" id="20" recreator="Grouper" name="export wrapping-and-resemblance.eps" autosized="false" point="244 144" dimensions="494.6 408" subject="//@childPackages.4/@childPackages.6/@ownedComment.0">
+            <figures uuid="mitchell_1169551285269_2951" id="20_C" recreator="SimpleContainer" point="244 144" dimensions="494.6 408" min="10 10">
+              <figures uuid="mitchell_1169551285267_2920" id="17" recreator="Class" autosized="false" point="388 272" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0">
+                <figures uuid="mitchell_1169551285267_3676" id="17_A" recreator="Attributes" containedName="attrs" point="388 294" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285267_4680" id="17_C" recreator="SimpleContainer" containedName="contents" point="388 302" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169551285268_5592" id="17_P" recreator="PortContainer" containedName="ports" point="388 272" dimensions="50 30">
+                  <properties uuid="mitchell_1169551285268_9855" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285268_5770" id="17_O" recreator="Operations" containedName="ops" point="388 302" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169551285267_7811" id="15" recreator="Class" autosized="false" point="508 252" dimensions="106.6 82" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2">
+                <figures uuid="mitchell_1169551285268_6807" id="10" recreator="SimpleContainer" containedName="contents" point="508 282" dimensions="106.6 52" offset="4 4">
+                  <figures uuid="mitchell_1169551285267_4351" id="16" recreator="Part" autosized="false" point="528 288" dimensions="55 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAttribute.0">
+                    <figures uuid="mitchell_1169551285267_4667" id="13" recreator="SimpleContainer" containedName="contents" point="528 318" dimensions="55 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169551285268_2259" id="14" recreator="Operations" containedName="ops" point="528 318" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285268_5672" id="12" recreator="Attributes" containedName="attrs" point="528 310" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169551285268_3339" id="1" recreator="PortContainer" containedName="ports" point="528 288" dimensions="55 30"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169551285269_8730" id="0" recreator="Operations" containedName="ops" point="508 282" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285269_1943" id="7" recreator="Attributes" containedName="attrs" point="508 274" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285269_9671" id="9" recreator="PortContainer" containedName="ports" point="508 252" dimensions="106.6 82">
+                  <properties uuid="mitchell_1169551285269_3915" name="classScope" value="true"/>
+                </figures>
+              </figures>
+              <figures uuid="mitchell_1169551285268_5273" id="11" recreator="Class" autosized="false" point="384 404" dimensions="62 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169551285268_332" id="2" recreator="Operations" containedName="ops" point="384 434" dimensions="40 8"/>
+                <figures uuid="mitchell_1169551285269_1976" id="6" recreator="SimpleContainer" containedName="contents" point="384 434" dimensions="62 0" offset="4 4"/>
+                <figures uuid="mitchell_1169551285269_3944" id="4" recreator="PortContainer" containedName="ports" point="384 404" dimensions="62 30">
+                  <properties uuid="mitchell_1169551285269_7811" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169551285269_4752" id="8" recreator="Attributes" containedName="attrs" point="384 426" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169551285268_4362" id="21" recreator="Note" autosized="false" point="308 148" dimensions="400 68" subject="//@childPackages.4/@childPackages.6/@ownedComment.1">
+                <figures uuid="mitchell_1169551285269_9541" id="21_C" recreator="SimpleContainer" point="308 148" dimensions="400 68" offset="2 2">
+                  <properties uuid="mitchell_1169551285269_8004" name="backdrop" value="false"/>
+                </figures>
+                <properties uuid="mitchell_1169551285268_3207" name="hideNote" value="true"/>
+                <properties uuid="mitchell_1169551285268_5778" name="useHTML" value="true"/>
+              </figures>
+              <properties uuid="mitchell_1169551285269_7864" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169551285268_9399" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169551285268_3079" id="3" recreator="dependency" anchor1Id="15" anchor2Id="11" virtualPoint="488.2 356" points="2 512.6 334.9 432.5 404" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169551285269_8234" id="5" recreator="Linked Text" containedName="text" text="" show="false" point="457.7 348" dimensions="3.8 14">
+              <properties uuid="mitchell_1169551285269_4133" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169551094958_7044" name="deep&#xA;wrapping">
+      <ownedComment uuid="mitchell_1169551178403_859" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      A is w-redefined, but it doesn't compose A (replace) or composes it &#xA;      deeply (deep wrapping). Do we complain? How do we check?&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+      <ownedComment uuid="mitchell_1169551230025_4361" body="export deep-wrapping.eps"/>
+      <j_diagramHolder uuid="mitchell_1169551276250_2609" saveTime="Tue Jan 23, 2007 at 01:41:27 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169559687129_6591" lastFigureId="27">
+          <figures uuid="mitchell_1169559687130_2995" id="26" recreator="Grouper" name="export deep-wrapping.eps" autosized="false" point="272 156" dimensions="364 356" subject="//@childPackages.4/@childPackages.7/@ownedComment.1">
+            <figures uuid="mitchell_1169559687130_5794" id="26_C" recreator="SimpleContainer" point="272 156" dimensions="364 356" min="10 10">
+              <figures uuid="mitchell_1169559687130_2562" id="16" recreator="Class" autosized="false" point="408 428" dimensions="62 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169559687130_3001" id="18" recreator="SimpleContainer" containedName="contents" point="408 458" dimensions="62 0" offset="4 4"/>
+                <figures uuid="mitchell_1169559687130_9555" id="21" recreator="PortContainer" containedName="ports" point="408 428" dimensions="62 30">
+                  <properties uuid="mitchell_1169559687130_4973" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169559687131_7614" id="0" recreator="Attributes" containedName="attrs" point="408 450" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687131_875" id="9" recreator="Operations" containedName="ops" point="408 458" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169559687130_5794" id="13" recreator="Class" autosized="false" point="308 308" dimensions="54.6 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.0">
+                <figures uuid="mitchell_1169559687130_8065" id="11" recreator="Attributes" containedName="attrs" point="308 330" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687130_1058" id="12" recreator="Operations" containedName="ops" point="308 338" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687130_2290" id="23" recreator="SimpleContainer" containedName="contents" point="308 338" dimensions="54.6 0" offset="4 4"/>
+                <figures uuid="mitchell_1169559687131_3062" id="8" recreator="PortContainer" containedName="ports" point="308 308" dimensions="54.6 30">
+                  <properties uuid="mitchell_1169559687131_6581" name="classScope" value="true"/>
+                </figures>
+              </figures>
+              <figures uuid="mitchell_1169559687130_5793" id="20" recreator="Class" autosized="false" point="480 280" dimensions="110.6 82" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2">
+                <figures uuid="mitchell_1169559687130_7897" id="15" recreator="Operations" containedName="ops" point="480 310" dimensions="40 8"/>
+                <figures uuid="mitchell_1169559687130_792" id="22" recreator="PortContainer" containedName="ports" point="480 280" dimensions="110.6 82">
+                  <properties uuid="mitchell_1169559687130_3166" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169559687130_4927" id="2" recreator="SimpleContainer" containedName="contents" point="480 310" dimensions="110.6 52" offset="4 4">
+                  <figures uuid="mitchell_1169559687130_6996" id="24" recreator="Part" autosized="false" point="508 320" dimensions="54 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAttribute.1">
+                    <figures uuid="mitchell_1169559687130_4077" id="24_C" recreator="SimpleContainer" containedName="contents" point="508 350" dimensions="54 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169559687130_2743" id="24_A" recreator="Attributes" containedName="attrs" point="508 342" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169559687131_3821" id="24_O" recreator="Operations" containedName="ops" point="508 350" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169559687131_9109" id="24_P" recreator="PortContainer" containedName="ports" point="508 320" dimensions="54 30"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169559687131_7631" id="5" recreator="Attributes" containedName="attrs" point="480 302" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169559687130_25" id="25" recreator="Note" autosized="false" point="284 168" dimensions="348 68" subject="//@childPackages.4/@childPackages.7/@ownedComment.0">
+                <figures uuid="mitchell_1169559687130_2840" id="25_C" recreator="SimpleContainer" point="284 168" dimensions="348 68" offset="2 2">
+                  <properties uuid="mitchell_1169559687130_2367" name="backdrop" value="false"/>
+                </figures>
+                <properties uuid="mitchell_1169559687130_6267" name="hideNote" value="true"/>
+                <properties uuid="mitchell_1169559687130_6416" name="useHTML" value="true"/>
+              </figures>
+              <properties uuid="mitchell_1169559687130_6410" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169559687130_7587" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169559687131_696" id="1" recreator="dependency" anchor1Id="13" anchor2Id="16" virtualPoint="387.2 383" points="2 349.1 339 426 427.9" subject="//@childPackages.4/@childPackages.0/@ownedMember.0/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169559687130_3909" id="3" recreator="Linked Text" containedName="text" text="" show="false" point="366.1 363.8" dimensions="3.8 14">
+              <properties uuid="mitchell_1169559687130_1957" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169559687131_5175" id="4" recreator="dependency" anchor1Id="20" anchor2Id="16" virtualPoint="487.2 382" points="2 502.2 362.9 450.7 428.1" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169559687131_3516" id="7" recreator="Linked Text" containedName="text" text="" show="false" point="470.4 362.1" dimensions="3.8 14">
+              <properties uuid="mitchell_1169559687131_1195" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169552071379_4015" name="multiple&#xA;wrapping">
+      <ownedComment uuid="mitchell_1169552119594_9907" body="export multiple-wrapping.eps"/>
+      <ownedComment uuid="mitchell_1169552144741_5135" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      Do we require a stratum order here?&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+      <j_diagramHolder uuid="mitchell_1169552291590_4689" saveTime="Tue Jan 23, 2007 at 11:38:11 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169552291591_9033" lastFigureId="31">
+          <figures uuid="mitchell_1169552291592_7742" id="28" recreator="dependency" anchor1Id="18" anchor2Id="11" virtualPoint="409.2 290" points="2 393.7 271 446.8 336.1" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAnonymousDependencies.1">
+            <figures uuid="mitchell_1169552291591_5255" id="28_M" recreator="Linked Text" containedName="text" text="" show="false" point="404.3 286" dimensions="3.8 14">
+              <properties uuid="mitchell_1169552291591_922" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169552291592_4195" id="29" recreator="Grouper" name="export multiple-wrapping.eps" autosized="false" point="268 120" dimensions="384 300" subject="//@childPackages.4/@childPackages.8/@ownedComment.0">
+            <figures uuid="mitchell_1169552291592_6517" id="29_C" recreator="SimpleContainer" point="268 120" dimensions="384 300" min="10 10">
+              <figures uuid="mitchell_1169552291592_6186" id="18" recreator="Class" autosized="false" point="304 188" dimensions="110.6 82" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2">
+                <figures uuid="mitchell_1169552291592_7253" id="19" recreator="SimpleContainer" containedName="contents" point="304 218" dimensions="110.6 52" offset="4 4">
+                  <figures uuid="mitchell_1169552291592_885" id="26" recreator="Part" autosized="false" point="332 228" dimensions="54 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAttribute.1">
+                    <figures uuid="mitchell_1169552291592_4726" id="17" recreator="Attributes" containedName="attrs" point="332 250" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169552291592_1400" id="20" recreator="SimpleContainer" containedName="contents" point="332 258" dimensions="54 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169552291592_2650" id="23" recreator="PortContainer" containedName="ports" point="332 228" dimensions="54 30"/>
+                    <figures uuid="mitchell_1169552291592_5639" id="24" recreator="Operations" containedName="ops" point="332 258" dimensions="40 8"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169552291592_4668" id="21" recreator="PortContainer" containedName="ports" point="304 188" dimensions="110.6 82">
+                  <properties uuid="mitchell_1169552291592_6340" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169552291592_7108" id="22" recreator="Attributes" containedName="attrs" point="304 210" dimensions="40 8"/>
+                <figures uuid="mitchell_1169552291592_2829" id="25" recreator="Operations" containedName="ops" point="304 218" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169552291592_6430" id="15" recreator="Class" autosized="false" point="504 188" dimensions="106.6 82" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2">
+                <figures uuid="mitchell_1169552291592_8454" id="10" recreator="SimpleContainer" containedName="contents" point="504 218" dimensions="106.6 52" offset="4 4">
+                  <figures uuid="mitchell_1169552291592_976" id="16" recreator="Part" autosized="false" point="532 224" dimensions="55 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAttribute.0">
+                    <figures uuid="mitchell_1169552291592_1637" id="13" recreator="SimpleContainer" containedName="contents" point="532 254" dimensions="55 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169552291592_6030" id="14" recreator="Operations" containedName="ops" point="532 254" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169552291592_4707" id="12" recreator="Attributes" containedName="attrs" point="532 246" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169552291592_35" id="1" recreator="PortContainer" containedName="ports" point="532 224" dimensions="55 30"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169552291592_3866" id="0" recreator="Operations" containedName="ops" point="504 218" dimensions="40 8"/>
+                <figures uuid="mitchell_1169552291593_5880" id="7" recreator="Attributes" containedName="attrs" point="504 210" dimensions="40 8"/>
+                <figures uuid="mitchell_1169552291593_9075" id="9" recreator="PortContainer" containedName="ports" point="504 188" dimensions="106.6 82">
+                  <properties uuid="mitchell_1169552291593_9686" name="classScope" value="true"/>
+                </figures>
+              </figures>
+              <figures uuid="mitchell_1169552291592_7451" id="11" recreator="Class" autosized="false" point="428 336" dimensions="62 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169552291592_6013" id="2" recreator="Operations" containedName="ops" point="428 366" dimensions="40 8"/>
+                <figures uuid="mitchell_1169552291593_2354" id="6" recreator="SimpleContainer" containedName="contents" point="428 366" dimensions="62 0" offset="4 4"/>
+                <figures uuid="mitchell_1169552291593_6116" id="4" recreator="PortContainer" containedName="ports" point="428 336" dimensions="62 30">
+                  <properties uuid="mitchell_1169552291593_8722" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169552291593_6638" id="8" recreator="Attributes" containedName="attrs" point="428 358" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169552291593_8087" id="30" recreator="Note" autosized="false" point="344 128" dimensions="232 43" subject="//@childPackages.4/@childPackages.8/@ownedComment.1">
+                <figures uuid="mitchell_1169552291593_3990" id="30_C" recreator="SimpleContainer" point="344 128" dimensions="232 43" offset="2 2">
+                  <properties uuid="mitchell_1169552291593_3414" name="backdrop" value="false"/>
+                </figures>
+                <properties uuid="mitchell_1169552291593_1112" name="hideNote" value="true"/>
+                <properties uuid="mitchell_1169552291593_3947" name="useHTML" value="true"/>
+              </figures>
+              <properties uuid="mitchell_1169552291592_2726" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169552291592_3175" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169552291592_894" id="3" recreator="dependency" anchor1Id="15" anchor2Id="11" virtualPoint="508.2 290" points="2 523.4 271 471.1 336" subject="//@childPackages.4/@childPackages.0/@ownedMember.2/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169552291593_1935" id="5" recreator="Linked Text" containedName="text" text="" show="false" point="484 282.1" dimensions="3.8 14">
+              <properties uuid="mitchell_1169552291593_7835" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169552169037_2051" name="circularity">
+      <ownedComment uuid="mitchell_1169552248975_7733" body="export circular.eps"/>
+      <ownedComment uuid="mitchell_1169552261434_4226" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      Outlaw circularity?  Is this even possible to do?&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+      <ownedComment uuid="mitchell_1169569964713_8371" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      Possible transform it into the following....  Problem is then the &#xA;      meaning of self-composition...&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169552186349_2275"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169552189877_7630"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169552190733_2782" clientDependency="//@childPackages.4/@childPackages.9/@ownedMember.2/@ownedAnonymousDependencies.0 //@childPackages.4/@childPackages.9/@ownedMember.2/@ownedAnonymousDependencies.1">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169552221566_689" client="//@childPackages.4/@childPackages.9/@ownedMember.2" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.10" uuid="mitchell_1169552232158_9475" client="//@childPackages.4/@childPackages.9/@ownedMember.2" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169552193509_5057"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169552197029_6735"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169552197397_7226"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169552197757_8037"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169552210030_457" clientDependency="//@childPackages.4/@childPackages.9/@ownedMember.7/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169552237118_7659" client="//@childPackages.4/@childPackages.9/@ownedMember.7" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169569981896_8663"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169569986797_5160"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169570001628_5834"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169570008085_4478" clientDependency="//@childPackages.4/@childPackages.9/@ownedMember.11/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169570014211_9836" client="//@childPackages.4/@childPackages.9/@ownedMember.11" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute uuid="mitchell_1169570041175_7613" type="//@childPackages.4/@childPackages.4/@ownedMember.0">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169570041175_8271" instance="//@childPackages.4/@childPackages.9/@ownedMember.11/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169570041175_2978" classifier="//@childPackages.4/@childPackages.4/@ownedMember.0"/>
+          </defaultValue>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169570019864_7038" clientDependency="//@childPackages.4/@childPackages.9/@ownedMember.12/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169570023596_3160" client="//@childPackages.4/@childPackages.9/@ownedMember.12" supplier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+      </ownedMember>
+      <j_diagramHolder uuid="mitchell_1169552291603_6821" saveTime="Tue Jan 23, 2007 at 04:34:21 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169570061726_8965" lastFigureId="31">
+          <figures uuid="mitchell_1169570061728_4880" id="23" recreator="dependency" anchor1Id="21" anchor2Id="18" virtualPoint="522.5 705.5" points="2 552.1 695.8 475 737" subject="//@childPackages.4/@childPackages.9/@ownedMember.11/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169570061731_6187" id="23_M" recreator="Linked Text" containedName="text" text="" show="false" point="495 687.6" dimensions="3.8 14">
+              <properties uuid="mitchell_1169570061731_2715" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169570061728_2294" id="26" recreator="dependency" anchor1Id="24" anchor2Id="19" virtualPoint="399 659" points="2 374.9 647.4 424.1 671" subject="//@childPackages.4/@childPackages.9/@ownedMember.12/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169570061730_2332" id="26_M" recreator="Linked Text" containedName="text" text="" show="false" point="384 644" dimensions="3.8 14">
+              <properties uuid="mitchell_1169570061730_54" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169570061728_5248" id="28" recreator="dependency" anchor1Id="19" anchor2Id="18" virtualPoint="448 717" points="2 448 698 448 736" subject="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.5">
+            <figures uuid="mitchell_1169570061730_3691" id="28_M" recreator="Linked Text" containedName="text" text="" show="false" point="432 700" dimensions="3.8 14">
+              <properties uuid="mitchell_1169570061730_4476" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169570061728_9588" id="29" recreator="dependency" anchor1Id="20" anchor2Id="19" virtualPoint="448 643" points="2 448 618 448 668" subject="//@childPackages.4/@childPackages.4/@ownedMember.0/@ownedAnonymousDependencies.1">
+            <figures uuid="mitchell_1169570061730_1401" id="29_M" recreator="Linked Text" containedName="text" text="" show="false" point="432 628" dimensions="3.8 14">
+              <properties uuid="mitchell_1169570061730_1928" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169570061729_3520" id="9" recreator="dependency" anchor1Id="2" anchor2Id="0" virtualPoint="436 299" points="3 459.5 229.6 564 288 453.6 368.1" subject="//@childPackages.4/@childPackages.9/@ownedMember.2/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169570061727_28" id="9_M" recreator="Linked Text" containedName="text" text="" show="false" point="540 276" dimensions="3.8 14">
+              <properties uuid="mitchell_1169570061727_274" name="suppress" value="true"/>
+            </figures>
+            <properties uuid="mitchell_1169570061729_7026" name="curved" value="true"/>
+          </figures>
+          <figures uuid="mitchell_1169570061730_3507" id="15" recreator="Grouper" name="export circular.eps" autosized="false" point="140 128" dimensions="632 728" subject="//@childPackages.4/@childPackages.9/@ownedComment.0">
+            <figures uuid="mitchell_1169570061728_3009" id="15_C" recreator="SimpleContainer" point="140 128" dimensions="632 728" min="10 10">
+              <figures uuid="mitchell_1169570061728_5203" id="24" recreator="Class" autosized="false" point="324 620" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.9/@ownedMember.12">
+                <figures uuid="mitchell_1169570061731_953" id="24_C" recreator="SimpleContainer" containedName="contents" point="324 650" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169570061731_414" id="24_A" recreator="Attributes" containedName="attrs" point="324 642" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061731_2099" id="24_O" recreator="Operations" containedName="ops" point="324 650" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061731_2407" id="24_P" recreator="PortContainer" containedName="ports" point="324 620" dimensions="50 30">
+                  <properties uuid="mitchell_1169570061731_565" name="classScope" value="true"/>
+                </figures>
+              </figures>
+              <figures uuid="mitchell_1169570061728_3479" id="2" recreator="Class" autosized="false" point="408 200" dimensions="50.6 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.9/@ownedMember.2">
+                <figures uuid="mitchell_1169570061727_7722" id="2_A" recreator="Attributes" containedName="attrs" point="408 222" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061727_1690" id="2_C" recreator="SimpleContainer" containedName="contents" point="408 230" dimensions="50.6 0" offset="4 4"/>
+                <figures uuid="mitchell_1169570061731_3110" id="2_P" recreator="PortContainer" containedName="ports" point="408 200" dimensions="50.6 30">
+                  <properties uuid="mitchell_1169570061731_2532" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169570061731_2893" id="2_O" recreator="Operations" containedName="ops" point="408 230" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169570061728_9711" id="1" recreator="Class" autosized="false" point="408 284" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0">
+                <figures uuid="mitchell_1169570061727_1614" id="1_A" recreator="Attributes" containedName="attrs" point="408 306" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061727_7905" id="1_C" recreator="SimpleContainer" containedName="contents" point="408 314" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169570061731_5700" id="1_P" recreator="PortContainer" containedName="ports" point="408 284" dimensions="50 30">
+                  <properties uuid="mitchell_1169570061731_7201" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169570061731_163" id="1_O" recreator="Operations" containedName="ops" point="408 314" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169570061728_6708" id="0" recreator="Class" autosized="false" point="408 368" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169570061727_9411" id="0_O" recreator="Operations" containedName="ops" point="408 398" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061727_4532" id="0_P" recreator="PortContainer" containedName="ports" point="408 368" dimensions="50 30">
+                  <properties uuid="mitchell_1169570061727_107" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169570061731_6343" id="0_A" recreator="Attributes" containedName="attrs" point="408 390" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061731_6358" id="0_C" recreator="SimpleContainer" containedName="contents" point="408 398" dimensions="50 0" offset="4 4"/>
+              </figures>
+              <figures uuid="mitchell_1169570061729_8253" id="7" recreator="Class" autosized="false" point="308 228" dimensions="52 32" suppressOperations="true" subject="//@childPackages.4/@childPackages.9/@ownedMember.7">
+                <figures uuid="mitchell_1169570061727_2039" id="7_C" recreator="SimpleContainer" containedName="contents" point="308 258" dimensions="52 2" offset="4 4"/>
+                <figures uuid="mitchell_1169570061728_1777" id="7_A" recreator="Attributes" containedName="attrs" point="308 250" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061730_3373" id="7_P" recreator="PortContainer" containedName="ports" point="308 228" dimensions="52 32">
+                  <properties uuid="mitchell_1169570061730_6064" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169570061731_2671" id="7_O" recreator="Operations" containedName="ops" point="308 258" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169570061730_2142" id="19" recreator="Class" autosized="false" point="424 668" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0">
+                <figures uuid="mitchell_1169570061728_2512" id="19_O" recreator="Operations" containedName="ops" point="424 698" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061728_1622" id="19_P" recreator="PortContainer" containedName="ports" point="424 668" dimensions="50 30">
+                  <properties uuid="mitchell_1169570061728_4133" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169570061729_3549" id="19_C" recreator="SimpleContainer" containedName="contents" point="424 698" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169570061729_2557" id="19_A" recreator="Attributes" containedName="attrs" point="424 690" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169570061730_8531" id="17" recreator="Note" autosized="false" point="272 460" dimensions="336 43" subject="//@childPackages.4/@childPackages.9/@ownedComment.2">
+                <figures uuid="mitchell_1169570061730_9773" id="17_C" recreator="SimpleContainer" point="272 460" dimensions="336 43" offset="2 2">
+                  <properties uuid="mitchell_1169570061730_8673" name="backdrop" value="false"/>
+                </figures>
+                <properties uuid="mitchell_1169570061730_5675" name="hideNote" value="true"/>
+                <properties uuid="mitchell_1169570061730_2935" name="useHTML" value="true"/>
+              </figures>
+              <figures uuid="mitchell_1169570061730_9615" id="18" recreator="Class" autosized="false" point="424 736" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169570061730_628" id="18_A" recreator="Attributes" containedName="attrs" point="424 758" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061730_2150" id="18_C" recreator="SimpleContainer" containedName="contents" point="424 766" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169570061730_4728" id="18_P" recreator="PortContainer" containedName="ports" point="424 736" dimensions="50 30">
+                  <properties uuid="mitchell_1169570061731_9616" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169570061731_5835" id="18_O" recreator="Operations" containedName="ops" point="424 766" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169570061730_3831" id="16" recreator="Note" autosized="false" point="208 144" dimensions="304 52" subject="//@childPackages.4/@childPackages.9/@ownedComment.1">
+                <figures uuid="mitchell_1169570061730_3081" id="16_C" recreator="SimpleContainer" point="208 144" dimensions="304 52" offset="2 2">
+                  <properties uuid="mitchell_1169570061730_7139" name="backdrop" value="false"/>
+                </figures>
+                <properties uuid="mitchell_1169570061730_5517" name="hideNote" value="true"/>
+                <properties uuid="mitchell_1169570061730_8170" name="useHTML" value="true"/>
+              </figures>
+              <figures uuid="mitchell_1169570061730_1630" id="21" recreator="Class" autosized="false" point="552 632" dimensions="100 74" suppressOperations="true" subject="//@childPackages.4/@childPackages.9/@ownedMember.11">
+                <figures uuid="mitchell_1169570061728_3484" id="21_P" recreator="PortContainer" containedName="ports" point="552 632" dimensions="100 74">
+                  <properties uuid="mitchell_1169570061728_8447" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169570061729_2345" id="21_O" recreator="Operations" containedName="ops" point="552 662" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061729_7805" id="21_C" recreator="SimpleContainer" containedName="contents" point="552 662" dimensions="100 44" offset="4 4">
+                  <figures uuid="mitchell_1169570061728_9471" id="30" recreator="Part" autosized="false" point="576 672" dimensions="55 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.9/@ownedMember.11/@ownedAttribute.0">
+                    <figures uuid="mitchell_1169570061727_1112" id="30_A" recreator="Attributes" containedName="attrs" point="576 694" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169570061728_5997" id="30_O" recreator="Operations" containedName="ops" point="576 702" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169570061729_7094" id="30_P" recreator="PortContainer" containedName="ports" point="576 672" dimensions="55 30"/>
+                    <figures uuid="mitchell_1169570061729_6715" id="30_C" recreator="SimpleContainer" containedName="contents" point="576 702" dimensions="55 0" offset="4 4"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169570061729_5854" id="21_A" recreator="Attributes" containedName="attrs" point="552 654" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169570061730_9405" id="20" recreator="Class" autosized="false" point="424 588" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.4/@ownedMember.0">
+                <figures uuid="mitchell_1169570061728_99" id="20_O" recreator="Operations" containedName="ops" point="424 618" dimensions="40 8"/>
+                <figures uuid="mitchell_1169570061728_5024" id="20_P" recreator="PortContainer" containedName="ports" point="424 588" dimensions="50 30">
+                  <properties uuid="mitchell_1169570061728_2464" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169570061729_5876" id="20_C" recreator="SimpleContainer" containedName="contents" point="424 618" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169570061730_3889" id="20_A" recreator="Attributes" containedName="attrs" point="424 610" dimensions="40 8"/>
+              </figures>
+              <properties uuid="mitchell_1169570061728_9455" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169570061730_4399" name="fill" value="246 230 247"/>
+          </figures>
+          <figures uuid="mitchell_1169570061730_9482" id="14" recreator="dependency" anchor1Id="7" anchor2Id="1" virtualPoint="383.5 271.5" points="2 361.1 259 407.9 285.1" subject="//@childPackages.4/@childPackages.9/@ownedMember.7/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169570061728_5770" id="14_M" recreator="Linked Text" containedName="text" text="" show="false" point="367 259.3" dimensions="3.8 14">
+              <properties uuid="mitchell_1169570061728_3184" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169570061730_1658" id="11" recreator="dependency" anchor1Id="1" anchor2Id="0" virtualPoint="432 341" points="2 432 314 432 368" subject="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.3">
+            <figures uuid="mitchell_1169570061727_8416" id="11_M" recreator="Linked Text" containedName="text" text="" show="false" point="416 324" dimensions="3.8 14">
+              <properties uuid="mitchell_1169570061727_922" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169570061730_9598" id="12" recreator="dependency" anchor1Id="2" anchor2Id="1" virtualPoint="432 257" points="2 432 230 432 284" subject="//@childPackages.4/@childPackages.9/@ownedMember.2/@ownedAnonymousDependencies.1">
+            <figures uuid="mitchell_1169570061727_3163" id="12_M" recreator="Linked Text" containedName="text" text="" show="false" point="416 240" dimensions="3.8 14">
+              <properties uuid="mitchell_1169570061727_4442" name="suppress" value="true"/>
+            </figures>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+    <childPackages uuid="mitchell_1169569504401_2386" name="self&#xA;composition">
+      <ownedComment uuid="mitchell_1169569560379_2017" body="export self-composition.eps"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169569521506_5303"/>
+      <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169569526546_6241"/>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.1/@ownedMember.5" uuid="mitchell_1169569539218_6082" clientDependency="//@childPackages.4/@childPackages.10/@ownedMember.2/@ownedAnonymousDependencies.0">
+        <ownedAnonymousDependencies appliedBasicStereotypes="//@childPackages.1/@ownedMember.11" uuid="mitchell_1169569543042_6979" client="//@childPackages.4/@childPackages.10/@ownedMember.2" supplier="//@childPackages.4/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute uuid="mitchell_1169569552244_6410" type="//@childPackages.4/@childPackages.1/@ownedMember.0">
+          <defaultValue xsi:type="uml:InstanceValue" uuid="mitchell_1169569552244_1081" instance="//@childPackages.4/@childPackages.10/@ownedMember.2/@ownedAttribute.0/@defaultValue/@ownedAnonymousInstanceValue">
+            <ownedAnonymousInstanceValue uuid="mitchell_1169569552244_8393" classifier="//@childPackages.4/@childPackages.1/@ownedMember.0"/>
+          </defaultValue>
+        </ownedAttribute>
+      </ownedMember>
+      <j_diagramHolder uuid="mitchell_1169569676837_361" saveTime="Tue Jan 23, 2007 at 04:27:56 GMT" savedBy="Andrew">
+        <diagram uuid="mitchell_1169569676838_5903" lastFigureId="9">
+          <figures uuid="mitchell_1169569676839_9298" id="3" recreator="dependency" anchor1Id="1" anchor2Id="0" virtualPoint="376 195" points="2 376 162 376 228" subject="//@childPackages.4/@childPackages.1/@ownedMember.0/@ownedAnonymousDependencies.4">
+            <figures uuid="mitchell_1169569676839_9307" id="3_M" recreator="Linked Text" containedName="text" text="" show="false" point="360 180" dimensions="3.8 14">
+              <properties uuid="mitchell_1169569676839_4449" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169569676839_6363" id="6" recreator="dependency" anchor1Id="4" anchor2Id="0" virtualPoint="441.5 201" points="2 464 186.3 399.9 228.1" subject="//@childPackages.4/@childPackages.10/@ownedMember.2/@ownedAnonymousDependencies.0">
+            <figures uuid="mitchell_1169569676838_2934" id="6_M" recreator="Linked Text" containedName="text" text="" show="false" point="418.1 192.6" dimensions="3.8 14">
+              <properties uuid="mitchell_1169569676838_6328" name="suppress" value="true"/>
+            </figures>
+          </figures>
+          <figures uuid="mitchell_1169569676839_4634" id="8" recreator="Grouper" name="export self-composition.eps" autosized="false" point="296 104" dimensions="272 184" subject="//@childPackages.4/@childPackages.10/@ownedComment.0">
+            <figures uuid="mitchell_1169569676838_4436" id="8_C" recreator="SimpleContainer" point="296 104" dimensions="272 184" min="10 10">
+              <figures uuid="mitchell_1169569676839_195" id="1" recreator="Class" autosized="false" point="352 132" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.1/@ownedMember.0">
+                <figures uuid="mitchell_1169569676838_197" id="1_A" recreator="Attributes" containedName="attrs" point="352 154" dimensions="40 8"/>
+                <figures uuid="mitchell_1169569676838_2876" id="1_C" recreator="SimpleContainer" containedName="contents" point="352 162" dimensions="50 0" offset="4 4"/>
+                <figures uuid="mitchell_1169569676839_2581" id="1_P" recreator="PortContainer" containedName="ports" point="352 132" dimensions="50 30">
+                  <properties uuid="mitchell_1169569676839_6669" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169569676839_6236" id="1_O" recreator="Operations" containedName="ops" point="352 162" dimensions="40 8"/>
+              </figures>
+              <figures uuid="mitchell_1169569676839_8920" id="0" recreator="Class" autosized="false" point="352 228" dimensions="50 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.0/@ownedMember.1">
+                <figures uuid="mitchell_1169569676838_8521" id="0_O" recreator="Operations" containedName="ops" point="352 258" dimensions="40 8"/>
+                <figures uuid="mitchell_1169569676838_9350" id="0_P" recreator="PortContainer" containedName="ports" point="352 228" dimensions="50 30">
+                  <properties uuid="mitchell_1169569676838_1190" name="classScope" value="true"/>
+                </figures>
+                <figures uuid="mitchell_1169569676839_9843" id="0_A" recreator="Attributes" containedName="attrs" point="352 250" dimensions="40 8"/>
+                <figures uuid="mitchell_1169569676839_2858" id="0_C" recreator="SimpleContainer" containedName="contents" point="352 258" dimensions="50 0" offset="4 4"/>
+              </figures>
+              <figures uuid="mitchell_1169569676839_4700" id="4" recreator="Class" autosized="false" point="464 120" dimensions="84 78" suppressOperations="true" subject="//@childPackages.4/@childPackages.10/@ownedMember.2">
+                <figures uuid="mitchell_1169569676838_6127" id="4_C" recreator="SimpleContainer" containedName="contents" point="464 150" dimensions="84 48" offset="4 4">
+                  <figures uuid="mitchell_1169569676839_4002" id="7" recreator="Part" autosized="false" point="480 156" dimensions="54 30" suppressOperations="true" subject="//@childPackages.4/@childPackages.10/@ownedMember.2/@ownedAttribute.0">
+                    <figures uuid="mitchell_1169569676838_4995" id="7_P" recreator="PortContainer" containedName="ports" point="480 156" dimensions="54 30"/>
+                    <figures uuid="mitchell_1169569676838_529" id="7_O" recreator="Operations" containedName="ops" point="480 186" dimensions="40 8"/>
+                    <figures uuid="mitchell_1169569676839_3618" id="7_C" recreator="SimpleContainer" containedName="contents" point="480 186" dimensions="54 0" offset="4 4"/>
+                    <figures uuid="mitchell_1169569676839_6945" id="7_A" recreator="Attributes" containedName="attrs" point="480 178" dimensions="40 8"/>
+                  </figures>
+                </figures>
+                <figures uuid="mitchell_1169569676838_8202" id="4_A" recreator="Attributes" containedName="attrs" point="464 142" dimensions="40 8"/>
+                <figures uuid="mitchell_1169569676839_80" id="4_O" recreator="Operations" containedName="ops" point="464 150" dimensions="40 8"/>
+                <figures uuid="mitchell_1169569676839_2612" id="4_P" recreator="PortContainer" containedName="ports" point="464 120" dimensions="84 78">
+                  <properties uuid="mitchell_1169569676839_4927" name="classScope" value="true"/>
+                </figures>
+              </figures>
+              <properties uuid="mitchell_1169569676838_8278" name="backdrop" value="false"/>
+            </figures>
+            <properties uuid="mitchell_1169569676839_1784" name="fill" value="246 230 247"/>
+          </figures>
+        </diagram>
+      </j_diagramHolder>
+    </childPackages>
+  </childPackages>
+</uml:Model>

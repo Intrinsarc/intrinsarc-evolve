@@ -1,0 +1,379 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\include{thesis.preamble}
+\bibliographystyle{alpha}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+
+\usepackage{listings}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--}
+}
+
+\lstset{language=Alloy}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Alloy-introduction"
+
+\end_inset
+
+A Brief Introduction to Alloy
+\end_layout
+
+\begin_layout Standard
+In this appendix, we provide a brief overview of Alloy in order to aid further
+ understanding of the formal specifications presented in this thesis.
+ The definitive source of information on Alloy modelling is 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jackson2006"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Alloy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jackson2002,Jackson2005"
+
+\end_inset
+
+ is a first-order relational logic which is well suited for modelling and
+ reasoning about the properties of an object-oriented system.
+ Alloy is based on the foundations of the formal language Z 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Spivey1992"
+
+\end_inset
+
+, and has been carefully designed to allow models to be comprehensively
+ checked for counterexamples and witnesses within a finite state space.
+ Visualisation and animation facilities are provided by the toolset.
+ The Alloy language does not have recursive functions and therefore is not
+ well suited to some domains.
+ It has, however, proven to be expressive enough to model a wide range of
+ primarily structural problems.
+ Although first-order, Alloy allows existential qualifiers which are transformed
+ using skolemisation.
+\end_layout
+
+\begin_layout Standard
+The Alloy 
+\family typewriter
+sig
+\family default
+ construct (short for signature) is used to represent a collection of objects.
+ Signatures can also contain fields, and each field has an associated multiplici
+ty.
+ In this sense, signatures are analogous to classes in an object-oriented
+ system.
+\end_layout
+
+\begin_layout Standard
+Building minimally on the first example in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jackson2006"
+
+\end_inset
+
+, an address book can be modelled as below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout LyX-Code
+sig Name, Addr {}
+\end_layout
+
+\begin_layout LyX-Code
+sig Book {
+\end_layout
+
+\begin_layout LyX-Code
+  owners: set Name,
+\end_layout
+
+\begin_layout LyX-Code
+  entries: some Name -> lone Addr
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+Book
+\family default
+ represents an address book, 
+\family typewriter
+Name
+\family default
+ represents a person via their name, and 
+\family typewriter
+Addr
+\family default
+ denotes an address.
+ Each book can be owned by a set of people (or have no owner at all), and
+ contains a set of tuples (
+\family typewriter
+entr
+\family default
+ies) where each tuple maps from a name to an address.
+\end_layout
+
+\begin_layout Standard
+To check an assertion, we phrase it as an Alloy expression and look for
+ a counterexample using the analyser in the Alloy toolset.
+ For instance, we can assert that it is not possible for two books to share
+ owners, by stating that if two books are not equal then this implies (
+\family typewriter
+=>
+\family default
+) that their owners do not intersect (
+\family typewriter
+&
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout LyX-Code
+assert noSharedOwners {
+\end_layout
+
+\begin_layout LyX-Code
+  all b1, b2: Book | b1 != b2 => no b1.owners & b2.owners }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To generate a counterexample, we must indicate the size of the space to
+ search.
+ This is specified in terms of number of allowed instances of each signature.
+ To check our assertion with up to 3 instances of each signature, we can
+ use the following.
+\end_layout
+
+\begin_layout LyX-Code
+check noSharedOwners for 3
+\end_layout
+
+\begin_layout Standard
+Alloy produces a counterexample like figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-counterexample-showing"
+
+\end_inset
+
+ showing that our assertion was incorrect: books can indeed share owners
+ as nothing in the model currently prohibits this.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/shared-books.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-counterexample-showing"
+
+\end_inset
+
+A counterexample generated by the Alloy analyser
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To prevent this sharing, we can define a predicate to define what we mean
+ by two books sharing an owner.
+\end_layout
+
+\begin_layout LyX-Code
+pred ownersShared(b1, b2: Book) { some b1.owners & b2.owners }
+\end_layout
+
+\begin_layout Standard
+We can then use a fact to assert that no (disjoint) books are allowed to
+ share owners.
+\end_layout
+
+\begin_layout LyX-Code
+fact noSharing { all disj b1, b2: Book | !ownersShared(b1, b2) }
+\end_layout
+
+\begin_layout Standard
+Checking our assertion along with this fact now generates no counterexamples,
+ within the space of 3 instances for each signature.
+ We can be sure that our assertion is valid within this finite space because
+ we were previously able to generate a counterexample.
+ This technique of finding a counterexample before adding new facts allows
+ us to ensure that the state space is large enough to find meaningful structures
+ in the first place.
+ Clearly, checking for counterexamples is pointless if the state space is
+ too small.
+\end_layout
+
+\begin_layout Standard
+Alternatively, we could have phrased our constraint by simply indicating
+ that each name must be associated with at most one book.
+ The relational join of 
+\family typewriter
+owners.n
+\family default
+ below matches the right hand elements of the 
+\family typewriter
+owners
+\family default
+ tuple (
+\family typewriter
+Book -> Name
+\family default
+) with 
+\family typewriter
+n
+\family default
+ (
+\family typewriter
+Name
+\family default
+) to produce a set of 
+\family typewriter
+Book
+\family default
+ instances.
+ We then use 
+\family typewriter
+lone
+\family default
+ to express that there should be at most one book per name.
+\end_layout
+
+\begin_layout LyX-Code
+fact noSharing2 { all n: Name | lone owners.n }
+\end_layout
+
+\begin_layout Standard
+As models get larger, the default graphical visualisation of witnesses and
+ counterexamples becomes difficult to interpret.
+ To counter this, counterexamples and witnesses from the Backbone specification
+ can be imported into the Evolve modelling environment and viewed as composite
+ structure diagrams from each relevant perspective.
+\end_layout
+
+\end_body
+\end_document

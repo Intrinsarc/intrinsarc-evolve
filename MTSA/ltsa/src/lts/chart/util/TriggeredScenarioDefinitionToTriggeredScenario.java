@@ -1,0 +1,185 @@
+package lts.chart.util;
+
+import java.util.*;
+
+import lts.chart.*;
+import lts.chart.ConditionLocation;
+import lts.chart.Interaction;
+import lts.chart.Location;
+import lts.ltl.*;
+import ar.dc.uba.model.condition.*;
+import ar.dc.uba.model.condition.Formula;
+import ar.dc.uba.model.language.*;
+import ar.dc.uba.model.lsc.*;
+
+/**
+ * Singleton. Takes a TriggeredScenarioDefinition from MTSA and creates an
+ * TriggeredScenario to be used by the Synthesiser.
+ * 
+ * @author gsibay
+ * 
+ */
+public class TriggeredScenarioDefinitionToTriggeredScenario {
+
+	static private TriggeredScenarioDefinitionToTriggeredScenario instance = new TriggeredScenarioDefinitionToTriggeredScenario();
+
+	static public TriggeredScenarioDefinitionToTriggeredScenario getInstance() {
+		return instance;
+	}
+
+	private TriggeredScenarioDefinitionToTriggeredScenario() {
+	}
+
+	public TriggeredScenario transformExistentialTriggeredScenario(
+			TriggeredScenarioDefinition triggeredScenario,
+			LocationNamingStrategy namingStrategy)
+			throws TriggeredScenarioTransformationException {
+		// Fluents involved in the TriggeredScenario
+		Set<Fluent> involvedFluents = new HashSet<Fluent>();
+
+		Chart prechart, mainchart;
+		try {
+			prechart = new Chart(this.transformLocations(triggeredScenario
+					.getPrechart().getLocations().iterator(),
+					triggeredScenario, involvedFluents), namingStrategy);
+			mainchart = new Chart(this.transformLocations(triggeredScenario
+					.getMainchart().getLocations().iterator(),
+					triggeredScenario, involvedFluents), namingStrategy);
+
+		} catch (ChartLanguageGenerationException e) {
+			throw new TriggeredScenarioTransformationException(e);
+		}
+
+		Set<Symbol> restricted = this.transformRestricted(triggeredScenario
+				.getRestricted(), namingStrategy);
+
+		return new ExistentialTriggeredScenario(prechart, mainchart,
+				restricted, involvedFluents);
+
+	}
+
+	public TriggeredScenario transformUniversalTriggeredScenario(
+			TriggeredScenarioDefinition uTS,
+			LocationNamingStrategy namingStrategy)
+			throws TriggeredScenarioTransformationException {
+		// Fluents involved in the TriggeredScenario
+		Set<Fluent> involvedFluents = new HashSet<Fluent>();
+
+		Chart prechart, mainchart;
+		try {
+			prechart = new Chart(this.transformLocations(uTS.getPrechart()
+					.getLocations().iterator(), uTS, involvedFluents),
+					namingStrategy);
+			mainchart = new Chart(this.transformLocations(uTS.getMainchart()
+					.getLocations().iterator(), uTS, involvedFluents),
+					namingStrategy);
+
+		} catch (ChartLanguageGenerationException e) {
+			throw new TriggeredScenarioTransformationException(e);
+		}
+
+		Set<Symbol> restricted = this.transformRestricted(uTS.getRestricted(),
+				namingStrategy);
+
+		return new UniversalTriggeredScenario(prechart, mainchart, restricted,
+				involvedFluents);
+	}
+
+	/**
+	 * Transforms the restricted interactions to a set of restricted Symbol
+	 * 
+	 * @param restricted
+	 * @param namingStrategy
+	 * @return
+	 */
+	private Set<Symbol> transformRestricted(Set<Interaction> restricteds,
+			LocationNamingStrategy namingStrategy) {
+		Set<Symbol> restrictedSymbols = new HashSet<Symbol>();
+
+		for (Interaction restricted : restricteds) {
+			ar.dc.uba.model.lsc.Interaction interaction = new ar.dc.uba.model.lsc.Interaction(
+					restricted.getSource(), restricted.getMessage(), restricted
+							.getTarget());
+			restrictedSymbols.add(new SingleSymbol(interaction
+					.getName(namingStrategy)));
+		}
+
+		return restrictedSymbols;
+	}
+
+	/**
+	 * Transforms each Location and returns the transformed List in the order
+	 * returned by the Iterator
+	 * 
+	 * @param locations
+	 * @param lscDefinition
+	 * @param involvedFluents
+	 * @return
+	 */
+	private List<ar.dc.uba.model.lsc.Location> transformLocations(
+			Iterator<? extends Location> locations,
+			TriggeredScenarioDefinition lscDefinition,
+			Set<Fluent> involvedFluents) {
+		List<ar.dc.uba.model.lsc.Location> result = new LinkedList<ar.dc.uba.model.lsc.Location>();
+		while (locations.hasNext()) {
+			Location location = locations.next();
+			// in involved fluents the fluent acociated with a location
+			// condition will be added
+			result.add(this.transformLocation(location, lscDefinition,
+					involvedFluents));
+		}
+		return result;
+	}
+
+	/**
+	 * @param location
+	 * @param lscDefinition
+	 * @param involvedFluents
+	 * @return
+	 */
+	private ar.dc.uba.model.lsc.Location transformLocation(Location location,
+			TriggeredScenarioDefinition lscDefinition,
+			Set<Fluent> involvedFluents) {
+		if (Location.isConditionPredicate.evaluate(location)) {
+			// If it's a condition location the formula must be transformed
+			ConditionLocation conditionLocation = (ConditionLocation) location;
+			ConditionDefinition conditionDefinition = lscDefinition
+					.getConditionDefinition(conditionLocation.getId());
+			Formula formula = this.adaptFormulaAndCreateFluents(
+					conditionDefinition.getFplFormula().expand(
+							new FormulaFactory(), new Hashtable(),
+							new Hashtable()), involvedFluents);
+
+			return new ar.dc.uba.model.lsc.ConditionLocation(conditionLocation
+					.getId(), conditionLocation.getInstances(), formula);
+		} else if (!Location.isConditionPredicate.evaluate(location)) {
+			Interaction interaction = (Interaction) location;
+			return new ar.dc.uba.model.lsc.Interaction(interaction.getSource(),
+					interaction.getMessage(), interaction.getTarget());
+		} else {
+			throw new IllegalArgumentException("Unknown location type: "
+					+ location);
+		}
+	}
+
+	/**
+	 * Transforms the formula to a Formula as needed by the synthesiser. The
+	 * fluents involved in the Formula are added to the set.
+	 * 
+	 * @param formula
+	 * @param involvedFluents
+	 * @return
+	 */
+	private Formula adaptFormulaAndCreateFluents(lts.ltl.Formula formula,
+			Set<Fluent> involvedFluents) {
+		// create a visitor for the formula
+		FormulaTransformerVisitor formulaTransformerVisitor = new FormulaTransformerVisitor();
+		formula.accept(formulaTransformerVisitor);
+
+		// After visiting the formula, the visitor has the transformed formula
+		// and the involved fluents
+		involvedFluents.addAll(formulaTransformerVisitor.getInvolvedFluents());
+		return formulaTransformerVisitor.getTransformedFormula();
+	}
+
+}

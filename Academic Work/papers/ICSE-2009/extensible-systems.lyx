@@ -1,0 +1,2925 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{latex8}
+\usepackage{times}
+%\documentclass[times,9pt,twocolumn]{article}
+
+
+% \bibliographystyle{latex8}
+
+\date{}
+
+%\usepackage{type1cm}
+%\renewcommand\normalsize{%
+%   \@setfontsize\normalsize{9pt}{12pt}
+%   \abovedisplayskip 10\p@ \@plus2\p@ %\@minus5\p@
+%   \abovedisplayshortskip \z@ \@plus3\p@
+%   \belowdisplayshortskip 6\p@ \@plus3\p@ %\@minus3\p@
+%   \belowdisplayskip \abovedisplayskip
+%   \let\@listi\@listI}
+%\normalsize  
+
+\sloppy
+
+  \let\oldthebibliography=\thebibliography
+ \let\endoldthebibliography=\endthebibliography
+  \renewenvironment{thebibliography}[1]{%
+    \begin{oldthebibliography}{#1}%
+      \setlength{\parskip}{0ex}%
+      \setlength{\itemsep}{0ex}%
+  }%
+  {%
+    \end{oldthebibliography}%
+  }
+
+\geometry{a4paper,tmargin=26mm,bmargin=40.9mm,lmargin=15mm, rmargin=15mm}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 8mm
+\topmargin 28.3mm
+\bottommargin 43.3mm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Extensible Systems: Plugin versus Component Replacement Architectures
+\end_layout
+
+\begin_layout Author
+Andrew McVeigh, Jeff Kramer and Jeff Magee
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{4pt}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Department of Computing
+\begin_inset Newline newline
+\end_inset
+
+Imperial College
+\begin_inset Newline newline
+\end_inset
+
+London SW7 2BZ, United Kingdom
+\begin_inset Newline newline
+\end_inset
+
+{amcveigh, jk, jnm}@doc.ic.ac.uk
+\end_layout
+
+\begin_layout Abstract
+
+\shape italic
+Many extensible systems are delivered in the form of a base application
+ with a plugin architecture.
+ Plugins can be added to the application to extend its functionality, allowing
+ it to be tailored for different needs.
+\end_layout
+
+\begin_layout Abstract
+
+\shape italic
+We introduce component replacement architectures as an alternative to this
+ style, providing a more flexible and granular extension model.
+ This approach is also shown to cope well with unplanned extension.
+ We demonstrate how replacement, combined with a structural form of component
+ inheritance called resemblance, can be used to effectively model and extend
+ a system.
+\end_layout
+
+\begin_layout Abstract
+
+\shape italic
+To evaluate both styles, we examine part of the architecture of the Eclipse
+ development tool and indicate how each approach would handle the same extension
+ requirement.
+ Component replacement is shown to more naturally model the situation, with
+ the further advantage that the cost of introducing the extension is closely
+ aligned to the size of the change required to the architecture.
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+One way to structure an extensible system is to provide a base application
+ with predefined extension points where the application can be extended.
+ Developers create plugins, which 
+\begin_inset Quotes eld
+\end_inset
+
+plug into
+\begin_inset Quotes erd
+\end_inset
+
+ the extension points, and these plugins can then be selectively added to
+ an installation of the application to customize it.
+ The base application acts as a platform, providing a substrate for a family
+ of applications.
+\end_layout
+
+\begin_layout Standard
+This approach is referred to as a plugin architecture and the basic concepts
+ can be succinctly described using a simple design pattern 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mayer2003"
+
+\end_inset
+
+.
+ Some plugin architectures, such as Eclipse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001"
+
+\end_inset
+
+, allow plugins to offer extension points also, which can then be further
+ extended by other plugins.
+ The model in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chatley2003"
+
+\end_inset
+
+ also supports this feature, but calls extension points 
+\begin_inset Quotes eld
+\end_inset
+
+holes
+\begin_inset Quotes erd
+\end_inset
+
+ and the elements that extend them 
+\begin_inset Quotes eld
+\end_inset
+
+pegs
+\begin_inset Quotes erd
+\end_inset
+
+.
+ As such, the base application may in fact consist of a collection of plugins.
+\end_layout
+
+\begin_layout Standard
+Plugin architectures work at two levels: the addition of new plugins (level
+ 1), and the replacement of existing plugins (level 2).
+\end_layout
+
+\begin_layout Standard
+The addition of new plugins to a system (level 1) allows simple additive
+ change, where the added plugins hook into extension points defined already
+ in the base.
+ Plugins can be created by developers who are not affiliated with the creators
+ of the original application.
+ The original creators are then free to concentrate on the base platform
+ without having to continually expand the system to cater for every requirement.
+\end_layout
+
+\begin_layout Standard
+The replacement of existing plugins (level 2) is needed when those plugins
+ that form the existing application do not provide the required extension
+ points.
+ To allow this, advanced plugin architectures utilize a versioning scheme
+ that allows for plugin evolution.
+ Adding a new version of a plugin to a system may result in the previous
+ version being completely replaced, or a situation where more than one version
+ is instantiated simultaneously.
+\end_layout
+
+\begin_layout Standard
+Examples of successful applications using the plugin approach are the Eclipse
+ Integrated Development Environment (IDE) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001a"
+
+\end_inset
+
+ and Firefox 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Firefoxplugins2008"
+
+\end_inset
+
+.
+ The COM 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Microsoft2006"
+
+\end_inset
+
+ add-in model of the Microsoft Office suite could also be regarded as another
+ example of this style.
+\end_layout
+
+\begin_layout Standard
+In this paper we use the term 
+\emph on
+extension
+\emph default
+ to refer to a unit that can add, replace or delete functionality.
+ The plugin concept is a therefore an expression of the extension concept.
+\end_layout
+
+\begin_layout Standard
+The component replacement model is offered as an alternative to the plugin
+ approach.
+ The essence of this approach is to combine a hierarchical component model
+ with two additional constructs: 
+\emph on
+replacement
+\emph default
+ and 
+\emph on
+resemblance
+\emph default
+.
+ The replacement construct allows an extension to replace any components
+ in the extensions it depends upon, with a component of its own.
+ Combined with resemblance, a construct which allows a component to structurally
+ inherit from others, an extension can incrementally modify any part of
+ a system.
+ This provides great flexibility to reshape the architecture to meet new
+ requirements.
+ New components can be added and existing components replaced at any level
+ of abstraction, encompassing both level 1 and level 2 of the plugin approach.
+\end_layout
+
+\begin_layout Standard
+The aim of the component replacement model is to make extension as natural
+ an engineering process as initial creation, and to cope with unplanned
+ change by allowing any part of a system to effectively become an extension
+ point.
+ This lifts the burden off developers to factor in predictive extension
+ points.
+\end_layout
+
+\begin_layout Standard
+The Backbone architecture description language (ADL) has been developed
+ as part of this work to demonstrate the model.
+ Backbone can be seen as an evolution of the Darwin ADL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1995"
+
+\end_inset
+
+, with terminology changes to align with the UML2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMGUML"
+
+\end_inset
+
+ component model.
+ Further, whereas Darwin is focused on distributed applications, Backbone
+ deals with the internal architecture of local applications.
+ It features a hierarchical component model at its core along with the replaceme
+nt and resemblance constructs.
+ 
+\end_layout
+
+\begin_layout Standard
+To evaluate the two approaches, we consider an extension to the Eclipse
+ IDE.
+ This is modeled with the Eclipse plugin approach, and also in Backbone
+ allowing direct comparison of the two styles.
+\end_layout
+
+\begin_layout Standard
+The rest of the paper is structured as follows.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Extending-a-Plug-In"
+
+\end_inset
+
+ examines the characteristics of plugin architectures, focusing specifically
+ on the Eclipse model.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Backbone-and-Component"
+
+\end_inset
+
+ introduces the component replacement approach and the Backbone ADL.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:A-Formal-Model"
+
+\end_inset
+
+ presents the outline of a formal model for Backbone, summarizing various
+ properties that result.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Tool-Support-for"
+
+\end_inset
+
+ describes a tool for modeling with Backbone.
+ We review related work in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Related-Work"
+
+\end_inset
+
+ and present conclusions and further work in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusions-and-Future"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Extending-a-Plug-In"
+
+\end_inset
+
+Plugin Architectures
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-UML-class"
+
+\end_inset
+
+ expands on the basic plugin design pattern of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mayer2003"
+
+\end_inset
+
+ to present a UML class diagram of a more general model.
+ This describes the Eclipse approach, where plugins are versioned and can
+ also have extension points.
+ The distinction between plugins and the base application is therefore blurred,
+ as the base is a relative concept which can be thought of as a system loader
+ and a given collection of plugins.
+ This is certainly the case in Eclipse, where even the fundamental run-time
+ and editing concepts reside in plugins.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/plug-in-model.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-UML-class"
+
+\end_inset
+
+The plugin model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+SystemLoader is the class which bootstraps the initial system, discovers
+ any Plugins and registers them with the PluginRegistry.
+ The registry knows about all Plugins, and can be used to query for a specific
+ Plugin via the 
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+version
+\begin_inset Quotes erd
+\end_inset
+
+ attributes.
+\end_layout
+
+\begin_layout Standard
+A Plugin is a versioned collection of packages, classes and interfaces.
+ A Plugin may depend on other Plugins, for both extension points and library
+ classes.
+ The VersionBundle association class shows that this dependency can be expressed
+ as a reference to a specific Plugin version, a bounded set of versions,
+ or no particular version (
+\begin_inset Quotes eld
+\end_inset
+
+don'tCare
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+A Plugin may provide a set of PluginExtensions
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+In Eclipse, the actual terminology for a PluginExtension is 
+\begin_inset Quotes eld
+\end_inset
+
+extension
+\begin_inset Quotes erd
+\end_inset
+
+.
+ We have used PluginExtension to differentiate this concept from our notion
+ of an extension as being analogous to a plugin that can add, remove and
+ replace functionality.
+\end_layout
+
+\end_inset
+
+ which 
+\begin_inset Quotes eld
+\end_inset
+
+plug into
+\begin_inset Quotes erd
+\end_inset
+
+ the ExtensionPoints of other Plugins.
+ A PluginExtension uniquely identifies the relevant ExtensionPoint by its
+ identifier (
+\begin_inset Quotes eld
+\end_inset
+
+id
+\begin_inset Quotes erd
+\end_inset
+
+).
+ A Plugin may further define its own set of ExtensionPoints, each of which
+ declares which parameters must be supplied (conforming to 
+\begin_inset Quotes eld
+\end_inset
+
+schema
+\begin_inset Quotes erd
+\end_inset
+
+) by a PluginExtension.
+ The model allows an ExtensionPoint to accept multiple PluginExtensions,
+ although each PluginExtension can only plug into one ExtensionPoint.
+ The motivation is that if an ExtensionPoint could only accommodate a single
+ PluginExtension, then multiple Plugins could all try to fill the point,
+ and conflict structurally.
+\end_layout
+
+\begin_layout Standard
+At run-time, the Plugins are discovered and registered, and the PluginExtensions
+ matched up to ExtensionPoints.
+ Control is then passed to a distinguished Plugin for bootstrapping.
+ Each Plugin is able to query the PluginExtensions which extend its points,
+ and the parameters passed can include class names (for object instantiation)
+ and values.
+\end_layout
+
+\begin_layout Standard
+Normally the latest version of a plugin is instantiated.
+ The exception to this is when other plugins explicitly indicate their dependenc
+e on an older version.
+ Of course, in this case we can arrive at a situation where many different
+ versions of a single plugin must be loaded simultaneously.
+ Eclipse outlaws the instantiation of multiple versions if the Plugin contribute
+s to any extension points.
+\end_layout
+
+\begin_layout Standard
+The extensibility of the approach comes from Plugins not knowing (or needing
+ to know) what PluginExtensions will be provided for their extension points
+ until run-time.
+ The actual PluginExtensions for a Plugin's extension points is a function
+ of how many extending Plugins are discovered in the environment.
+\end_layout
+
+\begin_layout Standard
+An ExtensionPoint is equivalent to a number of optionally required interfaces
+ (to handle the multiplicity), and a PluginExtension is equivalent to a
+ provided interface.
+ Rather than model these concepts directly using interfaces, however, the
+ Eclipse model expresses the data required and provided via metadata (XML
+ files).
+ Some of this data can refer directly to class names, and a Plugin can choose
+ to instantiate an object based on a class name passed to its extension
+ point.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Extending-Eclipse:-Adding"
+
+\end_inset
+
+Extending Eclipse: Adding a Column to the Task View
+\end_layout
+
+\begin_layout Standard
+As a case study, we chose to enhance a small aspect of the Eclipse (version
+ 3.3) task view.
+ As shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-task-view"
+
+\end_inset
+
+, this displays a list of tasks along with certain columns.
+ We wish to
+\emph on
+ add
+\emph default
+ a further column 
+\begin_inset Quotes eld
+\end_inset
+
+assigned to
+\begin_inset Quotes erd
+\end_inset
+
+ in order to show which person has been allocated the task.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/original-images/tasks.jpg
+	lyxscale 60
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-task-view"
+
+\end_inset
+
+The Eclipse task view
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The first step in making the addition is to find the plugin responsible
+ for viewing tasks, and see if an extension point exists for registering
+ extra columns.
+ Finding the plugin proved to be straight forward: a class called TaskView
+ exists in the
+\emph on
+ org.eclipse.ui.ide
+\emph default
+ plugin.
+ Unfortunately, looking at the source code for this class shows that the
+ set of columns is hard-coded.
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+public class TaskView extends MarkerView {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    ...
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    private final IField[] VISIBLE_FIELDS =
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+       { new FieldDone(), new FieldPriority(),
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+         new FieldMessage(), new FieldResource(),
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+         new FieldFolder(), new FieldLineNumber() };
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    ...
+\end_layout
+
+\begin_layout Standard
+The developers clearly did not anticipate this scenario by providing an
+ extension point for the extra column.
+\end_layout
+
+\begin_layout Standard
+As we cannot use the addition of a new plugin to add the column (level 1),
+ we must use component replacement (level 2).
+\end_layout
+
+\begin_layout Standard
+Creating a new, replacement version is not a perfect solution, however,
+ due to other characteristics of the model.
+ Firstly, the plugin consists of around 300 Java classes.
+ The effort required in forking this plugin to create a new version is heavily
+ out of proportion to the small architectural addition required.
+\end_layout
+
+\begin_layout Standard
+Introducing a new version will also cause a problem if any plugins explicitly
+ declare a dependency on the old version.
+ We will end up in that case with two referenced versions of the plugin
+ (old and new), and concurrent versions of the same plugin are not allowed
+ in Eclipse for anything that contributes to extension points.
+ Even if this were allowed, having two concurrent versions of a plugin holding
+ shared state would not be a desirable outcome.
+\end_layout
+
+\begin_layout Standard
+To prevent the situation where two different versions of the same plugin
+ are required, Eclipse plugin versions follow a convention.
+ All dependencies on plugins are expressed as a bounded version range from
+ 3.0.0 up to (but not including) 4.0.0.
+ The leftmost digit of the versioning scheme indicates API-breaking changes.
+ Without this approach, we would not be able to easily introduce even a
+ minor, non-breaking change as explicit dependencies on the old plugin version
+ would mean having both old and new present.
+\end_layout
+
+\begin_layout Standard
+It is also not possible to introduce a breaking change without also creating
+ a new version of all plugins (incrementing the leftmost digit) which depend
+ on this plugin, and so on in cascade fashion.
+ This certainly constrains the type of change we can introduce, even if
+ we are willing to update any upstream artifacts which have issues with
+ the change.
+ We will end up having to update most of the plugins in the system.
+\end_layout
+
+\begin_layout Standard
+Even creating a new non-breaking version is likely to be a short term solution.
+ A future version of Eclipse will likely introduce a new version of this
+ plugin, to fix defects and enhance functionality
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Eclipse 3.4 was recently released with an updated version of the 
+\emph on
+org.eclipse.ui.ide
+\emph default
+ plugin.
+\end_layout
+
+\end_inset
+
+.
+ As it is not possible to run two versions concurrently, we will have to
+ accept the fact that we must merge our source changes into each new release
+ of the plugin.
+ Regardless of how important we view our change, it is unlikely that the
+ maintainer (the Eclipse Foundation) will incorporate our (and everyone
+ else's) changes into the plugin that they own and maintain.
+ Our version will be superseded by any new ones from the maintainer, and
+ our changes will be replaced.
+\end_layout
+
+\begin_layout Subsection
+Coarse-Grained Plugins
+\end_layout
+
+\begin_layout Standard
+A key problem in the above scenario is the coarseness of plugins.
+ If the plugins could somehow be made more fine-grained then the problem
+ would be easier to solve, as we would be creating a new version of a smaller
+ artifact.
+\end_layout
+
+\begin_layout Standard
+A tension exists, however, between making the architecture fine-grained
+ and making it manageable and understandable.
+ If we make plugins too small, we will end up with literally many thousands.
+ As shown by figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Part-of-the"
+
+\end_inset
+
+, the plugin structure for Eclipse is already complex.
+ The figure shows around 80 plugins: a typical environment contains around
+ 200, and an enterprise product based on Eclipse is known to contain over
+ 500 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma2003"
+
+\end_inset
+
+.
+ Having more plugins implies a less manageable system.
+ Some form of nesting or composition would address this, providing a way
+ to view the system at multiple levels of abstraction
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Eclipse plugins have names conforming to Java-like conventions.
+ However, like Java packages, the name is just a convention and does not
+ indicate any precise nesting.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/original-images/tangle.jpg
+	lyxscale 30
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Part-of-the"
+
+\end_inset
+
+A partial plugin dependency graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As plugins are necessarily coarse-grained, plugin replacement also works
+ at a coarse-grained level.
+ Ideally to add our extra column, we would be able to add a new plugin to
+ the system that could selectively replace only the TaskView class from
+ the existing plugin.
+ This type of targeted replacement is the motivation for component replacement
+ architectures.
+ By providing a hierarchical (and explicit) component model where replacement
+ can occur at any level of abstraction, we address the architectural management
+ issues whilst still allowing fine-grained and targeted component replacement.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Characteristics-of-the"
+
+\end_inset
+
+Characteristics of the Plug-In Model
+\end_layout
+
+\begin_layout Standard
+As discussed in the introduction, the plugin model operates at two levels.
+ Adding functionality via a new plugin (level 1) relies on existing extension
+ points in the application.
+ If, however, these points do not allow for the type of extension required,
+ then we must replace an existing plugin with a newer version (level 2)
+ and introduce the extension points.
+ As shown, even minor changes can move us into the need for plugin replacement.
+\end_layout
+
+\begin_layout Standard
+Our small extension required a new version of a plugin.
+ This presented several problems.
+ Firstly, the plugin is a necessarily sizable artifact due to the lack of
+ composition, and creating a new version is a change that is out of proportion
+ to the size of the small architectural change required.
+ Next, introducing a new version can lead to a situation where multiple
+ concurrent versions of a plugin are implied, which is usually prohibited
+ according to the rules of the platform.
+ Finally, creating a new version leads to its own problems in that we are
+ not the main developers of this plugin and will therefore have to acquiesce
+ to performing a source level merge of our changes whenever a new version
+ is published by the Eclipse Foundation.
+\end_layout
+
+\begin_layout Standard
+As it turns out, our small change was not planned for -- the creators of
+ the TaskView plugin did not anticipate or cater for this type of change
+ via extension points.
+ This is an interesting characteristic in that unplanned changes, even those
+ notionally adding a feature, must be characterized as coarse-grained plugin
+ replacement.
+ If the requirement had been foreseen, an extension point could have been
+ provided to allow the registration of extra columns for the task view.
+ Clearly, however, anticipating all future changes is a costly and largely
+ unrewarding exercise.
+ The architecture will become polluted with extension points, creating a
+ lot of extra development work, which in turn may not in fact capture all
+ possible future requirements.
+\end_layout
+
+\begin_layout Standard
+An underlying problem is simply that extension points do not arise naturally
+ out of development of an architecture.
+ The points have to be explicitly planned for and coded into a system.
+ Further, code needs to be written for extension points to utilize any registere
+d PluginExtensions.
+\end_layout
+
+\begin_layout Standard
+The issues found in this example relate closely to our work on component
+ reuse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2006"
+
+\end_inset
+
+, where we elaborated a set of requirements for effective component reuse
+ and extension.
+ As Eclipse structures itself as a set of components, we can assess its
+ approach against these requirements.
+ In this case, the system fails to provide sufficient flexibility because
+ we are unable to make changes without copying and modifying the source
+ code for the plugin (ALTER, NOSOURCE).
+ We are also unable to seamlessly accept a new version without having to
+ perform a source level merge (UPGRADE).
+ The requirement that changes have no impact (NO IMPACT) on existing consumers
+ of the plugin is partially met, as there is no need to force the upgrade
+ on those who do not wish to see the new version.
+ However, introducing an upgrade may require multiple versions to be simultaneou
+sly loaded which is not possible when a plugin contributes to extension
+ points.
+\end_layout
+
+\begin_layout Standard
+As it is, the Eclipse plugin model contains practical and undesirable limitation
+s on how easily a system can be extended, understood and managed.
+ Plugin addition (level 1) is simple, but is only applicable if the required
+ extension points are already available.
+ Essentially we are saying that extension is easy if the type of extension
+ has already been planned for.
+ Even simple extension requirements move beyond this, however, leading to
+ the need to use coarse-grained plugin replacement (level 2).
+ The next section introduces component replacement architectures, which
+ provide constructs which remove or ameliorate the limitations so far discussed.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Backbone-and-Component"
+
+\end_inset
+
+Component Replacement Architectures
+\end_layout
+
+\begin_layout Standard
+In the component replacement model, the unit analogous to a plugin is known
+ as an stratum.
+ A stratum is a unit of extension which consists of a collection of interfaces
+ and components.
+\end_layout
+
+\begin_layout Standard
+Unlike a plugin, however, a stratum can choose to replace any component
+ (in the system being extended) with one of its own.
+ This gives us the ability to re-make the underlying architecture in order
+ to effect any required changes.
+ A further construct, called resemblance, allows a component to inherit
+ and incrementally modify (add, delete, replace) the structure of other
+ components.
+ Used together, replacement and resemblance allow a stratum to make an increment
+al modification to an existing component in a system.
+ This is termed incremental replacement or evolution.
+\end_layout
+
+\begin_layout Standard
+In the Eclipse example, a new stratum could simply incrementally replace
+ TaskView to add the new column.
+ Although this approach would work even when using a class-based model 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ichisugi2002"
+
+\end_inset
+
+, there are limitations related to inheritance.
+ Class-based inheritance allows method and attribute addition and a level
+ of method replacement, which limits the type of extension possible.
+ This was one of the motivations behind the introduction of a full component
+ model, along with the resemblance construct.
+ The relationship between components and classes will be described in this
+ section.
+\end_layout
+
+\begin_layout Standard
+An important element of the replacement approach is a hierarchical component
+ model, where composite components are made up of instances of other components.
+ A system can be manageably structured as a component which decomposes into
+ other components and so on until we reach fine-grained leaf components.
+ This gives the ability to finely decompose a system, permitting any replacement
+ to take place at the appropriate level of abstraction.
+\end_layout
+
+\begin_layout Standard
+These concepts address the major issues found in the plugin example.
+ The model can be finely structured without becoming difficult to manage,
+ and incremental replacement makes any constituent of an existing component
+ into a potential extension point.
+ Extension points therefore arise naturally out of any system using a component
+ replacement architecture.
+\end_layout
+
+\begin_layout Subsection
+Modeling the Task View in Backbone
+\end_layout
+
+\begin_layout Standard
+This section explains the Backbone ADL through the task view extension example.
+ The graphical modeling tool for Backbone, the interpreter, and the example
+ model and Java implementation code can be downloaded from the site in section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Tool-Support-for"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The Backbone language has been developed as part of this work, in order
+ to evaluate the replacement model.
+ Backbone features the replacement and resemblance constructs, and a hierarchica
+l component model where each leaf component (leaves are not further decomposable
+) describes a Java class.
+ The Backbone interpreter assembles the system from an architectural description.
+ More details on the motivation behind the constructs is described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2006"
+
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The referenced paper refers to replacement as 
+\begin_inset Quotes eld
+\end_inset
+
+redefinition
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Going back to the task view example of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Extending-Eclipse:-Adding"
+
+\end_inset
+
+, consider modeling the concept of a view column (e.g.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Description
+\begin_inset Quotes erd
+\end_inset
+
+) in Backbone.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-component-definition"
+
+\end_inset
+
+ shows GridColumn as a leaf component.
+ It has a single attribute 
+\begin_inset Quotes eld
+\end_inset
+
+name
+\begin_inset Quotes erd
+\end_inset
+
+ and provides the IGridColumn interface.
+ We will later use instances of this component to configure the task view's
+ visible columns.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/column.eps
+	width 40col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-component-definition"
+
+\end_inset
+
+A column component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As this is a leaf (note the 
+\begin_inset Quotes eld
+\end_inset
+
+L
+\begin_inset Quotes erd
+\end_inset
+
+ in the top right corner), it also describes a Java class.
+ The component definition is represented graphically (or textually) in Backbone.
+ The implementation is associated with a Java class, as shown below
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The Java source code is not required for this example.
+ It is simply shown to demonstrate the link between components and implementatio
+n classes.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+public class GridColumn {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  private IGridColumn
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    g_IGridColumnProvided =
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+        new IGridProvidedImpl();
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  private String name;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  private class IGridProvidedImpl
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+        implements IGridColumn {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    ...
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  }}
+\end_layout
+
+\begin_layout Standard
+The grid user interface widget (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-grid-widget"
+
+\end_inset
+
+) displays a set of columns and their associated data on the screen.
+ It is the user interface widget for displaying a task view, providing IGrid,
+ and requiring IGridColumn.
+ The small box named 
+\begin_inset Quotes eld
+\end_inset
+
+r
+\begin_inset Quotes erd
+\end_inset
+
+ indicates a port, which allows a multiplicity to be added for interfaces
+ provided or required.
+ The [0..*] therefore indicates that zero to many provisions are required,
+ thus giving the same effect as an extension point which can accommodate
+ many PluginExtensions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/widget.eps
+	width 35col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-grid-widget"
+
+\end_inset
+
+A grid widget component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Required interfaces are analogous to extension points in Eclipse.
+ Provided interfaces are analogous to PluginExtensions, which provide data
+ to extension points.
+ Interfaces are more expressive however, as object references can be passed
+ in addition to data and class references.
+\end_layout
+
+\begin_layout Standard
+A composite component is constructed out of instances of other components.
+ These instances, in the terminology of UML2, are known as parts 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMGUML"
+
+\end_inset
+
+.
+ A composite is effectively shorthand for instructions for wiring up a set
+ of other parts.
+ As such, all components can be 
+\begin_inset Quotes eld
+\end_inset
+
+flattened
+\begin_inset Quotes erd
+\end_inset
+
+ into a connected set of leaf component instances.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-task-viewer"
+
+\end_inset
+
+ shows the task view as a composite component.
+ The inner boxes are instances of other components (parts).
+ In this case, there are two columns (
+\begin_inset Quotes eld
+\end_inset
+
+Description
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Location
+\begin_inset Quotes erd
+\end_inset
+
+) configured up to the GridWidget part.
+ Note also that TaskView resembles MarkerView (fully shown).
+ The instances of MarkerViewController and GridWidget are structurally inherited
+ from MarkerView, which defines a generic viewer of marker information.
+ TaskView has added the two GridColumn parts.
+\end_layout
+
+\begin_layout Standard
+Note that TaskView is not a leaf, and therefore does not have a Java representat
+ion.
+ Instances of this component must be constructed from Backbone, which will
+ flatten the component hierarchy and connect together leaf object instances.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/taskviewer.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-task-viewer"
+
+\end_inset
+
+The task view component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, all the components and interfaces are bundled up into a module-like
+ construct known as a stratum (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-taskview-and"
+
+\end_inset
+
+).
+ A stratum constitutes a unit of extension that can be applied to an application.
+ The taskview stratum packages up TaskView, and the entire unit is dependent
+ upon (and can legally refer to) the definitions in the markerview stratum.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/base-stratum.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-taskview-and"
+
+\end_inset
+
+The taskview and markerview strata
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Extension via Replacement
+\end_layout
+
+\begin_layout Standard
+The TaskView component and associated elements model the existing Eclipse
+ task view, before our requirement to add the 
+\begin_inset Quotes eld
+\end_inset
+
+assigned to
+\begin_inset Quotes erd
+\end_inset
+
+ column.
+ Our extension will need to add the extra column.
+ To also present an example of replacement, we hypothetically suppose that
+ the MarkerViewController instance also needs to be replaced to display
+ the new column.
+\end_layout
+
+\begin_layout Standard
+To achieve the above effect, we create a further stratum, called enhancedtaskvie
+w, which contains an incremental replacement of TaskView.
+ The replacement, shown as TaskView` is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-component-that"
+
+\end_inset
+
+.
+ The dual headed arrow between TaskView` and TaskView denotes incremental
+ replacement (resemblance and replacement together).
+ Replacement alone is shown by a single filled arrow.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/enhanced-taskview.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-component-that"
+
+\end_inset
+
+Incrementally replacing TaskView
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The TaskView` component has replaced the MarkerViewController part with
+ an instance of EnhancedMarkerViewController and added a GridColumn part
+ for our new column.
+ All other parts are inherited from the original TaskView.
+\end_layout
+
+\begin_layout Standard
+The component is packaged into a stratum as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Packaging-up-the"
+
+\end_inset
+
+.
+ We can create a system that includes this stratum, thereby applying the
+ replacement and getting the additional column, or we can exclude it and
+ recreate the original task view.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/extension.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Packaging-up-the"
+
+\end_inset
+
+Packaging up the extension
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Resemblance-as-Deltas"
+
+\end_inset
+
+Resemblance as Deltas
+\end_layout
+
+\begin_layout Standard
+It is vital to note that any resembling component is held as a set of deltas.
+ For instance, the textual Backbone description of the replacing component
+ (omitting the extra connector) is as follows:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+{component-name: TaskView`
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+ replaces: taskview::TaskView
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+ resembles: taskview::TaskView
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+ parts: { type: taskview::GridColumn,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+ slots: { attributes:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    { name: name, type: String,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+      value: "Assigned to" }}}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+ replaceParts: {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+   original: taskview::TaskView.c,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+   part:{
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+   type:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+     enhancedtaskview::EnhancedMarkerViewController}}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  ...}
+\end_layout
+
+\begin_layout Standard
+The replacing component has replaced the part 
+\begin_inset Quotes eld
+\end_inset
+
+c
+\begin_inset Quotes erd
+\end_inset
+
+ with an EnhancedMarkerViewController part and added a GridColumn part.
+ All other parts (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-component-that"
+
+\end_inset
+
+) are inherited via resemblance from the original TaskView definition.
+ Resemblance allows for constituent (part, port, attribute, connector) addition,
+ replacement and deletion.
+\end_layout
+
+\begin_layout Standard
+The use of deltas is important, as it allows the base component to be changed
+ at a later point, and these changes will automatically flow through to
+ any resembling components.
+ A change to the base may happen through simple editing, or a further replacemen
+t when an upgrade occurs or another stratum is applied.
+\end_layout
+
+\begin_layout Standard
+In this approach, an evolution of a system can also be packaged as a stratum.
+ As such, Backbone merges the concept of an extension mechanism and a configurat
+ion management (CM) system.
+ The deltas in the replacement above and the deltas from an evolution stratum
+ can both be applied, satisfying the UPGRADE requirement outlined in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2006"
+
+\end_inset
+
+.
+ This gives us the freedom to make modifications to components of which
+ we are not the primary maintainer, which is problematic in the plugin model.
+ The model will simply combine our changes with those of the upgrade, using
+ strata dependencies to order the application of the deltas.
+ In cases where only a partial strata order is present (e.g.
+ the diamond-shaped dependencies in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:A-Formal-Model"
+
+\end_inset
+
+) then multiple resemblance is used.
+\end_layout
+
+\begin_layout Subsection
+Replacement Model Characteristics
+\end_layout
+
+\begin_layout Standard
+The component model is hierarchical, allowing components to be decomposed
+ to a fine-grained level.
+ This in turn allows any replacement to be more targeted than in the plugin
+ model.
+ Changes can be made at the appropriate level of abstraction.
+ Large architectures can be represented and managed using hierarchy, as
+ it is a scalable concept.
+\end_layout
+
+\begin_layout Standard
+Further, any element of the model (component, part, attribute, connector
+ etc) is a natural extension point, as it can be replaced via an incremental
+ replacement.
+ Unlike the plugin model which requires advance planning even for addition,
+ the ability to extend is a seamless part of creating a system in the replacemen
+t model.
+ As developers model and refine their architecture in Backbone, extension
+ point possibilities become naturally more numerous.
+\end_layout
+
+\begin_layout Standard
+The analog of the plugin model level 1 (addition of functionality using
+ predefined extension points) is incremental replacement where only elements
+ (e.g.
+ parts and connectors) are added to existing components.
+ The analog of level 2 (plugin replacement) is handled by the replacement
+ construct along with destructive changes to the model where parts and connector
+s are deleted or replaced.
+\end_layout
+
+\begin_layout Standard
+Using a component model rather than a class model allows the internal structure
+ of each artifact to be fully displayed graphically.
+ As all component creation is controlled via Backbone, and is present in
+ the graphical model as parts (or as factories for dynamic instantiation),
+ the architecture is more explicit than a class-based model that hides object
+ instantiation implicitly in code.
+ Furthermore, resemblance is more powerful than inheritance, allowing deletion
+ and replacement as well as addition.
+ The tie between the Backbone model and the (Java) implementation is expressed
+ at the leaf component level
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The replacement model is applicable to other implementation languages also.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Resemblance keeps any changes, from the components being resembled, as deltas.
+ This allows us to avoid copying errors when the base changes, and also
+ allows us to combine replacements from separate strata.
+\end_layout
+
+\begin_layout Standard
+An important point is that only the Backbone model and the compiled interface
+ definitions are required to construct any extension to an application.
+ Unlike the plugin model where plugin replacement necessarily involves evolving
+ the implementation source, in the replacement approach the source code
+ is not required.
+ Because component instantiation is completely specified within Backbone,
+ by adjusting the configuration through the replacement construct we can
+ replace any component.
+ This is not true in the plugin model which embeds class instantiation into
+ the source code.
+\end_layout
+
+\begin_layout Standard
+By moving to a replacement model, more power is given to extension developers
+ and less prediction of future extension points is required by the original
+ application developers.
+ However, as a model which allows deletion and replacement as well as additive
+ change, there is the potential for structural interference between independentl
+y developed extensions.
+ These may structurally overlap due to conflicting changes to the base applicati
+on.
+ The model is expressive enough to allow these types of conflicts to be
+ resolved via replacement in a further stratum, an interesting property
+ revealed by the formal model in the next section.
+\end_layout
+
+\begin_layout Standard
+For optimal results, the entire architecture of a system should be described
+ using Backbone.
+ To aid in this, we have developed a graphical modeling environment allows
+ Backbone models to be created in a UML2 graphical setting.
+ See section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Tool-Support-for"
+
+\end_inset
+
+ for details on tool support and download details.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:A-Formal-Model"
+
+\end_inset
+
+A Formal Model of Backbone
+\end_layout
+
+\begin_layout Standard
+This section explains how replacement and resemblance interact in a hierarchical
+ setting, via the use of a formal model.
+ This model was used as the specification for the Backbone interpreter.
+ Understanding the formal model is not required to work with Backbone.
+\end_layout
+
+\begin_layout Standard
+We modeled Backbone using Alloy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jackson2002"
+
+\end_inset
+
+, a relational logic coupled with a model finder.
+ The model is presented in some detail in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2007a"
+
+\end_inset
+
+.
+ This section summarizes how replacement and resemblance allow incremental
+ changes to existing components, and how multiple replacements are combined.
+\end_layout
+
+\begin_layout Standard
+Both components and interfaces are types of elements, and can participate
+ in resemblance and replacement relationships.
+ (Parts of the definition not relevant to this discussion are omitted using
+ ellipsis)
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+abstract sig Element {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  home: Stratum,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  replaces: lone Element,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  resembles: set Element,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  resembles_e: Element -> Stratum,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  ...
+ }
+\end_layout
+
+\begin_layout Standard
+Each element is owned by its home stratum.
+ It can optionally replace (
+\begin_inset Quotes eld
+\end_inset
+
+replaces
+\begin_inset Quotes erd
+\end_inset
+
+) for another single element of the same type, in another stratum.
+ It can also resemble (
+\begin_inset Quotes eld
+\end_inset
+
+resembles
+\begin_inset Quotes erd
+\end_inset
+
+) one or more elements of the same type, in the home or any other stratum
+ that the home can transitively see via dependencies.
+\end_layout
+
+\begin_layout Standard
+Each element has a set of constituents, which are held as deltas.
+ For a component, the constituents are attribute, port, part and connector.
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+sig Component extends Element {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  myParts: lone Parts/Deltas,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  myPorts: lone Ports/Deltas,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  myConnectors: lone Connectors/Deltas,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  myAttributes: lone Attributes/Deltas,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  ...
+ }
+\end_layout
+
+\begin_layout Standard
+A stratum owns its elements, and must explicitly express its dependencies
+ on other strata.
+ Via predicates, the dependency graph is guaranteed to be acyclic.
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+sig Stratum {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  parent: Stratum, 
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  dependsOn: set Stratum,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  ownedElements: set Element,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  ...
+ }
+\end_layout
+
+\begin_layout Standard
+Consider a small example system with four strata arranged in a diamond dependenc
+y structure (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-diamond-dependency"
+
+\end_inset
+
+).
+ The Base component lives in stratum A, and it is incrementally replaced
+ by Base' in stratum B.
+ ExtendedBase in stratum C resembles base.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/diamond.eps
+	width 65col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-diamond-dependency"
+
+\end_inset
+
+A diamond dependency structure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The resemblance graph is reordered by taking replacement into account, from
+ the perspective of each stratum.
+ This information is stored in the Element's resembles_e field.
+ For instance, from the perspective of C, ExtendedBase resembles Base.
+ From the perspective of B, Base' also resembles Base.
+ From the perspective of D, however, ExtendedBase resembles Base' which
+ then resembles Base.
+ This reflects both the fact that Base' has been replaced for Base and that
+ Base' resembles Base.
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+all e: Element {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+  all s: Stratum {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    e.resembles_e.s = 
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+      topmostOfReplaced + topmostOfResemblance
+\end_layout
+
+\begin_layout LyX-Code
+
+\size scriptsize
+    ...
+ }
+\end_layout
+
+\begin_layout Standard
+In the above Alloy snippet, we set the resembles_e relation for each element
+ to be the (potentially replaced) definition of the element it redefines
+ or resembles.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Topmost
+\begin_inset Quotes erd
+\end_inset
+
+ refers to the way that replacement is taken into account to take the highest
+ replacement available.
+ For redefinition it is the topmost replaced element in the immediately
+ depended-upon strata (to avoid a graph cycle).
+ For resemblance, even the current stratum's replacements can be used.
+\end_layout
+
+\begin_layout Standard
+Hence, the resembles_e values for ExtendedBase become ((Base, C), (Base',
+ D)).
+ This rewriting of the resemblance graph using the partial strata dependency
+ order can result in multiple resemblance.
+ Consider if another incremental replacement took place in stratum C (Base_C').
+ Then, the resembles_e values for ExtendedBase would be ((Base_C', C), (Base_C',
+ D), (Base', D)).
+ From the perspective of D, ExtendedBase resembles both Base_C' and Base'.
+\end_layout
+
+\begin_layout Standard
+Once replacement has been factored into the resembles_e relation, the deltas
+ are applied.
+ In a purely linear resembles_e graph, we could just apply the deltas (add,
+ delete, replace) in order from bottom to top.
+ Some issues may occur even in this situation: for instance, in the system
+ of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-diamond-dependency"
+
+\end_inset
+
+, ExtendedBase can try to replace a part which existed from the perspective
+ of C, but is deleted by Base' in the perspective of B and D.
+ A small number of rules are defined to deal with such situations and they
+ are generally in accordance with intuition.
+\end_layout
+
+\begin_layout Standard
+With multiple resemblance, however, we may get legitimate conflicts.
+ For instance, Base' and Base_C' may try to replace the same part.
+ In this case, both parts are present from the D perspective, and both are
+ associated with the same part identifier
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Backbone uses unique identifiers (UUIDs) to preserve logical identity, rather
+ than names.
+ The CASE tool hides this, showing names instead.
+\end_layout
+
+\end_inset
+
+.
+ This flags up the Base component (the component we are replacing) and ExtendedB
+ase as being in error from this perspective.
+ A further incremental replacement (Base_D') in D will result in the following
+ resembles_e graph (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:How-Base_D'-rewrites"
+
+\end_inset
+
+).
+ As such, Base_D' is able to make any corrections to handle the conflict.
+ Base_D' can either replace the part definitively with one of its own, or
+ delete it entirely to leave the system error-free in D.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/andrew/work/workspace/Academic Work/papers/ICSE-2009/images/conflict.eps
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:How-Base_D'-rewrites"
+
+\end_inset
+
+Base_D' allows conflicts correction
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This type of conflict usually occurs when we try to combine independently
+ developed extensions into the same application, as it is possible that
+ each extension will make overlapping and incompatible changes to the base
+ application.
+ The conflicts cannot be resolved automatically, as they represent different
+ views of how the underlying structure should look, at the same level of
+ abstraction.
+ This situation is to be expected in a model which offers the flexibility
+ to alter the base application, and it can be resolved using the same constructs
+ that led to the conflict: resemblance and replacement.
+\end_layout
+
+\begin_layout Standard
+Observe that the situation in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:How-Base_D'-rewrites"
+
+\end_inset
+
+ can be applied to the TaskView example in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-component-that"
+
+\end_inset
+
+.
+ TaskView acts as Base, and TaskView` acts as Base`.
+ Base_C` represents the incremental replacement of TaskView when the maintainer
+ upgrades TaskView to add coloring support for different task priorities
+ (see section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Extending-Eclipse:-Adding"
+
+\end_inset
+
+).
+ Base_D` represents a further incremental replacement (Base_D`) that resolves
+ any conflicts from combining the two other replacements.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Tool-Support-for"
+
+\end_inset
+
+Tool Support for Backbone
+\end_layout
+
+\begin_layout Standard
+Using the formal model as a specification, we have developed a graphical
+ modeling tool for Backbone called jUMbLe.
+ This tool fully hides the textual description of Backbone, allowing users
+ to construct components graphically, and link leaf nodes directly to Java
+ classes.
+ The graphical presentation is UML2 composite structure diagrams 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMGUML"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The intention is to provide a modeling environment to allow an entire system
+ to be conveniently specified as Backbone components, with low design overhead.
+ This makes the architecture explicit, and provides the full benefits of
+ the extensibility approach.
+ Clearly, if component decomposition of a system is only done to a coarse-graine
+d level, component replacement will be expensive.
+ The idea is to make it both practical and beneficial to model an entire
+ system in Backbone at a fine-grained level, even if extensibility is not
+ the prime focus.
+\end_layout
+
+\begin_layout Standard
+To support retrofitting the approach onto existing systems, the modeling
+ tool allows a system to be gracefully and gradually decomposed.
+ For instance, it suffices to introduce Backbone initially into an architecture
+ by doing a top level decomposition, and then gradually elaborating to a
+ finer level of components over time.
+ Even with only coarse-grained top level components only (similar in granularity
+ to plugins, with the appropriate limitations), the system will be at least
+ as extensible as if it were modeled using plugins.
+\end_layout
+
+\begin_layout Standard
+jUMbLe works using the delta approach described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Resemblance-as-Deltas"
+
+\end_inset
+
+.
+ Even though deltas are recorded, the tool shows the fully expanded version
+ of a component at all times allowing replacement to be expressed in the
+ same way as initial creation.
+ Any structural conflicts between overlapping extensions are flagged as
+ errors.
+ As per the formal model, any conflicts can be rectified in a subsequent
+ extension which corrects any errors using replacement.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-screenshot-of"
+
+\end_inset
+
+ shows a screenshot of the tool showing the example of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Backbone-and-Component"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename original-images/Screenshot-jUMbLe.png
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-screenshot-of"
+
+\end_inset
+
+The TaskView example in jUMbLe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The jUMbLe tool and the model for the TaskView example can be downloaded
+ from http://www.doc.ic.ac.uk/ ~amcveigh/ICSE-2009/replacement.html.
+\end_layout
+
+\begin_layout Standard
+The Backbone interpreter has also been developed using the formal model
+ as a specification.
+ This allows a Backbone configuration to be executed.
+ It works by flattening the hierarchical component representation into leaf
+ nodes, which are then directly connected at the implementation level.
+ As such, there is no additional runtime overhead involved in inter-component
+ method calls -- after instantiation we are left simply with Java objects
+ connected via references.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Related-Work"
+
+\end_inset
+
+Related Work
+\end_layout
+
+\begin_layout Standard
+Plugin architectures have been used successfully for many systems.
+ Eclipse is based on the OSGi module system, which provides import / export
+ constructs and full versioning of plugins (bundles)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "O.Gruber2005"
+
+\end_inset
+
+.
+ Firefox has plugins for handling media types 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Firefoxplugins2008"
+
+\end_inset
+
+ along with more general additions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fireextensions2007"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+COM provides a compositional component model for Microsoft Windows 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Box1997"
+
+\end_inset
+
+.
+ Applications are able to use this as an extension approach, as scripts
+ loaded into the applications can call out to COM components.
+ COM versions are held in a global registry, which leads to a situation
+ called 
+\begin_inset Quotes eld
+\end_inset
+
+DLL Hell
+\begin_inset Quotes erd
+\end_inset
+
+, when multiple applications require different versions of the same component
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Stuckenholz2005"
+
+\end_inset
+
+.
+ Even without a global registry, the problem still occurs, however, when
+ combining multiple extensions into a single application.
+\end_layout
+
+\begin_layout Standard
+Backbone is strongly influenced by architectural description languages,
+ including Darwin 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1995"
+
+\end_inset
+
+, Koala 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ommering2000"
+
+\end_inset
+
+, UML2's composite structure model 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic2003"
+
+\end_inset
+
+ and ROOM 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic1994"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The Backbone approach is closely related to architectural configuration
+ management (CM) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Roshandel2004"
+
+\end_inset
+
+.
+ Backbone functions as a decentralized architectural CM system, preventing
+ the need to share a common repository.
+ Our approach also prevents the need to incorporate explicit extension points
+ into a base architecture, unlike the plugin model and existing architectural
+ approaches.
+\end_layout
+
+\begin_layout Standard
+Product lines 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eriksson2006"
+
+\end_inset
+
+ provide a way to build up an application family from a set of related requireme
+nts.
+ The use of gluons in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2002"
+
+\end_inset
+
+ provides several of the same features as our approach, but is not specifically
+ concerned with extensible applications.
+\end_layout
+
+\begin_layout Standard
+Extensibility is closely related to work on language-level reuse.
+ Mixins are effectively abstract subclasses, allowing functionality to be
+ 
+\begin_inset Quotes eld
+\end_inset
+
+mixed in
+\begin_inset Quotes erd
+\end_inset
+
+ or reused by several classes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bracha1990"
+
+\end_inset
+
+.
+ However, the use of mixins must be pre-planned, as they call into methods
+ of the superclass, and naming clashes can occur when combining multiple
+ mixins into a single class.
+ Aspects have been successfully used to extend systems via addition, providing
+ a way to separate orthogonal implementation concerns 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kiczales97aspectoriented"
+
+\end_inset
+
+.
+ Units and mixins are used in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Findler1998"
+
+\end_inset
+
+ to separate component creation and dependency binding.
+ Once a binding is made, it cannot be replaced or removed, limiting the
+ applicability for extensible systems.
+\end_layout
+
+\begin_layout Standard
+UML2 contains the package merge construct, which allows packages to be added
+ together, via an additive union 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMGUML"
+
+\end_inset
+
+.
+ The specification of this presents several problems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zito2006"
+
+\end_inset
+
+, and no replacement or deletion facilities limit its utility for extensible
+ systems.
+ UML2 also contains the notion of redefinition.
+ This is used in conjunction with inheritance, where the inheriting element
+ can covariantly override the features of the base.
+ This is closely related to resemblance, but does not allow deletion or
+ arbitrary replacement.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusions-and-Future"
+
+\end_inset
+
+Conclusions and Future Work
+\end_layout
+
+\begin_layout Standard
+Component replacement architectures offer a more flexible alternative to
+ plugin architectures, ameliorating or directly addressing the limitations
+ of the plugin model.
+ The foundation of the approach is to provide a hierarchical component model
+ and a replacement construct which allows an extension to replace any component
+ in an application with one of its own.
+ Combined with resemblance, which allows a component to structurally inherit
+ from others, an extension can incrementally modify any part of the base
+ application.
+ Replacement and resemblance also apply to interfaces, providing a way to
+ gracefully evolve the service capabilities of components.
+\end_layout
+
+\begin_layout Standard
+The plugin model facilitates additive change, via plugging into existing
+ extension points (level 1).
+ If modification of existing plugins is required, because the required extension
+ points are not present, then a new plugin version must be created (level
+ 2).
+ This characteristic of turning notionally additive change into replacement
+ interacts badly with the coarse-grained nature of the plugins, leading
+ to a disproportionate effort for simple changes.
+ Further, distributing a new version of a plugin can lead to version conflict,
+ particularly if others (including the primary source) are also releasing
+ independently updated versions.
+ Key to these limitations is the lack of plugin composition, leading to
+ a trade-off between plugin size and manageability.
+\end_layout
+
+\begin_layout Standard
+The Backbone replacement and resemblance constructs, coupled with a hierarchical
+ component model, allow for fine-grained replacement at the appropriate
+ level of abstraction.
+ The constructs form a simple, but effective, decentralized configuration
+ management system for an architecture.
+\end_layout
+
+\begin_layout Standard
+In Backbone every constituent of every component is a potential extension
+ point, arising out of the natural modeling of a system.
+ This leads to systems which are extensible without placing the burden on
+ the application designer to try to predict and factor in every possible
+ extension point.
+ Compared to plugin architectures, component replacement has been found
+ to result in simpler architectures, whilst simultaneously offering more
+ power to extension developers.
+\end_layout
+
+\begin_layout Standard
+The component replacement approach gives more flexibility, but introduces
+ an obvious issue: we cannot guarantee that combining independently developed,
+ but potentially structurally overlapping, extensions into a single application
+ will not produce some conflicts.
+ To address this, we showed that a further extension can be used to rectify
+ issues introduced in this way.
+ A variant of this problem also occurs in plugin architectures when plugin
+ versions collide in a single application.
+\end_layout
+
+\begin_layout Standard
+The current status of the work is as follows.
+ The formal model has been completed and was used as the specification to
+ implement a UML2-based graphical modeling tool called jUMbLe (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Tool-Support-for"
+
+\end_inset
+
+).
+ In this tool, modeling with deltas is handled by always showing the expanded
+ structure of each component.
+ This leads to a situation where component evolution is as straightforward
+ as initial component modeling.
+ A full Backbone interpreter has also been developed, based on the formal
+ model, and is provided with the modeling tool.
+ The only overhead imposed by the interpreter is on component instantiation.
+ Once instantiated, runtime overhead is as per normal Java classes and interface
+s.
+\end_layout
+
+\begin_layout Standard
+A longer term evaluation of the Backbone approach is underway where we are
+ modeling five existing variants of the LTSA behavioral analysis tool 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1999"
+
+\end_inset
+
+ in one Backbone model.
+ The variants have diverged as different research students and staff have
+ independently added facilities to support their work.
+ The current version of this model can be downloaded from http://www.doc.ic.ac.uk/~a
+mcveigh/ltsa.html.
+\end_layout
+
+\begin_layout Standard
+Future work will focus on expressing the behavioral properties of components
+ in an extension setting.
+ We plan to express protocols using sequence diagrams (with operators) which
+ we will process into the FSP process algebra 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1999"
+
+\end_inset
+
+.
+ The individual protocols of each part of a component will be composed to
+ detect any protocol violations that occur when replacing components.
+ Other work includes a baselining facility where progressive deltas from
+ layered extensions can be compressed into a new base system without deltas.
+ This will overcome the limitation of dealing with an ever increasing set
+ of deltas.
+\end_layout
+
+\begin_layout Section
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+An earlier version of this paper was previously submitted to the ASE conference,
+ and this paper has been extensively revised based on the constructive,
+ detailed and encouraging comments of the anonymous reviewers.
+ In particular, their insights gave us a stronger understanding of the character
+istics of the plugin model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "../../read papers/references"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

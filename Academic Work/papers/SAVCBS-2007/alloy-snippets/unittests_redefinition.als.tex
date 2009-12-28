@@ -1,0 +1,953 @@
+module unittests_redefinition
+
+open structure
+open facts
+open stratum_help
+
+
+run conflictAndResolution for 4 but
+  exactly 5 Stratum,
+  exactly 6 Element,
+  exactly 5 Component,
+  exactly 1 Interface,
+  5 structure/Ports/Deltas,
+  5 structure/Attributes/Deltas,
+  5 structure/Parts/Deltas,
+  5 structure/Connectors/Deltas,
+  10 LinkEnd
+
+run conflictAndResolution for 5 but exactly 6 Element, exactly 5 Component, exactly 1 Interface, 10 LinkEnd
+
+pred conflictAndResolution
+{
+  no isRelaxed$\cdot$False
+  $\exists\,$disj s1, s2, s3, s4, s5: Stratum
+  {
+    s1$\cdot$dependsOn = s2
+    s2$\cdot$dependsOn = s3 $\cup$ s4
+    s3$\cdot$dependsOn = s5
+    s4$\cdot$dependsOn = s5
+    no s2$\cdot$ownedElements
+    
+    $\exists\,$disj c5a, c5b: s5$\cdot$ownedElements $\cap$ Component |
+    let i5 = s5$\cdot$ownedElements $\cap$ Interface,
+      c4 = s4$\cdot$ownedElements,
+      c3 = s3$\cdot$ownedElements,
+      c1 = s1$\cdot$ownedElements
+    {
+      isTrue[c5a$\cdot$isComposite]
+      isFalse[c5b$\cdot$isComposite]
+      s5$\cdot$ownedElements $\cap$ Component = c5a $\cup$ c5b
+      one i5
+      c5a$\cdot$parts$\cdot$s5$\cdot$partType = c5b
+      one c4
+      one c3
+      no c3$\cdot$myParts$\cdot$deleteObjects
+      no c3$\cdot$myParts$\cdot$newObjects
+      no c3$\cdot$myPorts$\cdot$deleteObjects
+      no c3$\cdot$myPorts$\cdot$newObjects
+      no c3$\cdot$myAttributes$\cdot$deleteObjects
+      no c3$\cdot$myAttributes$\cdot$newObjects
+      no c3$\cdot$myConnectors$\cdot$deleteObjects
+      no c3$\cdot$myConnectors$\cdot$newObjects
+      one c1
+      $\forall\,$c: c1 $\cup$ c3 $\cup$ c4 |
+        c$\cdot$redefines = c5a $\wedge$ c$\cdot$resembles = c5a
+    }    
+    
+    -- only one stratum can have errors, and top must resolve...
+    Model::errorsOnlyAllowedIn[s2]
+    Model::forceErrors[s2]
+    Model::providesIsNotOptional[]
+    Port$\cdot$mandatory = Zero
+    no optional
+  }
+}
+
+run conflictAndResolution2 for 5 but exactly 6 Element, exactly 5 Component, exactly 1 Interface
+
+pred conflictAndResolution2
+{
+  one s: Stratum - isTop$\cdot$True |
+    Model::errorsOnlyAllowedIn[s] $\wedge$ Model::forceErrors[s]
+}
+
+run onlyLeaf for 4 but exactly 2 Port
+pred onlyLeaf()
+{
+  Model::noErrorsAllowed[]
+  one Component
+  one Stratum
+  one Interface
+  no isComposite$\cdot$True
+  $\exists\,$links
+}
+
+
+run leaf for 6 but exactly 2 Component, exactly 1 Stratum, 14 LinkEnd, 8 ConnectorEnd
+pred leaf()
+{
+  Model::noErrorsAllowed[]
+  $\exists\,$isComposite$\cdot$True
+  $\exists\,$c: Component | isFalse[c$\cdot$isComposite] $\cap$$\cap$ $\exists\,$c$\cdot$links
+  $\exists\,$c: Component
+  {
+    isTrue[c$\cdot$isComposite]
+    $\exists\,$c$\cdot$inferredLinks
+  }
+--  no optional
+  $\forall\,$p: Port, c: Component, s: Stratum |
+    no p$\cdot$required$\cdot$c$\cdot$s $\vee$ no p$\cdot$provided$\cdot$c$\cdot$s
+    
+  one Interface
+  no resembles
+  no redefines
+  no Attribute
+}
+
+-- i want to get a case where a single part is exchanged in the resembling component
+-- and the new part type is different, requiring a port remap
+run leaf2 for 5 but exactly 2 Stratum, 14 LinkEnd
+pred leaf2()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$isComposite$\cdot$True
+  -- ensure that the part replace is for a diffent type
+  $\exists\,$c: Component |
+  let ids = dom[c$\cdot$myParts$\cdot$replaceObjects],
+      newTypes = ran[c$\cdot$myParts$\cdot$replaceObjects]$\cdot$partType,
+      oldTypes = c$\cdot$myParts$\cdot$oldObjects_e[Stratum][ids]$\cdot$partType
+  {
+    no newTypes $\cap$ oldTypes
+    $\exists\,$c$\cdot$parts$\cdot$Stratum$\cdot$portRemap
+    no c$\cdot$resembles $\cap$ c$\cdot$parts$\cdot$Stratum$\cdot$partType
+    no c$\cdot$myParts$\cdot$addObjects
+    no c$\cdot$myParts$\cdot$deleteObjects
+    one c$\cdot$myParts$\cdot$replaceObjects
+  }
+  no myConnectors$\cdot$replaceObjects
+  no myConnectors$\cdot$deleteObjects
+  one redefines
+  $\exists\,$resembles
+}
+
+run basic for 8 but exactly 6 Component, exactly 1 Stratum
+pred basic()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$parts
+  no resembles
+  no redefines
+  $\exists\,$p: Port | no p$\cdot$optional
+  $\exists\,$p: Port | $\exists\,$p$\cdot$optional
+}
+
+  
+run someInterfaceResemblanceAndRedefinition for 4 but exactly 2 Stratum, 3 Interface, 8 ConnectorEnd
+pred someInterfaceResemblanceAndRedefinition()
+{
+  Model::errorsAllowedInTopOnly[]
+  -- want to see the redefinition of an interface
+  $\exists\,$i: Interface | $\exists\,$i$\cdot$resembles $\wedge$ no i$\cdot$redefines $\wedge$ $\exists\,$i$\cdot$superTypes
+  $\exists\,$i: Interface | $\exists\,$i$\cdot$resembles $\wedge$ $\exists\,$i$\cdot$redefines
+  $\exists\,$p: Port | no p$\cdot$optional
+  $\exists\,$p: Port | $\exists\,$p$\cdot$optional
+}
+
+
+run simpleRedefinition for 3 but 3 Component, 1 Interface, 8 ConnectorEnd, 12 LinkEnd
+pred simpleRedefinition()
+{
+  Model::noErrorsAllowed[]
+  $\exists\,$parts
+  $\exists\,$c: Component |
+    one c$\cdot$redefines $\wedge$ c$\cdot$redefines = c$\cdot$resembles $\wedge$ $\exists\,$c$\cdot$myParts$\cdot$replaceObjects
+  $\exists\,$portRemap
+  no optional
+}
+
+run simpleResemblance for 4 but exactly 2 Stratum, 4 Component, exactly 2 Interface, 8 ConnectorEnd, 8 LinkEnd
+pred simpleResemblance()
+{
+  Model::noErrorsAllowed[]
+  $\forall\,$c: Component |
+    isTrue[c$\cdot$isComposite] $\Longrightarrow$ no c$\cdot$ports$\cdot$Stratum$\cdot$(setRequired $\cup$ setProvided)
+  $\exists\,$c: Component | one c$\cdot$resembles
+  $\exists\,$parts
+  $\exists\,$defaultValue
+  $\exists\,$attributeValues
+  $\exists\,$attributeAliases
+  $\exists\,$attributeCopyValues
+}
+
+run simpleResemblanceWithPartReplace for 4 but exactly 2 Stratum, 4 Component, exactly 2 Interface
+pred simpleResemblanceWithPartReplace()
+{
+  Model::noErrorsAllowed[]
+  $\forall\,$c: Component |
+    isTrue[c$\cdot$isComposite] $\Longrightarrow$ no c$\cdot$ports$\cdot$Stratum$\cdot$(setRequired $\cup$ setProvided)
+  no optional
+  
+  $\exists\,$disj s1, s2: Stratum
+  {
+    s2$\cdot$dependsOn = s1
+    $\exists\,$disj i1, i2: s1$\cdot$ownedElements $\cap$ Interface
+    {
+      no i1$\cdot$resembles $\wedge$ no i2$\cdot$resembles
+      
+      $\exists\,$disj l1, l2, c1: s1$\cdot$ownedElements $\cap$ Component
+      {
+        let port = l1$\cdot$ports$\cdot$s1
+        {
+          one port
+          port$\cdot$setRequired = i1
+          no port$\cdot$setProvided
+        }
+
+        let port = l2$\cdot$ports$\cdot$s1
+        {
+          one port
+          port$\cdot$setRequired = i2
+          no port$\cdot$setProvided
+        }
+        
+        let parts = c1$\cdot$parts$\cdot$s1 |
+          one parts $\wedge$ parts$\cdot$partType = l1
+
+        $\exists\,$c2: s2$\cdot$ownedElements $\cap$ Component | let parts = c2$\cdot$parts$\cdot$s2
+        {
+          one parts
+          c2$\cdot$resembles = c1
+          parts$\cdot$partType = l2
+          no c2$\cdot$myConnectors$\cdot$replaceObjects
+          no c2$\cdot$myConnectors$\cdot$deleteObjects
+          no c2$\cdot$myPorts$\cdot$replaceObjects
+          no c2$\cdot$myPorts$\cdot$deleteObjects
+        }
+      }      
+    }
+  }
+  Port$\cdot$mandatory = Zero
+  no redefines
+  no attributes
+  $\exists\,$portRemap
+}
+
+run simpleResemblanceWithPartReplaceAndPassThru for 4 but exactly 2 Stratum, 4 Component, exactly 2 Interface, 6 Port, 6 PortID, 4 ConnectorEnd, 8 LinkEnd
+pred simpleResemblanceWithPartReplaceAndPassThru()
+{
+  Model::noErrorsAllowed[]
+  $\forall\,$c: Component |
+    isTrue[c$\cdot$isComposite] $\Longrightarrow$
+      no c$\cdot$ports$\cdot$Stratum$\cdot$(setRequired $\cup$ setProvided)
+  
+  $\exists\,$disj s1, s2: Stratum
+  {
+    s2$\cdot$dependsOn = s1
+    $\exists\,$disj i1, i2: s1$\cdot$ownedElements $\cap$ Interface
+    {
+      no i1$\cdot$resembles
+      no i2$\cdot$resembles
+      
+      $\exists\,$disj l1, l2, c1: s1$\cdot$ownedElements $\cap$ Component
+      {
+        $\exists\,$disj port1, port2: l1$\cdot$ports$\cdot$s1
+        {
+          isFalse[l1$\cdot$isComposite]
+          l1$\cdot$ports$\cdot$s1 = port1 $\cup$ port2
+          port1$\cdot$setRequired = i1
+          no port1$\cdot$setProvided
+          port2$\cdot$setProvided = i1
+          no port2$\cdot$setRequired
+          no l1$\cdot$links
+        }
+
+        $\exists\,$disj port1, port2: l2$\cdot$ports$\cdot$s1
+        {
+          isFalse[l2$\cdot$isComposite]
+          l2$\cdot$ports$\cdot$s1 = port1 $\cup$ port2
+          port1$\cdot$setRequired = i2
+          no port1$\cdot$setProvided
+          port2$\cdot$setProvided = i2
+          no port2$\cdot$setRequired
+          $\exists\,$l2$\cdot$links
+        }
+        
+        let parts = c1$\cdot$parts$\cdot$s1 |
+          one parts $\wedge$ parts$\cdot$partType = l1 $\wedge$ isTrue[c1$\cdot$isComposite]
+
+        $\exists\,$c2: s2$\cdot$ownedElements $\cap$ Component | let parts = c2$\cdot$parts$\cdot$s2
+        {
+          isTrue[c2$\cdot$isComposite]
+          one parts
+          c2$\cdot$resembles = c1
+          parts$\cdot$partType = l2
+          no c2$\cdot$myConnectors$\cdot$replaceObjects
+          no c2$\cdot$myConnectors$\cdot$deleteObjects
+          no c2$\cdot$myPorts$\cdot$replaceObjects
+          no c2$\cdot$myPorts$\cdot$deleteObjects
+        }
+      }      
+    }
+  }
+  Port$\cdot$mandatory = Zero
+  no optional
+  no redefines
+  no attributes
+  $\exists\,$portRemap
+}
+
+
+run simpleRedefineWithPartReplaceAndPassThru for 4 but exactly 2 Stratum, 4 Component, exactly 2 Interface, 6 Port, 6 PortID, 4 ConnectorEnd, 8 LinkEnd
+pred simpleRedefineWithPartReplaceAndPassThru()
+{
+  Model::noErrorsAllowed[]
+  $\forall\,$c: Component |
+    isTrue[c$\cdot$isComposite] $\Longrightarrow$
+      no c$\cdot$ports$\cdot$Stratum$\cdot$(setRequired $\cup$ setProvided)
+  
+  $\exists\,$disj s1, s2: Stratum
+  {
+    s2$\cdot$dependsOn = s1
+    $\exists\,$disj i1, i2: s1$\cdot$ownedElements $\cap$ Interface
+    {
+      no i1$\cdot$resembles
+      no i2$\cdot$resembles
+      
+      $\exists\,$disj l1, l2, c1: s1$\cdot$ownedElements $\cap$ Component
+      {
+        $\exists\,$disj port1, port2: l1$\cdot$ports$\cdot$s1
+        {
+          isFalse[l1$\cdot$isComposite]
+          l1$\cdot$ports$\cdot$s1 = port1 $\cup$ port2
+          port1$\cdot$setRequired = i1
+          no port1$\cdot$setProvided
+          port2$\cdot$setProvided = i1
+          no port2$\cdot$setRequired
+        }
+
+        $\exists\,$disj port1, port2: l2$\cdot$ports$\cdot$s1
+        {
+          isFalse[l2$\cdot$isComposite]
+          l2$\cdot$ports$\cdot$s1 = port1 $\cup$ port2
+          port1$\cdot$setRequired = i2
+          no port1$\cdot$setProvided
+          port2$\cdot$setProvided = i2
+          no port2$\cdot$setRequired
+        }
+        
+        let parts = c1$\cdot$parts$\cdot$s1 |
+          one parts $\wedge$ parts$\cdot$partType = l1 $\wedge$ isTrue[c1$\cdot$isComposite]
+
+        $\exists\,$c2: s2$\cdot$ownedElements $\cap$ Component, disj port1, port2: Port | let parts = c2$\cdot$parts$\cdot$s2
+        {
+          port1 $\cup$ port2 = c2$\cdot$ports$\cdot$s2
+          no port1$\cdot$setProvided
+          no port2$\cdot$setRequired
+
+          isTrue[c2$\cdot$isComposite]
+          c2$\cdot$redefines = c1
+          c2$\cdot$resembles = c1
+          one parts
+          parts$\cdot$partType = l2
+          no c2$\cdot$myConnectors$\cdot$newObjects
+          no c2$\cdot$myConnectors$\cdot$deleteObjects
+          no c2$\cdot$myPorts$\cdot$newObjects
+          no c2$\cdot$myPorts$\cdot$deleteObjects
+        }
+      }      
+    }
+  }
+  Port$\cdot$mandatory = Zero
+  no optional
+  no attributes
+  $\exists\,$portRemap
+}
+
+run redefOfRedef for 4 but exactly 1 Interface, exactly 4 Component, exactly 5 Element, exactly 4 Stratum
+pred redefOfRedef()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$disj st0, st1, st2, st3: Stratum
+  {
+    -- stratum constraints
+    isTrue[st3$\cdot$isTop]
+    st3$\cdot$dependsOn = st2 $\cup$ st1
+    st2$\cdot$dependsOn = st0
+    st1$\cdot$dependsOn = st0
+
+    -- top level redefines
+    one st0$\cdot$ownedElements $\cap$ Interface
+    some
+      c0: st0$\cdot$ownedElements $\cap$ Component,
+      c1: st1$\cdot$ownedElements,
+      c2: st2$\cdot$ownedElements,
+      c3: st3$\cdot$ownedElements
+    {
+      c1$\cdot$redefines = c0
+      c1$\cdot$resembles = c0
+      c2$\cdot$redefines = c0
+      c2$\cdot$resembles = c0
+      c3$\cdot$redefines = c0
+      c3$\cdot$resembles = c0
+    }
+  }
+  
+}
+
+run multipleResemblanceRedef for 5 but exactly 1 Interface, exactly 5 Component, exactly 3 Stratum, 18 LinkEnd
+pred multipleResemblanceRedef()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$st0, st1, st2: Stratum
+  {
+    -- stratum constraints
+    isTrue[st2$\cdot$isTop]
+    st2$\cdot$dependsOn = st1
+    st1$\cdot$dependsOn = st0
+
+    -- top level redefines
+    one st0$\cdot$ownedElements $\cap$ Interface
+    $\exists\,$c2: st2$\cdot$ownedElements |
+    $\exists\,$disj c1a, c1b: st1$\cdot$ownedElements $\cap$ Component |
+    $\exists\,$disj c0a, c0b: st0$\cdot$ownedElements $\cap$ Component
+    {
+      no c1b$\cdot$redefines
+      c1b$\cdot$resembles = c0b
+      one c1b$\cdot$myParts$\cdot$replaceObjects
+      no c1b$\cdot$myParts$\cdot$deleteObjects
+      no c1b$\cdot$myParts$\cdot$addObjects
+      no c1b$\cdot$myPorts$\cdot$deleteObjects
+      no c1b$\cdot$myPorts$\cdot$addObjects
+      no c1b$\cdot$myPorts$\cdot$replaceObjects
+      
+      c1a$\cdot$redefines = c0b
+      c1a$\cdot$resembles = c1b $\cup$ c0b
+      one c1a$\cdot$myParts$\cdot$replaceObjects
+      no c1a$\cdot$myParts$\cdot$deleteObjects
+      no c1a$\cdot$myParts$\cdot$addObjects
+      one c1a$\cdot$myPorts$\cdot$newObjects
+      no c1a$\cdot$myPorts$\cdot$deleteObjects
+      no c1a$\cdot$myPorts$\cdot$replaceObjects
+
+      c2$\cdot$redefines = c1b
+    }
+  }
+}
+
+run multipleResemblanceRedef2 for 5 but exactly 1 Interface, exactly 5 Component, exactly 2 Stratum, 8 LinkEnd
+pred multipleResemblanceRedef2()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$st0, st1: Stratum
+  {
+    -- stratum constraints
+    isTrue[st1$\cdot$isTop]
+    st1$\cdot$dependsOn = st0
+
+    -- top level redefines
+    one st0$\cdot$ownedElements $\cap$ Interface
+    $\exists\,$disj c1a, c1b, c1c: st1$\cdot$ownedElements $\cap$ Component |
+    $\exists\,$disj c0a, c0b: st0$\cdot$ownedElements $\cap$ Component
+    {
+      no c1b$\cdot$redefines
+      c1b$\cdot$resembles = c0b
+      one c1b$\cdot$myParts$\cdot$replaceObjects
+      no c1b$\cdot$myParts$\cdot$deleteObjects
+      no c1b$\cdot$myParts$\cdot$addObjects
+      no c1b$\cdot$myPorts$\cdot$deleteObjects
+      no c1b$\cdot$myPorts$\cdot$addObjects
+      no c1b$\cdot$myPorts$\cdot$replaceObjects
+      
+      c1a$\cdot$redefines = c0b
+      c1a$\cdot$resembles = c0b $\cup$ c1c
+      one c1a$\cdot$myParts$\cdot$replaceObjects
+      no c1a$\cdot$myParts$\cdot$deleteObjects
+      no c1a$\cdot$myParts$\cdot$addObjects
+      one c1a$\cdot$myPorts$\cdot$newObjects
+      no c1a$\cdot$myPorts$\cdot$deleteObjects
+      no c1a$\cdot$myPorts$\cdot$replaceObjects
+
+      no c1c$\cdot$redefines
+      no c1c$\cdot$resembles
+      $\exists\,$c1c$\cdot$myParts$\cdot$newObjects
+    }
+  }
+}
+
+-- never gives an answer -- can't have a resemblance defined in terms of delegation to self
+-- must use the rewriting way
+run recursiveDelegatingRedef for 5 but exactly 1 Interface, exactly 5 Component
+pred recursiveDelegatingRedef()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$c: Component |
+    one c$\cdot$redefines $\wedge$ c$\cdot$redefines $\subseteq$ c$\cdot$ $\!\!\!^\wedge\!$(parts$\cdot$(c$\cdot$home)$\cdot$partType)
+}
+
+run subtypes for 4 but exactly 4 Interface
+pred subtypes()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$i: Interface |
+    no i$\cdot$redefines $\wedge$ one redefines$\cdot$(i$\cdot$resembles)
+  $\exists\,$redefines$\cdot$Interface
+  $\exists\,$resembles$\cdot$Interface - redefines$\cdot$Interface
+  $\forall\,$i: resembles$\cdot$Interface | $\exists\,$i$\cdot$myOperations$\cdot$addObjects $\wedge$ no i$\cdot$myOperations$\cdot$deleteObjects
+}
+
+
+run conflict for 4 but exactly 4 Stratum, exactly 5 Element, exactly 4 Component, exactly 1 Interface
+run conflict for 7
+run conflict for 5 but exactly 4 Stratum, exactly 6 Element, exactly 1 Interface, exactly 5 Component
+pred conflict()
+{
+  Model::errorsAllowedInTopOnly[]
+--  no isTop.True.ownedElements
+  $\exists\,$isInvalid_e
+}
+
+run interfaceconflict for 4 but exactly 4 Stratum
+run interfaceconflict for 5 but exactly 5 Stratum, exactly 5 Element, exactly 1 Interface, exactly 4 Component
+pred interfaceconflict()
+{
+  Model::errorsAllowedInTopOnly[]
+  no isTop$\cdot$True$\cdot$ownedElements
+  $\forall\,$s: Stratum, i: Interface | lone i$\cdot$implementation$\cdot$s
+  $\exists\,$s: Stratum, i: Interface |
+    s $\subseteq$ i$\cdot$isInvalid_e $\wedge$ no i$\cdot$redefines
+}
+
+
+-- ask for a structure where the top level has 2 children
+-- and each child descends on a final stratum
+run simpleRedefine for 5 but exactly 3 Stratum, exactly 5 Element, exactly 1 Interface, exactly 4 Component, 10 ConnectorEnd, 16 LinkEnd
+pred simpleRedefine()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$st0, st1, st2: Stratum
+  {
+    -- stratum constraints
+    isTrue[st2$\cdot$isTop]
+    st2$\cdot$dependsOn = st1
+    st1$\cdot$dependsOn = st0
+
+    -- top level redefines
+    one st0$\cdot$ownedElements $\cap$ Interface
+    let
+      c2 = st2$\cdot$ownedElements,
+      c1 = st1$\cdot$ownedElements |
+    $\exists\,$disj c0a, c0b: st0$\cdot$ownedElements $\cap$ Component
+    {
+      isFalse[c0a$\cdot$isComposite]
+      isFalse[c0b$\cdot$isComposite]
+      #c0a$\cdot$ports$\cdot$st0 = 2
+      $\exists\,$disj p1, p2: c0a$\cdot$ports$\cdot$st0 |
+        no p1$\cdot$required $\wedge$ no p2$\cdot$provided
+      one c0b$\cdot$ports$\cdot$st0
+      no c0b$\cdot$ports$\cdot$st0$\cdot$provided
+      one c0a$\cdot$myAttributes$\cdot$addObjects
+      one c0b$\cdot$myAttributes$\cdot$addObjects
+      
+      one c2
+      one c2$\cdot$myParts$\cdot$addObjects
+      c2$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0b
+      one c2$\cdot$myParts$\cdot$deleteObjects
+      one c2$\cdot$myParts$\cdot$replaceObjects
+      c2$\cdot$redefines = c1
+      
+      one c1
+      no c1$\cdot$resembles
+      #c1$\cdot$myParts$\cdot$addObjects = 2
+      c1$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0a $\cup$ c0b
+      let s = c1$\cdot$home |
+      $\exists\,$p : c1$\cdot$parts$\cdot$s |
+        s$\,\times\,$c1 $\not\subseteq$ p$\cdot$linkedToOutside
+      
+      -- check now
+--      isTrue[ModelState.valid] <=>
+--      {
+--        c1.parts.st1.partType = c0a
+--        #c1.parts.st1 = 2
+--        c2.parts.st2.partType = c0b
+--        #c2.parts.st2 = 2
+--      }
+    }
+  }
+
+  $\exists\,$portRemap
+  $\exists\,$defaultValue
+  $\exists\,$attributeValues
+  $\exists\,$attributeAliases
+  $\exists\,$attributeCopyValues
+  $\exists\,$Component$\cdot$myConnectors$\cdot$replaceObjects
+  no optional
+}
+
+-- ask for a structure where the top level has 2 children
+-- and each child descends on a final stratum
+run simpleRedefine2 for 5
+  but exactly 3 Stratum, exactly 7 Element,
+  exactly 1 Interface, exactly 6 Component,
+  exactly 6 structure/Ports/Deltas, exactly 8 Port, exactly 8 PortID,
+  exactly 8 Connector, exactly 6 Part,
+  exactly 1 structure/Operations/Deltas,
+  exactly 1 structure/InterfaceImplementation/Deltas,
+  exactly 1 Operation, exactly 1 OperationID, exactly 1 InterfaceImplementation,
+  exactly 6 structure/Attributes/Deltas, exactly 6 Attribute, exactly 4 AttributeID,
+  exactly 1 AttributeType, exactly 1 AttributeValue, exactly 1 ComponentImplementation, 16 ConnectorEnd
+pred simpleRedefine2()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$st0, st1, st2: Stratum
+  {
+    -- stratum constraints
+    isTrue[st2$\cdot$isTop]
+    st2$\cdot$dependsOn = st1
+    st1$\cdot$dependsOn = st0
+
+    -- top level redefines
+    one st0$\cdot$ownedElements $\cap$ Interface
+    let
+      c2 = st2$\cdot$ownedElements,
+      c1 = st1$\cdot$ownedElements |
+    $\exists\,$disj c0a, c0b, c0c, c0d: st0$\cdot$ownedElements $\cap$ Component
+    {
+      isFalse[c0a$\cdot$isComposite]
+      isFalse[c0b$\cdot$isComposite]
+      isTrue[c0c$\cdot$isComposite]
+      isTrue[c0c$\cdot$isComposite]
+      #c0a$\cdot$ports$\cdot$st0 = 2
+      $\exists\,$disj p1, p2: c0a$\cdot$ports$\cdot$st0 |
+        no p1$\cdot$required $\wedge$ no p2$\cdot$provided
+      one c0b$\cdot$ports$\cdot$st0
+      no c0b$\cdot$ports$\cdot$st0$\cdot$provided
+      one c0a$\cdot$myAttributes$\cdot$addObjects
+      one c0b$\cdot$myAttributes$\cdot$addObjects
+      
+      one c2
+      one c2$\cdot$myParts$\cdot$addObjects
+      c2$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0b
+      one c2$\cdot$myParts$\cdot$deleteObjects
+      one c2$\cdot$myParts$\cdot$replaceObjects
+      c2$\cdot$redefines = c1
+      
+      one c1
+      no c1$\cdot$resembles
+      #c1$\cdot$myParts$\cdot$addObjects = 2
+      c1$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0a $\cup$ c0b
+      let s = c1$\cdot$home |
+      $\exists\,$p : c1$\cdot$parts$\cdot$s |
+        s$\,\times\,$c1 $\not\subseteq$ p$\cdot$linkedToOutside
+      
+      -- check now
+--      isTrue[ModelState.valid] <=>
+--      {
+--        c1.parts.st1.partType = c0a
+--        #c1.parts.st1 = 2
+--        c2.parts.st2.partType = c0b
+--        #c2.parts.st2 = 2
+--      }
+    }
+  }
+
+  $\exists\,$portRemap
+  $\exists\,$defaultValue
+  $\exists\,$attributeValues
+  $\exists\,$attributeAliases
+  $\exists\,$attributeCopyValues
+  $\exists\,$Component$\cdot$myConnectors$\cdot$replaceObjects
+  no optional
+}
+
+-- test a complex chain of redefs where in one stream we del and then add on top of that
+-- and in the other we just replace.  the delete and replace don't work on the same partname
+-- also has a small test for "relaxed"
+run complexRedefine for 5 but exactly 6 Stratum, exactly 7 Element, exactly 1 Interface, exactly 6 Component, exactly 6 structure/Attributes/Deltas, exactly 6 structure/Ports/Deltas, exactly 3 Attribute, exactly 1 AttributeType, exactly 3 AttributeValue, 8 ConnectorEnd
+run complexRedefine for 6 but exactly 6 Stratum, exactly 7 Element, exactly 1 Interface, exactly 6 Component, 10 ConnectorEnd
+pred complexRedefine()
+{
+  Model::errorsAllowedInTopOnly[]
+  $\exists\,$st0, st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    st4$\cdot$dependsOn = st2 $\cup$ st1
+    st3$\cdot$dependsOn = st1
+    st2$\cdot$dependsOn = st1
+    st1$\cdot$dependsOn = st0
+    isTrue[st5$\cdot$isRelaxed]
+    isTrue[st4$\cdot$isRelaxed]
+    isTrue[st3$\cdot$isRelaxed]
+    isFalse[st2$\cdot$isRelaxed]
+    isTrue[st1$\cdot$isRelaxed]
+    isTrue[st0$\cdot$isRelaxed]
+
+    -- top level redefines
+    $\exists\,$portRemap
+    one optional
+    one st0$\cdot$ownedElements $\cap$ Interface
+    let
+      c5 = st5$\cdot$ownedElements,
+      c4 = st4$\cdot$ownedElements,
+      c3 = st3$\cdot$ownedElements,
+      c2 = st2$\cdot$ownedElements,
+      c1 = st1$\cdot$ownedElements |
+    $\exists\,$disj c0a, c0b: st0$\cdot$ownedElements $\cap$ Component
+    {
+      isFalse[c0a$\cdot$isComposite]
+      isFalse[c0b$\cdot$isComposite]
+      #c0a$\cdot$ports$\cdot$st0 = 2
+      $\exists\,$disj p1, p2: c0a$\cdot$ports$\cdot$st0 |
+        no p1$\cdot$required $\wedge$ no p2$\cdot$provided
+      one c0b$\cdot$ports$\cdot$st0
+      no c0b$\cdot$ports$\cdot$st0$\cdot$provided
+      
+      one c1 one c2 one c3 one c4 no c5
+      c2$\cdot$redefines = c1
+      c3$\cdot$redefines  = c1
+      c4$\cdot$redefines = c1
+  
+      no c1$\cdot$resembles
+      #c1$\cdot$myParts$\cdot$addObjects = 2
+      no c1$\cdot$myParts$\cdot$replaceObjects
+      c1$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0a
+      
+      one c2$\cdot$myParts$\cdot$deleteObjects
+      no c2$\cdot$myParts$\cdot$addObjects
+      no c2$\cdot$myParts$\cdot$replaceObjects
+      
+      one c3$\cdot$myParts$\cdot$replaceObjects
+      no c3$\cdot$myParts$\cdot$addObjects
+      no c3$\cdot$myParts$\cdot$deleteObjects
+      
+      -- ensure that they are working on a different partname
+      dom[c3$\cdot$myParts$\cdot$replaceObjects] $\neq$ c2$\cdot$myParts$\cdot$deleteObjects
+      
+      one c4$\cdot$myParts$\cdot$addObjects
+      no c4$\cdot$myParts$\cdot$deleteObjects
+      no c4$\cdot$myParts$\cdot$replaceObjects
+      
+--      st5 not in c1.isValid_e
+    }
+  }
+}
+
+/ $\!\!\!^\ast\!$
+-- test a complex chain of redefs where in one stream we del and then add on top of that
+-- and in the other we just replace.  the delete and replace don't work on the same partname
+-- also has a small test for "relaxed"
+-- however, the base component depends on another lower down component which is also redefined...
+run complexRedefineWithChain for 8 but 5 int
+pred complexRedefineWithChain()
+{
+  $\exists\,$st0, st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    st4$\cdot$dependsOn = st2 $\cup$ st1
+    st3$\cdot$dependsOn = st1
+    st2$\cdot$dependsOn = st1
+    st1$\cdot$dependsOn = st0
+    isTrue[st5$\cdot$relaxed]
+    isTrue[st4$\cdot$relaxed]
+    isTrue[st3$\cdot$relaxed]
+    isFalse[st2$\cdot$relaxed]
+    isTrue[st1$\cdot$relaxed]
+    isTrue[st0$\cdot$relaxed]
+
+    -- top level redefines
+    no st0$\cdot$ownedElements $\cap$ Interface
+    let
+      c5 = st5$\cdot$ownedElements,
+      c4 = st4$\cdot$ownedElements,
+      c2 = st2$\cdot$ownedElements,
+      c1 = st1$\cdot$ownedElements |
+    $\exists\,$c0a, c0b, c0c: st0$\cdot$ownedElements $\cap$ Component |
+    $\exists\,$c3a, c3b: st3$\cdot$ownedElements $\cap$ Component
+    {
+      disj[c0a, c0b, c0c]
+      isFalse[c0a$\cdot$isComposite]
+      isFalse[c0b$\cdot$isComposite]
+
+      isTrue[c0c$\cdot$isComposite]
+      one c0c$\cdot$myParts$\cdot$addObjects
+      no c0c$\cdot$myParts$\cdot$deleteObjects
+      no c0c$\cdot$myParts$\cdot$replaceObjects
+      c0c$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0b
+      
+      one c1 one c2 one c4 no c5
+      c2$\cdot$redefines = c1
+      c4$\cdot$redefines = c1
+
+      no c1$\cdot$redefines
+      c1$\cdot$resembles = c0c
+      isTrue[c1$\cdot$isComposite]
+      #c1$\cdot$myParts$\cdot$addObjects = 2
+      no c1$\cdot$myParts$\cdot$replaceObjects
+      c1$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0a
+      
+      one c2$\cdot$myParts$\cdot$deleteObjects
+      isTrue[c2$\cdot$isComposite]
+      no c2$\cdot$myParts$\cdot$addObjects
+      no c2$\cdot$myParts$\cdot$replaceObjects
+      
+      c3a$\cdot$redefines = c1
+      isTrue[c3a$\cdot$isComposite]
+      one c3a$\cdot$myParts$\cdot$replaceObjects
+      no c3a$\cdot$myParts$\cdot$addObjects
+      no c3a$\cdot$myParts$\cdot$deleteObjects
+
+      c3b$\cdot$redefines = c0c
+      isTrue[c3b$\cdot$isComposite]
+      one c3b$\cdot$myParts$\cdot$replaceObjects
+      no c3b$\cdot$myParts$\cdot$addObjects
+      no c3b$\cdot$myParts$\cdot$deleteObjects
+            
+      -- ensure that they are working on a different partname
+      dom[c3a$\cdot$myParts$\cdot$replaceObjects] $\neq$ c2$\cdot$myParts$\cdot$deleteObjects
+      
+      isTrue[c4$\cdot$isComposite]
+      one c4$\cdot$myParts$\cdot$addObjects
+      no c4$\cdot$myParts$\cdot$deleteObjects
+      no c4$\cdot$myParts$\cdot$replaceObjects
+      
+      -- check now
+      isTrue[ModelState$\cdot$valid] $\Longleftrightarrow$
+      {
+      }
+    }
+  }
+
+  #Stratum = 6
+  #Component = 8
+  no Interface
+}
+
+-- test a complex chain of redefs where in one stream we del and then add on top of that
+-- and in the other we just replace.  the delete and replace both work on the same partname
+-- the replaced element should remain...
+run complexRedefine2 for 6
+pred complexRedefine2()
+{
+  $\exists\,$st0, st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    st4$\cdot$dependsOn = st2
+    st3$\cdot$dependsOn = st1
+    st2$\cdot$dependsOn = st1
+    st1$\cdot$dependsOn = st0
+
+    -- top level redefines
+    let
+      c5 = st5$\cdot$ownedElements,
+      c4 = st4$\cdot$ownedElements,
+      c3 = st3$\cdot$ownedElements,
+      c2 = st2$\cdot$ownedElements,
+      c1 = st1$\cdot$ownedElements |
+    $\exists\,$c0a, c0b: st0$\cdot$ownedElements
+    {
+      c0a $\neq$ c0b
+      
+      one c1 one c2 one c3 one c4 no c5
+      c2$\cdot$redefines = c1
+      c3$\cdot$redefines  = c1
+      c4$\cdot$redefines = c1
+  
+      no c1$\cdot$resembles
+      #c1$\cdot$myParts$\cdot$addObjects = 2
+      c1$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0a
+      
+      one c2$\cdot$myParts$\cdot$deleteObjects
+      no c2$\cdot$myParts$\cdot$addObjects
+      no c2$\cdot$myParts$\cdot$replaceObjects
+      
+      one c3$\cdot$myParts$\cdot$replaceObjects
+      no c3$\cdot$myParts$\cdot$addObjects
+      no c3$\cdot$myParts$\cdot$deleteObjects
+      
+      -- ensure that they are working on the same partname
+      dom[c3$\cdot$myParts$\cdot$replaceObjects] = c2$\cdot$myParts$\cdot$deleteObjects
+      
+      one c4$\cdot$myParts$\cdot$addObjects
+      no c4$\cdot$myParts$\cdot$deleteObjects
+      no c4$\cdot$myParts$\cdot$replaceObjects
+      
+      -- check now
+      isTrue[ModelState$\cdot$valid] $\Longleftrightarrow$
+      {
+      }
+    }
+  }
+
+  #Stratum = 6
+  #Component = 6
+  no Interface
+}
+
+-- test a complex chain of redefs where in one stream we replace and in the other we
+-- also replace.  test this results in an error which is detected
+run complexRedefine3 for 6
+pred complexRedefine3()
+{
+  $\exists\,$st0, st1, st2, st3, st4, st5: Stratum
+  {
+    -- stratum constraints
+    isTrue[st5$\cdot$isTop]
+    st5$\cdot$dependsOn = st3 $\cup$ st4
+    st4$\cdot$dependsOn = st2
+    st3$\cdot$dependsOn = st1
+    st2$\cdot$dependsOn = st1
+    st1$\cdot$dependsOn = st0
+
+    -- top level redefines
+    let
+      c5 = st5$\cdot$ownedElements,
+      c4 = st4$\cdot$ownedElements,
+      c3 = st3$\cdot$ownedElements,
+      c2 = st2$\cdot$ownedElements,
+      c1 = st1$\cdot$ownedElements |
+    $\exists\,$c0a, c0b: st0$\cdot$ownedElements
+    {
+      c0a $\neq$ c0b
+      
+      one c1 one c2 one c3 one c4 no c5
+      c2$\cdot$redefines = c1
+      c3$\cdot$redefines  = c1
+      c4$\cdot$redefines = c1
+  
+      no c1$\cdot$resembles
+      #c1$\cdot$myParts$\cdot$addObjects = 2
+      c1$\cdot$myParts$\cdot$newObjects$\cdot$partType = c0a
+      
+      no c2$\cdot$myParts$\cdot$deleteObjects
+      no c2$\cdot$myParts$\cdot$addObjects
+      one c2$\cdot$myParts$\cdot$replaceObjects
+      
+      one c3$\cdot$myParts$\cdot$replaceObjects
+      no c3$\cdot$myParts$\cdot$addObjects
+      no c3$\cdot$myParts$\cdot$deleteObjects
+      
+      -- ensure that they are working on the same partname
+      dom[c3$\cdot$myParts$\cdot$replaceObjects] = dom[c2$\cdot$myParts$\cdot$replaceObjects]
+      
+      one c4$\cdot$myParts$\cdot$addObjects
+      no c4$\cdot$myParts$\cdot$deleteObjects
+      no c4$\cdot$myParts$\cdot$replaceObjects
+      
+      -- check now
+      isTrue[ModelState$\cdot$valid] $\Longleftrightarrow$
+      {
+        st5 $\not\subseteq$ c1$\cdot$isValid_e
+      }
+    }
+  }
+
+  #Stratum = 6
+  #Component = 6
+  no Interface
+} $\!\!\!^\ast\!$/

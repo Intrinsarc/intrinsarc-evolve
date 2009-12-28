@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svnroot/mtsa/!svn/ver/100/trunk/FSP2MTS
+END
+CaseStudy.queries
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/CaseStudy.queries
+END
+exploration.queries
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/exploration.queries
+END
+example.fsp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/example.fsp
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/.project
+END
+counterexamples.queries
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/counterexamples.queries
+END
+CaseStudy.fsp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/CaseStudy.fsp
+END
+exploration.fsp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/exploration.fsp
+END
+example.mts
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/example.mts
+END
+testStress.queries
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/testStress.queries
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/.classpath
+END
+MTSCheckerJarExport.jardesc
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/MTSCheckerJarExport.jardesc
+END
+counterexamples.fsp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/counterexamples.fsp
+END
+example.queries
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/example.queries
+END
+testStress.fsp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/testStress.fsp
+END
+LTSAJarExport.jardesc
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/LTSAJarExport.jardesc
+END
+experimentation.lts
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/experimentation.lts
+END
+experimentation.mts
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/15/trunk/FSP2MTS/experimentation.mts
+END

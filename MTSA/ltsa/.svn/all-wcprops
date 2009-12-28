@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svnroot/mtsa/!svn/ver/170/trunk/ltsa
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/mtsa/!svn/ver/24/trunk/ltsa/.classpath
+END
+build-miketest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/build-miketest.xml
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/.project
+END
+Wish-build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/mtsa/!svn/ver/129/trunk/ltsa/Wish-build.xml
+END
+run.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svnroot/mtsa/!svn/ver/36/trunk/ltsa/run.cmd
+END
+HPWindow.launch
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/mtsa/!svn/ver/128/trunk/ltsa/HPWindow.launch
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/.cvsignore
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/mtsa/!svn/ver/30/trunk/ltsa/build.xml
+END

@@ -1,0 +1,186 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+
+    <UML:Model xmi.id="a6" xmi.uuid="DCE-1140436513345-686" name="Model" visibility="public" isSpecification="false" isRoot="true" isLeaf="false" isAbstract="false">
+      <UML:Namespace.ownedElement>
+
+        <UML:Package xmi.id="a0" xmi.uuid="DCE-1140441365596-382" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+graph</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+
+            <UML:Package xmi.id="a15" xmi.uuid="DCE-1141391751503-571" name="Graph" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Comment xmi.id="a17" xmi.uuid="DCE-1141391892570-691" name="" visibility="public" isSpecification="false">
+                  <UML:Comment.body>Components automatically have an interface called IComponentName that is provided by a port "creation".
+
+This port allows the public variables of the component to be set, and a final call "instantiateParts" to instantiate any non-connected parts.</UML:Comment.body>
+                </UML:Comment>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+
+            <UML:Package xmi.id="a16" xmi.uuid="DCE-1141391758506-165" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>Graph
+Elements</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a27" xmi.uuid="DCE-1141041930623-786" isActive="false" name="GraphNode" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a29" xmi.uuid="DCE-1141041935138-849" isActive="false" name="GraphEdge" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a32" xmi.uuid="DCE-1141042004746-171" name="IGraphNode" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a33" xmi.uuid="DCE-1141042008902-934" name="IGraphEdge" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a42" xmi.uuid="DCE-1141044227696-421" name="IGraphElement" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+            <UML:Interface xmi.id="a34" xmi.uuid="DCE-1141048277758-424" name="IGraphListener" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a36" xmi.uuid="DCE-1141043794492-975" isActive="false" name="Graph" visibility="private" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a37" xmi.uuid="DCE-1141043837242-4" isActive="false" name="Manager" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+            <UML:Class xmi.id="a38" xmi.uuid="DCE-1141044005867-847" isActive="false" name="GraphNodeInstantiator" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a39" xmi.uuid="DCE-1141044025055-504" isActive="false" name="GraphEdgeInstantiator" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a1" xmi.uuid="DCE-1140441366783-935" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+viewer</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a10" xmi.uuid="DCE-1140448516598-543" isActive="false" name="GraphViewer" visibility="private" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a12" xmi.uuid="DCE-1140448534723-302" isActive="false" name="Manager" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+            <UML:Interface xmi.id="a13" xmi.uuid="DCE-1140448557082-41" name="IGraph" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+
+            <UML:Package xmi.id="a19" xmi.uuid="DCE-1141392723793-940" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>graph
+viewer</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Interface xmi.id="a40" xmi.uuid="DCE-1141399658083-357" name="INodeViewerMaker" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a41" xmi.uuid="DCE-1141399665444-715" name="IEdgeViewerMaker" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a43" xmi.uuid="DCE-1141399726069-306" name="IDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+
+            <UML:Package xmi.id="a20" xmi.uuid="DCE-1141392740465-707" name="figures" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+            <UML:Class xmi.id="a22" xmi.uuid="DCE-1140449513179-564" isActive="false" name="SimpleNodeViewerInstantiator" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a23" xmi.uuid="DCE-1140449523460-310" isActive="false" name="SimpleEdgeViewerInstantiator" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a11" xmi.uuid="DCE-1140446474749-635" isActive="false" name="" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+
+            <UML:Package xmi.id="a35" xmi.uuid="DCE-1141392770996-778" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>simple
+viewers</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a24" xmi.uuid="DCE-1140449645240-568" isActive="false" name="SimpleEdgeViewer" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a26" xmi.uuid="DCE-1140449869409-984" isActive="false" name="SimpleNodeViewer" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a30" xmi.uuid="DCE-1140456118016-257" name="IFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a44" xmi.uuid="DCE-1141654703304-27" name="INodeFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a45" xmi.uuid="DCE-1141654710538-406" name="IEdgeFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+
+            <UML:Interface xmi.id="a49" xmi.uuid="DCE-1141048528571-881" name="IDiagram" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a52" xmi.uuid="DCE-1141048652117-268" isActive="false" name="SimpleNodeViewerMaker" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a53" xmi.uuid="DCE-1141048788852-715" isActive="false" name="SimpleEdgeViewerMaker" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a18" xmi.uuid="DCE-1141392047431-290" name="undo/redo?" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+        <UML:Package xmi.id="a2" xmi.uuid="DCE-1140441367689-727" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+editor</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Interface xmi.id="a14" xmi.uuid="DCE-1141053468774-437" name="IGraphEditor" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a56" xmi.uuid="DCE-1141401093753-411" name="ITool" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a71" xmi.uuid="DCE-1141050270977-423" isActive="false" name="GraphEditor" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a72" xmi.uuid="DCE-1141050291071-247" isActive="true" name="Manager" visibility="private" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+            <UML:Class xmi.id="a73" xmi.uuid="DCE-1141050340586-32" isActive="false" name="SimpleNodeCreatorTool" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a57" xmi.uuid="DCE-1141401134216-368" isActive="false" name="Manager" visibility="private" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+            <UML:Class xmi.id="a74" xmi.uuid="DCE-1141050352383-663" isActive="false" name="SimpleEdgeCreatorTool" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a21" xmi.uuid="DCE-1141047658524-875" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+persistence</UML:ModelElement.name>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a3" xmi.uuid="DCE-1140441368533-67" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+application</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a65" xmi.uuid="DCE-1141049754586-959" isActive="false" name="GraphEditorApplication" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a75" xmi.uuid="DCE-1141051085664-212" isActive="true" name="GraphApplicationWindow" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a76" xmi.uuid="DCE-1141051110414-964" name="IRun" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a4" xmi.uuid="DCE-1140441420767-672" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+layout</UML:ModelElement.name>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a66" xmi.uuid="DCE-1141049873742-964" name="extensions" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Package>
+
+
+        <UML:Package xmi.id="a7" xmi.uuid="DCE-1140441710310-128" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+selection</UML:ModelElement.name>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a78" xmi.uuid="DCE-1141051773164-361" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+containment
+persistence</UML:ModelElement.name>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a8" xmi.uuid="DCE-1140441743247-755" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+containment</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Interface xmi.id="a25" xmi.uuid="DCE-1141039344189-937" name="ICompositeFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+
+
+        <UML:Package xmi.id="a9" xmi.uuid="DCE-1140441787622-161" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+animation</UML:ModelElement.name>
+        </UML:Package>
+
+      </UML:Namespace.ownedElement>
+    </UML:Model>
+
+  </XMI.content>
+</XMI>
+

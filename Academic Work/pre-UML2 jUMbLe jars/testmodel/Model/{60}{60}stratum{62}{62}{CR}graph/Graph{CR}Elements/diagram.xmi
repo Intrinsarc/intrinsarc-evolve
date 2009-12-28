@@ -1,0 +1,245 @@
+<?xml version="1.0" standalone="yes"?>
+
+<XMI xmi.version="1.1" xmlns:UML="omg.org/UML/1.4">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>ru.novosoft.uml.impl.UMLRepositoryImplXMIWriter</XMI.exporter>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+    <UML:Diagram xmi.id="a0" id="DCE-1141391758506-165" figureId="126">
+      <UML:FigureContainer.properties>
+        <UML:Property xmi.id="a1" n="PackageUUID" v="DCE-1141391758506-165"></UML:Property>
+      </UML:FigureContainer.properties>
+      <UML:FigureContainer.figures>
+        <UML:Figure xmi.id="a10" id="75" recreator="Interface" subjectUUID="DCE-1141044227696-421" name="IGraphElement" icon="true" pt="236 368" dim="24 24" supA="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a19" n="owner">
+              <UML:Property.v>Graph
+Elements</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a20" id="75c" recreator="SimpleContainer" contName="contents" pt="236 368" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a21" id="75o" recreator="Operations" contName="ops" pt="198.5 414.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a22" id="75a" recreator="Attributes" contName="attrs" pt="198.5 414.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a23" id="75p" recreator="PortContainer" contName="ports" pt="198.5 368" dim="99 54.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a24" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a11" id="53" recreator="Interface" subjectUUID="DCE-1141044227696-421" name="IGraphElement" pt="672 276" dim="138 49.7">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a25" n="owner">
+              <UML:Property.v>Graph
+Elements</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a26" id="50" recreator="SimpleContainer" contName="contents" show="false" pt="672 325.7" dim="138 0" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a27" id="13" recreator="PortContainer" contName="ports" pt="672 276" dim="138 49.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a30" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a28" id="4" recreator="Attributes" contName="attrs" pt="672 298.7" dim="138 19">
+              <UML:FigureContainer.figures>
+                <UML:Figure xmi.id="a31" id="0" recreator="Attribute" name="type: String {readonly}" pt="675 300.7" dim="132 15"></UML:Figure>
+              </UML:FigureContainer.figures>
+            </UML:Figure>
+            <UML:Figure xmi.id="a29" id="10" recreator="Operations" contName="ops" pt="672 317.7" dim="40 8"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a12" id="31" recreator="Association" anchor1Id="15" anchor2Id="52" vtl="746.9 456" pts="2 649.7 456 844 456">
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a32" id="34" recreator="Linked Text" contName="text" text="" show="false" pt="750.4 454.8" dim="3.3 15.1">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a35" n="suppress" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a33" id="32" recreator="Linked Text" contName="startText" text="edges [0..*]" pt="658.4 458.8" dim="62 14.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a36" n="majorPt" v="1"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a34" id="45" recreator="Linked Text" contName="endText" text="nodes [0..2]" pt="770.4 438.8" dim="64 14.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a37" n="majorPt" v="2"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a13" id="47" recreator="Interface" subjectUUID="DCE-1141042008902-934" name="IGraphEdge" icon="true" pt="352 408" dim="24 24" supA="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a38" n="owner">
+              <UML:Property.v>Graph
+Elements</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a39" id="25" recreator="Operations" contName="ops" pt="323 454.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a40" id="46" recreator="PortContainer" contName="ports" pt="323 408" dim="82 54.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a43" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a41" id="55" recreator="Attributes" contName="attrs" pt="323 454.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a42" id="21" recreator="SimpleContainer" contName="contents" pt="352 408" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a14" id="106" recreator="Inheritance" anchor1Id="75" anchor2Id="12" vtl="248 416" pts="2 248 410.6 248 439.4"></UML:Figure>
+        <UML:Figure xmi.id="a15" id="54" recreator="Inheritance" anchor1Id="15" anchor2Id="53" vtl="669.9 379.9" pts="2 612.4 443.9 717.8 326.7"></UML:Figure>
+        <UML:Figure xmi.id="a16" id="48" recreator="Class" subjectUUID="DCE-1141041935138-849" name="GraphEdge" auto="false" pt="228 524" dim="160 56" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a44" n="owner">
+              <UML:Property.v>Graph
+Elements</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a45" id="35" recreator="Attributes" contName="attrs" pt="236 550.7" dim="81 19">
+              <UML:FigureContainer.figures>
+                <UML:Figure xmi.id="a49" id="19" recreator="Attribute" name="type: String" pt="239 552.7" dim="75 15" acc="3"></UML:Figure>
+              </UML:FigureContainer.figures>
+            </UML:Figure>
+            <UML:Figure xmi.id="a46" id="3" recreator="Operations" contName="ops" show="false" pt="236 569.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a47" id="37" recreator="SimpleContainer" contName="contents" pt="236 569.7" dim="144 2.3" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a48" id="33" recreator="PortContainer" contName="ports" pt="228 524" dim="160 56">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a50" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+              <UML:FigureContainer.figures>
+                <UML:Figure xmi.id="a51" id="44" recreator="Port" auto="false" pt="240 516" dim="16 16">
+                  <UML:FigureContainer.properties>
+                    <UML:Property xmi.id="a53" n="classScope" v="true"></UML:Property>
+                  </UML:FigureContainer.properties>
+                  <UML:FigureContainer.figures>
+                    <UML:Figure xmi.id="a54" id="59" recreator="Linked Text" contName="text" text="anchors [2]" pt="180 500" dim="61 14.7"></UML:Figure>
+                  </UML:FigureContainer.figures>
+                </UML:Figure>
+                <UML:Figure xmi.id="a52" id="22" recreator="Port" auto="false" pt="356 516" dim="16 16">
+                  <UML:FigureContainer.properties>
+                    <UML:Property xmi.id="a55" n="classScope" v="true"></UML:Property>
+                  </UML:FigureContainer.properties>
+                  <UML:FigureContainer.figures>
+                    <UML:Figure xmi.id="a56" id="28" recreator="Linked Text" contName="text" text="edge" pt="372 500" dim="28 14.7"></UML:Figure>
+                  </UML:FigureContainer.figures>
+                </UML:Figure>
+              </UML:FigureContainer.figures>
+            </UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a17" id="107" recreator="Inheritance" anchor1Id="47" anchor2Id="12" vtl="306 436" pts="2 352.1 423.3 259.8 448.7"></UML:Figure>
+        <UML:Figure xmi.id="a18" id="8" recreator="Inheritance" anchor1Id="52" anchor2Id="53" vtl="819 380.6" pts="2 865.4 428.1 766.3 326.8"></UML:Figure>
+        <UML:Figure xmi.id="a2" id="52" recreator="Interface" subjectUUID="DCE-1141042004746-171" name="IGraphNode" pt="844 428" dim="106 64.7">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a57" n="owner">
+              <UML:Property.v>Graph
+Elements</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a58" id="30" recreator="PortContainer" contName="ports" pt="844 428" dim="106 64.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a62" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a59" id="42" recreator="Operations" contName="ops" pt="844 484.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a60" id="51" recreator="SimpleContainer" contName="contents" show="false" pt="844 492.7" dim="106 0" off="4 4"></UML:Figure>
+            <UML:Figure xmi.id="a61" id="11" recreator="Attributes" contName="attrs" pt="844 450.7" dim="106 34">
+              <UML:FigureContainer.figures>
+                <UML:Figure xmi.id="a63" id="20" recreator="Attribute" name="name: String" pt="847 452.7" dim="84 15"></UML:Figure>
+                <UML:Figure xmi.id="a64" id="58" recreator="Attribute" name="location: UPoint" pt="847 467.7" dim="100 15"></UML:Figure>
+              </UML:FigureContainer.figures>
+            </UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a3" id="26" recreator="provided interface link" anchor1Id="22" anchor2Id="47" vtl="364 474" pts="2 364 516 364 450.5"></UML:Figure>
+        <UML:Figure xmi.id="a4" id="41" recreator="provided interface link" anchor1Id="29" anchor2Id="75" vtl="248 351.9" pts="2 248 335.7 248 367.4"></UML:Figure>
+        <UML:Figure xmi.id="a5" id="14" recreator="required interface link" anchor1Id="27" anchor2Id="47" vtl="364 371.9" pts="2 364 335.7 364 407.6"></UML:Figure>
+        <UML:Figure xmi.id="a6" id="15" recreator="Interface" subjectUUID="DCE-1141042008902-934" name="IGraphEdge" pt="548 444" dim="101.7 30" supA="true" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a65" n="owner">
+              <UML:Property.v>Graph
+Elements</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a66" id="43" recreator="Attributes" contName="attrs" show="false" pt="548 466.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a67" id="17" recreator="Operations" contName="ops" show="false" pt="548 466.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a68" id="5" recreator="PortContainer" contName="ports" pt="548 444" dim="101.7 30">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a70" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a69" id="38" recreator="SimpleContainer" contName="contents" show="false" pt="548 466.7" dim="101.7 7.3" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a7" id="40" recreator="required interface link" anchor1Id="44" anchor2Id="12" vtl="248 490" pts="2 248 516 248 482.7"></UML:Figure>
+        <UML:Figure xmi.id="a8" id="12" recreator="Interface" subjectUUID="DCE-1141042004746-171" name="IGraphNode" icon="true" pt="236 440" dim="24 24" supA="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a71" n="owner">
+              <UML:Property.v>Graph
+Elements</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a72" id="18" recreator="Operations" contName="ops" pt="206.5 486.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a73" id="9" recreator="Attributes" contName="attrs" pt="206.5 486.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a74" id="6" recreator="PortContainer" contName="ports" pt="206.5 440" dim="83 54.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a76" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+            </UML:Figure>
+            <UML:Figure xmi.id="a75" id="16" recreator="SimpleContainer" contName="contents" pt="236 440" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+        <UML:Figure xmi.id="a9" id="7" recreator="Class" subjectUUID="DCE-1141041930623-786" name="GraphNode" auto="false" pt="228 228" dim="162 99.7" supO="true">
+          <UML:FigureContainer.properties>
+            <UML:Property xmi.id="a77" n="owner">
+              <UML:Property.v>Graph
+Elements</UML:Property.v>
+            </UML:Property>
+          </UML:FigureContainer.properties>
+          <UML:FigureContainer.figures>
+            <UML:Figure xmi.id="a78" id="39" recreator="PortContainer" contName="ports" pt="228 228" dim="162 99.7">
+              <UML:FigureContainer.properties>
+                <UML:Property xmi.id="a82" n="classScope" v="true"></UML:Property>
+              </UML:FigureContainer.properties>
+              <UML:FigureContainer.figures>
+                <UML:Figure xmi.id="a83" id="29" recreator="Port" auto="false" pt="240 319.7" dim="16 16">
+                  <UML:FigureContainer.properties>
+                    <UML:Property xmi.id="a85" n="classScope" v="true"></UML:Property>
+                  </UML:FigureContainer.properties>
+                  <UML:FigureContainer.figures>
+                    <UML:Figure xmi.id="a86" id="1" recreator="Linked Text" contName="text" text="node" pt="208 331.7" dim="28 14.7"></UML:Figure>
+                  </UML:FigureContainer.figures>
+                </UML:Figure>
+                <UML:Figure xmi.id="a84" id="27" recreator="Port" auto="false" pt="356 319.7" dim="16 16">
+                  <UML:FigureContainer.properties>
+                    <UML:Property xmi.id="a87" n="classScope" v="true"></UML:Property>
+                  </UML:FigureContainer.properties>
+                  <UML:FigureContainer.figures>
+                    <UML:Figure xmi.id="a88" id="49" recreator="Linked Text" contName="text" text="edges [0..*]" pt="376 331.7" dim="62 14.7"></UML:Figure>
+                  </UML:FigureContainer.figures>
+                </UML:Figure>
+              </UML:FigureContainer.figures>
+            </UML:Figure>
+            <UML:Figure xmi.id="a79" id="57" recreator="Operations" contName="ops" show="false" pt="236 303.7" dim="40 8"></UML:Figure>
+            <UML:Figure xmi.id="a80" id="36" recreator="Attributes" contName="attrs" pt="236 254.7" dim="106 49">
+              <UML:FigureContainer.figures>
+                <UML:Figure xmi.id="a89" id="24" recreator="Attribute" name="name: String" pt="239 256.7" dim="84 15" acc="3"></UML:Figure>
+                <UML:Figure xmi.id="a90" id="23" recreator="Attribute" name="location: UPoint" pt="239 286.7" dim="100 15" acc="3"></UML:Figure>
+                <UML:Figure xmi.id="a91" id="56" recreator="Attribute" name="type: String" pt="239 271.7" dim="75 15" acc="3"></UML:Figure>
+              </UML:FigureContainer.figures>
+            </UML:Figure>
+            <UML:Figure xmi.id="a81" id="2" recreator="SimpleContainer" contName="contents" pt="236 303.7" dim="146 16" off="4 4"></UML:Figure>
+          </UML:FigureContainer.figures>
+        </UML:Figure>
+      </UML:FigureContainer.figures>
+    </UML:Diagram>
+  </XMI.content>
+</XMI>
+

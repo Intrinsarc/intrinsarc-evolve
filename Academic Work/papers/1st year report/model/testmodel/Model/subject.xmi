@@ -1,0 +1,28 @@
+    <UML:Model xmi.id="a0" xmi.uuid="DCE-1145309657406-918" name="Model" visibility="public" isSpecification="false" isRoot="true" isLeaf="false" isAbstract="false">
+      <UML:Namespace.ownedElement>
+
+<packageImportLink xlink:type="simple" xlink:href="flattened" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="DCE-1147269528899-121" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="patterns" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="strata" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="DCE-1145455441622-25" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="evolution{CR}primitives" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="baselining" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="component{CR}model" />
+
+      </UML:Namespace.ownedElement>
+    </UML:Model>

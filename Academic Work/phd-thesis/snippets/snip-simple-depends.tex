@@ -1,0 +1,6 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={base\_facts.als, lines 27-31}, label=alloy:simple-depends, captionpos=b]
+s.simpleDependsOn = s.fullDependsOn - s.fullDependsOn.transitive
+-- no cycles allowed
+s not in s.transitive
+\end{lstlisting}

@@ -1,0 +1,12 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={deltas.als, lines 5-35}, label=alloy:delta-instructions, captionpos=b]
+sig Deltas
+{
+  ...
+  -- newIDs are any new IDs added
+  newIDs:                set ID,  
+  -- the deltas that are to be applied.  these 3 fields are the input to the merge
+  deleteObjects:        set ID,
+  addObjects:           newIDs one$\,\times\,$one addedObjects,
+  replaceObjects:       ID one$\,\times\,$lone replacedObjects
+\end{lstlisting}

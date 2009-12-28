@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="520"
+   height="420"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="/home/andrew/work/workspace/Academic Work/phd-thesis/models"
+   sodipodi:docname="example-scenario.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/andrew/work/workspace/Academic Work/phd-thesis/models/example-scenario.png"
+   inkscape:export-xdpi="360.72144"
+   inkscape:export-ydpi="360.72144"
+   version="1.0">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutL"
+       style="overflow:visible">
+      <path
+         id="path4213"
+         d="M 5.77,0 L -2.88,5 L -2.88,-5 L 5.77,0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="scale(0.8,0.8)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="335.40916"
+     inkscape:cy="150.54349"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1280"
+     inkscape:window-height="1000"
+     inkscape:window-x="1867"
+     inkscape:window-y="16"
+     width="520px"
+     height="420px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-120.86396,-68.375732)">
+    <image
+       y="122.5987"
+       x="413.77145"
+       id="image3356"
+       height="111.57296"
+       width="183.47556"
+       sodipodi:absref="/home/andrew/work/workspace/Academic Work/phd-thesis/models/mixer.jpg"
+       xlink:href="mixer.jpg" />
+    <image
+       y="350.94049"
+       x="246.45586"
+       id="image2384"
+       height="111.57296"
+       width="183.47556"
+       sodipodi:absref="/home/andrew/work/workspace/Academic Work/phd-thesis/models/mixer.jpg"
+       xlink:href="mixer.jpg" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.05694067;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2162"
+       width="201.94305"
+       height="154.20651"
+       x="240.02846"
+       y="328.16882"
+       rx="5.9983087"
+       ry="6.7046313" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#7f7f7f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="274"
+       y="470.36218"
+       id="text2164"><tspan
+         sodipodi:role="line"
+         id="tspan2166"
+         x="274"
+         y="470.36218">Desk 1.0 Application</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.80370706;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3139"
+       width="130.21712"
+       height="138.27956"
+       x="132.43739"
+       y="109.52319"
+       rx="3.8678348"
+       ry="6.0121546" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.0009495px;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#TriangleOutL);stroke-opacity:1"
+       d="M 231.84972,250.26215 C 289.521,318.58857 289.521,318.58857 289.521,318.58857"
+       id="path3149" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#7f7f7f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="284.45053"
+       y="240.45041"
+       id="text4318"><tspan
+         sodipodi:role="line"
+         x="284.45053"
+         y="240.45041"
+         id="tspan2201">CD player support</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#7f7f7f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="141.69234"
+       y="225.45041"
+       id="text4324"><tspan
+         sodipodi:role="line"
+         x="141.69234"
+         y="225.45041"
+         id="tspan2203">Turntable and</tspan><tspan
+         sodipodi:role="line"
+         x="141.69234"
+         y="240.45041"
+         id="tspan2212">audio cue support</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.96148807px;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-mid:none;marker-end:url(#TriangleOutL);stroke-opacity:1"
+       d="M 340.68333,251.87724 C 340.68333,320.85417 340.68333,320.85417 340.68333,320.85417"
+       id="path4330" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#7f7f7f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="430.96375"
+       y="240.45041"
+       id="text4334"><tspan
+         sodipodi:role="line"
+         x="430.96375"
+         y="240.45041"
+         id="tspan2459">Desk 1.1 with updated mixer</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#TriangleOutL);stroke-opacity:1"
+       d="M 456.91231,249.41121 C 413.07169,321.5361 413.07169,321.5361 413.07169,321.5361"
+       id="path4338" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="212.69702"
+       y="292.31122"
+       id="text4358"><tspan
+         sodipodi:role="line"
+         id="tspan4360"
+         x="212.69702"
+         y="292.31122">extends</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="343.00275"
+       y="292.31122"
+       id="text4362"><tspan
+         sodipodi:role="line"
+         id="tspan4364"
+         x="343.00275"
+         y="292.31122">extends</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="437.39111"
+       y="292.31122"
+       id="text4366"><tspan
+         sodipodi:role="line"
+         id="tspan4368"
+         x="437.39111"
+         y="292.31122">upgrades</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="156.91237"
+       y="124.34216"
+       id="text5694"><tspan
+         sodipodi:role="line"
+         id="tspan5696"
+         x="156.91237"
+         y="124.34216">Developer X</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="297.89297"
+       y="124.34216"
+       id="text5698"><tspan
+         sodipodi:role="line"
+         id="tspan5700"
+         x="297.89297"
+         y="124.34216">Developer Y</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="310.27771"
+       y="342.99194"
+       id="text5702"><tspan
+         sodipodi:role="line"
+         id="tspan5704"
+         x="310.27771"
+         y="342.99194">AudioSoft</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="485.84448"
+       y="124.34216"
+       id="text5706"><tspan
+         sodipodi:role="line"
+         id="tspan5708"
+         x="485.84448"
+         y="124.34216">AudioSoft</tspan></text>
+    <image
+       y="138.22075"
+       x="145.91631"
+       id="image6348"
+       height="68.806679"
+       width="92.703606"
+       sodipodi:absref="/home/andrew/work/workspace/Academic Work/phd-thesis/models/turntable.jpg"
+       xlink:href="turntable.jpg" />
+    <image
+       y="146.6852"
+       x="296.07419"
+       id="image6391"
+       height="66.178467"
+       width="80.216324"
+       sodipodi:absref="/home/andrew/work/workspace/Academic Work/phd-thesis/models/cdplayer.jpeg"
+       xlink:href="cdplayer.jpeg" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.80370706;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2214"
+       width="130.21712"
+       height="138.27956"
+       x="273.66562"
+       y="109.52319"
+       rx="3.8678348"
+       ry="6.0121546" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2216"
+       width="187.33304"
+       height="138.11984"
+       x="421.40945"
+       y="109.60305"
+       rx="5.5643473"
+       ry="6.0052099" />
+  </g>
+</svg>

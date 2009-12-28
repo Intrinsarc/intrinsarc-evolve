@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/68/trunk/MTSTools/src/ac/ic/doc/mtstools/model/operations/impl
+END
+WeakAlphabetMergeBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnroot/mtsa/!svn/ver/68/trunk/MTSTools/src/ac/ic/doc/mtstools/model/operations/impl/WeakAlphabetMergeBuilder.java
+END
+StrongMergeBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnroot/mtsa/!svn/ver/55/trunk/MTSTools/src/ac/ic/doc/mtstools/model/operations/impl/StrongMergeBuilder.java
+END
+StrongMergeBuilder2.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svnroot/mtsa/!svn/ver/55/trunk/MTSTools/src/ac/ic/doc/mtstools/model/operations/impl/StrongMergeBuilder2.java
+END
+MTSClosureBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/mtsa/!svn/ver/20/trunk/MTSTools/src/ac/ic/doc/mtstools/model/operations/impl/MTSClosureBuilder.java
+END
+MTSPropertyToBuchiConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/operations/impl/MTSPropertyToBuchiConverter.java
+END

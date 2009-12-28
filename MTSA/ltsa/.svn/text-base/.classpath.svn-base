@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/LTL2Buchi.jar"/>
+	<classpathentry kind="lib" path="lib/scenebeans.jar"/>
+	<classpathentry kind="lib" path="lib/animator.jar"/>
+	<classpathentry kind="lib" path="lib/jel.jar"/>
+	<classpathentry kind="lib" path="lib/natutil.jar"/>
+	<classpathentry kind="lib" path="lib/xml.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MTSTools"/>
+	<classpathentry kind="lib" path="lib/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/framework.jar"/>
+	<classpathentry kind="lib" path="lib/gnu-regexp-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/swing-layout-1.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MTSSynthesis"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

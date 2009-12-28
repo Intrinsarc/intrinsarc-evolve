@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter5_lts
+END
+BoundedBuffer_fixedSema.lts
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter5_lts/BoundedBuffer_fixedSema.lts
+END
+BoundedBuffer_nestedSema.lts
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter5_lts/BoundedBuffer_nestedSema.lts
+END
+CarPark.lts
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter5_lts/CarPark.lts
+END
+Semaphore.lts
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter5_lts/Semaphore.lts
+END
+BoundedBuffer.lts
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter5_lts/BoundedBuffer.lts
+END
+SemaDemo.lts
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter5_lts/SemaDemo.lts
+END
+contents.txt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter5_lts/contents.txt
+END

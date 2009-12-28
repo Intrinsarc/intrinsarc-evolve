@@ -1,0 +1,108 @@
+package controller.game.model;
+
+import java.util.*;
+
+public class SafeGameSolver<State> implements GameSolver<State, State> {
+
+	private Game<State> game;
+	private Set<State> losingStates;
+	private boolean gameSolved;
+
+	public void solveGame() {
+		// Initialize
+		Queue<State> losing = new LinkedList<State>();
+
+		this.initialise(losing);
+
+		// Handle the pending states
+		while (!losing.isEmpty()) {
+			State state = losing.poll();
+
+			if (losingStates.contains(state)) {
+				break;
+			}
+
+			losingStates.add(state);
+
+			Set<State> predecessors = this.game.getPredecessors(state);
+			for (State pred : predecessors) {
+
+				if (game.isUncontrollable(pred)) {
+					losing.add(state);
+				} else {
+					boolean atLeastOne = false;
+					for (State succ : this.game
+							.getControllableSuccessors(state)) {
+						if (!losingStates.contains(succ)) {
+							atLeastOne = true;
+						}
+					}
+					if (!atLeastOne) {
+						losing.add(state);
+					}
+				}
+			}
+		}
+		this.gameSolved = true;
+	}
+
+	private void initialise(Collection<State> pending) {
+		for (State state : this.game.getStates()) {
+			if (this.game.getControllableSuccessors(state).isEmpty()
+					&& this.game.getUncontrollableSuccessors(state).isEmpty()) {
+				pending.add(state);
+			}
+		}
+	}
+
+	public Set<State> getWinningStates() {
+		Set<State> winning = new HashSet<State>();
+		if (!gameSolved) {
+			this.solveGame();
+		}
+		for (State state : this.game.getStates()) {
+			if (!this.losingStates.contains(state)) {
+				winning.add(state);
+			}
+		}
+		return winning;
+	}
+
+	public boolean isWinning(State state) {
+		if (!gameSolved) {
+			this.solveGame();
+		}
+		return !this.losingStates.contains(state);
+	}
+
+	public Map<State, Set<State>> buildStrategy() {
+		Map<State, Set<State>> result = new HashMap<State, Set<State>>();
+
+		Set<State> winningStates = this.getWinningStates();
+		for (State state : winningStates) {
+			Set<State> successors = new HashSet<State>();
+			if (this.game.isUncontrollable(state)) {
+				for (State succ : this.game.getUncontrollableSuccessors(state)) {
+					assert !this.losingStates.contains(succ);
+					successors.add(succ);
+				}
+				for (State succ : this.game.getControllableSuccessors(state)) {
+					if (!this.losingStates.contains(succ)) {
+						successors.add(succ);
+					}
+				}
+			} else { // Controllable State
+				boolean atLeastOne = false;
+				for (State succ : this.game.getControllableSuccessors(state)) {
+					if (!this.losingStates.contains(succ)) {
+						successors.add(succ);
+						atLeastOne = true;
+					}
+				}
+				assert atLeastOne;
+			}
+		}
+		return result;
+	}
+
+}

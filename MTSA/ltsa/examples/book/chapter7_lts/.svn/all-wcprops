@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts
+END
+Safe actuator.lts
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/Safe%20actuator.lts
+END
+Twocoin.lts
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/Twocoin.lts
+END
+Actuator.lts
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/Actuator.lts
+END
+SingleLaneBridgeDeadlock.lts
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/SingleLaneBridgeDeadlock.lts
+END
+Coin.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/Coin.lts
+END
+CongestedSingleLaneBridge.lts
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/CongestedSingleLaneBridge.lts
+END
+Polite.lts
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/Polite.lts
+END
+SingleLaneBridge.lts
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/SingleLaneBridge.lts
+END
+SingleLaneBridgeFair.lts
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/SingleLaneBridgeFair.lts
+END
+High_low.lts
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/High_low.lts
+END
+ReadersWriters.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/ReadersWriters.lts
+END
+Mutex_property.lts
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/Mutex_property.lts
+END
+ReadersWritersPriority.lts
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/ReadersWritersPriority.lts
+END
+ReadersWritersFair.lts
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/ReadersWritersFair.lts
+END
+contents.txt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/contents.txt
+END
+Calm.lts
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/mtsa/!svn/ver/14/trunk/ltsa/examples/book/chapter7_lts/Calm.lts
+END

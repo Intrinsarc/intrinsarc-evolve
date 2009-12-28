@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/mtsa/!svn/ver/73/trunk/ltsa/src/lts/chart/util
+END
+TriggeredScenarioTransformationException.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/mtsa/!svn/ver/73/trunk/ltsa/src/lts/chart/util/TriggeredScenarioTransformationException.java
+END
+MTSSynthesiserFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/mtsa/!svn/ver/73/trunk/ltsa/src/lts/chart/util/MTSSynthesiserFacade.java
+END
+TriggeredScenarioDefinitionToTriggeredScenario.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/mtsa/!svn/ver/73/trunk/ltsa/src/lts/chart/util/TriggeredScenarioDefinitionToTriggeredScenario.java
+END

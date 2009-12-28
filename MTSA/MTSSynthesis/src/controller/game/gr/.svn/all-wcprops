@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/mtsa/!svn/ver/160/trunk/MTSSynthesis/src/controller/game/gr
+END
+GRRank.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/mtsa/!svn/ver/132/trunk/MTSSynthesis/src/controller/game/gr/GRRank.java
+END
+GRRankContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/mtsa/!svn/ver/104/trunk/MTSSynthesis/src/controller/game/gr/GRRankContext.java
+END
+GRRankSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/mtsa/!svn/ver/139/trunk/MTSSynthesis/src/controller/game/gr/GRRankSystem.java
+END
+GRRankFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/mtsa/!svn/ver/132/trunk/MTSSynthesis/src/controller/game/gr/GRRankFunction.java
+END
+GRGameSolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/mtsa/!svn/ver/160/trunk/MTSSynthesis/src/controller/game/gr/GRGameSolver.java
+END

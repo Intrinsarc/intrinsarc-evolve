@@ -1,0 +1,808 @@
+#LyX 1.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 221
+\textclass article
+\begin_preamble
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinelanguage{Backbone}
+{
+morekeywords={depends-on, stratum},
+sensitive=true,
+morecomment=[l]{//},
+morecomment=[s]{/*}{*/},
+}
+
+\lstset{
+language=Backbone,
+basicstyle=\ttfamily\small,
+commentstyle=\color{purple},
+keywordstyle=\color{blue},
+%	xleftmargin=15pt,
+%	xrightmargin=15pt,
+frame=lines,
+%	aboveskip=0pt,
+%	belowskip=0pt,
+%	lineskip=-5pt,
+%	abovecaptionskip=10pt,
+%	belowcaptionskip=10pt,
+%	framesep=5pt,
+%	rulesep=10pt
+}
+
+\usepackage{latex8}
+
+  \let\oldthebibliography=\thebibliography
+ \let\endoldthebibliography=\endthebibliography
+  \renewenvironment{thebibliography}[1]{%
+    \begin{oldthebibliography}{#1}%
+      \setlength{\parskip}{0ex}%
+      \setlength{\itemsep}{0ex}%
+  }%
+  {%
+    \end{oldthebibliography}%
+  }
+
+\usepackage{latex8}
+\usepackage{times}
+\pagestyle{empty}
+
+\usepackage{float}
+
+\floatstyle{ruled}
+\newfloat{program}{h}{}
+\floatname{program}{Listing}
+\end_preamble
+\language english
+\inputencoding auto
+\fontscheme times
+\graphics default
+\paperfontsize 10
+\spacing single 
+\papersize a4paper
+\paperpackage a4
+\use_geometry 0
+\use_amsmath 0
+\use_natbib 1
+\use_numerical_citations 1
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\quotes_times 2
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+
+\layout Title
+
+Detecting and Resolving Interference Between Independently Developed Extensions
+ to an Architecture
+\layout Author
+
+Andrew McVeigh
+\newline 
+Department of Computing, Imperial College London
+\newline 
+180 Queen's Gate, London, SW7 2AZ 
+\newline 
+a.mcveigh@imperial.ac.uk
+\layout Abstract
+
+Software systems are increasingly based around extensible architectures
+ which allow third party developers to add or remove features.
+ Plugin architectures have emerged as a important way to achieve this result,
+ presenting a system as a set of components whose properties and connections
+ can be adjusted via configuration.
+ A major problem with this approach occurs when independently developed
+ plugins are combined to form a single system and interference between the
+ combined plugins causes unexpected behaviour.
+ An ADL is presented which is able to express component-based extension
+ architectures, modeling plugins as extensions.
+ We then propose an approach to handle unwanted feature interactions by
+ detecting and potentially resolving structural conflicts and behavioral
+ interference between extensions.
+ The aim is to use the same technique to also handle conflicts between an
+ evolved base architecture and existing extensions.
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+Section{Introduction and problem description}
+\end_inset 
+
+
+\layout Standard
+
+An extensible component-based architecture allows a product to be used as
+ a base for a family of applications, and third party developers are able
+ to add features without involving further work from the developers of the
+ original product.
+ Plugin architectures 
+\begin_inset LatexCommand \cite{Chatley2004}
+
+\end_inset 
+
+ are a commonly used architectural form for achieving this aim.
+ In a plugin architecture, the base architecture of the product exposes
+ a set of required interfaces.
+ Plugins are components which implement (provide) these interfaces and are
+ connected to components in the base.
+ In addition, the base architecture may expose a set of provided interfaces
+ representing services.
+ Plugins can require these interfaces thus using the service.
+ A successful and sophisticated example of the plugin approach is the Eclipse
+ platform 
+\begin_inset LatexCommand \cite{Object2001}
+
+\end_inset 
+
+, which has led to an entire ecosystem of commercial and open source plugins.
+\layout Standard
+
+By allowing the freedom to extend a base product, plugin architectures lead
+ naturally to a situation where a number of independently developed plugins
+ must be combined to form a new product.
+ Often the combination produces undesired effects.
+ We term this the 
+\shape italic 
+independent extensions proble
+\shape default 
+m 
+\begin_inset LatexCommand \cite{Szyperski2006}
+
+\end_inset 
+
+.
+ Further, when the base architecture is evolved to the next version, it
+ is not uncommon for existing plugins to no longer function correctly leading
+ to the 
+\shape italic 
+old extensions problem
+\shape default 
+.
+ There is evidence to demonstrate that these issues are of growing practical
+ concern 
+\begin_inset LatexCommand \cite{Birsan2005}
+
+\end_inset 
+
+.
+\layout Standard
+
+The aim of this work is to model component-based extension architectures
+ in a way which allows us to treat both problems as generalizations of the
+ same issue: the need to independently develop and subsequently integrate
+ two or more components into the same architecture.
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+Section{Justification that prior research has not solved the problems}
+\end_inset 
+
+
+\layout Standard
+
+Version control systems have been successfully used to manage and evolve
+ component architectures 
+\begin_inset LatexCommand \cite{Hoek2001}
+
+\end_inset 
+
+.
+ Combining structurally conflicting extensions has the disadvantage of requiring
+ the developer to fully understand the source code and any changes made
+ in order to perform a sensible source code merge.
+ It also offers no guarantees that the properties of the each extension
+ will be preserved in the combined system or that apparently independent
+ extensions will not behaviorally interfere.
+ An approach to mitigating the limitations of this is presented in 
+\begin_inset LatexCommand \cite{Ping2004}
+
+\end_inset 
+
+.
+ Currently the work is focused on creating architectural deltas in order
+ to structurally merge extensions to a product line architecture.
+ No support is offered for detecting or resolving behavioral interference,
+ although this is mentioned in future work.
+\layout Standard
+
+Feature composition has been proposed to allow the addition of independently
+ developed features to a telecommunications system, where existing services
+ must not be affected in an adverse way 
+\begin_inset LatexCommand \cite{Hay2000}
+
+\end_inset 
+
+.
+ This approach uses a series of relational assertions to model states and
+ events, along with invariants which characterize the intended effects of
+ the added features.
+ This work does not explicitly mention component structures or connections,
+ and is not directly applicable to a component-based architecture.
+ Furthermore, the work is focused on finding the best possible run-time
+ resolution of conflicting requirements rather than supporting a developer
+ in understanding and resolving unwanted interference.
+\layout Standard
+
+Aspect-oriented programming 
+\begin_inset LatexCommand \cite{kiczales97aspectoriented}
+
+\end_inset 
+
+ aims to allow orthogonal features to be developed and combined at a later
+ stage.
+ The main issue with this approach is that although it works well with truly
+ separate concerns such as transactions and logging, it does not provide
+ a convincing approach to handling features which are designed to interact.
+ In addition, there has been little take up of this approach for the mainstream
+ evolution of systems.
+\layout Standard
+
+A model of a plugin framework has previously been presented in 
+\begin_inset LatexCommand \cite{Chatley2004}
+
+\end_inset 
+
+, using a process formalism to ensure that properties hold when plugins
+ are combined.
+ However, it does not deal with hierarchical component structures or the
+ situation where multiple components share a single service (via a provided
+ interface).
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+Section{Research claims and hypothesis}
+\end_inset 
+
+
+\layout Standard
+
+We have developed an ADL, called Backbone, that offers a set of constructs
+ to model the definition and extension of a component-based architecture.
+ Evolution is regarded as a variant of extension, giving a developer who
+ is creating a plugin the same power as the developer who is evolving the
+ base architecture.
+ In this way, the proposed approach can deal with both the independent extension
+s and the old extensions problem simultaneously.
+\layout Standard
+
+We hypothesise that modeling changes to a base architecture as a series
+ of architectural deltas, as well as requiring interface protocol definitions
+ for leaf components, allows us to reason about whether the system is well
+ formed when extensions are combined.
+ Further, we hypothesize that some interference problems cannot be detected
+ by protocols alone, and we intend to provide a way to express the goal
+ of an extension as a set of properties that must be preserved after any
+ transformation.
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+Section{Details of the proposed solutions}
+\end_inset 
+
+
+\layout Standard
+
+We have developed an ADL called Backbone, based on the UML2 composite structure
+ meta-model, to model component-based extension architectures.
+ Backbone models hierarchical component structures and their connections.
+ A component must explicitly provide and require services via interfaces.
+ Leaf components tie to a Java implementation of that component.
+\layout Standard
+
+To model the extension of a system, Backbone defines a concept known as
+ 
+\shape italic 
+supplanting
+\shape default 
+ which replaces the definition of a component in a base architecture with
+ a revised definition from an extension.
+ An 
+\shape italic 
+is-like
+\shape default 
+ construct allows a new component to be defined in terms of delta changes
+ from another component.
+ Together, these constructs allow the definition and extension of components
+ to be expressed, as well as interface changes.
+ For instance, the evolution of a composite component can be modeled by
+ a component that 
+\shape italic 
+is-like
+\shape default 
+ the base definition which supplants the base component and adds new features.
+\layout Standard
+
+A plugin is considered to be a simplified form of extension, where only
+ new connections and component additions are allowed.
+ In this way, a system modeled using Backbone is more extensible than a
+ system with a basic plugin architecture.
+\layout Standard
+
+As an example, consider three extensions to the architecture of a digital
+ clock (figure 
+\begin_inset LatexCommand \ref{4 strata}
+
+\end_inset 
+
+).
+ The extensions are shown to the base 
+\shape italic 
+clock1.0
+\shape default 
+ architecture and each contains component definitions and supplanting instructio
+ns in order to add the required features: 
+\shape italic 
+beep
+\shape default 
+ adds an hourly beep, 
+\shape italic 
+alarm
+\shape default 
+ adds a daily alarm facility, and 
+\shape italic 
+clock1.1
+\shape default 
+ evolves the architecture.
+ Each of these extensions, when combined on their own with 
+\shape italic 
+clock1.0
+\shape default 
+ produce a system which works as intended.
+ Each extension has adjusted the structure of the base Clock component in
+ order to accommodate extra functionality.
+\layout Standard
+
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{4 strata}
+
+\end_inset 
+
+extensions to a base architecture
+\layout Standard
+\align center 
+
+\begin_inset Graphics
+	filename images/4 strata.eps
+	width 80col%
+	rotateOrigin center
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+When the alarm and beep extensions are combined, the following three issues
+ occur.
+ 
+\series bold 
+The generalization of these issues represent the major stages in our intended
+ approach to detect and resolve merge problems.
+\layout Itemize
+
+Step 1 is a structural merge: the structural changes made to 
+\shape italic 
+clock1.0
+\shape default 
+ by 
+\shape italic 
+alarm
+\shape default 
+ and 
+\shape italic 
+beep
+\shape default 
+ are in conflict and need to be unified.
+\layout Itemize
+
+Step 2 checks that protocols are respected: the 
+\shape italic 
+alarm
+\shape default 
+ and 
+\shape italic 
+beep
+\shape default 
+ extensions cause a violation of the protocol of the Audio component in
+ the 
+\shape italic 
+clock1.0
+\shape default 
+ package.
+ 
+\layout Itemize
+
+Step 3 is to check that the goal of the extension is achieved: the 
+\shape italic 
+beep
+\shape default 
+ facility prevents the 
+\shape italic 
+alarm
+\shape default 
+ from generating a tone with the correct volume for its stated 20 minute
+ period.
+\layout Standard
+
+Structural conflict can be detected by flattening the graph down to connected
+ leaf components for each extension and comparing.
+ The delta information is not sufficient alone to be able to resolve the
+ extensions into a unified structural view, however.
+ In this case, we allow deltas to be annotated to indicate why changes were
+ made (figure 
+\begin_inset LatexCommand \ref{beep extension with sharing}
+
+\end_inset 
+
+).
+ A key theme that has emerged is one of sharing services: problems occur
+ when a component which expects sole access to a service is forced to share
+ with another component.
+ It appears that much of the time, the reason for a structural change is
+ to permit this form of sharing.
+ Our approach is to expand on this to allow sharing components to be annotated
+ with information representing sharing patterns, allowing the merge algorithm
+ to deal with these situations automatically.
+\layout Standard
+
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{beep extension with sharing}
+
+\end_inset 
+
+the beep extension
+\layout Standard
+\align center 
+
+\begin_inset Graphics
+	filename images/basic-clock+beep.eps
+	width 80col%
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+When two components are forced to share a single service, they often together
+ violate the intended protocol of the service.
+ To detect this, we require the protocol of each leaf component to be described
+ via a subset of UML2 sequence diagrams.
+ The 
+\shape italic 
+opt
+\shape default 
+, 
+\shape italic 
+loop
+\shape default 
+, 
+\shape italic 
+par
+\shape default 
+ and 
+\shape italic 
+alt
+\shape default 
+ operators are supported and it can be shown that the traces from these
+ operators can always be described by a regular language 
+\begin_inset LatexCommand \cite{Adamek2005}
+
+\end_inset 
+
+.
+ A protocol diagram (figure 
+\begin_inset LatexCommand \ref{audio protocol}
+
+\end_inset 
+
+) shows the component and any port interfaces as actors.
+ Messages to required interfaces are shown as originating from the component
+ to the interface.
+ Messages from provided interfaces are shown as originating from the interface
+ and going to the component.
+\layout Standard
+
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{audio protocol}
+
+\end_inset 
+
+the Audio protocol
+\layout Standard
+\align center 
+
+\begin_inset Graphics
+	filename images/audio-protocol.eps
+	width 55col%
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+The FSP 
+\begin_inset LatexCommand \cite{Magee1999}
+
+\end_inset 
+
+ expression that describes this protocol is as follows.
+ Note that this models the interaction of two independent clients (c1 and
+ c2) with the Audio service.
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+begin{program}
+\layout Standard
+
+\backslash 
+begin{verbatim}
+\layout Standard
+CLIENT =
+\newline 
+ (call.tx.setVolume->
+\newline 
+  return.rx.setVolume->CLIENT 
+\newline 
+|call.tx.beep->return.rx.beep->CLIENT).
+\newline 
+set Clients = {c1,c2}
+\newline 
+AUDIO1 = 
+\newline 
+([c:Clients].call.rx.setVolume->
+\newline 
+  [c].return.tx.setVolume->AUDIO1).
+\newline 
+AUDIO2 = 
+\newline 
+([c:Clients].call.rx.beep->
+\newline 
+  [c].return.tx.beep->AUDIO2).
+\newline 
+property ||AUDIO = (AUDIO1 || AUDIO2).
+\newline 
+||SYS = (Clients:CLIENT || AUDIO) /
+\newline 
+ {[Clients].call.tx/[Clients].call.rx,
+\newline 
+ [Clients].return.rx/[Clients].return.tx}.
+\newline 
+
+\backslash 
+end{verbatim}
+\layout Standard
+
+\backslash 
+caption{The Audio protocol modelled in FSP}
+\layout Standard
+
+\backslash 
+end{program}
+\end_inset 
+
+
+\layout Standard
+
+The composition operator in CSP-like languages tends to suppress bad activity
+ errors which naturally result from multiple clients, with no knowledge
+ of each other, sharing the same service.
+ By modeling the service as an FSP property, however, it is possible to
+ get the same effect as the consent operator 
+\begin_inset LatexCommand \cite{Adamek2005}
+
+\end_inset 
+
+ and erroneous traces due to sharing can be detected.
+ In the FSP expression for the Audio protocol, an error will be caused if
+ a second client attempts to call setVolume() before the first client's
+ setVolume() call has returned.
+ Bad activity is shown by a transition to the error state in the labelled
+ transition system (figure 
+\begin_inset LatexCommand \ref{cap:The-labeled-transition}
+
+\end_inset 
+
+) produced by analyzing the protocol with the LTSA tool 
+\begin_inset LatexCommand \citep{Magee1999}
+
+\end_inset 
+
+.
+\layout Standard
+
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{cap:The-labeled-transition}
+
+\end_inset 
+
+The Audio protocol transitions
+\layout Standard
+\align center 
+
+\begin_inset Graphics
+	filename images/audio protocol.jpg
+	width 100col%
+
+\end_inset 
+
+
+\end_inset 
+
+
+\layout Standard
+
+Finally, even with a structurally unified system where all protocols are
+ observed, the intended goals of the system can be violated by combining
+ extensions.
+ This happens in the clock system because the alarm sets the volume when
+ it goes off, and if a beep happens during this time, the volume is altered
+ with the full consent of the Audio component's protocol.
+ We intend to allow any part of the architecture to specify a goal, possibly
+ in terms of expected interactions that must be preserved.
+ This is analogous to the invariants of 
+\begin_inset LatexCommand \cite{Hay2000}
+
+\end_inset 
+
+ and may also take the form of additional FSP properties that must hold
+ for the architecture to be considered to be correct.
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+Section{Expected contributions}
+\end_inset 
+
+
+\layout Standard
+
+The primary contribution of this work is to form a model of component-based
+ extension that takes into account evolution of the system as well as addition
+ and removal of features.
+ The use of protocols and high level goals enables reasoning about combining
+ independent extensions, supporting the detection and resolution of issues
+ caused by unwanted feature interactions.
+ This work will provide a more rigorous foundation for the evolution of
+ plugin-based architectures.
+\layout Standard
+
+The rules governing the structural side of the Backbone ADL have been modeled
+ using first order logic, and an interpreter has been implemented.
+ We have modeled protocols in FSP and are looking to expand the range of
+ errors that can be detected.
+ Finally, we have produced a prototype of a UML2 case tool in order to model
+ with Backbone.
+ The intention is to allow the designer to modify a component as per conventiona
+l development, but have the system record deltas which can translate directly
+ into Backbone constructs.
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+Section{Research evaluation}
+\end_inset 
+
+
+\layout Standard
+
+To evaluate the approach, we have listed some of the problems that face
+ current component-based extension approaches, particularly with regards
+ to sharing issues when combining multiple extensions.
+ We will demonstrate that our approach leads to the correct detection and
+ resolution of these problems, and that the engineering approach fits naturally
+ within the way that development occurs by supporting both top-down and
+ bottom-up development.
+ We also aim to find suitable case studies from Eclipse and other extensible
+ platforms that indicate problems, and show how our approach would solve
+ these problems.
+\layout Standard
+
+As the approach evolved out of a proposed extension architecture for the
+ UML2 case tool mentioned before, we will apply this technique to that architect
+ure demonstrating that it is feasible for a moderately large system.
+\layout Standard
+
+
+\begin_inset ERT
+status Open
+
+\layout Standard
+
+\backslash 
+Section{Acknowledgements}
+\end_inset 
+
+
+\layout Standard
+
+I gratefully acknowledge the help and insight of my supervisors, Professor
+ Jeff Magee and Professor Jeff Kramer.
+\layout Standard
+
+
+\begin_inset LatexCommand \BibTeX[plain]{C:/Andrew/Workspace/Academic Work/read papers/references}
+
+\end_inset 
+
+
+\the_end

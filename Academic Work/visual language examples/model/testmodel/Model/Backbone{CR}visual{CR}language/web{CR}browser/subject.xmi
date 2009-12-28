@@ -1,0 +1,13 @@
+            <UML:Package xmi.id="a40" xmi.uuid="DCE-1139485259292-730" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>web
+browser</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a47" xmi.uuid="DCE-1139485269261-105" name="WebBrowser" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Interface xmi.id="a48" xmi.uuid="DCE-1139485275636-807" name="IBrowser" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a49" xmi.uuid="DCE-1139485344542-934" name="IFileSystem" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Class xmi.id="a50" xmi.uuid="DCE-1139485412464-736" name="HtmlRenderer" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a51" xmi.uuid="DCE-1139485419230-297" name="HttpProtocolEngine" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a52" xmi.uuid="DCE-1139486121401-767" name="RenderingEngine" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+                <UML:Class xmi.id="a53" xmi.uuid="DCE-1139486138355-794" name="ConfigurationManager" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

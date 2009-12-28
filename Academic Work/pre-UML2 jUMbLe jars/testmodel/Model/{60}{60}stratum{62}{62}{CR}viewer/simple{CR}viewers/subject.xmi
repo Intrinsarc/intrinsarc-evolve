@@ -1,0 +1,11 @@
+            <UML:Package xmi.id="a35" xmi.uuid="DCE-1141392770996-778" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:ModelElement.name>simple
+viewers</UML:ModelElement.name>
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a24" xmi.uuid="DCE-1140449645240-568" isActive="false" name="SimpleEdgeViewer" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Class xmi.id="a26" xmi.uuid="DCE-1140449869409-984" isActive="false" name="SimpleNodeViewer" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+                <UML:Interface xmi.id="a30" xmi.uuid="DCE-1140456118016-257" name="IFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a44" xmi.uuid="DCE-1141654703304-27" name="INodeFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+                <UML:Interface xmi.id="a45" xmi.uuid="DCE-1141654710538-406" name="IEdgeFigure" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+              </UML:Namespace.ownedElement>
+            </UML:Package>

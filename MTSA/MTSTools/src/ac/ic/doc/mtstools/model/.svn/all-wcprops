@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/mtsa/!svn/ver/110/trunk/MTSTools/src/ac/ic/doc/mtstools/model
+END
+TransitionSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/106/trunk/MTSTools/src/ac/ic/doc/mtstools/model/TransitionSystem.java
+END
+MTSConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/MTSConstants.java
+END
+LTS.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/LTS.java
+END
+MTS.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/MTS.java
+END
+RefinementByRelation.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/RefinementByRelation.java
+END
+SemanticType.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/mtsa/!svn/ver/51/trunk/MTSTools/src/ac/ic/doc/mtstools/model/SemanticType.java
+END
+ImplementationNotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/ImplementationNotion.java
+END
+Refinement.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/11/trunk/MTSTools/src/ac/ic/doc/mtstools/model/Refinement.java
+END

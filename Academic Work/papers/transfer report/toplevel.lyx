@@ -1,0 +1,155 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\sloppy
+
+  \let\oldthebibliography=\thebibliography
+ \let\endoldthebibliography=\endthebibliography
+  \renewenvironment{thebibliography}[1]{%
+    \begin{oldthebibliography}{#1}%
+      \setlength{\parskip}{0ex}%
+      \setlength{\itemsep}{0ex}%
+  }%
+  {%
+    \end{oldthebibliography}%
+  }
+
+\usepackage{listings}
+
+\lstdefinelanguage{Alloy}
+{
+ sensitive=true,
+ morecomment=[l]{--}
+}
+
+\lstset{language=Alloy}
+
+\newtheorem{srule}{Structural rule}
+\newtheorem{sdef}{Definition}
+\newtheorem{sprop}{Property}
+\end_preamble
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing onehalf
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 2.5cm
+\rightmargin 3cm
+\bottommargin 2.5cm
+\headheight 0cm
+\headsep 0cm
+\footskip 1cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Backbone: An Architectural Approach for Extensible Applications
+\end_layout
+
+\begin_layout Author
+Andrew McVeigh
+\newline
+
+\newline
+Transfer Report
+\newline
+Supervisors: Professor J.
+ Magee and Professor J.
+ Kramer
+\end_layout
+
+\begin_layout Section*
+Acknowledgements
+\end_layout
+
+\begin_layout Standard
+I would like to thank my supervisors, Professor Jeff Magee and Professor
+ Jeff Kramer for their advice and deep insights into the world of component
+ structures and behavioural analysis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \tableofcontents{}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{introduction.lyx}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{background.lyx}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{example.lyx}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{evaluation-and-plan.lyx}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Include \input{rules-appendix.lyx}
+preview false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[bibtotoc,plain]{../../read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

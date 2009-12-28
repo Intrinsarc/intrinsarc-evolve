@@ -1,0 +1,10 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={bb\_port\_inference.als, lines 146-153}, label=alloy:connectionok, captionpos=b]
+s -> c not in end.linkError <=>
+{
+  no end.partInternal =>
+    providesEnough[s, infProv, matchingTerminalProvides]
+  oneToOneRequiredMappingExists[s, c, infProv, allEnds]
+  oneToOneProvidedMappingExists[s, c, infReq, allEnds]
+}
+\end{lstlisting}

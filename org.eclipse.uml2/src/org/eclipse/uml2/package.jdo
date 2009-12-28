@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo SYSTEM "http://java.sun.com/dtd/jdo_1_0.dtd">
+
+<jdo>
+    <package name="org.eclipse.uml2">
+
+	<class name="VisibilityKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator">
+	</class>
+
+	<class name="AggregationKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="ParameterDirectionKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="ParameterEffectKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="CallConcurrencyKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="ConnectorKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="ObjectNodeOrderingKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="MessageSort" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="ExpansionKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="InteractionOperator" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="PseudostateKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="TransitionKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="ComponentKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="PortKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+	<class name="PropertyAccessKind" persistence-capable-superclass="org.eclipse.emf.common.util.AbstractEnumerator" >
+	</class>
+
+    </package>
+</jdo>

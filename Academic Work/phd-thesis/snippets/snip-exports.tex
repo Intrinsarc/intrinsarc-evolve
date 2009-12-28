@@ -1,0 +1,7 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={base\_facts.als, lines 20-23}, label=alloy:exports, captionpos=b]
+isTrue[s.isRelaxed] =>
+  s.exportsStrata = s + s.(dependsOn + dependsOnNested).exportsStrata
+else
+  s.exportsStrata = s + s.dependsOnNested.exportsStrata
+\end{lstlisting}

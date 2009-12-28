@@ -1,0 +1,20 @@
+        <UML:Package xmi.id="a0" xmi.uuid="DCE-1140441365596-382" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>&lt;&lt;stratum&gt;&gt;
+graph</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+
+<packageImportLink xlink:type="simple" xlink:href="Graph" />
+
+
+<packageImportLink xlink:type="simple" xlink:href="Graph{CR}Elements" />
+
+            <UML:Interface xmi.id="a34" xmi.uuid="DCE-1141048277758-424" name="IGraphListener" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a36" xmi.uuid="DCE-1141043794492-975" isActive="false" name="Graph" visibility="private" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id="a37" xmi.uuid="DCE-1141043837242-4" isActive="false" name="Manager" visibility="protected" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+              </UML:Namespace.ownedElement>
+            </UML:Class>
+            <UML:Class xmi.id="a38" xmi.uuid="DCE-1141044005867-847" isActive="false" name="GraphNodeInstantiator" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a39" xmi.uuid="DCE-1141044025055-504" isActive="false" name="GraphEdgeInstantiator" visibility="package" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

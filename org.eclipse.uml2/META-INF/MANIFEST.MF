@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.uml2; singleton:=true
+Bundle-Version: 1.1.1.M200509151108
+Bundle-ClassPath: org.eclipse.uml2_1.1.1.M200509151108.jar
+Bundle-Activator: org.eclipse.uml2.UML2Plugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.uml2.common;visibility:=reexport,org.eclipse.emf.ecore.xmi;visibility:=reexport,org.eclipse.core.runtime,org.eclipse.core.resources;resolution:=optional
+Bundle-ManifestVersion: 2
+Eclipse-AutoStart: true
+Export-Package: org.eclipse.uml2,org.eclipse.uml2.impl;x-internal:=true,org.eclipse.uml2.internal.operation;x-friends:="org.eclipse.uml2.tests",org.eclipse.uml2.internal.util;x-internal:=true,org.eclipse.uml2.util

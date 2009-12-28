@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svnroot/mtsa/!svn/ver/164/trunk/ltsa/src/ui
+END
+HPWindow.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/164/trunk/ltsa/src/ui/HPWindow.java
+END
+FileInput.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/FileInput.java
+END
+FindDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/FindDialog.java
+END
+LTSABlanker.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/LTSABlanker.java
+END
+LTSABatch.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/LTSABatch.java
+END
+RefinementOptions.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/RefinementOptions.java
+END
+LTSDrawWindow.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/LTSDrawWindow.java
+END
+AlphabetWindow.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/AlphabetWindow.java
+END
+StandardError.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/StandardError.java
+END
+AnimWindow.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/AnimWindow.java
+END
+LTSASplash.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/LTSASplash.java
+END
+Examples.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/Examples.java
+END
+MinimalManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/MinimalManager.java
+END
+AppletButton.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/AppletButton.java
+END
+StandardOutput.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/StandardOutput.java
+END
+RefinementWindow.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/mtsa/!svn/ver/26/trunk/ltsa/src/ui/RefinementWindow.java
+END
+PrintWindow.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ui/PrintWindow.java
+END

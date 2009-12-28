@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/mtsa/!svn/ver/101/trunk/ltsa/src/ac/ic/doc/mtstools/util/fsp
+END
+GenericMTSToLongStringMTSConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ac/ic/doc/mtstools/util/fsp/GenericMTSToLongStringMTSConverter.java
+END
+ModelConverterUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ac/ic/doc/mtstools/util/fsp/ModelConverterUtils.java
+END
+AutomataToMTSConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/mtsa/!svn/ver/101/trunk/ltsa/src/ac/ic/doc/mtstools/util/fsp/AutomataToMTSConverter.java
+END
+MTSToAutomataConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/mtsa/!svn/ver/13/trunk/ltsa/src/ac/ic/doc/mtstools/util/fsp/MTSToAutomataConverter.java
+END

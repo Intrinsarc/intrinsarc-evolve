@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/test/ar/dc/uba/parser
+END
+LanguageParserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/test/ar/dc/uba/parser/LanguageParserTest.java
+END
+LocationParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/test/ar/dc/uba/parser/LocationParser.java
+END
+SetParserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/test/ar/dc/uba/parser/SetParserTest.java
+END
+WordParserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/test/ar/dc/uba/parser/WordParserTest.java
+END
+ConditionLocationParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/test/ar/dc/uba/parser/ConditionLocationParser.java
+END
+InteractionParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/test/ar/dc/uba/parser/InteractionParser.java
+END
+AlphabetParserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/mtsa/!svn/ver/23/trunk/MTSSynthesis/test/ar/dc/uba/parser/AlphabetParserTest.java
+END

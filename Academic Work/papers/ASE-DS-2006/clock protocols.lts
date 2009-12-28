@@ -1,0 +1,62 @@
+
+set SERV_CLIENTS = {clientA, clientB}
+set A_CLIENTS = {clientB}
+set B_CLIENTS = {clientA}
+
+CLA = ([name:A_CLIENTS].in -> clientA.out -> foo -> clientA.begin -> clientA.end -> CLA).
+CLB = ([name:B_CLIENTS].in -> [name].out -> bar -> [name].begin -> [name].end -> CLB).
+SERV = ([name:SERV_CLIENTS].in -> server -> [name].out -> SERV).
+
+||FINAL = (SERV || CLA || CLB).
+
+
+
+
+A = (in -> out -> a -> A).
+B = (in -> out -> b -> B).
+RESOURCE = (in -> out -> RESOURCE).
+||SHARE1 = (a:A || b:B).
+||SHARE2 = (SHARE1 || r:RESOURCE)/{r/a, r/b}.
+
+
+
+// format is "part name ; port name ; interface name ; {m|r}; {tx|rx}; messageName"
+// m = message
+// r = return
+
+TIMER_MGR_LOOP1 =
+	(timer_mgr.clock.iclock.mrx.changeTime ->
+     timer_mgr.mgr.idisplay.mtx.displayDigits ->
+     timer_mgr.mgr.idisplay.rrx.displayDigits ->
+     timer_mgr.clock.iclock.rtx.changeTime -> TIMER_MGR_LOOP1).
+
+TIMER_MGR_LOOP2 =
+	(timer_mgr.mgr.itimerclient.mrx.notifyOfNewSecond -> timer.mgr.itimerclient.rtx.notifyOfNewSecond -> TIMER_MGR_LOOP2
+    |timer_mgr.mgr.itimerclient.mrx.notifyOfNewSecond ->
+       timer.mgr.idisplay.mtx.displayDigits ->
+       timer.mgr.idisplay.rrx.displayDigits ->
+       timer.mgr.itimerclient.rtx.notifyOfNewSecond ->TIMER_MGR_LOOP2).
+
+||TIMER_MGR = (TIMER_MGR_LOOP1 || TIMER_MGR_LOOP2).
+
+TIMER =
+	(timer.client.itimerclient.mtx.notifyOfNewSecond -> timer.client.itimerclient.rrx.notifyOfNewSecond -> TIMER).
+
+DISPLAY =
+	(display.display.idisplay.mrx.displayDigits -> display.display.idisplay.rtx.displayDigits -> DISPLAY).
+
+||CLOCK =
+	(TIMER || DISPLAY || TIMER_MGR)
+		// bind each interface in turn
+		/ {timer.client.itimerclient.mtx / timer_mgr.mgr.itimerclient.mrx, timer.client.itimerclient.rrx / timer_mgr.mgr.itimerclient.rtx,
+		   timer_mgr.mgr.idisplay.mtx / display.display.idisplay.mrx, timer_mgr.mgr.idisplay.rrx / display.display.idisplay.rtx,
+		// rename any exposed internal ports to external ones
+		   external.iclock.mrx / timer_mgr.clock.iclock.mrx , external.iclock.rtx / timer_mgr.clock.iclock.rtx}
+		// hide any internal events
+		@ {external.iclock}.
+
+
+
+
+
+

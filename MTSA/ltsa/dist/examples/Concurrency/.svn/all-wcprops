@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/mtsa/!svn/ver/162/trunk/ltsa/dist/examples/Concurrency
+END
+SingleLaneBridge.lts
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/mtsa/!svn/ver/162/trunk/ltsa/dist/examples/Concurrency/SingleLaneBridge.lts
+END
+SingleLaneBridgeFair.lts
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/mtsa/!svn/ver/162/trunk/ltsa/dist/examples/Concurrency/SingleLaneBridgeFair.lts
+END
+SingleLaneBridgeDeadlock.lts
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/mtsa/!svn/ver/162/trunk/ltsa/dist/examples/Concurrency/SingleLaneBridgeDeadlock.lts
+END

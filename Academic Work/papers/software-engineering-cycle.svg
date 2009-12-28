@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448"
+   height="524.40942"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.44"
+   version="1.0"
+   sodipodi:docbase="/home/amcveigh/work/workspace/Academic Work/papers"
+   sodipodi:docname="software-engineering-cycle.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Dot_m"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Dot_m"
+       style="overflow:visible">
+      <path
+         id="path2895"
+         d="M -2.5,-1 C -2.5,1.76 -4.74,4 -7.5,4 C -10.26,4 -12.5,1.76 -12.5,-1 C -12.5,-3.76 -10.26,-6 -7.5,-6 C -4.74,-6 -2.5,-3.76 -2.5,-1 z "
+         style="fill-rule:evenodd;stroke:black;stroke-width:1pt;marker-start:none;marker-end:none"
+         transform="matrix(0.4,0,0,0.4,2.96,0.4)" />
+    </marker>
+    <marker
+       inkscape:stockid="Dot_s"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Dot_s"
+       style="overflow:visible">
+      <path
+         id="path2892"
+         d="M -2.5,-1 C -2.5,1.76 -4.74,4 -7.5,4 C -10.26,4 -12.5,1.76 -12.5,-1 C -12.5,-3.76 -10.26,-6 -7.5,-6 C -4.74,-6 -2.5,-3.76 -2.5,-1 z "
+         style="fill-rule:evenodd;stroke:black;stroke-width:1pt;marker-start:none;marker-end:none"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path2957"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z "
+         style="fill-rule:evenodd;stroke:black;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Dot_l"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Dot_l"
+       style="overflow:visible">
+      <path
+         id="path2898"
+         d="M -2.5,-1 C -2.5,1.76 -4.74,4 -7.5,4 C -10.26,4 -12.5,1.76 -12.5,-1 C -12.5,-3.76 -10.26,-6 -7.5,-6 C -4.74,-6 -2.5,-3.76 -2.5,-1 z "
+         style="fill-rule:evenodd;stroke:black;stroke-width:1pt;marker-start:none;marker-end:none"
+         transform="matrix(0.8,0,0,0.8,5.92,0.8)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="557.68925"
+     inkscape:cy="189.88596"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1280"
+     inkscape:window-height="994"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     width="744.09448px"
+     height="524.40942px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:black;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-mid:none;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 540.85802,334.75935 C 320.64477,481.23147 146.89853,354.9624 146.89853,354.9624"
+       id="path2785"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:black;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-mid:none;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 125.53931,133.61128 C 326.82979,5.9260874 497.03294,145.5893 497.03294,145.5893"
+       id="path2973"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="265.08636"
+       y="66.058784"
+       id="text2975"><tspan
+         sodipodi:role="line"
+         x="265.08636"
+         y="66.058784"
+         id="tspan2985">leads to</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;text-align:center;text-anchor:middle;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="319.63461"
+       y="428.70355"
+       id="text2991"><tspan
+         sodipodi:role="line"
+         id="tspan2993"
+         x="319.63461"
+         y="428.70355">provides rigour,</tspan><tspan
+         sodipodi:role="line"
+         x="319.63461"
+         y="448.70355"
+         id="tspan2995">finds holes in,</tspan><tspan
+         sodipodi:role="line"
+         x="319.63461"
+         y="468.70355"
+         id="tspan2997">contrains,</tspan><tspan
+         sodipodi:role="line"
+         x="319.63461"
+         y="488.70355"
+         id="tspan2999">augments further understanding</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#749aff;fill-opacity:1;stroke:#d8d642;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1878"
+       sodipodi:cx="318.70312"
+       sodipodi:cy="250.12988"
+       sodipodi:rx="116.67262"
+       sodipodi:ry="110.10663"
+       d="M 435.37575 250.12988 A 116.67262 110.10663 0 1 1  202.0305,250.12988 A 116.67262 110.10663 0 1 1  435.37575 250.12988 z"
+       transform="matrix(1.108,0,0,0.999762,-210.2652,-10.26525)" />
+    <text
+       xml:space="preserve"
+       style="font-size:56px;font-style:normal;font-weight:normal;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+       x="33.680256"
+       y="251.96747"
+       id="text2770"><tspan
+         sodipodi:role="line"
+         id="tspan2772"
+         x="33.680256"
+         y="251.96747">Intuition</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="101.64474"
+       y="280.2923"
+       id="text3003"><tspan
+         sodipodi:role="line"
+         x="101.64474"
+         y="280.2923"
+         id="tspan3007">useful</tspan></text>
+    <rect
+       style="fill:#e95722;fill-opacity:1;stroke:#d8d642;stroke-width:1.24437129;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2766"
+       width="380.58316"
+       height="190.67447"
+       x="349.39648"
+       y="149.98299" />
+    <text
+       xml:space="preserve"
+       style="font-size:56px;font-style:normal;font-weight:normal;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial"
+       x="373.43668"
+       y="256.00806"
+       id="text2779"><tspan
+         sodipodi:role="line"
+         id="tspan2781"
+         x="373.43668"
+         y="256.00806">Formalisation</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="450.28955"
+       y="283.24155"
+       id="text3011"><tspan
+         sodipodi:role="line"
+         id="tspan3013"
+         x="450.28955"
+         y="283.24155">rigorous &amp; sound</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:black;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="17.172592"
+       y="21.835411"
+       id="text3935"><tspan
+         sodipodi:role="line"
+         id="tspan3937"
+         x="17.172592"
+         y="21.835411"
+         style="font-size:18px">The software engineering cycle</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,1739 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing onehalf
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset LatexCommand \label{cha:Background}
+
+\end_inset
+
+Background
+\end_layout
+
+\begin_layout Standard
+This chapter presents a survey of existing work that is relevant to the
+ creation of extensible applications, focusing particularly on a component-based
+ viewpoint.
+ Various approaches to solving the problem of combining independently developed
+ components are reviewed.
+\end_layout
+
+\begin_layout Section
+Component-Based Software Engineering (CBSE)
+\end_layout
+
+\begin_layout Standard
+A longstanding goal of software engineering has been the ability to efficiently
+ and reliably construct software systems from prefabricated components.
+ An early reference to the general concept and vision was outlined by M.
+ D.
+ McIlroy at the 1968 NATO Software Engineering Conference 
+\begin_inset LatexCommand \cite{McIlroy1968}
+
+\end_inset
+
+.
+ In this influential white paper, software production techniques are compared
+ unfavourably to industrial manufacturing techniques in electronics and
+ hardware.
+ A key element is found to be the idea of a component or interchangeable
+ part, which provides a level of modularity.
+ The lack of support (at that time) for a component industry where component
+ producers provide catalogues of parameterised components is taken as a
+ sign of the lack of maturity of software production techniques relative
+ to other fields.
+\end_layout
+
+\begin_layout Standard
+Following from this, a vision of the production of systems through the customisa
+tion, 
+\begin_inset Quotes eld
+\end_inset
+
+transliteration
+\begin_inset Quotes erd
+\end_inset
+
+ and assembly of parameterised software components is proposed.
+ The proposal outlines options such as space-versus-time tradeoffs for algorithm
+s, and considers the need to automatically translate algorithms into different
+ languages for different operating systems.
+\end_layout
+
+\begin_layout Standard
+Apart from the generation and translation perspective, this vision of components
+ is similar in many ways to the modern concept of a class library.
+ The examples chosen are based very much around algorithmic concerns, and
+ parameterisation and generation are proposed as ways to handle the level
+ of choice required.
+ The wider concerns of a component-based architecture, such as dynamic structure
+s and multiple levels of architectural abstraction, are not discussed although
+ dynamic memory allocation is briefly mentioned.
+\end_layout
+
+\begin_layout Standard
+In essence, the wider vision remains largely unfulfilled and surprisingly
+ elusive.
+ Fundamental issues remain where even minor syntactic mismatches prevent
+ component integration and reuse 
+\begin_inset LatexCommand \cite{Holzle1993}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset LatexCommand \cite{Cox1991}
+
+\end_inset
+
+, software engineering is compared to the production of muskets in the pre-indus
+trial era, where hand crafting of parts was routine.
+ The lack of interchangeability and standard methods of measuring component
+ compliance to specifications are cited as being key impediments to the
+ development of component catalogues.
+\end_layout
+
+\begin_layout Section
+Component Technologies
+\end_layout
+
+\begin_layout Standard
+A number of component technologies exist, each with unique characteristics.
+ The various technology models are examined with a focus on supporting the
+ specification, reuse and integration of existing components.
+\end_layout
+
+\begin_layout Subsection
+CORBA and the CORBA Component Model (CCM)
+\end_layout
+
+\begin_layout Standard
+CORBA 
+\begin_inset LatexCommand \cite{OMG2004}
+
+\end_inset
+
+ provides a platform-independent communications format and a distributed
+ component model.
+ Interfaces are specified using an interface definition language (IDL),
+ which can then be compiled for a specific language and platform choice
+ into stubs and skeletons.
+ Component references can be passed via interfaces or turned into a textual
+ form.
+ Bindings between components are formed by passing references, and are not
+ specified using connectors.
+ A hierarchical model is not supported.
+ A CORBA marketplace for reusable components did not occur, largely because
+ the approach was focused on the integration of components implemented for
+ heterogeneous platforms.
+\end_layout
+
+\begin_layout Standard
+The CCM is a component model for CORBA 
+\begin_inset LatexCommand \cite{OMG2006a}
+
+\end_inset
+
+.
+ Components may provide and require interfaces (called facets and receptacles
+ respectively) through ports, and an event model for asynchronous communication
+ is supported (sources and sinks).
+ The model is non-hierarchical, and does not feature connectors in the standard
+ specification 
+\begin_inset LatexCommand \cite{Robert2005}
+
+\end_inset
+
+.
+ There is a considerable amount of similarity between the CCM and the EJB
+ specification (section 
+\begin_inset LatexCommand \ref{sub:Java-Component-Models}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Java-Component-Models}
+
+\end_inset
+
+Java Component Models
+\end_layout
+
+\begin_layout Standard
+JavaBeans 
+\begin_inset LatexCommand \cite{Network2006}
+
+\end_inset
+
+ is the client-side technology for the creation of reusable Java components.
+ It is primarily focused on GUI components, and supports an event model
+ where clients are notified of changes to state attributes.
+ Connections are modeled as references from a JavaBean to clients interested
+ in changes in the underlying state model.
+ This supports a limited form of hierarchical composition through object
+ aggregation.
+ It does not support explicit service interfaces.
+\end_layout
+
+\begin_layout Standard
+Enterprise JavaBeans (EJB) is the distributed server-side Java component
+ model 
+\begin_inset LatexCommand \cite{Network2006a}
+
+\end_inset
+
+.
+ Connections are formed by using a registry called JNDI (Java Naming and
+ Directory Interface) to locate named components.
+ Component hierarchy is not supported.
+\end_layout
+
+\begin_layout Standard
+As an alternative to EJB, so-called 
+\begin_inset Quotes eld
+\end_inset
+
+lightweight
+\begin_inset Quotes erd
+\end_inset
+
+ frameworks have become popular for implementing enterprise systems.
+ The Spring framework 
+\begin_inset LatexCommand \cite{Johnson2005}
+
+\end_inset
+
+ uses XML configuration files to connect JavaBeans together.
+ This has become known as dependency injection 
+\begin_inset LatexCommand \cite{Fowler2004}
+
+\end_inset
+
+.
+ Bean configurations can be nested, essentially resulting in a simplified
+ hierarchical component model that provides implicit connector support.
+ In this sense, the Spring XML configuration facility functions as an ADL.
+ Unlike Darwin and Backbone, however, Spring composite beans are associated
+ directly with implementation classes.
+ No method of specifying behaviour is provided.
+\end_layout
+
+\begin_layout Standard
+A Spring child bean definition can inherit from a single parent bean definition,
+ and can selectively override some parts of the (possibly nested) configuration.
+ This allows a new component to be defined in terms of an existing one,
+ in a similar way to a constrained form of resemblance in Backbone.
+ Deletion as well as addition is possible.
+ In the Spring infrastructure, this is seen as an alternative to templated
+ configurations.
+\end_layout
+
+\begin_layout Standard
+Spring can also use aliases, which function as replaceable names.
+ Aliases are part of a flat, global namespace.
+ Through careful organisation of included configuration files, it is possible
+ to use this as a form of templating.
+ This offers a limited form of pre-planned extension, related to the use
+ of variation points in Koala (section 
+\begin_inset LatexCommand \ref{sub:Koala}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Spring also contains aspect-oriented programming facilities, which can be
+ used to customise the behaviour of a system without directly modifying
+ the structural configuration.
+ This type of customisation suffers from the same issues as other aspect-oriente
+d approaches (section 
+\begin_inset LatexCommand \ref{sub:Aspect-Oriented-Programming}
+
+\end_inset
+
+).
+ Extension in the Spring system is not uniform, sometimes involving adjusting
+ the structural specification and sometimes involving the specification
+ of aspects.
+\end_layout
+
+\begin_layout Standard
+Spring does not provide support for analysing or resolving conflicts caused
+ through combining independently developed extensions.
+\end_layout
+
+\begin_layout Subsection
+COM (Component Object Model)
+\end_layout
+
+\begin_layout Standard
+COM is a component model and infrastructure built into the Windows operating
+ system 
+\begin_inset LatexCommand \cite{Box1997}
+
+\end_inset
+
+.
+ It forms a common extension mechanism for many applications, including
+ the Office suite applications such as Excel 
+\begin_inset LatexCommand \cite{Microsoft2006a}
+
+\end_inset
+
+.
+ COM supports a hierarchical model, and composition of instances is via
+ a registry based approach for indirectly locating service providers.
+ Components must explicitly declare provided and required interfaces.
+\end_layout
+
+\begin_layout Standard
+The COM model does not focus on supporting or resolving extension conflicts,
+ and the obscure and implicit nature of the configuration (via the registry)
+ makes models difficult to evolve architecturally.
+ Multiple versions of a COM component are supported, although this leads
+ to the troublesome case known as 
+\begin_inset Quotes eld
+\end_inset
+
+DLL Hell
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset LatexCommand \cite{Eisenbach2004}
+
+\end_inset
+
+..
+\end_layout
+
+\begin_layout Standard
+COM and its successor ActiveX 
+\begin_inset LatexCommand \cite{Microsoft2006}
+
+\end_inset
+
+ have successfully produced a marketplace for Windows GUI components.
+\end_layout
+
+\begin_layout Subsection
+Open Services Gateway Initiative
+\end_layout
+
+\begin_layout Standard
+The Open Services Gateway Initiative (OSGi) defines a component-based environmen
+t for the deployment of network-enabled services 
+\begin_inset LatexCommand \cite{Alliance2005}
+
+\end_inset
+
+.
+ Facilities are provided to manage the deployment and life-cycle of components.
+ Components can either be bundles (analogous to plugins) or services, and
+ these may be updated or removed without restarting the system.
+ Bundles may depend on and also provide interfaces, although OSGi has not
+ provided any form of component connection until very recently 
+\begin_inset LatexCommand \cite{Escoffier2007,Alliance2005}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Eclipse 
+\begin_inset LatexCommand \cite{Object2001a}
+
+\end_inset
+
+ uses an implementation of the OSGi standard for its plugin architecture
+ along with a registry based approach for matching up extension providers
+ with extension points.
+ It also offers the ability to specify plugins using the OSGi declarative
+ service facility 
+\begin_inset LatexCommand \cite{Delap2006}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+OSGi provides a general model of extension, where a plugin must explicitly
+ indicate its points of extension.
+ These correspond loosely to provided services that can support many connections.
+ Other plugins indicate which services they require, and the providers and
+ requirers are matched up through some form of registry.
+ It is interesting to note that an extension point can be more than just
+ a provided service, and arbitrary meta-data can be associated with each
+ extension point and each plugin.
+\end_layout
+
+\begin_layout Standard
+The OSGi model does not offer support for true component composition, and
+ any architectural hierarchy must be inferred through the logical names
+ of the bundles which are named according to Java package conventions.
+ This tends to bias the developers of a large architecture towards more
+ coarse grained components, increasing the footprint of potential conflicts
+ when components must be replaced.
+\end_layout
+
+\begin_layout Section
+Architecture Description Languages
+\end_layout
+
+\begin_layout Standard
+Architecture description languages (ADLs) evolved out of the desire to explicitl
+y describe the architecture of a software system as a set of connected component
+s.
+ Many ADLs exist, and the general consensus is that they must support compositio
+n of components, explicit connectors and provide an underlying formal model
+ which can be analysed 
+\begin_inset LatexCommand \cite{Medvidovic2000}
+
+\end_inset
+
+.
+ Components must specify all required and provided interfaces.
+ Most ADLs also use a hierarchical component model.
+\end_layout
+
+\begin_layout Subsection
+Darwin
+\end_layout
+
+\begin_layout Standard
+Darwin 
+\begin_inset LatexCommand \cite{Magee1996,Kramer2000}
+
+\end_inset
+
+ is an ADL used for specifying the architecture of distributed systems.
+ It offers support for multiple views and allows information to be added
+ to the architectural specification in order to aid analysis.
+ The separation of the structural description from the implementation is
+ often referred to as a configuration-based approach.
+ Behavioural information is specified using finite state processes (FSP)
+ 
+\begin_inset LatexCommand \cite{Magee1999}
+
+\end_inset
+
+, a process calculus.
+ The Labeled Transition System Analyser (LTSA) tool can process FSP into
+ labeled transition systems, allowing deadlock checking, the checking of
+ safety and progress properties, and other types of analysis to be performed.
+\end_layout
+
+\begin_layout Standard
+Although initially developed independently, the core Backbone component
+ model is almost identical to that of Darwin.
+ This presumably reflects the influence that Darwin and other ADLs have
+ had on the UML2 component model (section 
+\begin_inset LatexCommand \ref{sub:The-Unified-Modelling}
+
+\end_inset
+
+) upon which Backbone is based.
+\end_layout
+
+\begin_layout Standard
+Darwin supports a form of port type inference, as well as type parameterisation
+ 
+\begin_inset LatexCommand \cite{DSE1997}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dynamic reconfiguration of architectures specified in Darwin is explored
+ in 
+\begin_inset LatexCommand \cite{Kramer1990}
+
+\end_inset
+
+.
+ This work considers how to accommodate evolutionary change to the structure
+ of an architecture, whilst the system is running.
+ Configuration changes are modeled as deltas: component and link creation
+ and removal are supported.
+ The property of system quiescence, indicating that a given component is
+ not currently involved in a transaction, is used to determine when to transfer
+ application state from the old component to the new one.
+ Backbone allows a similar set of deltas to be specified against an architecture
+, but packages these as component definitions.
+ Backbone also focuses on statically representing the evolution of a system,
+ and the interpreter cannot dynamically apply extensions.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Koala}
+
+\end_inset
+
+Koala
+\end_layout
+
+\begin_layout Standard
+Koala is an ADL designed to express the architecture of software in embedded
+ electronic devices 
+\begin_inset LatexCommand \cite{Ommering2002}
+
+\end_inset
+
+.
+ It is loosely a variant of Darwin, but incorporates features designed to
+ tailor it to the embedded domain and reduce the size and overhead of a
+ running application.
+ Further, it provides facilities to describe product families to handle
+ the diversity of component selections in a consumer electronics product
+ line.
+ See section 
+\begin_inset LatexCommand \ref{sub:Parameterisation-and-Product}
+
+\end_inset
+
+ for a discussion on how Koala handles extensibility.
+\end_layout
+
+\begin_layout Subsection
+C2 Family
+\end_layout
+
+\begin_layout Standard
+C2 
+\begin_inset LatexCommand \cite{Taylor1995}
+
+\end_inset
+
+ is a non-hierarchical ADL designed to support the explicit requirements
+ of GUI software, including the reuse of GUI elements.
+ A component has a top and bottom domain.
+ The top domain specifies the notifications that the component can accept
+ and the requests that are issued to the rest of the architecture.
+ In essence, the domain concept models the notions of provided interfaces
+ for the handling of notifications, and required interfaces for issuing
+ requests.
+ 
+\end_layout
+
+\begin_layout Standard
+The bottom domain indicates the notifications that will be emitted, essentially
+ modeling the required interfaces for sending events to the rest of the
+ architecture.
+ Each domain may be connected to only one connector, but connectors can
+ accept links from many components.
+ A key principle is one of substrate independence, where the component knows
+ of the components that are connected to its top domain, but does not know
+ which components are connected to the bottom domain.
+ Pictured visually, an architecture can be reused by slicing it horizontally
+ at a certain level and taking the components and connections above this
+ level as a reusable set.
+ Each C2 component may be active, with its own thread.
+\end_layout
+
+\begin_layout Standard
+C2 SADL 
+\begin_inset LatexCommand \cite{Medvidovic1996}
+
+\end_inset
+
+ is a variant of C2 designed to support dynamic instantiation of components.
+ It also supports upgrading components in a running system and removing
+ unwanted components via reconfiguration.
+ C2 SADL defines the concept of 
+\emph on
+placeholder
+\emph default
+ components 
+\begin_inset LatexCommand \cite{Medvidovic1996a}
+
+\end_inset
+
+, for representing conceptual entities which have not been fully elaborated.
+ This provides support for top-down design in addition to bottom-up construction
+ of an architecture.
+ Backbone has incorporated this concept into its approach.
+\end_layout
+
+\begin_layout Standard
+Later work in this area developed C2 SADEL 
+\begin_inset LatexCommand \cite{Medvidovic1999}
+
+\end_inset
+
+ which explicitly provides support for analysing the architectural evolution
+ of a system.
+ The protocol of a component is modeled via state, invariants, and pre and
+ post-conditions.
+ Further, this approach is used to implement the design environment and
+ language, demonstrating its applicability.
+\end_layout
+
+\begin_layout Standard
+The C2, C2 SADL and C2 SADEL models do not deal with hierarchical components,
+ or the explicit analysis of architectural issues that arise from independent
+ extensions.
+\end_layout
+
+\begin_layout Subsection
+ROOM
+\end_layout
+
+\begin_layout Standard
+ROOM 
+\begin_inset LatexCommand \cite{Selic1994a}
+
+\end_inset
+
+ is an ADL for modeling and constructing real-time software systems.
+ Components are called actors, and must specify any required or provided
+ interfaces via ports.
+ Actors may be hierarchical and active.
+ Actor protocols are described using extended state machines (ESMs), which
+ are a type of automata allowing variables.
+ The presence of variables makes it difficult to analyse protocols using
+ model checking, as the state space can be prohibitively large.
+ From an engineering perspective however, ESMs are more attractive to design
+ with because the number of states is usually far smaller than in the equivalent
+ finite automata.
+ ROOM also includes a concept of structural inheritance that allows for
+ component reconfiguration in a sub-actor.
+ Features to handle conflict due to multiple actor inheritance and conflict
+ resolution are not described in the ROOM literature.
+\end_layout
+
+\begin_layout Standard
+ROOM outlines a pragmatic and wide-ranging vision of CBSE which includes
+ a virtual machine for model debugging and execution, and tools to translate
+ models into implementation languages.
+ It has had a far reaching impact on graphical modeling techniques, and
+ is one of the key influences that led to the vision of Model Driven Architectur
+e (MDA) 
+\begin_inset LatexCommand \cite{OMG2006}
+
+\end_inset
+
+.
+ The ROOM approach and similar techniques have been successfully used in
+ the real-time software arena for many years.
+\end_layout
+
+\begin_layout Subsection
+Balboa
+\end_layout
+
+\begin_layout Standard
+Balboa is a component model and environment that is focused on providing
+ a convenient and efficient compositional design environment for system-level
+ application architectures 
+\begin_inset LatexCommand \cite{Doucet2005}
+
+\end_inset
+
+.
+ Balboa supports type inference, and a developer may choose to be explicit
+ about the 
+\begin_inset Quotes eld
+\end_inset
+
+input
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+output
+\begin_inset Quotes erd
+\end_inset
+
+ types of a component, or defer this to the type inference algorithm.
+ This allows an architect to remain oblivious to the C++ implementation
+ types which form the implementation strategy.
+ Balboa contains incremental type inferencing algorithms, but features an
+ NP-complete model.
+ In contrast, Backbone places constraints relating to the specification
+ of leaf components that reduce the problem down to a simple algorithm.
+\end_layout
+
+\begin_layout Standard
+Balboa indicates links in leaf components through a textual syntax and parameter
+isation.
+ Backbone has no type parameterisation, and uses explicit links instead
+ (section 
+\begin_inset LatexCommand \ref{sub:Port-Type-Inference}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Graphical Component Modeling
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:The-Unified-Modelling}
+
+\end_inset
+
+The Unified Modeling Language 2.0
+\end_layout
+
+\begin_layout Standard
+The Unified Modeling Language (UML) is a graphical language for describing
+ the structure and behaviour of object-oriented systems 
+\begin_inset LatexCommand \cite{OMGUML}
+
+\end_inset
+
+.
+ UML was standardised by the Object Management Group (OMG), which subsequently
+ evolved it from version 1.0 through to version 2.0.
+\end_layout
+
+\begin_layout Standard
+UML2.0 (abbreviated to UML2) introduced a number of component-oriented diagram
+ types which allow it to be feasibly used as the basis of an ADL 
+\begin_inset LatexCommand \cite{Goulo2003}
+
+\end_inset
+
+.
+ The design of these diagram types have been heavily influenced by Darwin,
+ ROOM and several other ADLs.
+ Composite structure diagrams can be used to model composite and leaf components.
+ Component diagrams are also provided, but these are essentially a syntactic
+ variant of composite structure diagrams and are not considered further
+ here.
+\end_layout
+
+\begin_layout Standard
+Component protocols in UML2 are modeled either as sequence diagrams 
+\begin_inset LatexCommand \cite{Selic2003}
+
+\end_inset
+
+ or activity diagrams, with the latter seemingly preferred.
+ Essentially, this amounts to modeling protocols as ESMs, with the same
+ engineering advantages and limitations on their formal analysis.
+ UML2 Sequence diagrams can feature looping and alternation as well as other
+ operators.
+\end_layout
+
+\begin_layout Standard
+UML2 introduces package merge which provides a way to specify extensions
+ to a package via other packages.
+ As pointed out in 
+\begin_inset LatexCommand \cite{Zito2006}
+
+\end_inset
+
+, this construct can only add features to a model and contains a number
+ of issues which prevent its use as a general approach to creating extensible
+ applications.
+ Further, there is currently no precise definition of package merge available.
+\end_layout
+
+\begin_layout Standard
+UML2 represents an amalgam of loosely integrated techniques and graphical
+ diagrams from many areas, showing its heritage as standard designed by
+ a committee.
+ The meta-model is complex, featuring over two hundred separate elements.
+ Part of the challenge of applying the UML to a software system is to choose
+ an appropriate subset of the language and give it a more precise meaning.
+ This is the approach that Backbone has taken for component modeling.
+\end_layout
+
+\begin_layout Subsection
+Software Architect's Assistant (SAA)
+\end_layout
+
+\begin_layout Standard
+SAA is a graphical design environment for the development of Darwin programs
+ 
+\begin_inset LatexCommand \cite{Ng1995,Ng1996}
+
+\end_inset
+
+.
+ It understands the hierarchical structure and distributed nature of Darwin
+ systems, and provides integrated graphical and textual views.
+ A composition hierarchy view is supported as well as conventional component
+ diagrams.
+ Libraries can be created, facilitating a compositional approach to system
+ building which involves constructing new components from a set of existing
+ ones.
+ A key focus is on supporting the distributed nature of Darwin programs.
+\end_layout
+
+\begin_layout Standard
+jUMbLe is the Backbone graphical CASE tool.
+ jUMbLe is related to Backbone in the same way that SAA is related to Darwin.
+ SAA does not focus particularly on the creation of extensible systems.
+ Backbone currently does not focus on the development of distributed systems,
+ although this is an area of potential further work.
+\end_layout
+
+\begin_layout Section
+Approaches to Extensible Systems and Component Reuse
+\end_layout
+
+\begin_layout Subsection
+Scripting
+\end_layout
+
+\begin_layout Standard
+In an influential article by Ousterhout 
+\begin_inset LatexCommand \cite{Ousterhout1998}
+
+\end_inset
+
+, scripting is presented as a way to integrate components implemented in
+ conventional compiled languages.
+ The argument is that scripting languages are more flexible and faster to
+ develop in than their statically typed and compiled counterparts.
+ This approach can also be used to produce systems which are extensible
+ via customisation of scripts.
+\end_layout
+
+\begin_layout Standard
+Many systems have opted for a scripting approach in order to provide an
+ extensible base which supports the introduction of new features by extension
+ developers.
+ A prominent example of a platform with an important scripting focus is
+ Excel 
+\begin_inset LatexCommand \cite{Microsoft2006a}
+
+\end_inset
+
+ which uses Visual Basic for Applications as the scripting language.
+ The scripts can call out to COM components, which can be added to the applicati
+on.
+\end_layout
+
+\begin_layout Standard
+Firefox uses plugins which can consist of Javascript scripts and optional
+ implementation-level components.
+ These scripts is used to extend the user interface and deal with any logic,
+ and can call into the underlying application.
+\end_layout
+
+\begin_layout Standard
+Scripting approaches do not address the problems to do with combining extensions
+, although they tend to minimise it as extensions are only given limited
+ freedom to adjust or modify the base application.
+ This contravenes the EXTEND requirement.
+\end_layout
+
+\begin_layout Subsection
+Frameworks
+\end_layout
+
+\begin_layout Standard
+Frameworks are a reuse technique allowing a semi-complete application to
+ be customised and extended into a complete application 
+\begin_inset LatexCommand \cite{Fayad1997}
+
+\end_inset
+
+.
+ A framework allows objects implementing particular interfaces to be registered
+ with it, and will invoke these objects at various points in its processing.
+ This is known as inversion of control 
+\begin_inset LatexCommand \cite{Johnson1997}
+
+\end_inset
+
+.
+ This offers an effective and large-scale form of reuse, but in practise
+ a number of fundamental issues limit this approach 
+\begin_inset LatexCommand \cite{Codenie1997}
+
+\end_inset
+
+.
+ Many of these issues stem from ownership of architectural changes, where
+ changes to the framework must be performed by the framework developers,
+ or else a copy of the framework's code must be copied and independently
+ modified leading to subsequent maintenance problems.
+ In addition, evolving a framework is difficult because the base framework
+ must be aware of the different uses that it is being put to before it can
+ be reliably updated.
+ This is a violation of the NO_IMPACT requirement.
+ Various techniques have been proposed to mitigate this situation 
+\begin_inset LatexCommand \cite{Cortes2003,Hou2001,Mattsson1997}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In addition, frameworks can only be extended in pre-planned ways, based
+ on variation points encoded as required interfaces.
+ This contravenes the EXTEND requirement.
+\end_layout
+
+\begin_layout Standard
+Frameworks are able to be extended without having the implementation source
+ code, however.
+ Many commercial frameworks are delivered in this way.
+ As long as the specification of the interfaces is available, the framework
+ can be delivered in binary object form.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Parameterisation-and-Product}
+
+\end_inset
+
+Parameterisation and Product Diversity
+\end_layout
+
+\begin_layout Standard
+Koala 
+\begin_inset LatexCommand \cite{Ommering2000}
+
+\end_inset
+
+ is a component model based on Darwin that allows for variation in an architectu
+re through variation points and parameterisation.
+ Component variants can be plugged into the variation points, supporting
+ a family of applications.
+ The points must be decided in advance and planned into the architecture,
+ limiting this to a technique for planned extension.
+ This does not fully satisfy the EXTEND requirement.
+\end_layout
+
+\begin_layout Standard
+Parameterisation is used in Koala to capture options supported by a component
+ 
+\begin_inset LatexCommand \cite{Ommering2000}
+
+\end_inset
+
+.
+ This approach only supports planned variation and can also result in a
+ combinatorial explosion of options if the parameters of the constituent
+ parts of a composite are also exposed.
+\end_layout
+
+\begin_layout Standard
+Koala features HORCOM, a software bus which mirrors the functionality of
+ an electronic hardware bus 
+\begin_inset LatexCommand \cite{Ommering2003}
+
+\end_inset
+
+.
+ Components are decoupled from each other by HORCOM, and understand a standard
+ protocol.
+ Additional components can be plugged into the bus, extending the behaviour
+ of the system in an additive way.
+\end_layout
+
+\begin_layout Subsection
+Plugin Architectures
+\end_layout
+
+\begin_layout Standard
+Plugin architectures have one or more frameworks at the core of their architectu
+re, but are generally packaged as an application 
+\begin_inset LatexCommand \cite{Object2001}
+
+\end_inset
+
+.
+ Plugins represent components that can be added to the platform by adjusting
+ the system configuration.
+ Large extensions to these systems represent platforms in their own right,
+ and can literally consist of hundreds of plugins.
+ Plugin architectures support a constrained form of component-based extension
+ architecture and have problems with the combination of independent extensions
+ 
+\begin_inset LatexCommand \cite{Beaton2005,Fireheadaches2005}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Eclipse supports a plugin model, based on OSGi 
+\begin_inset LatexCommand \cite{OSGi2003}
+
+\end_inset
+
+ where components (OSGi bundles) indicate how they are connected to the
+ service provisions of other components via a set of manifest files 
+\begin_inset LatexCommand \cite{Consortium2006}
+
+\end_inset
+
+.
+ The model is non-hierarchical because it does not support composition of
+ other component instances in an architectural model.
+ Modifying the component connections in an existing application can involve
+ a considerable duplication of manifest entries and is not practical for
+ large applications (MANAGE, EXTEND).
+ Structural conflict is a problem in this model, although in practice it
+ is restricted because replacing individual components in a large configuration
+ is difficult (VERIFY_REPAIR).
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Aspect-Oriented-Programming}
+
+\end_inset
+
+Aspect-Oriented Programming
+\end_layout
+
+\begin_layout Standard
+Aspect-oriented programming 
+\begin_inset LatexCommand \cite{kiczales97aspectoriented}
+
+\end_inset
+
+ aims to allow orthogonal features to be developed and woven together at
+ a later stage.
+ Aspects are specified orthogonally to the main source code base.
+\end_layout
+
+\begin_layout Standard
+The main issue with this approach is that although it works well with truly
+ separate concerns such as transactions and logging, it does not provide
+ a convincing approach to handling features which are designed to interact.
+ In addition, there has been little take up of this approach for the specificati
+on of general program logic.
+ Spring 
+\begin_inset LatexCommand \cite{Harrop2005,Johnson2005}
+
+\end_inset
+
+ and other Java enterprise approaches have stared using aspects for transactiona
+l demarcation and security concerns.
+\end_layout
+
+\begin_layout Standard
+Aspects are limited in how they can affect the base application (EXTEND).
+ Combining multiple, independently developed aspects is also often problematic
+ (COMBINE, VERIFY_REPAIR).
+\end_layout
+
+\begin_layout Subsection
+Viewpoint-Oriented Approach
+\end_layout
+
+\begin_layout Standard
+Viewpoints allow multiple perspectives on a single system to be constructed
+ and combined at a later point 
+\begin_inset LatexCommand \cite{Finkelstein1992}
+
+\end_inset
+
+.
+ This allows independent development of different aspects of an application,
+ supporting the different roles and expertise within a team.
+ A viewpoint is not restricted to the structural side of a system, and can
+ encompass requirements, function, architecture and also non-functional
+ concerns.
+\end_layout
+
+\begin_layout Standard
+Viewpoints encode partial knowledge about a system and are based around
+ a representational schema of a particular domain.
+ Consistency checks are used to ensure that the combined viewpoints represent
+ a coherent system.
+ Viewpoints represent a compelling approach to the construction of a system
+ with multiple facets, but are not explicitly oriented towards the creation
+ of extensible applications.
+ In particular, a constructive approach is taken, which prevents the removal
+ of features from a system or the modification of existing features.
+\end_layout
+
+\begin_layout Standard
+A more structurally-oriented approach is taken in 
+\begin_inset LatexCommand \cite{Engels1997}
+
+\end_inset
+
+.
+ In this model, views also encode partial knowledge about a system, based
+ on a reference model.
+ In practice, views are partial specifications of instance graphs.
+ In the Backbone approach, views would be represented as redefinitions on
+ the same underlying component configuration.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset LatexCommand \label{sub:Architecturally-Aware-Version-Control}
+
+\end_inset
+
+Architecturally-Aware CM Systems
+\end_layout
+
+\begin_layout Standard
+Conventional CM (configuration management) systems have been successfully
+ used to manage and evolve component architectures 
+\begin_inset LatexCommand \cite{Stuckenholz2005}
+
+\end_inset
+
+, and offer a lowest-common denominator approach to extending a system.
+ Combining structurally conflicting extensions has the disadvantage of requiring
+ the developer to fully understand the source code and any changes made
+ in order to perform a sensible source code merge.
+ It also offers no guarantees that the properties of the each extension
+ will be preserved in the combined system or that apparently independent
+ extensions will not behaviourally interfere.
+ An approach to mitigating the limitations of this is presented in 
+\begin_inset LatexCommand \cite{Ping2004}
+
+\end_inset
+
+.
+ Currently the work is focused on creating architectural deltas in order
+ to structurally merge extensions to a product line architecture.
+ No support is offered for detecting or resolving behavioural interference,
+ although this is mentioned in future work.
+\end_layout
+
+\begin_layout Standard
+The introduction of variation points and the general evolution of architectures
+ has been made more feasible through systems like Mae which have integrated
+ CM and architectural concepts 
+\begin_inset LatexCommand \cite{Hoek2001,Roshandel2004}
+
+\end_inset
+
+.
+ This approach provides an overarching CM system which understands architectural
+ and evolutionary concepts and can support the creation of variants.
+ This approach assumes that all components are available via a unified and
+ consistent CM system, which is not feasible in an environment with many
+ (possibly commercial) component providers.
+ Further this does not solve the need to create many variation points to
+ satisfy all extension developers, leading to a complex, very generic architectu
+re which violates the NO_IMPACT
+\emph on
+ 
+\emph default
+requirement.
+ Backbone avoids this by effectively providing some of the facilities of
+ a decentralised CM system where the base application need not be aware
+ in any way of the architectural changes made by extensions.
+\end_layout
+
+\begin_layout Standard
+Mae provides a powerful unified architectural and CM approach.
+ Backbone in contrast provides a unified modeling foundation with explicit
+ modeling constructs for architectural definition and evolution.
+ Backbone models are expected to be version controlled using a conventional
+ CM system, reflecting the practical constraints of projects in an industrial
+ setting.
+\end_layout
+
+\begin_layout Subsection
+Mixins
+\end_layout
+
+\begin_layout Standard
+Mixins are a language feature for expressing abstract subclasses that can
+ be reused in different parent classes 
+\begin_inset LatexCommand \cite{Bracha1990}
+
+\end_inset
+
+.
+ Any number of mixins can be combined into a parent class, and methods of
+ the mixin may invoke methods of the that class.
+ This implies that the mixin must make assumptions about the names of the
+ parent methods that it will call, which represents an integration issue.
+ Further, multiple mixins may conflict or interact in unforeseen ways (COMBINE,
+ VERIFY_AND_REPAIR).
+\end_layout
+
+\begin_layout Standard
+Scala is a language with mixins which aims to support the combination of
+ independently developed extensions 
+\begin_inset LatexCommand \cite{Zenger2004}
+
+\end_inset
+
+.
+ It provides two dimensions of extension: data extension for the object-oriented
+ view, and behavioural extension for the functional view.
+ Scala does not offer support to alleviate the name collision problem suffered
+ by mixin and multiple inheritance approaches.
+ Further, the combination of independent extensions must in part be performed
+ by manual adjustment of the class that combines the mixins.
+\end_layout
+
+\begin_layout Subsection
+Virtual Classes and Nested Inheritance
+\end_layout
+
+\begin_layout Standard
+The BETA language allows virtual patterns, which are a type of virtual class
+ 
+\begin_inset LatexCommand \cite{Lehrmann1993}
+
+\end_inset
+
+.
+ A type can specify other types, and sub-types can refine those types through
+ inheritance.
+\end_layout
+
+\begin_layout Standard
+Nested inheritance provides a similar facility, which allows an inheriting
+ type to override any contained types of its sub-type 
+\begin_inset LatexCommand \cite{Nystrom2004}
+
+\end_inset
+
+.
+ This extends the BETA facilities by guaranteeing type safety through static
+ analysis.
+ The example scenario of a parsing system demonstrates considerable reuse
+ for a compiler family.
+\end_layout
+
+\begin_layout Standard
+In practice, both approaches are limited to pre-planned extension points
+ (where classes have been explicitly contained or marked as virtual) and
+ subject to the limitations of the inheritance construct (only additions
+ and compatible overrides).
+\end_layout
+
+\begin_layout Subsection
+Difference-Based Modules
+\end_layout
+
+\begin_layout Standard
+MixJuice adds a module system to Java, supporting a variant of redefinition
+ where modules describe the difference between the base application and
+ the desired application 
+\begin_inset LatexCommand \cite{Ichisugi2002,Chern2006}
+
+\end_inset
+
+.
+ Inheritance is used in place of resemblance.
+\end_layout
+
+\begin_layout Standard
+The intention is to allow an object-oriented system written in Java to be
+ extended in unplanned ways.
+ Resemblance is more expressive than inheritance, however, as it allows
+ constituents to also be deleted and replaced, reflecting their evolution.
+ MixJuice relies on a total module loading order to be specified, although
+ it can use implicitly included 
+\begin_inset Quotes eld
+\end_inset
+
+complementary
+\begin_inset Quotes erd
+\end_inset
+
+ modules to resolve several common types of conflict.
+ Because it relies on the Java class model, MixJuice also does not offer
+ a true architectural approach.
+\end_layout
+
+\begin_layout Standard
+A graphical approach to depicting MixJuice architectures has been proposed
+ 
+\begin_inset LatexCommand \cite{Ichisugi2002a}
+
+\end_inset
+
+.
+ Backbone is similar to a hierarchical, component-oriented version of MixJuice
+ in several respects.
+ Backbone additionally offers support for predictably detecting and resolving
+ structural and behavioural conflicts, which are troublesome in MixJuice.
+\end_layout
+
+\begin_layout Standard
+MixJuice uses a naming system of module::class to prevent accidental name
+ collisions in independently developed modules.
+ jUMbLe (the Backbone graphical modeler) uses a related, albeit more powerful,
+ system of assigning globally unique identifiers and mapping onto human
+ names in the graphical CASE tool (section 
+\begin_inset LatexCommand \ref{UUIDs}
+
+\end_inset
+
+).
+ This has the advantage of supporting refactoring of human-readable names
+ without perturbing the underlying identity of a component.
+ Renaming can occur without disturbing other independent extensions that
+ refer to the same underlying component.
+\end_layout
+
+\begin_layout Subsection
+Product-Line Architectures
+\end_layout
+
+\begin_layout Standard
+A product-line architecture focuses on a set of reusable components that
+ can be shared by many systems in a product family 
+\begin_inset LatexCommand \cite{Eriksson2006}
+
+\end_inset
+
+.
+ The development of components is driven by a hierarchical feature model
+ which contains fine-grained variants which deal with different use cases.
+ Products are created by adding to the feature graph if required, and then
+ choosing the appropriate variants.
+\end_layout
+
+\begin_layout Standard
+Concurrent evolution of single components of the product line is problematic
+ 
+\begin_inset LatexCommand \cite{Svahnberg1999}
+
+\end_inset
+
+, and work to merge and propagate changes from one branch to another is
+ still required if the code for a component is branched 
+\begin_inset LatexCommand \cite{Ping2004}
+
+\end_inset
+
+ (COMBINE).
+ In addition, this approach usually involves maintaining a single feature
+ graph for all product variants, which makes decentralised development difficult
+ (NO_IMPACT).
+\end_layout
+
+\begin_layout Standard
+GenVoca is an approach and environment for generating product lines 
+\begin_inset LatexCommand \cite{Batory2002}
+
+\end_inset
+
+.
+ The primitive element is of composition is called a 
+\emph on
+gluon
+\emph default
+ and these are arranged in layer-like structures called 
+\emph on
+constants
+\emph default
+.
+ GenVoca features a form of redefinition called class extension, which is
+ a subclass that assumes the name of its parent class.
+ This construct is closest to a combination of resemblance and redefinition,
+ allowing for a form of incremental update.
+ The implementation relies on an aspect-oriented approach for the combination
+ of features.
+\end_layout
+
+\begin_layout Section
+Combining and Integrating Independently Developed Extensions
+\end_layout
+
+\begin_layout Subsection
+Component Integration Issues
+\end_layout
+
+\begin_layout Standard
+The problems involved with integrating independently developed components
+ is well known, and the issues range from simple syntactic mismatches through
+ to more complex behavioural interactions and testability concerns 
+\begin_inset LatexCommand \cite{Holzle1993,Kiczales1992,Szyperski2006,Stuckenholz2005}
+
+\end_inset
+
+.
+ Component versioning and deployment approaches have been proposed as a
+ way of mitigating this 
+\begin_inset LatexCommand \cite{Meijer2002}
+
+\end_inset
+
+, where multiple versions of a component may be deployed into in a running
+ system.
+ This does not address the issue of migration to the newer version, or the
+ problem when a single version of the component must always be enforced.
+ The latter situation often occurs when a component is managing a resource
+ that requires a single controlling entity in a system.
+\end_layout
+
+\begin_layout Standard
+A common theme of several approaches is to solve the integration issue by
+ wrapping the original component and delegating selectively to it.
+ Wrapping is proposed in 
+\begin_inset LatexCommand \cite{Holzle1993}
+
+\end_inset
+
+ in order to adapt an interface for naming mismatches, although it is pointed
+ out that this introduces a performance problem.
+ It also introduces a problem with identity as both the wrapped object and
+ the original need to assume the same identity in some situations.
+ The desire to wrap components is more focused on solving the problem at
+ an implementation level, where maintaining compatibility with existing
+ languages and paradigms is either implicitly or explicitly considered to
+ be of paramount importance.
+ Superimposition 
+\begin_inset LatexCommand \cite{Bosch1999}
+
+\end_inset
+
+ is a variation on this theme which aims to address the identity problem
+ (referred to also as the 
+\begin_inset Quotes eld
+\end_inset
+
+self problem
+\begin_inset Quotes erd
+\end_inset
+
+).
+ The aims of adaptation, in this case, are that it can be applied transparently,
+ and that the wrappers can be reused in other contexts.
+ This does not solve the fundamental problem that wrapping is a black-box
+ reuse technique which cannot adjust fundamental characteristics of a component,
+ only hide them (EXTEND).
+ Other wrapping approaches are outlined in 
+\begin_inset LatexCommand \cite{Jorgensen2004,Truyen2001}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Feature Composition
+\end_layout
+
+\begin_layout Standard
+Feature composition has been proposed to allow the addition of independently
+ developed features to a telecommunications system, where existing services
+ must not be affected in an adverse way 
+\begin_inset LatexCommand \cite{Hay2000}
+
+\end_inset
+
+.
+ This approach uses a series of relational assertions to model states and
+ events, along with invariants which characterise the intended effects of
+ the added features.
+\end_layout
+
+\begin_layout Standard
+Feature interaction is detected at runtime by examining whether a higher
+ priority feature has caused the invariants of a lower priority feature
+ to be invalidated.
+ A lower priority feature is not allowed to violate the invariants of a
+ higher priority feature.
+ This work does not explicitly mention component structures or connections,
+ and is not directly applicable to a hierarchical component-based architecture.
+ Furthermore, the work is focused on finding the best possible run-time
+ resolution of conflicting requirements rather than supporting a developer
+ in understanding and resolving unwanted interference.
+ The steps for expressing and resolving interactions have to some extent
+ been mirrored in the Backbone approach, with some modifications required
+ for the design-time focus and hierarchical component model.
+ 
+\end_layout
+
+\begin_layout Subsection
+Architectural Merging
+\end_layout
+
+\begin_layout Standard
+An approach to merging UML models is presented in 
+\begin_inset LatexCommand \cite{Alanen2003}
+
+\end_inset
+
+.
+ This considers only the structure of the models, and does not address behaviour
+al issues.
+\end_layout
+
+\begin_layout Standard
+Product line architecture, as discussed earlier, have to deal with merging
+ issues when it is required that changes in one part of the product line
+ are propagated to another part.
+ Automated support for merging has been provided in 
+\begin_inset LatexCommand \cite{Ping2004}
+
+\end_inset
+
+, which works by determining the delta changes between different parts of
+ the product line and applying these changes elsewhere.
+ This work is focused on the architectural level, but currently offers no
+ support for detecting behavioural conflicts or subtle structural issues.
+ In contrast, Backbone expresses component change in terms of deltas.
+ These do not need to be synthesised.
+\end_layout
+
+\begin_layout Standard
+As stated previously in section 
+\begin_inset LatexCommand \ref{sub:Architecturally-Aware-Version-Control}
+
+\end_inset
+
+, Mae 
+\begin_inset LatexCommand \cite{Roshandel2004}
+
+\end_inset
+
+ is an architecturally aware CM system that understands architectural hierarchy
+ and records delta changes to architectures.
+ As such, architecture merging is fully supported.
+\end_layout
+
+\begin_layout Subsection
+Detecting Compositional Conflicts
+\end_layout
+
+\begin_layout Standard
+Critical pair analysis, a technique derived from graph rewriting, has been
+ used to detect incompatibilities between parallel branches of a system
+ that each refactor the same elements 
+\begin_inset LatexCommand \cite{Mens2005}
+
+\end_inset
+
+.
+ A critical pair provides a formal foundation for a minimal example of independe
+nt, conflicting changes.
+ The technique is currently restricted to a fixed set of refactorings, and
+ relies on having changes expressed in graph form.
+\end_layout
+
+\begin_layout Standard
+An ontology based framework for classifying compositional conflicts has
+ been implemented 
+\begin_inset LatexCommand \cite{Leicher2004}
+
+\end_inset
+
+.
+ This is intended to serve as a basis for component adaptation and reuse.
+ Using this framework, the behavioural and structural properties of a set
+ of components can be specified and analysed for conflict.
+\end_layout
+
+\begin_layout Section
+Behavioural Modeling of Components
+\end_layout
+
+\begin_layout Standard
+This section presents a brief survey of the field of behavioural modeling
+ of components.
+ This survey does not intend to be exhaustive, instead referring only to
+ work which directly reflects the approach used to specify the behaviour
+ of Backbone components.
+\end_layout
+
+\begin_layout Subsection
+Protocols
+\end_layout
+
+\begin_layout Standard
+The formalisation of object protocols is considered in 
+\begin_inset LatexCommand \cite{Nierstrasz1993}
+
+\end_inset
+
+, which argues that it is essential to view the protocol of an object as
+ a process rather than as a function.
+ The notion of a service type is introduced, which characterises the traces
+ that an object can produce in terms of operation actions.
+ This is assumed to conform to a regular language, such as that produced
+ by a labeled transition system.
+ The service type is contrasted with the notion of a value type, which summarise
+s the argument types and return type of a method.
+\end_layout
+
+\begin_layout Standard
+The notion of request substitutability is considered, in terms of whether
+ one object can be substituted for another and a client not be able to detect
+ the difference.
+ It is shown that correct substitutability is closely related to the concept
+ of request failures.
+ Basically, any request which is emitted from a client, but can not be accepted
+ by the service at the current point in time will cause a failure, generating
+ a transition to the error state.
+\end_layout
+
+\begin_layout Standard
+Component protocols are modeled with regular expressions in 
+\begin_inset LatexCommand \cite{Plasil2002}
+
+\end_inset
+
+.
+ The interaction context is the hierarchical SOFA model, where connectors
+ join provided and required interfaces of components.
+ Each event in the protocol language is either a request or response, and
+ can be either emitted or absorbed.
+ This corresponds closely to the modeling of client-service protocols presented
+ in an example in 
+\begin_inset LatexCommand \cite{Magee1999}
+
+\end_inset
+
+, which uses either request or reply and either call or accept as action
+ prefixes.
+\end_layout
+
+\begin_layout Standard
+A set of operators are supported over the regular expressions used to model
+ protocols.
+ These are sequencing, alternative, repetition, and-parallel, or-parallel
+ and restriction (or hiding in FSP terminology).
+ Two composition operators are introduced: composition which models parallel
+ execution of two substrings of the language, and adjustment which insists
+ that tokens between the two substrings occur in the same order.
+ Substitution of protocols is considered, and the concept of bounding a
+ protocol is used to determine if one protocol can be safely substituted
+ for another.
+ 
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset LatexCommand \cite{Adamek2005}
+
+\end_inset
+
+, the composition of protocols of the internal parts of a composite component
+ is considered.
+ Three different classes of protocol composition error are described.
+ Bad activity errors occur when a client component emits a call to a service
+ component which cannot be accepted in the service's current state.
+ The consent operator is developed, which is able to detect these types
+ of bad sequences.
+ This is contrasted to the CSP parallel composition operator, which automaticall
+y synchronises actions between the client and service components thereby
+ avoiding such errors.
+ The two other errors types are no activity (where no component can emit
+ or absorb a request) and divergence (where at least one component cannot
+ stop to accept a version update).
+ The results are applied to a system to determine when it is allowable to
+ omit a binding for a component port 
+\begin_inset LatexCommand \cite{Adamek2004}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Predictable Plugin Behaviour
+\end_layout
+
+\begin_layout Standard
+A model of a plugin behaviour has previously been presented in 
+\begin_inset LatexCommand \cite{Chatley2004}
+
+\end_inset
+
+, using a process formalism to ensure that properties hold when plugins
+ are combined.
+ This work does not deal with hierarchical component structures.
+ It handles the situation where multiple components share a single service
+ at a level of abstraction that assumes mutual exclusion of resources and
+ services.
+\end_layout
+
+\begin_layout Standard
+The underlying assumption in this model is that the events of a client and
+ service component will be regarded as shared actions if possible.
+ This prevents a client from emitting an action if the service is not prepared
+ to accept the response, limiting the set of errors that can be detected
+ to no activity errors.
+ These types of errors are manifested as deadlocks when performing an LTSA
+ analysis of the composed protocols.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+The underlying theory and practice of building extensible applications suffer
+ from the inherent tension between the manageability of an architecture
+ (MANAGE), the freedom given to modify the underlying application (EXTEND)
+ and the potential for conflict when combining multiple, independently developed
+ extensions (COMBINE, VERIFY_AND_REPAIR).
+ The issues involved are a superset of the issues involved with component
+ reuse and integration, when seen from an architectural perspective.
+ An application in such an approach is simply a complex composite component.
+\end_layout
+
+\begin_layout Standard
+The vision of building a system quickly from a set of pre-fabricated components
+ remains surprisingly elusive.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{../../read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

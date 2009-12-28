@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BackboneInterpreter"/>
+	<classpathentry exported="true" kind="var" path="GWT/gwt-user.jar"/>
+	<classpathentry kind="var" path="GWT/gwt-dev-linux.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

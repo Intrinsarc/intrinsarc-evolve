@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ODB-Libraries"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DelegatedEMFList"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/EnhancedEMFCore"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.uml2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.uml2.codegen.ecore"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.uml2.codegen.ecore.ui"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.uml2.common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.uml2.common.edit"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.uml2.edit"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

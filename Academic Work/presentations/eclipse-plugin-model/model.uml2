@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="superfly2_1204712763161_4848" name="model">
+  <appliedBasicStereotypeValues uuid="superfly2_1204712763718_219" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.0">
+    <value xsi:type="uml:LiteralBoolean" uuid="superfly2_1204712763724_9796" value="true"/>
+  </appliedBasicStereotypeValues>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204712800705_5341" name="Plugin">
+    <ownedAttribute uuid="superfly2_1204712869427_9413" name="version" visibility="private"/>
+    <ownedAttribute uuid="superfly2_1204713591291_6734" name="id" visibility="private"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204712883279_1643" name="Extension">
+    <ownedAttribute uuid="superfly2_1204713920132_268" name="xml parameters" visibility="private"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204712884255_7300" name="ExtensionPoint">
+    <ownedAttribute uuid="superfly2_1204713912789_5897" name="xmlschema" visibility="private"/>
+    <ownedAttribute uuid="superfly2_1204724527028_328" name="id" visibility="private"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204712887079_2394" name="Feature">
+    <ownedAttribute uuid="superfly2_1204713518313_2793" name="version" visibility="private"/>
+    <ownedAttribute j_deleted="1" uuid="superfly2_1204724542610_1935" name="attribute" visibility="private" type="//@childPackages.0/@childPackages.0/@ownedMember.0"/>
+    <ownedAttribute uuid="superfly2_1204724548954_5924" name="id" visibility="private"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" j_deleted="1" uuid="superfly2_1204712889935_9459" name="Site"/>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204712892903_4928" name="Package">
+    <ownedAttribute uuid="superfly2_1204713587067_6069" name="name" visibility="private"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204712895111_7678" name="Class" clientDependency="//@ownedMember.6/@ownedAnonymousDependencies.0 //@ownedMember.6/@ownedAnonymousDependencies.1">
+    <ownedAnonymousDependencies j_deleted="1" uuid="superfly2_1204714680941_8362" name="ca" client="//@ownedMember.6" dependencyTarget="//@ownedMember.2"/>
+    <ownedAnonymousDependencies uuid="superfly2_1204714905938_6820" name="can query via registry" client="//@ownedMember.6" dependencyTarget="//@ownedMember.1"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204712896168_7001" name="Interface"/>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204713984247_5700" name="VersionBounds">
+    <ownedAttribute uuid="superfly2_1204714070787_1411" name="minVersion" visibility="private"/>
+    <ownedAttribute uuid="superfly2_1204714080076_7468" name="maxVersion" visibility="private"/>
+    <ownedAttribute uuid="superfly2_1204714085131_1706" name="don'tCare" visibility="private"/>
+  </ownedMember>
+  <ownedMember xsi:type="uml:Class" uuid="superfly2_1204715634584_9691" name="ExtensionRegistry"/>
+  <j_diagramHolder uuid="superfly2_1204713252474_7862" saveTime="Mon Apr 7, 2008 at 11:20:05 BST" savedBy="Andrew">
+    <diagram uuid="superfly2_1207606805804_4717" lastFigureId="181">
+      <figures uuid="superfly2_1207606805804_4527" id="35" recreator="Association" anchor1Id="4" anchor2Id="0" virtualPoint="624 281" points="2 624 226 624 336" type="2">
+        <figures uuid="superfly2_1207606805805_8417" id="35_M" recreator="Linked Text" containedName="text" text="" point="572.4 272.2" dimensions="3.8 14"/>
+        <figures uuid="superfly2_1207606805808_3605" id="35E" recreator="Linked Text" containedName="endText" text="1..*" point="636.4 308.2" dimensions="22 14">
+          <properties uuid="superfly2_1207606805808_7300" name="majorPt" value="2"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_2415" id="35S" recreator="Linked Text" containedName="startText" text="start" show="false" point="660.4 224.2" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805808_4769" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805808_2183" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="superfly2_1207606805805_7536" id="43" recreator="Association" anchor1Id="4" anchor2Id="4" virtualPoint="648 1220" points="4 660.3 182.9 760 148 760 228 660.3 203.5">
+        <figures uuid="superfly2_1207606805805_5941" id="43_M" recreator="Linked Text" containedName="text" text="dependsOn" show="false" point="740.4 144.5" dimensions="67 14">
+          <properties uuid="superfly2_1207606805805_4829" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_8799" id="43E" recreator="Linked Text" containedName="endText" text="end" show="false" point="644.4 192.5" dimensions="22 14">
+          <properties uuid="superfly2_1207606805807_7282" name="majorPt" value="2"/>
+          <properties uuid="superfly2_1207606805807_7838" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_7804" id="43S" recreator="Linked Text" containedName="startText" text="start" show="false" point="644.4 164.5" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805807_5559" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805807_5740" name="suppress" value="true"/>
+        </figures>
+        <properties uuid="superfly2_1207606805805_5532" name="uni" value="true"/>
+        <properties uuid="superfly2_1207606805805_8570" name="curved" value="true"/>
+      </figures>
+      <figures uuid="superfly2_1207606805805_3294" id="24" recreator="Association" anchor1Id="0" anchor2Id="3" virtualPoint="573.1 433" points="2 598.8 398.9 546.6 467.9" type="3">
+        <figures uuid="superfly2_1207606805807_6476" id="24_M" recreator="Linked Text" containedName="text" text="defines" show="false" point="570.3 447.8" dimensions="42.4 14">
+          <properties uuid="superfly2_1207606805807_977" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_12" id="24E" recreator="Linked Text" containedName="endText" text="0..*" point="510.3 459.8" dimensions="22 14">
+          <properties uuid="superfly2_1207606805808_469" name="majorPt" value="2"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_6289" id="24S" recreator="Linked Text" containedName="startText" text="start" show="false" point="602.3 359.8" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805808_2506" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805808_2371" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="superfly2_1207606805805_4523" id="26" recreator="Association" anchor1Id="0" anchor2Id="2" virtualPoint="465.5 433.5" points="2 592.2 380 364.9 476" type="3">
+        <figures uuid="superfly2_1207606805805_3860" id="26E" recreator="Linked Text" containedName="endText" text="0..*" point="322.3 465.4" dimensions="22 14">
+          <properties uuid="superfly2_1207606805805_9363" name="majorPt" value="2"/>
+        </figures>
+        <figures uuid="superfly2_1207606805805_2512" id="26S" recreator="Linked Text" containedName="startText" text="start" show="false" point="590.3 349.4" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805805_26" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805805_471" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_194" id="26_M" recreator="Linked Text" containedName="text" text="defines" show="false" point="418.3 417.4" dimensions="42.4 14">
+          <properties uuid="superfly2_1207606805806_6255" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="superfly2_1207606805805_391" id="28" recreator="Association" anchor1Id="0" anchor2Id="6" virtualPoint="707.5 435.5" points="2 655 392.9 762.4 480" type="3">
+        <figures uuid="superfly2_1207606805805_3677" id="28E" recreator="Linked Text" containedName="endText" text="end" show="false" point="788.8 489.3" dimensions="22 14">
+          <properties uuid="superfly2_1207606805805_9963" name="majorPt" value="2"/>
+          <properties uuid="superfly2_1207606805805_5508" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_2774" id="28_M" recreator="Linked Text" containedName="text" text="contains" show="false" point="712.8 429.3" dimensions="49.1 14">
+          <properties uuid="superfly2_1207606805806_4715" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_9879" id="28S" recreator="Linked Text" containedName="startText" text="start" show="false" point="608.8 357.3" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805806_5677" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805806_1611" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="superfly2_1207606805805_822" id="3" recreator="Class" point="468 468" dimensions="110.3 62" subject="//@ownedMember.2">
+        <figures uuid="superfly2_1207606805805_3341" id="3_A" recreator="Attributes" containedName="attrs" point="468 490" dimensions="86 32">
+          <figures uuid="superfly2_1207606805805_94" id="40" recreator="Attribute" name="xmlschema" point="471 506" dimensions="80 14" subject="//@ownedMember.2/@ownedAttribute.0"/>
+          <figures uuid="superfly2_1207606805806_4401" id="107" recreator="Attribute" name="id" point="471 492" dimensions="25 14" subject="//@ownedMember.2/@ownedAttribute.1"/>
+          <properties uuid="superfly2_1207606805805_9540" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805805_140" id="3_C" recreator="SimpleContainer" containedName="contents" point="468 530" dimensions="110.3 0" offset="4 4"/>
+        <figures uuid="superfly2_1207606805806_4270" id="3_P" recreator="PortCompartment" containedName="ports" point="468 468" dimensions="110.3 62">
+          <properties uuid="superfly2_1207606805807_5911" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805807_7118" name="classScope" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_6932" id="3_O" recreator="Operations" containedName="ops" point="468 522" dimensions="40 8">
+          <properties uuid="superfly2_1207606805807_1975" name="deletedUuids" value=""/>
+        </figures>
+        <properties uuid="superfly2_1207606805805_6585" name="fill" value="255 204 51"/>
+        <properties uuid="superfly2_1207606805805_5307" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805805_7923" id="2" recreator="Class" point="252 476" dimensions="112 48" subject="//@ownedMember.1">
+        <figures uuid="superfly2_1207606805807_5411" id="2_P" recreator="PortCompartment" containedName="ports" point="252 476" dimensions="112 48">
+          <properties uuid="superfly2_1207606805807_5742" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805807_6478" name="classScope" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_9881" id="2_O" recreator="Operations" containedName="ops" point="252 516" dimensions="40 8">
+          <properties uuid="superfly2_1207606805807_2496" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_3865" id="2_A" recreator="Attributes" containedName="attrs" point="252 498" dimensions="112 18">
+          <figures uuid="superfly2_1207606805805_9096" id="41" recreator="Attribute" name="xml parameters" point="255 500" dimensions="106 14" subject="//@ownedMember.1/@ownedAttribute.0"/>
+          <properties uuid="superfly2_1207606805807_5988" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_2609" id="2_C" recreator="SimpleContainer" containedName="contents" point="252 524" dimensions="112 0" offset="4 4"/>
+        <properties uuid="superfly2_1207606805805_7250" name="fill" value="255 204 51"/>
+        <properties uuid="superfly2_1207606805805_3770" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805805_8379" id="0" recreator="Class" point="592 336" dimensions="62 62" subject="//@ownedMember.0">
+        <figures uuid="superfly2_1207606805807_3397" id="0_A" recreator="Attributes" containedName="attrs" point="592 358" dimensions="62 32">
+          <figures uuid="superfly2_1207606805805_8179" id="33" recreator="Attribute" name="id" point="595 360" dimensions="25 14" subject="//@ownedMember.0/@ownedAttribute.1"/>
+          <figures uuid="superfly2_1207606805805_3821" id="1" recreator="Attribute" name="version" point="595 374" dimensions="56 14" subject="//@ownedMember.0/@ownedAttribute.0"/>
+          <properties uuid="superfly2_1207606805807_9351" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_9308" id="0_C" recreator="SimpleContainer" containedName="contents" point="592 398" dimensions="62 0" offset="4 4"/>
+        <figures uuid="superfly2_1207606805807_6595" id="0_O" recreator="Operations" containedName="ops" point="592 390" dimensions="40 8">
+          <properties uuid="superfly2_1207606805807_3308" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_9018" id="0_P" recreator="PortCompartment" containedName="ports" point="592 336" dimensions="62 62">
+          <properties uuid="superfly2_1207606805807_3939" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805807_4322" name="classScope" value="true"/>
+        </figures>
+        <properties uuid="superfly2_1207606805805_9832" name="fill" value="255 204 51"/>
+        <properties uuid="superfly2_1207606805805_1684" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805805_7263" id="30" recreator="Association" anchor1Id="6" anchor2Id="7" virtualPoint="757.7 559.5" points="2 776.6 528.9 732.6 599.9" type="3">
+        <figures uuid="superfly2_1207606805806_2601" id="30S" recreator="Linked Text" containedName="startText" text="start" show="false" point="747.5 507.5" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805806_1627" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805806_3092" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_3572" id="30E" recreator="Linked Text" containedName="endText" text="0..*" point="751.5 583.5" dimensions="22 14">
+          <properties uuid="superfly2_1207606805806_6305" name="majorPt" value="2"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_4816" id="30_M" recreator="Linked Text" containedName="text" text="" show="false" point="727.5 543.5" dimensions="3.8 14">
+          <properties uuid="superfly2_1207606805808_3848" name="suppress" value="true"/>
+        </figures>
+      </figures>
+      <figures uuid="superfly2_1207606805805_4304" id="7" recreator="Class" point="696 600" dimensions="54.6 30" suppressAttributes="true" suppressOperations="true" subject="//@ownedMember.6">
+        <figures uuid="superfly2_1207606805805_1132" id="7_C" recreator="SimpleContainer" containedName="contents" point="696 622" dimensions="54.6 8" offset="4 4"/>
+        <figures uuid="superfly2_1207606805805_1857" id="7_A" recreator="Attributes" containedName="attrs" show="false" point="696 622" dimensions="40 8">
+          <properties uuid="superfly2_1207606805805_8492" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_5989" id="7_P" recreator="PortCompartment" containedName="ports" point="696 600" dimensions="54.6 30">
+          <properties uuid="superfly2_1207606805806_3101" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805806_9964" name="classScope" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_5549" id="7_O" recreator="Operations" containedName="ops" show="false" point="696 622" dimensions="40 8">
+          <properties uuid="superfly2_1207606805806_878" name="deletedUuids" value=""/>
+        </figures>
+        <properties uuid="superfly2_1207606805805_3216" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805805_7195" id="6" recreator="Class" point="756 480" dimensions="72 48" subject="//@ownedMember.5">
+        <figures uuid="superfly2_1207606805806_5031" id="6_O" recreator="Operations" containedName="ops" point="756 520" dimensions="40 8">
+          <properties uuid="superfly2_1207606805806_8123" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_5224" id="6_P" recreator="PortCompartment" containedName="ports" point="756 480" dimensions="72 48">
+          <properties uuid="superfly2_1207606805806_6936" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805806_4471" name="classScope" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_6732" id="6_C" recreator="SimpleContainer" containedName="contents" point="756 528" dimensions="72 0" offset="4 4"/>
+        <figures uuid="superfly2_1207606805808_6803" id="6_A" recreator="Attributes" containedName="attrs" point="756 502" dimensions="52 18">
+          <figures uuid="superfly2_1207606805806_1563" id="32" recreator="Attribute" name="name" point="759 504" dimensions="46 14" subject="//@ownedMember.5/@ownedAttribute.0"/>
+          <properties uuid="superfly2_1207606805808_4154" name="deletedUuids" value=""/>
+        </figures>
+        <properties uuid="superfly2_1207606805806_8660" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805806_1687" id="31" recreator="Association" anchor1Id="6" anchor2Id="8" virtualPoint="830.7 559.5" points="2 809.4 528.9 859.1 600.1" type="3">
+        <figures uuid="superfly2_1207606805805_1465" id="31_M" recreator="Linked Text" containedName="text" text="" show="false" point="828.3 541.5" dimensions="3.8 14">
+          <properties uuid="superfly2_1207606805805_2248" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_4637" id="31S" recreator="Linked Text" containedName="startText" text="start" show="false" point="792.3 509.5" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805806_8395" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805806_1719" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_641" id="31E" recreator="Linked Text" containedName="endText" text="0..*" point="860.3 577.5" dimensions="22 14">
+          <properties uuid="superfly2_1207606805807_5089" name="majorPt" value="2"/>
+        </figures>
+      </figures>
+      <figures uuid="superfly2_1207606805806_1126" id="4" recreator="Class" point="592 164" dimensions="67.3 62" subject="//@ownedMember.3">
+        <figures uuid="superfly2_1207606805806_3675" id="4_O" recreator="Operations" containedName="ops" point="592 218" dimensions="40 8">
+          <properties uuid="superfly2_1207606805806_2604" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_2922" id="4_P" recreator="PortCompartment" containedName="ports" point="592 164" dimensions="67.3 62">
+          <properties uuid="superfly2_1207606805806_5050" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805806_6660" name="classScope" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_2209" id="4_C" recreator="SimpleContainer" containedName="contents" point="592 226" dimensions="67.3 0" offset="4 4"/>
+        <figures uuid="superfly2_1207606805807_3777" id="4_A" recreator="Attributes" containedName="attrs" point="592 186" dimensions="62 32">
+          <figures uuid="superfly2_1207606805805_9199" id="22" recreator="Attribute" name="version" point="595 202" dimensions="56 14" subject="//@ownedMember.3/@ownedAttribute.0"/>
+          <figures uuid="superfly2_1207606805806_7430" id="109" recreator="Attribute" name="id" point="595 188" dimensions="25 14" subject="//@ownedMember.3/@ownedAttribute.2"/>
+          <properties uuid="superfly2_1207606805807_2897" name="deletedUuids" value=""/>
+        </figures>
+        <properties uuid="superfly2_1207606805806_1443" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805806_884" id="8" recreator="Class" point="832 600" dimensions="74.9 30" suppressAttributes="true" suppressOperations="true" subject="//@ownedMember.7">
+        <figures uuid="superfly2_1207606805806_4939" id="8_P" recreator="PortCompartment" containedName="ports" point="832 600" dimensions="74.9 30">
+          <properties uuid="superfly2_1207606805806_9632" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805806_3023" name="classScope" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805806_598" id="8_O" recreator="Operations" containedName="ops" show="false" point="832 622" dimensions="40 8">
+          <properties uuid="superfly2_1207606805806_5400" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_2271" id="8_A" recreator="Attributes" containedName="attrs" show="false" point="832 622" dimensions="40 8">
+          <properties uuid="superfly2_1207606805807_2097" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_5664" id="8_C" recreator="SimpleContainer" containedName="contents" point="832 622" dimensions="74.9 8" offset="4 4"/>
+        <properties uuid="superfly2_1207606805806_1758" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805806_4013" id="19" recreator="Association" anchor1Id="2" anchor2Id="3" virtualPoint="416 496" points="2 364 496 468 496">
+        <figures uuid="superfly2_1207606805807_9682" id="19E" recreator="Linked Text" containedName="endText" text="1" point="450 472" dimensions="8 14">
+          <properties uuid="superfly2_1207606805807_9522" name="majorPt" value="2"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_9314" id="19_M" recreator="Linked Text" containedName="text" text="extends" point="378 476" dimensions="46.3 14"/>
+        <figures uuid="superfly2_1207606805807_8963" id="19S" recreator="Linked Text" containedName="startText" text="start" show="false" point="334 480" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805807_9490" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805807_3272" name="suppress" value="true"/>
+        </figures>
+        <properties uuid="superfly2_1207606805806_9800" name="uni" value="true"/>
+      </figures>
+      <figures uuid="superfly2_1207606805806_8538" id="106" recreator="NoteLink" anchor1Id="48" anchor2Id="47" virtualPoint="787.8 276" points="2 820 276 755.6 276"/>
+      <figures uuid="superfly2_1207606805806_1999" id="90" recreator="Association" anchor1Id="87" anchor2Id="0" virtualPoint="527.9 364" points="2 463.9 364 592 364">
+        <figures uuid="superfly2_1207606805806_5414" id="90_M" recreator="Linked Text" containedName="text" text="knows about" point="486 348" dimensions="74.5 14"/>
+        <figures uuid="superfly2_1207606805806_1471" id="90S" recreator="Linked Text" containedName="startText" text="start" show="false" point="454 348" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805806_377" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805806_8859" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805807_3416" id="90E" recreator="Linked Text" containedName="endText" text="0..*" point="550 364" dimensions="22 14">
+          <properties uuid="superfly2_1207606805807_9724" name="majorPt" value="2"/>
+        </figures>
+        <properties uuid="superfly2_1207606805806_2988" name="uni" value="true"/>
+      </figures>
+      <figures uuid="superfly2_1207606805807_660" id="82" recreator="Association" anchor1Id="0" anchor2Id="7" virtualPoint="673.2 491" points="2 636 399.1 717.2 599.9">
+        <figures uuid="superfly2_1207606805806_2899" id="82_M" recreator="Linked Text" containedName="text" text="activator" point="628 496" dimensions="50.3 14"/>
+        <figures uuid="superfly2_1207606805807_5798" id="82S" recreator="Linked Text" containedName="startText" text="start" show="false" point="620 384" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805807_5323" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805807_3755" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_7724" id="82E" recreator="Linked Text" containedName="endText" text="1" point="700 584" dimensions="8 14">
+          <properties uuid="superfly2_1207606805808_5800" name="majorPt" value="2"/>
+        </figures>
+        <properties uuid="superfly2_1207606805807_1802" name="uni" value="true"/>
+      </figures>
+      <figures uuid="superfly2_1207606805807_2309" id="80" recreator="dependency" anchor1Id="7" anchor2Id="2" virtualPoint="515.7 557.5" points="3 696 612 300 612 300 524" subject="//@ownedMember.6/@ownedAnonymousDependencies.1">
+        <figures uuid="superfly2_1207606805806_8590" id="80_M" recreator="Linked Text" containedName="text" text="can query via registry" point="488 584" dimensions="125.1 14"/>
+        <properties uuid="superfly2_1207606805807_6468" name="curved" value="true"/>
+      </figures>
+      <figures uuid="superfly2_1207606805807_2937" id="87" recreator="Class" point="336 344" dimensions="127.9 38" subject="//@ownedMember.9">
+        <figures uuid="superfly2_1207606805808_1446" id="87_P" recreator="PortCompartment" containedName="ports" point="336 344" dimensions="127.9 38">
+          <properties uuid="superfly2_1207606805808_8442" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805808_8355" name="classScope" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_1987" id="87_C" recreator="SimpleContainer" containedName="contents" point="336 382" dimensions="127.9 0" offset="4 4"/>
+        <figures uuid="superfly2_1207606805808_3120" id="87_A" recreator="Attributes" containedName="attrs" point="336 366" dimensions="40 8">
+          <properties uuid="superfly2_1207606805808_5766" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_7502" id="87_O" recreator="Operations" containedName="ops" point="336 374" dimensions="40 8">
+          <properties uuid="superfly2_1207606805808_7871" name="deletedUuids" value=""/>
+        </figures>
+        <properties uuid="superfly2_1207606805807_8998" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805808_3654" id="62" recreator="NoteLink" anchor1Id="48" anchor2Id="43" virtualPoint="817.7 227" points="2 820.1 228.6 760 188"/>
+      <figures uuid="superfly2_1207606805808_5072" id="63" recreator="NoteLink" anchor1Id="48" anchor2Id="45" virtualPoint="817.7 317" points="2 831.4 304.9 760 368.1"/>
+      <figures uuid="superfly2_1207606805808_6796" id="48" recreator="Class" point="820 228" dimensions="110.7 76" subject="//@ownedMember.8">
+        <figures uuid="superfly2_1207606805808_4842" id="48_A" recreator="Attributes" containedName="attrs" point="820 250" dimensions="89 46">
+          <figures uuid="superfly2_1207606805807_9975" id="67" recreator="Attribute" name="maxVersion" point="823 266" dimensions="83 14" subject="//@ownedMember.8/@ownedAttribute.1"/>
+          <figures uuid="superfly2_1207606805808_782" id="70" recreator="Attribute" name="don'tCare" point="823 280" dimensions="70 14" subject="//@ownedMember.8/@ownedAttribute.2"/>
+          <figures uuid="superfly2_1207606805808_8096" id="64" recreator="Attribute" name="minVersion" point="823 252" dimensions="80 14" subject="//@ownedMember.8/@ownedAttribute.0"/>
+          <properties uuid="superfly2_1207606805808_4451" name="deletedUuids" value=""/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_6878" id="48_C" recreator="SimpleContainer" containedName="contents" point="820 304" dimensions="110.7 0" offset="4 4"/>
+        <figures uuid="superfly2_1207606805808_9290" id="48_P" recreator="PortCompartment" containedName="ports" point="820 228" dimensions="110.7 76">
+          <properties uuid="superfly2_1207606805808_4189" name="deletedUuids" value=""/>
+          <properties uuid="superfly2_1207606805808_5593" name="classScope" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_8819" id="48_O" recreator="Operations" containedName="ops" point="820 296" dimensions="40 8">
+          <properties uuid="superfly2_1207606805808_9202" name="deletedUuids" value=""/>
+        </figures>
+        <properties uuid="superfly2_1207606805808_3301" name="deletedUuids" value=""/>
+      </figures>
+      <figures uuid="superfly2_1207606805808_1045" id="45" recreator="Association" anchor1Id="0" anchor2Id="0" virtualPoint="644 1398" points="4 655.1 358.8 760 332 760 404 654.9 375.6">
+        <figures uuid="superfly2_1207606805805_1339" id="45_M" recreator="Linked Text" containedName="text" text="dependsOn" show="false" point="760 330" dimensions="67 14">
+          <properties uuid="superfly2_1207606805805_3684" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_4747" id="45E" recreator="Linked Text" containedName="endText" text="end" show="false" point="640 370" dimensions="22 14">
+          <properties uuid="superfly2_1207606805808_8131" name="majorPt" value="2"/>
+          <properties uuid="superfly2_1207606805808_1046" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805808_1670" id="45S" recreator="Linked Text" containedName="startText" text="start" show="false" point="640 342" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805808_5122" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805808_5399" name="suppress" value="true"/>
+        </figures>
+        <properties uuid="superfly2_1207606805808_8242" name="uni" value="true"/>
+        <properties uuid="superfly2_1207606805808_1208" name="curved" value="true"/>
+      </figures>
+      <figures uuid="superfly2_1207606805808_9017" id="47" recreator="Association" anchor1Id="4" anchor2Id="0" virtualPoint="620 281" points="4 660.3 210.2 756 252 756 304 655 351.8">
+        <figures uuid="superfly2_1207606805805_7407" id="47S" recreator="Linked Text" containedName="startText" text="start" show="false" point="807.1 183.8" dimensions="26.6 14">
+          <properties uuid="superfly2_1207606805805_7824" name="majorPt" value="1"/>
+          <properties uuid="superfly2_1207606805805_3847" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805805_821" id="47E" recreator="Linked Text" containedName="endText" text="end" show="false" point="807.1 347.8" dimensions="22 14">
+          <properties uuid="superfly2_1207606805805_7817" name="majorPt" value="2"/>
+          <properties uuid="superfly2_1207606805805_1991" name="suppress" value="true"/>
+        </figures>
+        <figures uuid="superfly2_1207606805805_8807" id="47_M" recreator="Linked Text" containedName="text" text="dependsOn" show="false" point="723.1 255.8" dimensions="67 14">
+          <properties uuid="superfly2_1207606805805_9976" name="suppress" value="true"/>
+        </figures>
+        <properties uuid="superfly2_1207606805808_5342" name="uni" value="true"/>
+        <properties uuid="superfly2_1207606805808_8922" name="curved" value="true"/>
+      </figures>
+    </diagram>
+  </j_diagramHolder>
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="backbone" name="backbone" readOnly="true">
+    <appliedBasicStereotypeValues uuid="superfly2_1204712763726_7528" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.3">
+      <value xsi:type="uml:Expression" uuid="superfly2_1204712763726_6779" body="#application-package-hint components&#xA;{&#xA;}&#xA;&#xA;#system-class-hint basics&#xA;{&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.IAnotherRun&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.api.Placeholder&quot;,&#xA;&#x9;&quot;com.hopstepjump.backbone.constructor.PartHandle&quot;,&#xA;&#x9;&quot;java.lang.Integer&quot;,&#xA;&#x9;&quot;java.lang.Long&quot;,&#xA;&#x9;&quot;java.lang.Double&quot;,&#xA;&#x9;&quot;java.lang.String&quot;,&#xA;&#x9;&quot;java.awt.Point&quot;,&#xA;&#x9;&quot;java.awt.Dimension&quot;,&#xA;&#x9;&quot;java.awt.Rectangle&quot;,&#xA;&#x9;&quot;java.util.Date&quot;,&#xA;&#x9;&quot;java.awt.Color&quot;&#xA;}"/>
+    </appliedBasicStereotypeValues>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.5" uuid="IRun" name="IRun">
+      <appliedBasicStereotypeValues uuid="superfly2_1204712763733_5253" property="//@childPackages.0/@childPackages.1/@ownedMember.5/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="superfly2_1204712763734_6996" body="com.hopstepjump.backbone.api.IRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="superfly2_1204712763734_5425" property="//@childPackages.0/@childPackages.1/@ownedMember.5/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="superfly2_1204712763734_190" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.5" uuid="IAnotherRun" name="IAnotherRun">
+      <appliedBasicStereotypeValues uuid="superfly2_1204712763734_6175" property="//@childPackages.0/@childPackages.1/@ownedMember.5/@ownedAttribute.0">
+        <value xsi:type="uml:Expression" uuid="superfly2_1204712763734_8881" body="com.hopstepjump.backbone.api.IAnotherRun"/>
+      </appliedBasicStereotypeValues>
+      <appliedBasicStereotypeValues uuid="superfly2_1204712763734_4165" property="//@childPackages.0/@childPackages.1/@ownedMember.5/@ownedAttribute.1">
+        <value xsi:type="uml:LiteralBoolean" uuid="superfly2_1204712763734_2629" value="true"/>
+      </appliedBasicStereotypeValues>
+    </ownedMember>
+    <childPackages uuid="primitives" name="primitive types">
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="type" name="type">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763702_787" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763711_2605" body="Type"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="boolean" name="boolean">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763712_8695" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763712_140" body="Boolean"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="int" name="int">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763712_5329" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763712_7604" body="Integer"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="long" name="long">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763712_2632" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763712_7800" body="Long"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="float" name="float">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763712_3712" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763712_4762" body="Float"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="double" name="double">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763712_9086" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763712_2881" body="Double"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="String" name="String">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763712_5515" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763712_3919" body="String"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="Date" name="Date">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763712_1197" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763712_8021" body="Date"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="Time" name="Time">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763712_8308" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763713_1387" body="Long"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="DateTime" name="DateTime">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763713_7969" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763713_5148" body="Date"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="Interval" name="Interval">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763713_5237" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763713_5156" body="Long"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.3" uuid="PartHandle" name="PartHandle">
+        <appliedBasicStereotypeValues uuid="superfly2_1204712763713_3491" property="//@childPackages.0/@childPackages.1/@ownedMember.2/@ownedAttribute.0">
+          <value xsi:type="uml:Expression" uuid="superfly2_1204712763713_5400" body="PartHandle"/>
+        </appliedBasicStereotypeValues>
+      </ownedMember>
+    </childPackages>
+    <childPackages xsi:type="uml:Profile" documentation="The profile for Backbone modelling" uuid="backbone-profile" name="backbone profile">
+      <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of all backbone definitions that live in strata." uuid="backbone-element" name="backbone-element" isAbstract="true" extendsMetaModelElement="'Class'">
+        <ownedAttribute documentation="An override to insert Backbone directly into the generated output." uuid="backbone-element-definitionOverride" name="definitionOverride" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="The common ancestor of leaf and composite components.  Not used directly." uuid="backbone-component" name="backbone-component" isAbstract="true" extendsMetaModelElement="'Class'">
+        <generalization uuid="superfly2_1204712763696_6317" general="//@childPackages.0/@childPackages.1/@ownedMember.0"/>
+        <ownedAttribute documentation="Can we navigate to direct neighbours via this component?" uuid="backbone-component-navigable" name="navigable" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute documentation="The protocol(s) for this component" uuid="backbone-component-protocols" name="protocols" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="Indicates that an element is directly tied to an implementation artifact" uuid="backbone-implementation" name="backbone-implementation" extendsMetaModelElement="'Class'">
+        <generalization uuid="superfly2_1204712763697_7712" general="//@childPackages.0/@childPackages.1/@ownedMember.1"/>
+        <ownedAttribute documentation="The implementation class for this type" uuid="backbone-implementation-implementation class" name="implementation class" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="Is this a system leaf, that won't have implementation code generated?" uuid="backbone-implementation-systemLeaf" name="systemLeaf" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A parameter or attribute.  It can be redefined, but only be another primitive type." uuid="backbone-primitive-type" name="backbone-primitive-type" extendsMetaModelElement="'Class'">
+        <generalization uuid="superfly2_1204712763697_6270" general="//@childPackages.0/@childPackages.1/@ownedMember.2"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A component which wraps an implementation component.  This is done for uniformity.  It cannot be redefined or resembled." uuid="backbone-leaf" name="backbone-leaf" extendsMetaModelElement="'Class'">
+        <generalization uuid="superfly2_1204712763697_8144" general="//@childPackages.0/@childPackages.1/@ownedMember.2"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  An interface which is visible to backbone." uuid="backbone-interface" name="backbone-interface" extendsMetaModelElement="'Interface'">
+        <generalization uuid="superfly2_1204712763697_1455" general="//@childPackages.0/@childPackages.1/@ownedMember.0"/>
+        <ownedAttribute documentation="The implementation class that this interface is associated with." uuid="backbone-interface-implementation class" name="implementation class" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="Is this a system interface, that won't have implementation code generated?" uuid="backbone-interface-systemInterface" name="systemInterface" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A component which cannot or hasn't been decomposed further.  A factory interface which is visible to backbone." uuid="backbone-factory-interface" name="backbone-factory-interface" extendsMetaModelElement="'Interface'">
+        <generalization uuid="superfly2_1204712763698_8559" general="//@childPackages.0/@childPackages.1/@ownedMember.5"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A composite component which can contain parts." uuid="backbone-composite" name="backbone-composite" extendsMetaModelElement="'Class'">
+        <generalization uuid="superfly2_1204712763698_2422" general="//@childPackages.0/@childPackages.1/@ownedMember.1"/>
+        <ownedAttribute documentation="Does this expose references to internal parts?" uuid="backbone-composite-cluster" name="cluster" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A factory component which can instantiate parts lazily." uuid="backbone-factory" name="backbone-factory" extendsMetaModelElement="'Class'">
+        <generalization documentation="A factory is a type of composite, which instantiates its parts on demand." uuid="superfly2_1204712763698_1628" general="//@childPackages.0/@childPackages.1/@ownedMember.7"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A (possibly hierarchical) container of Backbone definitions." uuid="backbone-stratum" name="backbone-stratum" extendsMetaModelElement="'Package', 'Model'">
+        <ownedAttribute documentation="Can this stratum contain destructive (replace, delete) redefines?" uuid="backbone-stratum-destructive" name="destructive" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute documentation="If another stratum depends on this, can it also see this stratum's dependencies?) ?" uuid="backbone-stratum-relaxed" name="relaxed" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+        <ownedAttribute documentation="The group to find the load directory from" uuid="backbone-stratum-stratumGroup" name="stratumGroup" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="A preamble which is inserted into the Backbone code for this stratum" uuid="backbone-stratum-preamble" name="preamble" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A port allows a component to provide or require services." uuid="backbone-port" name="backbone-port" extendsMetaModelElement="'Port'">
+        <generalization documentation="A port offers or requires services." uuid="superfly2_1204712763699_2807" general="//@childPackages.0/@childPackages.1/@ownedMember.0"/>
+        <ownedAttribute documentation="Does this port require callbacks?" uuid="backbone-port-callbacks" name="callbacks" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A placeholder defines the shape of something that must be replaced later.  It 'stands in' until the replacement is made." uuid="backbone-placeholder" name="backbone-placeholder" extendsMetaModelElement="'Class'">
+        <generalization documentation="A port offers or requires services." uuid="superfly2_1204712763699_7601" general="//@childPackages.0/@childPackages.1/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A port link indicates how port type dependencies propagate in leaves.  Not used for composites, as connections suffice." uuid="backbone-port-link" name="backbone-port-link" extendsMetaModelElement="'Dependency'"/>
+      <ownedMember xsi:type="uml:Stereotype" documentation="Indication that the item is a delta from the resembled definition." uuid="backbone-delta" name="backbone-delta" extendsMetaModelElement="'Class', 'Property', 'Interface'"/>
+      <ownedMember xsi:type="uml:Stereotype" documentation="The overide data for a slot so we can show alloy errors." uuid="backbone-overriden-slot" name="backbone-overriden-slot" extendsMetaModelElement="'Slot'">
+        <ownedAttribute documentation="An override so we can control how the slot string displays." uuid="backbone-overriden-slot-overriddenSlotText" name="overriddenSlotText" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="An override so we can make the slot look aliased." uuid="backbone-overriden-slot-overriddenSlotAlias" name="overriddenSlotAlias" type="//@childPackages.0/@childPackages.0/@ownedMember.1"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A marker stereotype to indicate that this traces an element from one perspective to another." uuid="trace" name="trace" extendsMetaModelElement="'Dependency'"/>
+    </childPackages>
+    <childPackages xsi:type="uml:Profile" documentation="The profile for documenting a model" uuid="documentation-profile" name="documentation profile">
+      <ownedMember xsi:type="uml:Stereotype" documentation="The top level documentation package" uuid="documentation-top" name="documentation-top" extendsMetaModelElement="'Package'">
+        <ownedAttribute documentation="The name of the document." uuid="documentation-top-documentName" name="documentName" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The owner of document." uuid="documentation-top-owner" name="owner" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The email address of the owner." uuid="documentation-top-email" name="email" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The copyright period of the document." uuid="documentation-top-copyrightYears" name="copyrightYears" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="Number of non-breaking spaces to pad the home navigation entry with." uuid="documentation-top-numberOfSpacesForPadding" name="numberOfSpacesForPadding" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The prefix to add for each page title, apart from home." uuid="documentation-top-pageTitlePrefix" name="pageTitlePrefix" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+        <ownedAttribute documentation="The index to add to the htmlTemplate and htmlGenerateTo slots to extract the folders.  Allows more than one site to be generated from a given model." uuid="documentation-top-siteIndex" name="siteIndex" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A sub-package of the top-level documentation package." uuid="documentation-included" name="documentation-included" extendsMetaModelElement="'Package'"/>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A figure to reproduce in the documentation." uuid="documentation-figure" name="documentation-figure" extendsMetaModelElement="'Comment'"/>
+      <ownedMember xsi:type="uml:Stereotype" documentation="A comment visually containing a set of other documentation packages to refer to." uuid="documentation-see-also" name="documentation-see-also" extendsMetaModelElement="'Comment'"/>
+    </childPackages>
+    <childPackages xsi:type="uml:Profile" documentation="The profile for a standard jUMbLe model." uuid="standard-profile" name="standard profile">
+      <ownedMember xsi:type="uml:Stereotype" documentation="Indicates that the element is in error." uuid="error" name="error" extendsMetaModelElement="'Class', 'Interface', 'Package', 'Property', 'Operation'">
+        <ownedAttribute documentation="The explanation of this error." uuid="error-error-description" name="error-description" type="//@childPackages.0/@childPackages.0/@ownedMember.6"/>
+      </ownedMember>
+    </childPackages>
+  </childPackages>
+  <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="superfly2_1207590980848_6307" name="evolution&#xA;example">
+    <appliedBasicStereotypeValues uuid="superfly2_1207590980848_2285" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="superfly2_1207590980848_9171" value="true"/>
+    </appliedBasicStereotypeValues>
+    <j_diagramHolder uuid="superfly2_1207591048007_1695" saveTime="Mon Apr 7, 2008 at 11:20:05 BST" savedBy="Andrew">
+      <diagram uuid="superfly2_1207606805801_2208" lastFigureId="82"/>
+    </j_diagramHolder>
+  </childPackages>
+  <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="superfly2_1207590998088_8329" name="taskview">
+    <appliedBasicStereotypeValues uuid="superfly2_1207590998089_9920" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="superfly2_1207590998089_8769" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.7" uuid="superfly2_1207602562185_6361" name="TaskView" reverseDependencies="//@childPackages.3/@ownedMember.0/@ownedAnonymousDependencies.0 //@childPackages.5/@ownedMember.0/@ownedAnonymousDependencies.0 //@childPackages.3/@ownedMember.0/@ownedAnonymousDependencies.1 //@childPackages.5/@ownedMember.0/@ownedAnonymousDependencies.1 //@childPackages.4/@ownedMember.1/@ownedAnonymousDependencies.0 //@childPackages.4/@ownedMember.2/@ownedAnonymousDependencies.0"/>
+  </childPackages>
+  <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="superfly2_1207590999184_9421" name="enhanced" clientDependency="//@childPackages.3/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="superfly2_1207590999185_8716" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="superfly2_1207590999185_2424" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="superfly2_1207602532191_6734" client="//@childPackages.3" dependencyTarget="//@childPackages.2"/>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.7" uuid="superfly2_1207602563481_4465" clientDependency="//@childPackages.3/@ownedMember.0/@ownedAnonymousDependencies.0 //@childPackages.3/@ownedMember.0/@ownedAnonymousDependencies.1" reverseDependencies="//@childPackages.4/@ownedMember.2/@ownedAnonymousDependencies.1">
+      <ownedAnonymousDependencies uuid="superfly2_1207603132161_8231" client="//@childPackages.3/@ownedMember.0" dependencyTarget="//@childPackages.2/@ownedMember.0" redefinition="1" resemblance="1"/>
+      <ownedAnonymousDependencies uuid="superfly2_1207603208675_7028" client="//@childPackages.3/@ownedMember.0" dependencyTarget="//@childPackages.2/@ownedMember.0" resemblance="1"/>
+    </ownedMember>
+  </childPackages>
+  <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="superfly2_1207590996626_6129" name="unified" clientDependency="//@childPackages.4/@ownedAnonymousDependencies.0 //@childPackages.4/@ownedAnonymousDependencies.1">
+    <appliedBasicStereotypeValues uuid="superfly2_1207590996626_8089" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="superfly2_1207590996626_6402" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="superfly2_1207602527030_3849" client="//@childPackages.4" dependencyTarget="//@childPackages.3"/>
+    <ownedAnonymousDependencies uuid="superfly2_1207602533247_7931" client="//@childPackages.4" dependencyTarget="//@childPackages.5"/>
+    <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.7" uuid="superfly2_1207602565568_6541"/>
+    <ownedMember xsi:type="uml:Class" j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.7" uuid="superfly2_1207603214861_8509" clientDependency="//@childPackages.4/@ownedMember.1/@ownedAnonymousDependencies.0">
+      <ownedAnonymousDependencies uuid="superfly2_1207603229508_7860" client="//@childPackages.4/@ownedMember.1" dependencyTarget="//@childPackages.2/@ownedMember.0" redefinition="1" resemblance="1"/>
+    </ownedMember>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.7" uuid="superfly2_1207603241078_7172" clientDependency="//@childPackages.4/@ownedMember.2/@ownedAnonymousDependencies.0 //@childPackages.4/@ownedMember.2/@ownedAnonymousDependencies.1 //@childPackages.4/@ownedMember.2/@ownedAnonymousDependencies.2">
+      <ownedAnonymousDependencies uuid="superfly2_1207603251069_556" client="//@childPackages.4/@ownedMember.2" dependencyTarget="//@childPackages.2/@ownedMember.0" redefinition="1" resemblance="1"/>
+      <ownedAnonymousDependencies uuid="superfly2_1207603289149_7747" client="//@childPackages.4/@ownedMember.2" dependencyTarget="//@childPackages.3/@ownedMember.0" resemblance="1"/>
+      <ownedAnonymousDependencies uuid="superfly2_1207603291309_8630" client="//@childPackages.4/@ownedMember.2" dependencyTarget="//@childPackages.5/@ownedMember.0" resemblance="1"/>
+    </ownedMember>
+  </childPackages>
+  <childPackages j_deleted="1" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.9" uuid="superfly2_1207591001297_9969" name="coloring" clientDependency="//@childPackages.5/@ownedAnonymousDependencies.0">
+    <appliedBasicStereotypeValues uuid="superfly2_1207591001297_5050" property="//@childPackages.0/@childPackages.1/@ownedMember.9/@ownedAttribute.1">
+      <value xsi:type="uml:LiteralBoolean" uuid="superfly2_1207591001297_8527" value="true"/>
+    </appliedBasicStereotypeValues>
+    <ownedAnonymousDependencies uuid="superfly2_1207602534271_5066" client="//@childPackages.5" dependencyTarget="//@childPackages.2"/>
+    <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.1/@ownedMember.7" uuid="superfly2_1207602564561_9705" clientDependency="//@childPackages.5/@ownedMember.0/@ownedAnonymousDependencies.0 //@childPackages.5/@ownedMember.0/@ownedAnonymousDependencies.1" reverseDependencies="//@childPackages.4/@ownedMember.2/@ownedAnonymousDependencies.2">
+      <ownedAnonymousDependencies uuid="superfly2_1207603134097_2991" client="//@childPackages.5/@ownedMember.0" dependencyTarget="//@childPackages.2/@ownedMember.0" redefinition="1" resemblance="1"/>
+      <ownedAnonymousDependencies uuid="superfly2_1207603210403_3046" client="//@childPackages.5/@ownedMember.0" dependencyTarget="//@childPackages.2/@ownedMember.0" resemblance="1"/>
+    </ownedMember>
+  </childPackages>
+</uml:Model>

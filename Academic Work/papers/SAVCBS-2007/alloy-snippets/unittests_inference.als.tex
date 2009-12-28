@@ -1,0 +1,1003 @@
+module unittests_inference
+
+open structure
+open facts
+open stratum_help
+
+
+run simplePropagation1 for 4 but exactly 1 Stratum, exactly 5 Element, exactly 4 Port, exactly 2 Part, exactly 3 Component, exactly 2 Interface, exactly 2 Connector, 7 LinkEnd
+pred simplePropagation1
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    one p: Port | $\exists\,$p1, p2: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+    }
+  }
+}
+
+run simplePropagation2 for 5 but exactly 1 Stratum, exactly 5 Element, exactly 4 Port, exactly 3 Part, exactly 3 Component, exactly 2 Interface, exactly 3 Connector, 9 LinkEnd, 6 ConnectorEnd
+pred simplePropagation2
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2, p3: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2 $\cup$ p3
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+      p3$\cdot$partType = x
+    }
+  }
+}
+
+run simplePropagation2a for 5 but exactly 1 Stratum, exactly 6 Element, exactly 4 Port, exactly 3 Part, exactly 3 Component, exactly 3 Interface, exactly 3 Connector, 9 LinkEnd, 6 ConnectorEnd
+pred simplePropagation2a
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b, c: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+    c$\cdot$resembles = b
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2, p3: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2 $\cup$ p3
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+      p3$\cdot$partType = x
+      p$\cdot$required$\cdot$z$\cdot$Stratum = c
+    }
+  }
+}
+
+run simplePropagation3 for 6 but exactly 1 Stratum, exactly 6 Element, exactly 6 Port, exactly 3 Part, exactly 4 Component, exactly 3 Interface, 4 Connector, 11 LinkEnd, 8 ConnectorEnd
+pred simplePropagation3
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj w, x, y, z: Component,
+       disj a, b, c: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+    no c$\cdot$resembles
+    no resembles$\cdot$c
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2, p3: Port
+    {
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+      p3$\cdot$setProvided = c
+      no p3$\cdot$setRequired
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    -- define w
+    one p: Port
+    {
+      p = w$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setRequired
+      p$\cdot$setProvided = b
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2, p3: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2 $\cup$ p3
+      p1$\cdot$partType = w
+      p2$\cdot$partType = y
+      p3$\cdot$partType = x
+    }
+  }
+}
+
+run simplePropagation3a for 6 but exactly 1 Stratum, exactly 6 Element, exactly 6 Port, exactly 3 Part, exactly 4 Component, exactly 3 Interface, 4 Connector, 11 LinkEnd, 8 ConnectorEnd
+pred simplePropagation3a
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj w, x, y, z: Component,
+       disj a, b, c: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+    no b$\cdot$superTypes$\cdot$Stratum
+    no c$\cdot$resembles
+    no resembles$\cdot$c
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2, p3: Port
+    {
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+      p3$\cdot$setProvided = c
+      no p3$\cdot$setRequired
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    -- define w
+    one p: Port
+    {
+      p = w$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setRequired
+      p$\cdot$setProvided = b
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2, p3: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2 $\cup$ p3
+      p1$\cdot$partType = w
+      p2$\cdot$partType = y
+      p3$\cdot$partType = x
+    }
+  }
+}
+
+run simplePropagation4 for 6 but exactly 1 Stratum, exactly 6 Element, exactly 6 Port, exactly 3 Part, exactly 4 Component, exactly 4 Interface, 4 Connector, 11 LinkEnd, 8 ConnectorEnd
+pred simplePropagation4
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj w, x, y, z: Component,
+       disj a, b, c, d: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+    no c$\cdot$resembles
+    no resembles$\cdot$c
+    d$\cdot$resembles = a
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2, p3: Port
+    {
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+      p3$\cdot$setProvided = c
+      no p3$\cdot$setRequired
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    -- define w
+    one p: Port
+    {
+      p = w$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setRequired
+      p$\cdot$setProvided = d
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2, p3: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2 $\cup$ p3
+      p1$\cdot$partType = w
+      p2$\cdot$partType = y
+      p3$\cdot$partType = x
+    }
+  }
+}
+
+run simplePropagation5 for 4 but exactly 1 Stratum, exactly 5 Element, exactly 4 Port, exactly 2 Part, exactly 3 Component, exactly 2 Interface, exactly 2 Connector, 7 LinkEnd
+pred simplePropagation5
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite = True
+    (x $\cup$ y)$\cdot$isComposite = False
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setRequired
+      p$\cdot$setProvided = b
+    }
+    
+    one p: Port | $\exists\,$p1, p2: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+      no p$\cdot$required$\cdot$z$\cdot$Stratum
+    }
+  }
+}
+
+
+run simplePropagation6 for 6 but exactly 1 Stratum, exactly 5 Element, exactly 6 Port, exactly 2 Part, exactly 3 Component, exactly 2 Interface, exactly 3 Connector, 10 LinkEnd, 6 ConnectorEnd
+pred simplePropagation6
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a    
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    $\exists\,$y$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = y$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = b
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = b
+    }
+    
+    $\exists\,$port1, port2: Port | $\exists\,$disj p1, p2: Part
+    {
+      z$\cdot$ports$\cdot$Stratum = port1 $\cup$ port2
+      no (port1 $\cup$ port2)$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+    }
+  }
+}
+
+run simplePropagation6a for 6 but exactly 1 Stratum, exactly 6 Element, exactly 6 Port, exactly 2 Part, exactly 3 Component, exactly 3 Interface, exactly 3 Connector, 10 LinkEnd, 6 ConnectorEnd
+pred simplePropagation6a
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b, c: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+    c$\cdot$resembles = b
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = y$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = b
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = b
+    }
+    
+    $\exists\,$port1, port2: Port | $\exists\,$disj p1, p2: Part
+    {
+      z$\cdot$ports$\cdot$Stratum = port1 $\cup$ port2
+      no (port1 $\cup$ port2)$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+      port1$\cdot$required$\cdot$z$\cdot$Stratum = c
+    }
+  }
+}
+
+run simplePropagation7 for 6 but exactly 1 Stratum, exactly 6 Port, exactly 3 Part, exactly 4 Component, exactly 3 Interface, exactly 7 Element, 4 Connector, 11 LinkEnd, 8 ConnectorEnd
+pred simplePropagation7
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj w, x, y, z: Component,
+       disj a, b, c: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+    no c$\cdot$resembles
+    no resembles$\cdot$c
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2, p3: Port
+    {
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+      p3$\cdot$setProvided = c
+      no p3$\cdot$setRequired
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    -- define w
+    one p: Port
+    {
+      p = w$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setRequired
+      p$\cdot$setProvided = a
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2, p3: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2 $\cup$ p3
+      p1$\cdot$partType = w
+      p2$\cdot$partType = y
+      p3$\cdot$partType = x
+    }
+  }
+}
+
+run simplePropagation8 for 6 but exactly 1 Stratum, exactly 5 Port, exactly 3 Part, exactly 4 Component, exactly 2 Interface, exactly 6 Element, 3 Connector, 9 LinkEnd, 6 ConnectorEnd
+pred simplePropagation8
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj w, x, y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setRequired
+      p$\cdot$setProvided = a
+    }
+    
+    -- define w
+    one p: Port
+    {
+      p = w$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setRequired
+      p$\cdot$setProvided = b
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2, p3: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2 $\cup$ p3
+      p1$\cdot$partType = w
+      p2$\cdot$partType = y
+      no (p1 $\cup$ p2)$\cdot$linkedToOutside
+      p3$\cdot$partType = x      
+    }
+  }
+}
+
+run simplePropagation9 for 6 but exactly 1 Stratum, exactly 5 Port, exactly 3 Part, exactly 4 Component, exactly 2 Interface, exactly 6 Element, 3 Connector, 9 LinkEnd, 6 ConnectorEnd
+pred simplePropagation9
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj w, x, y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    (x $\cup$ y $\cup$ w)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (w $\cup$ x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = a
+    }
+    
+    -- define w
+    one p: Port
+    {
+      p = w$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2, p3: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2 $\cup$ p3
+      p1$\cdot$partType = w
+      p2$\cdot$partType = y
+      no (p1 $\cup$ p2)$\cdot$linkedToOutside
+      p3$\cdot$partType = x
+    }
+  }
+}
+
+run simplePropagation10 for 4 but exactly 1 Stratum, 6 LinkEnd
+pred simplePropagation10
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    isFalse[x$\cdot$isComposite]
+    $\exists\,$x$\cdot$links
+    isTrue[z$\cdot$isComposite]
+    no (x $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+    }
+    
+    $\exists\,$port1, port2: Port | $\exists\,$p1: Part
+    {
+      port1 $\cup$ port2 = z$\cdot$ports$\cdot$Stratum
+      no (port1 $\cup$ port2)$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1
+      p1$\cdot$partType = x
+      no port1$\cdot$required$\cdot$z$\cdot$Stratum
+      port1$\cdot$provided$\cdot$z$\cdot$Stratum = b
+      no port2$\cdot$provided$\cdot$z$\cdot$Stratum
+      port2$\cdot$required$\cdot$z$\cdot$Stratum = b
+    }
+  }
+}
+
+run simplePropagation11 for 4 but exactly 1 Stratum, exactly 3 Port, exactly 2 Part, exactly 3 Component, exactly 3 Interface, exactly 6 Element, 2 Connector, 6 LinkEnd, 4 ConnectorEnd
+pred simplePropagation11
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b, c: Interface
+  {
+    no optional
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    no (a $\cup$ b)$\cdot$resembles
+    c$\cdot$resembles = a $\cup$ b
+    c$\cdot$superTypes$\cdot$Stratum = a $\cup$ b
+    
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    one p: Port
+    {
+      p = x$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = a
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = b
+    }
+    
+    one p: Port | $\exists\,$disj p1, p2: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+    }
+    
+    no linkedToParts
+  }
+}
+
+
+run simplePropagation12 for 4 but exactly 1 Stratum, exactly 3 Element, exactly 2 Port, exactly 1 Part, exactly 2 Component, exactly 2 Interface
+pred simplePropagation12
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    y$\cdot$isComposite $\subseteq$ False
+    z$\cdot$isComposite $\subseteq$ True
+    no (y $\cup$ z)$\cdot$resembles
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setRequired
+      p$\cdot$setProvided = b
+    }
+    
+    one p: Port | $\exists\,$p1: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1
+      p1$\cdot$partType = y
+      p$\cdot$provided$\cdot$z$\cdot$Stratum = a
+    }
+  }
+}
+
+run simplePropagation13 for 4 but exactly 1 Stratum, exactly 3 Element, exactly 2 Port, exactly 1 Part, exactly 2 Component, exactly 2 Interface
+pred simplePropagation13
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    y$\cdot$isComposite $\subseteq$ False
+    z$\cdot$isComposite $\subseteq$ True
+    no (y $\cup$ z)$\cdot$resembles
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      no p$\cdot$setProvided
+      p$\cdot$setRequired = a
+    }
+    
+    one p: Port | $\exists\,$p1: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1
+      p1$\cdot$partType = y
+      p$\cdot$required$\cdot$z$\cdot$Stratum = b
+    }
+  }
+}
+
+run simplePropagation14 for 4 but exactly 1 Stratum, exactly 5 Element, exactly 4 Port, exactly 2 Part, exactly 3 Component, exactly 2 Interface, exactly 2 Connector, 7 LinkEnd
+pred simplePropagation14
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    Port$\cdot$mandatory = Zero
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      p1$\cdot$setRequired = a
+      p1$\cdot$setProvided = b
+      p2$\cdot$setRequired = b
+      p2$\cdot$setProvided = a
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      p$\cdot$setProvided = b
+      p$\cdot$setRequired = a
+    }
+    
+    one p: Port | $\exists\,$p1, p2: Part
+    {
+      p = z$\cdot$ports$\cdot$Stratum
+      no p$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+      no p2$\cdot$linkedToOutside
+    }
+  }
+}
+
+run simplePropagation15 for 6 but exactly 1 Stratum, exactly 5 Element, exactly 5 Port, exactly 2 Part, exactly 3 Component, exactly 2 Interface, exactly 3 Connector, 8 LinkEnd
+pred simplePropagation15
+{
+  Model::noErrorsAllowed[]
+  Model::providesIsNotOptional[]
+
+  $\exists\,$disj x, y, z: Component,
+       disj a, b: Interface
+  {
+    no optional
+    no Attribute
+    no redefines
+  
+    -- set up the interfaces
+    b$\cdot$resembles = a
+  
+    -- set up the components
+    (x $\cup$ y)$\cdot$isComposite $\subseteq$ False
+    $\exists\,$x$\cdot$links
+    z$\cdot$isComposite $\subseteq$ True
+    no (x $\cup$ y $\cup$ z)$\cdot$resembles
+    
+    -- define x
+    $\exists\,$disj p1, p2: Port
+    {
+      p1 $\cup$ p2 = x$\cdot$ports$\cdot$Stratum
+      no p1$\cdot$setRequired
+      p1$\cdot$setProvided = a
+      p1$\cdot$mandatory = Zero
+      no p2$\cdot$setProvided
+      p2$\cdot$setRequired = a
+      p2$\cdot$mandatory = Zero $\cup$ One
+    }
+    
+    -- define y
+    one p: Port
+    {
+      p = y$\cdot$ports$\cdot$Stratum
+      p$\cdot$setProvided = b
+      no p$\cdot$setRequired
+      p$\cdot$mandatory = Zero
+    }
+    
+    $\exists\,$disj port1, port2: Port | $\exists\,$p1, p2: Part
+    {
+      port1 $\cup$ port2 = z$\cdot$ports$\cdot$Stratum
+      (port1 $\cup$ port2)$\cdot$mandatory = Zero
+      no (port1 $\cup$ port2)$\cdot$(setRequired $\cup$ setProvided)
+      z$\cdot$parts$\cdot$Stratum = p1 $\cup$ p2
+      p1$\cdot$partType = x
+      p2$\cdot$partType = y
+      no p2$\cdot$linkedToOutside
+    }
+  }
+}
+

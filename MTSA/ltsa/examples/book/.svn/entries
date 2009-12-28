@@ -1,0 +1,73 @@
+8
+
+dir
+171
+https://mtsa.svn.sourceforge.net/svnroot/mtsa/trunk/ltsa/examples/book
+https://mtsa.svn.sourceforge.net/svnroot/mtsa
+
+
+
+2008-09-14T15:18:18.883319Z
+14
+srdipi78
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fcb65440-8149-0410-bc05-9de0824cdfc8
+
+chapter7_lts
+dir
+
+chapter8_lts
+dir
+
+chapter9_lts
+dir
+
+chapter10_lts
+dir
+
+chapter11_lts
+dir
+
+chapter2_lts
+dir
+
+chapter12_lts
+dir
+
+chapter3_lts
+dir
+
+contents.txt
+file
+
+
+
+
+2009-07-07T21:26:32.000000Z
+c7305f8cce8ceb62649064758fdf3a1c
+2008-09-14T15:18:18.883319Z
+14
+srdipi78
+
+chapter4_lts
+dir
+
+chapter5_lts
+dir
+
+chapter6_lts
+dir
+

@@ -1,0 +1,4237 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\use_default_options false
+\language british
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Tool-Support-for"
+
+\end_inset
+
+Tool Support for Backbone
+\end_layout
+
+\begin_layout Standard
+Backbone is supported by a graphical modelling tool for creating both base
+ applications and extensions.
+ A runtime environment is also provided, which can instantiate and connect
+ up components from a Backbone description.
+ This allows us to execute a Backbone model, assuming we have implemented
+ the leaf components and interfaces described therein.
+\end_layout
+
+\begin_layout Standard
+The tool and runtime implementations are both based on the formal specification.
+ A previous incarnation of the toolset used an informal description of the
+ resemblance and replacement constructs, but this was found to contain many
+ inconsistencies.
+ The reimplementation does not have the errors and corner cases of the previous
+ version, and this experience has demonstrated the value of a precise specificat
+ion to our modelling approach.
+ See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Backbone-specification"
+
+\end_inset
+
+ for further details on the motivation behind the formal specification.
+\end_layout
+
+\begin_layout Standard
+In addition to respecting the specification, the modelling tool must also
+ deal gracefully with inconsistent and possibly erroneous models.
+ It is natural when elaborating an architecture in Backbone to proceed through
+ a set of incomplete representations before arriving at the final system.
+ The tools must deal with these transitional models robustly and report
+ on any issues sensibly, whilst still retaining the full benefits of the
+ approach.
+\end_layout
+
+\begin_layout Standard
+Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Software"
+
+\end_inset
+
+ contains instructions for downloading the Evolve modelling tool, Backbone
+ runtime and the example models used in this thesis.
+\end_layout
+
+\begin_layout Section
+The DeltaEngine: Implementing the Specification
+\end_layout
+
+\begin_layout Standard
+The DeltaEngine is the Java library which implements the logic described
+ by the formal specification.
+ It is able to apply deltas to form an expanded view of an element from
+ a given stratum perspective, tolerating possible errors in the model.
+ It also implements port type inference and the well-formedness rules described
+ in appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-Informal"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Organisation of the DeltaEngine Library
+\end_layout
+
+\begin_layout Standard
+A key requirement is that the same library should be usable for both the
+ modelling tool and the runtime environment.
+ The modelling tool requires a full underlying UML2 repository, which is
+ large and complex.
+ As we do not wish to have this 
+\begin_inset Quotes eld
+\end_inset
+
+baggage
+\begin_inset Quotes erd
+\end_inset
+
+ also in the runtime, the DeltaEngine library supports various interfaces
+ to allow the storage and manipulation of the definitions to be handled
+ in different ways.
+\end_layout
+
+\begin_layout Standard
+In the modelling tool the component and interface definitions are stored
+ in either a UML2 XMI 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMG2007"
+
+\end_inset
+
+ fileset or an object database.
+ In the runtime environment, the definitions are stored in XML files conforming
+ to a lightweight Backbone-specific schema.
+ As such, the runtime remains unencumbered by the complex UML2 model and
+ infrastructure, but is still able to use the DeltaEngine library.
+ This organisation is shown by the layer diagram in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-DeltaEngine-is"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/tool-provider.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-DeltaEngine-is"
+
+\end_inset
+
+The DeltaEngine library is used in both the modelling tool and runtime environme
+nt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Handling Incomplete and Incorrect Models
+\end_layout
+
+\begin_layout Standard
+When creating early iterations of a system, it is common to transition through
+ a number of incomplete and inconsistent architectural models.
+ The toolset must cope with these transitional models and report accurately
+ on any errors.
+\end_layout
+
+\begin_layout Standard
+Consider that the Backbone approach relies on applying the deltas of an
+ element using the expanded resemblance graph, as described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Elements"
+
+\end_inset
+
+.
+ Any circularity in the strata dependencies or resemblance relationships
+ will cause circularity in these graphs.
+ If we do not deal with this in a robust way, the implementation can go
+ into an infinite loop when expanding the deltas for certain types of models.
+ On the other hand, we wish to show as much as possible of the structure
+ of elements with circularity.
+\end_layout
+
+\begin_layout Standard
+We deal with this by temporarily removing any resemblance to elements which
+ are themselves circular, in the expanded graph.
+ Consider how we might apply this to the resemblance graph of 
+\family typewriter
+A
+\family default
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fixing-a-circular"
+
+\end_inset
+
+(a).
+ In this case, 
+\family typewriter
+B
+\family default
+ has circular resemblance, so we temporarily remove the relation from 
+\family typewriter
+A
+\family default
+ to 
+\family typewriter
+B
+\family default
+, giving the graph shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fixing-a-circular"
+
+\end_inset
+
+(b).
+ If the situation is remedied at a later point by removing the resemblance
+ from 
+\family typewriter
+B
+\family default
+ to 
+\family typewriter
+A
+\family default
+, then the resemblance from 
+\family typewriter
+A
+\family default
+ to 
+\family typewriter
+B
+\family default
+ can be re-included in the graph for delta application.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/tool-circular.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fixing-a-circular"
+
+\end_inset
+
+Fixing a circular resemblance graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Inconsistencies Through Direct Editing
+\end_layout
+
+\begin_layout Standard
+Inconsistencies can result when a stratum is directly modified after another
+ stratum has built on top of its definitions.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Destructive-editing-can"
+
+\end_inset
+
+ shows how 
+\family typewriter
+B
+\family default
+ from stratum 
+\family typewriter
+Y
+\family default
+ resembles 
+\family typewriter
+A
+\family default
+ from stratum 
+\family typewriter
+X
+\family default
+, adding a single connector 
+\family typewriter
+C
+\family default
+.
+ Consider if we started with this model, and then the owner of 
+\family typewriter
+X
+\family default
+ subsequently decided to directly edit 
+\family typewriter
+A
+\family default
+ and turn it into a leaf by physically deleting the part and connector.
+ The connector 
+\family typewriter
+C
+\family default
+ would now be in error in this scenario because the part it previously connected
+ to has disappeared.
+ The modelling tool must handle such situations gracefully, as there is
+ no guarantee that a stratum's definitions will remain static, or that they
+ will only be altered using the Backbone constructs.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/tool-edit.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Destructive-editing-can"
+
+\end_inset
+
+Destructive editing can cause inconsistencies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Error Checking
+\end_layout
+
+\begin_layout Standard
+The DeltaEngine includes a set of rules for checking the structural correctness
+ of the definitions in a model.
+ For instance, a component is checked to see that it has some ports, and
+ that if it has parts (and is therefore a composite) that it doesn't specify
+ an implementation class.
+ There are approximately forty such rules, which are described in more detail
+ in appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-Informal"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Error checking the definitions in a single stratum is straight forward.
+ However, if a stratum contains replacement then it can alter existing definitio
+ns in other strata: we need to check the stratum and also any other stratum
+ it transitively depends upon after the replacements have been applied.
+ Checking an entire model in this way implies a combinatorial explosion.
+ We use the absence of replacement within a stratum (i.e.
+ a non-destructive stratum) to prune this graph.
+\end_layout
+
+\begin_layout Standard
+Consider how this works in the model of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Checking-strata-with"
+
+\end_inset
+
+ where only stratum 
+\family typewriter
+c
+\family default
+ contains replacements.
+ To comprehensively check the entire model, we initially check stratum 
+\family typewriter
+d
+\family default
+, then 
+\family typewriter
+b
+\family default
+.
+ Next, we check 
+\family typewriter
+c
+\family default
+, but because it contains replacements, we must also recheck 
+\family typewriter
+d
+\family default
+ with the replacements from 
+\family typewriter
+c
+\family default
+ applied.
+ Finally we check 
+\family typewriter
+a
+\family default
+, but as it does not contain replacements we can avoid rechecking the other
+ strata.
+ This configuration results in 5 stratum checks for 4 strata.
+ If 
+\family typewriter
+a
+\family default
+ and 
+\family typewriter
+b
+\family default
+ also contained replacements, we would have to perform 9 stratum checks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/tool-checking.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Checking-strata-with"
+
+\end_inset
+
+Checking strata with replacements
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Delta-Performance-Considerations"
+
+\end_inset
+
+Performance Considerations
+\end_layout
+
+\begin_layout Standard
+Certain operations of the DeltaEngine need to be fast enough to support
+ the interactive graphical manipulations required by the modelling tool.
+ Delta expansion fits into this category, as components are always shown
+ graphically with fully expanded structure.
+ Although this expansion is expensive, particularly as the model and resemblance
+ graphs become large, caching of the results ensure that information is
+ not recomputed unnecessarily.
+ Coupled with the relatively good performance of the Java runtime, real-time
+ graphical interaction presents no problems even in relatively large models
+ with more than 500 components featuring complex resemblance relationships,
+ where many components have up to 100 or more attributes and ports.
+\end_layout
+
+\begin_layout Standard
+Another operation that needs to be performed quickly to support graphical
+ interaction is port type inference.
+ This represents a potential problem, as the algorithm must consider the
+ full depth of the composition hierarchy when determining the port interface
+ types in the worst case scenario.
+ In practice, two factors mitigate against this being a problem for interactive
+ use.
+ Firstly, the algorithm has been optimised such that even large hierarchies
+ can be used.
+ Secondly, the algorithm does not always reach the bottom of the hierarchy,
+ as the connectors and structure for composite ports may not push it down
+ this far.
+ In practice, the performance of the port type inference has been acceptable
+ for use in a graphical manipulation environment.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Evolve:-The-Backbone"
+
+\end_inset
+
+Evolve: The Backbone Graphical Modelling Tool
+\end_layout
+
+\begin_layout Standard
+Evolve is the Backbone modelling tool.
+ It was designed from the ground up to support the extensibility approach
+ in a deep way, and is not a modification of an existing tool.
+ Evolve facilitates the creation of a base application architecture, and
+ the development of any extensions on top of this.
+ It also allows strata to be shared and distributed amongst developers in
+ an extension setting.
+\end_layout
+
+\begin_layout Standard
+Evolve uses UML2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OMGUML"
+
+\end_inset
+
+ composite structure diagrams for depicting Backbone models.
+ These diagrams can show a fully expanded structural view of class-like
+ elements, and are commonly used by industrial practitioners to show the
+ internal composition of classes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic2003"
+
+\end_inset
+
+.
+ Composite structure diagrams also integrate well with extended state charts
+ and port sequence diagrams, allowing the behavioural side of a system to
+ be described within the same structural context.
+ Extending Backbone to cover the behavioural aspects of a system is considered
+ in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Further-Work"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+UML2 has been criticised for the excessive size of its metamodel, the overlap
+ between different diagrams
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+A UML2 consortium member confided that the overlap between composite structure
+ and component diagram types was well known at the time the specification
+ was written, but both were included for political reasons.
+\end_layout
+
+\end_inset
+
+ and the lack of a precise semantics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Evans1999a"
+
+\end_inset
+
+.
+ To sidestep these issues, Backbone instead takes a lightweight approach
+ to integration by mapping Backbone concepts onto a subset of UML2.
+ We then use the stereotype extension mechanism to build the extra rules
+ into UML2 model.
+ By using this approach, Backbone leverages a familiar and well-accepted
+ industrial component model, and builds on this foundation in a principled
+ way without incurring the full complexity of the UML2 model.
+ Further, the formal specification of Backbone is dealt with separately,
+ avoiding the complex and uncertain area of UML2 semantics.
+\end_layout
+
+\begin_layout Subsection
+Navigating the Model
+\end_layout
+
+\begin_layout Standard
+Evolve allows a single diagram to be associated with every stratum.
+ Consequently, nested strata allow for nested diagrams.
+\end_layout
+
+\begin_layout Standard
+To navigate into a stratum and view its diagram, the user double clicks
+ on the stratum symbol.
+ To navigate to the parent stratum, the user double clicks the diagram backgroun
+d.
+ This allows for fast navigation around a model.
+ Via the tabbed interface, it is possible to have any number of diagrams
+ visible on the screen at any one time.
+ Multiple views of a diagram are supported, as well as multiple top level
+ windows for a single model.
+\end_layout
+
+\begin_layout Standard
+A strata diagram can display any of the components and interfaces defined
+ within the stratum, and also any definitions that are visible to that stratum.
+\end_layout
+
+\begin_layout Subsection
+Recording and Visualising Deltas
+\end_layout
+
+\begin_layout Standard
+UML2 composite structure diagrams show components which have been fully
+ expanded structurally -- there is no provided notation for structural deltas.
+ Early attempts at the depiction of Backbone deltas showed that visualising
+ the fully expanded form allowed system creation and extension to be handled
+ uniformly and intuitively.
+ This is in keeping with our philosophy that extension and alteration should
+ be as easy as initial creation.
+\end_layout
+
+\begin_layout Standard
+As such, Evolve always shows the fully expanded components resulting from
+ resemblance, but when edits are made to the model it records these in the
+ underlying repository as deltas.
+ At any point a designer can toggle delta indicators, showing which parts
+ of the structure have been added, deleted or replaced.
+ The indicator symbols are shown in table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:The-delta-indicator"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features>
+<column alignment="center" valignment="middle" width="0">
+<column alignment="left" valignment="top" width="12cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Icon
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Delta Indicator
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/delta-add.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Added constituent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/delta-deleted.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Deleted constituent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename models/icons/delta-replaced.png
+	BoundingBox 0bp 2bp 16bp 18bp
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Replaced constituent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:The-delta-indicator"
+
+\end_inset
+
+The delta indicator symbols
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolve-showing-delta"
+
+\end_inset
+
+ below shows the consolidated desk model from figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Unified-correction"
+
+\end_inset
+
+ inside the modelling tool.
+ The designer has hovered over the replacing part and a popup indicates
+ which part it has replaced.
+ Constituents which have been inherited do not have a delta indicator.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/deltas.png
+	lyxscale 70
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolve-showing-delta"
+
+\end_inset
+
+Evolve showing delta indicators
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Evolve includes a browser which shows the underlying component structures
+ and deltas from the repository.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Deltas-are-recorded"
+
+\end_inset
+
+ shows the repository representation for the expanded 
+\family typewriter
+Desk'
+\family default
+ component of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolve-showing-delta"
+
+\end_inset
+
+.
+ The 
+\family typewriter
+Desk'
+\family default
+ component is highlighted, and we can see that it evolves 
+\family typewriter
+Desk
+\family default
+, adds the 
+\family typewriter
+cue
+\family default
+ part, replaces the 
+\family typewriter
+m
+\family default
+ part and replaces the 
+\family typewriter
+iconn
+\family default
+ and 
+\family typewriter
+cconn
+\family default
+ connectors.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/deltas-browser.png
+	lyxscale 70
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Deltas-are-recorded"
+
+\end_inset
+
+Viewing deltas in the browser
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The dual approach of showing expanded structures in the diagrams (with optional
+ delta indicators) and manipulating deltas in the browser works well in
+ practice.
+ The developer can work with the full structures in the diagrams without
+ the need to continually refer back to the resembled elements to understand
+ the full structure.
+ Showing and editing deltas in the browser also resolves the problem of
+ how to delete a deletion, or delete the replacement of a constituent.
+ Both can be achieved by simply deleting the appropriate delta via the browser.
+\end_layout
+
+\begin_layout Subsection
+Resemblance as a Visual Concept
+\end_layout
+
+\begin_layout Standard
+The concept of resemblance carries over neatly into the visual dimension
+ also.
+ The layout of parts, ports and connectors of an element can be inherited
+ from elements being resembled.
+ Consider figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visual-resemblance"
+
+\end_inset
+
+(a) which shows component 
+\family typewriter
+B
+\family default
+ without a resemblance relationship to component 
+\family typewriter
+A
+\family default
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visual-resemblance"
+
+\end_inset
+
+(b) shows that as soon as we make 
+\family typewriter
+B
+\family default
+ resemble 
+\family typewriter
+A
+\family default
+, the structure and layout are both inherited, giving a similar visual form.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/visual-resemblance.png
+	lyxscale 70
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Visual-resemblance"
+
+\end_inset
+
+Resemblance operating at a visual level
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Subsequent additions to 
+\family typewriter
+A
+\family default
+ will also result in the layout of these constituents being copied into
+ 
+\family typewriter
+B
+\family default
+ also.
+ However, the visual layout is just a copy taken at a point in time, and
+ the layouts of 
+\family typewriter
+A
+\family default
+ and 
+\family typewriter
+B
+\family default
+ can diverge at a later point.
+ Unlike the visual link, the structural link between the components is always
+ in force as long as the resemblance relation is present: any structural
+ changes made to 
+\family typewriter
+A
+\family default
+ will also cause changes to the expanded structure of 
+\family typewriter
+B
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Existing deltas can be made invalid by removing resemblance relationships.
+ Consider if we add a delta to 
+\family typewriter
+B
+\family default
+ to delete the connector in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visual-resemblance"
+
+\end_inset
+
+(b), and then we subsequently delete the resemblance relationship.
+ The deletion of the connector will now be invalid because B no longer contains
+ an inherited connector to delete.
+ To rectify this, we can either re-establish the resemblance, or delete
+ the delta via the browser.
+\end_layout
+
+\begin_layout Subsection
+Renaming and UUIDs
+\end_layout
+
+\begin_layout Standard
+Each element or constituent has a UUID, which remains constant regardless
+ of any renaming.
+ The modelling tool hides these from the developer, although they are used
+ internally to track the various parts of the model in a robust way.
+ In effect, names are just human readable tags which help the developer
+ understand the model.
+ The DeltaEngine treats these names as just another constituent which can
+ be replaced.
+\end_layout
+
+\begin_layout Standard
+Names can be omitted from the model in most cases.
+ Although Evolve insists on names for strata, components and interfaces,
+ this is for stylistic reasons.
+ Names are only truly mandatory when constituents have a direct link to
+ implementation artifacts, such as for port and attribute names in leaf
+ components.
+ 
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Deltas-are-recorded"
+
+\end_inset
+
+ shows that the UUID of the 
+\family typewriter
+Desk'
+\family default
+ component is 
+\family typewriter
+c8ac31dc-12a6-4902\SpecialChar \-
+-9baf\SpecialChar \-
+-6bfabeff3985
+\family default
+.
+ The name is inherited from the 
+\family typewriter
+Desk
+\family default
+ component and a prime is added to show that it is an evolution.
+ However, we can give this component another name, in which case this will
+ replace the name constituent of the component: in effect we are able to
+ evolve the name.
+ This demonstrates how deltas are applied uniformly to all aspects of the
+ structure and composition of a component.
+ Names are regarded as another part of an element's structure.
+\end_layout
+
+\begin_layout Standard
+The use of UUIDs means that elements can be moved between strata without
+ losing their logical identity.
+ It is quite common when elaborating a model to move an element from a base
+ stratum to an extension stratum and vice versa.
+\end_layout
+
+\begin_layout Subsection
+Sharing Strata and Handling Evolution
+\end_layout
+
+\begin_layout Standard
+Strata are the unit of import and export in the Evolve modelling tool, allowing
+ extensions to be distributed and shared between parties in an extension
+ setting.
+ A set of stratum (including their nested children) can be exported as a
+ file, and transferred to another developer to be imported into their model.
+ This facility does not prevent a group of developers from also using a
+ CM system to manage parts of a model, or indeed an entire model -- it simply
+ provides a lightweight sharing facility which can be combined with other
+ sharing approaches.
+ In an extension setting where no common CM infrastructure exists between
+ parties, the exchange of files ensures that models can always be shared.
+ To facilitate the tracking of versions when exchanging strata files, each
+ stratum contains a set of fields that can be used to store possible version
+ details.
+\end_layout
+
+\begin_layout Standard
+The use of UUIDs allows us to retain the concept of logical identity for
+ elements even in the presence of disconnected files.
+ Importing a stratum raises a number of interesting possibilities: an older
+ copy of that stratum may already exist in the model, the new stratum may
+ contain an element which is already in a different stratum in the existing
+ model, or the new stratum may delete existing elements.
+ In all cases, the imported stratum is treated as newer and authoritative,
+ and UUIDs are used to determine which stratum and elements are being replaced.
+ Any existing references are updated to the newer elements.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Examining-and-importing"
+
+\end_inset
+
+(a) shows how the modelling tool allows examination of a strata file before
+ importing.
+ In this case, we are importing an edited version of stratum 
+\family typewriter
+CD
+\family default
+ from the example in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-CD-Player"
+
+\end_inset
+
+.
+ The modified stratum has deleted the 
+\family typewriter
+CDDevice
+\family default
+ component.
+ Before we consent to import this stratum, the tool warns us that the new
+ stratum will cause problems for several references, as shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Examining-and-importing"
+
+\end_inset
+
+(b).
+ The warnings do not prevent the import, but indicate that the final model
+ will contain errors where existing elements and diagrams previously referenced
+ the deleted component.
+ The errors can be fixed by following the import warnings and correcting
+ any incorrect references.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/import-warnings.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Examining-and-importing"
+
+\end_inset
+
+Examining and importing a stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Backbone rules ensure that a stratum cannot access the definitions in
+ its parent stratum.
+ This allows an extension stratum to be isolated from a model, fitting well
+ into an extensibility setting -- we can export an extension without needing
+ to export its hierarchical parents.
+ This is the opposite of the rules for UML2 packages.
+ As explained in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Mapping-Backbone-onto"
+
+\end_inset
+
+, we use stereotypes to model strata as packages with extra constraints
+ to prevent a stratum from accessing definitions in its parent.
+\end_layout
+
+\begin_layout Subsection
+Error Checking
+\end_layout
+
+\begin_layout Standard
+Evolve provides a graphical interface to the DeltaEngine error checking
+ facilities.
+ It is possible to check the entire model from every perspective, which
+ will check each stratum in turn, along with any transitively depended on
+ strata if replacement is present.
+ In the model from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Combining-All-Extensions"
+
+\end_inset
+
+, this results in 78 different strata checks from the required perspectives.
+ Another option is to check the model from the perspective of a single stratum:
+ this results in 13 different strata checks from the single 
+\family typewriter
+combined
+\family default
+ perspective.
+ The different checks in this case correspond directly to the unique strata
+ in the model.
+ This removes any combinatorial issues at the cost of not checking the model
+ from every possible angle.
+\end_layout
+
+\begin_layout Standard
+If any errors are found, they are visible in both the diagram and the browser.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Errors-are-shown"
+
+\end_inset
+
+ shows a simple model which contains errors recorded against the 
+\family typewriter
+AdvancedLeaf
+\family default
+ component in the 
+\family typewriter
+base
+\family default
+ stratum.
+ In the diagram, error icons are shown against the component itself: these
+ are known as 
+\emph on
+direct errors
+\emph default
+ because the errors exist in the element's home stratum.
+ Hovering above an icon explains the error in more detail.
+ Some error checks, such as a leaf component port not having a name are
+ only checked in the home stratum.
+ Other error checks, known as well-formedness rules, are performed from
+ each perspective (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Structural-Rules-of"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/errors.png
+	lyxscale 70
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Errors-are-shown"
+
+\end_inset
+
+Viewing errors in the diagrams and browser
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With replacement, it is possible for a subsequent stratum to correct (or
+ introduce) errors in lower down strata.
+ Errors against an element, when the perspective is not the element's home
+ stratum, are known as 
+\emph on
+indirect errors
+\emph default
+ because they result from a combination of definitions in one stratum interactin
+g with the definitions in another.
+ As the error is a combination of element and non-home stratum, there will
+ not be a diagram element to list the errors against.
+ Instead, these errors are shown in the browser listed against the stratum
+ perspective that resulted in the errors.
+ We can see this in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Errors-are-shown"
+
+\end_inset
+
+ -- the browser shows that from the perspective of 
+\family typewriter
+model
+\family default
+ (which is the top hierarchical stratum containing 
+\family typewriter
+base
+\family default
+), the 
+\family typewriter
+AdvancedLeaf
+\family default
+ component still does not have an implementation class specified.
+\end_layout
+
+\begin_layout Subsection
+Viewing the Model from a Fixed Stratum Perspective
+\end_layout
+
+\begin_layout Standard
+As replacements from extension strata are applied to an existing base, the
+ definitions change.
+ Normally, however, each diagram is only shown from the perspective of the
+ owning stratum.
+ Consider, for example, the original definition of 
+\family typewriter
+Desk
+\family default
+ from stratum 
+\family typewriter
+desk 1.0
+\family default
+, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Desk-component"
+
+\end_inset
+
+.
+ The diagram shows all of the definitions of 
+\family typewriter
+desk 1.0
+\family default
+ only, and does not show any of the replacements from 
+\family typewriter
+combined
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Evolve allows any stratum to be set as a fixed perspective, so that existing
+ diagrams can be viewed after extensions have been applied.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fixed-perspective"
+
+\end_inset
+
+ shows what the same diagram looks like when 
+\family typewriter
+combined
+\family default
+ is set as the fixed perspective.
+ The diagram changes are made automatically, sometimes resulting in an imperfect
+ layout, but it gives a view into what an existing diagram looks like from
+ a non-home perspective.
+ When using a fixed perspective, any diagrams from strata 
+\begin_inset Quotes eld
+\end_inset
+
+below
+\begin_inset Quotes erd
+\end_inset
+
+ that perspective are regarded as read-only.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/fixed-perspective.png
+	lyxscale 70
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fixed-perspective"
+
+\end_inset
+
+Viewing diagrams from a fixed perspective
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Performance-Considerations"
+
+\end_inset
+
+Performance Considerations
+\end_layout
+
+\begin_layout Standard
+In addition to the DeltaEngine performance considerations discussed in section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Delta-Performance-Considerations"
+
+\end_inset
+
+, Evolve further ameliorates any performance issues by only expanding elements
+ which appear on the currently edited set of diagrams.
+ Furthermore, it lazily loads diagrams on demand, and removes unmodified
+ (and currently unviewed) diagrams from the working set on a least-recently-used
+ basis.
+ This is transparent to the developer using the tool.
+ The approach greatly limits the amount of work that must be performed when
+ manipulating component structures in a diagram.
+\end_layout
+
+\begin_layout Standard
+This type of lazy loading must be built deep into the graphical approach,
+ as it affects many of the infrastructure facilities such as undo/redo and
+ the repair of diagrams when an element is deleted.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Mapping-JavaBeans-onto"
+
+\end_inset
+
+Mapping JavaBeans onto Backbone
+\end_layout
+
+\begin_layout Standard
+JavaBeans 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Network2006,O'Neill1998"
+
+\end_inset
+
+ is a lightweight component model for Java, as described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Java-Component-Models"
+
+\end_inset
+
+.
+ Many Java libraries consist of a collection of beans.
+ Being able to interoperate with this component model allows Backbone to
+ be used with a large amount of existing software, whilst still retaining
+ the full extensibility benefits of the approach.
+\end_layout
+
+\begin_layout Standard
+This section outlines the mapping of the JavaBeans component model onto
+ the Backbone component model and examines the limitations and restrictions
+ of beans compared to Backbone components.
+\end_layout
+
+\begin_layout Standard
+Essentially, a bean is just a plain Java class that conforms to a small
+ set of lexical conventions for describing properties (analogous to Backbone
+ attributes) and events.
+ The JavaBeans component model can be mapped neatly onto a subset of the
+ Backbone component model, with the advantage that beans can then be used
+ freely in Backbone architectures.
+\end_layout
+
+\begin_layout Subsubsection
+The Mapping
+\end_layout
+
+\begin_layout Standard
+Beans do not explicitly support provided interfaces.
+ It is possible for a bean to implement an interface, but this is not standard
+ practice apart from where a bean implements a listener interface so it
+ can respond to events from another bean.
+ As such, we model each bean as a Backbone leaf component which supports
+ a single provided 
+\begin_inset Quotes eld
+\end_inset
+
+synthetic
+\begin_inset Quotes erd
+\end_inset
+
+ interface through a port called main.
+ The interface is synthetic in the sense that it is just the same bean class
+ masquerading as an interface.
+ This sleight of hand is necessary to conform the JavaBeans model to the
+ component and interface dichotomy of Backbone.
+\end_layout
+
+\begin_layout Standard
+As shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-JButton-bean"
+
+\end_inset
+
+, the 
+\family typewriter
+JButton
+\family default
+ bean (which represents a GUI button in the Swing toolkit) is translated
+ into a Backbone leaf component called 
+\family typewriter
+JButton
+\family default
+ where the implementation class is set to 
+\family typewriter
+javax.swing.JButton
+\family default
+.
+ The port 
+\family typewriter
+main
+\family default
+ provides a single synthetic interface modelled as 
+\family typewriter
+IJButton
+\family default
+, where the implementation class is also set to 
+\family typewriter
+javax.swing.JButton
+\family default
+.
+ Any bean attributes are simply mapped onto Backbone attributes of the same
+ name.
+ No other provided ports or interfaces are possible.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/jbutton.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-JButton-bean"
+
+\end_inset
+
+The JButton bean translated into Backbone
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+JButton
+\family default
+ bean class inherits from 
+\family typewriter
+AbstractButton
+\family default
+.
+ We translate this into Backbone resemblance between the two components
+ and mirror this relationship on the interface side with resemblance between
+ the two interfaces.
+ We can see that the 
+\family typewriter
+text
+\family default
+ attribute and the 
+\family typewriter
+actionListeners
+\family default
+ port have been inherited.
+ The 
+\family typewriter
+main
+\family default
+ port of 
+\family typewriter
+JButton
+\family default
+ replaces the inherited 
+\family typewriter
+main
+\family default
+ port, and changes which interface is provided.
+\end_layout
+
+\begin_layout Standard
+JavaBeans uses 
+\family typewriter
+add
+\family default
+ methods to represent any required interfaces.
+ We translate each 
+\family typewriter
+add
+\family default
+ method into a single required interface on a port with 
+\family typewriter
+[0..*]
+\family default
+ multiplicity, as shown for the 
+\family typewriter
+actionListeners
+\family default
+ port.
+ This port is used to register listeners with 
+\family typewriter
+JButton
+\family default
+ in order to receive button events.
+\end_layout
+
+\begin_layout Standard
+Our mapping also allows for a flexible interpretation of required interfaces.
+ Although not explicitly mentioned in the JavaBeans specification, we choose
+ to interpret a single 
+\family typewriter
+get
+\family default
+ method which returns an interface as a port with a single required interface
+ and a multiplicity of 
+\family typewriter
+[0..1]
+\family default
+.
+ In some cases it is unclear as to whether a 
+\family typewriter
+get
+\family default
+ method should translate into an attribute or a port, particularly in the
+ presence of our synthesised bean interfaces.
+ In these situations, the Evolve import tool guides the developer through
+ the ambiguous choices.
+\end_layout
+
+\begin_layout Standard
+The mapping exposes limitations in the JavaBeans component model.
+ In particular, only one port with a provided interface is allowed, and
+ every other port can only require a single interface each.
+ Slots of bean parts cannot be aliased because there is no way to make the
+ attributes of two separate bean instances refer to the same instance of
+ a primitive type such as 
+\family typewriter
+int
+\family default
+.
+ Further, JavaBeans provides no explicit support for composite structures,
+ apart from simple object containment.
+ The limitations on bean composite structures are further explored in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2008"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The mapping is intentionally incomplete with respect to the different property
+ types available in JavaBeans.
+ Although the mapping does not support bound or constrained properties,
+ we have not found this to be a limitation in practice as these are not
+ frequently used.
+\end_layout
+
+\begin_layout Subsubsection
+Importing JavaBeans into Evolve
+\end_layout
+
+\begin_layout Standard
+Evolve provides a tool for translating JavaBeans and importing them into
+ an architecture.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Importing-JButton-into"
+
+\end_inset
+
+ shows Evolve in the process of importing part of the Swing library.
+ The top left tree shows the packages from the chosen Java library and the
+ top right tree shows the beans found in the selected package.
+ Beans can be selected and added to the import list, in the bottom left
+ corner.
+ The lower two trees show the beans after they have been translated into
+ the Backbone component model.
+ In this case, although we have only explicitly chosen 
+\family typewriter
+JButton
+\family default
+, we must also take a number of inherited classes and listener interfaces
+ also.
+ The bottom right panel contains the mapping of the attributes and interfaces
+ of the bean into Backbone.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/import-beans.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Importing-JButton-into"
+
+\end_inset
+
+Importing JButton into an Evolve architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Graphical Management of Complex Components
+\end_layout
+
+\begin_layout Standard
+When we developed the import tool and starting importing mature JavaBeans
+ libraries, we soon realised that these libraries often involved many hundreds
+ of components with complex inheritance relationships.
+ Further, many of the components had a large number of ports and attributes.
+ It was clear we needed to add extra mechanisms into Evolve to allow this
+ type of complexity to be managed.
+ To illustrate the problem, figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-fully-expanded"
+
+\end_inset
+
+ shows the depiction of 
+\family typewriter
+JButton
+\family default
+ with about half of its ports and attributes.
+ The result is a complex and unwieldy graphical mess.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/full-jbutton.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-fully-expanded"
+
+\end_inset
+
+The fully expanded JButton component is unworkable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To address this, the import tool allows the developer to choose which constituen
+ts of a component are visible on diagrams by default.
+ In practice, this is a relatively small number, as in the case where the
+ primary attribute of 
+\family typewriter
+JButton
+\family default
+ is the 
+\family typewriter
+text
+\family default
+ attribute.
+ The other constituents can be added at a later point, as shown in the menu
+ of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Coping-with-large"
+
+\end_inset
+
+ where the developer is making a further port of 
+\family typewriter
+JButton
+\family default
+ visible.
+ After experimenting with fish-eye menus 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bederson2000"
+
+\end_inset
+
+ and other graphical approaches, the multi-column, alphabetically-sorted
+ menus shown in the figure were found to be the most convenient.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/many-ports.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Coping-with-large"
+
+\end_inset
+
+Coping with large numbers of constituents
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A further approach to limiting the number of attributes and ports is to
+ exclude them from the model when translating them into Backbone.
+ This is an acceptable option because, in practice, many of the constituents
+ of beans are never used.
+ The import tool supports this.
+\end_layout
+
+\begin_layout Standard
+Working with these large libraries prompted several of the performance optimisat
+ions mentioned in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Performance-Considerations"
+
+\end_inset
+
+.
+ The current version of the Evolve tool can comfortably cope with a model
+ several times larger than the full Swing library (which itself contains
+ around 500 components) without any noticeable graphical delay during manipulati
+on.
+ This enables the practical use of complex Java libraries with the Backbone
+ approach.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Generating-Leaf-Skeletons"
+
+\end_inset
+
+Generating Leaf Component Source Skeletons from Evolve
+\end_layout
+
+\begin_layout Standard
+To minimise developer effort and design overhead, Evolve can generate a
+ source code skeleton for any leaf component implementation, upon request.
+ Each skeleton contains Java fields to represent attributes and ports, and
+ also provides supporting methods and class definitions.
+ Roundtripping, where further generation preserves code added by developers,
+ is also supported.
+\end_layout
+
+\begin_layout Standard
+To show the mapping into Java, consider the leaf component shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:source--leaf"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated-figures/tool-leaf-source.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:source--leaf"
+
+\end_inset
+
+A simple leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The generated skeleton for this is shown below.
+\end_layout
+
+\begin_layout LyX-Code
+public class Leaf
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+// start generated code (A)
+\end_layout
+
+\begin_layout LyX-Code
+// attributes
+\end_layout
+
+\begin_layout LyX-Code
+    private Attribute<java.lang.Integer> a =
+\end_layout
+
+\begin_layout LyX-Code
+        new Attribute<java.lang.Integer>(32);
+\end_layout
+
+\begin_layout LyX-Code
+// required ports
+\end_layout
+
+\begin_layout LyX-Code
+    private example.IService portR;
+\end_layout
+
+\begin_layout LyX-Code
+// provided ports
+\end_layout
+
+\begin_layout LyX-Code
+    private IServicePortPImpl portP_IServiceProvided =
+\end_layout
+
+\begin_layout LyX-Code
+        new IServicePortPImpl();
+\end_layout
+
+\begin_layout LyX-Code
+// setters and getters
+\end_layout
+
+\begin_layout LyX-Code
+    public Attribute<java.lang.Integer> getA()
+\end_layout
+
+\begin_layout LyX-Code
+      { return a; }
+\end_layout
+
+\begin_layout LyX-Code
+    public void setA(Attribute<java.lang.Integer> a)
+\end_layout
+
+\begin_layout LyX-Code
+      { this.a = a;}
+\end_layout
+
+\begin_layout LyX-Code
+    public void setRawA(java.lang.Integer a)
+\end_layout
+
+\begin_layout LyX-Code
+      { this.a.set(a);}
+\end_layout
+
+\begin_layout LyX-Code
+    public void setPortR(example.IService portR)
+\end_layout
+
+\begin_layout LyX-Code
+      { this.portR = portR; }
+\end_layout
+
+\begin_layout LyX-Code
+    public example.IService getPortP_IService(Class<?> required)
+\end_layout
+
+\begin_layout LyX-Code
+      { return portP_IServiceProvided; }
+\end_layout
+
+\begin_layout LyX-Code
+// end generated code (B)
+\end_layout
+
+\begin_layout LyX-Code
+    private class IServicePortPImpl implements example.IService
+\end_layout
+
+\begin_layout LyX-Code
+    {
+\end_layout
+
+\begin_layout LyX-Code
+        //@todo add interface methods
+\end_layout
+
+\begin_layout LyX-Code
+    }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Lines (A) and (B) are the start and end markers.
+ Any code within these comments will be regenerated upon request, overwriting
+ any changes.
+ The generated lines describe fields (and supporting methods) corresponding
+ to any attributes or provided or required port interfaces.
+ Attributes use the 
+\family typewriter
+Attribute
+\family default
+ wrapper class, which supports aliasing even for primitive types such as
+ integers.
+ Each required interface port field is named after the port itself, unless
+ there is a name clash.
+ Provided interface port fields have the interface name appended as well.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+IServicePortPImpl
+\family default
+ is an inner Java class that has been generated to hold the implementation
+ of the provided port interface.
+ This class is only added if the leaf source file does not exist, and subsequent
+ changes to this by the programmer are not overwritten during roundtrip
+ generation.
+ Note that the generation of fields for individual attributes and ports
+ can be suppressed if required.
+ This allows custom logic to be manually placed inside the relevant methods.
+\end_layout
+
+\begin_layout Standard
+Any changes made by a programmer, outside of the marker regions, is preserved
+ when the skeleton is regenerated.
+\end_layout
+
+\begin_layout Standard
+This approach to generation and roundtripping is a robust and flexible way
+ of combining automatically generated code and manually entered code.
+ Unlike other approaches that have previously been used by UML modelling
+ tools, this scheme does not rely on the presence of fragile UUID markers
+ in the code to track the identity of model artifacts.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Mapping-Backbone-onto"
+
+\end_inset
+
+Mapping Backbone onto UML2
+\end_layout
+
+\begin_layout Standard
+This section describes the mapping from Backbone onto the UML2 model.
+ As discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Evolve:-The-Backbone"
+
+\end_inset
+
+, the approach of using a mapping rather than relying directly on the UML2
+ component model allows us to avoid some of the excesses and redundancy
+ of the complex UML2 approach.
+\end_layout
+
+\begin_layout Standard
+UML2 includes the stereotype extension mechanism in order to support non-standar
+d object models.
+ This is further discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Unified-Modeling"
+
+\end_inset
+
+.
+ A stereotype is a lightweight form of metamodel extension where classes
+ in a user model can virtually subtype the existing UML2 metamodel classes
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Henderson-Sellers2006"
+
+\end_inset
+
+.
+ In practice this means that new attributes and constraints can be added
+ to the existing UML2 object model in a lightweight way.
+ A profile is a collection of stereotypes for a given purpose.
+ Backbone qualifies as a profile of UML2, although it has not been explicitly
+ phrased in this way.
+\end_layout
+
+\begin_layout Standard
+Backbone is almost a proper subset of the UML2 composite structure model.
+ As such, the description of the mapping is brief and simply involves pointing
+ out the element that each concept maps to, and any constraints.
+ A UML2 user, when presented with a Backbone diagram, should have little
+ trouble interpreting its structural meaning.
+ The full set of constraints are documented in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:Backbone-Informal"
+
+\end_inset
+
+, as a set of structural rules.
+\end_layout
+
+\begin_layout Subsubsection
+Backbone Components and Interfaces
+\end_layout
+
+\begin_layout Standard
+Backbone components are mapped onto UML2 classes, rather than UML2 components.
+ The latter do not provide any tangible benefits for our approach over the
+ former, as UML2 classes are structured entities and can contain ports,
+ parts and connectors.
+ In any case, the UML2 
+\family typewriter
+Component
+\family default
+ metamodel class directly inherits from the 
+\family typewriter
+Class
+\family default
+ metamodel class and adds little in the way of attributes.
+ Our approach of using classes permits us to use composite structure diagrams
+ rather than the more graphically verbose component diagrams.
+ Backbone ports, parts, connectors (assembly and delegation) and attributes
+ map directly onto their UML2 namesakes.
+ Port links do not exist in UML2 and are represented as stereotyped dependencies.
+\end_layout
+
+\begin_layout Standard
+Unlike UML2 structured classes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Oliver2006"
+
+\end_inset
+
+, Backbone constrains composite components so that they cannot have an implement
+ation.
+ This forces composites to be purely structural entities which can always
+ be flattened into a connected set of leaf instances, making it only necessary
+ to specify implementation (and properties such as behaviour) at the leaf
+ level.
+ This facilitates analysis also, as we do not have to consider any implementatio
+n at the composite level.
+ Backbone components are constrained to always feature at least a single
+ port.
+\end_layout
+
+\begin_layout Standard
+Parts in Backbone are constrained to have multiplicity of 
+\family typewriter
+[1]
+\family default
+.
+ Parts of optional multiplicity are catered for by isomorphic factories
+ which allow dynamic instantiation.
+ This is described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Factory-Pattern"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Backbone interfaces are mapped directly onto UML2 interfaces.
+ To allow leaf components and interfaces to hold the name of a potential
+ implementation class, we have added an extra attribute to the 
+\family typewriter
+Classifier
+\family default
+ metamodel class using a stereotype.
+ This is the common base class of the 
+\family typewriter
+Class
+\family default
+ and 
+\family typewriter
+Interface
+\family default
+ metamodel elements.
+\end_layout
+
+\begin_layout Subsubsection
+Deltas
+\end_layout
+
+\begin_layout Standard
+A delta alteration can take the form of the addition, replacement or deletion
+ of a constituent of an element.
+ The addition of constituents (e.g.
+ adding attributes) to a component or interface is already catered for in
+ UML2.
+\end_layout
+
+\begin_layout Standard
+To model delta replacement, we introduced the 
+\family typewriter
+DeltaReplacedConstituent
+\family default
+ metamodel class and subclasses into UML2.
+ This contains a reference to a replacing, and replaced constituent.
+ By adding fields of type 
+\family typewriter
+DeltaReplacedConstituent
+\family default
+ to the 
+\family typewriter
+Class
+\family default
+ and 
+\family typewriter
+Interface
+\family default
+ metamodel classes, we allow both classes and interfaces to contain constituent
+ replacements.
+\end_layout
+
+\begin_layout Standard
+Similarly, we introduced the 
+\family typewriter
+DeltaDeletedConstituent
+\family default
+ metamodel class to model delta deletes.
+\end_layout
+
+\begin_layout Subsubsection
+Primitive Types
+\end_layout
+
+\begin_layout Standard
+Primitive types are represented by UML2 classes, which can contain deltas
+ for name and implementation class.
+ Although not an area currently explored, there are no constraints that
+ prevents primitive types from having their structure elaborated in terms
+ of attributes, parts and connectors also.
+\end_layout
+
+\begin_layout Subsubsection
+Resemblance and Replacement
+\end_layout
+
+\begin_layout Standard
+Resemblance is modelled as a stereotyped dependency between two elements
+ of the same type.
+ Consideration was given to introducing a 
+\family typewriter
+Resemblance
+\family default
+ metamodel element, inheriting from the UML2 
+\family typewriter
+Generalization
+\family default
+ relation, but the direction of subtyping in this case conflicts with the
+ notion that resemblance is more general than inheritance.
+ Although inheritance is not present explicitly in Backbone, it can be regarded
+ as a subset of resemblance with additional constraints prohibiting constituent
+ deletions and also limiting the scope of constituent replacement.
+\end_layout
+
+\begin_layout Standard
+Replacement is also modelled as a stereotyped dependency between two elements
+ of the same type.
+\end_layout
+
+\begin_layout Subsubsection
+Stereotypes
+\end_layout
+
+\begin_layout Standard
+Backbone models can also have stereotypes and profiles, and Backbone elements
+ can be tagged with a stereotype.
+ Not surprisingly, Backbone stereotypes and profiles map onto their namesakes
+ in UML2.
+\end_layout
+
+\begin_layout Standard
+Backbone differs from UML2 only in that we constrain each element to be
+ tagged with at most one stereotype, rather than the multiple allowed in
+ UML2.
+ Element stereotype tagging in Backbone is handled via deltas, and a resembling
+ element can replace or delete the stereotype tag it inherits.
+\end_layout
+
+\begin_layout Standard
+Backbone stereotypes are used to expand an element by adding extra constituents
+ to it automatically.
+ This is described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Using-Stereotypes-for"
+
+\end_inset
+
+.
+ The reason why we constrain each element to a single stereotype is that
+ multiple stereotypes raised the confusing issue of order of expansion.
+\end_layout
+
+\begin_layout Subsubsection
+Strata
+\end_layout
+
+\begin_layout Standard
+The Backbone stratum concept is mapped onto UML2 
+\family typewriter
+Package
+\family default
+, with a stereotype to introduce new rules about visibility.
+ A stratum cannot access any of its parent's definitions, which allows each
+ stratum to be treated as a self-contained unit for import and export purposes.
+ If a stratum could access definitions contained within the parent, then
+ when we exported it we would potentially have to export some or all of
+ the parents also, or always import it into a model which contained the
+ parent.
+\end_layout
+
+\begin_layout Standard
+UML2 packages have access to their parent's scope.
+ This arrangement was inspired by the way that nested functions in a programming
+ language have access to definitions within the scope of the parent function.
+ As pointed out in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Schurr1998"
+
+\end_inset
+
+, this is often a confusing arrangement which hampers the use of packages
+ as a modular unit.
+ Until UML1.3, the visibility rules were closer to those of Backbone, and
+ after this point they were altered to their current definition.
+\end_layout
+
+\begin_layout Standard
+Backbone contains rules about transitive visibility, documented in the formal
+ specification, which resolve the confusing and inconsistent package visibility
+ rules based around access permissions in UML2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Schurr1998"
+
+\end_inset
+
+.
+ The intention of the rules is to force a Backbone architecture to be explicit
+ about layering and strata dependencies, thereby making the module structure
+ of an architecture explicit.
+\end_layout
+
+\begin_layout Subsubsection
+Related but Unused Concepts in UML2
+\end_layout
+
+\begin_layout Standard
+UML2 introduced the notion of 
+\emph on
+package merge
+\emph default
+ to allow the metamodel and specification to be organised into a number
+ of layers, where each layer might add further attributes and properties
+ to existing elements.
+ Package merge allows two packages to be merged and any elements with the
+ same names are coalesced into a consolidated definition.
+ This is not dissimilar to the notion of viewpoints, as described in section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Viewpoint-Oriented-Approaches"
+
+\end_inset
+
+.
+ Unfortunately, package merge only allows for addition and some level of
+ replacement and is considered too complex for conventional modelling 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rumbaugh2004"
+
+\end_inset
+
+.
+ As pointed out in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zito2006"
+
+\end_inset
+
+, a modelling of package merge in Alloy has shown that it does not guarantee
+ to preserve data model compatibility with the source packages: this is
+ unfortunate as this compatibility was one of the key design goals.
+ This has also revealed inconsistencies and unforeseen corner cases in the
+ operation.
+ UML2 does not formally specify this construct.
+\end_layout
+
+\begin_layout Standard
+UML2 contains a facility known as the Object Constraint Language (OCL),
+ which is a lightweight, formal language for specifying rules about a model.
+ Rather than use OCL and attempt to integrate our formal specification into
+ the large and sometimes inconsistent UML2 OCL specification 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bauerdick2004"
+
+\end_inset
+
+, we instead chose to specify Backbone using Alloy.
+ We could have instead potentially used a combination of OCL and the USE
+ toolkit 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gogolla2007"
+
+\end_inset
+
+ for this purpose also.
+ USE provides a workbench that can check an object model against an OCL
+ specification.
+ The snapshot generator, however, is less advanced that the Alloy Analyzer
+ and involves specifying object configurations in detail using a language
+ called ASSL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gogolla2003"
+
+\end_inset
+
+.
+ Counterexamples cannot be generated automatically which limits the effectivenes
+s of the toolset in finding errors in a specification.
+\end_layout
+
+\begin_layout Standard
+UML2 introduced the concept of 
+\emph on
+redefinition
+\emph default
+, where a constituent nested inside a classifier can be selectively replaced
+ in the scope of an inheriting classifier.
+ This facility clarifies and generalises the notion of when a method polymorphic
+ally overrides another in a base class.
+ The rule is that the redefining constituent should be substitutable for
+ the redefined one, and a set of rules exist for what constitutes substitutabili
+ty for each constituent type.
+ In the case of nested classifiers the vagueness of the rules have prompted
+ questions and speculation even on the part of the specification's primary
+ authors 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rumbaugh2004"
+
+\end_inset
+
+.
+ Backbone resemblance is effectively a superset of UML2 redefinition (within
+ the confines of the Backbone model), allowing also deletion and non-conformant
+ replacement.
+ Well-formedness rules flag any structural errors that may result.
+\end_layout
+
+\begin_layout Standard
+UML2 also contains a substitution relation, which indicates when one class
+ can be substituted for another.
+ This was not used for the mapping because it implies a level of conformance
+ to the base and also does not actually replace the base element.
+ Instead it just indicates that a substitution is possible, leaving the
+ mechanism for replacement unspecified.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Using-Evolve-in"
+
+\end_inset
+
+Using Evolve in an Extension Scenario
+\end_layout
+
+\begin_layout Standard
+Evolve is designed to support the workflow of developers in an extension
+ setting.
+ To examine this in detail, we use the modelling tool in the context of
+ the desk extension scenario described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Modelling-the-Audio"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Audiosoft starts the scenario by creating the 
+\family typewriter
+desk 1.0
+\family default
+ stratum, associated definitions and leaf component implementations in their
+ own environment.
+ This stratum holds the base application.
+ As we can see from figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Audiosoft's-model"
+
+\end_inset
+
+, only this stratum is present in the model: Audiosoft has no need to see
+ any of the extension strata.
+ Upon completion, Audiosoft exports this stratum as a file and sends this
+ and the compiled leaf and interface implementations
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The compiled Java implementations are usually packaged as a JAR file.
+\end_layout
+
+\end_inset
+
+ to developers X and Y who plan to extend the desk to integrate their own
+ device controllers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/base-workflow.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Audiosoft's-model"
+
+\end_inset
+
+Audiosoft's model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Developers X and Y receive the 
+\family typewriter
+desk 1.0
+\family default
+ stratum and each import it into their own projects.
+ This stratum is imported as read-only, denoting that X and Y are not the
+ primary owners and should not directly edit the definitions within it.
+ X creates the 
+\family typewriter
+turntable
+\family default
+ extension stratum as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-models-of"
+
+\end_inset
+
+(a).
+ Y creates the 
+\family typewriter
+CD
+\family default
+ extension stratum as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-models-of"
+
+\end_inset
+
+(b).
+ Both X and Y use resemblance and replacement to create any alterations
+ required to the base system represented by the 
+\family typewriter
+desk 1.0
+\family default
+ stratum.
+ From the figures, we see that X and Y's models only include the strata
+ that they own, or that they build upon.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/x-y-workflow.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-models-of"
+
+\end_inset
+
+The models of X and Y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Upon completing the extension, X exports the 
+\family typewriter
+turntable
+\family default
+ extension stratum into a file and distributes this and all associated implement
+ations to radio station R.
+ Similarly Y exports the 
+\family typewriter
+CD
+\family default
+ extension stratum and also gives this to R along with any implementations.
+ R imports the 
+\family typewriter
+desk 1.0
+\family default
+, 
+\family typewriter
+turntable
+\family default
+ and 
+\family typewriter
+CD
+\family default
+ stratum into their own model.
+ Because all parties (apart from Audiosoft) treat the 
+\family typewriter
+desk 1.0
+\family default
+ stratum as read-only, it does not matter who R receives this stratum from
+ -- it will be the same as that issued by Audiosoft.
+\end_layout
+
+\begin_layout Standard
+To combine the two extensions, R further creates the 
+\family typewriter
+combined
+\family default
+ stratum resulting in the organisation shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:R's-model"
+
+\end_inset
+
+.
+ Note that in the scenario, only R's model holds all of the strata.
+ Other parties only hold a subset of the system depending on which areas
+ they are responsible for.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/r-workflow.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:R's-model"
+
+\end_inset
+
+R's model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Resolving Conflict in Combined Extensions
+\end_layout
+
+\begin_layout Standard
+After importing the extension strata and combining them by creating 
+\family typewriter
+combined
+\family default
+, R runs a full error check which shows a number of indirect errors listed
+ against 
+\family typewriter
+combined
+\family default
+.
+ The combination of extensions has resulted in structural conflict.
+\end_layout
+
+\begin_layout Standard
+To determine what has gone wrong and to effect a resolution, R navigates
+ into the 
+\family typewriter
+combined
+\family default
+ stratum and places a copy of the 
+\family typewriter
+Desk
+\family default
+ component on the diagram.
+ As shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Desk-errors"
+
+\end_inset
+
+, this reveals a number of connector errors.
+ As per section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Combining-All-Extensions"
+
+\end_inset
+
+, to correct these we require an evolution of 
+\family typewriter
+Desk
+\family default
+ to replace the 
+\family typewriter
+CuingMixer
+\family default
+ part with an 
+\family typewriter
+IntegratedMixer
+\family default
+ part and also introduce a further mixer part for the cue bus.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/error-workflow.png
+	lyxscale 50
+	scale 47
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Desk-errors"
+
+\end_inset
+
+The Desk component has errors from the combined perspective
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Right clicking on the 
+\family typewriter
+Desk
+\family default
+ component gives the developer the option to evolve it.
+ Upon choosing that, an evolved 
+\family typewriter
+Desk'
+\family default
+ component appears in the original's place.
+ We can now add, replace or delete the structure to correct any errors.
+\end_layout
+
+\begin_layout Standard
+To accomplish the structural corrections mentioned above, we first add an
+ 
+\family typewriter
+IntegratedMixer
+\family default
+ part for the cue audio, and replace and reroute two of the connectors to
+ it, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-a-mixer"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/added-mixer.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adding-a-mixer"
+
+\end_inset
+
+Adding a mixer for cue audio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we must replace the 
+\family typewriter
+CuingMixer
+\family default
+ part with an Integrated
+\family typewriter
+Mixer
+\family default
+ part.
+ To accomplish this graphically, we add the new part, select it, then right-clic
+k on the old part and choose the 
+\begin_inset Quotes eld
+\end_inset
+
+Replace (with existing part)
+\begin_inset Quotes erd
+\end_inset
+
+ menu item as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Replacing-the-mixer"
+
+\end_inset
+
+.
+ This creates the appropriate replace delta.
+ Because both 
+\family typewriter
+CuingMixer
+\family default
+ and 
+\family typewriter
+IntegratedMixer
+\family default
+ resemble 
+\family typewriter
+Mixer
+\family default
+ and the ports are inherited from 
+\family typewriter
+Mixer
+\family default
+ in each case, the replacement part will also work with the existing connectors.
+ The replacement results in the corrected structure of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-corrected-Desk"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/replace-mixer.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Replacing-the-mixer"
+
+\end_inset
+
+Replacing the mixer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/corrected-desk.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-corrected-Desk"
+
+\end_inset
+
+The corrected Desk component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Distributing Upgrades and Fixes
+\end_layout
+
+\begin_layout Standard
+When Audiosoft decides to upgrade the 
+\family typewriter
+Desk
+\family default
+ component, they have two choices: they can directly edit and redistribute
+ the 
+\family typewriter
+desk 1.0
+\family default
+ stratum which they own, or they can make a further stratum and use resemblance
+ and replacement to express the upgrade.
+ Evolve supports the former option by allowing a stratum to be replaced
+ upon import, which allows others to import an edited version.
+ The use of UUIDs minimises the impact for consumers of modified strata,
+ although clearly the scope for disruption depends upon the nature and extent
+ of the changes.
+\end_layout
+
+\begin_layout Standard
+In our scenario, Audiosoft chooses to use the 
+\family typewriter
+upgraded
+\family default
+ stratum to phrase the upgrade to 
+\family typewriter
+Desk
+\family default
+.
+ They also create a stratum 
+\family typewriter
+fixes
+\family default
+ that R can use to hold fixes for the upgraded desk.
+ Audiosoft will own and distribute the 
+\family typewriter
+upgraded
+\family default
+ stratum to R.
+ However, R will own the 
+\family typewriter
+fixes
+\family default
+ stratum and distribute this back to Audiosoft.
+ With this arrangement, X and Y have no dependency on the 
+\family typewriter
+upgraded
+\family default
+ stratum and therefore are not affected by it.
+ The dependency structure of 
+\family typewriter
+fixes
+\family default
+ ensures that no fix can reference the extensions of X and Y.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Audiosoft's-upgraded-model"
+
+\end_inset
+
+ shows the final structure of Audiosoft's model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/final-audiosoft-workflow.png
+	lyxscale 70
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Audiosoft's-upgraded-model"
+
+\end_inset
+
+Audiosoft's upgraded model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Methodology Agnostic
+\end_layout
+
+\begin_layout Standard
+Evolve does not prescribe an analysis or design methodology.
+ Instead, it aims to support the building blocks of such approaches, by
+ allowing both top-down decomposition and bottom-up system construction
+ in an iterative context.
+\end_layout
+
+\begin_layout Standard
+A top-down approach typically starts with a component representing the entire
+ system and then proceeds to break that down, until over time the system
+ is structured as a composition hierarchy with fine-grained leaf components
+ at the bottom.
+ To support this activity, Backbone allows leaf components to be further
+ decomposed by direct editing, thereby turning them into composites.
+ The use of UUIDs enables clients of the component to be unaffected.
+ As an alternative, an extension can be used to decompose leaves into composites
+ via evolution.
+ Placeholders can also be used judiciously during the elaboration process
+ to earmark parts of the architecture that are speculative or have not been
+ fully decomposed.
+\end_layout
+
+\begin_layout Standard
+Bottom-up construction involves defining the leaf components representing
+ the base functionality of the system, and then progressively assembling
+ these into higher level abstractions over time.
+ Backbone supports this through composite components.
+ Resemblance and replacement can be used to adjust and reuse parts of a
+ hierarchy, which ameliorates one of the problems in a constructive approach
+ where abstractions get buried deep within the hierarchy and cannot be changed.
+\end_layout
+
+\begin_layout Standard
+Backbone further supports design in an iterative context, where additional
+ functionality is built up over successive releases by refining a system.
+ In this case, different workflows (particularly testing of the old release
+ and design of the new) can overlap.
+ Backbone enables this by allowing new releases to be phrased as extensions,
+ allowing both the old and new system to co-exist.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+Evolve is a graphical modelling tool which fully supports the Backbone approach.
+ The extensibility concepts deeply affect many aspects of the design of
+ this tool, including the approach to performance, delta management and
+ element expansion.
+ The import and export of extension and base strata from the environment
+ allow the sharing and distribution of software required in extension scenarios.
+\end_layout
+
+\begin_layout Standard
+Evolve diagrammatically shows the fully expanded structure of components,
+ whilst recording deltas in the underlying repository as the developer creates
+ and edits.
+ This allows the benefit of both approaches -- developers see the full structure
+s they are working with, but deltas can still be viewed, manipulated and
+ deleted as required.
+\end_layout
+
+\begin_layout Standard
+By using UML2 composite structures to depict the structure of a system,
+ Evolve draws on a widely accepted graphical notation for depicting software.
+ On the negative side, UML2 is complex, convoluted in parts, with overlapping
+ diagram types and no precise semantics.
+ Backbone, by retaining its own formal specification and mapping its concepts
+ onto those of UML2, sidesteps these issues thereby retaining the benefits
+ of a familiar graphical approach without incurring too much of the underlying
+ baggage.
+ Evolve is not a full UML2 tool as it does not cover all the UML2 notation,
+ although it could be used as the basis for such a tool.
+\end_layout
+
+\begin_layout Standard
+Evolve also retains many of the advanced features of mature UML2 tools.
+ It is a full graphical editor, designed using the tool-command-view approach
+ pioneered by Unidraw 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Vlissides1989"
+
+\end_inset
+
+.
+ It separates diagrammatic views from the underlying model representation,
+ allowing components to be shown in alternative ways in multiple diagrams
+ if required.
+ This graphical flexibility provides ways to elide complex parts of a design
+ via multiple views, which neatly complements the ability to control complexity
+ through compositional hierarchy alone.
+\end_layout
+
+\begin_layout Standard
+Evolve uses the same DeltaEngine as the runtime environment, ensuring consistenc
+y.
+ It uses a full UML2 repository to store its models, and base or extension
+ strata can be exported and imported in a way which tolerates direct editing
+ of a stratum after it has been distributed.
+ Evolve can also be configured to use a central object database to support
+ strata sharing and closer collaboration between developers.
+\end_layout
+
+\begin_layout Standard
+Evolve is methodology agnostic, and does not prescribe a particular approach
+ to designing or elaborating a model.
+ It supports a combination of top-down decomposition and bottom-up system
+ construction in an iterative context.
+\end_layout
+
+\begin_layout Section
+Runtime Environment
+\end_layout
+
+\begin_layout Standard
+The runtime environment allows a Backbone architecture to be instantiated
+ and executed.
+\end_layout
+
+\begin_layout Standard
+A Backbone system is executed by flattening the specification of a composite
+ representing the system into a set of connected leaf component instances.
+ The classes representing the leaf components are then instantiated and
+ connected appropriately and control is handed over to a specified port.
+ The runtime model and facilities are made available through selected interfaces
+ to instantiated components.
+ It is not necessary for components to have any dependency on the runtime
+ if desired, allowing leaves to be developed and tested completely outside
+ of Backbone.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Spectrum"
+
+\end_inset
+
+ shows that deltas to a model can be applied at various points along a spectrum
+ in order to achieve extensibility.
+ At the far left, we can apply the deltas to a source code representation
+ of an architecture to produce an extended system.
+ This is useful if a developer is using Backbone to produce variants of
+ a system rather than delivering extensions to other parties.
+ The middle point of the spectrum shows that we can alternatively apply
+ the deltas to an architectural representation at program startup in order
+ to instantiate the extended system.
+ The far right of the spectrum shows that we can also potentially apply
+ the deltas at runtime.
+ The last form of application is not currently covered by the Backbone toolset,
+ and can be complex.
+ In that particular case we must consider the transition of state between
+ the old and new running systems, and take into account quiescence to determine
+ when it is safe to remake the structure of the components as described
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1996"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/spectrum.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Spectrum"
+
+\end_inset
+
+The spectrum of possible delta application points
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Many extensibility approaches utilise the middle of the spectrum and use
+ a configuration to form the extended architecture at program start time.
+ This requires a restart of the system whenever an extension is added or
+ removed.
+ OSGi-based approaches have started moving in the direction of runtime extension
+ via a service-oriented architecture 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OSGi2003,Alliance2005"
+
+\end_inset
+
+, but data transfer from old to new components is rarely considered or even
+ allowed.
+ In some architectural styles, the problems of state transfer can be avoided
+ by using components that are stateless and by re-reading any required data
+ from a central database.
+ This suits a certain type of application, but is not generally applicable.
+\end_layout
+
+\begin_layout Subsection
+Flattening the Composition Hierarchy
+\end_layout
+
+\begin_layout Standard
+A composite is flattened by starting with the leaf parts of the composition
+ hierarchy, and recursively pushing these into upper levels until a single
+ level remains.
+ Although not described formally in the Backbone specification, the flattening
+ occurs in a similar manner to that of Darwin configurations 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kramer1995,Magee1995"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The Evolve modelling tool allows the flattened form of a given component
+ to be displayed.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flattened,-unified"
+
+\end_inset
+
+ shows this for the original 
+\family typewriter
+Desk
+\family default
+ version 1.0 component of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Desk-errors"
+
+\end_inset
+
+.
+ A component is divided into a number of factory segments, reflecting that
+ some parts of the model may be instantiated dynamically, as described in
+ section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Factory-Pattern"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/flattened.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-flattened,-unified"
+
+\end_inset
+
+The flattened, unified Desk component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Applying the Deltas at Startup: Configuration-Based Instantiation
+\end_layout
+
+\begin_layout Standard
+The default mode of execution is to generate a Backbone configuration file
+ for an extension directly from an Evolve model.
+ This configuration represents the deltas that are to be applied to the
+ system.
+ The configuration can then be added to another configuration which represents
+ the base to be extended, and at program startup time the DeltaEngine reads
+ in, checks, flattens the extended composite and instantiates and runs the
+ system.
+\end_layout
+
+\begin_layout Standard
+The Evolve modelling tool allows a system to be executed in this manner,
+ providing a convenient environment for a rapid edit-check-execute cycle.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Executing-a-Backbone"
+
+\end_inset
+
+ shows Evolve running a small Swing-based program.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename models/screenshots/running.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Executing-a-Backbone"
+
+\end_inset
+
+Executing a Backbone system inside Evolve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The performance profile of this execution mode is interesting.
+ Once instantiated and connected, there is little or no extra overhead involved
+ in executing a system this way.
+ It has the same performance profile as a conventional Java program expressed
+ using classes and interfaces.
+ However, component instantiation (including startup and dynamic component
+ instantiation) is slower as this is done via Java reflection using the
+ implementation class names from the configuration.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Configuration-generation"
+
+\end_inset
+
+Applying the Deltas at Compile Time: Generating Code for a Configuration
+\end_layout
+
+\begin_layout Standard
+The toolset is also able to generate a set of classes representing a flattened
+ configuration.
+ This has the benefit of improving the performance of component instantiation.
+ An extended system compiled in this way has no extra overhead over a convention
+al Java program: no reflection or any other runtime techniques are necessary
+ to produce a running system.
+ Because composite components are purely structural entities, the classes
+ corresponding to these are able to be generated completely from the Backbone
+ architecture.
+\end_layout
+
+\begin_layout Subsection
+Interface and Primitive Type Evolution
+\end_layout
+
+\begin_layout Standard
+As mentioned in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Port-Compatibility-for"
+
+\end_inset
+
+, interfaces are elements and can therefore be evolved using a combination
+ of resemblance and replacement.
+ The name, retirement status, operations and implementation class name constitue
+nts of an interface can be adjusted by an extension stratum in this way.
+ As previously discussed, the evolution of components is able to be handled
+ by the runtime, as it is responsible for all component instantiation.
+ Interface evolution, however, is subtly different in that a change to a
+ single interface can affect many components which provide or require that
+ interface, and the interaction between the Backbone runtime and underlying
+ platform runtime must be considered.
+\end_layout
+
+\begin_layout Standard
+To examine the effects of interface evolution, suppose that developer X
+ of the turntable extension in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:The-Turntable-Extension"
+
+\end_inset
+
+ had decided to evolve the 
+\family typewriter
+IDevice
+\family default
+ interface to add extra methods or change existing ones for cuing support.
+ This would imply that any of the components that implemented this interface
+ in the base stratum would no longer be correct, as they would not automatically
+ provide the extra or changed methods.
+ Further, if the evolved interface were not subtype compatible with the
+ original definition, then all components in the base that required this
+ interface would similarly be incorrect.
+ This situation could be corrected by evolving any affected components in
+ another stratum.
+\end_layout
+
+\begin_layout Standard
+The Backbone runtime environment supports the evolution of the interface
+ constituents of name, retirement status and operations.
+ It does not, however, support the evolution of implementation class name.
+ This limitation is related to how the Backbone runtime utilises the underlying
+ Java platform it is currently built on.
+ Interface evolution is handled by placing the classpath entries for evolving
+ stratum earlier than those of base stratum, as per the strata dependency
+ graph.
+ The Java runtime will then pick up the evolved definition, which must have
+ exactly the same package / class name in order to shadow the earlier definition.
+ This support, though, is contingent upon the way that the (unadorned) Java
+ runtime works.
+ The same implementation strategy would not work with Java and OSGi bundles
+ (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Open-Services-Gateway"
+
+\end_inset
+
+), as classpath shadowing does not occur in the same way.
+\end_layout
+
+\begin_layout Standard
+Primitive types need to be evolved using a similar mechanism.
+ Primitive type instantiation is usually performed by component implementations,
+ and cannot therefore easily be controlled by the Backbone runtime platform.
+ As such, classpath shadowing must be used, which leads to the correct conclusio
+n that the current runtime supports the evolution of primitive type constituents
+ of name and retirement status, but not implementation class name.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+The Backbone modelling tool and runtime environment are based on an implementati
+on of the formal specification.
+ A previous incarnation of the toolset used an informal description of resemblan
+ce and replacement, and this resulted in inconsistencies and unforeseen
+ corner cases.
+ The Backbone toolset demonstrates, in a compelling manner, the power and
+ applicability of a formal specification to our modelling approach.
+\end_layout
+
+\begin_layout Standard
+Evolve is the Backbone modelling tool, which uses UML2 composite structure
+ diagrams for its graphical notation.
+ It was built from the ground up to support the Backbone approach, and it
+ records the deltas made to a base system by an extension, even though it
+ allows the developer to design with fully expanded structures.
+ This retains the benefits of the Backbone delta philosophy, whilst preserving
+ a familiar approach to the construction and extension of a system.
+ Evolve supports transitional models, which may contain errors, in a robust
+ and intuitive manner.
+ Evolve is methodology agnostic, and provides facilities to allow both top-down
+ and bottom-up modelling.
+ Strata, representing either extensions or the base itself, can be imported
+ and exported to support the sharing and distribution of software that occurs
+ in an extension setting.
+\end_layout
+
+\begin_layout Standard
+An architecture expressed in Backbone can executed in one of two ways.
+ A configuration for an extension can be generated from the architecture,
+ and this can be combined with another configuration representing the base
+ to extend a system at startup time.
+ The performance of this approach is identical to an equivalent Java program
+ once instantiated, although component instantiation is slower as it involves
+ reflection.
+ Alternatively, Java code representing the extended architecture can be
+ generated directly from a model.
+ This approach, although less flexible, suffers from no performance overhead
+ relative to a conventional Java program.
+ This facility is useful for developers producing variants of a system,
+ as opposed to developing extensions to distribute and share with others.
+\end_layout
+
+\begin_layout Standard
+Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Software"
+
+\end_inset
+
+ contains download instructions for obtaining the Evolve modelling tool,
+ Backbone runtime and the example models used in this thesis.
+\end_layout
+
+\end_body
+\end_document

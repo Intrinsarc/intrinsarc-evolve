@@ -1,0 +1,9 @@
+        <UML:Package xmi.id="a24" xmi.uuid="DCE-1145387807077-763" name="flattened" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a19" xmi.uuid="DCE-1145389685162-530" isActive="false" name="Alarm'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a25" xmi.uuid="DCE-1145389690740-942" isActive="false" name="HourlyBeeper'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a26" xmi.uuid="DCE-1145389875356-992" isActive="false" name="AudioAdapter" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a27" xmi.uuid="DCE-1145389988853-605" isActive="false" name="TimerAdapter" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a51" xmi.uuid="DCE-1145395508180-320" isActive="false" name="Audio'" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

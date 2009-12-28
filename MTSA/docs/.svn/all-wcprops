@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svnroot/mtsa/!svn/ver/40/trunk/docs
+END
+MTSA=InstalationGuide.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/mtsa/!svn/ver/31/trunk/docs/MTSA=InstalationGuide.txt
+END
+TriggeredScenarioSyntaxSpecification.txt
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/mtsa/!svn/ver/40/trunk/docs/TriggeredScenarioSyntaxSpecification.txt
+END
+OutputGuide.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/mtsa/!svn/ver/40/trunk/docs/OutputGuide.txt
+END

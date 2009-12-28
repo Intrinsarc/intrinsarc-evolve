@@ -1,0 +1,10 @@
+        <UML:Package xmi.id="a1" xmi.uuid="DCE-1152622831965-791" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:ModelElement.name>component
+model</UML:ModelElement.name>
+          <UML:Namespace.ownedElement>
+            <UML:Class xmi.id="a2" xmi.uuid="DCE-1152622840716-118" isActive="false" name="LeafComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a3" xmi.uuid="DCE-1152622864450-65" name="ProvidedInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a4" xmi.uuid="DCE-1152622890404-527" name="RequiredInterface" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a8" xmi.uuid="DCE-1152623250002-690" isActive="false" name="CompositeComponent" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

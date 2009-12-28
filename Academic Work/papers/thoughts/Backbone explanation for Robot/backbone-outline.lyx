@@ -1,0 +1,151 @@
+#LyX 1.4.3svn created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+to discuss:
+\end_layout
+
+\begin_layout Itemize
+overview
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+current status and limitations
+\end_layout
+
+\begin_layout Itemize
+3 phases: parsing, creating, constructing
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+backbone language + redefinitions (ref to paper)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+relationhip to UML2
+\end_layout
+
+\begin_layout Itemize
+resemblance / redefinition -- vision of reuse
+\end_layout
+
+\begin_layout Itemize
+connectors
+\end_layout
+
+\begin_layout Itemize
+dynamic instantiation + use of redefs on
+\end_layout
+
+\begin_layout Itemize
+protocols
+\end_layout
+
+\begin_layout Itemize
+load list, stratum, mutliple files in a directory
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+interpreting a backbone program
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+overview of the 3 stages
+\end_layout
+
+\begin_layout Itemize
+parser + how it is generated
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ast.
+ generation gap pattern.
+\end_layout
+
+\begin_layout Itemize
+combining files into a single model
+\end_layout
+
+\begin_layout Itemize
+various checks that take place
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+translation to meta-model
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+translation from MD model
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+translating into runtime Java objects
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+call back into Backbone
+\end_layout
+
+\begin_layout Itemize
+connector implementation
+\end_layout
+
+\begin_layout Itemize
+factories for dynamic instantiation
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+status, limitations and future directions / vision
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+inference of type
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+appendices with full pictures of parse nodes, meta model and runtime model
+\end_layout
+
+\end_body
+\end_document

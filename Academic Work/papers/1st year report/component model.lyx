@@ -1,0 +1,966 @@
+#LyX 1.4.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\sloppy
+\end_preamble
+\language british
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing onehalf
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes true
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset LatexCommand \label{cha:The-Backbone-ADL}
+
+\end_inset
+
+The Backbone ADL
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+Any time you build an extensible system \SpecialChar \ldots{}
+ the gist of it is that you can't
+ predict in advance what changes your users will want to make to your system.
+ You can go to any length even expose every single line of code in your
+ system as its own virtual function and your users will inevitably run into
+ something that they can't specialize.
+\emph default
+
+\newline
+Steve Yegge 
+\begin_inset LatexCommand \cite{Yegge2004}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Overview
+\end_layout
+
+\begin_layout Standard
+Backbone is an ADL designed to model component-based extension architectures.
+ The focus is on reducing the limitations on extensions, and allowing for
+ static analysis of the structure and behaviour of combinations of extensions.
+\end_layout
+
+\begin_layout Standard
+Backbone is based on a simplification of the UML 2.0 composite structure
+ meta-model 
+\begin_inset LatexCommand \cite{OMGUML}
+
+\end_inset
+
+.
+ The simplifications permit arbitrary visual nesting of internal component
+ structure.
+ Component structure is depicted graphically via composite structure diagrams
+ and component protocols are depicted as sequence diagrams.
+\end_layout
+
+\begin_layout Standard
+A benefit of using a subset of the UML is that many software engineers are
+ familiar with this visual language.
+ This reduces the barrier of entry for practising engineers, whose systems
+ could potentially benefit from the types of analysis that Backbone allows.
+ In the examples below, the textual form is sometimes shown to the right
+ of the graphical form.
+\end_layout
+
+\begin_layout Section
+Strata
+\end_layout
+
+\begin_layout Standard
+All Backbone definitions and constructs are contained within a package-like
+ construct known as a 
+\emph on
+stratum
+\emph default
+.
+ Stratum are not hierarchical---they cannot be nested.
+ A stratum must explicitly declare its dependencies on other strata.
+ A stratum can represent an extension, or it can represent the base architecture.
+ The concepts of extension and base become relative as extensions are further
+ extended.
+ Circular dependency structures are forbidden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-strata.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{cap:Strata}
+
+\end_inset
+
+Strata
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset LatexCommand \ref{cap:Strata}
+
+\end_inset
+
+ shows a base stratum, with two extensions.
+ The resolution stratum resolves any conflicts that result when the two
+ extensions are combined.
+\end_layout
+
+\begin_layout Section
+Interfaces
+\end_layout
+
+\begin_layout Standard
+An interface specifies a collection of operations.
+ It represents a service that can be provided or required by a component.
+ An interface is shown graphically as a small circle, with the operation
+ names optionally listed underneath.
+ An operation is not considered threadsafe (synchronised in Java) unless
+ explicitly declared as such.
+ Each operation is 
+\emph on
+synchronous
+\emph default
+, and even if no value is returned, a 
+\emph on
+call
+\emph default
+ 
+\emph on
+action
+\emph default
+ is always followed (eventually) by a 
+\emph on
+return
+\emph default
+ 
+\emph on
+action
+\emph default
+ in order to model Java's method call semantics.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-interface.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+An interface with operations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Each Backbone interface must map onto a corresponding Java interface of
+ the same name.
+ Each Backbone operation must map onto an operation of that Java interface.
+\end_layout
+
+\begin_layout Section
+Component Model
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+component
+\emph default
+ must explicitly specify its 
+\emph on
+provided
+\emph default
+ and 
+\emph on
+required
+\emph default
+ 
+\emph on
+interfaces
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+leaf
+\emph default
+ component (figure 
+\begin_inset LatexCommand \ref{cap:A-leaf-component}
+
+\end_inset
+
+) has 
+\emph on
+attributes
+\emph default
+, 
+\emph on
+ports
+\emph default
+ and a 
+\emph on
+protocol
+\emph default
+.
+ It always has a corresponding Java implementation, which the Backbone definitio
+n describes the form and behaviour of.
+\end_layout
+
+\begin_layout Standard
+Properties are analogous to the attributes of a class.
+ The type of an attribute may only be a primitive type such as 
+\emph on
+Integer, Double,
+\emph default
+ 
+\emph on
+String
+\emph default
+ or some other user-defined type.
+\end_layout
+
+\begin_layout Standard
+A port describes the interfaces that a component provides or requires and
+ are shown as small boxes on the component boundary.
+ Provision of an interface is shown by a line to the interface.
+ A required interface is shown by a line to a half-circle representing the
+ interface.
+ Ports may have a 
+\emph on
+multiplicity
+\emph default
+, in which case they are called 
+\emph on
+indexed
+\emph default
+.
+ A multiplicity of [0..*] indicates that zero or more connections are allowed.
+ A multiplicity of [0..1] indicates that connecting the port is optional.
+ A component cannot provide or require an interface except via a port.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-leaf.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{cap:A-leaf-component}
+
+\end_inset
+
+A leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A hierarchical component model is used, allowing 
+\emph on
+composite
+\emph default
+ components (figure 
+\begin_inset LatexCommand \ref{cap:A-composite-component}
+
+\end_inset
+
+).
+ A composite describes its internal structure as a set of component instances,
+ which are known as 
+\emph on
+parts.
+
+\emph default
+ A part has a name and a type.
+ A part may only have a multiplicity of 1.
+ The attribute values of a part are called 
+\emph on
+slots
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Connectors
+\emph default
+ are used to wire between ports.
+ To connect between indexed ports, a delegation connector must be used.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-composite.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{cap:A-composite-component}
+
+\end_inset
+
+A composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A composite component has no intrinsic behaviour of its own---it is a convenient
+ way to refer to the set of connected leaf parts that it describes.
+ In figure 
+\begin_inset LatexCommand \ref{cap:A-composite-component}
+
+\end_inset
+
+, the composite component is shorthand for a leaf component where the external
+ ports have been renamed to 
+\emph on
+cport1
+\emph default
+ and 
+\emph on
+cport2
+\emph default
+.
+ Composite components can also have attributes.
+\end_layout
+
+\begin_layout Standard
+A slot of a part can be marked as 
+\emph on
+environment
+\emph default
+ which means that it will be aliased to a attribute in the enclosing component.
+ In figure 
+\begin_inset LatexCommand \ref{cap:Environment-attributes}
+
+\end_inset
+
+, 
+\emph on
+attribute2
+\emph default
+ of 
+\emph on
+partA
+\emph default
+ and 
+\emph on
+partB
+\emph default
+ have been made into environment slots.
+ The attribute 
+\emph on
+topLevel
+\emph default
+ of the composite is now the actual attribute, although it can be set or
+ read in all three components.
+ This facility is useful because it allows a composite component to hold
+ the shared state of the combined parts, and to map this selectively onto
+ each part's attributes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-environment.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{cap:Environment-attributes}
+
+\end_inset
+
+Environment slots / attributes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Arbitrary visual nesting of parts is supported.
+ Figure 
+\begin_inset LatexCommand \ref{cap:Two-levels-of}
+
+\end_inset
+
+ shows a composite component which has been visually expanded out to its
+ leaf parts over two levels of composition.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-nesting.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{cap:Two-levels-of}
+
+\end_inset
+
+Two levels of visual nesting
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset LatexCommand \label{sec:Component-Protocols}
+
+\end_inset
+
+Component Protocols
+\end_layout
+
+\begin_layout Standard
+A leaf component can specify a protocol, which describes the set of traces
+ that the component can generate.
+ The graphical form of a protocol is a sequence diagram where the actors
+ are the interfaces of the component's ports, along with the component itself.
+ A component making a call to a required interface is shown as an arrow
+ originating from the self actor (representing the component) and terminating
+ at a required interface.
+ A component handling a call from a provided interface is shown as an arrow
+ originating from the provided interface and terminating at the self actor.
+\end_layout
+
+\begin_layout Standard
+All communication is synchronous, reflecting Java's method call model.
+ Each call action must be followed by a return action.
+ A call is shown as a solid line with a solid arrow.
+ A return is shown as a dotted line with a line arrow.
+ To express protocols more concisely, a return immediately following a call
+ may be overlapped to form a double headed arrow.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-protocol.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{cap:The-LeafComponent-protocol}
+
+\end_inset
+
+The LeafComponent protocol
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As shown in figure 
+\begin_inset LatexCommand \ref{cap:The-LeafComponent-protocol}
+
+\end_inset
+
+, a protocol may use operators such as par, opt and loop 
+\begin_inset LatexCommand \cite{Selic2003}
+
+\end_inset
+
+.
+ The arguments to an operator are called operands.
+ Each operand consists of a sequential series of operations or other operators.
+ Operands are demarcated using a horizontal dotted line.
+ Some operators, such as par may need two or more operands.
+ 
+\end_layout
+
+\begin_layout Standard
+The allowed operators and their informal meanings are as follows:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Seq
+\emph default
+
+\newline
+This represents sequential execution of the operations contained in the
+ single operand.
+ A protocol is contained within an implicit seq operator.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Par
+\emph default
+
+\newline
+Each operand represents a series of operations, to be run in parallel with
+ the operations of the other operands.
+ When the par operator is entered, all of the operands execute in parallel.
+ This operator does not terminate until each operand has fully completed.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Loop
+\emph default
+ and 
+\emph on
+loop(n)
+\emph default
+
+\newline
+Loop(n) represents a finite loop, which will execute at least once and will
+ eventually exit.
+ Loop without a parameter represents an infinite loop.
+ There are some constraints around infinite loops---for instance, an infinite
+ loop cannot be nested inside another infinite loop.
+ Also, no operations may follow an infinite loop as these could never be
+ executed.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Alt
+\newline
+
+\emph default
+An alt operator models conditional execution, and supports two or more operands.
+ Exactly one of the operands will be executed.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Opt 
+\emph default
+and
+\emph on
+ opt(port)
+\newline
+
+\emph default
+The single operand of this operator will optionally be executed.
+ If opt(port) is used, the entire operator will be either statically omitted
+ or turned into a seq operator depending on whether the specified port is
+ bound in the composite component whose protocol we are modelling.
+\end_layout
+
+\begin_layout Standard
+Operators may be concatenated (e.g.
+ opt loop) if the prefixed operators only require a single operand.
+\end_layout
+
+\begin_layout Standard
+The protocol in figure 
+\begin_inset LatexCommand \ref{cap:The-LeafComponent-protocol}
+
+\end_inset
+
+ has two operands that will be executed in parallel: the first operand is
+ an optional, infinite loop where the component repeatedly accepts operation1
+ calls and sends out the return.
+ The second operand is an infinite loop where the component repeatedly sends
+ operationX calls, and receives the return.
+\end_layout
+
+\begin_layout Standard
+Protocols do not allow variables, which allows them to be translated into
+ a labelled transition system with a relatively limited number of states.
+ This facilitates analysis, as will be demonstrated in the next chapter.
+\end_layout
+
+\begin_layout Subsection
+Leaf and Composite Protocols
+\end_layout
+
+\begin_layout Standard
+Leaf components will generally specify a protocol.
+ The protocol for composite components is formed by flattening out the part
+ graph down to leaf components, and composing each of the leaf protocols
+ together, after taking into account connection information.
+ See chapter 
+\begin_inset LatexCommand \ref{cha:Analysis-of-protocols}
+
+\end_inset
+
+ for details of this procedure.
+\end_layout
+
+\begin_layout Standard
+If a composite component includes a leaf part without a protocol, it is
+ permissible to specify the protocol of the composite directly.
+ This provides support for top-down elaboration of a system as well as bottom-up
+ construction.
+\end_layout
+
+\begin_layout Section
+The Upversion and Supplant Constructs
+\end_layout
+
+\begin_layout Standard
+The aim of these two constructs is to fully represent all possible changes
+ in the evolution and extension of a system.
+ This includes modelling changes to code-level interfaces and components.
+ Note that these constructs must be in a different stratum to the definitions
+ that they operate on.
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+upversion
+\emph default
+ construct models changes to the implementation of an interface or leaf
+ component.
+ This must be used whenever a code-related artifact is changed.
+ Upversion supports renaming if required.
+ In addition, it is possible to describe the new version in terms of the
+ previous version by using the 
+\emph on
+is-like
+\emph default
+ construct.
+ Is-like allows a component to be described in terms of differences to an
+ existing component, and supports adding, deleting or replacing attributes,
+ ports, parts and connectors.
+\end_layout
+
+\begin_layout Standard
+Upversion changes a definition globally, and reflects the fact that the
+ previous definition is now completely removed.
+ This models the way that a system can only have a single version of an
+ code-level interface or leaf component at any single point in time.
+ Backbone tracks the dependencies, and requires that other components that
+ directly depend on the changed artifacts are also upversioned or supplanted
+ as appropriate.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-leaf-upversion.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+Upversioning a leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Interfaces, leaf components and composite components may also be 
+\emph on
+supplanted
+\emph default
+.
+ Supplanting replaces the logical Backbone identity of the name with another
+ definition.
+ A leaf or composite component can be supplanted with either type of component.
+ The old definition still exists to describe existing code-related implementatio
+ns, but is replaced by the new definition from the perspective of the Backbone
+ description.
+ It is still possible to refer to the previous definition via 
+\emph on
+[previous]
+\emph default
+, in order to delegate to it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/model-supplanting.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+Supplanting a leaf component and making it composite
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As no code related artifacts are changed, supplanting an interface can result
+ in a break between the implementation of a component and its Backbone definitio
+n.
+ Backbone tracks these dependencies and requires that affected components
+ must be upversioned or provided with adapters.
+\end_layout
+
+\begin_layout Standard
+The difference between the upversion and supplant constructs is that upversion
+ models changes to the code-level implementation and updates the Backbone
+ definition to match.
+ Supplant models changes to the Backbone definition of a construct only,
+ and is a way of altering the meaning of a logical Backbone name.
+\end_layout
+
+\begin_layout Section
+Goal-Level Extension Properties
+\end_layout
+
+\begin_layout Standard
+The form of these properties has not been specified yet.
+ They may be represented as sequence diagrams showing traces that must be
+ able to be generated by the system.
+ The aim of these properties is to ensure that the goals of the extension
+ are preserved, and that unwanted interaction or traces do not occur.
+ Goals can also be expressed for the base architecture.
+\end_layout
+
+\begin_layout Section
+Advanced Features
+\end_layout
+
+\begin_layout Standard
+Backbone has a number of other advanced features which are not described
+ here in detail, in order to simplify the presentation.
+ Dynamic component instantiation is possible via factory components 
+\begin_inset LatexCommand \cite{Gamma1995}
+
+\end_inset
+
+.
+ This is supported by a navigability model, describing how references to
+ one component may be acquired from another.
+ The passing of component references as parameters of an interface call
+ is strictly controlled.
+ Ideally, a system will not allow this and the connection model will show
+ all possible component interactions.
+ This makes static analysis of the architecture far more feasible.
+\end_layout
+
+\begin_layout Standard
+Finally, a form of type inferencing will be supported in order to allow
+ the creation of more flexible components 
+\begin_inset LatexCommand \cite{Doucet2005}
+
+\end_inset
+
+.
+ We would like to be able to omit explicit definition of provided and required
+ interfaces for some ports, where it is desired that the interfaces be discerned
+ from the connectors of the enclosing composite structure.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+Backbone is an ADL designed to model component-based architectures and extension
+s to an existing base.
+ It provides a set of constructs for representing changes to the implementation
+ of the leaf components, as well as for modelling changes to the Backbone
+ definitions.
+ The use of the is-like construct enables a component to be described in
+ terms of structural deltas from another component.
+\end_layout
+
+\begin_layout Standard
+A full analysis of the limitations of Backbone must be conducted, from the
+ perspective of the types of code-level implementation changes allowed to
+ a system in an extension.
+ It is currently understood that more comprehensive support for the evolution
+ of interfaces must be provided, as the evolution of value objects passed
+ as parameters of an interface are not currently tracked.
+ In addition, the Backbone approach to system implementation implies that
+ there are restrictions on how interfaces visible to Backbone can be used
+ internally in the implementation of a component.
+ If a component does not directly expose a Backbone visible interface as
+ being provided or required, the implementation of that component may not
+ use the interface internally.
+ Otherwise, the interpreter cannot track the need to upversion the implementatio
+n of the component when the interface is upversioned.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{../../read papers/references}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

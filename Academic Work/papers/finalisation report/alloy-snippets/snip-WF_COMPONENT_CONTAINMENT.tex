@@ -1,0 +1,9 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={wellformed\_components.als, lines 19-24}, label=alloy:WF_COMPONENT_CONTAINMENT, captionpos=b]
+let
+  resembling = resembles_e.s, partTypes = parts.s.partType,
+  original = no c.redefines => c else c.redefines
+{
+  original not in c.*(resembling + partTypes).partTypes
+}
+\end{lstlisting}

@@ -1,0 +1,26 @@
+        <UML:Package xmi.id="a22" xmi.uuid="DCE-1153230928665-25" name="notes" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+          <UML:Namespace.ownedElement>
+            <UML:Comment xmi.id="a23" xmi.uuid="DCE-1153230946946-637" body="Feed the cat and the dog..." name="" visibility="public" isSpecification="false"></UML:Comment>
+            <UML:Comment xmi.id="a24" xmi.uuid="DCE-1153230973290-472" body="Buy some milk" name="" visibility="public" isSpecification="false"></UML:Comment>
+            <UML:Comment xmi.id="a25" xmi.uuid="DCE-1153231007838-996" body="Register the car @ DVLA" name="" visibility="public" isSpecification="false"></UML:Comment>
+            <UML:Class xmi.id="a28" xmi.uuid="DCE-1153235947323-433" isActive="false" name="CDrawing" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a29" xmi.uuid="DCE-1153235959995-331" isActive="false" name="CDrawingMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a30" xmi.uuid="DCE-1153235971182-283" isActive="false" name="CDrawingCanvas" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a31" xmi.uuid="DCE-1153235981261-759" isActive="false" name="CClipboardMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a32" xmi.uuid="DCE-1153235990417-862" isActive="false" name="CPersistenceMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a33" xmi.uuid="DCE-1153236053574-611" isActive="false" name="CPostitNote" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Interface xmi.id="a34" xmi.uuid="DCE-1153236118466-856" name="IShape" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Interface xmi.id="a35" xmi.uuid="DCE-1153236124841-625" name="IClip" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Interface>
+            <UML:Class xmi.id="a37" xmi.uuid="DCE-1153236568674-525" isActive="false" name="CNoteDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a38" xmi.uuid="DCE-1153236569065-560" isActive="false" name="CBasicClipMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a39" xmi.uuid="DCE-1153236569456-791" isActive="false" name="CNoteText" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a40" xmi.uuid="DCE-1153241957462-642" isActive="false" name="CNullClipboardMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a41" xmi.uuid="DCE-1153241974697-716" isActive="false" name="CHyperlinkedNoteDisplay" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Class xmi.id="a42" xmi.uuid="DCE-1153243524435-862" isActive="false" name="CZoomMgr" visibility="public" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"></UML:Class>
+            <UML:Comment xmi.id="a43" xmi.uuid="DCE-1153244429541-973" name="" visibility="public" isSpecification="false">
+              <UML:Comment.body>Register the car
+http://www.dvla.gov.uk/</UML:Comment.body>
+            </UML:Comment>
+            <UML:Comment xmi.id="a44" xmi.uuid="DCE-1153244431994-98" body="" name="" visibility="public" isSpecification="false"></UML:Comment>
+          </UML:Namespace.ownedElement>
+        </UML:Package>

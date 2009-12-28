@@ -1,0 +1,99 @@
+package lts.controller.util;
+
+import java.util.*;
+
+import ac.ic.doc.commons.relations.*;
+import ac.ic.doc.mtstools.model.*;
+import ac.ic.doc.mtstools.model.MTS.*;
+import ac.ic.doc.mtstools.model.impl.*;
+import ar.dc.uba.model.condition.*;
+import ar.dc.uba.model.language.*;
+
+public class ControllerUtils {
+
+	public static MTS<Long, String> removeTopStates(MTS<Long, String> mts,
+			Set<Fluent> fluents) {
+		List<MTS<Long, String>> toCompose = new ArrayList<MTS<Long, String>>();
+		toCompose.add(mts);
+		for (Fluent fluent : fluents) {
+			toCompose.add(getModelFrom(fluent));
+		}
+
+		CompositionRuleApplier compositionRuleApplier = new CompositionRuleApplier();
+		MTS<Long, String> result = new MTSMultipleComposer<Long, String>(
+				compositionRuleApplier).compose(toCompose);
+		return result;
+	}
+
+	public static MTS<Long, String> getModelFrom(Fluent fluent) {
+		Long trueState, falseState;
+		trueState = 0L;
+		falseState = 1L;
+		MTS<Long, String> mtsFromFluent;
+		if (fluent.initialValue()) {
+			mtsFromFluent = new MTSImpl<Long, String>(trueState);
+			mtsFromFluent.addState(falseState);
+		} else {
+			mtsFromFluent = new MTSImpl<Long, String>(falseState);
+			mtsFromFluent.addState(trueState);
+		}
+
+		for (Symbol symbol : fluent.getInitiatingActions()) {
+			String symbolStr = symbol.toString();
+			mtsFromFluent.addAction(symbolStr);
+			mtsFromFluent.addRequired(falseState, symbolStr, trueState);
+			mtsFromFluent.addRequired(trueState, symbolStr, trueState);
+		}
+		for (Symbol symbol : fluent.getTerminatingActions()) {
+			String symbolStr = symbol.toString();
+			mtsFromFluent.addAction(symbolStr);
+			mtsFromFluent.addRequired(trueState, symbolStr, falseState);
+			mtsFromFluent.addRequired(falseState, symbolStr, falseState);
+		}
+		return mtsFromFluent;
+	}
+
+	public static MTS<Long, String> rankedToPlain(
+			MTS<Pair<Long, Integer>, String> synthesised) {
+		if (synthesised == null) {
+			return null;
+		}
+		Map<Pair<Long, Integer>, Long> rankedToPlain = new HashMap<Pair<Long, Integer>, Long>();
+		Long nextState = 0L;
+		rankedToPlain.put(synthesised.getInitialState(), nextState);
+
+		MTS<Long, String> result = new MTSImpl<Long, String>(nextState);
+		result.addActions(synthesised.getActions());
+
+		nextState++;
+
+		for (Pair<Long, Integer> rankedState : synthesised.getStates()) {
+			long from;
+			if (rankedToPlain.get(rankedState) == null) {
+				rankedToPlain.put(rankedState, nextState);
+				from = nextState;
+				nextState++;
+				result.addState(from);
+			} else {
+				from = rankedToPlain.get(rankedState);
+			}
+
+			for (Pair<String, Pair<Long, Integer>> transition : synthesised
+					.getTransitions(rankedState, TransitionType.REQUIRED)) {
+				long to;
+				if (rankedToPlain.get(transition.getSecond()) == null) {
+					to = nextState;
+					rankedToPlain.put(transition.getSecond(), to);
+					nextState++;
+					result.addState(to);
+				} else {
+					to = rankedToPlain.get(transition.getSecond());
+				}
+
+				result.addRequired(from, transition.getFirst(), to);
+			}
+		}
+		return result;
+	}
+
+}

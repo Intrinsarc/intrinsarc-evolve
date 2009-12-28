@@ -1,0 +1,12 @@
+\lstset{frame=tb, aboveskip=12pt, belowskip=-3pt, breaklines=true, basicstyle=\small\ttfamily, tabsize=2, mathescape=true}
+\begin{lstlisting}[caption={bb\_structure.als, lines 79-88}, label=alloy:interface, captionpos=b]
+sig Interface extends Element
+{
+  myOperations: lone Operations/Deltas,
+  myIImplementation: lone InterfaceImplementation/Deltas,
+-- derived, perspective state
+  operations: Operation -> Stratum,  
+  iimplementation: InterfaceImplementation -> Stratum,  
+  superTypes: Interface -> Stratum
+}
+\end{lstlisting}

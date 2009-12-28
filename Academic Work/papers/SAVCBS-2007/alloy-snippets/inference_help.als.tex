@@ -1,0 +1,209 @@
+module inference_help
+
+open structure
+open util/boolean as boolean
+
+
+pred providesEnough(s: Stratum, provided: set Interface, required: set Interface)
+{
+  $\forall\,$prov: provided |
+    one req: required |
+      req $\subseteq$ prov$\cdot$ $\!\!\!^\ast\!$(superTypes$\cdot$s)
+      
+  -- ensure that it works the other way around
+  $\forall\,$req: required |
+    one prov: provided |
+      req $\subseteq$ prov$\cdot$ $\!\!\!^\ast\!$(superTypes$\cdot$s)
+}
+
+pred oneToOneProvidedMappingExists[s: Stratum, c: Component, provided: set Interface, ends: LinkEnd]
+{
+  $\forall\,$end: ends $\cap$ ComponentLinkEnd |
+    oneToOneMappingExists[s, provided, end$\cdot$getPort[s, c]$\cdot$required$\cdot$c$\cdot$s]
+
+  $\forall\,$end: ends $\cap$ PartLinkEnd |
+    oneToOneMappingExists[s, provided, end$\cdot$getPortInstanceProvided[s, c]]
+}
+
+pred oneToOneRequiredMappingExists[s: Stratum, c: Component, required: set Interface, ends: LinkEnd]
+{
+  $\forall\,$end: ends $\cap$ ComponentLinkEnd |
+    oneToOneMappingExists[s, required, end$\cdot$getPort[s, c]$\cdot$provided$\cdot$c$\cdot$s]
+
+  $\forall\,$end: ends $\cap$ PartLinkEnd |
+    oneToOneMappingExists[s, required, end$\cdot$getPortInstanceRequired[s, c]]
+}
+
+pred oneToOneMappingExists[s: Stratum, a: set Interface, b: set Interface]
+{
+  $\forall\,$aa: a |
+    one bb: b |
+      bb $\subseteq$ expand[s, aa]
+      
+  -- ensure that it works the other way around
+  $\forall\,$bb: b |
+    one aa: a |
+      bb $\subseteq$ expand[s, aa]
+}
+
+fun extractHighestCommonSupertypes(s: Stratum, require: Interface): set Interface
+{
+  let
+    -- map is an interface in require (i) with all matching interfaces in require (e)
+    map =
+    { i: require, e: require |
+      $\exists\,$expand[s, i] $\cap$ expand[s, e] },
+    highestCommonSupertypes =
+    {
+      super: Interface |
+        $\exists\,$i: require |
+          super = highestCommonSupertype[s, map[i]]
+    }
+  {
+    highestCommonSupertypes
+  }
+}
+
+fun highestCommonSupertype(s: Stratum, required: set Interface): lone Interface
+{
+  { i: Interface |
+    {
+      required $\subseteq$  $\!\!\!^\ast\!$(superTypes$\cdot$s)$\cdot$i
+      no sub: superTypes$\cdot$s$\cdot$i |
+        required $\subseteq$  $\!\!\!^\ast\!$(superTypes$\cdot$s)$\cdot$sub
+    }
+  }
+}
+
+fun extractLowestCommonSubtypes(s: Stratum, require: Interface): set Interface
+{
+  let
+    -- map is an interface in require (i) with all matching interfaces in require (e)
+    map =
+    { i: require, e: require |
+      $\exists\,$expand[s, i] $\cap$ expand[s, e] },
+    lowestCommonSubtypes =
+    {
+      sub: Interface |
+        $\exists\,$i: require |
+          sub = lowestCommonSubtype[s, map[i]]
+    }
+  {
+    lowestCommonSubtypes
+  }
+}
+
+fun lowestCommonSubtype(s: Stratum, required: set Interface): lone Interface
+{
+  { i: Interface |
+    {
+      required $\subseteq$ i$\cdot$ $\!\!\!^\ast\!$(superTypes$\cdot$s)
+      no super: i$\cdot$superTypes$\cdot$s |
+        required $\subseteq$ super$\cdot$ $\!\!\!^\ast\!$(superTypes$\cdot$s)
+    }
+  }
+}
+
+fun expand(s: Stratum, i: Interface): set Interface
+{
+  -- expand forms the full expanded supertype and subtype hierarchy
+  i$\cdot$ $\!\!\!^\ast\!$(superTypes$\cdot$s) $\cup$   $\!\!\!^\wedge\!$(superTypes$\cdot$s)$\cdot$i
+}
+
+
+-- a generator axiom to ensure that we have a unique link end per port, or port instance
+pred ensureLinkEndsExist(s: Stratum, c: Component)
+{
+  let
+    idToPorts = c$\cdot$myPorts$\cdot$objects_e[s],
+    idToParts = c$\cdot$myParts$\cdot$objects_e[s]
+  {
+    -- set up the linkends
+    -- ensure all ports have a link end
+    $\forall\,$portID: dom[idToPorts] |
+      one l: ComponentLinkEnd |
+        l$\cdot$linkPortID = portID
+        
+    -- ensure all part/ports have a link end
+    $\forall\,$ppart: c$\cdot$parts$\cdot$s |
+      let partID = idToParts$\cdot$ppart | 
+        $\forall\,$portID: ppart$\cdot$portMap[s]$\cdot$Port |
+          one l: PartLinkEnd |
+            l$\cdot$linkPortID = portID $\wedge$ l$\cdot$linkPartID = partID
+  }
+}
+
+fun makePortToPort(s: Stratum, c: Component): ComponentLinkEnd$\,\times\,$ComponentLinkEnd
+{
+  isTrue[c$\cdot$isComposite] $\Longrightarrow$
+  { p1, p2: ComponentLinkEnd |
+    $\exists\,$end: c$\cdot$connectors$\cdot$s$\cdot$ends | let other = end$\cdot$otherEnd
+    {
+      disj[end, other]
+      end $\cup$ other $\subseteq$ ComponentConnectorEnd
+      end$\cdot$portID = p1$\cdot$linkPortID
+      other$\cdot$portID = p2$\cdot$linkPortID
+    }
+  }
+  else
+  { p1, p2: ComponentLinkEnd |
+    $\exists\,$end: dom[c$\cdot$links], other: c$\cdot$links[end]
+    {
+      -- these are disjoint because of a clause in structure.als
+      end = p1$\cdot$linkPortID
+      other = p2$\cdot$linkPortID
+    }  
+  }  
+}
+
+fun makePartInternal(s: Stratum, c: Component): PartLinkEnd$\,\times\,$PartLinkEnd
+{
+  let
+    idToParts = c$\cdot$myParts$\cdot$objects_e[s] |
+  { p1, p2: PartLinkEnd |
+    $\exists\,$partID: dom[idToParts] |
+    let
+      realPart = idToParts[partID],
+      realType = realPart$\cdot$partType,
+      inferredOneWay = realType$\cdot$inferredLinks$\cdot$s,
+      inferred = inferredOneWay $\cup$  $\sim$inferredOneWay,
+      idToPorts = realPart$\cdot$portMap[s],
+      realPort = idToPorts[p1$\cdot$linkPortID]
+    {
+      disj[p1, p2]
+      p1$\cdot$linkPartID = partID
+      p2$\cdot$linkPartID = partID
+      realPort $\subseteq$ dom[inferred]
+      idToPorts[p2$\cdot$linkPortID] = inferred[realPort]
+    }
+  }
+}
+
+fun makePartToPart(s: Stratum, c: Component): PartLinkEnd$\,\times\,$PartLinkEnd
+{
+  { p1, p2: PartLinkEnd |
+    $\exists\,$end: c$\cdot$connectors$\cdot$s$\cdot$ends | let other = end$\cdot$otherEnd
+    {
+      disj[end, other]
+      end$\cdot$portID = p1$\cdot$linkPortID
+      end$\cdot$partID = p1$\cdot$linkPartID
+      other$\cdot$portID = p2$\cdot$linkPortID
+      other$\cdot$partID = p2$\cdot$linkPartID
+    }  
+  }
+}
+
+
+fun makePortToPart(s: Stratum, c: Component): ComponentLinkEnd$\,\times\,$PartLinkEnd
+{
+  { p1: ComponentLinkEnd, p2: PartLinkEnd |
+    $\exists\,$end: c$\cdot$connectors$\cdot$s$\cdot$ends | let other = end$\cdot$otherEnd
+    {
+      end $\subseteq$ ComponentConnectorEnd
+      end$\cdot$portID = p1$\cdot$linkPortID
+      other$\cdot$portID = p2$\cdot$linkPortID
+      other$\cdot$partID = p2$\cdot$linkPartID
+    }  
+  }
+}
+

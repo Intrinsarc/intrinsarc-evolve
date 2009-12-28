@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.uml2.editor; singleton:=true
+Bundle-Version: 1.1.1.M200509151108
+Bundle-ClassPath: org.eclipse.uml2.editor_1.1.1.M200509151108.jar
+Bundle-Activator: org.eclipse.uml2.presentation.UML2EditorPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.uml2.edit;visibility:=reexport,org.eclipse.ui.ide,org.eclipse.emf.edit.ui;visibility:=reexport,org.eclipse.core.runtime,org.eclipse.core.resources
+Bundle-ManifestVersion: 2
+Eclipse-AutoStart: true
+Export-Package: org.eclipse.uml2.editor.internal.presentation;x-internal:=true,org.eclipse.uml2.presentation

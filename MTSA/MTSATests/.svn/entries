@@ -1,0 +1,67 @@
+8
+
+dir
+171
+https://mtsa.svn.sourceforge.net/svnroot/mtsa/trunk/MTSATests
+https://mtsa.svn.sourceforge.net/svnroot/mtsa
+
+
+
+2009-07-01T10:18:48.423971Z
+155
+srdipi78
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fcb65440-8149-0410-bc05-9de0824cdfc8
+
+.classpath
+file
+
+
+
+
+2009-07-07T21:26:38.000000Z
+c23ccc2012795e7cf43071dc6ef60492
+2009-06-18T09:46:10.706611Z
+142
+srdipi78
+
+.project
+file
+
+
+
+
+2009-07-07T21:26:38.000000Z
+6f8933d532147ce881e38fc2776ed018
+2009-06-18T09:46:10.706611Z
+142
+srdipi78
+
+src
+dir
+
+GameFramework.cld
+file
+
+
+
+
+2009-07-07T21:26:38.000000Z
+c26ca2f7922a2d83fa3fcdebb6c3220c
+2009-07-01T10:18:48.423971Z
+155
+srdipi78
+
