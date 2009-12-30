@@ -23,7 +23,11 @@ import edu.umd.cs.jazz.component.*;
 import edu.umd.cs.jazz.event.*;
 import edu.umd.cs.jazz.util.*;
 
-
+/**
+ * the selection tool.  works according to the finite state machine described in the uml project.
+ * @author andrew
+ *
+ */
 public final class SelectionToolGem implements Gem
 {
 	private static JMenuItem INVOKE_ITEM = new JMenuItem("Invoke tool");
