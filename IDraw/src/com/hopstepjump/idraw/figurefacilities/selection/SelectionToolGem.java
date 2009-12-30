@@ -24,7 +24,7 @@ import edu.umd.cs.jazz.event.*;
 import edu.umd.cs.jazz.util.*;
 
 /**
- * the selection tool.  works according to the finite state machine described in the uml project.
+ * the selection tool.  works according to the finite state machine described in the uml project...
  * @author andrew
  *
  */
