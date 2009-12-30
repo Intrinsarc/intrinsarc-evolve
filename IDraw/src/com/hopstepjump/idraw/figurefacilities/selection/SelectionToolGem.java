@@ -89,7 +89,7 @@ public final class SelectionToolGem implements Gem
   
   static
   {
-  	GlobalPreferences.registerKeyAction("Palette", INVOKE_ITEM, "TAB", "Invoke a tool from the diagram palette");
+  	GlobalPreferences.registerKeyAction("Palette", INVOKE_ITEM, "SPACE", "Invoke a tool from the diagram palette");
   }
 
   /**
