@@ -178,7 +178,8 @@ public class Evolve
 			// the delta engine needs to be cleared, as it gets into an odd state
 			// during CommonRepositoryFunctions.initializeModel()
 			DeltaEngineCommandWrapper.clearDeltaEngine();
-		} catch (RepositoryOpeningException e)
+		}
+		catch (RepositoryOpeningException e)
 		{
 			// will never happen with a new XML repository
 		}
