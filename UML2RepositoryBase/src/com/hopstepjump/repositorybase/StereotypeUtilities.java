@@ -144,8 +144,9 @@ public class StereotypeUtilities
     for (Object obj : element.undeleted_getAppliedBasicStereotypeValues())
     {
       AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) obj;
-      hash ^= value.getProperty().getName().hashCode()
-          ^ ("" + value.getValue()).hashCode();
+      if (value.getProperty() != null)
+      	hash ^= value.getProperty().getName().hashCode()
+          	^ ("" + value.getValue()).hashCode();
     }
 		
 		return hash;

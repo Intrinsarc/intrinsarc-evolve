@@ -21,8 +21,7 @@ public class ImplementationWriter
 {
   public int writeImplementation(BackboneGenerationChoice choice) throws BackboneGenerationException, VariableNotFoundException
   {
-    List<DEStratum> ordered = choice.extractStrata("No tagged strata found for generation");
-    Collections.reverse(ordered);
+    List<DEStratum> ordered = choice.extractRelatedStrata();
 		PreferencesFacet prefs = GlobalPreferences.preferences;
 
 		int count = 0;

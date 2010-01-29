@@ -13,7 +13,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import org.eclipse.uml2.*;
-import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
@@ -73,7 +72,6 @@ public class ApplicationWindow extends SmartJFrame
 	// icons
 	public static final ImageIcon FULLSCREEN_ICON = IconLoader.loadIcon("fullscreen.png");
 	public static final ImageIcon GARBAGE_ICON = IconLoader.loadIcon("garbage.png");
-	public static final ImageIcon BACKBONE_ICON = IconLoader.loadIcon("backbone.png");
 	public static final ImageIcon APPLICATION_ICON = IconLoader.loadIcon("brick.png");
 	public static final ImageIcon MAIN_FRAME_ICON = IconLoader.loadIcon("monkey-icon.png");
 	public static final ImageIcon UNDO_ICON = IconLoader.loadIcon("arrow_undo.png");
@@ -631,19 +629,18 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
-			BackboneGenerationChoice choice = new BackboneGenerationChoice(coordinator);
-			try
-			{
-				choice.adjustSelectionForProtocolAnalysis();
-			}
-			catch (BackboneGenerationException ex)
-			{
-				coordinator.invokeErrorDialog("Protocol analysis problem...", ex.getMessage());
-				return;
-			}
-			Class cls = choice.getSingleComponent();
-			DEComponent comp = GlobalDeltaEngine.engine.locateObject(cls).asComponent();
-			
+//			BackboneGenerationChoice choice = new BackboneGenerationChoice(coordinator);
+//			try
+//			{
+//				choice.adjustSelectionForProtocolAnalysis();
+//			}
+//			catch (BackboneGenerationException ex)
+//			{
+//				coordinator.invokeErrorDialog("Protocol analysis problem...", ex.getMessage());
+//				return;
+//			}
+//			DEComponent comp = choice.getSingleComponent();
+//			
 //			try
 //			{
 //				String fsp = new ProtocolToFSPTranslator(
@@ -701,7 +698,7 @@ public class ApplicationWindow extends SmartJFrame
 	{
 		public TagBackboneAction()
 		{
-			super("Tag Backbone elements");
+			super("Tag Backbone stratum");
 		}
 
 		public void actionPerformed(ActionEvent e)
@@ -711,29 +708,21 @@ public class ApplicationWindow extends SmartJFrame
 			// save the selection
 			choice = new BackboneGenerationChoice(toolFacet);
 
-			// see if we have any strata
-			List<DEStratum> strata = null;
+			// ensure we have a single stratum
 			try
 			{
-				strata = choice.extractStrata("No strata found for tagging");
-			} catch (BackboneGenerationException ex)
+				choice.adjustSelectionForSingleStratum();
+			}
+			catch (BackboneGenerationException ex)
 			{
 				toolFacet.invokeErrorDialog("Backbone tagging problem...", ex.getMessage());
 				choice = null;
 				return;
 			}
 
-			if (strata.isEmpty())
-			{
-				// if we got here nothing has been selected
-				toolFacet.invokeErrorDialog("Backbone tagging problem...", "No strata have been found in the selection");
-				choice = null;
-			} else
-			{
-				// if we got here we were successful, so show a nice popup
-				popup.displayPopup(TAG_ICON, "Backbone tagging",
-						"Elements tagged successfully", null, null, 1200);
-			}
+			// if we got here we were successful, so show a nice popup
+			popup.displayPopup(TAG_ICON, "Backbone tagging",
+					"Stratum tagged successfully", null, null, 1200);
 		}
 	}
 
@@ -891,8 +880,7 @@ public class ApplicationWindow extends SmartJFrame
 		try
 		{
 			DeltaEngineCommandWrapper.clearDeltaEngine();
-			strata = choice.extractStrata("No tagged strata found for generation");
-			Collections.reverse(strata);
+			strata = choice.extractRelatedStrata();
 			if (strata.get(strata.size() - 1) != GlobalDeltaEngine.engine.getRoot())
 			{
 				DEStratum root = GlobalDeltaEngine.engine.forceArtificialParent(new HashSet<DEStratum>(strata));
@@ -1106,8 +1094,11 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(frame,
-					"Select file to open", ".uml2 files", "uml2", recent.getLastVisitedDirectory());
+			String fileName = RepositoryUtility.chooseFileName(
+					frame,
+					"Select file to open",
+					XMLSubjectRepositoryGem.EXTENSION_DESCRIPTIONS,
+					XMLSubjectRepositoryGem.EXTENSION_TYPES, recent.getLastVisitedDirectory());
 
 			// don't go further if it hasn't been selected
 			if (fileName == null)
@@ -1900,7 +1891,7 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.preferences.registerTabIcon("Keys", KEYBOARD_ICON);
 			GlobalPreferences.preferences.registerTabIcon("Advanced", COG_ICON);
 			GlobalPreferences.preferences.registerTabIcon("Variables", VARIABLES_ICON);
-			GlobalPreferences.preferences.registerTabIcon("Backbone", BACKBONE_ICON);
+			GlobalPreferences.preferences.registerTabIcon("Backbone", null);
 			
 			return entries;
 		}
@@ -2025,7 +2016,7 @@ public class ApplicationWindow extends SmartJFrame
 				long start = System.currentTimeMillis();
 				try
 				{
-					if (name.endsWith(".uml2") || name.endsWith(".xml"))
+					if (name.endsWith(XMLSubjectRepositoryGem.UML2_SUFFIX) || name.endsWith(XMLSubjectRepositoryGem.UML2Z_SUFFIX) || name.endsWith(".xml"))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading XML repository", name, null, -1);
 						applicationWindowCoordinator.switchRepository(RepositoryUtility.useXMLRepository(name));
@@ -2069,7 +2060,7 @@ public class ApplicationWindow extends SmartJFrame
 						monitor.stopActivityAndDisplayPopup(
 								SAVE_ICON,
 								"Repository loading problem",
-								"File " + name + " must be of form\n\t*.uml2, *.xml, *.odb or host:*.odb",
+								"File " + name + " must be of form \n\t*.uml2, *.uml2z *.xml, *.odb or host:*.odb",
 								null,
 								3000,
 								false);

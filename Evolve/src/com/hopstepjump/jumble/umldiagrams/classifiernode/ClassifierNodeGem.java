@@ -1265,7 +1265,7 @@ public final class ClassifierNodeGem implements Gem
 			// avoid drawing the last line if possible, as it looks ugly on leaves
 			boolean haveAttributes = !suppressAttributesOrSlots && (!attributesOrSlots.isEmpty() || attributeEllipsis);
 			boolean haveOperations = !suppressOperations && (!operations.isEmpty() || operationEllipsis);
-			if (haveAttributes || haveOperations)
+			if ((haveAttributes || haveOperations) && !isPart)
 				group.addChild(new ZVisualLeaf(titleLine));
 			if (haveOperations)
 				group.addChild(new ZVisualLeaf(attrLine));
@@ -1694,13 +1694,15 @@ public final class ClassifierNodeGem implements Gem
   	      final DEComponent me = GlobalDeltaEngine.engine.locateObject(component).asComponent();
   	      if (me != null)
   	      {
-  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas", coordinator, perspective, me, true));
+  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas", coordinator, perspective, me, false));
+  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas as tree", coordinator, perspective, me, true));
   		      // show canonical backbone code
   		      BBComponent bb = new BBComponent(me.getUuid());
   		      bb.setRawName(me.getName());
   		      bb.setComponentKind(me.getComponentKind());
   		      copyCanonicalConstituents(perspective, bb, me);
   		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Expanded", coordinator, perspective, bb, false));
+  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Expanded as tree", coordinator, perspective, bb, true));
   	      }
   	      
   	      JMenuItem comp = new JMenuItem("Show compositional hierarchy");

@@ -16,8 +16,6 @@ import com.thoughtworks.xstream.*;
 
 public class BackboneInterpreter
 {
-	List<String> x = new ArrayList<String>();
-
 	public static void main(String args[])
 	{
 		System.out.println("> Backbone v2.0");
@@ -38,7 +36,8 @@ public class BackboneInterpreter
 		String loadListFile = args[0 + offset];
 		String stratum = args[1 + offset];
 		String component = args[2 + offset];
-		String port = args[3 + offset];
+		// port may be null
+		String port = args.length > 3 + offset ? args[3 + offset] : null;
 		
 		String tab = "      |  ";
 		System.out.println(tab + "loading system from " + loadListFile);
@@ -105,7 +104,7 @@ public class BackboneInterpreter
 					System.out.println(tab + "check took " + (end - start) + "ms; found no errors");
 			}
 			
-			String fullName = stratum + "::" + component + "." + port;
+			String fullName = stratum + "::" + component + (port == null ? "" : "." + port);
 			System.out.println("> running " + fullName);
 			
 			// find the correct stratum
@@ -116,19 +115,33 @@ public class BackboneInterpreter
 			BBSimpleElementRegistry registry = new BBSimpleElementRegistry(root, runComponent);
 			BBSimpleComponent top = new BBSimpleComponent(registry, runComponent);
 
-			// this must have only one port, which is the runner
-			List<BBSimplePort> ports = top.getPorts();
-			if (ports == null || ports.size() != 1)
-				throw new BBImplementationInstantiationException("Top component must have a single provided run port.  " + ports.size() + " ports found", top);
-			BBSimplePort provider = ports.get(0);
-			if (provider.getRequires() != null && provider.getRequires().size() != 0 || provider.getProvides() == null || provider.getProvides().size() != 1)
-				throw new BBImplementationInstantiationException("Top component run port must provide only IRun", top);
-			BBSimpleInterface iface = provider.getProvides().get(0);
-			if (iface.getImplementationClassName() == null || !iface.getImplementationClassName().equals(IRun.class.getName()))
-				throw new BBImplementationInstantiationException("Top component run port must provide only IRun", top);
+			// cannot have any non-optional required ports
+			if (top.getPorts() != null)
+				for (BBSimplePort p : top.getPorts())
+					if (p.getRequires().size() != 0 && p.getLowerBound() != 0)
+						throw new BBImplementationInstantiationException("Top component must not have mandatory required ports", top);
+
+			
+			BBSimplePort provider = null;
+			if (port != null && top.getPorts() != null)
+				for (BBSimplePort p : top.getPorts())
+					if (p.getName().equals(port))
+						provider = p;
+			if (provider != null)
+			{
+				if (provider.getRequires().size() != 0 || provider.getProvides().size() != 1)
+					throw new BBImplementationInstantiationException("Top component run port must provide only IRun", top);
+				BBSimpleInterface iface = provider.getProvides().get(0);
+				if (iface.getImplementationClassName() == null || !iface.getImplementationClassName().equals(IRun.class.getName()))
+					throw new BBImplementationInstantiationException("Top component run port must provide only IRun", top);
+			}
+			else
+				if (port != null)
+					throw new BBImplementationInstantiationException("Cannot locate port " + port, top);
 
 			BBSimpleInstantiatedFactory instance = top.instantiate(registry);
-			instance.runViaPort(provider, args);
+			if (provider != null)
+				instance.runViaPort(provider, args);
 		}
 		catch (BBNodeNotFoundException e)
 		{

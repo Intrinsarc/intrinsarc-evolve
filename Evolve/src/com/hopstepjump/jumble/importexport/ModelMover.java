@@ -27,7 +27,7 @@ public class ModelMover
 	private static final Pattern NAMED_SENSIBLE = Pattern.compile("org\\.eclipse\\.uml2\\.impl\\.(.*)Impl@.*\\ (\\(j_.*)name\\:\\ ([^,]*)(.*)", Pattern.MULTILINE | Pattern.DOTALL);
 	
   public static final String UML2_EXPORT = "uml2_export";
-	public static final String UML2_EXPORT_FILES = "Evolve export files";
+	public static final String UML2_EXPORT_FILES = "evolve export files (.uml2_export)";
 	private DiagramViewFacet diagramView;
   /** save any references for later fixing */
   private List<TransientSavedReference> savedReferences;
