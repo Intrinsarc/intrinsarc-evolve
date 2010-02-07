@@ -118,6 +118,7 @@ public class HardcodedFactoryWriter
 
 		// handle the parts
 		c.newLine();
+		Map<Integer, String> factoryClassNames = new HashMap<Integer, String>();
 		for (BBSimplePart part : factory.getParts())
 		{
 			String partName = namer.getUniqueName(part);
@@ -134,7 +135,8 @@ public class HardcodedFactoryWriter
 				// create the factory
 				BBSimpleFactory nextFactory = simple.getFactory(nextNumber);
 				BBSimpleComponent nextComp = nextFactory.getComponent();
-				String nextClassName = namer.getUniqueName(nextComp, nextComp.getRawName() + "Factory");
+				String nextClassName = namer.getUniqueName(new Object(), nextComp.getRawName() + "Factory");
+				factoryClassNames.put(nextNumber, nextClassName);
 				c.write("      " + nextClassName + " f = new " + nextClassName + "();");
 				c.newLine();
 				// NOTE: no need to set any slots -- they are catered for in the factory
@@ -185,7 +187,7 @@ public class HardcodedFactoryWriter
 				String attrName = namer.getUniqueName(attr);
 				String rawName = attr.getRawName();
 				String impl = attr.getType().getImplementationClassName();
-				String translated = PrimitiveHelper.translateLongToShortPrimitive(impl);
+				String translated = PrimitiveHelper.stripJavaLang(impl);
 				c.write("    if (values != null && values.containsKey(\"" + rawName + "\")) " + attrName + " = new Attribute<" + translated + ">((" + translated
 						+ ") values.get(\"" + rawName + "\"));");
 				c.newLine();
@@ -237,7 +239,7 @@ public class HardcodedFactoryWriter
 		{
 			BBSimpleFactory nextFactory = simple.getFactory(f);
 			BBSimpleComponent nextComp = nextFactory.getComponent();
-			String nextClassName = namer.getUniqueName(nextComp, nextComp.getRawName() + "Factory");
+			String nextClassName = factoryClassNames.get(f);
 			writeSingleFactory(registry, c, nextClassName, simple, f, namer, expander);
 		}
 

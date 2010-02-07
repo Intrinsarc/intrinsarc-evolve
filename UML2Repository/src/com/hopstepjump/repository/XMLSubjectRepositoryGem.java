@@ -33,6 +33,7 @@ public class XMLSubjectRepositoryGem implements Gem
   public static String UML2Z_SUFFIX = ".uml2z";
   public static String[] EXTENSION_TYPES = new String[]{"uml2z", "uml2"}; 
   public static String[] EXTENSION_DESCRIPTIONS = new String[]{"compressed UML2 files (.uml2z)", "uncompressed UML2 files (.uml2)"}; 
+  public static String EXTENSION_DESCRIPTION = "UML2 files (.uml2 and .uml2z)"; 
 
   private String fileName;
   private Model topLevel;
@@ -76,7 +77,7 @@ public class XMLSubjectRepositoryGem implements Gem
     
     public String saveAs(JFrame frame, File recentDirectory)
     {
-      String newFileName = RepositoryUtility.chooseFileName(
+      String newFileName = RepositoryUtility.chooseFileNameToCreate(
           frame,
           "Select file to save as", EXTENSION_DESCRIPTIONS, EXTENSION_TYPES, recentDirectory);
       if (newFileName == null)
@@ -96,7 +97,7 @@ public class XMLSubjectRepositoryGem implements Gem
 
     public String saveTo(JFrame frame, String extensionDescription, String extension, File recentDirectory)
     {
-      String copyFileName = RepositoryUtility.chooseFileName(
+      String copyFileName = RepositoryUtility.chooseFileNameToCreate(
           frame,
           "Select file to copy into",
           extensionDescription == null ? EXTENSION_DESCRIPTIONS : new String[]{extensionDescription},

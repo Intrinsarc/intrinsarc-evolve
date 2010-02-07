@@ -4,6 +4,8 @@ package com.hopstepjump.jumble.gui;
  * Copyright A. McVeigh 2002
  */
 import java.awt.*;
+import java.awt.datatransfer.*;
+import java.awt.dnd.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
@@ -114,6 +116,19 @@ public class ApplicationWindow extends SmartJFrame
 		desktop = new DockingFramesDock(this, true);
 		setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
 		setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+
+		// allow files to be dropped onto the frame
+		new FileDropTarget(this,
+				new FileDropTarget.Listener()
+				{
+					@Override
+					public boolean acceptFile(File file)
+					{
+						// if this doesn't end an acceptable prefix, complain
+						openFile(file.toString(), true);
+						return true;
+					}
+				});
 	}
 
 	public IEasyDock getDesktop()
@@ -388,10 +403,9 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(frame,
+			String fileName = RepositoryUtility.chooseFileNameToCreate(frame,
 					"Select file to export to preferences to",
-					"Evolve preferences", "evolveprefs", recent
-							.getLastVisitedDirectory());
+					"Evolve preferences", "evolveprefs", recent.getLastVisitedDirectory());
 			if (fileName == null)
 				return;
 
@@ -426,7 +440,7 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(frame,
+			String fileName = RepositoryUtility.chooseFileNameToOpen(frame,
 					"Select model preferences file to load",
 					"Evolve preferences", "evolveprefs", recent
 							.getLastVisitedDirectory());
@@ -1094,10 +1108,10 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(
+			String fileName = RepositoryUtility.chooseFileNameToOpen(
 					frame,
 					"Select file to open",
-					XMLSubjectRepositoryGem.EXTENSION_DESCRIPTIONS,
+					XMLSubjectRepositoryGem.EXTENSION_DESCRIPTION,
 					XMLSubjectRepositoryGem.EXTENSION_TYPES, recent.getLastVisitedDirectory());
 
 			// don't go further if it hasn't been selected
@@ -1137,9 +1151,11 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(frame,
-					"Select database file to open", ".odb files", "odb", recent
-							.getLastVisitedDirectory());
+			String fileName = RepositoryUtility.chooseFileNameToOpen(frame,
+					"Select database file to open",
+					ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX_DESCRIPTION,
+					ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX_NO_DOT,
+					recent.getLastVisitedDirectory());
 			if (fileName == null)
 				return;
 
@@ -2050,7 +2066,7 @@ public class ApplicationWindow extends SmartJFrame
 		
 						applicationWindowCoordinator.switchRepository(RepositoryUtility.useObjectDbRepository(hostName, dbName));
 					}
-					else if (name.endsWith(".odb"))
+					else if (name.endsWith(ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading local database repository", name, null, -1);
 						applicationWindowCoordinator.switchRepository(RepositoryUtility.useObjectDbRepository(null, name));
@@ -2060,7 +2076,7 @@ public class ApplicationWindow extends SmartJFrame
 						monitor.stopActivityAndDisplayPopup(
 								SAVE_ICON,
 								"Repository loading problem",
-								"File " + name + " must be of form \n\t*.uml2, *.uml2z *.xml, *.odb or host:*.odb",
+								"File " + name + " must be of form \n\t*.uml2, *.uml2z *.xml, *.uml2db or host:*.odb",
 								null,
 								3000,
 								false);
