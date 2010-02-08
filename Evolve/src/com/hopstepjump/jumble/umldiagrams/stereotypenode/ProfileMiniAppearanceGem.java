@@ -79,7 +79,10 @@ public class ProfileMiniAppearanceGem implements Gem
     {
       Utilities.addSeparator(menu);
       DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
-      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me, true));
+      JMenu bb = new JMenu("Show Backbone code");
+      menu.add(bb);
+      bb.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("As text", coordinator, me, me, false));
+      bb.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("As tree", coordinator, me, me, true));
     }
 
     public Set<String> getDisplayStyles(boolean displayingOnlyAsIcon, boolean anchorIsTarget)

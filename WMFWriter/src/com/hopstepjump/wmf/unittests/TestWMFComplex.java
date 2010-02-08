@@ -5,14 +5,15 @@ import java.awt.geom.*;
 import java.io.*;
 
 import javax.swing.*;
+
 import junit.framework.*;
+
+import com.hopstepjump.wmf.*;
+import com.hopstepjump.wmf.records.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
 import edu.umd.cs.jazz.util.*;
-
-import com.hopstepjump.wmf.*;
-import com.hopstepjump.wmf.records.*;
 
 /**
  *

@@ -16,13 +16,11 @@ public class CompositeHardcoder
 {
 	public int writeComposites(BackboneGenerationChoice choice) throws BackboneGenerationException, VariableNotFoundException, BBBadRunPointException
 	{
-    List<DEStratum> ordered = choice.extractStrata("No tagged strata found for generation");
-    Collections.reverse(ordered);
 		PreferencesFacet prefs = GlobalPreferences.preferences;
 
-		if (choice.extractDirectlyLinkedStrata().size() != 1)
+		if (choice.getSingleStratum() == null)
 			throw new BBBadRunPointException("A single top stratum muse be tagged for hardcoded generation");
-		DEStratum perspective = choice.extractDirectlyLinkedStrata().get(0); 
+		DEStratum perspective = choice.getSingleStratum(); 
 		org.eclipse.uml2.Package perspectivePkg = (org.eclipse.uml2.Package) perspective.getRepositoryObject();
 		
 		int count = 0;

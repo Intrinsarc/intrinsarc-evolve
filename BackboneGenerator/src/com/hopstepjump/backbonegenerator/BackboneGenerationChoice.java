@@ -1,8 +1,6 @@
 package com.hopstepjump.backbonegenerator;
 
-import java.io.*;
 import java.util.*;
-import java.util.regex.*;
 
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
@@ -20,18 +18,46 @@ import com.hopstepjump.repositorybase.*;
  */
 public class BackboneGenerationChoice
 {
-  private Pattern topLevelPattern = Pattern.compile("\\s*((?:\\w+\\:\\:)+)(\\w+)\\.(\\w+)\\s*");
-  private FigureFacet runComment;
   private List<FigureFacet> selected;
   private DiagramViewFacet diagramView;
   private Package singleStratum;
   private Class singleComponent;
-  private List<String> profile;
   
   public BackboneGenerationChoice(ToolCoordinatorFacet toolCoordinator)
   {
     diagramView = toolCoordinator.getCurrentDiagramView();
     locateChosenFigures();
+  }
+  
+  public void adjustSelectionForSingleStratum() throws BackboneGenerationException
+  {
+  	// should have a single stratum selected
+  	FigureFacet figure = diagramView.getSelection().getSingleSelection();
+  	if (figure == null || extractStratum(figure.getSubject()) == null)
+  		throw new BackboneGenerationException("A single stratum must be selected", null);
+  	singleStratum = (Package) figure.getSubject();
+  }
+  
+  public DEStratum getSingleStratum() throws BackboneGenerationException
+  {
+  	if (singleStratum == null)
+  		throw new BackboneGenerationException("A single stratum must be tagged first", null);
+  	IDeltaEngine engine = GlobalDeltaEngine.engine;
+  	return engine.locateObject(singleStratum).asStratum();
+  }
+  
+  /**
+   * find all related strata
+   * @return
+   * @throws BackboneGenerationException 
+   */
+  public List<DEStratum> extractRelatedStrata() throws BackboneGenerationException
+  {
+		List<DEStratum> st = new ArrayList<DEStratum>();
+		st.add(getSingleStratum());
+		st = DEStratum.determineOrderedPackages(st, false);
+		Collections.reverse(st);
+		return st;
   }
   
   /**
@@ -65,83 +91,10 @@ public class BackboneGenerationChoice
   	throw new BackboneGenerationException("Component is not contained within a stratum", null);
   }
   
-  public Class getSingleComponent()
-  {
-  	return singleComponent;
-  }
-  
-  /**
-   * get any directly linked packages
-   * @return
-   */
-  public List<DEStratum> extractDirectlyLinkedStrata()
+  public DEComponent getSingleComponent()
   {
   	IDeltaEngine engine = GlobalDeltaEngine.engine;
-    List<DEStratum> chosen = new ArrayList<DEStratum>();
-  	
-    // if a single stratum is selected, use this
-  	if (singleStratum != null)
-  	{
-  		chosen.add(engine.locateObject(singleStratum).asStratum());
-  		return chosen;  		
-  	}
-    
-    // if this is a comment then get the links and follow from there
-    // otherwise just take the previously selected elements
-    if (runComment != null)
-    {
-      for (Iterator<LinkingFacet> iter = runComment.getAnchorFacet().getLinks(); iter.hasNext();)
-      {
-        LinkingFacet linking = iter.next();
-        AnchorFacet other =
-          linking.getAnchor1() == runComment.getAnchorFacet() ? linking.getAnchor2() : linking.getAnchor1();
-        DEObject pkg = engine.locateObject(other.getFigureFacet().getSubject());
-        if (pkg != null && pkg.asStratum() != null)
-        	chosen.add(pkg.asStratum());
-      }
-    }
-    else
-    {
-    	for (FigureFacet figure : selected)
-    	{
-        DEObject pkg = engine.locateObject(figure);
-        if (pkg.asStratum() != null)
-        	chosen.add(pkg.asStratum());
-    	}
-    }
-    return chosen;
-  }
-  
-  public List<DEStratum> extractStrata(String failureMessage) throws BackboneGenerationException
-  {
-  	IDeltaEngine engine = GlobalDeltaEngine.engine;
-  	
-    // if a single stratum is selected, use this
-  	if (singleStratum != null)
-  	{
-  		DEStratum single = engine.locateObject(singleStratum).asStratum(); 
-  		return single.determineOrderedPackages(false);
-  	}
-  	
-    List<FigureFacet> chosen = new ArrayList<FigureFacet>();
-    
-    // if this is a comment then get the links and follow from there
-    // otherwise just take the previously selected elements
-    if (runComment != null)
-    {
-      for (Iterator<LinkingFacet> iter = runComment.getAnchorFacet().getLinks(); iter.hasNext();)
-      {
-        LinkingFacet linking = iter.next();
-        AnchorFacet other =
-          linking.getAnchor1() == runComment.getAnchorFacet() ? linking.getAnchor2() : linking.getAnchor1();
-        chosen.add(other.getFigureFacet());
-      }
-    }
-    else
-      chosen.addAll(selected);
-
-    // use the figures to find the set of stratum to generate for
-    return DEStratum.determineOrderedPackages(visuallyDiveForStrata(chosen, failureMessage), false);
+  	return engine.locateObject(singleComponent).asComponent();
   }
   
 	/**
@@ -155,66 +108,32 @@ public class BackboneGenerationChoice
   	if (singleComponent != null)
   		return new String[] {singleStratum.getName(), singleComponent.getName(), "run"};
   	
-    if (runComment == null)
-      throw new BackboneGenerationException("A comment with run parameters must be tagged before running", null);
+    if (singleStratum == null)
+      throw new BackboneGenerationException("A single stratum must be tagged before running", null);
     
-    Comment comment = (Comment) runComment.getSubject(); 
-    String body = comment.getBody();
-    BufferedReader reader = new BufferedReader(new StringReader(body));
-    try
-    {    
-      String runLine = reader.readLine();
-      if (!runLine.equals("run:"))
-        throw new BackboneGenerationException("First line of run text must be 'run:'", comment);
-      
-      // get the toplevel component and the port
-      Matcher matcher = topLevelPattern.matcher(reader.readLine());
-      if (!matcher.matches())
-        throw new BackboneGenerationException("Second line of run text must be in the form '(stratum::)+topLevelComponent.portName'", comment);
-      
-      String stratum = matcher.group(1);
-      if (stratum.endsWith("::"))
-      	stratum = stratum.substring(0, stratum.length() - 2);
-      String topLevelComponent = matcher.group(2);
-      String port = matcher.group(3);
-      return new String[]{stratum, topLevelComponent, port};
-    }
-    catch (IOException e)
-    {
-      try
-      {
-        reader.close();
-      }
-      catch (IOException e1)
-      {
-      }
-      throw new BackboneGenerationException("IOException while reading run body...", comment);
-    }
+    String stratum = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_STRATUM);
+    if (stratum == null || stratum.isEmpty())
+    	stratum = singleStratum.getName();
+    String component = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_COMPONENT);
+    if (component == null || component.isEmpty())
+      throw new BackboneGenerationException(CommonRepositoryFunctions.BACKBONE_RUN_COMPONENT + " must be set to an existing component", null);
+    String port = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_PORT);
+    return new String[]{stratum, component, port};
   }
 
-  public DEStratum extractSingleStratum() throws BackboneGenerationException
-  {
-		if (extractDirectlyLinkedStrata().size() != 1)
-			throw new BackboneGenerationException("A single top stratum muse be tagged for hardcoded generation", null);
-		return extractDirectlyLinkedStrata().get(0);
-  }
-  
   public List<String> getGenerationProfile() throws BackboneGenerationException
   {
-  	if (profile == null)
-  	{
-  		profile = new ArrayList<String>();
-  		if (extractDirectlyLinkedStrata().size() != 1)
-  			throw new BackboneGenerationException("A single top stratum muse be tagged for hardcoded generation", null);
-  	
-  		// get the generation profile
-  		String raw = StereotypeUtilities.extractStringProperty((Element) extractDirectlyLinkedStrata().get(0).getRepositoryObject(), CommonRepositoryFunctions.GENERATION_PROFILE);
-  		if (raw == null)
-  			raw = "";
-  		StringTokenizer tok = new StringTokenizer(raw);
-  		while (tok.hasMoreTokens())
-  			profile.add(tok.nextToken().trim().toLowerCase());
-  	}
+		List<String> profile = new ArrayList<String>();
+		if (singleStratum == null)
+			throw new BackboneGenerationException("A single top stratum muse be tagged for hardcoded generation", null);
+	
+		// get the generation profile
+		String raw = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.GENERATION_PROFILE);
+		if (raw == null)
+			raw = "";
+		StringTokenizer tok = new StringTokenizer(raw);
+		while (tok.hasMoreTokens())
+			profile.add(tok.nextToken().trim().toLowerCase());
   	return profile;
   }
 
@@ -228,47 +147,10 @@ public class BackboneGenerationChoice
   {
     // find a possible single comment selection, and look for links to contained elements
     SelectionFacet selection = diagramView.getSelection();
-    FigureFacet figure = selection.getFirstSelectedFigure();
-    boolean haveComment = figure != null && figure.getSubject() instanceof Comment;
     
-    // save either the run comment or the selection
-    if (haveComment)
-      runComment = figure;
-    else
-    {
-      selected = new ArrayList<FigureFacet>();
-      for (FigureFacet sel : selection.getSelectedFigures())
-        selected.add(sel);
-    }
-  }
-  
-  private List<DEStratum> visuallyDiveForStrata(List<FigureFacet> chosen, String failureMessage) throws BackboneGenerationException
-  {
-    // should have one or more groupers selected
-    List<DEStratum> selectedStrata = new ArrayList<DEStratum>();
-    for (FigureFacet figure : chosen)
-      visuallyDiveDownToFindStrata(selectedStrata, figure);
-   
-    // strata shouldn't be empty at this stage
-    if (selectedStrata.isEmpty())
-      throw new BackboneGenerationException(failureMessage, null);
-  
-    return selectedStrata;
-  }
-  
-  private void visuallyDiveDownToFindStrata(List<DEStratum> selectedStrata, FigureFacet figure) throws BackboneGenerationException
-  {
-    Package stratum = extractStratum(figure.getSubject());
-    if (stratum != null)
-      selectedStrata.add(GlobalDeltaEngine.engine.locateObject(stratum).asStratum());
-    
-    // get the contents of the figure
-    if (figure.getContainerFacet() != null)
-      for (Iterator<FigureFacet> cIter = figure.getContainerFacet().getContents(); cIter.hasNext();)
-      {
-        FigureFacet possible = cIter.next();
-        visuallyDiveDownToFindStrata(selectedStrata, possible);
-      }   
+    selected = new ArrayList<FigureFacet>();
+    for (FigureFacet sel : selection.getSelectedFigures())
+      selected.add(sel);
   }
   
   private Package extractStratum(Object subject)

@@ -191,7 +191,7 @@ public class StereotypeEditor
     for (Object obj : element.undeleted_getAppliedBasicStereotypeValues())
     {
       AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) obj;
-      if (!applicableProperties.keySet().contains(value.getProperty().getUuid()))
+      if (value.getProperty() == null || !applicableProperties.keySet().contains(value.getProperty().getUuid()))
           leftOver.add(value);
     }
     allowDeletionOfLeftOverValues(gbcLeft, gbcRight, leftOver);
@@ -213,7 +213,11 @@ public class StereotypeEditor
 		  for (final AppliedBasicStereotypeValue applied : leftOver)
 		  {
 		    // add this to the grid
-		    insetPanel.add(new JLabel(applied.getProperty().getName()), gbcLeft);
+		    insetPanel.add(
+		    		new JLabel(
+		    				(applied.getProperty() == null ? "<deleted>" : applied.getProperty().getName())
+		    				+ " = " + applied.getValue().stringValue()),
+		    		gbcLeft);
 		    JButton delete = new JButton(new AbstractAction("Delete")
 		        {
 		          public void actionPerformed(ActionEvent e)

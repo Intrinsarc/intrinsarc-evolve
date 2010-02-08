@@ -12,9 +12,11 @@ import org.freehep.graphicsio.emf.*;
 
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.diagramsupport.*;
+import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.utility.*;
+import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.wmf.*;
 import com.hopstepjump.wmf.records.*;
 

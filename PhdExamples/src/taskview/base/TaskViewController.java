@@ -1,5 +1,7 @@
 package taskview.base;
 
+import com.hopstepjump.backbone.runtime.api.*;
+
 
 
 public class TaskViewController
@@ -15,7 +17,6 @@ public class TaskViewController
 	public taskview.base.IView getView_IView(Class<?> required) { return view_IViewProvided; }
 // end generated code
 
-
 	private class IViewViewImpl implements taskview.base.IView
 	{
     public void display()
@@ -23,5 +24,4 @@ public class TaskViewController
       grid.display("Basic");
     }
 	}
-
 }

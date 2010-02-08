@@ -38,7 +38,6 @@ import edu.umd.cs.jazz.component.*;
 public class PackageMiniAppearanceGem implements Gem
 {
 	private static final ImageIcon TAB_RIGHT_ICON = IconLoader.loadIcon("tab_right.png");
-  private static final ImageIcon BACKBONE_ICON = IconLoader.loadIcon("backbone.png");
 	private FigureFacet figureFacet;
   private BasicNamespaceNodeFacet nodeFacet;
   private BasicNamespaceMiniAppearanceFacet miniAppearanceFacet = new BasicNamespaceMiniAppearanceFacetImpl();
@@ -243,14 +242,11 @@ public class PackageMiniAppearanceGem implements Gem
         });
       }
       
-      DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum(); 
-    	menu.add(
-    			makeShowBackboneCodeItem(
-    			"Show Backbone code",
-    			coordinator,
-    			me,
-    			me,
-    			true));
+      DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
+      JMenu bb = new JMenu("Show Backbone code");
+      menu.add(bb);
+      bb.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("As text", coordinator, me, me, false));
+      bb.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("As tree", coordinator, me, me, true));
 
       boolean readOnly = repository.isContainerContextReadOnly(figureFacet);
       if (!readOnly && isStratum())
@@ -515,11 +511,9 @@ public class PackageMiniAppearanceGem implements Gem
     }
   }
   
-  public static JMenuItem makeShowBackboneCodeItem(String menuText, final ToolCoordinatorFacet coordinator, final DEStratum perspective, final DEObject object, boolean showIcon)
+  public static JMenuItem makeShowBackboneCodeItem(String menuText, final ToolCoordinatorFacet coordinator, final DEStratum perspective, final DEObject object, final boolean showTreeOnly)
   {
     JMenuItem code = new JMenuItem(menuText);
-    if (showIcon)
-    	code.setIcon(BACKBONE_ICON);
     code.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)
@@ -529,20 +523,22 @@ public class PackageMiniAppearanceGem implements Gem
         int width = coordinator.getIntegerPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_WIDTH);
         int height = coordinator.getIntegerPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_HEIGHT);
 
-        coordinator.getDock().createExternalPaletteDockable(
-            "Source",
-            null,
-            new Point(x, y), new Dimension(width, height),
-            true,
-            true,
-            makeBackbone(perspective, object, new JPanel()));
-        coordinator.getDock().createExternalPaletteDockable(
-            "Tree",
-            null,
-            new Point(x, y), new Dimension(width, height),
-            true,
-            true,
-            makeTree(new JPanel(), object));
+        if (showTreeOnly)
+          coordinator.getDock().createExternalPaletteDockable(
+              "Tree",
+              null,
+              new Point(x, y), new Dimension(width, height),
+              true,
+              true,
+              makeTree(new JPanel(), object));
+        else
+	        coordinator.getDock().createExternalPaletteDockable(
+	            "Source",
+	            null,
+	            new Point(x, y), new Dimension(width, height),
+	            true,
+	            true,
+	            makeBackbone(perspective, object, new JPanel()));
         }
     });
     return code;
