@@ -1112,7 +1112,9 @@ public class ApplicationWindow extends SmartJFrame
 					frame,
 					"Select file to open",
 					XMLSubjectRepositoryGem.EXTENSION_DESCRIPTION,
-					XMLSubjectRepositoryGem.EXTENSION_TYPES, recent.getLastVisitedDirectory());
+					XMLSubjectRepositoryGem.EXTENSION_TYPES,
+					XMLSubjectRepositoryGem.UML2Z_SUFFIX_NO_DOT,
+					recent.getLastVisitedDirectory());
 
 			// don't go further if it hasn't been selected
 			if (fileName == null)

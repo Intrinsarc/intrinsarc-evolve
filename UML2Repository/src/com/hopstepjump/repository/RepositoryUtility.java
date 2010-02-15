@@ -108,10 +108,10 @@ public class RepositoryUtility
 	
 	public static String chooseFileNameToOpen(JFrame frame, String text, String extensionType, String extension, File startDirectory)
 	{
-	  return chooseFileNameToOpen(frame, text, extensionType, new String[]{extension}, startDirectory);
+	  return chooseFileNameToOpen(frame, text, extensionType, new String[]{extension}, extension, startDirectory);
 	}
 	
-	public static String chooseFileNameToOpen(JFrame frame, String text, String extensionType, String extensions[], File startDirectory)
+	public static String chooseFileNameToOpen(JFrame frame, String text, String extensionType, String extensions[], String extension, File startDirectory)
 	{
 	  // ask for a file to store the model into
 	  JFileChooser chooser = new JFileChooser(startDirectory); 
@@ -127,9 +127,12 @@ public class RepositoryUtility
 	
 	  String fileName = chooser.getSelectedFile().getAbsolutePath();
 	  int extIndex = filters.indexOf(chooser.getFileFilter());
-	  String extension = extensions[extIndex];
-	  if (!fileName.endsWith("." + extension))
-	    fileName += "." + extension;
+	  boolean endsWith = false;
+	  for (String ext : extensions)
+	  	if (fileName.endsWith("." + ext))
+	  		endsWith = true;
+	  if (!endsWith)
+	  	fileName += "." + extension;
 	  return fileName;
 	}
 	

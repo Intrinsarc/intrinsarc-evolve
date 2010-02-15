@@ -31,6 +31,7 @@ public class XMLSubjectRepositoryGem implements Gem
 {
   public static String UML2_SUFFIX = ".uml2";
   public static String UML2Z_SUFFIX = ".uml2z";
+  public static String UML2Z_SUFFIX_NO_DOT = "uml2z";
   public static String[] EXTENSION_TYPES = new String[]{"uml2z", "uml2"}; 
   public static String[] EXTENSION_DESCRIPTIONS = new String[]{"compressed UML2 files (.uml2z)", "uncompressed UML2 files (.uml2)"}; 
   public static String EXTENSION_DESCRIPTION = "UML2 files (.uml2 and .uml2z)"; 
