@@ -1,4 +1,4 @@
-package com.hopstepjump.backbone.parser;
+package com.hopstepjump.backbone.parserbase;
 
 public class Token
 {
@@ -49,7 +49,7 @@ public class Token
 	@Override
 	public String toString()
 	{
-		return "Token(" + type + ", " + text + ")";
+		return "Token(" + type + (text != null ? (", " + text) : "") + ")";
 	}
 	
 }

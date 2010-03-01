@@ -121,7 +121,6 @@ public class ApplicationWindow extends SmartJFrame
 		new FileDropTarget(this,
 				new FileDropTarget.Listener()
 				{
-					@Override
 					public boolean acceptFile(File file)
 					{
 						// if this doesn't end an acceptable prefix, complain

@@ -1,18 +1,15 @@
 package com.hopstepjump.backbonetests.parser;
 
-import com.hopstepjump.backbone.parser.*;
+import com.hopstepjump.backbone.parserbase.*;
 
-public class ParameterMatcher implements IMatcher
+public class ParameterPatternMatcher implements IPatternMatcher
 {
-
-	@Override
 	public String getDescription()
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public boolean matches(Token tok)
 	{
 		// TODO Auto-generated method stub

@@ -27,13 +27,11 @@ public class DemoController implements ILifecycle
 	}
 
 
-	@Override
 	public void afterInit()
 	{
 		run_IRunProvided.run(null);
 	}
 
-	@Override
 	public void beforeDelete()
 	{
 	}

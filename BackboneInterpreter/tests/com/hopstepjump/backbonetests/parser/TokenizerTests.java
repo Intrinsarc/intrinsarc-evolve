@@ -6,7 +6,7 @@ import java.io.*;
 
 import org.junit.*;
 
-import com.hopstepjump.backbone.parser.*;
+import com.hopstepjump.backbone.parserbase.*;
 
 public class TokenizerTests
 {
@@ -36,6 +36,19 @@ public class TokenizerTests
 		Tokenizer tok = new Tokenizer(reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.STRING, "hello\ngoodbye"), t);
+	}
+
+	@Test
+	public void testExpectColon() throws IOException
+	{
+		StringReader reader = new StringReader("hello: name");
+		Tokenizer tok = new Tokenizer(reader);
+		Token t = tok.next();
+		assertEquals(new Token(TokenType.LITERAL, "hello"), t);
+		t = tok.next();
+		assertEquals(new Token(TokenType.LITERAL, ":"), t);
+		t = tok.next();
+		assertEquals(new Token(TokenType.LITERAL, "name"), t);
 	}
 
 	@Test

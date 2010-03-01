@@ -1,17 +1,17 @@
-package com.hopstepjump.backbone.parser;
+package com.hopstepjump.backbone.parserbase;
 
 public class Match
 {
-	private IMatcher matcher;
+	private IPatternMatcher matcher;
 	private IAction action;
 
-	public Match(IMatcher matcher, IAction action)
+	public Match(IPatternMatcher matcher, IAction action)
 	{
 		this.matcher = matcher;
 		this.action = action;
 	}
 
-	public IMatcher getMatcher()
+	public IPatternMatcher getMatcher()
 	{
 		return matcher;
 	}

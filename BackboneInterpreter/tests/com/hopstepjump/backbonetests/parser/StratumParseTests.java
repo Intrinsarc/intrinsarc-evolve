@@ -7,66 +7,64 @@ import java.util.*;
 
 import org.junit.*;
 
-import com.hopstepjump.backbone.parser.*;
+import com.hopstepjump.backbone.parserbase.*;
 
 public class StratumParseTests
 {
 	@Test
 	public void TestStratumParse()
 	{
+		String uuid[] = {""};
 		String name[] = {""};
 		boolean relaxed[] = {false};
 		List<String> dependsOn = new ArrayList<String>();
-		parseStratumDeclaration("stratum a is-relaxed;", name, relaxed, dependsOn);
-		assertEquals("global.a", name[0]);
+		parseStratumDeclaration("stratum a is-relaxed;", uuid, name, relaxed, dependsOn);
+		assertEquals("global.a", uuid[0]);
 		assertTrue(relaxed[0]);
 	}
 	
 	@Test(expected=ParseException.class)
 	public void TestStratumParseFail()
 	{
+		String uuid[] = {""};
 		String name[] = {""};
 		boolean relaxed[] = {false};
 		List<String> dependsOn = new ArrayList<String>();
-		parseStratumDeclaration("stratum a is-relaxed test", name, relaxed, dependsOn);
+		parseStratumDeclaration("stratum a is-relaxed test", uuid, name, relaxed, dependsOn);
 	}
 	
 	@Test
 	public void TestStratumParse2()
 	{
+		String uuid[] = {""};
 		String name[] = {""};
 		boolean relaxed[] = {false};
 		List<String> dependsOn = new ArrayList<String>();
-		parseStratumDeclaration("stratum a is-relaxed depends-on test", name, relaxed, dependsOn);
-		assertEquals("global.a", name[0]);
+		parseStratumDeclaration("stratum a is-relaxed depends-on test1, test2-a-b;", uuid, name, relaxed, dependsOn);
+		assertEquals("global.a", uuid[0]);
 		assertTrue(relaxed[0]);
+		assertEquals(2, dependsOn.size());
+		assertEquals("global.test1", dependsOn.get(0));
+		assertEquals("test2-a-b", dependsOn.get(1));
 	}
 	
-	private void parseStratumDeclaration(String decl, String name[], boolean relaxed[], final List<String> dependsOn)
+	private void parseStratumDeclaration(String decl, String uuid[], String name[], boolean relaxed[], final List<String> dependsOn)
 	{
 		final Expect ex = new Expect(new Tokenizer(new StringReader(decl)));
-		ex
-			.literal("stratum")
-			.name("global", name)
-			.optional("is-relaxed", relaxed)
-			// guard
-			.anyOf(
-					new Match(
-							new LiteralMatcher("depends-on"),
-							new IAction()
-							{
-								public void act(Expect e, Token t)
-								{ parseParameters(ex, dependsOn); }
-							}))
-			.literal(";");
+		ex.
+			literal("stratum").
+			name("global", uuid, name).
+			optionalLiteral("is-relaxed", relaxed).
+			guard("depends-on",
+					new IAction() { public void act(Expect e, Token t) { parseNames(ex, dependsOn); } }).
+			literal(";");
 	}
 	
-	private void parseParameters(final Expect ex, final List<String> dependsOn)
+	private void parseNames(final Expect ex, final List<String> dependsOn)
 	{
-		ex.sequenceOf(
-				new LiteralMatcher(";"),
-				new Match(
-						new LiteralMatcher(),
+		ex.oneOrMore(
+				",",
+				new LiteralMatch(
 						new IAction()
 						{ public void act(Expect e, Token t)
 							{

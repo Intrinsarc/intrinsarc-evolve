@@ -1,25 +1,23 @@
-package com.hopstepjump.backbone.parser;
+package com.hopstepjump.backbone.parserbase;
 
-public class LiteralMatcher implements IMatcher
+public class LiteralPatternMatcher implements IPatternMatcher
 {
 	private String literal;
 	
-	public LiteralMatcher(String literal)
+	public LiteralPatternMatcher(String literal)
 	{
 		this.literal = literal;
 	}
 
-	public LiteralMatcher()
+	public LiteralPatternMatcher()
 	{
 	}
 
-	@Override
 	public boolean matches(Token tok)
 	{
 		return tok.getType().equals(TokenType.LITERAL) && (literal == null || tok.getText().equals(literal));
 	}
 
-	@Override
 	public String getDescription()
 	{
 		return new Token(TokenType.LITERAL, literal).toString();

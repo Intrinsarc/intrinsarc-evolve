@@ -6,7 +6,7 @@ import java.io.*;
 
 import org.junit.*;
 
-import com.hopstepjump.backbone.parser.*;
+import com.hopstepjump.backbone.parserbase.*;
 
 public class ExpectTests
 {
@@ -23,7 +23,7 @@ public class ExpectTests
 		makeExpect(" hello andrew goodbye").literal("hello").
 			oneOf(
 					new Match(
-							new LiteralMatcher("andrew"),
+							new LiteralPatternMatcher("andrew"),
 							new IAction()
 							{ public void act(Expect expect, Token tok) { res[0] = "optional"; }})).
 			literal("goodbye");
@@ -49,10 +49,10 @@ public class ExpectTests
 		e.literal("hello").
 			oneOf(
 					new Match(
-							new LiteralMatcher("andrew"),
+							new LiteralPatternMatcher("andrew"),
 							new IAction() { public void act(Expect expect, Token tok) { res[0] = "andrew"; }}),
 					new Match(
-							new LiteralMatcher("freddo"),
+							new LiteralPatternMatcher("freddo"),
 							new IAction() { public void act(Expect expect, Token tok) { res[0] = "freddo"; }}));
 		return res[0];
 	}
@@ -60,13 +60,15 @@ public class ExpectTests
 	@Test
 	public void expectNames()
 	{
+		String uuid[] = {""};
 		String name[] = {""};
-		makeExpect("a1-2-3").name("foo", name);
-		assertEquals("a1-2-3", name[0]);
-		makeExpect("a1.2").name("foo", name);
-		assertEquals("a1.2", name[0]);
-		makeExpect("Test").name("foo", name);
-		assertEquals("foo.Test", name[0]);
+		makeExpect("a1-2-3\"hello\"").name("foo", uuid, name);
+		assertEquals("a1-2-3", uuid[0]);
+		assertEquals("hello", name[0]);
+		makeExpect("a1.2").name("foo", uuid, name);
+		assertEquals("a1.2", uuid[0]);
+		makeExpect("Test").name("foo",uuid,  name);
+		assertEquals("foo.Test", uuid[0]);
 	}
 	
 	
