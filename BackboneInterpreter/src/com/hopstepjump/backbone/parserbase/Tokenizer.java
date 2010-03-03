@@ -13,7 +13,7 @@ public class Tokenizer
 	private Reader reader;
 	private int lastChar = -1;
 	private Token lastToken;
-	private int currentLine;
+	private int currentLine = 1;
 	private int currentPos;
 	private int previousLine;
 	private int previousPos;

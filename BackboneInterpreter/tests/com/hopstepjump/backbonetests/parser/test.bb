@@ -1,19 +1,56 @@
-stratum GWTkin is-relaxed is-destructive
-    depends-on GWTaddress
+stratum GWTbilling
+	parent-stratum foo
+		is-relaxed is-destructive
+    	depends-on GWTaddress, bbb
 {
-    // names are global if they are of the form stratum.component: i.e. have a . or a - in them
-    // if they are just component, the stratum. prefix is attached to make it global...
-    // an inline name is /name/ -- this is purely descriptive
-    // parts, connectors etc can occur in any order
-    component 63146b11-8bf4-4093-aba6-f35887766ea2/Test/
-         resembles stratum.GWTNameWidget replaces stratum.GWTNameWidget
+    component GWTCustomerWidget2
+         resembles GWTCustomerWidget replaces GWTCustomerWidget
     {
         parts:
-            b2642c6e-2d82-44fd-9eb4-35c2e3fd2d30: Label
-                text = "Next of kin";
-            c445faa9-645b-4ece-8f1d-2fce475068a0: TextBox;
+            f: AddressFactory;
+            l: ButtonLogic;
+            b: Button
+                text = "Enter billing address";
+        replace-parts:
+            d becomes d: SimpleTabPanel;
         connectors:
-            52952047-de99-4a93-926b-f2f6526dd757 joins main@b2642c6e-2d82-44fd-9eb4-35c2e3fd2d30 to _widgets@v;
-            6fe631b7-3b4e-48ef-b832-97ea0fcf19bc joins main@c445faa9-645b-4ece-8f1d-2fce475068a0 to _widgets@v;
+            s joins create@l to creator@f;
+            t joins main@b to _widgets@h;
+            cl joins listener@l to clickListeners@b;
+            f joins panel@f to _widgets@d;
+        replace-connectors:
+            c becomes 15171817-fcfd-467e-9855-d7a6654e49a2 joins main@h to _widgets@d;
     }
+    
+    interface IGrid implementation-class com.google.gwt.user.client.ui.Grid
+         resembles IHTMLTable
+    {
+        «interface: UML2Attribute(bean)»
+    }
+    
+
+    component ButtonLogic implementation-class com.myapplication.client.widgets.ButtonLogic
+    {
+     		«component: UML2Attribute(bean), UML2Attribute(lifecycle-callbacks)» 
+        ports:
+            create requires  ICreate;
+            listener provides  IClickListener;
+    }
+
+    component AddressFactory is-factory
+         resembles FactoryBase
+    {
+        ports:
+            «port» panel;
+        parts:
+            78a3ad9b-b34f-4a09-b4a3-fd8287f26d7f: GWTAddressWidget
+                text = "<b>Enter billing address</b>";
+            5ed0659e-393c-435c-9767-9270cb58c638: HorizontalPanel
+                title = "Billing address";
+        connectors:
+            387af3a4-b488-4057-9cfa-7c9e4ab4163d joins panel@78a3ad9b-b34f-4a09-b4a3-fd8287f26d7f to _widgets@5ed0659e-393c-435c-9767-9270cb58c638;
+            31ac06ca-1f3e-4862-a4ed-78eb8c240028 joins main@5ed0659e-393c-435c-9767-9270cb58c638 to panel;
+    }
+
 }
+

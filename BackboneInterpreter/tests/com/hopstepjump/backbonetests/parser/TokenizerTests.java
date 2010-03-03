@@ -194,7 +194,7 @@ public class TokenizerTests
 	{
 		assessLineAndPosition(
 				"  hello\t\n\r  1.2.3",
-				1, 1, 7);
+				1, 2, 7);
 	}
 	
 	@Test
@@ -202,7 +202,20 @@ public class TokenizerTests
 	{
 		assessLineAndPosition(
 				"  hello\t\n\r  \n /* hello */ 1.2.3",
-				1, 2, 18);
+				1, 3, 18);
+	}
+	
+	@Test
+	public void testGuillemets() throws IOException
+	{
+		StringReader reader = new StringReader("/* hello */ \u00abhello\u00bb");
+		Tokenizer tok = new Tokenizer(reader);
+		Token t = tok.next();
+		assertEquals(new Token(TokenType.LITERAL, "\u00ab"), t);	
+		t = tok.next();
+		assertEquals(new Token(TokenType.LITERAL, "hello"), t);
+		t = tok.next();
+		assertEquals(new Token(TokenType.LITERAL, "\u00bb"), t);
 	}
 	
 	public void assessLineAndPosition(String text, int nexts, int line, int pos) throws IOException
