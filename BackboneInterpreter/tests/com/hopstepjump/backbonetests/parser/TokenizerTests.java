@@ -26,7 +26,7 @@ public class TokenizerTests
 	{
 		StringReader reader = new StringReader("\"hello");
 		Tokenizer tok = new Tokenizer(reader);
-		Token t = tok.next();
+		tok.next();
 	}
 
 	@Test
@@ -174,6 +174,19 @@ public class TokenizerTests
 		assertEquals(new Token(TokenType.DOUBLE, "178.2"), t);
 		t = tok.next();
 		assertEquals(new Token(TokenType.INTEGER, "57"), t);
+	}
+	
+	@Test
+	public void testDescriptiveName() throws IOException
+	{
+		StringReader reader = new StringReader("/* hello */ a-b-c/Test a-2 hello/1.2");
+		Tokenizer tok = new Tokenizer(reader);
+		Token t = tok.next();
+		assertEquals(new Token(TokenType.LITERAL, "a-b-c"), t);	
+		t = tok.next();
+		assertEquals(new Token(TokenType.DESCRIPTIVE_NAME, "Test a-2 hello"), t);	
+		t = tok.next();
+		assertEquals(new Token(TokenType.DOUBLE, "1.2"), t);	
 	}
 	
 	@Test

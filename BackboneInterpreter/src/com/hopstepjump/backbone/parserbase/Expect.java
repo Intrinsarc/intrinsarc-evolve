@@ -62,7 +62,7 @@ public class Expect
 		
 		// peek for a string
 		Token p = tok.peek();
-		if (p != null && p.getType().equals(TokenType.STRING))
+		if (p != null && p.getType().equals(TokenType.DESCRIPTIVE_NAME))
 		{
 			nameToSet[0] = tok.next().getText();
 		}
@@ -84,7 +84,7 @@ public class Expect
 	 * @param continuer the string to continue when we find it
 	 * @param matches
 	 */
-	public void oneOrMore(String continueLiteral, Match... matches)
+	public Expect oneOrMore(String continueLiteral, Match... matches)
 	{
 		Token cnt = new Token(TokenType.LITERAL, continueLiteral);
 		for (;;)
@@ -94,6 +94,7 @@ public class Expect
 				break;
 			tok.next();
 		}
+		return this;
 	}
 
 	/**

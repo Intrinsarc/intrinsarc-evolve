@@ -57,7 +57,7 @@ public class BackboneWriter
     List<DEStratum> ordered = choice.extractRelatedStrata();
 
     XStream x = new XStream();
-    UML2XStreamConverters.registerConverters(x);
+//    UML2XStreamConverters.registerConverters(x);
     BBXStreamConverters.registerConverters(x);
 		PreferencesFacet prefs = GlobalPreferences.preferences;
     Set<String> referenced = new LinkedHashSet<String>();

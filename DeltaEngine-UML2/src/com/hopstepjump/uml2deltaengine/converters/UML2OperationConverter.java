@@ -5,7 +5,7 @@ import com.hopstepjump.uml2deltaengine.*;
 import com.thoughtworks.xstream.converters.*;
 import com.thoughtworks.xstream.io.*;
 
-public class UML2OperationConverter implements Converter
+/*public class UML2OperationConverter implements Converter
 {
 	public UML2OperationConverter()
 	{
@@ -34,3 +34,4 @@ public class UML2OperationConverter implements Converter
 		return cls == UML2Operation.class;
 	}
 }
+*/

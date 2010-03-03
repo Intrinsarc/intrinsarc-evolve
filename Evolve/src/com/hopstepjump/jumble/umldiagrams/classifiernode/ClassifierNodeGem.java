@@ -1694,15 +1694,13 @@ public final class ClassifierNodeGem implements Gem
   	      final DEComponent me = GlobalDeltaEngine.engine.locateObject(component).asComponent();
   	      if (me != null)
   	      {
-  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas", coordinator, perspective, me, false));
-  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas as tree", coordinator, perspective, me, true));
-  		      // show canonical backbone code
-  		      BBComponent bb = new BBComponent(me.getUuid());
-  		      bb.setRawName(me.getName());
-  		      bb.setComponentKind(me.getComponentKind());
-  		      copyCanonicalConstituents(perspective, bb, me);
-  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Expanded", coordinator, perspective, bb, false));
-  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Expanded as tree", coordinator, perspective, bb, true));
+  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas", coordinator, perspective, me));
+//  		      // show canonical backbone code
+//  		      BBComponent bb = new BBComponent(me.getUuid());
+//  		      bb.setRawName(me.getName());
+//  		      bb.setComponentKind(me.getComponentKind());
+//  		      copyCanonicalConstituents(perspective, bb, me);
+//  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Expanded", coordinator, perspective, bb));
   	      }
   	      
   	      JMenuItem comp = new JMenuItem("Show compositional hierarchy");
@@ -1749,22 +1747,6 @@ public final class ClassifierNodeGem implements Gem
 			return popup;
 		}
 		
-    private void copyCanonicalConstituents(DEStratum perspective, BBComponent bb, DEComponent me)
-		{
-    	for (DeltaPair p : me.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective, true))
-    		bb.settable_getAddedPorts().add(UML2PortConverter.makePort(p.getUuid(), (UML2Port) p.getConstituent()));
-    	for (DeltaPair p : me.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective, true))
-    		bb.settable_getAddedAttributes().add(UML2AttributeConverter.makeAttribute(p.getUuid(), (UML2Attribute) p.getConstituent()));
-    	for (DeltaPair p : me.getDeltas(ConstituentTypeEnum.DELTA_PART).getConstituents(perspective, true))
-    		bb.settable_getAddedParts().add(UML2PartConverter.makePart(p.getUuid(), (UML2Part) p.getConstituent()));
-    	for (DeltaPair p : me.getDeltas(ConstituentTypeEnum.DELTA_CONNECTOR).getConstituents(perspective, true))
-    		bb.settable_getAddedConnectors().add(UML2ConnectorConverter.makeConnector(p.getUuid(), (UML2Connector) p.getConstituent()));
-    	for (DeltaPair p : me.getDeltas(ConstituentTypeEnum.DELTA_PORT_LINK).getConstituents(perspective, true))
-    		bb.settable_getAddedPortLinks().add(UML2ConnectorConverter.makeConnector(p.getUuid(), (UML2Connector) p.getConstituent()));    	
-    	for (DeltaPair p : me.getDeltas(ConstituentTypeEnum.DELTA_APPLIED_STEREOTYPE).getConstituents(perspective, true))
-    		bb.settable_getReplacedAppliedStereotypes().add(UML2AppliedStereotypeConverter.makeAppliedStereotype((UML2AppliedStereotype) p.getConstituent()));
-		}
-
 		private JMenuItem getBlackboxItem(DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
     {
       // we must have an applicable property of "cluster"

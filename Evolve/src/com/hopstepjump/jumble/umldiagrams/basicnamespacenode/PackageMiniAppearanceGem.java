@@ -243,10 +243,7 @@ public class PackageMiniAppearanceGem implements Gem
       }
       
       DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
-      JMenu bb = new JMenu("Show Backbone code");
-      menu.add(bb);
-      bb.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("As text", coordinator, me, me, false));
-      bb.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("As tree", coordinator, me, me, true));
+      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me));
 
       boolean readOnly = repository.isContainerContextReadOnly(figureFacet);
       if (!readOnly && isStratum())
@@ -511,7 +508,7 @@ public class PackageMiniAppearanceGem implements Gem
     }
   }
   
-  public static JMenuItem makeShowBackboneCodeItem(String menuText, final ToolCoordinatorFacet coordinator, final DEStratum perspective, final DEObject object, final boolean showTreeOnly)
+  public static JMenuItem makeShowBackboneCodeItem(String menuText, final ToolCoordinatorFacet coordinator, final DEStratum perspective, final DEObject object)
   {
     JMenuItem code = new JMenuItem(menuText);
     code.addActionListener(new ActionListener()
@@ -523,65 +520,18 @@ public class PackageMiniAppearanceGem implements Gem
         int width = coordinator.getIntegerPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_WIDTH);
         int height = coordinator.getIntegerPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_HEIGHT);
 
-        if (showTreeOnly)
-          coordinator.getDock().createExternalPaletteDockable(
-              "Tree",
-              null,
-              new Point(x, y), new Dimension(width, height),
-              true,
-              true,
-              makeTree(new JPanel(), object));
-        else
-	        coordinator.getDock().createExternalPaletteDockable(
-	            "Source",
-	            null,
-	            new Point(x, y), new Dimension(width, height),
-	            true,
-	            true,
-	            makeBackbone(perspective, object, new JPanel()));
+        coordinator.getDock().createExternalPaletteDockable(
+            "Source",
+            null,
+            new Point(x, y), new Dimension(width, height),
+            true,
+            true,
+            makeBackbone(perspective, object, new JPanel()));
         }
     });
     return code;
   }
   
-	private static JPanel makeTree(final JPanel pane, final DEObject object)
-	{
-		pane.setLayout(new BorderLayout());
-		XStream xstr = new XStream();
-    UML2XStreamConverters.registerConverters(xstr);
-    BBXStreamConverters.registerConverters(xstr);
-
-    final JTree tree = new XMLTreeBuilder().buildFromXML(new StringBufferInputStream(xstr.toXML(object)), 3);
-    tree.setRootVisible(false);
-    tree.setCellRenderer(new UMLNodeRendererGem(null).getStringTreeCellRenderer());
-    JScrollPane scroller = new JScrollPane(tree);
-    pane.removeAll();
-    pane.add(scroller, BorderLayout.CENTER);
-
-    // provide a refresh option
-    final JPopupMenu menu = new JPopupMenu();
-    JMenuItem item = new JMenuItem("Refresh");
-    menu.add(item);
-    item.addActionListener(new ActionListener()
-    {
-      public void actionPerformed(ActionEvent e)
-      {
-      	makeTree(pane, object);
-      }
-    });
-    tree.addMouseListener(new MouseAdapter()
-    {
-      public void mouseReleased(MouseEvent e)
-      {
-          Point pt = e.getPoint();
-          if (e.getButton() == MouseEvent.BUTTON3)
-              menu.show(tree, pt.x, pt.y);
-      }
-    });
-		pane.revalidate();
-		return pane;
-	}
-
 	private static JPanel makeBackbone(final DEStratum perspective, final DEObject object, final JPanel pane)
 	{
 		pane.setLayout(new BorderLayout());

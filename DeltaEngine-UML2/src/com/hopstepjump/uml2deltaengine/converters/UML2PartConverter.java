@@ -8,7 +8,7 @@ import com.hopstepjump.uml2deltaengine.*;
 import com.thoughtworks.xstream.converters.*;
 import com.thoughtworks.xstream.io.*;
 
-public class UML2PartConverter implements Converter
+/*public class UML2PartConverter implements Converter
 {
 	public UML2PartConverter()
 	{
@@ -62,3 +62,4 @@ public class UML2PartConverter implements Converter
 		return i;
 	}
 }
+*/

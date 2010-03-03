@@ -62,7 +62,7 @@ public class ExpectTests
 	{
 		String uuid[] = {""};
 		String name[] = {""};
-		makeExpect("a1-2-3\"hello\"").name("foo", uuid, name);
+		makeExpect("a1-2-3/hello/").name("foo", uuid, name);
 		assertEquals("a1-2-3", uuid[0]);
 		assertEquals("hello", name[0]);
 		makeExpect("a1.2").name("foo", uuid, name);

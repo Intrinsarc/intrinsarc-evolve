@@ -5,7 +5,7 @@ import com.hopstepjump.uml2deltaengine.*;
 import com.thoughtworks.xstream.converters.*;
 import com.thoughtworks.xstream.io.*;
 
-public class UML2PackageConverter implements Converter
+/*public class UML2PackageConverter implements Converter
 {
 	public UML2PackageConverter()
 	{
@@ -43,3 +43,4 @@ public class UML2PackageConverter implements Converter
 		return cls == UML2Stratum.class;
 	}
 }
+*/

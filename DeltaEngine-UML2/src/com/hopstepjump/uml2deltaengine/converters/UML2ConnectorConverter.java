@@ -6,7 +6,7 @@ import com.hopstepjump.uml2deltaengine.*;
 import com.thoughtworks.xstream.converters.*;
 import com.thoughtworks.xstream.io.*;
 
-public class UML2ConnectorConverter implements Converter
+/*public class UML2ConnectorConverter implements Converter
 {
 	public UML2ConnectorConverter()
 	{
@@ -50,3 +50,4 @@ public class UML2ConnectorConverter implements Converter
 		return i;
 	}
 }
+*/

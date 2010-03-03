@@ -8,7 +8,7 @@ import com.hopstepjump.uml2deltaengine.*;
 import com.thoughtworks.xstream.converters.*;
 import com.thoughtworks.xstream.io.*;
 
-public class UML2AttributeConverter implements Converter
+/*public class UML2AttributeConverter implements Converter
 {
 	public UML2AttributeConverter()
 	{
@@ -30,7 +30,7 @@ public class UML2AttributeConverter implements Converter
 		return cls == UML2Attribute.class;
 	}
 
-	public static DEAttribute makeAttribute(String uuid, UML2Attribute ui)
+	public static BBAttribute makeAttribute(String uuid, UML2Attribute ui)
 	{
 		BBAttribute i = new BBAttribute(uuid);
 
@@ -58,3 +58,4 @@ public class UML2AttributeConverter implements Converter
 		return i;
 	}
 }
+*/

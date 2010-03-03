@@ -4,7 +4,12 @@ import org.junit.runner.*;
 import org.junit.runners.*;
 import org.junit.runners.Suite.*;
 
-@SuiteClasses({StratumParseTests.class, ExpectTests.class, TokenizerTests.class})
+@SuiteClasses({
+	StratumParserTests.class,
+	RawStratumParseTests.class,
+	ExpectTests.class,
+	TokenizerTests.class})
+	
 @RunWith(Suite.class)
 public class AllTests
 {

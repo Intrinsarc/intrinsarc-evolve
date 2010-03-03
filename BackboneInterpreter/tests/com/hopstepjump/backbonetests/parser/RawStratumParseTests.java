@@ -9,7 +9,7 @@ import org.junit.*;
 
 import com.hopstepjump.backbone.parserbase.*;
 
-public class StratumParseTests
+public class RawStratumParseTests
 {
 	@Test
 	public void TestStratumParse()

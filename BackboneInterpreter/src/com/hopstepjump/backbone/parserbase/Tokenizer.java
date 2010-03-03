@@ -59,6 +59,8 @@ public class Tokenizer
 			readGeneralComment();
 			return next();
 		}
+		if (ch == '/' && peekChar() != '/')
+			return readDescriptiveName();			
 		if (Character.isDigit(first))
 			return readNumber(ch);
 		if (Character.isJavaIdentifierStart(ch))
@@ -86,12 +88,33 @@ public class Tokenizer
 		return new Token(TokenType.CHAR, "" + (char) first);
 	}
 		
+	private Token readDescriptiveName()
+	{
+		// read until another ".  handle escaped characters and escaped " accordingly
+		StringBuilder b = new StringBuilder();
+		int next;
+		while ((next = translateChar(false)) != -1)
+		{
+			if (next == '/')
+				return new Token(TokenType.DESCRIPTIVE_NAME, b.toString());
+			else
+			if (next == -'\'')
+				b.append("'");
+			else
+			if (next == -'\'')
+				b.append("'");
+			else
+				b.append((char) next);
+		}
+		throwParseException("Reached end of document without descriptive name close", false);
+		return null;  // will never happen
+	}
+
 	private Token readString()
 	{
 		// read until another ".  handle escaped characters and escaped " accordingly
 		StringBuilder b = new StringBuilder();
 		int next;
-		boolean escape = false;
 		while ((next = translateChar(false)) != -1)
 		{
 			if (next == -'"')

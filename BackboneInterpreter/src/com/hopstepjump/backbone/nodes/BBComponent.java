@@ -38,7 +38,7 @@ public class BBComponent extends DEComponent implements INode, Serializable
   @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedAttributes;
   private List<BBReplacedAttribute> replacedAttributes;
-  private List<DEAttribute> addedAttributes;
+  private List<BBAttribute> addedAttributes;
   
   // the ports
   @XStreamConverter(StringReferencesConverter.class)
@@ -187,10 +187,10 @@ public class BBComponent extends DEComponent implements INode, Serializable
     return replacedAttributes;
   }
 
-  public List<DEAttribute> settable_getAddedAttributes()
+  public List<BBAttribute> settable_getAddedAttributes()
   {
     if (addedAttributes == null)
-      addedAttributes = new ArrayList<DEAttribute>();
+      addedAttributes = new ArrayList<BBAttribute>();
     return addedAttributes;
   }
   
