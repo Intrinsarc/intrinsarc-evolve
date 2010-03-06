@@ -9,13 +9,20 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 
 public interface DiagramFacet extends Facet
 {
+	/** undo/redo support */
+	public void checkpointCommit();
+	public void commit();
+	public void undo();
+	public void redo();
+	public void aboutToAdjust(FigureFacet figure);
+	
+	
 	/** for chained diagrams */
 	public DiagramFacet getSource();
   public Object getLinkedObject();
   public void setLinkedObject(Object linkedObject);
 
   public int getFigureId();
-  public void adjusted(FigureFacet figure);
   public boolean contains(FigureFacet figure );
 
 	public void addProperty(String name, String value);
@@ -27,10 +34,13 @@ public interface DiagramFacet extends Facet
   /** make persistent figures of all the ids (no children or links followed) */
   public Map<String, PersistentFigure> makePersistentFigures(String[] ids, boolean includeChildren);
 
-	public void revert();
   public void resyncViews();
+  // adjust the diagram, requiring undo/redo support
+  public void revert();
   public void add(FigureFacet figure );
   public void remove(FigureFacet figure);
+  public void adjusted(FigureFacet figure);
+  //////////////////////////////////////////////////
 
   public List<FigureFacet> getFigures( );
   public boolean isEmpty();

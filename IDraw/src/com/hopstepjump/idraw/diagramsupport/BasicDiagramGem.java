@@ -213,9 +213,59 @@ public final class BasicDiagramGem implements Gem
 
 	private class DiagramFacetImpl implements DiagramFacet
 	{
+		private List<UndoRedoStates> stateStack = new ArrayList<UndoRedoStates>();
+		private int pos;
+		private boolean inTransaction;
+		
+		private void addToCurrentTransaction(UndoRedoAction action, FigureFacet figure)
+		{
+			if (stateStack.size() <= pos)
+				stateStack.add(new UndoRedoStates());
+			UndoRedoStates s = stateStack.get(pos);
+			s.addState(new UndoRedoState(action, figure.makePersistentFigure()));
+		}
+		
+		/** undo/redo support */
+		public void checkpointCommit()
+		{
+			sendChangesToListeners();
+		}
+		public void commit()
+		{
+			pos++;
+			sendChangesToListeners();
+		}
+		public void undo()
+		{
+			if (pos > 0)
+			{
+				UndoRedoStates states = stateStack.get(--pos);
+				List<UndoRedoState> state = states.getStates();
+				for (int lp = state.size() - 1; lp >= 0; lp--)
+				{
+					UndoRedoState s = state.get(lp);
+					if (s.getAction().equals(UndoRedoAction.ADD))
+					{
+						FigureFacet f = figures.get(s.getState().getId());
+						remove(f);
+					}
+				}
+				sendChangesToListeners();
+			}
+		}
+		public void redo()
+		{
+			sendChangesToListeners();
+		}
+		public void aboutToAdjust(FigureFacet figure)
+		{
+			adjusted(figure);
+		}
+		
 		public void add(FigureFacet figure)
 	  {
 	  	Validator.validateFigure(figure);
+	  	addToCurrentTransaction(UndoRedoAction.ADD, figure);
 	  	
 			setModified(true);
 		  figures.put(figure.getId(), figure);
@@ -231,15 +281,9 @@ public final class BasicDiagramGem implements Gem
 	    }
 	  }
 	
-	  public boolean contains(FigureFacet figure)
-	  {
-	    FigureFacet retrieved = figures.get(figure.getId());
-	    return retrieved != null && figure.getDiagram().getDiagramReference().equals(getDiagramReference());
-	  }
-	
-
 	  public void remove(FigureFacet figure)
 	  {
+	  	addToCurrentTransaction(UndoRedoAction.REMOVE, figure);
       FigureFacet removed = figures.remove(figure.getId());
       if (removed != null)
       {
@@ -264,6 +308,12 @@ public final class BasicDiagramGem implements Gem
 			// make sure we don't generate adjustment changes before the element is on the diagram!!
 			if (contains(figure))
 		  	haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADJUST);
+	  }
+	
+	  public boolean contains(FigureFacet figure)
+	  {
+	    FigureFacet retrieved = figures.get(figure.getId());
+	    return retrieved != null && figure.getDiagram().getDiagramReference().equals(getDiagramReference());
 	  }
 	
 		private void setModified(boolean newModified)

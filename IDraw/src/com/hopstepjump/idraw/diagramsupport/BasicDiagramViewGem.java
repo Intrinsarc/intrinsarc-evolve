@@ -30,8 +30,6 @@ final class PanningSizes
 
 public final class BasicDiagramViewGem implements Gem
 {
-  public static final ImageIcon ERROR_ICON = IconLoader.loadIcon("warning.png");
-
   public static final boolean USE_LOW_QUALITY_FOR_TRANSITIONS = false;
   public static final long TRANSITION_TIME_MSECS = 400;
 	private ZLayerGroup parentLayer; // top layer

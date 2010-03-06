@@ -1,0 +1,125 @@
+package com.hopstepjump.test;
+
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+
+import com.hopstepjump.geometry.*;
+import com.hopstepjump.idraw.diagramsupport.*;
+import com.hopstepjump.idraw.foundation.*;
+
+import edu.umd.cs.jazz.util.*;
+
+public class DiagramTest
+{
+	public static void main(String args[])
+	{
+		JFrame frame = new JFrame("Diagram Test");
+		frame.setPreferredSize(new Dimension(500, 500));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// add the diagram and view
+		final JPanel panel = new JPanel(new BorderLayout());
+		BasicDiagramGem dgem = new BasicDiagramGem(new DiagramReference("1"), false, null);
+		final DiagramFacet diagram = dgem.getDiagramFacet();
+		ZCanvas canvas = new ZCanvas();
+		panel.add(canvas, BorderLayout.CENTER);
+		BasicDiagramViewGem vgem = new BasicDiagramViewGem(diagram, null, canvas, new UDimension(1, 1), Color.WHITE, false);
+		diagram.addListener("d", vgem.getDiagramListenerFacet());
+				
+		frame.setLayout(new BorderLayout());
+		frame.add(panel, BorderLayout.CENTER);
+		
+		// buttons
+		JPanel buttons = new JPanel();
+		JButton circle = new JButton("Circle");
+		circle.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				addFigure(diagram, false);
+				diagram.commit();
+			}
+		});
+		buttons.add(circle);
+		JButton square = new JButton("Square");
+		square.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				addFigure(diagram, true);
+				diagram.commit();
+			}
+		});
+		buttons.add(square);
+		JButton both = new JButton("Both");
+		both.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				addFigure(diagram, false);
+				diagram.checkpointCommit();
+				addFigure(diagram, true);
+				diagram.commit();
+			}
+		});
+		buttons.add(both);
+		JButton random = new JButton("Random");
+		random.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				for (FigureFacet f : diagram.getFigures())
+					f.cleanUp();  // mocked out to random change
+				diagram.commit();
+			}
+		});
+		buttons.add(random);
+		JButton undo = new JButton("<Undo>");
+		undo.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				diagram.undo();
+			}
+		});
+		buttons.add(undo);
+		JButton redo = new JButton("<Redo>");
+		undo.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				diagram.redo();
+			}
+		});
+		buttons.add(redo);
+		panel.add(buttons, BorderLayout.NORTH);
+		
+		frame.pack();
+		frame.setVisible(true);
+	}
+
+	private static void addFigure(final DiagramFacet diagram, boolean rect)
+	{
+		double w = rand(50, 200);
+		FigureFacet f = new SimpleFigure(
+				diagram,
+				new UPoint(rand(20, 300), rand(20, 300)),
+				new UDimension(w, w),
+				rect,
+				randomColor());
+		diagram.add(f);
+	}
+
+	public static double rand(int low, int high)
+	{
+		return Math.random() * (high - low) + low;
+	}
+
+	public static Color randomColor()
+	{
+		Color cols[] = {Color.BLUE, Color.CYAN, Color.RED, Color.WHITE, Color.GREEN, Color.LIGHT_GRAY, Color.YELLOW};
+		return cols[(int) Math.round(rand(0, 6))];
+	}
+}
