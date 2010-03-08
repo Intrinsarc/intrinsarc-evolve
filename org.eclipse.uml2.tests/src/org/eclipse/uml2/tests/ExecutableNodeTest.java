@@ -28,7 +28,8 @@ public abstract class ExecutableNodeTest extends ActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutableNodeTest(String name) {
+	public ExecutableNodeTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class ExecutableNodeTest extends ActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExecutableNode getFixture() {
+	private ExecutableNode getFixture()
+	{
 		return (ExecutableNode)fixture;
 	}
 
@@ -51,7 +53,8 @@ public abstract class ExecutableNodeTest extends ActivityNodeTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

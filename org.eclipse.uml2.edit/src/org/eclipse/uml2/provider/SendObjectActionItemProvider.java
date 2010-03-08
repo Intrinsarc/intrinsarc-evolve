@@ -59,7 +59,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SendObjectActionItemProvider(AdapterFactory adapterFactory) {
+	public SendObjectActionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -69,8 +70,10 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTargetPropertyDescriptor(object);
@@ -85,7 +88,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,7 +111,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRequestPropertyDescriptor(Object object) {
+	protected void addRequestPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -131,8 +136,10 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getSendObjectAction_Target());
 			childrenFeatures.add(UML2Package.eINSTANCE.getSendObjectAction_Request());
@@ -145,7 +152,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -158,7 +166,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/SendObjectAction"); //$NON-NLS-1$
 	}
 
@@ -168,7 +177,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((SendObjectAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SendObjectAction_type") : //$NON-NLS-1$
@@ -182,10 +192,12 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SendObjectAction.class)) {
+		switch (notification.getFeatureID(SendObjectAction.class))
+		{
 			case UML2Package.SEND_OBJECT_ACTION__TARGET:
 			case UML2Package.SEND_OBJECT_ACTION__REQUEST:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -201,7 +213,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -231,7 +244,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -242,7 +256,8 @@ public class SendObjectActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getSendObjectAction_Target() ||
 			childFeature == UML2Package.eINSTANCE.getSendObjectAction_Request();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -256,7 +271,8 @@ public class SendObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

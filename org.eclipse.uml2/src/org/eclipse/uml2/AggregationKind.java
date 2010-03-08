@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.PersistentAbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * AggregationKind is an enumeration of the following literal values: â€¢ none Indicates that the property has no aggregation. â€¢ shared Indicates that the property has a shared aggregation. â€¢ composite Indicates that the property is aggregated compositely, i.e., the composite object has responsibility for the existence and storage of the composed objects (parts). 
+ * AggregationKind is an enumeration of the following literal values: • none Indicates that the property has no aggregation. • shared Indicates that the property has a shared aggregation. • composite Indicates that the property is aggregated compositely, i.e., the composite object has responsibility for the existence and storage of the composed objects (parts). 
  * <!-- end-model-doc -->
  * @see org.eclipse.uml2.UML2Package#getAggregationKind()
  * @model
@@ -122,7 +122,8 @@ public final class AggregationKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final AggregationKind[] VALUES_ARRAY =
-		new AggregationKind[] {
+		new AggregationKind[]
+		{
 			NONE_LITERAL,
 			SHARED_LITERAL,
 			COMPOSITE_LITERAL,
@@ -142,10 +143,13 @@ public final class AggregationKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AggregationKind get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static AggregationKind get(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			AggregationKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(name))
+			{
 				return result;
 			}
 		}
@@ -158,8 +162,10 @@ public final class AggregationKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AggregationKind get(int value) {
-		switch (value) {
+	public static AggregationKind get(int value)
+	{
+		switch (value)
+		{
 			case NONE: return NONE_LITERAL;
 			case SHARED: return SHARED_LITERAL;
 			case COMPOSITE: return COMPOSITE_LITERAL;
@@ -173,7 +179,8 @@ public final class AggregationKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AggregationKind(int value, String name) {
+	private AggregationKind(int value, String name)
+	{
 		super(value, name);
 	}
 

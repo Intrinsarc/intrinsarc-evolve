@@ -69,7 +69,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolTransitionItemProvider(AdapterFactory adapterFactory) {
+	public ProtocolTransitionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -79,8 +80,10 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addPostConditionPropertyDescriptor(object);
@@ -96,7 +99,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPostConditionPropertyDescriptor(Object object) {
+	protected void addPostConditionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -118,7 +122,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReferredPropertyDescriptor(Object object) {
+	protected void addReferredPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -140,7 +145,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPreConditionPropertyDescriptor(Object object) {
+	protected void addPreConditionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -162,8 +168,10 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getProtocolTransition_PostCondition());
 		}
@@ -176,7 +184,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/ProtocolTransition"); //$NON-NLS-1$
 	}
 
@@ -186,7 +195,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ProtocolTransition)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ProtocolTransition_type") : //$NON-NLS-1$
@@ -200,10 +210,12 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProtocolTransition.class)) {
+		switch (notification.getFeatureID(ProtocolTransition.class))
+		{
 			case UML2Package.PROTOCOL_TRANSITION__POST_CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -218,7 +230,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -253,7 +266,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -261,7 +275,8 @@ public class ProtocolTransitionItemProvider
 			childFeature == UML2Package.eINSTANCE.getTransition_Guard() ||
 			childFeature == UML2Package.eINSTANCE.getProtocolTransition_PostCondition();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -275,7 +290,8 @@ public class ProtocolTransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

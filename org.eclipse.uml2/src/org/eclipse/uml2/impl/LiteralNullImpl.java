@@ -53,11 +53,13 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LiteralNullImpl() {
+	protected LiteralNullImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -66,7 +68,8 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getLiteralNull();
 	}
 
@@ -75,7 +78,8 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isComputable() {
+	public boolean isComputable()
+	{
 		return LiteralNullOperations.isComputable(this);
 	}
 
@@ -84,7 +88,8 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isNull() {
+	public boolean isNull()
+	{
 		return LiteralNullOperations.isNull(this);
 	}
 
@@ -93,9 +98,12 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.LITERAL_NULL__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.LITERAL_NULL__TEMPLATE_BINDING:
@@ -128,9 +136,12 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.LITERAL_NULL__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.LITERAL_NULL__OWNED_COMMENT:
@@ -163,9 +174,12 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.LITERAL_NULL__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -180,8 +194,10 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.LITERAL_NULL__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.LITERAL_NULL__OWNED_ELEMENT:
@@ -238,8 +254,10 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.LITERAL_NULL__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -315,8 +333,10 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.LITERAL_NULL__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -383,8 +403,10 @@ public class LiteralNullImpl extends LiteralSpecificationImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.LITERAL_NULL__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.LITERAL_NULL__OWNED_ELEMENT:

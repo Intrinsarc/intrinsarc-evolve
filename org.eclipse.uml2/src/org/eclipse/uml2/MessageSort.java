@@ -144,7 +144,8 @@ public final class MessageSort extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final MessageSort[] VALUES_ARRAY =
-		new MessageSort[] {
+		new MessageSort[]
+		{
 			SYNCH_CALL_LITERAL,
 			SYNCH_SIGNAL_LITERAL,
 			ASYNCH_CALL_LITERAL,
@@ -165,10 +166,13 @@ public final class MessageSort extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MessageSort get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static MessageSort get(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			MessageSort result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(name))
+			{
 				return result;
 			}
 		}
@@ -181,8 +185,10 @@ public final class MessageSort extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MessageSort get(int value) {
-		switch (value) {
+	public static MessageSort get(int value)
+	{
+		switch (value)
+		{
 			case SYNCH_CALL: return SYNCH_CALL_LITERAL;
 			case SYNCH_SIGNAL: return SYNCH_SIGNAL_LITERAL;
 			case ASYNCH_CALL: return ASYNCH_CALL_LITERAL;
@@ -197,7 +203,8 @@ public final class MessageSort extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private MessageSort(int value, String name) {
+	private MessageSort(int value, String name)
+	{
 		super(value, name);
 	}
 

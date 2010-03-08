@@ -210,11 +210,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CollaborationImpl() {
+	protected CollaborationImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -223,7 +225,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getCollaboration();
 	}
 
@@ -232,9 +235,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedAttributes() {
-		if (ownedAttribute == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedAttributes()
+	{
+		if (ownedAttribute == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.COLLABORATION__OWNED_ATTRIBUTE);
 			 		return ownedAttribute;
@@ -251,8 +258,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedAttributes() {
-		if (ownedAttribute == null) {
+  public EList settable_getOwnedAttributes()
+	{
+		if (ownedAttribute == null)
+		{
+			
+		
 			ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.COLLABORATION__OWNED_ATTRIBUTE);
 		}
 		return ownedAttribute;
@@ -263,11 +274,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedAttributes() {
+  public java.util.ArrayList undeleted_getOwnedAttributes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedAttribute != null) {
-			for (Object object : ownedAttribute) {
+		if (ownedAttribute != null)
+		{
+			for (Object object : ownedAttribute)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -387,7 +401,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getAttributesHelper(EList attribute) {
+	protected EList getAttributesHelper(EList attribute)
+	{
 		super.getAttributesHelper(attribute);
 		if (eIsSet(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute())) {
 			attribute.addAll(getOwnedAttributes());
@@ -401,7 +416,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute())) {
 			ownedMember.addAll(getOwnedAttributes());
@@ -418,7 +434,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getMembersHelper(EList member) {
+	protected EList getMembersHelper(EList member)
+	{
 		super.getMembersHelper(member);
 		EList role = getRoles();
 		if (!role.isEmpty()) {
@@ -435,7 +452,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getFeaturesHelper(EList feature) {
+	protected EList getFeaturesHelper(EList feature)
+	{
 		super.getFeaturesHelper(feature);
 		if (eIsSet(UML2Package.eINSTANCE.getStructuredClassifier_OwnedConnector())) {
 			feature.addAll(getOwnedConnectors());
@@ -449,9 +467,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedConnectors() {
-		if (ownedConnector == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedConnectors()
+	{
+		if (ownedConnector == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedConnector = new com.hopstepjump.emflist.PersistentEList(Connector.class, this, UML2Package.COLLABORATION__OWNED_CONNECTOR);
 			 		return ownedConnector;
@@ -468,8 +490,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedConnectors() {
-		if (ownedConnector == null) {
+  public EList settable_getOwnedConnectors()
+	{
+		if (ownedConnector == null)
+		{
+			
+		
 			ownedConnector = new com.hopstepjump.emflist.PersistentEList(Connector.class, this, UML2Package.COLLABORATION__OWNED_CONNECTOR);
 		}
 		return ownedConnector;
@@ -480,11 +506,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedConnectors() {
+  public java.util.ArrayList undeleted_getOwnedConnectors()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedConnector != null) {
-			for (Object object : ownedConnector) {
+		if (ownedConnector != null)
+		{
+			for (Object object : ownedConnector)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -517,9 +546,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedAttributes() {
-		if (deltaDeletedAttributes == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaDeletedAttributes()
+	{
+		if (deltaDeletedAttributes == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaDeletedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES);
 			 		return deltaDeletedAttributes;
@@ -536,8 +569,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedAttributes() {
-		if (deltaDeletedAttributes == null) {
+	public EList settable_getDeltaDeletedAttributes()
+	{
+		if (deltaDeletedAttributes == null)
+		{
+			
+		
 			deltaDeletedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES);
 		}
 		return deltaDeletedAttributes;
@@ -548,11 +585,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedAttributes() {
+	public java.util.ArrayList undeleted_getDeltaDeletedAttributes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedAttributes != null) {
-			for (Object object : deltaDeletedAttributes) {
+		if (deltaDeletedAttributes != null)
+		{
+			for (Object object : deltaDeletedAttributes)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -584,9 +624,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedAttributes() {
-		if (deltaReplacedAttributes == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaReplacedAttributes()
+	{
+		if (deltaReplacedAttributes == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaReplacedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES);
 			 		return deltaReplacedAttributes;
@@ -603,8 +647,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedAttributes() {
-		if (deltaReplacedAttributes == null) {
+	public EList settable_getDeltaReplacedAttributes()
+	{
+		if (deltaReplacedAttributes == null)
+		{
+			
+		
 			deltaReplacedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES);
 		}
 		return deltaReplacedAttributes;
@@ -615,11 +663,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedAttributes() {
+	public java.util.ArrayList undeleted_getDeltaReplacedAttributes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedAttributes != null) {
-			for (Object object : deltaReplacedAttributes) {
+		if (deltaReplacedAttributes != null)
+		{
+			for (Object object : deltaReplacedAttributes)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -651,9 +702,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedPorts() {
-		if (deltaDeletedPorts == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaDeletedPorts()
+	{
+		if (deltaDeletedPorts == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaDeletedPorts = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedPort.class, this, UML2Package.COLLABORATION__DELTA_DELETED_PORTS);
 			 		return deltaDeletedPorts;
@@ -670,8 +725,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedPorts() {
-		if (deltaDeletedPorts == null) {
+	public EList settable_getDeltaDeletedPorts()
+	{
+		if (deltaDeletedPorts == null)
+		{
+			
+		
 			deltaDeletedPorts = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedPort.class, this, UML2Package.COLLABORATION__DELTA_DELETED_PORTS);
 		}
 		return deltaDeletedPorts;
@@ -682,11 +741,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedPorts() {
+	public java.util.ArrayList undeleted_getDeltaDeletedPorts()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedPorts != null) {
-			for (Object object : deltaDeletedPorts) {
+		if (deltaDeletedPorts != null)
+		{
+			for (Object object : deltaDeletedPorts)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -718,9 +780,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedPorts() {
-		if (deltaReplacedPorts == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaReplacedPorts()
+	{
+		if (deltaReplacedPorts == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaReplacedPorts = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedPort.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS);
 			 		return deltaReplacedPorts;
@@ -737,8 +803,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedPorts() {
-		if (deltaReplacedPorts == null) {
+	public EList settable_getDeltaReplacedPorts()
+	{
+		if (deltaReplacedPorts == null)
+		{
+			
+		
 			deltaReplacedPorts = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedPort.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS);
 		}
 		return deltaReplacedPorts;
@@ -749,11 +819,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedPorts() {
+	public java.util.ArrayList undeleted_getDeltaReplacedPorts()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedPorts != null) {
-			for (Object object : deltaReplacedPorts) {
+		if (deltaReplacedPorts != null)
+		{
+			for (Object object : deltaReplacedPorts)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -785,9 +858,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedConnectors() {
-		if (deltaDeletedConnectors == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaDeletedConnectors()
+	{
+		if (deltaDeletedConnectors == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaDeletedConnectors = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedConnector.class, this, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS);
 			 		return deltaDeletedConnectors;
@@ -804,8 +881,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedConnectors() {
-		if (deltaDeletedConnectors == null) {
+	public EList settable_getDeltaDeletedConnectors()
+	{
+		if (deltaDeletedConnectors == null)
+		{
+			
+		
 			deltaDeletedConnectors = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedConnector.class, this, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS);
 		}
 		return deltaDeletedConnectors;
@@ -816,11 +897,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedConnectors() {
+	public java.util.ArrayList undeleted_getDeltaDeletedConnectors()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedConnectors != null) {
-			for (Object object : deltaDeletedConnectors) {
+		if (deltaDeletedConnectors != null)
+		{
+			for (Object object : deltaDeletedConnectors)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -852,9 +936,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedConnectors() {
-		if (deltaReplacedConnectors == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaReplacedConnectors()
+	{
+		if (deltaReplacedConnectors == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaReplacedConnectors = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedConnector.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS);
 			 		return deltaReplacedConnectors;
@@ -871,8 +959,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedConnectors() {
-		if (deltaReplacedConnectors == null) {
+	public EList settable_getDeltaReplacedConnectors()
+	{
+		if (deltaReplacedConnectors == null)
+		{
+			
+		
 			deltaReplacedConnectors = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedConnector.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS);
 		}
 		return deltaReplacedConnectors;
@@ -883,11 +975,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedConnectors() {
+	public java.util.ArrayList undeleted_getDeltaReplacedConnectors()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedConnectors != null) {
-			for (Object object : deltaReplacedConnectors) {
+		if (deltaReplacedConnectors != null)
+		{
+			for (Object object : deltaReplacedConnectors)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -919,9 +1014,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedOperations() {
-		if (deltaDeletedOperations == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaDeletedOperations()
+	{
+		if (deltaDeletedOperations == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaDeletedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS);
 			 		return deltaDeletedOperations;
@@ -938,8 +1037,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedOperations() {
-		if (deltaDeletedOperations == null) {
+	public EList settable_getDeltaDeletedOperations()
+	{
+		if (deltaDeletedOperations == null)
+		{
+			
+		
 			deltaDeletedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS);
 		}
 		return deltaDeletedOperations;
@@ -950,11 +1053,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedOperations() {
+	public java.util.ArrayList undeleted_getDeltaDeletedOperations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedOperations != null) {
-			for (Object object : deltaDeletedOperations) {
+		if (deltaDeletedOperations != null)
+		{
+			for (Object object : deltaDeletedOperations)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -986,9 +1092,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedOperations() {
-		if (deltaReplacedOperations == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaReplacedOperations()
+	{
+		if (deltaReplacedOperations == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaReplacedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS);
 			 		return deltaReplacedOperations;
@@ -1005,8 +1115,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedOperations() {
-		if (deltaReplacedOperations == null) {
+	public EList settable_getDeltaReplacedOperations()
+	{
+		if (deltaReplacedOperations == null)
+		{
+			
+		
 			deltaReplacedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS);
 		}
 		return deltaReplacedOperations;
@@ -1017,11 +1131,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedOperations() {
+	public java.util.ArrayList undeleted_getDeltaReplacedOperations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedOperations != null) {
-			for (Object object : deltaReplacedOperations) {
+		if (deltaReplacedOperations != null)
+		{
+			for (Object object : deltaReplacedOperations)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1082,9 +1199,13 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getCollaborationRoles() {
-		if (collaborationRole == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getCollaborationRoles()
+	{
+		if (collaborationRole == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		collaborationRole = new com.hopstepjump.emflist.PersistentEList(ConnectableElement.class, this, UML2Package.COLLABORATION__COLLABORATION_ROLE);
 			 		return collaborationRole;
@@ -1101,8 +1222,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getCollaborationRoles() {
-		if (collaborationRole == null) {
+  public EList settable_getCollaborationRoles()
+	{
+		if (collaborationRole == null)
+		{
+			
+		
 			collaborationRole = new com.hopstepjump.emflist.PersistentEList(ConnectableElement.class, this, UML2Package.COLLABORATION__COLLABORATION_ROLE);
 		}
 		return collaborationRole;
@@ -1113,11 +1238,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getCollaborationRoles() {
+  public java.util.ArrayList undeleted_getCollaborationRoles()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (collaborationRole != null) {
-			for (Object object : collaborationRole) {
+		if (collaborationRole != null)
+		{
+			for (Object object : collaborationRole)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1150,7 +1278,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRoles() {
+	public EList getRoles()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList role = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getStructuredClassifier_Role());
@@ -1170,9 +1299,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.COLLABORATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.COLLABORATION__TEMPLATE_BINDING:
@@ -1232,9 +1364,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.COLLABORATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.COLLABORATION__OWNED_COMMENT:
@@ -1313,9 +1448,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.COLLABORATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -1330,8 +1468,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COLLABORATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.COLLABORATION__OWNED_ELEMENT:
@@ -1468,8 +1608,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COLLABORATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1660,8 +1802,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COLLABORATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1818,8 +1962,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COLLABORATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.COLLABORATION__OWNED_ELEMENT:
@@ -1967,9 +2113,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == StructuredClassifier.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == StructuredClassifier.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.COLLABORATION__OWNED_ATTRIBUTE: return UML2Package.STRUCTURED_CLASSIFIER__OWNED_ATTRIBUTE;
 				case UML2Package.COLLABORATION__PART: return UML2Package.STRUCTURED_CLASSIFIER__PART;
 				case UML2Package.COLLABORATION__ROLE: return UML2Package.STRUCTURED_CLASSIFIER__ROLE;
@@ -1993,9 +2142,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == StructuredClassifier.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == StructuredClassifier.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.STRUCTURED_CLASSIFIER__OWNED_ATTRIBUTE: return UML2Package.COLLABORATION__OWNED_ATTRIBUTE;
 				case UML2Package.STRUCTURED_CLASSIFIER__PART: return UML2Package.COLLABORATION__PART;
 				case UML2Package.STRUCTURED_CLASSIFIER__ROLE: return UML2Package.COLLABORATION__ROLE;
@@ -2020,7 +2172,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRolesHelper(EList role) {
+	protected EList getRolesHelper(EList role)
+	{
 		if (eIsSet(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute())) {
 			role.addAll(getOwnedAttributes());
 		}

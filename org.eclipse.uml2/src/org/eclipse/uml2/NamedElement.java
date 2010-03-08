@@ -122,7 +122,7 @@ public interface NamedElement extends TemplateableElement{
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Determines the visibility of the NamedElement within different Namespaces within the overall model. Package Dependencies (â€œDependenciesâ€ on page 94)
+	 * Determines the visibility of the NamedElement within different Namespaces within the overall model. Package Dependencies (“Dependencies” on page 94)
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.eclipse.uml2.VisibilityKind

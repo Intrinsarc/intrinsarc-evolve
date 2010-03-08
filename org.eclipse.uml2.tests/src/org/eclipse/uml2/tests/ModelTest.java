@@ -30,7 +30,8 @@ public class ModelTest extends PackageTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ModelTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ModelTest extends PackageTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelTest(String name) {
+	public ModelTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ModelTest extends PackageTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Model getFixture() {
+	private Model getFixture()
+	{
 		return (Model)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ModelTest extends PackageTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createModel());
 	}
 
@@ -70,7 +74,8 @@ public class ModelTest extends PackageTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

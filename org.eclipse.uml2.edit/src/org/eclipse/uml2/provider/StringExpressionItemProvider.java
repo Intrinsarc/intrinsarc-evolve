@@ -57,7 +57,8 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringExpressionItemProvider(AdapterFactory adapterFactory) {
+	public StringExpressionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSubExpressionPropertyDescriptor(object);
@@ -83,7 +86,8 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSubExpressionPropertyDescriptor(Object object) {
+	protected void addSubExpressionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -105,7 +109,8 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwningExpressionPropertyDescriptor(Object object) {
+	protected void addOwningExpressionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -129,8 +134,10 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getStringExpression_SubExpression());
 		}
@@ -143,7 +150,8 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/StringExpression"); //$NON-NLS-1$
 	}
 
@@ -153,7 +161,8 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		StringExpression stringExpression = (StringExpression)object;
 		return getString("_UI_StringExpression_type") + " " + stringExpression.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -165,10 +174,12 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StringExpression.class)) {
+		switch (notification.getFeatureID(StringExpression.class))
+		{
 			case UML2Package.STRING_EXPRESSION__SUB_EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -183,7 +194,8 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -198,7 +210,8 @@ public class StringExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -72,7 +72,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityItemProvider(AdapterFactory adapterFactory) {
+	public ActivityItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -82,8 +83,10 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addBodyPropertyDescriptor(object);
@@ -105,7 +108,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyPropertyDescriptor(Object object) {
+	protected void addBodyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -125,7 +129,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLanguagePropertyDescriptor(Object object) {
+	protected void addLanguagePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -145,7 +150,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEdgePropertyDescriptor(Object object) {
+	protected void addEdgePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -167,7 +173,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGroupPropertyDescriptor(Object object) {
+	protected void addGroupPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -189,7 +196,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNodePropertyDescriptor(Object object) {
+	protected void addNodePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -211,7 +219,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsReadOnlyPropertyDescriptor(Object object) {
+	protected void addIsReadOnlyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -233,8 +242,10 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getActivity_Edge());
 			childrenFeatures.add(UML2Package.eINSTANCE.getActivity_Group());
@@ -248,7 +259,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -261,7 +273,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsSingleExecutionPropertyDescriptor(Object object) {
+	protected void addIsSingleExecutionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -281,7 +294,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActionPropertyDescriptor(Object object) {
+	protected void addActionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -301,7 +315,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStructuredNodePropertyDescriptor(Object object) {
+	protected void addStructuredNodePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -323,7 +338,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Activity"); //$NON-NLS-1$
 	}
 
@@ -333,7 +349,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Activity)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Activity_type") : //$NON-NLS-1$
@@ -347,10 +364,12 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Activity.class)) {
+		switch (notification.getFeatureID(Activity.class))
+		{
 			case UML2Package.ACTIVITY__BODY:
 			case UML2Package.ACTIVITY__LANGUAGE:
 			case UML2Package.ACTIVITY__IS_SINGLE_EXECUTION:
@@ -373,7 +392,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -693,7 +713,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -710,7 +731,8 @@ public class ActivityItemProvider
 			childFeature == UML2Package.eINSTANCE.getActivity_Group() ||
 			childFeature == UML2Package.eINSTANCE.getActivity_Node();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -724,7 +746,8 @@ public class ActivityItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

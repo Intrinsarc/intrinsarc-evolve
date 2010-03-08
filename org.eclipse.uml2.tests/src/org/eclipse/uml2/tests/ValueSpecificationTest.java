@@ -39,7 +39,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecificationTest(String name) {
+	public ValueSpecificationTest(String name)
+	{
 		super(name);
 	}
 
@@ -49,7 +50,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ValueSpecification getFixture() {
+	private ValueSpecification getFixture()
+	{
 		return (ValueSpecification)fixture;
 	}
 
@@ -60,7 +62,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * @see org.eclipse.uml2.ValueSpecification#isComputable()
 	 * @generated
 	 */
-	public void testIsComputable() {
+	public void testIsComputable()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -72,7 +75,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * @see org.eclipse.uml2.ValueSpecification#integerValue()
 	 * @generated
 	 */
-	public void testIntegerValue() {
+	public void testIntegerValue()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -84,7 +88,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * @see org.eclipse.uml2.ValueSpecification#booleanValue()
 	 * @generated
 	 */
-	public void testBooleanValue() {
+	public void testBooleanValue()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -96,7 +101,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * @see org.eclipse.uml2.ValueSpecification#stringValue()
 	 * @generated
 	 */
-	public void testStringValue() {
+	public void testStringValue()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -108,7 +114,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * @see org.eclipse.uml2.ValueSpecification#unlimitedValue()
 	 * @generated
 	 */
-	public void testUnlimitedValue() {
+	public void testUnlimitedValue()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -120,7 +127,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * @see org.eclipse.uml2.ValueSpecification#isNull()
 	 * @generated
 	 */
-	public void testIsNull() {
+	public void testIsNull()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -134,7 +142,8 @@ public abstract class ValueSpecificationTest extends TypedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

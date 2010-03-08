@@ -58,7 +58,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectNodeItemProvider(AdapterFactory adapterFactory) {
+	public ObjectNodeItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -68,8 +69,10 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
@@ -87,7 +90,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,7 +111,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOrderingPropertyDescriptor(Object object) {
+	protected void addOrderingPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -127,7 +132,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUpperBoundPropertyDescriptor(Object object) {
+	protected void addUpperBoundPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -149,7 +155,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInStatePropertyDescriptor(Object object) {
+	protected void addInStatePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -169,7 +176,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSelectionPropertyDescriptor(Object object) {
+	protected void addSelectionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -191,8 +199,10 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getObjectNode_UpperBound());
 		}
@@ -205,7 +215,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ObjectNode)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ObjectNode_type") : //$NON-NLS-1$
@@ -219,10 +230,12 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ObjectNode.class)) {
+		switch (notification.getFeatureID(ObjectNode.class))
+		{
 			case UML2Package.OBJECT_NODE__ORDERING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -240,7 +253,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -320,7 +334,8 @@ public class ObjectNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -328,32 +328,43 @@ public class UML2Editor
 	 * @generated
 	 */
 	protected IPartListener partListener =
-		new IPartListener() {
-			public void partActivated(IWorkbenchPart p) {
-				if (p instanceof ContentOutline) {
-					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
+		new IPartListener()
+		{
+			public void partActivated(IWorkbenchPart p)
+			{
+				if (p instanceof ContentOutline)
+				{
+					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage)
+					{
 						getActionBarContributor().setActiveEditor(UML2Editor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
-				else if (p instanceof PropertySheet) {
-					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
+				else if (p instanceof PropertySheet)
+				{
+					if (((PropertySheet)p).getCurrentPage() == propertySheetPage)
+					{
 						getActionBarContributor().setActiveEditor(UML2Editor.this);
 						handleActivate();
 					}
 				}
-				else if (p == UML2Editor.this) {
+				else if (p == UML2Editor.this)
+				{
 					handleActivate();
 				}
 			}
-			public void partBroughtToTop(IWorkbenchPart p) {
+			public void partBroughtToTop(IWorkbenchPart p)
+			{
 			}
-			public void partClosed(IWorkbenchPart p) {
+			public void partClosed(IWorkbenchPart p)
+			{
 			}
-			public void partDeactivated(IWorkbenchPart p) {
+			public void partDeactivated(IWorkbenchPart p)
+			{
 			}
-			public void partOpened(IWorkbenchPart p) {
+			public void partOpened(IWorkbenchPart p)
+			{
 			}
 		};
 
@@ -382,28 +393,38 @@ public class UML2Editor
 	 * @generated
 	 */
 	protected IResourceChangeListener resourceChangeListener =
-		new IResourceChangeListener() {
-			public void resourceChanged(IResourceChangeEvent event) {
+		new IResourceChangeListener()
+		{
+			public void resourceChanged(IResourceChangeEvent event)
+			{
 				// Only listening to these.
 				// if (event.getType() == IResourceDelta.POST_CHANGE)
 				{
 					IResourceDelta delta = event.getDelta();
-					try {
-						class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+					try
+					{
+						class ResourceDeltaVisitor implements IResourceDeltaVisitor
+						{
 							protected ResourceSet resourceSet = editingDomain.getResourceSet();
 							protected Collection changedResources = new ArrayList();
 							protected Collection removedResources = new ArrayList();
 
-							public boolean visit(IResourceDelta delta) {
+							public boolean visit(IResourceDelta delta)
+							{
 								if (delta.getFlags() != IResourceDelta.MARKERS &&
-								      delta.getResource().getType() == IResource.FILE) {
-									if ((delta.getKind() & (IResourceDelta.CHANGED | IResourceDelta.REMOVED)) != 0) {
+								      delta.getResource().getType() == IResource.FILE)
+								{
+									if ((delta.getKind() & (IResourceDelta.CHANGED | IResourceDelta.REMOVED)) != 0)
+									{
 										Resource resource = resourceSet.getResource(URI.createURI(delta.getFullPath().toString()), false);
-										if (resource != null) {
-											if ((delta.getKind() & IResourceDelta.REMOVED) != 0) {
+										if (resource != null)
+										{
+											if ((delta.getKind() & IResourceDelta.REMOVED) != 0)
+											{
 												removedResources.add(resource);
 											}
-											else {
+											else
+											{
 												changedResources.add(resource);
 											}
 										}
@@ -413,11 +434,13 @@ public class UML2Editor
 								return true;
 							}
 
-							public Collection getChangedResources() {
+							public Collection getChangedResources()
+							{
 								return changedResources;
 							}
 
-							public Collection getRemovedResources() {
+							public Collection getRemovedResources()
+							{
 								return removedResources;
 							}
 						}
@@ -425,12 +448,16 @@ public class UML2Editor
 						ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
 						delta.accept(visitor);
 
-						if (!visitor.getRemovedResources().isEmpty()) {
+						if (!visitor.getRemovedResources().isEmpty())
+						{
 							removedResources.addAll(visitor.getRemovedResources());
-							if (!isDirty()) {
+							if (!isDirty())
+							{
 								getSite().getShell().getDisplay().asyncExec
-									(new Runnable() {
-										 public void run() {
+									(new Runnable()
+									 {
+										 public void run()
+										 {
 											 getSite().getPage().closeEditor(UML2Editor.this, false);
 											 UML2Editor.this.dispose();
 										 }
@@ -438,11 +465,13 @@ public class UML2Editor
 							}
 						}
 
-						if (!visitor.getChangedResources().isEmpty()) {
+						if (!visitor.getChangedResources().isEmpty())
+						{
 							changedResources.addAll(visitor.getChangedResources());
 						}
 					}
-					catch (CoreException exception) {
+					catch (CoreException exception)
+					{
 						UML2EditorPlugin.INSTANCE.log(exception);
 					}
 				}
@@ -453,10 +482,12 @@ public class UML2Editor
 	 * Handles activation of the editor or it's associated views.
 	 * @generated
 	 */
-	protected void handleActivate() {
+	protected void handleActivate()
+	{
 		// Recompute the read only state.
 		//
-		if (editingDomain.getResourceToReadOnlyMap() != null) {
+		if (editingDomain.getResourceToReadOnlyMap() != null)
+		{
 		  editingDomain.getResourceToReadOnlyMap().clear();
 
 		  // Refresh any actions that may become enabled or disabled.
@@ -464,18 +495,22 @@ public class UML2Editor
 		  setSelection(getSelection());
 		}
 
-		if (!removedResources.isEmpty()) {
-			if (handleDirtyConflict()) {
+		if (!removedResources.isEmpty())
+		{
+			if (handleDirtyConflict())
+			{
 				getSite().getPage().closeEditor(UML2Editor.this, false);
 				UML2Editor.this.dispose();
 			}
-			else {
+			else
+			{
 				removedResources.clear();
 				changedResources.clear();
 				savedResources.clear();
 			}
 		}
-		else if (!changedResources.isEmpty()) {
+		else if (!changedResources.isEmpty())
+		{
 			changedResources.removeAll(savedResources);
 			handleChangedResources();
 			changedResources.clear();
@@ -488,18 +523,24 @@ public class UML2Editor
 	 * Handles what to do with changed resources on activation.
 	 * @generated
 	 */
-	protected void handleChangedResources() {
-		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+	protected void handleChangedResources()
+	{
+		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict()))
+		{
 		  editingDomain.getCommandStack().flush();
 
-			for (Iterator i = changedResources.iterator(); i.hasNext(); ) {
+			for (Iterator i = changedResources.iterator(); i.hasNext(); )
+			{
 				Resource resource = (Resource)i.next();
-				if (resource.isLoaded()) {
+				if (resource.isLoaded())
+				{
 					resource.unload();
-					try {
+					try
+					{
 						resource.load(Collections.EMPTY_MAP);
 					}
-					catch (IOException exception) {
+					catch (IOException exception)
+					{
 						UML2EditorPlugin.INSTANCE.log(exception);
 					}
 				}
@@ -511,7 +552,8 @@ public class UML2Editor
 	 * Shows a dialog that asks if conflicting changes should be discarded.
 	 * @generated
 	 */
-	protected boolean handleDirtyConflict() {
+	protected boolean handleDirtyConflict()
+	{
 		return
 			MessageDialog.openQuestion
 				(getSite().getShell(),
@@ -525,7 +567,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2Editor() {
+	public UML2Editor()
+	{
 		super();
 
 		// Create an adapter factory that yields item providers.
@@ -545,20 +588,26 @@ public class UML2Editor
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//
 		commandStack.addCommandStackListener
-			(new CommandStackListener() {
-				 public void commandStackChanged(final EventObject event) {
+			(new CommandStackListener()
+			 {
+				 public void commandStackChanged(final EventObject event)
+				 {
 					 getContainer().getDisplay().asyncExec
-						 (new Runnable() {
-							  public void run() {
+						 (new Runnable()
+						  {
+							  public void run()
+							  {
 								  firePropertyChange(IEditorPart.PROP_DIRTY);
 
 								  // Try to select the affected objects.
 								  //
 								  Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
-								  if (mostRecentCommand != null) {
+								  if (mostRecentCommand != null)
+								  {
 									  setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 								  }
-								  if (propertySheetPage != null) {
+								  if (propertySheetPage != null)
+								  {
 									  propertySheetPage.refresh();
 								  }
 							  }
@@ -577,7 +626,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void firePropertyChange(int action) {
+	protected void firePropertyChange(int action)
+	{
 		super.firePropertyChange(action);
 	}
 
@@ -587,22 +637,27 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelectionToViewer(Collection collection) {
+	public void setSelectionToViewer(Collection collection)
+	{
 		final Collection theSelection = collection;
 		// Make sure it's okay.
 		//
-		if (theSelection != null && !theSelection.isEmpty()) {
+		if (theSelection != null && !theSelection.isEmpty())
+		{
 			// I don't know if this should be run this deferred
 			// because we might have to give the editor a chance to process the viewer update events
 			// and hence to update the views first.
 			//
 			//
 			Runnable runnable =
-				new Runnable() {
-					public void run() {
+				new Runnable()
+				{
+					public void run()
+					{
 						// Try to select the items in the current content viewer of the editor.
 						//
-						if (currentViewer != null) {
+						if (currentViewer != null)
+						{
 							currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
 						}
 					}
@@ -619,7 +674,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EditingDomain getEditingDomain() {
+	public EditingDomain getEditingDomain()
+	{
 		return editingDomain;
 	}
 
@@ -658,9 +714,12 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurrentViewerPane(ViewerPane viewerPane) {
-		if (currentViewerPane != viewerPane) {
-			if (currentViewerPane != null) {
+	public void setCurrentViewerPane(ViewerPane viewerPane)
+	{
+		if (currentViewerPane != viewerPane)
+		{
+			if (currentViewerPane != null)
+			{
 				currentViewerPane.showFocus(false);
 			}
 			currentViewerPane = viewerPane;
@@ -675,18 +734,23 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurrentViewer(Viewer viewer) {
+	public void setCurrentViewer(Viewer viewer)
+	{
 		// If it is changing...
 		//
-		if (currentViewer != viewer) {
-			if (selectionChangedListener == null) {
+		if (currentViewer != viewer)
+		{
+			if (selectionChangedListener == null)
+			{
 				// Create the listener on demand.
 				//
 				selectionChangedListener =
-					new ISelectionChangedListener() {
+					new ISelectionChangedListener()
+					{
 						// This just notifies those things that are affected by the section.
 						//
-						public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
+						public void selectionChanged(SelectionChangedEvent selectionChangedEvent)
+						{
 							setSelection(selectionChangedEvent.getSelection());
 						}
 					};
@@ -694,13 +758,15 @@ public class UML2Editor
 
 			// Stop listening to the old one.
 			//
-			if (currentViewer != null) {
+			if (currentViewer != null)
+			{
 				currentViewer.removeSelectionChangedListener(selectionChangedListener);
 			}
 
 			// Start listening to the new one.
 			//
-			if (viewer != null) {
+			if (viewer != null)
+			{
 				viewer.addSelectionChangedListener(selectionChangedListener);
 			}
 
@@ -720,7 +786,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Viewer getViewer() {
+	public Viewer getViewer()
+	{
 		return currentViewer;
 	}
 
@@ -730,7 +797,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createContextMenuFor(StructuredViewer viewer) {
+	protected void createContextMenuFor(StructuredViewer viewer)
+	{
 		MenuManager contextMenu = new MenuManager("#PopUp"); //$NON-NLS-1$
 		contextMenu.add(new Separator("additions")); //$NON-NLS-1$
 		contextMenu.setRemoveAllWhenShown(true);
@@ -751,17 +819,20 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createModel() {
+	public void createModel()
+	{
 		// I assume that the input is a file object.
 		//
 		IFileEditorInput modelFile = (IFileEditorInput)getEditorInput();
 
-		try {
+		try
+		{
 			// Load the resource through the editing domain.
 			//
 			editingDomain.loadResource(URI.createPlatformResourceURI(modelFile.getFile().getFullPath().toString()).toString());
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			UML2EditorPlugin.INSTANCE.log(exception);
 		}
 	}
@@ -772,7 +843,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createPages() {
+	public void createPages()
+	{
 		// Creates the model from the editor input
 		//
 		createModel();
@@ -781,13 +853,16 @@ public class UML2Editor
 		//
 		{
 			ViewerPane viewerPane =
-				new ViewerPane(getSite().getPage(), UML2Editor.this) {
-					public Viewer createViewer(Composite composite) {
+				new ViewerPane(getSite().getPage(), UML2Editor.this)
+				{
+					public Viewer createViewer(Composite composite)
+					{
 						Tree tree = new Tree(composite, SWT.MULTI);
 						TreeViewer newTreeViewer = new TreeViewer(tree);
 						return newTreeViewer;
 					}
-					public void requestActivation() {
+					public void requestActivation()
+					{
 						super.requestActivation();
 						setCurrentViewerPane(this);
 					}
@@ -812,13 +887,16 @@ public class UML2Editor
 		//
 		{
 			ViewerPane viewerPane =
-				new ViewerPane(getSite().getPage(), UML2Editor.this) {
-					public Viewer createViewer(Composite composite) {
+				new ViewerPane(getSite().getPage(), UML2Editor.this)
+				{
+					public Viewer createViewer(Composite composite)
+					{
 						Tree tree = new Tree(composite, SWT.MULTI);
 						TreeViewer newTreeViewer = new TreeViewer(tree);
 						return newTreeViewer;
 					}
-					public void requestActivation() {
+					public void requestActivation()
+					{
 						super.requestActivation();
 						setCurrentViewerPane(this);
 					}
@@ -839,11 +917,14 @@ public class UML2Editor
 		//
 		{
 			ViewerPane viewerPane =
-				new ViewerPane(getSite().getPage(), UML2Editor.this) {
-					public Viewer createViewer(Composite composite) {
+				new ViewerPane(getSite().getPage(), UML2Editor.this)
+				{
+					public Viewer createViewer(Composite composite)
+					{
 						return new ListViewer(composite);
 					}
-					public void requestActivation() {
+					public void requestActivation()
+					{
 						super.requestActivation();
 						setCurrentViewerPane(this);
 					}
@@ -862,11 +943,14 @@ public class UML2Editor
 		//
 		{
 			ViewerPane viewerPane =
-				new ViewerPane(getSite().getPage(), UML2Editor.this) {
-					public Viewer createViewer(Composite composite) {
+				new ViewerPane(getSite().getPage(), UML2Editor.this)
+				{
+					public Viewer createViewer(Composite composite)
+					{
 						return new TreeViewer(composite);
 					}
-					public void requestActivation() {
+					public void requestActivation()
+					{
 						super.requestActivation();
 						setCurrentViewerPane(this);
 					}
@@ -887,11 +971,14 @@ public class UML2Editor
 		//
 		{
 			ViewerPane viewerPane =
-				new ViewerPane(getSite().getPage(), UML2Editor.this) {
-					public Viewer createViewer(Composite composite) {
+				new ViewerPane(getSite().getPage(), UML2Editor.this)
+				{
+					public Viewer createViewer(Composite composite)
+					{
 						return new TableViewer(composite);
 					}
-					public void requestActivation() {
+					public void requestActivation()
+					{
 						super.requestActivation();
 						setCurrentViewerPane(this);
 					}
@@ -928,11 +1015,14 @@ public class UML2Editor
 		//
 		{
 			ViewerPane viewerPane =
-				new ViewerPane(getSite().getPage(), UML2Editor.this) {
-					public Viewer createViewer(Composite composite) {
+				new ViewerPane(getSite().getPage(), UML2Editor.this)
+				{
+					public Viewer createViewer(Composite composite)
+					{
 						return new TreeViewer(composite);
 					}
-					public void requestActivation() {
+					public void requestActivation()
+					{
 						super.requestActivation();
 						setCurrentViewerPane(this);
 					}
@@ -968,10 +1058,13 @@ public class UML2Editor
 		setActivePage(0);
 
 		getContainer().addControlListener
-			(new ControlAdapter() {
+			(new ControlAdapter()
+			 {
 				boolean guard = false;
-				public void controlResized(ControlEvent event) {
-					if (!guard) {
+				public void controlResized(ControlEvent event)
+				{
+					if (!guard)
+					{
 						guard = true;
 						hideTabs();
 						guard = false;
@@ -987,10 +1080,13 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void hideTabs() {
-		if (getPageCount() <= 1) {
+	protected void hideTabs()
+	{
+		if (getPageCount() <= 1)
+		{
 			setPageText(0, ""); //$NON-NLS-1$
-			if (getContainer() instanceof CTabFolder) {
+			if (getContainer() instanceof CTabFolder)
+			{
 				((CTabFolder)getContainer()).setTabHeight(1);
 				Point point = getContainer().getSize();
 				getContainer().setSize(point.x, point.y + 6);
@@ -1004,18 +1100,21 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void pageChange(int pageIndex) {
+	protected void pageChange(int pageIndex)
+	{
 		super.pageChange(pageIndex);
 
 		// This is a temporary workaround... EATM
 		//
 		Control control = getControl(pageIndex);
-		if (control != null) {
+		if (control != null)
+		{
 			control.setVisible(true);
 			control.setFocus();
 		}
 
-		if (contentOutlinePage != null) {
+		if (contentOutlinePage != null)
+		{
 			handleContentOutlineSelection(contentOutlinePage.getSelection());
 		}
 	}
@@ -1026,17 +1125,22 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getAdapter(Class key) {
-		if (key.equals(IContentOutlinePage.class)) {
+	public Object getAdapter(Class key)
+	{
+		if (key.equals(IContentOutlinePage.class))
+		{
 			return getContentOutlinePage();
 		}
-		else if (key.equals(IPropertySheetPage.class)) {
+		else if (key.equals(IPropertySheetPage.class))
+		{
 			return getPropertySheetPage();
 		}
-		else if (key.equals(IGotoMarker.class)) {
+		else if (key.equals(IGotoMarker.class))
+		{
 			return this;
 		}
-		else {
+		else
+		{
 			return super.getAdapter(key);
 		}
 	}
@@ -1047,12 +1151,16 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IContentOutlinePage getContentOutlinePage() {
-		if (contentOutlinePage == null) {
+	public IContentOutlinePage getContentOutlinePage()
+	{
+		if (contentOutlinePage == null)
+		{
 			// The content outline is just a tree.
 			//
-			class MyContentOutlinePage extends ContentOutlinePage {
-				public void createControl(Composite parent) {
+			class MyContentOutlinePage extends ContentOutlinePage
+			{
+				public void createControl(Composite parent)
+				{
 					super.createControl(parent);
 					contentOutlineViewer = getTreeViewer();
 					contentOutlineViewer.addSelectionChangedListener(this);
@@ -1067,7 +1175,8 @@ public class UML2Editor
 					//
 					createContextMenuFor(contentOutlineViewer);
 
-					if (!editingDomain.getResourceSet().getResources().isEmpty()) {
+					if (!editingDomain.getResourceSet().getResources().isEmpty())
+					{
 					  // Select the root object in the view.
 					  //
 					  ArrayList selection = new ArrayList();
@@ -1076,12 +1185,14 @@ public class UML2Editor
 					}
 				}
 
-				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
+				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager)
+				{
 					super.makeContributions(menuManager, toolBarManager, statusLineManager);
 					contentOutlineStatusLineManager = statusLineManager;
 				}
 
-				public void setActionBars(IActionBars actionBars) {
+				public void setActionBars(IActionBars actionBars)
+				{
 					super.setActionBars(actionBars);
 					getActionBarContributor().shareGlobalActions(this, actionBars);
 				}
@@ -1092,10 +1203,12 @@ public class UML2Editor
 			// Listen to selection so that we can handle it is a special way.
 			//
 			contentOutlinePage.addSelectionChangedListener
-				(new ISelectionChangedListener() {
+				(new ISelectionChangedListener()
+				 {
 					 // This ensures that we handle selections correctly.
 					 //
-					 public void selectionChanged(SelectionChangedEvent event) {
+					 public void selectionChanged(SelectionChangedEvent event)
+					 {
 						 handleContentOutlineSelection(event.getSelection());
 					 }
 				 });
@@ -1110,15 +1223,20 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IPropertySheetPage getPropertySheetPageGen() {
-		if (propertySheetPage == null) {
+	public IPropertySheetPage getPropertySheetPageGen()
+	{
+		if (propertySheetPage == null)
+		{
 			propertySheetPage =
-				new PropertySheetPage() {
-					public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
+				new PropertySheetPage()
+				{
+					public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager)
+					{
 						super.makeContributions(menuManager, toolBarManager, statusLineManager);
 					}
 
-					public void setActionBars(IActionBars actionBars) {
+					public void setActionBars(IActionBars actionBars)
+					{
 						super.setActionBars(actionBars);
 						getActionBarContributor().shareGlobalActions(this, actionBars);
 					}
@@ -1154,20 +1272,25 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void handleContentOutlineSelection(ISelection selection) {
-		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
+	public void handleContentOutlineSelection(ISelection selection)
+	{
+		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection)
+		{
 			Iterator selectedElements = ((IStructuredSelection)selection).iterator();
-			if (selectedElements.hasNext()) {
+			if (selectedElements.hasNext())
+			{
 				// Get the first selected element.
 				//
 				Object selectedElement = selectedElements.next();
 
 				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
-				if (currentViewerPane.getViewer() == selectionViewer) {
+				if (currentViewerPane.getViewer() == selectionViewer)
+				{
 					ArrayList selectionList = new ArrayList();
 					selectionList.add(selectedElement);
-					while (selectedElements.hasNext()) {
+					while (selectedElements.hasNext())
+					{
 						selectionList.add(selectedElements.next());
 					}
 
@@ -1175,10 +1298,12 @@ public class UML2Editor
 					//
 					selectionViewer.setSelection(new StructuredSelection(selectionList));
 				}
-				else {
+				else
+				{
 					// Set the input to the widget.
 					//
-					if (currentViewerPane.getViewer().getInput() != selectedElement) {
+					if (currentViewerPane.getViewer().getInput() != selectedElement)
+					{
 						currentViewerPane.getViewer().setInput(selectedElement);
 						currentViewerPane.setTitle(selectedElement);
 					}
@@ -1193,7 +1318,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDirty() {
+	public boolean isDirty()
+	{
 		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
@@ -1203,28 +1329,34 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void doSave(IProgressMonitor progressMonitor) {
+	public void doSave(IProgressMonitor progressMonitor)
+	{
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
 		WorkspaceModifyOperation operation =
-			new WorkspaceModifyOperation() {
+			new WorkspaceModifyOperation()
+			{
 				// This is the method that gets invoked when the operation runs.
 				//
-				public void execute(IProgressMonitor monitor) {
-					try {
+				public void execute(IProgressMonitor monitor)
+				{
+					try
+					{
 						// Save the resource to the file system.
 						//
 						Resource savedResource = (Resource)editingDomain.getResourceSet().getResources().get(0);
 						savedResources.add(savedResource);
 						savedResource.save(Collections.EMPTY_MAP);
 					}
-					catch (Exception exception) {
+					catch (Exception exception)
+					{
 						UML2EditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			};
 
-		try {
+		try
+		{
 			// This runs the options, and shows progress.
 			//
 			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
@@ -1234,7 +1366,8 @@ public class UML2Editor
 			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			// Something went wrong that shouldn't.
 			//
 			UML2EditorPlugin.INSTANCE.log(exception);
@@ -1247,7 +1380,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSaveAsAllowed() {
+	public boolean isSaveAsAllowed()
+	{
 		return true;
 	}
 
@@ -1257,13 +1391,16 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void doSaveAs() {
+	public void doSaveAs()
+	{
 		SaveAsDialog saveAsDialog= new SaveAsDialog(getSite().getShell());
 		saveAsDialog.open();
 		IPath path= saveAsDialog.getResult();
-		if (path != null) {
+		if (path != null)
+		{
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-			if (file != null) {
+			if (file != null)
+			{
 				doSaveAs(URI.createPlatformResourceURI(file.getFullPath().toString()), new FileEditorInput(file));
 			}
 		}
@@ -1274,7 +1411,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void doSaveAs(URI uri, IEditorInput editorInput) {
+	protected void doSaveAs(URI uri, IEditorInput editorInput)
+	{
 		((Resource)editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
 		setInput(editorInput);
 		setPartName(editorInput.getName());
@@ -1290,20 +1428,26 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void gotoMarker(IMarker marker) {
-		try {
-			if (marker.getType().equals(EValidator.MARKER)) {
+	public void gotoMarker(IMarker marker)
+	{
+		try
+		{
+			if (marker.getType().equals(EValidator.MARKER))
+			{
 				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
-				if (uriAttribute != null) {
+				if (uriAttribute != null)
+				{
 					URI uri = URI.createURI(uriAttribute);
 					EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
-					if (eObject != null) {
+					if (eObject != null)
+					{
 					  setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
 					}
 				}
 			}
 		}
-		catch (CoreException exception) {
+		catch (CoreException exception)
+		{
 			UML2EditorPlugin.INSTANCE.log(exception);
 		}
 	}
@@ -1314,7 +1458,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void init(IEditorSite site, IEditorInput editorInput) {
+	public void init(IEditorSite site, IEditorInput editorInput)
+	{
 		setSite(site);
 		setInput(editorInput);
 		setPartName(editorInput.getName());
@@ -1328,7 +1473,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFocus() {
+	public void setFocus()
+	{
 		getControl(getActivePage()).setFocus();
 	}
 
@@ -1338,7 +1484,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void addSelectionChangedListener(ISelectionChangedListener listener) {
+	public void addSelectionChangedListener(ISelectionChangedListener listener)
+	{
 		selectionChangedListeners.add(listener);
 	}
 
@@ -1348,7 +1495,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
+	public void removeSelectionChangedListener(ISelectionChangedListener listener)
+	{
 		selectionChangedListeners.remove(listener);
 	}
 
@@ -1358,7 +1506,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ISelection getSelection() {
+	public ISelection getSelection()
+	{
 		return editorSelection;
 	}
 
@@ -1369,10 +1518,12 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelection(ISelection selection) {
+	public void setSelection(ISelection selection)
+	{
 		editorSelection = selection;
 
-		for (Iterator listeners = selectionChangedListeners.iterator(); listeners.hasNext(); ) {
+		for (Iterator listeners = selectionChangedListeners.iterator(); listeners.hasNext(); )
+		{
 			ISelectionChangedListener listener = (ISelectionChangedListener)listeners.next();
 			listener.selectionChanged(new SelectionChangedEvent(this, selection));
 		}
@@ -1384,30 +1535,38 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatusLineManager(ISelection selection) {
+	public void setStatusLineManager(ISelection selection)
+	{
 		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ?
 			contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 	
-		if (statusLineManager != null) {
-			if (selection instanceof IStructuredSelection) {
+		if (statusLineManager != null)
+		{
+			if (selection instanceof IStructuredSelection)
+			{
 				Collection collection = ((IStructuredSelection)selection).toList();
-				switch (collection.size()) {
-					case 0: {
+				switch (collection.size())
+				{
+					case 0:
+					{
 						statusLineManager.setMessage(getString("_UI_NoObjectSelected")); //$NON-NLS-1$
 						break;
 					}
-					case 1: {
+					case 1:
+					{
 						String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
 						statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text)); //$NON-NLS-1$
 						break;
 					}
-					default: {
+					default:
+					{
 						statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size()))); //$NON-NLS-1$
 						break;
 					}
 				}
 			}
-			else {
+			else
+			{
 				statusLineManager.setMessage(""); //$NON-NLS-1$
 			}
 		}
@@ -1419,7 +1578,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static String getString(String key) {
+	private static String getString(String key)
+	{
 		return UML2EditorPlugin.INSTANCE.getString(key);
 	}
 
@@ -1429,7 +1589,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static String getString(String key, Object s1) {
+	private static String getString(String key, Object s1)
+	{
 		return UML2EditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
@@ -1439,7 +1600,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void menuAboutToShow(IMenuManager menuManager) {
+	public void menuAboutToShow(IMenuManager menuManager)
+	{
 		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
 	}
 
@@ -1448,7 +1610,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EditingDomainActionBarContributor getActionBarContributor() {
+	public EditingDomainActionBarContributor getActionBarContributor()
+	{
 		return (EditingDomainActionBarContributor)getEditorSite().getActionBarContributor();
 	}
 
@@ -1457,7 +1620,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IActionBars getActionBars() {
+	public IActionBars getActionBars()
+	{
 		return getActionBarContributor().getActionBars();
 	}
 
@@ -1466,7 +1630,8 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AdapterFactory getAdapterFactory() {
+	public AdapterFactory getAdapterFactory()
+	{
 		return adapterFactory;
 	}
 
@@ -1475,22 +1640,26 @@ public class UML2Editor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void disposeGen() {
+	public void disposeGen()
+	{
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
 
 		getSite().getPage().removePartListener(partListener);
 
 		adapterFactory.dispose();
 
-		if (getActionBarContributor().getActiveEditor() == this) {
+		if (getActionBarContributor().getActiveEditor() == this)
+		{
 			getActionBarContributor().setActiveEditor(null);
 		}
 
-		if (propertySheetPage != null) {
+		if (propertySheetPage != null)
+		{
 			propertySheetPage.dispose();
 		}
 
-		if (contentOutlinePage != null) {
+		if (contentOutlinePage != null)
+		{
 			contentOutlinePage.dispose();
 		}
 

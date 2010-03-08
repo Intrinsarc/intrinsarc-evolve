@@ -72,7 +72,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationItemProvider(AdapterFactory adapterFactory) {
+	public AssociationItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -82,8 +83,10 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRelatedElementPropertyDescriptor(object);
@@ -101,7 +104,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedElementPropertyDescriptor(Object object) {
+	protected void addRelatedElementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -123,7 +127,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsDerivedPropertyDescriptor(Object object) {
+	protected void addIsDerivedPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -143,7 +148,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedEndPropertyDescriptor(Object object) {
+	protected void addOwnedEndPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -165,7 +171,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEndTypePropertyDescriptor(Object object) {
+	protected void addEndTypePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -187,7 +194,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMemberEndPropertyDescriptor(Object object) {
+	protected void addMemberEndPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -209,8 +217,10 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getAssociation_OwnedEnd());
 		}
@@ -223,7 +233,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Association"); //$NON-NLS-1$
 	}
 
@@ -233,7 +244,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Association)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Association_type") : //$NON-NLS-1$
@@ -247,10 +259,12 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Association.class)) {
+		switch (notification.getFeatureID(Association.class))
+		{
 			case UML2Package.ASSOCIATION__IS_DERIVED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -268,7 +282,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -293,7 +308,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -301,7 +317,8 @@ public class AssociationItemProvider
 			childFeature == UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies() ||
 			childFeature == UML2Package.eINSTANCE.getClassifier_Substitution();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -315,7 +332,8 @@ public class AssociationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

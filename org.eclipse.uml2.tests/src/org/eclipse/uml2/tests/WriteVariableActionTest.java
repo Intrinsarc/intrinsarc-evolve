@@ -28,7 +28,8 @@ public abstract class WriteVariableActionTest extends VariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WriteVariableActionTest(String name) {
+	public WriteVariableActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class WriteVariableActionTest extends VariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private WriteVariableAction getFixture() {
+	private WriteVariableAction getFixture()
+	{
 		return (WriteVariableAction)fixture;
 	}
 
@@ -51,7 +53,8 @@ public abstract class WriteVariableActionTest extends VariableActionTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs() {
+	public void testGetInputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

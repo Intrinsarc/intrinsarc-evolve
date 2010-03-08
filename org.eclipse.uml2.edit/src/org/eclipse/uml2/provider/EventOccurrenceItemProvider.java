@@ -54,7 +54,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrenceItemProvider(AdapterFactory adapterFactory) {
+	public EventOccurrenceItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -64,8 +65,10 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addReceiveMessagePropertyDescriptor(object);
@@ -84,7 +87,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReceiveMessagePropertyDescriptor(Object object) {
+	protected void addReceiveMessagePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -104,7 +108,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSendMessagePropertyDescriptor(Object object) {
+	protected void addSendMessagePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -124,7 +129,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStartExecPropertyDescriptor(Object object) {
+	protected void addStartExecPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -144,7 +150,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFinishExecPropertyDescriptor(Object object) {
+	protected void addFinishExecPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -164,7 +171,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addToAfterPropertyDescriptor(Object object) {
+	protected void addToAfterPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -184,7 +192,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addToBeforePropertyDescriptor(Object object) {
+	protected void addToBeforePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -204,7 +213,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/EventOccurrence"); //$NON-NLS-1$
 	}
 
@@ -214,7 +224,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((EventOccurrence)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_EventOccurrence_type") : //$NON-NLS-1$
@@ -228,7 +239,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -240,7 +252,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -250,7 +263,8 @@ public class EventOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

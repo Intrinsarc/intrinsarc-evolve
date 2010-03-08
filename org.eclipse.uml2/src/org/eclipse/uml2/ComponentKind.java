@@ -136,7 +136,8 @@ public final class ComponentKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final ComponentKind[] VALUES_ARRAY =
-		new ComponentKind[] {
+		new ComponentKind[]
+		{
 			NONE_LITERAL,
 			NORMAL_LITERAL,
 			PRIMITIVE_LITERAL,
@@ -157,10 +158,13 @@ public final class ComponentKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ComponentKind get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static ComponentKind get(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ComponentKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(name))
+			{
 				return result;
 			}
 		}
@@ -173,8 +177,10 @@ public final class ComponentKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ComponentKind get(int value) {
-		switch (value) {
+	public static ComponentKind get(int value)
+	{
+		switch (value)
+		{
 			case NONE: return NONE_LITERAL;
 			case NORMAL: return NORMAL_LITERAL;
 			case PRIMITIVE: return PRIMITIVE_LITERAL;
@@ -189,7 +195,8 @@ public final class ComponentKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ComponentKind(int value, String name) {
+	private ComponentKind(int value, String name)
+	{
 		super(value, name);
 	}
 

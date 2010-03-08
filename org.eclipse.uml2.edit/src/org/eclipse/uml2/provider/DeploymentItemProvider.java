@@ -72,7 +72,8 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeploymentItemProvider(AdapterFactory adapterFactory) {
+	public DeploymentItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -82,8 +83,10 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addDeployedArtifactPropertyDescriptor(object);
@@ -99,7 +102,8 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDeployedArtifactPropertyDescriptor(Object object) {
+	protected void addDeployedArtifactPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -119,7 +123,8 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLocationPropertyDescriptor(Object object) {
+	protected void addLocationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -141,7 +146,8 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConfigurationPropertyDescriptor(Object object) {
+	protected void addConfigurationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -165,8 +171,10 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getDeployment_Configuration());
 		}
@@ -179,7 +187,8 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Deployment"); //$NON-NLS-1$
 	}
 
@@ -189,7 +198,8 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Deployment)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Deployment_type") : //$NON-NLS-1$
@@ -203,10 +213,12 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Deployment.class)) {
+		switch (notification.getFeatureID(Deployment.class))
+		{
 			case UML2Package.DEPLOYMENT__CONFIGURATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -221,7 +233,8 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -236,7 +249,8 @@ public class DeploymentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -57,7 +57,8 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EncapsulatedClassifierItemProvider(AdapterFactory adapterFactory) {
+	public EncapsulatedClassifierItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addOwnedPortPropertyDescriptor(object);
@@ -82,7 +85,8 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedPortPropertyDescriptor(Object object) {
+	protected void addOwnedPortPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,8 +110,10 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getEncapsulatedClassifier_OwnedPort());
 		}
@@ -120,7 +126,8 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((EncapsulatedClassifier)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_EncapsulatedClassifier_type") : //$NON-NLS-1$
@@ -134,10 +141,12 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EncapsulatedClassifier.class)) {
+		switch (notification.getFeatureID(EncapsulatedClassifier.class))
+		{
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -152,7 +161,8 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -167,7 +177,8 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -177,7 +188,8 @@ public class EncapsulatedClassifierItemProvider
 			childFeature == UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute() ||
 			childFeature == UML2Package.eINSTANCE.getEncapsulatedClassifier_OwnedPort();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -191,7 +203,8 @@ public class EncapsulatedClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -71,7 +71,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameterSubstitutionItemProvider(AdapterFactory adapterFactory) {
+	public TemplateParameterSubstitutionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -81,8 +82,10 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addFormalPropertyDescriptor(object);
@@ -99,7 +102,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFormalPropertyDescriptor(Object object) {
+	protected void addFormalPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -119,7 +123,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTemplateBindingPropertyDescriptor(Object object) {
+	protected void addTemplateBindingPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -141,7 +146,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActualPropertyDescriptor(Object object) {
+	protected void addActualPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -161,7 +167,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedActualPropertyDescriptor(Object object) {
+	protected void addOwnedActualPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -185,8 +192,10 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getTemplateParameterSubstitution_OwnedActual());
 		}
@@ -199,7 +208,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/TemplateParameterSubstitution"); //$NON-NLS-1$
 	}
 
@@ -209,7 +219,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		TemplateParameterSubstitution templateParameterSubstitution = (TemplateParameterSubstitution)object;
 		return getString("_UI_TemplateParameterSubstitution_type") + " " + templateParameterSubstitution.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -221,10 +232,12 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TemplateParameterSubstitution.class)) {
+		switch (notification.getFeatureID(TemplateParameterSubstitution.class))
+		{
 			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -239,7 +252,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -589,7 +603,8 @@ public class TemplateParameterSubstitutionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

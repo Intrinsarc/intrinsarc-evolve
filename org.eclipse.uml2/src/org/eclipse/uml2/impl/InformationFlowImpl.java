@@ -90,11 +90,13 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InformationFlowImpl() {
+	protected InformationFlowImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -103,7 +105,8 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getInformationFlow();
 	}
 
@@ -112,7 +115,8 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRelatedElements() {
+	public EList getRelatedElements()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList relatedElement = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getRelationship_RelatedElement());
@@ -132,7 +136,8 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source) {
+	protected EList getSourcesHelper(EList source)
+	{
 		return source;
 	}
 
@@ -141,7 +146,8 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSources() {
+	public EList getSources()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList source = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Source());
@@ -161,7 +167,8 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target) {
+	protected EList getTargetsHelper(EList target)
+	{
 		return target;
 	}
 
@@ -170,7 +177,8 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTargets() {
+	public EList getTargets()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList target = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Target());
@@ -190,9 +198,13 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRealizations() {
-		if (realization == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRealizations()
+	{
+		if (realization == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		realization = new com.hopstepjump.emflist.PersistentEList(Relationship.class, this, UML2Package.INFORMATION_FLOW__REALIZATION);
 			 		return realization;
@@ -209,8 +221,12 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRealizations() {
-		if (realization == null) {
+  public EList settable_getRealizations()
+	{
+		if (realization == null)
+		{
+			
+		
 			realization = new com.hopstepjump.emflist.PersistentEList(Relationship.class, this, UML2Package.INFORMATION_FLOW__REALIZATION);
 		}
 		return realization;
@@ -221,11 +237,14 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRealizations() {
+  public java.util.ArrayList undeleted_getRealizations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (realization != null) {
-			for (Object object : realization) {
+		if (realization != null)
+		{
+			for (Object object : realization)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -243,9 +262,13 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getConveyeds() {
-		if (conveyed == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getConveyeds()
+	{
+		if (conveyed == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		conveyed = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_FLOW__CONVEYED);
 			 		return conveyed;
@@ -262,8 +285,12 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getConveyeds() {
-		if (conveyed == null) {
+  public EList settable_getConveyeds()
+	{
+		if (conveyed == null)
+		{
+			
+		
 			conveyed = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_FLOW__CONVEYED);
 		}
 		return conveyed;
@@ -274,11 +301,14 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getConveyeds() {
+  public java.util.ArrayList undeleted_getConveyeds()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (conveyed != null) {
-			for (Object object : conveyed) {
+		if (conveyed != null)
+		{
+			for (Object object : conveyed)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -311,9 +341,12 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.INFORMATION_FLOW__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INFORMATION_FLOW__TEMPLATE_BINDING:
@@ -346,9 +379,12 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.INFORMATION_FLOW__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INFORMATION_FLOW__OWNED_COMMENT:
@@ -381,9 +417,12 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.INFORMATION_FLOW__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -398,8 +437,10 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INFORMATION_FLOW__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INFORMATION_FLOW__OWNED_ELEMENT:
@@ -465,8 +506,10 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INFORMATION_FLOW__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -550,8 +593,10 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INFORMATION_FLOW__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -624,8 +669,10 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INFORMATION_FLOW__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INFORMATION_FLOW__OWNED_ELEMENT:
@@ -699,15 +746,20 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == Relationship.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == Relationship.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.INFORMATION_FLOW__RELATED_ELEMENT: return UML2Package.RELATIONSHIP__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == DirectedRelationship.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.INFORMATION_FLOW__SOURCE: return UML2Package.DIRECTED_RELATIONSHIP__SOURCE;
 				case UML2Package.INFORMATION_FLOW__TARGET: return UML2Package.DIRECTED_RELATIONSHIP__TARGET;
 				default: return -1;
@@ -721,15 +773,20 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == Relationship.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == Relationship.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.RELATIONSHIP__RELATED_ELEMENT: return UML2Package.INFORMATION_FLOW__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class) {
-			switch (baseFeatureID) {
+		if (baseClass == DirectedRelationship.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.DIRECTED_RELATIONSHIP__SOURCE: return UML2Package.INFORMATION_FLOW__SOURCE;
 				case UML2Package.DIRECTED_RELATIONSHIP__TARGET: return UML2Package.INFORMATION_FLOW__TARGET;
 				default: return -1;
@@ -744,7 +801,8 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRelatedElementsHelper(EList relatedElement) {
+	protected EList getRelatedElementsHelper(EList relatedElement)
+	{
 		EList source = getSources();
 		if (!source.isEmpty()) {
 			for (Iterator i = ((InternalEList) source).basicIterator(); i.hasNext(); ) {

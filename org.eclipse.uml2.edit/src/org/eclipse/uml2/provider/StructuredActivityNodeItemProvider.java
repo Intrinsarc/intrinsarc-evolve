@@ -60,7 +60,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuredActivityNodeItemProvider(AdapterFactory adapterFactory) {
+	public StructuredActivityNodeItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -70,8 +71,10 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addMemberPropertyDescriptor(object);
@@ -95,7 +98,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMemberPropertyDescriptor(Object object) {
+	protected void addMemberPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -117,7 +121,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedRulePropertyDescriptor(Object object) {
+	protected void addOwnedRulePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -139,7 +144,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addImportedMemberPropertyDescriptor(Object object) {
+	protected void addImportedMemberPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -161,7 +167,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElementImportPropertyDescriptor(Object object) {
+	protected void addElementImportPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -183,7 +190,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPackageImportPropertyDescriptor(Object object) {
+	protected void addPackageImportPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -205,7 +213,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSuperGroupPropertyDescriptor(Object object) {
+	protected void addSuperGroupPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -227,7 +236,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActivityGroup_activityPropertyDescriptor(Object object) {
+	protected void addActivityGroup_activityPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -249,7 +259,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVariablePropertyDescriptor(Object object) {
+	protected void addVariablePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -271,7 +282,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainedNodePropertyDescriptor(Object object) {
+	protected void addContainedNodePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -293,7 +305,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainedEdgePropertyDescriptor(Object object) {
+	protected void addContainedEdgePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -315,7 +328,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMustIsolatePropertyDescriptor(Object object) {
+	protected void addMustIsolatePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -337,8 +351,10 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getNamespace_OwnedRule());
 			childrenFeatures.add(UML2Package.eINSTANCE.getNamespace_ElementImport());
@@ -355,7 +371,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -368,7 +385,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/StructuredActivityNode"); //$NON-NLS-1$
 	}
 
@@ -378,7 +396,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((StructuredActivityNode)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_StructuredActivityNode_type") : //$NON-NLS-1$
@@ -392,10 +411,12 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StructuredActivityNode.class)) {
+		switch (notification.getFeatureID(StructuredActivityNode.class))
+		{
 			case UML2Package.STRUCTURED_ACTIVITY_NODE__MUST_ISOLATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -418,7 +439,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -753,7 +775,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -762,7 +785,8 @@ public class StructuredActivityNodeItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition() ||
 			childFeature == UML2Package.eINSTANCE.getNamespace_OwnedRule();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -776,7 +800,8 @@ public class StructuredActivityNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

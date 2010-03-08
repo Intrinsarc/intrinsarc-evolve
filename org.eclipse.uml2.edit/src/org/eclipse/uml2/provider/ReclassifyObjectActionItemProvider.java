@@ -58,7 +58,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReclassifyObjectActionItemProvider(AdapterFactory adapterFactory) {
+	public ReclassifyObjectActionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -68,8 +69,10 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addIsReplaceAllPropertyDescriptor(object);
@@ -86,7 +89,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsReplaceAllPropertyDescriptor(Object object) {
+	protected void addIsReplaceAllPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,7 +110,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOldClassifierPropertyDescriptor(Object object) {
+	protected void addOldClassifierPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -126,7 +131,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNewClassifierPropertyDescriptor(Object object) {
+	protected void addNewClassifierPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -146,7 +152,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addObjectPropertyDescriptor(Object object) {
+	protected void addObjectPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -170,8 +177,10 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getReclassifyObjectAction_Object());
 		}
@@ -184,7 +193,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/ReclassifyObjectAction"); //$NON-NLS-1$
 	}
 
@@ -194,7 +204,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ReclassifyObjectAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ReclassifyObjectAction_type") : //$NON-NLS-1$
@@ -208,10 +219,12 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReclassifyObjectAction.class)) {
+		switch (notification.getFeatureID(ReclassifyObjectAction.class))
+		{
 			case UML2Package.RECLASSIFY_OBJECT_ACTION__IS_REPLACE_ALL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -229,7 +242,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -249,7 +263,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -257,7 +272,8 @@ public class ReclassifyObjectActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPrecondition() ||
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -271,7 +287,8 @@ public class ReclassifyObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

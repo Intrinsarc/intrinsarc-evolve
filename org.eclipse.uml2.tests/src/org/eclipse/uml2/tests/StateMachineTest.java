@@ -36,7 +36,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(StateMachineTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachineTest(String name) {
+	public StateMachineTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private StateMachine getFixture() {
+	private StateMachine getFixture()
+	{
 		return (StateMachine)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createStateMachine());
 	}
 
@@ -76,7 +80,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.StateMachine#getStateMachine_redefinitionContext()
 	 * @generated
 	 */
-	public void testGetStateMachine_redefinitionContext() {
+	public void testGetStateMachine_redefinitionContext()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -99,7 +105,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.StateMachine#setStateMachine_redefinitionContext(org.eclipse.uml2.BehavioredClassifier)
 	 * @generated
 	 */
-	public void testSetStateMachine_redefinitionContext() {
+	public void testSetStateMachine_redefinitionContext()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers() {
+	public void testGetOwnedMembers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,7 +133,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements() {
+	public void testGetRedefinedElements()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -137,7 +146,8 @@ public class StateMachineTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinitionContexts()
 	 * @generated
 	 */
-	public void testGetRedefinitionContexts() {
+	public void testGetRedefinitionContexts()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -81,11 +81,13 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateInvariantImpl() {
+	protected StateInvariantImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -94,7 +96,8 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getStateInvariant();
 	}
 
@@ -103,7 +106,8 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint getInvariant() {
+	public Constraint getInvariant()
+	{
 		return invariant;
 	}
 
@@ -117,7 +121,8 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Constraint undeleted_getInvariant() {
+  public Constraint undeleted_getInvariant()
+	{
 		Constraint temp = getInvariant();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -129,10 +134,13 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInvariant(Constraint newInvariant, NotificationChain msgs) {
+	public NotificationChain basicSetInvariant(Constraint newInvariant, NotificationChain msgs)
+	{
+
 		Constraint oldInvariant = invariant;
 		invariant = newInvariant;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.STATE_INVARIANT__INVARIANT, oldInvariant, newInvariant);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -145,8 +153,11 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInvariant(Constraint newInvariant) {
-		if (newInvariant != invariant) {
+	public void setInvariant(Constraint newInvariant)
+	{
+
+		if (newInvariant != invariant)
+		{
 			NotificationChain msgs = null;
 			if (invariant != null)
 				msgs = ((InternalEObject)invariant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.STATE_INVARIANT__INVARIANT, null, msgs);
@@ -209,8 +220,12 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getCovereds() {
-		if (covered == null) {
+  public EList settable_getCovereds()
+	{
+		if (covered == null)
+		{
+			
+		
 			covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.STATE_INVARIANT__COVERED);
 		}
 		return covered;
@@ -221,11 +236,14 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getCovereds() {
+  public java.util.ArrayList undeleted_getCovereds()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (covered != null) {
-			for (Object object : covered) {
+		if (covered != null)
+		{
+			for (Object object : covered)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -258,9 +276,12 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.STATE_INVARIANT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.STATE_INVARIANT__TEMPLATE_BINDING:
@@ -295,9 +316,12 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.STATE_INVARIANT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.STATE_INVARIANT__OWNED_COMMENT:
@@ -336,9 +360,12 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.STATE_INVARIANT__ENCLOSING_INTERACTION:
 					return eContainer.eInverseRemove(this, UML2Package.INTERACTION__FRAGMENT, Interaction.class, msgs);
 				case UML2Package.STATE_INVARIANT__ENCLOSING_OPERAND:
@@ -355,8 +382,10 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STATE_INVARIANT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.STATE_INVARIANT__OWNED_ELEMENT:
@@ -415,8 +444,10 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STATE_INVARIANT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -500,8 +531,10 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STATE_INVARIANT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -574,8 +607,10 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STATE_INVARIANT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.STATE_INVARIANT__OWNED_ELEMENT:
@@ -634,7 +669,8 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getStateInvariant_Invariant())) {
 			ownedElement.add(getInvariant());

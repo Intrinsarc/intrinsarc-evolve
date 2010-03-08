@@ -211,11 +211,13 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BehavioralFeatureImpl() {
+	protected BehavioralFeatureImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -224,7 +226,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getBehavioralFeature();
 	}
 
@@ -233,7 +236,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLeaf() {
+	public boolean isLeaf()
+	{
 		return (eFlags & IS_LEAF_EFLAG) != 0;
 	}
 
@@ -248,7 +252,9 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsLeaf(boolean newIsLeaf) {
+	public void setIsLeaf(boolean newIsLeaf)
+	{
+
 		boolean oldIsLeaf = (eFlags & IS_LEAF_EFLAG) != 0;
 		if (newIsLeaf) eFlags |= IS_LEAF_EFLAG; else eFlags &= ~IS_LEAF_EFLAG;
 		if (eNotificationRequired())
@@ -262,7 +268,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinitionContexts() {
+	public EList getRedefinitionContexts()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList redefinitionContext = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getRedefinableElement_RedefinitionContext());
@@ -297,7 +304,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRedefinedElementsHelper(EList redefinedElement) {
+	protected EList getRedefinedElementsHelper(EList redefinedElement)
+	{
 		return redefinedElement;
 	}
 
@@ -306,7 +314,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isStatic() {
+	public boolean isStatic()
+	{
 		return (eFlags & IS_STATIC_EFLAG) != 0;
 	}
 
@@ -321,7 +330,9 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsStatic(boolean newIsStatic) {
+	public void setIsStatic(boolean newIsStatic)
+	{
+
 		boolean oldIsStatic = (eFlags & IS_STATIC_EFLAG) != 0;
 		if (newIsStatic) eFlags |= IS_STATIC_EFLAG; else eFlags &= ~IS_STATIC_EFLAG;
 		if (eNotificationRequired())
@@ -335,7 +346,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFeaturingClassifiers() {
+	public EList getFeaturingClassifiers()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList featuringClassifier = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getFeature_FeaturingClassifier());
@@ -370,7 +382,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getParametersHelper(EList parameter) {
+	protected EList getParametersHelper(EList parameter)
+	{
 		if (eIsSet(UML2Package.eINSTANCE.getBehavioralFeature_FormalParameter())) {
 			parameter.addAll(getFormalParameters());
 		}
@@ -385,7 +398,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAbstract() {
+	public boolean isAbstract()
+	{
 		return (eFlags & IS_ABSTRACT_EFLAG) != 0;
 	}
 
@@ -400,7 +414,9 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsAbstract(boolean newIsAbstract) {
+	public void setIsAbstract(boolean newIsAbstract)
+	{
+
 		boolean oldIsAbstract = (eFlags & IS_ABSTRACT_EFLAG) != 0;
 		if (newIsAbstract) eFlags |= IS_ABSTRACT_EFLAG; else eFlags &= ~IS_ABSTRACT_EFLAG;
 		if (eNotificationRequired())
@@ -414,7 +430,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallConcurrencyKind getConcurrency() {
+	public CallConcurrencyKind getConcurrency()
+	{
 		return concurrency;
 	}
 
@@ -429,7 +446,9 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConcurrency(CallConcurrencyKind newConcurrency) {
+	public void setConcurrency(CallConcurrencyKind newConcurrency)
+	{
+
 		CallConcurrencyKind oldConcurrency = concurrency;
 		concurrency = newConcurrency == null ? CONCURRENCY_EDEFAULT : newConcurrency;
 		if (eNotificationRequired())
@@ -443,7 +462,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context) {
+	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context)
+	{
 		return RedefinableElementOperations.validateRedefinitionContextValid(this, diagnostics, context);
 	}
 
@@ -452,7 +472,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context) {
+	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context)
+	{
 		return RedefinableElementOperations.validateRedefinitionConsistent(this, diagnostics, context);
 	}
 
@@ -461,7 +482,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getParameters() {
+	public EList getParameters()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList parameter = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getBehavioralFeature_Parameter());
@@ -496,7 +518,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getMembersHelper(EList member) {
+	protected EList getMembersHelper(EList member)
+	{
 		super.getMembersHelper(member);
 		EList parameter = getParameters();
 		if (!parameter.isEmpty()) {
@@ -513,7 +536,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getBehavioralFeature_FormalParameter())) {
 			ownedMember.addAll(getFormalParameters());
@@ -530,9 +554,13 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFormalParameters() {
-		if (formalParameter == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getFormalParameters()
+	{
+		if (formalParameter == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		formalParameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__FORMAL_PARAMETER);
 			 		return formalParameter;
@@ -549,8 +577,12 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getFormalParameters() {
-		if (formalParameter == null) {
+  public EList settable_getFormalParameters()
+	{
+		if (formalParameter == null)
+		{
+			
+		
 			formalParameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__FORMAL_PARAMETER);
 		}
 		return formalParameter;
@@ -561,11 +593,14 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getFormalParameters() {
+  public java.util.ArrayList undeleted_getFormalParameters()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (formalParameter != null) {
-			for (Object object : formalParameter) {
+		if (formalParameter != null)
+		{
+			for (Object object : formalParameter)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -627,9 +662,13 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getReturnResults() {
-		if (returnResult == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getReturnResults()
+	{
+		if (returnResult == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		returnResult = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__RETURN_RESULT);
 			 		return returnResult;
@@ -646,8 +685,12 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getReturnResults() {
-		if (returnResult == null) {
+  public EList settable_getReturnResults()
+	{
+		if (returnResult == null)
+		{
+			
+		
 			returnResult = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__RETURN_RESULT);
 		}
 		return returnResult;
@@ -658,11 +701,14 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getReturnResults() {
+  public java.util.ArrayList undeleted_getReturnResults()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (returnResult != null) {
-			for (Object object : returnResult) {
+		if (returnResult != null)
+		{
+			for (Object object : returnResult)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -724,9 +770,13 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRaisedExceptions() {
-		if (raisedException == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRaisedExceptions()
+	{
+		if (raisedException == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		raisedException = new com.hopstepjump.emflist.PersistentEList(Type.class, this, UML2Package.BEHAVIORAL_FEATURE__RAISED_EXCEPTION);
 			 		return raisedException;
@@ -743,8 +793,12 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRaisedExceptions() {
-		if (raisedException == null) {
+  public EList settable_getRaisedExceptions()
+	{
+		if (raisedException == null)
+		{
+			
+		
 			raisedException = new com.hopstepjump.emflist.PersistentEList(Type.class, this, UML2Package.BEHAVIORAL_FEATURE__RAISED_EXCEPTION);
 		}
 		return raisedException;
@@ -755,11 +809,14 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRaisedExceptions() {
+  public java.util.ArrayList undeleted_getRaisedExceptions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (raisedException != null) {
-			for (Object object : raisedException) {
+		if (raisedException != null)
+		{
+			for (Object object : raisedException)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -792,9 +849,13 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getMethods() {
-		if (method == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getMethods()
+	{
+		if (method == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		method = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIORAL_FEATURE__METHOD, UML2Package.BEHAVIOR__SPECIFICATION);
 			 		return method;
@@ -811,8 +872,12 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getMethods() {
-		if (method == null) {
+  public EList settable_getMethods()
+	{
+		if (method == null)
+		{
+			
+		
 			method = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIORAL_FEATURE__METHOD, UML2Package.BEHAVIOR__SPECIFICATION);
 		}
 		return method;
@@ -823,11 +888,14 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getMethods() {
+  public java.util.ArrayList undeleted_getMethods()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (method != null) {
-			for (Object object : method) {
+		if (method != null)
+		{
+			for (Object object : method)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -860,7 +928,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isConsistentWith(RedefinableElement redefinee) {
+	public boolean isConsistentWith(RedefinableElement redefinee)
+	{
 		return RedefinableElementOperations.isConsistentWith(this, redefinee);
 	}
 
@@ -869,7 +938,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRedefinitionContextValid(RedefinableElement redefinable) {
+	public boolean isRedefinitionContextValid(RedefinableElement redefinable)
+	{
 		return RedefinableElementOperations.isRedefinitionContextValid(this, redefinable);
 	}
 
@@ -878,7 +948,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements() {
+	public EList getRedefinedElements()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			try {
@@ -930,7 +1001,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDistinguishableFrom(NamedElement n, Namespace ns) {
+	public boolean isDistinguishableFrom(NamedElement n, Namespace ns)
+	{
 		return BehavioralFeatureOperations.isDistinguishableFrom(this, n, ns);
 	}
 
@@ -939,9 +1011,12 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.BEHAVIORAL_FEATURE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.BEHAVIORAL_FEATURE__TEMPLATE_BINDING:
@@ -974,9 +1049,12 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.BEHAVIORAL_FEATURE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.BEHAVIORAL_FEATURE__OWNED_COMMENT:
@@ -1017,8 +1095,10 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIORAL_FEATURE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.BEHAVIORAL_FEATURE__OWNED_ELEMENT:
@@ -1099,8 +1179,10 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIORAL_FEATURE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1207,8 +1289,10 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIORAL_FEATURE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1299,8 +1383,10 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIORAL_FEATURE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.BEHAVIORAL_FEATURE__OWNED_ELEMENT:
@@ -1380,16 +1466,21 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == RedefinableElement.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == RedefinableElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.BEHAVIORAL_FEATURE__REDEFINITION_CONTEXT: return UML2Package.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT;
 				case UML2Package.BEHAVIORAL_FEATURE__IS_LEAF: return UML2Package.REDEFINABLE_ELEMENT__IS_LEAF;
 				default: return -1;
 			}
 		}
-		if (baseClass == Feature.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == Feature.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.BEHAVIORAL_FEATURE__FEATURING_CLASSIFIER: return UML2Package.FEATURE__FEATURING_CLASSIFIER;
 				case UML2Package.BEHAVIORAL_FEATURE__IS_STATIC: return UML2Package.FEATURE__IS_STATIC;
 				default: return -1;
@@ -1403,16 +1494,21 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == RedefinableElement.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == RedefinableElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT: return UML2Package.BEHAVIORAL_FEATURE__REDEFINITION_CONTEXT;
 				case UML2Package.REDEFINABLE_ELEMENT__IS_LEAF: return UML2Package.BEHAVIORAL_FEATURE__IS_LEAF;
 				default: return -1;
 			}
 		}
-		if (baseClass == Feature.class) {
-			switch (baseFeatureID) {
+		if (baseClass == Feature.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.FEATURE__FEATURING_CLASSIFIER: return UML2Package.BEHAVIORAL_FEATURE__FEATURING_CLASSIFIER;
 				case UML2Package.FEATURE__IS_STATIC: return UML2Package.BEHAVIORAL_FEATURE__IS_STATIC;
 				default: return -1;
@@ -1426,7 +1522,8 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

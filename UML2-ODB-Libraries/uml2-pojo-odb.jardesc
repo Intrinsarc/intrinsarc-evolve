@@ -9,54 +9,48 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/org.eclipse.uml2.codegen.ecore/plugin.properties"/>
+        <javaElement handleIdentifier="=org.eclipse.uml2.edit/src"/>
+        <file path="/org.eclipse.uml2.common.edit/plugin.xml"/>
         <file path="/org.eclipse.uml2.codegen.ecore.ui/.project"/>
-        <file path="/org.eclipse.uml2/build.properties"/>
         <file path="/org.eclipse.uml2.codegen.ecore/about.html"/>
         <file path="/org.eclipse.uml2/welcome.xml"/>
+        <file path="/org.eclipse.uml2/build.properties"/>
+        <file path="/org.eclipse.uml2.common.edit/.classpath"/>
         <file path="/org.eclipse.uml2/about.properties"/>
         <javaElement handleIdentifier="=org.eclipse.uml2/src"/>
-        <file path="/org.eclipse.uml2.common/.cvsignore"/>
-        <javaElement handleIdentifier="=org.eclipse.uml2.common/src"/>
-        <file path="/org.eclipse.uml2.edit/build.properties"/>
-        <javaElement handleIdentifier="=DelegatedEMFList"/>
-        <file path="/org.eclipse.uml2.common/plugin.xml"/>
-        <file path="/org.eclipse.uml2.common/.project"/>
-        <file path="/org.eclipse.uml2.edit/.project"/>
-        <file path="/org.eclipse.uml2.codegen.ecore/.classpath"/>
-        <file path="/org.eclipse.uml2.edit/plugin.properties"/>
-        <file path="/org.eclipse.uml2.common.edit/.cvsignore"/>
-        <file path="/org.eclipse.uml2.codegen.ecore.ui/about.html"/>
-        <file path="/org.eclipse.uml2/about.ini"/>
-        <file path="/org.eclipse.uml2.common.edit/about.html"/>
-        <file path="/org.eclipse.uml2/plugin.xml"/>
-        <file path="/org.eclipse.uml2.edit/about.html"/>
-        <file path="/org.eclipse.uml2/eclipse32.gif"/>
-        <file path="/org.eclipse.uml2.codegen.ecore.ui/plugin.xml"/>
-        <file path="/org.eclipse.uml2.common/.classpath"/>
-        <file path="/org.eclipse.uml2.codegen.ecore.ui/plugin.properties"/>
-        <javaElement handleIdentifier="=org.eclipse.uml2.edit/src"/>
-        <file path="/org.eclipse.uml2.codegen.ecore/plugin.properties"/>
-        <file path="/org.eclipse.uml2.common.edit/plugin.xml"/>
-        <file path="/org.eclipse.uml2/.cvsignore"/>
-        <file path="/org.eclipse.uml2.common.edit/.classpath"/>
         <file path="/org.eclipse.uml2.common/about.html"/>
         <javaElement handleIdentifier="=org.eclipse.uml2.codegen.ecore/src"/>
+        <javaElement handleIdentifier="=org.eclipse.uml2.common/src"/>
         <javaElement handleIdentifier="=org.eclipse.uml2.common.edit/src"/>
         <file path="/org.eclipse.uml2.edit/.classpath"/>
+        <file path="/org.eclipse.uml2.edit/build.properties"/>
         <file path="/org.eclipse.uml2.codegen.ecore.ui/.classpath"/>
         <file path="/org.eclipse.uml2.common.edit/.project"/>
+        <javaElement handleIdentifier="=DelegatedEMFList"/>
+        <file path="/org.eclipse.uml2.common/.project"/>
+        <file path="/org.eclipse.uml2.common/plugin.xml"/>
         <javaElement handleIdentifier="=EnhancedEMFCore"/>
+        <file path="/org.eclipse.uml2.edit/.project"/>
         <file path="/org.eclipse.uml2.codegen.ecore/.project"/>
-        <file path="/org.eclipse.uml2.codegen.ecore.ui/.cvsignore"/>
-        <file path="/org.eclipse.uml2.codegen.ecore/.cvsignore"/>
-        <file path="/org.eclipse.uml2/.project"/>
+        <file path="/org.eclipse.uml2.codegen.ecore/.classpath"/>
+        <file path="/org.eclipse.uml2.edit/plugin.properties"/>
         <file path="/org.eclipse.uml2.edit/plugin.xml"/>
-        <file path="/org.eclipse.uml2.edit/.cvsignore"/>
+        <file path="/org.eclipse.uml2/.project"/>
         <file path="/org.eclipse.uml2/about.mappings"/>
         <file path="/org.eclipse.uml2/plugin.properties"/>
+        <file path="/org.eclipse.uml2/about.ini"/>
+        <file path="/org.eclipse.uml2.codegen.ecore.ui/about.html"/>
+        <file path="/org.eclipse.uml2.common.edit/about.html"/>
         <file path="/org.eclipse.uml2.codegen.ecore/plugin.xml"/>
+        <file path="/org.eclipse.uml2/plugin.xml"/>
+        <file path="/org.eclipse.uml2/eclipse32.gif"/>
+        <file path="/org.eclipse.uml2.edit/about.html"/>
         <file path="/org.eclipse.uml2.common.edit/plugin.properties"/>
+        <file path="/org.eclipse.uml2.codegen.ecore.ui/plugin.xml"/>
+        <file path="/org.eclipse.uml2.common/.classpath"/>
         <file path="/org.eclipse.uml2/about.html"/>
+        <file path="/org.eclipse.uml2.codegen.ecore.ui/plugin.properties"/>
         <file path="/org.eclipse.uml2/.classpath"/>
         <javaElement handleIdentifier="=org.eclipse.uml2.codegen.ecore.ui/src"/>
         <file path="/org.eclipse.uml2.common/plugin.properties"/>

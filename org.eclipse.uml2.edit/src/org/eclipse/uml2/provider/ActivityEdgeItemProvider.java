@@ -59,7 +59,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityEdgeItemProvider(AdapterFactory adapterFactory) {
+	public ActivityEdgeItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -69,8 +70,10 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addActivityPropertyDescriptor(object);
@@ -93,7 +96,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActivityPropertyDescriptor(Object object) {
+	protected void addActivityPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -115,7 +119,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourcePropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -135,7 +140,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -155,7 +161,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInGroupPropertyDescriptor(Object object) {
+	protected void addInGroupPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -177,7 +184,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGuardPropertyDescriptor(Object object) {
+	protected void addGuardPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -199,7 +207,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinedElementPropertyDescriptor(Object object) {
+	protected void addRedefinedElementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -219,7 +228,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInStructuredNodePropertyDescriptor(Object object) {
+	protected void addInStructuredNodePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -241,7 +251,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInPartitionPropertyDescriptor(Object object) {
+	protected void addInPartitionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -261,7 +272,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addWeightPropertyDescriptor(Object object) {
+	protected void addWeightPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -283,7 +295,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInterruptsPropertyDescriptor(Object object) {
+	protected void addInterruptsPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -305,8 +318,10 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getActivityEdge_Guard());
 			childrenFeatures.add(UML2Package.eINSTANCE.getActivityEdge_Weight());
@@ -319,7 +334,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -332,7 +348,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ActivityEdge)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ActivityEdge_type") : //$NON-NLS-1$
@@ -346,10 +363,12 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ActivityEdge.class)) {
+		switch (notification.getFeatureID(ActivityEdge.class))
+		{
 			case UML2Package.ACTIVITY_EDGE__GUARD:
 			case UML2Package.ACTIVITY_EDGE__WEIGHT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -365,7 +384,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -515,7 +535,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -523,7 +544,8 @@ public class ActivityEdgeItemProvider
 			childFeature == UML2Package.eINSTANCE.getActivityEdge_Guard() ||
 			childFeature == UML2Package.eINSTANCE.getActivityEdge_Weight();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -537,7 +559,8 @@ public class ActivityEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

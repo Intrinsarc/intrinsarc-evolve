@@ -109,11 +109,13 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GeneralizationImpl() {
+	protected GeneralizationImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -122,7 +124,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getGeneralization();
 	}
 
@@ -131,7 +134,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSubstitutable() {
+	public boolean isSubstitutable()
+	{
 		return (eFlags & IS_SUBSTITUTABLE_EFLAG) != 0;
 	}
 
@@ -146,7 +150,9 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsSubstitutable(boolean newIsSubstitutable) {
+	public void setIsSubstitutable(boolean newIsSubstitutable)
+	{
+
 		boolean oldIsSubstitutable = (eFlags & IS_SUBSTITUTABLE_EFLAG) != 0;
 		if (newIsSubstitutable) eFlags |= IS_SUBSTITUTABLE_EFLAG; else eFlags &= ~IS_SUBSTITUTABLE_EFLAG;
 		if (eNotificationRequired())
@@ -160,7 +166,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getSpecific() {
+	public Classifier getSpecific()
+	{
 		if (eContainerFeatureID != UML2Package.GENERALIZATION__SPECIFIC) return null;
 		return (Classifier)eContainer;
 	}
@@ -175,7 +182,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Classifier undeleted_getSpecific() {
+  public Classifier undeleted_getSpecific()
+	{
 		Classifier temp = getSpecific();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -187,8 +195,11 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecific(Classifier newSpecific) {
-		if (newSpecific != eContainer || (eContainerFeatureID != UML2Package.GENERALIZATION__SPECIFIC && newSpecific != null)) {
+	public void setSpecific(Classifier newSpecific)
+	{
+
+		if (newSpecific != eContainer || (eContainerFeatureID != UML2Package.GENERALIZATION__SPECIFIC && newSpecific != null))
+		{
 			if (EcoreUtil.isAncestor(this, newSpecific))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -210,11 +221,14 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getGeneral() {
-		if (general != null && general.eIsProxy()) {
+	public Classifier getGeneral()
+	{
+		if (general != null && general.eIsProxy())
+		{
 			Classifier oldGeneral = general;
 			general = (Classifier)eResolveProxy((InternalEObject)general);
-			if (general != oldGeneral) {
+			if (general != oldGeneral)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.GENERALIZATION__GENERAL, oldGeneral, general));
 			}
@@ -232,7 +246,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Classifier undeleted_getGeneral() {
+  public Classifier undeleted_getGeneral()
+	{
 		Classifier temp = getGeneral();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -244,7 +259,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier basicGetGeneral() {
+	public Classifier basicGetGeneral()
+	{
 		return general;
 	}
 
@@ -272,9 +288,13 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getGeneralizationSets() {
-		if (generalizationSet == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getGeneralizationSets()
+	{
+		if (generalizationSet == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		generalizationSet = new com.hopstepjump.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.GENERALIZATION__GENERALIZATION_SET, UML2Package.GENERALIZATION_SET__GENERALIZATION);
 			 		return generalizationSet;
@@ -291,8 +311,12 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getGeneralizationSets() {
-		if (generalizationSet == null) {
+  public EList settable_getGeneralizationSets()
+	{
+		if (generalizationSet == null)
+		{
+			
+		
 			generalizationSet = new com.hopstepjump.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.GENERALIZATION__GENERALIZATION_SET, UML2Package.GENERALIZATION_SET__GENERALIZATION);
 		}
 		return generalizationSet;
@@ -303,11 +327,14 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getGeneralizationSets() {
+  public java.util.ArrayList undeleted_getGeneralizationSets()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (generalizationSet != null) {
-			for (Object object : generalizationSet) {
+		if (generalizationSet != null)
+		{
+			for (Object object : generalizationSet)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -340,7 +367,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		Classifier specific = getSpecific();			
 		if (specific != null) {
 			return specific;
@@ -354,7 +382,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target) {
+	protected EList getTargetsHelper(EList target)
+	{
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getGeneralization_General())) {
 			target.add(getGeneral());
@@ -368,9 +397,12 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.GENERALIZATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.GENERALIZATION__SPECIFIC:
@@ -393,9 +425,12 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.GENERALIZATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.GENERALIZATION__OWNED_COMMENT:
@@ -418,9 +453,12 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.GENERALIZATION__SPECIFIC:
 					return eContainer.eInverseRemove(this, UML2Package.CLASSIFIER__GENERALIZATION, Classifier.class, msgs);
 				default:
@@ -435,8 +473,10 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.GENERALIZATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.GENERALIZATION__OWNED_ELEMENT:
@@ -480,8 +520,10 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.GENERALIZATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -529,8 +571,10 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.GENERALIZATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -573,8 +617,10 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.GENERALIZATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.GENERALIZATION__OWNED_ELEMENT:
@@ -616,7 +662,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -632,7 +679,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source) {
+	protected EList getSourcesHelper(EList source)
+	{
 		super.getSourcesHelper(source);
 		Classifier specific = getSpecific();
 		if (specific != null) {

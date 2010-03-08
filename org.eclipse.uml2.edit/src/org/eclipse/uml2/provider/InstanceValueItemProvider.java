@@ -57,7 +57,8 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceValueItemProvider(AdapterFactory adapterFactory) {
+	public InstanceValueItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addInstancePropertyDescriptor(object);
@@ -82,7 +85,8 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInstancePropertyDescriptor(Object object) {
+	protected void addInstancePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -104,8 +108,10 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getInstanceValue_OwnedAnonymousInstanceValue());
 		}
@@ -118,7 +124,8 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/InstanceValue"); //$NON-NLS-1$
 	}
 
@@ -128,7 +135,8 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((InstanceValue)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_InstanceValue_type") : //$NON-NLS-1$
@@ -142,10 +150,12 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(InstanceValue.class)) {
+		switch (notification.getFeatureID(InstanceValue.class))
+		{
 			case UML2Package.INSTANCE_VALUE__OWNED_ANONYMOUS_INSTANCE_VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -160,7 +170,8 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -180,7 +191,8 @@ public class InstanceValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

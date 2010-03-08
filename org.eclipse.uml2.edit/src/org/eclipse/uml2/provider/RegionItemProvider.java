@@ -60,7 +60,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RegionItemProvider(AdapterFactory adapterFactory) {
+	public RegionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -70,8 +71,10 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRedefinitionContextPropertyDescriptor(object);
@@ -91,7 +94,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinitionContextPropertyDescriptor(Object object) {
+	protected void addRedefinitionContextPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -113,7 +117,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsLeafPropertyDescriptor(Object object) {
+	protected void addIsLeafPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -133,7 +138,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSubvertexPropertyDescriptor(Object object) {
+	protected void addSubvertexPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -155,7 +161,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTransitionPropertyDescriptor(Object object) {
+	protected void addTransitionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -177,7 +184,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStateMachinePropertyDescriptor(Object object) {
+	protected void addStateMachinePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -199,7 +207,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatePropertyDescriptor(Object object) {
+	protected void addStatePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -221,7 +230,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtendedRegionPropertyDescriptor(Object object) {
+	protected void addExtendedRegionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -243,8 +253,10 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getRegion_Subvertex());
 			childrenFeatures.add(UML2Package.eINSTANCE.getRegion_Transition());
@@ -257,7 +269,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -270,7 +283,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Region"); //$NON-NLS-1$
 	}
 
@@ -280,7 +294,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Region)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Region_type") : //$NON-NLS-1$
@@ -294,10 +309,12 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Region.class)) {
+		switch (notification.getFeatureID(Region.class))
+		{
 			case UML2Package.REGION__IS_LEAF:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -316,7 +333,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -356,7 +374,8 @@ public class RegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

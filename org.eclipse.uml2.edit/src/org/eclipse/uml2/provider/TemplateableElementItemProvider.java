@@ -59,7 +59,8 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElementItemProvider(AdapterFactory adapterFactory) {
+	public TemplateableElementItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -69,8 +70,10 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTemplateBindingPropertyDescriptor(object);
@@ -85,7 +88,8 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTemplateBindingPropertyDescriptor(Object object) {
+	protected void addTemplateBindingPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,7 +111,8 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedTemplateSignaturePropertyDescriptor(Object object) {
+	protected void addOwnedTemplateSignaturePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -131,8 +136,10 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getTemplateableElement_TemplateBinding());
 			childrenFeatures.add(UML2Package.eINSTANCE.getTemplateableElement_OwnedTemplateSignature());
@@ -145,7 +152,8 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -158,7 +166,8 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		TemplateableElement templateableElement = (TemplateableElement)object;
 		return getString("_UI_TemplateableElement_type") + " " + templateableElement.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -170,10 +179,12 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TemplateableElement.class)) {
+		switch (notification.getFeatureID(TemplateableElement.class))
+		{
 			case UML2Package.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
 			case UML2Package.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -189,7 +200,8 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -214,7 +226,8 @@ public class TemplateableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

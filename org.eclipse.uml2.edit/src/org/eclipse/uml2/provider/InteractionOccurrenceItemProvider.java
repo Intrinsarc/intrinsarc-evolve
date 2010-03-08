@@ -59,7 +59,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionOccurrenceItemProvider(AdapterFactory adapterFactory) {
+	public InteractionOccurrenceItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -69,8 +70,10 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRefersToPropertyDescriptor(object);
@@ -86,7 +89,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRefersToPropertyDescriptor(Object object) {
+	protected void addRefersToPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,7 +110,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActualGatePropertyDescriptor(Object object) {
+	protected void addActualGatePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -128,7 +133,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addArgumentPropertyDescriptor(Object object) {
+	protected void addArgumentPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -152,8 +158,10 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getInteractionOccurrence_ActualGate());
 			childrenFeatures.add(UML2Package.eINSTANCE.getInteractionOccurrence_Argument());
@@ -166,7 +174,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -179,7 +188,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/InteractionOccurrence"); //$NON-NLS-1$
 	}
 
@@ -189,7 +199,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((InteractionOccurrence)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_InteractionOccurrence_type") : //$NON-NLS-1$
@@ -203,10 +214,12 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(InteractionOccurrence.class)) {
+		switch (notification.getFeatureID(InteractionOccurrence.class))
+		{
 			case UML2Package.INTERACTION_OCCURRENCE__ACTUAL_GATE:
 			case UML2Package.INTERACTION_OCCURRENCE__ARGUMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -222,7 +235,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -247,7 +261,8 @@ public class InteractionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

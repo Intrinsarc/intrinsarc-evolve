@@ -64,11 +64,13 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DeltaDeletedConstituentImpl() {
+	protected DeltaDeletedConstituentImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -77,7 +79,8 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getDeltaDeletedConstituent();
 	}
 
@@ -86,11 +89,14 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getDeleted() {
-		if (deleted != null && deleted.eIsProxy()) {
+	public Element getDeleted()
+	{
+		if (deleted != null && deleted.eIsProxy())
+		{
 			Element oldDeleted = deleted;
 			deleted = (Element)eResolveProxy((InternalEObject)deleted);
-			if (deleted != oldDeleted) {
+			if (deleted != oldDeleted)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.DELTA_DELETED_CONSTITUENT__DELETED, oldDeleted, deleted));
 			}
@@ -108,7 +114,8 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element undeleted_getDeleted() {
+	public Element undeleted_getDeleted()
+	{
 		Element temp = getDeleted();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -120,7 +127,8 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetDeleted() {
+	public Element basicGetDeleted()
+	{
 		return deleted;
 	}
 
@@ -129,7 +137,9 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeleted(Element newDeleted) {
+	public void setDeleted(Element newDeleted)
+	{
+
 		Element oldDeleted = deleted;
 		deleted = newDeleted;
 		if (eNotificationRequired())
@@ -143,9 +153,12 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.DELTA_DELETED_CONSTITUENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -162,9 +175,12 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.DELTA_DELETED_CONSTITUENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DELTA_DELETED_CONSTITUENT__OWNED_COMMENT:
@@ -183,8 +199,10 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DELTA_DELETED_CONSTITUENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DELTA_DELETED_CONSTITUENT__OWNED_ELEMENT:
@@ -216,8 +234,10 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DELTA_DELETED_CONSTITUENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -255,8 +275,10 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DELTA_DELETED_CONSTITUENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -290,8 +312,10 @@ public class DeltaDeletedConstituentImpl extends ElementImpl implements DeltaDel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DELTA_DELETED_CONSTITUENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DELTA_DELETED_CONSTITUENT__OWNED_ELEMENT:

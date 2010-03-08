@@ -123,11 +123,13 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GeneralizationSetImpl() {
+	protected GeneralizationSetImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -136,7 +138,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getGeneralizationSet();
 	}
 
@@ -145,7 +148,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCovering() {
+	public boolean isCovering()
+	{
 		return (eFlags & IS_COVERING_EFLAG) != 0;
 	}
 
@@ -160,7 +164,9 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsCovering(boolean newIsCovering) {
+	public void setIsCovering(boolean newIsCovering)
+	{
+
 		boolean oldIsCovering = (eFlags & IS_COVERING_EFLAG) != 0;
 		if (newIsCovering) eFlags |= IS_COVERING_EFLAG; else eFlags &= ~IS_COVERING_EFLAG;
 		if (eNotificationRequired())
@@ -174,7 +180,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDisjoint() {
+	public boolean isDisjoint()
+	{
 		return (eFlags & IS_DISJOINT_EFLAG) != 0;
 	}
 
@@ -189,7 +196,9 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsDisjoint(boolean newIsDisjoint) {
+	public void setIsDisjoint(boolean newIsDisjoint)
+	{
+
 		boolean oldIsDisjoint = (eFlags & IS_DISJOINT_EFLAG) != 0;
 		if (newIsDisjoint) eFlags |= IS_DISJOINT_EFLAG; else eFlags &= ~IS_DISJOINT_EFLAG;
 		if (eNotificationRequired())
@@ -203,11 +212,14 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getPowertype() {
-		if (powertype != null && powertype.eIsProxy()) {
+	public Classifier getPowertype()
+	{
+		if (powertype != null && powertype.eIsProxy())
+		{
 			Classifier oldPowertype = powertype;
 			powertype = (Classifier)eResolveProxy((InternalEObject)powertype);
-			if (powertype != oldPowertype) {
+			if (powertype != oldPowertype)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.GENERALIZATION_SET__POWERTYPE, oldPowertype, powertype));
 			}
@@ -225,7 +237,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Classifier undeleted_getPowertype() {
+  public Classifier undeleted_getPowertype()
+	{
 		Classifier temp = getPowertype();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -237,7 +250,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier basicGetPowertype() {
+	public Classifier basicGetPowertype()
+	{
 		return powertype;
 	}
 
@@ -246,10 +260,13 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPowertype(Classifier newPowertype, NotificationChain msgs) {
+	public NotificationChain basicSetPowertype(Classifier newPowertype, NotificationChain msgs)
+	{
+
 		Classifier oldPowertype = powertype;
 		powertype = newPowertype;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.GENERALIZATION_SET__POWERTYPE, oldPowertype, newPowertype);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -262,8 +279,11 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPowertype(Classifier newPowertype) {
-		if (newPowertype != powertype) {
+	public void setPowertype(Classifier newPowertype)
+	{
+
+		if (newPowertype != powertype)
+		{
 			NotificationChain msgs = null;
 			if (powertype != null)
 				msgs = ((InternalEObject)powertype).eInverseRemove(this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, Classifier.class, msgs);
@@ -283,9 +303,13 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getGeneralizations() {
-		if (generalization == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getGeneralizations()
+	{
+		if (generalization == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		generalization = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.GENERALIZATION_SET__GENERALIZATION, UML2Package.GENERALIZATION__GENERALIZATION_SET);
 			 		return generalization;
@@ -302,8 +326,12 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getGeneralizations() {
-		if (generalization == null) {
+  public EList settable_getGeneralizations()
+	{
+		if (generalization == null)
+		{
+			
+		
 			generalization = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.GENERALIZATION_SET__GENERALIZATION, UML2Package.GENERALIZATION__GENERALIZATION_SET);
 		}
 		return generalization;
@@ -314,11 +342,14 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getGeneralizations() {
+  public java.util.ArrayList undeleted_getGeneralizations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (generalization != null) {
-			for (Object object : generalization) {
+		if (generalization != null)
+		{
+			for (Object object : generalization)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -336,9 +367,12 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.GENERALIZATION_SET__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.GENERALIZATION_SET__TEMPLATE_BINDING:
@@ -377,9 +411,12 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.GENERALIZATION_SET__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.GENERALIZATION_SET__OWNED_COMMENT:
@@ -416,9 +453,12 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.GENERALIZATION_SET__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -433,8 +473,10 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.GENERALIZATION_SET__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.GENERALIZATION_SET__OWNED_ELEMENT:
@@ -499,8 +541,10 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.GENERALIZATION_SET__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -589,8 +633,10 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.GENERALIZATION_SET__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -669,8 +715,10 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.GENERALIZATION_SET__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.GENERALIZATION_SET__OWNED_ELEMENT:
@@ -742,7 +790,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

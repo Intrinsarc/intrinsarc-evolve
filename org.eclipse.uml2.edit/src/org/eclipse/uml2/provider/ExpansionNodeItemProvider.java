@@ -54,7 +54,8 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionNodeItemProvider(AdapterFactory adapterFactory) {
+	public ExpansionNodeItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -64,8 +65,10 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRegionAsOutputPropertyDescriptor(object);
@@ -80,7 +83,8 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRegionAsOutputPropertyDescriptor(Object object) {
+	protected void addRegionAsOutputPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -100,7 +104,8 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRegionAsInputPropertyDescriptor(Object object) {
+	protected void addRegionAsInputPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -120,7 +125,8 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/ExpansionNode"); //$NON-NLS-1$
 	}
 
@@ -130,7 +136,8 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ExpansionNode)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ExpansionNode_type") : //$NON-NLS-1$
@@ -144,7 +151,8 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -156,7 +164,8 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -166,7 +175,8 @@ public class ExpansionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

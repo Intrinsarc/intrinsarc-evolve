@@ -54,7 +54,8 @@ public class TypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeItemProvider(AdapterFactory adapterFactory) {
+	public TypeItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -64,8 +65,10 @@ public class TypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addPackagePropertyDescriptor(object);
@@ -79,7 +82,8 @@ public class TypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPackagePropertyDescriptor(Object object) {
+	protected void addPackagePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -101,7 +105,8 @@ public class TypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Type)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Type_type") : //$NON-NLS-1$
@@ -115,7 +120,8 @@ public class TypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -127,7 +133,8 @@ public class TypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -137,7 +144,8 @@ public class TypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

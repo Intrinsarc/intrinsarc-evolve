@@ -30,7 +30,8 @@ public class ControlFlowTest extends ActivityEdgeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ControlFlowTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ControlFlowTest extends ActivityEdgeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ControlFlowTest(String name) {
+	public ControlFlowTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ControlFlowTest extends ActivityEdgeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ControlFlow getFixture() {
+	private ControlFlow getFixture()
+	{
 		return (ControlFlow)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ControlFlowTest extends ActivityEdgeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createControlFlow());
 	}
 
@@ -70,7 +74,8 @@ public class ControlFlowTest extends ActivityEdgeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

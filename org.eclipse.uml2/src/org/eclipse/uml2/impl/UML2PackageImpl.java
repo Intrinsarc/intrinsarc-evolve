@@ -2205,7 +2205,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * @see #init()
 	 * @generated
 	 */
-	private UML2PackageImpl() {
+	private UML2PackageImpl()
+	{
 		super(eNS_URI, UML2Factory.eINSTANCE);
 	}
 
@@ -2238,7 +2239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static UML2Package init() {
+	public static UML2Package init()
+	{
 		if (isInited) return (UML2Package)EPackage.Registry.INSTANCE.getEPackage(UML2Package.eNS_URI);
 
 		// Obtain or create and register package
@@ -2258,8 +2260,10 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
 			(theUML2Package, 
-			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
+			 new EValidator.Descriptor()
+			 {
+				 public EValidator getEValidator()
+				 {
 					 return UML2Validator.INSTANCE;
 				 }
 			 });
@@ -2275,7 +2279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getElement() {
+	public EClass getElement()
+	{
 		return elementEClass;
 	}
 
@@ -2284,7 +2289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElement_OwnedElement() {
+	public EReference getElement_OwnedElement()
+	{
 		return (EReference)elementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2293,7 +2299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElement_Owner() {
+	public EReference getElement_Owner()
+	{
 		return (EReference)elementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2302,7 +2309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElement_OwnedComment() {
+	public EReference getElement_OwnedComment()
+	{
 		return (EReference)elementEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2311,7 +2319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getElement_J_deleted() {
+	public EAttribute getElement_J_deleted()
+	{
 		return (EAttribute)elementEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2320,7 +2329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getElement_Documentation() {
+	public EAttribute getElement_Documentation()
+	{
 		return (EAttribute)elementEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2329,7 +2339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElement_AppliedBasicStereotypes() {
+	public EReference getElement_AppliedBasicStereotypes()
+	{
 		return (EReference)elementEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2338,7 +2349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElement_AppliedBasicStereotypeValues() {
+	public EReference getElement_AppliedBasicStereotypeValues()
+	{
 		return (EReference)elementEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -2347,7 +2359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getElement_Uuid() {
+  public EAttribute getElement_Uuid()
+	{
 		return (EAttribute)elementEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -2356,7 +2369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMultiplicityElement() {
+	public EClass getMultiplicityElement()
+	{
 		return multiplicityElementEClass;
 	}
 
@@ -2365,7 +2379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMultiplicityElement_IsOrdered() {
+	public EAttribute getMultiplicityElement_IsOrdered()
+	{
 		return (EAttribute)multiplicityElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2374,7 +2389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMultiplicityElement_IsUnique() {
+	public EAttribute getMultiplicityElement_IsUnique()
+	{
 		return (EAttribute)multiplicityElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2383,7 +2399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMultiplicityElement_Lower() {
+	public EAttribute getMultiplicityElement_Lower()
+	{
 		return (EAttribute)multiplicityElementEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2392,7 +2409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMultiplicityElement_Upper() {
+	public EAttribute getMultiplicityElement_Upper()
+	{
 		return (EAttribute)multiplicityElementEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2401,7 +2419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiplicityElement_UpperValue() {
+	public EReference getMultiplicityElement_UpperValue()
+	{
 		return (EReference)multiplicityElementEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2410,7 +2429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiplicityElement_LowerValue() {
+	public EReference getMultiplicityElement_LowerValue()
+	{
 		return (EReference)multiplicityElementEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2419,7 +2439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClass_() {
+	public EClass getClass_()
+	{
 		return classEClass;
 	}
 
@@ -2428,7 +2449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClass_IsActive() {
+	public EAttribute getClass_IsActive()
+	{
 		return (EAttribute)classEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2437,7 +2459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_OwnedOperation() {
+	public EReference getClass_OwnedOperation()
+	{
 		return (EReference)classEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2446,7 +2469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_SuperClass() {
+	public EReference getClass_SuperClass()
+	{
 		return (EReference)classEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2455,7 +2479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_Extension() {
+	public EReference getClass_Extension()
+	{
 		return (EReference)classEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2464,7 +2489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_NestedClassifier() {
+	public EReference getClass_NestedClassifier()
+	{
 		return (EReference)classEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2473,7 +2499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_OwnedReception() {
+	public EReference getClass_OwnedReception()
+	{
 		return (EReference)classEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2482,7 +2509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClass_ComponentKind() {
+	public EAttribute getClass_ComponentKind()
+	{
 		return (EAttribute)classEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -2491,7 +2519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getType() {
+	public EClass getType()
+	{
 		return typeEClass;
 	}
 
@@ -2500,7 +2529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getType_Package() {
+	public EReference getType_Package()
+	{
 		return (EReference)typeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2509,7 +2539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProperty() {
+	public EClass getProperty()
+	{
 		return propertyEClass;
 	}
 
@@ -2518,7 +2549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProperty_Default() {
+	public EAttribute getProperty_Default()
+	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2527,7 +2559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProperty_IsComposite() {
+	public EAttribute getProperty_IsComposite()
+	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2536,7 +2569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProperty_IsDerived() {
+	public EAttribute getProperty_IsDerived()
+	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2545,7 +2579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProperty_IsDerivedUnion() {
+	public EAttribute getProperty_IsDerivedUnion()
+	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2554,7 +2589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProperty_Aggregation() {
+	public EAttribute getProperty_Aggregation()
+	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -2563,7 +2599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_Class_() {
+	public EReference getProperty_Class_()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2572,7 +2609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_Opposite() {
+	public EReference getProperty_Opposite()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2581,7 +2619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_OwningAssociation() {
+	public EReference getProperty_OwningAssociation()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -2590,7 +2629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_RedefinedProperty() {
+	public EReference getProperty_RedefinedProperty()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -2599,7 +2639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_SubsettedProperty() {
+	public EReference getProperty_SubsettedProperty()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -2608,7 +2649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_Datatype() {
+	public EReference getProperty_Datatype()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -2617,7 +2659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_Association() {
+	public EReference getProperty_Association()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -2626,7 +2669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_DefaultValue() {
+	public EReference getProperty_DefaultValue()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -2635,7 +2679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_Qualifier() {
+	public EReference getProperty_Qualifier()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -2644,7 +2689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_AssociationEnd() {
+	public EReference getProperty_AssociationEnd()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -2653,7 +2699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_OwnedAnonymousType() {
+	public EReference getProperty_OwnedAnonymousType()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -2662,7 +2709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProperty_DefaultValues() {
+	public EReference getProperty_DefaultValues()
+	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(16);
 	}
 
@@ -2671,7 +2719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOperation() {
+	public EClass getOperation()
+	{
 		return operationEClass;
 	}
 
@@ -2680,7 +2729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOperation_IsQuery() {
+	public EAttribute getOperation_IsQuery()
+	{
 		return (EAttribute)operationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2689,7 +2739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperation_OwnedParameter() {
+	public EReference getOperation_OwnedParameter()
+	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2698,7 +2749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperation_Class_() {
+	public EReference getOperation_Class_()
+	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2707,7 +2759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperation_Datatype() {
+	public EReference getOperation_Datatype()
+	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2716,7 +2769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperation_Precondition() {
+	public EReference getOperation_Precondition()
+	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2725,7 +2779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperation_Postcondition() {
+	public EReference getOperation_Postcondition()
+	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2734,7 +2789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperation_RedefinedOperation() {
+	public EReference getOperation_RedefinedOperation()
+	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -2743,7 +2799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperation_BodyCondition() {
+	public EReference getOperation_BodyCondition()
+	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -2752,7 +2809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTypedElement() {
+	public EClass getTypedElement()
+	{
 		return typedElementEClass;
 	}
 
@@ -2761,7 +2819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypedElement_Type() {
+	public EReference getTypedElement_Type()
+	{
 		return (EReference)typedElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2770,7 +2829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getParameter() {
+	public EClass getParameter()
+	{
 		return parameterEClass;
 	}
 
@@ -2779,7 +2839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_Default() {
+	public EAttribute getParameter_Default()
+	{
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2788,7 +2849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_Direction() {
+	public EAttribute getParameter_Direction()
+	{
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2797,7 +2859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_IsException() {
+	public EAttribute getParameter_IsException()
+	{
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2806,7 +2869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_IsStream() {
+	public EAttribute getParameter_IsStream()
+	{
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2815,7 +2879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_Effect() {
+	public EAttribute getParameter_Effect()
+	{
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -2824,7 +2889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameter_Operation() {
+	public EReference getParameter_Operation()
+	{
 		return (EReference)parameterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2833,7 +2899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameter_DefaultValue() {
+	public EReference getParameter_DefaultValue()
+	{
 		return (EReference)parameterEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2842,7 +2909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameter_ParameterSet() {
+	public EReference getParameter_ParameterSet()
+	{
 		return (EReference)parameterEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -2851,7 +2919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamedElement() {
+	public EClass getNamedElement()
+	{
 		return namedElementEClass;
 	}
 
@@ -2860,7 +2929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElement_Name() {
+	public EAttribute getNamedElement_Name()
+	{
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2869,7 +2939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElement_QualifiedName() {
+	public EAttribute getNamedElement_QualifiedName()
+	{
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2878,7 +2949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElement_Visibility() {
+	public EAttribute getNamedElement_Visibility()
+	{
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2887,7 +2959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedElement_ClientDependency() {
+	public EReference getNamedElement_ClientDependency()
+	{
 		return (EReference)namedElementEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2896,7 +2969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedElement_NameExpression() {
+	public EReference getNamedElement_NameExpression()
+	{
 		return (EReference)namedElementEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2905,7 +2979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedElement_OwnedAnonymousDependencies() {
+	public EReference getNamedElement_OwnedAnonymousDependencies()
+	{
 		return (EReference)namedElementEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2914,7 +2989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedElement_ReverseDependencies() {
+	public EReference getNamedElement_ReverseDependencies()
+	{
 		return (EReference)namedElementEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -2923,7 +2999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedElement_ReverseGeneralizations() {
+	public EReference getNamedElement_ReverseGeneralizations()
+	{
 		return (EReference)namedElementEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -2932,7 +3009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPackage() {
+	public EClass getPackage()
+	{
 		return packageEClass;
 	}
 
@@ -2941,7 +3019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_NestedPackage() {
+	public EReference getPackage_NestedPackage()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2950,7 +3029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_NestingPackage() {
+	public EReference getPackage_NestingPackage()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2959,7 +3039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_OwnedType() {
+	public EReference getPackage_OwnedType()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2968,7 +3049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_OwnedMember() {
+	public EReference getPackage_OwnedMember()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2977,7 +3059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_PackageMerge() {
+	public EReference getPackage_PackageMerge()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2986,7 +3069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_AppliedProfile() {
+	public EReference getPackage_AppliedProfile()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2995,7 +3079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_PackageExtension() {
+	public EReference getPackage_PackageExtension()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -3004,7 +3089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_J_diagramHolder() {
+	public EReference getPackage_J_diagramHolder()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -3013,7 +3099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getPackage_ChildPackages() {
+  public EReference getPackage_ChildPackages()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -3022,7 +3109,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getPackage_ParentPackage() {
+  public EReference getPackage_ParentPackage()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -3031,7 +3119,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPackage_ReadOnly() {
+	public EAttribute getPackage_ReadOnly()
+	{
 		return (EAttribute)packageEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -3040,7 +3129,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_AnonymousDeletedImportPlaceholders() {
+	public EReference getPackage_AnonymousDeletedImportPlaceholders()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -3049,7 +3139,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEnumeration() {
+	public EClass getEnumeration()
+	{
 		return enumerationEClass;
 	}
 
@@ -3058,7 +3149,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnumeration_OwnedLiteral() {
+	public EReference getEnumeration_OwnedLiteral()
+	{
 		return (EReference)enumerationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3067,7 +3159,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDataType() {
+	public EClass getDataType()
+	{
 		return dataTypeEClass;
 	}
 
@@ -3076,7 +3169,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataType_OwnedAttribute() {
+	public EReference getDataType_OwnedAttribute()
+	{
 		return (EReference)dataTypeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3085,7 +3179,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataType_OwnedOperation() {
+	public EReference getDataType_OwnedOperation()
+	{
 		return (EReference)dataTypeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3094,7 +3189,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEnumerationLiteral() {
+	public EClass getEnumerationLiteral()
+	{
 		return enumerationLiteralEClass;
 	}
 
@@ -3103,7 +3199,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnumerationLiteral_Enumeration() {
+	public EReference getEnumerationLiteral_Enumeration()
+	{
 		return (EReference)enumerationLiteralEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3112,7 +3209,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPrimitiveType() {
+	public EClass getPrimitiveType()
+	{
 		return primitiveTypeEClass;
 	}
 
@@ -3121,7 +3219,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOpaqueExpression() {
+	public EClass getOpaqueExpression()
+	{
 		return opaqueExpressionEClass;
 	}
 
@@ -3130,7 +3229,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOpaqueExpression_Body() {
+	public EAttribute getOpaqueExpression_Body()
+	{
 		return (EAttribute)opaqueExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3139,7 +3239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOpaqueExpression_Language() {
+	public EAttribute getOpaqueExpression_Language()
+	{
 		return (EAttribute)opaqueExpressionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3148,7 +3249,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOpaqueExpression_Result() {
+	public EReference getOpaqueExpression_Result()
+	{
 		return (EReference)opaqueExpressionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3157,7 +3259,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOpaqueExpression_Behavior() {
+	public EReference getOpaqueExpression_Behavior()
+	{
 		return (EReference)opaqueExpressionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3166,7 +3269,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getValueSpecification() {
+	public EClass getValueSpecification()
+	{
 		return valueSpecificationEClass;
 	}
 
@@ -3175,7 +3279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExpression() {
+	public EClass getExpression()
+	{
 		return expressionEClass;
 	}
 
@@ -3184,7 +3289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExpression_Symbol() {
+	public EAttribute getExpression_Symbol()
+	{
 		return (EAttribute)expressionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3193,7 +3299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpression_Operand() {
+	public EReference getExpression_Operand()
+	{
 		return (EReference)expressionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3202,7 +3309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getComment() {
+	public EClass getComment()
+	{
 		return commentEClass;
 	}
 
@@ -3211,7 +3319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getComment_Body() {
+	public EAttribute getComment_Body()
+	{
 		return (EAttribute)commentEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3220,7 +3329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComment_AnnotatedElement() {
+	public EReference getComment_AnnotatedElement()
+	{
 		return (EReference)commentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3229,7 +3339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComment_BodyExpression() {
+	public EReference getComment_BodyExpression()
+	{
 		return (EReference)commentEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3238,7 +3349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getComment_BinaryData() {
+  public EAttribute getComment_BinaryData()
+	{
 		return (EAttribute)commentEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3247,7 +3359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getComment_BinaryFormat() {
+  public EAttribute getComment_BinaryFormat()
+	{
 		return (EAttribute)commentEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -3256,7 +3369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getComment_BinaryCount() {
+  public EAttribute getComment_BinaryCount()
+	{
 		return (EAttribute)commentEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -3265,7 +3379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDirectedRelationship() {
+	public EClass getDirectedRelationship()
+	{
 		return directedRelationshipEClass;
 	}
 
@@ -3274,7 +3389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDirectedRelationship_Source() {
+	public EReference getDirectedRelationship_Source()
+	{
 		return (EReference)directedRelationshipEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3283,7 +3399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDirectedRelationship_Target() {
+	public EReference getDirectedRelationship_Target()
+	{
 		return (EReference)directedRelationshipEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3292,7 +3409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRelationship() {
+	public EClass getRelationship()
+	{
 		return relationshipEClass;
 	}
 
@@ -3301,7 +3419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelationship_RelatedElement() {
+	public EReference getRelationship_RelatedElement()
+	{
 		return (EReference)relationshipEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3310,7 +3429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamespace() {
+	public EClass getNamespace()
+	{
 		return namespaceEClass;
 	}
 
@@ -3319,7 +3439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamespace_Member() {
+	public EReference getNamespace_Member()
+	{
 		return (EReference)namespaceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3328,7 +3449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamespace_OwnedRule() {
+	public EReference getNamespace_OwnedRule()
+	{
 		return (EReference)namespaceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3337,7 +3459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamespace_ImportedMember() {
+	public EReference getNamespace_ImportedMember()
+	{
 		return (EReference)namespaceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3346,7 +3469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamespace_ElementImport() {
+	public EReference getNamespace_ElementImport()
+	{
 		return (EReference)namespaceEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3355,7 +3479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamespace_PackageImport() {
+	public EReference getNamespace_PackageImport()
+	{
 		return (EReference)namespaceEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -3364,7 +3489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLiteralBoolean() {
+	public EClass getLiteralBoolean()
+	{
 		return literalBooleanEClass;
 	}
 
@@ -3373,7 +3499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLiteralBoolean_Value() {
+	public EAttribute getLiteralBoolean_Value()
+	{
 		return (EAttribute)literalBooleanEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3382,7 +3509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLiteralSpecification() {
+	public EClass getLiteralSpecification()
+	{
 		return literalSpecificationEClass;
 	}
 
@@ -3391,7 +3519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLiteralString() {
+	public EClass getLiteralString()
+	{
 		return literalStringEClass;
 	}
 
@@ -3400,7 +3529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLiteralString_Value() {
+	public EAttribute getLiteralString_Value()
+	{
 		return (EAttribute)literalStringEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3409,7 +3539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLiteralNull() {
+	public EClass getLiteralNull()
+	{
 		return literalNullEClass;
 	}
 
@@ -3418,7 +3549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLiteralInteger() {
+	public EClass getLiteralInteger()
+	{
 		return literalIntegerEClass;
 	}
 
@@ -3427,7 +3559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLiteralInteger_Value() {
+	public EAttribute getLiteralInteger_Value()
+	{
 		return (EAttribute)literalIntegerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3436,7 +3569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLiteralUnlimitedNatural() {
+	public EClass getLiteralUnlimitedNatural()
+	{
 		return literalUnlimitedNaturalEClass;
 	}
 
@@ -3445,7 +3579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLiteralUnlimitedNatural_Value() {
+	public EAttribute getLiteralUnlimitedNatural_Value()
+	{
 		return (EAttribute)literalUnlimitedNaturalEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3454,7 +3589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConstraint() {
+	public EClass getConstraint()
+	{
 		return constraintEClass;
 	}
 
@@ -3463,7 +3599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraint_Context() {
+	public EReference getConstraint_Context()
+	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3472,7 +3609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraint_Namespace() {
+	public EReference getConstraint_Namespace()
+	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3481,7 +3619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraint_Specification() {
+	public EReference getConstraint_Specification()
+	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3490,7 +3629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraint_ConstrainedElement() {
+	public EReference getConstraint_ConstrainedElement()
+	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3499,7 +3639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClassifier() {
+	public EClass getClassifier()
+	{
 		return classifierEClass;
 	}
 
@@ -3508,7 +3649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClassifier_IsAbstract() {
+	public EAttribute getClassifier_IsAbstract()
+	{
 		return (EAttribute)classifierEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3517,7 +3659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_Feature() {
+	public EReference getClassifier_Feature()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3526,7 +3669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_InheritedMember() {
+	public EReference getClassifier_InheritedMember()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3535,7 +3679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_General() {
+	public EReference getClassifier_General()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3544,7 +3689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_Generalization() {
+	public EReference getClassifier_Generalization()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -3553,7 +3699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_Attribute() {
+	public EReference getClassifier_Attribute()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -3562,7 +3709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_RedefinedClassifier() {
+	public EReference getClassifier_RedefinedClassifier()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -3571,7 +3719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_PowertypeExtent() {
+	public EReference getClassifier_PowertypeExtent()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -3580,7 +3729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_Substitution() {
+	public EReference getClassifier_Substitution()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -3589,7 +3739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_OwnedUseCase() {
+	public EReference getClassifier_OwnedUseCase()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -3598,7 +3749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_UseCase() {
+	public EReference getClassifier_UseCase()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -3607,7 +3759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_Representation() {
+	public EReference getClassifier_Representation()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -3616,7 +3769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifier_Occurrence() {
+	public EReference getClassifier_Occurrence()
+	{
 		return (EReference)classifierEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -3625,7 +3779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClassifier_IsRetired() {
+	public EAttribute getClassifier_IsRetired()
+	{
 		return (EAttribute)classifierEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -3634,7 +3789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFeature() {
+	public EClass getFeature()
+	{
 		return featureEClass;
 	}
 
@@ -3643,7 +3799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFeature_IsStatic() {
+	public EAttribute getFeature_IsStatic()
+	{
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3652,7 +3809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeature_FeaturingClassifier() {
+	public EReference getFeature_FeaturingClassifier()
+	{
 		return (EReference)featureEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3661,7 +3819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStructuralFeature() {
+	public EClass getStructuralFeature()
+	{
 		return structuralFeatureEClass;
 	}
 
@@ -3670,7 +3829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStructuralFeature_ReadWrite() {
+	public EAttribute getStructuralFeature_ReadWrite()
+	{
 		return (EAttribute)structuralFeatureEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3679,7 +3839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBehavioralFeature() {
+	public EClass getBehavioralFeature()
+	{
 		return behavioralFeatureEClass;
 	}
 
@@ -3688,7 +3849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBehavioralFeature_IsAbstract() {
+	public EAttribute getBehavioralFeature_IsAbstract()
+	{
 		return (EAttribute)behavioralFeatureEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -3697,7 +3859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBehavioralFeature_Concurrency() {
+	public EAttribute getBehavioralFeature_Concurrency()
+	{
 		return (EAttribute)behavioralFeatureEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -3706,7 +3869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioralFeature_Parameter() {
+	public EReference getBehavioralFeature_Parameter()
+	{
 		return (EReference)behavioralFeatureEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3715,7 +3879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioralFeature_FormalParameter() {
+	public EReference getBehavioralFeature_FormalParameter()
+	{
 		return (EReference)behavioralFeatureEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3724,7 +3889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioralFeature_ReturnResult() {
+	public EReference getBehavioralFeature_ReturnResult()
+	{
 		return (EReference)behavioralFeatureEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3733,7 +3899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioralFeature_RaisedException() {
+	public EReference getBehavioralFeature_RaisedException()
+	{
 		return (EReference)behavioralFeatureEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3742,7 +3909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioralFeature_Method() {
+	public EReference getBehavioralFeature_Method()
+	{
 		return (EReference)behavioralFeatureEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -3751,7 +3919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInstanceSpecification() {
+	public EClass getInstanceSpecification()
+	{
 		return instanceSpecificationEClass;
 	}
 
@@ -3760,7 +3929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceSpecification_Slot() {
+	public EReference getInstanceSpecification_Slot()
+	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3769,7 +3939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceSpecification_Classifier() {
+	public EReference getInstanceSpecification_Classifier()
+	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3778,7 +3949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceSpecification_Specification() {
+	public EReference getInstanceSpecification_Specification()
+	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3787,7 +3959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getInstanceSpecification_PortRemap() {
+  public EReference getInstanceSpecification_PortRemap()
+	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3796,7 +3969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSlot() {
+	public EClass getSlot()
+	{
 		return slotEClass;
 	}
 
@@ -3805,7 +3979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSlot_OwningInstance() {
+	public EReference getSlot_OwningInstance()
+	{
 		return (EReference)slotEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3814,7 +3989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSlot_Value() {
+	public EReference getSlot_Value()
+	{
 		return (EReference)slotEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3823,7 +3999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSlot_DefiningFeature() {
+	public EReference getSlot_DefiningFeature()
+	{
 		return (EReference)slotEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3832,7 +4009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInstanceValue() {
+	public EClass getInstanceValue()
+	{
 		return instanceValueEClass;
 	}
 
@@ -3841,7 +4019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceValue_Instance() {
+	public EReference getInstanceValue_Instance()
+	{
 		return (EReference)instanceValueEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3850,7 +4029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceValue_OwnedAnonymousInstanceValue() {
+	public EReference getInstanceValue_OwnedAnonymousInstanceValue()
+	{
 		return (EReference)instanceValueEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3859,7 +4039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGeneralization() {
+	public EClass getGeneralization()
+	{
 		return generalizationEClass;
 	}
 
@@ -3868,7 +4049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeneralization_IsSubstitutable() {
+	public EAttribute getGeneralization_IsSubstitutable()
+	{
 		return (EAttribute)generalizationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3877,7 +4059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeneralization_Specific() {
+	public EReference getGeneralization_Specific()
+	{
 		return (EReference)generalizationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3886,7 +4069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeneralization_General() {
+	public EReference getGeneralization_General()
+	{
 		return (EReference)generalizationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3895,7 +4079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeneralization_GeneralizationSet() {
+	public EReference getGeneralization_GeneralizationSet()
+	{
 		return (EReference)generalizationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3904,7 +4089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRedefinableElement() {
+	public EClass getRedefinableElement()
+	{
 		return redefinableElementEClass;
 	}
 
@@ -3913,7 +4099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRedefinableElement_IsLeaf() {
+	public EAttribute getRedefinableElement_IsLeaf()
+	{
 		return (EAttribute)redefinableElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3922,7 +4109,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRedefinableElement_RedefinitionContext() {
+	public EReference getRedefinableElement_RedefinitionContext()
+	{
 		return (EReference)redefinableElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3931,7 +4119,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPackageableElement() {
+	public EClass getPackageableElement()
+	{
 		return packageableElementEClass;
 	}
 
@@ -3940,7 +4129,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPackageableElement_PackageableElement_visibility() {
+	public EAttribute getPackageableElement_PackageableElement_visibility()
+	{
 		return (EAttribute)packageableElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3949,7 +4139,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getElementImport() {
+	public EClass getElementImport()
+	{
 		return elementImportEClass;
 	}
 
@@ -3958,7 +4149,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getElementImport_Visibility() {
+	public EAttribute getElementImport_Visibility()
+	{
 		return (EAttribute)elementImportEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3967,7 +4159,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getElementImport_Alias() {
+	public EAttribute getElementImport_Alias()
+	{
 		return (EAttribute)elementImportEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3976,7 +4169,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElementImport_ImportedElement() {
+	public EReference getElementImport_ImportedElement()
+	{
 		return (EReference)elementImportEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3985,7 +4179,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElementImport_ImportingNamespace() {
+	public EReference getElementImport_ImportingNamespace()
+	{
 		return (EReference)elementImportEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -3994,7 +4189,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPackageImport() {
+	public EClass getPackageImport()
+	{
 		return packageImportEClass;
 	}
 
@@ -4003,7 +4199,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPackageImport_Visibility() {
+	public EAttribute getPackageImport_Visibility()
+	{
 		return (EAttribute)packageImportEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4012,7 +4209,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageImport_ImportedPackage() {
+	public EReference getPackageImport_ImportedPackage()
+	{
 		return (EReference)packageImportEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4021,7 +4219,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageImport_ImportingNamespace() {
+	public EReference getPackageImport_ImportingNamespace()
+	{
 		return (EReference)packageImportEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4030,7 +4229,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAssociation() {
+	public EClass getAssociation()
+	{
 		return associationEClass;
 	}
 
@@ -4039,7 +4239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAssociation_IsDerived() {
+	public EAttribute getAssociation_IsDerived()
+	{
 		return (EAttribute)associationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4048,7 +4249,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssociation_OwnedEnd() {
+	public EReference getAssociation_OwnedEnd()
+	{
 		return (EReference)associationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4057,7 +4259,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssociation_EndType() {
+	public EReference getAssociation_EndType()
+	{
 		return (EReference)associationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4066,7 +4269,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssociation_MemberEnd() {
+	public EReference getAssociation_MemberEnd()
+	{
 		return (EReference)associationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4075,7 +4279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPackageMerge() {
+	public EClass getPackageMerge()
+	{
 		return packageMergeEClass;
 	}
 
@@ -4084,7 +4289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageMerge_MergingPackage() {
+	public EReference getPackageMerge_MergingPackage()
+	{
 		return (EReference)packageMergeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4093,7 +4299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageMerge_MergedPackage() {
+	public EReference getPackageMerge_MergedPackage()
+	{
 		return (EReference)packageMergeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4102,7 +4309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStereotype() {
+	public EClass getStereotype()
+	{
 		return stereotypeEClass;
 	}
 
@@ -4111,7 +4319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStereotype_ExtendsMetaModelElement() {
+	public EAttribute getStereotype_ExtendsMetaModelElement()
+	{
 		return (EAttribute)stereotypeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4120,7 +4329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProfile() {
+	public EClass getProfile()
+	{
 		return profileEClass;
 	}
 
@@ -4129,7 +4339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProfile_OwnedStereotype() {
+	public EReference getProfile_OwnedStereotype()
+	{
 		return (EReference)profileEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4138,7 +4349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProfile_MetaclassReference() {
+	public EReference getProfile_MetaclassReference()
+	{
 		return (EReference)profileEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4147,7 +4359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProfile_MetamodelReference() {
+	public EReference getProfile_MetamodelReference()
+	{
 		return (EReference)profileEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4156,7 +4369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProfileApplication() {
+	public EClass getProfileApplication()
+	{
 		return profileApplicationEClass;
 	}
 
@@ -4165,7 +4379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProfileApplication_ImportedProfile() {
+	public EReference getProfileApplication_ImportedProfile()
+	{
 		return (EReference)profileApplicationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4174,7 +4389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtension() {
+	public EClass getExtension()
+	{
 		return extensionEClass;
 	}
 
@@ -4183,7 +4399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtension_IsRequired() {
+	public EAttribute getExtension_IsRequired()
+	{
 		return (EAttribute)extensionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4192,7 +4409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtension_Metaclass() {
+	public EReference getExtension_Metaclass()
+	{
 		return (EReference)extensionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4201,7 +4419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtensionEnd() {
+	public EClass getExtensionEnd()
+	{
 		return extensionEndEClass;
 	}
 
@@ -4210,7 +4429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInformationItem() {
+	public EClass getInformationItem()
+	{
 		return informationItemEClass;
 	}
 
@@ -4219,7 +4439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInformationItem_Represented() {
+	public EReference getInformationItem_Represented()
+	{
 		return (EReference)informationItemEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4228,7 +4449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInformationFlow() {
+	public EClass getInformationFlow()
+	{
 		return informationFlowEClass;
 	}
 
@@ -4237,7 +4459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInformationFlow_Realization() {
+	public EReference getInformationFlow_Realization()
+	{
 		return (EReference)informationFlowEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4246,7 +4469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInformationFlow_Conveyed() {
+	public EReference getInformationFlow_Conveyed()
+	{
 		return (EReference)informationFlowEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4255,7 +4479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGeneralizationSet() {
+	public EClass getGeneralizationSet()
+	{
 		return generalizationSetEClass;
 	}
 
@@ -4264,7 +4489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeneralizationSet_IsCovering() {
+	public EAttribute getGeneralizationSet_IsCovering()
+	{
 		return (EAttribute)generalizationSetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4273,7 +4499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeneralizationSet_IsDisjoint() {
+	public EAttribute getGeneralizationSet_IsDisjoint()
+	{
 		return (EAttribute)generalizationSetEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4282,7 +4509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeneralizationSet_Powertype() {
+	public EReference getGeneralizationSet_Powertype()
+	{
 		return (EReference)generalizationSetEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4291,7 +4519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeneralizationSet_Generalization() {
+	public EReference getGeneralizationSet_Generalization()
+	{
 		return (EReference)generalizationSetEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4300,7 +4529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAssociationClass() {
+	public EClass getAssociationClass()
+	{
 		return associationClassEClass;
 	}
 
@@ -4309,7 +4539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModel() {
+	public EClass getModel()
+	{
 		return modelEClass;
 	}
 
@@ -4318,7 +4549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModel_Viewpoint() {
+	public EAttribute getModel_Viewpoint()
+	{
 		return (EAttribute)modelEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4327,7 +4559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBehavior() {
+	public EClass getBehavior()
+	{
 		return behaviorEClass;
 	}
 
@@ -4336,7 +4569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBehavior_IsReentrant() {
+	public EAttribute getBehavior_IsReentrant()
+	{
 		return (EAttribute)behaviorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4345,7 +4579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_Context() {
+	public EReference getBehavior_Context()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4354,7 +4589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_RedefinedBehavior() {
+	public EReference getBehavior_RedefinedBehavior()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4363,7 +4599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_Specification() {
+	public EReference getBehavior_Specification()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4372,7 +4609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_Parameter() {
+	public EReference getBehavior_Parameter()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -4381,7 +4619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_FormalParameter() {
+	public EReference getBehavior_FormalParameter()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -4390,7 +4629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_ReturnResult() {
+	public EReference getBehavior_ReturnResult()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -4399,7 +4639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_Precondition() {
+	public EReference getBehavior_Precondition()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -4408,7 +4649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_Postcondition() {
+	public EReference getBehavior_Postcondition()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -4417,7 +4659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavior_OwnedParameterSet() {
+	public EReference getBehavior_OwnedParameterSet()
+	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -4426,7 +4669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBehavioredClassifier() {
+	public EClass getBehavioredClassifier()
+	{
 		return behavioredClassifierEClass;
 	}
 
@@ -4435,7 +4679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioredClassifier_OwnedBehavior() {
+	public EReference getBehavioredClassifier_OwnedBehavior()
+	{
 		return (EReference)behavioredClassifierEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4444,7 +4689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioredClassifier_ClassifierBehavior() {
+	public EReference getBehavioredClassifier_ClassifierBehavior()
+	{
 		return (EReference)behavioredClassifierEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4453,7 +4699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioredClassifier_Implementation() {
+	public EReference getBehavioredClassifier_Implementation()
+	{
 		return (EReference)behavioredClassifierEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4462,7 +4709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioredClassifier_OwnedTrigger() {
+	public EReference getBehavioredClassifier_OwnedTrigger()
+	{
 		return (EReference)behavioredClassifierEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4471,7 +4719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioredClassifier_OwnedStateMachine() {
+	public EReference getBehavioredClassifier_OwnedStateMachine()
+	{
 		return (EReference)behavioredClassifierEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -4480,7 +4729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivity() {
+	public EClass getActivity()
+	{
 		return activityEClass;
 	}
 
@@ -4489,7 +4739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActivity_Body() {
+	public EAttribute getActivity_Body()
+	{
 		return (EAttribute)activityEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4498,7 +4749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActivity_Language() {
+	public EAttribute getActivity_Language()
+	{
 		return (EAttribute)activityEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4507,7 +4759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActivity_IsReadOnly() {
+	public EAttribute getActivity_IsReadOnly()
+	{
 		return (EAttribute)activityEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -4516,7 +4769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActivity_IsSingleExecution() {
+	public EAttribute getActivity_IsSingleExecution()
+	{
 		return (EAttribute)activityEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -4525,7 +4779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivity_Edge() {
+	public EReference getActivity_Edge()
+	{
 		return (EReference)activityEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4534,7 +4789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivity_Group() {
+	public EReference getActivity_Group()
+	{
 		return (EReference)activityEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4543,7 +4799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivity_Node() {
+	public EReference getActivity_Node()
+	{
 		return (EReference)activityEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -4552,7 +4809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivity_Action() {
+	public EReference getActivity_Action()
+	{
 		return (EReference)activityEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -4561,7 +4819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivity_StructuredNode() {
+	public EReference getActivity_StructuredNode()
+	{
 		return (EReference)activityEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -4570,7 +4829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPermission() {
+	public EClass getPermission()
+	{
 		return permissionEClass;
 	}
 
@@ -4579,7 +4839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDependency() {
+	public EClass getDependency()
+	{
 		return dependencyEClass;
 	}
 
@@ -4588,7 +4849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependency_Client() {
+	public EReference getDependency_Client()
+	{
 		return (EReference)dependencyEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4597,7 +4859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependency_Supplier() {
+	public EReference getDependency_Supplier()
+	{
 		return (EReference)dependencyEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4606,7 +4869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependency_DependencyTarget() {
+	public EReference getDependency_DependencyTarget()
+	{
 		return (EReference)dependencyEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4615,7 +4879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDependency_Resemblance() {
+	public EAttribute getDependency_Resemblance()
+	{
 		return (EAttribute)dependencyEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4624,7 +4889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDependency_Replacement() {
+	public EAttribute getDependency_Replacement()
+	{
 		return (EAttribute)dependencyEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -4633,7 +4899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUsage() {
+	public EClass getUsage()
+	{
 		return usageEClass;
 	}
 
@@ -4642,7 +4909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAbstraction() {
+	public EClass getAbstraction()
+	{
 		return abstractionEClass;
 	}
 
@@ -4651,7 +4919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstraction_Mapping() {
+	public EReference getAbstraction_Mapping()
+	{
 		return (EReference)abstractionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4660,7 +4929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRealization() {
+	public EClass getRealization()
+	{
 		return realizationEClass;
 	}
 
@@ -4669,7 +4939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRealization_Abstraction() {
+	public EReference getRealization_Abstraction()
+	{
 		return (EReference)realizationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4678,7 +4949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRealization_RealizingClassifier() {
+	public EReference getRealization_RealizingClassifier()
+	{
 		return (EReference)realizationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4687,7 +4959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSubstitution() {
+	public EClass getSubstitution()
+	{
 		return substitutionEClass;
 	}
 
@@ -4696,7 +4969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSubstitution_Contract() {
+	public EReference getSubstitution_Contract()
+	{
 		return (EReference)substitutionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4705,7 +4979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSubstitution_SubstitutingClassifier() {
+	public EReference getSubstitution_SubstitutingClassifier()
+	{
 		return (EReference)substitutionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4714,7 +4989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getArtifact() {
+	public EClass getArtifact()
+	{
 		return artifactEClass;
 	}
 
@@ -4723,7 +4999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArtifact_FileName() {
+	public EAttribute getArtifact_FileName()
+	{
 		return (EAttribute)artifactEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4732,7 +5009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArtifact_NestedArtifact() {
+	public EReference getArtifact_NestedArtifact()
+	{
 		return (EReference)artifactEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4741,7 +5019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArtifact_Manifestation() {
+	public EReference getArtifact_Manifestation()
+	{
 		return (EReference)artifactEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4750,7 +5029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArtifact_OwnedOperation() {
+	public EReference getArtifact_OwnedOperation()
+	{
 		return (EReference)artifactEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4759,7 +5039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArtifact_OwnedAttribute() {
+	public EReference getArtifact_OwnedAttribute()
+	{
 		return (EReference)artifactEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -4768,7 +5049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getManifestation() {
+	public EClass getManifestation()
+	{
 		return manifestationEClass;
 	}
 
@@ -4777,7 +5059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getManifestation_UtilizedElement() {
+	public EReference getManifestation_UtilizedElement()
+	{
 		return (EReference)manifestationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4786,7 +5069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInterface() {
+	public EClass getInterface()
+	{
 		return interfaceEClass;
 	}
 
@@ -4795,7 +5079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_OwnedAttribute() {
+	public EReference getInterface_OwnedAttribute()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4804,7 +5089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_OwnedOperation() {
+	public EReference getInterface_OwnedOperation()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4813,7 +5099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_RedefinedInterface() {
+	public EReference getInterface_RedefinedInterface()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4822,7 +5109,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_NestedClassifier() {
+	public EReference getInterface_NestedClassifier()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4831,7 +5119,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_OwnedReception() {
+	public EReference getInterface_OwnedReception()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -4840,7 +5129,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_Protocol() {
+	public EReference getInterface_Protocol()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -4849,7 +5139,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_DeltaDeletedOperations() {
+	public EReference getInterface_DeltaDeletedOperations()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -4858,7 +5149,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_DeltaReplacedOperations() {
+	public EReference getInterface_DeltaReplacedOperations()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -4867,7 +5159,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_DeltaDeletedAttributes() {
+	public EReference getInterface_DeltaDeletedAttributes()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -4876,7 +5169,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterface_DeltaReplacedAttributes() {
+	public EReference getInterface_DeltaReplacedAttributes()
+	{
 		return (EReference)interfaceEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -4885,7 +5179,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getImplementation() {
+	public EClass getImplementation()
+	{
 		return implementationEClass;
 	}
 
@@ -4894,7 +5189,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getImplementation_Contract() {
+	public EReference getImplementation_Contract()
+	{
 		return (EReference)implementationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4903,7 +5199,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getImplementation_ImplementingClassifier() {
+	public EReference getImplementation_ImplementingClassifier()
+	{
 		return (EReference)implementationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4912,7 +5209,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActor() {
+	public EClass getActor()
+	{
 		return actorEClass;
 	}
 
@@ -4921,7 +5219,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtend() {
+	public EClass getExtend()
+	{
 		return extendEClass;
 	}
 
@@ -4930,7 +5229,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtend_ExtendedCase() {
+	public EReference getExtend_ExtendedCase()
+	{
 		return (EReference)extendEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4939,7 +5239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtend_Extension() {
+	public EReference getExtend_Extension()
+	{
 		return (EReference)extendEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4948,7 +5249,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtend_Condition() {
+	public EReference getExtend_Condition()
+	{
 		return (EReference)extendEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4957,7 +5259,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtend_ExtensionLocation() {
+	public EReference getExtend_ExtensionLocation()
+	{
 		return (EReference)extendEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -4966,7 +5269,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUseCase() {
+	public EClass getUseCase()
+	{
 		return useCaseEClass;
 	}
 
@@ -4975,7 +5279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUseCase_Include() {
+	public EReference getUseCase_Include()
+	{
 		return (EReference)useCaseEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4984,7 +5289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUseCase_Extend() {
+	public EReference getUseCase_Extend()
+	{
 		return (EReference)useCaseEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -4993,7 +5299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUseCase_ExtensionPoint() {
+	public EReference getUseCase_ExtensionPoint()
+	{
 		return (EReference)useCaseEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5002,7 +5309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUseCase_Subject() {
+	public EReference getUseCase_Subject()
+	{
 		return (EReference)useCaseEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5011,7 +5319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtensionPoint() {
+	public EClass getExtensionPoint()
+	{
 		return extensionPointEClass;
 	}
 
@@ -5020,7 +5329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtensionPoint_UseCase() {
+	public EReference getExtensionPoint_UseCase()
+	{
 		return (EReference)extensionPointEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5029,7 +5339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInclude() {
+	public EClass getInclude()
+	{
 		return includeEClass;
 	}
 
@@ -5038,7 +5349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInclude_IncludingCase() {
+	public EReference getInclude_IncludingCase()
+	{
 		return (EReference)includeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5047,7 +5359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInclude_Addition() {
+	public EReference getInclude_Addition()
+	{
 		return (EReference)includeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5056,7 +5369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivityEdge() {
+	public EClass getActivityEdge()
+	{
 		return activityEdgeEClass;
 	}
 
@@ -5065,7 +5379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_Activity() {
+	public EReference getActivityEdge_Activity()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5074,7 +5389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_Source() {
+	public EReference getActivityEdge_Source()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5083,7 +5399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_Target() {
+	public EReference getActivityEdge_Target()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5092,7 +5409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_InGroup() {
+	public EReference getActivityEdge_InGroup()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5101,7 +5419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_Guard() {
+	public EReference getActivityEdge_Guard()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -5110,7 +5429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_RedefinedElement() {
+	public EReference getActivityEdge_RedefinedElement()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -5119,7 +5439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_InStructuredNode() {
+	public EReference getActivityEdge_InStructuredNode()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -5128,7 +5449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_InPartition() {
+	public EReference getActivityEdge_InPartition()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -5137,7 +5459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_Weight() {
+	public EReference getActivityEdge_Weight()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -5146,7 +5469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityEdge_Interrupts() {
+	public EReference getActivityEdge_Interrupts()
+	{
 		return (EReference)activityEdgeEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -5155,7 +5479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivityGroup() {
+	public EClass getActivityGroup()
+	{
 		return activityGroupEClass;
 	}
 
@@ -5164,7 +5489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityGroup_SuperGroup() {
+	public EReference getActivityGroup_SuperGroup()
+	{
 		return (EReference)activityGroupEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5173,7 +5499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityGroup_ActivityGroup_activity() {
+	public EReference getActivityGroup_ActivityGroup_activity()
+	{
 		return (EReference)activityGroupEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5182,7 +5509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivityNode() {
+	public EClass getActivityNode()
+	{
 		return activityNodeEClass;
 	}
 
@@ -5191,7 +5519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityNode_Outgoing() {
+	public EReference getActivityNode_Outgoing()
+	{
 		return (EReference)activityNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5200,7 +5529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityNode_Incoming() {
+	public EReference getActivityNode_Incoming()
+	{
 		return (EReference)activityNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5209,7 +5539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityNode_InGroup() {
+	public EReference getActivityNode_InGroup()
+	{
 		return (EReference)activityNodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5218,7 +5549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityNode_Activity() {
+	public EReference getActivityNode_Activity()
+	{
 		return (EReference)activityNodeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5227,7 +5559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityNode_RedefinedElement() {
+	public EReference getActivityNode_RedefinedElement()
+	{
 		return (EReference)activityNodeEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -5236,7 +5569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityNode_InStructuredNode() {
+	public EReference getActivityNode_InStructuredNode()
+	{
 		return (EReference)activityNodeEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -5245,7 +5579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityNode_InPartition() {
+	public EReference getActivityNode_InPartition()
+	{
 		return (EReference)activityNodeEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -5254,7 +5589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityNode_InInterruptibleRegion() {
+	public EReference getActivityNode_InInterruptibleRegion()
+	{
 		return (EReference)activityNodeEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -5263,7 +5599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAction() {
+	public EClass getAction()
+	{
 		return actionEClass;
 	}
 
@@ -5272,7 +5609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAction_Effect() {
+	public EAttribute getAction_Effect()
+	{
 		return (EAttribute)actionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5281,7 +5619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAction_Output() {
+	public EReference getAction_Output()
+	{
 		return (EReference)actionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5290,7 +5629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAction_Input() {
+	public EReference getAction_Input()
+	{
 		return (EReference)actionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5299,7 +5639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAction_Context() {
+	public EReference getAction_Context()
+	{
 		return (EReference)actionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5308,7 +5649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAction_LocalPrecondition() {
+	public EReference getAction_LocalPrecondition()
+	{
 		return (EReference)actionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -5317,7 +5659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAction_LocalPostcondition() {
+	public EReference getAction_LocalPostcondition()
+	{
 		return (EReference)actionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -5326,7 +5669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getObjectNode() {
+	public EClass getObjectNode()
+	{
 		return objectNodeEClass;
 	}
 
@@ -5335,7 +5679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getObjectNode_Ordering() {
+	public EAttribute getObjectNode_Ordering()
+	{
 		return (EAttribute)objectNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5344,7 +5689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectNode_UpperBound() {
+	public EReference getObjectNode_UpperBound()
+	{
 		return (EReference)objectNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5353,7 +5699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectNode_InState() {
+	public EReference getObjectNode_InState()
+	{
 		return (EReference)objectNodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5362,7 +5709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectNode_Selection() {
+	public EReference getObjectNode_Selection()
+	{
 		return (EReference)objectNodeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5371,7 +5719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getControlNode() {
+	public EClass getControlNode()
+	{
 		return controlNodeEClass;
 	}
 
@@ -5380,7 +5729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getControlFlow() {
+	public EClass getControlFlow()
+	{
 		return controlFlowEClass;
 	}
 
@@ -5389,7 +5739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getObjectFlow() {
+	public EClass getObjectFlow()
+	{
 		return objectFlowEClass;
 	}
 
@@ -5398,7 +5749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getObjectFlow_IsMulticast() {
+	public EAttribute getObjectFlow_IsMulticast()
+	{
 		return (EAttribute)objectFlowEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5407,7 +5759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getObjectFlow_IsMultireceive() {
+	public EAttribute getObjectFlow_IsMultireceive()
+	{
 		return (EAttribute)objectFlowEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5416,7 +5769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectFlow_Transformation() {
+	public EReference getObjectFlow_Transformation()
+	{
 		return (EReference)objectFlowEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5425,7 +5779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectFlow_Selection() {
+	public EReference getObjectFlow_Selection()
+	{
 		return (EReference)objectFlowEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5434,7 +5789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInitialNode() {
+	public EClass getInitialNode()
+	{
 		return initialNodeEClass;
 	}
 
@@ -5443,7 +5799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFinalNode() {
+	public EClass getFinalNode()
+	{
 		return finalNodeEClass;
 	}
 
@@ -5452,7 +5809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivityFinalNode() {
+	public EClass getActivityFinalNode()
+	{
 		return activityFinalNodeEClass;
 	}
 
@@ -5461,7 +5819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDecisionNode() {
+	public EClass getDecisionNode()
+	{
 		return decisionNodeEClass;
 	}
 
@@ -5470,7 +5829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDecisionNode_DecisionInput() {
+	public EReference getDecisionNode_DecisionInput()
+	{
 		return (EReference)decisionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5479,7 +5839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMergeNode() {
+	public EClass getMergeNode()
+	{
 		return mergeNodeEClass;
 	}
 
@@ -5488,7 +5849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExecutableNode() {
+	public EClass getExecutableNode()
+	{
 		return executableNodeEClass;
 	}
 
@@ -5497,7 +5859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExecutableNode_Handler() {
+	public EReference getExecutableNode_Handler()
+	{
 		return (EReference)executableNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5506,7 +5869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOutputPin() {
+	public EClass getOutputPin()
+	{
 		return outputPinEClass;
 	}
 
@@ -5515,7 +5879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInputPin() {
+	public EClass getInputPin()
+	{
 		return inputPinEClass;
 	}
 
@@ -5524,7 +5889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPin() {
+	public EClass getPin()
+	{
 		return pinEClass;
 	}
 
@@ -5533,7 +5899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivityParameterNode() {
+	public EClass getActivityParameterNode()
+	{
 		return activityParameterNodeEClass;
 	}
 
@@ -5542,7 +5909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityParameterNode_Parameter() {
+	public EReference getActivityParameterNode_Parameter()
+	{
 		return (EReference)activityParameterNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5551,7 +5919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getValuePin() {
+	public EClass getValuePin()
+	{
 		return valuePinEClass;
 	}
 
@@ -5560,7 +5929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getValuePin_Value() {
+	public EReference getValuePin_Value()
+	{
 		return (EReference)valuePinEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5569,7 +5939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariable() {
+	public EClass getVariable()
+	{
 		return variableEClass;
 	}
 
@@ -5578,7 +5949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVariable_Scope() {
+	public EReference getVariable_Scope()
+	{
 		return (EReference)variableEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5587,7 +5959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStructuredActivityNode() {
+	public EClass getStructuredActivityNode()
+	{
 		return structuredActivityNodeEClass;
 	}
 
@@ -5596,7 +5969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStructuredActivityNode_MustIsolate() {
+	public EAttribute getStructuredActivityNode_MustIsolate()
+	{
 		return (EAttribute)structuredActivityNodeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5605,7 +5979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredActivityNode_Variable() {
+	public EReference getStructuredActivityNode_Variable()
+	{
 		return (EReference)structuredActivityNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5614,7 +5989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getStructuredActivityNode_ContainedNode() {
+    public EReference getStructuredActivityNode_ContainedNode()
+	{
 		return (EReference)structuredActivityNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5623,7 +5999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredActivityNode_ContainedEdge() {
+	public EReference getStructuredActivityNode_ContainedEdge()
+	{
 		return (EReference)structuredActivityNodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5632,7 +6009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConditionalNode() {
+	public EClass getConditionalNode()
+	{
 		return conditionalNodeEClass;
 	}
 
@@ -5641,7 +6019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConditionalNode_IsDeterminate() {
+	public EAttribute getConditionalNode_IsDeterminate()
+	{
 		return (EAttribute)conditionalNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5650,7 +6029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConditionalNode_IsAssured() {
+	public EAttribute getConditionalNode_IsAssured()
+	{
 		return (EAttribute)conditionalNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5659,7 +6039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConditionalNode_Clause() {
+	public EReference getConditionalNode_Clause()
+	{
 		return (EReference)conditionalNodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5668,7 +6049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConditionalNode_Result() {
+	public EReference getConditionalNode_Result()
+	{
 		return (EReference)conditionalNodeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5677,7 +6059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClause() {
+	public EClass getClause()
+	{
 		return clauseEClass;
 	}
 
@@ -5686,7 +6069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClause_Test() {
+	public EReference getClause_Test()
+	{
 		return (EReference)clauseEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5695,7 +6079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClause_Body() {
+	public EReference getClause_Body()
+	{
 		return (EReference)clauseEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5704,7 +6089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClause_PredecessorClause() {
+	public EReference getClause_PredecessorClause()
+	{
 		return (EReference)clauseEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5713,7 +6099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClause_SuccessorClause() {
+	public EReference getClause_SuccessorClause()
+	{
 		return (EReference)clauseEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5722,7 +6109,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClause_Decider() {
+	public EReference getClause_Decider()
+	{
 		return (EReference)clauseEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -5731,7 +6119,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClause_BodyOutput() {
+	public EReference getClause_BodyOutput()
+	{
 		return (EReference)clauseEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -5740,7 +6129,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLoopNode() {
+	public EClass getLoopNode()
+	{
 		return loopNodeEClass;
 	}
 
@@ -5749,7 +6139,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLoopNode_IsTestedFirst() {
+	public EAttribute getLoopNode_IsTestedFirst()
+	{
 		return (EAttribute)loopNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5758,7 +6149,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopNode_BodyPart() {
+	public EReference getLoopNode_BodyPart()
+	{
 		return (EReference)loopNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5767,7 +6159,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopNode_SetupPart() {
+	public EReference getLoopNode_SetupPart()
+	{
 		return (EReference)loopNodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5776,7 +6169,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopNode_Decider() {
+	public EReference getLoopNode_Decider()
+	{
 		return (EReference)loopNodeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5785,7 +6179,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopNode_Test() {
+	public EReference getLoopNode_Test()
+	{
 		return (EReference)loopNodeEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -5794,7 +6189,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopNode_Result() {
+	public EReference getLoopNode_Result()
+	{
 		return (EReference)loopNodeEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -5803,7 +6199,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopNode_LoopVariable() {
+	public EReference getLoopNode_LoopVariable()
+	{
 		return (EReference)loopNodeEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -5812,7 +6209,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopNode_BodyOutput() {
+	public EReference getLoopNode_BodyOutput()
+	{
 		return (EReference)loopNodeEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -5821,7 +6219,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopNode_LoopVariableInput() {
+	public EReference getLoopNode_LoopVariableInput()
+	{
 		return (EReference)loopNodeEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -5830,7 +6229,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConnectorEnd() {
+	public EClass getConnectorEnd()
+	{
 		return connectorEndEClass;
 	}
 
@@ -5839,7 +6239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnectorEnd_DefiningEnd() {
+	public EReference getConnectorEnd_DefiningEnd()
+	{
 		return (EReference)connectorEndEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5848,7 +6249,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnectorEnd_Role() {
+	public EReference getConnectorEnd_Role()
+	{
 		return (EReference)connectorEndEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5857,7 +6259,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnectorEnd_PartWithPort() {
+	public EReference getConnectorEnd_PartWithPort()
+	{
 		return (EReference)connectorEndEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5866,7 +6269,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConnectableElement() {
+	public EClass getConnectableElement()
+	{
 		return connectableElementEClass;
 	}
 
@@ -5875,7 +6279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnectableElement_End() {
+	public EReference getConnectableElement_End()
+	{
 		return (EReference)connectableElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5884,7 +6289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConnector() {
+	public EClass getConnector()
+	{
 		return connectorEClass;
 	}
 
@@ -5893,7 +6299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConnector_Kind() {
+	public EAttribute getConnector_Kind()
+	{
 		return (EAttribute)connectorEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5902,7 +6309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnector_Type() {
+	public EReference getConnector_Type()
+	{
 		return (EReference)connectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5911,7 +6319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnector_RedefinedConnector() {
+	public EReference getConnector_RedefinedConnector()
+	{
 		return (EReference)connectorEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5920,7 +6329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnector_End() {
+	public EReference getConnector_End()
+	{
 		return (EReference)connectorEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5929,7 +6339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnector_Contract() {
+	public EReference getConnector_Contract()
+	{
 		return (EReference)connectorEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -5938,7 +6349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStructuredClassifier() {
+	public EClass getStructuredClassifier()
+	{
 		return structuredClassifierEClass;
 	}
 
@@ -5947,7 +6359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_OwnedAttribute() {
+	public EReference getStructuredClassifier_OwnedAttribute()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -5956,7 +6369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_Part() {
+	public EReference getStructuredClassifier_Part()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5965,7 +6379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_Role() {
+	public EReference getStructuredClassifier_Role()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5974,7 +6389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_OwnedConnector() {
+	public EReference getStructuredClassifier_OwnedConnector()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5983,7 +6399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_DeltaDeletedAttributes() {
+	public EReference getStructuredClassifier_DeltaDeletedAttributes()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -5992,7 +6409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_DeltaReplacedAttributes() {
+	public EReference getStructuredClassifier_DeltaReplacedAttributes()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -6001,7 +6419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_DeltaDeletedPorts() {
+	public EReference getStructuredClassifier_DeltaDeletedPorts()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -6010,7 +6429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_DeltaReplacedPorts() {
+	public EReference getStructuredClassifier_DeltaReplacedPorts()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -6019,7 +6439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_DeltaDeletedConnectors() {
+	public EReference getStructuredClassifier_DeltaDeletedConnectors()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -6028,7 +6449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_DeltaReplacedConnectors() {
+	public EReference getStructuredClassifier_DeltaReplacedConnectors()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -6037,7 +6459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_DeltaDeletedOperations() {
+	public EReference getStructuredClassifier_DeltaDeletedOperations()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -6046,7 +6469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuredClassifier_DeltaReplacedOperations() {
+	public EReference getStructuredClassifier_DeltaReplacedOperations()
+	{
 		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -6055,7 +6479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCallTrigger() {
+	public EClass getCallTrigger()
+	{
 		return callTriggerEClass;
 	}
 
@@ -6064,7 +6489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCallTrigger_Operation() {
+	public EReference getCallTrigger_Operation()
+	{
 		return (EReference)callTriggerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6073,7 +6499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMessageTrigger() {
+	public EClass getMessageTrigger()
+	{
 		return messageTriggerEClass;
 	}
 
@@ -6082,7 +6509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getChangeTrigger() {
+	public EClass getChangeTrigger()
+	{
 		return changeTriggerEClass;
 	}
 
@@ -6091,7 +6519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangeTrigger_ChangeExpression() {
+	public EReference getChangeTrigger_ChangeExpression()
+	{
 		return (EReference)changeTriggerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6100,7 +6529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTrigger() {
+	public EClass getTrigger()
+	{
 		return triggerEClass;
 	}
 
@@ -6109,7 +6539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTrigger_Port() {
+	public EReference getTrigger_Port()
+	{
 		return (EReference)triggerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6118,7 +6549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReception() {
+	public EClass getReception()
+	{
 		return receptionEClass;
 	}
 
@@ -6127,7 +6559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReception_Signal() {
+	public EReference getReception_Signal()
+	{
 		return (EReference)receptionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6136,7 +6569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSignal() {
+	public EClass getSignal()
+	{
 		return signalEClass;
 	}
 
@@ -6145,7 +6579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSignal_OwnedAttribute() {
+	public EReference getSignal_OwnedAttribute()
+	{
 		return (EReference)signalEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6154,7 +6589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSignalTrigger() {
+	public EClass getSignalTrigger()
+	{
 		return signalTriggerEClass;
 	}
 
@@ -6163,7 +6599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSignalTrigger_Signal() {
+	public EReference getSignalTrigger_Signal()
+	{
 		return (EReference)signalTriggerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6172,7 +6609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTimeTrigger() {
+	public EClass getTimeTrigger()
+	{
 		return timeTriggerEClass;
 	}
 
@@ -6181,7 +6619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTimeTrigger_IsRelative() {
+	public EAttribute getTimeTrigger_IsRelative()
+	{
 		return (EAttribute)timeTriggerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6190,7 +6629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTimeTrigger_When() {
+	public EReference getTimeTrigger_When()
+	{
 		return (EReference)timeTriggerEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6199,7 +6639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAnyTrigger() {
+	public EClass getAnyTrigger()
+	{
 		return anyTriggerEClass;
 	}
 
@@ -6208,7 +6649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTemplateSignature() {
+	public EClass getTemplateSignature()
+	{
 		return templateSignatureEClass;
 	}
 
@@ -6217,7 +6659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateSignature_Parameter() {
+	public EReference getTemplateSignature_Parameter()
+	{
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6226,7 +6669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateSignature_OwnedParameter() {
+	public EReference getTemplateSignature_OwnedParameter()
+	{
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6235,7 +6679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateSignature_NestedSignature() {
+	public EReference getTemplateSignature_NestedSignature()
+	{
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6244,7 +6689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateSignature_NestingSignature() {
+	public EReference getTemplateSignature_NestingSignature()
+	{
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6253,7 +6699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateSignature_Template() {
+	public EReference getTemplateSignature_Template()
+	{
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -6262,7 +6709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTemplateParameter() {
+	public EClass getTemplateParameter()
+	{
 		return templateParameterEClass;
 	}
 
@@ -6271,7 +6719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameter_Signature() {
+	public EReference getTemplateParameter_Signature()
+	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6280,7 +6729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameter_ParameteredElement() {
+	public EReference getTemplateParameter_ParameteredElement()
+	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6289,7 +6739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameter_OwnedParameteredElement() {
+	public EReference getTemplateParameter_OwnedParameteredElement()
+	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6298,7 +6749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameter_Default() {
+	public EReference getTemplateParameter_Default()
+	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6307,7 +6759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameter_OwnedDefault() {
+	public EReference getTemplateParameter_OwnedDefault()
+	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -6316,7 +6769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTemplateableElement() {
+	public EClass getTemplateableElement()
+	{
 		return templateableElementEClass;
 	}
 
@@ -6325,7 +6779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateableElement_TemplateBinding() {
+	public EReference getTemplateableElement_TemplateBinding()
+	{
 		return (EReference)templateableElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6334,7 +6789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateableElement_OwnedTemplateSignature() {
+	public EReference getTemplateableElement_OwnedTemplateSignature()
+	{
 		return (EReference)templateableElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6343,7 +6799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStringExpression() {
+	public EClass getStringExpression()
+	{
 		return stringExpressionEClass;
 	}
 
@@ -6352,7 +6809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStringExpression_SubExpression() {
+	public EReference getStringExpression_SubExpression()
+	{
 		return (EReference)stringExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6361,7 +6819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStringExpression_OwningExpression() {
+	public EReference getStringExpression_OwningExpression()
+	{
 		return (EReference)stringExpressionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6370,7 +6829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getParameterableElement() {
+	public EClass getParameterableElement()
+	{
 		return parameterableElementEClass;
 	}
 
@@ -6379,7 +6839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameterableElement_TemplateParameter() {
+	public EReference getParameterableElement_TemplateParameter()
+	{
 		return (EReference)parameterableElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6388,7 +6849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameterableElement_OwningParameter() {
+	public EReference getParameterableElement_OwningParameter()
+	{
 		return (EReference)parameterableElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6397,7 +6859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTemplateBinding() {
+	public EClass getTemplateBinding()
+	{
 		return templateBindingEClass;
 	}
 
@@ -6406,7 +6869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateBinding_BoundElement() {
+	public EReference getTemplateBinding_BoundElement()
+	{
 		return (EReference)templateBindingEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6415,7 +6879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateBinding_Signature() {
+	public EReference getTemplateBinding_Signature()
+	{
 		return (EReference)templateBindingEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6424,7 +6889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateBinding_ParameterSubstitution() {
+	public EReference getTemplateBinding_ParameterSubstitution()
+	{
 		return (EReference)templateBindingEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6433,7 +6899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTemplateParameterSubstitution() {
+	public EClass getTemplateParameterSubstitution()
+	{
 		return templateParameterSubstitutionEClass;
 	}
 
@@ -6442,7 +6909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameterSubstitution_Formal() {
+	public EReference getTemplateParameterSubstitution_Formal()
+	{
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6451,7 +6919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameterSubstitution_TemplateBinding() {
+	public EReference getTemplateParameterSubstitution_TemplateBinding()
+	{
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6460,7 +6929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameterSubstitution_Actual() {
+	public EReference getTemplateParameterSubstitution_Actual()
+	{
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6469,7 +6939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameterSubstitution_OwnedActual() {
+	public EReference getTemplateParameterSubstitution_OwnedActual()
+	{
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6478,7 +6949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCollaboration() {
+	public EClass getCollaboration()
+	{
 		return collaborationEClass;
 	}
 
@@ -6487,7 +6959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCollaboration_CollaborationRole() {
+	public EReference getCollaboration_CollaborationRole()
+	{
 		return (EReference)collaborationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6496,7 +6969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOperationTemplateParameter() {
+	public EClass getOperationTemplateParameter()
+	{
 		return operationTemplateParameterEClass;
 	}
 
@@ -6505,7 +6979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClassifierTemplateParameter() {
+	public EClass getClassifierTemplateParameter()
+	{
 		return classifierTemplateParameterEClass;
 	}
 
@@ -6514,7 +6989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClassifierTemplateParameter_AllowSubstitutable() {
+	public EAttribute getClassifierTemplateParameter_AllowSubstitutable()
+	{
 		return (EAttribute)classifierTemplateParameterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6523,7 +6999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getParameterableClassifier() {
+	public EClass getParameterableClassifier()
+	{
 		return parameterableClassifierEClass;
 	}
 
@@ -6532,7 +7009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRedefinableTemplateSignature() {
+	public EClass getRedefinableTemplateSignature()
+	{
 		return redefinableTemplateSignatureEClass;
 	}
 
@@ -6541,7 +7019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTemplateableClassifier() {
+	public EClass getTemplateableClassifier()
+	{
 		return templateableClassifierEClass;
 	}
 
@@ -6550,7 +7029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConnectableElementTemplateParameter() {
+	public EClass getConnectableElementTemplateParameter()
+	{
 		return connectableElementTemplateParameterEClass;
 	}
 
@@ -6559,7 +7039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getForkNode() {
+	public EClass getForkNode()
+	{
 		return forkNodeEClass;
 	}
 
@@ -6568,7 +7049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getJoinNode() {
+	public EClass getJoinNode()
+	{
 		return joinNodeEClass;
 	}
 
@@ -6577,7 +7059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJoinNode_IsCombineDuplicate() {
+	public EAttribute getJoinNode_IsCombineDuplicate()
+	{
 		return (EAttribute)joinNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6586,7 +7069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getJoinNode_JoinSpec() {
+	public EReference getJoinNode_JoinSpec()
+	{
 		return (EReference)joinNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6595,7 +7079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFlowFinalNode() {
+	public EClass getFlowFinalNode()
+	{
 		return flowFinalNodeEClass;
 	}
 
@@ -6604,7 +7089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCentralBufferNode() {
+	public EClass getCentralBufferNode()
+	{
 		return centralBufferNodeEClass;
 	}
 
@@ -6613,7 +7099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivityPartition() {
+	public EClass getActivityPartition()
+	{
 		return activityPartitionEClass;
 	}
 
@@ -6622,7 +7109,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActivityPartition_IsDimension() {
+	public EAttribute getActivityPartition_IsDimension()
+	{
 		return (EAttribute)activityPartitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6631,7 +7119,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActivityPartition_IsExternal() {
+	public EAttribute getActivityPartition_IsExternal()
+	{
 		return (EAttribute)activityPartitionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6640,7 +7129,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityPartition_ContainedEdge() {
+	public EReference getActivityPartition_ContainedEdge()
+	{
 		return (EReference)activityPartitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6649,7 +7139,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getActivityPartition_ContainedNode() {
+    public EReference getActivityPartition_ContainedNode()
+	{
 		return (EReference)activityPartitionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6658,7 +7149,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityPartition_Subgroup() {
+	public EReference getActivityPartition_Subgroup()
+	{
 		return (EReference)activityPartitionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -6667,7 +7159,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityPartition_SuperPartition() {
+	public EReference getActivityPartition_SuperPartition()
+	{
 		return (EReference)activityPartitionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -6676,7 +7169,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivityPartition_Represents() {
+	public EReference getActivityPartition_Represents()
+	{
 		return (EReference)activityPartitionEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -6685,7 +7179,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPort() {
+	public EClass getPort()
+	{
 		return portEClass;
 	}
 
@@ -6694,7 +7189,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPort_IsBehavior() {
+	public EAttribute getPort_IsBehavior()
+	{
 		return (EAttribute)portEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6703,7 +7199,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPort_IsService() {
+	public EAttribute getPort_IsService()
+	{
 		return (EAttribute)portEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6712,7 +7209,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPort_Required() {
+	public EReference getPort_Required()
+	{
 		return (EReference)portEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6721,7 +7219,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPort_RedefinedPort() {
+	public EReference getPort_RedefinedPort()
+	{
 		return (EReference)portEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6730,7 +7229,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPort_Provided() {
+	public EReference getPort_Provided()
+	{
 		return (EReference)portEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -6739,7 +7239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPort_Protocol() {
+	public EReference getPort_Protocol()
+	{
 		return (EReference)portEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -6748,7 +7249,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPort_Kind() {
+	public EAttribute getPort_Kind()
+	{
 		return (EAttribute)portEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -6757,7 +7259,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEncapsulatedClassifier() {
+	public EClass getEncapsulatedClassifier()
+	{
 		return encapsulatedClassifierEClass;
 	}
 
@@ -6766,7 +7269,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEncapsulatedClassifier_OwnedPort() {
+	public EReference getEncapsulatedClassifier_OwnedPort()
+	{
 		return (EReference)encapsulatedClassifierEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6775,7 +7279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExpansionNode() {
+	public EClass getExpansionNode()
+	{
 		return expansionNodeEClass;
 	}
 
@@ -6784,7 +7289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpansionNode_RegionAsOutput() {
+	public EReference getExpansionNode_RegionAsOutput()
+	{
 		return (EReference)expansionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6793,7 +7299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpansionNode_RegionAsInput() {
+	public EReference getExpansionNode_RegionAsInput()
+	{
 		return (EReference)expansionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6802,7 +7309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExpansionRegion() {
+	public EClass getExpansionRegion()
+	{
 		return expansionRegionEClass;
 	}
 
@@ -6811,7 +7319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExpansionRegion_Mode() {
+	public EAttribute getExpansionRegion_Mode()
+	{
 		return (EAttribute)expansionRegionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6820,7 +7329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpansionRegion_OutputElement() {
+	public EReference getExpansionRegion_OutputElement()
+	{
 		return (EReference)expansionRegionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6829,7 +7339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpansionRegion_InputElement() {
+	public EReference getExpansionRegion_InputElement()
+	{
 		return (EReference)expansionRegionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6838,7 +7349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExceptionHandler() {
+	public EClass getExceptionHandler()
+	{
 		return exceptionHandlerEClass;
 	}
 
@@ -6847,7 +7359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExceptionHandler_ProtectedNode() {
+	public EReference getExceptionHandler_ProtectedNode()
+	{
 		return (EReference)exceptionHandlerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6856,7 +7369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExceptionHandler_HandlerBody() {
+	public EReference getExceptionHandler_HandlerBody()
+	{
 		return (EReference)exceptionHandlerEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6865,7 +7379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExceptionHandler_ExceptionInput() {
+	public EReference getExceptionHandler_ExceptionInput()
+	{
 		return (EReference)exceptionHandlerEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6874,7 +7389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExceptionHandler_ExceptionType() {
+	public EReference getExceptionHandler_ExceptionType()
+	{
 		return (EReference)exceptionHandlerEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6883,7 +7399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInteraction() {
+	public EClass getInteraction()
+	{
 		return interactionEClass;
 	}
 
@@ -6892,7 +7409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteraction_Lifeline() {
+	public EReference getInteraction_Lifeline()
+	{
 		return (EReference)interactionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6901,7 +7419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteraction_Message() {
+	public EReference getInteraction_Message()
+	{
 		return (EReference)interactionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6910,7 +7429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteraction_Fragment() {
+	public EReference getInteraction_Fragment()
+	{
 		return (EReference)interactionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6919,7 +7439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteraction_FormalGate() {
+	public EReference getInteraction_FormalGate()
+	{
 		return (EReference)interactionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6928,7 +7449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInteractionFragment() {
+	public EClass getInteractionFragment()
+	{
 		return interactionFragmentEClass;
 	}
 
@@ -6937,7 +7459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionFragment_Covered() {
+	public EReference getInteractionFragment_Covered()
+	{
 		return (EReference)interactionFragmentEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6946,7 +7469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionFragment_GeneralOrdering() {
+	public EReference getInteractionFragment_GeneralOrdering()
+	{
 		return (EReference)interactionFragmentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -6955,7 +7479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionFragment_EnclosingInteraction() {
+	public EReference getInteractionFragment_EnclosingInteraction()
+	{
 		return (EReference)interactionFragmentEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6964,7 +7489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionFragment_EnclosingOperand() {
+	public EReference getInteractionFragment_EnclosingOperand()
+	{
 		return (EReference)interactionFragmentEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6973,7 +7499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLifeline() {
+	public EClass getLifeline()
+	{
 		return lifelineEClass;
 	}
 
@@ -6982,7 +7509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLifeline_CoveredBy() {
+	public EReference getLifeline_CoveredBy()
+	{
 		return (EReference)lifelineEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6991,7 +7519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLifeline_Represents() {
+	public EReference getLifeline_Represents()
+	{
 		return (EReference)lifelineEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7000,7 +7529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLifeline_Interaction() {
+	public EReference getLifeline_Interaction()
+	{
 		return (EReference)lifelineEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -7009,7 +7539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLifeline_Selector() {
+	public EReference getLifeline_Selector()
+	{
 		return (EReference)lifelineEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -7018,7 +7549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLifeline_DecomposedAs() {
+	public EReference getLifeline_DecomposedAs()
+	{
 		return (EReference)lifelineEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -7027,7 +7559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMessage() {
+	public EClass getMessage()
+	{
 		return messageEClass;
 	}
 
@@ -7036,7 +7569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMessage_MessageKind() {
+	public EAttribute getMessage_MessageKind()
+	{
 		return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7045,7 +7579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMessage_MessageSort() {
+	public EAttribute getMessage_MessageSort()
+	{
 		return (EAttribute)messageEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7054,7 +7589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessage_ReceiveEvent() {
+	public EReference getMessage_ReceiveEvent()
+	{
 		return (EReference)messageEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -7063,7 +7599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessage_SendEvent() {
+	public EReference getMessage_SendEvent()
+	{
 		return (EReference)messageEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -7072,7 +7609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessage_Connector() {
+	public EReference getMessage_Connector()
+	{
 		return (EReference)messageEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -7081,7 +7619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessage_Interaction() {
+	public EReference getMessage_Interaction()
+	{
 		return (EReference)messageEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -7090,7 +7629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessage_Signature() {
+	public EReference getMessage_Signature()
+	{
 		return (EReference)messageEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -7099,7 +7639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessage_Argument() {
+	public EReference getMessage_Argument()
+	{
 		return (EReference)messageEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -7108,7 +7649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGeneralOrdering() {
+	public EClass getGeneralOrdering()
+	{
 		return generalOrderingEClass;
 	}
 
@@ -7117,7 +7659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeneralOrdering_Before() {
+	public EReference getGeneralOrdering_Before()
+	{
 		return (EReference)generalOrderingEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7126,7 +7669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeneralOrdering_After() {
+	public EReference getGeneralOrdering_After()
+	{
 		return (EReference)generalOrderingEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7135,7 +7679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMessageEnd() {
+	public EClass getMessageEnd()
+	{
 		return messageEndEClass;
 	}
 
@@ -7144,7 +7689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessageEnd_ReceiveMessage() {
+	public EReference getMessageEnd_ReceiveMessage()
+	{
 		return (EReference)messageEndEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7153,7 +7699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMessageEnd_SendMessage() {
+	public EReference getMessageEnd_SendMessage()
+	{
 		return (EReference)messageEndEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7162,7 +7709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEventOccurrence() {
+	public EClass getEventOccurrence()
+	{
 		return eventOccurrenceEClass;
 	}
 
@@ -7171,7 +7719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventOccurrence_StartExec() {
+	public EReference getEventOccurrence_StartExec()
+	{
 		return (EReference)eventOccurrenceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7180,7 +7729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventOccurrence_FinishExec() {
+	public EReference getEventOccurrence_FinishExec()
+	{
 		return (EReference)eventOccurrenceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7189,7 +7739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventOccurrence_ToAfter() {
+	public EReference getEventOccurrence_ToAfter()
+	{
 		return (EReference)eventOccurrenceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -7198,7 +7749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventOccurrence_ToBefore() {
+	public EReference getEventOccurrence_ToBefore()
+	{
 		return (EReference)eventOccurrenceEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -7207,7 +7759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExecutionOccurrence() {
+	public EClass getExecutionOccurrence()
+	{
 		return executionOccurrenceEClass;
 	}
 
@@ -7216,7 +7769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExecutionOccurrence_Start() {
+	public EReference getExecutionOccurrence_Start()
+	{
 		return (EReference)executionOccurrenceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7225,7 +7779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExecutionOccurrence_Finish() {
+	public EReference getExecutionOccurrence_Finish()
+	{
 		return (EReference)executionOccurrenceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7234,7 +7789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExecutionOccurrence_Behavior() {
+	public EReference getExecutionOccurrence_Behavior()
+	{
 		return (EReference)executionOccurrenceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -7243,7 +7799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStateInvariant() {
+	public EClass getStateInvariant()
+	{
 		return stateInvariantEClass;
 	}
 
@@ -7252,7 +7809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStateInvariant_Invariant() {
+	public EReference getStateInvariant_Invariant()
+	{
 		return (EReference)stateInvariantEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7261,7 +7819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStop() {
+	public EClass getStop()
+	{
 		return stopEClass;
 	}
 
@@ -7270,7 +7829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCollaborationOccurrence() {
+	public EClass getCollaborationOccurrence()
+	{
 		return collaborationOccurrenceEClass;
 	}
 
@@ -7279,7 +7839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCollaborationOccurrence_Type() {
+	public EReference getCollaborationOccurrence_Type()
+	{
 		return (EReference)collaborationOccurrenceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7288,7 +7849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCollaborationOccurrence_RoleBinding() {
+	public EReference getCollaborationOccurrence_RoleBinding()
+	{
 		return (EReference)collaborationOccurrenceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7297,7 +7859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCreateObjectAction() {
+	public EClass getCreateObjectAction()
+	{
 		return createObjectActionEClass;
 	}
 
@@ -7306,7 +7869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCreateObjectAction_Classifier() {
+	public EReference getCreateObjectAction_Classifier()
+	{
 		return (EReference)createObjectActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7315,7 +7879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCreateObjectAction_Result() {
+	public EReference getCreateObjectAction_Result()
+	{
 		return (EReference)createObjectActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7324,7 +7889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDestroyObjectAction() {
+	public EClass getDestroyObjectAction()
+	{
 		return destroyObjectActionEClass;
 	}
 
@@ -7333,7 +7899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestroyObjectAction_IsDestroyLinks() {
+	public EAttribute getDestroyObjectAction_IsDestroyLinks()
+	{
 		return (EAttribute)destroyObjectActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7342,7 +7909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestroyObjectAction_IsDestroyOwnedObjects() {
+	public EAttribute getDestroyObjectAction_IsDestroyOwnedObjects()
+	{
 		return (EAttribute)destroyObjectActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7351,7 +7919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDestroyObjectAction_Target() {
+	public EReference getDestroyObjectAction_Target()
+	{
 		return (EReference)destroyObjectActionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -7360,7 +7929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTestIdentityAction() {
+	public EClass getTestIdentityAction()
+	{
 		return testIdentityActionEClass;
 	}
 
@@ -7369,7 +7939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestIdentityAction_First() {
+	public EReference getTestIdentityAction_First()
+	{
 		return (EReference)testIdentityActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7378,7 +7949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestIdentityAction_Second() {
+	public EReference getTestIdentityAction_Second()
+	{
 		return (EReference)testIdentityActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7387,7 +7959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestIdentityAction_Result() {
+	public EReference getTestIdentityAction_Result()
+	{
 		return (EReference)testIdentityActionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -7396,7 +7969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadSelfAction() {
+	public EClass getReadSelfAction()
+	{
 		return readSelfActionEClass;
 	}
 
@@ -7405,7 +7979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadSelfAction_Result() {
+	public EReference getReadSelfAction_Result()
+	{
 		return (EReference)readSelfActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7414,7 +7989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStructuralFeatureAction() {
+	public EClass getStructuralFeatureAction()
+	{
 		return structuralFeatureActionEClass;
 	}
 
@@ -7423,7 +7999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuralFeatureAction_StructuralFeature() {
+	public EReference getStructuralFeatureAction_StructuralFeature()
+	{
 		return (EReference)structuralFeatureActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7432,7 +8009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructuralFeatureAction_Object() {
+	public EReference getStructuralFeatureAction_Object()
+	{
 		return (EReference)structuralFeatureActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7441,7 +8019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadStructuralFeatureAction() {
+	public EClass getReadStructuralFeatureAction()
+	{
 		return readStructuralFeatureActionEClass;
 	}
 
@@ -7450,7 +8029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadStructuralFeatureAction_Result() {
+	public EReference getReadStructuralFeatureAction_Result()
+	{
 		return (EReference)readStructuralFeatureActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7459,7 +8039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getWriteStructuralFeatureAction() {
+	public EClass getWriteStructuralFeatureAction()
+	{
 		return writeStructuralFeatureActionEClass;
 	}
 
@@ -7468,7 +8049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWriteStructuralFeatureAction_Value() {
+	public EReference getWriteStructuralFeatureAction_Value()
+	{
 		return (EReference)writeStructuralFeatureActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7477,7 +8059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClearStructuralFeatureAction() {
+	public EClass getClearStructuralFeatureAction()
+	{
 		return clearStructuralFeatureActionEClass;
 	}
 
@@ -7486,7 +8069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRemoveStructuralFeatureValueAction() {
+	public EClass getRemoveStructuralFeatureValueAction()
+	{
 		return removeStructuralFeatureValueActionEClass;
 	}
 
@@ -7495,7 +8079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAddStructuralFeatureValueAction() {
+	public EClass getAddStructuralFeatureValueAction()
+	{
 		return addStructuralFeatureValueActionEClass;
 	}
 
@@ -7504,7 +8089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAddStructuralFeatureValueAction_IsReplaceAll() {
+	public EAttribute getAddStructuralFeatureValueAction_IsReplaceAll()
+	{
 		return (EAttribute)addStructuralFeatureValueActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7513,7 +8099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAddStructuralFeatureValueAction_InsertAt() {
+	public EReference getAddStructuralFeatureValueAction_InsertAt()
+	{
 		return (EReference)addStructuralFeatureValueActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7522,7 +8109,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLinkAction() {
+	public EClass getLinkAction()
+	{
 		return linkActionEClass;
 	}
 
@@ -7531,7 +8119,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLinkAction_EndData() {
+	public EReference getLinkAction_EndData()
+	{
 		return (EReference)linkActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7540,7 +8129,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLinkEndData() {
+	public EClass getLinkEndData()
+	{
 		return linkEndDataEClass;
 	}
 
@@ -7549,7 +8139,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLinkEndData_Value() {
+	public EReference getLinkEndData_Value()
+	{
 		return (EReference)linkEndDataEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7558,7 +8149,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLinkEndData_End() {
+	public EReference getLinkEndData_End()
+	{
 		return (EReference)linkEndDataEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7567,7 +8159,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLinkEndData_Qualifier() {
+	public EReference getLinkEndData_Qualifier()
+	{
 		return (EReference)linkEndDataEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -7576,7 +8169,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadLinkAction() {
+	public EClass getReadLinkAction()
+	{
 		return readLinkActionEClass;
 	}
 
@@ -7585,7 +8179,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadLinkAction_Result() {
+	public EReference getReadLinkAction_Result()
+	{
 		return (EReference)readLinkActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7594,7 +8189,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLinkEndCreationData() {
+	public EClass getLinkEndCreationData()
+	{
 		return linkEndCreationDataEClass;
 	}
 
@@ -7603,7 +8199,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLinkEndCreationData_IsReplaceAll() {
+	public EAttribute getLinkEndCreationData_IsReplaceAll()
+	{
 		return (EAttribute)linkEndCreationDataEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7612,7 +8209,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLinkEndCreationData_InsertAt() {
+	public EReference getLinkEndCreationData_InsertAt()
+	{
 		return (EReference)linkEndCreationDataEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7621,7 +8219,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCreateLinkAction() {
+	public EClass getCreateLinkAction()
+	{
 		return createLinkActionEClass;
 	}
 
@@ -7630,7 +8229,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getWriteLinkAction() {
+	public EClass getWriteLinkAction()
+	{
 		return writeLinkActionEClass;
 	}
 
@@ -7639,7 +8239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDestroyLinkAction() {
+	public EClass getDestroyLinkAction()
+	{
 		return destroyLinkActionEClass;
 	}
 
@@ -7648,7 +8249,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClearAssociationAction() {
+	public EClass getClearAssociationAction()
+	{
 		return clearAssociationActionEClass;
 	}
 
@@ -7657,7 +8259,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClearAssociationAction_Object() {
+	public EReference getClearAssociationAction_Object()
+	{
 		return (EReference)clearAssociationActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7666,7 +8269,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClearAssociationAction_Association() {
+	public EReference getClearAssociationAction_Association()
+	{
 		return (EReference)clearAssociationActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7675,7 +8279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariableAction() {
+	public EClass getVariableAction()
+	{
 		return variableActionEClass;
 	}
 
@@ -7684,7 +8289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVariableAction_Variable() {
+	public EReference getVariableAction_Variable()
+	{
 		return (EReference)variableActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7693,7 +8299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadVariableAction() {
+	public EClass getReadVariableAction()
+	{
 		return readVariableActionEClass;
 	}
 
@@ -7702,7 +8309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadVariableAction_Result() {
+	public EReference getReadVariableAction_Result()
+	{
 		return (EReference)readVariableActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7711,7 +8319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getWriteVariableAction() {
+	public EClass getWriteVariableAction()
+	{
 		return writeVariableActionEClass;
 	}
 
@@ -7720,7 +8329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWriteVariableAction_Value() {
+	public EReference getWriteVariableAction_Value()
+	{
 		return (EReference)writeVariableActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7729,7 +8339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClearVariableAction() {
+	public EClass getClearVariableAction()
+	{
 		return clearVariableActionEClass;
 	}
 
@@ -7738,7 +8349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAddVariableValueAction() {
+	public EClass getAddVariableValueAction()
+	{
 		return addVariableValueActionEClass;
 	}
 
@@ -7747,7 +8359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAddVariableValueAction_IsReplaceAll() {
+	public EAttribute getAddVariableValueAction_IsReplaceAll()
+	{
 		return (EAttribute)addVariableValueActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7756,7 +8369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAddVariableValueAction_InsertAt() {
+	public EReference getAddVariableValueAction_InsertAt()
+	{
 		return (EReference)addVariableValueActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7765,7 +8379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRemoveVariableValueAction() {
+	public EClass getRemoveVariableValueAction()
+	{
 		return removeVariableValueActionEClass;
 	}
 
@@ -7774,7 +8389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getApplyFunctionAction() {
+	public EClass getApplyFunctionAction()
+	{
 		return applyFunctionActionEClass;
 	}
 
@@ -7783,7 +8399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getApplyFunctionAction_Function() {
+	public EReference getApplyFunctionAction_Function()
+	{
 		return (EReference)applyFunctionActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7792,7 +8409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getApplyFunctionAction_Argument() {
+	public EReference getApplyFunctionAction_Argument()
+	{
 		return (EReference)applyFunctionActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7801,7 +8419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getApplyFunctionAction_Result() {
+	public EReference getApplyFunctionAction_Result()
+	{
 		return (EReference)applyFunctionActionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -7810,7 +8429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPrimitiveFunction() {
+	public EClass getPrimitiveFunction()
+	{
 		return primitiveFunctionEClass;
 	}
 
@@ -7819,7 +8439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPrimitiveFunction_Body() {
+	public EAttribute getPrimitiveFunction_Body()
+	{
 		return (EAttribute)primitiveFunctionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7828,7 +8449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPrimitiveFunction_Language() {
+	public EAttribute getPrimitiveFunction_Language()
+	{
 		return (EAttribute)primitiveFunctionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7837,7 +8459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCallAction() {
+	public EClass getCallAction()
+	{
 		return callActionEClass;
 	}
 
@@ -7846,7 +8469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCallAction_IsSynchronous() {
+	public EAttribute getCallAction_IsSynchronous()
+	{
 		return (EAttribute)callActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7855,7 +8479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCallAction_Result() {
+	public EReference getCallAction_Result()
+	{
 		return (EReference)callActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7864,7 +8489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInvocationAction() {
+	public EClass getInvocationAction()
+	{
 		return invocationActionEClass;
 	}
 
@@ -7873,7 +8499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInvocationAction_Argument() {
+	public EReference getInvocationAction_Argument()
+	{
 		return (EReference)invocationActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7882,7 +8509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInvocationAction_OnPort() {
+	public EReference getInvocationAction_OnPort()
+	{
 		return (EReference)invocationActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7891,7 +8519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSendSignalAction() {
+	public EClass getSendSignalAction()
+	{
 		return sendSignalActionEClass;
 	}
 
@@ -7900,7 +8529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSendSignalAction_Target() {
+	public EReference getSendSignalAction_Target()
+	{
 		return (EReference)sendSignalActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7909,7 +8539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSendSignalAction_Signal() {
+	public EReference getSendSignalAction_Signal()
+	{
 		return (EReference)sendSignalActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7918,7 +8549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBroadcastSignalAction() {
+	public EClass getBroadcastSignalAction()
+	{
 		return broadcastSignalActionEClass;
 	}
 
@@ -7927,7 +8559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBroadcastSignalAction_Signal() {
+	public EReference getBroadcastSignalAction_Signal()
+	{
 		return (EReference)broadcastSignalActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7936,7 +8569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSendObjectAction() {
+	public EClass getSendObjectAction()
+	{
 		return sendObjectActionEClass;
 	}
 
@@ -7945,7 +8579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSendObjectAction_Target() {
+	public EReference getSendObjectAction_Target()
+	{
 		return (EReference)sendObjectActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7954,7 +8589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSendObjectAction_Request() {
+	public EReference getSendObjectAction_Request()
+	{
 		return (EReference)sendObjectActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7963,7 +8599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCallOperationAction() {
+	public EClass getCallOperationAction()
+	{
 		return callOperationActionEClass;
 	}
 
@@ -7972,7 +8609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCallOperationAction_Operation() {
+	public EReference getCallOperationAction_Operation()
+	{
 		return (EReference)callOperationActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -7981,7 +8619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCallOperationAction_Target() {
+	public EReference getCallOperationAction_Target()
+	{
 		return (EReference)callOperationActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -7990,7 +8629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCallBehaviorAction() {
+	public EClass getCallBehaviorAction()
+	{
 		return callBehaviorActionEClass;
 	}
 
@@ -7999,7 +8639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCallBehaviorAction_Behavior() {
+	public EReference getCallBehaviorAction_Behavior()
+	{
 		return (EReference)callBehaviorActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8008,7 +8649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStateMachine() {
+	public EClass getStateMachine()
+	{
 		return stateMachineEClass;
 	}
 
@@ -8017,7 +8659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStateMachine_Region() {
+	public EReference getStateMachine_Region()
+	{
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8026,7 +8669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStateMachine_ConnectionPoint() {
+	public EReference getStateMachine_ConnectionPoint()
+	{
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8035,7 +8679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStateMachine_ExtendedStateMachine() {
+	public EReference getStateMachine_ExtendedStateMachine()
+	{
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8044,7 +8689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStateMachine_StateMachine_redefinitionContext() {
+	public EReference getStateMachine_StateMachine_redefinitionContext()
+	{
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -8053,7 +8699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRegion() {
+	public EClass getRegion()
+	{
 		return regionEClass;
 	}
 
@@ -8062,7 +8709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRegion_Subvertex() {
+	public EReference getRegion_Subvertex()
+	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8071,7 +8719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRegion_Transition() {
+	public EReference getRegion_Transition()
+	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8080,7 +8729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRegion_StateMachine() {
+	public EReference getRegion_StateMachine()
+	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8089,7 +8739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRegion_State() {
+	public EReference getRegion_State()
+	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -8098,7 +8749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRegion_ExtendedRegion() {
+	public EReference getRegion_ExtendedRegion()
+	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -8107,7 +8759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPseudostate() {
+	public EClass getPseudostate()
+	{
 		return pseudostateEClass;
 	}
 
@@ -8116,7 +8769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPseudostate_Kind() {
+	public EAttribute getPseudostate_Kind()
+	{
 		return (EAttribute)pseudostateEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8125,7 +8779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getState() {
+	public EClass getState()
+	{
 		return stateEClass;
 	}
 
@@ -8134,7 +8789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getState_IsComposite() {
+	public EAttribute getState_IsComposite()
+	{
 		return (EAttribute)stateEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8143,7 +8799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getState_IsOrthogonal() {
+	public EAttribute getState_IsOrthogonal()
+	{
 		return (EAttribute)stateEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8152,7 +8809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getState_IsSimple() {
+	public EAttribute getState_IsSimple()
+	{
 		return (EAttribute)stateEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8161,7 +8819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getState_IsSubmachineState() {
+	public EAttribute getState_IsSubmachineState()
+	{
 		return (EAttribute)stateEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -8170,7 +8829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_Submachine() {
+	public EReference getState_Submachine()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -8179,7 +8839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_Connection() {
+	public EReference getState_Connection()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -8188,7 +8849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_RedefinedState() {
+	public EReference getState_RedefinedState()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -8197,7 +8859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_DeferrableTrigger() {
+	public EReference getState_DeferrableTrigger()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -8206,7 +8869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_Region() {
+	public EReference getState_Region()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -8215,7 +8879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_Entry() {
+	public EReference getState_Entry()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -8224,7 +8889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_Exit() {
+	public EReference getState_Exit()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -8233,7 +8899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_DoActivity() {
+	public EReference getState_DoActivity()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -8242,7 +8909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_StateInvariant() {
+	public EReference getState_StateInvariant()
+	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -8251,7 +8919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVertex() {
+	public EClass getVertex()
+	{
 		return vertexEClass;
 	}
 
@@ -8260,7 +8929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Container() {
+	public EReference getVertex_Container()
+	{
 		return (EReference)vertexEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8269,7 +8939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Outgoing() {
+	public EReference getVertex_Outgoing()
+	{
 		return (EReference)vertexEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8278,7 +8949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Incoming() {
+	public EReference getVertex_Incoming()
+	{
 		return (EReference)vertexEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8287,7 +8959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConnectionPointReference() {
+	public EClass getConnectionPointReference()
+	{
 		return connectionPointReferenceEClass;
 	}
 
@@ -8296,7 +8969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnectionPointReference_Entry() {
+	public EReference getConnectionPointReference_Entry()
+	{
 		return (EReference)connectionPointReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8305,7 +8979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnectionPointReference_Exit() {
+	public EReference getConnectionPointReference_Exit()
+	{
 		return (EReference)connectionPointReferenceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8314,7 +8989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTransition() {
+	public EClass getTransition()
+	{
 		return transitionEClass;
 	}
 
@@ -8323,7 +8999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransition_Kind() {
+	public EAttribute getTransition_Kind()
+	{
 		return (EAttribute)transitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8332,7 +9009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Container() {
+	public EReference getTransition_Container()
+	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8341,7 +9019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Source() {
+	public EReference getTransition_Source()
+	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8350,7 +9029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Target() {
+	public EReference getTransition_Target()
+	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -8359,7 +9039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_RedefinedTransition() {
+	public EReference getTransition_RedefinedTransition()
+	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -8368,7 +9049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Trigger() {
+	public EReference getTransition_Trigger()
+	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -8377,7 +9059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Guard() {
+	public EReference getTransition_Guard()
+	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -8386,7 +9069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Effect() {
+	public EReference getTransition_Effect()
+	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -8395,7 +9079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFinalState() {
+	public EClass getFinalState()
+	{
 		return finalStateEClass;
 	}
 
@@ -8404,7 +9089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadExtentAction() {
+	public EClass getReadExtentAction()
+	{
 		return readExtentActionEClass;
 	}
 
@@ -8413,7 +9099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadExtentAction_Result() {
+	public EReference getReadExtentAction_Result()
+	{
 		return (EReference)readExtentActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8422,7 +9109,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadExtentAction_Classifier() {
+	public EReference getReadExtentAction_Classifier()
+	{
 		return (EReference)readExtentActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8431,7 +9119,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReclassifyObjectAction() {
+	public EClass getReclassifyObjectAction()
+	{
 		return reclassifyObjectActionEClass;
 	}
 
@@ -8440,7 +9129,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getReclassifyObjectAction_IsReplaceAll() {
+	public EAttribute getReclassifyObjectAction_IsReplaceAll()
+	{
 		return (EAttribute)reclassifyObjectActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8449,7 +9139,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReclassifyObjectAction_OldClassifier() {
+	public EReference getReclassifyObjectAction_OldClassifier()
+	{
 		return (EReference)reclassifyObjectActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8458,7 +9149,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReclassifyObjectAction_NewClassifier() {
+	public EReference getReclassifyObjectAction_NewClassifier()
+	{
 		return (EReference)reclassifyObjectActionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8467,7 +9159,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReclassifyObjectAction_Object() {
+	public EReference getReclassifyObjectAction_Object()
+	{
 		return (EReference)reclassifyObjectActionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -8476,7 +9169,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadIsClassifiedObjectAction() {
+	public EClass getReadIsClassifiedObjectAction()
+	{
 		return readIsClassifiedObjectActionEClass;
 	}
 
@@ -8485,7 +9179,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getReadIsClassifiedObjectAction_IsDirect() {
+	public EAttribute getReadIsClassifiedObjectAction_IsDirect()
+	{
 		return (EAttribute)readIsClassifiedObjectActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8494,7 +9189,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadIsClassifiedObjectAction_Classifier() {
+	public EReference getReadIsClassifiedObjectAction_Classifier()
+	{
 		return (EReference)readIsClassifiedObjectActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8503,7 +9199,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadIsClassifiedObjectAction_Result() {
+	public EReference getReadIsClassifiedObjectAction_Result()
+	{
 		return (EReference)readIsClassifiedObjectActionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8512,7 +9209,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadIsClassifiedObjectAction_Object() {
+	public EReference getReadIsClassifiedObjectAction_Object()
+	{
 		return (EReference)readIsClassifiedObjectActionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -8521,7 +9219,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStartOwnedBehaviorAction() {
+	public EClass getStartOwnedBehaviorAction()
+	{
 		return startOwnedBehaviorActionEClass;
 	}
 
@@ -8530,7 +9229,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStartOwnedBehaviorAction_Object() {
+	public EReference getStartOwnedBehaviorAction_Object()
+	{
 		return (EReference)startOwnedBehaviorActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8539,7 +9239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getQualifierValue() {
+	public EClass getQualifierValue()
+	{
 		return qualifierValueEClass;
 	}
 
@@ -8548,7 +9249,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getQualifierValue_Qualifier() {
+	public EReference getQualifierValue_Qualifier()
+	{
 		return (EReference)qualifierValueEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8557,7 +9259,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getQualifierValue_Value() {
+	public EReference getQualifierValue_Value()
+	{
 		return (EReference)qualifierValueEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8566,7 +9269,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadLinkObjectEndAction() {
+	public EClass getReadLinkObjectEndAction()
+	{
 		return readLinkObjectEndActionEClass;
 	}
 
@@ -8575,7 +9279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadLinkObjectEndAction_Object() {
+	public EReference getReadLinkObjectEndAction_Object()
+	{
 		return (EReference)readLinkObjectEndActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8584,7 +9289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadLinkObjectEndAction_End() {
+	public EReference getReadLinkObjectEndAction_End()
+	{
 		return (EReference)readLinkObjectEndActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8593,7 +9299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadLinkObjectEndAction_Result() {
+	public EReference getReadLinkObjectEndAction_Result()
+	{
 		return (EReference)readLinkObjectEndActionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8602,7 +9309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadLinkObjectEndQualifierAction() {
+	public EClass getReadLinkObjectEndQualifierAction()
+	{
 		return readLinkObjectEndQualifierActionEClass;
 	}
 
@@ -8611,7 +9319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadLinkObjectEndQualifierAction_Object() {
+	public EReference getReadLinkObjectEndQualifierAction_Object()
+	{
 		return (EReference)readLinkObjectEndQualifierActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8620,7 +9329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadLinkObjectEndQualifierAction_Result() {
+	public EReference getReadLinkObjectEndQualifierAction_Result()
+	{
 		return (EReference)readLinkObjectEndQualifierActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8629,7 +9339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReadLinkObjectEndQualifierAction_Qualifier() {
+	public EReference getReadLinkObjectEndQualifierAction_Qualifier()
+	{
 		return (EReference)readLinkObjectEndQualifierActionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8638,7 +9349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCreateLinkObjectAction() {
+	public EClass getCreateLinkObjectAction()
+	{
 		return createLinkObjectActionEClass;
 	}
 
@@ -8647,7 +9359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCreateLinkObjectAction_Result() {
+	public EReference getCreateLinkObjectAction_Result()
+	{
 		return (EReference)createLinkObjectActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8656,7 +9369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAcceptEventAction() {
+	public EClass getAcceptEventAction()
+	{
 		return acceptEventActionEClass;
 	}
 
@@ -8665,7 +9379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAcceptEventAction_Trigger() {
+	public EReference getAcceptEventAction_Trigger()
+	{
 		return (EReference)acceptEventActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8674,7 +9389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAcceptEventAction_Result() {
+	public EReference getAcceptEventAction_Result()
+	{
 		return (EReference)acceptEventActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8683,7 +9399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAcceptCallAction() {
+	public EClass getAcceptCallAction()
+	{
 		return acceptCallActionEClass;
 	}
 
@@ -8692,7 +9409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAcceptCallAction_ReturnInformation() {
+	public EReference getAcceptCallAction_ReturnInformation()
+	{
 		return (EReference)acceptCallActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8701,7 +9419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReplyAction() {
+	public EClass getReplyAction()
+	{
 		return replyActionEClass;
 	}
 
@@ -8710,7 +9429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReplyAction_ReplyToCall() {
+	public EReference getReplyAction_ReplyToCall()
+	{
 		return (EReference)replyActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8719,7 +9439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReplyAction_ReplyValue() {
+	public EReference getReplyAction_ReplyValue()
+	{
 		return (EReference)replyActionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8728,7 +9449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReplyAction_ReturnInformation() {
+	public EReference getReplyAction_ReturnInformation()
+	{
 		return (EReference)replyActionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8737,7 +9459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRaiseExceptionAction() {
+	public EClass getRaiseExceptionAction()
+	{
 		return raiseExceptionActionEClass;
 	}
 
@@ -8746,7 +9469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRaiseExceptionAction_Exception() {
+	public EReference getRaiseExceptionAction_Exception()
+	{
 		return (EReference)raiseExceptionActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8755,7 +9479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDataStoreNode() {
+	public EClass getDataStoreNode()
+	{
 		return dataStoreNodeEClass;
 	}
 
@@ -8764,7 +9489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInterruptibleActivityRegion() {
+	public EClass getInterruptibleActivityRegion()
+	{
 		return interruptibleActivityRegionEClass;
 	}
 
@@ -8773,7 +9499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterruptibleActivityRegion_InterruptingEdge() {
+	public EReference getInterruptibleActivityRegion_InterruptingEdge()
+	{
 		return (EReference)interruptibleActivityRegionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8782,7 +9509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getInterruptibleActivityRegion_ContainedNode() {
+    public EReference getInterruptibleActivityRegion_ContainedNode()
+	{
 		return (EReference)interruptibleActivityRegionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8791,7 +9519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getParameterSet() {
+	public EClass getParameterSet()
+	{
 		return parameterSetEClass;
 	}
 
@@ -8800,7 +9529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameterSet_Parameter() {
+	public EReference getParameterSet_Parameter()
+	{
 		return (EReference)parameterSetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8809,7 +9539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameterSet_Condition() {
+	public EReference getParameterSet_Condition()
+	{
 		return (EReference)parameterSetEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8818,7 +9549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInteractionOccurrence() {
+	public EClass getInteractionOccurrence()
+	{
 		return interactionOccurrenceEClass;
 	}
 
@@ -8827,7 +9559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionOccurrence_RefersTo() {
+	public EReference getInteractionOccurrence_RefersTo()
+	{
 		return (EReference)interactionOccurrenceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8836,7 +9569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionOccurrence_ActualGate() {
+	public EReference getInteractionOccurrence_ActualGate()
+	{
 		return (EReference)interactionOccurrenceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8845,7 +9579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionOccurrence_Argument() {
+	public EReference getInteractionOccurrence_Argument()
+	{
 		return (EReference)interactionOccurrenceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8854,7 +9589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGate() {
+	public EClass getGate()
+	{
 		return gateEClass;
 	}
 
@@ -8863,7 +9599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPartDecomposition() {
+	public EClass getPartDecomposition()
+	{
 		return partDecompositionEClass;
 	}
 
@@ -8872,7 +9609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInteractionOperand() {
+	public EClass getInteractionOperand()
+	{
 		return interactionOperandEClass;
 	}
 
@@ -8881,7 +9619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionOperand_Guard() {
+	public EReference getInteractionOperand_Guard()
+	{
 		return (EReference)interactionOperandEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8890,7 +9629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionOperand_Fragment() {
+	public EReference getInteractionOperand_Fragment()
+	{
 		return (EReference)interactionOperandEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8899,7 +9639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInteractionConstraint() {
+	public EClass getInteractionConstraint()
+	{
 		return interactionConstraintEClass;
 	}
 
@@ -8908,7 +9649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionConstraint_Minint() {
+	public EReference getInteractionConstraint_Minint()
+	{
 		return (EReference)interactionConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8917,7 +9659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionConstraint_Maxint() {
+	public EReference getInteractionConstraint_Maxint()
+	{
 		return (EReference)interactionConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8926,7 +9669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCombinedFragment() {
+	public EClass getCombinedFragment()
+	{
 		return combinedFragmentEClass;
 	}
 
@@ -8935,7 +9679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCombinedFragment_InteractionOperator() {
+	public EAttribute getCombinedFragment_InteractionOperator()
+	{
 		return (EAttribute)combinedFragmentEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8944,7 +9689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCombinedFragment_Operand() {
+	public EReference getCombinedFragment_Operand()
+	{
 		return (EReference)combinedFragmentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -8953,7 +9699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCombinedFragment_CfragmentGate() {
+	public EReference getCombinedFragment_CfragmentGate()
+	{
 		return (EReference)combinedFragmentEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -8962,7 +9709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getContinuation() {
+	public EClass getContinuation()
+	{
 		return continuationEClass;
 	}
 
@@ -8971,7 +9719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getContinuation_Setting() {
+	public EAttribute getContinuation_Setting()
+	{
 		return (EAttribute)continuationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8980,7 +9729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTimeExpression() {
+	public EClass getTimeExpression()
+	{
 		return timeExpressionEClass;
 	}
 
@@ -8989,7 +9739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTimeExpression_FirstTime() {
+	public EAttribute getTimeExpression_FirstTime()
+	{
 		return (EAttribute)timeExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8998,7 +9749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTimeExpression_Event() {
+	public EReference getTimeExpression_Event()
+	{
 		return (EReference)timeExpressionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9007,7 +9759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDuration() {
+	public EClass getDuration()
+	{
 		return durationEClass;
 	}
 
@@ -9016,7 +9769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDuration_FirstTime() {
+	public EAttribute getDuration_FirstTime()
+	{
 		return (EAttribute)durationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9025,7 +9779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDuration_Event() {
+	public EReference getDuration_Event()
+	{
 		return (EReference)durationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9034,7 +9789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTimeObservationAction() {
+	public EClass getTimeObservationAction()
+	{
 		return timeObservationActionEClass;
 	}
 
@@ -9043,7 +9799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTimeObservationAction_Now() {
+	public EReference getTimeObservationAction_Now()
+	{
 		return (EReference)timeObservationActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9052,7 +9809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDurationInterval() {
+	public EClass getDurationInterval()
+	{
 		return durationIntervalEClass;
 	}
 
@@ -9061,7 +9819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInterval() {
+	public EClass getInterval()
+	{
 		return intervalEClass;
 	}
 
@@ -9070,7 +9829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterval_Min() {
+	public EReference getInterval_Min()
+	{
 		return (EReference)intervalEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9079,7 +9839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterval_Max() {
+	public EReference getInterval_Max()
+	{
 		return (EReference)intervalEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9088,7 +9849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTimeConstraint() {
+	public EClass getTimeConstraint()
+	{
 		return timeConstraintEClass;
 	}
 
@@ -9097,7 +9859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIntervalConstraint() {
+	public EClass getIntervalConstraint()
+	{
 		return intervalConstraintEClass;
 	}
 
@@ -9106,7 +9869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTimeInterval() {
+	public EClass getTimeInterval()
+	{
 		return timeIntervalEClass;
 	}
 
@@ -9115,7 +9879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDurationObservationAction() {
+	public EClass getDurationObservationAction()
+	{
 		return durationObservationActionEClass;
 	}
 
@@ -9124,7 +9889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDurationObservationAction_Duration() {
+	public EReference getDurationObservationAction_Duration()
+	{
 		return (EReference)durationObservationActionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9133,7 +9899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDurationConstraint() {
+	public EClass getDurationConstraint()
+	{
 		return durationConstraintEClass;
 	}
 
@@ -9142,7 +9909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProtocolConformance() {
+	public EClass getProtocolConformance()
+	{
 		return protocolConformanceEClass;
 	}
 
@@ -9151,7 +9919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProtocolConformance_SpecificMachine() {
+	public EReference getProtocolConformance_SpecificMachine()
+	{
 		return (EReference)protocolConformanceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9160,7 +9929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProtocolConformance_GeneralMachine() {
+	public EReference getProtocolConformance_GeneralMachine()
+	{
 		return (EReference)protocolConformanceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9169,7 +9939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProtocolStateMachine() {
+	public EClass getProtocolStateMachine()
+	{
 		return protocolStateMachineEClass;
 	}
 
@@ -9178,7 +9949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProtocolStateMachine_Conformance() {
+	public EReference getProtocolStateMachine_Conformance()
+	{
 		return (EReference)protocolStateMachineEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9187,7 +9959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProtocolTransition() {
+	public EClass getProtocolTransition()
+	{
 		return protocolTransitionEClass;
 	}
 
@@ -9196,7 +9969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProtocolTransition_PostCondition() {
+	public EReference getProtocolTransition_PostCondition()
+	{
 		return (EReference)protocolTransitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9205,7 +9979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProtocolTransition_Referred() {
+	public EReference getProtocolTransition_Referred()
+	{
 		return (EReference)protocolTransitionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9214,7 +9989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProtocolTransition_PreCondition() {
+	public EReference getProtocolTransition_PreCondition()
+	{
 		return (EReference)protocolTransitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -9223,7 +9999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getComponent() {
+	public EClass getComponent()
+	{
 		return componentEClass;
 	}
 
@@ -9232,7 +10009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getComponent_IsIndirectlyInstantiated() {
+	public EAttribute getComponent_IsIndirectlyInstantiated()
+	{
 		return (EAttribute)componentEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9241,7 +10019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComponent_Required() {
+	public EReference getComponent_Required()
+	{
 		return (EReference)componentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9250,7 +10029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComponent_Provided() {
+	public EReference getComponent_Provided()
+	{
 		return (EReference)componentEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -9259,7 +10039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComponent_Realization() {
+	public EReference getComponent_Realization()
+	{
 		return (EReference)componentEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -9268,7 +10049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComponent_OwnedMember() {
+	public EReference getComponent_OwnedMember()
+	{
 		return (EReference)componentEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -9277,7 +10059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeployment() {
+	public EClass getDeployment()
+	{
 		return deploymentEClass;
 	}
 
@@ -9286,7 +10069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeployment_DeployedArtifact() {
+	public EReference getDeployment_DeployedArtifact()
+	{
 		return (EReference)deploymentEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9295,7 +10079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeployment_Location() {
+	public EReference getDeployment_Location()
+	{
 		return (EReference)deploymentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9304,7 +10089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeployment_Configuration() {
+	public EReference getDeployment_Configuration()
+	{
 		return (EReference)deploymentEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -9313,7 +10099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeployedArtifact() {
+	public EClass getDeployedArtifact()
+	{
 		return deployedArtifactEClass;
 	}
 
@@ -9322,7 +10109,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeploymentTarget() {
+	public EClass getDeploymentTarget()
+	{
 		return deploymentTargetEClass;
 	}
 
@@ -9331,7 +10119,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeploymentTarget_Deployment() {
+	public EReference getDeploymentTarget_Deployment()
+	{
 		return (EReference)deploymentTargetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9340,7 +10129,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeploymentTarget_DeployedElement() {
+	public EReference getDeploymentTarget_DeployedElement()
+	{
 		return (EReference)deploymentTargetEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9349,7 +10139,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNode() {
+	public EClass getNode()
+	{
 		return nodeEClass;
 	}
 
@@ -9358,7 +10149,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_NestedNode() {
+	public EReference getNode_NestedNode()
+	{
 		return (EReference)nodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9367,7 +10159,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDevice() {
+	public EClass getDevice()
+	{
 		return deviceEClass;
 	}
 
@@ -9376,7 +10169,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExecutionEnvironment() {
+	public EClass getExecutionEnvironment()
+	{
 		return executionEnvironmentEClass;
 	}
 
@@ -9385,7 +10179,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCommunicationPath() {
+	public EClass getCommunicationPath()
+	{
 		return communicationPathEClass;
 	}
 
@@ -9394,7 +10189,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeploymentSpecification() {
+	public EClass getDeploymentSpecification()
+	{
 		return deploymentSpecificationEClass;
 	}
 
@@ -9403,7 +10199,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDeploymentSpecification_DeploymentLocation() {
+	public EAttribute getDeploymentSpecification_DeploymentLocation()
+	{
 		return (EAttribute)deploymentSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9412,7 +10209,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDeploymentSpecification_ExecutionLocation() {
+	public EAttribute getDeploymentSpecification_ExecutionLocation()
+	{
 		return (EAttribute)deploymentSpecificationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9421,7 +10219,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getJ_FigureContainer() {
+  public EClass getJ_FigureContainer()
+	{
 		return j_FigureContainerEClass;
 	}
 
@@ -9430,7 +10229,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getJ_FigureContainer_Figures() {
+  public EReference getJ_FigureContainer_Figures()
+	{
 		return (EReference)j_FigureContainerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9439,7 +10239,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getJ_FigureContainer_Properties() {
+  public EReference getJ_FigureContainer_Properties()
+	{
 		return (EReference)j_FigureContainerEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9448,7 +10249,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getJ_Diagram() {
+	public EClass getJ_Diagram()
+	{
 		return j_DiagramEClass;
 	}
 
@@ -9457,7 +10259,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Diagram_Name() {
+	public EAttribute getJ_Diagram_Name()
+	{
 		return (EAttribute)j_DiagramEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9466,7 +10269,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getJ_Diagram_LastFigureId() {
+  public EAttribute getJ_Diagram_LastFigureId()
+	{
 		return (EAttribute)j_DiagramEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9475,7 +10279,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getJ_DiagramHolder() {
+	public EClass getJ_DiagramHolder()
+	{
 		return j_DiagramHolderEClass;
 	}
 
@@ -9484,7 +10289,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getJ_DiagramHolder_Diagram() {
+	public EReference getJ_DiagramHolder_Diagram()
+	{
 		return (EReference)j_DiagramHolderEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9493,7 +10299,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_DiagramHolder_SaveTime() {
+	public EAttribute getJ_DiagramHolder_SaveTime()
+	{
 		return (EAttribute)j_DiagramHolderEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9502,7 +10309,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_DiagramHolder_SavedBy() {
+	public EAttribute getJ_DiagramHolder_SavedBy()
+	{
 		return (EAttribute)j_DiagramHolderEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -9511,7 +10319,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAppliedBasicStereotypeValue() {
+	public EClass getAppliedBasicStereotypeValue()
+	{
 		return appliedBasicStereotypeValueEClass;
 	}
 
@@ -9520,7 +10329,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAppliedBasicStereotypeValue_Property() {
+	public EReference getAppliedBasicStereotypeValue_Property()
+	{
 		return (EReference)appliedBasicStereotypeValueEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9529,7 +10339,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAppliedBasicStereotypeValue_Value() {
+	public EReference getAppliedBasicStereotypeValue_Value()
+	{
 		return (EReference)appliedBasicStereotypeValueEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9538,7 +10349,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPropertyValueSpecification() {
+	public EClass getPropertyValueSpecification()
+	{
 		return propertyValueSpecificationEClass;
 	}
 
@@ -9547,7 +10359,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPropertyValueSpecification_Aliased() {
+	public EAttribute getPropertyValueSpecification_Aliased()
+	{
 		return (EAttribute)propertyValueSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9556,7 +10369,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyValueSpecification_Property() {
+	public EReference getPropertyValueSpecification_Property()
+	{
 		return (EReference)propertyValueSpecificationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9565,7 +10379,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaReplacedConstituent() {
+	public EClass getDeltaReplacedConstituent()
+	{
 		return deltaReplacedConstituentEClass;
 	}
 
@@ -9574,7 +10389,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeltaReplacedConstituent_Replaced() {
+	public EReference getDeltaReplacedConstituent_Replaced()
+	{
 		return (EReference)deltaReplacedConstituentEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9583,7 +10399,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeltaReplacedConstituent_Replacement() {
+	public EReference getDeltaReplacedConstituent_Replacement()
+	{
 		return (EReference)deltaReplacedConstituentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9592,7 +10409,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaDeletedConstituent() {
+	public EClass getDeltaDeletedConstituent()
+	{
 		return deltaDeletedConstituentEClass;
 	}
 
@@ -9601,7 +10419,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeltaDeletedConstituent_Deleted() {
+	public EReference getDeltaDeletedConstituent_Deleted()
+	{
 		return (EReference)deltaDeletedConstituentEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9610,7 +10429,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaReplacedAttribute() {
+	public EClass getDeltaReplacedAttribute()
+	{
 		return deltaReplacedAttributeEClass;
 	}
 
@@ -9619,7 +10439,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaDeletedAttribute() {
+	public EClass getDeltaDeletedAttribute()
+	{
 		return deltaDeletedAttributeEClass;
 	}
 
@@ -9628,7 +10449,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaReplacedPort() {
+	public EClass getDeltaReplacedPort()
+	{
 		return deltaReplacedPortEClass;
 	}
 
@@ -9637,7 +10459,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaDeletedPort() {
+	public EClass getDeltaDeletedPort()
+	{
 		return deltaDeletedPortEClass;
 	}
 
@@ -9646,7 +10469,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaReplacedConnector() {
+	public EClass getDeltaReplacedConnector()
+	{
 		return deltaReplacedConnectorEClass;
 	}
 
@@ -9655,7 +10479,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaDeletedConnector() {
+	public EClass getDeltaDeletedConnector()
+	{
 		return deltaDeletedConnectorEClass;
 	}
 
@@ -9664,7 +10489,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaReplacedOperation() {
+	public EClass getDeltaReplacedOperation()
+	{
 		return deltaReplacedOperationEClass;
 	}
 
@@ -9673,7 +10499,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeltaDeletedOperation() {
+	public EClass getDeltaDeletedOperation()
+	{
 		return deltaDeletedOperationEClass;
 	}
 
@@ -9682,7 +10509,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getPortRemap() {
+  public EClass getPortRemap()
+	{
 		return portRemapEClass;
 	}
 
@@ -9691,7 +10519,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getPortRemap_OriginalPort() {
+  public EReference getPortRemap_OriginalPort()
+	{
 		return (EReference)portRemapEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9700,7 +10529,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getPortRemap_NewPort() {
+  public EReference getPortRemap_NewPort()
+	{
 		return (EReference)portRemapEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9709,7 +10539,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSavedReference() {
+	public EClass getSavedReference()
+	{
 		return savedReferenceEClass;
 	}
 
@@ -9718,7 +10549,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSavedReference_From() {
+	public EAttribute getSavedReference_From()
+	{
 		return (EAttribute)savedReferenceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9727,7 +10559,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSavedReference_ToEClass() {
+	public EReference getSavedReference_ToEClass()
+	{
 		return (EReference)savedReferenceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -9736,7 +10569,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSavedReference_Feature() {
+	public EReference getSavedReference_Feature()
+	{
 		return (EReference)savedReferenceEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -9745,7 +10579,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSavedReference_To() {
+	public EAttribute getSavedReference_To()
+	{
 		return (EAttribute)savedReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9754,7 +10589,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getJ_Figure() {
+	public EClass getJ_Figure()
+	{
 		return j_FigureEClass;
 	}
 
@@ -9763,7 +10599,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getJ_Figure_Id() {
+  public EAttribute getJ_Figure_Id()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -9772,7 +10609,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Recreator() {
+	public EAttribute getJ_Figure_Recreator()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -9781,7 +10619,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Anchor1Id() {
+	public EAttribute getJ_Figure_Anchor1Id()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -9790,7 +10629,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Anchor2Id() {
+	public EAttribute getJ_Figure_Anchor2Id()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -9799,7 +10639,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_ContainedName() {
+	public EAttribute getJ_Figure_ContainedName()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -9808,7 +10649,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Text() {
+	public EAttribute getJ_Figure_Text()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -9817,7 +10659,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Name() {
+	public EAttribute getJ_Figure_Name()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -9826,7 +10669,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_VirtualPoint() {
+	public EAttribute getJ_Figure_VirtualPoint()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -9835,7 +10679,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Points() {
+	public EAttribute getJ_Figure_Points()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -9844,7 +10689,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_BrOffset() {
+	public EAttribute getJ_Figure_BrOffset()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -9853,7 +10699,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_TlOffset() {
+	public EAttribute getJ_Figure_TlOffset()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -9862,7 +10709,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Show() {
+	public EAttribute getJ_Figure_Show()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -9871,7 +10719,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Autosized() {
+	public EAttribute getJ_Figure_Autosized()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -9880,7 +10729,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Icon() {
+	public EAttribute getJ_Figure_Icon()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -9889,7 +10739,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Point() {
+	public EAttribute getJ_Figure_Point()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -9898,7 +10749,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Dimensions() {
+	public EAttribute getJ_Figure_Dimensions()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -9907,7 +10759,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_SuppressAttributes() {
+	public EAttribute getJ_Figure_SuppressAttributes()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(16);
 	}
 
@@ -9916,7 +10769,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_SuppressOperations() {
+	public EAttribute getJ_Figure_SuppressOperations()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(17);
 	}
 
@@ -9925,7 +10779,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_SuppressContents() {
+	public EAttribute getJ_Figure_SuppressContents()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(18);
 	}
 
@@ -9934,7 +10789,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Offset() {
+	public EAttribute getJ_Figure_Offset()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(19);
 	}
 
@@ -9943,7 +10799,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Min() {
+	public EAttribute getJ_Figure_Min()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -9952,7 +10809,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Accessibility() {
+	public EAttribute getJ_Figure_Accessibility()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(21);
 	}
 
@@ -9961,7 +10819,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_ClassifierScope() {
+	public EAttribute getJ_Figure_ClassifierScope()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(22);
 	}
 
@@ -9970,7 +10829,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Figure_Type() {
+	public EAttribute getJ_Figure_Type()
+	{
 		return (EAttribute)j_FigureEClass.getEStructuralFeatures().get(23);
 	}
 
@@ -9979,7 +10839,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getJ_Figure_Subject() {
+  public EReference getJ_Figure_Subject()
+	{
 		return (EReference)j_FigureEClass.getEStructuralFeatures().get(24);
 	}
 
@@ -9988,7 +10849,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getJ_Property() {
+	public EClass getJ_Property()
+	{
 		return j_PropertyEClass;
 	}
 
@@ -9997,7 +10859,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Property_Name() {
+	public EAttribute getJ_Property_Name()
+	{
 		return (EAttribute)j_PropertyEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -10006,7 +10869,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJ_Property_Value() {
+	public EAttribute getJ_Property_Value()
+	{
 		return (EAttribute)j_PropertyEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -10015,7 +10879,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getVisibilityKind() {
+	public EEnum getVisibilityKind()
+	{
 		return visibilityKindEEnum;
 	}
 
@@ -10024,7 +10889,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getParameterDirectionKind() {
+	public EEnum getParameterDirectionKind()
+	{
 		return parameterDirectionKindEEnum;
 	}
 
@@ -10033,7 +10899,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getAggregationKind() {
+	public EEnum getAggregationKind()
+	{
 		return aggregationKindEEnum;
 	}
 
@@ -10042,7 +10909,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getCallConcurrencyKind() {
+	public EEnum getCallConcurrencyKind()
+	{
 		return callConcurrencyKindEEnum;
 	}
 
@@ -10051,7 +10919,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getExpansionKind() {
+	public EEnum getExpansionKind()
+	{
 		return expansionKindEEnum;
 	}
 
@@ -10060,7 +10929,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getMessageKind() {
+	public EEnum getMessageKind()
+	{
 		return messageKindEEnum;
 	}
 
@@ -10069,7 +10939,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getMessageSort() {
+	public EEnum getMessageSort()
+	{
 		return messageSortEEnum;
 	}
 
@@ -10078,7 +10949,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getTransitionKind() {
+	public EEnum getTransitionKind()
+	{
 		return transitionKindEEnum;
 	}
 
@@ -10087,7 +10959,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getPseudostateKind() {
+	public EEnum getPseudostateKind()
+	{
 		return pseudostateKindEEnum;
 	}
 
@@ -10096,7 +10969,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getObjectNodeOrderingKind() {
+	public EEnum getObjectNodeOrderingKind()
+	{
 		return objectNodeOrderingKindEEnum;
 	}
 
@@ -10105,7 +10979,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getInteractionOperator() {
+	public EEnum getInteractionOperator()
+	{
 		return interactionOperatorEEnum;
 	}
 
@@ -10114,7 +10989,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getConnectorKind() {
+	public EEnum getConnectorKind()
+	{
 		return connectorKindEEnum;
 	}
 
@@ -10123,7 +10999,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getComponentKind() {
+	public EEnum getComponentKind()
+	{
 		return componentKindEEnum;
 	}
 
@@ -10132,7 +11009,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getPropertyAccessKind() {
+	public EEnum getPropertyAccessKind()
+	{
 		return propertyAccessKindEEnum;
 	}
 
@@ -10141,7 +11019,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getPortKind() {
+	public EEnum getPortKind()
+	{
 		return portKindEEnum;
 	}
 
@@ -10150,7 +11029,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getParameterEffectKind() {
+	public EEnum getParameterEffectKind()
+	{
 		return parameterEffectKindEEnum;
 	}
 
@@ -10159,7 +11039,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getInteger() {
+	public EDataType getInteger()
+	{
 		return integerEDataType;
 	}
 
@@ -10168,7 +11049,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getBoolean() {
+	public EDataType getBoolean()
+	{
 		return booleanEDataType;
 	}
 
@@ -10177,7 +11059,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getString() {
+	public EDataType getString()
+	{
 		return stringEDataType;
 	}
 
@@ -10186,7 +11069,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getUnlimitedNatural() {
+	public EDataType getUnlimitedNatural()
+	{
 		return unlimitedNaturalEDataType;
 	}
 
@@ -10195,7 +11079,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getSequence() {
+	public EDataType getSequence()
+	{
 		return sequenceEDataType;
 	}
 
@@ -10204,7 +11089,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getSet() {
+	public EDataType getSet()
+	{
 		return setEDataType;
 	}
 
@@ -10213,7 +11099,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2Factory getUML2Factory() {
+	public UML2Factory getUML2Factory()
+	{
 		return (UML2Factory)getEFactoryInstance();
 	}
 
@@ -10231,7 +11118,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createPackageContents() {
+	public void createPackageContents()
+	{
 		if (isCreated) return;
 		isCreated = true;
 
@@ -11383,7 +12271,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void initializePackageContents() {
+	public void initializePackageContents()
+	{
 		if (isInitialized) return;
 		isInitialized = true;
 
@@ -13172,97 +14061,116 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createUnionAnnotations() {
+	protected void createUnionAnnotations()
+	{
 		String source = "union"; //$NON-NLS-1$							
 		addAnnotation
 		  (getElement_OwnedElement(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getElement_Owner(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																	
 		addAnnotation
 		  (getNamespace_Member(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																		
 		addAnnotation
 		  (getDirectedRelationship_Source(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getDirectedRelationship_Target(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getRelationship_RelatedElement(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																																																
 		addAnnotation
 		  (getClassifier_Feature(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getClassifier_Attribute(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });											
 		addAnnotation
 		  (getFeature_FeaturingClassifier(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getConstraint_Context(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																										
 		addAnnotation
 		  (getBehavioralFeature_Parameter(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																	
 		addAnnotation
 		  (getRedefinableElement_RedefinitionContext(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																																																						
 		addAnnotation
 		  (getStructuredClassifier_Role(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getActivityEdge_InGroup(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });										
 		addAnnotation
 		  (getActivityGroup_SuperGroup(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getActivityNode_InGroup(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getAction_Output(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getAction_Input(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											
 	}
 
@@ -13272,1237 +14180,1484 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createSubsetsAnnotations() {
+	protected void createSubsetsAnnotations()
+	{
 		String source = "subsets"; //$NON-NLS-1$											
 		addAnnotation
 		  (getElement_OwnedComment(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																				
 		addAnnotation
 		  (getMultiplicityElement_UpperValue(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getMultiplicityElement_LowerValue(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });															
 		addAnnotation
 		  (getNamedElement_NameExpression(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });														
 		addAnnotation
 		  (getNamespace_OwnedRule(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getNamespace_ImportedMember(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getNamespace_ElementImport(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getNamespace_PackageImport(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																		
 		addAnnotation
 		  (getExpression_Operand(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getComment_BodyExpression(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getDirectedRelationship_Source(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getDirectedRelationship_Target(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getClass_OwnedOperation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getClass_NestedClassifier(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getClass_OwnedReception(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getType_Package(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });															
 		addAnnotation
 		  (getProperty_Class_(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getProperty_OwningAssociation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getProperty_RedefinedProperty(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getProperty_Datatype(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getProperty_DefaultValue(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getProperty_Qualifier(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getProperty_AssociationEnd(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });									
 		addAnnotation
 		  (getOperation_Class_(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getOperation_Datatype(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getOperation_Precondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getOperation_Postcondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getOperation_RedefinedOperation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getOperation_BodyCondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getParameter_Operation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getParameter_DefaultValue(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getPackage_NestedPackage(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getPackage_NestingPackage(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getPackage_OwnedType(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getPackage_PackageMerge(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getPackage_AppliedProfile(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getPackage_PackageExtension(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getEnumeration_OwnedLiteral(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getDataType_OwnedAttribute(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getDataType_OwnedOperation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getEnumerationLiteral_Enumeration(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																				
 		addAnnotation
 		  (getClassifier_Feature(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getClassifier_InheritedMember(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getClassifier_Generalization(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getClassifier_Attribute(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getClassifier_RedefinedClassifier(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getClassifier_Substitution(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getClassifier_OwnedUseCase(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getClassifier_Representation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getClassifier_Occurrence(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });											
 		addAnnotation
 		  (getConstraint_Namespace(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getConstraint_Specification(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																							
 		addAnnotation
 		  (getBehavioralFeature_Parameter(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getBehavioralFeature_FormalParameter(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getBehavioralFeature_ReturnResult(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });										
 		addAnnotation
 		  (getInstanceSpecification_Slot(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getInstanceSpecification_Specification(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getSlot_OwningInstance(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getSlot_Value(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });															
 		addAnnotation
 		  (getGeneralization_Specific(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getGeneralization_General(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });													
 		addAnnotation
 		  (getElementImport_ImportedElement(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getElementImport_ImportingNamespace(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getPackageImport_ImportedPackage(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getPackageImport_ImportingNamespace(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getAssociation_OwnedEnd(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getAssociation_EndType(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getAssociation_MemberEnd(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getPackageMerge_MergingPackage(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getPackageMerge_MergedPackage(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getProfile_OwnedStereotype(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getProfile_MetaclassReference(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getProfile_MetamodelReference(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getProfileApplication_ImportedProfile(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });									
 		addAnnotation
 		  (getBehavior_RedefinedBehavior(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getBehavior_Parameter(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getBehavior_Precondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getBehavior_Postcondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getBehavioredClassifier_OwnedBehavior(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getBehavioredClassifier_ClassifierBehavior(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getBehavioredClassifier_Implementation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getBehavioredClassifier_OwnedTrigger(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getActivity_Edge(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getActivity_Group(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getActivity_Node(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getActivity_Action(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getActivity_StructuredNode(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getAbstraction_Mapping(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getRealization_Abstraction(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getRealization_RealizingClassifier(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getSubstitution_Contract(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getSubstitution_SubstitutingClassifier(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																				
 		addAnnotation
 		  (getConnector_RedefinedConnector(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getConnector_End(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getStructuredClassifier_OwnedAttribute(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getStructuredClassifier_Role(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getStructuredClassifier_OwnedConnector(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getActivityEdge_Activity(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getActivityEdge_Guard(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getActivityEdge_InStructuredNode(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getActivityEdge_InPartition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getActivityEdge_Weight(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getActivityGroup_SuperGroup(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getActivityGroup_ActivityGroup_activity(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getActivityNode_Activity(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getActivityNode_InStructuredNode(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getActivityNode_InPartition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getActivityNode_InInterruptibleRegion(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getAction_Output(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getAction_Input(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getAction_LocalPrecondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getAction_LocalPostcondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getObjectNode_UpperBound(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });													
 		addAnnotation
 		  (getExecutableNode_Handler(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });											
 		addAnnotation
 		  (getInterface_OwnedAttribute(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getInterface_OwnedOperation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getInterface_RedefinedInterface(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getInterface_NestedClassifier(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getInterface_OwnedReception(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getInterface_Protocol(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getImplementation_Contract(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getImplementation_ImplementingClassifier(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getArtifact_Manifestation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getArtifact_OwnedOperation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getArtifact_OwnedAttribute(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getManifestation_UtilizedElement(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getExtend_ExtendedCase(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getExtend_Extension(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getExtend_Condition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getUseCase_Include(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getUseCase_Extend(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getUseCase_ExtensionPoint(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getInclude_IncludingCase(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getInclude_Addition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getCollaborationOccurrence_RoleBinding(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getCollaboration_CollaborationRole(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getPort_RedefinedPort(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getEncapsulatedClassifier_OwnedPort(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getChangeTrigger_ChangeExpression(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getSignal_OwnedAttribute(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getTimeTrigger_When(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getVariable_Scope(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getStructuredActivityNode_Variable(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getConditionalNode_Clause(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getConditionalNode_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getLoopNode_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getLoopNode_LoopVariable(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getLoopNode_LoopVariableInput(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getInteraction_Lifeline(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getInteraction_Message(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getInteraction_FormalGate(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getInteractionFragment_GeneralOrdering(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getInteractionFragment_EnclosingOperand(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getLifeline_Interaction(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getLifeline_Selector(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getMessage_Interaction(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getMessage_Argument(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																	
 		addAnnotation
 		  (getStateInvariant_Invariant(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getTemplateSignature_OwnedParameter(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTemplateSignature_Template(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getTemplateParameter_Signature(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getTemplateParameter_OwnedParameteredElement(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTemplateParameter_OwnedDefault(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTemplateableElement_TemplateBinding(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTemplateableElement_OwnedTemplateSignature(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getStringExpression_SubExpression(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getStringExpression_OwningExpression(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getParameterableElement_OwningParameter(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTemplateBinding_BoundElement(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTemplateBinding_Signature(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getTemplateBinding_ParameterSubstitution(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getTemplateParameterSubstitution_TemplateBinding(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTemplateParameterSubstitution_OwnedActual(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });										
 		addAnnotation
 		  (getJoinNode_JoinSpec(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });										
 		addAnnotation
 		  (getActivityPartition_Subgroup(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getActivityPartition_SuperPartition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });												
 		addAnnotation
 		  (getExceptionHandler_ProtectedNode(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getInteractionOccurrence_ActualGate(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getInteractionOperand_Guard(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getInteractionConstraint_Minint(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getInteractionConstraint_Maxint(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getCombinedFragment_Operand(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getCombinedFragment_CfragmentGate(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getStateMachine_Region(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getStateMachine_ConnectionPoint(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getRegion_Subvertex(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getRegion_Transition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getRegion_StateMachine(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getRegion_State(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getState_Connection(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getState_Region(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getState_Entry(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getState_Exit(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getState_DoActivity(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getState_StateInvariant(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });											
 		addAnnotation
 		  (getTransition_Container(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getTransition_Guard(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTransition_Effect(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getCreateObjectAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getDestroyObjectAction_Target(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getTestIdentityAction_First(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTestIdentityAction_Second(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getTestIdentityAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getReadSelfAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getStructuralFeatureAction_Object(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getReadStructuralFeatureAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getWriteStructuralFeatureAction_Value(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getAddStructuralFeatureValueAction_InsertAt(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });									
 		addAnnotation
 		  (getReadLinkAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });											
 		addAnnotation
 		  (getClearAssociationAction_Object(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getReadVariableAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getWriteVariableAction_Value(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getAddVariableValueAction_InsertAt(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getApplyFunctionAction_Argument(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getApplyFunctionAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getCallAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getInvocationAction_Argument(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getSendSignalAction_Target(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getSendObjectAction_Target(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getCallOperationAction_Target(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																					
 		addAnnotation
 		  (getParameterSet_Condition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getComponent_Realization(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getDeployment_DeployedArtifact(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getDeployment_Location(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getDeployment_Configuration(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getDeploymentTarget_Deployment(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getProtocolConformance_SpecificMachine(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getProtocolConformance_GeneralMachine(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getProtocolStateMachine_Conformance(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getProtocolTransition_PostCondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getProtocolTransition_PreCondition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getReadExtentAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });								
 		addAnnotation
 		  (getReclassifyObjectAction_Object(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getReadIsClassifiedObjectAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getReadIsClassifiedObjectAction_Object(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getStartOwnedBehaviorAction_Object(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getReadLinkObjectEndAction_Object(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getReadLinkObjectEndAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getReadLinkObjectEndQualifierAction_Object(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getReadLinkObjectEndQualifierAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (getCreateLinkObjectAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getAcceptEventAction_Result(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getAcceptCallAction_ReturnInformation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (getReplyAction_ReplyValue(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getReplyAction_ReturnInformation(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getRaiseExceptionAction_Exception(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 	}
 
@@ -14512,167 +15667,200 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createDuplicatesAnnotations() {
+	protected void createDuplicatesAnnotations()
+	{
 		String source = "duplicates"; //$NON-NLS-1$																																			
 		addAnnotation
 		  (namedElementEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });															
 		addAnnotation
 		  (namespaceEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																				
 		addAnnotation
 		  (classEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																
 		addAnnotation
 		  (propertyEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																										
 		addAnnotation
 		  (operationEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																											
 		addAnnotation
 		  (packageEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																			
 		addAnnotation
 		  (dataTypeEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																						
 		addAnnotation
 		  (literalBooleanEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (literalStringEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (literalNullEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (literalIntegerEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (literalUnlimitedNaturalEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (behavioralFeatureEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																													
 		addAnnotation
 		  (redefinableElementEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																				
 		addAnnotation
 		  (extensionEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (extensionEndEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																					
 		addAnnotation
 		  (activityGroupEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																																																								
 		addAnnotation
 		  (structuredActivityNodeEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																
 		addAnnotation
 		  (eventOccurrenceEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (stateInvariantEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																																	
 		addAnnotation
 		  (regionEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (stateEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																
 		addAnnotation
 		  (transitionEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																						
 		addAnnotation
 		  (linkEndCreationDataEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });					
 		addAnnotation
 		  (createLinkActionEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																														
 		addAnnotation
 		  (durationIntervalEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (timeConstraintEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (intervalConstraintEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (timeIntervalEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });						
 		addAnnotation
 		  (durationConstraintEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																				
 		addAnnotation
 		  (createLinkObjectActionEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (acceptCallActionEClass, 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });												
 	}
 
@@ -14682,18 +15870,21 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createExtendedMetaDataAnnotations() {
+	protected void createExtendedMetaDataAnnotations()
+	{
 		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$																																																																				
 		addAnnotation
 		  (getOpaqueExpression_Body(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 			 "kind", "element" //$NON-NLS-1$ //$NON-NLS-2$
 		   });																		
 		addAnnotation
 		  (getComment_Body(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 			 "kind", "element" //$NON-NLS-1$ //$NON-NLS-2$
 		   });																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
 	}
@@ -14704,132 +15895,158 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createRedefinesAnnotations() {
+	protected void createRedefinesAnnotations()
+	{
 		String source = "redefines"; //$NON-NLS-1$																																																																																																							
 		addAnnotation
 		  (getClass_SuperClass(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																										
 		addAnnotation
 		  (getPackage_OwnedMember(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																								
 		addAnnotation
 		  (getConstraint_Namespace(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																		
 		addAnnotation
 		  (getPackageableElement_PackageableElement_visibility(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																									
 		addAnnotation
 		  (getBehavioredClassifier_OwnedStateMachine(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																											
 		addAnnotation
 		  (getActivityEdge_RedefinedElement(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });												
 		addAnnotation
 		  (getActivityGroup_ActivityGroup_activity(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getActivityNode_RedefinedElement(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																																																		
 		addAnnotation
 		  (getStructuredActivityNode_ContainedNode(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getStructuredActivityNode_ContainedEdge(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																																				
 		addAnnotation
 		  (getActivityPartition_ContainedEdge(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getActivityPartition_ContainedNode(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });			
 		addAnnotation
 		  (getActivityPartition_Subgroup(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																											
 		addAnnotation
 		  (getStateMachine_ExtendedStateMachine(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });		
 		addAnnotation
 		  (getStateMachine_StateMachine_redefinitionContext(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getRegion_ExtendedRegion(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });				
 		addAnnotation
 		  (getState_RedefinedState(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getVertex_Container(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });													
 		addAnnotation
 		  (getTransition_RedefinedTransition(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																																																	
 		addAnnotation
 		  (getSendObjectAction_Request(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });															
 		addAnnotation
 		  (getTimeObservationAction_Now(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });															
 		addAnnotation
 		  (getDurationObservationAction_Duration(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });									
 		addAnnotation
 		  (getInterruptibleActivityRegion_ContainedNode(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });							
 		addAnnotation
 		  (getComponent_OwnedMember(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });									
 		addAnnotation
 		  (getNode_NestedNode(), 
 		   source, 
-		   new String[] {
+		   new String[] 
+		   {
 		   });																																																																		
 	}
 

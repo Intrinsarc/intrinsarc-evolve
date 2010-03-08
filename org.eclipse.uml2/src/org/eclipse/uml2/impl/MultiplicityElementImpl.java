@@ -147,11 +147,13 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MultiplicityElementImpl() {
+	protected MultiplicityElementImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 		eFlags |= IS_UNIQUE_EFLAG;
 	}
@@ -161,7 +163,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getMultiplicityElement();
 	}
 
@@ -170,7 +173,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isOrdered() {
+	public boolean isOrdered()
+	{
 		return (eFlags & IS_ORDERED_EFLAG) != 0;
 	}
 
@@ -185,7 +189,9 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsOrdered(boolean newIsOrdered) {
+	public void setIsOrdered(boolean newIsOrdered)
+	{
+
 		boolean oldIsOrdered = (eFlags & IS_ORDERED_EFLAG) != 0;
 		if (newIsOrdered) eFlags |= IS_ORDERED_EFLAG; else eFlags &= ~IS_ORDERED_EFLAG;
 		if (eNotificationRequired())
@@ -199,7 +205,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUnique() {
+	public boolean isUnique()
+	{
 		return (eFlags & IS_UNIQUE_EFLAG) != 0;
 	}
 
@@ -214,7 +221,9 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsUnique(boolean newIsUnique) {
+	public void setIsUnique(boolean newIsUnique)
+	{
+
 		boolean oldIsUnique = (eFlags & IS_UNIQUE_EFLAG) != 0;
 		if (newIsUnique) eFlags |= IS_UNIQUE_EFLAG; else eFlags &= ~IS_UNIQUE_EFLAG;
 		if (eNotificationRequired())
@@ -246,7 +255,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getUpperValue() {
+	public ValueSpecification getUpperValue()
+	{
 		return upperValue;
 	}
 
@@ -260,7 +270,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getUpperValue() {
+  public ValueSpecification undeleted_getUpperValue()
+	{
 		ValueSpecification temp = getUpperValue();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -272,10 +283,13 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUpperValue(ValueSpecification newUpperValue, NotificationChain msgs) {
+	public NotificationChain basicSetUpperValue(ValueSpecification newUpperValue, NotificationChain msgs)
+	{
+
 		ValueSpecification oldUpperValue = upperValue;
 		upperValue = newUpperValue;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.MULTIPLICITY_ELEMENT__UPPER_VALUE, oldUpperValue, newUpperValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -288,8 +302,11 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUpperValue(ValueSpecification newUpperValue) {
-		if (newUpperValue != upperValue) {
+	public void setUpperValue(ValueSpecification newUpperValue)
+	{
+
+		if (newUpperValue != upperValue)
+		{
 			NotificationChain msgs = null;
 			if (upperValue != null)
 				msgs = ((InternalEObject)upperValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.MULTIPLICITY_ELEMENT__UPPER_VALUE, null, msgs);
@@ -323,7 +340,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getLowerValue() {
+	public ValueSpecification getLowerValue()
+	{
 		return lowerValue;
 	}
 
@@ -337,7 +355,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getLowerValue() {
+  public ValueSpecification undeleted_getLowerValue()
+	{
 		ValueSpecification temp = getLowerValue();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -349,10 +368,13 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLowerValue(ValueSpecification newLowerValue, NotificationChain msgs) {
+	public NotificationChain basicSetLowerValue(ValueSpecification newLowerValue, NotificationChain msgs)
+	{
+
 		ValueSpecification oldLowerValue = lowerValue;
 		lowerValue = newLowerValue;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.MULTIPLICITY_ELEMENT__LOWER_VALUE, oldLowerValue, newLowerValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -365,8 +387,11 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLowerValue(ValueSpecification newLowerValue) {
-		if (newLowerValue != lowerValue) {
+	public void setLowerValue(ValueSpecification newLowerValue)
+	{
+
+		if (newLowerValue != lowerValue)
+		{
 			NotificationChain msgs = null;
 			if (lowerValue != null)
 				msgs = ((InternalEObject)lowerValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.MULTIPLICITY_ELEMENT__LOWER_VALUE, null, msgs);
@@ -400,7 +425,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int lowerBound() {
+	public int lowerBound()
+	{
 		return MultiplicityElementOperations.lowerBound(this);
 	}
 
@@ -409,7 +435,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int upperBound() {
+	public int upperBound()
+	{
 		return MultiplicityElementOperations.upperBound(this);
 	}
 
@@ -418,7 +445,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isMultivalued() {
+	public boolean isMultivalued()
+	{
 		return MultiplicityElementOperations.isMultivalued(this);
 	}
 
@@ -427,7 +455,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean includesCardinality(int C) {
+	public boolean includesCardinality(int C)
+	{
 		return MultiplicityElementOperations.includesCardinality(this, C);
 	}
 
@@ -436,7 +465,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean includesMultiplicity(MultiplicityElement M) {
+	public boolean includesMultiplicity(MultiplicityElement M)
+	{
 		return MultiplicityElementOperations.includesMultiplicity(this, M);
 	}
 
@@ -445,7 +475,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateUpperGt0(DiagnosticChain diagnostics, Map context) {
+	public boolean validateUpperGt0(DiagnosticChain diagnostics, Map context)
+	{
 		return MultiplicityElementOperations.validateUpperGt0(this, diagnostics, context);
 	}
 
@@ -454,7 +485,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLowerGe0(DiagnosticChain diagnostics, Map context) {
+	public boolean validateLowerGe0(DiagnosticChain diagnostics, Map context)
+	{
 		return MultiplicityElementOperations.validateLowerGe0(this, diagnostics, context);
 	}
 
@@ -463,7 +495,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateUpperGeLower(DiagnosticChain diagnostics, Map context) {
+	public boolean validateUpperGeLower(DiagnosticChain diagnostics, Map context)
+	{
 		return MultiplicityElementOperations.validateUpperGeLower(this, diagnostics, context);
 	}
 
@@ -472,7 +505,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLowerEqLowerbound(DiagnosticChain diagnostics, Map context) {
+	public boolean validateLowerEqLowerbound(DiagnosticChain diagnostics, Map context)
+	{
 		return MultiplicityElementOperations.validateLowerEqLowerbound(this, diagnostics, context);
 	}
 
@@ -481,7 +515,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateUpperEqUpperbound(DiagnosticChain diagnostics, Map context) {
+	public boolean validateUpperEqUpperbound(DiagnosticChain diagnostics, Map context)
+	{
 		return MultiplicityElementOperations.validateUpperEqUpperbound(this, diagnostics, context);
 	}
 
@@ -490,7 +525,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int lower() {
+	public int lower()
+	{
 		return MultiplicityElementOperations.lower(this);
 	}
 
@@ -499,7 +535,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int upper() {
+	public int upper()
+	{
 		return MultiplicityElementOperations.upper(this);
 	}
 
@@ -508,9 +545,12 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.MULTIPLICITY_ELEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -527,9 +567,12 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.MULTIPLICITY_ELEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
@@ -552,8 +595,10 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.MULTIPLICITY_ELEMENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.MULTIPLICITY_ELEMENT__OWNED_ELEMENT:
@@ -594,8 +639,10 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.MULTIPLICITY_ELEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -642,8 +689,10 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.MULTIPLICITY_ELEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -686,8 +735,10 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.MULTIPLICITY_ELEMENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.MULTIPLICITY_ELEMENT__OWNED_ELEMENT:
@@ -727,7 +778,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -745,7 +797,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getMultiplicityElement_UpperValue())) {
 			ownedElement.add(getUpperValue());

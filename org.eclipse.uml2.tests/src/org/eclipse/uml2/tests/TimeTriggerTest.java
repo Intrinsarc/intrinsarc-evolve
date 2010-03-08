@@ -30,7 +30,8 @@ public class TimeTriggerTest extends TriggerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(TimeTriggerTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class TimeTriggerTest extends TriggerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeTriggerTest(String name) {
+	public TimeTriggerTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class TimeTriggerTest extends TriggerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TimeTrigger getFixture() {
+	private TimeTrigger getFixture()
+	{
 		return (TimeTrigger)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class TimeTriggerTest extends TriggerTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createTimeTrigger());
 	}
 
@@ -70,7 +74,8 @@ public class TimeTriggerTest extends TriggerTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -83,7 +88,8 @@ public class TimeTriggerTest extends TriggerTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

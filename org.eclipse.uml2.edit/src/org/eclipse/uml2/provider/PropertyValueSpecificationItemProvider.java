@@ -56,7 +56,8 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyValueSpecificationItemProvider(AdapterFactory adapterFactory) {
+	public PropertyValueSpecificationItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -66,8 +67,10 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addAliasedPropertyDescriptor(object);
@@ -82,7 +85,8 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAliasedPropertyDescriptor(Object object) {
+	protected void addAliasedPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -102,7 +106,8 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPropertyPropertyDescriptor(Object object) {
+	protected void addPropertyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -122,7 +127,8 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/PropertyValueSpecification"); //$NON-NLS-1$
 	}
 
@@ -132,7 +138,8 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((PropertyValueSpecification)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PropertyValueSpecification_type") : //$NON-NLS-1$
@@ -146,10 +153,12 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PropertyValueSpecification.class)) {
+		switch (notification.getFeatureID(PropertyValueSpecification.class))
+		{
 			case UML2Package.PROPERTY_VALUE_SPECIFICATION__ALIASED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -164,7 +173,8 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -174,7 +184,8 @@ public class PropertyValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -30,7 +30,8 @@ public class ConnectionPointReferenceTest extends VertexTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ConnectionPointReferenceTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ConnectionPointReferenceTest extends VertexTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectionPointReferenceTest(String name) {
+	public ConnectionPointReferenceTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ConnectionPointReferenceTest extends VertexTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ConnectionPointReference getFixture() {
+	private ConnectionPointReference getFixture()
+	{
 		return (ConnectionPointReference)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ConnectionPointReferenceTest extends VertexTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createConnectionPointReference());
 	}
 
@@ -70,7 +74,8 @@ public class ConnectionPointReferenceTest extends VertexTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

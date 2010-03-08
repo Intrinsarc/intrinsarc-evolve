@@ -60,7 +60,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionOperandItemProvider(AdapterFactory adapterFactory) {
+	public InteractionOperandItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -70,8 +71,10 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addCoveredPropertyDescriptor(object);
@@ -90,7 +93,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCoveredPropertyDescriptor(Object object) {
+	protected void addCoveredPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,7 +114,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGeneralOrderingPropertyDescriptor(Object object) {
+	protected void addGeneralOrderingPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -132,7 +137,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEnclosingInteractionPropertyDescriptor(Object object) {
+	protected void addEnclosingInteractionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -154,7 +160,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEnclosingOperandPropertyDescriptor(Object object) {
+	protected void addEnclosingOperandPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -176,7 +183,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGuardPropertyDescriptor(Object object) {
+	protected void addGuardPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -198,7 +206,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFragmentPropertyDescriptor(Object object) {
+	protected void addFragmentPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -222,8 +231,10 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getInteractionFragment_GeneralOrdering());
 			childrenFeatures.add(UML2Package.eINSTANCE.getInteractionOperand_Guard());
@@ -237,7 +248,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -250,7 +262,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/InteractionOperand"); //$NON-NLS-1$
 	}
 
@@ -260,7 +273,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((InteractionOperand)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_InteractionOperand_type") : //$NON-NLS-1$
@@ -274,10 +288,12 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(InteractionOperand.class)) {
+		switch (notification.getFeatureID(InteractionOperand.class))
+		{
 			case UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING:
 			case UML2Package.INTERACTION_OPERAND__GUARD:
 			case UML2Package.INTERACTION_OPERAND__FRAGMENT:
@@ -294,7 +310,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -364,7 +381,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -372,7 +390,8 @@ public class InteractionOperandItemProvider
 			childFeature == UML2Package.eINSTANCE.getNamespace_OwnedRule() ||
 			childFeature == UML2Package.eINSTANCE.getInteractionOperand_Guard();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -386,7 +405,8 @@ public class InteractionOperandItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

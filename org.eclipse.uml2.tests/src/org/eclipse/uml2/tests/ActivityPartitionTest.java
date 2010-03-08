@@ -36,7 +36,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ActivityPartitionTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityPartitionTest(String name) {
+	public ActivityPartitionTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ActivityPartition getFixture() {
+	private ActivityPartition getFixture()
+	{
 		return (ActivityPartition)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createActivityPartition());
 	}
 
@@ -76,7 +80,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getActivityGroup_activity()
 	 * @generated
 	 */
-	public void testGetActivityGroup_activity() {
+	public void testGetActivityGroup_activity()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -99,7 +105,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#setActivityGroup_activity(org.eclipse.uml2.Activity)
 	 * @generated
 	 */
-	public void testSetActivityGroup_activity() {
+	public void testSetActivityGroup_activity()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getSuperGroup()
 	 * @generated
 	 */
-	public void testGetSuperGroup() {
+	public void testGetSuperGroup()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,7 +133,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -137,7 +146,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -149,7 +159,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.ActivityNode#getActivity()
 	 * @generated
 	 */
-	public void testGetActivity() {
+	public void testGetActivity()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -161,7 +172,8 @@ public class ActivityPartitionTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.ActivityNode#setActivity(org.eclipse.uml2.Activity)
 	 * @generated
 	 */
-	public void testSetActivity() {
+	public void testSetActivity()
+	{
 		// TODO: implement this redefined feature setter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

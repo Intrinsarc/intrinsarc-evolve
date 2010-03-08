@@ -36,7 +36,8 @@ public class NodeTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(NodeTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class NodeTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NodeTest(String name) {
+	public NodeTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class NodeTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Node getFixture() {
+	private Node getFixture()
+	{
 		return (Node)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class NodeTest extends ClassTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createNode());
 	}
 
@@ -76,7 +80,8 @@ public class NodeTest extends ClassTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class NodeTest extends ClassTest {
 	 * @see org.eclipse.uml2.DeploymentTarget#getDeployedElements()
 	 * @generated
 	 */
-	public void testGetDeployedElements() {
+	public void testGetDeployedElements()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class NodeTest extends ClassTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class NodeTest extends ClassTest {
 	 * @see org.eclipse.uml2.Class#getNestedClassifiers()
 	 * @generated
 	 */
-	public void testGetNestedClassifiers() {
+	public void testGetNestedClassifiers()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -61,7 +61,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(OperationTest.class);
 	}
 
@@ -71,7 +72,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperationTest(String name) {
+	public OperationTest(String name)
+	{
 		super(name);
 	}
 
@@ -81,7 +83,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Operation getFixture() {
+	private Operation getFixture()
+	{
 		return (Operation)fixture;
 	}
 
@@ -91,7 +94,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createOperation());
 	}
 
@@ -101,7 +105,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -112,7 +117,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#getType()
 	 * @generated
 	 */
-	public void testGetType() {
+	public void testGetType()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -124,7 +130,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#isOrdered()
 	 * @generated
 	 */
-	public void testIsOrdered() {
+	public void testIsOrdered()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -136,7 +143,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#isUnique()
 	 * @generated
 	 */
-	public void testIsUnique() {
+	public void testIsUnique()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -148,7 +156,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#getLower()
 	 * @generated
 	 */
-	public void testGetLower() {
+	public void testGetLower()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -160,7 +169,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#getUpper()
 	 * @generated
 	 */
-	public void testGetUpper() {
+	public void testGetUpper()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -172,7 +182,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#lowerBound()
 	 * @generated
 	 */
-	public void testLowerBound() {
+	public void testLowerBound()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -184,7 +195,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#upperBound()
 	 * @generated
 	 */
-	public void testUpperBound() {
+	public void testUpperBound()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -196,7 +208,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#isMultivalued()
 	 * @generated
 	 */
-	public void testIsMultivalued() {
+	public void testIsMultivalued()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -208,7 +221,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#includesCardinality(int)
 	 * @generated
 	 */
-	public void testIncludesCardinality__int() {
+	public void testIncludesCardinality__int()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -220,7 +234,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#includesMultiplicity(org.eclipse.uml2.MultiplicityElement)
 	 * @generated
 	 */
-	public void testIncludesMultiplicity__MultiplicityElement() {
+	public void testIncludesMultiplicity__MultiplicityElement()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -232,7 +247,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateUpperGt0(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateUpperGt0__DiagnosticChain_Map() {
+	public void testValidateUpperGt0__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -244,7 +260,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateLowerGe0(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateLowerGe0__DiagnosticChain_Map() {
+	public void testValidateLowerGe0__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -256,7 +273,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateUpperGeLower(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateUpperGeLower__DiagnosticChain_Map() {
+	public void testValidateUpperGeLower__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -268,7 +286,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateLowerEqLowerbound(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateLowerEqLowerbound__DiagnosticChain_Map() {
+	public void testValidateLowerEqLowerbound__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -280,7 +299,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateUpperEqUpperbound(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateUpperEqUpperbound__DiagnosticChain_Map() {
+	public void testValidateUpperEqUpperbound__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -292,7 +312,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#lower()
 	 * @generated
 	 */
-	public void testLower() {
+	public void testLower()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -304,7 +325,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#upper()
 	 * @generated
 	 */
-	public void testUpper() {
+	public void testUpper()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -316,7 +338,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#validateTypeOfResult(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateTypeOfResult__DiagnosticChain_Map() {
+	public void testValidateTypeOfResult__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -328,7 +351,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#type()
 	 * @generated
 	 */
-  public void testType() {
+  public void testType()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -340,7 +364,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#validateOnlyBodyForQuery(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateOnlyBodyForQuery__DiagnosticChain_Map() {
+	public void testValidateOnlyBodyForQuery__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -352,7 +377,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#isConsistentWith(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsConsistentWith__RedefinableElement() {
+	public void testIsConsistentWith__RedefinableElement()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -366,7 +392,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -378,7 +405,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -390,7 +418,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinitionContexts()
 	 * @generated
 	 */
-	public void testGetRedefinitionContexts() {
+	public void testGetRedefinitionContexts()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -402,7 +431,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace() {
+	public void testGetNamespace()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -414,7 +444,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Feature#getFeaturingClassifiers()
 	 * @generated
 	 */
-	public void testGetFeaturingClassifiers() {
+	public void testGetFeaturingClassifiers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -426,7 +457,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers() {
+	public void testGetOwnedMembers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -438,7 +470,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements() {
+	public void testGetRedefinedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -450,7 +483,8 @@ public class OperationTest extends BehavioralFeatureTest {
 	 * @see org.eclipse.uml2.Operation#getOwnedParameters()
 	 * @generated
 	 */
-	public void testGetOwnedParameters() {
+	public void testGetOwnedParameters()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -28,7 +28,8 @@ public abstract class ActivityEdgeTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityEdgeTest(String name) {
+	public ActivityEdgeTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class ActivityEdgeTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ActivityEdge getFixture() {
+	private ActivityEdge getFixture()
+	{
 		return (ActivityEdge)fixture;
 	}
 
@@ -51,7 +53,8 @@ public abstract class ActivityEdgeTest extends RedefinableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -63,7 +66,8 @@ public abstract class ActivityEdgeTest extends RedefinableElementTest {
 	 * @see org.eclipse.uml2.ActivityEdge#getInGroups()
 	 * @generated
 	 */
-	public void testGetInGroups() {
+	public void testGetInGroups()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -75,7 +79,8 @@ public abstract class ActivityEdgeTest extends RedefinableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

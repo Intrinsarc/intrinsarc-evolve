@@ -57,7 +57,8 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClearAssociationActionItemProvider(AdapterFactory adapterFactory) {
+	public ClearAssociationActionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addObjectPropertyDescriptor(object);
@@ -83,7 +86,8 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addObjectPropertyDescriptor(Object object) {
+	protected void addObjectPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -105,7 +109,8 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAssociationPropertyDescriptor(Object object) {
+	protected void addAssociationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -127,8 +132,10 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getClearAssociationAction_Object());
 		}
@@ -141,7 +148,8 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/ClearAssociationAction"); //$NON-NLS-1$
 	}
 
@@ -151,7 +159,8 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ClearAssociationAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ClearAssociationAction_type") : //$NON-NLS-1$
@@ -165,10 +174,12 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ClearAssociationAction.class)) {
+		switch (notification.getFeatureID(ClearAssociationAction.class))
+		{
 			case UML2Package.CLEAR_ASSOCIATION_ACTION__OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -183,7 +194,8 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -203,7 +215,8 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -211,7 +224,8 @@ public class ClearAssociationActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPrecondition() ||
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -225,7 +239,8 @@ public class ClearAssociationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

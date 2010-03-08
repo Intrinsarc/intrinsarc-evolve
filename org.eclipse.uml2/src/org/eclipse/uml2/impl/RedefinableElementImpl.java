@@ -91,11 +91,13 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RedefinableElementImpl() {
+	protected RedefinableElementImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -104,7 +106,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getRedefinableElement();
 	}
 
@@ -113,7 +116,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLeaf() {
+	public boolean isLeaf()
+	{
 		return (eFlags & IS_LEAF_EFLAG) != 0;
 	}
 
@@ -128,7 +132,9 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsLeaf(boolean newIsLeaf) {
+	public void setIsLeaf(boolean newIsLeaf)
+	{
+
 		boolean oldIsLeaf = (eFlags & IS_LEAF_EFLAG) != 0;
 		if (newIsLeaf) eFlags |= IS_LEAF_EFLAG; else eFlags &= ~IS_LEAF_EFLAG;
 		if (eNotificationRequired())
@@ -142,7 +148,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context) {
+	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context)
+	{
 		return RedefinableElementOperations.validateRedefinitionContextValid(this, diagnostics, context);
 	}
 
@@ -151,7 +158,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context) {
+	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context)
+	{
 		return RedefinableElementOperations.validateRedefinitionConsistent(this, diagnostics, context);
 	}
 
@@ -160,7 +168,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinitionContexts() {
+	public EList getRedefinitionContexts()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList redefinitionContext = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getRedefinableElement_RedefinitionContext());
@@ -195,7 +204,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRedefinedElementsHelper(EList redefinedElement) {
+	protected EList getRedefinedElementsHelper(EList redefinedElement)
+	{
 		return redefinedElement;
 	}
 
@@ -204,7 +214,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isConsistentWith(RedefinableElement redefinee) {
+	public boolean isConsistentWith(RedefinableElement redefinee)
+	{
 		return RedefinableElementOperations.isConsistentWith(this, redefinee);
 	}
 
@@ -213,7 +224,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRedefinitionContextValid(RedefinableElement redefinable) {
+	public boolean isRedefinitionContextValid(RedefinableElement redefinable)
+	{
 		return RedefinableElementOperations.isRedefinitionContextValid(this, redefinable);
 	}
 
@@ -222,7 +234,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements() {
+	public EList getRedefinedElements()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			try {
@@ -262,9 +275,12 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.REDEFINABLE_ELEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.REDEFINABLE_ELEMENT__TEMPLATE_BINDING:
@@ -289,9 +305,12 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.REDEFINABLE_ELEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.REDEFINABLE_ELEMENT__OWNED_COMMENT:
@@ -320,8 +339,10 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REDEFINABLE_ELEMENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.REDEFINABLE_ELEMENT__OWNED_ELEMENT:
@@ -374,8 +395,10 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REDEFINABLE_ELEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -445,8 +468,10 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REDEFINABLE_ELEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -507,8 +532,10 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REDEFINABLE_ELEMENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.REDEFINABLE_ELEMENT__OWNED_ELEMENT:
@@ -560,7 +587,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

@@ -30,7 +30,8 @@ public class ClearAssociationActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ClearAssociationActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ClearAssociationActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClearAssociationActionTest(String name) {
+	public ClearAssociationActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ClearAssociationActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ClearAssociationAction getFixture() {
+	private ClearAssociationAction getFixture()
+	{
 		return (ClearAssociationAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ClearAssociationActionTest extends ActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createClearAssociationAction());
 	}
 
@@ -70,7 +74,8 @@ public class ClearAssociationActionTest extends ActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -83,7 +88,8 @@ public class ClearAssociationActionTest extends ActionTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs() {
+	public void testGetInputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

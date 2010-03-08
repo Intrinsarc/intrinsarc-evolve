@@ -65,7 +65,8 @@ public class J_DiagramItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_DiagramItemProvider(AdapterFactory adapterFactory) {
+	public J_DiagramItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -75,8 +76,10 @@ public class J_DiagramItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -91,7 +94,8 @@ public class J_DiagramItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -111,7 +115,8 @@ public class J_DiagramItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addLastFigureIdPropertyDescriptor(Object object) {
+  protected void addLastFigureIdPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -131,7 +136,8 @@ public class J_DiagramItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/J_Diagram"); //$NON-NLS-1$
 	}
 
@@ -141,7 +147,8 @@ public class J_DiagramItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((J_Diagram)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_J_Diagram_type") : //$NON-NLS-1$
@@ -155,10 +162,12 @@ public class J_DiagramItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(J_Diagram.class)) {
+		switch (notification.getFeatureID(J_Diagram.class))
+		{
 			case UML2Package.JDIAGRAM__NAME:
 			case UML2Package.JDIAGRAM__LAST_FIGURE_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -174,7 +183,8 @@ public class J_DiagramItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -184,7 +194,8 @@ public class J_DiagramItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

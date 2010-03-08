@@ -107,11 +107,13 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProfileImpl() {
+	protected ProfileImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -120,7 +122,8 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getProfile();
 	}
 
@@ -129,9 +132,13 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedMembers() {
-		if (ownedMember == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedMembers()
+	{
+		if (ownedMember == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PROFILE__OWNED_MEMBER);
 			 		return ownedMember;
@@ -148,8 +155,12 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedMembers() {
-		if (ownedMember == null) {
+  public EList settable_getOwnedMembers()
+	{
+		if (ownedMember == null)
+		{
+			
+		
 			ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PROFILE__OWNED_MEMBER);
 		}
 		return ownedMember;
@@ -160,11 +171,14 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedMembers() {
+  public java.util.ArrayList undeleted_getOwnedMembers()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedMember != null) {
-			for (Object object : ownedMember) {
+		if (ownedMember != null)
+		{
+			for (Object object : ownedMember)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -228,9 +242,13 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getMetaclassReferences() {
-		if (metaclassReference == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getMetaclassReferences()
+	{
+		if (metaclassReference == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		metaclassReference = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__METACLASS_REFERENCE, new int[] {UML2Package.PROFILE__ELEMENT_IMPORT});
 			 		return metaclassReference;
@@ -247,8 +265,12 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getMetaclassReferences() {
-		if (metaclassReference == null) {
+  public EList settable_getMetaclassReferences()
+	{
+		if (metaclassReference == null)
+		{
+			
+		
 			metaclassReference = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__METACLASS_REFERENCE, new int[] {UML2Package.PROFILE__ELEMENT_IMPORT});
 		}
 		return metaclassReference;
@@ -259,11 +281,14 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getMetaclassReferences() {
+  public java.util.ArrayList undeleted_getMetaclassReferences()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (metaclassReference != null) {
-			for (Object object : metaclassReference) {
+		if (metaclassReference != null)
+		{
+			for (Object object : metaclassReference)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -281,9 +306,13 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getMetamodelReferences() {
-		if (metamodelReference == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getMetamodelReferences()
+	{
+		if (metamodelReference == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		metamodelReference = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__METAMODEL_REFERENCE, new int[] {UML2Package.PROFILE__PACKAGE_IMPORT});
 			 		return metamodelReference;
@@ -300,8 +329,12 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getMetamodelReferences() {
-		if (metamodelReference == null) {
+  public EList settable_getMetamodelReferences()
+	{
+		if (metamodelReference == null)
+		{
+			
+		
 			metamodelReference = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__METAMODEL_REFERENCE, new int[] {UML2Package.PROFILE__PACKAGE_IMPORT});
 		}
 		return metamodelReference;
@@ -312,11 +345,14 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getMetamodelReferences() {
+  public java.util.ArrayList undeleted_getMetamodelReferences()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (metamodelReference != null) {
-			for (Object object : metamodelReference) {
+		if (metamodelReference != null)
+		{
+			for (Object object : metamodelReference)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -334,9 +370,13 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getElementImports() {
-		if (elementImport == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getElementImports()
+	{
+		if (elementImport == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		elementImport = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__ELEMENT_IMPORT, new int[] {UML2Package.PROFILE__METACLASS_REFERENCE}, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 			 		return elementImport;
@@ -353,8 +393,12 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getElementImports() {
-		if (elementImport == null) {
+  public EList settable_getElementImports()
+	{
+		if (elementImport == null)
+		{
+			
+		
 			elementImport = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__ELEMENT_IMPORT, new int[] {UML2Package.PROFILE__METACLASS_REFERENCE}, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return elementImport;
@@ -365,11 +409,14 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getElementImports() {
+  public java.util.ArrayList undeleted_getElementImports()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (elementImport != null) {
-			for (Object object : elementImport) {
+		if (elementImport != null)
+		{
+			for (Object object : elementImport)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -387,9 +434,13 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPackageImports() {
-		if (packageImport == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getPackageImports()
+	{
+		if (packageImport == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__PACKAGE_IMPORT, new int[] {UML2Package.PROFILE__APPLIED_PROFILE, UML2Package.PROFILE__METAMODEL_REFERENCE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 			 		return packageImport;
@@ -406,8 +457,12 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPackageImports() {
-		if (packageImport == null) {
+  public EList settable_getPackageImports()
+	{
+		if (packageImport == null)
+		{
+			
+		
 			packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__PACKAGE_IMPORT, new int[] {UML2Package.PROFILE__APPLIED_PROFILE, UML2Package.PROFILE__METAMODEL_REFERENCE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return packageImport;
@@ -418,11 +473,14 @@ public class ProfileImpl extends PackageImpl implements Profile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPackageImports() {
+  public java.util.ArrayList undeleted_getPackageImports()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (packageImport != null) {
-			for (Object object : packageImport) {
+		if (packageImport != null)
+		{
+			for (Object object : packageImport)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -440,9 +498,12 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PROFILE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PROFILE__TEMPLATE_BINDING:
@@ -489,9 +550,12 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PROFILE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PROFILE__OWNED_COMMENT:
@@ -544,9 +608,12 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.PROFILE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.PROFILE__PARENT_PACKAGE:
@@ -563,8 +630,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROFILE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PROFILE__OWNED_ELEMENT:
@@ -661,8 +730,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROFILE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -791,8 +862,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROFILE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -901,8 +974,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROFILE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PROFILE__OWNED_ELEMENT:

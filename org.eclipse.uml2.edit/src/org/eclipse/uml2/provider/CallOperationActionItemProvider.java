@@ -57,7 +57,8 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallOperationActionItemProvider(AdapterFactory adapterFactory) {
+	public CallOperationActionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addOperationPropertyDescriptor(object);
@@ -83,7 +86,8 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOperationPropertyDescriptor(Object object) {
+	protected void addOperationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -103,7 +107,8 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -127,8 +132,10 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getCallOperationAction_Target());
 		}
@@ -141,7 +148,8 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/CallOperationAction"); //$NON-NLS-1$
 	}
 
@@ -151,7 +159,8 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((CallOperationAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_CallOperationAction_type") : //$NON-NLS-1$
@@ -165,10 +174,12 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CallOperationAction.class)) {
+		switch (notification.getFeatureID(CallOperationAction.class))
+		{
 			case UML2Package.CALL_OPERATION_ACTION__TARGET:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -183,7 +194,8 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -203,7 +215,8 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -213,7 +226,8 @@ public class CallOperationActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getInvocationAction_Argument() ||
 			childFeature == UML2Package.eINSTANCE.getCallOperationAction_Target();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -227,7 +241,8 @@ public class CallOperationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

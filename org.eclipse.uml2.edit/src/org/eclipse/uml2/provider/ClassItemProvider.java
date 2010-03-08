@@ -58,7 +58,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassItemProvider(AdapterFactory adapterFactory) {
+	public ClassItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -68,8 +69,10 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addOwnedAttributePropertyDescriptor(object);
@@ -94,7 +97,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedAttributePropertyDescriptor(Object object) {
+	protected void addOwnedAttributePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -116,7 +120,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPartPropertyDescriptor(Object object) {
+	protected void addPartPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -138,7 +143,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRolePropertyDescriptor(Object object) {
+	protected void addRolePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -160,7 +166,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedConnectorPropertyDescriptor(Object object) {
+	protected void addOwnedConnectorPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -182,7 +189,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedPortPropertyDescriptor(Object object) {
+	protected void addOwnedPortPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -204,7 +212,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedOperationPropertyDescriptor(Object object) {
+	protected void addOwnedOperationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -226,7 +235,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsActivePropertyDescriptor(Object object) {
+	protected void addIsActivePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -246,7 +256,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedReceptionPropertyDescriptor(Object object) {
+	protected void addOwnedReceptionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -268,7 +279,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addComponentKindPropertyDescriptor(Object object) {
+	protected void addComponentKindPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -290,8 +302,10 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute());
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_OwnedConnector());
@@ -316,7 +330,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -329,7 +344,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSuperClassPropertyDescriptor(Object object) {
+	protected void addSuperClassPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -351,7 +367,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtensionPropertyDescriptor(Object object) {
+	protected void addExtensionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -373,7 +390,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNestedClassifierPropertyDescriptor(Object object) {
+	protected void addNestedClassifierPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -395,7 +413,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Class"); //$NON-NLS-1$
 	}
 
@@ -405,7 +424,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((org.eclipse.uml2.Class)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Class_type") : //$NON-NLS-1$
@@ -419,10 +439,12 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(org.eclipse.uml2.Class.class)) {
+		switch (notification.getFeatureID(org.eclipse.uml2.Class.class))
+		{
 			case UML2Package.CLASS__IS_ACTIVE:
 			case UML2Package.CLASS__COMPONENT_KIND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -454,7 +476,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -664,7 +687,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -679,7 +703,8 @@ public class ClassItemProvider
 			childFeature == UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute() ||
 			childFeature == UML2Package.eINSTANCE.getEncapsulatedClassifier_OwnedPort();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -693,7 +718,8 @@ public class ClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

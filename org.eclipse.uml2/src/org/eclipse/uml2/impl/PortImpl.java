@@ -167,11 +167,13 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PortImpl() {
+	protected PortImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 		eFlags |= IS_SERVICE_EFLAG;
 	}
@@ -181,7 +183,8 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getPort();
 	}
 
@@ -190,7 +193,8 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isBehavior() {
+	public boolean isBehavior()
+	{
 		return (eFlags & IS_BEHAVIOR_EFLAG) != 0;
 	}
 
@@ -205,7 +209,9 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsBehavior(boolean newIsBehavior) {
+	public void setIsBehavior(boolean newIsBehavior)
+	{
+
 		boolean oldIsBehavior = (eFlags & IS_BEHAVIOR_EFLAG) != 0;
 		if (newIsBehavior) eFlags |= IS_BEHAVIOR_EFLAG; else eFlags &= ~IS_BEHAVIOR_EFLAG;
 		if (eNotificationRequired())
@@ -219,7 +225,8 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isService() {
+	public boolean isService()
+	{
 		return (eFlags & IS_SERVICE_EFLAG) != 0;
 	}
 
@@ -234,7 +241,9 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsService(boolean newIsService) {
+	public void setIsService(boolean newIsService)
+	{
+
 		boolean oldIsService = (eFlags & IS_SERVICE_EFLAG) != 0;
 		if (newIsService) eFlags |= IS_SERVICE_EFLAG; else eFlags &= ~IS_SERVICE_EFLAG;
 		if (eNotificationRequired())
@@ -291,9 +300,13 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedPorts() {
-		if (redefinedPort == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRedefinedPorts()
+	{
+		if (redefinedPort == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		redefinedPort = new com.hopstepjump.emflist.PersistentEList(Port.class, this, UML2Package.PORT__REDEFINED_PORT);
 			 		return redefinedPort;
@@ -310,8 +323,12 @@ public class PortImpl extends PropertyImpl implements Port {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRedefinedPorts() {
-		if (redefinedPort == null) {
+  public EList settable_getRedefinedPorts()
+	{
+		if (redefinedPort == null)
+		{
+			
+		
 			redefinedPort = new com.hopstepjump.emflist.PersistentEList(Port.class, this, UML2Package.PORT__REDEFINED_PORT);
 		}
 		return redefinedPort;
@@ -322,11 +339,14 @@ public class PortImpl extends PropertyImpl implements Port {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRedefinedPorts() {
+  public java.util.ArrayList undeleted_getRedefinedPorts()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (redefinedPort != null) {
-			for (Object object : redefinedPort) {
+		if (redefinedPort != null)
+		{
+			for (Object object : redefinedPort)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -402,11 +422,14 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolStateMachine getProtocol() {
-		if (protocol != null && protocol.eIsProxy()) {
+	public ProtocolStateMachine getProtocol()
+	{
+		if (protocol != null && protocol.eIsProxy())
+		{
 			ProtocolStateMachine oldProtocol = protocol;
 			protocol = (ProtocolStateMachine)eResolveProxy((InternalEObject)protocol);
-			if (protocol != oldProtocol) {
+			if (protocol != oldProtocol)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PORT__PROTOCOL, oldProtocol, protocol));
 			}
@@ -424,7 +447,8 @@ public class PortImpl extends PropertyImpl implements Port {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ProtocolStateMachine undeleted_getProtocol() {
+  public ProtocolStateMachine undeleted_getProtocol()
+	{
 		ProtocolStateMachine temp = getProtocol();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -436,7 +460,8 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolStateMachine basicGetProtocol() {
+	public ProtocolStateMachine basicGetProtocol()
+	{
 		return protocol;
 	}
 
@@ -445,7 +470,9 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProtocol(ProtocolStateMachine newProtocol) {
+	public void setProtocol(ProtocolStateMachine newProtocol)
+	{
+
 		ProtocolStateMachine oldProtocol = protocol;
 		protocol = newProtocol;
 		if (eNotificationRequired())
@@ -459,7 +486,8 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PortKind getKind() {
+	public PortKind getKind()
+	{
 		return kind;
 	}
 
@@ -474,7 +502,9 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKind(PortKind newKind) {
+	public void setKind(PortKind newKind)
+	{
+
 		PortKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
@@ -488,9 +518,12 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PORT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PORT__TEMPLATE_BINDING:
@@ -545,9 +578,12 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PORT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PORT__OWNED_COMMENT:
@@ -604,9 +640,12 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.PORT__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.PORT__OWNING_ASSOCIATION:
@@ -627,8 +666,10 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PORT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PORT__OWNED_ELEMENT:
@@ -765,8 +806,10 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PORT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -930,8 +973,10 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PORT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1079,8 +1124,10 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PORT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PORT__OWNED_ELEMENT:
@@ -1210,7 +1257,8 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1230,7 +1278,8 @@ public class PortImpl extends PropertyImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRedefinedElementsHelper(EList redefinedElement) {
+	protected EList getRedefinedElementsHelper(EList redefinedElement)
+	{
 		super.getRedefinedElementsHelper(redefinedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getPort_RedefinedPort())) {
 			for (Iterator i = ((InternalEList) getRedefinedPorts()).basicIterator(); i.hasNext(); ) {

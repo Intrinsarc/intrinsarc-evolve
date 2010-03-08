@@ -30,7 +30,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(TemplateBindingTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateBindingTest(String name) {
+	public TemplateBindingTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TemplateBinding getFixture() {
+	private TemplateBinding getFixture()
+	{
 		return (TemplateBinding)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createTemplateBinding());
 	}
 
@@ -70,7 +74,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -83,7 +88,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -95,7 +101,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getSources()
 	 * @generated
 	 */
-	public void testGetSources() {
+	public void testGetSources()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -107,7 +114,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getTargets()
 	 * @generated
 	 */
-	public void testGetTargets() {
+	public void testGetTargets()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -119,7 +127,8 @@ public class TemplateBindingTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

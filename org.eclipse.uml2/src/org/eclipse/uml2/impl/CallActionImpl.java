@@ -99,11 +99,13 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CallActionImpl() {
+	protected CallActionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 		eFlags |= IS_SYNCHRONOUS_EFLAG;
 	}
@@ -113,7 +115,8 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getCallAction();
 	}
 
@@ -122,7 +125,8 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSynchronous() {
+	public boolean isSynchronous()
+	{
 		return (eFlags & IS_SYNCHRONOUS_EFLAG) != 0;
 	}
 
@@ -137,7 +141,9 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsSynchronous(boolean newIsSynchronous) {
+	public void setIsSynchronous(boolean newIsSynchronous)
+	{
+
 		boolean oldIsSynchronous = (eFlags & IS_SYNCHRONOUS_EFLAG) != 0;
 		if (newIsSynchronous) eFlags |= IS_SYNCHRONOUS_EFLAG; else eFlags &= ~IS_SYNCHRONOUS_EFLAG;
 		if (eNotificationRequired())
@@ -151,9 +157,13 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getResults() {
-		if (result == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getResults()
+	{
+		if (result == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.CALL_ACTION__RESULT);
 			 		return result;
@@ -170,8 +180,12 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getResults() {
-		if (result == null) {
+  public EList settable_getResults()
+	{
+		if (result == null)
+		{
+			
+		
 			result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.CALL_ACTION__RESULT);
 		}
 		return result;
@@ -182,11 +196,14 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getResults() {
+  public java.util.ArrayList undeleted_getResults()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (result != null) {
-			for (Object object : result) {
+		if (result != null)
+		{
+			for (Object object : result)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -248,9 +265,12 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.CALL_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CALL_ACTION__TEMPLATE_BINDING:
@@ -293,9 +313,12 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.CALL_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CALL_ACTION__OWNED_COMMENT:
@@ -346,9 +369,12 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.CALL_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.CALL_ACTION__IN_STRUCTURED_NODE:
@@ -365,8 +391,10 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CALL_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CALL_ACTION__OWNED_ELEMENT:
@@ -459,8 +487,10 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CALL_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -585,8 +615,10 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CALL_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -692,8 +724,10 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CALL_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CALL_ACTION__OWNED_ELEMENT:
@@ -783,7 +817,8 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -799,7 +834,8 @@ public abstract class CallActionImpl extends InvocationActionImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOutputsHelper(EList output) {
+	protected EList getOutputsHelper(EList output)
+	{
 		super.getOutputsHelper(output);
 		if (eIsSet(UML2Package.eINSTANCE.getCallAction_Result())) {
 			output.addAll(getResults());

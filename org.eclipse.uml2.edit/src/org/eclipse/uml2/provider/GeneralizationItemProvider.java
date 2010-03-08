@@ -57,7 +57,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeneralizationItemProvider(AdapterFactory adapterFactory) {
+	public GeneralizationItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSpecificPropertyDescriptor(object);
@@ -85,7 +88,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSpecificPropertyDescriptor(Object object) {
+	protected void addSpecificPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,7 +111,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsSubstitutablePropertyDescriptor(Object object) {
+	protected void addIsSubstitutablePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -127,7 +132,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGeneralPropertyDescriptor(Object object) {
+	protected void addGeneralPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -147,7 +153,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGeneralizationSetPropertyDescriptor(Object object) {
+	protected void addGeneralizationSetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -167,7 +174,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Generalization"); //$NON-NLS-1$
 	}
 
@@ -177,7 +185,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		Generalization generalization = (Generalization)object;
 		return getString("_UI_Generalization_type") + " " + generalization.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -189,10 +198,12 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Generalization.class)) {
+		switch (notification.getFeatureID(Generalization.class))
+		{
 			case UML2Package.GENERALIZATION__IS_SUBSTITUTABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -207,7 +218,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -217,7 +229,8 @@ public class GeneralizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 
