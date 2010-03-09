@@ -41,6 +41,7 @@ import com.hopstepjump.jumble.umldiagrams.portnode.*;
 import com.hopstepjump.jumble.umldiagrams.sequencesection.*;
 import com.hopstepjump.jumble.umldiagrams.slotnode.*;
 import com.hopstepjump.jumble.umldiagrams.stereotypenode.*;
+import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 
 import edu.umd.cs.jazz.*;
@@ -474,6 +475,36 @@ public final class ToolCoordinatorGem implements Gem
 		public int getIntegerPreference(Preference preference)
 		{
 			return GlobalPreferences.preferences.getRawPreference(preference).asInteger();
+		}
+
+		@Override
+		public void startTransaction()
+		{
+			GlobalSubjectRepository.repository.startTransaction();
+		}
+		
+		@Override
+		public void undoTransaction()
+		{
+			GlobalSubjectRepository.repository.undo();
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.undo();
+		}
+
+		@Override
+		public void redoTransaction()
+		{
+			GlobalSubjectRepository.repository.redo();
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.redo();
+		}
+
+		@Override
+		public void endTransaction()
+		{
+			GlobalSubjectRepository.repository.commitTransaction();
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.commit();
 		}
 	}
 

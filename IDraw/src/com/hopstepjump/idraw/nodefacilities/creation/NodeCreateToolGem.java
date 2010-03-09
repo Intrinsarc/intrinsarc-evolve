@@ -180,16 +180,38 @@ public final class NodeCreateToolGem implements Gem
     {
 	    // make the figure
 	    FigureReference reference = diagram.makeNewFigureReference();
-	    Command cmd = null;
 
 	    PersistentProperties properties = new PersistentProperties();
 	    // pass the properties from the indicated factory to the one retrieved via the registry
 	    factory.initialiseExtraProperties(properties);
 	    
+	    coordinator.startTransaction();
 	    if (acceptingContainer == null)
-	    	cmd = new NodeCreateFigureCommand(null, reference, null, factory, creationPoint, false, properties, null, "created " + factory.getFigureName(), "removed " + factory.getFigureName());
+	    {
+//	    	cmd = new NodeCreateFigureCommand(
+//	    	null, reference, null, factory, creationPoint, false, properties, null, "created " + factory.getFigureName(), "removed " + factory.getFigureName());
+      // if we have no subject, we must create one
+	      Object createdSubject = factory.createNewSubject(null, diagram, null, null, properties);
+	        
+	      // no id for non-subject related items
+	      factory.createFigure(
+	          createdSubject,
+	          diagram,
+	          reference.getId(),
+	          creationPoint,
+	          properties);
+
+	      // resize to ensure that any children are correctly located
+	      // resize now -- so that all internals will be correctly resized also
+	      FigureFacet figure = diagram.retrieveFigure(reference.getId());
+	      ResizingFiguresFacet resizings = new ResizingFiguresGem(null, diagram).getResizingFiguresFacet();
+	      resizings.markForResizing(figure);
+	      resizings.setFocusBounds(figure.getRecalculatedFullBoundsForDiagramResize(false));
+	      resizings.end("", "").execute(false);
+
+	    }
 	    else
-	    	cmd = new NodeCreateFigureCommand(null, reference, acceptingContainer.getFigureFacet().getFigureReference(), factory, creationPoint, false, properties, null, "created " + factory.getFigureName(), "removed " + factory.getFigureName());
+	    	;//cmd = new NodeCreateFigureCommand(null, reference, acceptingContainer.getFigureFacet().getFigureReference(), factory, creationPoint, false, properties, null, "created " + factory.getFigureName(), "removed " + factory.getFigureName());
 
     	if (acceptingResizings != null && acceptingContainer != null)
 			{
@@ -197,14 +219,14 @@ public final class NodeCreateToolGem implements Gem
 		    // 1) the create figure command
 		    // 2) the container resizing command (also a composite!)
 		    // 3) the containment command
-	      CompositeCommand comp = new CompositeCommand("created " + factory.getFigureName() + " in " + intoContainer.getFigureFacet().getFigureName(), "removed " + factory.getFigureName() + " from " + intoContainer.getFigureFacet().getFigureName());
-	      comp.addCommand(acceptingResizings.end("resized container to fit created node", "restored container size after removing node"));
-	      comp.addCommand(cmd);
-	      comp.addCommand(new ContainerAddCommand(acceptingContainer.getFigureFacet().getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container"));
-	      cmd = comp;
+//	      CompositeCommand comp = new CompositeCommand("created " + factory.getFigureName() + " in " + intoContainer.getFigureFacet().getFigureName(), "removed " + factory.getFigureName() + " from " + intoContainer.getFigureFacet().getFigureName());
+//	      comp.addCommand(acceptingResizings.end("resized container to fit created node", "restored container size after removing node"));
+//	      comp.addCommand(cmd);
+//	      comp.addCommand(new ContainerAddCommand(acceptingContainer.getFigureFacet().getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container"));
+//	      cmd = comp;
 			}
 		
-      coordinator.executeCommandAndUpdateViews(cmd);
+      coordinator.endTransaction();
       diagramView.getSelection().clearAllSelection();
 
       // highlight the created figure

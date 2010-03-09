@@ -4,8 +4,6 @@ package com.hopstepjump.jumble.gui;
  * Copyright A. McVeigh 2002
  */
 import java.awt.*;
-import java.awt.datatransfer.*;
-import java.awt.dnd.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
@@ -26,7 +24,6 @@ import com.hopstepjump.easydock.dockingframes.*;
 import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.utility.*;
-import com.hopstepjump.jumble.alloy.*;
 import com.hopstepjump.jumble.deltaview.*;
 import com.hopstepjump.jumble.errorchecking.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
@@ -1036,7 +1033,7 @@ public class ApplicationWindow extends SmartJFrame
 			if (commandManager.canUndo())
 			{
 				String undoName = commandManager.getUndoPresentationName();
-				commandManager.undo();
+				toolCoordinator.getToolCoordinatorFacet().undoTransaction();
 				paletteFacet.refreshEnabled();
 
 				// display a small popup for 2 seconds
@@ -1059,7 +1056,7 @@ public class ApplicationWindow extends SmartJFrame
 			if (commandManager.canRedo())
 			{
 				String redoName = commandManager.getRedoPresentationName();
-				commandManager.redo();
+				toolCoordinator.getToolCoordinatorFacet().redoTransaction();
 				paletteFacet.refreshEnabled();
 
 				// display a small popup for 2 seconds
@@ -1820,12 +1817,6 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("Tools",rerunItem, "ctrl R", "Run the Backbone model");
 			entries.add(new SmartMenuItemImpl("Tools", "Backbone", rerunItem));
 			
-			
-      // add the alloy interpreter
-      JMenuItem interpretAlloyItem = new JMenuItem(new InterpretAlloyAction(coordinator, commandManager, monitor));
-			GlobalPreferences.registerKeyAction("Tools",interpretAlloyItem, "ctrl I", "Interpret the Alloy visualisation on the clipboard");
-      entries.add(new SmartMenuItemImpl("Tools", "Tools", interpretAlloyItem));
-      
       // add the bean importer
       JMenuItem beanImport = new BeanImportMenuItem(coordinator, commandManager, popup, monitor); 
       entries.add(new SmartMenuItemImpl("Tools", "Beans", beanImport));      		

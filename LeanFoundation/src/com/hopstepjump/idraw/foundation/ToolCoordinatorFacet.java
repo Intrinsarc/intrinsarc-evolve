@@ -44,4 +44,10 @@ public interface ToolCoordinatorFacet extends PopupMakerFacet
 	public int getFrameXPreference(Preference xPreference);
 	public int getFrameYPreference(Preference yPreference);
 	public int getIntegerPreference(Preference preference);
+	
+	/** undo/redo and transaction history */
+	public void startTransaction();
+	public void undoTransaction();
+	public void redoTransaction();
+	public void endTransaction();
 } 
