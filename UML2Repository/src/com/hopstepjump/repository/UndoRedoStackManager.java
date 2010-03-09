@@ -30,6 +30,12 @@ public class UndoRedoStackManager
 			stack.add(new NotificationList());
 		stack.get(current).addNotification(n);
 	}
+
+	private void ensureCurrent()
+	{
+		if (current >= stack.size())
+			stack.add(new NotificationList());		
+	}
 	
 	public void undo()
 	{
@@ -136,6 +142,7 @@ public class UndoRedoStackManager
 	
 	public void commitTransaction()
 	{
+		ensureCurrent();
 		current++;
 	}
 	
