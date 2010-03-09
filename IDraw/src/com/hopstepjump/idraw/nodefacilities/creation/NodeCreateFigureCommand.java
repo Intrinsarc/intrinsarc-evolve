@@ -34,6 +34,7 @@ public final class NodeCreateFigureCommand extends AbstractCommand
     this.previewingOnly = previewingOnly;
     this.properties = properties;
     this.relatedSubject = relatedSubject;
+    execute(true);
   }
 
   public void execute(boolean isTop)

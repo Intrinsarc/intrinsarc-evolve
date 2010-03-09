@@ -1135,7 +1135,8 @@ public final class SelectionToolGem implements Gem
         	}
 
           // generate a remove from the old container and an add to the new container
-          if (fromContainer != null) // might be the top level
+        	coordinator.startTransaction("", "");
+        	if (fromContainer != null) // might be the top level
           {
           	ContainerFacet actualFromContainer = movingFigures.getContainerAllAreMovingFrom();
             comp.addCommand(new ContainerRemoveCommand(actualFromContainer.getFigureFacet().getFigureReference(), getContainableReferences(diagram, movingFigures), "moved out of old container", "moved back into old container"));
@@ -1166,6 +1167,7 @@ public final class SelectionToolGem implements Gem
                 comp.addCommand(contained.getPostContainerDropCommand());
             }
           }
+          coordinator.endTransaction();
           break;
       }
 

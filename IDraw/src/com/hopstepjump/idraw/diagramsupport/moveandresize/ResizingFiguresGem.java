@@ -140,11 +140,7 @@ public final class ResizingFiguresGem implements Gem
 	  
 	  public Command end(String description, String undoableDescription)
 	  {
-	    // generate the cmd, and detach all dependents
-	    CompositeCommand composite = new CompositeCommand(description, undoableDescription);
-	
 	    Iterator iter = movingFigures.entrySet().iterator();
-	    int count = 0;
 	    while (iter.hasNext())
 	    {
 	      Map.Entry entry = (Map.Entry) iter.next();
@@ -154,16 +150,13 @@ public final class ResizingFiguresGem implements Gem
 	      {
 	        Command cmd = moving.end();
 	        if (cmd != null)
-	        {
-	          count++;
-	          composite.addCommand(cmd);
-	        }
+	          cmd.execute(true);
 	      }
 	    }
 	
 	    if (nextInChain != null)
-	      composite.addCommand(nextInChain.end("next in chain", "next in chain"));
-	    return composite;
+	      nextInChain.end("next in chain", "next in chain").execute(true);;
+	    return new CompositeCommand("", "");
 	  }
 
 	  public void markForResizing(FigureFacet previewable)

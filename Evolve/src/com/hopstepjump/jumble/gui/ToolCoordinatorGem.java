@@ -478,7 +478,7 @@ public final class ToolCoordinatorGem implements Gem
 		}
 
 		@Override
-		public void startTransaction()
+		public void startTransaction(String redoName, String undoName)
 		{
 			GlobalSubjectRepository.repository.startTransaction();
 		}

@@ -45,8 +45,7 @@ public interface ToolCoordinatorFacet extends PopupMakerFacet
 	public int getFrameYPreference(Preference yPreference);
 	public int getIntegerPreference(Preference preference);
 	
-	/** undo/redo and transaction history */
-	public void startTransaction();
+	public void startTransaction(String redoName, String undoName);
 	public void undoTransaction();
 	public void redoTransaction();
 	public void endTransaction();
