@@ -14,8 +14,12 @@ public interface DiagramFacet extends Facet
 	public void commit();
 	public void undo();
 	public void redo();
+	public int getCommandPosition();
+	public int getTotalCommands();
+	public void clearCommandHistory();
 	public void aboutToAdjust(FigureFacet figure);
-	
+	public void primeForUpdateBeforeRevert();
+	public void enforceCommandDepth(int depth);
 	
 	/** for chained diagrams */
 	public DiagramFacet getSource();

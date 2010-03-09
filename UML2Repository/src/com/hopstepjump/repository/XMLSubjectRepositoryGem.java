@@ -45,11 +45,14 @@ public class XMLSubjectRepositoryGem implements Gem
   private CommandManagerListenerFacetImpl commandFacet = new CommandManagerListenerFacetImpl();
   private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();
   private boolean modified;
+  private UndoRedoStackManager undoredo = new UndoRedoStackManager();
+	
   private Adapter adapter = new Adapter()
   {
     public void notifyChanged(Notification notification)
     {
       modified = true;
+      undoredo.addNotification(notification);
     }
     public Notifier getTarget()
     {
@@ -63,9 +66,41 @@ public class XMLSubjectRepositoryGem implements Gem
       return false;
     }
   };
-    
-  private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
+  
+	private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
+		public void undo()
+		{
+			undoredo.undo();
+		}
+		
+		public void redo()
+		{
+			undoredo.redo();
+		}
+		
+		public int getCommandPosition()
+		{
+			return undoredo.getCurrent();
+		}
+		
+		public int getTotalCommands()
+		{
+			return undoredo.getStackSize();
+		}
+		
+		public void clearCommandHistory()
+		{
+			undoredo.clearStack();
+		}
+		
+		public void enforceCommandDepth(int depth)
+		{
+			undoredo.enforceDepth(depth);
+		}
+		
+		////////////////////////////////////////////////////
+		
     public Model getTopLevelModel()
     {
       return topLevel;
@@ -207,11 +242,13 @@ public class XMLSubjectRepositoryGem implements Gem
     public void startTransaction()
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+      undoredo.startTransaction();
     }
 
     public void commitTransaction()
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      undoredo.commitTransaction();
     }
 
     public void incrementPersistentDelete(Element element)

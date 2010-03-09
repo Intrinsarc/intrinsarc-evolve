@@ -5,6 +5,7 @@ import java.util.*;
 public class UndoRedoStates
 {
 	private List<UndoRedoState> states = new ArrayList<UndoRedoState>();
+	private boolean sealed;
 	
 	public UndoRedoStates()
 	{
@@ -18,5 +19,15 @@ public class UndoRedoStates
 	public List<UndoRedoState> getStates()
 	{
 		return states;
+	}
+
+	public void setSealed(boolean sealed)
+	{
+		this.sealed = sealed;
+	}
+
+	public boolean isSealed()
+	{
+		return sealed;
 	}
 }

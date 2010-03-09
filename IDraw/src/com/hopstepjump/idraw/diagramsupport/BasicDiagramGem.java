@@ -20,8 +20,7 @@ public final class BasicDiagramGem implements Gem
   private Map<String, DiagramListenerFacet> listeners = new HashMap<String, DiagramListenerFacet>();
   private DiagramReference reference;
   private DiagramFacetImpl diagramFacet = new DiagramFacetImpl();
-  private Set<DiagramChange> changes = new HashSet<DiagramChange>();
-  private int listPosition;
+  private List<DiagramChange> changes = new ArrayList<DiagramChange>();
   private int figureId = 0;
   private boolean modified = false;
   private PersistentDiagram persistentDiagram;
@@ -105,9 +104,8 @@ public final class BasicDiagramGem implements Gem
   private void clear()
   {
     figures = new HashMap<String, FigureFacet>();
-    changes = new HashSet<DiagramChange>();
+    changes.clear();
     openingTime = System.currentTimeMillis();  
-    listPosition = 0;
   }
   
   private void initialiseInternals()
@@ -214,15 +212,66 @@ public final class BasicDiagramGem implements Gem
 	private class DiagramFacetImpl implements DiagramFacet
 	{
 		private List<UndoRedoStates> stateStack = new ArrayList<UndoRedoStates>();
-		private int pos;
-		private boolean inTransaction;
+		private Map<FigureFacet, PersistentFigure> trans = new HashMap<FigureFacet, PersistentFigure>();
+		private int pos = 0;
+		private boolean inUndoRedo = false;
+		private boolean insideTransaction = false;
 		
+		public void enforceCommandDepth(int depth)
+		{
+			
+		}
+		
+		public int getCommandPosition()
+		{
+			return pos;
+		}
+		
+		public int getTotalCommands()
+		{
+			return stateStack.size();
+		}
+
 		private void addToCurrentTransaction(UndoRedoAction action, FigureFacet figure)
 		{
-			if (stateStack.size() <= pos)
+			if (!inUndoRedo)
+			{
+				UndoRedoStates current = ensureCurrent();
+				current.addState(new UndoRedoState(action, figure.makePersistentFigure()));
+			}
+		}
+
+		public void primeForUpdateBeforeRevert()
+		{
+			// add in an undoredostates for an early change
+			if (pos != 0)
+				throw new IllegalStateException("Must be at index 0 for priming");
+			if (insideTransaction)
+				throw new IllegalStateException("Cannot undo while in diagram transaction");
+			stateStack.add(0, new UndoRedoStates());
+		}
+		
+		/**
+		 * ensure we have a valid current undoredostates to add to.
+		 * possibly truncate the stack and add a blank one if needed.
+		 * @return
+		 */
+		private UndoRedoStates ensureCurrent()
+		{
+			int size = stateStack.size(); 
+			if (size <= pos)
 				stateStack.add(new UndoRedoStates());
-			UndoRedoStates s = stateStack.get(pos);
-			s.addState(new UndoRedoState(action, figure.makePersistentFigure()));
+			else
+			{
+				if (stateStack.get(pos).isSealed())
+				{
+					for (int lp = 0; lp < size - pos; lp++)
+						stateStack.remove(pos);
+					stateStack.add(new UndoRedoStates());
+				}
+			}
+			insideTransaction = true;
+			return stateStack.get(pos);
 		}
 		
 		/** undo/redo support */
@@ -230,37 +279,151 @@ public final class BasicDiagramGem implements Gem
 		{
 			sendChangesToListeners();
 		}
+		
+		public void clearCommandHistory()
+		{
+			pos = 0;
+			stateStack.clear();
+		}
+		
 		public void commit()
 		{
-			pos++;
+			ensureCurrent();
+			UndoRedoStates states = stateStack.get(pos++);
+			
+			// add any modifications
+			List<UndoRedoState> urs = states.getStates();
+			for (FigureFacet f : trans.keySet())
+			{
+				UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, trans.get(f));
+				state.setAfterPersistentFigure(f.makePersistentFigure());
+				urs.add(state);
+			}			
+			states.setSealed(true);
 			sendChangesToListeners();
+			trans.clear();
+			insideTransaction = false;
 		}
+		
 		public void undo()
 		{
+			if (insideTransaction)
+				throw new IllegalStateException("Cannot undo while in diagram transaction");
+
 			if (pos > 0)
 			{
-				UndoRedoStates states = stateStack.get(--pos);
-				List<UndoRedoState> state = states.getStates();
-				for (int lp = state.size() - 1; lp >= 0; lp--)
+				inUndoRedo = true;
+				UndoRedoStates all = stateStack.get(--pos);
+				List<UndoRedoState> states = all.getStates();
+				for (int lp = states.size() - 1; lp >= 0; lp--)
 				{
-					UndoRedoState s = state.get(lp);
-					if (s.getAction().equals(UndoRedoAction.ADD))
+					UndoRedoState s = states.get(lp);
+					switch (s.getAction())
 					{
-						FigureFacet f = figures.get(s.getState().getId());
-						remove(f);
+						case ADD:
+							{
+								FigureFacet f = figures.get(s.getPersistentFigure().getId());
+								remove(f);
+							}
+							break;
+						case REMOVE:
+							lp = addPersistentFigures(states, lp, -1);
+							break;
+						case MODIFY:
+							{
+								FigureFacet f = figures.get(s.getPersistentFigure().getId());
+								remove(f);
+								addPersistentFigure(s.getPersistentFigure());
+							}
+							break;
 					}
 				}
 				sendChangesToListeners();
+				inUndoRedo = false;
+				trans.clear();
 			}
 		}
+		
 		public void redo()
 		{
-			sendChangesToListeners();
+			if (insideTransaction)
+				throw new IllegalStateException("Cannot redo while in diagram transaction");
+			
+			if (pos < stateStack.size())
+			{
+				inUndoRedo = true;
+				UndoRedoStates all = stateStack.get(pos);
+				List<UndoRedoState> states = all.getStates();
+				int size = states.size();
+				for (int lp = 0; lp < size; lp++)
+				{
+					UndoRedoState s = states.get(lp); 
+					switch (s.getAction())
+					{
+						case REMOVE:
+							{
+								FigureFacet f = figures.get(s.getPersistentFigure().getId());
+								remove(f);
+							}
+							break;
+						case ADD:
+							lp = addPersistentFigures(states, lp, 1);
+							break;
+						case MODIFY:
+							{
+								FigureFacet f = figures.get(s.getPersistentFigure().getId());
+								remove(f);
+								addPersistentFigure(s.getPersistentFigureAfter());
+							}
+							break;
+					}
+				}
+				pos++;
+				sendChangesToListeners();
+				inUndoRedo = false;
+				trans.clear();
+			}
 		}
+		
+		public void addPersistentFigure(PersistentFigure persistentFigure)
+		{
+			List<PersistentFigure> pfigs = new ArrayList<PersistentFigure>();
+			pfigs.add(persistentFigure);
+			addPersistentFigures(pfigs, new UDimension(0, 0));
+		}
+
+		private int addPersistentFigures(List<UndoRedoState> states, int current, int direction)
+		{
+			List<PersistentFigure> pfigs = new ArrayList<PersistentFigure>();
+			UndoRedoAction act = states.get(current).getAction();
+			int size = states.size();
+			while (current >= 0 && current < size)
+			{
+				UndoRedoState state = states.get(current);
+				if (!state.getAction().equals(act))
+				{
+					current -= direction;
+					break;
+				}
+				pfigs.add(state.getPersistentFigure());
+				current += direction;
+			}
+			addPersistentFigures(pfigs, new UDimension(0, 0));
+			return current;
+		}
+
 		public void aboutToAdjust(FigureFacet figure)
 		{
-			adjusted(figure);
+			if (!inUndoRedo && !trans.containsKey(figure))
+			{
+				ensureCurrent();
+				PersistentFigure p = figure.makePersistentFigure();
+				trans.put(figure, p);
+				adjusted(figure);
+			}
 		}
+		
+		////////////////////////////////////////////////////////////////////////////////////////
 		
 		public void add(FigureFacet figure)
 	  {
@@ -330,19 +493,6 @@ public final class BasicDiagramGem implements Gem
 	    return new ArrayList<FigureFacet>(figures.values());
 	  }
 	
-	  public FigureFacet[] getFigures(String[] ids)
-	  {
-	  	FigureFacet[] facets = new FigureFacet[ids.length];
-	  	for (int lp = 0; lp < ids.length; lp++)
-	  	{
-				FigureFacet figureFacet = figures.get(ids[lp]);
-				if (figureFacet == null)
-		  		throw new FigureNotFoundException("Figure with id = " + ids[lp] + " not found in diagram " + getDiagramReference());
-		  	facets[lp] = figureFacet;
-	  	}
-			return facets;
-	  }
-	
 	  public DiagramReference getDiagramReference()
 	  {
 	    return reference;
@@ -351,13 +501,6 @@ public final class BasicDiagramGem implements Gem
 	  public FigureReference makeNewFigureReference()
 	  {
 	    return new FigureReference(reference, "" + figureId++);
-	  }
-	
-	  public FigureReference getFigureReference(FigureFacet figureOnDiagram)
-	  {
-	    if (!contains(figureOnDiagram))
-	      throw new IllegalStateException("Can't find figure with id " + figureOnDiagram.getId() + " on diagram: " + reference);
-	    return new FigureReference(reference, figureOnDiagram.getId());
 	  }
 	
 	  public FigureFacet retrieveFigure(String id)
@@ -400,10 +543,10 @@ public final class BasicDiagramGem implements Gem
 
 	  private synchronized void haveModification(FigureFacet figure, int modificationType)
 	  {
-	    // buffer the change, until processBufferedDiagramModifications() is called
+	    // buffer the change, until processBufferedsendChangesToListeners() is called
 	    if (generateChanges && source == null)
 	    {
-		    DiagramChange change = new DiagramChange(listPosition++, figure, modificationType);
+		    DiagramChange change = new DiagramChange(figure, modificationType);
 		    changes.add(change);
 	    }
 	  }
@@ -413,16 +556,11 @@ public final class BasicDiagramGem implements Gem
 		 */
 		public synchronized void sendChangesToListeners()
 		{
-			List<DiagramChange> changeList = new ArrayList<DiagramChange>(changes);
-			Collections.sort(changeList);
-	    int count = 0;
-
       // tell all the diagram views to process the modification
+	    DiagramChange[] changeArray = changes.toArray(new DiagramChange[0]);
       for (DiagramListenerFacet listener : listeners.values())
-        listener.haveModifications(changeList.toArray(new DiagramChange[0]));
-      count++;
-	    changes = new HashSet<DiagramChange>();
-	    listPosition = 0;
+        listener.haveModifications(changeArray);
+	    changes.clear();
 	  }
 
 		/**
@@ -456,7 +594,7 @@ public final class BasicDiagramGem implements Gem
 			    if (postProcessor != null)
 			    	postProcessor.postProcess(diagramFacet);
 					
-	        changes.add(new DiagramChange(listPosition++, null, DiagramChange.MODIFICATIONTYPE_RESYNC));
+	        changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
 				}
 				return new CompositeCommand("", "");
 			}
@@ -557,11 +695,8 @@ public final class BasicDiagramGem implements Gem
 			// if we are generating full adjustments
 			if (generateFullAdjustments)
 			{
-				for (Iterator iter = addedFigures.iterator(); iter.hasNext();)
-				{
-					FigureFacet figure = (FigureFacet) iter.next();
+				for (FigureFacet figure : addedFigures)
 					haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADJUST);
-				}
 			}
 		}
 		
@@ -574,11 +709,8 @@ public final class BasicDiagramGem implements Gem
 			pDiagram.setProperties((PersistentProperties) properties.clone());
 			
 			// make each figure, and add it
-			for (Iterator iter = figures.values().iterator(); iter.hasNext();)
-			{
-				FigureFacet figure = (FigureFacet) iter.next();
+			for (FigureFacet figure : figures.values())
 				pDiagram.addFigure(figure.makePersistentFigure());
-			}
 			
 			return pDiagram;
 		}
@@ -586,9 +718,9 @@ public final class BasicDiagramGem implements Gem
 		public Map<String, PersistentFigure> makePersistentFigures(String[] ids, boolean includeChildren)
 		{
 			Map<String, PersistentFigure> persistentFigures = new HashMap<String, PersistentFigure>();
-			for (int lp = 0; lp < ids.length; lp++)
+			for (String id : ids)
 			{
-				FigureFacet figure = figures.get(ids[lp]);
+				FigureFacet figure = figures.get(id);
 				addPersistentFiguresAndChildren(persistentFigures, figure, includeChildren);
 			}
 			return persistentFigures;
@@ -611,9 +743,8 @@ public final class BasicDiagramGem implements Gem
 
     public void resyncViews()
     { 
-        changes = new HashSet<DiagramChange>();
-        listPosition = 0;
-        changes.add(new DiagramChange(listPosition++, null, DiagramChange.MODIFICATIONTYPE_RESYNC));
+        changes.clear();
+        changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
         sendChangesToListeners();
     }
     
@@ -631,9 +762,8 @@ public final class BasicDiagramGem implements Gem
 			// allow changes to be generated again
 			generateChanges = true;
 			
-  		changes = new HashSet<DiagramChange>();
-  		listPosition = 0;
-  	  changes.add(new DiagramChange(listPosition++, null, DiagramChange.MODIFICATIONTYPE_RESYNC));
+  		changes.clear();
+  	  changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
 		}
     
     public void regenerate(PersistentDiagram refreshedPersistentDiagram)
@@ -650,9 +780,8 @@ public final class BasicDiagramGem implements Gem
       // allow changes to be generated again
       generateChanges = true;
       
-      changes = new HashSet<DiagramChange>();
-      listPosition = 0;
-      changes.add(new DiagramChange(listPosition++, null, DiagramChange.MODIFICATIONTYPE_RESYNC));
+      changes.clear();
+      changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
     }
 
 		/**
@@ -691,19 +820,16 @@ public final class BasicDiagramGem implements Gem
     {
       // we need to get all the elements in order from lowest leaf node, up to highest container
       List<FigureFacet> figuresFromTopToBottom = new ArrayList<FigureFacet>();
-      for (Iterator iter = figures.values().iterator(); iter.hasNext();)
+      for (FigureFacet figure : figures.values())
       {
-        FigureFacet figure = (FigureFacet) iter.next();
-        
         if (figure.getContainedFacet() == null || figure.getContainedFacet().getContainer() == null)
           addFigureAndChildren(figuresFromTopToBottom, figure);
       }
       
       // now, resize from the ground up
       Collections.reverse(figuresFromTopToBottom);
-      for (Iterator iter = figuresFromTopToBottom.iterator(); iter.hasNext();)
+      for (FigureFacet figure : figuresFromTopToBottom)
       {
-        FigureFacet figure = (FigureFacet) iter.next();
         UBounds recalculatedBounds = figure.getRecalculatedFullBoundsForDiagramResize(true);
 
         // execute the resizing command

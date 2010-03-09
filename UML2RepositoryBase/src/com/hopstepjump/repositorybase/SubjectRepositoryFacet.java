@@ -20,6 +20,16 @@ import com.hopstepjump.idraw.foundation.persistence.*;
  */
 public interface SubjectRepositoryFacet extends Facet
 {
+	/**
+	 * undo redo
+	 */
+	public void undo();
+	public void redo();
+	public int getCommandPosition();
+	public int getTotalCommands();
+	public void clearCommandHistory();
+	public void enforceCommandDepth(int depth);
+	
   /**
    * transaction management
    */

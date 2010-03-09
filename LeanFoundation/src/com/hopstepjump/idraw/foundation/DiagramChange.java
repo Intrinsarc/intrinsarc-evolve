@@ -9,7 +9,7 @@ import com.hopstepjump.idraw.foundation.persistence.*;
  * (c) Andrew McVeigh 12-Aug-02
  *
  */
-public final class DiagramChange implements Comparable<DiagramChange>, Serializable
+public final class DiagramChange
 {
 	public static final int MODIFICATIONTYPE_ADD    = 0;
 	public static final int MODIFICATIONTYPE_ADJUST = 1;
@@ -19,15 +19,13 @@ public final class DiagramChange implements Comparable<DiagramChange>, Serializa
 	public static final String[] names = {"MODIFICATIONTYPE_ADD", "MODIFICATIONTYPE_ADJUST",
 																				"MODIFICATIONTYPE_REMOVE", "MODIFICATIONTYPE_RESYNC"};
 
-	private int position;
 	private FigureFacet figure;
 	private PersistentFigure persistentFigure;
 	private int modificationType;
 	private String figureId;
 
-	public DiagramChange(int position, FigureFacet figure, int modificationType)
+	public DiagramChange(FigureFacet figure, int modificationType)
 	{
-		this.position = position;
 		this.figure = figure;
 		if (figure != null)
 			figureId = figure.getId();
@@ -56,23 +54,6 @@ public final class DiagramChange implements Comparable<DiagramChange>, Serializa
 
 		DiagramChange otherChange = (DiagramChange) other;
 		return otherChange.figure == figure && otherChange.modificationType == modificationType;
-	}
-  
-	public int compareTo(DiagramChange other)
-	{
-		return new Integer(position).compareTo(new Integer(other.position));
-	}
-  
-	public DiagramChange turnIntoPersistentFigureOnly()
-	{
-		PersistentFigure persistentFigure = null;
-		if (figure != null)
-			persistentFigure = figure.makePersistentFigure();
-
-		DiagramChange copy = new DiagramChange(position, null, modificationType);
-		copy.persistentFigure = persistentFigure;
-		copy.figureId = figureId;
-		return copy;
 	}
   
 	public String toString()

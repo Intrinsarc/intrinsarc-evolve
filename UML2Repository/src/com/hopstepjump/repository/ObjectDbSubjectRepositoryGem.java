@@ -7,6 +7,7 @@ import java.util.*;
 import javax.jdo.*;
 import javax.swing.*;
 
+import org.eclipse.emf.common.notify.*;
 import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
@@ -16,6 +17,7 @@ import org.eclipse.uml2.impl.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.notifications.*;
 import com.hopstepjump.repository.garbagecollector.*;
 import com.hopstepjump.repositorybase.*;
 
@@ -29,13 +31,68 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   private PersistenceManagerFactory pmf; 
   private PersistenceManager pm;
   private Model topLevel;
+  private UndoRedoStackManager undoredo = new UndoRedoStackManager();
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
   private CommandManagerListenerFacetImpl commandFacet = new CommandManagerListenerFacetImpl();
   private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();
+  
+	
+  private Adapter adapter = new Adapter()
+  {
+    public void notifyChanged(Notification notification)
+    {
+      undoredo.addNotification(notification);
+    }
+    public Notifier getTarget()
+    {
+      return null;
+    }
+    public void setTarget(Notifier arg0)
+    {
+    }
+    public boolean isAdapterForType(Object arg0)
+    {
+      return false;
+    }
+  };
+  
   private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
+		public void undo()
+		{
+			undoredo.undo();
+		}
+		
+		public void redo()
+		{
+			undoredo.redo();
+		}
+		
+		public int getCommandPosition()
+		{
+			return undoredo.getCurrent();
+		}
+		
+		public int getTotalCommands()
+		{
+			return undoredo.getStackSize();
+		}
+		
+		public void clearCommandHistory()
+		{
+			undoredo.clearStack();
+		}
+		
+		public void enforceCommandDepth(int depth)
+		{
+			undoredo.enforceDepth(depth);
+		}
+		
+		////////////////////////////////////////////////////
+
+		
     public Model getTopLevelModel()
     {
       return topLevel;
@@ -137,6 +194,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     {
       start();
       pm.evictAll();
+      undoredo.startTransaction();
     }
 
     public Transaction getCurrentTransaction()
@@ -147,6 +205,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     public void commitTransaction()
     {
       end();
+      undoredo.commitTransaction();
     }
 
     public void incrementPersistentDelete(Element element)
@@ -182,6 +241,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 
     public void close()
     {
+      GlobalNotifier.getSingleton().removeObserver(adapter);
       pm.close();
     }
     
@@ -413,6 +473,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     }
     else
       topLevel = (Model) c.iterator().next();
+    GlobalNotifier.getSingleton().addObserver(adapter);
   }
 
   private Collection queryPossiblyUnextentedObjects(java.lang.Class<?> cls, String filter, boolean includeSubclasses, boolean includeDeleted)

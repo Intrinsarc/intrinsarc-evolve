@@ -728,17 +728,6 @@ public final class SelectionToolGem implements Gem
     diagramView.resetCursor();
     diagramView.turnSweepLayerOff();
     diagramView.turnSelectionLayerOn();
-    System.out.println("$$ in steady state for diagram " + diagramView.getDiagram().getDiagramReference());
-    DiagramFacet d = diagramView.getDiagram();
-    long start = System.currentTimeMillis();
-    int count = 0;
-    for (FigureFacet f : d.getFigures())
-    {
-    	f.makePersistentFigure();
-    	count++;
-    }
-    long end = System.currentTimeMillis();
-    System.out.println("$$ took " + (end - start) + "ms to save " + count + "figures");
   }
   
   private void exit_STEADY_STATE(ZMouseEvent e, UPoint localPoint)

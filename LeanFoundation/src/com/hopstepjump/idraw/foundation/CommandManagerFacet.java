@@ -26,5 +26,4 @@ public interface CommandManagerFacet extends Facet
   public int getCommandMax();
   public void clearCommandHistory();
   public void switchListener(CommandManagerListenerFacet facet);
-	public void suspendChanges(boolean suspend);
 }

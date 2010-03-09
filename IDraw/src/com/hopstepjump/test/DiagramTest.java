@@ -13,16 +13,26 @@ import edu.umd.cs.jazz.util.*;
 
 public class DiagramTest
 {
+	private JFrame frame;
+	private DiagramFacet diagram;
+	private JButton undo;
+	private JButton redo;
+	
 	public static void main(String args[])
 	{
-		JFrame frame = new JFrame("Diagram Test");
-		frame.setPreferredSize(new Dimension(500, 500));
+		new DiagramTest().run();
+	}
+	
+	private void run()
+	{
+		frame = new JFrame("Diagram Test");
+		frame.setPreferredSize(new Dimension(600, 500));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// add the diagram and view
 		final JPanel panel = new JPanel(new BorderLayout());
 		BasicDiagramGem dgem = new BasicDiagramGem(new DiagramReference("1"), false, null);
-		final DiagramFacet diagram = dgem.getDiagramFacet();
+		diagram = dgem.getDiagramFacet();
 		ZCanvas canvas = new ZCanvas();
 		panel.add(canvas, BorderLayout.CENTER);
 		BasicDiagramViewGem vgem = new BasicDiagramViewGem(diagram, null, canvas, new UDimension(1, 1), Color.WHITE, false);
@@ -65,18 +75,30 @@ public class DiagramTest
 			}
 		});
 		buttons.add(both);
+		JButton del= new JButton("Delete");
+		del.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				for (FigureFacet f : diagram.getFigures())
+					if (rand(0, 10) > 5)
+						diagram.remove(f);
+				diagram.commit();
+			}
+		});
+		buttons.add(del);
 		JButton random = new JButton("Random");
 		random.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				for (FigureFacet f : diagram.getFigures())
-					f.cleanUp();  // mocked out to random change
+					((SimpleFigure) f).randomChange();  // mocked out to random change
 				diagram.commit();
 			}
 		});
 		buttons.add(random);
-		JButton undo = new JButton("<Undo>");
+		undo = new JButton("<Undo>");
 		undo.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -85,8 +107,8 @@ public class DiagramTest
 			}
 		});
 		buttons.add(undo);
-		JButton redo = new JButton("<Redo>");
-		undo.addActionListener(new ActionListener()
+		redo = new JButton("<Redo>");
+		redo.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
@@ -95,12 +117,35 @@ public class DiagramTest
 		});
 		buttons.add(redo);
 		panel.add(buttons, BorderLayout.NORTH);
+		setUndoRedoStates();
+
+		diagram.addListener("listener",
+				new DiagramListenerFacet()
+				{					
+					public void refreshViewAttributes()
+					{
+					}
+					public void haveModifications(DiagramChange[] changes)
+					{
+						setUndoRedoStates();
+					}
+				});
+		
+		// register the recreator
+		PersistentFigureRecreatorRegistry.registry = new BasicPersistentFigureRecreatorRegistry();
+		PersistentFigureRecreatorRegistry.registry.registerRecreator(new SimpleFigureRecreator());
 		
 		frame.pack();
 		frame.setVisible(true);
 	}
 
-	private static void addFigure(final DiagramFacet diagram, boolean rect)
+	private void setUndoRedoStates()
+	{
+		undo.setEnabled(diagram.getCommandPosition() > 0);
+		redo.setEnabled(diagram.getCommandPosition() < diagram.getTotalCommands());
+	}
+	
+	private void addFigure(final DiagramFacet diagram, boolean rect)
 	{
 		double w = rand(50, 200);
 		FigureFacet f = new SimpleFigure(

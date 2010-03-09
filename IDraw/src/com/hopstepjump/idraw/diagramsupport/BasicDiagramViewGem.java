@@ -13,7 +13,6 @@ import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
-import com.hopstepjump.swing.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.animation.*;
@@ -58,7 +57,6 @@ public final class BasicDiagramViewGem implements Gem
 	private Map<FigureFacet, ZNode> views = new HashMap<FigureFacet, ZNode>();
 	private List<Map<FigureFacet, Integer>> previouslyAdorned = new ArrayList<Map<FigureFacet, Integer>>();
 	private Map<String, FigureFacet> figures = new HashMap<String, FigureFacet>(); 		 /* id -> figure (doesn't include hidden figures) */
-	private Map<String, FigureFacet> figureCache = new HashMap<String, FigureFacet>(); /* id -> figure (also includes hidden figures) */
 	private HashMap<FigureFacet, ContainerFacet> containers = new HashMap<FigureFacet, ContainerFacet>();
 	/* contained figure -> container figure */
 	private DiagramViewFacet diagramViewFacet = new DiagramViewFacetImpl();
@@ -221,16 +219,12 @@ public final class BasicDiagramViewGem implements Gem
 		selection.turnSweepLayerOff();
 		views = new HashMap<FigureFacet, ZNode>();
 		figures = new HashMap<String, FigureFacet>();
-		figureCache = new HashMap<String, FigureFacet>();
 		containers = new HashMap<FigureFacet, ContainerFacet>();
   	makingModifications = false;
     
 		// load the full set of figures
 		for (FigureFacet figure : diagramFacet.getFigures())
-		{
 			figures.put(figure.getId(), figure);
-			figureCache.put(figure.getId(), figure);
-		}
 
     // work out what we should adorn
 		if (determineAdornments)
@@ -240,14 +234,12 @@ public final class BasicDiagramViewGem implements Gem
 		  {
   		  for (DiagramFigureAdornerFacet adorner : adorners)
     		  previouslyAdorned.add(
-    		      adorner.determineAdornments(diagramFacet, new HashSet<FigureFacet>(figureCache.values())));
+    		      adorner.determineAdornments(diagramFacet, new HashSet<FigureFacet>(figures.values())));
 		  }
 		}
     
-		for (Iterator iter = figures.values().iterator(); iter.hasNext();)
+		for (FigureFacet figure : figures.values())
 		{
-			FigureFacet figure = (FigureFacet) iter.next();
-
 			// if this is contained, and has a parent, don't do it
 			ContainedFacet contained = figure.getContainedFacet();
 			if (contained != null && contained.getContainer() != null)
@@ -293,15 +285,6 @@ public final class BasicDiagramViewGem implements Gem
       if (length == 0)
       	return;
 
-      // we are a local diagramview: add each new figure without the need for persistent recreation
-      // note: remote diagram support removed...
-      for (int lp = 0; lp < length; lp++)
-      {
-        FigureFacet figure = changes[lp].getFigure();
-        if (figure != null)
-          figureCache.put(figure.getId(), figure);
-      }
-      
       int lp = 0;
       final Map<FigureFacet, Integer> modifiedAdorned = new HashMap<FigureFacet, Integer>();
       if (adorners != null)
@@ -309,7 +292,7 @@ public final class BasicDiagramViewGem implements Gem
         {
           // determine any adornment changes
           final Map<FigureFacet, Integer> nextAdorned;        
-          nextAdorned = adorner.determineAdornments(diagramFacet, new HashSet<FigureFacet>(figureCache.values()));
+          nextAdorned = adorner.determineAdornments(diagramFacet, new HashSet<FigureFacet>(figures.values()));
           
           Set<FigureFacet> intersection = new HashSet<FigureFacet>(nextAdorned.keySet());
           intersection.retainAll(previouslyAdorned);
@@ -335,7 +318,7 @@ public final class BasicDiagramViewGem implements Gem
 						DiagramChange change = changes[lp];
 						FigureFacet figure = null;
 						if (change.getFigureId() != null)
-							figure = figureCache.get(change.getFigureId());
+							figure = change.getFigure();
 						
 						// handle the figure, without disturbing the map
 						switch (change.getModificationType())
@@ -873,7 +856,6 @@ public final class BasicDiagramViewGem implements Gem
 			// no need to lower as it must be empty
 			views.put(figure, containerGroup);
 			figures.put(figure.getId(), figure);
-			figureCache.put(figure.getId(), figure);
 			ZGroup layer = getLayerFor(figure, container);
 			if (layer != null)
 				layer.addChild(containerGroup);
@@ -883,7 +865,6 @@ public final class BasicDiagramViewGem implements Gem
 			ZNode view = adorn(figure);
 			views.put(figure, view);
 			figures.put(figure.getId(), figure);
-			figureCache.put(figure.getId(), figure);
 			ZGroup layer = getLayerFor(figure, container);
 			// some child adds will be omitted if they occur before their containers
 			if (layer != null)
@@ -939,8 +920,6 @@ public final class BasicDiagramViewGem implements Gem
 		containers.remove(figure);
 		views.remove(figure);
 		figures.remove(figure.getId());
-		if (!leaveInCache)
-			figureCache.remove(figure.getId());
 	}
 
 	private void adjustFigureInDiagram(FigureFacet figure)
@@ -997,10 +976,8 @@ public final class BasicDiagramViewGem implements Gem
 		
 		views.remove(figure); // remove the "old" one, which may now be out of date
 		figures.remove(figure.getId());
-		figureCache.remove(figure.getId());		
 		views.put(figure, newView);
 		figures.put(figure.getId(), figure);
-		figureCache.put(figure.getId(), figure);
 
 		// handle the selection
 		selection.adjusted(figure);

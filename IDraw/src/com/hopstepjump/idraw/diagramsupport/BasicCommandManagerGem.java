@@ -2,8 +2,6 @@ package com.hopstepjump.idraw.diagramsupport;
 
 import java.util.*;
 
-import javax.swing.*;
-
 import com.hopstepjump.gem.*;
 import com.hopstepjump.idraw.foundation.*;
 
@@ -18,7 +16,6 @@ public class BasicCommandManagerGem implements Gem
 	private int index = 0;
   private List<Command> commands;
   private CommandManagerListenerFacet listener;
-  private boolean suspendChanges;
 
   public BasicCommandManagerGem()
   {
@@ -185,13 +182,10 @@ public class BasicCommandManagerGem implements Gem
 
 		public void tellDiagramsToSendChanges()
 		{
-			if (!suspendChanges)
-			{
-				for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
-					diagram.sendChangesToListeners();
-				if (listener != null)
-					listener.commandExecuted();
-			}
+			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
+				diagram.sendChangesToListeners();
+			if (listener != null)
+				listener.commandExecuted();
 		}
 		
 		/**
@@ -233,11 +227,5 @@ public class BasicCommandManagerGem implements Gem
       clearCommandHistory();
       listener = facet;
     }
-
-		public void suspendChanges(boolean suspend)
-		{
-			suspendChanges = suspend;
-			tellDiagramsToSendChanges();
-		}
 	}
 }
