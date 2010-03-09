@@ -13,7 +13,6 @@ import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
-import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
@@ -46,8 +45,6 @@ import com.hopstepjump.repository.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
-import com.hopstepjump.uml2deltaengine.*;
-import com.hopstepjump.uml2deltaengine.converters.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -57,10 +54,7 @@ public final class ClassifierNodeGem implements Gem
 {
   private static final ImageIcon ATTRIBUTE = IconLoader.loadIcon("tree-private-attribute.png");
   private static final ImageIcon OPERATION = IconLoader.loadIcon("tree-public-operation.png");
-  private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
-  private static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
   private static final ImageIcon COMPOSITION_ICON = IconLoader.loadIcon("composition.png");
-
 
 	private static final int QUICK_ICON_SIZE = 14;
 	
