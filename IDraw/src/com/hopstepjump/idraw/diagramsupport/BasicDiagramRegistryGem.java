@@ -119,7 +119,7 @@ public final class BasicDiagramRegistryGem implements Gem
       DiagramFacet diagram = diagrams.get(reference);
       if (diagram == null)
       {
-        BasicDiagramGem gem = new BasicDiagramGem(reference, true, null);
+        BasicDiagramGem gem = new BasicDiagramGem(reference, true, null, false);
         gem.connectBasicDiagramReadOnlyFacet(
             new BasicDiagramReadOnlyFacet()
             {

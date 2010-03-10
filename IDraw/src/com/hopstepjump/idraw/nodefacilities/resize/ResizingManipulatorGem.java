@@ -435,19 +435,18 @@ public final class ResizingManipulatorGem implements Gem
   private void enter_RESIZED_STATE(DiagramFacet diagram, UPoint point)
   {
     // jump back to the steady state
-    // can't generate a command without a resizer
     manipulatorFacet.cleanUp();
 
     if (borderOn)
     {
-	    Command command = resizer.end("resized " + resizer.getFocusPreview().isPreviewFor().getFigureName(), "restored size of " + resizer.getFocusPreview().isPreviewFor().getFigureName());
+	    resizer.end();
     	enter_STEADY_STATE();  // need to do this so that addToView() will display handles again
-      listener.haveFinished(command);
+      listener.haveFinished();
     }
     else
     {
     	enter_STEADY_STATE();  // need to do this so that addToView() will display handles again
-      listener.haveFinished(null);
+      listener.haveFinished();
     }
   }
 

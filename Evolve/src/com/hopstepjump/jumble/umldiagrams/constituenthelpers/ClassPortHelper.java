@@ -186,8 +186,7 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 				ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
 				facet.markForResizing(figure);
 				facet.setFocusBounds(newBounds);
-				cmd = facet.end("", "");
-				cmd.execute(true);
+				facet.end();
 			}
 
 			public void unExecute()

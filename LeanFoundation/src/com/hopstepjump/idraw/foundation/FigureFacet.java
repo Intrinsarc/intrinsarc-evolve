@@ -31,6 +31,7 @@ public interface FigureFacet extends MainFacet
  	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
  	public Object getSubject();
  	public boolean hasSubjectBeenDeleted();
+	public void aboutToAdjust();
   public void adjusted();
 
   /**

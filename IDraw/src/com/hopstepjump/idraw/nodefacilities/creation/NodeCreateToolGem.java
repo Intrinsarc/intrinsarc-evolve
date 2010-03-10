@@ -186,23 +186,23 @@ public final class NodeCreateToolGem implements Gem
 	    factory.initialiseExtraProperties(properties);
 	    
 	    String name = factory.getFigureName();
-	    coordinator.startTransaction("Created " + name, "Uncreated " + name);
+	    coordinator.startTransaction("Created " + name, "Removed " + name);
 	    if (acceptingContainer == null)
-	    	new NodeCreateFigureCommand(null, reference, null, factory, creationPoint, false, properties, null, "created " + factory.getFigureName(), "removed " + factory.getFigureName());
+	    	NodeCreateFigureTransaction.create(diagram, null, reference, null, factory, creationPoint, properties, null);
 	    else
-	    	new NodeCreateFigureCommand(null, reference, acceptingContainer.getFigureFacet().getFigureReference(), factory, creationPoint, false, properties, null, "created " + factory.getFigureName(), "removed " + factory.getFigureName());
+	    	NodeCreateFigureTransaction.create(diagram, null, reference, acceptingContainer.getFigureFacet().getFigureReference(), factory, creationPoint, properties, null);
 
     	if (acceptingResizings != null && acceptingContainer != null)
 			{
 		    // we need to make a composite command with:
-		    // 1) the create figure command
-		    // 2) the container resizing command (also a composite!)
-		    // 3) the containment command
-	      acceptingResizings.end("resized container to fit created node", "restored container size after removing node");
+		    // 1) the create figure transaction
+		    // 2) the container resizing transaction
+		    // 3) the containment transaction
+	      acceptingResizings.end();
 	      new ContainerAddCommand(acceptingContainer.getFigureFacet().getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container");
 			}
 		
-      coordinator.endTransaction();
+      coordinator.commitTransaction();
       diagramView.getSelection().clearAllSelection();
 
       // highlight the created figure
@@ -365,7 +365,7 @@ public final class NodeCreateToolGem implements Gem
   {
     // make a temporary diagram that looks like the one we are going to place the figure on
     // and then make a temporary figure on it, in preview mode
-    BasicDiagramGem temporaryDiagramGem = new BasicDiagramGem(diagram.getDiagramReference(), false, null);
+    BasicDiagramGem temporaryDiagramGem = new BasicDiagramGem(diagram.getDiagramReference(), false, null, true);
     DiagramFacet temporaryDiagram = temporaryDiagramGem.getDiagramFacet();
     FigureReference creationReference = temporaryDiagram.makeNewFigureReference();
     factory.createFigure(null, temporaryDiagram, creationReference.getId(), UPoint.ZERO, null);

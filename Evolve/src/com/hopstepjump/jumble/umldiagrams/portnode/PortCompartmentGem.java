@@ -121,18 +121,15 @@ public class PortCompartmentGem implements Gem
       // make the composite and execute it
       CompositeCommand comp = new CompositeCommand("", "");
       // adjust resizings to accommodate operation preview
-      NodeCreateFigureCommand createNodeCmd = new NodeCreateFigureCommand(
+      NodeCreateFigureTransaction.create(
+      		figureFacet.getDiagram(),
           useSubject,
           reference,
           figureFacet.getFigureReference(),
           factory,
           new UPoint(0,0),
-          false,
           null,
-          relatedSubject,
-          "created " + factory.getFigureName(),
-          "removed " + factory.getFigureName());
-      createNodeCmd.execute(true);
+          relatedSubject);
       
       // get hold of the figure
       DiagramFacet diagram = figureFacet.getDiagram();
@@ -154,16 +151,10 @@ public class PortCompartmentGem implements Gem
             new FigureReference[]{reference},
             "added containables to container",
             "removed containables from container");
-      addCmd.execute(true);
 
       resizings.resizeToAddContainables(new ContainedPreviewFacet[]{movings.getCachedPreview(figure).getContainedPreviewFacet()}, location);
-      Command resizingsCmd = resizings.end("resized to fit new port", "restored size after removing port");
-      resizingsCmd.execute(true);
+      resizings.end();
   
-      // add the commands to the compound edit
-      comp.addCommand(createNodeCmd);
-      comp.addCommand(addCmd);
-      comp.addCommand(resizingsCmd);
       return comp;
     }
 
@@ -187,21 +178,16 @@ public class PortCompartmentGem implements Gem
       FigureFacet replacedFigure = diagram.retrieveFigure(toReplace.getId());
       UPoint location = replacedFigure.getFullBounds().getTopLeftPoint();
 
-      // make the composite and execute it
-      CompositeCommand comp = new CompositeCommand("", "");
       // adjust resizings to accommodate operation preview
-      NodeCreateFigureCommand createNodeCmd = new NodeCreateFigureCommand(
+      NodeCreateFigureTransaction.create(
+      		diagram,
           useSubject,
           reference,
           figureFacet.getFigureReference(),
           factory,
           new UPoint(0,0),
-          false,
           null,
-          relatedSubject,
-          "created " + factory.getFigureName(),
-          "removed " + factory.getFigureName());
-      createNodeCmd.execute(true);
+          relatedSubject);
       
       // get hold of the figure
       FigureFacet figure = diagram.retrieveFigure(reference.getId());
@@ -225,14 +211,9 @@ public class PortCompartmentGem implements Gem
       addCmd.execute(true);
 
       resizings.resizeToAddContainables(new ContainedPreviewFacet[]{movings.getCachedPreview(figure).getContainedPreviewFacet()}, location);
-      Command resizingsCmd = resizings.end("resized to fit new port", "restored size after removing port");
-      resizingsCmd.execute(true);
+      resizings.end();
   
-      // add the commands to the compound edit
-      comp.addCommand(createNodeCmd);
-      comp.addCommand(addCmd);
-      comp.addCommand(resizingsCmd);
-      return comp;
+      return null;
     }
 
     public void unReplacePort(Object memento)

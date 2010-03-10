@@ -175,10 +175,8 @@ public class GrouperNodeGem
 			// need to resize this also, as the change in text may have affected the size
 			boolean oldTextAtTop = textAtTop;
 			textAtTop = inTop;
-
-			return new Object[]
-				{new Boolean(oldTextAtTop),
-				 figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name))};
+			figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
+			return null;
 		}
 	
 		/*
@@ -186,10 +184,6 @@ public class GrouperNodeGem
 		 */
 		public void unLocateText(Object memento)
 		{
-			Object[] mementos = (Object[]) memento;
-			textAtTop = ((Boolean) mementos[0]).booleanValue();
-			figureFacet.adjusted();
-			((Command) mementos[1]).unExecute();
 		}
 	}
 
@@ -522,25 +516,10 @@ public class GrouperNodeGem
       if (subject.getBody().equals(name))
         return null;
       
-      return new AbstractCommand("", "")
-      {
-        private Command resizing;
-        private String oldText;
-        
-        public void execute(boolean isTop)
-        {
-          oldText = name;
-          name = subject.getBody();
-          UBounds bounds = textableFacet.vetTextResizedExtent(name);
-          resizing = figureFacet.makeAndExecuteResizingCommand(bounds);
-        }
-        
-        public void unExecute()
-        {
-          name = oldText;
-          resizing.unExecute();
-        }
-      };
+      name = subject.getBody();
+      UBounds bounds = textableFacet.vetTextResizedExtent(name);
+      figureFacet.makeAndExecuteResizingCommand(bounds);
+      return null;
     }
 
 		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)

@@ -234,17 +234,13 @@ public final class MovingFiguresGem implements Gem
 	    // not valid, as this is always at the end of the chain
 	  }
 	
-	  public Command end(String description, String undoDescription)
+	  public void end()
 	  {
 	    for (PreviewFacet moving : allFigures.values())
 	    {
-	    	diagram.aboutToAdjust(moving.isPreviewFor());
-	      Command cmd = moving.end();
-	      if (cmd != null)
-	        cmd.execute(true);
+	    	moving.isPreviewFor().aboutToAdjust();
+	      moving.end();
 	    }
-	    System.out.println("$$ executed commands");
-	    return new CompositeCommand("", "");
 	  }
 
 	  /**

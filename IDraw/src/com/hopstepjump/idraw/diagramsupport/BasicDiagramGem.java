@@ -33,6 +33,7 @@ public final class BasicDiagramGem implements Gem
 	private DiagramFacet source;
 	private Object perspective;
 	private DiagramPostProcessor postProcessor;
+	private boolean temporary;
 
 	/**
 	 * the clipboard attribute has no bearing on the behaviour of this class, but is used by other logic to
@@ -41,11 +42,12 @@ public final class BasicDiagramGem implements Gem
 	 * 2) being closed down in the scaleable diagram code
 	 * 3) from being reverted in the undo logic (related to scaleable diagrams)
 	 */
-  public BasicDiagramGem(DiagramReference reference, boolean isClipboard, DiagramPostProcessor postProcessor)
+  public BasicDiagramGem(DiagramReference reference, boolean isClipboard, DiagramPostProcessor postProcessor, boolean temporary)
   {
     this.reference = reference;
     this.isClipboard = isClipboard;
     this.postProcessor = postProcessor;
+    this.temporary = temporary;
     generateChanges = true;
 	  properties = new PersistentProperties();
     persistentDiagram = new PersistentDiagram();
@@ -62,12 +64,13 @@ public final class BasicDiagramGem implements Gem
 	 * 3) from being reverted in the undo logic (related to scaleable diagrams)
 	 * @param postProcessor 
 	 */
-  public BasicDiagramGem(DiagramReference reference, final DiagramFacet source, Object perspective, DiagramPostProcessor postProcessor)
+  public BasicDiagramGem(DiagramReference reference, final DiagramFacet source, Object perspective, DiagramPostProcessor postProcessor, boolean temporary)
   {
     this.reference = reference;
     this.source = source;
     this.perspective = perspective;
     this.postProcessor = postProcessor;
+    this.temporary = temporary;
     
     // to stop the source diagram being disposed of by the diagram registry
     source.addListener(reference.getId(), new DiagramListenerFacet()
@@ -86,11 +89,12 @@ public final class BasicDiagramGem implements Gem
     initialiseInternals();
   }
   
-  public BasicDiagramGem(Object linkedObject, PersistentDiagram persistentDiagram, DiagramPostProcessor postProcessor)
+  public BasicDiagramGem(Object linkedObject, PersistentDiagram persistentDiagram, DiagramPostProcessor postProcessor, boolean temporary)
   {
     this.linkedObject = linkedObject;
     this.persistentDiagram = persistentDiagram;
     this.postProcessor = postProcessor;
+    this.temporary = temporary;
     reference = new DiagramReference(persistentDiagram.getDiagramId());
     clear();
     initialiseInternals();
@@ -219,7 +223,6 @@ public final class BasicDiagramGem implements Gem
 		
 		public void enforceCommandDepth(int depth)
 		{
-			
 		}
 		
 		public int getCommandPosition()
@@ -291,13 +294,21 @@ public final class BasicDiagramGem implements Gem
 			ensureCurrent();
 			UndoRedoStates states = stateStack.get(pos++);
 			
-			// add any modifications
+			// add any modifications, only if the figures are not added
+			Set<String> added = new HashSet<String>();
+			for (UndoRedoState s : states.getStates())
+				if (s.getAction().equals(UndoRedoAction.ADD) || s.getAction().equals(UndoRedoAction.REMOVE))
+					added.add(s.getPersistentFigure().getId());
+			
 			List<UndoRedoState> urs = states.getStates();
 			for (FigureFacet f : trans.keySet())
 			{
-				UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, trans.get(f));
-				state.setAfterPersistentFigure(f.makePersistentFigure());
-				urs.add(state);
+				if (!added.contains(f.getId()))
+				{
+					UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, trans.get(f));
+					state.setAfterPersistentFigure(f.makePersistentFigure());
+					urs.add(state);
+				}
 			}			
 			states.setSealed(true);
 			sendChangesToListeners();
@@ -315,6 +326,26 @@ public final class BasicDiagramGem implements Gem
 				inUndoRedo = true;
 				UndoRedoStates all = stateStack.get(--pos);
 				List<UndoRedoState> states = all.getStates();
+				List<PersistentFigure> readd = new ArrayList<PersistentFigure>();
+				for (int lp = states.size() - 1; lp >= 0; lp--)
+				{
+					UndoRedoState s = states.get(lp);
+					switch (s.getAction())
+					{
+						case REMOVE:
+							lp = addPersistentFigures(states, lp, -1);
+							break;
+						case MODIFY:
+							{
+								FigureFacet f = figures.get(s.getPersistentFigure().getId());
+								if (f != null)
+									remove(f);
+								readd.add(s.getPersistentFigure());
+							}
+							break;
+					}
+				}
+				addPersistentFigures(readd, new UDimension(0, 0));
 				for (int lp = states.size() - 1; lp >= 0; lp--)
 				{
 					UndoRedoState s = states.get(lp);
@@ -323,17 +354,8 @@ public final class BasicDiagramGem implements Gem
 						case ADD:
 							{
 								FigureFacet f = figures.get(s.getPersistentFigure().getId());
-								remove(f);
-							}
-							break;
-						case REMOVE:
-							lp = addPersistentFigures(states, lp, -1);
-							break;
-						case MODIFY:
-							{
-								FigureFacet f = figures.get(s.getPersistentFigure().getId());
-								remove(f);
-								addPersistentFigure(s.getPersistentFigure());
+								if (f != null)
+									remove(f);
 							}
 							break;
 					}
@@ -352,44 +374,54 @@ public final class BasicDiagramGem implements Gem
 			if (pos < stateStack.size())
 			{
 				inUndoRedo = true;
-				UndoRedoStates all = stateStack.get(pos);
+				UndoRedoStates all = stateStack.get(pos++);
 				List<UndoRedoState> states = all.getStates();
 				int size = states.size();
+				List<PersistentFigure> readd = new ArrayList<PersistentFigure>();
 				for (int lp = 0; lp < size; lp++)
 				{
 					UndoRedoState s = states.get(lp); 
 					switch (s.getAction())
 					{
-						case REMOVE:
-							{
-								FigureFacet f = figures.get(s.getPersistentFigure().getId());
-								remove(f);
-							}
-							break;
 						case ADD:
 							lp = addPersistentFigures(states, lp, 1);
 							break;
 						case MODIFY:
 							{
 								FigureFacet f = figures.get(s.getPersistentFigure().getId());
-								remove(f);
-								addPersistentFigure(s.getPersistentFigureAfter());
+								if (f != null)
+									remove(f);
+								readd.add(s.getPersistentFigureAfter());
 							}
 							break;
 					}
 				}
-				pos++;
+				addPersistentFigures(readd, new UDimension(0, 0));
+				for (int lp = 0; lp < size; lp++)
+				{
+					UndoRedoState s = states.get(lp); 
+					switch (s.getAction())
+					{
+						case REMOVE:
+						{
+							FigureFacet f = figures.get(s.getPersistentFigure().getId());
+							if (f != null)
+								remove(f);
+						}
+						break;
+					}
+				}
 				sendChangesToListeners();
 				inUndoRedo = false;
 				trans.clear();
 			}
 		}
 		
-		public void addPersistentFigure(PersistentFigure persistentFigure)
+		private void addPersistentFigure(PersistentFigure persistent)
 		{
-			List<PersistentFigure> pfigs = new ArrayList<PersistentFigure>();
-			pfigs.add(persistentFigure);
-			addPersistentFigures(pfigs, new UDimension(0, 0));
+			List<PersistentFigure> p = new ArrayList<PersistentFigure>();
+			p.add(persistent);
+			addPersistentFigures(p, new UDimension(0, 0));
 		}
 
 		private int addPersistentFigures(List<UndoRedoState> states, int current, int direction)
@@ -689,7 +721,7 @@ public final class BasicDiagramGem implements Gem
 				MovingFiguresFacet movingFacet = movingGem.getMovingFiguresFacet();
 				movingFacet.indicateMovingFigures(addedFigures);
 				movingFacet.move(new UPoint(offset));
-				movingFacet.end("", "").execute(false);
+				movingFacet.end();
 			}
 
 			// if we are generating full adjustments
@@ -837,8 +869,7 @@ public final class BasicDiagramGem implements Gem
         ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
         facet.markForResizingWithoutContainer(figure);
         facet.setFocusBounds(recalculatedBounds);
-        Command command = facet.end("", "");
-        command.execute(false);
+        facet.end();
       }
     }
     

@@ -77,20 +77,12 @@ public final class FreetextNodeGem implements Gem
   
     public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
     {
-      // need to resize this also, as the change in text may have affected the size
-      String oldText = text;
-      text = newText;
-      
-      return new Object[]{
-          oldText,
-          figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(newText))};
+      text = newText;      
+      return null;
     }
   
     public void unSetText(Object memento)
     {
-      Object[] mementos = (Object[]) memento;
-      text = (String) mementos[0];
-      ((Command) mementos[1]).unExecute();
     }
     
     /**

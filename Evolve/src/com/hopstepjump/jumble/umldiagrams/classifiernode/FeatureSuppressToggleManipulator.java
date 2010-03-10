@@ -87,8 +87,7 @@ public class FeatureSuppressToggleManipulator extends ManipulatorAdapter
   /** Invoked when a mouse button has been released on this figure */
   public void mouseReleased(FigureFacet over, UPoint point, ZMouseEvent event)
   {
-    listener.haveFinished(makeToggleSuppressFeaturesCommand(reference, name, featureType, featureName,
-        featureSuppressed));
+    listener.haveFinished();
   }
 
   /**

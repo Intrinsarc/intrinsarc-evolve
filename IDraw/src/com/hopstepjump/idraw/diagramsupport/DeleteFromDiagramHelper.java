@@ -98,8 +98,7 @@ public class DeleteFromDiagramHelper
 						ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
 						facet.markForResizing(figure);
 						facet.recalculateSizeForContainables();
-						resizingCommand = facet.end("", "");
-						resizingCommand.execute(false);
+						facet.end();
 					}
 					
 					public void unExecute()

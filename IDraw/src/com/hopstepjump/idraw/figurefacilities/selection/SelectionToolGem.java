@@ -140,9 +140,9 @@ public final class SelectionToolGem implements Gem
 	  /**
 	   * this is called by the manipulator when it has finished
 	   */
-	  public void haveFinished(Command command)
+	  public void haveFinished()
 	  {
-	    possibly_exit_ADJUSTING_MANIPULATOR_SUBSTATE(command, transmitManipulatorEvent);
+	    possibly_exit_ADJUSTING_MANIPULATOR_SUBSTATE(transmitManipulatorEvent);
 	  }
   }
 
@@ -1041,13 +1041,10 @@ public final class SelectionToolGem implements Gem
       manipulator.setLayoutOnly();
   }
 
-  private void possibly_exit_ADJUSTING_MANIPULATOR_SUBSTATE(Command manipulatorCommand, ZMouseEvent relevantManipulatorEvent)
+  private void possibly_exit_ADJUSTING_MANIPULATOR_SUBSTATE(ZMouseEvent relevantManipulatorEvent)
   {
     // move the manipulator back to the selection layer
     diagramView.moveManipulatorToSelectionLayer(manipulator);
-
-    // display the manipulator node first
-    coordinator.executeCommandAndUpdateViews(manipulatorCommand);
 
     coordinator.toolFinished(relevantManipulatorEvent, true);
     enter_STEADY_STATE();
@@ -1115,12 +1112,10 @@ public final class SelectionToolGem implements Gem
     // only generate a move command if the distance is reasonable
     if (movedEnough)
     {
+    	coordinator.startTransaction("moving figures", "moving figures back");
       movingFigures.move(finalPoint);
       reenter_DRAGGING_SUBSTATE(finalPoint);
 
-      CompositeCommand comp = new CompositeCommand("", "");
-      String description = "moved figures";
-      String undoDescription = "moved figures back";
       switch (draggingState)
       {
         case DRAGGING_OVER_FROM_CONTAINER_SUBSTATE:
@@ -1135,27 +1130,14 @@ public final class SelectionToolGem implements Gem
         	}
 
           // generate a remove from the old container and an add to the new container
-        	coordinator.startTransaction("", "");
         	if (fromContainer != null) // might be the top level
           {
           	ContainerFacet actualFromContainer = movingFigures.getContainerAllAreMovingFrom();
-            comp.addCommand(new ContainerRemoveCommand(actualFromContainer.getFigureFacet().getFigureReference(), getContainableReferences(diagram, movingFigures), "moved out of old container", "moved back into old container"));
-            description = "moved figures from " + fromContainer.getFigureFacet().getFigureName();
-            undoDescription = "moved figures back into " + fromContainer.getFigureFacet().getFigureName();
+            new ContainerRemoveCommand(actualFromContainer.getFigureFacet().getFigureReference(), getContainableReferences(diagram, movingFigures), "moved out of old container", "moved back into old container");
           }
           if (acceptingContainer != null)  // might be the top level
           {
-            comp.addCommand(new ContainerAddCommand(acceptingContainer.getFigureFacet().getFigureReference(), getContainableReferences(diagram, movingFigures), "moved into new container", "moved out of new container"));
-            if (fromContainer != null)
-            {
-              description = "moved figures from " + fromContainer.getFigureFacet().getFigureName() + " into " + newContainer.getFigureFacet().getFigureName();
-              undoDescription = "moved figures back into " + fromContainer.getFigureFacet().getFigureName() + " from " + newContainer.getFigureFacet().getFigureName();
-            }
-            else
-            {
-              description = "moved figures into " + newContainer.getFigureFacet().getFigureName();
-              undoDescription = "moved figures from " + newContainer.getFigureFacet().getFigureName();
-            }
+            new ContainerAddCommand(acceptingContainer.getFigureFacet().getFigureReference(), getContainableReferences(diagram, movingFigures), "moved into new container", "moved out of new container");
             
             // add locate commands to ensure that they relocate correctly
             // ask each containable for a move command
@@ -1164,24 +1146,23 @@ public final class SelectionToolGem implements Gem
               FigureFacet top = (FigureFacet) iter.next();
               ContainedFacet contained = top.getContainedFacet();
               if (contained != null)
-                comp.addCommand(contained.getPostContainerDropCommand());
+                contained.getPostContainerDropCommand();
             }
           }
-          coordinator.endTransaction();
           break;
       }
 
       if (acceptingContainerResizings != null)
       {
-        comp.addCommand(acceptingContainerResizings.end("resized new container", "restored size of new container"));
+        acceptingContainerResizings.end();
       }
       else
       if (fromContainerResizings != null)
-        comp.addCommand(fromContainerResizings.end("resized old container", "restored size of old container"));
+        fromContainerResizings.end();
       else
-        comp.addCommand(movingFigures.end("moved figures", "moved figures back"));
-      comp.setDescriptions(description, undoDescription);
-      coordinator.executeCommandAndUpdateViews(comp);
+        movingFigures.end();
+      
+      coordinator.commitTransaction();
     }
 
     // turn the selection back on and remove the sweepbox

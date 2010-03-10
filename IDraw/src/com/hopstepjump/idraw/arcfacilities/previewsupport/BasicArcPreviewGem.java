@@ -127,11 +127,10 @@ public final class BasicArcPreviewGem implements Gem
 	    actualPoints.getPreview2().removeLinked(linkingFacet);
 	  }
 	
-	  public Command end()
+	  public void end()
 	  {
 	    actualPoints.removeKinks();
-	    
-	    return new MoveArcFigureCommand(moveable.getFigureFacet().getFigureReference(), actualPoints.calculateAllPoints().getReferenceCalculatedArcPoints(diagram), "moved arc", "unmoved arc");
+	    new MoveArcFigureCommand(moveable.getFigureFacet().getFigureReference(), actualPoints.calculateAllPoints().getReferenceCalculatedArcPoints(diagram), "moved arc", "unmoved arc");
 	  }
 	
 	  public ZNode formView()

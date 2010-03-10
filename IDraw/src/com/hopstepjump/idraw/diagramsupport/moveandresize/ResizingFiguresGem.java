@@ -138,7 +138,7 @@ public final class ResizingFiguresGem implements Gem
 	  	return false;
 	  }
 	  
-	  public Command end(String description, String undoableDescription)
+	  public void end()
 	  {
 	    Iterator iter = movingFigures.entrySet().iterator();
 	    while (iter.hasNext())
@@ -148,15 +148,13 @@ public final class ResizingFiguresGem implements Gem
 	      FigureFacet previewable = (FigureFacet) entry.getKey();
 	      if (previewable == focus || nextInChain == null || nextInChain.getCachedPreview(previewable) == null)
 	      {
-	        Command cmd = moving.end();
-	        if (cmd != null)
-	          cmd.execute(true);
+	      	diagram.aboutToAdjust(previewable);
+	        moving.end();
 	      }
 	    }
 	
 	    if (nextInChain != null)
-	      nextInChain.end("next in chain", "next in chain").execute(true);;
-	    return new CompositeCommand("", "");
+	      nextInChain.end();
 	  }
 
 	  public void markForResizing(FigureFacet previewable)

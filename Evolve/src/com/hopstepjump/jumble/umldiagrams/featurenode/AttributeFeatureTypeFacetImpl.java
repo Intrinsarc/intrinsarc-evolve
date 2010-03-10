@@ -68,19 +68,11 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   public Object setText(String text, Object listSelection, Object memento)
   {
     final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository; 
-    Command cmd = (Command) memento;
-    if (cmd != null)
-    {
-    	cmd.execute(false);
-    	return cmd;
-    }
 
     // make a command to effect the changes
-    CompositeCommand command = new CompositeCommand("", "");
     final Property typed = getSubject();
     
     // save the name and type
-    final String oldName = typed.getName();
     final ValueSpecification oldLower = typed.getLowerValue();
     final ValueSpecification oldUpper = typed.getUpperValue();
     final PropertyAccessKind oldReadWriteOnly = typed.getReadWrite();
@@ -114,9 +106,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     }
     
     // set the name
-    command.addCommand(new AbstractCommand()
-    { public void execute(boolean isTop) { typed.setName(newName); }
-			public void unExecute()            { typed.setName(oldName); }});
+    typed.setName(newName);
     
     // set the start and end multiplicity
     if (newLowerMult != null)
@@ -124,19 +114,8 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     	typed.setLowerBound(new Integer(newLowerMult));
     	final ValueSpecification lowerSpec = typed.getLowerValue();
     	repository.incrementPersistentDelete(lowerSpec);
-      command.addCommand(new AbstractCommand()
-      {
-      	public void execute(boolean isTop)
-        {
-      		repository.decrementPersistentDelete(lowerSpec);
-      		typed.setLowerValue(lowerSpec);
-        }
-  			public void unExecute()
-  			{
-      		repository.incrementPersistentDelete(lowerSpec);
-  				typed.setLowerValue(oldLower);
-  			}
-  		});
+  		repository.decrementPersistentDelete(lowerSpec);
+  		typed.setLowerValue(lowerSpec);
     }
     
     PropertyAccessKind newReadWriteOnly = PropertyAccessKind.READ_WRITE_LITERAL;
@@ -151,20 +130,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     final PropertyAccessKind finalReadWrite = newReadWriteOnly;
     
     // only bother if this changes
-    if (!newReadWriteOnly.equals(oldReadWriteOnly))
-    {
-    	command.addCommand(new AbstractCommand()
-    	{
-      	public void execute(boolean isTop)
-        {
-      		typed.setReadWrite(finalReadWrite);
-        }
-  			public void unExecute()
-  			{
-      		typed.setReadWrite(oldReadWriteOnly);
-  			}	    		
-    	});
-    }
+		typed.setReadWrite(finalReadWrite);
 
     if (newUpperMult != null)
     {
@@ -172,30 +138,15 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     	typed.setUpperBound(new Integer(newUpper));
     	final ValueSpecification upperSpec = typed.getUpperValue();
     	repository.incrementPersistentDelete(upperSpec);
-      command.addCommand(new AbstractCommand()
-      {
-      	public void execute(boolean isTop)
-        {
-      		repository.decrementPersistentDelete(upperSpec);
-      		typed.setUpperValue(upperSpec);
-        }
-  			public void unExecute()
-  			{
-      		repository.incrementPersistentDelete(upperSpec);
-  				typed.setUpperValue(oldUpper);
-  			}
-  		});
+  		repository.decrementPersistentDelete(upperSpec);
+  		typed.setUpperValue(upperSpec);
     }
 
     // decrement the existing lower and upper value
     if (oldLower != null)
-	    command.addCommand(new AbstractCommand()
-	    { public void execute(boolean isTop) { repository.incrementPersistentDelete(oldLower); }
-				public void unExecute()            { repository.decrementPersistentDelete(oldLower); }});
+    	repository.incrementPersistentDelete(oldLower);
     if (oldUpper!= null)
-	    command.addCommand(new AbstractCommand()
-	    { public void execute(boolean isTop) { repository.incrementPersistentDelete(oldUpper); }
-				public void unExecute()            { repository.decrementPersistentDelete(oldUpper); }});
+    	repository.incrementPersistentDelete(oldUpper);
 
     // find or create the type
     if (newTypeName != null)
@@ -221,27 +172,15 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
         // if we can't find the type, make a new one
         final Type createdType = ((Package) repository.findOwningElement(typed, Package.class)).createOwnedClass(newTypeName, false);
         repository.incrementPersistentDelete(createdType);
-  	    command.addCommand(new AbstractCommand()
-  	    {
-  	    	public void execute(boolean isTop) {
-  	        repository.decrementPersistentDelete(createdType);
-  	    		typed.setType(createdType);
-  	    	}
-  				public void unExecute() {
-  	        repository.incrementPersistentDelete(createdType);
-  					typed.setType(oldType);
-  				}});
+        repository.decrementPersistentDelete(createdType);
+    		typed.setType(createdType);
       }
       else
-  	    command.addCommand(new AbstractCommand()
-  	    { public void execute(boolean isTop) { typed.setType(newType); }
-  				public void unExecute() { typed.setType(oldType); }});
+      	typed.setType(newType);
     }
     else
     {
-	    command.addCommand(new AbstractCommand()
-	    { public void execute(boolean isTop) { typed.setType(null); }
-				public void unExecute() { typed.setType(oldType); }});
+    	typed.setType(null);
     }
     
     // set the default value      
@@ -249,12 +188,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     {
       List<ValueSpecification> defaultValue = typed.getDefaultValues();
       if (!defaultValue.isEmpty())
-  	    command.addCommand(new AbstractCommand()
-  	    {
-  	    	private List<ValueSpecification> oldValues = new ArrayList<ValueSpecification>(typed.undeleted_getDefaultValues());
-  	    	
-  	    	public void execute(boolean isTop) { typed.settable_getDefaultValues().clear(); }
-  				public void unExecute() { typed.settable_getDefaultValues().clear(); typed.settable_getDefaultValues().addAll(0, oldValues); }});
+      	typed.settable_getDefaultValues().clear();
     }
     else
     {
@@ -265,26 +199,13 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     	// handle the default value as an opaque expression
       final Expression defaultValue = (Expression) typed.createDefaultValues(UML2Package.eINSTANCE.getExpression());
       repository.incrementPersistentDelete(defaultValue);
-	    command.addCommand(new AbstractCommand()
-	    {
-	    	private List<ValueSpecification> oldValues = new ArrayList<ValueSpecification>(typed.undeleted_getDefaultValues());
-
-	    	public void execute(boolean isTop)
-	      {
-	    		typed.settable_getDefaultValues().clear(); typed.settable_getDefaultValues().addAll(0, values);
-	    	}
-				public void unExecute()
-				{
-					typed.settable_getDefaultValues().clear(); typed.settable_getDefaultValues().addAll(0, oldValues);
-				}
-	    });
+  		typed.settable_getDefaultValues().clear(); typed.settable_getDefaultValues().addAll(0, values);
     }
     
     // resize
     String finalText = makeNameFromSubject();
-    command.addCommand(figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(finalText)));
-    command.execute(false);
-    return command;
+    figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(finalText));
+    return null;
   }
   
   private ValueSpecification getFirst(EList defaultValues)
@@ -296,7 +217,6 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
 
 	public void unSetText(Object memento)
   {
-  	((Command) memento).unExecute();
   }
   
   private Property getSubject()

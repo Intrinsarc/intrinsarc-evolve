@@ -40,6 +40,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 		
 		state.pt = properties.retrieve("pt").asUPoint();
 		state.resizedExtent = properties.retrieve("dim", new UDimension(0,0)).asUDimension();
+		System.out.println("$$ resized = " + state.resizedExtent + ", recreator = " + state.recreatorName);
 		state.showing = properties.retrieve("show", true).asBoolean();
 	}
 
@@ -332,16 +333,14 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	/**
 	 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeFigureFacet#makeAndExecuteResizingCommand()
 	 */
-	public Command makeAndExecuteResizingCommand(UBounds newBounds)
+	public void makeAndExecuteResizingCommand(UBounds newBounds)
 	{
 		// this method should only be used inside a command's execution
 		ResizingFiguresGem gem = new ResizingFiguresGem(null, state.diagram);
 		ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
 		facet.markForResizing(this);
 		facet.setFocusBounds(newBounds);
-		Command command = facet.end("", "");
-		command.execute(false);
-		return command;
+		facet.end();
 	}
 
 	public PersistentFigure makePersistentFigure()
@@ -472,6 +471,11 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 	{
 		return state.appearanceFacet.getToolClassification(point, diagramView, coordinator);
+	}
+	
+	public void aboutToAdjust()
+	{
+		state.diagram.aboutToAdjust(state.figureFacet);
 	}
 }
 

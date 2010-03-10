@@ -41,7 +41,7 @@ public class BasicDiagramRecreatorGem
       {
         throw new DiagramRecreationException(ex);
       }
-      BasicDiagramGem gem = new BasicDiagramGem(pkg, persistentDiagram, postProcessor);
+      BasicDiagramGem gem = new BasicDiagramGem(pkg, persistentDiagram, postProcessor, false);
 
       final DiagramFacet diagram = gem.getDiagramFacet();
       diagrams.put(diagram.getDiagramReference(), diagram);
@@ -65,7 +65,7 @@ public class BasicDiagramRecreatorGem
 				DiagramFacet chainedSource, Object perspective,
 				DiagramPostProcessor postProcessor)
 		{
-      BasicDiagramGem gem = new BasicDiagramGem(reference, chainedSource, perspective, postProcessor);
+      BasicDiagramGem gem = new BasicDiagramGem(reference, chainedSource, perspective, postProcessor, false);
       gem.getDiagramFacet().setLinkedObject(chainedSource.getLinkedObject());
       final DiagramFacet diagram = gem.getDiagramFacet();
       diagrams.put(diagram.getDiagramReference(), diagram);

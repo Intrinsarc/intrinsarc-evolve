@@ -40,7 +40,7 @@ public class UndoRedoStackManager
 	public void undo()
 	{
 		if (current == 0)
-			throw new IllegalStateException("Cannot undo any more");
+			return;
 
 		ignoreNotifications = true;
 		SubjectRepositoryFacet rep = GlobalSubjectRepository.repository;
@@ -90,7 +90,7 @@ public class UndoRedoStackManager
 	public void redo()
 	{
 		if (current >= stack.size())
-			throw new IllegalStateException("Cannot redo any more");
+			return;
 
 		ignoreNotifications = true;
 		SubjectRepositoryFacet rep = GlobalSubjectRepository.repository;

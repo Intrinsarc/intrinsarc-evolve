@@ -1,7 +1,5 @@
 package com.hopstepjump.idraw.foundation;
 
-import java.io.*;
-
 import com.hopstepjump.idraw.foundation.persistence.*;
 
 /**

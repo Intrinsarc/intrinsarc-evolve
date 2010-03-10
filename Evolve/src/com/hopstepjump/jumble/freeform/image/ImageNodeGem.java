@@ -382,29 +382,11 @@ public final class ImageNodeGem implements Gem
       if (newCount == oldCount || pass != ViewUpdatePassEnum.LAST)
         return null;
       
-      return new AbstractCommand("", "")
-      {
-        private Command resizing;
-        private String oldText;
-        
-        public void execute(boolean isTop)
-        {
-          oldCount = subject.getBinaryCount();
-          
-          // get the new width and height
-          // we are about to autosize, so need to make a resizings command
-          makeCachedImage();          
-          resizing = figureFacet.makeAndExecuteResizingCommand(
-              appearanceFacet.getAutoSizedBounds(figureFacet.isAutoSized()));
-        }
-        
-        public void unExecute()
-        {
-          oldCount = subject.getBinaryCount();
-          makeCachedImage();
-          resizing.unExecute();
-        }
-      };
+      // get the new width and height
+      makeCachedImage();          
+      figureFacet.makeAndExecuteResizingCommand(
+          appearanceFacet.getAutoSizedBounds(figureFacet.isAutoSized()));
+      return null;
     }
 
     private void makeCachedImage()

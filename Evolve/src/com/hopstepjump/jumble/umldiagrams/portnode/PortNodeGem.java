@@ -342,25 +342,15 @@ public final class PortNodeGem implements Gem
   {
     public Object setDisplayType(int type)
     {
-      int oldDisplayType = displayType;
       displayType = type;
 
       // we are about to autosize, so need to make a resizings command
-      Command resizeCommand = figureFacet.makeAndExecuteResizingCommand(
-          figureFacet.getFullBounds());
-      
-      return new Object[] { new Integer(oldDisplayType), resizeCommand };
+      figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
+      return null;
     }
 
     public void unSetDisplayType(Object memento)
     {
-      Object[] array = (Object[]) memento;
-      displayType = ((Integer) array[0]).intValue();
-      
-      Command resizeCommand = (Command) array[1];
-      if (resizeCommand != null)
-        resizeCommand.unExecute();
-      figureFacet.adjusted();
     }    
   }
   
@@ -1072,42 +1062,17 @@ public final class PortNodeGem implements Gem
               "adjusted name",
               "restored name");
 
-      return new AbstractCommand()
-      {
-        private VisibilityKind newAccessType = subject.getVisibility();
-        private VisibilityKind oldAccessType = accessType;
-        private Set<String> oldProv = inferredProvNames;
-        private Set<String> oldReq = inferredReqNames;
-        private boolean oldDrawInferred = drawInferred;
-        private int oldKind = portKind;
-        private Command resizing;
-        
-        public void execute(boolean isTop)
-        {
-          if (setText != null)
-            setText.execute(isTop);
-          
-          accessType = newAccessType;
-          // resize, using a text utility
-          resizing = figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
-          inferredProvNames = provNames;
-          inferredReqNames = reqNames;
-          portKind = nextKind;
-          drawInferred = shouldDrawInferred;
-        }
-
-        public void unExecute()
-        {
-          if (setText != null)
-            setText.unExecute();
-          accessType = oldAccessType;
-          inferredProvNames = oldProv;
-          inferredReqNames = oldReq;
-          drawInferred = oldDrawInferred;
-          portKind = oldKind;
-          resizing.unExecute();
-        }
-      };
+      if (setText != null)
+        setText.execute(isTop);
+      
+      accessType = subject.getVisibility();
+      // resize, using a text utility
+      figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
+      inferredProvNames = provNames;
+      inferredReqNames = reqNames;
+      portKind = nextKind;
+      drawInferred = shouldDrawInferred;
+      return null;
 		}
 		
 		private Set<String> getInferredRequiredNames()

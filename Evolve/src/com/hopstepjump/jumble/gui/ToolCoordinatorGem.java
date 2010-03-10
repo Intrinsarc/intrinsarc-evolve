@@ -477,13 +477,12 @@ public final class ToolCoordinatorGem implements Gem
 			return GlobalPreferences.preferences.getRawPreference(preference).asInteger();
 		}
 
-		@Override
 		public void startTransaction(String redoName, String undoName)
 		{
+			System.out.println("$$ started transaction: " + redoName);
 			GlobalSubjectRepository.repository.startTransaction();
 		}
 		
-		@Override
 		public void undoTransaction()
 		{
 			GlobalSubjectRepository.repository.undo();
@@ -491,7 +490,6 @@ public final class ToolCoordinatorGem implements Gem
 				d.undo();
 		}
 
-		@Override
 		public void redoTransaction()
 		{
 			GlobalSubjectRepository.repository.redo();
@@ -499,9 +497,9 @@ public final class ToolCoordinatorGem implements Gem
 				d.redo();
 		}
 
-		@Override
-		public void endTransaction()
+		public void commitTransaction()
 		{
+			System.out.println("$$ committed transaction");
 			GlobalSubjectRepository.repository.commitTransaction();
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
 				d.commit();

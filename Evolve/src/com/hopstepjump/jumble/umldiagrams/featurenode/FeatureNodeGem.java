@@ -672,20 +672,10 @@ public final class FeatureNodeGem implements Gem
 
     public void unUpdateViewAfterSubjectChanged(Object memento)
     {
-      if (isSubjectAFeature())
-        unUpdateFeatureViewAfterSubjectChanged(memento);
-      else
-        unUpdateSlotViewAfterSubjectChanged(memento);
     }
 
     private Object updateFeatureViewAfterSubjectChanged(boolean isTop)
     {
-      boolean oldDisplayingLinkMark = displayingLinkMark;
-      VisibilityKind oldAccessType = accessType;
-      boolean oldClassifierScope = classifierScope;
-      String oldName = name;
-      int oldStereotypeHashcode = stereotypeHashcode;
-      
       final boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
       final String newName = featureTypeFacet.makeNameFromSubject();
 
@@ -698,35 +688,12 @@ public final class FeatureNodeGem implements Gem
       stereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
       
       // resize, using a text utility
-      Command resizing = figureFacet.makeAndExecuteResizingCommand(makeCurrentInfo().makeSizes().getEntireBounds());
-      return new Object[]{oldDisplayingLinkMark, oldAccessType, oldClassifierScope, oldName, oldStereotypeHashcode, resizing};
+      figureFacet.makeAndExecuteResizingCommand(makeCurrentInfo().makeSizes().getEntireBounds());
+      return null;
     }
 
-    private void unUpdateFeatureViewAfterSubjectChanged(Object memento)
-    {
-      Object[] objects = (Object[]) memento;
-      
-      boolean oldDisplayingLinkMark = (Boolean) objects[0];
-      VisibilityKind oldAccessType = (VisibilityKind) objects[1];
-      boolean oldClassifierScope = (Boolean) objects[2];
-      String oldName = (String) objects[3];
-      int oldStereotypeHashcode = (Integer) objects[4];
-      Command resizing = (Command) objects[5];
-      
-      displayingLinkMark = oldDisplayingLinkMark;
-      accessType = oldAccessType;
-      classifierScope = oldClassifierScope;
-      name = oldName;
-      stereotypeHashcode = oldStereotypeHashcode;
-      resizing.unExecute();
-    }
-    
     public Object updateSlotViewAfterSubjectChanged(boolean isTop)
     {
-      boolean oldDisplayingLinkMark = displayingLinkMark;
-      String oldName = name;
-      int oldStereotypeHashcode = stereotypeHashcode;
-
       boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
       String newName = featureTypeFacet.makeNameFromSubject();
 
@@ -736,24 +703,9 @@ public final class FeatureNodeGem implements Gem
       stereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
       
       // resize, using a text utility
-      Command resizing = figureFacet.makeAndExecuteResizingCommand(makeCurrentInfo().makeSizes().getEntireBounds());
-      return new Object[]{oldDisplayingLinkMark, oldName, oldStereotypeHashcode, resizing};
+      figureFacet.makeAndExecuteResizingCommand(makeCurrentInfo().makeSizes().getEntireBounds());
+      return null;
     }
-      
-    public void unUpdateSlotViewAfterSubjectChanged(Object memento)
-    {
-      Object[] objects = (Object[]) memento;
-
-      boolean oldDisplayingLinkMark = (Boolean) objects[0];
-      String oldName = (String) objects[1];
-      int oldStereotypeHashcode = (Integer) objects[2];
-      Command resizing = (Command) objects[3];
-     
-      displayingLinkMark = oldDisplayingLinkMark;
-      name = oldName;
-      stereotypeHashcode = oldStereotypeHashcode;
-      resizing.unExecute();
-    }    
   }
 
   public FeatureNodeGem(Element subject)

@@ -107,15 +107,11 @@ public class LinkedTextGem implements Gem
   {
     public Object hideLinkedText(boolean hide)
     {
-      boolean oldHide = suppress;
-      
       // make the change
       suppress = hide;
       figureFacet.setShowing(!suppress);
-      Command resizeCommand =
-        figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
-      
-      return new Object[] { new Boolean(oldHide), resizeCommand };
+      figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());      
+      return null;
     }
     
     /**
@@ -123,12 +119,6 @@ public class LinkedTextGem implements Gem
      */
     public void unHideLinkedText(Object memento)
     {
-      Object[] array = (Object[]) memento;
-      suppress = ((Boolean) array[0]).booleanValue();
-      Command resizeCommand = (Command) array[1];
-      
-      figureFacet.setShowing(!suppress);
-      resizeCommand.unExecute();
     }
   }
   
@@ -204,31 +194,20 @@ public class LinkedTextGem implements Gem
 	  public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
 	  {
 	    // need to resize this also, as the change in text may have affected the size
-	    String oldText = text;
 	    text = extractOriginFacet().textChanged(newText, majorPointType);
 	    
 	    // change the visibility
-	    boolean oldSuppress = suppress;
 	    if (unsuppress)
 	    {
 	    	suppress = false;
 	    	figureFacet.setShowing(true);
 	    }
-	    
-	    return new Object[]{
-	        oldText,
-	        oldSuppress,
-	        figureFacet.makeAndExecuteResizingCommand(linkedTextFacet.vetTextResizedExtent(newText))};
+	    figureFacet.makeAndExecuteResizingCommand(linkedTextFacet.vetTextResizedExtent(newText));
+	    return null;
 	  }
 	
 	  public void unSetText(Object memento)
 	  {
-			Object[] mementos = (Object[]) memento;
-	    text = (String) mementos[0];
-    	suppress = (Boolean) mementos[1];
-    	figureFacet.setShowing(!suppress);
-	    extractOriginFacet().textChanged(text, majorPointType);
-	    ((Command) mementos[2]).unExecute();
 	  }
 	  
 		/**

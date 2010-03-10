@@ -152,22 +152,16 @@ public class ClassPartHelper extends ClassifierConstituentHelper
       FigureReference partRef,
       UPoint top)
   {
-    CompositeCommand cmd = new CompositeCommand("", "");
-    
     // create the component
-    Command objectCreate = new NodeCreateFigureCommand(
+    NodeCreateFigureTransaction.create(
+    		owner.getDiagram(),
         subject,
         partRef,
         owner.getFigureReference(),
         objectCreator,
         top,
-        false,
         new PersistentProperties(),
-        null,
-        "",
-        "");
-    cmd.addCommand(objectCreate);
-    objectCreate.execute(true);
+        null);
 
     FigureFacet figure = owner.getDiagram().retrieveFigure(partRef.getId());
 
@@ -180,23 +174,21 @@ public class ClassPartHelper extends ClassifierConstituentHelper
       ContainerFacet c = contained.getContainerFacet();
       if (c != null && c.getAcceptingSubcontainer(new ContainedFacet[]{figure.getContainedFacet()}) != null)
       {
-        cmd.addCommand(insertFigure(c.getFigureFacet(), partRef));
+        insertFigure(c.getFigureFacet(), partRef);
         break;
       }
     }
-    return cmd;
+    return null;
   }
   
-  protected Command insertFigure(FigureFacet owner, FigureReference reference)
+  protected void insertFigure(FigureFacet owner, FigureReference reference)
   {
     // insert the component into the package
     FigureFacet contained = GlobalDiagramRegistry.registry.retrieveFigure(reference);
     ContainerFacet accepting = owner.getContainerFacet().getAcceptingSubcontainer(
         new ContainedFacet[]{contained.getContainedFacet()});
-    ContainerAddCommand addCmd = new ContainerAddCommand(accepting.getFigureFacet().getFigureReference(),
+    new ContainerAddCommand(accepting.getFigureFacet().getFigureReference(),
         new FigureReference[]{reference}, "", "");
-    addCmd.execute(true);
-    return addCmd;
   }
   
   private UDimension getOffsetFromSimple(FigureFacet figure)

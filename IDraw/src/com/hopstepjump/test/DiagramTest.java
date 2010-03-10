@@ -31,7 +31,7 @@ public class DiagramTest
 		
 		// add the diagram and view
 		final JPanel panel = new JPanel(new BorderLayout());
-		BasicDiagramGem dgem = new BasicDiagramGem(new DiagramReference("1"), false, null);
+		BasicDiagramGem dgem = new BasicDiagramGem(new DiagramReference("1"), false, null, false);
 		diagram = dgem.getDiagramFacet();
 		ZCanvas canvas = new ZCanvas();
 		panel.add(canvas, BorderLayout.CENTER);

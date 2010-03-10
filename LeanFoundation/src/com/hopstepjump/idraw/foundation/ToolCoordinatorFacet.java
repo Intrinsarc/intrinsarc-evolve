@@ -48,5 +48,5 @@ public interface ToolCoordinatorFacet extends PopupMakerFacet
 	public void startTransaction(String redoName, String undoName);
 	public void undoTransaction();
 	public void redoTransaction();
-	public void endTransaction();
+	public void commitTransaction();
 } 

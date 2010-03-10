@@ -203,10 +203,8 @@ public final class BasicNamespaceNodeGem implements Gem
 			BasicNamespaceSizeInfo info = makeCurrentSizeInfo();
 			UBounds newBounds = info.makeActualSizes().getOuter();
 			UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
-			resizings.setFocusBounds(centredBounds);
-			
-			resizeCommand = resizings.end("resized to adjust for displayAsIcon toggle", "restored sizes to adjust for undoing displayAsIcon toggle");
-			resizeCommand.execute(false);
+			resizings.setFocusBounds(centredBounds);			
+			resizings.end();
 			figureFacet.adjusted();
 	
 			return new Object[] {new Boolean(oldDisplayAsIcon), resizeCommand};
@@ -350,8 +348,6 @@ public final class BasicNamespaceNodeGem implements Gem
   {
 	  public Object suppressFeatures(int featureType, boolean suppress)
 		{
-			boolean oldSuppressContents = suppressContents;
-			
 			// we will probably change size, so need to make a resizings command
 			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
 			resizings.markForResizing(figureFacet);
@@ -360,10 +356,8 @@ public final class BasicNamespaceNodeGem implements Gem
 			contents.getFigureFacet().setShowing(!suppress);
 			resizings.setFocusBounds(getContentsSuppressedBounds(suppressContents));
 	
-			Command resizeCommand = resizings.end("resized to adjust for suppress feature toggle", "restored size after undoing suppress feature toggle");
-			resizeCommand.execute(false);
-	
-			return new Object[]{new Boolean(oldSuppressContents), resizeCommand};
+			resizings.end();	
+			return null;
 		}
 	
 		/**
@@ -371,13 +365,6 @@ public final class BasicNamespaceNodeGem implements Gem
 		 */
 		public void unSuppressFeatures(Object memento)
 		{
-			Object[] objects = (Object[]) memento;
-			boolean suppress = ((Boolean) objects[0]).booleanValue();
-			Command resizeCommand = (Command) objects[1];
-	
-			suppressContents = suppress;
-			contents.getFigureFacet().setShowing(!suppressContents);
-			resizeCommand.unExecute();
 		}
   }
   
@@ -789,44 +776,18 @@ public final class BasicNamespaceNodeGem implements Gem
           stereotypeHashcode == actualStereotypeHashcode)
 				return null;
 			
-			return new AbstractCommand("", "")
-			{
-				private Command resizing;
-				private String oldName;
-				private String oldOwner;
-				private boolean oldShowOwningPackage;
-        private int oldStereotypeHashcode;
-				
-				public void execute(boolean isTop)
-				{
-					// preserve the old variables
-					oldName = name;
-					oldOwner = owner;
-					oldShowOwningPackage = showOwningPackage;
-          oldStereotypeHashcode = stereotypeHashcode;
-					
-					// set the new variables
-					name = subject.getName();
-					
-					
-					owner = GlobalSubjectRepository.repository.findOwningStratum(subject).getName();
-					
-					showOwningPackage = shouldBeDisplayingOwningPackage;
-          stereotypeHashcode = actualStereotypeHashcode;
-					
-					// resize, using a text utility
-			    resizing = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
-				}
-				
-				public void unExecute()
-				{
-					name = oldName;
-					owner = oldOwner;
-					showOwningPackage = oldShowOwningPackage;
-          stereotypeHashcode = oldStereotypeHashcode;
-          resizing.unExecute();
-				}
-			};
+			// set the new variables
+			name = subject.getName();
+			
+			
+			owner = GlobalSubjectRepository.repository.findOwningStratum(subject).getName();
+			
+			showOwningPackage = shouldBeDisplayingOwningPackage;
+      stereotypeHashcode = actualStereotypeHashcode;
+			
+			// resize, using a text utility
+      figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
+      return null;
 		}
 
 		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)

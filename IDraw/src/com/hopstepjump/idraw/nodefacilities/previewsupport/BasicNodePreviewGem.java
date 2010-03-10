@@ -163,19 +163,17 @@ public final class BasicNodePreviewGem implements Gem
 	    tellLinked();
 	  }
 
-	  public Command end()
+	  public void end()
 	  {
 	    // make a new move cmd for this shape
 	    if (setBounds)
-	      return new NodeResizeCommand(previewing.getFigureReference(), appearanceFacet.getFullBounds(), "resized " + previewing.getFigureName(), "restored size of " + previewing.getFigureName());
+	      NodeResizeTransaction.resize(previewing, appearanceFacet.getFullBounds());
 	    else
 	    {
 	      // make a new move cmd for this shape
 	      UDimension offset = appearanceFacet.getOffsetFromOriginal();
-	      if (offset.distance() == 0)
-	        return null;
-	      else
-	        return new MoveNodeFigureCommand(previewing.getFigureReference(), offset, "moved " + previewing.getFigureName(), "moved " + previewing.getFigureName() + " back");
+	      if (offset.distance() != 0)
+	        MoveNodeFigureTransaction.move(previewing, offset);
 	    }
 	  }
 	

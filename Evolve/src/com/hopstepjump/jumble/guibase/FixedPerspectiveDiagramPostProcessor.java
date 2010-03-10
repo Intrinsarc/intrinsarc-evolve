@@ -217,8 +217,7 @@ public class FixedPerspectiveDiagramPostProcessor implements DiagramPostProcesso
 		ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
 		facet.markForResizing(figure);
 		facet.setFocusBounds(newBounds);
-		Command command = facet.end("", "");
-		command.execute(false);
+		facet.end();
 	}
 
 	private boolean containsSubfigures(FigureFacet figure)

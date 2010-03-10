@@ -302,4 +302,9 @@ public class SimpleFigure implements FigureFacet
 	public void cleanUp()
 	{
 	}
+
+	public void aboutToAdjust()
+	{
+		diagram.aboutToAdjust(this);
+	}
 }

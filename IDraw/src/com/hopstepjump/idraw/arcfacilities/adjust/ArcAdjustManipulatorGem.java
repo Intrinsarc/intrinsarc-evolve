@@ -165,7 +165,6 @@ public final class ArcAdjustManipulatorGem implements Gem
 	  public void mouseReleased(FigureFacet over, UPoint point, ZMouseEvent event)
 	  {
 	    actualPoints.removeKinks();
-	    Command constructedCommand = null;
 	    switch (state)
 	    {
 	      case WAITING_SUBSTATE:
@@ -173,11 +172,11 @@ public final class ArcAdjustManipulatorGem implements Gem
 	        break;
 	      case MOVING_EXISTING_POINT_SUBSTATE:
 	        // make a modification command
-	        constructedCommand = resizings.end("adjusted existing link point", "restored existing link point");
+	        resizings.end();
 	        break;
 	      case MOVING_NEW_POINT_SUBSTATE:
 	        // make a modification command
-	        constructedCommand = resizings.end("added new point on link", "removed point on link");
+	        resizings.end();
 	        break;
 	      case MOVING_OVER_LINKABLE_SUBSTATE:
 	        // make a modification command but only if this is a valid target
@@ -185,10 +184,8 @@ public final class ArcAdjustManipulatorGem implements Gem
 	      	AnchorFacet node2 = actualPoints.getNode2();
 	      	if (toAdjust.acceptsAnchors(node1, node2))
 	      	{
-	      		CompositeCommand cmd = new CompositeCommand("retargeted link", "targeted link back");
-	      		cmd.addCommand(resizings.end("", ""));
-	      		cmd.addCommand(toAdjust.makeReanchorCommand(node1, node2));
-	      		constructedCommand = cmd;
+	      		resizings.end();
+	      		toAdjust.makeReanchorCommand(node1, node2);
 	      	}
 	      	else
 	      	{
@@ -209,7 +206,7 @@ public final class ArcAdjustManipulatorGem implements Gem
 	    state = STEADY_STATE;
 	    showHandles = true;
 	
-	    listener.haveFinished(constructedCommand);
+	    listener.haveFinished();
 	  }
 	
 	  public void addToView(ZGroup diagramLayer, ZCanvas canvas)

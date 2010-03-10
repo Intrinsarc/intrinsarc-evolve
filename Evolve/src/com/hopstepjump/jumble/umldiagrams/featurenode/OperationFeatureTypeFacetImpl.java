@@ -78,36 +78,18 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
       return cmd;
     }
 
-    // make a command to effect the changes
-    CompositeCommand command = new CompositeCommand("", "");
-    
     // remove all current parameters
     final ArrayList<Parameter> existing = typed.undeleted_getReturnResults();
-    command.addCommand(new AbstractCommand()
-    {
-      public void execute(boolean isTop)
-      {
-        // delete all parameters
-        for (Parameter param : existing)
-          repository.incrementPersistentDelete(param);
-      }
-      
-      public void unExecute()
-      {
-        // resurrect all parameters
-        for (Parameter param : existing)
-            repository.decrementPersistentDelete(param); 
-      }
-    });
-    
+    // delete all parameters
+    for (Parameter param : existing)
+      repository.incrementPersistentDelete(param);
+
     // get the new name and type
     Matcher matcher = opPattern.matcher(text);
     if (matcher.matches())
     {
       final String newName = matcher.group(1);
-      command.addCommand(new AbstractCommand()
-      { public void execute(boolean isTop) { typed.setName(newName); }
-        public void unExecute()            { typed.setName(oldName); }});
+      typed.setName(newName);
       
       // find or create the return parameter and type
       final String newTypeName = matcher.groupCount() >= 3 ? matcher.group(3) : null;
@@ -120,18 +102,9 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
           final boolean madeNew = type.getJ_deleted() > 0;
           
           // we've made a new type
-          command.addCommand(new AbstractCommand()
-          {
-            public void execute(boolean isTop) {
-              repository.decrementPersistentDelete(newParameter);
-              if (madeNew)
-                repository.decrementPersistentDelete(type);
-            }
-            public void unExecute() {
-              repository.incrementPersistentDelete(newParameter);
-              if (madeNew)
-                repository.incrementPersistentDelete(type);
-            }});
+          repository.decrementPersistentDelete(newParameter);
+          if (madeNew)
+            repository.decrementPersistentDelete(type);
         }
                 
         // handle any new parameters
@@ -153,19 +126,9 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
             final boolean madeNew = type.getJ_deleted() > 0;
             
             // we've made a new type
-            command.addCommand(new AbstractCommand()
-            {
-              public void execute(boolean isTop) {
-                repository.decrementPersistentDelete(newParameter);
-                if (madeNew)
-                  repository.decrementPersistentDelete(type);
-              }
-              public void unExecute() {
-                repository.incrementPersistentDelete(newParameter);
-                if (madeNew)
-                  repository.incrementPersistentDelete(type);
-              }});
-            
+            repository.decrementPersistentDelete(newParameter);
+            if (madeNew)
+              repository.decrementPersistentDelete(type);
             left = bodyMatcher.group(5);  // this is the remainder
           }
           else
@@ -174,25 +137,18 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
       }
     }
     else
-    {
-      command.addCommand(new AbstractCommand()
-      { public void execute(boolean isTop) { typed.setName(text); }
-        public void unExecute()            { typed.setName(oldName); }});
-    }
+    	typed.setName(text);
     
     
     // resize
     String finalText = makeNameFromSubject();
-    command.addCommand(figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(finalText)));
-    command.execute(false);
-    return command;
+    figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(finalText));
+    return null;
   }
   
   public void unSetText(Object memento)
   {
-    ((Command) memento).unExecute();
   }
-
 
   public String makeNameFromSubject()
   {

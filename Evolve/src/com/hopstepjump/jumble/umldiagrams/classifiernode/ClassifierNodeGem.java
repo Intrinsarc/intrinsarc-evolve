@@ -131,19 +131,12 @@ public final class ClassifierNodeGem implements Gem
 
 		public Object switchSubject(Object newSubject)
 		{
-			Object old = subject;
-			subject = (NamedElement) newSubject;
-			
-			return new Object[]{old, refreshSuppressedAttributes(), refreshSuppressedPorts()};
+			subject = (NamedElement) newSubject;			
+			return null;
 		}
 
 		public void unSwitchSubject(Object memento)
 		{
-			Object[] obj = (Object[]) memento;
-			subject = (NamedElement) obj[0];
-			if (!isPart)
-				attributesOrSlots.setAddedAndDeleted((Set<String>[]) obj[1]);
-			ports.setAddedAndDeleted((Set<String>[]) obj[2]);
 		}
 		
 	};
@@ -257,22 +250,9 @@ public final class ClassifierNodeGem implements Gem
       // get a possible name for a substituted element
       String newName = new ElementProperties(figureFacet, subject).getPerspectiveName();
       
-      // preserve the old variables
-      String oldName = name;
-      String oldOwner = owner;
-      boolean oldIsAbstract = isAbstract;
-      boolean oldIsRetired = retired;
-      int oldStereotypeHashcode = stereotypeHashcode;
-      boolean oldIsActive = isActive;
-      boolean oldAttributeEllipsis = attributeEllipsis;
-      boolean oldOperationEllipsis = operationEllipsis;
-      boolean oldBodyEllipsis = bodyEllipsis;
-      boolean oldDisplayOnlyIcon = displayOnlyIcon;
-      boolean oldAutosized = autoSized;
-      boolean oldShowAsState = showAsState;
       refreshEllipsis();
       
-      // set the new variables
+      // set the variables
       name = newName;
       isAbstract = classifierSubject.isAbstract();
       retired = isElementRetired();
@@ -289,44 +269,14 @@ public final class ClassifierNodeGem implements Gem
       showAsState = StereotypeUtilities.isStereotypeApplied(subject, "state");
       
       // resize, using a text utility
-      CompositeCommand cmd = new CompositeCommand("", "");
-      Command icon = new DisplayAsIconCommand(figureFacet.getFigureReference(), shouldDisplayOnlyIcon(), "", "");
-      icon.execute(true);
-      cmd.addCommand(icon);
-      cmd.addCommand(figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name)));
+      new DisplayAsIconCommand(figureFacet.getFigureReference(), shouldDisplayOnlyIcon(), "", "");
+      figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
       
-      
-      return new Object[]{
-          oldName, oldOwner, oldIsAbstract, oldIsRetired, oldStereotypeHashcode, oldIsActive, cmd,
-          oldAttributeEllipsis, oldOperationEllipsis, oldBodyEllipsis, oldDisplayOnlyIcon,
-          oldAutosized, oldShowAsState};
+      return null;
     }
 
 		private void unUpdateClassifierViewAfterSubjectChanged(Object memento)
     {
-      Object[] objects = (Object[]) memento;
-      
-      String oldName = (String) objects[0];
-      String oldOwner = (String) objects[1];
-      boolean oldIsAbstract = (Boolean) objects[2];
-      boolean oldIsRetired = (Boolean) objects[3];
-      int oldStereotypeHashcode = (Integer) objects[4];
-      boolean oldIsActive = (Boolean) objects[5];
-      Command resizing = (Command) objects[6];
-
-      name = oldName;
-      owner = oldOwner;
-      isAbstract = oldIsAbstract;
-      retired = oldIsRetired;
-      stereotypeHashcode = oldStereotypeHashcode;
-      isActive = oldIsActive;
-      attributeEllipsis = (Boolean) objects[7];
-      operationEllipsis = (Boolean) objects[8];
-      bodyEllipsis = (Boolean) objects[9];
-      displayOnlyIcon = (Boolean) objects[10];
-      autoSized = (Boolean) objects[11];
-      showAsState = (Boolean) objects[12];
-      resizing.unExecute();
     }
     
     public Object updatePartViewAfterSubjectChanged(boolean isTop)
@@ -346,15 +296,8 @@ public final class ClassifierNodeGem implements Gem
         newName = "";
       else
         newName = subject.getName() + " : " + typeName;
-
       
-      // preserve the old variables
-      String oldName = name;
-      boolean oldIsAbstract = subjectAbstract;
-      boolean oldIsActive = subjectActive;
-      int oldStereotypeHashcode = stereotypeHashcode;
-      
-      // set the new variables
+      // set the variables
       name = newName;
       isAbstract = subjectAbstract;
       isActive = subjectActive;
@@ -363,26 +306,12 @@ public final class ClassifierNodeGem implements Gem
       
       // resize, using a text utility
       stereotypeHashcode = actualStereotypeHashcode;
-      Command resizing = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
-      return new Object[]{oldName, oldIsAbstract, oldStereotypeHashcode, oldIsActive, resizing, showAsState};
+      figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
+      return null;
     }
       
     public void unUpdatePartViewAfterSubjectChanged(Object memento)
     {
-      Object[] objects = (Object[]) memento;
-      
-      String oldName = (String) objects[0];
-      boolean oldIsAbstract = (Boolean) objects[1];
-      int oldStereotypeHashcode = (Integer) objects[2];
-      boolean oldIsActive = (Boolean) objects[3];
-      Command resizing = (Command) objects[4];
-
-      name = oldName;
-      isAbstract = oldIsAbstract;
-      isActive = oldIsActive;
-      stereotypeHashcode = oldStereotypeHashcode;
-      showAsState = (Boolean) objects[5];
-      resizing.unExecute();
     }
   }  
 
@@ -473,8 +402,7 @@ public final class ClassifierNodeGem implements Gem
       UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
       resizings.setFocusBounds(centredBounds);
       
-      resizeCommand = resizings.end("resized to adjust for displayAsIcon toggle", "restored sizes to adjust for undoing displayAsIcon toggle");
-      resizeCommand.execute(false);
+      resizings.end();
       figureFacet.adjusted();
       
       return new Object[] { new Boolean(oldDisplayAsIcon), resizeCommand };
@@ -759,23 +687,14 @@ public final class ClassifierNodeGem implements Gem
 			UBounds newBounds = info.makeActualSizes().getOuter();
 			resizings.setFocusBounds(newBounds);
 			
-			Command resizeCommand = resizings.end("resized to adjust for hideContents toggle", "restored size after undoing hideContents toggle");
-			resizeCommand.execute(false);
+			resizings.end();
 			figureFacet.adjusted();
 			
-			return new Object[] { new Boolean(oldHideContents), resizeCommand };
+			return null;
 		}
 		
 		public void unHideContents(Object memento)
 		{
-			Object[] array = (Object[]) memento;
-			suppressContents = ((Boolean) array[0]).booleanValue();
-			contents.getFigureFacet().setShowing(isContentsShowing());
-			
-			Command resizeCommand = (Command) array[1];
-			if (resizeCommand != null)
-				resizeCommand.unExecute();
-			figureFacet.adjusted();
 		}
 	}
 		
@@ -808,12 +727,9 @@ public final class ClassifierNodeGem implements Gem
 		 */
 		public Object autoSize(boolean newAutoSized)
 		{
-			boolean oldAutoSized = autoSized;
-			
 			// make the change
 			autoSized = newAutoSized;
 			
-			Command resizeCommand = null;
 			contents.getFigureFacet().setShowing(isContentsShowing());
 			
 			// we are about to autosize, so need to make a resizings command
@@ -823,11 +739,10 @@ public final class ClassifierNodeGem implements Gem
 			UBounds autoBounds = getAutoSizedBounds(newAutoSized);
 			resizings.setFocusBounds(autoBounds);
 			
-			resizeCommand = resizings.end("resized to adjust for autoSized toggle", "restored size after undoing autoSized toggle");
-			resizeCommand.execute(false);
+			resizings.end();
 			figureFacet.adjusted();
 			
-			return new Object[] { new Boolean(oldAutoSized), resizeCommand };
+			return null;
 		}
 		
 		/**
@@ -835,14 +750,6 @@ public final class ClassifierNodeGem implements Gem
 		 */
 		public void unAutoSize(Object memento)
 		{
-			Object[] array = (Object[]) memento;
-			autoSized = ((Boolean) array[0]).booleanValue();
-			contents.getFigureFacet().setShowing(isContentsShowing());
-			
-			Command resizeCommand = (Command) array[1];
-			if (resizeCommand != null)
-				resizeCommand.unExecute();
-			figureFacet.adjusted();
 		}
 		
 		public JMenuItem getAutoSizedMenuItem(final ToolCoordinatorFacet coordinator)
@@ -905,10 +812,9 @@ public final class ClassifierNodeGem implements Gem
 					resizings.setFocusBounds(getOperationSuppressedBounds(suppressOperations));
 				}
 			
-			Command resizeCommand = resizings.end("resized to adjust for suppress feature toggle", "restored size after undoing suppress feature toggle");
-			resizeCommand.execute(false);
+			resizings.end();
 			
-			return new Object[] { new Integer(featureType), new Boolean(oldSuppressFeature), resizeCommand };
+			return null;
 		}
 		
 		/**
@@ -916,24 +822,6 @@ public final class ClassifierNodeGem implements Gem
 		 */
 		public void unSuppressFeatures(Object memento)
 		{
-			Object[] objects = (Object[]) memento;
-			int featureType = ((Integer) objects[0]).intValue();
-			boolean suppress = ((Boolean) objects[1]).booleanValue();
-			Command resizeCommand = (Command) objects[2];
-			
-			if (featureType == AttributeCreatorGem.FEATURE_TYPE)
-			{
-				suppressAttributesOrSlots = suppress;
-				attributesOrSlots.getFigureFacet().setShowing(!suppressAttributesOrSlots);
-			}
-			else
-				if (featureType == OperationCreatorGem.FEATURE_TYPE)
-				{
-					suppressOperations = suppress;
-					operations.getFigureFacet().setShowing(!suppressOperations);
-				}
-			
-			resizeCommand.unExecute();
 		}
 	}
 	
@@ -1794,30 +1682,12 @@ public final class ClassifierNodeGem implements Gem
       item.setSelected(showStereotype);
       item.addItemListener(new ItemListener()
           {
-            private Command resizeCommand;
-        
             public void itemStateChanged(ItemEvent e)
             {
-              Command showStereotypeCommand = new AbstractCommand(
-                  showStereotype ? "hid stereotype" : "showed stereotype",
-                  !showStereotype ? "hid stereotype" : "showed stereotype")
-              {
-                public void execute(boolean isTop)
-                {
-                  showStereotype = !showStereotype;
-                  ClassifierSizeInfo info = makeCurrentInfo();
-                  resizeCommand =
-                    figureFacet.makeAndExecuteResizingCommand(
-                        formCentredBounds(info, contents.getFigureFacet().getFullBounds()).getOuter());                  
-                }
-
-                public void unExecute()
-                {
-                  showStereotype = !showStereotype;
-                  resizeCommand.unExecute();
-                } 
-              };
-              coordinator.executeCommandAndUpdateViews(showStereotypeCommand);
+              showStereotype = !showStereotype;
+              ClassifierSizeInfo info = makeCurrentInfo();
+              figureFacet.makeAndExecuteResizingCommand(
+                  formCentredBounds(info, contents.getFigureFacet().getFullBounds()).getOuter());                  
             }
           });
       return item;
@@ -3860,7 +3730,7 @@ public final class ClassifierNodeGem implements Gem
           movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]{other}));
           movingFacet.start(other);
           movingFacet.move(figureFacet.getFullBounds().getPoint());
-          comp.addCommand(movingFacet.end("", ""));
+          movingFacet.end();
         }
         
         final DeltaReplacedAttribute replacement[] = new DeltaReplacedAttribute[1];

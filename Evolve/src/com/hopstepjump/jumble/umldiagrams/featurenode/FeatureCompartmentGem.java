@@ -678,25 +678,17 @@ public final class FeatureCompartmentGem implements Gem
 			CompositeCommand comp = new CompositeCommand("added to " + FIGURE_NAME, "removed from " + FIGURE_NAME);
 			
 	    // adjust resizings to accommodate operation preview
-	    NodeCreateFigureCommand createNodeCmd = new NodeCreateFigureCommand(
+	    NodeCreateFigureTransaction.create(
+	    		figureFacet.getDiagram(),
 	        useSubject,
 	        reference,
 	        figureFacet.getFigureReference(),
 	        factory,
 	        location,
-	        false,
 	        properties,
-	        relatedSubject,
-	        "",
-	        "");
-	    createNodeCmd.execute(false);
+	        relatedSubject);
 	    
-	    ContainerAddCommand addCmd = new ContainerAddCommand(figureFacet.getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container");
-	    addCmd.execute(false);
-	
-			// add the commands to the compound edit
-		  comp.addCommand(createNodeCmd);
-		  comp.addCommand(addCmd);
+	    new ContainerAddCommand(figureFacet.getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container");
 			return comp;
 		}
 	
@@ -705,52 +697,34 @@ public final class FeatureCompartmentGem implements Gem
 		 */
 		public void unAddFeature(Object memento)
 		{
-			((Command) memento).unExecute();
 		}
 
     public Object replaceFeature(Object memento, FigureReference replacement, FigureReference replaced, NodeCreateFacet factory,
         PersistentProperties properties, Object useSubject, Object relatedSubject)
     {
-      // if we have created the cmd before, just reexecute
-      if (memento != null)
-      {
-        ((Command) memento).execute(false);
-        return memento;
-      }
-      
       DiagramFacet diagram = figureFacet.getDiagram();
       
       // set the location so that the feature will be inserted last
       FigureFacet replacedFigure = diagram.retrieveFigure(replaced.getId());
       UPoint location = replacedFigure.getFullBounds().getTopLeftPoint();
-      CompositeCommand comp = new CompositeCommand("replaced " + FIGURE_NAME, "removed replace " + FIGURE_NAME);
       
       // adjust resizings to accommodate operation preview
-      NodeCreateFigureCommand createNodeCmd = new NodeCreateFigureCommand(
+      NodeCreateFigureTransaction.create(
+      		diagram,
           useSubject,
           replacement,
           figureFacet.getFigureReference(),
           factory,
           location,
-          false,
           properties,
-          relatedSubject,
-          "created " + factory.getFigureName(),
-          "removed " + factory.getFigureName());
-      createNodeCmd.execute(false);
+          relatedSubject);
       
-      ContainerAddCommand addCmd = new ContainerAddCommand(figureFacet.getFigureReference(), new FigureReference[]{replacement}, "added containables to container", "removed containables from container");
-      addCmd.execute(false);
-
-      // add the commands to the compound edit
-      comp.addCommand(createNodeCmd);
-      comp.addCommand(addCmd);
-      return comp;
+      new ContainerAddCommand(figureFacet.getFigureReference(), new FigureReference[]{replacement}, "added containables to container", "removed containables from container");
+      return null;
     }
 
     public void unReplaceFeature(Object memento)
     {
-      ((Command) memento).unExecute();
     }
 	}
 

@@ -38,24 +38,20 @@ public final class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFace
 	 */
 	public Object autoSize(boolean newAutoSized)
 	{
-		boolean oldAutoSized = autoSized;
-
 		// make the change
 		autoSized = newAutoSized;
 
-		Command resizeCommand = null;
 		if (autoSized)
 		{
 			// we are about to autosize, so need to make a resizings command
 			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, state.diagram).getResizingFiguresFacet();
 			resizings.markForResizing(state.figureFacet);
 			resizings.setFocusBounds(state.appearanceFacet.getAutoSizedBounds(autoSized));
-			resizeCommand = resizings.end("resized to adjust for autoSized toggle", "restored sizes to adjust for undoing autoSized toggle");
-			resizeCommand.execute(false);
+			resizings.end();
 		}
 		state.figureFacet.adjusted();
 
-		return new Object[] {new Boolean(oldAutoSized), resizeCommand};
+		return null;
 	}
 
 	/**
@@ -63,13 +59,6 @@ public final class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFace
 	 */
 	public void unAutoSize(Object memento)
 	{
-		Object[] array = (Object[]) memento;
-		autoSized = ((Boolean) array[0]).booleanValue();
-
-		Command resizeCommand = (Command) array[1];
-		if (resizeCommand != null)
-			resizeCommand.unExecute();
-		state.figureFacet.adjusted();
 	}
 	
 	public JMenuItem getAutoSizedMenuItem(final ToolCoordinatorFacet coordinator)

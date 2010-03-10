@@ -66,17 +66,12 @@ public final class BasicArcFigureGem implements Gem
     public Object curve(boolean curved)
     {
       makeStyle(curved);
-      Command resize = makeAndExecuteResizingCommand();
-      return new Object[]{new Boolean (!curved), resize};
+      makeAndExecuteResizingCommand();
+      return null;
     }
 
     public void unCurve(Object memento)
     {
-      Object objects[] = (Object[]) memento;
-      Boolean curved = (Boolean) objects[0];
-      Command resize = (Command) objects[1];
-      makeStyle(curved.booleanValue());
-      resize.unExecute();
     }
 
     private void makeStyle(boolean curved)
@@ -91,16 +86,14 @@ public final class BasicArcFigureGem implements Gem
     }
   }
 
-  public Command makeAndExecuteResizingCommand()
+  public void makeAndExecuteResizingCommand()
   {
     // this method should only be used inside a command's execution
     ResizingFiguresGem gem = new ResizingFiguresGem(null, state.diagram);
     ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
     facet.markForResizing(figureFacet);
     facet.setFocusBounds(figureFacet.getFullBounds());
-    Command command = facet.end("", "");
-    command.execute(false);
-    return command;
+    facet.end();
   }
 
   private class ClipboardFacetImpl implements ClipboardFacet
@@ -657,6 +650,11 @@ public final class BasicArcFigureGem implements Gem
     public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return new ToolFigureClassification(figureFacet.getFigureName(), null);
+		}
+
+		public void aboutToAdjust()
+		{
+			state.diagram.aboutToAdjust(figureFacet);
 		}
   }
 }

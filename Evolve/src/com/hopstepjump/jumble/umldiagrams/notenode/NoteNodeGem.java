@@ -467,25 +467,8 @@ public final class NoteNodeGem implements Gem
       {
         public void itemStateChanged(ItemEvent e)
         {
-          Command hideNoteCommand = new AbstractCommand(
-              useHTML ? "Used plain text" : "Showed HTML text",
-              !useHTML ? "Used plain text" : "Showed HTML text")
-          {
-            private Command resizing;
-
-            public void execute(boolean isTop)
-            {
-              useHTML = !useHTML;
-              resizing = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
-            }
-
-            public void unExecute()
-            {
-              useHTML = !useHTML;
-              resizing.unExecute();
-            }
-          };
-          coordinator.executeCommandAndUpdateViews(hideNoteCommand);
+          useHTML = !useHTML;
+          figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
         }
       });
       return item;
@@ -499,25 +482,8 @@ public final class NoteNodeGem implements Gem
       {
         public void itemStateChanged(ItemEvent e)
         {
-          Command wordWrapCommand = new AbstractCommand(
-              wordWrap ? "Word wrapping off" : "Word wrapping on",
-              !wordWrap ? "Word wrapping off" : "Word wrapping on")
-          {
-            private Command resizing;
-
-            public void execute(boolean isTop)
-            {
-              wordWrap = !wordWrap;
-              resizing = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
-            }
-
-            public void unExecute()
-            {
-              wordWrap = !wordWrap;
-              resizing.unExecute();
-            }
-          };
-          coordinator.executeCommandAndUpdateViews(wordWrapCommand);
+          wordWrap = !wordWrap;
+          figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
         }
       });
       return item;
@@ -538,23 +504,8 @@ public final class NoteNodeGem implements Gem
 
           if (chosen == 0)
           {
-            final Font newFont = chooser.getSelectedFont();
-            final Font oldFont = font;
-            Command changeBoxTypeCommand = new AbstractCommand("Changed font", "Restored font")
-            {
-              public void execute(boolean isTop)
-              {
-                font = newFont;
-                resizeCommand = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
-              }
-
-              public void unExecute()
-              {
-                font = oldFont;
-                resizeCommand.unExecute();
-              }
-            };
-            coordinator.executeCommandAndUpdateViews(changeBoxTypeCommand);
+            font = chooser.getSelectedFont();
+            figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
           }
         }
       });
@@ -661,25 +612,10 @@ public final class NoteNodeGem implements Gem
       if (subject.getBody().equals(text))
         return null;
 
-      return new AbstractCommand("", "")
-      {
-        private Command resizing;
-        private String oldText;
-
-        public void execute(boolean isTop)
-        {
-          oldText = text;
-          text = subject.getBody();
-          UBounds bounds = textableFacet.vetTextResizedExtent(text);
-          resizing = figureFacet.makeAndExecuteResizingCommand(bounds);
-        }
-
-        public void unExecute()
-        {
-          text = oldText;
-          resizing.unExecute();
-        }
-      };
+      text = subject.getBody();
+      UBounds bounds = textableFacet.vetTextResizedExtent(text);
+      figureFacet.makeAndExecuteResizingCommand(bounds);
+      return null;
     }
 
     /**

@@ -600,7 +600,7 @@ public final class TextManipulatorGem implements Gem
 			  command = new SetTextCommand(target.getFigureFacet().getFigureReference(), current, listSelection, true, cmdDescription, undoCmdDescription);
 	    }
 	
-	    listener.haveFinished(command);	
+	    listener.haveFinished();	
 	
 	    // move back to a display state
 	    state = DISPLAYING_STATE;
