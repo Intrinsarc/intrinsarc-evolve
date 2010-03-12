@@ -50,16 +50,14 @@ public class ClassifierAttributeHelper extends ClassifierConstituentHelper
       }
     }
     
-    return
-      new AddFeatureCommand(
-        container.getFigureReference(),
+    AddFeatureCommand.add(
+        container,
         classifierFigure.getDiagram().makeNewFigureReference(),
         new AttributeCreatorGem().getNodeCreateFacet(),
         null,
         addOrReplace.getConstituent().getRepositoryObject(),
         null,
-        "",
-        "",
         location);
+    return null;
   }
 }

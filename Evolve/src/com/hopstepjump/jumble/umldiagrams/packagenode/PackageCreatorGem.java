@@ -91,12 +91,7 @@ public final class PackageCreatorGem implements Gem
       return pkg;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-
-    public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+    public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
       NamedElement owner = (NamedElement) ((subject == null) ? null : ((Package) subject).getOwner());
       PersistentProperties actualProperties = new PersistentProperties(properties);
@@ -125,18 +120,8 @@ public final class PackageCreatorGem implements Gem
 
 	
 	    diagram.add(basicGem.getBasicNodeFigureFacet());
-	    
-	    return new FigureReference(diagram, figureId);
 	  }
     
-	  public void unCreateFigure(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreator#getFullName()
 		 */

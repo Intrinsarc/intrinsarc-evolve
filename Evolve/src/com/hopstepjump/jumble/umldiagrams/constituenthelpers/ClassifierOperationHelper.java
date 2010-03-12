@@ -51,16 +51,14 @@ public class ClassifierOperationHelper extends ClassifierConstituentHelper
       }
     }
     
-    return
-      new AddFeatureCommand(
-        container.getFigureReference(),
+    AddFeatureCommand.add(
+        container,
         classifierFigure.getDiagram().makeNewFigureReference(),
         new OperationCreatorGem().getNodeCreateFacet(),
         null,
         addOrReplace.getConstituent().getRepositoryObject(),
         null,
-        "",
-        "",
         location);
+    return null;
   }
 }

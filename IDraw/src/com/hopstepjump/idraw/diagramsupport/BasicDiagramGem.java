@@ -211,6 +211,20 @@ public final class BasicDiagramGem implements Gem
 		{
 		}
 		
+		public void startTransaction(String redoName, String undoName)
+		{
+		}
+		
+		public String getRedoTransactionDescription()
+		{
+			return null;
+		}
+
+		public String getUndoTransactionDescription()
+		{
+			return null;
+		}
+		
 		public int getTransactionPosition()
 		{
 			return pos;

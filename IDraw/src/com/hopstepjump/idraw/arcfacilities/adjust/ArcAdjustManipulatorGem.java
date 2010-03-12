@@ -176,13 +176,13 @@ public final class ArcAdjustManipulatorGem implements Gem
 	        break;
 	      case MOVING_EXISTING_POINT_SUBSTATE:
 	        // make a modification command
-	      	coordinator.startTransaction("moving existing link point", "undoing existing link point move");
+	      	coordinator.startTransaction("moved existing link point", "reverted existing link point move");
 	        resizings.end();
 	        coordinator.commitTransaction();
 	        break;
 	      case MOVING_NEW_POINT_SUBSTATE:
 	        // make a modification command
-	      	coordinator.startTransaction("moving new link point", "undoing new link point move");
+	      	coordinator.startTransaction("moved new link point", "reverted new link point move");
 	        resizings.end();
 	        coordinator.commitTransaction();
 	        break;
@@ -192,7 +192,7 @@ public final class ArcAdjustManipulatorGem implements Gem
 	      	AnchorFacet node2 = actualPoints.getNode2();
 	      	if (toAdjust.acceptsAnchors(node1, node2))
 	      	{
-		      	coordinator.startTransaction("moving existing link point", "undoing existing link point move");
+		      	coordinator.startTransaction("moved existing link point", "reverted existing link point move");
 	      		resizings.end();
 	      		toAdjust.makeReanchorCommand(node1, node2);
 		        coordinator.commitTransaction();

@@ -435,6 +435,8 @@ public final class ToolCoordinatorGem implements Gem
 		{
 			System.out.println("$$ started transaction: " + redoName);
 			GlobalSubjectRepository.repository.startTransaction(redoName, undoName);
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.startTransaction(null, null);
 		}
 		
 		public void undoTransaction()

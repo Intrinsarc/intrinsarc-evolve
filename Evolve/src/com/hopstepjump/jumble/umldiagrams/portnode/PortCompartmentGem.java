@@ -145,12 +145,9 @@ public class PortCompartmentGem implements Gem
       movings.indicateMovingFigures(movingFigure);
       movings.move(location);      
   
-      ContainerAddCommand addCmd =
-        new ContainerAddCommand(
-            figureFacet.getFigureReference(),
-            new FigureReference[]{reference},
-            "added containables to container",
-            "removed containables from container");
+	    ContainerAddTransaction.add(
+	        figureFacet.getContainerFacet(),
+	        new FigureReference[]{reference});
 
       resizings.resizeToAddContainables(new ContainedPreviewFacet[]{movings.getCachedPreview(figure).getContainedPreviewFacet()}, location);
       resizings.end();
@@ -202,13 +199,9 @@ public class PortCompartmentGem implements Gem
       movings.indicateMovingFigures(movingFigure);
       movings.move(location);
   
-      ContainerAddCommand addCmd =
-        new ContainerAddCommand(
-            figureFacet.getFigureReference(),
-            new FigureReference[]{reference},
-            "added containables to container",
-            "removed containables from container");
-      addCmd.execute(true);
+      ContainerAddTransaction.add(
+	      figureFacet.getContainerFacet(),
+	      new FigureReference[]{reference});
 
       resizings.resizeToAddContainables(new ContainedPreviewFacet[]{movings.getCachedPreview(figure).getContainedPreviewFacet()}, location);
       resizings.end();

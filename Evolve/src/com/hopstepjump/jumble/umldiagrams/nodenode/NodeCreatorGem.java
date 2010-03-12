@@ -65,13 +65,7 @@ public class NodeCreatorGem
       return owner.createOwnedMember(UML2Package.eINSTANCE.getNode());
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-
-    
-    public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+    public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, false, false);
 	  	BasicNamespaceNodeGem componentGem = new BasicNamespaceNodeGem((Node) subject, "", diagram, figureId, FIGURE_NAME, new Color(250, 255, 240), false);
@@ -81,17 +75,8 @@ public class NodeCreatorGem
 			componentGem.connectFeaturelessClassifierAppearanceFacet(new NodeAppearanceGem().getPackageAppearanceFacet());
 	
 	    diagram.add(basicGem.getBasicNodeFigureFacet());    
-      return new FigureReference(diagram, figureId);
 	  }
     
-	  public void unCreateFigure(Object memento)
-	  {
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */

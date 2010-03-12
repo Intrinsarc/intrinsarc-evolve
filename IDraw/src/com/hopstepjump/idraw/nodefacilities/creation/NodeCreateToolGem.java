@@ -199,7 +199,7 @@ public final class NodeCreateToolGem implements Gem
 		    // 2) the container resizing transaction
 		    // 3) the containment transaction
 	      acceptingResizings.end();
-	      new ContainerAddCommand(acceptingContainer.getFigureFacet().getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container");
+	      ContainerAddTransaction.add(acceptingContainer, new FigureReference[]{reference});
 			}
 		
       coordinator.commitTransaction();

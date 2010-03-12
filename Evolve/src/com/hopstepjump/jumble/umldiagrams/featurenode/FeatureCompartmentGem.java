@@ -20,6 +20,7 @@ import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.repositorybase.*;
+import com.sun.corba.se.spi.ior.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -663,19 +664,11 @@ public final class FeatureCompartmentGem implements Gem
 	
 	private class FeatureAddFacetImpl implements FeatureAddFacet
 	{
-		public Object addFeature(Object memento, FigureReference reference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location)
+		public void addFeature(FigureReference reference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location)
 		{
-			// if we have created the cmd before, just reexecute
-			if (memento != null)
-			{
-				((Command) memento).execute(false);
-				return memento;
-			}
-			
 			// set the location so that the operation will be inserted last
 	    if (location == null)
 	      location = figureFacet.getFullBounds().getBottomLeftPoint();
-			CompositeCommand comp = new CompositeCommand("added to " + FIGURE_NAME, "removed from " + FIGURE_NAME);
 			
 	    // adjust resizings to accommodate operation preview
 	    NodeCreateFigureTransaction.create(
@@ -688,44 +681,9 @@ public final class FeatureCompartmentGem implements Gem
 	        properties,
 	        relatedSubject);
 	    
-	    new ContainerAddCommand(figureFacet.getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container");
-			return comp;
+	    ContainerAddTransaction.add(figureFacet.getContainerFacet(), new FigureReference[]{reference});
+	    figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
 		}
-	
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.featurenode.CmdFeatureAddable#unAddFeature(Object)
-		 */
-		public void unAddFeature(Object memento)
-		{
-		}
-
-    public Object replaceFeature(Object memento, FigureReference replacement, FigureReference replaced, NodeCreateFacet factory,
-        PersistentProperties properties, Object useSubject, Object relatedSubject)
-    {
-      DiagramFacet diagram = figureFacet.getDiagram();
-      
-      // set the location so that the feature will be inserted last
-      FigureFacet replacedFigure = diagram.retrieveFigure(replaced.getId());
-      UPoint location = replacedFigure.getFullBounds().getTopLeftPoint();
-      
-      // adjust resizings to accommodate operation preview
-      NodeCreateFigureTransaction.create(
-      		diagram,
-          useSubject,
-          replacement,
-          figureFacet.getFigureReference(),
-          factory,
-          location,
-          properties,
-          relatedSubject);
-      
-      new ContainerAddCommand(figureFacet.getFigureReference(), new FigureReference[]{replacement}, "added containables to container", "removed containables from container");
-      return null;
-    }
-
-    public void unReplaceFeature(Object memento)
-    {
-    }
 	}
 
 	public FeatureCompartmentGem(int containsFeatureType)

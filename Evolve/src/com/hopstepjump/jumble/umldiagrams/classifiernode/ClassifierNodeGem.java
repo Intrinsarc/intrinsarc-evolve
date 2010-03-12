@@ -12,6 +12,7 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
+import org.freehep.graphicsio.emf.*;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
@@ -20,7 +21,6 @@ import com.hopstepjump.idraw.diagramsupport.moveandresize.*;
 import com.hopstepjump.idraw.figurefacilities.selectionbase.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulation.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
-import com.hopstepjump.idraw.figurefacilities.update.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
@@ -97,8 +97,6 @@ public final class ClassifierNodeGem implements Gem
 	private BasicNodeAppearanceFacet appearanceFacet = new BasicNodeAppearanceFacetImpl();
 	private TextableFacet textableFacet = new TextableFacetImpl();
 	private ResizeVetterFacet resizeVetterFacet = new ResizeVetterFacetImpl();
-	private SuppressFeaturesFacet suppressFeaturesFacet = new SuppressFeaturesFacetImpl();
-	private BasicNodeAutoSizedFacetImpl autoSizedFacet = new BasicNodeAutoSizedFacetImpl();
 	private ClassifierNodeFacetImpl classifierFacet = new ClassifierNodeFacetImpl();
 	private DisplayAsIconFacet displayAsIconFacet = new DisplayAsIconFacetImpl();
   private ShowAsStateFacet showAsStateFacet = new ShowAsStateFacetImpl();
@@ -111,7 +109,6 @@ public final class ClassifierNodeGem implements Gem
   private String owner = "";
   private SuppressOwningPackageFacet showOwningPackageFacet = new SuppressOwningPackageFacetImpl();
   private StylableFacet stylableFacet = new StylableFacetImpl();
-  private HideContentsFacet hideContentsFacet = new HideContentsFacetImpl();
   private boolean showOwningPackage;
   private boolean forceSuppressOwningPackage = false;
   private int stereotypeHashcode;
@@ -137,7 +134,6 @@ public final class ClassifierNodeGem implements Gem
 		public void unSwitchSubject(Object memento)
 		{
 		}
-		
 	};
   
   private class SimpleDeletedUuidsFacetImpl implements SimpleDeletedUuidsFacet
@@ -641,33 +637,21 @@ public final class ClassifierNodeGem implements Gem
 		
 	}
 	
-	private class HideContentsFacetImpl implements HideContentsFacet
+	public void hideContents(boolean hide)
 	{
-		public Object hideContents(boolean hide)
-		{
-			boolean oldHideContents = suppressContents;
-			
-			// make the change
-			suppressContents = hide;
-			contents.getFigureFacet().setShowing(isContentsShowing());
+		// make the change
+		figureFacet.aboutToAdjust();
+		suppressContents = hide;
+		contents.getFigureFacet().setShowing(isContentsShowing());
 
-			// we are about to autosize, so need to make a resizings command
-			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-			resizings.markForResizing(figureFacet);
-			
-			ClassifierSizeInfo info = makeCurrentInfo();
-			UBounds newBounds = info.makeActualSizes().getOuter();
-			resizings.setFocusBounds(newBounds);
-			
-			resizings.end();
-			figureFacet.adjusted();
-			
-			return null;
-		}
+		// we are about to autosize, so need to make a resizings command
+		ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+		resizings.markForResizing(figureFacet);
 		
-		public void unHideContents(Object memento)
-		{
-		}
+		ClassifierSizeInfo info = makeCurrentInfo();
+		UBounds newBounds = info.makeActualSizes().getOuter();
+		resizings.setFocusBounds(newBounds);		
+		resizings.end();
 	}
 		
 	private class VisualLockFacetImpl implements VisualLockFacet
@@ -692,109 +676,67 @@ public final class ClassifierNodeGem implements Gem
 		}		
 	}
 	
-	private class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFacet
+	/**
+	 * @see com.giroway.jumble.nodefacilities.resizebase.CmdAutoSizeable#autoSize(boolean)
+	 */
+	public void autoSize(boolean newAutoSized)
 	{
-		/**
-		 * @see com.giroway.jumble.nodefacilities.resizebase.CmdAutoSizeable#autoSize(boolean)
-		 */
-		public Object autoSize(boolean newAutoSized)
-		{
-			// make the change
-			autoSized = newAutoSized;
-			
-			contents.getFigureFacet().setShowing(isContentsShowing());
-			
-			// we are about to autosize, so need to make a resizings command
-			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-			resizings.markForResizing(figureFacet);
-			
-			UBounds autoBounds = getAutoSizedBounds(newAutoSized);
-			resizings.setFocusBounds(autoBounds);
-			
-			resizings.end();
-			figureFacet.adjusted();
-			
-			return null;
-		}
+		// make the change
+		figureFacet.aboutToAdjust();
+		autoSized = newAutoSized;
 		
-		/**
-		 * @see com.giroway.jumble.nodefacilities.resizebase.CmdAutoSizeable#unAutoSize(Object)
-		 */
-		public void unAutoSize(Object memento)
-		{
-		}
+		contents.getFigureFacet().setShowing(isContentsShowing());
 		
-		public JMenuItem getAutoSizedMenuItem(final ToolCoordinatorFacet coordinator)
-		{
-			// for autosizing
-			JCheckBoxMenuItem toggleAutoSizeItem = new JCheckBoxMenuItem("Autosized");
-			toggleAutoSizeItem.setState(autoSized);
-			toggleAutoSizeItem.addActionListener(new ActionListener()
-																					 {
-						public void actionPerformed(ActionEvent e)
-						{
-							// toggle the autosized flag (as a command)
-							Command autoSizeCommand =
-								new NodeAutoSizeCommand(
-								figureFacet.getFigureReference(),
-								!autoSized,
-							  (autoSized ? "unautosized " : "autosized ") + figureName,
-							  (!autoSized ? "unautosized " : "autosized ") + figureName);
-							coordinator.executeCommandAndUpdateViews(autoSizeCommand);
-						}
-					});
-			return toggleAutoSizeItem;
-		}
+		// we are about to autosize, so need to make a resizings command
+		ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+		resizings.markForResizing(figureFacet);
 		
-		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAutoSizedFacet#isAutoSized()
-		 */
-		public boolean isAutoSized()
-		{
-			return autoSized;
-		}
+		UBounds autoBounds = getAutoSizedBounds(newAutoSized);
+		resizings.setFocusBounds(autoBounds);		
+		resizings.end();
 	}
 	
-	private class SuppressFeaturesFacetImpl implements SuppressFeaturesFacet
+	public JMenuItem getAutoSizedMenuItem(final ToolCoordinatorFacet coordinator)
 	{
-		/**
-		 * @see com.giroway.jumble.umldiagrams.classdiagram.classifiernode.CmdOperationsSuppressable#suppressOperations(boolean)
-		 */
-		public Object suppressFeatures(int featureType, boolean suppress)
+		// for autosizing
+		JCheckBoxMenuItem toggleAutoSizeItem = new JCheckBoxMenuItem("Autosized");
+		toggleAutoSizeItem.setState(autoSized);
+		toggleAutoSizeItem.addActionListener(new ActionListener()
 		{
-			boolean oldSuppressFeature = false;
-			
-			// we will probably change size, so need to make a resizings command
-			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-			resizings.markForResizing(figureFacet);
-			
-			if (featureType == AttributeCreatorGem.FEATURE_TYPE || featureType == SlotCreatorGem.FEATURE_TYPE)
+			public void actionPerformed(ActionEvent e)
 			{
-				oldSuppressFeature = suppressAttributesOrSlots;
-				suppressAttributesOrSlots = suppress;
-				attributesOrSlots.getFigureFacet().setShowing(!suppress);
-				resizings.setFocusBounds(getAttributeSuppressedBounds(suppressAttributesOrSlots));
+				// toggle the autosized flag (as a command)
+				coordinator.startTransaction(
+				  (autoSized ? "unautosized " : "autosized ") + figureName,
+				  (!autoSized ? "unautosized " : "autosized ") + figureName);
+				autoSize(!autoSized);
+				coordinator.commitTransaction();
 			}
-			else
-				if (featureType == OperationCreatorGem.FEATURE_TYPE)
-				{
-					oldSuppressFeature = suppressOperations;
-					suppressOperations = suppress;
-					operations.getFigureFacet().setShowing(!suppress);
-					resizings.setFocusBounds(getOperationSuppressedBounds(suppressOperations));
-				}
-			
-			resizings.end();
-			
-			return null;
-		}
+		});
+		return toggleAutoSizeItem;
+	}
+	
+	public void suppressFeatures(int featureType, boolean suppress)
+	{
+		// we will probably change size, so need to make a resizings command
+		ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+		resizings.markForResizing(figureFacet);
 		
-		/**
-		 * @see com.giroway.jumble.umldiagrams.classdiagram.classifiernode.CmdOperationsSuppressable#unSuppressOperations(Object)
-		 */
-		public void unSuppressFeatures(Object memento)
+		if (featureType == AttributeCreatorGem.FEATURE_TYPE || featureType == SlotCreatorGem.FEATURE_TYPE)
 		{
+			suppressAttributesOrSlots = suppress;
+			attributesOrSlots.getFigureFacet().setShowing(!suppress);
+			resizings.setFocusBounds(getAttributeSuppressedBounds(suppressAttributesOrSlots));
 		}
+		else
+			if (featureType == OperationCreatorGem.FEATURE_TYPE)
+			{
+				suppressOperations = suppress;
+				operations.getFigureFacet().setShowing(!suppress);
+				resizings.setFocusBounds(getOperationSuppressedBounds(suppressOperations));
+			}
+		
+		resizings.end();
 	}
 	
 	private class ResizeVetterFacetImpl implements ResizeVetterFacet
@@ -943,7 +885,7 @@ public final class ClassifierNodeGem implements Gem
 					new TextManipulatorGem(
 							coordinator,
 							isPart ? "changed part details" : "changed classifier name",
-							isPart ? "changed part details" : "changed classifier name",
+							isPart ? "reverted part details" : "reverted classifier name",
 							isPart ? name : subject.getName(),
 							font,
 							Color.black,
@@ -1698,13 +1640,11 @@ public final class ClassifierNodeGem implements Gem
 						public void actionPerformed(ActionEvent e)
 						{
 							// toggle the autosized flag (as a command)
-							Command hideContentsCommand =
-								new HideContentsCommand(
-								figureFacet.getFigureReference(),
-								!suppressContents,
-							  suppressContents ? "unhide contents" : "suppress contents",
-							  !suppressContents ? "unhide contents" : "unsuppress contents");
-							coordinator.executeCommandAndUpdateViews(hideContentsCommand);
+							coordinator.startTransaction(
+								suppressContents ? "unhide contents" : "suppress contents",
+								!suppressContents ? "unhide contents" : "unsuppress contents");
+							hideContents(!suppressContents);
+							coordinator.commitTransaction();
 						}
 					});
 			return toggleAutoSizeItem;
@@ -1735,15 +1675,17 @@ public final class ClassifierNodeGem implements Gem
 			suppressOperationsItem.setState(suppressOperations);
 			
 			suppressOperationsItem.addActionListener(new ActionListener()
-																							 {
-						public void actionPerformed(ActionEvent e)
-						{
-							// toggle the suppress attributes flag
-							Command suppressFeaturesCommand = FeatureSuppressToggleManipulator.makeToggleSuppressFeaturesCommand(
-								figureFacet.getFigureReference(), figureFacet.getFigureName(), OperationCreatorGem.FEATURE_TYPE, "operations", suppressOperations);
-							coordinator.executeCommandAndUpdateViews(suppressFeaturesCommand);
-						}
-					});
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					// toggle the suppress operations flag
+					coordinator.startTransaction(
+							suppressOperations ? "showed operations" : "hid operations",
+							suppressOperations ? "hid operations" : "showed operations");
+					suppressFeatures(OperationCreatorGem.FEATURE_TYPE, !suppressOperations);
+					coordinator.commitTransaction();					
+				}
+			});
 			return suppressOperationsItem;
 		}
 		
@@ -1782,14 +1724,21 @@ public final class ClassifierNodeGem implements Gem
 																							 {
 						public void actionPerformed(ActionEvent e)
 						{
-							// toggle the suppress attributes flag
-							Command suppressFeaturesCommand = FeatureSuppressToggleManipulator.makeToggleSuppressFeaturesCommand(
-								figureFacet.getFigureReference(),
-                figureFacet.getFigureName(),
-                isPart ? SlotCreatorGem.FEATURE_TYPE : AttributeCreatorGem.FEATURE_TYPE,
-                name,
-                suppressAttributesOrSlots);
-							coordinator.executeCommandAndUpdateViews(suppressFeaturesCommand);
+							if (isPart)
+							{
+								coordinator.startTransaction(
+										suppressAttributesOrSlots ? "showed slots" : "hid slots",
+										suppressAttributesOrSlots ? "hid slots" : "showed slots");
+								suppressFeatures(SlotCreatorGem.FEATURE_TYPE, !suppressAttributesOrSlots);
+							}
+							else
+							{
+								coordinator.startTransaction(
+										suppressAttributesOrSlots ? "showed attributes" : "hid attributes",
+										suppressAttributesOrSlots ? "hid attributes" : "showed attributes");
+								suppressFeatures(AttributeCreatorGem.FEATURE_TYPE, !suppressAttributesOrSlots);								
+							}
+							coordinator.commitTransaction();					
 						}
 					});
 			return suppressAttributesItem;
@@ -1826,30 +1775,11 @@ public final class ClassifierNodeGem implements Gem
 																				{
 						public void actionPerformed(ActionEvent e)
 						{
-							CompositeCommand comp = new CompositeCommand("suppress all for " + getFigureName(), "unsuppress all for " + getFigureName());
-							FigureReference ref = figureFacet.getFigureReference();
-              String name = isPart ? "slots" : "attributes";
-							comp.addCommand(
-								new SuppressFeaturesCommand(
-															 ref,
-                               isPart ? SlotCreatorGem.FEATURE_TYPE : AttributeCreatorGem.FEATURE_TYPE,
-															 true,
-															 "hid " + name + " for " + getFigureName(),
-															 "showed " + name + " for " + getFigureName()));
-							comp.addCommand(
-								new SuppressFeaturesCommand(
-															 ref,
-															 OperationCreatorGem.FEATURE_TYPE,
-															 true,
-															 "hid operations for " + getFigureName(),
-															 "showed operations for " + getFigureName()));
-							comp.addCommand(
-									new HideContentsCommand(
-																 ref,
-																 true,
-																 "hid contents for " + getFigureName(),
-																 "showed contents for " + getFigureName()));
-							coordinator.executeCommandAndUpdateViews(comp);
+              coordinator.startTransaction("suppressed all for " + getFigureName(), "unsuppressed all for " + getFigureName());
+              suppressFeatures(isPart ? SlotCreatorGem.FEATURE_TYPE : AttributeCreatorGem.FEATURE_TYPE, true);
+              suppressFeatures(OperationCreatorGem.FEATURE_TYPE, true);
+              hideContents(true);
+							coordinator.commitTransaction();
 						}
 					});
 			return suppressAllItem;
@@ -1864,30 +1794,11 @@ public final class ClassifierNodeGem implements Gem
 																				{
 						public void actionPerformed(ActionEvent e)
 						{
-							CompositeCommand comp = new CompositeCommand("unsuppress all for " + getFigureName(), "suppress all for " + getFigureName());
-							FigureReference ref = figureFacet.getFigureReference();
-              String name = isPart ? "slots" : "attributes";
-							comp.addCommand(
-								new SuppressFeaturesCommand(
-															 ref,
-															 isPart ? SlotCreatorGem.FEATURE_TYPE : AttributeCreatorGem.FEATURE_TYPE,
-															 false,
-															 "showed " + name + " for " + getFigureName(),
-															 "unshowed " + name + " for " + getFigureName()));
-							comp.addCommand(
-								new SuppressFeaturesCommand(
-															 ref,
-															 OperationCreatorGem.FEATURE_TYPE,
-															 false,
-															 "showed operations for " + getFigureName(),
-															 "unshowed operations for " + getFigureName()));
-							comp.addCommand(
-									new HideContentsCommand(
-																 ref,
-																 false,
-																 "showed contents for " + getFigureName(),
-																 "unshowed contents for " + getFigureName()));
-							coordinator.executeCommandAndUpdateViews(comp);
+              coordinator.startTransaction("unsuppressed all for " + getFigureName(), "suppressed all for " + getFigureName());
+              suppressFeatures(isPart ? SlotCreatorGem.FEATURE_TYPE : AttributeCreatorGem.FEATURE_TYPE, false);
+              suppressFeatures(OperationCreatorGem.FEATURE_TYPE, false);
+              hideContents(false);
+							coordinator.commitTransaction();
 						}
 					});
 			return suppressAllItem;
@@ -1906,28 +1817,21 @@ public final class ClassifierNodeGem implements Gem
           PersistentProperties props = new PersistentProperties();
           props.add(new PersistentProperty(">stereotype", CommonRepositoryFunctions.ATTRIBUTE));
           
-					AddFeatureCommand add =
-						new AddFeatureCommand(
-						attributesOrSlots.getFigureFacet().getFigureReference(),
+          coordinator.startTransaction(
+  						"added attribute to classifier",
+  						"removed attribute from classifier");
+          AddFeatureCommand.add(
+						attributesOrSlots.getFigureFacet(),
 						reference,
 						new AttributeCreatorGem().getNodeCreateFacet(),
 				    props,
 				    null,
 				    null,
-						"added " + name + " to classifier",
-						"removed " + name + " from classifier",
 						null);
-					coordinator.executeCommandAndUpdateViews(add);
+          coordinator.commitTransaction();
 					
-					diagramView.runWhenModificationsHaveBeenProcessed(
-							new Runnable()
-							{
-								public void run()
-								{
-									diagramView.getSelection().clearAllSelection();
-								  diagramView.addFigureToSelectionViaId(reference.getId());
-								}
-							});
+					diagramView.getSelection().clearAllSelection();
+				  diagramView.addFigureToSelectionViaId(reference.getId());
 				}
 			});
 			
@@ -2463,27 +2367,20 @@ public final class ClassifierNodeGem implements Gem
             final FigureReference reference = diagram.makeNewFigureReference();
             PersistentProperties props = new PersistentProperties();
             props.add(new PersistentProperty(">stereotype", CommonRepositoryFunctions.SLOT));
-            AddFeatureCommand add =
-              new AddFeatureCommand(
-              attributesOrSlots.getFigureFacet().getFigureReference(),
+
+            coordinator.startTransaction("added slot", "removed slot");
+            AddFeatureCommand.add(
+              attributesOrSlots.getFigureFacet(),
               reference,
               new SlotCreatorGem().getNodeCreateFacet(),
               props,
               null,
               pair.getOriginal().getRepositoryObject(),
-              "added " + name + " slot",
-              "removed " + name + " slot",
               null);
-            coordinator.executeCommandAndUpdateViews(add);
+            coordinator.commitTransaction();
             
-            diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
-            {
-              public void run()
-              {
-                diagramView.getSelection().clearAllSelection();
-            	  diagramView.addFigureToSelectionViaId(reference.getId());
-              }
-            });
+              diagramView.getSelection().clearAllSelection();
+          	  diagramView.addFigureToSelectionViaId(reference.getId());
           }
         });
         
@@ -2541,18 +2438,17 @@ public final class ClassifierNodeGem implements Gem
 				{
 					DiagramFacet diagram = figureFacet.getDiagram();
 					final FigureReference reference = diagram.makeNewFigureReference();
-					AddFeatureCommand add =
-						new AddFeatureCommand(
-						operations.getFigureFacet().getFigureReference(),
+					coordinator.startTransaction("added operation", "removed operation");
+					AddFeatureCommand.add(
+						operations.getFigureFacet(),
 						reference,
 						new OperationCreatorGem().getNodeCreateFacet(),
 						null,
 						null,
 						null,
-						"added operation to classifier",
-						"removed operation from classifier",
 						null);
-					coordinator.executeCommandAndUpdateViews(add);
+					coordinator.commitTransaction();
+					
 					diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
 					{
 						public void run()
@@ -2699,8 +2595,6 @@ public final class ClassifierNodeGem implements Gem
       	VisualLockFacet visual = (VisualLockFacet) classifier.getDynamicFacet(VisualLockFacet.class);
       	boolean lock = visual.isLocked();
         
-
-      	
         // find any attributes to add or delete
         PartSlotHelper slotHelper =
           new PartSlotHelper(
@@ -2717,13 +2611,12 @@ public final class ClassifierNodeGem implements Gem
               isTop);
   			ports.clean(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT), portInstanceHelper.getConstituentUuids());
   
-        CompositeCommand cmd = new CompositeCommand("", "");
         if (!suppressAttributesOrSlots)
-          cmd.addCommand(slotHelper.makeUpdateCommand(attributesOrSlots, lock));
+          slotHelper.makeUpdateCommand(attributesOrSlots, lock);
         if (!displayOnlyIcon)
-          cmd.addCommand(portInstanceHelper.makeUpdateCommand(ports, lock));
+          portInstanceHelper.makeUpdateCommand(ports, lock);
         
-        return cmd;
+        return null;
       }
 	    
 			Property part = (Property) subject;
@@ -2760,7 +2653,8 @@ public final class ClassifierNodeGem implements Gem
       }
 
 			// now we are here, package it up into a nice command
-			return new UpdateViewCommand(figureFacet.getFigureReference(), "updated view", "restored view");
+			updatePartViewAfterSubjectChanged(true);
+			return null;
 		}		
 		
 		/**
@@ -2900,10 +2794,7 @@ public final class ClassifierNodeGem implements Gem
 				return null;
       }
 
-      if (isPart)
-        updatePartViewAfterSubjectChanged(isTop);
-      else
-        updateClassifierViewAfterSubjectChanged(isTop);
+      updateClassifierViewAfterSubjectChanged(isTop);
 			return null;
 		}
 		
@@ -3329,24 +3220,16 @@ public final class ClassifierNodeGem implements Gem
 		return appearanceFacet;
 	}
 	
-	public BasicNodeAutoSizedFacet getBasicNodeAutoSizedFacet()
-	{
-		return autoSizedFacet;
-	}
-	
 	public void connectBasicNodeFigureFacet(BasicNodeFigureFacet figureFacet)
 	{
 		this.figureFacet = figureFacet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-		figureFacet.registerDynamicFacet(suppressFeaturesFacet, SuppressFeaturesFacet.class);
 		figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
     figureFacet.registerDynamicFacet(showAsStateFacet, ShowAsStateFacet.class);
 		figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
 		figureFacet.registerDynamicFacet(showOwningPackageFacet, SuppressOwningPackageFacet.class);
-		figureFacet.registerDynamicFacet(hideContentsFacet, HideContentsFacet.class);
 		figureFacet.registerDynamicFacet(switchableFacet, SwitchSubjectFacet.class);
 		// override the default autosizing mechanism, which doesn't work for this
-		figureFacet.registerDynamicFacet(autoSizedFacet, AutoSizedFacet.class);
     figureFacet.registerDynamicFacet(stylableFacet, StylableFacet.class);
     figureFacet.registerDynamicFacet(deletedConnectorUuidsFacet, SimpleDeletedUuidsFacet.class);
     figureFacet.registerDynamicFacet(lockFacet, VisualLockFacet.class);

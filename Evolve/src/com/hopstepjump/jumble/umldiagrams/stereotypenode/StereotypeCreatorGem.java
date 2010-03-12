@@ -87,12 +87,7 @@ public class StereotypeCreatorGem implements Gem
       return cls;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-
-    public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+    public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 		{
 			BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, true, false);
 			PersistentProperties actualProperties = new PersistentProperties(properties);
@@ -107,7 +102,6 @@ public class StereotypeCreatorGem implements Gem
             false);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			basicGem.connectBasicNodeAutoSizedFacet(classifierGem.getBasicNodeAutoSizedFacet());
 			ClassifierClipboardCommandsGem clip = new ClassifierClipboardCommandsGem(false, true);
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
@@ -119,18 +113,8 @@ public class StereotypeCreatorGem implements Gem
       appearanceGem.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 				
 			diagram.add(basicGem.getBasicNodeFigureFacet());
-	
-      return new FigureReference(diagram, figureId);
 		}
     
-		public void unCreateFigure(Object memento)
-		{
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);
-		}
-		
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -146,7 +130,6 @@ public class StereotypeCreatorGem implements Gem
 				new ClassifierNodeGem(INITIAL_FILL_COLOR, false, figure);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			basicGem.connectBasicNodeAutoSizedFacet(classifierGem.getBasicNodeAutoSizedFacet());
 			ClassifierClipboardCommandsGem clip = new ClassifierClipboardCommandsGem(false, true);
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());

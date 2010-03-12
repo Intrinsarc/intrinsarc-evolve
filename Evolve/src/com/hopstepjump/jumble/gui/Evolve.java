@@ -6,6 +6,7 @@ import java.util.*;
 import javax.swing.*;
 
 import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.util.*;
 
 import com.hopstepjump.backbonegenerator.*;
 import com.hopstepjump.deltaengine.errorchecking.*;

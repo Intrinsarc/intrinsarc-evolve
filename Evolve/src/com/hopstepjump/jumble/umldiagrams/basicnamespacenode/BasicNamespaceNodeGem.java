@@ -69,7 +69,6 @@ public final class BasicNamespaceNodeGem implements Gem
   private BasicNodeFigureFacet figureFacet;
   private TextableFacetImpl textableFacet = new TextableFacetImpl();
   private ResizeVetterFacetImpl resizeVetterFacet = new ResizeVetterFacetImpl();
-  private SuppressFeaturesFacetImpl suppressFeaturesFacet = new SuppressFeaturesFacetImpl();
   private BasicNamespaceNodeFacet namespaceFacet = new BasicNamespaceNodeFacetImpl();
   private DisplayAsIconFacet displayAsIconFacet = new DisplayAsIconFacetImpl();
   private StylableFacet stylableFacet = new StylableFacetImpl();
@@ -344,30 +343,18 @@ public final class BasicNamespaceNodeGem implements Gem
     }
 	}
   
-  private class SuppressFeaturesFacetImpl implements SuppressFeaturesFacet
-  {
-	  public Object suppressFeatures(int featureType, boolean suppress)
-		{
-			// we will probably change size, so need to make a resizings command
-			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-			resizings.markForResizing(figureFacet);
+  public void suppressFeatures(boolean suppress)
+	{
+		// we will probably change size, so need to make a resizings command
+		ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+		resizings.markForResizing(figureFacet);
+
+		suppressContents = suppress;
+		contents.getFigureFacet().setShowing(!suppress);
+		resizings.setFocusBounds(getContentsSuppressedBounds(suppressContents));
+		resizings.end();	
+	}
 	
-			suppressContents = suppress;
-			contents.getFigureFacet().setShowing(!suppress);
-			resizings.setFocusBounds(getContentsSuppressedBounds(suppressContents));
-	
-			resizings.end();	
-			return null;
-		}
-	
-		/**
-		 * @see com.giroway.jumble.umldiagrams.classdiagram.classifiernode.CmdOperationsSuppressable#unSuppressOperations(Object)
-		 */
-		public void unSuppressFeatures(Object memento)
-		{
-		}
-  }
-  
   private class ContainerFacetImpl implements BasicNodeContainerFacet
   {
 	  public boolean insideContainer(UPoint point)
@@ -644,8 +631,11 @@ public final class BasicNamespaceNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress attributes flag
-					Command suppressCommand = new SuppressFeaturesCommand(figureFacet.getFigureReference(), -1, !suppressContents, (suppressContents ? "showed" : "hid") + " contents for " + getFigureName(), (!suppressContents ? "showed " : "hid ") + " contents for " + getFigureName());
-					coordinator.executeCommandAndUpdateViews(suppressCommand);
+					coordinator.startTransaction(
+							(suppressContents ? "showed" : "hid") + " contents for " + getFigureName(),
+							(!suppressContents ? "showed " : "hid ") + " contents for " + getFigureName());
+					suppressFeatures(!suppressContents);
+					coordinator.commitTransaction();
 				}
 			});
 			return suppressContentsItem;
@@ -1165,7 +1155,6 @@ public final class BasicNamespaceNodeGem implements Gem
 	{
 		this.figureFacet = figureFacet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-		figureFacet.registerDynamicFacet(suppressFeaturesFacet, SuppressFeaturesFacet.class);
   	figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
   	figureFacet.registerDynamicFacet(showOwningPackageFacet, SuppressOwningPackageFacet.class);
   	figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);

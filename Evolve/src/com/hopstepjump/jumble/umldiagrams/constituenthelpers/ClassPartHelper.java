@@ -187,8 +187,9 @@ public class ClassPartHelper extends ClassifierConstituentHelper
     FigureFacet contained = GlobalDiagramRegistry.registry.retrieveFigure(reference);
     ContainerFacet accepting = owner.getContainerFacet().getAcceptingSubcontainer(
         new ContainedFacet[]{contained.getContainedFacet()});
-    new ContainerAddCommand(accepting.getFigureFacet().getFigureReference(),
-        new FigureReference[]{reference}, "", "");
+    ContainerAddTransaction.add(
+    		accepting,
+        new ContainedFacet[]{contained.getContainedFacet()});
   }
   
   private UDimension getOffsetFromSimple(FigureFacet figure)

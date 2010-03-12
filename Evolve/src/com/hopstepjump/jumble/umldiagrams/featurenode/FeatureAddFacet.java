@@ -11,6 +11,5 @@ import com.hopstepjump.idraw.nodefacilities.creationbase.*;
  */
 public interface FeatureAddFacet extends Facet
 {
-	public Object addFeature(Object memento, FigureReference reference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location);
-  public void unAddFeature(Object memento);
+	public void addFeature(FigureReference reference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location);
 }

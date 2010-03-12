@@ -38,7 +38,7 @@ public class PartCreatorGem
       return "part";
     }
   
-    public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+    public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
     {
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, true, false);
       PersistentProperties actualProperties = new PersistentProperties();
@@ -53,7 +53,6 @@ public class PartCreatorGem
             true);
       basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
       basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-      basicGem.connectBasicNodeAutoSizedFacet(classifierGem.getBasicNodeAutoSizedFacet());
       
       // connect up the clipboard facet
       PartClipboardCommandsGem clip = new PartClipboardCommandsGem();
@@ -76,18 +75,8 @@ public class PartCreatorGem
       combinedGem.connectInterfaceMiniAppearanceFacet(interfaceGem.getClassifierMiniAppearanceFacet());
         
       diagram.add(basicGem.getBasicNodeFigureFacet());
-  
-      return new FigureReference(diagram, figureId);
     }
   
-    public void unCreateFigure(Object memento)
-    {
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);
-    }
-    
     /**
      * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
      */
@@ -103,7 +92,6 @@ public class PartCreatorGem
         new ClassifierNodeGem(INITIAL_FILL_COLOR, true, figure);
       basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
       basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-      basicGem.connectBasicNodeAutoSizedFacet(classifierGem.getBasicNodeAutoSizedFacet());
       classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 
       // connect up the clipboard facet
@@ -169,11 +157,6 @@ public class PartCreatorGem
       part.setAggregation(AggregationKind.COMPOSITE_LITERAL);
       
       return part;
-    }
-
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
     }
     
 		public void initialiseExtraProperties(PersistentProperties properties)

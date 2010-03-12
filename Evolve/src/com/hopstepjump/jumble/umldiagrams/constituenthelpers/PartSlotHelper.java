@@ -155,17 +155,15 @@ public class PartSlotHelper
       }
     }
     
-    return
-      new AddFeatureCommand(
-        container.getFigureReference(),
+    AddFeatureCommand.add(
+        container,
         partFigure.getDiagram().makeNewFigureReference(),
         new SlotCreatorGem().getNodeCreateFacet(),
         null,
         slot,
         null,
-        "",
-        "",
         location);
+    return null;
   }
 
   private Set<FigureFacet> getCurrentlyDisplayed()

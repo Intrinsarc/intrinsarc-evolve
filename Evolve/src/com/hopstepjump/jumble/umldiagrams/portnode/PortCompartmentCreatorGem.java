@@ -33,7 +33,7 @@ public class PortCompartmentCreatorGem implements Gem
       return PortCompartmentGem.FIGURE_NAME;
     }
 
-    public Object createFigure(
+    public void createFigure(
         Object subject, DiagramFacet diagram, String figureId,
         UPoint location, PersistentProperties properties)
     {
@@ -45,15 +45,6 @@ public class PortCompartmentCreatorGem implements Gem
       basicGem.connectAnchorFacet(null);
       portGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
       basicGem.connectBasicNodeContainerFacet(portGem.getBasicNodeContainerFacet());
-      return new FigureReference(diagram, figureId);
-    }
-
-    public void unCreateFigure(Object memento)
-    {
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);
     }
 
     /**
@@ -86,10 +77,6 @@ public class PortCompartmentCreatorGem implements Gem
       return null;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    }
-    
 		public void initialiseExtraProperties(PersistentProperties properties)
 		{
 		}

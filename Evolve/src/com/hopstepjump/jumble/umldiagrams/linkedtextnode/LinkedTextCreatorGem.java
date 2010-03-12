@@ -30,20 +30,11 @@ public class LinkedTextCreatorGem
 	    return LinkedTextGem.FIGURE_NAME;
 	  }
 	 
-	  public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+	  public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
 	    // never create on its own
-	    return null;
 	  }
 	
-	  public void unCreateFigure(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -73,10 +64,6 @@ public class LinkedTextCreatorGem
       return null;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    }
-    
 		public void initialiseExtraProperties(PersistentProperties properties)
 		{
 		}

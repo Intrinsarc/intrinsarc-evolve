@@ -2,25 +2,17 @@ package com.hopstepjump.idraw.foundation;
 
 import java.util.*;
 
-import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 
 
-public interface DiagramFacet extends Facet
+public interface DiagramFacet extends TransactionManagerFacet
 {
-	/** undo/redo support */
-	public void checkpointCommitTransaction();
-	public void commitTransaction();
-	public void undoTransaction();
-	public void redoTransaction();
-	public int getTransactionPosition();
-	public int getTotalTransactions();
-	public void clearTransactionHistory();
+	/** undo/redo support */	
 	public void aboutToAdjust(FigureFacet figure);
 	public void primeForUpdateBeforeRevert();
-	public void enforceTransactionDepth(int depth);
-	
+	public void checkpointCommitTransaction();
+
 	/** for chained diagrams */
 	public DiagramFacet getSource();
   public Object getLinkedObject();

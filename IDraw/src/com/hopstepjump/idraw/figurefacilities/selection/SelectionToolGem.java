@@ -705,17 +705,17 @@ public final class SelectionToolGem implements Gem
     return containable.toArray(new ContainedPreviewFacet[0]);
   }
 
-  private FigureReference[] getContainableReferences(DiagramFacet diagram, MovingFiguresFacet movingFigures)
+  private ContainedFacet[] getContainables(DiagramFacet diagram, MovingFiguresFacet movingFigures)
   {
-    List<FigureReference> containableReferences = new ArrayList<FigureReference>();
+    List<ContainedFacet> containableReferences = new ArrayList<ContainedFacet>();
     Iterator iter = movingFigures.getTopLevelFigures();
     while (iter.hasNext())
     {
       FigureFacet figure = (FigureFacet) iter.next();
       if (figure.getContainedFacet() != null)
-        containableReferences.add(figure.getFigureReference());
+        containableReferences.add(figure.getContainedFacet());
     }
-    return containableReferences.toArray(new FigureReference[0]);
+    return containableReferences.toArray(new ContainedFacet[0]);
   }
 
   ////////////////////////////////////////////
@@ -1133,11 +1133,11 @@ public final class SelectionToolGem implements Gem
         	if (fromContainer != null) // might be the top level
           {
           	ContainerFacet actualFromContainer = movingFigures.getContainerAllAreMovingFrom();
-            new ContainerRemoveCommand(actualFromContainer.getFigureFacet().getFigureReference(), getContainableReferences(diagram, movingFigures), "moved out of old container", "moved back into old container");
+            ContainerRemoveTransaction.remove(actualFromContainer, getContainables(diagram, movingFigures));
           }
           if (acceptingContainer != null)  // might be the top level
           {
-            new ContainerAddCommand(acceptingContainer.getFigureFacet().getFigureReference(), getContainableReferences(diagram, movingFigures), "moved into new container", "moved out of new container");
+            ContainerAddTransaction.add(acceptingContainer, getContainables(diagram, movingFigures));
             
             // add locate commands to ensure that they relocate correctly
             // ask each containable for a move command

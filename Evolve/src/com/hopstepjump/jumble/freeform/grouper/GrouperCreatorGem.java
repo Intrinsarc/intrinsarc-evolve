@@ -44,7 +44,7 @@ public class GrouperCreatorGem
 			return GrouperNodeGem.FIGURE_NAME;
 		}
 	
-		public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+		public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 		{
       PersistentProperties actualProperties = new PersistentProperties(properties);
       initialiseExtraProperties(actualProperties);
@@ -62,17 +62,8 @@ public class GrouperCreatorGem
 			nodeGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 				
 			diagram.add(basicGem.getBasicNodeFigureFacet());
-			return new FigureReference(diagram, figureId);
 		}
 	
-		public void unCreateFigure(Object memento)
-		{
-			FigureReference figureReference = (FigureReference) memento;
-			DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-			FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-			diagram.remove(figure);
-		}
-		
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -135,11 +126,6 @@ public class GrouperCreatorGem
       return comment;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-    
     public void initialiseExtraProperties(PersistentProperties properties)
     {
       properties.addIfNotThere(new PersistentProperty(">stereotype", stereotype));
