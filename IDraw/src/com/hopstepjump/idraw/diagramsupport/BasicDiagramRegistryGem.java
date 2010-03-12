@@ -68,7 +68,7 @@ public final class BasicDiagramRegistryGem implements Gem
   
         // make sure that we handles any needed changes to this diagram
         for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
-          lruDiagram.formViewUpdateCommand(true, pass, false).execute(false);
+          lruDiagram.formViewUpdateCommand(true, pass, false);
 
         // make sure this is shown as unmodified
         if (forceToNotModified)

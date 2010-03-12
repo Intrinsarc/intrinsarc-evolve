@@ -75,16 +75,11 @@ public final class FreetextNodeGem implements Gem
           new UBounds(nameText.getBounds()).getDimension());
     }
   
-    public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String newText, Object listSelection, boolean unsuppress)
     {
       text = newText;      
-      return null;
     }
   
-    public void unSetText(Object memento)
-    {
-    }
-    
     /**
      * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
      */
@@ -173,13 +168,13 @@ public final class FreetextNodeGem implements Gem
     /**
      * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
      */
-    public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+    public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       ManipulatorFacet primaryFocus = null;
       if (favoured)
       {
         ManipulatorFacet keyFocus = null;
-        TextManipulatorGem textGem = new TextManipulatorGem("changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+        TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
         textGem.connectTextableFacet(textableFacet);
         keyFocus = textGem.getManipulatorFacet();
         primaryFocus = keyFocus;

@@ -55,7 +55,7 @@ public final class BasicAnchorGem
 			return "";
 		}
 
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 			return null;
 		}

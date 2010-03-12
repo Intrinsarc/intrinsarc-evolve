@@ -128,15 +128,14 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     preview.formBetterVirtualPoint(preview.getActualPoints().getVirtualPoint().subtract(offset));
     ReferenceCalculatedArcPoints calculated = gem.getBasicArcPreviewFacet().getCalculatedPoints().getReferenceCalculatedArcPoints(diagram);
 
-    return
-      new ArcCreateFigureCommand(
+    ArcCreateFigureTransaction.create(
+    		diagram,
         addOrReplace.getConstituent().getRepositoryObject(),
         reference,
         factory,
         calculated,
-        new PersistentProperties(),
-        "created " + factory.getFigureName(),
-        "removed " + factory.getFigureName());
+        new PersistentProperties());
+    return null;
   }
 
   private FigureFacet findPortFigure(FigureFacet container, Object clsRepositoryObject, DEPort port, DEPart part)

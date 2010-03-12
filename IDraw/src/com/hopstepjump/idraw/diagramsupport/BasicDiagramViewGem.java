@@ -624,6 +624,7 @@ public final class BasicDiagramViewGem implements Gem
 			if (currentTool != null)
 				currentTool.activate(this, cameraNode, newCoordinator);
 			coordinator = newCoordinator;
+			selection.connectToolCoordinatorFacet(coordinator);
 		}
 	
 		public void turnSelectionLayerOff()

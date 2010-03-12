@@ -375,8 +375,8 @@ public class PortCompartmentGem implements Gem
 
   private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
   {
-    public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected,
-        boolean allowTYPE0Manipulators)
+    public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured,
+        boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       return null; // not needed -- this is not directly selectable
     }

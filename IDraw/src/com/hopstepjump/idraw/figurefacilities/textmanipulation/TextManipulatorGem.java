@@ -51,6 +51,7 @@ public final class TextManipulatorGem implements Gem
 
   private int state = DISPLAYING_STATE;
 
+	private ToolCoordinatorFacet coordinator;
   private String textToStart;
   private String originalText;
   private String underlyingText;
@@ -77,8 +78,8 @@ public final class TextManipulatorGem implements Gem
   private ManipulatorFacetImpl manipulatorFacet = new ManipulatorFacetImpl();
 
 	private String cmdDescription;
-
 	private String undoCmdDescription;
+
 
 
   public static EkitCore makeEkit(boolean useIcons, String text)
@@ -589,7 +590,6 @@ public final class TextManipulatorGem implements Gem
 	  private void finishManipulation(Object listSelection)
 	  {
 	    String current = currentText == null ? null : currentText.getText();
-			Command command = null;
 			
 	    cleanUp();
 	    addToView(diagramLayer, canvas);
@@ -597,7 +597,9 @@ public final class TextManipulatorGem implements Gem
 	    if (current != null && (listSelection != null || !current.equals(originalText)))
 	    {
 	      // NOTE: we want the text *and* the selection in some cases, as this gives more info if the formSelectionList call only uses part of the text data
-			  command = new SetTextCommand(target.getFigureFacet().getFigureReference(), current, listSelection, true, cmdDescription, undoCmdDescription);
+	    	coordinator.startTransaction(cmdDescription, undoCmdDescription);
+			  SetTextTransaction.set(target.getFigureFacet(), current, listSelection, true);
+			  coordinator.commitTransaction();
 	    }
 	
 	    listener.haveFinished();	
@@ -639,13 +641,14 @@ public final class TextManipulatorGem implements Gem
     }
 	}
 
-  public TextManipulatorGem(String cmdDescription, String undoCmdDescription, String textToStart, Font font, Color textColour, Color backgroundColour, int type)
+  public TextManipulatorGem(ToolCoordinatorFacet coordinator, String cmdDescription, String undoCmdDescription, String textToStart, Font font, Color textColour, Color backgroundColour, int type)
   {
-  	this(cmdDescription, undoCmdDescription, textToStart, null, font, textColour, backgroundColour, type, ManipulatorFacet.TYPE3);
+  	this(coordinator, cmdDescription, undoCmdDescription, textToStart, null, font, textColour, backgroundColour, type, ManipulatorFacet.TYPE3);
   }
 
-  public TextManipulatorGem(String cmdDescription, String undoCmdDescription, String textToStart, String underlyingText, Font font, Color textColour, Color backgroundColour, int type, int manipulatorType)
+  public TextManipulatorGem(ToolCoordinatorFacet coordinator, String cmdDescription, String undoCmdDescription, String textToStart, String underlyingText, Font font, Color textColour, Color backgroundColour, int type, int manipulatorType)
   {
+  	this.coordinator = coordinator;
   	this.cmdDescription = cmdDescription;
   	this.undoCmdDescription = undoCmdDescription;
     this.textToStart = textToStart;

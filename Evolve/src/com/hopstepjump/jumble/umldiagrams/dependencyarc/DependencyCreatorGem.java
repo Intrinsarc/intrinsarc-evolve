@@ -118,20 +118,7 @@ public class DependencyCreatorGem implements Gem
 
       // possibly resurrect
       if (previouslyCreated != null)
-      {
-      	Object[] objs = (Object[]) previouslyCreated;
-        Dependency dep = (Dependency) objs[0];
-      	List<Stereotype> stereos = (List<Stereotype>) objs[1];
-      	List<AppliedBasicStereotypeValue> stereoValues = (List<AppliedBasicStereotypeValue>) objs[2];
-
-      	repository.decrementPersistentDelete((Element) ((Object[]) previouslyCreated)[0]);
-        Element client = (Element) dep.undeleted_getClients().get(0);
-        if (!stereos.isEmpty())
-        	client.settable_getAppliedBasicStereotypes().clear();
-        for (AppliedBasicStereotypeValue value : stereoValues)
-        	GlobalSubjectRepository.repository.incrementPersistentDelete(value);      	        
         return previouslyCreated;
-      }
       
       // make an dependency and store it in the type
       CalculatedArcPoints points = new CalculatedArcPoints(calculatedPoints);
@@ -186,23 +173,7 @@ public class DependencyCreatorGem implements Gem
         }
       }
 
-      return new Object[]{dependency, stereos, stereoValues};
-    }
-
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    	Object[] objs = (Object[]) previouslyCreated;
-    	Dependency dep = (Dependency) objs[0];
-    	List<Stereotype> stereos = (List<Stereotype>) objs[1];
-    	List<AppliedBasicStereotypeValue> stereoValues = (List<AppliedBasicStereotypeValue>) objs[2];
-    	
-      Element client = (Element) dep.undeleted_getClients().get(0);
-      GlobalSubjectRepository.repository.incrementPersistentDelete(dep);
-      if (stereos != null && !stereos.isEmpty())
-      	client.settable_getAppliedBasicStereotypes().addAll(stereos);
-      if (stereoValues != null)
-        for (AppliedBasicStereotypeValue value : stereoValues)
-        	GlobalSubjectRepository.repository.decrementPersistentDelete(value);      	
+      return dependency;
     }
 
 		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)

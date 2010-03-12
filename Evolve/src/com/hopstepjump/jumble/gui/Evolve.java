@@ -32,7 +32,6 @@ public class Evolve
   public static final String BEST_VERSION = "1.6";
 	public static final int MAX_UNMODIFIED_UNVIEWED_DIAGRAMS = 5;
 
-	private CommandManagerFacet commandManagerFacet;
 	private ToolCoordinatorGem toolManager;
 	/** the application window coordinator manages a number of windows */
 	private ApplicationWindowCoordinatorGem windowCoordinator;
@@ -144,7 +143,7 @@ public class Evolve
 
 	private void setUpGUI()
 	{
-		windowCoordinator.setUp(toolManager, commandManagerFacet, errors);
+		windowCoordinator.setUp(toolManager, errors);
 	}
 
 	private void showGUI()
@@ -154,10 +153,6 @@ public class Evolve
 
 	private void setUpServices()
 	{
-		BasicCommandManagerGem commandManagerGem = new BasicCommandManagerGem();
-		commandManagerGem.connectCommandWrapperFacet(new DeltaEngineCommandWrapper());
-		commandManagerFacet = commandManagerGem.getCommandManagerFacet();
-
 		// make the diagram registry
 		int max = GlobalPreferences.preferences.getRawPreference(OPEN_DIAGRAMS).asInteger();
 		max = Math.max(Math.min(max, 20), 0);
@@ -166,14 +161,13 @@ public class Evolve
 		GlobalDiagramRegistry.registry = registryGem.getDiagramRegistryFacet();
 
 		// start with an empty XML repository
-		CommandManagerListenerFacet listener = null;
 		try
 		{
 			String initialXMLRepository = GlobalPreferences.preferences.getRawPreference(
 					new Preference("Locations", "Initial XML repository")).asString();
 			// we need the delta engine for setting up the model
 			DeltaEngineCommandWrapper.clearDeltaEngine();
-			listener = RepositoryUtility.useXMLRepository((initialXMLRepository != null && new File(initialXMLRepository)
+			RepositoryUtility.useXMLRepository((initialXMLRepository != null && new File(initialXMLRepository)
 					.exists()) ? initialXMLRepository : null);
 			// the delta engine needs to be cleared, as it gets into an odd state
 			// during CommonRepositoryFunctions.initializeModel()
@@ -184,14 +178,7 @@ public class Evolve
 			// will never happen with a new XML repository
 		}
 
-		// get the command manager to tell the subject repository when a command has
-		// been executed
-		// -- this is used to tell repository listeners that they can send changes
-		// out to clients
-		commandManagerGem.connectCommandManagerListenerFacet(listener);
-
 		// make the tool manager and connect it up
 		toolManager = new ToolCoordinatorGem();
-		toolManager.connectCommandManagerFacet(commandManagerFacet);
 	}
 }

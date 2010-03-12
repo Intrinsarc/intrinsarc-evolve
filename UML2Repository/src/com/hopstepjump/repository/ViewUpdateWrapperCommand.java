@@ -36,7 +36,7 @@ public class ViewUpdateWrapperCommand implements Command
     final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 
     // start a transaction
-    repository.startTransaction();
+    repository.startTransaction("updated view", "restored view");
     
     clearCaches();
     
@@ -103,43 +103,6 @@ public class ViewUpdateWrapperCommand implements Command
   
   public void unExecute()
   {
-  	SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-
-    // start a transaction
-    repository.startTransaction();
-    
-    clearCaches();
-
-    // undo the old view commands (note that this happens before the repository is undone)
-    ViewUpdatePassEnum values[] = ViewUpdatePassEnum.values();
-    for (int lp = values.length - 1; lp >= 0; lp--)
-    {
-      Command update = viewCommand[lp];
-      if (update != null)
-        update.unExecute();
-//      viewCommand[lp] = null;
-    }
-    for (int lp = values.length - 1; lp >= 0; lp--)
-    {
-      Command update = slowViewCommand[lp];
-      if (update != null)
-        update.unExecute();
-//      viewCommand[lp] = null;
-    }
-
-    clearCaches();
-
-    // give the item a chance to intervene
-  	commandToWrapper.unExecute();
-    
-  	clearCaches();
-  	
-  	// ask for another view command, in case there are newly opened diagrams in the interim
-    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
-      repository.formUpdateDiagramsCommandAfterSubjectChanges(executionTime, false, pass, true).execute(false);
-    
-    // commit the transaction
-    repository.commitTransaction();
   }
   
   public void clearCaches()

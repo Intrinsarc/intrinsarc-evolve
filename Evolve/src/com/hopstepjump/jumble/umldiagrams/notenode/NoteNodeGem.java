@@ -247,16 +247,9 @@ public final class NoteNodeGem implements Gem
     }
 
 
-    public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String newText, Object listSelection, boolean unsuppress)
     {
-      String oldText = subject.getBody();
       subject.setBody(newText);
-      return oldText;
-    }
-
-    public void unSetText(Object memento)
-    {
-      subject.setBody((String) memento);
     }
 
     public FigureFacet getFigureFacet()
@@ -308,13 +301,16 @@ public final class NoteNodeGem implements Gem
   		return new ToolFigureClassification(FIGURE_NAME, null);
 		}
 
-    public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected,
-        boolean allowTYPE0Manipulators)
+    public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured,
+        boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       ManipulatorFacet keyFocus = null;
       if (favoured)
       {
-        TextManipulatorGem textGem = new TextManipulatorGem("changed note text", "restored note text", textableFacet.getText(),
+        TextManipulatorGem textGem = new TextManipulatorGem(
+        		coordinator, 
+        		"changed note text", "restored note text",
+        		textableFacet.getText(),
             font, Color.black, fillColor, useHTML
                 ? TextManipulatorGem.TEXT_HTML_TYPE
                 : TextManipulatorGem.TEXT_AREA_TYPE);
@@ -325,6 +321,7 @@ public final class NoteNodeGem implements Gem
 
       return new Manipulators(keyFocus,
       		new ResizingManipulatorGem(
+      				coordinator,
       				figureFacet,
       				diagramView,
       				figureFacet.getFullBounds(),

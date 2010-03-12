@@ -167,7 +167,7 @@ public class PartMiniAppearanceGem implements Gem
       return new JList(listElements);
     }
 
-    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
     {
       final Property part = (Property) figureFacet.getSubject();
       // make sure this has all the part bits still :-)
@@ -192,35 +192,12 @@ public class PartMiniAppearanceGem implements Gem
       final Classifier newPartType = newType;
       
       // change the subject's name
-      Command changeCmd = new AbstractCommand("set part details", "unset part details")
-      {
-        public void execute(boolean isTop)
-        {
-          part.setName(newName);
-          part.setType(newPartType);
-          instance.getClassifiers().clear();
-          if (newPartType != null)
-            instance.getClassifiers().add(newPartType);
-        }
-        public void unExecute()
-        {
-          part.setName(oldName);
-          part.setType(oldType);
-          instance.getClassifiers().clear();
-          if (oldType != null)
-            instance.getClassifiers().add(oldType);         
-        }
-      };
-      changeCmd.execute(false);
+      part.setName(newName);
+      part.setType(newPartType);
+      instance.getClassifiers().clear();
+      if (newPartType != null)
+        instance.getClassifiers().add(newPartType);
       
-      // return the command
-      return new SetTextPayload(null, changeCmd);
-    }
-
-    public SetTextPayload unSetText(Object memento)
-    {
-      if (memento != null)
-        ((Command) memento).unExecute();
       return null;
     }
 

@@ -29,7 +29,7 @@ public interface BasicNodeAppearanceFacet extends Facet
   public String getFigureName();
   public UBounds getAutoSizedBounds(boolean autoSized);
   public PreviewFacet makeNodePreviewFigure(PreviewCacheFacet previews, DiagramFacet diagram, UPoint start, boolean isFocus);
-  public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators);
+  public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators);
 	public UDimension getCreationExtent();
 	public FigureFacet getActualFigureForSelection();
 	public boolean acceptsContainer(ContainerFacet container);

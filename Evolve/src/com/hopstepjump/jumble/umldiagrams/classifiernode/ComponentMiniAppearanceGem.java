@@ -379,15 +379,10 @@ public class ComponentMiniAppearanceGem implements Gem
 		}
 
 		public SetTextPayload setText(TextableFacet textable, String text,
-				Object listSelection, boolean unsuppress, Object oldMemento)
+				Object listSelection, boolean unsuppress)
 		{
 			return setElementText(figureFacet, textable, text, listSelection,
-					unsuppress, oldMemento);
-		}
-
-		public SetTextPayload unSetText(Object memento)
-		{
-			return unSetElementText(figureFacet, memento);
+					unsuppress);
 		}
 
 		public ToolFigureClassification getToolClassification(
@@ -413,7 +408,7 @@ public class ComponentMiniAppearanceGem implements Gem
 
 	public static SetTextPayload setElementText(FigureFacet figure,
 			TextableFacet textable, String text, Object listSelection,
-			boolean unsuppress, Object oldMemento)
+			boolean unsuppress)
 	{
 		NamedElement subject = (NamedElement) figure.getSubject();
 		String oldText = subject.getName();
@@ -429,8 +424,7 @@ public class ComponentMiniAppearanceGem implements Gem
 		{
 			// just change the name
 			subject.setName(text);
-			return new SetTextPayload(null, new Object[]
-				{ oldText, null, false, subject });
+			return new SetTextPayload(null, null);
 		}
 
 		ElementSelection sel = (ElementSelection) listSelection;

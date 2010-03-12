@@ -331,7 +331,7 @@ public class GrouperNodeGem
 			return basicGem.getPreviewFacet();
 		}
 	
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 			// make the manipulators
 			GrouperSizes sizes = makeCurrentSizeInfo().makeActualSizes(false);
@@ -339,9 +339,11 @@ public class GrouperNodeGem
 			if (favoured)
 			{
 				TextManipulatorGem textGem =
-					new TextManipulatorGem("changed grouper text", "restored grouper text", name,
-																 font, Color.black,
-																 fillColor.equals(ScreenProperties.getTransparentColor()) ? Color.WHITE : fillColor, TextManipulatorGem.TEXT_PANE_CENTRED_TYPE);
+					new TextManipulatorGem(
+							coordinator, 
+							"changed grouper text", "restored grouper text", name,
+							font, Color.black,
+							fillColor.equals(ScreenProperties.getTransparentColor()) ? Color.WHITE : fillColor, TextManipulatorGem.TEXT_PANE_CENTRED_TYPE);
 				textGem.connectTextableFacet(textableFacet);
 				keyFocus = textGem.getManipulatorFacet();
 			}
@@ -351,11 +353,12 @@ public class GrouperNodeGem
 					keyFocus,
 					new GroupBoundsDisplayer(),
 					new ResizingManipulatorGem(
-						figureFacet,
-						diagramView,
-						sizes.getOuter(),
-						resizeVetterFacet,
-						firstSelected).getManipulatorFacet());
+							coordinator,
+							figureFacet,
+							diagramView,
+							sizes.getOuter(),
+							resizeVetterFacet,
+							firstSelected).getManipulatorFacet());
 		}
 	
 		public ZNode formView()
@@ -650,7 +653,7 @@ public class GrouperNodeGem
       DiagramFacet here = figureFacet.getDiagram();
       Command command =
         CopyAction.CopyCommandGenerator.makeCopyToClipboardCommand(clipboard.getDiagramReference(), here.getDiagramReference(), includedFigureIds);
-      coordinator.executeForPreview(command, true, false);
+    //  coordinator.executeForPreview(command, true, false);
       
       // now, save the clipboard to the directory in EPS format
       // make a new diagram view, and copy it to the system clipboard as an image
@@ -691,23 +694,11 @@ public class GrouperNodeGem
 	
 	private class TextableFacetImpl implements TextableFacet
 	{
-    public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String newText, Object listSelection, boolean unsuppress)
     {
-      String oldText = subject.getBody();
       subject.setBody(newText);     
-      return oldText;
     }
   
-    public void unSetText(Object memento)
-    {
-      subject.setBody((String) memento);
-    }
-    
-    String getText()
-    {
-      return name;
-    }
-  	  
 		/**
 		 * vetting for the text and resizing manipulators
 		 * 

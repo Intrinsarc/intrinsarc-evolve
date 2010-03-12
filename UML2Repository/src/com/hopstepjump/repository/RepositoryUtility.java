@@ -10,34 +10,30 @@ import javax.swing.filechooser.FileFilter;
 import org.eclipse.emf.common.util.*;
 
 import com.hopstepjump.deltaengine.errorchecking.*;
-import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
-import com.sun.corba.se.spi.ior.*;
 
 public class RepositoryUtility
 {
 	public static final ImageIcon MAIN_FRAME_ICON = IconLoader.loadIcon("xml.png");
 	public static final ImageIcon LOCALDB_ICON = IconLoader.loadIcon("database.png");
 
-	public static CommandManagerListenerFacet useObjectDbRepository(String hostName, String dbName) throws RepositoryOpeningException
+	public static void useObjectDbRepository(String hostName, String dbName) throws RepositoryOpeningException
 	{
 	  closeExisting();
 	  ObjectDbSubjectRepositoryGem repositoryGem = ObjectDbSubjectRepositoryGem.openRepository(hostName, dbName);
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;
-	  return repositoryGem.getCommandManagerListenerFacet();
 	}
 	
-	public static CommandManagerListenerFacet useObjectDbRepository(ObjectDbSubjectRepositoryGem repositoryGem)
+	public static void useObjectDbRepository(ObjectDbSubjectRepositoryGem repositoryGem)
 	{
 	  closeExisting();
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;
-	  return repositoryGem.getCommandManagerListenerFacet();
 	}
 	
-	public static CommandManagerListenerFacet useXMLRepository(String fileName) throws RepositoryOpeningException
+	public static void useXMLRepository(String fileName) throws RepositoryOpeningException
 	{
 	  closeExisting();
 	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
@@ -45,7 +41,6 @@ public class RepositoryUtility
 	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;
-	  return repositoryGem.getCommandManagerListenerFacet();
 	}
 	
 	private static void closeExisting()

@@ -28,7 +28,7 @@ public interface FigureFacet extends MainFacet
   public ZNode formView();
   public boolean useGlobalLayer();
   
- 	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
+ 	public Command updateViewAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
  	public Object getSubject();
  	public boolean hasSubjectBeenDeleted();
 	public void aboutToAdjust();
@@ -62,12 +62,13 @@ public interface FigureFacet extends MainFacet
 
   /**
    * selection methods
+   * @param coordinator TODO
    */
   public Manipulators getSelectionManipulators(
+      ToolCoordinatorFacet coordinator,
       DiagramViewFacet diagramView,
       boolean favoured,
-      boolean firstSelected,
-      boolean allowTYPE0Manipulators);
+      boolean firstSelected, boolean allowTYPE0Manipulators);
   public FigureFacet getActualFigureForSelection();
 
   /** each figure can define a popup menu */

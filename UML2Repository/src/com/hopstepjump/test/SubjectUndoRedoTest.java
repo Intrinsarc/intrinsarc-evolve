@@ -16,17 +16,17 @@ public class SubjectUndoRedoTest
 	{
 		SubjectRepositoryFacet repos = setupRepository();
 		
-		repos.startTransaction();
+		repos.startTransaction("", "");
 		Model m = repos.getTopLevelModel();
 		Class cl = m.createOwnedClass("Test", false);
 		Class c2 = m.createOwnedClass("Test", false);
 		assertFalse(cl.isThisDeleted());
 		assertFalse(c2.isThisDeleted());
 		repos.commitTransaction();
-		repos.undo();
+		repos.undoTransaction();
 		assertTrue(cl.isThisDeleted());
 		Assert.assertTrue(c2.isThisDeleted());
-		repos.redo();
+		repos.redoTransaction();
 		Assert.assertFalse(cl.isThisDeleted());
 		Assert.assertFalse(c2.isThisDeleted());
 	}
@@ -36,23 +36,23 @@ public class SubjectUndoRedoTest
 	{
 		SubjectRepositoryFacet repos = setupRepository();
 		
-		repos.startTransaction();
+		repos.startTransaction("", "");
 		Model m = repos.getTopLevelModel();
 		Class cl = m.createOwnedClass("Test", false);
 		cl.createOwnedAttribute().setName("attr");
 		assertEquals(1, cl.undeleted_getOwnedAttributes().size());
 		repos.commitTransaction();
-		repos.undo();
+		repos.undoTransaction();
 		assertEquals(0, cl.undeleted_getOwnedAttributes().size());
-		repos.redo();
+		repos.redoTransaction();
 		assertEquals(1, cl.undeleted_getOwnedAttributes().size());
-		repos.startTransaction();
+		repos.startTransaction("", "");
 		cl.createOwnedAttribute().setName("attr2");
 		assertEquals(2, cl.undeleted_getOwnedAttributes().size());
 		repos.commitTransaction();		
-		repos.undo();
+		repos.undoTransaction();
 		assertEquals(1, cl.undeleted_getOwnedAttributes().size());
-		repos.undo();
+		repos.undoTransaction();
 		assertEquals(0, cl.undeleted_getOwnedAttributes().size());
 		assertTrue(cl.isThisDeleted());
 	}
@@ -62,18 +62,18 @@ public class SubjectUndoRedoTest
 	{
 		SubjectRepositoryFacet repos = setupRepository();
 		
-		repos.startTransaction();
+		repos.startTransaction("", "");
 		Model m = repos.getTopLevelModel();
 		Class cl = m.createOwnedClass("Test", false);
 		cl.createOwnedAttribute().setName("attr");
 		assertEquals(1, cl.undeleted_getOwnedAttributes().size());
 		repos.commitTransaction();
 		
-		repos.startTransaction();		
+		repos.startTransaction("", "");		
 		cl.settable_getOwnedAttributes().remove(0);
 		assertEquals(0, cl.undeleted_getOwnedAttributes().size());
 		repos.commitTransaction();
-		repos.undo();
+		repos.undoTransaction();
 		assertEquals(1, cl.undeleted_getOwnedAttributes().size());
 	}
 	
@@ -82,7 +82,7 @@ public class SubjectUndoRedoTest
 	{
 		SubjectRepositoryFacet repos = setupRepository();
 		
-		repos.startTransaction();
+		repos.startTransaction("", "");
 		Model m = repos.getTopLevelModel();
 		Class cl = m.createOwnedClass("Test", false);
 		Class c2 = m.createOwnedClass("Test", false);
@@ -92,18 +92,18 @@ public class SubjectUndoRedoTest
 		assertEquals(1, cl.undeleted_getOwnedAttributes().size());
 		assertEquals(0, c2.undeleted_getOwnedAttributes().size());
 
-		repos.startTransaction();		
+		repos.startTransaction("", "");		
 		cl.settable_getOwnedAttributes().remove(0);
 		c2.settable_getOwnedAttributes().add(prop);
 		assertEquals(0, cl.undeleted_getOwnedAttributes().size());
 		assertEquals(1, c2.undeleted_getOwnedAttributes().size());
 		repos.commitTransaction();
 		
-		repos.undo();
+		repos.undoTransaction();
 		assertEquals(1, cl.undeleted_getOwnedAttributes().size());
 		assertEquals(0, c2.undeleted_getOwnedAttributes().size());
 
-		repos.redo();
+		repos.redoTransaction();
 		assertEquals(0, cl.undeleted_getOwnedAttributes().size());
 		assertEquals(1, c2.undeleted_getOwnedAttributes().size());
 	}
@@ -113,20 +113,20 @@ public class SubjectUndoRedoTest
 	{
 		SubjectRepositoryFacet repos = setupRepository();
 		
-		repos.startTransaction();
+		repos.startTransaction("", "");
 		Model m = repos.getTopLevelModel();
 		Class cl = m.createOwnedClass("Test", false);
 		repos.commitTransaction();
 		
-		repos.startTransaction();		
+		repos.startTransaction("", "");		
 		cl.setIsAbstract(true);
 		assertTrue(cl.isAbstract());
 		repos.commitTransaction();
 		
-		repos.undo();
+		repos.undoTransaction();
 		assertFalse(cl.isAbstract());
 
-		repos.redo();
+		repos.redoTransaction();
 		assertTrue(cl.isAbstract());
 	}
 	
@@ -135,13 +135,13 @@ public class SubjectUndoRedoTest
 	{
 		SubjectRepositoryFacet repos = setupRepository();
 		
-		repos.startTransaction();
+		repos.startTransaction("", "");
 		Model m = repos.getTopLevelModel();
 		Class cl = UML2Factory.eINSTANCE.createClass();
 		m.settable_getOwnedMembers().add(cl);
 		repos.commitTransaction();
 		
-		repos.undo();
+		repos.undoTransaction();
     assertEquals(0, m.undeleted_getOwnedMembers().size());
     assertTrue(cl.isThisDeleted());
 	}
@@ -151,13 +151,13 @@ public class SubjectUndoRedoTest
 	{
 		SubjectRepositoryFacet repos = setupRepository();
 		
-		repos.startTransaction();
+		repos.startTransaction("", "");
 		Model m = repos.getTopLevelModel();
 		Class cl = m.createOwnedClass("Test", false);
 		Property prop = cl.createOwnedAttribute();
 		repos.commitTransaction();
 		
-		repos.startTransaction();
+		repos.startTransaction("", "");
     Expression expression = UML2Factory.eINSTANCE.createExpression();
     expression.setBody("Hello");
     AppliedBasicStereotypeValue applied = cl.createAppliedBasicStereotypeValues();
@@ -166,11 +166,11 @@ public class SubjectUndoRedoTest
     assertEquals(1, cl.undeleted_getAppliedBasicStereotypeValues().size());
 		repos.commitTransaction();
 		
-		repos.undo();
+		repos.undoTransaction();
     assertEquals(0, cl.undeleted_getAppliedBasicStereotypeValues().size());
     assertTrue(expression.isThisDeleted());
 
-		repos.redo();
+		repos.redoTransaction();
     assertEquals(1, cl.undeleted_getAppliedBasicStereotypeValues().size());
     assertFalse(expression.isThisDeleted());
 	}

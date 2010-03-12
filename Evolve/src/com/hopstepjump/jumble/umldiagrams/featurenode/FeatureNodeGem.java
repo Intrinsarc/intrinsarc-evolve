@@ -263,7 +263,7 @@ public final class FeatureNodeGem implements Gem
 	private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
 	{
 		public Manipulators getSelectionManipulators(
-		    DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		    ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 	  {
 			FeatureSizeInfo info = makeCurrentInfo();
 			FeatureSizes sizes = info.makeSizes();
@@ -280,6 +280,7 @@ public final class FeatureNodeGem implements Gem
 	    if (favoured)
 			{
 	      TextManipulatorGem textGem = new TextManipulatorGem(
+	      		coordinator,
             "change " + getFigureName() + " details",
             "restore " + getFigureName() + " details",
             name,
@@ -644,14 +645,9 @@ public final class FeatureNodeGem implements Gem
 	  	return figureFacet;
 	  }
 
-    public Object setText(String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      return featureTypeFacet.setText(text, listSelection, oldMemento);
-    }
-
-    public void unSetText(Object memento)
-    {
-      featureTypeFacet.unSetText(memento);
+      featureTypeFacet.setText(text, listSelection);
     }
 
     public JList formSelectionList(String textSoFar)

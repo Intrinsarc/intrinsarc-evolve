@@ -124,9 +124,16 @@ public class LinkedTextGem implements Gem
   
   private class LinkedTextFacetImpl implements LinkedTextFacet
   {
-    public ManipulatorFacet getTextEntryManipulator(DiagramViewFacet diagramView)
+    public ManipulatorFacet getTextEntryManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView)
     {
-      TextManipulatorGem textGem = new TextManipulatorGem("changed port text", "restored port text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+      TextManipulatorGem textGem = new TextManipulatorGem(
+      		coordinator,
+      		"changed port text", "restored port text",
+      		text, 
+      		font,
+      		lineColor,
+      		Color.white,
+      		TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
       textGem.connectTextableFacet(linkedTextFacet);
 
 	    OriginLineManipulatorGem decorator =
@@ -191,7 +198,7 @@ public class LinkedTextGem implements Gem
 			    new UBounds(nameText.getBounds()).getDimension());
 		}
 	
-	  public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+	  public void setText(String newText, Object listSelection, boolean unsuppress)
 	  {
 	    // need to resize this also, as the change in text may have affected the size
 	    text = extractOriginFacet().textChanged(newText, majorPointType);
@@ -203,13 +210,8 @@ public class LinkedTextGem implements Gem
 	    	figureFacet.setShowing(true);
 	    }
 	    figureFacet.makeAndExecuteResizingCommand(linkedTextFacet.vetTextResizedExtent(newText));
-	    return null;
 	  }
 	
-	  public void unSetText(Object memento)
-	  {
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
 		 */
@@ -279,13 +281,13 @@ public class LinkedTextGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
 		 */
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 		  ManipulatorFacet primaryFocus = null;
 	    if (favoured)
 	    {
 		    ManipulatorFacet keyFocus = null;
-	      TextManipulatorGem textGem = new TextManipulatorGem("changed text", "restored text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+	      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed text", "restored text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
 	      textGem.connectTextableFacet(linkedTextFacet);
 	      keyFocus = textGem.getManipulatorFacet();
 

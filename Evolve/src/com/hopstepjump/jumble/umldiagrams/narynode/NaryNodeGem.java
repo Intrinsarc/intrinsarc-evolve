@@ -59,11 +59,12 @@ public final class NaryNodeGem implements Gem
 			return new ToolFigureClassification(FIGURE_NAME, null);
 		}
 	
-	  public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+	  public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 	  {
 	    return new Manipulators(
 	        null,
 	        new ResizingManipulatorGem(
+	        		coordinator,
 	            figureFacet,
 	            diagramView,
 	            figureFacet.getFullBounds(),

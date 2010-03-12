@@ -15,6 +15,6 @@ public interface ApplicationWindowCoordinatorFacet extends Facet
 	public void closingApplicationWindow(ApplicationWindow window);
 	public int getNumberOfOpenApplicationWindows();
 	public void exitApplication();
-  public void switchRepository(CommandManagerListenerFacet facet);
+  public void switchRepository();
   public void refreshWindowTitles();
 }

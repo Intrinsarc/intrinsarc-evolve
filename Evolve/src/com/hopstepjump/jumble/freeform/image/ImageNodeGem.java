@@ -254,11 +254,12 @@ public final class ImageNodeGem implements Gem
     /**
      * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
      */
-    public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+    public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       return new Manipulators(
           null,
           new ResizingManipulatorGem(
+          		coordinator,
               figureFacet,
               diagramView,
               figureFacet.getFullBounds(),

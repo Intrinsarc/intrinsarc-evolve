@@ -7,9 +7,13 @@ import org.eclipse.emf.common.notify.*;
 public class NotificationList
 {
 	private List<Notification> notifications = new ArrayList<Notification>();
+	private String redoDescription;
+	private String undoDescription;
 	
-	public NotificationList()
+	public NotificationList(String redoDescription, String undoDescription)
 	{
+		this.redoDescription = redoDescription;
+		this.undoDescription = undoDescription;
 	}
 	
 	public void addNotification(Notification n)
@@ -20,5 +24,15 @@ public class NotificationList
 	public List<Notification> getNotifications()
 	{
 		return notifications;
+	}
+
+	public String getRedoDescription()
+	{
+		return redoDescription;
+	}
+
+	public String getUndoDescription()
+	{
+		return undoDescription;
 	}
 }

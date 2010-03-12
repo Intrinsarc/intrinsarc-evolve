@@ -502,7 +502,7 @@ public final class BasicNamespaceNodeGem implements Gem
 			return basicGem.getPreviewFacet();
 	  }
 	
-	  public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+	  public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 	  {
 	    // make the manipulators
 	    BasicNamespaceSizes sizes = makeCurrentSizeInfo().makeActualSizes();
@@ -510,6 +510,7 @@ public final class BasicNamespaceNodeGem implements Gem
 	    if (favoured)
 	    {
 	      TextManipulatorGem textGem = new TextManipulatorGem(
+	      		coordinator,
 	          "changed " + figureFacet.getFigureName() + " name",
 	          "restored " + figureFacet.getFigureName() + " name",
 	          name,
@@ -524,6 +525,7 @@ public final class BasicNamespaceNodeGem implements Gem
 	    return new Manipulators(
 	        keyFocus,
 	        new ResizingManipulatorGem(
+	        		coordinator,
 	            figureFacet,
 	            diagramView,
 	            sizes.getOuter(),
@@ -838,26 +840,14 @@ public final class BasicNamespaceNodeGem implements Gem
 	
 	private class TextableFacetImpl implements TextableFacet
 	{
-    public Object setText(String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress, oldMemento);
+      SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
 
-      if (payload != null)
-      {
-        if (payload.getSubject() != null)
-          subject = (Namespace) payload.getSubject();
-        return payload.getMemento();
-      }
-      return null;
-    }
-    
-    public void unSetText(Object memento)
-    {
-      SetTextPayload payload = miniAppearanceFacet.unSetText(memento);
       if (payload != null && payload.getSubject() != null)
-        subject = (Namespace) payload.getSubject();
+          subject = (Namespace) payload.getSubject();
     }
-    
+
     public JList formSelectionList(String textSoFar)
     {
       return miniAppearanceFacet.formSelectionList(textSoFar);

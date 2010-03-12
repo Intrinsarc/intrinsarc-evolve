@@ -490,7 +490,7 @@ public final class FeatureCompartmentGem implements Gem
 	private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
 	{
 		public Manipulators getSelectionManipulators(
-		    DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		    ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 	  {
 	    return null;
 	  }

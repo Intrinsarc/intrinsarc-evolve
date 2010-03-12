@@ -54,15 +54,8 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
   	return overriddenName != null ? overriddenName : name;
   }
 
-  public Object setText(String text, Object listSelection, Object memento)
+  public Object setText(String text, Object listSelection)
   {
-    Command cmd = (Command) memento;
-    if (cmd != null)
-    {
-    	cmd.execute(false);
-    	return cmd;
-    }
-
     // make a command to effect the changes
     final Slot slot = getSubject();
     
@@ -119,53 +112,20 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
 	    
 	    // if the value matches a property, create a PropertyValueSpecification, which is
 	    // possible aliased
-      Command newCmd = new AbstractCommand()
-      {
-      	private PropertyValueSpecification newExpression;
-      	
-  			public void execute(boolean isTop)
-  			{
-  				slot.setDefiningFeature(newAttribute);
-  				slot.settable_getValues().clear();
-  				if (valueSpec != null)
-  					slot.settable_getValues().add(valueSpec);
-  			}
-
-  			public void unExecute()
-  			{
-  				slot.setDefiningFeature(oldAttribute);
-  				slot.settable_getValues().clear();
-					slot.settable_getValues().addAll(oldExpressions);
-  			}    	
-      };
-      newCmd.execute(false);
-      return newCmd;
+			slot.setDefiningFeature(newAttribute);
+			slot.settable_getValues().clear();
+			if (valueSpec != null)
+				slot.settable_getValues().add(valueSpec);
+      return null;
     }
     else
     {
 	    final List<ValueSpecification> values = resolveParameters(slot, newValue);
 	    
-	    // make a new command to set the values
-	    Command newCmd = new AbstractCommand()
-	    {
-	    	private Expression newExpression;
-	    	
-				public void execute(boolean isTop)
-				{
-					slot.setDefiningFeature(newAttribute);
-	    		slot.settable_getValues().clear();
-	    		slot.settable_getValues().addAll(0, values);
-				}
-	
-				public void unExecute()
-				{
-					slot.setDefiningFeature(oldAttribute);
-	    		slot.settable_getValues().clear();
-	    		slot.settable_getValues().addAll(0, oldExpressions);
-				}    	
-	    };
-	    newCmd.execute(false);
-	    return newCmd;
+			slot.setDefiningFeature(newAttribute);
+  		slot.settable_getValues().clear();
+  		slot.settable_getValues().addAll(0, values);
+	    return null;
     }
   }
   

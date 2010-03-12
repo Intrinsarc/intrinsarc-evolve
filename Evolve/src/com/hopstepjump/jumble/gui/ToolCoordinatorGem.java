@@ -54,7 +54,6 @@ public final class ToolCoordinatorGem implements Gem
 {		    
 	private static final Font POPUP_FONT = new Font("Arial", Font.BOLD, 16);
   private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
-  private CommandManagerFacet commandManagerFacet;
 	private ToolCoordinatorFacet coordinatorFacet = new ToolCoordinatorFacetImpl();
   private JFrame frame;
   private PaletteManagerFacet paletteFacet;
@@ -88,52 +87,6 @@ public final class ToolCoordinatorGem implements Gem
 	    paletteFacet.toolFinished(e, stopMultiTool);
 	  }
 	  
-	  public void executeCommandAndUpdateViews(Command command)
-	  {
-	    // we want to change the cursor only if the delay is longer than 0.4 seconds
-			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
-			waiter.displayWaitCursorAfterDelay();
-			
-			try
-			{
-			  commandManagerFacet.executeCommandAndUpdateViews(command);
-			}
-			catch (ReadOnlyException ex)
-			{
-			  // the command has failed because it attempted to modify a readOnly resource
-			  displayPopup(
-			      ERROR_ICON,
-			      "Read only!",
-			      "Attempt to modify read only elements",
-			      ScreenProperties.getUndoPopupColor(),
-			      Color.black, 
-			      1500);
-			}
-			catch (Exception ex)
-			{
-			  // best to catch and report on exceptions here.  invokeAndWait() as used in the TextManipulatorGem
-			  // seems to silently consume exceptions...
-			  ex.printStackTrace();
-			}
-			
-			waiter.restoreOldCursor();
-      paletteFacet.refreshEnabled();
-      GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
-	  }
-	  
-		public Command executeForPreview(Command command, boolean sendDiagramChanges, boolean returnCommand)
-		{
-	  	return commandManagerFacet.executeForPreview(command, sendDiagramChanges, returnCommand);
-		}
-
-		/**
-		 * @see com.hopstepjump.idraw.foundation.ToolCoordinatorFacet#undoForPreview(Command)
-		 */
-		public void undoForPreview(Command command)
-		{
-			commandManagerFacet.undoForPreview(command);
-		}
-
 		/**
 		 * @see com.hopstepjump.idraw.foundation.ToolCoordinatorFacet#displayWaitCursor()
 		 */
@@ -171,6 +124,7 @@ public final class ToolCoordinatorGem implements Gem
 			}
 			return oldCursor;
 		}
+		
 		/**
 		 * @see com.hopstepjump.idraw.foundation.ToolCoordinatorFacet#attachToFrame(JFrame)
 		 */
@@ -480,37 +434,79 @@ public final class ToolCoordinatorGem implements Gem
 		public void startTransaction(String redoName, String undoName)
 		{
 			System.out.println("$$ started transaction: " + redoName);
-			GlobalSubjectRepository.repository.startTransaction();
+			GlobalSubjectRepository.repository.startTransaction(redoName, undoName);
 		}
 		
 		public void undoTransaction()
 		{
-			GlobalSubjectRepository.repository.undo();
+			GlobalSubjectRepository.repository.undoTransaction();
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.undo();
+				d.undoTransaction();
 		}
 
 		public void redoTransaction()
 		{
-			GlobalSubjectRepository.repository.redo();
+			GlobalSubjectRepository.repository.redoTransaction();
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.redo();
+				d.redoTransaction();
 		}
 
 		public void commitTransaction()
 		{
+			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
+			waiter.displayWaitCursorAfterDelay();
+			
+      for (ViewUpdatePassEnum p : ViewUpdatePassEnum.values())
+				new CommonRepositoryFunctions().formUpdateDiagramsCommandAfterSubjectChanges(System.currentTimeMillis(), true, p, true);
 			System.out.println("$$ committed transaction");
 			GlobalSubjectRepository.repository.commitTransaction();
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.commit();
+				d.commitTransaction();
+
+			waiter.restoreOldCursor();
+      paletteFacet.refreshEnabled();
+      GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
+		}
+
+		public void clearTransactionHistory()
+		{
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.clearTransactionHistory();
+			GlobalSubjectRepository.repository.clearTransactionHistory();
+		}
+
+		public void enforceTransactionDepth(int depth)
+		{
+			// TODO Auto-generated method stub
+			
+		}
+
+		public String getRedoTransactionDescription()
+		{
+			return GlobalSubjectRepository.repository.getRedoTransactionDescription();
+		}
+
+		public int getTotalTransactions()
+		{
+			return GlobalSubjectRepository.repository.getTotalTransactions();
+		}
+
+		public int getTransactionPosition()
+		{
+			return GlobalSubjectRepository.repository.getTransactionPosition();
+		}
+
+		public String getUndoTransactionDescription()
+		{
+			return GlobalSubjectRepository.repository.getUndoTransactionDescription();
+		}
+
+		public void executeCommandAndUpdateViews(Command command)
+		{
+			throw new IllegalStateException("executeCommandAndUpdateViews() is deprecated");
 		}
 	}
 
-	public void connectCommandManagerFacet(CommandManagerFacet commandManagerFacet)
-	{
-		this.commandManagerFacet = commandManagerFacet;
-	}
-	
 	private void registerRecreator(PersistentFigureRecreatorFacet recreatorFacet)
 	{
 		PersistentFigureRecreatorRegistry.registry.registerRecreator(recreatorFacet);

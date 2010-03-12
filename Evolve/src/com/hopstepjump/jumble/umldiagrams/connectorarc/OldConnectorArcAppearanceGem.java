@@ -115,6 +115,7 @@ public class OldConnectorArcAppearanceGem implements Gem
     }
     
     public Manipulators getSelectionManipulators(
+    		ToolCoordinatorFacet coordinator, 
         DiagramViewFacet diagramView,
         boolean favoured,
         boolean firstSelected,
@@ -125,12 +126,13 @@ public class OldConnectorArcAppearanceGem implements Gem
 		  ManipulatorFacet keyFocus = null;
 		  if (favoured)
       {
-        keyFocus = linkedTextFacet.getTextEntryManipulator(diagramView);
+        keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
       }
 		    
       Manipulators manips = new Manipulators(
 	      	keyFocus,
 	      	new ArcAdjustManipulatorGem(
+	      			coordinator,
 	      	    figureFacet.getLinkingFacet(),
 	      	    diagramView,
 	      	    calculatedPoints,

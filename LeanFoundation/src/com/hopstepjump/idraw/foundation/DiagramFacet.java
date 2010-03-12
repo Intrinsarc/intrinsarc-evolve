@@ -10,16 +10,16 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 public interface DiagramFacet extends Facet
 {
 	/** undo/redo support */
-	public void checkpointCommit();
-	public void commit();
-	public void undo();
-	public void redo();
-	public int getCommandPosition();
-	public int getTotalCommands();
-	public void clearCommandHistory();
+	public void checkpointCommitTransaction();
+	public void commitTransaction();
+	public void undoTransaction();
+	public void redoTransaction();
+	public int getTransactionPosition();
+	public int getTotalTransactions();
+	public void clearTransactionHistory();
 	public void aboutToAdjust(FigureFacet figure);
 	public void primeForUpdateBeforeRevert();
-	public void enforceCommandDepth(int depth);
+	public void enforceTransactionDepth(int depth);
 	
 	/** for chained diagrams */
 	public DiagramFacet getSource();

@@ -172,7 +172,7 @@ public class ModelMover
 
 	        // commit
 	        repository.commitTransaction();
-	        repository.startTransaction();
+	        repository.startTransaction("", "");
   			}
   			catch (RuntimeException t)
   			{
@@ -236,7 +236,7 @@ public class ModelMover
 		if (count[0]++ % 10 == 0)
 		{
       GlobalSubjectRepository.repository.commitTransaction();
-      GlobalSubjectRepository.repository.startTransaction();
+      GlobalSubjectRepository.repository.startTransaction("", "");
 		}
 		
     // create the new element

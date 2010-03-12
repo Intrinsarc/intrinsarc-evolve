@@ -1112,7 +1112,7 @@ public final class SelectionToolGem implements Gem
     // only generate a move command if the distance is reasonable
     if (movedEnough)
     {
-    	coordinator.startTransaction("moving figures", "moving figures back");
+    	coordinator.startTransaction("moved figures", "moved figures back");
       movingFigures.move(finalPoint);
       reenter_DRAGGING_SUBSTATE(finalPoint);
 

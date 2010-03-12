@@ -294,20 +294,21 @@ public final class BasicArcFigureGem implements Gem
   	}
   
     public Manipulators getSelectionManipulators(
+        ToolCoordinatorFacet coordinator,
         DiagramViewFacet diagramView,
         boolean favoured,
-        boolean firstSelected,
-        boolean allowTYPE0Manipulators)
+        boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       if (state.advancedFacet == null)
       {
 	      return new Manipulators(
 	      	null,
-	      	new ArcAdjustManipulatorGem(getLinkingFacet(), diagramView, state.calculatedPoints, state.curved, firstSelected).getManipulatorFacet());
+	      	new ArcAdjustManipulatorGem(coordinator, getLinkingFacet(), diagramView, state.calculatedPoints, state.curved, firstSelected).getManipulatorFacet());
       }
       else
       {
         return state.advancedFacet.getSelectionManipulators(
+        		coordinator,
             diagramView,
             favoured,
             firstSelected,
@@ -552,7 +553,7 @@ public final class BasicArcFigureGem implements Gem
   	/**
   	 * @see com.hopstepjump.idraw.foundation.FigureFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
   	 */
-  	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+  	public Command updateViewAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
   	{
   		return state.appearanceFacet.formViewUpdateCommandAfterSubjectChanged(isTop, pass);
   	}

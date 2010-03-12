@@ -104,26 +104,12 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
 
 	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
 	{
-		final Classifier oldSpecific = subject.getSpecific();
-		final Classifier oldGeneral = subject.getGeneral();
-		final Classifier newSpecific = (Classifier) start.getFigureFacet().getSubject();
-		final Classifier newGeneral = (Classifier) end.getFigureFacet().getSubject();
+		Classifier newSpecific = (Classifier) start.getFigureFacet().getSubject();
+		Classifier newGeneral = (Classifier) end.getFigureFacet().getSubject();
 
-		// return a command to change these
-		return new AbstractCommand("Retargeted generalization ends", "Unretargeted generalization ends")
-		{
-			public void execute(boolean isTop)
-			{
-				newSpecific.getGeneralizations().add(subject);
-				subject.setGeneral(newGeneral);
-			}
-
-			public void unExecute()
-			{
-				oldSpecific.getGeneralizations().add(subject);
-				subject.setGeneral(oldGeneral);
-			}			
-		};
+		newSpecific.getGeneralizations().add(subject);
+		subject.setGeneral(newGeneral);
+		return null;
 	}
 
 	public Object getSubject()

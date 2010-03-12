@@ -13,8 +13,7 @@ public interface TextableFacet extends Facet
   public UBounds vetTextResizedExtent(String text);
   
   public JList formSelectionList(String textSoFar);
-  public Object setText(String text, Object listSelection, boolean unsuppress, Object oldMemento);
-  public void unSetText(Object memento);
+  public void setText(String text, Object listSelection, boolean unsuppress);
   
   public FigureFacet getFigureFacet();
 }

@@ -233,13 +233,10 @@ public class CommonRepositoryFunctions
 //        System.out.println("$$ reverted " + reverted + " diagrams in " + (end - start) + "ms");
     }
 
-    // pass the alterations to each diagram in turn
-    CompositeCommand cmd = new CompositeCommand("", "");
-    
     for (DiagramFacet diagram : diagrams)
-      cmd.addCommand(diagram.formViewUpdateCommand(isTop, pass, initialRun));
+      diagram.formViewUpdateCommand(isTop, pass, initialRun);
 
-    return cmd;
+    return null;
   }
 
   public void setUuid(Set<String> uuids, Element elem, String uuid)

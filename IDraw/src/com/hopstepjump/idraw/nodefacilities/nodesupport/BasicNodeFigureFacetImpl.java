@@ -40,7 +40,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 		
 		state.pt = properties.retrieve("pt").asUPoint();
 		state.resizedExtent = properties.retrieve("dim", new UDimension(0,0)).asUDimension();
-		System.out.println("$$ resized = " + state.resizedExtent + ", recreator = " + state.recreatorName);
 		state.showing = properties.retrieve("show", true).asBoolean();
 	}
 
@@ -186,9 +185,9 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
   	return state.appearanceFacet.makeNodePreviewFigure(previews, diagram, start, isFocus);
   }
   
-  public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+  public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
   {
-  	return state.appearanceFacet.getSelectionManipulators(diagramView, favoured, firstSelected, allowTYPE0Manipulators);
+  	return state.appearanceFacet.getSelectionManipulators(coordinator, diagramView, favoured, firstSelected, allowTYPE0Manipulators);
   }
   
 	public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
@@ -203,35 +202,23 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 
   public Object move(UDimension offset)
   {
-    UPoint oldPt = new UPoint(state.pt);
-
     state.pt = state.pt.add(offset);
-    state.diagram.adjusted(state.figureFacet);
-
-    return oldPt;  // this is the memento we will be passed later
+    return null;
   }
 
   public void unMove(Object memento)
   {
-    state.pt = (UPoint) memento;
-    state.diagram.adjusted(state.figureFacet);
   }
 
   public void unResize(Object memento)
   {
-    UBounds oldBounds = (UBounds) memento;
-    state.pt = oldBounds.getTopLeftPoint();
-    state.resizedExtent = oldBounds.getDimension();
-    state.diagram.adjusted(state.figureFacet);
   }
 
   public Object resize(UBounds bounds)
   {
-    UBounds oldBounds = new UBounds(state.pt, state.resizedExtent);
     state.pt = bounds.getTopLeftPoint();
     state.resizedExtent = bounds.getDimension();
-    state.diagram.adjusted(state.figureFacet);
-    return oldBounds;
+    return null;
   }
 
 	/**
@@ -350,7 +337,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 		PersistentProperties properties = pFigure.getProperties();
 		properties.add(new PersistentProperty("pt", state.pt));
 		properties.add(new PersistentProperty("dim", state.resizedExtent, new UDimension(0,0)));
-
+		
 		// add the autosized property for this figure
 		properties.add(new PersistentProperty("auto", state.autoSizedFacet.isAutoSized(), true));
 		properties.add(new PersistentProperty("show", state.showing, true));
@@ -387,7 +374,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	/**
 	 * @see com.hopstepjump.idraw.foundation.FigureFacet#subjectChanged()
 	 */
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+	public Command updateViewAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
 	{
 		return state.appearanceFacet.formViewUpdateCommandAfterSubjectChanged(isTop, pass);
 	}

@@ -676,16 +676,17 @@ public final class PortNodeGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
 		 */
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 		  ManipulatorFacet keyFocus = null;
 		  if (favoured)
-		    keyFocus = linkedTextFacet.getTextEntryManipulator(diagramView);
+		    keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
 		    
 	    Manipulators manipulators =
 	      new Manipulators(
 	          keyFocus,
 	          new ResizingManipulatorGem(
+	          		coordinator,
 	              figureFacet,
 	              diagramView,
 	              figureFacet.getFullBounds(),
@@ -1053,18 +1054,13 @@ public final class PortNodeGem implements Gem
       if (!update)
       	return null;
 
-      final Command setText = sameName ? null :
-          new SetTextCommand(
-              linkedTextFacet.getFigureFacet().getFigureReference(),
+      if (!sameName)
+          SetTextTransaction.set(
+              linkedTextFacet.getFigureFacet(),
               subjectName,
               null,
-              false,
-              "adjusted name",
-              "restored name");
+              false);
 
-      if (setText != null)
-        setText.execute(isTop);
-      
       accessType = subject.getVisibility();
       // resize, using a text utility
       figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());

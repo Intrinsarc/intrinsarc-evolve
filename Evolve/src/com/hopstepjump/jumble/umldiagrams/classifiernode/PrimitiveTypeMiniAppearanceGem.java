@@ -108,16 +108,11 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
       return new JList(listElements);
     }
 
-    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
     {
-      return setElementText(figureFacet, textable, text, listSelection, unsuppress, oldMemento);
+      return setElementText(figureFacet, textable, text, listSelection, unsuppress);
     }
 
-    public SetTextPayload unSetText(Object memento)
-    {
-      return unSetElementText(figureFacet, memento);
-    }
-    
 		public ToolFigureClassification getToolClassification(
 				ClassifierSizes sizes,
 				boolean displayOnlyIcon,
@@ -139,7 +134,7 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
 		}
   }
   
-  public static SetTextPayload setElementText(FigureFacet figure, TextableFacet textable, String text, Object listSelection, boolean unsuppress, Object oldMemento)
+  public static SetTextPayload setElementText(FigureFacet figure, TextableFacet textable, String text, Object listSelection, boolean unsuppress)
   {
     NamedElement subject = (NamedElement) figure.getSubject();
     String oldText = subject.getName();

@@ -139,9 +139,6 @@ public final class BasicDiagramGem implements Gem
 
 	private CompositeCommand concreteFormViewUpdateCommand(boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
 	{
-		// iterate through these, to see if we need to take any action
-		CompositeCommand cmd = new CompositeCommand("", "");
-		
 		// delete any figures whose subjects have been removed
 		// using the "delete" technology developed for the cut/copy/paste/delete functions
 		
@@ -168,8 +165,7 @@ public final class BasicDiagramGem implements Gem
 			
 
 			// 3) make a delete command to remove the views with deleted subjects
-			cmd.addCommand(
-				DeleteFromDiagramHelper.makeDeleteCommand("formViewUpdateCommand deletion", "", "", diagramFacet, deletionFigureIds, false));
+			DeleteFromDiagramHelper.makeDeleteCommand("formViewUpdateCommand deletion", "", "", diagramFacet, deletionFigureIds, false);
     }
 
     // ensure we process the figures in containment order
@@ -179,23 +175,13 @@ public final class BasicDiagramGem implements Gem
 			{
 				// form a view update, but don't include any deleted figures
 				if (!deletionFigureIds.contains(figure.getId()))
-						cmd.addCommand(figure.formViewUpdateCommandAfterSubjectChanged(isTop, pass));
+						figure.updateViewAfterSubjectChanged(isTop, pass);
 			}
 		}
 		if (!initialRun)			
-			cmd.addCommand(new AbstractCommand("", "")
-			{
-				public void execute(boolean isTop)
-				{
-					refreshViewAttributes();
-				}
-				public void unExecute()
-				{
-					refreshViewAttributes();
-				}
-			});
+			refreshViewAttributes();
 
-		return cmd;
+		return null;
 	}
 
 	private boolean includedInChanges(FigureFacet figure)
@@ -221,16 +207,16 @@ public final class BasicDiagramGem implements Gem
 		private boolean inUndoRedo = false;
 		private boolean insideTransaction = false;
 		
-		public void enforceCommandDepth(int depth)
+		public void enforceTransactionDepth(int depth)
 		{
 		}
 		
-		public int getCommandPosition()
+		public int getTransactionPosition()
 		{
 			return pos;
 		}
 		
-		public int getTotalCommands()
+		public int getTotalTransactions()
 		{
 			return stateStack.size();
 		}
@@ -278,37 +264,29 @@ public final class BasicDiagramGem implements Gem
 		}
 		
 		/** undo/redo support */
-		public void checkpointCommit()
+		public void checkpointCommitTransaction()
 		{
 			sendChangesToListeners();
 		}
 		
-		public void clearCommandHistory()
+		public void clearTransactionHistory()
 		{
 			pos = 0;
 			stateStack.clear();
 		}
 		
-		public void commit()
+		public void commitTransaction()
 		{
 			ensureCurrent();
 			UndoRedoStates states = stateStack.get(pos++);
 			
-			// add any modifications, only if the figures are not added
-			Set<String> added = new HashSet<String>();
-			for (UndoRedoState s : states.getStates())
-				if (s.getAction().equals(UndoRedoAction.ADD) || s.getAction().equals(UndoRedoAction.REMOVE))
-					added.add(s.getPersistentFigure().getId());
-			
+			// add any modifications
 			List<UndoRedoState> urs = states.getStates();
 			for (FigureFacet f : trans.keySet())
 			{
-				if (!added.contains(f.getId()))
-				{
-					UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, trans.get(f));
-					state.setAfterPersistentFigure(f.makePersistentFigure());
-					urs.add(state);
-				}
+				UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, trans.get(f));
+				state.setAfterPersistentFigure(f.makePersistentFigure());
+				urs.add(state);
 			}			
 			states.setSealed(true);
 			sendChangesToListeners();
@@ -316,7 +294,7 @@ public final class BasicDiagramGem implements Gem
 			insideTransaction = false;
 		}
 		
-		public void undo()
+		public void undoTransaction()
 		{
 			if (insideTransaction)
 				throw new IllegalStateException("Cannot undo while in diagram transaction");
@@ -366,7 +344,7 @@ public final class BasicDiagramGem implements Gem
 			}
 		}
 		
-		public void redo()
+		public void redoTransaction()
 		{
 			if (insideTransaction)
 				throw new IllegalStateException("Cannot redo while in diagram transaction");
@@ -451,7 +429,7 @@ public final class BasicDiagramGem implements Gem
 				ensureCurrent();
 				PersistentFigure p = figure.makePersistentFigure();
 				trans.put(figure, p);
-				adjusted(figure);
+				internallyAdjusted(figure);
 			}
 		}
 		
@@ -498,6 +476,10 @@ public final class BasicDiagramGem implements Gem
 	  }
 	
 	  public void adjusted(FigureFacet figure)
+	  {
+	  }
+	  
+	  private void internallyAdjusted(FigureFacet figure)
 	  {
 			setModified(true);
 			// make sure we don't generate adjustment changes before the element is on the diagram!!
@@ -618,8 +600,8 @@ public final class BasicDiagramGem implements Gem
 					diagramFacet.addPersistentFigures(source.makePersistentDiagram().getFigures(), new UDimension(0, 0));
 					for (ViewUpdatePassEnum passx : ViewUpdatePassEnum.values())
 					{
-						concreteFormViewUpdateCommand(true, passx, false).execute(true);
-						concreteFormViewUpdateCommand(true, passx, true).execute(true);
+						concreteFormViewUpdateCommand(true, passx, false);
+						concreteFormViewUpdateCommand(true, passx, true);
 					}
 	
 					// possibly post-process the diagram
@@ -628,10 +610,10 @@ public final class BasicDiagramGem implements Gem
 					
 	        changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
 				}
-				return new CompositeCommand("", "");
 			}
 			else
-				return concreteFormViewUpdateCommand(isTop, pass, initialRun);
+				concreteFormViewUpdateCommand(isTop, pass, initialRun);
+			return null;
 		}
 
     /**

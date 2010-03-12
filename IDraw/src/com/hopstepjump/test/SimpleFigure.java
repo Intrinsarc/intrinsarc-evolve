@@ -103,7 +103,7 @@ public class SimpleFigure implements FigureFacet
 	{
 	}
 
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop,
+	public Command updateViewAfterSubjectChanged(boolean isTop,
 			ViewUpdatePassEnum pass)
 	{
 		return null;
@@ -218,8 +218,8 @@ public class SimpleFigure implements FigureFacet
 		return null;
 	}
 
-	public Manipulators getSelectionManipulators(DiagramViewFacet diagramView,
-			boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+	public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator,
+			DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 	{
 		return null;
 	}

@@ -20,7 +20,6 @@ import com.hopstepjump.repositorybase.*;
 public class ApplicationWindowCoordinatorGem
 {
 	private ToolCoordinatorGem toolCoordinator;
-	private CommandManagerFacet commandManager;
 	private ApplicationWindowCoordinatorFacet applicationWindowCoordinatorFacet = new ApplicationWindowCoordinatorFacetImpl();
   private Set<ApplicationWindow> windows = new HashSet<ApplicationWindow>();
   private ExtendedAdornerFacet errorAdorner;
@@ -35,10 +34,9 @@ public class ApplicationWindowCoordinatorGem
 	}
 	
   public void setUp(
-      ToolCoordinatorGem toolCoordinator, CommandManagerFacet commandManager, ErrorRegister errors)
+      ToolCoordinatorGem toolCoordinator, ErrorRegister errors)
   {
   	this.toolCoordinator = toolCoordinator;
-  	this.commandManager = commandManager;
     this.errors = errors;   
   	this.errorAdorner =
   	  new ErrorAdornerGem(toolCoordinator.getToolCoordinatorFacet(), errors).getExtendedAdornerFacet();
@@ -83,7 +81,7 @@ public class ApplicationWindowCoordinatorGem
 			    window.getDesktop());
 			PackageViewRegistryFacet viewRegistryFacet = viewRegistryGem.getPackageDiagramViewRegistryFacet();
 			
-			window.setUp(this, toolCoordinator, commandManager, viewRegistryFacet, errorAdorner, deltaAdorner);
+			window.setUp(this, toolCoordinator, viewRegistryFacet, errorAdorner, deltaAdorner);
 			window.openTopLevel(true, true);
 			
 			// if we don't have the native title bar, then turn on and off to make sure
@@ -102,10 +100,9 @@ public class ApplicationWindowCoordinatorGem
 			System.exit(0);
 		}
 
-    public void switchRepository(CommandManagerListenerFacet facet)
+    public void switchRepository()
     {
       // handle all the global components here...
-      commandManager.switchListener(facet);
       GlobalDiagramRegistry.registry.reset();
       
       // handle any window specific component here

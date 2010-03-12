@@ -327,6 +327,7 @@ public class ConnectorArcAppearanceGem implements Gem
     }
     
     public Manipulators getSelectionManipulators(
+    		ToolCoordinatorFacet coordinator,
         DiagramViewFacet diagramView,
         boolean favoured,
         boolean firstSelected,
@@ -336,11 +337,12 @@ public class ConnectorArcAppearanceGem implements Gem
     {
 		  ManipulatorFacet keyFocus = null;
 		  if (favoured)
-        keyFocus = linkedTextFacet.getTextEntryManipulator(diagramView);
+        keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
 		    
       Manipulators manips = new Manipulators(
 	      	keyFocus,
 	      	new ArcAdjustManipulatorGem(
+	      			coordinator,
 	      	    figureFacet.getLinkingFacet(),
 	      	    diagramView,
 	      	    calculatedPoints,
@@ -348,8 +350,8 @@ public class ConnectorArcAppearanceGem implements Gem
 	      	    firstSelected).getManipulatorFacet());
       if (favoured)
       {
-      	manips.addOther(startLinkedTextFacet.getTextEntryManipulator(diagramView));
-      	manips.addOther(endLinkedTextFacet.getTextEntryManipulator(diagramView));
+      	manips.addOther(startLinkedTextFacet.getTextEntryManipulator(coordinator, diagramView));
+      	manips.addOther(endLinkedTextFacet.getTextEntryManipulator(coordinator, diagramView));
       }
       
 
@@ -716,49 +718,31 @@ public class ConnectorArcAppearanceGem implements Gem
 		  if (pass != ViewUpdatePassEnum.LAST)
 		    return null;
 		  
-			// otherwise, consider making an adjustment of some of the text for the connector
-			CompositeCommand cmd = new CompositeCommand("", "");
-			
       // possibly update the name
       if (!subject.getName().equals(linkedTextFacet.getText()))
-  			cmd.addCommand(new SetTextCommand(linkedTextFacet.getFigureFacet().getFigureReference(), subject.getName(), null, false, "adjusted name", "restored name"));
+  			SetTextTransaction.set(linkedTextFacet.getFigureFacet(), subject.getName(), null, false);
       
       // see if the connection ends are correct for the start
       if (!getConnectionIndexString(0).equals(startLinkedTextFacet.getText()))
-      	cmd.addCommand(new SetTextCommand(startLinkedTextFacet.getFigureFacet().getFigureReference(), getConnectionIndexString(0), null, false, "adjusted index", "restored index"));
+      	SetTextTransaction.set(startLinkedTextFacet.getFigureFacet(), getConnectionIndexString(0), null, false);
       
       // see if the connection ends are correct for the end
       if (!getConnectionIndexString(1).equals(endLinkedTextFacet.getText()))
-      	cmd.addCommand(new SetTextCommand(endLinkedTextFacet.getFigureFacet().getFigureReference(), getConnectionIndexString(1), null, false, "adjusted index", "restored index"));
+      	SetTextTransaction.set(endLinkedTextFacet.getFigureFacet(), getConnectionIndexString(1), null, false);
       
       // is this a different type of connector now?
       final boolean subjectIsDelegate = subject.getKind().equals(ConnectorKind.DELEGATION_LITERAL);
       final boolean subjectIsPortLink = subject.getKind().equals(ConnectorKind.PORT_LINK_LITERAL);
       final boolean isDirected = StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.DIRECTED);
       if (subjectIsDelegate != delegate || subjectIsPortLink != portLink || isDirected != directed)
-      	cmd.addCommand(new AbstractCommand()
-  			{
-      		private boolean oldDelegate = delegate;
-      		private boolean oldPortLink = portLink;
-      		private boolean oldDirected = directed;
-      		
-					public void execute(boolean isTop)
-					{
-						delegate = subjectIsDelegate;
-						portLink = subjectIsPortLink;
-						directed = isDirected;
-						figureFacet.adjusted();
-					}
-					public void unExecute()
-					{
-						delegate = oldDelegate;
-						portLink = oldPortLink;
-						directed = oldDirected;
-						figureFacet.adjusted();
-					}      		
-  			});
+      {
+      	figureFacet.aboutToAdjust();
+				delegate = subjectIsDelegate;
+				portLink = subjectIsPortLink;
+				directed = isDirected;
+      }
       
-      return cmd;
+      return null;
 		}
 
 		public Object getSubject()
@@ -777,49 +761,23 @@ public class ConnectorArcAppearanceGem implements Gem
 			// clear out the ends and regenerate
 			final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 			
-			return new AbstractCommand("", "")
-			{
-				private ConnectorEnd oldStart;
-				private ConnectorEnd oldEnd;
-				private ConnectorEnd newStart;
-				private ConnectorEnd newEnd;
-				private boolean run;
-				
-				public void execute(boolean isTop)
-				{
-					if (!run)
-					{
-						run = true;
-						oldStart = (ConnectorEnd) subject.undeleted_getEnds().get(0);
-						oldEnd = (ConnectorEnd) subject.undeleted_getEnds().get(1);
-						newStart = ConnectorCreatorGem.makeConnectorEnd(subject, start.getFigureFacet());
-						newEnd = ConnectorCreatorGem.makeConnectorEnd(subject, end.getFigureFacet());
-						subject.getEnds().add(newStart);
-						subject.getEnds().add(newEnd);
-					}
-					else
-					{
-						repository.decrementPersistentDelete(newStart);
-						repository.decrementPersistentDelete(newEnd);
-					}
+			ConnectorEnd oldStart;
+			ConnectorEnd oldEnd;
+			ConnectorEnd newStart;
+			ConnectorEnd newEnd;
 
-					repository.incrementPersistentDelete(oldEnd);
-					repository.incrementPersistentDelete(oldStart);
+			oldStart = (ConnectorEnd) subject.undeleted_getEnds().get(0);
+			oldEnd = (ConnectorEnd) subject.undeleted_getEnds().get(1);
+			newStart = ConnectorCreatorGem.makeConnectorEnd(subject, start.getFigureFacet());
+			newEnd = ConnectorCreatorGem.makeConnectorEnd(subject, end.getFigureFacet());
+			subject.getEnds().add(newStart);
+			subject.getEnds().add(newEnd);
+			repository.incrementPersistentDelete(oldEnd);
+			repository.incrementPersistentDelete(oldStart);
 
-					newStart.setLowerValue(oldStart.getLowerValue());
-					newEnd.setLowerValue(oldEnd.getLowerValue());
-				}
-
-				public void unExecute()
-				{
-					repository.decrementPersistentDelete(oldEnd);
-					repository.decrementPersistentDelete(oldStart);
-					repository.incrementPersistentDelete(newStart);
-					repository.incrementPersistentDelete(newEnd);
-					oldStart.setLowerValue(newStart.getLowerValue());
-					oldEnd.setLowerValue(newEnd.getLowerValue());
-				}
-			};
+			newStart.setLowerValue(oldStart.getLowerValue());
+			newEnd.setLowerValue(oldEnd.getLowerValue());
+			return null;
 		}
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

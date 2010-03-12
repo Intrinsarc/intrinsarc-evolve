@@ -63,20 +63,11 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
     return UMLNodeText.makeNameFromOperation((Operation) figureFacet.getSubject(), true);
   }
 
-  public Object setText(final String text, Object listSelection, Object memento)
+  public Object setText(final String text, Object listSelection)
   {
     final Operation typed = getSubject();
     
-    // save old and set new
-    final String oldName = typed.getName();
-        
     final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository; 
-    Command cmd = (Command) memento;
-    if (cmd != null)
-    {
-      cmd.execute(false);
-      return cmd;
-    }
 
     // remove all current parameters
     final ArrayList<Parameter> existing = typed.undeleted_getReturnResults();
@@ -146,10 +137,6 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
     return null;
   }
   
-  public void unSetText(Object memento)
-  {
-  }
-
   public String makeNameFromSubject()
   {
     return UMLNodeText.getNodeText((Element)figureFacet.getSubject());

@@ -273,6 +273,7 @@ public class DependencyArcGem implements Gem
     }
     
     public Manipulators getSelectionManipulators(
+    		ToolCoordinatorFacet coordinator, 
         DiagramViewFacet diagramView,
         boolean favoured,
         boolean firstSelected,
@@ -283,12 +284,13 @@ public class DependencyArcGem implements Gem
 		  ManipulatorFacet keyFocus = null;
 		  if (favoured)
       {
-        keyFocus = linkedTextFacet.getTextEntryManipulator(diagramView);
+        keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
       }
 		    
       Manipulators manips = new Manipulators(
 	      	keyFocus,
 	      	new ArcAdjustManipulatorGem(
+	      			coordinator,
 	      	    figureFacet.getLinkingFacet(),
 	      	    diagramView,
 	      	    calculatedPoints,
@@ -463,13 +465,14 @@ public class DependencyArcGem implements Gem
       
       // possibly update the name
       if (!name.equals(linkedTextFacet.getText()))
-  			return new SetTextCommand(
-  			    linkedTextFacet.getFigureFacet().getFigureReference(),
+      {
+  			SetTextTransaction.set(
+  			    linkedTextFacet.getFigureFacet(),
   			    subject.getName(),
   			    null,
-  			    false,
-  			    "adjusted name",
-  			    "restored name");
+  			    false);
+  			return null;
+      }
       
       // if the stereotypes have changed, force a redraw
       final int newHash = StereotypeUtilities.calculateStereotypeHash(null, subject);
@@ -477,24 +480,10 @@ public class DependencyArcGem implements Gem
           substitution != (dependency.isReplacement()) ||
           resemblance != (dependency.isResemblance()))
       {
-      	return new AbstractCommand()
-      	{
-      		private int oldHash = stereotypeHash;
-					public void execute(boolean isTop)
-					{
-						figureFacet.adjusted();
-						stereotypeHash = newHash;
-						substitution = dependency.isReplacement();
-						resemblance = dependency.isResemblance();
-					}
-					public void unExecute()
-					{
-						figureFacet.adjusted();
-						stereotypeHash = oldHash;
-            substitution = dependency.isReplacement();
-            resemblance = dependency.isResemblance();
-					}
-      	};
+				figureFacet.aboutToAdjust();
+				stereotypeHash = newHash;
+				substitution = dependency.isReplacement();
+				resemblance = dependency.isResemblance();
       }
       return null;
     }
@@ -511,32 +500,16 @@ public class DependencyArcGem implements Gem
 
     public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
     {
-      final NamedElement oldOwner = (NamedElement) subject.getClients().get(0);
-      final NamedElement oldSupplier = subject.getDependencyTarget();
-      
-      final NamedElement newOwner = DependencyCreatorGem.extractDependentClient(start.getFigureFacet().getSubject());
-      final NamedElement newSupplier = (NamedElement) end.getFigureFacet().getSubject();
+      NamedElement oldOwner = (NamedElement) subject.getClients().get(0);      
+      NamedElement newOwner = DependencyCreatorGem.extractDependentClient(start.getFigureFacet().getSubject());
+      NamedElement newSupplier = (NamedElement) end.getFigureFacet().getSubject();
 
-      // return a command to change these
-      return new AbstractCommand("Retargeted dependency ends", "Unretargeted dependency ends")
-      {
-        public void execute(boolean isTop)
-        {
-          // change the owner
-          newOwner.getOwnedAnonymousDependencies().add(subject);
-          subject.getClients().remove(oldOwner);
-          subject.getClients().add(newOwner);
-          subject.setDependencyTarget(newSupplier);
-        }
-
-        public void unExecute()
-        {
-          oldOwner.getOwnedAnonymousDependencies().add(subject);
-          subject.getClients().remove(newOwner);
-          subject.getClients().add(oldOwner);
-          subject.setDependencyTarget(oldSupplier);
-        }       
-      };
+      // change the owner
+      newOwner.getOwnedAnonymousDependencies().add(subject);
+      subject.getClients().remove(oldOwner);
+      subject.getClients().add(newOwner);
+      subject.setDependencyTarget(newSupplier);
+      return null;
     }
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

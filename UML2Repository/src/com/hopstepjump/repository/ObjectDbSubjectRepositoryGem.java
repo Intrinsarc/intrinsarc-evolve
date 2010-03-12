@@ -60,32 +60,46 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   
   private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
-		public void undo()
+		public String getRedoTransactionDescription()
+		{
+			return undoredo.getRedoDescription();
+		}
+
+		public String getUndoTransactionDescription()
+		{
+			return undoredo.getUndoDescription();
+		}
+
+		public void undoTransaction()
 		{
 			undoredo.undo();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
 		}
 		
-		public void redo()
+		public void redoTransaction()
 		{
 			undoredo.redo();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
 		}
 		
-		public int getCommandPosition()
+		public int getTransactionPosition()
 		{
 			return undoredo.getCurrent();
 		}
 		
-		public int getTotalCommands()
+		public int getTotalTransactions()
 		{
 			return undoredo.getStackSize();
 		}
 		
-		public void clearCommandHistory()
+		public void clearTransactionHistory()
 		{
 			undoredo.clearStack();
 		}
 		
-		public void enforceCommandDepth(int depth)
+		public void enforceTransactionDepth(int depth)
 		{
 			undoredo.enforceDepth(depth);
 		}
@@ -190,11 +204,11 @@ public class ObjectDbSubjectRepositoryGem implements Gem
         return "remotedb >> " + hostName + ":" + dbName;
     }
 
-    public void startTransaction()
+    public void startTransaction(String redoName, String undoName)
     {
       start();
       pm.evictAll();
-      undoredo.startTransaction();
+      undoredo.startTransaction(redoName, undoName);
     }
 
     public Transaction getCurrentTransaction()
@@ -206,6 +220,8 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     {
       end();
       undoredo.commitTransaction();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
     }
 
     public void incrementPersistentDelete(Element element)

@@ -48,7 +48,7 @@ public class BeanSubjectCreator
 	
 	public BeanCreatedSubjects createSubjects()
 	{
-		GlobalSubjectRepository.repository.startTransaction();
+		GlobalSubjectRepository.repository.startTransaction("created beans", "removed beans");
 		try
 		{
 			Map<String, Class> classes = new HashMap<String, Class>();

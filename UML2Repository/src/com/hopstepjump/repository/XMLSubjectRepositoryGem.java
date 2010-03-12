@@ -42,7 +42,6 @@ public class XMLSubjectRepositoryGem implements Gem
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
-  private CommandManagerListenerFacetImpl commandFacet = new CommandManagerListenerFacetImpl();
   private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();
   private boolean modified;
   private UndoRedoStackManager undoredo = new UndoRedoStackManager();
@@ -69,32 +68,50 @@ public class XMLSubjectRepositoryGem implements Gem
   
 	private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
-		public void undo()
+		public String getRedoTransactionDescription()
 		{
+			return undoredo.getRedoDescription();
+		}
+
+		public String getUndoTransactionDescription()
+		{
+			return undoredo.getUndoDescription();
+		}
+
+		public void undoTransaction()
+		{
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
 			undoredo.undo();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
 		}
 		
-		public void redo()
+		public void redoTransaction()
 		{
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
 			undoredo.redo();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
 		}
 		
-		public int getCommandPosition()
+		public int getTransactionPosition()
 		{
 			return undoredo.getCurrent();
 		}
 		
-		public int getTotalCommands()
+		public int getTotalTransactions()
 		{
 			return undoredo.getStackSize();
 		}
 		
-		public void clearCommandHistory()
+		public void clearTransactionHistory()
 		{
 			undoredo.clearStack();
 		}
 		
-		public void enforceCommandDepth(int depth)
+		public void enforceTransactionDepth(int depth)
 		{
 			undoredo.enforceDepth(depth);
 		}
@@ -239,16 +256,18 @@ public class XMLSubjectRepositoryGem implements Gem
       return fileName;
     }
 
-    public void startTransaction()
+    public void startTransaction(String redoName, String undoName)
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
-      undoredo.startTransaction();
+      undoredo.startTransaction(redoName, undoName);
     }
 
     public void commitTransaction()
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
       undoredo.commitTransaction();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
     }
 
     public void incrementPersistentDelete(Element element)
@@ -488,16 +507,6 @@ public class XMLSubjectRepositoryGem implements Gem
 		}
   }
   
-  private class CommandManagerListenerFacetImpl implements CommandManagerListenerFacet
-  {
-    public void commandExecuted()
-    {
-      for (SubjectRepositoryListenerFacet listener : listeners)
-        listener.sendChanges();
-    }
-  }
-  
-  
   public static XMLSubjectRepositoryGem openFile(String fileName, boolean initialiseWithFoundation) throws RepositoryOpeningException
   {
     XMLSubjectRepositoryGem repository = new XMLSubjectRepositoryGem(fileName);
@@ -577,12 +586,6 @@ public class XMLSubjectRepositoryGem implements Gem
     return subjectFacet;
   }
 
-
-  public CommandManagerListenerFacet getCommandManagerListenerFacet()
-  {
-    return commandFacet;
-  }
-  
   /**
    * @return
    */

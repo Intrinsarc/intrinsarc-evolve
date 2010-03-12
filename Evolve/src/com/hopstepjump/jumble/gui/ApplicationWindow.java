@@ -46,7 +46,7 @@ public class ApplicationWindow extends SmartJFrame
 	// the services
 	private ToolCoordinatorGem toolCoordinator;
 	private ToolCoordinatorFacet coordinator;
-	private CommandManagerFacet commandManager;
+	private TransactionManagerFacet commandManager;
 	private ApplicationWindowCoordinatorFacet applicationWindowCoordinator;
 	private PackageViewRegistryFacet viewRegistry;
 	private String title;
@@ -134,7 +134,7 @@ public class ApplicationWindow extends SmartJFrame
 
 	public void setUp(
 			ApplicationWindowCoordinatorFacet applicationWindowCoordinatorFacet,
-			ToolCoordinatorGem toolManagerGem, CommandManagerFacet commandManager,
+			ToolCoordinatorGem toolManagerGem,
 			final PackageViewRegistryFacet viewRegistryFacet,
 			ExtendedAdornerFacet errorAdorner, DeltaAdornerFacet deltaAdorner)
 	{
@@ -142,7 +142,7 @@ public class ApplicationWindow extends SmartJFrame
 		this.toolCoordinator = toolManagerGem;
 		popup = coordinator = toolCoordinator.getToolCoordinatorFacet();
 		this.viewRegistry = viewRegistryFacet;
-		this.commandManager = commandManager;
+		this.commandManager = toolManagerGem.getToolCoordinatorFacet();
 		this.errorAdorner = errorAdorner;
 		this.deltaAdorner = deltaAdorner;
 
@@ -518,7 +518,7 @@ public class ApplicationWindow extends SmartJFrame
 					});
 			GlobalSubjectRepository.repository.save(frame, true, getLastVisitedDirectory());
 			GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
-			commandManager.clearCommandHistory();
+			commandManager.clearTransactionHistory();
 
 			if (displayFinalMessage)
 				monitor.stopActivityAndDisplayPopup(GARBAGE_ICON,
@@ -586,15 +586,14 @@ public class ApplicationWindow extends SmartJFrame
 		{
 			GlobalSubjectRepository.repository.refreshAll();
 			List<DiagramFacet> unmodified = GlobalDiagramRegistry.registry.refreshAllDiagrams();
-			commandManager.tellDiagramsToSendChanges();
-			commandManager.executeCommandAndUpdateViews(new CompositeCommand("", ""));
+			//commandManager.tellDiagramsToSendChanges();
 			for (DiagramFacet diagram : unmodified)
 				diagram.resetModified();
-			commandManager.clearCommandHistory();
+			commandManager.clearTransactionHistory();
 			popup.displayPopup(REFRESH_ICON, "Refresh",
 					"Refreshed from database; cleared command history", ScreenProperties
 							.getUndoPopupColor(), Color.black, 1500, true, commandManager
-							.getCommandIndex(), commandManager.getCommandMax());
+							.getTransactionPosition(), commandManager.getTotalTransactions());
 		}
 	};
 
@@ -1030,16 +1029,16 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
-			if (commandManager.canUndo())
+			if (commandManager.getTransactionPosition() > 0)
 			{
-				String undoName = commandManager.getUndoPresentationName();
+				String undoName = commandManager.getUndoTransactionDescription();
 				toolCoordinator.getToolCoordinatorFacet().undoTransaction();
 				paletteFacet.refreshEnabled();
 
 				// display a small popup for 2 seconds
 				popup.displayPopup(UNDO_ICON, "Undo", undoName, ScreenProperties
 						.getUndoPopupColor(), Color.black, 1500, true, commandManager
-						.getCommandIndex(), commandManager.getCommandMax());
+						.getTransactionPosition(), commandManager.getTotalTransactions());
 			}
 		}
 	}
@@ -1053,16 +1052,16 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
-			if (commandManager.canRedo())
+			if (commandManager.getTransactionPosition() < commandManager.getTotalTransactions())
 			{
-				String redoName = commandManager.getRedoPresentationName();
+				String redoName = commandManager.getRedoTransactionDescription();
 				toolCoordinator.getToolCoordinatorFacet().redoTransaction();
 				paletteFacet.refreshEnabled();
 
 				// display a small popup for 2 seconds
 				popup.displayPopup(REDO_ICON, "Redo", redoName, ScreenProperties
 						.getUndoPopupColor(), Color.black, 1500, true, commandManager
-						.getCommandIndex(), commandManager.getCommandMax());
+						.getTransactionPosition(), commandManager.getTotalTransactions());
 			}
 		}
 	}
@@ -1081,7 +1080,8 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 			try
 			{
-				applicationWindowCoordinator.switchRepository(RepositoryUtility.useXMLRepository(null));
+				RepositoryUtility.useXMLRepository(null);
+				applicationWindowCoordinator.switchRepository();
 			}
 			catch (RepositoryOpeningException ex)
 			{
@@ -1120,7 +1120,8 @@ public class ApplicationWindow extends SmartJFrame
 			Cursor old = coordinator.displayWaitCursor();
 			try
 			{
-				applicationWindowCoordinator.switchRepository(RepositoryUtility.useXMLRepository(fileName));
+				RepositoryUtility.useXMLRepository(fileName);
+				applicationWindowCoordinator.switchRepository();
 				recent.addFile(fileName);
 			} catch (RepositoryOpeningException ex)
 			{
@@ -1160,8 +1161,8 @@ public class ApplicationWindow extends SmartJFrame
 			recent.setLastVisitedDirectory(new File(fileName));
 			try
 			{
-				applicationWindowCoordinator.switchRepository(RepositoryUtility
-						.useObjectDbRepository(null, fileName));
+				RepositoryUtility.useObjectDbRepository(null, fileName);
+				applicationWindowCoordinator.switchRepository();
 				recent.addFile(fileName);
 			} catch (RepositoryOpeningException ex)
 			{
@@ -1194,8 +1195,8 @@ public class ApplicationWindow extends SmartJFrame
 				if (info == null)
 					return;
 
-				applicationWindowCoordinator.switchRepository(RepositoryUtility
-						.useObjectDbRepository(info[0], info[1]));
+				RepositoryUtility.useObjectDbRepository(info[0], info[1]);
+				applicationWindowCoordinator.switchRepository();
 				name = info[0] + ":" + info[1];
 				recent.addFile(name);
 			} catch (RepositoryOpeningException ex)
@@ -1770,7 +1771,7 @@ public class ApplicationWindow extends SmartJFrame
 			{
 				public boolean update()
 				{
-					return commandManager.canUndo();
+					return commandManager.getTransactionPosition() > 0;
 				}
 			};
 			
@@ -1782,7 +1783,7 @@ public class ApplicationWindow extends SmartJFrame
 			{
 				public boolean update()
 				{
-					return commandManager.canRedo();
+					return commandManager.getTransactionPosition() < commandManager.getTotalTransactions();
 				}
 			};
 			GlobalPreferences.registerKeyAction("Edit", redo, "ctrl Y", "Redo the last command");
@@ -1818,7 +1819,7 @@ public class ApplicationWindow extends SmartJFrame
 			entries.add(new SmartMenuItemImpl("Tools", "Backbone", rerunItem));
 			
       // add the bean importer
-      JMenuItem beanImport = new BeanImportMenuItem(coordinator, commandManager, popup, monitor); 
+      JMenuItem beanImport = new BeanImportMenuItem(coordinator, popup, monitor); 
       entries.add(new SmartMenuItemImpl("Tools", "Beans", beanImport));      		
 			GlobalPreferences.registerKeyAction("Tools",beanImport, null, "Analyse and import JavaBeans from the classpath of the selected stratum");
 
@@ -2027,7 +2028,8 @@ public class ApplicationWindow extends SmartJFrame
 					if (name.endsWith(XMLSubjectRepositoryGem.UML2_SUFFIX) || name.endsWith(XMLSubjectRepositoryGem.UML2Z_SUFFIX) || name.endsWith(".xml"))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading XML repository", name, null, -1);
-						applicationWindowCoordinator.switchRepository(RepositoryUtility.useXMLRepository(name));
+						RepositoryUtility.useXMLRepository(name);
+						applicationWindowCoordinator.switchRepository();
 					}
 					else if (name.contains(":") && name.endsWith(".odb"))
 					{
@@ -2056,12 +2058,14 @@ public class ApplicationWindow extends SmartJFrame
 						String hostName = bits.get(0);
 						String dbName = bits.get(1);
 		
-						applicationWindowCoordinator.switchRepository(RepositoryUtility.useObjectDbRepository(hostName, dbName));
+						RepositoryUtility.useObjectDbRepository(hostName, dbName);
+						applicationWindowCoordinator.switchRepository();
 					}
 					else if (name.endsWith(ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading local database repository", name, null, -1);
-						applicationWindowCoordinator.switchRepository(RepositoryUtility.useObjectDbRepository(null, name));
+						RepositoryUtility.useObjectDbRepository(null, name);
+						applicationWindowCoordinator.switchRepository();
 					}
 					else
 					{

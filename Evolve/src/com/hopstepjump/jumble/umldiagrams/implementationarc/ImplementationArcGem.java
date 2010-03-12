@@ -121,31 +121,15 @@ public class ImplementationArcGem implements Gem
 
 		public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
 		{
-			final Class oldType = (Class) subject.getRealizingClassifier();
-			final Interface oldIface = subject.getContract();
-			
 			final Class newType = ImplementationCreatorGem.extractClassType(
 					(start.getFigureFacet().getSubject()));
 			final Interface newIface = (Interface) end.getFigureFacet().getSubject();
 
-			// return a command to change these
-			return new AbstractCommand("Retargeted generalization ends", "Unretargeted generalization ends")
-			{
-				public void execute(boolean isTop)
-				{
-					// change the owner
-          newType.getImplementations().add(subject);
-					subject.setRealizingClassifier(newType);
-					subject.setContract(newIface);
-				}
-
-				public void unExecute()
-				{
-          oldType.getImplementations().add(subject);
-					subject.setRealizingClassifier(oldType);
-					subject.setContract(oldIface);
-				}				
-			};
+			// change the owner
+      newType.getImplementations().add(subject);
+			subject.setRealizingClassifier(newType);
+			subject.setContract(newIface);
+			return null;
 		}
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

@@ -115,7 +115,6 @@ public final class ClassifierNodeGem implements Gem
   private boolean showOwningPackage;
   private boolean forceSuppressOwningPackage = false;
   private int stereotypeHashcode;
-  private UpdateViewFacet updateViewFacet = new UpdateViewFacetImpl();
   private SimpleDeletedUuidsFacetImpl deletedConnectorUuidsFacet = new SimpleDeletedUuidsFacetImpl();
   private Set<String> addedUuids = new HashSet<String>();
   private Set<String> deletedUuids = new HashSet<String>();
@@ -198,122 +197,95 @@ public final class ClassifierNodeGem implements Gem
 		}
   }
 
-  private class UpdateViewFacetImpl implements UpdateViewFacet
+  private void refreshEllipsis()
   {
-    public Object updateViewAfterSubjectChanged(boolean isTop)
-    {
-      if (isPart)
-        return updatePartViewAfterSubjectChanged(isTop);
-      else
-        return updateClassifierViewAfterSubjectChanged(isTop);
-    }
+    ClassifierSizeInfo info = makeCurrentInfo();
+    attributeEllipsis = isPart ? false : info.isEllipsisForAttributes();
+    operationEllipsis = isPart ? false : info.isEllipsisForOperations();
+    bodyEllipsis = isPart ? false : info.isEllipsisForBody();
+  }
+  
+  private Object updateClassifierViewAfterSubjectChanged(boolean isTop)
+  {
+    final int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, subject);
 
-    public void unUpdateViewAfterSubjectChanged(Object memento)
-    {
-      if (isPart)
-        unUpdatePartViewAfterSubjectChanged(memento);
-      else
-        unUpdateClassifierViewAfterSubjectChanged(memento);
-    }
+    // should we be displaying the owner?
+    ElementProperties props = new ElementProperties(figureFacet);
+    boolean sub = props.getElement().isSubstitution();
+    boolean locatedInCorrectView = props.getPerspective() == props.getElement().getHomeStratum();
 
-    private void refreshEllipsis()
+    final boolean shouldBeDisplayingOwningPackage =
+    	!locatedInCorrectView && !forceSuppressOwningPackage || sub;
+
+    // is this active?
+    boolean subjectActive = false;
+    if (subject instanceof Class)
     {
-      ClassifierSizeInfo info = makeCurrentInfo();
-      attributeEllipsis = isPart ? false : info.isEllipsisForAttributes();
-      operationEllipsis = isPart ? false : info.isEllipsisForOperations();
-      bodyEllipsis = isPart ? false : info.isEllipsisForBody();
+      Class actualClassSubject = (Class) subject;
+      subjectActive = actualClassSubject.isActive();
     }
+    final boolean actuallyActive = subjectActive;
+
+    final Classifier classifierSubject = (Classifier) subject;
     
-    private Object updateClassifierViewAfterSubjectChanged(boolean isTop)
-    {
-      final int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, subject);
-
-      // should we be displaying the owner?
-      ElementProperties props = new ElementProperties(figureFacet);
-      boolean sub = props.getElement().isSubstitution();
-      boolean locatedInCorrectView = props.getPerspective() == props.getElement().getHomeStratum();
-
-      final boolean shouldBeDisplayingOwningPackage =
-      	!locatedInCorrectView && !forceSuppressOwningPackage || sub;
-
-      // is this active?
-      boolean subjectActive = false;
-      if (subject instanceof Class)
-      {
-        Class actualClassSubject = (Class) subject;
-        subjectActive = actualClassSubject.isActive();
-      }
-      final boolean actuallyActive = subjectActive;
-
-      final Classifier classifierSubject = (Classifier) subject;
-      
-      // get a possible name for a substituted element
-      String newName = new ElementProperties(figureFacet, subject).getPerspectiveName();
-      
-      refreshEllipsis();
-      
-      // set the variables
-      name = newName;
-      isAbstract = classifierSubject.isAbstract();
-      retired = isElementRetired();
-      isActive = actuallyActive;
-      showOwningPackage = shouldBeDisplayingOwningPackage;
-      stereotypeHashcode = actualStereotypeHashcode;
-      autoSized = shouldDisplayOnlyIcon() ? true : autoSized;
-      
-      // get the new stratum owner (or set to the original name in case of evolution)
-      final String newOwner = sub ?
-      	"(" + (retired ? "retires " : "replaces ") + props.getSubstitutesForName() + ")" :
-      	"(from " + GlobalSubjectRepository.repository.getFullStratumNames((Element) props.getHomePackage().getRepositoryObject()) + ")";
-      owner = newOwner;
-      showAsState = StereotypeUtilities.isStereotypeApplied(subject, "state");
-      
-      // resize, using a text utility
-      new DisplayAsIconCommand(figureFacet.getFigureReference(), shouldDisplayOnlyIcon(), "", "");
-      figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
-      
-      return null;
-    }
-
-		private void unUpdateClassifierViewAfterSubjectChanged(Object memento)
-    {
-    }
+    // get a possible name for a substituted element
+    String newName = new ElementProperties(figureFacet, subject).getPerspectiveName();
     
-    public Object updatePartViewAfterSubjectChanged(boolean isTop)
-    {
-      Property part = (Property) subject;
-      Classifier type = (Classifier) part.undeleted_getType();
-      final int actualStereotypeHashcode =
-      	StereotypeUtilities.calculateStereotypeHash(figureFacet, subject) +
-      	StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, type);
+    refreshEllipsis();
+    
+    // set the variables
+    name = newName;
+    isAbstract = classifierSubject.isAbstract();
+    retired = isElementRetired();
+    isActive = actuallyActive;
+    showOwningPackage = shouldBeDisplayingOwningPackage;
+    stereotypeHashcode = actualStereotypeHashcode;
+    autoSized = shouldDisplayOnlyIcon() ? true : autoSized;
+    
+    // get the new stratum owner (or set to the original name in case of evolution)
+    final String newOwner = sub ?
+    	"(" + (retired ? "retires " : "replaces ") + props.getSubstitutesForName() + ")" :
+    	"(from " + GlobalSubjectRepository.repository.getFullStratumNames((Element) props.getHomePackage().getRepositoryObject()) + ")";
+    owner = newOwner;
+    showAsState = StereotypeUtilities.isStereotypeApplied(subject, "state");
+    
+    // resize, using a text utility
+    new DisplayAsIconCommand(figureFacet.getFigureReference(), shouldDisplayOnlyIcon(), "", "");
+    figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
+    
+    return null;
+  }
 
-      final boolean subjectActive = type == null || !(type instanceof Class) ? false : ((Class) type).isActive();     
-      final boolean subjectAbstract = type == null ? false : type.isAbstract();
+  public Object updatePartViewAfterSubjectChanged(boolean isTop)
+  {
+    Property part = (Property) subject;
+    Classifier type = (Classifier) part.undeleted_getType();
+    final int actualStereotypeHashcode =
+    	StereotypeUtilities.calculateStereotypeHash(figureFacet, subject) +
+    	StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, type);
 
-      String typeName = new ElementProperties(figureFacet, subject).getPerspectiveName();
-      final String newName;
-      if (subject.getName().length() == 0 && typeName.length() == 0)
-        newName = "";
-      else
-        newName = subject.getName() + " : " + typeName;
-      
-      // set the variables
-      name = newName;
-      isAbstract = subjectAbstract;
-      isActive = subjectActive;
-      if (type != null)
-      	showAsState = StereotypeUtilities.isStereotypeApplied(type, "state");
-      
-      // resize, using a text utility
-      stereotypeHashcode = actualStereotypeHashcode;
-      figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
-      return null;
-    }
-      
-    public void unUpdatePartViewAfterSubjectChanged(Object memento)
-    {
-    }
-  }  
+    final boolean subjectActive = type == null || !(type instanceof Class) ? false : ((Class) type).isActive();     
+    final boolean subjectAbstract = type == null ? false : type.isAbstract();
+
+    String typeName = new ElementProperties(figureFacet, subject).getPerspectiveName();
+    final String newName;
+    if (subject.getName().length() == 0 && typeName.length() == 0)
+      newName = "";
+    else
+      newName = subject.getName() + " : " + typeName;
+    
+    // set the variables
+    name = newName;
+    isAbstract = subjectAbstract;
+    isActive = subjectActive;
+    if (type != null)
+    	showAsState = StereotypeUtilities.isStereotypeApplied(type, "state");
+    
+    // resize, using a text utility
+    stereotypeHashcode = actualStereotypeHashcode;
+    figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
+    return null;
+  }
 
   private class StylableFacetImpl implements StylableFacet
   {
@@ -918,35 +890,17 @@ public final class ClassifierNodeGem implements Gem
 			return ret;
 		}
 		
-    public Object setText(String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress, oldMemento);
+      SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
 
       if (payload != null)
       {
         if (payload.getSubject() != null)
           subject = (Classifier) payload.getSubject();
-        
-        return new Object[]{payload.getMemento(), refreshSuppressedAttributes(), refreshSuppressedPorts()};
       }
-      return null;
     }
 		
-    public void unSetText(Object memento)
-    {
-    	Object[] data = (Object[]) memento;
-    	Object obj = data != null ? data[0] : null;
-    	Set<String>[] suppressedAttrs = data != null ? (Set<String>[]) data[1] : null; 
-    	Set<String>[] suppressedPorts = data != null ? (Set<String>[]) data[2] : null;
-    	    	
-    	attributesOrSlots.setAddedAndDeleted(suppressedAttrs);
-    	ports.setAddedAndDeleted(suppressedPorts);
-    	
-      SetTextPayload payload = miniAppearanceFacet.unSetText(obj);
-      if (payload != null && payload.getSubject() != null)
-        subject = (Classifier) payload.getSubject();      
-    }
-    
 		public FigureFacet getFigureFacet()
 		{
 			return figureFacet;
@@ -980,20 +934,21 @@ public final class ClassifierNodeGem implements Gem
 			return basicGem.getPreviewFacet();
 		}
 		
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 			ManipulatorFacet keyFocus = null;
 			if (favoured)
 			{
 				TextManipulatorGem textGem =
 					new TextManipulatorGem(
-					isPart ? "changed part details" : "changed classifier name",
-					isPart ? "changed part details" : "changed classifier name",
-					isPart ? name : subject.getName(),
-					font,
-					Color.black,
-					fillColor,
-					TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+							coordinator,
+							isPart ? "changed part details" : "changed classifier name",
+							isPart ? "changed part details" : "changed classifier name",
+							isPart ? name : subject.getName(),
+							font,
+							Color.black,
+							fillColor,
+							TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
 				textGem.connectTextableFacet(textableFacet);
 				keyFocus = textGem.getManipulatorFacet();
 			}
@@ -1001,6 +956,7 @@ public final class ClassifierNodeGem implements Gem
 				new Manipulators(
 				    keyFocus,
 				    new ResizingManipulatorGem(
+				    		coordinator,
 				        figureFacet,
 				        diagramView,
 								figureFacet.getFullBounds(),
@@ -2821,8 +2777,6 @@ public final class ClassifierNodeGem implements Gem
 		  // on the first pass, add or delete any constituents
 		  if (pass == ViewUpdatePassEnum.START)
 		  {
-        CompositeCommand cmd = new CompositeCommand("", "");
-
 	      // find any attributes to add or delete
 	      ClassifierAttributeHelper attributeHelper =
           new ClassifierAttributeHelper(
@@ -2860,20 +2814,18 @@ public final class ClassifierNodeGem implements Gem
         partHelper.cleanUuids();
         
         if (!suppressAttributesOrSlots)
-          cmd.addCommand(attributeHelper.makeUpdateCommand(locked));
+          attributeHelper.makeUpdateCommand(locked);
         if (!suppressOperations)
-          cmd.addCommand(operationHelper.makeUpdateCommand(locked));
+          operationHelper.makeUpdateCommand(locked);
         if (!displayOnlyIcon)
-          cmd.addCommand(portHelper.makeUpdateCommand(locked));
+          portHelper.makeUpdateCommand(locked);
         if (isContentsShowing())
-          cmd.addCommand(partHelper.makeUpdateCommand(locked));
-        return cmd;
+          partHelper.makeUpdateCommand(locked);
+        return null;
 		  }
 		  
       if (pass == ViewUpdatePassEnum.PENULTIMATE)
       {
-      	CompositeCommand cmd = new CompositeCommand("", "");
-
       	// find any connectors to possibly add or delete
         ClassConnectorHelper connectorHelper =
           new ClassConnectorHelper(
@@ -2885,7 +2837,7 @@ public final class ClassifierNodeGem implements Gem
               isTop);
 
         // get the composite command for fixing up the connectors
-        cmd.addCommand(connectorHelper.makeUpdateCommand(locked));
+        connectorHelper.makeUpdateCommand(locked);
 
         // find any connectors or port links to possibly add or delete
         ClassConnectorHelper portLinkHelper =
@@ -2897,10 +2849,8 @@ public final class ClassifierNodeGem implements Gem
               deletedConnectorUuidsFacet,
               isTop);
         // get the composite command for fixing up the port links
-        cmd.addCommand(portLinkHelper.makeUpdateCommand(locked));
+        portLinkHelper.makeUpdateCommand(locked);
         portLinkHelper.cleanUuids(ConstituentTypeEnum.DELTA_CONNECTOR);
-        
-        return cmd;
       }
 		  
       int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, subject);
@@ -2950,11 +2900,11 @@ public final class ClassifierNodeGem implements Gem
 				return null;
       }
 
-			return
-  			new UpdateViewCommand(
-              figureFacet.getFigureReference(),
-              "updated view",
-              "restored view");
+      if (isPart)
+        updatePartViewAfterSubjectChanged(isTop);
+      else
+        updateClassifierViewAfterSubjectChanged(isTop);
+			return null;
 		}
 		
 		/**
@@ -3398,7 +3348,6 @@ public final class ClassifierNodeGem implements Gem
 		// override the default autosizing mechanism, which doesn't work for this
 		figureFacet.registerDynamicFacet(autoSizedFacet, AutoSizedFacet.class);
     figureFacet.registerDynamicFacet(stylableFacet, StylableFacet.class);
-    figureFacet.registerDynamicFacet(updateViewFacet, UpdateViewFacet.class);
     figureFacet.registerDynamicFacet(deletedConnectorUuidsFacet, SimpleDeletedUuidsFacet.class);
     figureFacet.registerDynamicFacet(lockFacet, VisualLockFacet.class);
     registerAdorner();

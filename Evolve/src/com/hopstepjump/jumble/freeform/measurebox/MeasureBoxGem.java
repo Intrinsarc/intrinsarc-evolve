@@ -91,18 +91,13 @@ public final class MeasureBoxGem implements Gem
 			return figureFacet.getFullBounds();
 		}
 	
-	  public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+	  public void setText(String newText, Object listSelection, boolean unsuppress)
 	  {
 	    // need to resize this also, as the change in text may have affected the size
 	    text = newText;	    
 	    figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(newText));
-	    return null;
 	  }
 	
-	  public void unSetText(Object memento)
-	  {
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
 		 */
@@ -232,18 +227,19 @@ public final class MeasureBoxGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
 		 */
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 	    ManipulatorFacet keyFocus = null;
 	    if (favoured)
 	    {
-	      TextManipulatorGem textGem = new TextManipulatorGem("changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+	      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
 	      textGem.connectTextableFacet(textableFacet);
 	      keyFocus = textGem.getManipulatorFacet();
 	    }
 	    return new Manipulators(
 	        keyFocus,
 	        new ResizingManipulatorGem(
+	        		coordinator,
 	            figureFacet,
 	            diagramView,
 	            figureFacet.getFullBounds(),

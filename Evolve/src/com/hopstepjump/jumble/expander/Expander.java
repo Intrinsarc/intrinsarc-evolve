@@ -108,16 +108,13 @@ public class Expander
     PersistentProperties properties = new PersistentProperties();
     creator.initialiseExtraProperties(properties);
     creator.aboutToMakeCommand(coordinator);
-	  ArcCreateFigureCommand cmd =
-      new ArcCreateFigureCommand(
+    ArcCreateFigureTransaction.create(
+    		diagram,
       	rel,
         reference,
         creator,
         previewFigure.getReferenceCalculatedPoints(diagram),
-        properties,
-        "created " + creator.getFigureName() + " via expansion",
-        "removed " + creator.getFigureName());
-	  coordinator.executeCommandAndUpdateViews(cmd);
+        properties);
 	}
 
 	private List<FigureFacet> findFiguresWithSubject(DiagramFacet diagram, Element t)

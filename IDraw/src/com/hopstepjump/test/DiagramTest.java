@@ -49,7 +49,7 @@ public class DiagramTest
 			public void actionPerformed(ActionEvent arg0)
 			{
 				addFigure(diagram, false);
-				diagram.commit();
+				diagram.commitTransaction();
 			}
 		});
 		buttons.add(circle);
@@ -59,7 +59,7 @@ public class DiagramTest
 			public void actionPerformed(ActionEvent arg0)
 			{
 				addFigure(diagram, true);
-				diagram.commit();
+				diagram.commitTransaction();
 			}
 		});
 		buttons.add(square);
@@ -69,9 +69,9 @@ public class DiagramTest
 			public void actionPerformed(ActionEvent arg0)
 			{
 				addFigure(diagram, false);
-				diagram.checkpointCommit();
+				diagram.checkpointCommitTransaction();
 				addFigure(diagram, true);
-				diagram.commit();
+				diagram.commitTransaction();
 			}
 		});
 		buttons.add(both);
@@ -83,7 +83,7 @@ public class DiagramTest
 				for (FigureFacet f : diagram.getFigures())
 					if (rand(0, 10) > 5)
 						diagram.remove(f);
-				diagram.commit();
+				diagram.commitTransaction();
 			}
 		});
 		buttons.add(del);
@@ -94,7 +94,7 @@ public class DiagramTest
 			{
 				for (FigureFacet f : diagram.getFigures())
 					((SimpleFigure) f).randomChange();  // mocked out to random change
-				diagram.commit();
+				diagram.commitTransaction();
 			}
 		});
 		buttons.add(random);
@@ -103,7 +103,7 @@ public class DiagramTest
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				diagram.undo();
+				diagram.undoTransaction();
 			}
 		});
 		buttons.add(undo);
@@ -112,7 +112,7 @@ public class DiagramTest
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				diagram.redo();
+				diagram.redoTransaction();
 			}
 		});
 		buttons.add(redo);
@@ -141,8 +141,8 @@ public class DiagramTest
 
 	private void setUndoRedoStates()
 	{
-		undo.setEnabled(diagram.getCommandPosition() > 0);
-		redo.setEnabled(diagram.getCommandPosition() < diagram.getTotalCommands());
+		undo.setEnabled(diagram.getTransactionPosition() > 0);
+		redo.setEnabled(diagram.getTransactionPosition() < diagram.getTotalTransactions());
 	}
 	
 	private void addFigure(final DiagramFacet diagram, boolean rect)

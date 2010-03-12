@@ -65,7 +65,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   	return name;
   }
 
-  public Object setText(String text, Object listSelection, Object memento)
+  public Object setText(String text, Object listSelection)
   {
     final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository; 
 

@@ -26,6 +26,7 @@ final class BasicSelectionFacetImpl implements SelectionFacet
   private ZCanvas canvas;
   private Set<SelectionListenerFacet> listeners = new HashSet<SelectionListenerFacet>();
   private FigureFacet firstSelected;
+	private ToolCoordinatorFacet coordinator;
 
   public BasicSelectionFacetImpl(DiagramViewFacet diagramView, ZGroup selectingGroup, ZGroup marqueeGroup, ZCanvas canvas)
   {
@@ -222,7 +223,7 @@ final class BasicSelectionFacetImpl implements SelectionFacet
     favouredSelectable = selectable;
     firstSelected = selectable;
     favouredManipulators = selectable.getSelectionManipulators(
-        diagramView, true, true, allowTYPE0Manipulators);
+        coordinator, diagramView, true, true, allowTYPE0Manipulators);
     selectedFigures.put(selectable, favouredManipulators);
     favouredManipulators.addToView(selectionLayer, canvas);
     state = ONE_SELECTED_STATE;
@@ -234,14 +235,14 @@ final class BasicSelectionFacetImpl implements SelectionFacet
     // clear out the initial favoured, and add it back as unfavoured
     favouredManipulators.cleanUp();
     Manipulators unfavoured = favouredSelectable.getSelectionManipulators(
-        diagramView, false, true, false);
+        coordinator, diagramView, false, true, false);
 	  selectedFigures.put(favouredSelectable, unfavoured);
 	  unfavoured.addToView(selectionLayer, canvas);
     favouredSelectable = null;
     favouredManipulators = null;
 
     // add the unfavoured manipulators for the new selection
-    Manipulators newUnfavoured = figure.getSelectionManipulators(diagramView, false, false, false);
+    Manipulators newUnfavoured = figure.getSelectionManipulators(coordinator, diagramView, false, false, false);
     newUnfavoured.addToView(selectionLayer, canvas);
     selectedFigures.put(figure, newUnfavoured);
     state = N_SELECTED_STATE;
@@ -250,7 +251,7 @@ final class BasicSelectionFacetImpl implements SelectionFacet
   private void transition_from_N_SELECTED_STATE_to_N_SELECTED_STATE_added(FigureFacet figure)
   {
     // add the unfavoured manipulators for the new selection
-    Manipulators newUnfavoured = figure.getSelectionManipulators(diagramView, false, false, false);
+    Manipulators newUnfavoured = figure.getSelectionManipulators(coordinator, diagramView, false, false, false);
     newUnfavoured.addToView(selectionLayer, canvas);
     selectedFigures.put(figure, newUnfavoured);
   }
@@ -266,7 +267,7 @@ final class BasicSelectionFacetImpl implements SelectionFacet
     firstSelected = favouredSelectable;
     Manipulators oldManip = selectedFigures.get(favouredSelectable);
     oldManip.cleanUp();
-    favouredManipulators = favouredSelectable.getSelectionManipulators(diagramView, true, true, false);
+    favouredManipulators = favouredSelectable.getSelectionManipulators(coordinator, diagramView, true, true, false);
     selectedFigures.put(favouredSelectable, favouredManipulators);
     favouredManipulators.addToView(selectionLayer, canvas);
     state = ONE_SELECTED_STATE;
@@ -286,7 +287,7 @@ final class BasicSelectionFacetImpl implements SelectionFacet
       firstSelected = (FigureFacet) selectedFigures.keySet().toArray()[0];
       previous.cleanUp();
       
-      Manipulators next = firstSelected.getSelectionManipulators(diagramView, false, true, false);
+      Manipulators next = firstSelected.getSelectionManipulators(coordinator, diagramView, false, true, false);
       next.addToView(selectionLayer, canvas);
       selectedFigures.put(firstSelected, next);      
     }
@@ -325,7 +326,7 @@ final class BasicSelectionFacetImpl implements SelectionFacet
     favouredSelectable = selectable;  // need to replace with the new one, as the old may be out of date
     firstSelected = selectable;
     favouredManipulators.cleanUp();
-    favouredManipulators = favouredSelectable.getSelectionManipulators(diagramView, true, true, false);
+    favouredManipulators = favouredSelectable.getSelectionManipulators(coordinator, diagramView, true, true, false);
     favouredManipulators.addToView(selectionLayer, canvas);
     selectedFigures.remove(favouredSelectable);  // need to remove, so that it can be replaced by the more up to date figure
     selectedFigures.put(favouredSelectable, favouredManipulators);
@@ -338,7 +339,7 @@ final class BasicSelectionFacetImpl implements SelectionFacet
     manips.cleanUp();
 
     Manipulators newManips = figure.getSelectionManipulators(
-        diagramView, false, figure == firstSelected, false);
+        coordinator, diagramView, false, figure == firstSelected, false);
     newManips.addToView(selectionLayer, canvas);
 		selectedFigures.remove(figure);  // need to remove and replace with the new figure, which will be more up to date
     selectedFigures.put(figure, newManips);
@@ -444,5 +445,10 @@ final class BasicSelectionFacetImpl implements SelectionFacet
       parent = container.getFigureFacet();
     }
     return false;
+  }
+  
+  public void connectToolCoordinatorFacet(ToolCoordinatorFacet coordinator)
+  {
+  	this.coordinator = coordinator;
   }
 }

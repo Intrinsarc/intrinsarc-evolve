@@ -186,7 +186,7 @@ public final class NodeCreateToolGem implements Gem
 	    factory.initialiseExtraProperties(properties);
 	    
 	    String name = factory.getFigureName();
-	    coordinator.startTransaction("Created " + name, "Removed " + name);
+	    coordinator.startTransaction("created " + name, "removed " + name);
 	    if (acceptingContainer == null)
 	    	NodeCreateFigureTransaction.create(diagram, null, reference, null, factory, creationPoint, properties, null);
 	    else

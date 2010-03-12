@@ -15,7 +15,8 @@ public class UndoRedoStackManager
 	private ArrayList<NotificationList> stack = new ArrayList<NotificationList>();
 	private int current;
 	private boolean ignoreNotifications;
-	static int count = 0;
+	private String redoDescription;
+	private String undoDescription;
 	
 	public UndoRedoStackManager()
 	{
@@ -26,15 +27,14 @@ public class UndoRedoStackManager
 		if (ignoreNotifications || n.getEventType() == 0)
 			return;
 		
-		if (current >= stack.size())
-			stack.add(new NotificationList());
+		ensureCurrent();
 		stack.get(current).addNotification(n);
 	}
 
 	private void ensureCurrent()
 	{
 		if (current >= stack.size())
-			stack.add(new NotificationList());		
+			stack.add(new NotificationList(redoDescription, undoDescription));		
 	}
 	
 	public void undo()
@@ -63,14 +63,15 @@ public class UndoRedoStackManager
 				{
 					Element e = (Element) n.getNotifier();
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					el.remove(n.getPosition());
+					el.remove(n.getNewValue());
 				}
 				break;
 			case Notification.REMOVE:
 				{
 					Element e = (Element) n.getNotifier();
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					el.add(n.getPosition(), n.getOldValue());
+					if (n.getNewValue() != null)
+						el.add(n.getNewValue());
 				}
 				break;
 			case Notification.SET:
@@ -109,14 +110,15 @@ public class UndoRedoStackManager
 				{
 					Element e = (Element) n.getNotifier();
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					el.add(n.getPosition(), n.getNewValue());
+					if (n.getNewValue() != null)
+						el.add(n.getNewValue());
 				}
 				break;
 			case Notification.REMOVE:
 				{
 					Element e = (Element) n.getNotifier();
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					el.remove(n.getPosition());
+					el.remove(n.getNewValue());
 				}
 				break;
 			case Notification.SET:
@@ -133,8 +135,10 @@ public class UndoRedoStackManager
 		ignoreNotifications = false;
 	}
 
-	public void startTransaction()
+	public void startTransaction(String redoName, String undoName)
   {
+  	this.redoDescription = redoName;
+  	this.undoDescription = undoName;
   	int count = stack.size() - current;
   	for (int lp = 0; lp < count; lp++)
   		stack.remove(current);
@@ -171,5 +175,15 @@ public class UndoRedoStackManager
 		int truncate = stack.size() - depth;
 		for (int lp = 0; lp < truncate; lp++)
 			stack.remove(0);		
+	}
+
+	public String getRedoDescription()
+	{
+		return stack.get(current).getRedoDescription();
+	}
+
+	public String getUndoDescription()
+	{
+		return stack.get(current-1).getUndoDescription();
 	}
 }
