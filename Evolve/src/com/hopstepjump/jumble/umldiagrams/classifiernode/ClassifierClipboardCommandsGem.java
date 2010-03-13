@@ -112,7 +112,7 @@ public class ClassifierClipboardCommandsGem
       return null;
     }
     
-    public Command makePostDeleteCommand()
+    public Command performPostDeleteTransaction()
     {
     	return null;
     }

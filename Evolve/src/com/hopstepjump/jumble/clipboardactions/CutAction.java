@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import com.hopstepjump.idraw.diagramsupport.*;
 import com.hopstepjump.idraw.foundation.*;
+import com.hopstepjump.jumble.clipboardactions.CopyAction.*;
 
 /**
  *
@@ -33,9 +34,9 @@ public class CutAction extends AbstractAction
 	   if (diagramView.getDiagram().isReadOnly())
 	      return;
 
-		Collection includedCopyFigureIds = CopyToDiagramHelper.getFigureIdsIncludedInSelectionCopy(diagramView);
+		Collection<String> includedCopyFigureIds = CopyToDiagramUtilities.getFigureIdsIncludedInSelectionCopy(diagramView);
 		SelectionFacet selection = diagramView.getSelection();
-		Set includedDeleteFigureIds = DeleteFromDiagramHelper.getFigureIdsIncludedInDelete(selection.getSelectedFigures(), selection, false);		
+		Set<String> includedDeleteFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(selection.getSelectedFigures(), selection, false);		
 
 		// don't go further if we have nothing to delete
 		if (includedDeleteFigureIds.isEmpty())
@@ -43,22 +44,16 @@ public class CutAction extends AbstractAction
 
 		DiagramFacet src = diagramView.getDiagram();
 		
-		Command copy = new CopyAction.CopyCommandGenerator(
+		coordinator.startTransaction(
+        "cut figures from diagram",
+        "restored cut figures in diagram");
+		DeleteFromDiagramTransaction.delete(diagramView.getDiagram(), includedDeleteFigureIds, true);
+		CopyCommandGenerator.copy(
 		    includedCopyFigureIds,
 		    clipboard.getDiagramReference(),
-		    src.getDiagramReference()).generateCommand();
-		
-		// delete the elements now
-    Command delete = new DeleteAction.DeleteCommandGenerator(
-        src.getDiagramReference(),
-        includedDeleteFigureIds,
-        "CutKey deletion",
-        "cut figures from diagram",
-        "restored cut figures in diagram").generateCommand();
+		    src.getDiagramReference());		
+		coordinator.commitTransaction();
 
-    CompositeCommand composite = new CompositeCommand(delete);
-    composite.addCommand(copy);
-    coordinator.executeCommandAndUpdateViews(composite);
 
     // copy the clipboard diagram, as a metafile, to the system clipboard
 		CopyAction.copyDiagramToClipboardAsMetafile(clipboard, diagramView.getAdorners());

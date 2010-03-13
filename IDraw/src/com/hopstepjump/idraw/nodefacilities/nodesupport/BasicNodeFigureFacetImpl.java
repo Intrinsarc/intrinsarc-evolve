@@ -432,13 +432,12 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
     };
     List<FigureFacet> toDelete = new ArrayList<FigureFacet>();
     toDelete.add(this);
-    Set deletionFigureIds = DeleteFromDiagramHelper.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
+    Set deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
     
 
-    // make a delete command to remove the views with deleted subjects
-    return
-      DeleteFromDiagramHelper.makeDeleteCommand(
-          "BasicNodeFigureGem deletion", "", "", getDiagram(), deletionFigureIds, false);
+    // remove the views with deleted subjects
+    DeleteFromDiagramTransaction.delete(getDiagram(), deletionFigureIds, false);
+    return null;
   }
 
   public ClipboardCommandsFacet getClipboardCommandsFacet()

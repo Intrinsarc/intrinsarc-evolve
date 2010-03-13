@@ -54,32 +54,19 @@ public class PartClipboardCommandsGem
       return null;
     }
     
-    public Command makePostDeleteCommand()
+    public Command performPostDeleteTransaction()
     {
       // important to use the reference rather than the figure, which gets recreated...
-      final FigureReference reference = figureFacet.getFigureReference();
-      final String uuid = getOriginalSubjectAsPart(getSubject()).getUuid();
-      
-      return new AbstractCommand()
-      {
-        public void execute(boolean isTop)
-        {
-          getSimpleContainerCompartment().addDeleted(uuid);
-        }
+      final String uuid = getOriginalSubjectAsPart(getSubject()).getUuid();      
+      getSimpleContainerCompartment().addDeleted(uuid);
+      return null;
+    }
 
-        private SimpleContainerFacet getSimpleContainerCompartment()
-        {
-          FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(reference);
-          FigureFacet parent = figure.getContainedFacet().getContainer().getFigureFacet();
-          return (SimpleContainerFacet)
-            parent.getDynamicFacet(SimpleContainerFacet.class);
-        }
-
-        public void unExecute()
-        {
-          getSimpleContainerCompartment().removeDeleted(uuid);
-        } 
-      };
+    private SimpleContainerFacet getSimpleContainerCompartment()
+    {
+      FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
+      return (SimpleContainerFacet)
+        parent.getDynamicFacet(SimpleContainerFacet.class);
     }
 
     public boolean hasSpecificKillCommand()

@@ -130,32 +130,18 @@ public final class PortNodeGem implements Gem
       return null;
     }
     
-    public Command makePostDeleteCommand()
+    public Command performPostDeleteTransaction()
     {
-      // important to use the reference rather than the figure, which gets recreated...
-      final FigureReference reference = figureFacet.getFigureReference();
-      final String uuid = getOriginalSubjectAsPort(subject).getUuid();
-      
-      return new AbstractCommand()
-      {
-        public void execute(boolean isTop)
-        {
-          getPortCompartment().addDeleted(uuid);
-        }
-
-        private PortCompartmentFacet getPortCompartment()
-        {
-          FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(reference);
-          FigureFacet parent = figure.getContainedFacet().getContainer().getFigureFacet();
-          return (PortCompartmentFacet)
-            parent.getDynamicFacet(PortCompartmentFacet.class);
-        }
-
-        public void unExecute()
-        {
-          getPortCompartment().removeDeleted(uuid);
-        } 
-      };
+      String uuid = getOriginalSubjectAsPort(subject).getUuid();
+      getPortCompartment().addDeleted(uuid);
+      return null;
+    }
+    
+    private PortCompartmentFacet getPortCompartment()
+    {
+      FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
+      return (PortCompartmentFacet)
+        parent.getDynamicFacet(PortCompartmentFacet.class);
     }
 
     public boolean hasSpecificKillCommand()

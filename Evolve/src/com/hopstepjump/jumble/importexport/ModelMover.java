@@ -67,8 +67,8 @@ public class ModelMover
   {
     // collect the top level elements we've been asked to export
     DiagramFacet diagram = diagramView.getDiagram();
-    Set<String> selected = CopyToDiagramHelper.getFigureIdsIncludedInSelection(diagramView, false);
-    Collection<String> topLevel = CopyToDiagramHelper.getTopLevelFigureIdsOnly(diagramView.getDiagram(), selected, 0, true);
+    Set<String> selected = CopyToDiagramUtilities.getFigureIdsIncludedInSelection(diagramView, false);
+    Collection<String> topLevel = CopyToDiagramUtilities.getTopLevelFigureIdsOnly(diagramView.getDiagram(), selected, 0, true);
     
     // turn these into elements
     Set<Package> elements = new HashSet<Package>();

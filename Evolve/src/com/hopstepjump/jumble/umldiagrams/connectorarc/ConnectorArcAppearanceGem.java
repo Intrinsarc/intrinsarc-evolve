@@ -93,35 +93,21 @@ public class ConnectorArcAppearanceGem implements Gem
       return null;
     }
     
-    public Command makePostDeleteCommand()
+    public Command performPostDeleteTransaction()
     {
       // important to use the reference rather than the figure, which gets recreated...
-      final FigureReference reference = figureFacet.getFigureReference();
-      final String uuid = FeatureNodeGem.getOriginalSubject(subject).getUuid();
-      
-      return new AbstractCommand()
-      {
-        public void execute(boolean isTop)
-        {
-          getSimpleDeletedUuidsFacet().addDeleted(uuid);
-        }
-
-        private SimpleDeletedUuidsFacet getSimpleDeletedUuidsFacet()
-        {
-          FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(reference);
-          
-          // follow one anchor up until we find the classifier, and then look for the simple deleted uuids facet 
-          FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConnector(figure);
-          return (SimpleDeletedUuidsFacet)
-            clsFigure.getDynamicFacet(SimpleDeletedUuidsFacet.class);
-        }
-
-        public void unExecute()
-        {
-          getSimpleDeletedUuidsFacet().removeDeleted(uuid);
-        } 
-      };
+      String uuid = FeatureNodeGem.getOriginalSubject(subject).getUuid();      
+      getSimpleDeletedUuidsFacet().addDeleted(uuid);
+      return null;
     }
+
+	  private SimpleDeletedUuidsFacet getSimpleDeletedUuidsFacet()
+	  {
+	    // follow one anchor up until we find the classifier, and then look for the simple deleted uuids facet 
+	    FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConnector(figureFacet);
+	    return (SimpleDeletedUuidsFacet)
+	      clsFigure.getDynamicFacet(SimpleDeletedUuidsFacet.class);
+	  }
 
     public boolean hasSpecificKillCommand()
     {

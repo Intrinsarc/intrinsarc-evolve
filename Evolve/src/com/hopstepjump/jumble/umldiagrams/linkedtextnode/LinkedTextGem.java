@@ -87,7 +87,7 @@ public class LinkedTextGem implements Gem
       return new HideLinkedTextCommand(figureFacet.getFigureReference(), true, "", "");
     }
     
-    public Command makePostDeleteCommand()
+    public Command performPostDeleteTransaction()
     {
       return null;
     }

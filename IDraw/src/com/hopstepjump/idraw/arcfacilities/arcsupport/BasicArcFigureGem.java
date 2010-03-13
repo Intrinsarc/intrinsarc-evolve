@@ -622,13 +622,12 @@ public final class BasicArcFigureGem implements Gem
 	    };
 	    List<FigureFacet> toDelete = new ArrayList<FigureFacet>();
 	    toDelete.add(this);
-	    Set deletionFigureIds = DeleteFromDiagramHelper.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
+	    Set deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
 	    
 
-	    // make a delete command to remove the views with deleted subjects
-	    return
-	      DeleteFromDiagramHelper.makeDeleteCommand(
-	          "BasicArcFigureGem deletion", "", "", getDiagram(), deletionFigureIds, false);
+	    // remove the views with deleted subjects
+      DeleteFromDiagramTransaction.delete(getDiagram(), deletionFigureIds, false);
+      return null;
 		}
 
 

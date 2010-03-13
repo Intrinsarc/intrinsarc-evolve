@@ -9,6 +9,7 @@ import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.diagramsupport.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.sun.xml.internal.bind.v2.runtime.*;
 
 /**
  *
@@ -36,7 +37,7 @@ public class PasteAction extends AbstractAction
 	  
 		boolean fromKeyBoard = (e.getModifiers() & InputEvent.CTRL_MASK) != 0;
 		
-		Collection figureIdsToCopy = CopyToDiagramHelper.getAllFigureIdsInDiagram(clipboard);
+		Collection<String> figureIdsToCopy = CopyToDiagramUtilities.getAllFigureIdsInDiagram(clipboard);
 		if (!figureIdsToCopy.isEmpty())
 		{
 			DiagramFacet destination = diagramView.getDiagram();			
@@ -45,72 +46,31 @@ public class PasteAction extends AbstractAction
 			if (fromKeyBoard)
 				offset = Grid.roundToGrid(diagramView.getCursorPoint().subtract(CopyAction.CLIPBOARD_START_POINT));
 			
-			PasteCommandGenerator paste =
-			  new PasteCommandGenerator(
-			      clipboard.getDiagramReference(),
-			      destination.getDiagramReference(),
+			coordinator.startTransaction("pasted figures from clipboard", "removed pasted figures");
+			Set<String> topLevelIds = PasteCommandGenerator.paste(
+			      clipboard,
+			      destination,
             figureIdsToCopy,
-            offset);
+            offset);			
+			coordinator.commitTransaction();
 			
-			coordinator.executeCommandAndUpdateViews(paste.generateCommand());
-			
-      final Collection<String> topLevelIds = paste.getPasteTopLevelFigureIds();      
-			diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
-			{
-				public void run()
-				{
-					// select the top level figures of the pasted items on the screen
-					CopyToDiagramHelper.selectFigures(diagramView, topLevelIds);
-				}
-			});
+			// select the top level figures of the pasted items on the screen
+			CopyToDiagramUtilities.selectFigures(diagramView, topLevelIds);
 		}
 	}
 
   public static class PasteCommandGenerator
 	{
-		private DiagramReference clipboardReference;
-		private DiagramReference destinationReference;
-		private Collection figureIdsToCopy;
-		private UDimension offset;
-		private Collection<PersistentFigure> persistentFigures;
-		
-		public PasteCommandGenerator(DiagramReference clipboardReference, DiagramReference destinationReference, Collection figureIdsToCopy, UDimension offset)
+		public static Set<String> paste(DiagramFacet clipboard, DiagramFacet destination, Collection<String> figureIdsToCopy, UDimension offset)
 		{
-			this.clipboardReference = clipboardReference;
-			this.destinationReference = destinationReference;
-			this.figureIdsToCopy = figureIdsToCopy;
-			this.offset = offset;
-		}
-		
-		/*
-		 * @see com.hopstepjump.idraw.foundation.CommandGeneratorFacet#generateCommand()
-		 */
-		public Command generateCommand()
-		{
-			DiagramFacet clipboard = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(clipboardReference);
-			DiagramFacet destination = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(destinationReference);
-			persistentFigures = CopyToDiagramHelper.makePersistentFiguresAndAssignNewIds(clipboard, figureIdsToCopy, destination, true);
-			return
-				new CopyToDiagramCommand("pasted from clipboard to diagram", "undid paste",
-																 offset, destinationReference, persistentFigures);
-		}
+			Collection<PersistentFigure> persistentFigures = CopyToDiagramUtilities.makePersistentFiguresAndAssignNewIds(clipboard, figureIdsToCopy, destination, true);
+			destination.addPersistentFigures(persistentFigures, offset);
 
-		/*
-		 * @see com.hopstepjump.idraw.foundation.CommandGeneratorFacet#getReturnForClient()
-		 */
-		public Collection<String> getPasteTopLevelFigureIds()
-		{
-			// return the ids of the new elements to select the newly pasted elements
-			DiagramFacet destination = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(destinationReference);
 			Set<String> newFigures = new HashSet<String>();
-			for (Iterator iter = persistentFigures.iterator(); iter.hasNext();)
-			{
-				PersistentFigure persistentFigure = (PersistentFigure) iter.next();
+			for (PersistentFigure persistentFigure : persistentFigures)
 				newFigures.add(persistentFigure.getId());
-			}
-			return CopyToDiagramHelper.getTopLevelFigureIdsOnly(destination, newFigures, CopyToDiagramHelper.WANT_ALL, false);
+			return CopyToDiagramUtilities.getTopLevelFigureIdsOnly(destination, newFigures, CopyToDiagramUtilities.WANT_ALL, false);
 		}
-
 	}
 	
 	public boolean wantsKey(KeyEvent event)

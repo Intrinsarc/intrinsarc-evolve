@@ -11,7 +11,7 @@ import com.hopstepjump.idraw.foundation.persistence.*;
  * (c) Andrew McVeigh 04-Feb-03
  *
  */
-public class CopyToDiagramHelper
+public class CopyToDiagramUtilities
 {
   public static final int WANT_ALL = 0;
   public static final int WANT_NON_SPECIFIC = 1;
@@ -24,7 +24,6 @@ public class CopyToDiagramHelper
 		for (String id : ids)
 			view.addFigureToSelectionViaId(id);
 	}
-	
 	
 	public static UBounds calculateFigureBounds(DiagramFacet diagram, Collection<String> includedFigureIds)
 	{

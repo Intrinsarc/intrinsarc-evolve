@@ -80,34 +80,21 @@ public final class FeatureNodeGem implements Gem
       return null;
     }
     
-    public Command makePostDeleteCommand()
+    public Command performPostDeleteTransaction()
     {
       // important to use the reference rather than the figure, which gets recreated...
-      final FigureReference reference = figureFacet.getFigureReference();
-      final String uuid = getOriginalSubject(subject).getUuid();
-      
-      return new AbstractCommand()
-      {
-        public void execute(boolean isTop)
-        {
-          getFeatureCompartment().addDeleted(uuid);
-        }
-
-        private FeatureCompartmentFacet getFeatureCompartment()
-        {
-          FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(reference);
-          FigureFacet parent = figure.getContainedFacet().getContainer().getFigureFacet();
-          return (FeatureCompartmentFacet)
-            parent.getDynamicFacet(FeatureCompartmentFacet.class);
-        }
-
-        public void unExecute()
-        {
-          getFeatureCompartment().removeDeleted(uuid);
-        } 
-      };
+      final String uuid = getOriginalSubject(subject).getUuid();      
+      getFeatureCompartment().addDeleted(uuid);
+      return null;
     }
 
+    private FeatureCompartmentFacet getFeatureCompartment()
+    {
+      FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
+      return (FeatureCompartmentFacet)
+        parent.getDynamicFacet(FeatureCompartmentFacet.class);
+    }
+    
     public boolean hasSpecificKillCommand()
     {
       return isSubjectAFeature() && (isOutOfPlace() || !atHome());

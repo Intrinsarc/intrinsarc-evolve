@@ -719,6 +719,7 @@ public final class ClassifierNodeGem implements Gem
 	public void suppressFeatures(int featureType, boolean suppress)
 	{
 		// we will probably change size, so need to make a resizings command
+		figureFacet.aboutToAdjust();
 		ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
 		resizings.markForResizing(figureFacet);
 		
@@ -876,7 +877,7 @@ public final class ClassifierNodeGem implements Gem
 			return basicGem.getPreviewFacet();
 		}
 		
-		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(final ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 			ManipulatorFacet keyFocus = null;
 			if (favoured)
@@ -913,23 +914,50 @@ public final class ClassifierNodeGem implements Gem
 				UBounds attributes = sizes.getFull();
 				UPoint attributePoint = attributes.getPoint().subtract(new UDimension(QUICK_ICON_SIZE - 8, -2));
 
-				manipulators.addOther(
-					new FeatureSuppressToggleManipulator(
-															 figureFacet.getFigureReference(),
-															 figureFacet.getFigureName(),
-															 attributePoint,
-															 QUICK_ICON_SIZE,
-															 AttributeCreatorGem.FEATURE_TYPE,
-															 isPart ? "slots" : "attributes", suppressAttributesOrSlots));
+				FeatureSuppressToggleManipulator sa = new FeatureSuppressToggleManipulator(
+														 figureFacet.getFigureReference(),
+														 figureFacet.getFigureName(),
+														 attributePoint,
+														 QUICK_ICON_SIZE,
+														 AttributeCreatorGem.FEATURE_TYPE,
+														 isPart ? "slots" : "attributes", suppressAttributesOrSlots);
+				manipulators.addOther(sa);
+				sa.setAppListener(new ManipulatorListenerFacet()
+				{
+					public void haveFinished()
+					{
+						if (isPart)
+							coordinator.startTransaction(
+									suppressAttributesOrSlots ? "unsuppressed slots" : "suppressed slots",
+									suppressAttributesOrSlots ? "suppressed slots" : "unsuppressed slots");
+						else
+							coordinator.startTransaction(
+									suppressAttributesOrSlots ? "unsuppressed attributes" : "suppressed attributes",
+									suppressAttributesOrSlots ? "suppressed attributes" : "unsuppressed attributes");
+						suppressFeatures(AttributeCreatorGem.FEATURE_TYPE, !suppressAttributesOrSlots);
+						coordinator.commitTransaction();													
+					}
+				});
 				
-				manipulators.addOther(
-					new FeatureSuppressToggleManipulator(
-															 figureFacet.getFigureReference(),
-															 figureFacet.getFigureName(),
-															 attributePoint.add(new UDimension(-10, 0)),
-															 QUICK_ICON_SIZE,
-															 OperationCreatorGem.FEATURE_TYPE,
-															 "operations", suppressOperations));
+				FeatureSuppressToggleManipulator ops = new FeatureSuppressToggleManipulator(
+														 figureFacet.getFigureReference(),
+														 figureFacet.getFigureName(),
+														 attributePoint.add(new UDimension(-10, 0)),
+														 QUICK_ICON_SIZE,
+														 OperationCreatorGem.FEATURE_TYPE,
+														 "operations", suppressOperations);
+				manipulators.addOther(ops);
+				ops.setAppListener(new ManipulatorListenerFacet()
+				{
+					public void haveFinished()
+					{
+						coordinator.startTransaction(
+								suppressOperations ? "unsuppressed operations" : "suppressed operations",
+								suppressOperations ? "suppressed operations" : "unsuppressed operations");
+						suppressFeatures(OperationCreatorGem.FEATURE_TYPE, !suppressOperations);
+						coordinator.commitTransaction();													
+					}
+				});
 			}
 			
 			// return the manipulators
@@ -2669,7 +2697,7 @@ public final class ClassifierNodeGem implements Gem
 		    return null;
 		  
 		  // on the first pass, add or delete any constituents
-		  if (pass == ViewUpdatePassEnum.START)
+		  if (pass == ViewUpdatePassEnum.START && false)
 		  {
 	      // find any attributes to add or delete
 	      ClassifierAttributeHelper attributeHelper =

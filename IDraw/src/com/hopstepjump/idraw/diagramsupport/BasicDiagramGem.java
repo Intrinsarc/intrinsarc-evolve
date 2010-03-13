@@ -161,15 +161,15 @@ public final class BasicDiagramGem implements Gem
 					return figuresWithDeletedSubjects.contains(figure);
 				}
 			};
-			deletionFigureIds = DeleteFromDiagramHelper.getFigureIdsIncludedInDelete(figuresWithDeletedSubjects, chosenFigures, false);
+			deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(figuresWithDeletedSubjects, chosenFigures, false);
 			
 
 			// 3) make a delete command to remove the views with deleted subjects
-			DeleteFromDiagramHelper.makeDeleteCommand("formViewUpdateCommand deletion", "", "", diagramFacet, deletionFigureIds, false);
+			DeleteFromDiagramTransaction.delete(diagramFacet, deletionFigureIds, false);
     }
 
     // ensure we process the figures in containment order
-		for (FigureFacet figure : figures.values())
+		for (FigureFacet figure : new ArrayList<FigureFacet>(figures.values()))
 		{
 			if (initialRun && includedInChanges(figure) || !initialRun)
 			{

@@ -24,6 +24,7 @@ public class FeatureSuppressToggleManipulator extends ManipulatorAdapter
   private int featureType;
   private boolean featureSuppressed;
   private ManipulatorListenerFacet listener;
+  private ManipulatorListenerFacet appListener;
   private UPoint location;
   private int size;
 
@@ -78,10 +79,17 @@ public class FeatureSuppressToggleManipulator extends ManipulatorAdapter
     this.listener = listener;
   }
 
+  public void setAppListener(ManipulatorListenerFacet listener)
+  {
+    this.appListener = listener;
+  }
+
   /** Invoked when a mouse button has been released on this figure */
   public void mouseReleased(FigureFacet over, UPoint point, ZMouseEvent event)
   {
     listener.haveFinished();
+    if (appListener != null)
+    	appListener.haveFinished();
   }
 
   public void setLayoutOnly()
