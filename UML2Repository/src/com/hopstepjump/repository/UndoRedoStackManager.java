@@ -70,14 +70,22 @@ public class UndoRedoStackManager
 				{
 					Element e = (Element) n.getNotifier();
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					if (n.getNewValue() != null)
-						el.add(n.getNewValue());
+					el.add(n.getOldValue());
 				}
 				break;
 			case Notification.SET:
 				{
 					Element e = (Element) n.getNotifier();
 					e.eSet((EStructuralFeature) n.getFeature(), n.getOldValue());
+				}
+				break;
+			case Notification.REMOVE_MANY:
+				{
+					Element e = (Element) n.getNotifier();				
+					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
+					if (el != null && !el.isEmpty())
+						throw new IllegalStateException("Cannot handle REMOVE_MANY notification of this type: " + n);
+					el.clear();
 				}
 				break;
 			default:
@@ -110,21 +118,29 @@ public class UndoRedoStackManager
 				{
 					Element e = (Element) n.getNotifier();
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					if (n.getNewValue() != null)
-						el.add(n.getNewValue());
+					el.add(n.getNewValue());
 				}
 				break;
 			case Notification.REMOVE:
 				{
 					Element e = (Element) n.getNotifier();
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					el.remove(n.getNewValue());
+					el.remove(n.getOldValue());
 				}
 				break;
 			case Notification.SET:
 				{
 					Element e = (Element) n.getNotifier();
 					e.eSet((EStructuralFeature) n.getFeature(), n.getNewValue());
+				}
+				break;
+			case Notification.REMOVE_MANY:
+				{
+					Element e = (Element) n.getNotifier();				
+					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
+					if (el != null && !el.isEmpty())
+						throw new IllegalStateException("Cannot handle REMOVE_MANY notification of this type: " + n);
+					el.clear();
 				}
 				break;
 			default:
@@ -148,6 +164,14 @@ public class UndoRedoStackManager
 	{
 		ensureCurrent();
 		current++;
+	}
+	
+	public void commitTransactionAndForget()
+	{
+		ensureCurrent();
+		if (stack.get(current).getNotifications().size() != 0)
+			throw new IllegalStateException("commitTransactionAndForget has some repository changes");
+		// no need to increment
 	}
 	
 	public int getCurrent()

@@ -53,7 +53,6 @@ import edu.umd.cs.jazz.util.*;
 public final class ToolCoordinatorGem implements Gem
 {		    
 	private static final Font POPUP_FONT = new Font("Arial", Font.BOLD, 16);
-  private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
 	private ToolCoordinatorFacet coordinatorFacet = new ToolCoordinatorFacetImpl();
   private JFrame frame;
   private PaletteManagerFacet paletteFacet;
@@ -453,17 +452,36 @@ public final class ToolCoordinatorGem implements Gem
 				d.redoTransaction();
 		}
 
+		public void commitTransactionAndForget()
+		{
+			commitTransaction(true);
+		}
+		
 		public void commitTransaction()
+		{
+			commitTransaction(false);
+		}
+			
+		private void commitTransaction(boolean forget)
 		{
 			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
 			waiter.displayWaitCursorAfterDelay();
 			
       for (ViewUpdatePassEnum p : ViewUpdatePassEnum.values())
 				new CommonRepositoryFunctions().formUpdateDiagramsCommandAfterSubjectChanges(System.currentTimeMillis(), true, p, true);
+			if (!forget)
+			{
+				GlobalSubjectRepository.repository.commitTransaction();
+				for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+					d.commitTransaction();
+			}
+			else
+			{
+				GlobalSubjectRepository.repository.commitTransactionAndForget();
+				for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+					d.commitTransactionAndForget();
+			}
 			System.out.println("$$ committed transaction");
-			GlobalSubjectRepository.repository.commitTransaction();
-			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.commitTransaction();
 
 			waiter.restoreOldCursor();
       paletteFacet.refreshEnabled();

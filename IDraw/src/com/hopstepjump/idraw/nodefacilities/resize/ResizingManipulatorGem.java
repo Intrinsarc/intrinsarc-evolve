@@ -443,11 +443,11 @@ public final class ResizingManipulatorGem implements Gem
 
     if (borderOn)
     {
+      listener.haveFinished();
     	coordinator.startTransaction("resizing " + toResize.getFigureName(), "undoing resize of " + toResize.getFigureName());
 	    resizer.end();
 	    coordinator.commitTransaction();
     	enter_STEADY_STATE();  // need to do this so that addToView() will display handles again
-      listener.haveFinished();
     }
     else
     {

@@ -12,11 +12,9 @@ import org.freehep.graphicsio.emf.*;
 
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.diagramsupport.*;
-import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.utility.*;
-import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.wmf.*;
 import com.hopstepjump.wmf.records.*;
 
@@ -54,7 +52,7 @@ public class CopyAction extends AbstractAction
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		Collection includedFigureIds = CopyToDiagramUtilities.getFigureIdsIncludedInSelectionCopy(diagramView);
+		Collection<String> includedFigureIds = CopyToDiagramUtilities.getFigureIdsIncludedInSelectionCopy(diagramView);
 		
 		// only proceed if we actually have some figures to consider
 		if (includedFigureIds.isEmpty())
@@ -65,9 +63,9 @@ public class CopyAction extends AbstractAction
 		coordinator.startTransaction("copied figures to clipboard", "removed figures from clipboard");
 		CopyCommandGenerator.copy(
 		    includedFigureIds,
-		    clipboard.getDiagramReference(),
-		    src.getDiagramReference());		
-		coordinator.commitTransaction();
+		    clipboard,
+		    src);		
+		coordinator.commitTransactionAndForget();
 
 		// copy the clipboard diagram, as a metafile, to the system clipboard
 		copyDiagramToClipboardAsMetafile(clipboard, diagramView.getAdorners());
@@ -191,19 +189,16 @@ public class CopyAction extends AbstractAction
 
   public static class CopyCommandGenerator
 	{
-		public static void copy(Collection<String> includedFigureIds, DiagramReference clipboardReference, DiagramReference srcReference)
+		public static void copy(Collection<String> includedFigureIds, DiagramFacet clipboard, DiagramFacet src)
 		{
-			DiagramFacet clipboard = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(clipboardReference);
 			if (includedFigureIds.size() != 0) 
-				makeCopyToClipboardCommand(clipboardReference, srcReference, includedFigureIds);
+				copyToClipboard(clipboard, src, includedFigureIds);
 			else
 				clipboard.revert();
 		};
 			
-		public static void makeCopyToClipboardCommand(final DiagramReference clipboardReference, DiagramReference srcReference, Collection<String> includedFigureIds)
+		public static void copyToClipboard(DiagramFacet clipboard, DiagramFacet src, Collection<String> includedFigureIds)
 		{
-			DiagramFacet clipboard = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(clipboardReference);
-			final DiagramFacet src = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(srcReference);
 			Collection<PersistentFigure> persistentFigures =
 			  CopyToDiagramUtilities.makePersistentFiguresAndAssignNewIds(src, includedFigureIds, clipboard, true);
 			UBounds bounds = CopyToDiagramUtilities.calculateFigureBounds(src, includedFigureIds);
@@ -216,12 +211,6 @@ public class CopyAction extends AbstractAction
       
 			UDimension offset = Grid.roundToGrid(CLIPBOARD_START_POINT.subtract(bounds.getPoint()));
 			clipboard.addPersistentFigures(persistentFigures, offset);
-      
-      // need to update the clipboard in the conventional way, but we have to do this explicitly
-      // as copying is not done in a command
-      DiagramFacet clipboardDiagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(clipboardReference);
-      for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
-        clipboardDiagram.formViewUpdateCommand(true, pass, false);
 		}
 	}
 }

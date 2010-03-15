@@ -141,7 +141,7 @@ public final class BasicDiagramGem implements Gem
 	{
 		// delete any figures whose subjects have been removed
 		// using the "delete" technology developed for the cut/copy/paste/delete functions
-		
+
 		// 1) ask all figures if there subject has been deleted, and collate
 		Set<String> deletionFigureIds = new HashSet<String>();
     if (isTop && pass == ViewUpdatePassEnum.START && !initialRun)
@@ -234,7 +234,7 @@ public final class BasicDiagramGem implements Gem
 		{
 			return stateStack.size();
 		}
-
+		
 		private void addToCurrentTransaction(UndoRedoAction action, FigureFacet figure)
 		{
 			if (!inUndoRedo)
@@ -289,6 +289,12 @@ public final class BasicDiagramGem implements Gem
 			stateStack.clear();
 		}
 		
+		public void commitTransactionAndForget()
+		{
+			commitTransaction();
+			stateStack.remove(--pos);
+		}
+
 		public void commitTransaction()
 		{
 			ensureCurrent();
@@ -409,13 +415,6 @@ public final class BasicDiagramGem implements Gem
 			}
 		}
 		
-		private void addPersistentFigure(PersistentFigure persistent)
-		{
-			List<PersistentFigure> p = new ArrayList<PersistentFigure>();
-			p.add(persistent);
-			addPersistentFigures(p, new UDimension(0, 0));
-		}
-
 		private int addPersistentFigures(List<UndoRedoState> states, int current, int direction)
 		{
 			List<PersistentFigure> pfigs = new ArrayList<PersistentFigure>();
@@ -710,6 +709,16 @@ public final class BasicDiagramGem implements Gem
 					}
 				});
 				
+			// if we are generating full adjustments
+			if (generateFullAdjustments)
+			{
+				for (FigureFacet figure : addedFigures)
+				{
+					haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADD);
+					addToCurrentTransaction(UndoRedoAction.ADD, figure);
+				}
+			}
+
 			if (needToOffset)
 			{
 				// use the moving figures construct to offset the figures
@@ -718,13 +727,6 @@ public final class BasicDiagramGem implements Gem
 				movingFacet.indicateMovingFigures(addedFigures);
 				movingFacet.move(new UPoint(offset));
 				movingFacet.end();
-			}
-
-			// if we are generating full adjustments
-			if (generateFullAdjustments)
-			{
-				for (FigureFacet figure : addedFigures)
-					haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADJUST);
 			}
 		}
 		

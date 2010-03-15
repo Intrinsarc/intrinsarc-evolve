@@ -262,6 +262,14 @@ public class XMLSubjectRepositoryGem implements Gem
       undoredo.startTransaction(redoName, undoName);
     }
 
+    public void commitTransactionAndForget()
+    {
+      EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      undoredo.commitTransactionAndForget();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();    	
+    }
+    
     public void commitTransaction()
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;

@@ -211,15 +211,18 @@ public class ObjectDbSubjectRepositoryGem implements Gem
       undoredo.startTransaction(redoName, undoName);
     }
 
-    public Transaction getCurrentTransaction()
-    {
-      return pm.currentTransaction();
-    }
-
     public void commitTransaction()
     {
       end();
       undoredo.commitTransaction();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
+    }
+
+    public void commitTransactionAndForget()
+    {
+      end();
+      undoredo.commitTransactionAndForget();
       for (SubjectRepositoryListenerFacet listener : listeners)
         listener.sendChanges();
     }

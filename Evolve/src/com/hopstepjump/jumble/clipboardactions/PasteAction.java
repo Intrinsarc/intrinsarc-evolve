@@ -9,7 +9,6 @@ import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.diagramsupport.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
-import com.sun.xml.internal.bind.v2.runtime.*;
 
 /**
  *
@@ -47,7 +46,7 @@ public class PasteAction extends AbstractAction
 				offset = Grid.roundToGrid(diagramView.getCursorPoint().subtract(CopyAction.CLIPBOARD_START_POINT));
 			
 			coordinator.startTransaction("pasted figures from clipboard", "removed pasted figures");
-			Set<String> topLevelIds = PasteCommandGenerator.paste(
+			Set<String> topLevelIds = paste(
 			      clipboard,
 			      destination,
             figureIdsToCopy,
@@ -59,18 +58,15 @@ public class PasteAction extends AbstractAction
 		}
 	}
 
-  public static class PasteCommandGenerator
+	private Set<String> paste(DiagramFacet clipboard, DiagramFacet destination, Collection<String> figureIdsToCopy, UDimension offset)
 	{
-		public static Set<String> paste(DiagramFacet clipboard, DiagramFacet destination, Collection<String> figureIdsToCopy, UDimension offset)
-		{
-			Collection<PersistentFigure> persistentFigures = CopyToDiagramUtilities.makePersistentFiguresAndAssignNewIds(clipboard, figureIdsToCopy, destination, true);
-			destination.addPersistentFigures(persistentFigures, offset);
+		Collection<PersistentFigure> persistentFigures = CopyToDiagramUtilities.makePersistentFiguresAndAssignNewIds(clipboard, figureIdsToCopy, destination, true);
+		destination.addPersistentFigures(persistentFigures, offset);
 
-			Set<String> newFigures = new HashSet<String>();
-			for (PersistentFigure persistentFigure : persistentFigures)
-				newFigures.add(persistentFigure.getId());
-			return CopyToDiagramUtilities.getTopLevelFigureIdsOnly(destination, newFigures, CopyToDiagramUtilities.WANT_ALL, false);
-		}
+		Set<String> newFigures = new HashSet<String>();
+		for (PersistentFigure persistentFigure : persistentFigures)
+			newFigures.add(persistentFigure.getId());
+		return CopyToDiagramUtilities.getTopLevelFigureIdsOnly(destination, newFigures, CopyToDiagramUtilities.WANT_ALL, false);
 	}
 	
 	public boolean wantsKey(KeyEvent event)

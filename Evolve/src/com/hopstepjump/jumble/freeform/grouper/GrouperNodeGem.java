@@ -651,7 +651,7 @@ public class GrouperNodeGem
       // copy the insides to the clipboard
       DiagramFacet clipboard = GlobalPackageViewRegistry.activeRegistry.getClipboardDiagram(PackageViewRegistryGem.CLIPBOARD_TYPE);
       DiagramFacet here = figureFacet.getDiagram();
-      CopyAction.CopyCommandGenerator.makeCopyToClipboardCommand(clipboard.getDiagramReference(), here.getDiagramReference(), includedFigureIds);
+      CopyAction.CopyCommandGenerator.copyToClipboard(clipboard, here, includedFigureIds);
     //  coordinator.executeForPreview(command, true, false);
       
       // now, save the clipboard to the directory in EPS format

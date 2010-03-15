@@ -14,4 +14,5 @@ public interface TransactionManagerFacet extends Facet
 	public void clearTransactionHistory();
 	public void enforceTransactionDepth(int depth);
   public void commitTransaction();
+  public void commitTransactionAndForget();
 }

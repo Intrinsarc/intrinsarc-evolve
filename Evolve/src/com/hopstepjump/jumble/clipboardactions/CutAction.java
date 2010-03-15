@@ -47,13 +47,12 @@ public class CutAction extends AbstractAction
 		coordinator.startTransaction(
         "cut figures from diagram",
         "restored cut figures in diagram");
-		DeleteFromDiagramTransaction.delete(diagramView.getDiagram(), includedDeleteFigureIds, true);
 		CopyCommandGenerator.copy(
 		    includedCopyFigureIds,
-		    clipboard.getDiagramReference(),
-		    src.getDiagramReference());		
+		    clipboard,
+		    src);
+		DeleteFromDiagramTransaction.delete(diagramView.getDiagram(), includedDeleteFigureIds, true);
 		coordinator.commitTransaction();
-
 
     // copy the clipboard diagram, as a metafile, to the system clipboard
 		CopyAction.copyDiagramToClipboardAsMetafile(clipboard, diagramView.getAdorners());

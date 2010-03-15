@@ -167,7 +167,9 @@ public final class BasicNodePreviewGem implements Gem
 	  {
 	    // make a new move cmd for this shape
 	    if (setBounds)
+	    {
 	      NodeResizeTransaction.resize(previewing, appearanceFacet.getFullBounds());
+	    }
 	    else
 	    {
 	      // make a new move cmd for this shape
