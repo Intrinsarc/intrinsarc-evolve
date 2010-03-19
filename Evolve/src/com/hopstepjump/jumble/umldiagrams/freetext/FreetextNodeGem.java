@@ -296,9 +296,8 @@ public final class FreetextNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -319,6 +318,12 @@ public final class FreetextNodeGem implements Gem
     public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return new ToolFigureClassification(FIGURE_NAME, null);
+		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+			text = properties.retrieve("text").asString();
 		}
   }
   

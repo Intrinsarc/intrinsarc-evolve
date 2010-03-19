@@ -109,26 +109,14 @@ public final class NoteNodeGem implements Gem
                               // don't need to make it unmodifiable
     }
 
-    public void unAddContents(Object memento)
+    public void removeContents(ContainedFacet[] containable)
     {
       // not used -- this has a static set of contents
     }
 
-    public Object removeContents(ContainedFacet[] containable)
+    public void addContents(ContainedFacet[] containable)
     {
       // not used -- this has a static set of contents
-      return null;
-    }
-
-    public void unRemoveContents(Object memento)
-    {
-      // not used -- this has a static set of contents
-    }
-
-    public Object addContents(ContainedFacet[] containable)
-    {
-      // not used -- this has a static set of contents
-      return null;
     }
 
     public boolean isWillingToActAsBackdrop()
@@ -183,6 +171,10 @@ public final class NoteNodeGem implements Gem
       primitiveContents = contained;
       contained.getContainedFacet().persistence_setContainer(this);
     }
+
+		public void cleanUp()
+		{
+		}
   }
 
   private class LocationFacetImpl implements LocationFacet
@@ -647,9 +639,8 @@ public final class NoteNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
     public boolean canMoveContainers()
@@ -666,6 +657,16 @@ public final class NoteNodeGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure figure)
+		{
+	    subject = (Comment) figure.getSubject();
+	    text = subject.getBody();
+	    hideNote = figure.getProperties().retrieve("hideNote", false).asBoolean();
+	    useHTML = figure.getProperties().retrieve("useHTML", false).asBoolean();
+	    wordWrap = figure.getProperties().retrieve("wordWrap", true).asBoolean();
+	    font = figure.getProperties().retrieve("font", ScreenProperties.getPrimaryFont()).asFont();
+		}
   }
 
   public NoteNodeGem(Comment subject, DiagramFacet diagram, String figureId, boolean useHTML, boolean hideNote, boolean wordWrap)

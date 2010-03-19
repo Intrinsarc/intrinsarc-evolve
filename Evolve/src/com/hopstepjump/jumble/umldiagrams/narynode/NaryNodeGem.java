@@ -211,9 +211,8 @@ public final class NaryNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -230,6 +229,10 @@ public final class NaryNodeGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+		}
   }
   
   private class ResizeVetterFacetImpl implements ResizeVetterFacet

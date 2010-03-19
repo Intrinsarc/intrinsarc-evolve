@@ -109,4 +109,6 @@ public interface FigureFacet extends MainFacet
   public Command formDeleteCommand();
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill);
   public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
+
+	public void acceptPersistentFigure(PersistentFigure pfig);
 }

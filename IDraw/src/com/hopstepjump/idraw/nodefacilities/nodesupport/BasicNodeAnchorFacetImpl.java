@@ -102,5 +102,10 @@ public final class BasicNodeAnchorFacetImpl implements AnchorFacet
 		links.addAll(state.linked);
 		return links.iterator();
 	}
+
+	public void cleanUp()
+	{
+		state.linked.clear();
+	}
 }
 

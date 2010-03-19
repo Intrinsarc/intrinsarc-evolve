@@ -104,6 +104,12 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
   	ContainerFacet container = state.containedFacet.getContainer();
   	if (container != null)
   		container.removeContents(new ContainedFacet[]{state.containedFacet});
+  	
+  	// remove any contained and linking objects
+  	if (state.containerFacet != null)
+  		state.containerFacet.cleanUp();
+  	if (state.anchorFacet != null)
+  		state.anchorFacet.cleanUp();
   }
   
   public void addPreviewToCache(DiagramFacet diagram, PreviewCacheFacet previewFigures, UPoint start, boolean addMyself)
@@ -462,6 +468,16 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	public void aboutToAdjust()
 	{
 		state.diagram.aboutToAdjust(state.figureFacet);
+	}
+
+	public void acceptPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		state.pt = properties.retrieve("pt").asUPoint();
+		UDimension old = state.resizedExtent;
+		state.resizedExtent = properties.retrieve("dim", new UDimension(0,0)).asUDimension();
+		state.showing = properties.retrieve("show", true).asBoolean();
+		state.appearanceFacet.acceptPersistentFigure(pfig);
 	}
 }
 

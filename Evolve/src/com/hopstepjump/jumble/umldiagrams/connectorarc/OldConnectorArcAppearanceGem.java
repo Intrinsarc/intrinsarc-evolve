@@ -170,24 +170,12 @@ public class OldConnectorArcAppearanceGem implements Gem
 			return false;
 		}
 		
-		public void unAddContents(Object memento)
+		public void removeContents(ContainedFacet[] containables)
 		{
-			// not applicable -- has a fixed set of containables
 		}
 		
-		public Object removeContents(ContainedFacet[] containables)
+		public void addContents(ContainedFacet[] containables)
 		{
-			return null;
-		}
-		
-		public void unRemoveContents(Object memento)
-		{
-			// not applicable -- has a fixed set of containables
-		}
-		
-		public Object addContents(ContainedFacet[] containables)
-		{
-			return null;
 		}
 		
 		public Iterator<FigureFacet> getContents()
@@ -262,6 +250,10 @@ public class OldConnectorArcAppearanceGem implements Gem
 		public boolean directlyAcceptsItems()
 		{
 			return false;
+		}
+
+		public void cleanUp()
+		{
 		}
 	}
   

@@ -9,6 +9,7 @@ import com.hopstepjump.geometry.*;
 public interface ContainerFacet extends Facet
 {
 	public void persistence_addContained(FigureFacet contained);
+	public void cleanUp();
 	
 	public boolean insideContainer(UPoint point);
   /** returns true if area sweep in the container bounds is supported */
@@ -20,10 +21,8 @@ public interface ContainerFacet extends Facet
   /** get the containables for this container -- but get them as FigureFacets, not as ContainedFacets */
   public Iterator<FigureFacet> getContents();
 	
-  public void unAddContents(Object memento);
-  public Object removeContents(ContainedFacet[] containables);
-  public void unRemoveContents(Object memento);
-  public Object addContents(ContainedFacet[] containables);
+  public void removeContents(ContainedFacet[] containables);
+  public void addContents(ContainedFacet[] containables);
   
   /** add the child previews to the cache */
   public void addChildPreviewsToCache(PreviewCacheFacet previewCache);

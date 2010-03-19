@@ -146,9 +146,8 @@ public class SimpleFigure implements FigureFacet
 				return null;
 			}
 			
-			public Command getPostContainerDropCommand()
+			public void performPostContainerDropTransaction()
 			{
-				return null;
 			}
 			
 			public FigureFacet getFigureFacet()
@@ -185,7 +184,7 @@ public class SimpleFigure implements FigureFacet
 
 	public String getFigureName()
 	{
-		return null;
+		return "simple figure";
 	}
 
 	public FigureReference getFigureReference()
@@ -306,5 +305,10 @@ public class SimpleFigure implements FigureFacet
 	public void aboutToAdjust()
 	{
 		diagram.aboutToAdjust(this);
+	}
+
+	public void acceptPersistentFigure(PersistentFigure pfig)
+	{
+		readPersistentProperties(pfig);
 	}
 }

@@ -416,9 +416,8 @@ public class LinkedTextGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -438,6 +437,14 @@ public class LinkedTextGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+			text = properties.retrieve("text", "").asString();
+	    suppress = properties.retrieve("suppress", false).asBoolean();
+	    majorPointType = properties.retrieve("majorPt", CalculatedArcPoints.MAJOR_POINT_MIDDLE).asInteger();
+		}
   }
   
   private LinkedTextOriginFacet extractOriginFacet()

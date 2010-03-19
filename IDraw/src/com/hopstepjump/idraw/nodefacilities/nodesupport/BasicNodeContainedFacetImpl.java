@@ -39,7 +39,6 @@ public final class BasicNodeContainedFacetImpl implements ContainedFacet
 	public void setContainer(ContainerFacet container)
 	{
 		this.container = container;
-		state.figureFacet.adjusted();
 	}
 	
 	public ContainerFacet getContainer()
@@ -82,9 +81,9 @@ public final class BasicNodeContainedFacetImpl implements ContainedFacet
 		return containedName;
 	}
 
-  public Command getPostContainerDropCommand()
+  public void performPostContainerDropTransaction()
   {
-    return state.appearanceFacet.getPostContainerDropCommand();
+    state.appearanceFacet.performPostContainerDropTransaction();
   }
 
 	public boolean canMoveContainers()

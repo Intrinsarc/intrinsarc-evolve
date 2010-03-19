@@ -1146,7 +1146,7 @@ public final class SelectionToolGem implements Gem
               FigureFacet top = (FigureFacet) iter.next();
               ContainedFacet contained = top.getContainedFacet();
               if (contained != null)
-                contained.getPostContainerDropCommand();
+                contained.performPostContainerDropTransaction();
             }
           }
           break;

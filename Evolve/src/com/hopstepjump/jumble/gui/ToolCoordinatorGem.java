@@ -432,10 +432,9 @@ public final class ToolCoordinatorGem implements Gem
 
 		public void startTransaction(String redoName, String undoName)
 		{
-			System.out.println("$$ started transaction: " + redoName);
 			GlobalSubjectRepository.repository.startTransaction(redoName, undoName);
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.startTransaction(null, null);
+				d.startTransaction(redoName, undoName);
 		}
 		
 		public void undoTransaction()
@@ -481,7 +480,6 @@ public final class ToolCoordinatorGem implements Gem
 				for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
 					d.commitTransactionAndForget();
 			}
-			System.out.println("$$ committed transaction");
 
 			waiter.restoreOldCursor();
       paletteFacet.refreshEnabled();

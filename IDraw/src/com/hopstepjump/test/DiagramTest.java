@@ -48,6 +48,7 @@ public class DiagramTest
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				diagram.startTransaction("", "");
 				addFigure(diagram, false);
 				diagram.commitTransaction();
 			}
@@ -58,6 +59,7 @@ public class DiagramTest
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				diagram.startTransaction("", "");
 				addFigure(diagram, true);
 				diagram.commitTransaction();
 			}
@@ -68,6 +70,7 @@ public class DiagramTest
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				diagram.startTransaction("", "");
 				addFigure(diagram, false);
 				diagram.checkpointCommitTransaction();
 				addFigure(diagram, true);
@@ -80,6 +83,7 @@ public class DiagramTest
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				diagram.startTransaction("", "");
 				for (FigureFacet f : diagram.getFigures())
 					if (rand(0, 10) > 5)
 						diagram.remove(f);
@@ -92,6 +96,7 @@ public class DiagramTest
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				diagram.startTransaction("", "");
 				for (FigureFacet f : diagram.getFigures())
 					((SimpleFigure) f).randomChange();  // mocked out to random change
 				diagram.commitTransaction();

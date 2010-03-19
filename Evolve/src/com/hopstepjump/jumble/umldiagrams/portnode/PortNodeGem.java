@@ -1133,9 +1133,8 @@ public final class PortNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -1180,6 +1179,14 @@ public final class PortNodeGem implements Gem
 			else
 				return new ToolFigureClassification("port,element", "class");
 		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+	    classScope = properties.retrieve("classScope", false).asBoolean();
+	    displayType = properties.retrieve("dispType", PortDisplayTypeFacet.NORMAL_TYPE).asInteger();
+	    extraText = properties.retrieve("extraText", "").asString();
+		}
   }
   
 	private class ContainerFacetImpl implements BasicNodeContainerFacet
@@ -1198,24 +1205,12 @@ public final class PortNodeGem implements Gem
 			return false;
 		}
 		
-		public void unAddContents(Object memento)
+		public void removeContents(ContainedFacet[] containables)
 		{
-			// not applicable -- has a fixed set of containables
 		}
 		
-		public Object removeContents(ContainedFacet[] containables)
+		public void addContents(ContainedFacet[] containables)
 		{
-			return null;
-		}
-		
-		public void unRemoveContents(Object memento)
-		{
-			// not applicable -- has a fixed set of containables
-		}
-		
-		public Object addContents(ContainedFacet[] containables)
-		{
-			return null;
 		}
 		
 		public Iterator<FigureFacet> getContents()
@@ -1281,6 +1276,10 @@ public final class PortNodeGem implements Gem
 		public boolean directlyAcceptsItems()
 		{
 			return false;
+		}
+
+		public void cleanUp()
+		{
 		}
 	}
   
