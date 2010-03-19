@@ -654,5 +654,18 @@ public final class BasicArcFigureGem implements Gem
 		{
 			state.diagram.aboutToAdjust(figureFacet);
 		}
+
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+			state.showing = properties.retrieve("show", true).asBoolean();
+	    state.curved = properties.retrieve("curved", false).asBoolean();
+
+	    UPoint virtualPoint = properties.retrieve("vtl").asUPoint();
+
+	    UPoint[] allPoints = properties.retrieve("pts").asUPointArray();
+	    state.calculatedPoints = new CalculatedArcPoints(null, null, virtualPoint, Arrays.asList(allPoints));
+		}
   }
 }

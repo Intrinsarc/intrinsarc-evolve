@@ -50,32 +50,19 @@ public final class SimpleContainerGem implements Gem
 			return getContentsList().iterator();
 	  }
 	  
-	  public void unAddContents(Object memento)
-	  {
-	    ContainedFacet[] containable = makeContained((FigureReference[]) memento);
-	    removeContents(containable);
-	  }
-	
-	  public Object removeContents(ContainedFacet[] containable)
+	  public void removeContents(ContainedFacet[] containable)
 	  {
 	    // tell each containable that they are now contained by this
+	  	figureFacet.aboutToAdjust();
 	    for (int lp = 0; lp < containable.length; lp++)
 	    {
 	    	contents.remove(containable[lp].getFigureFacet());
 	      containable[lp].setContainer(null);
 	    }
 	    figureFacet.adjusted();
-	
-	    return makeFigureReferences(containable);
 	  }
 	
-	  public void unRemoveContents(Object memento)
-	  {
-	    ContainedFacet[] containable = makeContained((FigureReference[]) memento);
-	    addContents(containable);
-	  }
-	
-	  public Object addContents(ContainedFacet[] containable)
+	  public void addContents(ContainedFacet[] containable)
 	  {
 	    // tell each containable that they are now contained by this
 	    for (int lp = 0; lp < containable.length; lp++)
@@ -84,28 +71,8 @@ public final class SimpleContainerGem implements Gem
 	      containable[lp].setContainer(this);
 			}
 			figureFacet.adjusted();
-	
-	    return makeFigureReferences(containable);
 	  }
 
-		private FigureReference[] makeFigureReferences(ContainedFacet[] containable)
-		{
-			int length = containable.length;
-			FigureReference[] references = new FigureReference[length];
-			for (int lp = 0; lp < length; lp++)
-				references[lp] = containable[lp].getFigureFacet().getFigureReference();
-			return references;
-		}
-	  
-		private ContainedFacet[] makeContained(FigureReference[] figures)
-		{
-			int length = figures.length;
-			ContainedFacet[] containable = new ContainedFacet[length];
-			for (int lp = 0; lp < length; lp++)
-				containable[lp] = GlobalDiagramRegistry.registry.retrieveFigure(figures[lp]).getContainedFacet();
-			return containable;
-		}
-	  
 	  public boolean isWillingToActAsBackdrop()
 	  {
 	    return isWillingToActAsBackdrop && !contents.isEmpty();
@@ -169,6 +136,11 @@ public final class SimpleContainerGem implements Gem
 			// add this to the list, and set the container
 			contents.add(contained);
 			contained.getContainedFacet().persistence_setContainer(containerFacet);
+		}
+
+		public void cleanUp()
+		{
+			contents.clear();
 		}
   }
   
@@ -328,9 +300,8 @@ public final class SimpleContainerGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -350,6 +321,15 @@ public final class SimpleContainerGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+			minExtent = properties.retrieve("min", new UDimension(0,0)).asUDimension();
+			offset = properties.retrieve("off", new UDimension(0,0)).asUDimension();
+			addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());		
+			deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
+		}
   }
   
   private class SimpleContainerFacetImpl implements SimpleContainerFacet

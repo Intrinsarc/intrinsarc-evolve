@@ -24,7 +24,7 @@ public interface FeatureTypeFacet extends Facet
   public String makeNameFromSubject();
   
   public Object setText(String text, Object listSelection);
-  public Command getPostContainerDropCommand();
+  public void performPostContainerDropTransaction();
   public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner);
   public JMenuItem getReplaceItem(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
   

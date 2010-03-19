@@ -8,6 +8,18 @@ import com.hopstepjump.idraw.diagramsupport.moveandresize.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 
+//issues:
+//x. resize of class upon redo after add
+//x. lots of modifications which look unnecessary
+//x. name change of class/package
+//x. fix up other node types
+//4. proper link acceptPersistentFigure (easy)
+//6. null ptr on cut/paste redo
+//7. try out complex attrs + ports + parts
+//8. subject in acceptpersistentfigure + "don't repeat yourself" (easy)
+//9. moving operations around -- change of container
+//10. recheck all creators to ensure they fit into acceptcontainer model
+//11. 2 modes -- abouttoadjust and auto-capture-all
 
 public final class BasicDiagramGem implements Gem
 {
@@ -115,7 +127,7 @@ public final class BasicDiagramGem implements Gem
   private void initialiseInternals()
   {
   	figureId = source == null ? persistentDiagram.getLastFigureId() : CHAINED_UPPER_FIGURE_ID;
-    diagramFacet.addPersistentFigures(persistentDiagram.getFigures(), null, false);
+    diagramFacet.addPersistentFigures(persistentDiagram.getFigures(), null, false, true);
     // save all the properties
     properties = (PersistentProperties) persistentDiagram.getProperties().clone();    
   }
@@ -200,7 +212,8 @@ public final class BasicDiagramGem implements Gem
 	private class DiagramFacetImpl implements DiagramFacet
 	{
 		private List<UndoRedoStates> stateStack = new ArrayList<UndoRedoStates>();
-		private Map<FigureFacet, PersistentFigure> trans = new HashMap<FigureFacet, PersistentFigure>();
+		private Map<FigureFacet, PersistentFigure> before = new HashMap<FigureFacet, PersistentFigure>();
+		private Set<FigureFacet> mods = new HashSet<FigureFacet>();
 		private int pos = 0;
 		private boolean inUndoRedo = false;
 		private boolean insideTransaction = false;
@@ -211,6 +224,12 @@ public final class BasicDiagramGem implements Gem
 		
 		public void startTransaction(String redoName, String undoName)
 		{
+			println("$$ started transaction");
+			long start = System.currentTimeMillis();
+			for (FigureFacet f : figures.values())
+				before.put(f, f.makePersistentFigure());
+			long end = System.currentTimeMillis();
+			println("$$   copied figures, took " + (end - start) + "ms");
 		}
 		
 		public String getRedoTransactionDescription()
@@ -238,7 +257,22 @@ public final class BasicDiagramGem implements Gem
 			if (!inUndoRedo)
 			{
 				UndoRedoStates current = ensureCurrent();
-				current.addState(new UndoRedoState(action, figure.makePersistentFigure()));
+				if (action.equals(UndoRedoAction.ADD))
+				{
+					PersistentFigure p = figure.makePersistentFigure();
+					before.put(figure, p);
+					current.addState(new UndoRedoState(action, p));
+				}
+				else
+				if (action.equals(UndoRedoAction.REMOVE))
+				{
+					PersistentFigure p = figure.makePersistentFigure();
+					current.addState(new UndoRedoState(UndoRedoAction.REMOVE, p));
+				}
+				else
+				{
+					mods.add(figure);
+				}
 			}
 		}
 
@@ -295,21 +329,31 @@ public final class BasicDiagramGem implements Gem
 
 		public void commitTransaction()
 		{
-			ensureCurrent();
-			UndoRedoStates states = stateStack.get(pos++);
-			
-			// add any modifications
-			List<UndoRedoState> urs = states.getStates();
-			for (FigureFacet f : trans.keySet())
+			// create any needed modifications
+			UndoRedoStates current = ensureCurrent();
+			for (FigureFacet f : figures.values())
 			{
-				UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, trans.get(f));
-				state.setAfterPersistentFigure(f.makePersistentFigure());
-				urs.add(state);
-			}			
+				PersistentFigure bp = before.get(f);
+				if (bp != null)
+				{
+					PersistentFigure p = f.makePersistentFigure();
+					if (mods.contains(f) || !p.equals(bp))
+					{
+						UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, bp);
+						state.setAfterPersistentFigure(p);
+						current.addState(state);
+						internallyAdjusted(f);
+					}
+				}
+			}
+			
+			println("$$ committed transaction: " + this);
+			UndoRedoStates states = stateStack.get(pos++);
 			states.setSealed(true);
 			sendChangesToListeners();
-			trans.clear();
 			insideTransaction = false;
+			before.clear();
+			mods.clear();
 		}
 		
 		public void undoTransaction()
@@ -322,46 +366,41 @@ public final class BasicDiagramGem implements Gem
 				inUndoRedo = true;
 				UndoRedoStates all = stateStack.get(--pos);
 				List<UndoRedoState> states = all.getStates();
-				List<PersistentFigure> readd = new ArrayList<PersistentFigure>();
 				for (int lp = states.size() - 1; lp >= 0; lp--)
 				{
 					UndoRedoState s = states.get(lp);
 					switch (s.getAction())
 					{
 						case REMOVE:
-							lp = addPersistentFigures(states, lp, -1);
+							lp = addPersistentFigures(states, lp, -1) + 1;
 							break;
 						case MODIFY:
-							{
-								FigureFacet f = figures.get(s.getPersistentFigure().getId());
-								if (f != null)
-									remove(f);
-								readd.add(s.getPersistentFigure());
-							}
+							handleModify(s.getPersistentFigure());
 							break;
-					}
-				}
-				addPersistentFigures(readd, new UDimension(0, 0));
-				for (int lp = states.size() - 1; lp >= 0; lp--)
-				{
-					UndoRedoState s = states.get(lp);
-					switch (s.getAction())
-					{
 						case ADD:
 							{
 								FigureFacet f = figures.get(s.getPersistentFigure().getId());
-								if (f != null)
-									remove(f);
+								remove(f);
 							}
 							break;
 					}
 				}
 				sendChangesToListeners();
 				inUndoRedo = false;
-				trans.clear();
 			}
 		}
 		
+		private void handleModify(PersistentFigure p)
+		{
+			FigureFacet f = figures.get(p.getId());
+			if (f != null)
+			{
+				f.cleanUp();
+				modifyPersistentFigure(p, new UDimension(0, 0));
+				internallyAdjusted(f);
+			}
+		}
+
 		public void redoTransaction()
 		{
 			if (insideTransaction)
@@ -373,44 +412,34 @@ public final class BasicDiagramGem implements Gem
 				UndoRedoStates all = stateStack.get(pos++);
 				List<UndoRedoState> states = all.getStates();
 				int size = states.size();
-				List<PersistentFigure> readd = new ArrayList<PersistentFigure>();
 				for (int lp = 0; lp < size; lp++)
 				{
-					UndoRedoState s = states.get(lp); 
+					UndoRedoState s = states.get(lp);
 					switch (s.getAction())
 					{
 						case ADD:
-							lp = addPersistentFigures(states, lp, 1);
+							lp = addPersistentFigures(states, lp, 1) - 1;
 							break;
 						case MODIFY:
-							{
-								FigureFacet f = figures.get(s.getPersistentFigure().getId());
-								if (f != null)
-									remove(f);
-								readd.add(s.getPersistentFigureAfter());
-							}
+							handleModify(s.getPersistentFigureAfter());
 							break;
-					}
-				}
-				addPersistentFigures(readd, new UDimension(0, 0));
-				for (int lp = 0; lp < size; lp++)
-				{
-					UndoRedoState s = states.get(lp); 
-					switch (s.getAction())
-					{
 						case REMOVE:
 						{
 							FigureFacet f = figures.get(s.getPersistentFigure().getId());
-							if (f != null)
-								remove(f);
+							remove(f);
 						}
 						break;
 					}
 				}
 				sendChangesToListeners();
 				inUndoRedo = false;
-				trans.clear();
 			}
+		}		
+		
+		void println(String str)
+		{
+			if (!isClipboard && !temporary)
+				System.out.println(str);
 		}
 		
 		private int addPersistentFigures(List<UndoRedoState> states, int current, int direction)
@@ -422,10 +451,8 @@ public final class BasicDiagramGem implements Gem
 			{
 				UndoRedoState state = states.get(current);
 				if (!state.getAction().equals(act))
-				{
-					current -= direction;
 					break;
-				}
+
 				pfigs.add(state.getPersistentFigure());
 				current += direction;
 			}
@@ -435,13 +462,9 @@ public final class BasicDiagramGem implements Gem
 
 		public void aboutToAdjust(FigureFacet figure)
 		{
-			if (!inUndoRedo && !trans.containsKey(figure))
-			{
-				ensureCurrent();
-				PersistentFigure p = figure.makePersistentFigure();
-				trans.put(figure, p);
-				internallyAdjusted(figure);
-			}
+			if (!before.containsKey(figure))
+				before.put(figure, figure.makePersistentFigure());
+			addToCurrentTransaction(UndoRedoAction.MODIFY, figure);
 		}
 		
 		////////////////////////////////////////////////////////////////////////////////////////
@@ -488,6 +511,7 @@ public final class BasicDiagramGem implements Gem
 	
 	  public void adjusted(FigureFacet figure)
 	  {
+	  	
 	  }
 	  
 	  private void internallyAdjusted(FigureFacet figure)
@@ -671,10 +695,17 @@ public final class BasicDiagramGem implements Gem
 		 */
 		public void addPersistentFigures(Collection<PersistentFigure> persistentFigures, UDimension offset)
 		{
-			addPersistentFigures(persistentFigures, offset, true);
+			addPersistentFigures(persistentFigures, offset, true, true);
 		}
 		
-		public void addPersistentFigures(Collection<PersistentFigure> persistentFigures, UDimension offset, final boolean generateFullAdjustments)
+		public void modifyPersistentFigure(PersistentFigure persistentFigure, UDimension offset)
+		{
+			List<PersistentFigure> pfigs = new ArrayList<PersistentFigure>();
+			pfigs.add(persistentFigure);
+			addPersistentFigures(pfigs, offset, true, false);
+		}
+		
+		public void addPersistentFigures(Collection<PersistentFigure> persistentFigures, UDimension offset, final boolean generateFullAdjustments, boolean add)
 		{
 			// NOTE: this must be able to add figures that refer to existing figures that are possibly already in the diagram
 			setModified(true);
@@ -682,7 +713,7 @@ public final class BasicDiagramGem implements Gem
 			final boolean needToOffset = offset != null && offset.distance() != 0;
 			final List<FigureFacet> addedFigures = new ArrayList<FigureFacet>();
 
-			DiagramRecreator.recreateFigures(this, persistentFigures, figures,
+			DiagramRecreator.recreateFigures(this, persistentFigures, figures, add,
 				new RecreatorListener()
 				{
 					public void addedFigure(FigureFacet figure)
@@ -802,7 +833,7 @@ public final class BasicDiagramGem implements Gem
 
       persistentDiagram = refreshedPersistentDiagram;
       figureId = source == null ? persistentDiagram.getLastFigureId() : CHAINED_UPPER_FIGURE_ID;
-      addPersistentFigures(persistentDiagram.getFigures(), null, false);
+      addPersistentFigures(persistentDiagram.getFigures(), null, false, true);
       
       // allow changes to be generated again
       generateChanges = true;

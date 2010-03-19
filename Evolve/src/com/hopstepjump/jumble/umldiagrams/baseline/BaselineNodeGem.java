@@ -210,9 +210,8 @@ public final class BaselineNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -233,6 +232,10 @@ public final class BaselineNodeGem implements Gem
 		public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return null;
+		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
 		}
   }
   

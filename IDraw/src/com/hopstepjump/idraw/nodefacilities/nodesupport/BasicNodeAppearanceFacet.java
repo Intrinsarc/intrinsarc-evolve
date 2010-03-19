@@ -47,8 +47,10 @@ public interface BasicNodeAppearanceFacet extends Facet
   public void produceEffect(ToolCoordinatorFacet coordinator, String effect, Object[] parameters);
 
   /** form a command after a visual move has taken place */
-  public Command getPostContainerDropCommand();
+  public void performPostContainerDropTransaction();
 	public boolean canMoveContainers();
 	public boolean isSubjectReadOnlyInDiagramContext(boolean kill);
+
+	public void acceptPersistentFigure(PersistentFigure pfig);
 
 }

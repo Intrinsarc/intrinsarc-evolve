@@ -20,5 +20,5 @@ public interface ContainedFacet extends Facet
   public boolean canMoveContainers();
   
   public FigureFacet getFigureFacet();
-  public Command getPostContainerDropCommand();
+  public void performPostContainerDropTransaction();
 }

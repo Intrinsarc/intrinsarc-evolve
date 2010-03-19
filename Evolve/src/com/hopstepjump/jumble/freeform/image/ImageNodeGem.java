@@ -431,9 +431,8 @@ public final class ImageNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
     public boolean canMoveContainers()
@@ -450,6 +449,10 @@ public final class ImageNodeGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+		}
   }
   
   private UDimension getTextHeightAsDimension(ZText text)

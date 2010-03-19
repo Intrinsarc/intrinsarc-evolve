@@ -580,9 +580,9 @@ public final class FeatureNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return featureTypeFacet.getPostContainerDropCommand();
+      featureTypeFacet.performPostContainerDropTransaction();
     }
 
 		public boolean canMoveContainers()
@@ -604,6 +604,11 @@ public final class FeatureNodeGem implements Gem
     public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return new ToolFigureClassification("feature", null);
+		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+	    name = pfig.getProperties().retrieve("name", "").asString();
 		}
 	}
 	

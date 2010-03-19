@@ -353,26 +353,12 @@ public final class BasicNamespaceNodeGem implements Gem
 	    return list.iterator();  // this is not a reference, but is a copy, so we don't need to make it unmodifiable
 	  }
 	  
-	  public void unAddContents(Object memento)
+	  public void removeContents(ContainedFacet[] containable)
 	  {
-			// not used -- this has a static set of contents
 	  }
 	
-	  public Object removeContents(ContainedFacet[] containable)
+	  public void addContents(ContainedFacet[] containable)
 	  {
-			// not used -- this has a static set of contents
-			return null;
-	  }
-	
-	  public void unRemoveContents(Object memento)
-	  {
-			// not used -- this has a static set of contents
-	  }
-	
-	  public Object addContents(ContainedFacet[] containable)
-	  {
-			// not used -- this has a static set of contents
-			return null;
 	  }
 	
 	  public boolean isWillingToActAsBackdrop()
@@ -433,6 +419,10 @@ public final class BasicNamespaceNodeGem implements Gem
 			// we should only get one of these
 			contents = (SimpleContainerFacet) contained.getDynamicFacet(SimpleContainerFacet.class);
 			contained.getContainedFacet().persistence_setContainer(this);
+		}
+
+		public void cleanUp()
+		{
 		}
   }
 
@@ -789,9 +779,8 @@ public final class BasicNamespaceNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -808,6 +797,20 @@ public final class BasicNamespaceNodeGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+			owner = properties.retrieve("owner").asString();
+			suppressContents = properties.retrieve("supC", false).asBoolean();
+			rememberedTLOffset = properties.retrieve("tlOff", new UDimension(0,0)).asUDimension();
+			rememberedBROffset = properties.retrieve("brOff", new UDimension(0,0)).asUDimension();
+			displayOnlyIcon = properties.retrieve("icon", false).asBoolean();
+
+			showOwningPackage = properties.retrieve("showVis", false).asBoolean();
+			forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
+	    fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
+		}
 	}
 	
 	private class TextableFacetImpl implements TextableFacet

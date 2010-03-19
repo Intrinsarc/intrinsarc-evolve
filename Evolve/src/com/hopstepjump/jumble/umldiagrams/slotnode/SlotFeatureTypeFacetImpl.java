@@ -176,9 +176,8 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
           figureFacet.getFigureReference(), UML2Package.eINSTANCE.getClass_());
   }
 
-  public Command getPostContainerDropCommand()
+  public void performPostContainerDropTransaction()
   {
-    return null;
   }
 
   public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner)

@@ -350,9 +350,8 @@ public final class MeasureBoxGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -369,6 +368,12 @@ public final class MeasureBoxGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+			text = properties.retrieve("text").asString();
+		}
   }
   
 	private UDimension getTextHeightAsDimension(ZText text)

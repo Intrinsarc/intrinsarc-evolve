@@ -105,5 +105,10 @@ final class BasicArcAnchorFacetImpl implements AnchorFacet
     return null;
   }
 
+	public void cleanUp()
+	{
+		state.linked.clear();
+	}
+
 }
 	

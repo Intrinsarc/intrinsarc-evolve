@@ -156,81 +156,41 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
           figureFacet.getFigureReference(), UML2Package.eINSTANCE.getClassifier());
   }
 
-  public Command getPostContainerDropCommand()
+  public void performPostContainerDropTransaction()
   {
-    final Element subject = FeatureNodeGem.getPossibleDeltaSubject(figureFacet.getSubject());
-    final Classifier oldOwner = (Classifier) subject.getOwner();
-
-    return new AbstractCommand("relocated after move", "unrelocated after move")
-     {
-       private Classifier newOwner;
+    Element subject = FeatureNodeGem.getPossibleDeltaSubject(figureFacet.getSubject());
+    Classifier oldOwner = (Classifier) subject.getOwner();
        
-       public void execute(boolean isTop)
-       {
-         // work out the new owner from the visual nesting
-         if (newOwner == null)
-           newOwner = findOwningVisualElement();
+    // work out the new owner from the visual nesting
+    Classifier newOwner = findOwningVisualElement();
          
-         if (newOwner != oldOwner)
-         {
-           if (subject instanceof DeltaReplacedConstituent)
-           {
-             if (oldOwner instanceof Interface)
-               ((Interface) oldOwner).getDeltaReplacedOperations().remove(subject);
-             else if (oldOwner instanceof Class)
-               ((Class) oldOwner).getDeltaReplacedOperations().remove(subject);
-             
-             if (newOwner instanceof Interface)
-               ((Interface) newOwner).getDeltaReplacedOperations().add(subject);
-             else if (newOwner instanceof Class)
-               ((Class) newOwner).getDeltaReplacedOperations().add(subject);             
-           }
-           else
-           {
-             if (oldOwner instanceof Interface)
-               ((Interface) oldOwner).getOwnedOperations().remove(subject);
-             else if (oldOwner instanceof Class)
-               ((Class) oldOwner).getOwnedOperations().remove(subject);
-             
-             if (newOwner instanceof Interface)
-               ((Interface) newOwner).getOwnedOperations().add(subject);
-             else if (newOwner instanceof Class)
-               ((Class) newOwner).getOwnedOperations().add(subject);
-           }
-         }
-       }
-  
-       public void unExecute()
+     if (newOwner != oldOwner)
+     {
+       if (subject instanceof DeltaReplacedConstituent)
        {
-         if (newOwner != oldOwner)
-         {
-           if (subject instanceof DeltaReplacedConstituent)
-           {
-             if (newOwner instanceof Interface)
-               ((Interface) newOwner).getDeltaReplacedOperations().remove(subject);
-             else if (newOwner instanceof Class)
-               ((Class) newOwner).getDeltaReplacedOperations().remove(subject);
-              
-             if (oldOwner instanceof Interface)
-               ((Interface) oldOwner).getDeltaReplacedOperations().add(subject);
-             else if (oldOwner instanceof Class)
-               ((Class) oldOwner).getDeltaReplacedOperations().add(subject);           
-           }
-           else
-           {
-             if (newOwner instanceof Interface)
-               ((Interface) newOwner).getOwnedOperations().remove(subject);
-             else if (newOwner instanceof Class)
-               ((Class) newOwner).getOwnedOperations().remove(subject);
-              
-             if (oldOwner instanceof Interface)
-               ((Interface) oldOwner).getOwnedOperations().add(subject);
-             else if (oldOwner instanceof Class)
-               ((Class) oldOwner).getOwnedOperations().add(subject);
-           }
-         }
-       }        
-     };
+         if (oldOwner instanceof Interface)
+           ((Interface) oldOwner).getDeltaReplacedOperations().remove(subject);
+         else if (oldOwner instanceof Class)
+           ((Class) oldOwner).getDeltaReplacedOperations().remove(subject);
+         
+         if (newOwner instanceof Interface)
+           ((Interface) newOwner).getDeltaReplacedOperations().add(subject);
+         else if (newOwner instanceof Class)
+           ((Class) newOwner).getDeltaReplacedOperations().add(subject);             
+       }
+       else
+       {
+         if (oldOwner instanceof Interface)
+           ((Interface) oldOwner).getOwnedOperations().remove(subject);
+         else if (oldOwner instanceof Class)
+           ((Class) oldOwner).getOwnedOperations().remove(subject);
+         
+         if (newOwner instanceof Interface)
+           ((Interface) newOwner).getOwnedOperations().add(subject);
+         else if (newOwner instanceof Class)
+           ((Class) newOwner).getOwnedOperations().add(subject);
+       }
+     }
   }
   
   public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)

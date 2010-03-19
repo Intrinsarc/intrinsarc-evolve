@@ -20,7 +20,6 @@ import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.repositorybase.*;
-import com.sun.corba.se.spi.ior.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -92,13 +91,18 @@ public final class FeatureCompartmentGem implements Gem
 	   */
 	  public UDimension getMinimumExtent()
 	  {
-	  	Iterator iter = features.iterator();
 	  	double height = 0;
 	  	double width = 0;
 	  	boolean haveAtLeastOneOp = false;
-	  	while (iter.hasNext())
+	  	if (figureFacet.getContainedFacet().getContainer().getFigureFacet().getId().equals("1"))
 	  	{
-	  		FigureFacet figure = (FigureFacet) iter.next();
+	  		System.out.println("$$ number of features = " + features.size() + ", type = " + getFigureFacet().getFigureName());
+	  		for (FigureFacet f : features)
+	  			if (f.getContainedFacet().getContainer().getFigureFacet() != figureFacet)
+	  				System.out.println("    $$ incorrect parent!!");
+	  	}
+	  	for (FigureFacet figure : features)
+	  	{
 	  		UDimension opDim = figure.getFullBounds().getDimension();
 				height += opDim.getHeight();
 				width = Math.max(width, opDim.getWidth());			
@@ -363,84 +367,29 @@ public final class FeatureCompartmentGem implements Gem
 		/*
 		 * @see CmdContainerable#addContainables(CmdContainable[])
 		 */
-		public Object addContents(ContainedFacet[] containables)
+		public void addContents(ContainedFacet[] containables)
 		{
-			// make a list of the current containables
-			List current = makeCurrentFeatures();
-	
-			// add the operations to the list -- acceptsContained() makes sure that these are the correct type
+			// add the operations to the list -- acceptsContained() makes sure that these are the correct type			
 			for (int lp = 0; lp < containables.length; lp++)
 			{
 				features.add(containables[lp].getFigureFacet());
 				containables[lp].setContainer(this);
 			}
-				
-			// return the old list
-			return current;
-		}
-	
-		private List makeCurrentFeatures()
-		{
-			List<FigureReference> current = new ArrayList<FigureReference>();
-			for (FigureFacet f : features)
-				current.add(f.getFigureReference());
-			return current;
 		}
 		
-		private void restoreOldFeatures(List oldOps)
-		{
-			features = new HashSet<FigureFacet>();
-			Iterator iter = oldOps.iterator();
-			while (iter.hasNext())
-			{
-				FigureReference ref = (FigureReference) iter.next();
-
-				FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(ref);
-				ContainedFacet port = figure.getContainedFacet();
-				if (port != null)
-				{
-					port.setContainer(this);
-					features.add(figure);
-				}
-			}
-		}
-
 		/*
 		 * @see CmdContainerable#removeContainables(CmdContainable[])
 		 */
-		public Object removeContents(ContainedFacet[] containables)
+		public void removeContents(ContainedFacet[] containables)
 		{
-			// make a list of the current containables
-			List current = makeCurrentFeatures();
-	
 			// remove the operations from the list
 			for (int lp = 0; lp < containables.length; lp++)
 			{
 				containables[lp].setContainer(null);
 				features.remove(containables[lp].getFigureFacet());
 			}
-			
-			// return the old list
-			return current;
 		}
 	
-		/*
-		 * @see CmdContainerable#unAddContainables(Object)
-		 */
-		public void unAddContents(Object memento)
-		{
-			restoreOldFeatures((List) memento);
-		}
-	
-		/*
-		 * @see CmdContainerable#unRemoveContainables(Object)
-		 */
-		public void unRemoveContents(Object memento)
-		{
-			restoreOldFeatures((List) memento);
-			// set the positions of the operations
-		}
-
   	public FigureFacet getFigureFacet()
   	{
   		return figureFacet;
@@ -485,6 +434,11 @@ public final class FeatureCompartmentGem implements Gem
 		{
 			features.add(contained);
 			contained.getContainedFacet().persistence_setContainer(this);
+		}
+
+		public void cleanUp()
+		{
+			features.clear();
 		}
   }
 	
@@ -635,9 +589,8 @@ public final class FeatureCompartmentGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -658,6 +611,13 @@ public final class FeatureCompartmentGem implements Gem
     public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return new ToolFigureClassification(FIGURE_NAME, null);
+		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+			addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());		
+			deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
 		}
 	}
 	

@@ -187,7 +187,6 @@ public class PortCompartmentGem implements Gem
 
   private class ContainerFacetImpl implements BasicNodeContainerFacet
   {
-
     public boolean insideContainer(UPoint point)
     {
       return figureFacet.getFullBounds().contains(point);
@@ -198,13 +197,7 @@ public class PortCompartmentGem implements Gem
       return getContentsList().iterator();
     }
 
-    public void unAddContents(Object memento)
-    {
-      ContainedFacet[] containable = makeContained((FigureReference[]) memento);
-      removeContents(containable);
-    }
-
-    public Object removeContents(ContainedFacet[] containable)
+    public void removeContents(ContainedFacet[] containable)
     {
       // tell each containable that they are now contained by this
       for (int lp = 0; lp < containable.length; lp++)
@@ -213,17 +206,8 @@ public class PortCompartmentGem implements Gem
         containable[lp].setContainer(null);
       }
       figureFacet.adjusted();
-
-      return makeFigureReferences(containable);
     }
-
-    public void unRemoveContents(Object memento)
-    {
-      ContainedFacet[] containable = makeContained((FigureReference[]) memento);
-      addContents(containable);
-    }
-
-    public Object addContents(ContainedFacet[] containable)
+    public void addContents(ContainedFacet[] containable)
     {
       // tell each containable that they are now contained by this
       for (int lp = 0; lp < containable.length; lp++)
@@ -232,26 +216,6 @@ public class PortCompartmentGem implements Gem
         containable[lp].setContainer(this);
       }
       figureFacet.adjusted();
-
-      return makeFigureReferences(containable);
-    }
-
-    private FigureReference[] makeFigureReferences(ContainedFacet[] containable)
-    {
-      int length = containable.length;
-      FigureReference[] references = new FigureReference[length];
-      for (int lp = 0; lp < length; lp++)
-        references[lp] = containable[lp].getFigureFacet().getFigureReference();
-      return references;
-    }
-
-    private ContainedFacet[] makeContained(FigureReference[] figures)
-    {
-      int length = figures.length;
-      ContainedFacet[] containable = new ContainedFacet[length];
-      for (int lp = 0; lp < length; lp++)
-        containable[lp] = GlobalDiagramRegistry.registry.retrieveFigure(figures[lp]).getContainedFacet();
-      return containable;
     }
 
     public boolean isWillingToActAsBackdrop()
@@ -334,6 +298,11 @@ public class PortCompartmentGem implements Gem
       contents.add(contained);
       contained.getContainedFacet().persistence_setContainer(containerFacet);
     }
+
+		public void cleanUp()
+		{
+			contents.clear();
+		}
   }
 
   private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
@@ -483,9 +452,8 @@ public class PortCompartmentGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -502,6 +470,14 @@ public class PortCompartmentGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+	    classScope = properties.retrieve("classScope", false).asBoolean();
+	    addedUuids = new HashSet<String>(properties.retrieve("addedUuids").asStringCollection());
+	    deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids").asStringCollection());
+		}
   }
 
   public static PortCompartmentGem createAndWireUp(

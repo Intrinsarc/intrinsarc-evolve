@@ -952,6 +952,11 @@ public final class ClassifierNodeGem implements Gem
 			ClassifierSizeInfo info = makeCurrentInfo();
 			ClassifierSizes sizes = info.makeActualSizes();
 			
+			if (figureFacet.getId().equals("1"))
+			{
+				System.out.println("$$$$$ resized extent = " + figureFacet.getFullBounds().getDimension() + ", sizes = " + sizes.getOuter().getDimension());
+				System.out.println("$$$$$ min attr extent = " + attributesOrSlots.getMinimumExtent());
+			}
 			ZText zName = sizes.getZtext();
 			if (!displayOnlyIcon)
 				zName.setBackgroundColor(null);
@@ -2591,9 +2596,8 @@ public final class ClassifierNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -2686,6 +2690,11 @@ public final class ClassifierNodeGem implements Gem
 		{
 			return area.contains(point);
 		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretOptionalProperties(pfig.getProperties());
+		}
 	}
 	
 	private class ContainerFacetImpl implements BasicNodeContainerFacet
@@ -2704,24 +2713,12 @@ public final class ClassifierNodeGem implements Gem
 			return false;
 		}
 		
-		public void unAddContents(Object memento)
+		public void removeContents(ContainedFacet[] containables)
 		{
-			// not applicable -- has a fixed set of containables
 		}
 		
-		public Object removeContents(ContainedFacet[] containables)
+		public void addContents(ContainedFacet[] containables)
 		{
-			return null;
-		}
-		
-		public void unRemoveContents(Object memento)
-		{
-			// not applicable -- has a fixed set of containables
-		}
-		
-		public Object addContents(ContainedFacet[] containables)
-		{
-			return null;
 		}
 		
 		public Iterator<FigureFacet> getContents()
@@ -2838,6 +2835,10 @@ public final class ClassifierNodeGem implements Gem
 			}
 			
 	    registerAdorner();
+		}
+
+		public void cleanUp()
+		{
 		}
 	}
 	

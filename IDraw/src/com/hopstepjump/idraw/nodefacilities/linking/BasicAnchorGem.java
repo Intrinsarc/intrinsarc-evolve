@@ -123,9 +123,8 @@ public final class BasicAnchorGem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -151,6 +150,12 @@ public final class BasicAnchorGem
     public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return null;
+		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			// TODO Auto-generated method stub
+			
 		}
 	}
 	

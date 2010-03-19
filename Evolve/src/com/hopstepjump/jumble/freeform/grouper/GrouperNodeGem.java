@@ -112,6 +112,7 @@ public class GrouperNodeGem
     // reconstitute the subject
     subject = (Comment) figure.getSubject();
     PersistentProperties properties = figure.getProperties();
+		name = properties.retrieve("name", "").asString();
 		textAtTop = properties.retrieve("textAtTop", false).asBoolean();
     fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
   }
@@ -237,26 +238,14 @@ public class GrouperNodeGem
 			return list.iterator();  // this is not a reference, but is a copy, so we don't need to make it unmodifiable
 		}
 	  
-		public void unAddContents(Object memento)
-		{
-			// not used -- this has a static set of contents, which is the simple container
-		}
-	
-		public Object removeContents(ContainedFacet[] containable)
-		{
-			// not used -- this has a static set of contents
-			return null;
-		}
-	
-		public void unRemoveContents(Object memento)
+		public void removeContents(ContainedFacet[] containable)
 		{
 			// not used -- this has a static set of contents
 		}
 	
-		public Object addContents(ContainedFacet[] containable)
+		public void addContents(ContainedFacet[] containable)
 		{
 			// not used -- this has a static set of contents
-			return null;
 		}
 	
 		public boolean isWillingToActAsBackdrop()
@@ -298,6 +287,10 @@ public class GrouperNodeGem
 			// we should only get one of these
 			contents = (SimpleContainerFacet) contained.getDynamicFacet(SimpleContainerFacet.class);
 			contained.getContainedFacet().persistence_setContainer(this);
+		}
+
+		public void cleanUp()
+		{
 		}
 	}
 
@@ -669,9 +662,8 @@ public class GrouperNodeGem
       return view;
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -688,6 +680,14 @@ public class GrouperNodeGem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+	    PersistentProperties properties = pfig.getProperties();
+			name = properties.retrieve("name", "").asString();
+			textAtTop = properties.retrieve("textAtTop", false).asBoolean();
+	    fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
+		}
 	}
 	
 	private class TextableFacetImpl implements TextableFacet
