@@ -28,7 +28,7 @@ public interface FigureFacet extends MainFacet
   public ZNode formView();
   public boolean useGlobalLayer();
   
- 	public Command updateViewAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
+ 	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass);
  	public Object getSubject();
  	public boolean hasSubjectBeenDeleted();
 	public void aboutToAdjust();
@@ -106,7 +106,7 @@ public interface FigureFacet extends MainFacet
   public ClipboardCommandsFacet getClipboardCommandsFacet();
   
   /** form a command to delete this figure from the diagram */
-  public Command formDeleteCommand();
+  public void formDeleteTransaction();
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill);
   public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
 }

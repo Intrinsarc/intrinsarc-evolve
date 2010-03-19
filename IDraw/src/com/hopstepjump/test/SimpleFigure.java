@@ -93,9 +93,8 @@ public class SimpleFigure implements FigureFacet
 	////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////
 	
-	public Command formDeleteCommand()
+	public void formDeleteTransaction()
 	{
-		return null;
 	}
 
 	public void addPreviewToCache(DiagramFacet diagram,
@@ -103,10 +102,8 @@ public class SimpleFigure implements FigureFacet
 	{
 	}
 
-	public Command updateViewAfterSubjectChanged(boolean isTop,
-			ViewUpdatePassEnum pass)
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 	{
-		return null;
 	}
 
 	public FigureFacet getActualFigureForSelection()

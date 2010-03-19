@@ -108,18 +108,9 @@ public class PortCompartmentGem implements Gem
 
   private class PortAddFacetImpl implements PortAddFacet
   {
-    public Object addPort(Object memento, FigureReference reference, NodeCreateFacet factory,
+    public void addPort(FigureReference reference, NodeCreateFacet factory,
         PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location)
     {
-      // if we have created the cmd before, just reexecute
-      if (memento != null)
-      {
-        ((Command) memento).execute(false);
-        return memento;
-      }
-      
-      // make the composite and execute it
-      CompositeCommand comp = new CompositeCommand("", "");
       // adjust resizings to accommodate operation preview
       NodeCreateFigureTransaction.create(
       		figureFacet.getDiagram(),
@@ -151,25 +142,11 @@ public class PortCompartmentGem implements Gem
 
       resizings.resizeToAddContainables(new ContainedPreviewFacet[]{movings.getCachedPreview(figure).getContainedPreviewFacet()}, location);
       resizings.end();
-  
-      return comp;
     }
 
-    public void unAddPort(Object memento)
-    {
-      ((Command) memento).unExecute();
-    }
-
-    public Object replacePort(Object memento, FigureReference reference, FigureReference toReplace,
+    public void replacePort(FigureReference reference, FigureReference toReplace,
         NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject)
     {
-      // if we have created the cmd before, just reexecute
-      if (memento != null)
-      {
-        ((Command) memento).execute(false);
-        return memento;
-      }
-      
       // use the location of the previous port
       DiagramFacet diagram = figureFacet.getDiagram();
       FigureFacet replacedFigure = diagram.retrieveFigure(toReplace.getId());
@@ -205,13 +182,6 @@ public class PortCompartmentGem implements Gem
 
       resizings.resizeToAddContainables(new ContainedPreviewFacet[]{movings.getCachedPreview(figure).getContainedPreviewFacet()}, location);
       resizings.end();
-  
-      return null;
-    }
-
-    public void unReplacePort(Object memento)
-    {
-      ((Command) memento).unExecute();
     }
   }
 
@@ -481,9 +451,8 @@ public class PortCompartmentGem implements Gem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
-      return null;
     }
 
     /**

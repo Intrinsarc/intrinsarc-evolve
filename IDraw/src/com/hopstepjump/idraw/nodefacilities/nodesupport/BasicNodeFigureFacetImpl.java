@@ -55,6 +55,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 
   public void setShowing(boolean showing)
 	{
+		aboutToAdjust();
 		state.showing = showing;
 
 		// we must generate updates such that the container is always shown first and hidden last!
@@ -320,7 +321,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	/**
 	 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeFigureFacet#makeAndExecuteResizingCommand()
 	 */
-	public void makeAndExecuteResizingCommand(UBounds newBounds)
+	public void performResizingTransaction(UBounds newBounds)
 	{
 		// this method should only be used inside a command's execution
 		ResizingFiguresGem gem = new ResizingFiguresGem(null, state.diagram);
@@ -374,9 +375,9 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	/**
 	 * @see com.hopstepjump.idraw.foundation.FigureFacet#subjectChanged()
 	 */
-	public Command updateViewAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 	{
-		return state.appearanceFacet.formViewUpdateCommandAfterSubjectChanged(isTop, pass);
+		state.appearanceFacet.updateViewAfterSubjectChanged(pass);
 	}
 
 	/**
@@ -420,7 +421,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
       state.appearanceFacet.produceEffect(coordinator, effect, parameters);
   }
 
-  public Command formDeleteCommand()
+  public void formDeleteTransaction()
   {
     // form a complete set of all figures to delete, including children
     ChosenFiguresFacet chosenFigures = new ChosenFiguresFacet()
@@ -432,12 +433,10 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
     };
     List<FigureFacet> toDelete = new ArrayList<FigureFacet>();
     toDelete.add(this);
-    Set deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
-    
 
     // remove the views with deleted subjects
+    Set<String> deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
     DeleteFromDiagramTransaction.delete(getDiagram(), deletionFigureIds, false);
-    return null;
   }
 
   public ClipboardCommandsFacet getClipboardCommandsFacet()

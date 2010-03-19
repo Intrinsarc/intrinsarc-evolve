@@ -18,16 +18,13 @@ public class PartSlotHelper
 {
   private BasicNodeFigureFacet partFigure;
   private FigureFacet container;
-  private boolean top;
 
   public PartSlotHelper(
       BasicNodeFigureFacet partFigure,
-      FigureFacet container,
-      boolean top)
+      FigureFacet container)
   {
     this.partFigure = partFigure;
     this.container = container;
-    this.top = top;
   }
   
   public boolean isShowingAllConstituents()
@@ -72,18 +69,17 @@ public class PartSlotHelper
     return uuids;
   }
   
-  public CompositeCommand makeUpdateCommand(SimpleDeletedUuidsFacet deleted, boolean locked)
+  public void makeUpdateTransaction(SimpleDeletedUuidsFacet deleted, boolean locked)
   {
     // if the container isn't visible, don't bother
     if (!container.isShowing())
-      return null;
+      return;
     
     // get the full set of attributes
     Set<FigureFacet> current = getCurrentlyDisplayed();
     Set<Property> possibleAttributes = resolvePossibleAttributes();
     
     // work out what we need to delete
-    CompositeCommand cmd = new CompositeCommand("", "");
     
     // delete if this shouldn't be here
     for (FigureFacet f : current)
@@ -94,7 +90,7 @@ public class PartSlotHelper
       if (!subject.isThisDeleted())
       {
         if (!isOwned(possibleAttributes, (Slot) subject))
-          cmd.addCommand(f.formDeleteCommand());
+          f.formDeleteTransaction();
       }
     }
     
@@ -118,27 +114,22 @@ public class PartSlotHelper
 	        String uuid = slot.getUuid();
 	        if (isOwned(possibleAttributes, slot) && !deleted.isDeleted(suppressed, uuid) && !containedWithin(current, slot))
 	        {
-	          cmd.addCommand(
-	              makeAddCommand(
-	                  current,
-	                  partFigure,
-	                  container,
-	                  slot,
-	                  top));
+            makeAddTransaction(
+                current,
+                partFigure,
+                container,
+                slot);
 	        }
 	      }
 	    }
     }
-    
-    return cmd;
   }
 
-  public Command makeAddCommand(
+  public void makeAddTransaction(
       Set<FigureFacet> currentInContainerIgnoringDeletes,
       BasicNodeFigureFacet partFigure,
       FigureFacet container,
-      Slot slot,
-      boolean top)
+      Slot slot)
   {
     // look for the location amongst existing elements which this might be replacing
     UPoint location = null;
@@ -155,7 +146,7 @@ public class PartSlotHelper
       }
     }
     
-    AddFeatureCommand.add(
+    AddFeatureTransaction.add(
         container,
         partFigure.getDiagram().makeNewFigureReference(),
         new SlotCreatorGem().getNodeCreateFacet(),
@@ -163,7 +154,6 @@ public class PartSlotHelper
         slot,
         null,
         location);
-    return null;
   }
 
   private Set<FigureFacet> getCurrentlyDisplayed()

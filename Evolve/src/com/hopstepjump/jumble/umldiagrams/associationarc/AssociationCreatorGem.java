@@ -70,14 +70,6 @@ public class AssociationCreatorGem implements Gem
 	    return new FigureReference(diagram, figureId);
 	  }
 	
-	  public void unCreate(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -118,16 +110,12 @@ public class AssociationCreatorGem implements Gem
       return acceptsOneOrBothAnchors(start, end);
     }
     
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
     {
     	return null;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    }
-
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+    public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
 		{
 		}
 

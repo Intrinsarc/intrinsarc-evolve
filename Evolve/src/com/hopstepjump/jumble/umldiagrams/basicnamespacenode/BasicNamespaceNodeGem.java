@@ -185,10 +185,8 @@ public final class BasicNamespaceNodeGem implements Gem
 	  /**
 		 * @see com.hopstepjump.jumble.umldiagrams.base.DisplayAsIconFacet#displayAsIcon(boolean)
 		 */
-		public Object displayAsIcon(boolean displayAsIcon)
+		public void displayAsIcon(boolean displayAsIcon)
 		{
-			boolean oldDisplayAsIcon = displayOnlyIcon;
-	
 			// make the change
 			displayOnlyIcon = displayAsIcon;
 	
@@ -204,21 +202,6 @@ public final class BasicNamespaceNodeGem implements Gem
 			UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
 			resizings.setFocusBounds(centredBounds);			
 			resizings.end();
-			figureFacet.adjusted();
-	
-			return new Object[] {new Boolean(oldDisplayAsIcon), resizeCommand};
-		}
-	
-		public void unDisplayAsIcon(Object memento)
-		{
-			Object[] array = (Object[]) memento;
-			displayOnlyIcon = ((Boolean) array[0]).booleanValue();
-			
-			contents.getFigureFacet().setShowing(!suppressContents && !displayOnlyIcon);
-
-			Command resizeCommand = (Command) array[1];
-			if (resizeCommand != null)
-				resizeCommand.unExecute();
 			figureFacet.adjusted();
 		}
 	}
@@ -612,8 +595,11 @@ public final class BasicNamespaceNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress operations flag
-					Command displayAsIconCommand = new DisplayAsIconCommand(figureFacet.getFigureReference(), !displayOnlyIcon, "displayed " + getFigureName() + (displayOnlyIcon ? " as box" : "as icon"), "displayed " + getFigureName() + (!displayOnlyIcon ? " as box" : "as icon"));
-					coordinator.executeCommandAndUpdateViews(displayAsIconCommand);
+					coordinator.startTransaction(
+							"displayed " + getFigureName() + (displayOnlyIcon ? " as box" : "as icon"),
+							"displayed " + getFigureName() + (!displayOnlyIcon ? " as box" : "as icon"));
+					DisplayAsIconTransaction.display(figureFacet, !displayOnlyIcon);
+					coordinator.commitTransaction();
 				}
 			});
 			return displayAsIconItem;
@@ -753,10 +739,10 @@ public final class BasicNamespaceNodeGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
 			if (subject == null || pass != ViewUpdatePassEnum.LAST)
-				return null;
+				return;
 			
 			// should we be displaying the owner?
 			final boolean shouldBeDisplayingOwningPackage = !locatedInCorrectView() && !forceSuppressOwningPackage;
@@ -766,20 +752,16 @@ public final class BasicNamespaceNodeGem implements Gem
 			if (shouldBeDisplayingOwningPackage == showOwningPackage &&
           subject.getName().equals(name) && subject.getNamespace().getName().equals(owner) &&
           stereotypeHashcode == actualStereotypeHashcode)
-				return null;
+				return;
 			
 			// set the new variables
 			name = subject.getName();
-			
-			
 			owner = GlobalSubjectRepository.repository.findOwningStratum(subject).getName();
-			
 			showOwningPackage = shouldBeDisplayingOwningPackage;
       stereotypeHashcode = actualStereotypeHashcode;
 			
 			// resize, using a text utility
-      figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
-      return null;
+      figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
 		}
 
 		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)

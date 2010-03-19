@@ -1,21 +1,23 @@
 package com.hopstepjump.jumble.umldiagrams.portnode;
 
+import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 
-public class ReplacePortCommand implements TransactionFacet
+public class AddPortTransaction implements TransactionFacet
 {
-  public static void replace(FigureFacet addable, FigureReference featureReference, FigureReference replaced, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, String executeDescription, String unExecuteDescription)
+  public static void add(FigureFacet addable, FigureReference featureReference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location)
   {
-    getAddable(addable).replacePort(
+  	getAddable(addable).addPort(
         featureReference,
-        replaced,
         factory,
         properties,
         useSubject,
-        relatedSubject);
+        relatedSubject,
+        location);
   }
+
   private static PortAddFacet getAddable(FigureFacet addable)
   {
     return (PortAddFacet) addable.getDynamicFacet(PortAddFacet.class);

@@ -43,7 +43,7 @@ public interface BasicNodeAppearanceFacet extends Facet
 	/** view update management */
 	public Object getSubject();
 	public boolean hasSubjectBeenDeleted();
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass);
   public void produceEffect(ToolCoordinatorFacet coordinator, String effect, Object[] parameters);
 
   /** form a command after a visual move has taken place */

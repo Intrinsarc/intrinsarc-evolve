@@ -444,23 +444,23 @@ public class DependencyArcGem implements Gem
       return end != null && DependencyCreatorGem.acceptsOneOrBothAnchors(start, end);
     }
 
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       if (pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
       
       // if this is top and the anchors we are attached to are not the same as the ones that the
       // model element is attached to, then delete
       final Dependency dependency = subject;
-      if (isTop)
+      NamedElement owner = (NamedElement) subject.getClients().get(0);
+      NamedElement supplier = subject.undeleted_getDependencyTarget();
+      final NamedElement viewOwner = DependencyCreatorGem.extractDependentClient(figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject());
+      final NamedElement viewSupplier = (NamedElement) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
+      
+      if (owner != viewOwner || supplier != viewSupplier)
       {
-        NamedElement owner = (NamedElement) subject.getClients().get(0);
-        NamedElement supplier = subject.undeleted_getDependencyTarget();
-        final NamedElement viewOwner = DependencyCreatorGem.extractDependentClient(figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject());
-        final NamedElement viewSupplier = (NamedElement) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
-        
-        if (owner != viewOwner || supplier != viewSupplier)
-          return figureFacet.formDeleteCommand();
+        figureFacet.formDeleteTransaction();
+        return;
       }
       
       // possibly update the name
@@ -471,7 +471,6 @@ public class DependencyArcGem implements Gem
   			    subject.getName(),
   			    null,
   			    false);
-  			return null;
       }
       
       // if the stereotypes have changed, force a redraw
@@ -485,7 +484,6 @@ public class DependencyArcGem implements Gem
 				substitution = dependency.isReplacement();
 				resemblance = dependency.isResemblance();
       }
-      return null;
     }
 
     public Object getSubject()

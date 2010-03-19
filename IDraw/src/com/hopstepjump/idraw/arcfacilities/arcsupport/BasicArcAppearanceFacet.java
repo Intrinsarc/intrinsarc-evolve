@@ -60,7 +60,7 @@ public interface BasicArcAppearanceFacet extends Facet
 
 	public boolean hasSubjectBeenDeleted();
 
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass);
 
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill);
 }

@@ -21,7 +21,7 @@ public class NodeCreateFigureTransaction implements TransactionFacet
   {
     // if we have no subject, we must create one
     if (useSubject == null)
-      useSubject = factory.createNewSubject(null, diagram, containingReference, relatedSubject, properties);
+      useSubject = factory.createNewSubject(diagram, containingReference, relatedSubject, properties);
       
     // make the figure
     factory.createFigure(

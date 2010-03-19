@@ -91,11 +91,11 @@ public class ImplementationArcGem implements Gem
     	return startOk && end.getFigureFacet().getSubject() instanceof Interface;
 		}
 
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
 			// if this is top and the anchors we are attached to are not the same as the ones that the
 			// model element is attached to, then delete
-			if (isTop && pass == ViewUpdatePassEnum.LAST)
+			if (pass == ViewUpdatePassEnum.LAST)
 			{
 				Classifier type = subject.getRealizingClassifier();
 				Classifier iface = subject.getContract();
@@ -104,9 +104,8 @@ public class ImplementationArcGem implements Gem
 				final Interface viewIface = (Interface) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
 				
 				if (type != viewType || iface != viewIface)
-					return figureFacet.formDeleteCommand();
+					figureFacet.formDeleteTransaction();
 			}
-			return null;
 		}
 
 		public Object getSubject()

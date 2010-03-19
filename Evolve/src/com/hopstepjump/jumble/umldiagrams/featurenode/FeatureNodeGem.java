@@ -506,20 +506,20 @@ public final class FeatureNodeGem implements Gem
     /**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       if (pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
       
       int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
     	if (isSubjectAFeature())
-    		return formFeatureViewUpdateCommandAfterSubjectChanged(isTop, actualStereotypeHashcode);
+    		formFeatureViewUpdateCommandAfterSubjectChanged(actualStereotypeHashcode);
     	else
-    		return formSlotViewUpdateCommandAfterSubjectChanged(isTop, actualStereotypeHashcode);
+    		formSlotViewUpdateCommandAfterSubjectChanged(actualStereotypeHashcode);
     		
     }
 
-		public Command formSlotViewUpdateCommandAfterSubjectChanged(boolean isTop, final int actualStereotypeHashcode)
+		public void formSlotViewUpdateCommandAfterSubjectChanged(int actualStereotypeHashcode)
 		{
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
 			final boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
@@ -527,14 +527,13 @@ public final class FeatureNodeGem implements Gem
 			if (displayingLinkMark == shouldBeDisplayingLinkMark &&
           name.equals(newName) &&
           stereotypeHashcode == actualStereotypeHashcode)
-				return null;			
+				return;			
       
 			updateSlotViewAfterSubjectChanged(true);
-			return null;
 		}
 
 
-		public Command formFeatureViewUpdateCommandAfterSubjectChanged(boolean isTop, final int actualStereotypeHashCode)
+		public void formFeatureViewUpdateCommandAfterSubjectChanged(int actualStereotypeHashCode)
 		{
 			final Feature feature = getSubjectAsFeature();
 			
@@ -548,10 +547,9 @@ public final class FeatureNodeGem implements Gem
           classifierScope == feature.isStatic() &&
           name.equals(newName) &&
           stereotypeHashcode == actualStereotypeHashCode)
-				return null;			
+				return;			
 
 			updateFeatureViewAfterSubjectChanged(true);
-			return null;
 		}
 
     /**
@@ -657,7 +655,7 @@ public final class FeatureNodeGem implements Gem
     stereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
     
     // resize, using a text utility
-    figureFacet.makeAndExecuteResizingCommand(makeCurrentInfo().makeSizes().getEntireBounds());
+    figureFacet.performResizingTransaction(makeCurrentInfo().makeSizes().getEntireBounds());
   }
 
   public void updateSlotViewAfterSubjectChanged(boolean isTop)
@@ -671,7 +669,7 @@ public final class FeatureNodeGem implements Gem
     stereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
     
     // resize, using a text utility
-    figureFacet.makeAndExecuteResizingCommand(makeCurrentInfo().makeSizes().getEntireBounds());
+    figureFacet.performResizingTransaction(makeCurrentInfo().makeSizes().getEntireBounds());
   }
 
   public FeatureNodeGem(Element subject)

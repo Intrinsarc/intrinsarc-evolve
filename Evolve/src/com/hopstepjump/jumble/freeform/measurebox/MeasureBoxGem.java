@@ -95,7 +95,7 @@ public final class MeasureBoxGem implements Gem
 	  {
 	    // need to resize this also, as the change in text may have affected the size
 	    text = newText;	    
-	    figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(newText));
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(newText));
 	  }
 	
 		/**
@@ -318,9 +318,8 @@ public final class MeasureBoxGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 	
 		/**

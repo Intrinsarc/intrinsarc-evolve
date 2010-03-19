@@ -67,9 +67,8 @@ public final class LifelineArcAppearanceFacetImpl implements BasicArcAppearanceF
 		return true;
 	}
 
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 	{
-		return null;
 	}
 
 	public Object getSubject()

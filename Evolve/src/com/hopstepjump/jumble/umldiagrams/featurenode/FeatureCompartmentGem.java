@@ -603,9 +603,8 @@ public final class FeatureCompartmentGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 
 		/**
@@ -682,7 +681,7 @@ public final class FeatureCompartmentGem implements Gem
 	        relatedSubject);
 	    
 	    ContainerAddTransaction.add(figureFacet.getContainerFacet(), new FigureReference[]{reference});
-	    figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
+	    figureFacet.performResizingTransaction(figureFacet.getFullBounds());
 		}
 	}
 

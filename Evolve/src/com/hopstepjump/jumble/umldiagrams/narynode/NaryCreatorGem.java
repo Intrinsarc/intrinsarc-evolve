@@ -60,7 +60,7 @@ public final class NaryCreatorGem implements Gem
 			return basicGem.getBasicNodeFigureFacet();			
 		}
 
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       return null;
     }

@@ -175,7 +175,7 @@ public class GrouperNodeGem
 			// need to resize this also, as the change in text may have affected the size
 			boolean oldTextAtTop = textAtTop;
 			textAtTop = inTop;
-			figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
+			figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
 			return null;
 		}
 	
@@ -510,19 +510,18 @@ public class GrouperNodeGem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       if (subject == null || pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
       
       // if neither the name or the namespace has changed suppress any command
       if (subject.getBody().equals(name))
-        return null;
+        return;
       
       name = subject.getBody();
       UBounds bounds = textableFacet.vetTextResizedExtent(name);
-      figureFacet.makeAndExecuteResizingCommand(bounds);
-      return null;
+      figureFacet.performResizingTransaction(bounds);
     }
 
 		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)

@@ -110,7 +110,7 @@ public class LinkedTextGem implements Gem
       // make the change
       suppress = hide;
       figureFacet.setShowing(!suppress);
-      figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());      
+      figureFacet.performResizingTransaction(figureFacet.getFullBounds());      
       return null;
     }
     
@@ -209,7 +209,7 @@ public class LinkedTextGem implements Gem
 	    	suppress = false;
 	    	figureFacet.setShowing(true);
 	    }
-	    figureFacet.makeAndExecuteResizingCommand(linkedTextFacet.vetTextResizedExtent(newText));
+	    figureFacet.performResizingTransaction(linkedTextFacet.vetTextResizedExtent(newText));
 	  }
 	
 		/**
@@ -383,9 +383,8 @@ public class LinkedTextGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 	
 		/**

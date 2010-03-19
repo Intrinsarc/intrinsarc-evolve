@@ -238,9 +238,8 @@ public class AssociationArcAppearanceGem implements Gem
       return end != null && AssociationCreatorGem.acceptsOneOrBothAnchors(start, end);
 		}
 
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 
 		public Object getSubject()

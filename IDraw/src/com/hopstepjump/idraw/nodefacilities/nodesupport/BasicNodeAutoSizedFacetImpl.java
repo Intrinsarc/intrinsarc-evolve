@@ -71,8 +71,11 @@ public final class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFace
 			public void actionPerformed(ActionEvent e)
 			{
 				// toggle the autosized flag (as a command)
-				Command autoSizeCommand = new NodeAutoSizeCommand(state.figureFacet.getFigureReference(), !autoSized, (autoSized ? "unautosized " : "autosized ") + state.figureFacet.getFigureName(), (!autoSized ? "unautosized " : "autosized ") + state.figureFacet.getFigureName());
-				coordinator.executeCommandAndUpdateViews(autoSizeCommand);
+				coordinator.startTransaction(
+						(autoSized ? "unautosized " : "autosized ") + state.figureFacet.getFigureName(),
+						(!autoSized ? "unautosized " : "autosized ") + state.figureFacet.getFigureName());
+				NodeAutoSizeTransaction.autoSize(state.figureFacet, !autoSized);
+				coordinator.commitTransaction();
 			}
 		});
 		return toggleAutoSizeItem;

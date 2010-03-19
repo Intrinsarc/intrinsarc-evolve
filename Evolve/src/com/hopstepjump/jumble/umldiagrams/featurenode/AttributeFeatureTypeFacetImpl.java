@@ -204,7 +204,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     
     // resize
     String finalText = makeNameFromSubject();
-    figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(finalText));
+    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(finalText));
     return null;
   }
   

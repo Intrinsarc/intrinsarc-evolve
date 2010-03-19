@@ -699,10 +699,10 @@ public class ConnectorArcAppearanceGem implements Gem
 			return end != null && ConnectorCreatorGem.acceptsOneOrBothAnchors(start, end);
 		}
 
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
 		  if (pass != ViewUpdatePassEnum.LAST)
-		    return null;
+		    return;
 		  
       // possibly update the name
       if (!subject.getName().equals(linkedTextFacet.getText()))
@@ -727,8 +727,6 @@ public class ConnectorArcAppearanceGem implements Gem
 				portLink = subjectIsPortLink;
 				directed = isDirected;
       }
-      
-      return null;
 		}
 
 		public Object getSubject()

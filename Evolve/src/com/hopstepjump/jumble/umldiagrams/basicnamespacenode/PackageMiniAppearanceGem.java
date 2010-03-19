@@ -256,11 +256,11 @@ public class PackageMiniAppearanceGem implements Gem
           {
             public void actionPerformed(ActionEvent e)
             {
-              coordinator.executeCommandAndUpdateViews(
-                  StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(
-                      (Element) figureFacet.getSubject(),
-                      CommonRepositoryFunctions.RELAXED,
-                      !isRelaxed));
+              StereotypeUtilities.formSetBooleanRawStereotypeAttributeTransaction(
+              		coordinator,
+                  (Element) figureFacet.getSubject(),
+                  CommonRepositoryFunctions.RELAXED,
+                  !isRelaxed);
             }
           });
         relaxed.setSelected(isRelaxed);
@@ -272,11 +272,11 @@ public class PackageMiniAppearanceGem implements Gem
           {
             public void actionPerformed(ActionEvent e)
             {
-              coordinator.executeCommandAndUpdateViews(
-                  StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(
-                      (Element) figureFacet.getSubject(),
-                      CommonRepositoryFunctions.DESTRUCTIVE,
-                      !isDestructive));
+              StereotypeUtilities.formSetBooleanRawStereotypeAttributeTransaction(
+              		coordinator,
+                  (Element) figureFacet.getSubject(),
+                  CommonRepositoryFunctions.DESTRUCTIVE,
+                  !isDestructive);
             }
           });
         destructive.setSelected(isDestructive);

@@ -97,17 +97,8 @@ public class ConnectorCreatorGem implements Gem
       properties.addIfNotThere(new PersistentProperty(">directed", directed, false));
     }
     
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
     {
-	    SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-	
-	    // possibly resurrect
-	    if (previouslyCreated != null)
-	    {
-	      repository.decrementPersistentDelete((Element) previouslyCreated);
-	      return previouslyCreated;
-	    }
-	    
 	    // add to the list of required interfaces, if it isn't there already
 	    CalculatedArcPoints points = new CalculatedArcPoints(calculatedPoints);
 	    
@@ -151,16 +142,11 @@ public class ConnectorCreatorGem implements Gem
         Stereotype stereo = GlobalSubjectRepository.repository.findStereotype(
             UML2Package.eINSTANCE.getConnector(), CommonRepositoryFunctions.CONNECTOR);
         connector.getAppliedBasicStereotypes().add(stereo);
-        StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(
-            connector, CommonRepositoryFunctions.DIRECTED, true).execute(false);
+        StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(
+            connector, CommonRepositoryFunctions.DIRECTED, true);
       }
 
       return connector;
-	  }
-	
-		public void uncreateNewSubject(Object previouslyCreated)
-	  {
-	    GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
 	  }
 
 		public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end)

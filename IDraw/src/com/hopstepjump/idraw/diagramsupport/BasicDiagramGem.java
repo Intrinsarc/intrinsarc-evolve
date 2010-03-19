@@ -137,14 +137,14 @@ public final class BasicDiagramGem implements Gem
 		return diagramFacet;
 	}
 
-	private CompositeCommand concreteFormViewUpdateCommand(boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
+	private void concreteFormViewUpdate(ViewUpdatePassEnum pass, boolean initialRun)
 	{
 		// delete any figures whose subjects have been removed
 		// using the "delete" technology developed for the cut/copy/paste/delete functions
 
 		// 1) ask all figures if there subject has been deleted, and collate
 		Set<String> deletionFigureIds = new HashSet<String>();
-    if (isTop && pass == ViewUpdatePassEnum.START && !initialRun)
+    if (pass == ViewUpdatePassEnum.START && !initialRun)
     {
 			final Set<FigureFacet> figuresWithDeletedSubjects = new HashSet<FigureFacet>();
 			for (FigureFacet figure : figures.values())
@@ -164,7 +164,7 @@ public final class BasicDiagramGem implements Gem
 			deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(figuresWithDeletedSubjects, chosenFigures, false);
 			
 
-			// 3) make a delete command to remove the views with deleted subjects
+			// 3) remove the views with deleted subjects
 			DeleteFromDiagramTransaction.delete(diagramFacet, deletionFigureIds, false);
     }
 
@@ -175,13 +175,11 @@ public final class BasicDiagramGem implements Gem
 			{
 				// form a view update, but don't include any deleted figures
 				if (!deletionFigureIds.contains(figure.getId()))
-						figure.updateViewAfterSubjectChanged(isTop, pass);
+						figure.updateViewAfterSubjectChanged(pass);
 			}
 		}
 		if (!initialRun)			
 			refreshViewAttributes();
-
-		return null;
 	}
 
 	private boolean includedInChanges(FigureFacet figure)
@@ -599,9 +597,9 @@ public final class BasicDiagramGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.idraw.foundation.DiagramFacet#formViewUpdateCommand(SubjectAlteration[])
+		 * @see com.hopstepjump.idraw.foundation.DiagramFacet#formViewUpdate(SubjectAlteration[])
 		 */
-		public Command formViewUpdateCommand(boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
+		public void formViewUpdate(ViewUpdatePassEnum pass, boolean initialRun)
 		{
 			// don't do this if we are chained -- wait for the update of the chained elements
 			if (source != null)
@@ -613,8 +611,8 @@ public final class BasicDiagramGem implements Gem
 					diagramFacet.addPersistentFigures(source.makePersistentDiagram().getFigures(), new UDimension(0, 0));
 					for (ViewUpdatePassEnum passx : ViewUpdatePassEnum.values())
 					{
-						concreteFormViewUpdateCommand(true, passx, false);
-						concreteFormViewUpdateCommand(true, passx, true);
+						concreteFormViewUpdate(passx, false);
+						concreteFormViewUpdate(passx, true);
 					}
 	
 					// possibly post-process the diagram
@@ -625,8 +623,7 @@ public final class BasicDiagramGem implements Gem
 				}
 			}
 			else
-				concreteFormViewUpdateCommand(isTop, pass, initialRun);
-			return null;
+				concreteFormViewUpdate(pass, initialRun);
 		}
 
     /**
@@ -862,7 +859,7 @@ public final class BasicDiagramGem implements Gem
       {
         UBounds recalculatedBounds = figure.getRecalculatedFullBoundsForDiagramResize(true);
 
-        // execute the resizing command
+        // execute the resizing
         ResizingFiguresGem gem = new ResizingFiguresGem(null, diagramFacet);
         ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
         facet.markForResizingWithoutContainer(figure);

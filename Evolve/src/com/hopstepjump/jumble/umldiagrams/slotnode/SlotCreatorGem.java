@@ -88,17 +88,10 @@ public class SlotCreatorGem implements Gem
 			return basicGem.getBasicNodeFigureFacet();
 		}
 
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-  
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-        repository.decrementPersistentDelete((Element) previouslyCreated);
-        return previouslyCreated;
-      }
-  
+
       // find the instance specification of the part
       Property part = (Property) repository.findOwningElement(
           containingReference, UML2Package.eINSTANCE.getProperty());

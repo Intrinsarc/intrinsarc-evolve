@@ -12,7 +12,7 @@ public final class ArcCreateFigureTransaction implements TransactionFacet
 	{
 		// possibly create a subject if we haven't been given one
 		if (useSubject == null)
-			useSubject = factory.createNewSubject(null, diagram, referencePoints, properties);
+			useSubject = factory.createNewSubject(diagram, referencePoints, properties);
 		factory.create(useSubject, diagram, reference.getId(), referencePoints, properties);
 	}
 }

@@ -17,18 +17,18 @@ import com.hopstepjump.jumble.umldiagrams.portnode.*;
 public class ClassPortHelper extends ClassifierConstituentHelper
 {
 	public ClassPortHelper(BasicNodeFigureFacet classifierFigure,
-			FigureFacet container, SimpleDeletedUuidsFacet deleted, boolean top)
+			FigureFacet container, SimpleDeletedUuidsFacet deleted)
 	{
 		super(classifierFigure, container, container.isShowing(), container
 				.getContainerFacet().getContents(), ConstituentTypeEnum.DELTA_PORT,
-				deleted, top);
+				deleted);
 	}
 
 	@Override
-	public Command makeAddCommand(DEStratum perspective,
+	public void makeAddTransaction(DEStratum perspective,
 			Set<FigureFacet> currentInContainerIgnoringDeletes,
 			final BasicNodeFigureFacet classifierFigure, FigureFacet container,
-			DeltaPair addOrReplace, boolean top)
+			DeltaPair addOrReplace)
 	{
 		// get the current sizes
 		FigureFacet existing = null;
@@ -76,40 +76,38 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 		// if we have found a port to use, use the max of each dimension
 		if (existing != null)
 		{
-			newOffset = newOffset.maxOfEach(getTopContainerBounds(existing)
-					.getDimension());
+			newOffset = newOffset.maxOfEach(getTopContainerBounds(existing).getDimension());
 			portOffset = getOffsetFromClassifier(existing);
 			portSize = existing.getFullBounds().getDimension();
 		}
 
-		final UBounds newBounds = new UBounds(topLeft, newOffset)
-				.centreToPoint(full.getMiddlePoint());
+		UBounds newBounds = new UBounds(topLeft, newOffset).centreToPoint(full.getMiddlePoint());
 
 		// make a composite to hold all the changes
-		CompositeCommand add = new CompositeCommand("", "");
-		add.addCommand(new NodeAutoSizeCommand(classifierFigure
-				.getFigureReference(), false, "", ""));
+		NodeAutoSizeTransaction.autoSize(classifierFigure, false);
 
 		// resize to fit the offset at least
-		add.addCommand(makeResizingCommand(classifierFigure.getFigureReference(),
-				newBounds));
+		makeResizingTransaction(classifierFigure, newBounds);
 
 		// now add the port
 		final UPoint portTop = newBounds.getTopLeftPoint().add(portOffset);
-		final FigureReference portReference = classifierFigure.getDiagram()
-				.makeNewFigureReference();
+		final FigureReference portReference = classifierFigure.getDiagram().makeNewFigureReference();
 
-		add.addCommand(new AddPortCommand(container.getFigureReference(),
-				portReference, new PortCreatorGem().getNodeCreateFacet(), null,
-				addOrReplace.getConstituent().getRepositoryObject(), null, "", "",
-				portTop));
+		AddPortTransaction.add(
+				container,
+				portReference,
+				new PortCreatorGem().getNodeCreateFacet(),
+				null,
+				addOrReplace.getConstituent().getRepositoryObject(),
+				null,
+				portTop);
 
 		// resize to match the other port
 		if (portSize != null)
-			add.addCommand(makeResizingCommand(portReference, new UBounds(portTop,
-					portSize)));
-
-		return add;
+		{
+			FigureFacet port = container.getDiagram().retrieveFigure(portReference.getId());
+			makeResizingTransaction(port, new UBounds(portTop, portSize));
+		}
 	}
 
 	public static FigureFacet findExisting(DiagramFacet diagram, String uuid)
@@ -168,31 +166,12 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 				.extractVisualClassifierFromConstituent(figureFacet);
 	}
 
-	public static Command makeResizingCommand(final FigureReference reference,
-			final UBounds newBounds)
+	public static void makeResizingTransaction(FigureFacet figure, UBounds newBounds)
 	{
-		return new AbstractCommand("", "")
-		{
-			private Command cmd;
-
-			public void execute(boolean isTop)
-			{
-				FigureFacet figure = GlobalDiagramRegistry.registry
-						.retrieveFigure(reference);
-
-				// this method should only be used inside a command's execution
-				ResizingFiguresGem gem = new ResizingFiguresGem(null, figure
-						.getDiagram());
-				ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
-				facet.markForResizing(figure);
-				facet.setFocusBounds(newBounds);
-				facet.end();
-			}
-
-			public void unExecute()
-			{
-				cmd.unExecute();
-			}
-		};
+			ResizingFiguresGem gem = new ResizingFiguresGem(null, figure.getDiagram());
+			ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
+			facet.markForResizing(figure);
+			facet.setFocusBounds(newBounds);
+			facet.end();
 	}
 }

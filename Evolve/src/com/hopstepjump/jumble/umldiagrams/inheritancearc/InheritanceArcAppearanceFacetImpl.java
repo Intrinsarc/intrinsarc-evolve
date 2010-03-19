@@ -122,11 +122,11 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
 		return subject.isThisDeleted();
 	}
 
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 	{
 		// if this is top and the anchors we are attached to are not the same as the ones that the
 		// model element is attached to, then delete
-		if (isTop && pass == ViewUpdatePassEnum.LAST)
+		if (pass == ViewUpdatePassEnum.LAST)
 		{
 			Classifier specific = subject.getSpecific();
 			Classifier general = subject.getGeneral();
@@ -134,9 +134,8 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
 			Classifier viewGeneral = (Classifier)figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
 			
 			if (specific != viewSpecific || general != viewGeneral)
-				return figureFacet.formDeleteCommand();
+				figureFacet.formDeleteTransaction();
 		}
-		return null;
 	}
 
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

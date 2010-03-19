@@ -14,7 +14,7 @@ import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 
 public class ClassifierAttributeHelper extends ClassifierConstituentHelper
 {
-  public ClassifierAttributeHelper(BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted, boolean top)
+  public ClassifierAttributeHelper(BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted)
   {
     super(
         classifierFigure,
@@ -22,18 +22,16 @@ public class ClassifierAttributeHelper extends ClassifierConstituentHelper
         container.isShowing(),
         container.getContainerFacet().getContents(),
         ConstituentTypeEnum.DELTA_ATTRIBUTE,
-        deleted,
-        top);
+        deleted);
   }
 
   @Override
-  public Command makeAddCommand(
+  public void makeAddTransaction(
       DEStratum perspective,
       Set<FigureFacet> currentInContainerIgnoringDeletes,
       BasicNodeFigureFacet classifierFigure,
       FigureFacet container,
-      DeltaPair addOrReplace,
-      boolean top)
+      DeltaPair addOrReplace)
   {
     // look for the location amongst existing elements which this might be replacing
     UPoint location = null;
@@ -50,7 +48,7 @@ public class ClassifierAttributeHelper extends ClassifierConstituentHelper
       }
     }
     
-    AddFeatureCommand.add(
+    AddFeatureTransaction.add(
         container,
         classifierFigure.getDiagram().makeNewFigureReference(),
         new AttributeCreatorGem().getNodeCreateFacet(),
@@ -58,6 +56,5 @@ public class ClassifierAttributeHelper extends ClassifierConstituentHelper
         addOrReplace.getConstituent().getRepositoryObject(),
         null,
         location);
-    return null;
   }
 }

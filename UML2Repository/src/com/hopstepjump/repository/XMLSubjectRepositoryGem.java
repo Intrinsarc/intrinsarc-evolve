@@ -334,9 +334,9 @@ public class XMLSubjectRepositoryGem implements Gem
       return common.retrievePersistentDiagram(pkg);
     }
 
-    public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
+    public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, ViewUpdatePassEnum pass, boolean initialRun)
     {
-      return common.formUpdateDiagramsCommandAfterSubjectChanges(commandExecutionTime, isTop, pass, initialRun);
+      return common.formUpdateDiagramsCommandAfterSubjectChanges(commandExecutionTime, pass, initialRun);
     }
 
     public String getFullyQualifiedName(Element element, String separator)

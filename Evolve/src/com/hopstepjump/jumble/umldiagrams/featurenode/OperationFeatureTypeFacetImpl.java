@@ -133,7 +133,7 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
     
     // resize
     String finalText = makeNameFromSubject();
-    figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(finalText));
+    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(finalText));
     return null;
   }
   

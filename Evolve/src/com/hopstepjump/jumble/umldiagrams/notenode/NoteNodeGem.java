@@ -465,7 +465,7 @@ public final class NoteNodeGem implements Gem
         public void itemStateChanged(ItemEvent e)
         {
           useHTML = !useHTML;
-          figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
+          figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
         }
       });
       return item;
@@ -480,7 +480,7 @@ public final class NoteNodeGem implements Gem
         public void itemStateChanged(ItemEvent e)
         {
           wordWrap = !wordWrap;
-          figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
+          figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
         }
       });
       return item;
@@ -502,7 +502,7 @@ public final class NoteNodeGem implements Gem
           if (chosen == 0)
           {
             font = chooser.getSelectedFont();
-            figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
+            figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
           }
         }
       });
@@ -600,19 +600,18 @@ public final class NoteNodeGem implements Gem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       if (subject == null || pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
 
       // if neither the name or the namespace has changed suppress any command
       if (subject.getBody().equals(text))
-        return null;
+        return;
 
       text = subject.getBody();
       UBounds bounds = textableFacet.vetTextResizedExtent(text);
-      figureFacet.makeAndExecuteResizingCommand(bounds);
-      return null;
+      figureFacet.performResizingTransaction(bounds);
     }
 
     /**

@@ -377,17 +377,16 @@ public final class ImageNodeGem implements Gem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       int newCount = subject.getBinaryCount();
       if (newCount == oldCount || pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
       
       // get the new width and height
       makeCachedImage();          
-      figureFacet.makeAndExecuteResizingCommand(
+      figureFacet.performResizingTransaction(
           appearanceFacet.getAutoSizedBounds(figureFacet.isAutoSized()));
-      return null;
     }
 
     private void makeCachedImage()

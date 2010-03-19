@@ -19,16 +19,13 @@ public class PartPortInstanceHelper
 {
   private BasicNodeFigureFacet partFigure;
   private FigureFacet container;
-  private boolean top;
 
   public PartPortInstanceHelper(
       BasicNodeFigureFacet partFigure,
-      FigureFacet container,
-      boolean top)
+      FigureFacet container)
   {
     this.partFigure = partFigure;
     this.container = container;
-    this.top = top;
   }
   
   public boolean isShowingAllConstituents()
@@ -55,11 +52,11 @@ public class PartPortInstanceHelper
     return uuids;
   }
   
-  public CompositeCommand makeUpdateCommand(SimpleDeletedUuidsFacet deleted, boolean locked)
+  public void makeUpdateTransaction(SimpleDeletedUuidsFacet deleted, boolean locked)
   {
     // if the container isn't visible, don't bother
     if (!container.isShowing())
-      return null;
+      return;
     
     // get the full set of ports
     Set<FigureFacet> current = getCurrentlyDisplayed();
@@ -69,8 +66,7 @@ public class PartPortInstanceHelper
       uuids.add(pair.getConstituent().getUuid());
     
     // work out what we need to delete
-    CompositeCommand cmd = new CompositeCommand("", "");
-    
+
     // delete if this shouldn't be here
     for (FigureFacet f : current)
     {
@@ -79,7 +75,7 @@ public class PartPortInstanceHelper
       
       if (!subject.isThisDeleted() &&
           !uuids.contains(subject.getUuid()))
-          cmd.addCommand(f.formDeleteCommand());
+          f.formDeleteTransaction();
     }
     
     if (!locked)
@@ -96,18 +92,14 @@ public class PartPortInstanceHelper
 	      Port port = (Port) pair.getConstituent().getRepositoryObject();
 	      if (!containedWithin(current, port) && !deleted.isDeleted(suppressed, pair.getUuid()))
 	      {
-	        cmd.addCommand(
-	            makeAddCommand(
-	                current,
-	                partFigure,
-	                container,
-	                port,
-	                top));
+          makeAddTransaction(
+              current,
+              partFigure,
+              container,
+              port);
 	      }
 	    }
     }
-    
-    return cmd;
   }
 
   private DEElement getComponentType()
@@ -118,28 +110,24 @@ public class PartPortInstanceHelper
     return GlobalDeltaEngine.engine.locateObject(property.undeleted_getType()).asElement();
 	}
 
-	private Command makeAddCommand(
+	private void makeAddTransaction(
       Set<FigureFacet> currentInContainerIgnoringDeletes,
       BasicNodeFigureFacet partFigure,
       FigureFacet container,
-      Port port,
-      boolean top)
+      Port port)
   {
     // now add the port
     Port originalSubject = (Port) ClassifierConstituentHelper.getOriginalSubject(port);
-    final UPoint portTop = translateLocation(currentInContainerIgnoringDeletes, port, originalSubject);
-    final FigureReference portReference = partFigure.getDiagram().makeNewFigureReference(); 
-    return
-      new AddPortCommand(
-        container.getFigureReference(),
-        portReference,
-        new PortInstanceCreatorGem().getNodeCreateFacet(),
-        null,
-        port,
-        null,
-        "",
-        "",
-        portTop);
+    UPoint portTop = translateLocation(currentInContainerIgnoringDeletes, port, originalSubject);
+    FigureReference portReference = partFigure.getDiagram().makeNewFigureReference(); 
+    AddPortTransaction.add(
+      container,
+      portReference,
+      new PortInstanceCreatorGem().getNodeCreateFacet(),
+      null,
+      port,
+      null,
+      portTop);
   }
 
   private Set<FigureFacet> getCurrentlyDisplayed()

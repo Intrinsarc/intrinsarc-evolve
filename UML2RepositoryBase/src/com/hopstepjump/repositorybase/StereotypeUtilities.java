@@ -7,6 +7,7 @@ import org.eclipse.uml2.Package;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.idraw.foundation.*;
+import com.sun.xml.internal.bind.v2.runtime.*;
 
 public class StereotypeUtilities
 {
@@ -340,8 +341,8 @@ public class StereotypeUtilities
 	 * @param set
 	 * @return
 	 */
-	public static Command formSetBooleanRawStereotypeAttributeCommand(
-			final Element classifier, final String propertyUUID, final boolean set)
+	public static void formSetBooleanRawStereotypeAttributeTransaction(
+			ToolCoordinatorFacet coordinator, Element classifier, String propertyUUID, boolean set)
 	{
 		// find the property, or create it
 		AppliedBasicStereotypeValue existing = null;
@@ -362,53 +363,68 @@ public class StereotypeUtilities
 			final Property property =
 			  (Property) findAllStereotypePropertiesFromRawAppliedStereotypes(classifier).get(propertyUUID).getConstituent().getRepositoryObject();
 			if (property == null)
-			  return null;
-			return new AbstractCommand(
+			  return;
+			coordinator.startTransaction(
 					"setting stereotype attribute " + propertyUUID,
-					"reverting stereotype attribute " + propertyUUID)
-			{
-				private AppliedBasicStereotypeValue value;
-
-				public void execute(boolean isTop)
-				{
-					if (value != null)
-						GlobalSubjectRepository.repository.decrementPersistentDelete(value);
-					else
-					{
-						value = classifier.createAppliedBasicStereotypeValues();
-						value.setProperty(property);
-						LiteralBoolean literal = (LiteralBoolean) value
-								.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
-						literal.setValue(set);
-					}
-				}
-
-				public void unExecute()
-				{
-					GlobalSubjectRepository.repository.incrementPersistentDelete(value);
-				}
-			};
-		} else
+					"reverting stereotype attribute " + propertyUUID);
+			AppliedBasicStereotypeValue value = classifier.createAppliedBasicStereotypeValues();
+			value.setProperty(property);
+			LiteralBoolean literal = (LiteralBoolean) value
+					.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
+			literal.setValue(set);
+		}
+		else
 		{
-			return new AbstractCommand(
+			coordinator.startTransaction(
 					"setting stereotype attribute " + propertyUUID,
-					"reverting stereotype attribute " + propertyUUID)
+					"reverting stereotype attribute " + propertyUUID);
+			LiteralBoolean literal = (LiteralBoolean) currentValue.getValue();
+			literal.setValue(set);
+		}
+		coordinator.commitTransaction();
+	}
+
+	/**
+	 * form a command to set a stereotype attribute
+	 * 
+	 * @param classifier
+	 * @param propertyName
+	 * @param set
+	 * @return
+	 */
+	public static void setBooleanRawStereotypeAttributeTransaction(
+			Element classifier, String propertyUUID, boolean set)
+	{
+		// find the property, or create it
+		AppliedBasicStereotypeValue existing = null;
+		for (Object obj : classifier.getAppliedBasicStereotypeValues())
+		{
+			AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) obj;
+			if (value.getProperty().getName().equals(propertyUUID))
 			{
-				private boolean oldValue;
+				existing = value;
+				break;
+			}
+		}
+		final AppliedBasicStereotypeValue currentValue = existing;
 
-				public void execute(boolean isTop)
-				{
-					LiteralBoolean literal = (LiteralBoolean) currentValue.getValue();
-					oldValue = literal.isValue();
-					literal.setValue(set);
-				}
-
-				public void unExecute()
-				{
-					LiteralBoolean literal = (LiteralBoolean) currentValue.getValue();
-					literal.setValue(oldValue);
-				}
-			};
+		// if this is null we need to create the value
+		if (currentValue == null)
+		{
+			final Property property =
+			  (Property) findAllStereotypePropertiesFromRawAppliedStereotypes(classifier).get(propertyUUID).getConstituent().getRepositoryObject();
+			if (property == null)
+			  return;
+			AppliedBasicStereotypeValue value = classifier.createAppliedBasicStereotypeValues();
+			value.setProperty(property);
+			LiteralBoolean literal = (LiteralBoolean) value
+					.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
+			literal.setValue(set);
+		}
+		else
+		{
+			LiteralBoolean literal = (LiteralBoolean) currentValue.getValue();
+			literal.setValue(set);
 		}
 	}
 

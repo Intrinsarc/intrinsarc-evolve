@@ -50,16 +50,9 @@ public final class ClassCreatorGem implements Gem
 			return "class";
 		}
 	
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-        repository.decrementPersistentDelete((Element) previouslyCreated);
-        return previouslyCreated;
-      }
 
       // nested classes live in the nested classifier link...
       Namespace owner = (Namespace) diagram.getLinkedObject();
@@ -103,12 +96,12 @@ public final class ClassCreatorGem implements Gem
       // is this a placeholder
       PersistentProperty place = properties.retrieve(">placeholder", false);
       if (place.asBoolean())
-      	StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(cls, CommonRepositoryFunctions.PLACEHOLDER, true).execute(true);
+      	StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(cls, CommonRepositoryFunctions.PLACEHOLDER, true);
       
       // is this a factory
       PersistentProperty fact = properties.retrieve(">factory", false);
       if (fact.asBoolean())
-      	StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(cls, CommonRepositoryFunctions.FACTORY, true).execute(true);
+      	StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(cls, CommonRepositoryFunctions.FACTORY, true);
       
       // set the kind
       PersistentProperty k = properties.retrieve(">kind", 0);

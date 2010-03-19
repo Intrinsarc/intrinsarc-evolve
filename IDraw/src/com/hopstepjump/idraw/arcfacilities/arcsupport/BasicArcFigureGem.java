@@ -553,9 +553,9 @@ public final class BasicArcFigureGem implements Gem
   	/**
   	 * @see com.hopstepjump.idraw.foundation.FigureFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
   	 */
-  	public Command updateViewAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+  	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
   	{
-  		return state.appearanceFacet.formViewUpdateCommandAfterSubjectChanged(isTop, pass);
+  		state.appearanceFacet.updateViewAfterSubjectChanged(pass);
   	}
   
   	/**
@@ -610,7 +610,7 @@ public final class BasicArcFigureGem implements Gem
     }
 
 
-		public Command formDeleteCommand()
+		public void formDeleteTransaction()
 		{
 	    // form a complete set of all figures to delete, including children
 	    ChosenFiguresFacet chosenFigures = new ChosenFiguresFacet()
@@ -622,12 +622,10 @@ public final class BasicArcFigureGem implements Gem
 	    };
 	    List<FigureFacet> toDelete = new ArrayList<FigureFacet>();
 	    toDelete.add(this);
-	    Set deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
-	    
 
 	    // remove the views with deleted subjects
+	    Set<String> deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
       DeleteFromDiagramTransaction.delete(getDiagram(), deletionFigureIds, false);
-      return null;
 		}
 
 

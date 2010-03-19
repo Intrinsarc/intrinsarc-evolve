@@ -8,9 +8,9 @@ import com.hopstepjump.jumble.umldiagrams.constituenthelpers.*;
 public class ConcreteClassPartHelper extends ClassPartHelper
 {
 
-  public ConcreteClassPartHelper(BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted, boolean top)
+  public ConcreteClassPartHelper(ToolCoordinatorFacet coordinator, BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted)
   {
-    super(classifierFigure, container, deleted, top, new PartCreatorGem().getNodeCreateFacet());
+    super(coordinator, classifierFigure, container, deleted, new PartCreatorGem().getNodeCreateFacet());
   }
 
 }

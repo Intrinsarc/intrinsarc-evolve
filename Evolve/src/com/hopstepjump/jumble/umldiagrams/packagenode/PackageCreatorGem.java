@@ -43,16 +43,9 @@ public final class PackageCreatorGem implements Gem
 	    return FIGURE_NAME;
 	  }
 	
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-        repository.decrementPersistentDelete((Element) previouslyCreated);
-        return previouslyCreated;
-      }
 
       // find a possible nested package
       Package owner = (Package) diagram.getLinkedObject();
@@ -84,8 +77,8 @@ public final class PackageCreatorGem implements Gem
       boolean relaxed = properties.retrieve(">relaxed", false).asBoolean();
       if (relaxed)
       {
-        StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(
-            pkg, CommonRepositoryFunctions.RELAXED, relaxed).execute(false);
+        StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(
+            pkg, CommonRepositoryFunctions.RELAXED, relaxed);
       }
 
       return pkg;

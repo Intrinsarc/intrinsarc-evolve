@@ -61,11 +61,10 @@ public interface DiagramFacet extends TransactionManagerFacet
   
   /**
    * view update management -- due to subjects altering
-   * @param isTop 
    * @param pass TODO
    * @param initialRun TODO
    */
-  public Command formViewUpdateCommand(boolean isTop, ViewUpdatePassEnum pass, boolean initialRun);
+  public void formViewUpdate(ViewUpdatePassEnum pass, boolean initialRun);
   public void regenerate(PersistentDiagram diagram);
   public boolean isReadOnly();
   public Object getPossiblePerspective();

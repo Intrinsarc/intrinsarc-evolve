@@ -13,7 +13,7 @@ import com.hopstepjump.idraw.nodefacilities.creationbase.*;
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
  */
-public final class AddFeatureCommand implements TransactionFacet
+public final class AddFeatureTransaction implements TransactionFacet
 {
 	public static void add(
 			FigureFacet addable,

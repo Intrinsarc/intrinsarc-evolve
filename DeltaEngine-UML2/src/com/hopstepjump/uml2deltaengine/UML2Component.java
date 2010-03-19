@@ -114,6 +114,7 @@ public class UML2Component extends DEComponent
     return this;
   }
   
+  @Override
   public IDeltas getDeltas(ConstituentTypeEnum type)
   {
     if (!initialiseDeltas)
@@ -146,7 +147,7 @@ public class UML2Component extends DEComponent
   @SuppressWarnings("unchecked")
   private void initialiseDeltas()
   {
-    // handle attributes
+  	// handle attributes
     attributes = createDeltas(
         this,
         ConstituentTypeEnum.DELTA_ATTRIBUTE,

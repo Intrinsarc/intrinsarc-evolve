@@ -53,7 +53,6 @@ public class ViewUpdateWrapperCommand implements Command
       if (viewCommand[index] == null)
         viewCommand[index] = repository.formUpdateDiagramsCommandAfterSubjectChanges(
         		executionTime,
-        		isTop,
         		pass,
         		background);
       viewCommand[index].execute(isTop);
@@ -90,7 +89,7 @@ public class ViewUpdateWrapperCommand implements Command
 		        {
 		          int index = pass.ordinal();
 		          if (slowViewCommand[index] == null)
-		            slowViewCommand[index] = repository.formUpdateDiagramsCommandAfterSubjectChanges(executionTime, isTop, pass, false);
+		            slowViewCommand[index] = repository.formUpdateDiagramsCommandAfterSubjectChanges(executionTime, pass, false);
 		          slowViewCommand[index].execute(isTop);
 		        }
 						for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())

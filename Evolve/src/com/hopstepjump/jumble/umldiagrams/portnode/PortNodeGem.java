@@ -331,7 +331,7 @@ public final class PortNodeGem implements Gem
       displayType = type;
 
       // we are about to autosize, so need to make a resizings command
-      figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
+      figureFacet.performResizingTransaction(figureFacet.getFullBounds());
       return null;
     }
 
@@ -1012,10 +1012,10 @@ public final class PortNodeGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
 			if (subject == null || pass != ViewUpdatePassEnum.LAST)
-				return null;
+				return;
 
 			// don't bother if the text is still the same
 			String subjectName = formName();
@@ -1038,7 +1038,7 @@ public final class PortNodeGem implements Gem
       
       // don't bother if there are no changes
       if (!update)
-      	return null;
+      	return;
 
       if (!sameName)
           SetTextTransaction.set(
@@ -1049,12 +1049,11 @@ public final class PortNodeGem implements Gem
 
       accessType = subject.getVisibility();
       // resize, using a text utility
-      figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
+      figureFacet.performResizingTransaction(figureFacet.getFullBounds());
       inferredProvNames = provNames;
       inferredReqNames = reqNames;
       portKind = nextKind;
       drawInferred = shouldDrawInferred;
-      return null;
 		}
 		
 		private Set<String> getInferredRequiredNames()

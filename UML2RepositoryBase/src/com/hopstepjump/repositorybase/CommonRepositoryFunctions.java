@@ -211,7 +211,7 @@ public class CommonRepositoryFunctions
     return new DbDiagramToPersistentDiagramTranslator(pkg, holder.getDiagram()).translate();      
   }
 
-  public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
+  public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, ViewUpdatePassEnum pass, boolean initialRun)
   {
     List<DiagramFacet> diagrams = GlobalDiagramRegistry.registry.getDiagrams();
 
@@ -234,7 +234,7 @@ public class CommonRepositoryFunctions
     }
 
     for (DiagramFacet diagram : diagrams)
-      diagram.formViewUpdateCommand(isTop, pass, initialRun);
+      diagram.formViewUpdate(pass, initialRun);
 
     return null;
   }
@@ -318,7 +318,7 @@ public class CommonRepositoryFunctions
     createResemblance(uuids, element, primitive);
 
     Stereotype stratum = createStereotype(uuids, profile, STRATUM, "'Package', 'Model'", "A (possibly hierarchical) container of Backbone definitions.");
-    addAttribute(uuids, stratum, DESTRUCTIVE, booleanType, "Can this stratum contain destructive (replace, delete) substitutions?");
+    Property destructive = addAttribute(uuids, stratum, DESTRUCTIVE, booleanType, "Can this stratum contain destructive (replace, delete) substitutions?");
     addAttribute(uuids, stratum, RELAXED, booleanType, "If another stratum depends on this, can it also see this stratum's dependencies?) ?");
     addAttribute(uuids, stratum, CHECK_ONCE_IF_READ_ONLY, booleanType, "Only check once if this is read-only.  No elements in the stratum can be replaced.");
     addAttribute(uuids, stratum, STRATUM_PREAMBLE, stringType, "A preamble which is inserted into the Backbone code for this stratum");
@@ -414,7 +414,11 @@ public class CommonRepositoryFunctions
 
     // the model is the top level stratum
     topLevel.getAppliedBasicStereotypes().add(stratum);
-    StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(topLevel, DESTRUCTIVE, true).execute(false);
+    // set destructive stereotype property
+		AppliedBasicStereotypeValue value = topLevel.createAppliedBasicStereotypeValues();
+		value.setProperty(destructive);
+		LiteralBoolean literal = (LiteralBoolean) value.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
+		literal.setValue(true);
     
     // make the backbone stratum
     setUuid(uuids, backbone, BACKBONE_STRATUM_NAME);
