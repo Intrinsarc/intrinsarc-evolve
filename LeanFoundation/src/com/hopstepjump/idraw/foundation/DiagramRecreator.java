@@ -74,7 +74,8 @@ public class DiagramRecreator
   		for (String contentId : pfig.getContentIds())
     	{
     		FigureFacet content = retrieveFigure(existingFigures, contentId);
-  			figure.getContainerFacet().persistence_addContained(content);
+    		if (content != null)
+    			figure.getContainerFacet().persistence_addContained(content);
     	}
     }
   }

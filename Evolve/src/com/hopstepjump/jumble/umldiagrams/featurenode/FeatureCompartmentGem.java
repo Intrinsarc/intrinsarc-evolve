@@ -94,13 +94,7 @@ public final class FeatureCompartmentGem implements Gem
 	  	double height = 0;
 	  	double width = 0;
 	  	boolean haveAtLeastOneOp = false;
-	  	if (figureFacet.getContainedFacet().getContainer().getFigureFacet().getId().equals("1"))
-	  	{
-	  		System.out.println("$$ number of features = " + features.size() + ", type = " + getFigureFacet().getFigureName());
-	  		for (FigureFacet f : features)
-	  			if (f.getContainedFacet().getContainer().getFigureFacet() != figureFacet)
-	  				System.out.println("    $$ incorrect parent!!");
-	  	}
+
 	  	for (FigureFacet figure : features)
 	  	{
 	  		UDimension opDim = figure.getFullBounds().getDimension();
@@ -499,13 +493,6 @@ public final class FeatureCompartmentGem implements Gem
 		public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return null;
-		}
-		
-		/**
-		 * @see com.hopstepjump.jumble.foundation.FigureFacet#cleanUp()
-		 */
-		public void cleanUp()
-		{
 		}
 		
 		/**

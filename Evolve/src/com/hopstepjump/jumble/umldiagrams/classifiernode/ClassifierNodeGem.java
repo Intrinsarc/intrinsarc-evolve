@@ -44,6 +44,7 @@ import com.hopstepjump.repository.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
+import com.hopstepjump.uml2deltaengine.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -952,11 +953,6 @@ public final class ClassifierNodeGem implements Gem
 			ClassifierSizeInfo info = makeCurrentInfo();
 			ClassifierSizes sizes = info.makeActualSizes();
 			
-			if (figureFacet.getId().equals("1"))
-			{
-				System.out.println("$$$$$ resized extent = " + figureFacet.getFullBounds().getDimension() + ", sizes = " + sizes.getOuter().getDimension());
-				System.out.println("$$$$$ min attr extent = " + attributesOrSlots.getMinimumExtent());
-			}
 			ZText zName = sizes.getZtext();
 			if (!displayOnlyIcon)
 				zName.setBackgroundColor(null);

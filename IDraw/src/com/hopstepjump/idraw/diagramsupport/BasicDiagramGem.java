@@ -9,17 +9,27 @@ import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 
 //issues:
-//x. resize of class upon redo after add
-//x. lots of modifications which look unnecessary
-//x. name change of class/package
-//x. fix up other node types
-//4. proper link acceptPersistentFigure (easy)
-//6. null ptr on cut/paste redo
-//7. try out complex attrs + ports + parts
-//8. subject in acceptpersistentfigure + "don't repeat yourself" (easy)
-//9. moving operations around -- change of container
+// x. resize of class upon redo after add
+// x. lots of modifications which look unnecessary
+// x. name change of class/package
+// x. fix up other node types
+// 4. proper link acceptPersistentFigure (easy)
+// x. null ptr on cut/paste redo
+// x. try out complex attrs + ports + parts
+// 8. subject in acceptpersistentfigure + "don't repeat yourself" (easy)
+// x. moving operations around -- change of container
 //10. recheck all creators to ensure they fit into acceptcontainer model
 //11. 2 modes -- abouttoadjust and auto-capture-all
+//12. adding attributes to large class makes it go smaller?
+//13. pressing enter to end attr entry makes it go funny
+//14. inferred interfaces sometimes don't appear on redo
+//15. truncating commands
+//16. inserting update commands before history
+//17. refresh
+//18. background updating
+//19. saving initial persistent state -- move to aboutToAdjust() model, preserve old options as debug mode
+//20. remove all commands
+//21. clipboard doesn't seem to update /delete items correctly -- diagrams + repos get out of sync?
 
 public final class BasicDiagramGem implements Gem
 {
@@ -212,8 +222,8 @@ public final class BasicDiagramGem implements Gem
 	private class DiagramFacetImpl implements DiagramFacet
 	{
 		private List<UndoRedoStates> stateStack = new ArrayList<UndoRedoStates>();
-		private Map<FigureFacet, PersistentFigure> before = new HashMap<FigureFacet, PersistentFigure>();
-		private Set<FigureFacet> mods = new HashSet<FigureFacet>();
+		private Map<String, PersistentFigure> before = new HashMap<String, PersistentFigure>();
+		private Set<String> mods = new HashSet<String>();
 		private int pos = 0;
 		private boolean inUndoRedo = false;
 		private boolean insideTransaction = false;
@@ -227,7 +237,7 @@ public final class BasicDiagramGem implements Gem
 			println("$$ started transaction");
 			long start = System.currentTimeMillis();
 			for (FigureFacet f : figures.values())
-				before.put(f, f.makePersistentFigure());
+				before.put(f.getId(), f.makePersistentFigure());
 			long end = System.currentTimeMillis();
 			println("$$   copied figures, took " + (end - start) + "ms");
 		}
@@ -252,26 +262,24 @@ public final class BasicDiagramGem implements Gem
 			return stateStack.size();
 		}
 		
-		private void addToCurrentTransaction(UndoRedoAction action, FigureFacet figure)
+		private void addToCurrentTransaction(UndoRedoAction action, PersistentFigure p)
 		{
 			if (!inUndoRedo)
 			{
 				UndoRedoStates current = ensureCurrent();
 				if (action.equals(UndoRedoAction.ADD))
 				{
-					PersistentFigure p = figure.makePersistentFigure();
-					before.put(figure, p);
+					before.put(p.getId(), p);
 					current.addState(new UndoRedoState(action, p));
 				}
 				else
 				if (action.equals(UndoRedoAction.REMOVE))
 				{
-					PersistentFigure p = figure.makePersistentFigure();
 					current.addState(new UndoRedoState(UndoRedoAction.REMOVE, p));
 				}
 				else
 				{
-					mods.add(figure);
+					mods.add(p.getId());
 				}
 			}
 		}
@@ -333,11 +341,11 @@ public final class BasicDiagramGem implements Gem
 			UndoRedoStates current = ensureCurrent();
 			for (FigureFacet f : figures.values())
 			{
-				PersistentFigure bp = before.get(f);
+				PersistentFigure bp = before.get(f.getId());
 				if (bp != null)
 				{
 					PersistentFigure p = f.makePersistentFigure();
-					if (mods.contains(f) || !p.equals(bp))
+					if (mods.contains(f.getId()) || !p.equals(bp))
 					{
 						UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, bp);
 						state.setAfterPersistentFigure(p);
@@ -380,7 +388,8 @@ public final class BasicDiagramGem implements Gem
 						case ADD:
 							{
 								FigureFacet f = figures.get(s.getPersistentFigure().getId());
-								remove(f);
+								if (f != null)
+									remove(f);
 							}
 							break;
 					}
@@ -426,7 +435,8 @@ public final class BasicDiagramGem implements Gem
 						case REMOVE:
 						{
 							FigureFacet f = figures.get(s.getPersistentFigure().getId());
-							remove(f);
+							if (f != null)
+								remove(f);
 						}
 						break;
 					}
@@ -462,9 +472,9 @@ public final class BasicDiagramGem implements Gem
 
 		public void aboutToAdjust(FigureFacet figure)
 		{
-			if (!before.containsKey(figure))
-				before.put(figure, figure.makePersistentFigure());
-			addToCurrentTransaction(UndoRedoAction.MODIFY, figure);
+			if (!before.containsKey(figure.getId()))
+				before.put(figure.getId(), figure.makePersistentFigure());
+			addToCurrentTransaction(UndoRedoAction.MODIFY, new PersistentFigure(figure.getId(), null));
 		}
 		
 		////////////////////////////////////////////////////////////////////////////////////////
@@ -472,7 +482,7 @@ public final class BasicDiagramGem implements Gem
 		public void add(FigureFacet figure)
 	  {
 	  	Validator.validateFigure(figure);
-	  	addToCurrentTransaction(UndoRedoAction.ADD, figure);
+	  	addToCurrentTransaction(UndoRedoAction.ADD, figure.makePersistentFigure());
 	  	
 			setModified(true);
 		  figures.put(figure.getId(), figure);
@@ -490,11 +500,10 @@ public final class BasicDiagramGem implements Gem
 	
 	  public void remove(FigureFacet figure)
 	  {
-	  	addToCurrentTransaction(UndoRedoAction.REMOVE, figure);
       FigureFacet removed = figures.remove(figure.getId());
       if (removed != null)
       {
-        removed.cleanUp();
+        PersistentFigure p = figure.makePersistentFigure();
   			setModified(true);
   	    haveModification(removed, DiagramChange.MODIFICATIONTYPE_REMOVE);
   	      
@@ -506,6 +515,8 @@ public final class BasicDiagramGem implements Gem
   	    	while (iter.hasNext())
   					remove(iter.next());
   	    }
+  	  	addToCurrentTransaction(UndoRedoAction.REMOVE, p);
+        removed.cleanUp();
       }
 	  }
 	
@@ -743,7 +754,7 @@ public final class BasicDiagramGem implements Gem
 				for (FigureFacet figure : addedFigures)
 				{
 					haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADD);
-					addToCurrentTransaction(UndoRedoAction.ADD, figure);
+					addToCurrentTransaction(UndoRedoAction.ADD, figure.makePersistentFigure());
 				}
 			}
 

@@ -51,9 +51,8 @@ import edu.umd.cs.jazz.component.*;
 import edu.umd.cs.jazz.event.*;
 import edu.umd.cs.jazz.util.*;
 
-
 public final class ToolCoordinatorGem implements Gem
-{		    
+{
 	public static final int MSEC_VIEW_UPDATE_DELAY = 100;
 	public static Preference BACKGROUND_VIEW_UPDATES = new Preference(
 			"Advanced",
@@ -440,15 +439,16 @@ public final class ToolCoordinatorGem implements Gem
 
 		public void startTransaction(String redoName, String undoName)
 		{
-			System.out.println("$$ started transaction: " + redoName);
+			clearDeltaEngine();
 			GlobalSubjectRepository.repository.startTransaction(redoName, undoName);
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.startTransaction(null, null);
+				d.startTransaction(redoName, undoName);
 		}
 		
 		public void undoTransaction()
 		{
 			GlobalSubjectRepository.repository.undoTransaction();
+			clearDeltaEngine();
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
 				d.undoTransaction();
 		}
@@ -456,6 +456,7 @@ public final class ToolCoordinatorGem implements Gem
 		public void redoTransaction()
 		{
 			GlobalSubjectRepository.repository.redoTransaction();
+			clearDeltaEngine();
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
 				d.redoTransaction();
 		}
@@ -472,52 +473,35 @@ public final class ToolCoordinatorGem implements Gem
 			
 		private void commitTransaction(boolean forget)
 		{
-			boolean background = GlobalPreferences.preferences.getRawPreference(BACKGROUND_VIEW_UPDATES).asBoolean();
-
+//			boolean background = GlobalPreferences.preferences.getRawPreference(BACKGROUND_VIEW_UPDATES).asBoolean();
+	    final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
+	    
 			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
 			waiter.displayWaitCursorAfterDelay();
-			
-			clearDeltaEngine();
-			for (ViewUpdatePassEnum p : ViewUpdatePassEnum.values())
-				new CommonRepositoryFunctions().formUpdateDiagramsCommandAfterSubjectChanges(System.currentTimeMillis(), p, true);
-			
-			if (background)
-			{
-				for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-					d.checkpointCommitTransaction();
-			}
-			else
-			{
-				for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-					if (forget)
-						d.commitTransactionAndForget();
-					else
-						d.commitTransaction();
-			}
-			
-			if (forget)
-				GlobalSubjectRepository.repository.commitTransactionAndForget();
-			else
-				GlobalSubjectRepository.repository.commitTransaction();
-			
-			if (background)
-	    	processViewUpdatesInBackground(forget);
 
-			System.out.println("$$ committed transaction");
+			clearDeltaEngine();
+      for (ViewUpdatePassEnum p : ViewUpdatePassEnum.values())
+				new CommonRepositoryFunctions().formUpdateDiagramsCommandAfterSubjectChanges(System.currentTimeMillis(), p, false);
+      
+			if (!forget)
+			{
+				for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+					d.commitTransaction();
+				repository.commitTransaction();
+			}
+			else
+			{
+				for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+					d.commitTransactionAndForget();
+				repository.commitTransactionAndForget();
+			}
 
 			waiter.restoreOldCursor();
       paletteFacet.refreshEnabled();
       GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
 		}
-
-		public void clearTransactionHistory()
-		{
-			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.clearTransactionHistory();
-			GlobalSubjectRepository.repository.clearTransactionHistory();
-		}
-
-		private void processViewUpdatesInBackground(final boolean forget)
+		
+		private void processViewUpdatesInBackground(final SubjectRepositoryFacet repository, final long executionTime, final boolean forget)
 		{
 			new Thread(new Runnable()
 			{
@@ -530,32 +514,37 @@ public final class ToolCoordinatorGem implements Gem
 					catch (InterruptedException e)
 					{
 					}
-
+		
 					SwingUtilities.invokeLater(new Runnable()
 			    {
 			    	public void run()
 			    	{
-			        clearDeltaEngine();
-			        SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;			        
 			        for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
-			          repository.formUpdateDiagramsCommandAfterSubjectChanges(System.currentTimeMillis(), pass, false);
+			        	repository.formUpdateDiagramsCommandAfterSubjectChanges(executionTime, pass, false);
 
-							for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
-							{
-								diagram.sendChangesToListeners();
-								if (forget)
-									diagram.commitTransactionAndForget();
-								else
-									diagram.commitTransaction();
-							}
+			        if (forget)
+			        {
+			        	for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+			        		d.commitTransactionAndForget();
+			        }
+			        else
+			        {
+			        	for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+			        		d.commitTransaction();		        	
+			        }
 			    	}
 			    });    			
 				}
 			}).start();
 		}
-	  
 
-		
+		public void clearTransactionHistory()
+		{
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.clearTransactionHistory();
+			GlobalSubjectRepository.repository.clearTransactionHistory();
+		}
+
 		public void enforceTransactionDepth(int depth)
 		{
 			// TODO Auto-generated method stub
@@ -586,6 +575,11 @@ public final class ToolCoordinatorGem implements Gem
 		{
 			throw new IllegalStateException("executeCommandAndUpdateViews() is deprecated");
 		}
+	}
+
+	private void clearDeltaEngine()
+	{
+	  GlobalDeltaEngine.engine = new UML2DeltaEngine();
 	}
 
 	private void registerRecreator(PersistentFigureRecreatorFacet recreatorFacet)
@@ -637,9 +631,4 @@ public final class ToolCoordinatorGem implements Gem
     registerRecreator(new MessageCreatorGem().getArcCreateFacet());
     registerRecreator(new SequenceSectionCreatorGem().getNodeCreateFacet());
 	}
-	
-  private static void clearDeltaEngine()
-  {
-    GlobalDeltaEngine.engine = new UML2DeltaEngine();
-  }
 }
