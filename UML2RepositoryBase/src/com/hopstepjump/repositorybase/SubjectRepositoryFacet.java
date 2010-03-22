@@ -47,7 +47,6 @@ public interface SubjectRepositoryFacet extends TransactionManagerFacet
 	public void resetModified();
 	public PersistentDiagram retrievePersistentDiagram(Package pkg) throws RepositoryPersistenceException;
 	
-	public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, ViewUpdatePassEnum pass, boolean initialRun);	
 	public String getFullyQualifiedName(Element element, String separator);
   public String getFullStratumNames(Element element);
 

@@ -269,6 +269,7 @@ public final class PortNodeGem implements Gem
     classScope = properties.retrieve("classScope", false).asBoolean();
     displayType = properties.retrieve("dispType", PortDisplayTypeFacet.NORMAL_TYPE).asInteger();
     extraText = properties.retrieve("extraText", "").asString();
+    drawInferred = properties.retrieve("drawInferred", false).asBoolean();
   }
   
   public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
@@ -1007,6 +1008,7 @@ public final class PortNodeGem implements Gem
 		  properties.add(new PersistentProperty("classScope", classScope, false));
       properties.add(new PersistentProperty("dispType", displayType, PortDisplayTypeFacet.NORMAL_TYPE));
       properties.add(new PersistentProperty("extraText", extraText, null));
+      properties.add(new PersistentProperty("drawInferred", drawInferred, false));
 		}
 
 		/**
@@ -1185,6 +1187,7 @@ public final class PortNodeGem implements Gem
 	    classScope = properties.retrieve("classScope", false).asBoolean();
 	    displayType = properties.retrieve("dispType", PortDisplayTypeFacet.NORMAL_TYPE).asInteger();
 	    extraText = properties.retrieve("extraText", "").asString();
+	    drawInferred = properties.retrieve("drawInferred", false).asBoolean();
 		}
   }
   

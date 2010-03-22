@@ -119,7 +119,7 @@ public class Evolve
 				new PreferenceTypeFile(), "The XML file that will be loaded on startup.");
 		GlobalPreferences.preferences.addPreferenceSlot(OPEN_DIAGRAMS, new PreferenceTypeInteger(),
 				"The maximum number of unviewed, but unmodified, diagrams that are allowed to be open.");
-		GlobalPreferences.preferences.addPreferenceSlot(ViewUpdateWrapperCommand.BACKGROUND_VIEW_UPDATES, new PreferenceTypeBoolean(),
+		GlobalPreferences.preferences.addPreferenceSlot(BasicDiagramGem.BACKGROUND_VIEW_UPDATES, new PreferenceTypeBoolean(),
 				"Perform any view updates that might be slow in the background.  Gives a faster response time, but is less tested.");
 		BrowserInvoker.registerPreferenceSlots();
 		RepositoryBrowserGem.registerPreferenceSlots();
@@ -167,12 +167,12 @@ public class Evolve
 			String initialXMLRepository = GlobalPreferences.preferences.getRawPreference(
 					new Preference("Locations", "Initial XML repository")).asString();
 			// we need the delta engine for setting up the model
-			DeltaEngineCommandWrapper.clearDeltaEngine();
+			ToolCoordinatorGem.clearDeltaEngine();
 			RepositoryUtility.useXMLRepository((initialXMLRepository != null && new File(initialXMLRepository)
 					.exists()) ? initialXMLRepository : null);
 			// the delta engine needs to be cleared, as it gets into an odd state
 			// during CommonRepositoryFunctions.initializeModel()
-			DeltaEngineCommandWrapper.clearDeltaEngine();
+			ToolCoordinatorGem.clearDeltaEngine();
 		}
 		catch (RepositoryOpeningException e)
 		{

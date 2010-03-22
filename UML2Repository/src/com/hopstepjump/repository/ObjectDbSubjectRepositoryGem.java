@@ -219,14 +219,6 @@ public class ObjectDbSubjectRepositoryGem implements Gem
         listener.sendChanges();
     }
 
-    public void commitTransactionAndForget()
-    {
-      end();
-      undoredo.commitTransactionAndForget();
-      for (SubjectRepositoryListenerFacet listener : listeners)
-        listener.sendChanges();
-    }
-
     public void incrementPersistentDelete(Element element)
     {
       element.setJ_deleted(element.getJ_deleted() + 1);
@@ -267,11 +259,6 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     public PersistentDiagram retrievePersistentDiagram(Package pkg)
     {
       return common.retrievePersistentDiagram(pkg);
-    }
-
-    public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, ViewUpdatePassEnum pass, boolean initialRun)
-    {
-      return common.formUpdateDiagramsCommandAfterSubjectChanges(commandExecutionTime, pass, initialRun);
     }
 
     public String getFullyQualifiedName(Element element, String separator)

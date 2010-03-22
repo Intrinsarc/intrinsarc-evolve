@@ -44,7 +44,6 @@ import com.hopstepjump.repository.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
-import com.hopstepjump.uml2deltaengine.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -201,10 +200,8 @@ public final class ClassifierNodeGem implements Gem
     bodyEllipsis = isPart ? false : info.isEllipsisForBody();
   }
   
-  private Object updateClassifierViewAfterSubjectChanged()
+  private void updateClassifierViewAfterSubjectChanged(int actualStereotypeHashcode)
   {
-    final int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, subject);
-
     // should we be displaying the owner?
     ElementProperties props = new ElementProperties(figureFacet);
     boolean sub = props.getElement().isSubstitution();
@@ -248,17 +245,12 @@ public final class ClassifierNodeGem implements Gem
     // resize, using a text utility
     DisplayAsIconTransaction.display(figureFacet, shouldDisplayOnlyIcon());
     figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
-    
-    return null;
   }
 
-  public Object updatePartViewAfterSubjectChanged(boolean isTop)
+  public Object updatePartViewAfterSubjectChanged(int actualStereotypeHashcode)
   {
     Property part = (Property) subject;
     Classifier type = (Classifier) part.undeleted_getType();
-    final int actualStereotypeHashcode =
-    	StereotypeUtilities.calculateStereotypeHash(figureFacet, subject) +
-    	StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, type);
 
     final boolean subjectActive = type == null || !(type instanceof Class) ? false : ((Class) type).isActive();     
     final boolean subjectAbstract = type == null ? false : type.isAbstract();
@@ -2310,6 +2302,7 @@ public final class ClassifierNodeGem implements Gem
       properties.add(new PersistentProperty("addedUuids", deletedUuids));
       properties.add(new PersistentProperty("deletedUuids", deletedUuids));
       properties.add(new PersistentProperty("locked", locked, false));
+      properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
 		}
 		
 		/**
@@ -2373,9 +2366,7 @@ public final class ClassifierNodeGem implements Gem
 				return;
 			Classifier type = (Classifier) part.undeleted_getType();
 			
-      final int actualStereotypeHashcode =
-      	StereotypeUtilities.calculateStereotypeHash(figureFacet, subject) +
-      	StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, type);
+      int actualStereotypeHashcode = calculateStereotypeHashcode();
       boolean shouldBeState = type == null ? showAsState : StereotypeUtilities.isStereotypeApplied(type, "state");
       
 			// is this active, or abstract
@@ -2399,7 +2390,7 @@ public final class ClassifierNodeGem implements Gem
       }
 
 			// now we are here, package it up into a nice command
-			updatePartViewAfterSubjectChanged(true);
+			updatePartViewAfterSubjectChanged(actualStereotypeHashcode);
 		}		
 		
 		/**
@@ -2486,7 +2477,7 @@ public final class ClassifierNodeGem implements Gem
         portLinkHelper.cleanUuids(ConstituentTypeEnum.DELTA_CONNECTOR);
       }
 		  
-      int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, subject);
+      int actualStereotypeHashcode = calculateStereotypeHashcode();
       boolean shouldBeState = StereotypeUtilities.isStereotypeApplied(subject, "state");
 
 			// should we be displaying the owner?
@@ -2533,7 +2524,7 @@ public final class ClassifierNodeGem implements Gem
 				return;
       }
 
-      updateClassifierViewAfterSubjectChanged();
+      updateClassifierViewAfterSubjectChanged(actualStereotypeHashcode);
 		}
 		
 		/**
@@ -2932,6 +2923,7 @@ public final class ClassifierNodeGem implements Gem
     addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
     locked = properties.retrieve("locked", false).asBoolean();
+    stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
   }
 
   public ClassifierNodeGem(Color initialFillColor, boolean isPart, PersistentFigure figure)
@@ -2947,6 +2939,26 @@ public final class ClassifierNodeGem implements Gem
     
     PersistentProperties properties = figure.getProperties();
 		interpretOptionalProperties(properties);
+  }
+  
+  private int calculateStereotypeHashcode()
+  {
+		if (isPart)
+		{
+			Property part = (Property) subject;
+			InstanceSpecification instance = UMLTypes.extractInstanceOfPart(subject);
+			if (instance == null)
+				return 0;
+			Classifier type = (Classifier) part.undeleted_getType();
+
+			return
+				StereotypeUtilities.calculateStereotypeHash(figureFacet, subject) +
+				StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, type);
+		}
+		else
+		{
+      return StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, subject);
+		}
   }
 	
 	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()

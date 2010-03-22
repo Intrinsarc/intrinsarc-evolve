@@ -501,6 +501,8 @@ public final class FeatureNodeGem implements Gem
 		public void addToPersistentProperties(PersistentProperties properties)
 		{
 			properties.add(new PersistentProperty("name", name, ""));
+			properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
+			
 		}
 
     /**
@@ -609,6 +611,7 @@ public final class FeatureNodeGem implements Gem
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
 	    name = pfig.getProperties().retrieve("name", "").asString();
+	    stereotypeHashcode = pfig.getProperties().retrieve("stereoHash", 0).asInteger();
 		}
 	}
 	

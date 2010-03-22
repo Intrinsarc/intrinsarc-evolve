@@ -888,7 +888,7 @@ public class ApplicationWindow extends SmartJFrame
 
 		try
 		{
-			DeltaEngineCommandWrapper.clearDeltaEngine();
+			ToolCoordinatorGem.clearDeltaEngine();
 			strata = choice.extractRelatedStrata();
 			if (strata.get(strata.size() - 1) != GlobalDeltaEngine.engine.getRoot())
 			{
@@ -933,7 +933,7 @@ public class ApplicationWindow extends SmartJFrame
 			}
 			else
 			{
-				DeltaEngineCommandWrapper.clearDeltaEngine();
+				ToolCoordinatorGem.clearDeltaEngine();
 			}
 		}
 		catch (BackboneGenerationException ex)
@@ -1418,7 +1418,7 @@ public class ApplicationWindow extends SmartJFrame
 	private void resyncDiagramsAndBrowser()
 	{
 		// make a new delta engine, just in case we had a previous one (e.g. with a backbone artificial parent)
-		DeltaEngineCommandWrapper.clearDeltaEngine();
+		ToolCoordinatorGem.clearDeltaEngine();
 		GlobalDiagramRegistry.resyncViews();
 		for (RepositoryBrowserFacet browser : browsers)
 			browser.refresh();
@@ -1508,7 +1508,7 @@ public class ApplicationWindow extends SmartJFrame
 
 								if (count != 0 && count % clearCycle == 0)
 								{
-									DeltaEngineCommandWrapper.clearDeltaEngine();
+									ToolCoordinatorGem.clearDeltaEngine();
 									deltaClear++;
 									GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
 								}

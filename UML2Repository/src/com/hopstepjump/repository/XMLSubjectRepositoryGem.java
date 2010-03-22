@@ -262,14 +262,6 @@ public class XMLSubjectRepositoryGem implements Gem
       undoredo.startTransaction(redoName, undoName);
     }
 
-    public void commitTransactionAndForget()
-    {
-      EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
-      undoredo.commitTransactionAndForget();
-      for (SubjectRepositoryListenerFacet listener : listeners)
-        listener.sendChanges();    	
-    }
-    
     public void commitTransaction()
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
@@ -332,11 +324,6 @@ public class XMLSubjectRepositoryGem implements Gem
     public PersistentDiagram retrievePersistentDiagram(Package pkg)
     {
       return common.retrievePersistentDiagram(pkg);
-    }
-
-    public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, ViewUpdatePassEnum pass, boolean initialRun)
-    {
-      return common.formUpdateDiagramsCommandAfterSubjectChanges(commandExecutionTime, pass, initialRun);
     }
 
     public String getFullyQualifiedName(Element element, String separator)

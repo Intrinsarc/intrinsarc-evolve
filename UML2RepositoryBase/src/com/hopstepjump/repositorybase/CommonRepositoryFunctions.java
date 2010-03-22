@@ -211,34 +211,6 @@ public class CommonRepositoryFunctions
     return new DbDiagramToPersistentDiagramTranslator(pkg, holder.getDiagram()).translate();      
   }
 
-  public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, ViewUpdatePassEnum pass, boolean initialRun)
-  {
-    List<DiagramFacet> diagrams = GlobalDiagramRegistry.registry.getDiagrams();
-
-    // tell all diagrams that have opening times after the execution time to revert
-//    long start = System.currentTimeMillis();
-    int reverted = 0;
-    if (pass == ViewUpdatePassEnum.START)
-    {
-      for (DiagramFacet diagram : diagrams) 
-      {
-        if (!diagram.isClipboard() && diagram.getOpeningTime() > commandExecutionTime)
-        {
-          diagram.revert();
-          reverted++;
-        }
-      }
-//      long end = System.currentTimeMillis();
-//      if (reverted != 0)
-//        System.out.println("$$ reverted " + reverted + " diagrams in " + (end - start) + "ms");
-    }
-
-    for (DiagramFacet diagram : diagrams)
-      diagram.formViewUpdate(pass, initialRun);
-
-    return null;
-  }
-
   public void setUuid(Set<String> uuids, Element elem, String uuid)
   {
   	if (uuids.contains(uuid))

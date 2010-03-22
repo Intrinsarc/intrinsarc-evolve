@@ -5,6 +5,7 @@ import java.util.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.diagramsupport.moveandresize.*;
+import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 
@@ -33,6 +34,11 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 
 public final class BasicDiagramGem implements Gem
 {
+	public static Preference BACKGROUND_VIEW_UPDATES = new Preference(
+			"Advanced",
+			"Perform slow view updates in the background",
+			new PersistentProperty(true));
+	
 	// an upper value for diagram chaining so when we add figures, they are in a different range
 	// to any from those inherited from diagrams
 	private static final int CHAINED_UPPER_FIGURE_ID = 1000000000;
@@ -227,6 +233,7 @@ public final class BasicDiagramGem implements Gem
 		private int pos = 0;
 		private boolean inUndoRedo = false;
 		private boolean insideTransaction = false;
+		private int alterations;
 		
 		public void enforceTransactionDepth(int depth)
 		{
@@ -235,6 +242,7 @@ public final class BasicDiagramGem implements Gem
 		public void startTransaction(String redoName, String undoName)
 		{
 			println("$$ started transaction");
+			alterations = 0;
 			long start = System.currentTimeMillis();
 			for (FigureFacet f : figures.values())
 				before.put(f.getId(), f.makePersistentFigure());
@@ -262,6 +270,11 @@ public final class BasicDiagramGem implements Gem
 			return stateStack.size();
 		}
 		
+		public int getAlterations()
+		{
+			return alterations;
+		}
+		
 		private void addToCurrentTransaction(UndoRedoAction action, PersistentFigure p)
 		{
 			if (!inUndoRedo)
@@ -271,29 +284,22 @@ public final class BasicDiagramGem implements Gem
 				{
 					before.put(p.getId(), p);
 					current.addState(new UndoRedoState(action, p));
+					alterations++;
 				}
 				else
 				if (action.equals(UndoRedoAction.REMOVE))
 				{
 					current.addState(new UndoRedoState(UndoRedoAction.REMOVE, p));
+					alterations++;
 				}
 				else
 				{
+					alterations++;
 					mods.add(p.getId());
 				}
 			}
 		}
 
-		public void primeForUpdateBeforeRevert()
-		{
-			// add in an undoredostates for an early change
-			if (pos != 0)
-				throw new IllegalStateException("Must be at index 0 for priming");
-			if (insideTransaction)
-				throw new IllegalStateException("Cannot undo while in diagram transaction");
-			stateStack.add(0, new UndoRedoStates());
-		}
-		
 		/**
 		 * ensure we have a valid current undoredostates to add to.
 		 * possibly truncate the stack and add a blank one if needed.
@@ -329,12 +335,6 @@ public final class BasicDiagramGem implements Gem
 			stateStack.clear();
 		}
 		
-		public void commitTransactionAndForget()
-		{
-			commitTransaction();
-			stateStack.remove(--pos);
-		}
-
 		public void commitTransaction()
 		{
 			// create any needed modifications
@@ -355,7 +355,6 @@ public final class BasicDiagramGem implements Gem
 				}
 			}
 			
-			println("$$ committed transaction: " + this);
 			UndoRedoStates states = stateStack.get(pos++);
 			states.setSealed(true);
 			sendChangesToListeners();
@@ -369,6 +368,13 @@ public final class BasicDiagramGem implements Gem
 			if (insideTransaction)
 				throw new IllegalStateException("Cannot undo while in diagram transaction");
 
+			if (pos == 0)
+			{
+				// we can't go back any more -- revert and insert a new entry
+				revert();
+				stateStack.add(0, new UndoRedoStates());
+			}
+			else
 			if (pos > 0)
 			{
 				inUndoRedo = true;
@@ -394,11 +400,25 @@ public final class BasicDiagramGem implements Gem
 							break;
 					}
 				}
-				sendChangesToListeners();
-				inUndoRedo = false;
+				all.setSealed(false);
 			}
+			inUndoRedo = false;
+			alterations = 0;
+			formViewUpdate();
+			if (alterations != 0)
+				System.out.println("$$ undo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
+			commitTransaction();
+			pos--;
 		}
 		
+		private void formViewUpdate()
+		{
+			mods.clear();
+			before.clear();
+	    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
+	      formViewUpdate(pass, false);
+		}
+
 		private void handleModify(PersistentFigure p)
 		{
 			FigureFacet f = figures.get(p.getId());
@@ -418,7 +438,7 @@ public final class BasicDiagramGem implements Gem
 			if (pos < stateStack.size())
 			{
 				inUndoRedo = true;
-				UndoRedoStates all = stateStack.get(pos++);
+				UndoRedoStates all = stateStack.get(pos);
 				List<UndoRedoState> states = all.getStates();
 				int size = states.size();
 				for (int lp = 0; lp < size; lp++)
@@ -441,8 +461,13 @@ public final class BasicDiagramGem implements Gem
 						break;
 					}
 				}
-				sendChangesToListeners();
+				all.setSealed(false);
 				inUndoRedo = false;
+				alterations = 0;
+				formViewUpdate();
+				if (alterations != 0)
+					System.out.println("$$ redo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
+				commitTransaction();
 			}
 		}		
 		

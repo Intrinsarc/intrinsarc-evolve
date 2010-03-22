@@ -148,7 +148,6 @@ public class UML2Component extends DEComponent
   private void initialiseDeltas()
   {
   	// handle attributes
-  	System.out.println("$$ element = " + subject.getName() + ", owned attrs = " + subject.undeleted_getOwnedAttributes().size());
     attributes = createDeltas(
         this,
         ConstituentTypeEnum.DELTA_ATTRIBUTE,

@@ -2,8 +2,6 @@ package com.hopstepjump.idraw.diagramsupport;
 
 import java.util.*;
 
-import com.hopstepjump.idraw.foundation.*;
-
 public class UndoRedoStates
 {
 	private List<UndoRedoState> states = new ArrayList<UndoRedoState>();
@@ -31,5 +29,10 @@ public class UndoRedoStates
 	public boolean isSealed()
 	{
 		return sealed;
+	}
+
+	public int getSize()
+	{
+		return states.size();
 	}
 }

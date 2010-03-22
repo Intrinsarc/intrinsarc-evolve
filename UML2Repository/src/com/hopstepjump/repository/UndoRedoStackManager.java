@@ -166,14 +166,6 @@ public class UndoRedoStackManager
 		current++;
 	}
 	
-	public void commitTransactionAndForget()
-	{
-		ensureCurrent();
-		if (stack.get(current).getNotifications().size() != 0)
-			throw new IllegalStateException("commitTransactionAndForget has some repository changes");
-		// no need to increment
-	}
-	
 	public int getCurrent()
 	{
 		return current;

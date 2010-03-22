@@ -65,7 +65,7 @@ public class CopyAction extends AbstractAction
 		    includedFigureIds,
 		    clipboard,
 		    src);		
-		coordinator.commitTransactionAndForget();
+		coordinator.commitTransaction();
 
 		// copy the clipboard diagram, as a metafile, to the system clipboard
 		copyDiagramToClipboardAsMetafile(clipboard, diagramView.getAdorners());
