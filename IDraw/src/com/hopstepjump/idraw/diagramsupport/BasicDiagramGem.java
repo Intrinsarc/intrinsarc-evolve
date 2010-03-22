@@ -17,20 +17,22 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 // 4. proper link acceptPersistentFigure (easy)
 // x. null ptr on cut/paste redo
 // x. try out complex attrs + ports + parts
-// 8. subject in acceptpersistentfigure + "don't repeat yourself" (easy)
-// x. moving operations around -- change of container
+//x. moving operations around -- change of container
+//xx. 2 modes -- abouttoadjust and auto-capture-all
+//xx. inserting update commands before history
+//xx. clipboard doesn't seem to update /delete items correctly -- diagrams + repos get out of sync?
+//8. subject in acceptpersistentfigure + "don't repeat yourself" (easy)
 //10. recheck all creators to ensure they fit into acceptcontainer model
-//11. 2 modes -- abouttoadjust and auto-capture-all
 //12. adding attributes to large class makes it go smaller?
 //13. pressing enter to end attr entry makes it go funny
 //14. inferred interfaces sometimes don't appear on redo
 //15. truncating commands
-//16. inserting update commands before history
 //17. refresh
 //18. background updating
 //19. saving initial persistent state -- move to aboutToAdjust() model, preserve old options as debug mode
 //20. remove all commands
-//21. clipboard doesn't seem to update /delete items correctly -- diagrams + repos get out of sync?
+//21. synch up diagram change and undo/redo stack
+//22. package undo
 
 public final class BasicDiagramGem implements Gem
 {
@@ -232,10 +234,10 @@ public final class BasicDiagramGem implements Gem
 		private Set<String> mods = new HashSet<String>();
 		private int pos = 0;
 		private boolean inUndoRedo = false;
-		private boolean insideTransaction = false;
+		private boolean insideTransaction;
 		private int alterations;
 		
-		public void enforceTransactionDepth(int depth)
+		public void enforceTransactionDepth(int current, int depth)
 		{
 		}
 		
@@ -244,10 +246,13 @@ public final class BasicDiagramGem implements Gem
 			println("$$ started transaction");
 			alterations = 0;
 			long start = System.currentTimeMillis();
+			mods.clear();
+			before.clear();
 			for (FigureFacet f : figures.values())
 				before.put(f.getId(), f.makePersistentFigure());
 			long end = System.currentTimeMillis();
 			println("$$   copied figures, took " + (end - start) + "ms");
+			insideTransaction = true;
 		}
 		
 		public String getRedoTransactionDescription()
@@ -285,17 +290,21 @@ public final class BasicDiagramGem implements Gem
 					before.put(p.getId(), p);
 					current.addState(new UndoRedoState(action, p));
 					alterations++;
+					System.out.println("$$ -- add of " + p.getRecreator() + ", id = " + p.getId());
 				}
 				else
 				if (action.equals(UndoRedoAction.REMOVE))
 				{
 					current.addState(new UndoRedoState(UndoRedoAction.REMOVE, p));
 					alterations++;
+					System.out.println("$$ -- removal of " + p.getRecreator() + ", id = " + p.getId());
 				}
 				else
+				if (figures.containsKey(p.getId()))
 				{
 					alterations++;
 					mods.add(p.getId());
+					System.out.println("$$ -- modify of " + p.getRecreator() + ", id = " + p.getId());
 				}
 			}
 		}
@@ -319,7 +328,6 @@ public final class BasicDiagramGem implements Gem
 					stateStack.add(new UndoRedoStates());
 				}
 			}
-			insideTransaction = true;
 			return stateStack.get(pos);
 		}
 		
@@ -406,7 +414,7 @@ public final class BasicDiagramGem implements Gem
 			alterations = 0;
 			formViewUpdate();
 			if (alterations != 0)
-				System.out.println("$$ undo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
+				System.out.println("$$ bad undo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
 			commitTransaction();
 			pos--;
 		}
@@ -466,7 +474,7 @@ public final class BasicDiagramGem implements Gem
 				alterations = 0;
 				formViewUpdate();
 				if (alterations != 0)
-					System.out.println("$$ redo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
+					System.out.println("$$ bad redo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
 				commitTransaction();
 			}
 		}		

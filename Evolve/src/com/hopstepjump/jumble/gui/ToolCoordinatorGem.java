@@ -3,7 +3,6 @@ package com.hopstepjump.jumble.gui;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.reflect.*;
-import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -16,7 +15,6 @@ import com.hopstepjump.idraw.diagramsupport.*;
 import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
-import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.freeform.grouper.*;
 import com.hopstepjump.jumble.freeform.image.*;
@@ -54,11 +52,10 @@ import edu.umd.cs.jazz.util.*;
 
 public final class ToolCoordinatorGem implements Gem
 {
-	public static final int MSEC_VIEW_UPDATE_DELAY = 100;
-	public static Preference BACKGROUND_VIEW_UPDATES = new Preference(
+	public static Preference UNDO_REDO_SIZE = new Preference(
 			"Advanced",
-			"Perform slow view updates in the background",
-			new PersistentProperty(true));
+			"Size of undo/redo history",
+			25);
 
 	private static final Font POPUP_FONT = new Font("Arial", Font.BOLD, 16);
 	private ToolCoordinatorFacet coordinatorFacet = new ToolCoordinatorFacetImpl();
@@ -450,6 +447,7 @@ public final class ToolCoordinatorGem implements Gem
 		{
 			GlobalSubjectRepository.repository.undoTransaction();
 			clearDeltaEngine();
+			System.out.println("$$ cleared delta engine, about to undo diagrams");
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
 				d.undoTransaction();
 		}
@@ -481,49 +479,14 @@ public final class ToolCoordinatorGem implements Gem
 			waiter.restoreOldCursor();
       paletteFacet.refreshEnabled();
       GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
+      enforceTransactionDepth(repository.getTransactionPosition(), getIntegerPreference(UNDO_REDO_SIZE));
 		}
 		
 	  private void formUpdateDiagramsCommandAfterSubjectChanges(DiagramFacet diagram, boolean initialRun)
 	  {
 	    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
 		      diagram.formViewUpdate(pass, initialRun);
-	  }
-		
-//		private void processViewUpdatesInBackground(final SubjectRepositoryFacet repository, final long executionTime, final boolean forget)
-//		{
-//			new Thread(new Runnable()
-//			{
-//				public void run()
-//				{
-//					try
-//					{
-//						Thread.sleep(MSEC_VIEW_UPDATE_DELAY);
-//					}
-//					catch (InterruptedException e)
-//					{
-//					}
-//		
-//					SwingUtilities.invokeLater(new Runnable()
-//			    {
-//			    	public void run()
-//			    	{
-//		        	repository.formUpdateDiagramsCommandAfterSubjectChanges(executionTime, false);
-//
-//			        if (forget)
-//			        {
-//			        	for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-//			        		d.commitTransactionAndForget();
-//			        }
-//			        else
-//			        {
-//			        	for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-//			        		d.commitTransaction();		        	
-//			        }
-//			    	}
-//			    });    			
-//				}
-//			}).start();
-//		}
+	  }		
 
 		public void clearTransactionHistory()
 		{
@@ -532,9 +495,12 @@ public final class ToolCoordinatorGem implements Gem
 			GlobalSubjectRepository.repository.clearTransactionHistory();
 		}
 
-		public void enforceTransactionDepth(int depth)
+		public void enforceTransactionDepth(int globalCurrent, int desiredDepth)
 		{
-			// TODO Auto-generated method stub
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.enforceTransactionDepth(globalCurrent, desiredDepth);
+			GlobalSubjectRepository.repository.enforceTransactionDepth(globalCurrent, desiredDepth);
+			
 		}
 
 		public String getRedoTransactionDescription()

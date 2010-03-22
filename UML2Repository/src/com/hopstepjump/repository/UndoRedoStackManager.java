@@ -186,9 +186,10 @@ public class UndoRedoStackManager
 	 * ensure the stack doesn't become too large
 	 * @param depth
 	 */
-	public void enforceDepth(int depth)
+	public void enforceDepth(int globalCurrent, int desiredDepth)
 	{
-		int truncate = stack.size() - depth;
+		int truncate = stack.size() - desiredDepth - (current - globalCurrent);
+		System.out.println("$$ subject repos: truncating by " + truncate);
 		for (int lp = 0; lp < truncate; lp++)
 			stack.remove(0);		
 	}

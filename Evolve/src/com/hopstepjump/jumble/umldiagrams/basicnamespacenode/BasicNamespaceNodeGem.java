@@ -694,6 +694,7 @@ public final class BasicNamespaceNodeGem implements Gem
 			properties.add(new PersistentProperty("showVis", showOwningPackage, false));
 			properties.add(new PersistentProperty("suppVis", forceSuppressOwningPackage, false));
       properties.add(new PersistentProperty("fill", fillColor, INITIAL_FILL_COLOR));
+      properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
 		}
 
 		private boolean locatedInCorrectView()
@@ -810,6 +811,7 @@ public final class BasicNamespaceNodeGem implements Gem
 			showOwningPackage = properties.retrieve("showVis", false).asBoolean();
 			forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
 	    fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
+	    stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
 		}
 	}
 	
@@ -983,8 +985,7 @@ public final class BasicNamespaceNodeGem implements Gem
 		showOwningPackage = properties.retrieve("showVis", false).asBoolean();
 		forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
     fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
-	
-
+    stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
 		// the contained elements will arrive later
   }
 

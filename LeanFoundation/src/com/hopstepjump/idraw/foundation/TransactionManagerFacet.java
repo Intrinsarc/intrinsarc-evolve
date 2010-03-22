@@ -12,6 +12,6 @@ public interface TransactionManagerFacet extends Facet
 	public int getTransactionPosition();
 	public int getTotalTransactions();
 	public void clearTransactionHistory();
-	public void enforceTransactionDepth(int depth);
+	public void enforceTransactionDepth(int globalCurrent, int desiredDepth);
   public void commitTransaction();
 }

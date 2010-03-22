@@ -99,9 +99,9 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 			undoredo.clearStack();
 		}
 		
-		public void enforceTransactionDepth(int depth)
+		public void enforceTransactionDepth(int globalCurrent, int desiredDepth)
 		{
-			undoredo.enforceDepth(depth);
+			undoredo.enforceDepth(globalCurrent, desiredDepth);
 		}
 		
 		////////////////////////////////////////////////////

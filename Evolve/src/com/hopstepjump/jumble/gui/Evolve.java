@@ -120,7 +120,9 @@ public class Evolve
 		GlobalPreferences.preferences.addPreferenceSlot(OPEN_DIAGRAMS, new PreferenceTypeInteger(),
 				"The maximum number of unviewed, but unmodified, diagrams that are allowed to be open.");
 		GlobalPreferences.preferences.addPreferenceSlot(BasicDiagramGem.BACKGROUND_VIEW_UPDATES, new PreferenceTypeBoolean(),
-				"Perform any view updates that might be slow in the background.  Gives a faster response time, but is less tested.");
+				"Perform any view updates that might be slow in the background, giving a faster response time, but is less tested.");
+		GlobalPreferences.preferences.addPreferenceSlot(ToolCoordinatorGem.UNDO_REDO_SIZE, new PreferenceTypeInteger(),
+				"The number of undo/redo commands stored.");
 		BrowserInvoker.registerPreferenceSlots();
 		RepositoryBrowserGem.registerPreferenceSlots();
 	}
