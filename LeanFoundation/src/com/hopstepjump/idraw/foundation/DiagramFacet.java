@@ -55,7 +55,6 @@ public interface DiagramFacet extends TransactionManagerFacet
   public void resetModified();
   public long getLRUTime();
   public void setLRUTime(long time);
-	public long getOpeningTime();
 	public boolean isClipboard();
   public void resizeEntireDiagram();
   

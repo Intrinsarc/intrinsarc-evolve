@@ -586,7 +586,6 @@ public class ApplicationWindow extends SmartJFrame
 		{
 			GlobalSubjectRepository.repository.refreshAll();
 			List<DiagramFacet> unmodified = GlobalDiagramRegistry.registry.refreshAllDiagrams();
-			//commandManager.tellDiagramsToSendChanges();
 			for (DiagramFacet diagram : unmodified)
 				diagram.resetModified();
 			commandManager.clearTransactionHistory();

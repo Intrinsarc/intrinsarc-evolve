@@ -9,31 +9,10 @@ import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 
-//issues:
-// x. resize of class upon redo after add
-// x. lots of modifications which look unnecessary
-// x. name change of class/package
-// x. fix up other node types
-// 4. proper link acceptPersistentFigure (easy)
-// x. null ptr on cut/paste redo
-// x. try out complex attrs + ports + parts
-//x. moving operations around -- change of container
-//xx. 2 modes -- abouttoadjust and auto-capture-all
-//xx. inserting update commands before history
-//xx. clipboard doesn't seem to update /delete items correctly -- diagrams + repos get out of sync?
-//8. subject in acceptpersistentfigure + "don't repeat yourself" (easy)
-//10. recheck all creators to ensure they fit into acceptcontainer model
-//12. adding attributes to large class makes it go smaller?
-//13. pressing enter to end attr entry makes it go funny
-//14. inferred interfaces sometimes don't appear on redo
-//15. truncating commands
-//17. refresh
-//18. background updating
-//19. saving initial persistent state -- move to aboutToAdjust() model, preserve old options as debug mode
-//20. remove all commands
-//21. synch up diagram change and undo/redo stack
-//22. package undo
-
+/**
+ * a diagram which manages a scenegraph of figures
+ * @author andrew
+ */
 public final class BasicDiagramGem implements Gem
 {
 	public static Preference BACKGROUND_VIEW_UPDATES = new Preference(
@@ -55,7 +34,6 @@ public final class BasicDiagramGem implements Gem
   private boolean modified = false;
   private PersistentDiagram persistentDiagram;
   private long lruTime = System.currentTimeMillis();
-	private long openingTime;
 	private boolean isClipboard;
 	private PersistentProperties properties;
 	private boolean generateChanges;
@@ -139,7 +117,6 @@ public final class BasicDiagramGem implements Gem
   {
     figures = new HashMap<String, FigureFacet>();
     changes.clear();
-    openingTime = System.currentTimeMillis();  
   }
   
   private void initialiseInternals()
@@ -237,21 +214,28 @@ public final class BasicDiagramGem implements Gem
 		private boolean insideTransaction;
 		private int alterations;
 		
-		public void enforceTransactionDepth(int current, int depth)
+		public void enforceTransactionDepth(int globalCurrent, int desiredDepth)
 		{
+			int truncate = stateStack.size() - desiredDepth;
+			if (truncate > 0)
+			{
+				for (int lp = 0; lp < truncate; lp++)
+					stateStack.remove(0);
+				pos -= truncate;
+			}
 		}
 		
 		public void startTransaction(String redoName, String undoName)
 		{
-			println("$$ started transaction");
+//			println("$$ started transaction");
 			alterations = 0;
-			long start = System.currentTimeMillis();
+//			long start = System.currentTimeMillis();
 			mods.clear();
 			before.clear();
 			for (FigureFacet f : figures.values())
 				before.put(f.getId(), f.makePersistentFigure());
-			long end = System.currentTimeMillis();
-			println("$$   copied figures, took " + (end - start) + "ms");
+//			long end = System.currentTimeMillis();
+//			println("$$   copied figures, took " + (end - start) + "ms");
 			insideTransaction = true;
 		}
 		
@@ -290,21 +274,21 @@ public final class BasicDiagramGem implements Gem
 					before.put(p.getId(), p);
 					current.addState(new UndoRedoState(action, p));
 					alterations++;
-					System.out.println("$$ -- add of " + p.getRecreator() + ", id = " + p.getId());
+//					println("$$ -- add of " + p.getRecreator() + ", id = " + p.getId());
 				}
 				else
 				if (action.equals(UndoRedoAction.REMOVE))
 				{
 					current.addState(new UndoRedoState(UndoRedoAction.REMOVE, p));
 					alterations++;
-					System.out.println("$$ -- removal of " + p.getRecreator() + ", id = " + p.getId());
+//					println("$$ -- removal of " + p.getRecreator() + ", id = " + p.getId());
 				}
 				else
 				if (figures.containsKey(p.getId()))
 				{
 					alterations++;
 					mods.add(p.getId());
-					System.out.println("$$ -- modify of " + p.getRecreator() + ", id = " + p.getId());
+//					println("$$ -- modify of " + p.getId());
 				}
 			}
 		}
@@ -378,8 +362,7 @@ public final class BasicDiagramGem implements Gem
 
 			if (pos == 0)
 			{
-				// we can't go back any more -- revert and insert a new entry
-				revert();
+				// we can't go back any more -- insert a new entry
 				stateStack.add(0, new UndoRedoStates());
 			}
 			else
@@ -414,7 +397,7 @@ public final class BasicDiagramGem implements Gem
 			alterations = 0;
 			formViewUpdate();
 			if (alterations != 0)
-				System.out.println("$$ bad undo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
+				println("$$ bad undo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
 			commitTransaction();
 			pos--;
 		}
@@ -474,10 +457,10 @@ public final class BasicDiagramGem implements Gem
 				alterations = 0;
 				formViewUpdate();
 				if (alterations != 0)
-					System.out.println("$$ bad redo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
+					println("$$ bad redo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
 				commitTransaction();
 			}
-		}		
+		}
 		
 		void println(String str)
 		{
@@ -885,14 +868,6 @@ public final class BasicDiagramGem implements Gem
       changes.clear();
       changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
     }
-
-		/**
-		 * @see com.hopstepjump.idraw.foundation.DiagramFacet#getOpeningTime()
-		 */
-		public long getOpeningTime()
-		{
-			return openingTime;
-		}
 
 		/**
 		 * @see com.hopstepjump.idraw.foundation.DiagramFacet#isClipboard()

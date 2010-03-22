@@ -55,9 +55,9 @@ public final class ToolCoordinatorGem implements Gem
 	public static Preference UNDO_REDO_SIZE = new Preference(
 			"Advanced",
 			"Size of undo/redo history",
-			25);
-
+			100);
 	private static final Font POPUP_FONT = new Font("Arial", Font.BOLD, 16);
+	
 	private ToolCoordinatorFacet coordinatorFacet = new ToolCoordinatorFacetImpl();
   private JFrame frame;
   private PaletteManagerFacet paletteFacet;
@@ -447,7 +447,6 @@ public final class ToolCoordinatorGem implements Gem
 		{
 			GlobalSubjectRepository.repository.undoTransaction();
 			clearDeltaEngine();
-			System.out.println("$$ cleared delta engine, about to undo diagrams");
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
 				d.undoTransaction();
 		}

@@ -188,10 +188,13 @@ public class UndoRedoStackManager
 	 */
 	public void enforceDepth(int globalCurrent, int desiredDepth)
 	{
-		int truncate = stack.size() - desiredDepth - (current - globalCurrent);
-		System.out.println("$$ subject repos: truncating by " + truncate);
-		for (int lp = 0; lp < truncate; lp++)
-			stack.remove(0);		
+		int truncate = stack.size() - desiredDepth;
+		if (truncate > 0)
+		{
+			for (int lp = 0; lp < truncate; lp++)
+				stack.remove(0);
+			current -= truncate;
+		}
 	}
 
 	public String getRedoDescription()
