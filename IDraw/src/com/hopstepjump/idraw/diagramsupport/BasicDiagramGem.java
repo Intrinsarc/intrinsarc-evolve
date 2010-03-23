@@ -214,7 +214,7 @@ public final class BasicDiagramGem implements Gem
 		private boolean insideTransaction;
 		private int alterations;
 		
-		public void enforceTransactionDepth(int globalCurrent, int desiredDepth)
+		public void enforceTransactionDepth(int desiredDepth)
 		{
 			int truncate = stateStack.size() - desiredDepth;
 			if (truncate > 0)
@@ -318,6 +318,25 @@ public final class BasicDiagramGem implements Gem
 		/** undo/redo support */
 		public void checkpointCommitTransaction()
 		{
+			// create any needed modifications
+			UndoRedoStates current = ensureCurrent();
+			for (FigureFacet f : figures.values())
+			{
+				PersistentFigure bp = before.get(f.getId());
+				if (bp != null)
+				{
+					PersistentFigure p = f.makePersistentFigure();
+					before.put(f.getId(), p);
+					if (mods.contains(f.getId()) || !p.equals(bp))
+					{
+						mods.remove(f.getId());
+						UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, bp);
+						state.setAfterPersistentFigure(p);
+						current.addState(state);
+						internallyAdjusted(f);
+					}
+				}
+			}
 			sendChangesToListeners();
 		}
 		

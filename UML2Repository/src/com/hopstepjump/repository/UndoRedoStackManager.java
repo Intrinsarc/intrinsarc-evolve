@@ -186,7 +186,7 @@ public class UndoRedoStackManager
 	 * ensure the stack doesn't become too large
 	 * @param depth
 	 */
-	public void enforceDepth(int globalCurrent, int desiredDepth)
+	public void enforceDepth(int desiredDepth)
 	{
 		int truncate = stack.size() - desiredDepth;
 		if (truncate > 0)

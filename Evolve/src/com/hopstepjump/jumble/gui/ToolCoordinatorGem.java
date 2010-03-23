@@ -52,6 +52,7 @@ import edu.umd.cs.jazz.util.*;
 
 public final class ToolCoordinatorGem implements Gem
 {
+	public static final int MSEC_VIEW_UPDATE_DELAY = 100;
 	public static Preference UNDO_REDO_SIZE = new Preference(
 			"Advanced",
 			"Size of undo/redo history",
@@ -464,7 +465,7 @@ public final class ToolCoordinatorGem implements Gem
 
 		public void commitTransaction()
 		{
-//			boolean background = GlobalPreferences.preferences.getRawPreference(BACKGROUND_VIEW_UPDATES).asBoolean();
+			boolean background = GlobalPreferences.preferences.getRawPreference(BasicDiagramGem.BACKGROUND_VIEW_UPDATES).asBoolean();
 	    final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 	    
 			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
@@ -472,19 +473,61 @@ public final class ToolCoordinatorGem implements Gem
 
 			clearDeltaEngine();
 			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
-				formUpdateDiagramsCommandAfterSubjectChanges(diagram, false);
-      
-			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.commitTransaction();
+			{
+				formUpdateDiagramAfterSubjectChanges(diagram, background);
+				if (background)
+					diagram.checkpointCommitTransaction();
+				else
+					diagram.commitTransaction();
+			}
 			repository.commitTransaction();
+
+			if (!background)
+			{
+	      GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
+	      enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
+			}
+			else
+				processViewUpdatesInBackground();
 
 			waiter.restoreOldCursor();
       paletteFacet.refreshEnabled();
-      GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
-      enforceTransactionDepth(repository.getTransactionPosition(), getIntegerPreference(UNDO_REDO_SIZE));
 		}
 		
-	  private void formUpdateDiagramsCommandAfterSubjectChanges(DiagramFacet diagram, boolean initialRun)
+		private void processViewUpdatesInBackground()
+		{
+			new Thread(new Runnable()
+			{
+				public void run()
+				{
+					try
+					{
+						Thread.sleep(MSEC_VIEW_UPDATE_DELAY);
+					}
+					catch (InterruptedException e)
+					{
+					}
+
+					SwingUtilities.invokeLater(new Runnable()
+			    {
+			    	public void run()
+			    	{
+			        clearDeltaEngine();
+			        for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+			        {
+			        	formUpdateDiagramAfterSubjectChanges(d, false);
+								d.commitTransaction();
+			        }
+			        GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
+			        enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
+			    	}
+			    });    			
+				}
+			}).start();
+		}
+
+		
+	  private void formUpdateDiagramAfterSubjectChanges(DiagramFacet diagram, boolean initialRun)
 	  {
 	    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
 		      diagram.formViewUpdate(pass, initialRun);
@@ -497,11 +540,11 @@ public final class ToolCoordinatorGem implements Gem
 			GlobalSubjectRepository.repository.clearTransactionHistory();
 		}
 
-		public void enforceTransactionDepth(int globalCurrent, int desiredDepth)
+		public void enforceTransactionDepth(int desiredDepth)
 		{
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.enforceTransactionDepth(globalCurrent, desiredDepth);
-			GlobalSubjectRepository.repository.enforceTransactionDepth(globalCurrent, desiredDepth);
+				d.enforceTransactionDepth(desiredDepth);
+			GlobalSubjectRepository.repository.enforceTransactionDepth(desiredDepth);
 			
 		}
 

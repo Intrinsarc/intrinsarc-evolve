@@ -111,9 +111,9 @@ public class XMLSubjectRepositoryGem implements Gem
 			undoredo.clearStack();
 		}
 		
-		public void enforceTransactionDepth(int globalCurrent, int desiredDepth)
+		public void enforceTransactionDepth(int desiredDepth)
 		{
-			undoredo.enforceDepth(globalCurrent, desiredDepth);
+			undoredo.enforceDepth(desiredDepth);
 		}
 		
 		////////////////////////////////////////////////////
