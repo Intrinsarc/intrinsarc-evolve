@@ -61,7 +61,7 @@ public final class BasicNodeGem implements Gem
     state.id = figure.getId();
     state.diagram = diagram;
 		state.diagramReference = state.diagram.getDiagramReference();
-		useDefaultFacets(figure.getProperties(), true, useGlobalLayer);
+		useDefaultFacets(figure, true, useGlobalLayer);
   }
 
 	private void useDefaultFacets(boolean autoSized, String containedName, boolean useGlobalLayer)
@@ -73,11 +73,12 @@ public final class BasicNodeGem implements Gem
     connectClipboardFacet(new BasicNodeClipboardFacetImpl(state));
 	}
 	
-	private void useDefaultFacets(PersistentProperties properties, boolean autoSized, boolean useGlobalLayer)
+	private void useDefaultFacets(PersistentFigure pfig, boolean autoSized, boolean useGlobalLayer)
 	{
 		connectAnchorFacet(new BasicNodeAnchorFacetImpl(state));
+		PersistentProperties properties = pfig.getProperties();
 		connectContainedFacet(new BasicNodeContainedFacetImpl(properties, state));
-		connectBasicNodeFigureFacet(new BasicNodeFigureFacetImpl(properties, state, useGlobalLayer));
+		connectBasicNodeFigureFacet(new BasicNodeFigureFacetImpl(pfig, state, useGlobalLayer));
 		connectBasicNodeAutoSizedFacet(new BasicNodeAutoSizedFacetImpl(properties, state));
     connectClipboardFacet(new BasicNodeClipboardFacetImpl(state));
 	}

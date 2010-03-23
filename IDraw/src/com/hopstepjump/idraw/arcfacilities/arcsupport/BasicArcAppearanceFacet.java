@@ -23,6 +23,7 @@ public interface BasicArcAppearanceFacet extends Facet
 	 * persistence
 	 */
 	public void addToPersistentProperties(PersistentProperties properties);
+	public void acceptPersistentProperties(PersistentFigure pfig);
 
 	/** form the appearance possibly using the main arc
 	 * 

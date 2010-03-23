@@ -147,4 +147,8 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
   {
     return null;
   }
+
+	public void acceptPersistentProperties(PersistentFigure pfig)
+	{
+	}
 }

@@ -45,11 +45,9 @@ public class PartCreatorGem
       initialiseExtraProperties(actualProperties);
       ClassifierNodeGem classifierGem =
         new ClassifierNodeGem(
-            (NamedElement) subject,
             diagram,
-            figureId,
             INITIAL_FILL_COLOR,
-            actualProperties,
+      			new PersistentFigure(figureId, null, subject, actualProperties),
             true);
       basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
       basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());

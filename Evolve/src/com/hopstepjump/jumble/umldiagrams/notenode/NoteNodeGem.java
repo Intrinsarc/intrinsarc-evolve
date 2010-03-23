@@ -657,14 +657,9 @@ public final class NoteNodeGem implements Gem
       return null;
     }
 
-		public void acceptPersistentFigure(PersistentFigure figure)
+		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-	    subject = (Comment) figure.getSubject();
-	    text = subject.getBody();
-	    hideNote = figure.getProperties().retrieve("hideNote", false).asBoolean();
-	    useHTML = figure.getProperties().retrieve("useHTML", false).asBoolean();
-	    wordWrap = figure.getProperties().retrieve("wordWrap", true).asBoolean();
-	    font = figure.getProperties().retrieve("font", ScreenProperties.getPrimaryFont()).asFont();
+			interpretPersistentFigure(pfig);
 		}
   }
 
@@ -687,18 +682,23 @@ public final class NoteNodeGem implements Gem
     primitiveContents = contents.getFigureFacet();
   }
 
-  public NoteNodeGem(PersistentFigure figure)
+  public NoteNodeGem(PersistentFigure pfig)
   {
-    // reconstitute the subject
-    subject = (Comment) figure.getSubject();
-    text = subject.getBody();
-    hideNote = figure.getProperties().retrieve("hideNote", false).asBoolean();
-    useHTML = figure.getProperties().retrieve("useHTML", false).asBoolean();
-    wordWrap = figure.getProperties().retrieve("wordWrap", true).asBoolean();
-    font = figure.getProperties().retrieve("font", ScreenProperties.getPrimaryFont()).asFont();
+  	interpretPersistentFigure(pfig);
   }
 
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    subject = (Comment) pfig.getSubject();
+    text = subject.getBody();
+    PersistentProperties properties = pfig.getProperties();
+    hideNote = properties.retrieve("hideNote", false).asBoolean();
+    useHTML = properties.retrieve("useHTML", false).asBoolean();
+    wordWrap = properties.retrieve("wordWrap", true).asBoolean();
+    font = properties.retrieve("font", ScreenProperties.getPrimaryFont()).asFont();
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
     return appearanceFacet;
   }

@@ -87,11 +87,9 @@ public class StereotypeCreatorGem implements Gem
 			initialiseExtraProperties(actualProperties);
 			ClassifierNodeGem classifierGem =
 				new ClassifierNodeGem(
-            (Class) subject,
             diagram,
-            figureId,
             INITIAL_FILL_COLOR,
-            actualProperties,
+            new PersistentFigure(figureId, null, subject, actualProperties),
             false);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());

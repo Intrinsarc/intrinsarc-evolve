@@ -110,11 +110,9 @@ public class InterfaceCreatorGem implements Gem
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, true, false);
 			ClassifierNodeGem classifierGem =
 				new ClassifierNodeGem(
-            (Interface) subject,
             diagram,
-            figureId,
             Color.WHITE,
-            actualProperties,
+      			new PersistentFigure(figureId, null, subject, actualProperties),
             false);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());

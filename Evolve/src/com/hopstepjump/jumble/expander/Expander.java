@@ -107,7 +107,7 @@ public class Expander
     // make the arc
     PersistentProperties properties = new PersistentProperties();
     creator.initialiseExtraProperties(properties);
-    creator.aboutToMakeCommand(coordinator);
+    creator.aboutToMakeTransaction(coordinator);
     ArcCreateFigureTransaction.create(
     		diagram,
       	rel,

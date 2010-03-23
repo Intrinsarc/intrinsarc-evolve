@@ -100,7 +100,7 @@ public class ImplementationCreatorGem implements Gem
     	return implementation;
     }
 
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
 		}
 		

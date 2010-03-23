@@ -29,7 +29,6 @@ public final class FreetextNodeGem implements Gem
   private Font font = ScreenProperties.getPrimaryFont();
   private String text;
   private BasicNodeAppearanceFacet appearanceFacet = new BasicNodeAppearanceFacetImpl();
-  private ResizeVetterFacet resizeVetterFacet = new ResizeVetterFacetImpl();
   private TextableFacet textableFacet = new TextableFacetImpl();
   private BasicNodeFigureFacet figureFacet;  
 
@@ -38,12 +37,18 @@ public final class FreetextNodeGem implements Gem
     this.text = "";
   }
   
-  public FreetextNodeGem(PersistentProperties properties)
-  {
-    text = properties.retrieve("text").asString();
+  public FreetextNodeGem(PersistentFigure pfig)
+  {  	
+  	interpretPersistentFigure(pfig);
   }
   
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		text = properties.retrieve("text").asString();
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
     return appearanceFacet;
   }
@@ -321,13 +326,7 @@ public final class FreetextNodeGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			PersistentProperties properties = pfig.getProperties();
-			text = properties.retrieve("text").asString();
+			interpretPersistentFigure(pfig);
 		}
-  }
-  
-  private UDimension getTextHeightAsDimension(ZText text)
-  {
-    return new UDimension(0, text.getBounds().getHeight());
   }
 }

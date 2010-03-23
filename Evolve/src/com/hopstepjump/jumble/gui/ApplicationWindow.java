@@ -585,12 +585,11 @@ public class ApplicationWindow extends SmartJFrame
 		public void actionPerformed(ActionEvent e)
 		{
 			GlobalSubjectRepository.repository.refreshAll();
-			List<DiagramFacet> unmodified = GlobalDiagramRegistry.registry.refreshAllDiagrams();
-			for (DiagramFacet diagram : unmodified)
-				diagram.resetModified();
-			commandManager.clearTransactionHistory();
+			GlobalDiagramRegistry.registry.refreshAllDiagrams();
+			coordinator.startTransaction("refreshed from database", "refreshed from database");
+			coordinator.commitTransaction();
 			popup.displayPopup(REFRESH_ICON, "Refresh",
-					"Refreshed from database; cleared command history", ScreenProperties
+					"Refreshed from database", ScreenProperties
 							.getUndoPopupColor(), Color.black, 1500, true, commandManager
 							.getTransactionPosition(), commandManager.getTotalTransactions());
 		}

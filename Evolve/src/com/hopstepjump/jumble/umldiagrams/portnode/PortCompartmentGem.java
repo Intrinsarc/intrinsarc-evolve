@@ -473,10 +473,7 @@ public class PortCompartmentGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			PersistentProperties properties = pfig.getProperties();
-	    classScope = properties.retrieve("classScope", false).asBoolean();
-	    addedUuids = new HashSet<String>(properties.retrieve("addedUuids").asStringCollection());
-	    deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids").asStringCollection());
+			interpretPersistentFigure(pfig);
 		}
   }
 
@@ -511,14 +508,20 @@ public class PortCompartmentGem implements Gem
     this.classScope = classScope;
   }
 
-  public PortCompartmentGem(PersistentProperties properties)
+  public PortCompartmentGem(PersistentFigure pfig)
   {
+  	interpretPersistentFigure(pfig);
+  }
+
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
     classScope = properties.retrieve("classScope", false).asBoolean();
     addedUuids = new HashSet<String>(properties.retrieve("addedUuids").asStringCollection());
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids").asStringCollection());
-  }
+	}
 
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
     return appearanceFacet;
   }

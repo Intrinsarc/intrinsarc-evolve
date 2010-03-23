@@ -35,25 +35,22 @@ public class MessageArcAppearanceGem implements Gem
   
   /** the type of message */
   private int type;
-  private BasicArcAppearanceFacet appearanceFacet = new BasicArcAppearanceFacetImpl();
-  private FigureFacet figureFacet;
+  private BasicArcAppearanceFacet appearanceFacet = new BasicArcAppearanceFacetImpl();  
   
-  
-  public MessageArcAppearanceGem(PersistentProperties properties)
+  public MessageArcAppearanceGem(PersistentFigure pfig)
   {
-    type = properties.retrieve("type", CALL_TYPE).asInteger();
+  	interpretPersistentFigure(pfig);
   }
   
-  public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    type = pfig.getProperties().retrieve("type", CALL_TYPE).asInteger();
+	}
+
+	public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
   {
     return appearanceFacet;
   }
-  
-  public void connectFigureFacet(FigureFacet figureFacet)
-  {
-    this.figureFacet = figureFacet;
-  }
-  
   
   private class BasicArcAppearanceFacetImpl implements BasicArcAppearanceFacet
   {
@@ -150,5 +147,10 @@ public class MessageArcAppearanceGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
 }

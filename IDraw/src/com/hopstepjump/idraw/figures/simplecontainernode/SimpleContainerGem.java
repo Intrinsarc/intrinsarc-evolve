@@ -324,11 +324,7 @@ public final class SimpleContainerGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			PersistentProperties properties = pfig.getProperties();
-			minExtent = properties.retrieve("min", new UDimension(0,0)).asUDimension();
-			offset = properties.retrieve("off", new UDimension(0,0)).asUDimension();
-			addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());		
-			deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
+			interpretPersistentFigure(pfig);
 		}
   }
   
@@ -559,8 +555,14 @@ public final class SimpleContainerGem implements Gem
     this.isWillingToActAsBackdrop = isWillingToActAsBackdrop;
   }
   
-  public SimpleContainerGem(PersistentProperties properties)
+  public SimpleContainerGem(PersistentFigure pfig)
   {
+  	interpretPersistentFigure(pfig);
+  }
+  
+  private void interpretPersistentFigure(PersistentFigure pfig)
+  {
+		PersistentProperties properties = pfig.getProperties();
 		minExtent = properties.retrieve("min", new UDimension(0,0)).asUDimension();
 		offset = properties.retrieve("off", new UDimension(0,0)).asUDimension();
 		addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());		

@@ -44,25 +44,18 @@ public class ConnectorCreatorGem implements Gem
 	  {
 	  	// instantiate to use conventional facets
 	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
-	  	ConnectorArcAppearanceGem connectorGem = new ConnectorArcAppearanceGem((Connector) subject, properties); 
+	  	ConnectorArcAppearanceGem connectorGem = new ConnectorArcAppearanceGem(
+	  			new PersistentFigure(figureId, null, subject, properties));
 	    gem.connectBasicArcAppearanceFacet(connectorGem.getBasicArcAppearanceFacet());
 	    gem.connectContainerFacet(connectorGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
-	    connectorGem.connectFigureFacet(gem.getFigureFacet(), properties);
+	    connectorGem.connectFigureFacet(gem.getFigureFacet());
 	    gem.connectClipboardCommandsFacet(connectorGem.getClipboardCommandsFacet());
 	    																					 
 	    diagram.add(gem.getFigureFacet());
 	    return new FigureReference(diagram, figureId);
 	  }
-	
-	  public void unCreate(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  	  
+  	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -78,11 +71,11 @@ public class ConnectorCreatorGem implements Gem
 		{
 	  	// instantiate to use conventional facets
 	  	BasicArcGem gem = new BasicArcGem(this, diagram, figure);
-	  	ConnectorArcAppearanceGem connectorGem = new ConnectorArcAppearanceGem((Connector) figure.getSubject(), figure.getProperties()); 
+	  	ConnectorArcAppearanceGem connectorGem = new ConnectorArcAppearanceGem(figure); 
 	    gem.connectBasicArcAppearanceFacet(connectorGem.getBasicArcAppearanceFacet());
 	    gem.connectContainerFacet(connectorGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
-      connectorGem.connectFigureFacet(gem.getFigureFacet(), figure.getProperties());
+      connectorGem.connectFigureFacet(gem.getFigureFacet());
       gem.connectClipboardCommandsFacet(connectorGem.getClipboardCommandsFacet());
 	  	
 	  	return gem.getFigureFacet();
@@ -154,7 +147,7 @@ public class ConnectorCreatorGem implements Gem
 			return acceptsOneOrBothAnchors(start, end);
 		}
 
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
 		}
 		

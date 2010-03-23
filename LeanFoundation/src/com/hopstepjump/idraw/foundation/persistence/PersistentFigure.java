@@ -26,6 +26,14 @@ public class PersistentFigure
 		properties = new PersistentProperties();
 	}
   
+	public PersistentFigure(String id, String recreator, Object subject, PersistentProperties properties)
+	{
+		this.id = id;
+		this.recreator = recreator;
+		this.subject = subject;
+		this.properties = properties;
+	}
+  
 	public PersistentFigure(PersistentFigure figure)
 	{
 		// copy over all the parts, and clone the properties
@@ -181,4 +189,9 @@ public class PersistentFigure
   {
     this.subject = subject;
   }
+
+	public void setProperties(PersistentProperties properties)
+	{
+		this.properties = properties;
+	}
 }

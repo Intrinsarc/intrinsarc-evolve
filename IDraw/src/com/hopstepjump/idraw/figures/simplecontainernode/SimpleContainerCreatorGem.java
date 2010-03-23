@@ -59,7 +59,7 @@ public class SimpleContainerCreatorGem implements Gem
 		public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
 		{
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-			SimpleContainerGem simpleGem = new SimpleContainerGem(figure.getProperties());
+			SimpleContainerGem simpleGem = new SimpleContainerGem(figure);
 			basicGem.connectBasicNodeAppearanceFacet(simpleGem.getBasicNodeAppearanceFacet());
 			
 			// a simple container cannot act as an anchor

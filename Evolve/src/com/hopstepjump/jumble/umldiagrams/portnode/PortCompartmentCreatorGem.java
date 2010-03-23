@@ -62,7 +62,7 @@ public class PortCompartmentCreatorGem implements Gem
     public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
     {
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-      PortCompartmentGem portGem = new PortCompartmentGem(figure.getProperties());
+      PortCompartmentGem portGem = new PortCompartmentGem(figure);
       basicGem.connectBasicNodeAppearanceFacet(portGem.getBasicNodeAppearanceFacet());
 
       // a port container cannot act as an anchor

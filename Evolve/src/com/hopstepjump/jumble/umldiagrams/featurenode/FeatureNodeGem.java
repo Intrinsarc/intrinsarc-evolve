@@ -610,8 +610,7 @@ public final class FeatureNodeGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-	    name = pfig.getProperties().retrieve("name", "").asString();
-	    stereotypeHashcode = pfig.getProperties().retrieve("stereoHash", 0).asInteger();
+			interpretPersistentFigure(pfig);
 		}
 	}
 	
@@ -690,14 +689,20 @@ public final class FeatureNodeGem implements Gem
     this.selectParentWhenTextSelected = selectParentWhenTextSelected;
   }
   
-  public FeatureNodeGem(PersistentFigure figure)
+  public FeatureNodeGem(PersistentFigure pfig)
   {
     // retrieve the subject
-    subject = (Element) figure.getSubject();
-    name = figure.getProperties().retrieve("name", "").asString();
+  	interpretPersistentFigure(pfig);
   }
   
-  public String getName()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    subject = (Element) pfig.getSubject();
+    name = pfig.getProperties().retrieve("name", "").asString();
+    stereotypeHashcode = pfig.getProperties().retrieve("stereoHash", 0).asInteger();
+	}
+
+	public String getName()
   {
   	return name;
   }

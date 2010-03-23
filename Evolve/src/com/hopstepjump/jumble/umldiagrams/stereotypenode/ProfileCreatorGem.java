@@ -89,7 +89,7 @@ public class ProfileCreatorGem implements Gem
     public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
     {
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-      BasicNamespaceNodeGem packageGem = new BasicNamespaceNodeGem(FIGURE_NAME, figure.getSubject(), figure.getProperties());
+      BasicNamespaceNodeGem packageGem = new BasicNamespaceNodeGem(FIGURE_NAME, figure);
       basicGem.connectBasicNodeAppearanceFacet(packageGem.getBasicNodeAppearanceFacet());
       basicGem.connectBasicNodeContainerFacet(packageGem.getBasicNodeContainerFacet());
       packageGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

@@ -145,6 +145,10 @@ public class ImplementationArcGem implements Gem
      styles.add(InterfaceCreatorGem.LINK_STYLE_DIRECT);
      return styles;
     }
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+		}
   }
   
   /**

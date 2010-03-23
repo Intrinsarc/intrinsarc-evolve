@@ -43,12 +43,18 @@ public final class MeasureBoxGem implements Gem
   {
   }
   
-	public MeasureBoxGem(PersistentProperties properties)
+	public MeasureBoxGem(PersistentFigure pfig)
   {
-		text = properties.retrieve("text").asString();
+		interpretPersistentFigure(pfig);
   }
   
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		text = properties.retrieve("text").asString();
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
   	return appearanceFacet;
   }
@@ -371,8 +377,7 @@ public final class MeasureBoxGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			PersistentProperties properties = pfig.getProperties();
-			text = properties.retrieve("text").asString();
+			interpretPersistentFigure(pfig);
 		}
   }
   

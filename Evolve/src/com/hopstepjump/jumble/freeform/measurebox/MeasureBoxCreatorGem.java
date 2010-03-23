@@ -61,7 +61,7 @@ public final class MeasureBoxCreatorGem implements Gem
 			DiagramFacet diagram, PersistentFigure figure)
 		{
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, true);
-	  	MeasureBoxGem measureBoxGem = new MeasureBoxGem(figure.getProperties());
+	  	MeasureBoxGem measureBoxGem = new MeasureBoxGem(figure);
 			basicGem.connectBasicNodeAppearanceFacet(measureBoxGem.getBasicNodeAppearanceFacet());
 			measureBoxGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 			return basicGem.getBasicNodeFigureFacet();

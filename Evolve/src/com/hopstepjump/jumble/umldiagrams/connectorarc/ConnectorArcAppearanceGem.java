@@ -47,7 +47,6 @@ import edu.umd.cs.jazz.component.*;
  */
 public class ConnectorArcAppearanceGem implements Gem
 {
-  private static final ImageIcon INFO_ICON = IconLoader.loadIcon("information.png");
   private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
   private static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
 
@@ -69,14 +68,19 @@ public class ConnectorArcAppearanceGem implements Gem
   boolean portLink;
   private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();  
   
-  public ConnectorArcAppearanceGem(Connector subject, PersistentProperties properties)
+  public ConnectorArcAppearanceGem(PersistentFigure pfig)
   {
-  	this.subject = subject;
-    if (properties == null)
-      properties = new PersistentProperties();
+  	interpretPersistentFigure(pfig);
   }
   
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		subject = (Connector) pfig.getSubject();
+    directed = pfig.getProperties().retrieve("directed", false).asBoolean();
+    portLink = subject != null ? subject.getKind().equals(ConnectorKind.PORT_LINK_LITERAL) : false;
+	}
+
+	public ClipboardCommandsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
@@ -581,7 +585,6 @@ public class ConnectorArcAppearanceGem implements Gem
   	public void addToPersistentProperties(PersistentProperties properties)
   	{
   		properties.add(new PersistentProperty("directed", directed, false));
-  		properties.add(new PersistentProperty("portLink", portLink, false));
   	}
 
     public void addToContextMenu(JPopupMenu menu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
@@ -782,6 +785,11 @@ public class ConnectorArcAppearanceGem implements Gem
       styles.add("hideConnector");
       return styles;
     }
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
 
   /**
@@ -792,13 +800,11 @@ public class ConnectorArcAppearanceGem implements Gem
     return appearanceFacet;
   }
   
-  public void connectFigureFacet(FigureFacet figureFacet, PersistentProperties properties)
+  public void connectFigureFacet(FigureFacet figureFacet)
   {
     this.figureFacet = figureFacet;
     figureFacet.registerDynamicFacet(linkedTextOriginFacet, LinkedTextOriginFacet.class);
     createLinkedText();
-    directed = properties.retrieve("directed", false).asBoolean();
-    portLink = subject != null ? subject.getKind().equals(ConnectorKind.PORT_LINK_LITERAL) : false;
   }
   
   /**

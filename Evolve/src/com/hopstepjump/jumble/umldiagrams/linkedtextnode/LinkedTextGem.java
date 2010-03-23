@@ -44,14 +44,20 @@ public class LinkedTextGem implements Gem
 	  this.majorPointType = majorPointType;
   }
   
-	public LinkedTextGem(PersistentProperties properties)
+	public LinkedTextGem(PersistentFigure pfig)
   {
+		interpretPersistentFigure(pfig);
+  }
+  
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
 		text = properties.retrieve("text", "").asString();
     suppress = properties.retrieve("suppress", false).asBoolean();
     majorPointType = properties.retrieve("majorPt", CalculatedArcPoints.MAJOR_POINT_MIDDLE).asInteger();
-  }
-  
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
   	return appearanceFacet;
   }
@@ -439,10 +445,7 @@ public class LinkedTextGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			PersistentProperties properties = pfig.getProperties();
-			text = properties.retrieve("text", "").asString();
-	    suppress = properties.retrieve("suppress", false).asBoolean();
-	    majorPointType = properties.retrieve("majorPt", CalculatedArcPoints.MAJOR_POINT_MIDDLE).asInteger();
+			interpretPersistentFigure(pfig);
 		}
   }
   

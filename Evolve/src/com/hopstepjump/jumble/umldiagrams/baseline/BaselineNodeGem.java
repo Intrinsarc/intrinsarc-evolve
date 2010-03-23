@@ -48,11 +48,6 @@ public final class BaselineNodeGem implements Gem
   
   private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
   {
-	  public void setBasicNodeFigureFacet(BasicNodeFigureFacet figureFacet)
-	  {
-	  	BaselineNodeGem.this.figureFacet = figureFacet;
-	  }
-	
 	  public String getFigureName()
 	  {
 	    return name;

@@ -73,9 +73,10 @@ public final class PortNodeGem implements Gem
   private Set<String> inferredReqNames = new HashSet<String>();
   private Set<String> inferredProvNames = new HashSet<String>();
   
-	public PortNodeGem(Port subject, DiagramFacet diagram, String figureId, UPoint location, boolean isForClasses, PersistentProperties properties, boolean instance)
+	public PortNodeGem(DiagramFacet diagram, UPoint location, boolean isForClasses, PersistentFigure pfig, boolean instance)
   {
-		this.subject = subject;
+		this.subject = (Port) pfig.getSubject();
+		String figureId = pfig.getId();
   	BasicNodeGem basicLinkedTextGem = new BasicNodeGem(
   	    LinkedTextCreatorGem.RECREATOR_NAME,
   	    diagram,
@@ -86,8 +87,12 @@ public final class PortNodeGem implements Gem
   	    true);
     
     // possibly seed persistent properties
+  	PersistentProperties properties = pfig.getProperties();
   	if (properties == null)
-  	  properties = new PersistentProperties();
+  	{
+  		properties = new PersistentProperties();
+  	  pfig.setProperties(properties);
+  	}
     properties.addIfNotThere(new PersistentProperty("classScope", isForClasses, true));
     String name = subject == null ? "" : subject.getName();
     LinkedTextGem linkedTextGem = new LinkedTextGem(name, false, CalculatedArcPoints.MAJOR_POINT_MIDDLE);
@@ -102,14 +107,13 @@ public final class PortNodeGem implements Gem
 		linkedTextFacet = linkedTextGem.getLinkedTextFacet();
 		
 		// start with the text showing
-    interpretOptionalProperties(properties);
+    interpretOptionalProperties(pfig);
     this.instance = instance;
   }
   
 	public PortNodeGem(PersistentFigure figure, boolean instance)
   {
-		this.subject = (Port) figure.getSubject(); 
-		interpretOptionalProperties(figure.getProperties());
+		interpretOptionalProperties(figure);
 		this.instance = instance;
   }
 
@@ -264,8 +268,10 @@ public final class PortNodeGem implements Gem
   /**
    * @param properties
    */
-  private void interpretOptionalProperties(PersistentProperties properties)
+  private void interpretOptionalProperties(PersistentFigure pfig)
   {
+  	subject = (Port) pfig.getSubject();
+  	PersistentProperties properties = pfig.getProperties();
     classScope = properties.retrieve("classScope", false).asBoolean();
     displayType = properties.retrieve("dispType", PortDisplayTypeFacet.NORMAL_TYPE).asInteger();
     extraText = properties.retrieve("extraText", "").asString();
@@ -1183,11 +1189,7 @@ public final class PortNodeGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			PersistentProperties properties = pfig.getProperties();
-	    classScope = properties.retrieve("classScope", false).asBoolean();
-	    displayType = properties.retrieve("dispType", PortDisplayTypeFacet.NORMAL_TYPE).asInteger();
-	    extraText = properties.retrieve("extraText", "").asString();
-	    drawInferred = properties.retrieve("drawInferred", false).asBoolean();
+			interpretOptionalProperties(pfig);
 		}
   }
   

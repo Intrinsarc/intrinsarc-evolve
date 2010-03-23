@@ -64,7 +64,7 @@ public class FeatureCompartmentCreatorGem implements Gem
 		public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
 		{
 	    BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-			FeatureCompartmentGem featureGem = new FeatureCompartmentGem(figure.getProperties(), featureType);
+			FeatureCompartmentGem featureGem = new FeatureCompartmentGem(figure, featureType);
 			featureGem.setContentsCanMoveContainers(contentsCanMoveContainers);
 			basicGem.connectBasicNodeAppearanceFacet(featureGem.getBasicNodeAppearanceFacet());
 			// a compartment cannot act as an anchor

@@ -445,10 +445,13 @@ public final class ToolCoordinatorGem implements Gem
 		
 		public void undoTransaction()
 		{
-			GlobalSubjectRepository.repository.undoTransaction();
 			clearDeltaEngine();
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
 				d.undoTransaction();
+			GlobalSubjectRepository.repository.undoTransaction();
+			clearDeltaEngine();
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.completeUndoTransaction();
 		}
 
 		public void redoTransaction()

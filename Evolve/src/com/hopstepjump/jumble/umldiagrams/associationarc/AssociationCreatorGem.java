@@ -61,7 +61,8 @@ public class AssociationCreatorGem implements Gem
       
       properties.addIfNotThere(new PersistentProperty("type", type, AssociationArcAppearanceGem.ASSOCIATION_TYPE));
       properties.addIfNotThere(new PersistentProperty("uni", unidirectional, false));
-      AssociationArcAppearanceGem delegatingAppearanceGem = new AssociationArcAppearanceGem(properties);
+      PersistentFigure pfig = new PersistentFigure(figureId, null, subject, properties);
+      AssociationArcAppearanceGem delegatingAppearanceGem = new AssociationArcAppearanceGem(pfig);
       delegatingAppearanceGem.connectFigureFacet(gem.getFigureFacet());
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
           delegatingAppearanceGem.getBasicArcAppearanceFacet());
@@ -91,7 +92,7 @@ public class AssociationCreatorGem implements Gem
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
       connectorGem.connectFigureFacet(gem.getFigureFacet(), figure.getProperties());
 
-      AssociationArcAppearanceGem delegatingAppearanceGem = new AssociationArcAppearanceGem(figure.getProperties());
+      AssociationArcAppearanceGem delegatingAppearanceGem = new AssociationArcAppearanceGem(figure);
       delegatingAppearanceGem.connectFigureFacet(gem.getFigureFacet());
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
           delegatingAppearanceGem.getBasicArcAppearanceFacet());
@@ -115,7 +116,7 @@ public class AssociationCreatorGem implements Gem
     	return null;
     }
 
-    public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+    public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
 		}
 

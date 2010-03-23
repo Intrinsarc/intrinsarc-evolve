@@ -84,7 +84,7 @@ public class NodeCreatorGem
 		public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
 		{
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-	  	BasicNamespaceNodeGem componentGem = new BasicNamespaceNodeGem(FIGURE_NAME, figure.getSubject(), figure.getProperties());
+	  	BasicNamespaceNodeGem componentGem = new BasicNamespaceNodeGem(FIGURE_NAME, figure);
 			basicGem.connectBasicNodeAppearanceFacet(componentGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(componentGem.getBasicNodeContainerFacet());
 			componentGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

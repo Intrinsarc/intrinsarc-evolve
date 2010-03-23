@@ -154,8 +154,6 @@ public final class BasicAnchorGem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			// TODO Auto-generated method stub
-			
 		}
 	}
 	

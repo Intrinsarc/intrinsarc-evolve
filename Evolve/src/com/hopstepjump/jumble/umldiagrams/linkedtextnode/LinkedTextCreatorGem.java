@@ -50,7 +50,7 @@ public class LinkedTextCreatorGem
 			DiagramFacet diagram, PersistentFigure figure)
 		{
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, true);
-	  	LinkedTextGem linkedTextGem = new LinkedTextGem(figure.getProperties());
+	  	LinkedTextGem linkedTextGem = new LinkedTextGem(figure);
 			basicGem.connectBasicNodeAppearanceFacet(linkedTextGem.getBasicNodeAppearanceFacet());
 			linkedTextGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
       // decorate the clipboard facet

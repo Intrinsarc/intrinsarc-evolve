@@ -122,4 +122,8 @@ public final class ContainmentArcAppearanceFacetImpl implements BasicArcAppearan
   {
     return null;
   }
+
+	public void acceptPersistentProperties(PersistentFigure pfig)
+	{
+	}
 }

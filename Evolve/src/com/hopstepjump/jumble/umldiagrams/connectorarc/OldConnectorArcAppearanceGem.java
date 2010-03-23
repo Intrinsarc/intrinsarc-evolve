@@ -350,6 +350,12 @@ public class OldConnectorArcAppearanceGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+      if (delegatingAppearanceFacet != null)
+        delegatingAppearanceFacet.acceptPersistentProperties(pfig);
+		}
   }
 
   /**

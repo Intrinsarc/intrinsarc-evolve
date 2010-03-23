@@ -105,7 +105,7 @@ public final class InheritanceCreatorGem implements Gem
       GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
     }
 
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
 		}
 		

@@ -39,7 +39,12 @@ public class PortInstanceCreatorGem implements Gem
       PersistentProperties actualProperties = new PersistentProperties(properties);
       initialiseExtraProperties(actualProperties);
 
-      PortNodeGem portNodeGem = new PortNodeGem((Port) subject, diagram, figureId, location, false, actualProperties, true);
+      PortNodeGem portNodeGem = new PortNodeGem(
+      		diagram,
+      		location,
+      		false,
+      		new PersistentFigure(figureId, null, subject, actualProperties),
+      		true);
 			basicGem.connectBasicNodeAppearanceFacet(portNodeGem.getBasicNodeAppearanceFacet());
 			portNodeGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 	    portNodeGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

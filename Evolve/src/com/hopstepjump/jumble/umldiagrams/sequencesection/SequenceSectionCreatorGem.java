@@ -61,7 +61,7 @@ public final class SequenceSectionCreatorGem implements Gem
 			DiagramFacet diagram, PersistentFigure figure)
 		{
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, true);
-	  	SequenceSectionGem measureBoxGem = new SequenceSectionGem(figure.getProperties());
+	  	SequenceSectionGem measureBoxGem = new SequenceSectionGem(figure);
 			basicGem.connectBasicNodeAppearanceFacet(measureBoxGem.getBasicNodeAppearanceFacet());
 			measureBoxGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 			return basicGem.getBasicNodeFigureFacet();

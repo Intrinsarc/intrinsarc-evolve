@@ -30,7 +30,6 @@ import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.expander.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
-import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.uml2deltaengine.*;
@@ -433,6 +432,11 @@ public final class BasicNamespaceNodeGem implements Gem
 			return featurelessClassifierAppearanceFacet.getToolClassification(makeCurrentSizeInfo().makeActualSizes(), point);
 		}
 
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
+
 	  public String getFigureName()
 	  {
 	    return figureName;
@@ -798,21 +802,6 @@ public final class BasicNamespaceNodeGem implements Gem
     {
       return null;
     }
-
-		public void acceptPersistentFigure(PersistentFigure pfig)
-		{
-			PersistentProperties properties = pfig.getProperties();
-			owner = properties.retrieve("owner").asString();
-			suppressContents = properties.retrieve("supC", false).asBoolean();
-			rememberedTLOffset = properties.retrieve("tlOff", new UDimension(0,0)).asUDimension();
-			rememberedBROffset = properties.retrieve("brOff", new UDimension(0,0)).asUDimension();
-			displayOnlyIcon = properties.retrieve("icon", false).asBoolean();
-
-			showOwningPackage = properties.retrieve("showVis", false).asBoolean();
-			forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
-	    fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
-	    stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
-		}
 	}
 	
 	private class TextableFacetImpl implements TextableFacet
@@ -968,14 +957,18 @@ public final class BasicNamespaceNodeGem implements Gem
 		contents = simpleGem.getSimpleContainerFacet();
   }
 
-  public BasicNamespaceNodeGem(String figureName, Object element, PersistentProperties properties)
+  public BasicNamespaceNodeGem(String figureName, PersistentFigure pfig)
   {
   	this.figureName = figureName;
-
 		// reconstitute the subject
-		subject = (Namespace) element;
+  	interpretPersistentFigure(pfig);
+  }
+  
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		subject = (Namespace) pfig.getSubject();
     name = subject.getName();
-    
 		owner = properties.retrieve("owner").asString();
 		suppressContents = properties.retrieve("supC", false).asBoolean();
 		rememberedTLOffset = properties.retrieve("tlOff", new UDimension(0,0)).asUDimension();
@@ -986,10 +979,9 @@ public final class BasicNamespaceNodeGem implements Gem
 		forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
     fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
     stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
-		// the contained elements will arrive later
-  }
+	}
 
-  /**
+	/**
 	 * geometry calculations
 	 * 
 	 */

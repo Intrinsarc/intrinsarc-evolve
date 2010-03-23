@@ -43,12 +43,18 @@ public final class SequenceSectionGem implements Gem
   {
   }
   
-	public SequenceSectionGem(PersistentProperties properties)
+	public SequenceSectionGem(PersistentFigure pfig)
   {
-		text = properties.retrieve("text").asString();
+		interpretPersistentFigure(pfig);
   }
   
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		text = properties.retrieve("text").asString();
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
   	return appearanceFacet;
   }
@@ -354,8 +360,7 @@ public final class SequenceSectionGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			PersistentProperties properties = pfig.getProperties();
-			text = properties.retrieve("text").asString();
+			interpretPersistentFigure(pfig);
 		}
   }
   

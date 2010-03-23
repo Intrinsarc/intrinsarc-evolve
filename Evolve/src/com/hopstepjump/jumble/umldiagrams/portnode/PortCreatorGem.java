@@ -40,7 +40,13 @@ public final class PortCreatorGem implements Gem
 	  public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, false, true);
-	  	PortNodeGem portNodeGem = new PortNodeGem((Port) subject, diagram, figureId, location, true, properties, false);
+	  	PortNodeGem portNodeGem =
+	  		new PortNodeGem(
+	  				diagram,
+	  				location,
+	  				true,
+	  				new PersistentFigure(figureId, null, subject, properties),
+	  				false);
 			basicGem.connectBasicNodeAppearanceFacet(portNodeGem.getBasicNodeAppearanceFacet());
 			portNodeGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 	    basicGem.connectClipboardCommandsFacet(portNodeGem.getClipboardCommandsFacet());

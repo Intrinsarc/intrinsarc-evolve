@@ -107,15 +107,19 @@ public class GrouperNodeGem
 	/**
 	 * @param properties
 	 */
-	public GrouperNodeGem(PersistentFigure figure)
+	public GrouperNodeGem(PersistentFigure pfig)
 	{
-    // reconstitute the subject
-    subject = (Comment) figure.getSubject();
-    PersistentProperties properties = figure.getProperties();
+		interpretPersistentFigure(pfig);
+  }
+
+	private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    subject = (Comment) pfig.getSubject();
+    PersistentProperties properties = pfig.getProperties();
 		name = properties.retrieve("name", "").asString();
 		textAtTop = properties.retrieve("textAtTop", false).asBoolean();
     fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
-  }
+	}
 
 	/**
 	 * @param diagram
@@ -683,10 +687,7 @@ public class GrouperNodeGem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-	    PersistentProperties properties = pfig.getProperties();
-			name = properties.retrieve("name", "").asString();
-			textAtTop = properties.retrieve("textAtTop", false).asBoolean();
-	    fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
+			interpretPersistentFigure(pfig);
 		}
 	}
 	

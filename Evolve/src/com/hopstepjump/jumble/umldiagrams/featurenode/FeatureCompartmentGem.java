@@ -602,9 +602,7 @@ public final class FeatureCompartmentGem implements Gem
 
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			PersistentProperties properties = pfig.getProperties();
-			addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());		
-			deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
+			interpretPersistentFigure(pfig);
 		}
 	}
 	
@@ -643,9 +641,15 @@ public final class FeatureCompartmentGem implements Gem
 	  this.contentsCanMoveContainers = contentsCanMoveContainers;
 	}
 	
-	public FeatureCompartmentGem(PersistentProperties properties, int featureType)
+	public FeatureCompartmentGem(PersistentFigure pfig, int featureType)
 	{
 		containsFeatureType = featureType;
+		interpretPersistentFigure(pfig);
+	}
+	
+	private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
 		addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());		
 		deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
 	}

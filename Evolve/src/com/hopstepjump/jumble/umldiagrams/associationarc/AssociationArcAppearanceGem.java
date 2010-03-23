@@ -48,13 +48,19 @@ public class AssociationArcAppearanceGem implements Gem
   private ChangeAssociationTypeFacet associationTypeFacet = new ChangeAssociationTypeFacetImpl();
   
   
-  public AssociationArcAppearanceGem(PersistentProperties properties)
+  public AssociationArcAppearanceGem(PersistentFigure pfig)
   {
-    type = properties.retrieve("type", ASSOCIATION_TYPE).asInteger();
-    unidirectional = properties.retrieve("uni", false).asBoolean();
+  	interpretPersistentFigure(pfig);
   }
   
-  public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+  	PersistentProperties properties = pfig.getProperties();
+    type = properties.retrieve("type", ASSOCIATION_TYPE).asInteger();
+    unidirectional = properties.retrieve("uni", false).asBoolean();
+	}
+
+	public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
   {
     return appearanceFacet;
   }
@@ -277,6 +283,11 @@ public class AssociationArcAppearanceGem implements Gem
 		public ToolFigureClassification getToolClassification(UPoint point)
 		{
 			return new ToolFigureClassification("association", null);
+		}
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
 		}
   }
 }

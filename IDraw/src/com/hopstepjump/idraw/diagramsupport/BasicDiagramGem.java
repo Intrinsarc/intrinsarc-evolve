@@ -395,6 +395,11 @@ public final class BasicDiagramGem implements Gem
 			}
 			inUndoRedo = false;
 			alterations = 0;
+			sendChangesToListeners();
+		}
+		
+		public void completeUndoTransaction()
+		{
 			formViewUpdate();
 			if (alterations != 0)
 				println("$$ bad undo, alterations = " + alterations + ", total = " + ensureCurrent().getSize());
@@ -538,13 +543,12 @@ public final class BasicDiagramGem implements Gem
 	
 	  public void adjusted(FigureFacet figure)
 	  {
-	  	
 	  }
 	  
 	  private void internallyAdjusted(FigureFacet figure)
 	  {
 			setModified(true);
-			// make sure we don't generate adjustment changes before the element is on the diagram!!
+			// make sure we don't generate adjustment changes before the element is on the diagram
 			if (contains(figure))
 		  	haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADJUST);
 	  }

@@ -13,5 +13,5 @@ public interface ArcCreateFacet extends PersistentFigureRecreatorFacet, ArcAccep
   
   public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties);
   public void initialiseExtraProperties(PersistentProperties properties);
-	public void aboutToMakeCommand(ToolCoordinatorFacet coordinator);
+	public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator);
 }

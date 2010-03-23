@@ -88,4 +88,8 @@ public final class NoteLinkArcAppearanceFacetImpl implements BasicArcAppearanceF
   {
     return null;
   }
+
+	public void acceptPersistentProperties(PersistentFigure pfig)
+	{
+	}
 }

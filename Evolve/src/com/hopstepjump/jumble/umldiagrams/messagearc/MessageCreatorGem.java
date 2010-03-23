@@ -49,8 +49,8 @@ public class MessageCreatorGem implements Gem
 	    connectorGem.connectFigureFacet(gem.getFigureFacet(), properties);
       
       properties.addIfNotThere(new PersistentProperty("type", type, MessageArcAppearanceGem.CALL_TYPE));
-      MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(properties);
-      delegatingAppearanceGem.connectFigureFacet(gem.getFigureFacet());
+      MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(
+      		new PersistentFigure(figureId, null, subject, properties));
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
           delegatingAppearanceGem.getBasicArcAppearanceFacet());
 	    																					 
@@ -79,8 +79,7 @@ public class MessageCreatorGem implements Gem
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
       connectorGem.connectFigureFacet(gem.getFigureFacet(), figure.getProperties());
 
-      MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(figure.getProperties());
-      delegatingAppearanceGem.connectFigureFacet(gem.getFigureFacet());
+      MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(figure);
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
           delegatingAppearanceGem.getBasicArcAppearanceFacet());
 	  	
@@ -103,7 +102,7 @@ public class MessageCreatorGem implements Gem
     	return null;
     }
 
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
 		}
 		

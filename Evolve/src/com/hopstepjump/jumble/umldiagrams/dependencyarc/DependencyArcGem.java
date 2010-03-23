@@ -48,15 +48,21 @@ public class DependencyArcGem implements Gem
   private boolean resemblance;
 
 
-  public DependencyArcGem(Dependency subject, PersistentProperties properties)
+  public DependencyArcGem(PersistentFigure pfig)
   {
-    this.subject = subject;
+  	interpretPersistentFigure(pfig);
+  }
+  
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    subject = (Dependency) pfig.getSubject();
+    PersistentProperties properties = pfig.getProperties();
     color = properties.retrieve("color", Color.BLACK).asColor();
     substitution = properties.retrieve("substitution", false).asBoolean();
     resemblance = properties.retrieve("resemblance", false).asBoolean();
-  }
-  
-  public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
+	}
+
+	public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
   {
     return basicArcAppearanceFacet;
   }
@@ -529,6 +535,11 @@ public class DependencyArcGem implements Gem
       
       return styles;
     }
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
   
 	public static ZNode formDependencyAppearance(

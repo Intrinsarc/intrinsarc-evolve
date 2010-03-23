@@ -54,7 +54,7 @@ public final class FreetextCreatorGem implements Gem
       DiagramFacet diagram, PersistentFigure figure)
     {
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, true);
-      FreetextNodeGem freetextNodeGem = new FreetextNodeGem(figure.getProperties());
+      FreetextNodeGem freetextNodeGem = new FreetextNodeGem(figure);
       basicGem.connectBasicNodeAppearanceFacet(freetextNodeGem.getBasicNodeAppearanceFacet());
       freetextNodeGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
       return basicGem.getBasicNodeFigureFacet();

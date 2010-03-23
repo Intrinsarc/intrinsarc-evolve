@@ -95,4 +95,8 @@ public final class LifelineArcAppearanceFacetImpl implements BasicArcAppearanceF
   {
     return null;
   }
+
+	public void acceptPersistentProperties(PersistentFigure pfig)
+	{
+	}
 }

@@ -2673,14 +2673,9 @@ public final class ClassifierNodeGem implements Gem
 			return tool;
 		}
 
-		private boolean inside(UBounds area, UPoint point)
-		{
-			return area.contains(point);
-		}
-
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
-			interpretOptionalProperties(pfig.getProperties());
+			interpretPersistentFigure(pfig);
 		}
 	}
 	
@@ -2830,21 +2825,17 @@ public final class ClassifierNodeGem implements Gem
 	}
 	
 	public ClassifierNodeGem(
-		NamedElement subject,
 		DiagramFacet diagram,
-		String figureId,
 		Color initialFillColor,
-		PersistentProperties properties,
+		PersistentFigure pfig,
 		boolean isPart)
 	{
     this.isPart = isPart;
     this.figureName = isPart ? "part" : "classifier";
     this.initialFillColor = initialFillColor;
-    this.subject = subject;
+    String figureId = pfig.getId();
+    interpretPersistentFigure(pfig);
     
-    if (properties == null)
-      properties = new PersistentProperties();
-		
 		// make the attribute compartment
 		attributesOrSlots =
 			FeatureCompartmentGem.createAndWireUp(
@@ -2887,22 +2878,12 @@ public final class ClassifierNodeGem implements Gem
 			PortCompartmentGem.createAndWireUp(diagram, figureId + "_P", containerFacet, "ports", !isPart);
 		ports = portsSimpleGem.getPortCompartmentFacet();
 		primitivePorts = ports.getFigureFacet();
-    interpretOptionalProperties(properties);
 	}
-  
-	// work out what we is suppressed by virtue of a stereotype
-  private Set<String> getVisuallySuppressedUUIDs(ConstituentTypeEnum type)
+	
+	private void interpretPersistentFigure(PersistentFigure pfig)
 	{
-  	DEStratum perspective = GlobalDeltaEngine.engine.locateObject(figureFacet.getDiagram().getLinkedObject()).asStratum();
-  	DEObject obj = GlobalDeltaEngine.engine.locateObject(subject);
-  	DEComponent comp = isPart ? obj.asConstituent().asPart().getType() : obj.asComponent();
-  	if (comp == null)
-  		return new HashSet<String>();
-  	return ClassifierConstituentHelper.getVisuallySuppressed(perspective, comp, type);
-	}
-
-	private void interpretOptionalProperties(PersistentProperties properties)
-  {
+		subject = (NamedElement) pfig.getSubject();
+		PersistentProperties properties = pfig.getProperties();
   	name = properties.retrieve("name", "").asString();
   	owner = properties.retrieve("owner", "").asString();
     suppressAttributesOrSlots = properties.retrieve("supA", false).asBoolean();
@@ -2924,21 +2905,25 @@ public final class ClassifierNodeGem implements Gem
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
     locked = properties.retrieve("locked", false).asBoolean();
     stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
-  }
+	}
+  
+	// work out what we is suppressed by virtue of a stereotype
+  private Set<String> getVisuallySuppressedUUIDs(ConstituentTypeEnum type)
+	{
+  	DEStratum perspective = GlobalDeltaEngine.engine.locateObject(figureFacet.getDiagram().getLinkedObject()).asStratum();
+  	DEObject obj = GlobalDeltaEngine.engine.locateObject(subject);
+  	DEComponent comp = isPart ? obj.asConstituent().asPart().getType() : obj.asComponent();
+  	if (comp == null)
+  		return new HashSet<String>();
+  	return ClassifierConstituentHelper.getVisuallySuppressed(perspective, comp, type);
+	}
 
-  public ClassifierNodeGem(Color initialFillColor, boolean isPart, PersistentFigure figure)
+  public ClassifierNodeGem(Color initialFillColor, boolean isPart, PersistentFigure pfig)
 	{
     this.isPart = isPart;
     this.figureName = isPart ? "part" : "classifier";
-    this.initialFillColor = initialFillColor;
-    
-    // retrieve the subject
-    this.subject = (NamedElement) figure.getSubject();
-
-    name = subject.getName();
-    
-    PersistentProperties properties = figure.getProperties();
-		interpretOptionalProperties(properties);
+    this.initialFillColor = initialFillColor;    
+    interpretPersistentFigure(pfig);
   }
   
   private int calculateStereotypeHashcode()

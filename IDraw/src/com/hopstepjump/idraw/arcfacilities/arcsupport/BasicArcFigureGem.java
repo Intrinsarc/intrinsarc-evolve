@@ -655,7 +655,6 @@ public final class BasicArcFigureGem implements Gem
 			state.diagram.aboutToAdjust(figureFacet);
 		}
 
-
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
 			PersistentProperties properties = pfig.getProperties();
@@ -666,6 +665,7 @@ public final class BasicArcFigureGem implements Gem
 
 	    UPoint[] allPoints = properties.retrieve("pts").asUPointArray();
 	    state.calculatedPoints = new CalculatedArcPoints(null, null, virtualPoint, Arrays.asList(allPoints));
+	    state.appearanceFacet.acceptPersistentProperties(pfig);
 		}
   }
 }

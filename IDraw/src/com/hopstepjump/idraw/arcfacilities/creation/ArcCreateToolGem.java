@@ -272,7 +272,7 @@ public final class ArcCreateToolGem implements Gem
 	  // make the arc
     PersistentProperties properties = new PersistentProperties();
     factory.initialiseExtraProperties(properties);
-    factory.aboutToMakeCommand(coordinator);
+    factory.aboutToMakeTransaction(coordinator);
     coordinator.startTransaction("created " + factory.getFigureName(), "removed " + factory.getFigureName());
     ArcCreateFigureTransaction.create(
     		diagram,

@@ -86,7 +86,7 @@ public class OldConnectorCreatorGem implements Gem
     {
     }
 
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
 		}
 		

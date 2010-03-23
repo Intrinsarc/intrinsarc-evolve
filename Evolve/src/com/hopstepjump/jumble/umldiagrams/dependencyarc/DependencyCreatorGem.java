@@ -51,7 +51,8 @@ public class DependencyCreatorGem implements Gem
     {
       // instantiate to use conventional facets
       BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
-      DependencyArcGem requiredGem = new DependencyArcGem((Dependency) subject, properties);
+      DependencyArcGem requiredGem = new DependencyArcGem(
+      		new PersistentFigure(figureId, null, subject, properties));
       gem.connectBasicArcAppearanceFacet(requiredGem.getBasicArcAppearanceFacet());
       requiredGem.connectCurvableFacet(gem.getCurvableFacet());
 	    gem.connectContainerFacet(requiredGem.getContainerFacet());
@@ -74,11 +75,11 @@ public class DependencyCreatorGem implements Gem
     /**
      * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#persistence_createFromProperties(FigureReference, PersistentProperties)
      */
-    public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
+    public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure pfig)
     {
       // instantiate to use conventional facets
-      BasicArcGem gem = new BasicArcGem(this, diagram, figure);
-      DependencyArcGem requiredGem = new DependencyArcGem((Dependency) figure.getSubject(), figure.getProperties());
+      BasicArcGem gem = new BasicArcGem(this, diagram, pfig);
+      DependencyArcGem requiredGem = new DependencyArcGem(pfig);
       requiredGem.connectCurvableFacet(gem.getCurvableFacet());
 	    gem.connectContainerFacet(requiredGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(requiredGem.getAdvancedArcFacet());
@@ -164,7 +165,7 @@ public class DependencyCreatorGem implements Gem
       return dependency;
     }
 
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{      
       // if this is resemblance, indicate we have cleared the stereotype of the target
       if (resembles)
