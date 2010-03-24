@@ -1030,13 +1030,15 @@ public class ApplicationWindow extends SmartJFrame
 			if (commandManager.getTransactionPosition() > 0)
 			{
 				String undoName = commandManager.getUndoTransactionDescription();
+				
+				// display a small popup for 2 seconds
+				popup.displayPopup(UNDO_ICON, "Undo", undoName,
+						ScreenProperties.getUndoPopupColor(), Color.black, 1500, true,
+						commandManager.getTransactionPosition() - 1,
+						commandManager.getTotalTransactions());
+
 				toolCoordinator.getToolCoordinatorFacet().undoTransaction();
 				paletteFacet.refreshEnabled();
-
-				// display a small popup for 2 seconds
-				popup.displayPopup(UNDO_ICON, "Undo", undoName, ScreenProperties
-						.getUndoPopupColor(), Color.black, 1500, true, commandManager
-						.getTransactionPosition(), commandManager.getTotalTransactions());
 			}
 		}
 	}
@@ -1053,13 +1055,15 @@ public class ApplicationWindow extends SmartJFrame
 			if (commandManager.getTransactionPosition() < commandManager.getTotalTransactions())
 			{
 				String redoName = commandManager.getRedoTransactionDescription();
+				
+				// display a small popup for 2 seconds
+				popup.displayPopup(REDO_ICON, "Redo", redoName,
+						ScreenProperties.getUndoPopupColor(), Color.black, 1500, true,
+						commandManager.getTransactionPosition() + 1,
+						commandManager.getTotalTransactions());
+
 				toolCoordinator.getToolCoordinatorFacet().redoTransaction();
 				paletteFacet.refreshEnabled();
-
-				// display a small popup for 2 seconds
-				popup.displayPopup(REDO_ICON, "Redo", redoName, ScreenProperties
-						.getUndoPopupColor(), Color.black, 1500, true, commandManager
-						.getTransactionPosition(), commandManager.getTotalTransactions());
 			}
 		}
 	}

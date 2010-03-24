@@ -447,87 +447,114 @@ public final class ToolCoordinatorGem implements Gem
 		public void undoTransaction()
 		{
 			clearDeltaEngine();
-			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.undoTransaction();
-			GlobalSubjectRepository.repository.undoTransaction();
-			clearDeltaEngine();
-			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.completeUndoTransaction();
+			final DiagramFacet main = getCurrentDiagramView().getDiagram();
+			main.undoTransaction();
+			inBackground(
+					new Runnable()
+					{
+						public void run()
+						{
+			  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+			  				if (d != main)
+			  					d.undoTransaction();
+			  			GlobalSubjectRepository.repository.undoTransaction();
+			  			clearDeltaEngine();
+			  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+			  				d.completeUndoTransaction();						
+						}
+					});
 		}
 
 		public void redoTransaction()
 		{
 			GlobalSubjectRepository.repository.redoTransaction();
 			clearDeltaEngine();
-			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-				d.redoTransaction();
+			final DiagramFacet main = getCurrentDiagramView().getDiagram();
+			main.redoTransaction();
+			inBackground(
+				new Runnable()
+				{
+					public void run()
+					{
+						for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+							if (d != main)
+								d.redoTransaction();
+					}
+				});
 		}
 
 		public void commitTransaction()
 		{
-			boolean background = GlobalPreferences.preferences.getRawPreference(BasicDiagramGem.BACKGROUND_VIEW_UPDATES).asBoolean();
 	    final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 	    
 			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
 			waiter.displayWaitCursorAfterDelay();
 
 			clearDeltaEngine();
-			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
-			{
-				formUpdateDiagramAfterSubjectChanges(diagram, background);
-				if (background)
-					diagram.checkpointCommitTransaction();
-				else
-					diagram.commitTransaction();
-			}
+			final DiagramFacet main = getCurrentDiagramView().getDiagram();
+			formUpdateDiagramAfterSubjectChanges(main, true);
+			main.checkpointCommitTransaction();
 			repository.commitTransaction();
 
-			if (!background)
-			{
-	      GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
-	      enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
-			}
-			else
-				processViewUpdatesInBackground();
-
+			// possibly update in the background
+			inBackground(new Runnable()
+	    {
+	    	public void run()
+	    	{
+	  			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
+	  			{
+	  				if (diagram != main)
+	  				{
+	  					formUpdateDiagramAfterSubjectChanges(diagram, true);
+	  					diagram.checkpointCommitTransaction();					
+	  				}				
+	  			}
+	        clearDeltaEngine();
+	        for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+	        {
+	        	formUpdateDiagramAfterSubjectChanges(d, false);
+						d.commitTransaction();
+	        }
+	        GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
+	        enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
+	    	}
+	    });
 			waiter.restoreOldCursor();
       paletteFacet.refreshEnabled();
 		}
-		
-		private void processViewUpdatesInBackground()
+	
+		private void inBackground(final Runnable runnable)
 		{
-			new Thread(new Runnable()
-			{
-				public void run()
+			Thread thread =
+				new Thread(new Runnable()
 				{
-					try
+					public void run()
 					{
-						Thread.sleep(MSEC_VIEW_UPDATE_DELAY);
-					}
-					catch (InterruptedException e)
-					{
-					}
-
-					SwingUtilities.invokeLater(new Runnable()
-			    {
-			    	public void run()
-			    	{
-			        clearDeltaEngine();
-			        for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-			        {
-			        	formUpdateDiagramAfterSubjectChanges(d, false);
-								d.commitTransaction();
-			        }
-			        GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
-			        enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
-			    	}
-			    });    			
-				}
-			}).start();
-		}
-
+						try
+						{
+							Thread.sleep(MSEC_VIEW_UPDATE_DELAY);
+						}
+						catch (InterruptedException e)
+						{
+						}
 		
-	  private void formUpdateDiagramAfterSubjectChanges(DiagramFacet diagram, boolean initialRun)
+						SwingUtilities.invokeLater(new Runnable()
+				    {
+				    	public void run()
+				    	{
+				    		runnable.run();
+				    	}
+				    });    			
+					}
+				});
+			boolean background = GlobalPreferences.preferences.getRawPreference(BasicDiagramGem.BACKGROUND_VIEW_UPDATES).asBoolean();
+			if (background)
+				thread.start();
+			else
+				thread.run();
+		}
+		
+		private void formUpdateDiagramAfterSubjectChanges(DiagramFacet diagram, boolean initialRun)
 	  {
 	    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
 		      diagram.formViewUpdate(pass, initialRun);
