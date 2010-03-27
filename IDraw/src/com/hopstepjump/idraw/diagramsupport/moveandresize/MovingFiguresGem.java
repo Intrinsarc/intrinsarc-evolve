@@ -237,10 +237,7 @@ public final class MovingFiguresGem implements Gem
 	  public void end()
 	  {
 	    for (PreviewFacet moving : allFigures.values())
-	    {
-	    	moving.isPreviewFor().aboutToAdjust();
 	      moving.end();
-	    }
 	  }
 
 	  /**

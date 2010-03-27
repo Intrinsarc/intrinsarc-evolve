@@ -53,7 +53,6 @@ public final class SimpleContainerGem implements Gem
 	  public void removeContents(ContainedFacet[] containable)
 	  {
 	    // tell each containable that they are now contained by this
-	  	figureFacet.aboutToAdjust();
 	    for (int lp = 0; lp < containable.length; lp++)
 	    {
 	    	contents.remove(containable[lp].getFigureFacet());

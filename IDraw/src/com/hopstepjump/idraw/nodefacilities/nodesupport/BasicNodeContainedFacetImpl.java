@@ -38,7 +38,6 @@ public final class BasicNodeContainedFacetImpl implements ContainedFacet
 	
 	public void setContainer(ContainerFacet container)
 	{
-		state.figureFacet.aboutToAdjust();
 		this.container = container;
 	}
 	

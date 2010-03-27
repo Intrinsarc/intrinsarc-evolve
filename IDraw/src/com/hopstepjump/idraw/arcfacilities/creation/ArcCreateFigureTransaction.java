@@ -1,6 +1,5 @@
 package com.hopstepjump.idraw.arcfacilities.creation;
 
-import com.hopstepjump.gem.*;
 import com.hopstepjump.idraw.arcfacilities.creationbase.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;

@@ -717,7 +717,6 @@ public class ConnectorArcAppearanceGem implements Gem
       final boolean isDirected = StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.DIRECTED);
       if (subjectIsDelegate != delegate || subjectIsPortLink != portLink || isDirected != directed)
       {
-      	figureFacet.aboutToAdjust();
 				delegate = subjectIsDelegate;
 				portLink = subjectIsPortLink;
 				directed = isDirected;

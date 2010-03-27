@@ -150,7 +150,7 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
     {
       // just change the name
       subject.setName(text);
-      return new SetTextPayload(null, new Object[]{oldText, null, false, subject});
+      return new SetTextPayload(null);
     }
     
     ElementSelection sel = (ElementSelection) listSelection;
@@ -158,12 +158,12 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
     {
       // delete the previous subject
       GlobalSubjectRepository.repository.incrementPersistentDelete(subject);
-      return new SetTextPayload(sel.getElement(), new Object[]{null, subject, true});
+      return new SetTextPayload(sel.getElement());
     }
     else
     {
       // just link to the new object
-      return new SetTextPayload(sel.getElement(), new Object[]{null, subject, false});
+      return new SetTextPayload(sel.getElement());
     }
   }
 
@@ -182,6 +182,6 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
     if (oldSubject != null)
       subject = oldSubject;
     
-    return new SetTextPayload(subject, null);
+    return new SetTextPayload(subject);
   }
 }

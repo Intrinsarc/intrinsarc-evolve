@@ -650,11 +650,6 @@ public final class BasicArcFigureGem implements Gem
 			return new ToolFigureClassification(figureFacet.getFigureName(), null);
 		}
 
-		public void aboutToAdjust()
-		{
-			state.diagram.aboutToAdjust(figureFacet);
-		}
-
 		public void acceptPersistentFigure(PersistentFigure pfig)
 		{
 			PersistentProperties properties = pfig.getProperties();

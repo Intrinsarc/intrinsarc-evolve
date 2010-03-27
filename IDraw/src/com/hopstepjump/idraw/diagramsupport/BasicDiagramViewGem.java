@@ -925,6 +925,9 @@ public final class BasicDiagramViewGem implements Gem
 
 	private void adjustFigureInDiagram(FigureFacet figure)
 	{
+		if (figure.hasSubjectBeenDeleted())
+			return;
+		
 		// (2) figure was adjusted somehow
 		ZNode oldView = views.get(figure);
 

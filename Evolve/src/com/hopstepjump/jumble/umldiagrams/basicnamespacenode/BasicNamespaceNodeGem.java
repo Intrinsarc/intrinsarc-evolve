@@ -731,9 +731,6 @@ public final class BasicNamespaceNodeGem implements Gem
 			return owningPkg == actualNamespace;
 		}
 
-		/**
-		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
-		 */
 		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
 			if (subject == null || pass != ViewUpdatePassEnum.LAST)
@@ -744,13 +741,18 @@ public final class BasicNamespaceNodeGem implements Gem
 
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
       final int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(figureFacet, subject);
-			if (shouldBeDisplayingOwningPackage == showOwningPackage &&
+      if (!subject.getName().equals(name))
+      {
+      	name = subject.getName();
+      	figureFacet.getDiagram().forceAdjust(figureFacet);
+      }
+
+      if (shouldBeDisplayingOwningPackage == showOwningPackage &&
           subject.getName().equals(name) && subject.getNamespace().getName().equals(owner) &&
           stereotypeHashcode == actualStereotypeHashcode)
 				return;
 			
 			// set the new variables
-			name = subject.getName();
 			owner = GlobalSubjectRepository.repository.findOwningStratum(subject).getName();
 			showOwningPackage = shouldBeDisplayingOwningPackage;
       stereotypeHashcode = actualStereotypeHashcode;

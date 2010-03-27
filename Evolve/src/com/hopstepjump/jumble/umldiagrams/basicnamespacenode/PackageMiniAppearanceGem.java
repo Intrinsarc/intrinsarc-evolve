@@ -2,7 +2,6 @@ package com.hopstepjump.jumble.umldiagrams.basicnamespacenode;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 import java.util.*;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.printer.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
@@ -22,14 +20,10 @@ import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
-import com.hopstepjump.jumble.repositorybrowser.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.repositorybase.*;
-import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
-import com.hopstepjump.uml2deltaengine.converters.*;
-import com.thoughtworks.xstream.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -37,9 +31,7 @@ import edu.umd.cs.jazz.component.*;
 
 public class PackageMiniAppearanceGem implements Gem
 {
-	private static final ImageIcon TAB_RIGHT_ICON = IconLoader.loadIcon("tab_right.png");
 	private FigureFacet figureFacet;
-  private BasicNamespaceNodeFacet nodeFacet;
   private BasicNamespaceMiniAppearanceFacet miniAppearanceFacet = new BasicNamespaceMiniAppearanceFacetImpl();
   
   public PackageMiniAppearanceGem()
@@ -49,11 +41,6 @@ public class PackageMiniAppearanceGem implements Gem
   public void connectFigureFacet(FigureFacet figureFacet)
   {
     this.figureFacet = figureFacet;
-  }
-  
-  public void connectBasicNamespaceNodeFacet(BasicNamespaceNodeFacet nodeFacet)
-  {
-  	this.nodeFacet = nodeFacet;
   }
   
   public BasicNamespaceMiniAppearanceFacet getBasicNamespaceMiniAppearanceFacet()
@@ -499,11 +486,6 @@ public class PackageMiniAppearanceGem implements Gem
           text,
           listSelection,
           unsuppress);
-    }
-
-    public SetTextPayload unSetText(Object memento)
-    {
-      return ComponentMiniAppearanceGem.unSetElementText(figureFacet, memento);
     }
   }
   

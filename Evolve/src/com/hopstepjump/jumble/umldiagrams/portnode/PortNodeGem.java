@@ -409,8 +409,8 @@ public final class PortNodeGem implements Gem
 			// should we display the inferred interfaces?
 			if (drawInferred && figureFacet.getContainedFacet().getContainer() != null)
 			{
-		    List<String> provided = new ArrayList<String>(inferredProvNames);
-		    List<String> required = new ArrayList<String>(inferredReqNames);
+		    List<String> provided = new ArrayList<String>(getInferredProvidedNames());
+		    List<String> required = new ArrayList<String>(getInferredRequiredNames());
 		    Collections.sort(provided);
 		    Collections.sort(required);
 		    int lineNumber[] = {0};
@@ -1030,15 +1030,18 @@ public final class PortNodeGem implements Gem
 			boolean sameName = linkedTextFacet.getText().equals(subjectName);
 			boolean sameVisibility = subject.getVisibility().equals(accessType);
 			final boolean shouldDrawInferred = shouldDrawInferred();
-			final Set<String> provNames = shouldDrawInferred ? getInferredProvidedNames() : new HashSet<String>();
-			final Set<String> reqNames = shouldDrawInferred ? getInferredRequiredNames() : new HashSet<String>();
+			final Set<String> provNames = getInferredProvidedNames();
+			final Set<String> reqNames = getInferredRequiredNames();
 			final int nextKind = subject.getKind().getValue();
 
 			boolean update = false;
 			if (shouldDrawInferred != drawInferred)
 				update = true;
-			if (shouldDrawInferred && !(provNames.equals(inferredProvNames) && reqNames.equals(inferredReqNames)))
+			if (!provNames.equals(inferredProvNames) || !reqNames.equals(inferredReqNames))
+			{
 				update = true;
+				figureFacet.getDiagram().forceAdjust(figureFacet);
+			}
       if (!sameName || !sameVisibility)
         update = true;
       if (nextKind != portKind)
@@ -1048,7 +1051,7 @@ public final class PortNodeGem implements Gem
       if (!update)
       	return;
 
-      if (!sameName)
+			if (!sameName)
           SetTextTransaction.set(
               linkedTextFacet.getFigureFacet(),
               subjectName,
@@ -1468,13 +1471,6 @@ public final class PortNodeGem implements Gem
 		if (subject.getOwner() instanceof DeltaReplacedPort)
 			return (Port) ((DeltaReplacedPort) subject.getOwner()).undeleted_getReplaced();
 		return subject;
-	}
-
-	private Class getOwningComponent()
-	{
-		if (subject.getOwner() instanceof DeltaReplacedPort)
-			return (Class) subject.getOwner().getOwner();
-		return (Class) subject.getOwner();
 	}
 	
 	/** work out the bounds of the inferred interfaces 

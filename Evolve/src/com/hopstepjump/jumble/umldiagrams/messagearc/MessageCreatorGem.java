@@ -38,7 +38,7 @@ public class MessageCreatorGem implements Gem
 	    return getActualFigureName(type);
 	  }
 	
-	  public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
+	  public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
 	  {
 	  	// instantiate to use conventional facets
 	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
@@ -52,10 +52,8 @@ public class MessageCreatorGem implements Gem
       MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(
       		new PersistentFigure(figureId, null, subject, properties));
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
-          delegatingAppearanceGem.getBasicArcAppearanceFacet());
-	    																					 
+          delegatingAppearanceGem.getBasicArcAppearanceFacet());	    																					 
 	    diagram.add(gem.getFigureFacet());
-	    return new FigureReference(diagram, figureId);
 	  }
 	
 		/**
@@ -104,11 +102,6 @@ public class MessageCreatorGem implements Gem
 
 		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
-		}
-		
-		public Object extractRawSubject(Object previouslyCreated)
-		{
-			return previouslyCreated;
 		}
 	}
   

@@ -27,14 +27,12 @@ public final class LifelineCreatorGem implements Gem
 	    return LifelineArcAppearanceFacetImpl.FIGURE_NAME;
 	  }
 	
-	  public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
+	  public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
 	  {
 	  	// instantiate to use conventional facets
 	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
-	    gem.connectBasicArcAppearanceFacet(new LifelineArcAppearanceFacetImpl());
-	    																					 
+	    gem.connectBasicArcAppearanceFacet(new LifelineArcAppearanceFacetImpl());	    																					 
 	    diagram.add(gem.getFigureFacet());
-	    return new FigureReference(diagram, figureId);
 	  }
 	
 		/**
@@ -72,11 +70,6 @@ public final class LifelineCreatorGem implements Gem
 
 		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
-		}
-		
-		public Object extractRawSubject(Object previouslyCreated)
-		{
-			return previouslyCreated;
 		}
 	}
 }

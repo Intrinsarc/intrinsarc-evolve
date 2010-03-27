@@ -613,7 +613,6 @@ public final class ClassifierNodeGem implements Gem
 	public void hideContents(boolean hide)
 	{
 		// make the change
-		figureFacet.aboutToAdjust();
 		suppressContents = hide;
 		contents.getFigureFacet().setShowing(isContentsShowing());
 
@@ -655,7 +654,6 @@ public final class ClassifierNodeGem implements Gem
 	public void autoSize(boolean newAutoSized)
 	{
 		// make the change
-		figureFacet.aboutToAdjust();
 		autoSized = newAutoSized;
 		
 		contents.getFigureFacet().setShowing(isContentsShowing());
@@ -692,7 +690,6 @@ public final class ClassifierNodeGem implements Gem
 	public void suppressFeatures(int featureType, boolean suppress)
 	{
 		// we will probably change size, so need to make a resizing
-		figureFacet.aboutToAdjust();
 		ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
 		resizings.markForResizing(figureFacet);
 		
@@ -809,12 +806,8 @@ public final class ClassifierNodeGem implements Gem
     public void setText(String text, Object listSelection, boolean unsuppress)
     {
       SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
-
-      if (payload != null)
-      {
-        if (payload.getSubject() != null)
+      if (payload != null && payload.getSubject() != null)
           subject = (Classifier) payload.getSubject();
-      }
     }
 		
 		public FigureFacet getFigureFacet()

@@ -5,21 +5,14 @@ import org.eclipse.uml2.*;
 public class SetTextPayload
 {
   private Element subject;
-  private Object memento;
 
-  public SetTextPayload(Element subject, Object memento)
+  public SetTextPayload(Element subject)
   {
     this.subject = subject;
-    this.memento = memento;
   }
   
   public Element getSubject()
   {
     return subject;
-  }
-  
-  public Object getMemento()
-  {
-    return memento;
   }
 }

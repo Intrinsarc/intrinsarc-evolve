@@ -9,10 +9,10 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 public interface DiagramFacet extends TransactionManagerFacet
 {
 	/** additional undo/redo support */
-	public int getAlterations();
-	public void aboutToAdjust(FigureFacet figure);
 	public void checkpointCommitTransaction();
 	public void completeUndoTransaction();
+	public void completeRedoTransaction();
+	public void forceAdjust(FigureFacet figure);
 
 	/** for chained diagrams */
 	public DiagramFacet getSource();

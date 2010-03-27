@@ -477,7 +477,6 @@ public class DependencyArcGem implements Gem
           substitution != (dependency.isReplacement()) ||
           resemblance != (dependency.isResemblance()))
       {
-				figureFacet.aboutToAdjust();
 				stereotypeHash = newHash;
 				substitution = dependency.isReplacement();
 				resemblance = dependency.isResemblance();

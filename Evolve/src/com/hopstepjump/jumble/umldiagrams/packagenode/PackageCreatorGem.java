@@ -108,7 +108,6 @@ public final class PackageCreatorGem implements Gem
 
       PackageMiniAppearanceGem miniGem = new PackageMiniAppearanceGem();
       miniGem.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
-      miniGem.connectBasicNamespaceNodeFacet(packageGem.getBasicNamespaceNodeFacet());
 			packageGem.connectBasicNamespaceMiniAppearanceFacet(miniGem.getBasicNamespaceMiniAppearanceFacet());
 
 	
@@ -136,7 +135,6 @@ public final class PackageCreatorGem implements Gem
       
       PackageMiniAppearanceGem miniGem = new PackageMiniAppearanceGem();
       miniGem.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
-      miniGem.connectBasicNamespaceNodeFacet(packageGem.getBasicNamespaceNodeFacet());
       packageGem.connectBasicNamespaceMiniAppearanceFacet(miniGem.getBasicNamespaceMiniAppearanceFacet());
 	
 	    return basicGem.getBasicNodeFigureFacet();

@@ -31,7 +31,6 @@ public interface FigureFacet extends MainFacet
  	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass);
  	public Object getSubject();
  	public boolean hasSubjectBeenDeleted();
-	public void aboutToAdjust();
   public void adjusted();
 
   /**

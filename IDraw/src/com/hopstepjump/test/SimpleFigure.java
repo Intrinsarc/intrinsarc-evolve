@@ -65,7 +65,6 @@ public class SimpleFigure implements FigureFacet
 
 	public void randomChange()
 	{
-		diagram.aboutToAdjust(this);
 		double w = DiagramTest.rand(50, 200);
 		pt = new UPoint(DiagramTest.rand(20, 300), DiagramTest.rand(20, 300));
 		extent = new UDimension(w, w);
@@ -297,11 +296,6 @@ public class SimpleFigure implements FigureFacet
 
 	public void cleanUp()
 	{
-	}
-
-	public void aboutToAdjust()
-	{
-		diagram.aboutToAdjust(this);
 	}
 
 	public void acceptPersistentFigure(PersistentFigure pfig)

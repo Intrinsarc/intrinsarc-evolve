@@ -147,10 +147,7 @@ public final class ResizingFiguresGem implements Gem
 	      PreviewFacet moving = (PreviewFacet) entry.getValue();
 	      FigureFacet previewable = (FigureFacet) entry.getKey();
 	      if (previewable == focus || nextInChain == null || nextInChain.getCachedPreview(previewable) == null)
-	      {
-	      	diagram.aboutToAdjust(previewable);
 	        moving.end();
-	      }
 	    }
 	
 	    if (nextInChain != null)

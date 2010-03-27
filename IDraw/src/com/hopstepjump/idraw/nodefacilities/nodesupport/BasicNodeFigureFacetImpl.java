@@ -64,7 +64,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 
   public void setShowing(boolean showing)
 	{
-		aboutToAdjust();
 		state.showing = showing;
 
 		// we must generate updates such that the container is always shown first and hidden last!
@@ -471,11 +470,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 	{
 		return state.appearanceFacet.getToolClassification(point, diagramView, coordinator);
-	}
-	
-	public void aboutToAdjust()
-	{
-		state.diagram.aboutToAdjust(state.figureFacet);
 	}
 }
 

@@ -41,22 +41,22 @@ public final class ReferenceCalculatedArcPoints implements Serializable
     this.node2Reference = node2Reference;
   }
 
-  UPoint getVirtualPoint()
+  public UPoint getVirtualPoint()
   {
     return virtualPoint;
   }
 
-  List<UPoint> getAllPoints()
+  public List<UPoint> getAllPoints()
   {
     return allPoints;
   }
 
-  FigureReference getNode1Reference()
+  public FigureReference getNode1Reference()
   {
     return node1Reference;
   }
 
-  FigureReference getNode2Reference()
+  public FigureReference getNode2Reference()
   {
     return node2Reference;
   }

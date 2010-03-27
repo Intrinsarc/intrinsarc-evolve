@@ -47,7 +47,7 @@ public class DependencyCreatorGem implements Gem
       return DependencyArcGem.FIGURE_NAME;
     }
   
-    public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
+    public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
     {
       // instantiate to use conventional facets
       BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
@@ -60,8 +60,6 @@ public class DependencyCreatorGem implements Gem
 	    requiredGem.connectFigureFacet(gem.getFigureFacet());
       
       diagram.add(gem.getFigureFacet());
-      
-      return new FigureReference(diagram, figureId);
     }
   
     /**
@@ -175,11 +173,6 @@ public class DependencyCreatorGem implements Gem
       			null,
 						ScreenProperties.getUndoPopupColor(),
 						Color.black, 1500);      
-		}
-		
-		public Object extractRawSubject(Object previouslyCreated)
-		{
-			return ((Object[]) previouslyCreated)[0];
 		}
   }
   

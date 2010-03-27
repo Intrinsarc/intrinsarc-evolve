@@ -3,6 +3,7 @@ package com.hopstepjump.jumble.gui;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.reflect.*;
+import java.util.concurrent.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -50,6 +51,20 @@ import edu.umd.cs.jazz.component.*;
 import edu.umd.cs.jazz.event.*;
 import edu.umd.cs.jazz.util.*;
 
+// to fix:
+// 1. inferred interfaces lag & pkg name not updating
+// 2. remove all adjusted()
+// 3. fix all commands
+// 4. manipulator problems: text, resizing, arc adjusting, enter on attribute
+// 5. remove any unXXX() methods
+// 6. synch up diagramchange and undo/redo
+// 7. adding attrs to class makes it go smaller
+// 8. garbage collection
+// 9. fix up formviewupdate -- no need to say "updated"
+// 10. remove many in subject repository?
+// 11. funny freezes
+// 12. key press not registering initially
+
 public final class ToolCoordinatorGem implements Gem
 {
 	public static final int MSEC_VIEW_UPDATE_DELAY = 100;
@@ -67,7 +82,8 @@ public final class ToolCoordinatorGem implements Gem
   private int currentPopupNumber = 0;
   private ZCanvas currentCanvas;
   private IEasyDock dock;
-
+  private Semaphore sema = new Semaphore(1);
+  
   public ToolCoordinatorGem()
   {
   	registerRecreators();
@@ -436,8 +452,15 @@ public final class ToolCoordinatorGem implements Gem
 			return GlobalPreferences.preferences.getRawPreference(preference).asInteger();
 		}
 
+		private void semaBlock()
+		{
+			sema.acquireUninterruptibly();
+			sema.release();			
+		}
+		
 		public void startTransaction(String redoName, String undoName)
 		{
+			semaBlock();
 			clearDeltaEngine();
 			GlobalSubjectRepository.repository.startTransaction(redoName, undoName);
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
@@ -446,27 +469,28 @@ public final class ToolCoordinatorGem implements Gem
 		
 		public void undoTransaction()
 		{
+			semaBlock();
+			GlobalSubjectRepository.repository.undoTransaction();
 			clearDeltaEngine();
 			final DiagramFacet main = getCurrentDiagramView().getDiagram();
 			main.undoTransaction();
 			inBackground(
-					new Runnable()
+				new Runnable()
+				{
+					public void run()
 					{
-						public void run()
-						{
-			  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-			  				if (d != main)
-			  					d.undoTransaction();
-			  			GlobalSubjectRepository.repository.undoTransaction();
-			  			clearDeltaEngine();
-			  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-			  				d.completeUndoTransaction();						
-						}
-					});
+		  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+		  				if (d != main)
+		  					d.undoTransaction();
+		  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+		  				d.completeUndoTransaction();						
+					}
+				});
 		}
 
 		public void redoTransaction()
 		{
+			semaBlock();
 			GlobalSubjectRepository.repository.redoTransaction();
 			clearDeltaEngine();
 			final DiagramFacet main = getCurrentDiagramView().getDiagram();
@@ -476,9 +500,11 @@ public final class ToolCoordinatorGem implements Gem
 				{
 					public void run()
 					{
-						for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-							if (d != main)
-								d.redoTransaction();
+		  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+		  				if (d != main)
+		  					d.redoTransaction();
+		  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+		  				d.completeRedoTransaction();						
 					}
 				});
 		}
@@ -492,7 +518,7 @@ public final class ToolCoordinatorGem implements Gem
 
 			clearDeltaEngine();
 			final DiagramFacet main = getCurrentDiagramView().getDiagram();
-			formUpdateDiagramAfterSubjectChanges(main, true);
+			updateDiagramAfterSubjectChanges(main, true);
 			main.checkpointCommitTransaction();
 			repository.commitTransaction();
 
@@ -501,20 +527,16 @@ public final class ToolCoordinatorGem implements Gem
 	    {
 	    	public void run()
 	    	{
+	  			updateDiagramAfterSubjectChanges(main, false);
+	  			main.commitTransaction();
 	  			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
 	  			{
 	  				if (diagram != main)
 	  				{
-	  					formUpdateDiagramAfterSubjectChanges(diagram, true);
-	  					diagram.checkpointCommitTransaction();					
+	  					updateDiagramAfterSubjectChanges(diagram, false);
+	  					diagram.commitTransaction();					
 	  				}				
 	  			}
-	        clearDeltaEngine();
-	        for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
-	        {
-	        	formUpdateDiagramAfterSubjectChanges(d, false);
-						d.commitTransaction();
-	        }
 	        GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
 	        enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
 	    	}
@@ -525,36 +547,24 @@ public final class ToolCoordinatorGem implements Gem
 	
 		private void inBackground(final Runnable runnable)
 		{
-			Thread thread =
-				new Thread(new Runnable()
-				{
-					public void run()
-					{
-						try
-						{
-							Thread.sleep(MSEC_VIEW_UPDATE_DELAY);
-						}
-						catch (InterruptedException e)
-						{
-						}
-		
-						SwingUtilities.invokeLater(new Runnable()
-				    {
-				    	public void run()
-				    	{
-				    		runnable.run();
-				    	}
-				    });    			
-					}
-				});
 			boolean background = GlobalPreferences.preferences.getRawPreference(BasicDiagramGem.BACKGROUND_VIEW_UPDATES).asBoolean();
-			if (background)
-				thread.start();
+			if (!background)
+				runnable.run();
 			else
-				thread.run();
+			{
+  			sema.acquireUninterruptibly();
+				new Thread(new Runnable()
+		    {
+		    	public void run()
+		    	{
+		    		runnable.run();
+		  			sema.release();
+		    	}
+		    }).start();
+			}
 		}
 		
-		private void formUpdateDiagramAfterSubjectChanges(DiagramFacet diagram, boolean initialRun)
+		private void updateDiagramAfterSubjectChanges(DiagramFacet diagram, boolean initialRun)
 	  {
 	    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
 		      diagram.formViewUpdate(pass, initialRun);

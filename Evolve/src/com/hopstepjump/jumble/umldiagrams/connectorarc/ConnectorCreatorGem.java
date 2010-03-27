@@ -40,7 +40,7 @@ public class ConnectorCreatorGem implements Gem
 	    return ConnectorArcAppearanceGem.figureName;
 	  }
 	
-	  public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
+	  public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
 	  {
 	  	// instantiate to use conventional facets
 	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
@@ -53,7 +53,6 @@ public class ConnectorCreatorGem implements Gem
 	    gem.connectClipboardCommandsFacet(connectorGem.getClipboardCommandsFacet());
 	    																					 
 	    diagram.add(gem.getFigureFacet());
-	    return new FigureReference(diagram, figureId);
 	  }
   	  
 		/**
@@ -149,11 +148,6 @@ public class ConnectorCreatorGem implements Gem
 
 		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
-		}
-		
-		public Object extractRawSubject(Object previouslyCreated)
-		{
-			return previouslyCreated;
 		}
 	}
 	
