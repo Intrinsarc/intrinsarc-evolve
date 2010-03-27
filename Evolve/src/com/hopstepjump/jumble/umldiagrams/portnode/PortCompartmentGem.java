@@ -205,7 +205,6 @@ public class PortCompartmentGem implements Gem
         contents.remove(containable[lp].getFigureFacet());
         containable[lp].setContainer(null);
       }
-      figureFacet.adjusted();
     }
     public void addContents(ContainedFacet[] containable)
     {
@@ -215,7 +214,6 @@ public class PortCompartmentGem implements Gem
         contents.add(containable[lp].getFigureFacet());
         containable[lp].setContainer(this);
       }
-      figureFacet.adjusted();
     }
 
     public boolean isWillingToActAsBackdrop()

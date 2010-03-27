@@ -36,7 +36,6 @@ public interface DiagramFacet extends TransactionManagerFacet
   public void revert();
   public void add(FigureFacet figure );
   public void remove(FigureFacet figure);
-  public void adjusted(FigureFacet figure);
   //////////////////////////////////////////////////
 
   public List<FigureFacet> getFigures( );

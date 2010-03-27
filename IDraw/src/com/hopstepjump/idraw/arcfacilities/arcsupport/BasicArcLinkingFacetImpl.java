@@ -38,7 +38,6 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
     detachFromAnchors();
     state.calculatedPoints = newCalculatedPoints;
     attachToAnchors();
-    state.diagram.adjusted(getFigureFacet());
     return oldCalcs;
   }
 
@@ -47,7 +46,6 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
     detachFromAnchors();
     state.calculatedPoints = new CalculatedArcPoints((CalculatedArcPoints) memento);
     attachToAnchors();
-    state.diagram.adjusted(getFigureFacet());
   }
 
   public Object move(CalculatedArcPoints newCalculatedPoints)
@@ -56,7 +54,6 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
     detachFromAnchors();
     state.calculatedPoints = newCalculatedPoints;
     attachToAnchors();
-    state.diagram.adjusted(getFigureFacet());
     return oldCalcs;
   }
 
@@ -65,7 +62,6 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
     detachFromAnchors();
     state.calculatedPoints = new CalculatedArcPoints((CalculatedArcPoints) memento);
     attachToAnchors();
-    state.diagram.adjusted(getFigureFacet());
   }
 
   public boolean hasOutgoingsToPeripheral(PreviewCacheFacet previewFigures)
@@ -114,7 +110,6 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
   {
     state.calculatedPoints.getNode1().removeLinked(state.linkingFacet);
     state.calculatedPoints.getNode2().removeLinked(state.linkingFacet);
-    state.diagram.adjusted(getFigureFacet());
   }
 
   public void attachToAnchors()
@@ -126,9 +121,7 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
 	private void persistence_attachToAnchors()
 	{
 		state.calculatedPoints.getNode1().persistence_addLinked(this);
-		state.calculatedPoints.getNode2().persistence_addLinked(this);
-    state.diagram.adjusted(state.calculatedPoints.getNode1().getFigureFacet());
-    state.diagram.adjusted(state.calculatedPoints.getNode2().getFigureFacet());    
+		state.calculatedPoints.getNode2().persistence_addLinked(this);    
 	}
 
   public FigureFacet getFigureFacet()

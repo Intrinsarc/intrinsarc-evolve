@@ -320,14 +320,11 @@ public final class PortNodeGem implements Gem
     {
       VisibilityKind oldAccessType = subject.getVisibility();
       subject.setVisibility(newAccessType);
-      figureFacet.adjusted();
-      return oldAccessType;
+      return null;
     }
     
     public void unSetVisibility(Object memento)
     {
-      subject.setVisibility((VisibilityKind) memento);
-      figureFacet.adjusted();
     }
   }
   

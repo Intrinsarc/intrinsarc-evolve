@@ -8,7 +8,6 @@ import com.hopstepjump.idraw.foundation.*;
 public class HideFigureCommand extends AbstractCommand
 {
   private FigureReference hideable;
-  private FigureReference hidingFigure;
   private boolean hide;
 
   public HideFigureCommand(
@@ -20,27 +19,17 @@ public class HideFigureCommand extends AbstractCommand
   {
 		super(executeDescription, unExecuteDescription);
     this.hideable = hideable;
-    this.hidingFigure = hidingFigure;
     this.hide = hide;
   }
 
   public void execute(boolean isTop)
   {
     getHideable().setShowing(!hide);
-    if (hidingFigure != null)
-      getHidingFigure().getDiagram().adjusted(getHidingFigure());
   }
 
   public void unExecute()
   {
     getHideable().setShowing(hide);
-    if (hidingFigure != null)
-      getHidingFigure().getDiagram().adjusted(getHidingFigure());
-  }
-
-  private FigureFacet getHidingFigure()
-  {
-    return GlobalDiagramRegistry.registry.retrieveFigure(hidingFigure);
   }
 
   private FigureFacet getHideable()

@@ -281,14 +281,11 @@ public final class ClassifierNodeGem implements Gem
     {
       Color oldFill = fillColor;
       fillColor = newFill;
-      figureFacet.adjusted();
-      return oldFill;
+      return null;
     }
 
     public void unSetFill(Object memento)
     {
-      fillColor = (Color) memento;
-      figureFacet.adjusted();
     }
   }	
 	
@@ -320,20 +317,13 @@ public final class ClassifierNodeGem implements Gem
 	{
 		public Object showAsState(boolean newShowAsState)
 		{
-			boolean oldDisplayAsIcon = showAsState;
-			
 			// make the change
-			showAsState = newShowAsState;			
-			figureFacet.adjusted();
-			
-			return new Object[] { new Boolean(oldDisplayAsIcon) };
+			showAsState = newShowAsState;
+			return null;
 		}
 		
 		public void unShowAsState(Object memento)
 		{
-			Object[] array = (Object[]) memento;
-			showAsState = ((Boolean) array[0]).booleanValue();
-      figureFacet.adjusted();
 		}
 	}
 	
@@ -360,7 +350,6 @@ public final class ClassifierNodeGem implements Gem
       resizings.setFocusBounds(centredBounds);
       
       resizings.end();
-      figureFacet.adjusted();
     }
   }
   
@@ -630,16 +619,12 @@ public final class ClassifierNodeGem implements Gem
 	{
 		public Object lock(boolean lock)
 		{
-			boolean oldLock = locked;
 			locked = lock;
-			figureFacet.adjusted();
-			return oldLock;
+			return null;
 		}
 
 		public void unLock(Object memento)
 		{
-			locked = (Boolean) memento;
-			figureFacet.adjusted();
 		}
 
 		public boolean isLocked()

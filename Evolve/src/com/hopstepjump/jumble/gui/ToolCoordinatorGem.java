@@ -52,8 +52,8 @@ import edu.umd.cs.jazz.event.*;
 import edu.umd.cs.jazz.util.*;
 
 // to fix:
-// 1. inferred interfaces lag & pkg name not updating
-// 2. remove all adjusted()
+// xx. inferred interfaces lag & pkg name not updating
+// xx. remove all adjusted()
 // 3. fix all commands
 // 4. manipulator problems: text, resizing, arc adjusting, enter on attribute
 // 5. remove any unXXX() methods

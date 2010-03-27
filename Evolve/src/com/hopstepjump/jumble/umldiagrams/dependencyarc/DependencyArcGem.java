@@ -46,6 +46,8 @@ public class DependencyArcGem implements Gem
   private Color color = Color.BLACK;
   private boolean substitution;
   private boolean resemblance;
+  private boolean socketStyle;
+  private boolean largeSocketStyle;
 
 
   public DependencyArcGem(PersistentFigure pfig)
@@ -60,6 +62,8 @@ public class DependencyArcGem implements Gem
     color = properties.retrieve("color", Color.BLACK).asColor();
     substitution = properties.retrieve("substitution", false).asBoolean();
     resemblance = properties.retrieve("resemblance", false).asBoolean();
+    socketStyle = properties.retrieve("socket", false).asBoolean();
+    largeSocketStyle = properties.retrieve("largeSocket", false).asBoolean();
 	}
 
 	public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
@@ -318,7 +322,7 @@ public class DependencyArcGem implements Gem
       Set<String> styles = calculated.getNode2().getDisplayStyles(true);
       if (styles == null)
         styles = new HashSet<String>();
-    	boolean socketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT);;
+    	boolean socketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT);
       boolean largeSocketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT_LARGE);
       
       if (socketStyle || largeSocketStyle)
@@ -430,6 +434,8 @@ public class DependencyArcGem implements Gem
       properties.add(new PersistentProperty("color", color, Color.BLACK));
       properties.add(new PersistentProperty("substitution", substitution, false));
       properties.add(new PersistentProperty("resemblance", resemblance, false));
+      properties.add(new PersistentProperty("socket", socketStyle, false));
+      properties.add(new PersistentProperty("largeSocket", largeSocketStyle, false));
     }
 
     public void addToContextMenu(JPopupMenu menu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
@@ -473,14 +479,16 @@ public class DependencyArcGem implements Gem
       
       // if the stereotypes have changed, force a redraw
       final int newHash = StereotypeUtilities.calculateStereotypeHash(null, subject);
-      if (newHash != stereotypeHash ||
-          substitution != (dependency.isReplacement()) ||
-          resemblance != (dependency.isResemblance()))
-      {
-				stereotypeHash = newHash;
-				substitution = dependency.isReplacement();
-				resemblance = dependency.isResemblance();
-      }
+			stereotypeHash = newHash;
+			substitution = dependency.isReplacement();
+			resemblance = dependency.isResemblance();
+      
+      CalculatedArcPoints calculated  = figureFacet.getLinkingFacet().getCalculated();
+      Set<String> styles = calculated.getNode2().getDisplayStyles(true);
+      if (styles == null)
+        styles = new HashSet<String>();
+    	socketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT);
+      largeSocketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT_LARGE);
     }
 
     public Object getSubject()

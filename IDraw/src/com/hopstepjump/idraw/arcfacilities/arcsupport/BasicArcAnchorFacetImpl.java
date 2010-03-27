@@ -25,8 +25,7 @@ final class BasicArcAnchorFacetImpl implements AnchorFacet
 	
   public void addLinked(LinkingFacet addLinked)
   {
-    state.linked.add(addLinked);
-    state.diagram.adjusted(getFigureFacet());    
+    state.linked.add(addLinked);   
   }
 
 	public void persistence_addLinked(LinkingFacet addLinked)
@@ -43,7 +42,6 @@ final class BasicArcAnchorFacetImpl implements AnchorFacet
   		if (linkingFacet == removeLinked)
   			iter.remove();
   	}
-    state.diagram.adjusted(getFigureFacet());
   }
 
   public boolean isInvolvedInMoving(PreviewCacheFacet previewFigures)

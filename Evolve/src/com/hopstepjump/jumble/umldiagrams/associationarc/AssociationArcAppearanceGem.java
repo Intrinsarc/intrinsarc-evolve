@@ -77,16 +77,12 @@ public class AssociationArcAppearanceGem implements Gem
   {
     public Object setUnidirectionality(boolean newUnidirectional)
     {
-      boolean oldUnidirectional = unidirectional;
       unidirectional = newUnidirectional;
-      figureFacet.adjusted();
-      return new Boolean(oldUnidirectional);
+      return null;
     }
 
     public void unSetUnidirectionality(Object memento)
     {
-      unidirectional = ((Boolean) memento).booleanValue();
-      figureFacet.adjusted();
     }    
   }
   
@@ -94,16 +90,12 @@ public class AssociationArcAppearanceGem implements Gem
   {
     public Object setAssociationType(int newType)
     {
-      int oldType = type;
       type = newType;
-      figureFacet.adjusted();
-      return oldType;
+      return null;
     }
 
     public void unSetAssociationType(Object memento)
     {
-      type = (Integer) memento;
-      figureFacet.adjusted();
     }    
   }
 

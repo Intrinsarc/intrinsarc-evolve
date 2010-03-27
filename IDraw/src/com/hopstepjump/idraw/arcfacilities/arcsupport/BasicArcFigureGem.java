@@ -77,7 +77,6 @@ public final class BasicArcFigureGem implements Gem
     private void makeStyle(boolean curved)
     {
       state.curved = curved;
-      figureFacet.adjusted();
     }
     
     public boolean isCurved()
@@ -262,12 +261,6 @@ public final class BasicArcFigureGem implements Gem
   		// adjust any possible children also
   		if (state.containerFacet != null)
   			state.containerFacet.setShowingForChildren(showing);
-  		
-  		// adjust any anchors
-  		state.linkingFacet.getAnchor1().getFigureFacet().adjusted();
-      state.linkingFacet.getAnchor2().getFigureFacet().adjusted();
-  		
-  		adjusted();
   	}
   
   	/**
@@ -588,14 +581,6 @@ public final class BasicArcFigureGem implements Gem
   	public boolean hasSubjectBeenDeleted()
   	{
   		return state.appearanceFacet.hasSubjectBeenDeleted();
-  	}
-  
-  	/*
-  	 * @see com.hopstepjump.idraw.arcfacilities.arcsupport.BasicArcFigureFacet#adjusted()
-  	 */
-  	public void adjusted()
-  	{
-  		state.diagram.adjusted(state.figureFacet);
   	}
   
     public boolean useGlobalLayer()

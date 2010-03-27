@@ -66,10 +66,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	{
 		state.showing = showing;
 
-		// we must generate updates such that the container is always shown first and hidden last!
-		if (showing)
-			state.diagram.adjusted(this);
-
 		if (state.containerFacet != null)
 			state.containerFacet.setShowingForChildren(showing);
 
@@ -79,8 +75,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 			LinkingFacet linkingFacet = (LinkingFacet) iter.next();
 			linkingFacet.getFigureFacet().setShowing(showing);
 		}
-		
-		state.diagram.adjusted(this);
 	}
 
 	public boolean isShowing()
@@ -245,14 +239,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 		if (facet == null)
 			throw new FacetNotFoundException("Cannot find facet corresponding to " + facetClass + " in " + state.appearanceFacet);
 		return facet;
-	}
-	
-	/**
-	 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeFigureFacet#getDiagram()
-	 */
-	public void adjusted()
-	{
-		state.diagram.adjusted(this);
 	}
 
 	/**

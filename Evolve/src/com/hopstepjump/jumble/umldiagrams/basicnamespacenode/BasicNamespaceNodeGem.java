@@ -88,14 +88,12 @@ public final class BasicNamespaceNodeGem implements Gem
     {
       Color oldFill = fillColor;
       fillColor = newFill;
-      figureFacet.adjusted();
       return oldFill;
     }
 
     public void unSetFill(Object memento)
     {
       fillColor = (Color) memento;
-      figureFacet.adjusted();
     }
   }
   
@@ -201,7 +199,6 @@ public final class BasicNamespaceNodeGem implements Gem
 			UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
 			resizings.setFocusBounds(centredBounds);			
 			resizings.end();
-			figureFacet.adjusted();
 		}
 	}
   

@@ -206,16 +206,12 @@ public final class FeatureNodeGem implements Gem
 		public Object setVisibility(VisibilityKind newAccessType)
 	  {
 			Feature feature = getSubjectAsFeature();
-	  	VisibilityKind oldAccessType = feature.getVisibility();
 	  	feature.setVisibility(newAccessType);
-	  	figureFacet.adjusted();
-	  	return oldAccessType;
+	  	return null;
 	  }
 	  
 	  public void unSetVisibility(Object memento)
 	  {
-	  	getSubjectAsFeature().setVisibility((VisibilityKind) memento);
-			figureFacet.adjusted();
 	  }
   }
   
@@ -229,9 +225,7 @@ public final class FeatureNodeGem implements Gem
 			Feature feature = getSubjectAsFeature();
       boolean oldScope = feature.isStatic();
       feature.setIsStatic(newClassifierScope);
-			figureFacet.adjusted();
-			
-			return oldScope;
+			return null;
 		}
 	
 		/**
@@ -239,9 +233,6 @@ public final class FeatureNodeGem implements Gem
 		 */
 		public void unSetScope(Object memento)
 		{
-			Boolean oldClassifierScope = (Boolean) memento;
-      getSubjectAsFeature().setIsStatic(oldClassifierScope);
-			figureFacet.adjusted();
 		}
   }
 

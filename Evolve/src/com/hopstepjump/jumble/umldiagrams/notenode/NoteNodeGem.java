@@ -439,7 +439,6 @@ public final class NoteNodeGem implements Gem
             private void toggle()
             {
               hideNote = !hideNote;
-              figureFacet.adjusted();
             }
           };
           coordinator.executeCommandAndUpdateViews(hideNoteCommand);

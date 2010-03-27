@@ -58,7 +58,6 @@ public final class SimpleContainerGem implements Gem
 	    	contents.remove(containable[lp].getFigureFacet());
 	      containable[lp].setContainer(null);
 	    }
-	    figureFacet.adjusted();
 	  }
 	
 	  public void addContents(ContainedFacet[] containable)
@@ -69,7 +68,6 @@ public final class SimpleContainerGem implements Gem
 				contents.add(containable[lp].getFigureFacet());
 	      containable[lp].setContainer(this);
 			}
-			figureFacet.adjusted();
 	  }
 
 	  public boolean isWillingToActAsBackdrop()

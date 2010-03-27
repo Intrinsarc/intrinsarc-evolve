@@ -18,8 +18,6 @@ import edu.umd.cs.jazz.component.*;
  */
 public final class ClassifierSizeInfo implements ContainerSizeInfo
 {
-	private static final UDimension OFFSET = new UDimension(8,4);
-
 	private UPoint topLeft;
 	private String name;
 	private Font font;
@@ -36,7 +34,6 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
 	private boolean haveIcon;
 	private boolean displayIconOnly;
 	private UDimension minimumIconExtent;
-	private final static UDimension minExtent = new UDimension(50, 30);
 	private String owningPackageName;
 	private boolean isAbstract;
 	private boolean isActive;
@@ -474,5 +471,4 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
   {
     this.ellipsisForBody = ellipsisForBody;
   }
-
 }

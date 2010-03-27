@@ -63,16 +63,12 @@ public class GrouperNodeGem
   {
     public Object setFill(Color newFill)
     {
-      Color oldFill = fillColor;
       fillColor = newFill;
-      figureFacet.adjusted();
-      return oldFill;
+      return null;
     }
 
     public void unSetFill(Object memento)
     {
-      fillColor = (Color) memento;
-      figureFacet.adjusted();
     }
   } 
   

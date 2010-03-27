@@ -58,11 +58,6 @@ public class SimpleFigure implements FigureFacet
 		return p;
 	}
 
-	public void adjusted()
-	{
-		diagram.adjusted(this);
-	}
-
 	public void randomChange()
 	{
 		double w = DiagramTest.rand(50, 200);

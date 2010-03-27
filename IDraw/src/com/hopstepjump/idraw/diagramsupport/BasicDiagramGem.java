@@ -546,10 +546,6 @@ public final class BasicDiagramGem implements Gem
         removed.cleanUp();
       }
 	  }
-	
-	  public void adjusted(FigureFacet figure)
-	  {
-	  }
 	  
 	  private void internallyAdjusted(FigureFacet figure)
 	  {

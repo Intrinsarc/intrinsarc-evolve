@@ -49,8 +49,6 @@ public final class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFace
 			resizings.setFocusBounds(state.appearanceFacet.getAutoSizedBounds(autoSized));
 			resizings.end();
 		}
-		state.figureFacet.adjusted();
-
 		return null;
 	}
 
