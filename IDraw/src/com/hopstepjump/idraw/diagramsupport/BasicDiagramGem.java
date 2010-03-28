@@ -511,11 +511,11 @@ public final class BasicDiagramGem implements Gem
 		public void add(FigureFacet figure)
 	  {
 	  	Validator.validateFigure(figure);
+	  	addToCurrentTransaction(ADD, figure.makePersistentFigure());
 	  	
 			setModified(true);
 		  figures.put(figure.getId(), figure);
 		  haveModification(figure, ADD);
-	  	addToCurrentTransaction(ADD, figure.makePersistentFigure());
 	      
 	    // if this is a container, add contained
 	    ContainerFacet container = figure.getContainerFacet();
@@ -535,7 +535,6 @@ public final class BasicDiagramGem implements Gem
         PersistentFigure p = removed.makePersistentFigure();
   			setModified(true);
   	    haveModification(removed, REMOVE);
-  	  	addToCurrentTransaction(REMOVE, p);
   	      
   	    // if this is a container, remove contained
   	    ContainerFacet container = removed.getContainerFacet();
@@ -545,6 +544,7 @@ public final class BasicDiagramGem implements Gem
   	    	while (iter.hasNext())
   					remove(iter.next());
   	    }
+  	    addToCurrentTransaction(REMOVE, p);
         removed.cleanUp();
       }
 	  }

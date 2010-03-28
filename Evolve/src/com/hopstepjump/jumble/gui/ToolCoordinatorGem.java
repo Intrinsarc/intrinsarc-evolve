@@ -561,14 +561,6 @@ public final class ToolCoordinatorGem implements Gem
 		  			sema.release();
 		    	}
 		    }).start();
-				frame.repaint();
-				SwingUtilities.invokeLater(new Runnable()
-				{
-					public void run()
-					{
-						semaBlock();
-					}					
-				});
 			}
 		}
 		
