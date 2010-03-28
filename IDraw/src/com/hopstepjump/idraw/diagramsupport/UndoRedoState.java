@@ -1,20 +1,21 @@
 package com.hopstepjump.idraw.diagramsupport;
 
+import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 
 public class UndoRedoState
 {
-	private UndoRedoAction action;
+	private DiagramChangeActionEnum action;
 	private PersistentFigure persistentFigure;
 	private PersistentFigure afterPersistentFigure;
 	
-	public UndoRedoState(UndoRedoAction action, PersistentFigure state)
+	public UndoRedoState(DiagramChangeActionEnum action, PersistentFigure state)
 	{
 		this.action = action;
 		this.persistentFigure = state;
 	}
 	
-	public UndoRedoAction getAction()
+	public DiagramChangeActionEnum getAction()
 	{
 		return action;
 	}

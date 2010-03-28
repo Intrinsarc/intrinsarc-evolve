@@ -323,20 +323,20 @@ public final class BasicDiagramViewGem implements Gem
 						// handle the figure, without disturbing the map
 						switch (change.getModificationType())
 						{
-							case DiagramChange.MODIFICATIONTYPE_ADD :
+							case ADD :
 								addFigureToDiagram(figure);
                 modifiedAdorned.remove(figure);
 								break;
-							case DiagramChange.MODIFICATIONTYPE_REMOVE :
+							case REMOVE :
 								removeFigureFromDiagram(figure, false);
 								previouslyAdorned.remove(figure);
 								modifiedAdorned.remove(figure);
 								break;
-							case DiagramChange.MODIFICATIONTYPE_ADJUST :
+							case MODIFY :
 								adjustFigureInDiagram(figure);
                 modifiedAdorned.remove(figure);
 								break;
-							case DiagramChange.MODIFICATIONTYPE_RESYNC:
+							case RESYNC:
 								syncWithDiagram(false);
 								modifiedAdorned.clear();
 								break;

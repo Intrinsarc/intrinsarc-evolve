@@ -1,5 +1,7 @@
 package com.hopstepjump.idraw.diagramsupport;
 
+import static com.hopstepjump.idraw.foundation.DiagramChangeActionEnum.*;
+
 import java.util.*;
 
 import com.hopstepjump.gem.*;
@@ -267,21 +269,21 @@ public final class BasicDiagramGem implements Gem
 			return stateStack.size();
 		}
 		
-		private void addToCurrentTransaction(UndoRedoAction action, PersistentFigure p)
+		private void addToCurrentTransaction(DiagramChangeActionEnum action, PersistentFigure p)
 		{
 			if (!inUndoRedo)
 			{
 				UndoRedoStates current = ensureCurrent();
-				if (action.equals(UndoRedoAction.ADD))
+				if (action == ADD)
 				{
 					before.put(p.getId(), p);
 					current.addState(new UndoRedoState(action, p));
 //					println("$$ -- add of " + p.getRecreator() + ", id = " + p.getId());
 				}
 				else
-				if (action.equals(UndoRedoAction.REMOVE))
+				if (action == REMOVE)
 				{
-					current.addState(new UndoRedoState(UndoRedoAction.REMOVE, p));
+					current.addState(new UndoRedoState(action, p));
 //					println("$$ -- removal of " + p.getRecreator() + ", id = " + p.getId());
 				}
 			}
@@ -324,7 +326,7 @@ public final class BasicDiagramGem implements Gem
 					before.put(id, p);
 					if (forceAdjust.contains(id) || !p.equals(bp))
 					{
-						UndoRedoState state = new UndoRedoState(UndoRedoAction.MODIFY, bp);
+						UndoRedoState state = new UndoRedoState(MODIFY, bp);
 						state.setAfterPersistentFigure(p);
 						current.addState(state);
 						internallyAdjusted(f);
@@ -489,12 +491,12 @@ public final class BasicDiagramGem implements Gem
 		private int addPersistentFigures(List<UndoRedoState> states, int current, int direction)
 		{
 			List<PersistentFigure> pfigs = new ArrayList<PersistentFigure>();
-			UndoRedoAction act = states.get(current).getAction();
+			DiagramChangeActionEnum act = states.get(current).getAction();
 			int size = states.size();
 			while (current >= 0 && current < size)
 			{
 				UndoRedoState state = states.get(current);
-				if (!state.getAction().equals(act))
+				if (state.getAction() != act)
 					break;
 
 				pfigs.add(state.getPersistentFigure());
@@ -509,11 +511,11 @@ public final class BasicDiagramGem implements Gem
 		public void add(FigureFacet figure)
 	  {
 	  	Validator.validateFigure(figure);
-	  	addToCurrentTransaction(UndoRedoAction.ADD, figure.makePersistentFigure());
 	  	
 			setModified(true);
 		  figures.put(figure.getId(), figure);
-		  haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADD);
+		  haveModification(figure, ADD);
+	  	addToCurrentTransaction(ADD, figure.makePersistentFigure());
 	      
 	    // if this is a container, add contained
 	    ContainerFacet container = figure.getContainerFacet();
@@ -530,9 +532,10 @@ public final class BasicDiagramGem implements Gem
       FigureFacet removed = figures.remove(figure.getId());
       if (removed != null)
       {
-        PersistentFigure p = figure.makePersistentFigure();
+        PersistentFigure p = removed.makePersistentFigure();
   			setModified(true);
-  	    haveModification(removed, DiagramChange.MODIFICATIONTYPE_REMOVE);
+  	    haveModification(removed, REMOVE);
+  	  	addToCurrentTransaction(REMOVE, p);
   	      
   	    // if this is a container, remove contained
   	    ContainerFacet container = removed.getContainerFacet();
@@ -542,7 +545,6 @@ public final class BasicDiagramGem implements Gem
   	    	while (iter.hasNext())
   					remove(iter.next());
   	    }
-  	  	addToCurrentTransaction(UndoRedoAction.REMOVE, p);
         removed.cleanUp();
       }
 	  }
@@ -552,7 +554,7 @@ public final class BasicDiagramGem implements Gem
 			setModified(true);
 			// make sure we don't generate adjustment changes before the element is on the diagram
 			if (contains(figure))
-		  	haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADJUST);
+		  	haveModification(figure, MODIFY);
 	  }
 	
 	  public boolean contains(FigureFacet figure)
@@ -623,7 +625,7 @@ public final class BasicDiagramGem implements Gem
 		}
 
 
-	  private synchronized void haveModification(FigureFacet figure, int modificationType)
+	  private synchronized void haveModification(FigureFacet figure, DiagramChangeActionEnum modificationType)
 	  {
 	    // buffer the change, until processBufferedsendChangesToListeners() is called
 	    if (generateChanges && source == null)
@@ -676,7 +678,7 @@ public final class BasicDiagramGem implements Gem
 			    if (postProcessor != null)
 			    	postProcessor.postProcess(diagramFacet);
 					
-	        changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
+	        changes.add(new DiagramChange(null, RESYNC));
 				}
 			}
 			else
@@ -751,7 +753,7 @@ public final class BasicDiagramGem implements Gem
 				{
 					public void addedFigure(FigureFacet figure)
 					{
-						haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADD);
+						haveModification(figure, ADD);
 						if (needToOffset || generateFullAdjustments)
 							addedFigures.add(figure);
 					}
@@ -759,14 +761,14 @@ public final class BasicDiagramGem implements Gem
 					{
 						if (!generateFullAdjustments)
 						{
-							haveModification(link.getAnchor1().getFigureFacet(), DiagramChange.MODIFICATIONTYPE_ADJUST);
-							haveModification(link.getAnchor2().getFigureFacet(), DiagramChange.MODIFICATIONTYPE_ADJUST);
+							haveModification(link.getAnchor1().getFigureFacet(), MODIFY);
+							haveModification(link.getAnchor2().getFigureFacet(), MODIFY);
 						}
 					}
 					public void addedToContainer(ContainerFacet container)
 					{
 						if (!generateFullAdjustments)
-							haveModification(container.getFigureFacet(), DiagramChange.MODIFICATIONTYPE_ADJUST);
+							haveModification(container.getFigureFacet(), MODIFY);
 					}
 				});
 				
@@ -775,8 +777,8 @@ public final class BasicDiagramGem implements Gem
 			{
 				for (FigureFacet figure : addedFigures)
 				{
-					haveModification(figure, DiagramChange.MODIFICATIONTYPE_ADD);
-					addToCurrentTransaction(UndoRedoAction.ADD, figure.makePersistentFigure());
+					haveModification(figure, ADD);
+					addToCurrentTransaction(ADD, figure.makePersistentFigure());
 				}
 			}
 
@@ -835,7 +837,7 @@ public final class BasicDiagramGem implements Gem
     public void resyncViews()
     { 
         changes.clear();
-        changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
+        changes.add(new DiagramChange(null, RESYNC));
         sendChangesToListeners();
     }
     
@@ -854,7 +856,7 @@ public final class BasicDiagramGem implements Gem
 			generateChanges = true;
 			
   		changes.clear();
-  	  changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
+  	  changes.add(new DiagramChange(null, RESYNC));
 		}
     
     public void regenerate(PersistentDiagram refreshedPersistentDiagram)
@@ -872,7 +874,7 @@ public final class BasicDiagramGem implements Gem
       generateChanges = true;
       
       changes.clear();
-      changes.add(new DiagramChange(null, DiagramChange.MODIFICATIONTYPE_RESYNC));
+      changes.add(new DiagramChange(null, RESYNC));
     }
 
 		/**

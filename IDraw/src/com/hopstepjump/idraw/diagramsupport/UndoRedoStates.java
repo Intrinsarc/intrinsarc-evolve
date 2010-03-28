@@ -43,18 +43,7 @@ public class UndoRedoStates
 		for (UndoRedoState s : states)
 		{
 			PersistentFigure pf = s.getPersistentFigure();
-			switch (s.getAction())
-			{
-			case ADD:
-				System.out.println("$$ add " + pf.getRecreator());
-				break;
-			case REMOVE:
-				System.out.println("$$ remove " + pf.getRecreator());
-				break;
-			case MODIFY:
-				System.out.println("$$ modify " + pf.getRecreator());
-				break;
-			}
+			System.out.println("$$ " + s.getAction() + ", " + pf.getRecreator());
 		}
 	}
 }
