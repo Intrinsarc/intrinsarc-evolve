@@ -687,6 +687,7 @@ public final class BasicNamespaceNodeGem implements Gem
 		 */
 		public void addToPersistentProperties(PersistentProperties properties)
 		{
+			properties.add(new PersistentProperty("name", name));
 			properties.add(new PersistentProperty("owner", owner));
 			properties.add(new PersistentProperty("supC", suppressContents, false));
 			properties.add(new PersistentProperty("tlOff", rememberedTLOffset, new UDimension(0,0)));
@@ -738,18 +739,13 @@ public final class BasicNamespaceNodeGem implements Gem
 
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
       final int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(figureFacet, subject);
-      if (!subject.getName().equals(name))
-      {
-      	name = subject.getName();
-      	figureFacet.getDiagram().forceAdjust(figureFacet);
-      }
-
       if (shouldBeDisplayingOwningPackage == showOwningPackage &&
           subject.getName().equals(name) && subject.getNamespace().getName().equals(owner) &&
           stereotypeHashcode == actualStereotypeHashcode)
 				return;
 			
 			// set the new variables
+    	name = subject.getName();
 			owner = GlobalSubjectRepository.repository.findOwningStratum(subject).getName();
 			showOwningPackage = shouldBeDisplayingOwningPackage;
       stereotypeHashcode = actualStereotypeHashcode;
@@ -967,7 +963,7 @@ public final class BasicNamespaceNodeGem implements Gem
 	{
 		PersistentProperties properties = pfig.getProperties();
 		subject = (Namespace) pfig.getSubject();
-    name = subject.getName();
+    name = properties.retrieve("name", "").asString();;
 		owner = properties.retrieve("owner").asString();
 		suppressContents = properties.retrieve("supC", false).asBoolean();
 		rememberedTLOffset = properties.retrieve("tlOff", new UDimension(0,0)).asUDimension();

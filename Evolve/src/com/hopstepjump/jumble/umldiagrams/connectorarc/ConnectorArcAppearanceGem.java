@@ -77,7 +77,8 @@ public class ConnectorArcAppearanceGem implements Gem
 	{
 		subject = (Connector) pfig.getSubject();
     directed = pfig.getProperties().retrieve("directed", false).asBoolean();
-    portLink = subject != null ? subject.getKind().equals(ConnectorKind.PORT_LINK_LITERAL) : false;
+    portLink = pfig.getProperties().retrieve("portLink", false).asBoolean();
+    delegate = pfig.getProperties().retrieve("delegate", false).asBoolean();
 	}
 
 	public ClipboardCommandsFacet getClipboardCommandsFacet()
@@ -585,6 +586,8 @@ public class ConnectorArcAppearanceGem implements Gem
   	public void addToPersistentProperties(PersistentProperties properties)
   	{
   		properties.add(new PersistentProperty("directed", directed, false));
+  		properties.add(new PersistentProperty("portLink", portLink, false));
+  		properties.add(new PersistentProperty("delegate", delegate, false));
   	}
 
     public void addToContextMenu(JPopupMenu menu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)

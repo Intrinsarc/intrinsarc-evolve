@@ -403,7 +403,7 @@ public final class BasicDiagramGem implements Gem
 		
 		public void completeUndoTransaction()
 		{
-			UndoRedoStates current = ensureCurrent();
+/*			UndoRedoStates current = ensureCurrent();
 			int s = current.getSize();
 			formViewUpdate();
 			commitTransaction();
@@ -411,14 +411,14 @@ public final class BasicDiagramGem implements Gem
 			if (s != t)
 				println("$$ bad undo, alterations = " + t);
 			pos--;
-		}
+*/		}
 		
-		private void formViewUpdate()
+/*		private void formViewUpdate()
 		{
 	    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
 	      formViewUpdate(pass, false);
 		}
-
+*/
 		private void handleModify(PersistentFigure p)
 		{
 			FigureFacet f = figures.get(p.getId());
@@ -473,13 +473,15 @@ public final class BasicDiagramGem implements Gem
 		
 		public void completeRedoTransaction()
 		{
-			UndoRedoStates current = ensureCurrent();
+/*			UndoRedoStates current = ensureCurrent();
 			int s = current.getSize();
 			formViewUpdate();
 			commitTransaction();
 			int t = current.getSize();
 			if (s != t)
 				println("$$ bad redo, alterations = " + t);
+*/
+			pos++;	
 		}
 		
 		void println(String str)
@@ -511,11 +513,11 @@ public final class BasicDiagramGem implements Gem
 		public void add(FigureFacet figure)
 	  {
 	  	Validator.validateFigure(figure);
-	  	addToCurrentTransaction(ADD, figure.makePersistentFigure());
 	  	
 			setModified(true);
 		  figures.put(figure.getId(), figure);
 		  haveModification(figure, ADD);
+	  	addToCurrentTransaction(ADD, figure.makePersistentFigure());
 	      
 	    // if this is a container, add contained
 	    ContainerFacet container = figure.getContainerFacet();
@@ -535,6 +537,7 @@ public final class BasicDiagramGem implements Gem
         PersistentFigure p = removed.makePersistentFigure();
   			setModified(true);
   	    haveModification(removed, REMOVE);
+  	  	addToCurrentTransaction(REMOVE, p);
   	      
   	    // if this is a container, remove contained
   	    ContainerFacet container = removed.getContainerFacet();
@@ -544,7 +547,6 @@ public final class BasicDiagramGem implements Gem
   	    	while (iter.hasNext())
   					remove(iter.next());
   	    }
-  	    addToCurrentTransaction(REMOVE, p);
         removed.cleanUp();
       }
 	  }

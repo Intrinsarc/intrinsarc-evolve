@@ -792,7 +792,10 @@ public final class ClassifierNodeGem implements Gem
     {
       SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
       if (payload != null && payload.getSubject() != null)
+      {
           subject = (Classifier) payload.getSubject();
+          name = subject.getName();
+      }
     }
 		
 		public FigureFacet getFigureFacet()

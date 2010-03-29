@@ -424,7 +424,7 @@ public class ComponentMiniAppearanceGem implements Gem
 		{
 			// just change the name
 			subject.setName(text);
-			return new SetTextPayload(null);
+			return new SetTextPayload(subject);
 		}
 
 		ElementSelection sel = (ElementSelection) listSelection;

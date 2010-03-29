@@ -83,6 +83,7 @@ public final class ToolCoordinatorGem implements Gem
   private ZCanvas currentCanvas;
   private IEasyDock dock;
   private Semaphore sema = new Semaphore(1);
+  private Semaphore sema2 = new Semaphore(1);
   
   public ToolCoordinatorGem()
   {
@@ -553,14 +554,32 @@ public final class ToolCoordinatorGem implements Gem
 			else
 			{
   			sema.acquireUninterruptibly();
+				sema2.acquireUninterruptibly();
 				new Thread(new Runnable()
 		    {
 		    	public void run()
 		    	{
+		    		try
+						{
+		    			// if sema2.release hasn't run in 400ms, then give up and run anyway
+		    			// -- we are most likely waiting in starttransaction
+							sema2.tryAcquire(400, TimeUnit.MILLISECONDS);
+						}
+		    		catch (InterruptedException e)
+						{
+						}
 		    		runnable.run();
+		    		sema2.release();
 		  			sema.release();
 		    	}
 		    }).start();
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						sema2.release();
+					}
+				});
 			}
 		}
 		
