@@ -101,6 +101,7 @@ public final class ClassifierNodeGem implements Gem
   private ShowAsStateFacet showAsStateFacet = new ShowAsStateFacetImpl();
 	private LocationFacet locationFacet = new LocationFacetImpl();
 	private VisualLockFacetImpl lockFacet = new VisualLockFacetImpl();
+	private AutoSizedFacetImpl autosizedFacet = new AutoSizedFacetImpl();
 	private BasicNodeFigureFacet figureFacet;
 	private ClassifierMiniAppearanceFacet miniAppearanceFacet;
   private boolean showStereotype = true;
@@ -633,23 +634,23 @@ public final class ClassifierNodeGem implements Gem
 		}		
 	}
 	
-	/**
-	 * @see com.giroway.jumble.nodefacilities.resizebase.CmdAutoSizeable#autoSize(boolean)
-	 */
-	public void autoSize(boolean newAutoSized)
+	private class AutoSizedFacetImpl implements AutoSizedFacet
 	{
-		// make the change
-		autoSized = newAutoSized;
-		
-		contents.getFigureFacet().setShowing(isContentsShowing());
-		
-		// we are about to autosize, so need to make a resizings
-		ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-		resizings.markForResizing(figureFacet);
-		
-		UBounds autoBounds = getAutoSizedBounds(newAutoSized);
-		resizings.setFocusBounds(autoBounds);		
-		resizings.end();
+		public void autoSize(boolean newAutoSized)
+		{
+			// make the change
+			autoSized = newAutoSized;
+			
+			contents.getFigureFacet().setShowing(isContentsShowing());
+			
+			// we are about to autosize, so need to make a resizings
+			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+			resizings.markForResizing(figureFacet);
+			
+			UBounds autoBounds = getAutoSizedBounds(newAutoSized);
+			resizings.setFocusBounds(autoBounds);		
+			resizings.end();
+		}
 	}
 	
 	public JMenuItem getAutoSizedMenuItem(final ToolCoordinatorFacet coordinator)
@@ -665,7 +666,7 @@ public final class ClassifierNodeGem implements Gem
 				coordinator.startTransaction(
 				  (autoSized ? "unautosized " : "autosized ") + figureName,
 				  (!autoSized ? "unautosized " : "autosized ") + figureName);
-				autoSize(!autoSized);
+				autosizedFacet.autoSize(!autoSized);
 				coordinator.commitTransaction();
 			}
 		});
@@ -1256,7 +1257,7 @@ public final class ClassifierNodeGem implements Gem
 			
 			if (!diagramReadOnly)
 			{
-  			popup.add(figureFacet.getBasicNodeAutoSizedFacet().getAutoSizedMenuItem(coordinator));
+  			popup.add(getAutoSizedMenuItem(coordinator));
         Utilities.addSeparator(popup);        
 			}
 			
@@ -2945,6 +2946,7 @@ public final class ClassifierNodeGem implements Gem
     figureFacet.registerDynamicFacet(stylableFacet, StylableFacet.class);
     figureFacet.registerDynamicFacet(deletedConnectorUuidsFacet, SimpleDeletedUuidsFacet.class);
     figureFacet.registerDynamicFacet(lockFacet, VisualLockFacet.class);
+    figureFacet.registerDynamicFacet(autosizedFacet, AutoSizedFacet.class);
     registerAdorner();
 	}
 	

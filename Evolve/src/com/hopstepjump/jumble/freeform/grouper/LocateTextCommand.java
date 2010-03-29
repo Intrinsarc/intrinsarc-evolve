@@ -28,7 +28,6 @@ public class LocateTextCommand extends AbstractCommand
 
 	public void unExecute()
 	{
-		getLocatable().unLocateText(memento);
 	}
 
 	private LocateTextFacet getLocatable()

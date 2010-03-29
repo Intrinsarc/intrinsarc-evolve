@@ -12,6 +12,5 @@ import com.hopstepjump.gem.*;
  */
 public interface AutoSizedFacet extends Facet
 {
-  public Object autoSize(boolean autoSized);
-  public void unAutoSize(Object memento);
+  public void autoSize(boolean autoSized);
 }

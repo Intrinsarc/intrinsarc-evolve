@@ -7,7 +7,6 @@ import javax.swing.*;
 import com.hopstepjump.idraw.diagramsupport.moveandresize.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
-import com.hopstepjump.idraw.nodefacilities.resize.*;
 
 /**
  *
@@ -36,7 +35,7 @@ public final class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFace
 	/**
 	 * @see com.giroway.jumble.nodefacilities.resizebase.CmdAutoSizeable#autoSize(boolean)
 	 */
-	public Object autoSize(boolean newAutoSized)
+	public void autoSize(boolean newAutoSized)
 	{
 		// make the change
 		autoSized = newAutoSized;
@@ -49,16 +48,8 @@ public final class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFace
 			resizings.setFocusBounds(state.appearanceFacet.getAutoSizedBounds(autoSized));
 			resizings.end();
 		}
-		return null;
 	}
 
-	/**
-	 * @see com.giroway.jumble.nodefacilities.resizebase.CmdAutoSizeable#unAutoSize(Object)
-	 */
-	public void unAutoSize(Object memento)
-	{
-	}
-	
 	public JMenuItem getAutoSizedMenuItem(final ToolCoordinatorFacet coordinator)
 	{
 		// for autosizing
@@ -72,7 +63,7 @@ public final class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFace
 				coordinator.startTransaction(
 						(autoSized ? "unautosized " : "autosized ") + state.figureFacet.getFigureName(),
 						(!autoSized ? "unautosized " : "autosized ") + state.figureFacet.getFigureName());
-				NodeAutoSizeTransaction.autoSize(state.figureFacet, !autoSized);
+				autoSize(!autoSized);
 				coordinator.commitTransaction();
 			}
 		});

@@ -66,10 +66,6 @@ public class GrouperNodeGem
       fillColor = newFill;
       return null;
     }
-
-    public void unSetFill(Object memento)
-    {
-    }
   } 
   
 	private class GroupBoundsDisplayer extends ManipulatorAdapter
@@ -178,13 +174,6 @@ public class GrouperNodeGem
 			textAtTop = inTop;
 			figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
 			return null;
-		}
-	
-		/*
-		 * @see com.hopstepjump.jumble.freeform.grouper.LocateTextFacet#unLocateText(java.lang.Object)
-		 */
-		public void unLocateText(Object memento)
-		{
 		}
 	}
 

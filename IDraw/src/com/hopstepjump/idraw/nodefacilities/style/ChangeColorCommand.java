@@ -7,7 +7,6 @@ import com.hopstepjump.idraw.foundation.*;
 public final class ChangeColorCommand extends AbstractCommand
 {
   private FigureReference stylable;
-  private Object memento;
   private Color fill;
 
   public ChangeColorCommand(FigureReference stylable, Color fill, String executeDescription, String unExecuteDescription)
@@ -19,12 +18,11 @@ public final class ChangeColorCommand extends AbstractCommand
 
   public void execute(boolean isTop)
   {
-    memento = getStylable().setFill(fill);
+    getStylable().setFill(fill);
   }
 
   public void unExecute()
   {
-    getStylable().unSetFill(memento);
   }
 
   private StylableFacet getStylable()

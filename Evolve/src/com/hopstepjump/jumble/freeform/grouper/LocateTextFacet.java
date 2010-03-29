@@ -11,5 +11,4 @@ import com.hopstepjump.gem.*;
 public interface LocateTextFacet extends Facet
 {
 	public Object locateText(boolean inTop);
-	public void unLocateText(Object memento);
 }

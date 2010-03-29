@@ -586,10 +586,9 @@ public class ApplicationWindow extends SmartJFrame
 		{
 			GlobalSubjectRepository.repository.refreshAll();
 			GlobalDiagramRegistry.registry.refreshAllDiagrams();
-			coordinator.startTransaction("refreshed from database", "refreshed from database");
-			coordinator.commitTransaction();
+			coordinator.clearTransactionHistory();
 			popup.displayPopup(REFRESH_ICON, "Refresh",
-					"Refreshed from database", ScreenProperties
+					"Refreshed from database; cleared undo/redo history", ScreenProperties
 							.getUndoPopupColor(), Color.black, 1500, true, commandManager
 							.getTransactionPosition(), commandManager.getTotalTransactions());
 		}
