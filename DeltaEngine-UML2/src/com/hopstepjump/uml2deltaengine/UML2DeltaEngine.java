@@ -22,7 +22,7 @@ public class UML2DeltaEngine implements IDeltaEngine
   {
   }
 
-  public DEObject locateObjectForStereotype(String uuid)
+  public synchronized DEObject locateObjectForStereotype(String uuid)
   {
     // if we converted before, just return this
     DEObject convert = uuidConverted.get(uuid);
@@ -37,7 +37,7 @@ public class UML2DeltaEngine implements IDeltaEngine
   /**
    * returns null if object has no Backbone representation
    */
-  public DEObject locateObject(Object repositoryObject)
+  public synchronized DEObject locateObject(Object repositoryObject)
   {
   	// allow this to also work with BBObjects...
   	if (repositoryObject instanceof DEObject)

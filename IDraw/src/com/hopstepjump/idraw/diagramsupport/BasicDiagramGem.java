@@ -245,7 +245,7 @@ public final class BasicDiagramGem implements Gem
 		public void forceAdjust(FigureFacet figure)
 		{
 			String id = figure.getId();
-			if (!modsAlready.contains(id))
+//			if (!modsAlready.contains(id))
 				forceAdjust.add(id);
 		}
 		
@@ -395,7 +395,7 @@ public final class BasicDiagramGem implements Gem
 							break;
 					}
 				}
-				all.setSealed(false);
+//				all.setSealed(false);
 			}
 			inUndoRedo = false;
 			sendChangesToListeners();
@@ -465,7 +465,7 @@ public final class BasicDiagramGem implements Gem
 						break;
 					}
 				}
-				all.setSealed(false);
+//				all.setSealed(false);
 				inUndoRedo = false;
 				sendChangesToListeners();
 			}
@@ -513,11 +513,12 @@ public final class BasicDiagramGem implements Gem
 		public void add(FigureFacet figure)
 	  {
 	  	Validator.validateFigure(figure);
+	  	addToCurrentTransaction(ADD, figure.makePersistentFigure());
+	  	
 	  	
 			setModified(true);
 		  figures.put(figure.getId(), figure);
 		  haveModification(figure, ADD);
-	  	addToCurrentTransaction(ADD, figure.makePersistentFigure());
 	      
 	    // if this is a container, add contained
 	    ContainerFacet container = figure.getContainerFacet();
@@ -537,7 +538,6 @@ public final class BasicDiagramGem implements Gem
         PersistentFigure p = removed.makePersistentFigure();
   			setModified(true);
   	    haveModification(removed, REMOVE);
-  	  	addToCurrentTransaction(REMOVE, p);
   	      
   	    // if this is a container, remove contained
   	    ContainerFacet container = removed.getContainerFacet();
@@ -547,6 +547,7 @@ public final class BasicDiagramGem implements Gem
   	    	while (iter.hasNext())
   					remove(iter.next());
   	    }
+  	  	addToCurrentTransaction(REMOVE, p);
         removed.cleanUp();
       }
 	  }
@@ -732,14 +733,14 @@ public final class BasicDiagramGem implements Gem
 		 */
 		public void addPersistentFigures(Collection<PersistentFigure> persistentFigures, UDimension offset)
 		{
-			addPersistentFigures(persistentFigures, offset, true, true);
+			addPersistentFigures(persistentFigures, offset, false, true);
 		}
 		
 		public void modifyPersistentFigure(PersistentFigure persistentFigure, UDimension offset)
 		{
 			List<PersistentFigure> pfigs = new ArrayList<PersistentFigure>();
 			pfigs.add(persistentFigure);
-			addPersistentFigures(pfigs, offset, true, false);
+			addPersistentFigures(pfigs, offset, false, false);
 		}
 		
 		public void addPersistentFigures(Collection<PersistentFigure> persistentFigures, UDimension offset, final boolean generateFullAdjustments, boolean add)

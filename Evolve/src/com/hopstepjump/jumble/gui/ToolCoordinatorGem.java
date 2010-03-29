@@ -461,6 +461,7 @@ public final class ToolCoordinatorGem implements Gem
 		
 		public void startTransaction(String redoName, String undoName)
 		{
+			sema2.release();
 			semaBlock();
 			clearDeltaEngine();
 			GlobalSubjectRepository.repository.startTransaction(redoName, undoName);
@@ -561,13 +562,12 @@ public final class ToolCoordinatorGem implements Gem
 		    	{
 		    		try
 						{
-		    			// if sema2.release hasn't run in 400ms, then give up and run anyway
-		    			// -- we are most likely waiting in starttransaction
-							sema2.tryAcquire(400, TimeUnit.MILLISECONDS);
+							Thread.sleep(100);
 						}
 		    		catch (InterruptedException e)
 						{
 						}
+						sema2.acquireUninterruptibly();
 		    		runnable.run();
 		    		sema2.release();
 		  			sema.release();
