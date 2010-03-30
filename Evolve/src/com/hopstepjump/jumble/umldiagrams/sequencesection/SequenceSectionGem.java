@@ -94,7 +94,7 @@ public final class SequenceSectionGem implements Gem
 	  {
 	    // need to resize this also, as the change in text may have affected the size
 	    text = newText;
-	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(newText));
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
 	  }
 	
 		/**

@@ -82,7 +82,8 @@ public final class FreetextNodeGem implements Gem
   
     public void setText(String newText, Object listSelection, boolean unsuppress)
     {
-      text = newText;      
+      text = newText;
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
     }
   
     /**

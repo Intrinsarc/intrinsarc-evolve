@@ -65,7 +65,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   	return name;
   }
 
-  public Object setText(String text, Object listSelection)
+  public String setText(String text, Object listSelection)
   {
     final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository; 
 
@@ -75,7 +75,6 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     // save the name and type
     final ValueSpecification oldLower = typed.getLowerValue();
     final ValueSpecification oldUpper = typed.getUpperValue();
-    final PropertyAccessKind oldReadWriteOnly = typed.getReadWrite();
     final Type oldType = getSubjectType(typed);    
     
     // get the new name and type
@@ -203,9 +202,9 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     }
     
     // resize
-    String finalText = makeNameFromSubject();
-    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(finalText));
-    return null;
+    text = makeNameFromSubject();
+    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
+    return text;
   }
   
   private ValueSpecification getFirst(EList defaultValues)
@@ -215,10 +214,6 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   	return (ValueSpecification) defaultValues.get(0);
 	}
 
-	public void unSetText(Object memento)
-  {
-  }
-  
   private Property getSubject()
   {
     return (Property) figureFacet.getSubject();

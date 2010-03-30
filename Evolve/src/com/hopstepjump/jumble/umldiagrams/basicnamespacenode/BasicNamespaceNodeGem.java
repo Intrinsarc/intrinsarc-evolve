@@ -806,7 +806,11 @@ public final class BasicNamespaceNodeGem implements Gem
       SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
 
       if (payload != null && payload.getSubject() != null)
+      {
           subject = (Namespace) payload.getSubject();
+          name = subject.getName();
+    	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
+      }
     }
 
     public JList formSelectionList(String textSoFar)

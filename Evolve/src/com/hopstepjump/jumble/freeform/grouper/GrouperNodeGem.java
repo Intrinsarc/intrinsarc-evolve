@@ -680,7 +680,9 @@ public class GrouperNodeGem
 	{
     public void setText(String newText, Object listSelection, boolean unsuppress)
     {
-      subject.setBody(newText);     
+      subject.setBody(newText);
+      name = newText;
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
     }
   
 		/**

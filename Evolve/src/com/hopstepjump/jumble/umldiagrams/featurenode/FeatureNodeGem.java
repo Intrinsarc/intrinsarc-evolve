@@ -630,7 +630,7 @@ public final class FeatureNodeGem implements Gem
 
     public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      featureTypeFacet.setText(text, listSelection);
+      name = featureTypeFacet.setText(text, listSelection);
     }
 
     public JList formSelectionList(String textSoFar)

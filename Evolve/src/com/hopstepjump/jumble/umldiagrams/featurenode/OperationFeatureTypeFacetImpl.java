@@ -63,7 +63,7 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
     return UMLNodeText.makeNameFromOperation((Operation) figureFacet.getSubject(), true);
   }
 
-  public Object setText(final String text, Object listSelection)
+  public String setText(final String text, Object listSelection)
   {
     final Operation typed = getSubject();
     
@@ -134,7 +134,7 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
     // resize
     String finalText = makeNameFromSubject();
     figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(finalText));
-    return null;
+    return finalText;
   }
   
   public String makeNameFromSubject()

@@ -791,12 +791,8 @@ public final class ClassifierNodeGem implements Gem
 		
     public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
-      if (payload != null && payload.getSubject() != null)
-      {
-          subject = (Classifier) payload.getSubject();
-          name = subject.getName();
-      }
+      miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
+    	figureFacet.updateViewAfterSubjectChanged(ViewUpdatePassEnum.LAST);      
     }
 		
 		public FigureFacet getFigureFacet()

@@ -23,7 +23,7 @@ public interface FeatureTypeFacet extends Facet
   public String makeShortName(String name);
   public String makeNameFromSubject();
   
-  public Object setText(String text, Object listSelection);
+  public String setText(String text, Object listSelection);
   public void performPostContainerDropTransaction();
   public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner);
   public JMenuItem getReplaceItem(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);

@@ -1043,9 +1043,8 @@ public final class SelectionToolGem implements Gem
 
   private void possibly_exit_ADJUSTING_MANIPULATOR_SUBSTATE(ZMouseEvent relevantManipulatorEvent)
   {
-    // move the manipulator back to the selection layer
-    diagramView.moveManipulatorToSelectionLayer(manipulator);
-
+    // move the manipulator back to the selection layer  	
+  	//diagramView.moveManipulatorToSelectionLayer(manipulator);
     coordinator.toolFinished(relevantManipulatorEvent, true);
     enter_STEADY_STATE();
 

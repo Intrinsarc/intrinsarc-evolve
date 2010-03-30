@@ -242,6 +242,8 @@ public final class NoteNodeGem implements Gem
     public void setText(String newText, Object listSelection, boolean unsuppress)
     {
       subject.setBody(newText);
+      text = subject.getBody();
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
     }
 
     public FigureFacet getFigureFacet()

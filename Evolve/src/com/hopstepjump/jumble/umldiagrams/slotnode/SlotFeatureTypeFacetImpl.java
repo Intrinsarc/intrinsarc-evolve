@@ -21,11 +21,13 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
 {
 	public static final String FIGURE_NAME = "slot";  // for the creator
   private BasicNodeFigureFacet figureFacet;
+	private TextableFacet textableFacet;
   private Pattern pattern = Pattern.compile("(\\w+)\\s*(?:\\(\\s*(.*)\\s*\\)|=\\s*(.*))\\s*");
 
   public SlotFeatureTypeFacetImpl(BasicNodeFigureFacet figureFacet, TextableFacet textableFacet)
   {
     this.figureFacet = figureFacet;
+    this.textableFacet = textableFacet;
   }
   
 	/**
@@ -54,7 +56,7 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
   	return overriddenName != null ? overriddenName : name;
   }
 
-  public Object setText(String text, Object listSelection)
+  public String setText(String text, Object listSelection)
   {
     // make a command to effect the changes
     final Slot slot = getSubject();
@@ -116,7 +118,6 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
 			slot.settable_getValues().clear();
 			if (valueSpec != null)
 				slot.settable_getValues().add(valueSpec);
-      return null;
     }
     else
     {
@@ -125,8 +126,11 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
 			slot.setDefiningFeature(newAttribute);
   		slot.settable_getValues().clear();
   		slot.settable_getValues().addAll(0, values);
-	    return null;
     }
+    
+    String finalText = makeNameFromSubject();
+    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(finalText));
+    return finalText;
   }
   
   private List<ValueSpecification> resolveParameters(Slot slot, String values)

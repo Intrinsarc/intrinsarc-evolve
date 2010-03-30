@@ -9,6 +9,7 @@ import javax.swing.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 import org.eclipse.uml2.impl.*;
+import org.freehep.graphicsio.emf.*;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
@@ -197,7 +198,6 @@ public class PartMiniAppearanceGem implements Gem
       instance.getClassifiers().clear();
       if (newPartType != null)
         instance.getClassifiers().add(newPartType);
-      
       return null;
     }
 

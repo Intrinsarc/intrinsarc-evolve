@@ -56,11 +56,12 @@ import edu.umd.cs.jazz.util.*;
 // xx. remove all adjusted()
 // xx. fix up formviewupdate -- no need to say "updated"
 // xx. synch up diagramchange and undo/redo
+// xx. manipulator problems: text, resizing, arc adjusting, enter on attribute
+// xx. garbage collection
 // 3. fix all commands
-// 4. manipulator problems: text, resizing, arc adjusting, enter on attribute
 // 5. remove any unXXX() methods
 // 7. adding attrs to class makes it go smaller
-// 8. garbage collection
+// -------
 // 10. remove many in subject repository?
 // 11. funny freezes
 // 12. key press not registering initially
