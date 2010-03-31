@@ -108,7 +108,6 @@ public final class ClassifierNodeGem implements Gem
 	
   private String owner = "";
   private SuppressOwningPackageFacet showOwningPackageFacet = new SuppressOwningPackageFacetImpl();
-  private StylableFacet stylableFacet = new StylableFacetImpl();
   private boolean showOwningPackage;
   private boolean forceSuppressOwningPackage = false;
   private int stereotypeHashcode;
@@ -276,20 +275,6 @@ public final class ClassifierNodeGem implements Gem
     return null;
   }
 
-  private class StylableFacetImpl implements StylableFacet
-  {
-    public Object setFill(Color newFill)
-    {
-      Color oldFill = fillColor;
-      fillColor = newFill;
-      return null;
-    }
-
-    public void unSetFill(Object memento)
-    {
-    }
-  }	
-	
 	private class SuppressOwningPackageFacetImpl implements SuppressOwningPackageFacet
 	{
 		/**
@@ -1453,7 +1438,14 @@ public final class ClassifierNodeGem implements Gem
   				popup.add(getDisplayAsIconItem(diagramView, coordinator));
   			if (!isPart)
   				popup.add(getVisualLockItem(diagramView, coordinator));
-        popup.add(BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet, fillColor));
+        popup.add(BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
+        		new SetFillCallback()
+						{
+							public void setFill(Color fill)
+							{
+								fillColor = fill;
+							}
+						}));
       }
       
 			return popup;
@@ -1672,12 +1664,11 @@ public final class ClassifierNodeGem implements Gem
 						public void actionPerformed(ActionEvent e)
 						{
 							// toggle the suppress attributes flag
-							Command lockCommand = new VisualLockCommand(
-								figureFacet.getFigureReference(),
-                !locked,
-                locked ? "Unlocked visuals" : "Locked visuals",
-                locked ? "Locked visuals" : "Unlocked visuals");
-							coordinator.executeCommandAndUpdateViews(lockCommand);
+							coordinator.startTransaction(
+										locked ? "Unlocked visuals" : "Locked visuals",
+	                  locked ? "Locked visuals" : "Unlocked visuals");
+							locked = !locked;
+							coordinator.commitTransaction();
 						}
 					});
 			return lockItem;
@@ -2913,7 +2904,6 @@ public final class ClassifierNodeGem implements Gem
 		figureFacet.registerDynamicFacet(showOwningPackageFacet, SuppressOwningPackageFacet.class);
 		figureFacet.registerDynamicFacet(switchableFacet, SwitchSubjectFacet.class);
 		// override the default autosizing mechanism, which doesn't work for this
-    figureFacet.registerDynamicFacet(stylableFacet, StylableFacet.class);
     figureFacet.registerDynamicFacet(deletedConnectorUuidsFacet, SimpleDeletedUuidsFacet.class);
     figureFacet.registerDynamicFacet(lockFacet, VisualLockFacet.class);
     figureFacet.registerDynamicFacet(autosizedFacet, AutoSizedFacet.class);

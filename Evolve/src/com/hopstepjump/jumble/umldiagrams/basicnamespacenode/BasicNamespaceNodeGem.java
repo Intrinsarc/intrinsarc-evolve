@@ -70,7 +70,6 @@ public final class BasicNamespaceNodeGem implements Gem
   private ResizeVetterFacetImpl resizeVetterFacet = new ResizeVetterFacetImpl();
   private BasicNamespaceNodeFacet namespaceFacet = new BasicNamespaceNodeFacetImpl();
   private DisplayAsIconFacet displayAsIconFacet = new DisplayAsIconFacetImpl();
-  private StylableFacet stylableFacet = new StylableFacetImpl();
   private LocationFacet locationFacet = new LocationFacetImpl();
   private BasicNamespaceMiniAppearanceFacet miniAppearanceFacet;
   private BasicNamespaceAppearanceFacet featurelessClassifierAppearanceFacet;
@@ -82,21 +81,6 @@ public final class BasicNamespaceNodeGem implements Gem
   private boolean forceSuppressOwningPackage = false;
   private int stereotypeHashcode;
 
-  private class StylableFacetImpl implements StylableFacet
-  {
-    public Object setFill(Color newFill)
-    {
-      Color oldFill = fillColor;
-      fillColor = newFill;
-      return oldFill;
-    }
-
-    public void unSetFill(Object memento)
-    {
-      fillColor = (Color) memento;
-    }
-  }
-  
 	private class LocationFacetImpl implements LocationFacet
 	{
 		/**
@@ -508,7 +492,14 @@ public final class BasicNamespaceNodeGem implements Gem
   				popup.add(getDisplayAsIconItem(diagramView, coordinator));
   			}
   			popup.add(getSuppressOwnerItem(diagramView, coordinator));
-        popup.add(getChangeColorItem(diagramView, coordinator, figureFacet, fillColor));
+        popup.add(getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
+        		new SetFillCallback()
+						{							
+							public void setFill(Color fill)
+							{
+								fillColor = fill;
+							}
+						}));
         
 				// add expansions
 				popup.addSeparator();
@@ -1116,7 +1107,6 @@ public final class BasicNamespaceNodeGem implements Gem
   	figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
   	figureFacet.registerDynamicFacet(showOwningPackageFacet, SuppressOwningPackageFacet.class);
   	figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
-    figureFacet.registerDynamicFacet(stylableFacet, StylableFacet.class);
 	}
 	
 	public void connectBasicNamespaceMiniAppearanceFacet(BasicNamespaceMiniAppearanceFacet miniAppearanceFacet)
@@ -1149,7 +1139,8 @@ public final class BasicNamespaceNodeGem implements Gem
 		return namespaceFacet;
 	}
 
-  public static JMenuItem getChangeColorItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator, final FigureFacet figureFacet, final Color fillColor)
+  public static JMenuItem getChangeColorItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator, final FigureFacet figureFacet, final Color fillColor,
+  		final SetFillCallback stylable)
   {
     // for adding operations
     JMenuItem chooseColorItem = new JMenuItem("Select color");
@@ -1169,13 +1160,11 @@ public final class BasicNamespaceNodeGem implements Gem
         		null);
         if (chosen == 0)
         {
-          ChangeColorCommand changeColor =
-            new ChangeColorCommand(
-              figureFacet.getFigureReference(),
-              chooser.getColor(),
+        	coordinator.startTransaction(
               "Changed fill color",
               "Reverted fill color");
-          coordinator.executeCommandAndUpdateViews(changeColor);
+        	stylable.setFill(chooser.getColor());
+          coordinator.commitTransaction();
         }
       }
     });

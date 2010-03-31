@@ -104,9 +104,4 @@ public final class BasicArcGem implements Gem
   {
     state.clipboardCommandsFacet = clipboardCommandsFacet;
   }
-  
-  public CurvableFacet getCurvableFacet()
-  {
-    return state.curvableFacet;
-  }
 }

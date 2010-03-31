@@ -29,24 +29,16 @@ public final class BasicArcFigureGem implements Gem
 	private BasicArcState state;
 	private Map<Class<?>, Facet> dynamicFacets = new HashMap<Class<?>, Facet>();
 	private ClipboardFacet clipFacet = new ClipboardFacetImpl();
-	private CurvableFacet curvableFacet = new CurvableFacetImpl();
   private FigureFacet figureFacet = new BasicArcFigureFacetImpl();
 	
 	public BasicArcFigureGem(BasicArcState state)
 	{
 		this.state = state;
-		figureFacet.registerDynamicFacet(curvableFacet, CurvableFacet.class);
-    state.curvableFacet = curvableFacet;
 	}
   
   public FigureFacet getFigureFacet()
   {
     return figureFacet;
-  }
-  
-  public CurvableFacet getCurvableFacet()
-  {
-    return curvableFacet;
   }
   
   public BasicArcFigureGem(PersistentProperties properties, BasicArcState state)
@@ -61,31 +53,7 @@ public final class BasicArcFigureGem implements Gem
     state.calculatedPoints = new CalculatedArcPoints(null, null, virtualPoint, Arrays.asList(allPoints));
   }
 
-  private class CurvableFacetImpl implements CurvableFacet
-  {
-    public Object curve(boolean curved)
-    {
-      makeStyle(curved);
-      makeAndExecuteResizingCommand();
-      return null;
-    }
-
-    public void unCurve(Object memento)
-    {
-    }
-
-    private void makeStyle(boolean curved)
-    {
-      state.curved = curved;
-    }
-    
-    public boolean isCurved()
-    {
-      return state.curved;
-    }
-  }
-
-  public void makeAndExecuteResizingCommand()
+  public void makeAndExecuteResizingTransaction()
   {
     // this method should only be used inside a command's execution
     ResizingFiguresGem gem = new ResizingFiguresGem(null, state.diagram);
@@ -351,13 +319,12 @@ public final class BasicArcFigureGem implements Gem
   				// toggle the autosized flag (as a command)
   				String figureName = state.figureFacet.getFigureName();
   				boolean curved = state.curved;
-  				Command curveCommand =
-  					new ArcCurveCommand(
-  						state.figureFacet.getFigureReference(),
-  						!curved,
+  				coordinator.startTransaction(
   						(curved ? "uncurved " : "curved ") + figureName,
   						(curved ? "curved " : "uncurved ") + figureName);
-  				coordinator.executeCommandAndUpdateViews(curveCommand);
+  				state.curved = !curved;
+  				makeAndExecuteResizingTransaction();
+  				coordinator.commitTransaction();
   			}
   		});
   		return curvedItem;

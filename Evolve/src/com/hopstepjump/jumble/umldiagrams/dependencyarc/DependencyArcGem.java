@@ -36,7 +36,6 @@ public class DependencyArcGem implements Gem
   private AdvancedArcFacet advancedFacet = new AdvancedArcFacetImpl();
   private LinkedTextOriginFacet linkedTextOriginFacet = new LinkedTextOriginFacetImpl();
   private ContainerFacet containerFacet = new ContainerFacetImpl();
-  private CurvableFacet curvableFacet;
   private FigureFacet figureFacet;
   private Dependency subject;
   private String name = "";
@@ -69,11 +68,6 @@ public class DependencyArcGem implements Gem
 	public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
   {
     return basicArcAppearanceFacet;
-  }
-  
-  public void connectCurvableFacet(CurvableFacet curvableFacet)
-  {
-    this.curvableFacet = curvableFacet;
   }
   
   public void connectFigureFacet(FigureFacet figureFacet)
@@ -326,7 +320,7 @@ public class DependencyArcGem implements Gem
       boolean largeSocketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT_LARGE);
       
       if (socketStyle || largeSocketStyle)
-        return formSocketAppearance(mainArc, start, second, secondLast, last, calculated, largeSocketStyle);
+        return formSocketAppearance(mainArc, start, second, secondLast, last, calculated, largeSocketStyle, curved);
       else
         return formDependencyAppearance(mainArc, start, second, secondLast, last, calculated, color);
     }
@@ -338,7 +332,8 @@ public class DependencyArcGem implements Gem
         UPoint secondLast,
         UPoint last,
         CalculatedArcPoints calculated,
-        boolean largeSocketStyle)
+        boolean largeSocketStyle,
+        boolean curved)
     {
       ZGroup group = new ZGroup();
       UDimension offset = new UDimension(4, 4);
@@ -405,7 +400,7 @@ public class DependencyArcGem implements Gem
       }
       
       // make a (possibly curved) line
-      ZShape mainLine = CalculatedArcPoints.makeConnection(changedPoints, curvableFacet.isCurved());
+      ZShape mainLine = CalculatedArcPoints.makeConnection(changedPoints, curved);
 
       // add the thin line
       group.addChild(new ZVisualLeaf(mainLine));

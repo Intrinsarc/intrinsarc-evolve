@@ -54,7 +54,6 @@ public class DependencyCreatorGem implements Gem
       DependencyArcGem requiredGem = new DependencyArcGem(
       		new PersistentFigure(figureId, null, subject, properties));
       gem.connectBasicArcAppearanceFacet(requiredGem.getBasicArcAppearanceFacet());
-      requiredGem.connectCurvableFacet(gem.getCurvableFacet());
 	    gem.connectContainerFacet(requiredGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(requiredGem.getAdvancedArcFacet());
 	    requiredGem.connectFigureFacet(gem.getFigureFacet());
@@ -78,7 +77,6 @@ public class DependencyCreatorGem implements Gem
       // instantiate to use conventional facets
       BasicArcGem gem = new BasicArcGem(this, diagram, pfig);
       DependencyArcGem requiredGem = new DependencyArcGem(pfig);
-      requiredGem.connectCurvableFacet(gem.getCurvableFacet());
 	    gem.connectContainerFacet(requiredGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(requiredGem.getAdvancedArcFacet());
       requiredGem.connectFigureFacet(gem.getFigureFacet());

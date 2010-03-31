@@ -26,7 +26,6 @@ final class BasicArcState implements Serializable
 	LinkingFacet            linkingFacet;
 	FigureFacet             figureFacet;
 	BasicArcAppearanceFacet appearanceFacet;
-  CurvableFacet           curvableFacet;
   
 	/** anchor facet is optional */
   AnchorFacet             anchorFacet;

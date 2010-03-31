@@ -56,18 +56,8 @@ public class GrouperNodeGem
 	private TextableFacetImpl textableFacet = new TextableFacetImpl();
 	private ResizeVetterFacetImpl resizeVetterFacet = new ResizeVetterFacetImpl();
 	private LocateTextFacet locateTextFacet = new LocateTextFacetImpl();
-  private StylableFacet stylableFacet = new StylableFacetImpl();
   private Comment subject = null;
 
-  private class StylableFacetImpl implements StylableFacet
-  {
-    public Object setFill(Color newFill)
-    {
-      fillColor = newFill;
-      return null;
-    }
-  } 
-  
 	private class GroupBoundsDisplayer extends ManipulatorAdapter
 	{
 		private ZGroup diagramLayer;
@@ -158,7 +148,6 @@ public class GrouperNodeGem
 		this.figureFacet = facet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
 		figureFacet.registerDynamicFacet(locateTextFacet, LocateTextFacet.class);
-    figureFacet.registerDynamicFacet(stylableFacet, StylableFacet.class);
 	}
 
 	private class LocateTextFacetImpl implements LocateTextFacet
@@ -390,7 +379,14 @@ public class GrouperNodeGem
   			popup.add(figureFacet.getBasicNodeAutoSizedFacet().getAutoSizedMenuItem(coordinator));
         Utilities.addSeparator(popup);
   			popup.add(getTextAtTopMenuItem(coordinator));
-        popup.add(BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet, fillColor));
+        popup.add(BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
+        		new SetFillCallback()
+						{							
+							public void setFill(Color fill)
+							{
+								fillColor = fill;
+							}
+						}));
 			}
 			return popup;
 		}

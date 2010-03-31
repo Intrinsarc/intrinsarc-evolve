@@ -44,9 +44,6 @@ public class AssociationArcAppearanceGem implements Gem
   private boolean unidirectional;
   private BasicArcAppearanceFacet appearanceFacet = new BasicArcAppearanceFacetImpl();
   private FigureFacet figureFacet;
-  private ChangeUnidirectionalityFacet unidirectionalFacet = new ChangeUnidirectionalityFacetImpl();
-  private ChangeAssociationTypeFacet associationTypeFacet = new ChangeAssociationTypeFacetImpl();
-  
   
   public AssociationArcAppearanceGem(PersistentFigure pfig)
   {
@@ -68,37 +65,9 @@ public class AssociationArcAppearanceGem implements Gem
   public void connectFigureFacet(FigureFacet figureFacet)
   {
     this.figureFacet = figureFacet;
-    figureFacet.registerDynamicFacet(unidirectionalFacet, ChangeUnidirectionalityFacet.class);
-    figureFacet.registerDynamicFacet(associationTypeFacet, ChangeAssociationTypeFacet.class);
   }
   
   
-  private class ChangeUnidirectionalityFacetImpl implements ChangeUnidirectionalityFacet
-  {
-    public Object setUnidirectionality(boolean newUnidirectional)
-    {
-      unidirectional = newUnidirectional;
-      return null;
-    }
-
-    public void unSetUnidirectionality(Object memento)
-    {
-    }    
-  }
-  
-  private class ChangeAssociationTypeFacetImpl implements ChangeAssociationTypeFacet
-  {
-    public Object setAssociationType(int newType)
-    {
-      type = newType;
-      return null;
-    }
-
-    public void unSetAssociationType(Object memento)
-    {
-    }    
-  }
-
   private class BasicArcAppearanceFacetImpl implements BasicArcAppearanceFacet
   {
 
@@ -197,13 +166,11 @@ public class AssociationArcAppearanceGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           // adjust the visibility
-          ChangeUnidirectionalityCommand visibilityCommand =
-            new ChangeUnidirectionalityCommand(
-                figureFacet.getFigureReference(),
-                !unidirectional,
+          coordinator.startTransaction(
                 "changed unidirectionality to " + !unidirectional,
                 "restored unidirectionality to " + !unidirectional);
-          coordinator.executeCommandAndUpdateViews(visibilityCommand);
+          unidirectional = !unidirectional;
+          coordinator.commitTransaction();
         }
       });
       return item;
@@ -219,13 +186,11 @@ public class AssociationArcAppearanceGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           // adjust the visibility
-          ChangeAssociationTypeCommand visibilityCommand =
-            new ChangeAssociationTypeCommand(
-                figureFacet.getFigureReference(),
-                newType,
+        	coordinator.startTransaction(
                 "changed association type to " + name,
                 "restored association type from " + name);
-          coordinator.executeCommandAndUpdateViews(visibilityCommand);
+        	type = newType;
+        	coordinator.commitTransaction();
         }
       });
       return item;

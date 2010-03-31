@@ -319,7 +319,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	}
 	
 	/**
-	 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeFigureFacet#makeAndExecuteResizingCommand()
+	 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeFigureFacet#makeAndExecuteResizingTransaction()
 	 */
 	public void performResizingTransaction(UBounds newBounds)
 	{
