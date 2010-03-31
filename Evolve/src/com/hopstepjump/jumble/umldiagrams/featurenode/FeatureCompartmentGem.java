@@ -626,7 +626,6 @@ public final class FeatureCompartmentGem implements Gem
 	        relatedSubject);
 	    
 	    ContainerAddTransaction.add(figureFacet.getContainerFacet(), new FigureReference[]{reference});
-	    figureFacet.performResizingTransaction(figureFacet.getFullBounds());
 		}
 	}
 

@@ -140,7 +140,7 @@ public final class ImageNodeGem implements Gem
     /**
      * @see com.hopstepjump.idraw.figurefacilities.selectionbase.LocationFacet#setLocation(MPackage)
      */
-    public Object setLocation()
+    public void setLocation()
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
       
@@ -155,25 +155,10 @@ public final class ImageNodeGem implements Gem
       // make sure that the package is not set to be owned by itself somehow
       for (Element owner = space; owner != null; owner = owner.getOwner())
         if (owner == subject)
-          return null;
+          return;
       
       currentSpace.getOwnedComments().remove(subject);
       space.getOwnedComments().add(subject);
-
-      return new Namespace[]{currentSpace, space};
-    }
-
-    public void unSetLocation(Object memento)
-    {
-      // don't bother if the memento isn't set
-      if (memento == null)
-        return;
-      
-      Namespace[] spaces = (Namespace[]) memento;
-      Namespace oldSpace = spaces[0];
-      Namespace newSpace = spaces[1];
-      newSpace.getOwnedComments().remove(subject);
-      oldSpace.getOwnedComments().add(subject);      
     }
   }
   

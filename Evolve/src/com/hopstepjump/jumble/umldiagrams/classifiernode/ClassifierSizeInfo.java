@@ -88,7 +88,7 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
 		
 		// use an italic font if this is abstract
 		if (isAbstract)
-			this.font = new Font(font.getName(), Font.ITALIC, font.getSize()); 
+			this.font = new Font(font.getName(), Font.ITALIC, font.getSize());
 	}
 
 	public void setMinContentBounds(UBounds minContentBounds)

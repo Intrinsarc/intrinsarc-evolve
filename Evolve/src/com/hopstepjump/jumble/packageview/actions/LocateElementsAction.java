@@ -35,34 +35,34 @@ public class LocateElementsAction extends AbstractAction
       return;
     if (!allFiguresWritable(diagramView.getSelection().getSelectedFigures()))
       return;
-	  
-		// location command
-		CompositeCommand cmd = new CompositeCommand("", "");
+
+    // count first
     int number = 0;
+    for (FigureFacet figure : diagramView.getSelection().getSelectedFigures())
+			if (figure.hasDynamicFacet(LocationFacet.class))
+				number++;
+    if (number == 0)
+    	return;
+
+		// location transaction
+		if (number == 1)
+			coordinator.startTransaction("located element in place", "unlocated element");
+		else
+			coordinator.startTransaction("located elements in their places", "unlocated elements");
     for (FigureFacet figure : diagramView.getSelection().getSelectedFigures())
     {
 			if (figure.hasDynamicFacet(LocationFacet.class))
-			{
-				cmd.addCommand(new SetLocationCommand(figure.getFigureReference(), "", ""));
-				number++;
-			}
+				SetLocationTransaction.locate(figure);
 		}
-		if (number == 1)
-			cmd.setDescriptions("located element in place", "unlocated element");
-		else
-			cmd.setDescriptions("located elements in their places", "unlocated elements");
-		// only submit the command if more than 1 element has been affected
-		if (number > 0)
+    coordinator.commitTransaction();
+    
+		// place a small delay to make it look like we are doing something :-)
+		try
 		{
-			coordinator.executeCommandAndUpdateViews(cmd);			
-			// place a small delay to make it look like we are doing something :-)
-			try
-			{
-				Thread.sleep(100);
-			}
-			catch (InterruptedException ex)
-			{
-			}
+			Thread.sleep(100);
+		}
+		catch (InterruptedException ex)
+		{
 		}
 	}
 
@@ -71,26 +71,26 @@ public class LocateElementsAction extends AbstractAction
 	    for (FigureFacet figure : selectedFigures)
 	    {
 	      // check that the place it is going is ok
-	    	if (figure.getSubject() != null)
-	    	{
-		      Element owner = ((Element) figure.getSubject()).getOwner();
-		      
-		      if (GlobalSubjectRepository.repository.isReadOnly(owner))
-		        return false;
-		      
-		      // must check that the visual container is writable also
-		      // but look out for arcs, which cannot be contained
-		      ContainerFacet container = figure.getContainedFacet() != null ? figure.getContainedFacet().getContainer() : null;
-		      
-		      if (container == null &&
-		          GlobalSubjectRepository.repository.isReadOnly((Element) figure.getDiagram().getLinkedObject()))
-		        return false;
-		      
-		      if (container != null &&
-		          GlobalSubjectRepository.repository.isContainerContextReadOnly(container.getFigureFacet()))
-		        return false;
-	    	}
-	    }
-	    return true;
+	  	if (figure.getSubject() != null)
+	  	{
+	      Element owner = ((Element) figure.getSubject()).getOwner();
+	      
+	      if (GlobalSubjectRepository.repository.isReadOnly(owner))
+	        return false;
+	      
+	      // must check that the visual container is writable also
+	      // but look out for arcs, which cannot be contained
+	      ContainerFacet container = figure.getContainedFacet() != null ? figure.getContainedFacet().getContainer() : null;
+	      
+	      if (container == null &&
+	          GlobalSubjectRepository.repository.isReadOnly((Element) figure.getDiagram().getLinkedObject()))
+	        return false;
+	      
+	      if (container != null &&
+	          GlobalSubjectRepository.repository.isContainerContextReadOnly(container.getFigureFacet()))
+	        return false;
+	  	}
 	  }
+	  return true;
+	}
 }

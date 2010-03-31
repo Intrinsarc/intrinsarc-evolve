@@ -102,7 +102,7 @@ public final class BasicNamespaceNodeGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.figurefacilities.selectionbase.LocationFacet#setLocation(MPackage)
 		 */
-		public Object setLocation()
+		public void setLocation()
 		{
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
       
@@ -118,7 +118,7 @@ public final class BasicNamespaceNodeGem implements Gem
       // make sure that the package is not set to be owned by itself somehow
       for (Element owner = pkg; owner != null; owner = owner.getOwner())
         if (owner == subject)
-          return null;
+        	return;
       
       if (subject instanceof Package)
       {
@@ -130,26 +130,7 @@ public final class BasicNamespaceNodeGem implements Gem
         currentPkg.getChildPackages().remove(subject);
         pkg.getChildPackages().add(subject);
       }
-
-      return new Package[]{currentPkg, pkg};
 		}
-
-		/**
-		 * @see com.hopstepjump.idraw.figurefacilities.selectionbase.LocationFacet#unSetLocation(Object)
-		 */
-		public void unSetLocation(Object memento)
-		{
-      // don't bother if the memento isn't set
-      if (memento == null)
-        return;
-      
-      Package[] pkgs = (Package[]) memento;
-      Package oldPkg = pkgs[0];
-      Package newPkg = pkgs[1];
-      newPkg.getChildPackages().remove(subject);
-      oldPkg.getChildPackages().add(subject);      
-		}
-
 	}
 
 	private class SuppressOwningPackageFacetImpl implements SuppressOwningPackageFacet

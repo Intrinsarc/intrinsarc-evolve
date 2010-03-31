@@ -356,13 +356,13 @@ public final class ClassifierNodeGem implements Gem
   
 	private class LocationFacetImpl implements LocationFacet
 	{
-    public Object setLocation()
+    public void setLocation()
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
       
       // cannot locate a part
       if (subject instanceof Property)
-      	return null;
+      	return;
       
       // locate to the diagram, or a possible nesting package
       // look upwards, until we find one that has a PackageFacet registered
@@ -375,7 +375,7 @@ public final class ClassifierNodeGem implements Gem
       // make sure that the package is not set to be owned by itself somehow
       for (Element owner = newOwner; owner != null; owner = owner.getOwner())
         if (owner == subject)
-          return null;
+          return;
       
       if (currentOwner instanceof Class)
         ((Class) currentOwner).getNestedClassifiers().remove(subject);
@@ -386,32 +386,6 @@ public final class ClassifierNodeGem implements Gem
         ((Class) newOwner).getNestedClassifiers().add(subject); 
       else
         ((Package) newOwner).getOwnedMembers().add(subject); 
-
-      return new Namespace[]{currentOwner, newOwner};
-    }
-
-    /**
-     * @see com.hopstepjump.idraw.figurefacilities.selectionbase.LocationFacet#unSetLocation(Object)
-     */
-    public void unSetLocation(Object memento)
-    {
-      // don't bother if the memento isn't set
-      if (memento == null)
-        return;
-      
-      Namespace[] owners = (Namespace[]) memento;
-      Namespace oldOwner = owners[0];
-      Namespace newOwner = owners[1];
-      
-      if (newOwner instanceof Class)
-        ((Class) newOwner).getNestedClassifiers().remove(subject);
-      else
-        ((Package) newOwner).getOwnedMembers().remove(subject);
-
-      if (oldOwner instanceof Class)
-        ((Class) oldOwner).getNestedClassifiers().add(subject);
-      else
-        ((Package) oldOwner).getOwnedMembers().add(subject);
     }
 	}
 	

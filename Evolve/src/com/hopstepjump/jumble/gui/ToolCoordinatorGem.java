@@ -58,9 +58,9 @@ import edu.umd.cs.jazz.util.*;
 // xx. synch up diagramchange and undo/redo
 // xx. manipulator problems: text, resizing, arc adjusting, enter on attribute
 // xx. garbage collection
+// xx. adding attrs to class makes it go smaller
 // 3. fix all commands
 // 5. remove any unXXX() methods
-// 7. adding attrs to class makes it go smaller
 // -------
 // 10. remove many in subject repository?
 // 11. funny freezes
