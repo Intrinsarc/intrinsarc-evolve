@@ -154,8 +154,7 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 			return new UBounds(new UPoint(0, 0), new UDimension(10, 10));
 
 		// yuck -- maybe make an element navigation language? AMcV 9/11/07
-		FigureFacet classifier = figure.getContainedFacet().getContainer()
-				.getContainedFacet().getContainer().getFigureFacet();
+		FigureFacet classifier = figure.getContainedFacet().getContainer().getContainedFacet().getContainer().getFigureFacet();
 
 		return classifier.getFullBounds();
 	}

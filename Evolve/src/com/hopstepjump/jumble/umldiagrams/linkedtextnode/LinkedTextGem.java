@@ -33,8 +33,7 @@ public class LinkedTextGem implements Gem
 	private BasicNodeAppearanceFacet appearanceFacet = new BasicNodeAppearanceFacetImpl();
 	private BasicNodeFigureFacet figureFacet;
 	private LinkedTextFacet linkedTextFacet = new LinkedTextFacetImpl();
-  private HideLinkedTextFacetImpl hideLinkedTextFacet = new HideLinkedTextFacetImpl();
-  private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   private int majorPointType;
 
 	public LinkedTextGem(String text, boolean suppress, int majorPointType)
@@ -72,60 +71,46 @@ public class LinkedTextGem implements Gem
   	this.figureFacet = figureFacet;
   	figureFacet.registerDynamicFacet(linkedTextFacet, TextableFacet.class);
   	figureFacet.registerDynamicFacet(linkedTextFacet, LinkedTextFacet.class);
-    figureFacet.registerDynamicFacet(hideLinkedTextFacet, HideLinkedTextFacet.class);
     figureFacet.setShowing(!suppress);
 	}
   
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
 
-  private class ClipboardCommandsFacetImpl implements ClipboardCommandsFacet
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
-    public boolean hasSpecificDeleteCommand()
+    public boolean hasSpecificDeleteAction()
     {
       return true;
     }
     
-    public Command makeSpecificDeleteCommand()
+    public void makeSpecificDeleteAction()
     {
-      return new HideLinkedTextCommand(figureFacet.getFigureReference(), true, "", "");
+    	hideLinkedText(true);
     }
     
-    public Command performPostDeleteTransaction()
+    public void performPostDeleteAction()
     {
-      return null;
     }
 
-    public boolean hasSpecificKillCommand()
+    public boolean hasSpecificKillAction()
     {
       return false;
     }
 
-    public Command makeSpecificKillCommand(ToolCoordinatorFacet coordinator)
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
-      return null;
     }
   }
   
-  private class HideLinkedTextFacetImpl implements HideLinkedTextFacet
+  private void hideLinkedText(boolean hide)
   {
-    public Object hideLinkedText(boolean hide)
-    {
-      // make the change
-      suppress = hide;
-      figureFacet.setShowing(!suppress);
-      figureFacet.performResizingTransaction(figureFacet.getFullBounds());      
-      return null;
-    }
-    
-    /**
-     * @see com.giroway.jumble.nodefacilities.resizebase.CmdAutoSizeable#unAutoSize(Object)
-     */
-    public void unHideLinkedText(Object memento)
-    {
-    }
+    // make the change
+    suppress = hide;
+    figureFacet.setShowing(!suppress);
+    figureFacet.performResizingTransaction(figureFacet.getFullBounds());      
   }
   
   private class LinkedTextFacetImpl implements LinkedTextFacet
@@ -167,13 +152,11 @@ public class LinkedTextGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           // toggle the label viewing flag (as a command)
-          Command hideCommand =
-            new HideLinkedTextCommand(
-                figureFacet.getFigureReference(),
-                !suppress,
+          coordinator.startTransaction(
                 suppress ? "show " + name + " label" : "hide " + name + " label",
                 suppress ? "hide " + name + " label" : "show " + name + " label");
-          coordinator.executeCommandAndUpdateViews(hideCommand);
+          hideLinkedText(!suppress);
+          coordinator.commitTransaction();
         }
       });
       
@@ -396,9 +379,8 @@ public class LinkedTextGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
-		  return null;
 		}
 
 		/**

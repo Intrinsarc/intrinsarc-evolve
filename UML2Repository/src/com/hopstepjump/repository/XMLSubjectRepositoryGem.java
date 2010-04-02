@@ -177,6 +177,7 @@ public class XMLSubjectRepositoryGem implements Gem
     
     private void performSave(Resource resource, boolean keepExistingModificationInfo)
     {
+    	undoredo.ignoreNotifications();
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
 //      long start = System.currentTimeMillis();
       
@@ -237,6 +238,7 @@ public class XMLSubjectRepositoryGem implements Gem
       }
       modified = false;
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+    	undoredo.noticeNotifications();
     }
 
     public void addRepositoryListener(SubjectRepositoryListenerFacet listener)

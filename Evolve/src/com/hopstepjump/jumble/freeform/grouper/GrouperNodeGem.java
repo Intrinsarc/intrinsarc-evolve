@@ -502,7 +502,7 @@ public class GrouperNodeGem
       figureFacet.performResizingTransaction(bounds);
     }
 
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
 			// want to open the parent diagram
 				new CursorWaitingAction(
@@ -514,7 +514,6 @@ public class GrouperNodeGem
 						true),
 					coordinator,
 					0).actionPerformed(null);
-		  return null;
 		}
 
 		/**

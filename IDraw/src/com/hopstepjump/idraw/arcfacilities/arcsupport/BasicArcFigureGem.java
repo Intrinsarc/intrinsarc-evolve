@@ -521,9 +521,8 @@ public final class BasicArcFigureGem implements Gem
   	/**
   	 * @see com.hopstepjump.idraw.foundation.FigureFacet#middleButtonPressed(ToolCoordinatorFacet)
   	 */
-  	public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+  	public void middleButtonPressed(ToolCoordinatorFacet coordinator)
   	{
-  	  return null;
   	}
   	
   	/**
@@ -581,7 +580,7 @@ public final class BasicArcFigureGem implements Gem
 		}
 
 
-    public ClipboardCommandsFacet getClipboardCommandsFacet()
+    public ClipboardActionsFacet getClipboardCommandsFacet()
     {
       return state.clipboardCommandsFacet;
     }

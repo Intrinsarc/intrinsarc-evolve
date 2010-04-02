@@ -19,7 +19,7 @@ import com.hopstepjump.repositorybase.*;
 			{
 				FigureFacet figure = diagram.retrieveFigure(id);
 				Object subject = figure.getSubject();
-				if (figure.getClipboardCommandsFacet() != null && figure.getClipboardCommandsFacet().hasSpecificKillCommand())
+				if (figure.getClipboardCommandsFacet() != null && figure.getClipboardCommandsFacet().hasSpecificKillAction())
 				  specialFigures.add(figure);
 				else
 				if (subject != null && subject instanceof Element)
@@ -39,6 +39,6 @@ import com.hopstepjump.repositorybase.*;
 			
 			// add the specific delete commands
 			for (FigureFacet specific : specialFigures)
-			 specific.getClipboardCommandsFacet().makeSpecificKillCommand(coordinator);
+			 specific.getClipboardCommandsFacet().makeSpecificKillAction(coordinator);
 		}
 	}

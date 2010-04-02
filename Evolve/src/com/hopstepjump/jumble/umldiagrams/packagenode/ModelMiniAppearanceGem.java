@@ -106,7 +106,7 @@ public class ModelMiniAppearanceGem implements Gem
       return new JList(listElements);
     }
 
-    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
+    public Object setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
     {
       return ComponentMiniAppearanceGem.setElementText(
           figureFacet,
@@ -114,11 +114,6 @@ public class ModelMiniAppearanceGem implements Gem
           text,
           listSelection,
           unsuppress);
-    }
-
-    public SetTextPayload unSetText(Object memento)
-    {
-      return ComponentMiniAppearanceGem.unSetElementText(figureFacet, memento);
     }
 	}
 }

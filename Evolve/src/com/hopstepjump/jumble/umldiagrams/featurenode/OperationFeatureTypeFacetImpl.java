@@ -193,40 +193,24 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
      }
   }
   
-  public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)
+  public void generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)
   {
     // add this to the classifier as a delete delta
     final Element feature = FeatureNodeGem.getOriginalSubject(figureFacet.getSubject());
     
-    return new AbstractCommand("Added delete delta", "Removed delete delta")
+    DeltaDeletedConstituent delete;
+    
+    if (owner instanceof ClassImpl)
     {
-      private DeltaDeletedConstituent delete;
-      
-      public void execute(boolean isTop)
-      {
-        SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-        
-        // possibly resurrect
-        if (delete != null)
-        {
-          repository.decrementPersistentDelete(delete);
-        }
-        else
-        {
-          if (owner instanceof ClassImpl)
-            delete = ((Class) owner).createDeltaDeletedOperations();
-          else
-          if (owner instanceof InterfaceImpl)
-            delete = ((Interface) owner).createDeltaDeletedOperations();
-          delete.setDeleted(feature);
-        }
-      }
-
-      public void unExecute()
-      {
-        GlobalSubjectRepository.repository.incrementPersistentDelete(delete);
-      } 
-    };
+      delete = ((Class) owner).createDeltaDeletedOperations();
+      delete.setDeleted(feature);
+    }
+    else
+    if (owner instanceof InterfaceImpl)
+    {
+      delete = ((Interface) owner).createDeltaDeletedOperations();
+      delete.setDeleted(feature);
+    }
   }
 
   public JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)

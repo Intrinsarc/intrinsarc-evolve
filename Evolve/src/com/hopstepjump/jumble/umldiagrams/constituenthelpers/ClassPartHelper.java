@@ -15,14 +15,14 @@ import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
+import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.repositorybase.*;
 
 public class ClassPartHelper extends ClassifierConstituentHelper
 {
-	private ToolCoordinatorFacet coordinator;
   private NodeCreateFacet objectCreator;
 
-  public ClassPartHelper(ToolCoordinatorFacet coordinator, BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted, NodeCreateFacet creator)
+  public ClassPartHelper(ToolCoordinatorFacet coordinator, BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted)
   {
     super(
         classifierFigure,
@@ -31,8 +31,7 @@ public class ClassPartHelper extends ClassifierConstituentHelper
         findParts(container.getContainerFacet()).iterator(),
         ConstituentTypeEnum.DELTA_PART,
         deleted);
-    this.coordinator = coordinator;
-    this.objectCreator = creator;
+    this.objectCreator = new PartCreatorGem().getNodeCreateFacet();
   }
 
   @Override

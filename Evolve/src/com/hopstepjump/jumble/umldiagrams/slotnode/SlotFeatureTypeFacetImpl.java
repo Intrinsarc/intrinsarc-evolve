@@ -184,9 +184,8 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
   {
   }
 
-  public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner)
+  public void generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner)
   {
-    return null;
   }
 
   public JMenuItem getReplaceItem(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)

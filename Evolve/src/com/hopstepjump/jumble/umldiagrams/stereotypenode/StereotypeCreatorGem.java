@@ -93,7 +93,7 @@ public class StereotypeCreatorGem implements Gem
             false);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			ClassifierClipboardCommandsGem clip = new ClassifierClipboardCommandsGem(false, true);
+			ClassifierClipboardActionsGem clip = new ClassifierClipboardActionsGem(false, true);
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
 			classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
@@ -121,7 +121,7 @@ public class StereotypeCreatorGem implements Gem
 				new ClassifierNodeGem(INITIAL_FILL_COLOR, false, figure);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			ClassifierClipboardCommandsGem clip = new ClassifierClipboardCommandsGem(false, true);
+			ClassifierClipboardActionsGem clip = new ClassifierClipboardActionsGem(false, true);
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
 			classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

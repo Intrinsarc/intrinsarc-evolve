@@ -198,7 +198,7 @@ public class InterfaceMiniAppearanceGem implements Gem
 			return new JList(listElements);
 		}
 
-		public SetTextPayload setText(TextableFacet textable, String text,
+		public Object setText(TextableFacet textable, String text,
 				Object listSelection, boolean unsuppress)
 		{
 			return ComponentMiniAppearanceGem.setElementText(figureFacet, textable,

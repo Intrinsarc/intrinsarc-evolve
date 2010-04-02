@@ -168,18 +168,17 @@ public class PartMiniAppearanceGem implements Gem
       return new JList(listElements);
     }
 
-    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
+    public Object setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
     {
-      final Property part = (Property) figureFacet.getSubject();
+      Property part = (Property) figureFacet.getSubject();
       // make sure this has all the part bits still :-)
-      final InstanceSpecification instance = UMLTypes.extractInstanceOfPart(part);
+      InstanceSpecification instance = UMLTypes.extractInstanceOfPart(part);
       if (instance == null)
-        return null;
+        return part;
       
       // the user can change the name, or repoint this at another classifier
-      final String oldName = parseOutName(part.getName());
-      final Classifier oldType = (Classifier) part.getType(); 
-      final String newName = parseOutName(text);
+      Classifier oldType = (Classifier) part.getType(); 
+      String newName = parseOutName(text);
       String newClassifierName = parseOutClassifierName(text);
       
       Classifier newType = oldType;
@@ -198,7 +197,7 @@ public class PartMiniAppearanceGem implements Gem
       instance.getClassifiers().clear();
       if (newPartType != null)
         instance.getClassifiers().add(newPartType);
-      return null;
+      return part;
     }
 
 		public ToolFigureClassification getToolClassification(

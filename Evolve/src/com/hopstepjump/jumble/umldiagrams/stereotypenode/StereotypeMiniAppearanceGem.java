@@ -105,7 +105,7 @@ public class StereotypeMiniAppearanceGem implements Gem
       return new JList(listElements);
     }
 
-    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
+    public Object setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
     {
       return ComponentMiniAppearanceGem.setElementText(
           figureFacet,

@@ -15,6 +15,7 @@ public class UndoRedoStackManager
 	private ArrayList<NotificationList> stack = new ArrayList<NotificationList>();
 	private int current;
 	private boolean ignoreNotifications;
+	private boolean inTransaction;
 	private String redoDescription;
 	private String undoDescription;
 	
@@ -26,6 +27,9 @@ public class UndoRedoStackManager
 	{
 		if (ignoreNotifications || n.getEventType() == 0)
 			return;
+
+		if (!inTransaction)
+			throw new IllegalStateException("Have a repository event outside of undo/redo or a transaction");
 		
 		ensureCurrent();
 		stack.get(current).addNotification(n);
@@ -158,12 +162,14 @@ public class UndoRedoStackManager
   	int count = stack.size() - current;
   	for (int lp = 0; lp < count; lp++)
   		stack.remove(current);
+  	inTransaction = true;
   }
 	
 	public void commitTransaction()
 	{
 		ensureCurrent();
 		current++;
+  	inTransaction = false;
 	}
 	
 	public int getCurrent()
@@ -205,5 +211,15 @@ public class UndoRedoStackManager
 	public String getUndoDescription()
 	{
 		return stack.get(current-1).getUndoDescription();
+	}
+
+	public void ignoreNotifications()
+	{
+		ignoreNotifications = true;
+	}
+	
+	public void noticeNotifications()
+	{
+		ignoreNotifications = false;
 	}
 }

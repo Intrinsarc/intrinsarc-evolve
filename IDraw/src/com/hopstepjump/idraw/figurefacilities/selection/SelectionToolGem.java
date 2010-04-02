@@ -304,7 +304,6 @@ public final class SelectionToolGem implements Gem
 						      	diagramView.pan(xIncrement, yIncrement);
 										MouseEvent me = new MouseEvent((Component) e.getSource(), e.getID(), e.getWhen(), e.getModifiers(), (int) currentMousePoint.getX(), (int) currentMousePoint.getY(), e.getClickCount(), e.isPopupTrigger());
 						      	diagramView.getCanvas().dispatchEvent(me);
-//						      	diagramView.finishedModifications();
 				      		}
 				      	}
 				      	catch (InterruptedException ex)
@@ -1187,9 +1186,7 @@ public final class SelectionToolGem implements Gem
 
         if (panningLocalFigure != null)
         {
-          Command cmd = panningLocalFigure.middleButtonPressed(coordinator);
-          if (cmd != null)
-            coordinator.executeCommandAndUpdateViews(cmd);
+          panningLocalFigure.middleButtonPressed(coordinator);
         }
         else
           // form the command on the diagram

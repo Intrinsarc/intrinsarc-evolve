@@ -110,7 +110,7 @@ public class SimpleFigure implements FigureFacet
 		return null;
 	}
 
-	public ClipboardCommandsFacet getClipboardCommandsFacet()
+	public ClipboardActionsFacet getClipboardCommandsFacet()
 	{
 		return null;
 	}
@@ -256,9 +256,8 @@ public class SimpleFigure implements FigureFacet
 		return null;
 	}
 
-	public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+	public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 	{
-		return null;
 	}
 
 	public void produceEffect(ToolCoordinatorFacet coordinator, String effect,

@@ -66,7 +66,7 @@ public class ConnectorArcAppearanceGem implements Gem
   boolean delegate;
   boolean directed;
   boolean portLink;
-  private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();  
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();  
   
   public ConnectorArcAppearanceGem(PersistentFigure pfig)
   {
@@ -81,29 +81,27 @@ public class ConnectorArcAppearanceGem implements Gem
     delegate = pfig.getProperties().retrieve("delegate", false).asBoolean();
 	}
 
-	public ClipboardCommandsFacet getClipboardCommandsFacet()
+	public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
   
-  private class ClipboardCommandsFacetImpl implements ClipboardCommandsFacet
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
-    public boolean hasSpecificDeleteCommand()
+    public boolean hasSpecificDeleteAction()
     {
       return false;
     }
 
-    public Command makeSpecificDeleteCommand()
+    public void makeSpecificDeleteAction()
     {
-      return null;
     }
     
-    public Command performPostDeleteTransaction()
+    public void performPostDeleteAction()
     {
       // important to use the reference rather than the figure, which gets recreated...
       String uuid = FeatureNodeGem.getOriginalSubject(subject).getUuid();      
       getSimpleDeletedUuidsFacet().addDeleted(uuid);
-      return null;
     }
 
 	  private SimpleDeletedUuidsFacet getSimpleDeletedUuidsFacet()
@@ -114,7 +112,7 @@ public class ConnectorArcAppearanceGem implements Gem
 	      clsFigure.getDynamicFacet(SimpleDeletedUuidsFacet.class);
 	  }
 
-    public boolean hasSpecificKillCommand()
+    public boolean hasSpecificKillAction()
     {
       return isOutOfPlace() || !atHome();
     }
@@ -125,7 +123,7 @@ public class ConnectorArcAppearanceGem implements Gem
       return ClassifierConstituentHelper.extractVisualClassifierFromConnector(figureFacet) != getSubjectAsElement().getOwner();
     }
 
-    public Command makeSpecificKillCommand(ToolCoordinatorFacet coordinator)
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
       // only allow changes in the home stratum
       if (!atHome())
@@ -135,19 +133,18 @@ public class ConnectorArcAppearanceGem implements Gem
             ScreenProperties.getUndoPopupColor(),
             Color.black,
             3000);
-        return null;
       }
 
       // if this is a replace, kill the replace delta
       Element feature = getSubjectAsElement();
       if (feature.getOwner() instanceof DeltaReplacedConstituent &&
           feature.getOwner().getOwner() == ClassifierConstituentHelper.extractVisualClassifierFromConnector(figureFacet))
-        return generateReplaceDeltaKill(coordinator);
+        generateReplaceDeltaKill(coordinator);
       else
-        return generateDeleteDelta(coordinator);
+        generateDeleteDelta(coordinator);
     }
 
-    private Command generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
+    private void generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta for the replace
       coordinator.displayPopup(null, null,
@@ -156,23 +153,11 @@ public class ConnectorArcAppearanceGem implements Gem
           Color.black,
           1500);
       
-      final Element feature = getSubjectAsElement();
-      
-      return new AbstractCommand("Removed replace delta", "Restored replace delta")
-      {
-        public void execute(boolean isTop)
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(feature.getOwner());            
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.decrementPersistentDelete(feature.getOwner());
-        } 
-      };
+      final Element feature = getSubjectAsElement();      
+      GlobalSubjectRepository.repository.incrementPersistentDelete(feature.getOwner());            
     }
 
-    private Command generateDeleteDelta(ToolCoordinatorFacet coordinator)
+    private void generateDeleteDelta(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta
       coordinator.displayPopup(null, null,
@@ -181,40 +166,19 @@ public class ConnectorArcAppearanceGem implements Gem
           Color.black,
           1500);
       
-      return generateDeleteDelta(coordinator, ClassifierConstituentHelper.extractVisualClassifierFromConnector(figureFacet));      
+      generateDeleteDelta(coordinator, ClassifierConstituentHelper.extractVisualClassifierFromConnector(figureFacet));      
     }
     
-    public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)
+    public void generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)
     {
       // add this to the classifier as a delete delta
-      final Element feature = FeatureNodeGem.getOriginalSubject(figureFacet.getSubject());
-      
-      return new AbstractCommand("Added delete delta", "Removed delete delta")
+      if (owner instanceof ClassImpl)
       {
-        private DeltaDeletedConstituent delete;
-        
-        public void execute(boolean isTop)
-        {
-          SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-          
-          // possibly resurrect
-          if (delete != null)
-          {
-            repository.decrementPersistentDelete(delete);
-          }
-          else
-          {
-            if (owner instanceof ClassImpl)
-              delete = ((Class) owner).createDeltaDeletedConnectors();
-            delete.setDeleted(feature);
-          }
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(delete);
-        } 
-      };
+        final Element feature = FeatureNodeGem.getOriginalSubject(figureFacet.getSubject());
+      	DeltaDeletedConstituent delete;
+        delete = ((Class) owner).createDeltaDeletedConnectors();
+        delete.setDeleted(feature);
+      }
     }
 
     private boolean atHome()
@@ -626,34 +590,20 @@ public class ConnectorArcAppearanceGem implements Gem
       {
         public void actionPerformed(ActionEvent e)
         {
-          final Connector replaced = (Connector) figureFacet.getSubject();
-          final Connector original = (Connector) ClassifierConstituentHelper.getOriginalSubject(replaced);
+          Connector replaced = (Connector) figureFacet.getSubject();
+          Connector original = (Connector) ClassifierConstituentHelper.getOriginalSubject(replaced);
           final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConnector(figureFacet);
           final Class cls = (Class) clsFigure.getSubject();
-          final DeltaReplacedConnector replacement[] = new DeltaReplacedConnector[1];
           
-          Command cmd = new AbstractCommand("replaced connector", "removed replaced connector")
-          {   
-            
-            public void execute(boolean isTop)
-            {
-            	if (replacement[0] == null)
-            		replacement[0] = createDeltaReplacedConnector(cls, replaced, original);
-              GlobalSubjectRepository.repository.decrementPersistentDelete(replacement[0]);
-            }
-
-            public void unExecute()
-            {
-              GlobalSubjectRepository.repository.incrementPersistentDelete(replacement[0]);
-            }            
-          };
-          coordinator.executeCommandAndUpdateViews(cmd);
+          coordinator.startTransaction("replaced connector", "removed replaced connector");
+          final DeltaReplacedConnector replacement = createDeltaReplacedConnector(cls, replaced, original);
+          coordinator.commitTransaction();
           
           diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
           {
             public void run()
             {
-              FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement[0].getReplacement());
+              FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
               diagramView.getSelection().clearAllSelection();
               diagramView.getSelection().addToSelection(createdFeature, true);
             }
@@ -923,9 +873,6 @@ public class ConnectorArcAppearanceGem implements Gem
       cloneLowerValue(nextEnd, connEnd);
       cloneUpperValue(nextEnd, connEnd);
     }              
-    
-    // delete it so we can bring it back as part of the redo command
-    GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
     
     return replacement;
   }

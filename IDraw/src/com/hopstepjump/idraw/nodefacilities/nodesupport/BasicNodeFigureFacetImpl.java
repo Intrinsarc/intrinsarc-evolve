@@ -383,9 +383,9 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	/**
 	 * @see com.hopstepjump.idraw.foundation.FigureFacet#getMiddleButtonCommand()
 	 */
-	public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+	public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 	{
-		return state.appearanceFacet.middleButtonPressed(coordinator);
+		state.appearanceFacet.middleButtonPressed(coordinator);
 	}
 
 	/**
@@ -439,7 +439,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
     DeleteFromDiagramTransaction.delete(getDiagram(), deletionFigureIds, false);
   }
 
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return state.clipboardCommandsFacet;
   }

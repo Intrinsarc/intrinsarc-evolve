@@ -126,6 +126,22 @@ public abstract class ClassifierConstituentHelper
     // delete if this shouldn't be here
     Set<String> suppressed = getVisuallySuppressed(perspective, GlobalDeltaEngine.engine.locateObject(figure.getSubject()).asElement(), type);
     Set<DEObject> visualProblems = new HashSet<DEObject>();
+    // work out what we need to add
+    if (!locked)
+	    for (DeltaPair pair : constituents)
+	    {
+	      if ((visualProblems.contains(pair.getConstituent()) ||
+	      		 !containedWithin(currentlyDisplayed, pair)) && !deleted.isDeleted(suppressed, pair.getConstituent().getUuid()))
+	      {
+          makeAddTransaction(
+              perspective,
+              currentlyDisplayed,
+              figure,
+              container,
+              pair);
+	      }
+	    }
+
     for (FigureFacet f : currentlyDisplayed)
     {
       // don't delete if this is deleted -- this is covered elsewhere
@@ -148,22 +164,6 @@ public abstract class ClassifierConstituentHelper
           existing.add(constituent);
       }
     }
-     
-    // work out what we need to add
-    if (!locked)
-	    for (DeltaPair pair : constituents)
-	    {
-	      if ((visualProblems.contains(pair.getConstituent()) ||
-	      		 !containedWithin(currentlyDisplayed, pair)) && !deleted.isDeleted(suppressed, pair.getConstituent().getUuid()))
-	      {
-          makeAddTransaction(
-              perspective,
-              currentlyDisplayed,
-              figure,
-              container,
-              pair);
-	      }
-	    }
   }
   
   protected boolean hasVisualProblem(BasicNodeFigureFacet container, FigureFacet sub, DEConstituent constituent)

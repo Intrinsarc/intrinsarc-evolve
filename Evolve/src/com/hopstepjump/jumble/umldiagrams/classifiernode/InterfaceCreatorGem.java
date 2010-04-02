@@ -116,7 +116,7 @@ public class InterfaceCreatorGem implements Gem
             false);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			ClassifierClipboardCommandsGem clip = new ClassifierClipboardCommandsGem(true, false);
+			ClassifierClipboardActionsGem clip = new ClassifierClipboardActionsGem(true, false);
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
 			classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
@@ -148,7 +148,7 @@ public class InterfaceCreatorGem implements Gem
 				new ClassifierNodeGem(Color.WHITE, false, figure);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			ClassifierClipboardCommandsGem clip = new ClassifierClipboardCommandsGem(true, false);
+			ClassifierClipboardActionsGem clip = new ClassifierClipboardActionsGem(true, false);
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
 			classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

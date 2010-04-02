@@ -34,5 +34,5 @@ final class BasicArcState implements Serializable
   
   /** advanced arcs, optional */
   AdvancedArcFacet        advancedFacet;
-  ClipboardCommandsFacet  clipboardCommandsFacet;
+  ClipboardActionsFacet  clipboardCommandsFacet;
 }

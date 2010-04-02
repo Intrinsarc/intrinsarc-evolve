@@ -123,15 +123,10 @@ public final class ClassifierNodeGem implements Gem
 	
 	private class SwitchSubjectFacetImpl implements SwitchSubjectFacet
 	{
-
-		public Object switchSubject(Object newSubject)
+		public void switchSubject(Object newSubject)
 		{
-			subject = (NamedElement) newSubject;			
-			return null;
-		}
-
-		public void unSwitchSubject(Object memento)
-		{
+			subject = (NamedElement) newSubject;
+			figureFacet.updateViewAfterSubjectChanged(ViewUpdatePassEnum.LAST);
 		}
 	};
   
@@ -750,7 +745,7 @@ public final class ClassifierNodeGem implements Gem
 		
     public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
+    	subject = (NamedElement) miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
     	figureFacet.updateViewAfterSubjectChanged(ViewUpdatePassEnum.LAST);      
     }
 		
@@ -1958,7 +1953,7 @@ public final class ClassifierNodeGem implements Gem
     {
       JMenuItem showAllItem = new JMenuItem("Parts");
       final ClassPartHelper partHelper =
-        new ConcreteClassPartHelper(
+        new ClassPartHelper(
         		coordinator,
             figureFacet,
             primitiveContents,
@@ -2134,14 +2129,8 @@ public final class ClassifierNodeGem implements Gem
 						null);
 					coordinator.commitTransaction();
 					
-					diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
-					{
-						public void run()
-						{
-							diagramView.getSelection().clearAllSelection();
-						  diagramView.addFigureToSelectionViaId(reference.getId());
-						}
-					});
+					diagramView.getSelection().clearAllSelection();
+				  diagramView.addFigureToSelectionViaId(reference.getId());
 				}
 			});
 			
@@ -2376,7 +2365,7 @@ public final class ClassifierNodeGem implements Gem
         
         // find any parts to add or delete
         ClassPartHelper partHelper =
-          new ConcreteClassPartHelper(
+          new ClassPartHelper(
           		null,
               figureFacet,
               primitiveContents,
@@ -2473,7 +2462,7 @@ public final class ClassifierNodeGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
 		  // look up through the owning namespaces, until we find a possible package
       if (subject != null)
@@ -2495,7 +2484,6 @@ public final class ClassifierNodeGem implements Gem
   				    true);
   		  }
       }
-      return null;
 		}
 		
 		/**
@@ -2518,8 +2506,7 @@ public final class ClassifierNodeGem implements Gem
 		  // cannot delete something with no subject
 		  if (subject == null)
 		    return false;
-		  
-			return subject.isThisDeleted();
+		  return subject.isThisDeleted();
 		}
 
     public void produceEffect(ToolCoordinatorFacet coordinator, String effect, Object[] parameters)
@@ -2996,7 +2983,7 @@ public final class ClassifierNodeGem implements Gem
               primitivePorts,
               ports).isShowingAllConstituents();
         partsEllipsis =
-          !new ConcreteClassPartHelper(
+          !new ClassPartHelper(
           		null,
               figureFacet,
               primitiveContents,
@@ -3215,7 +3202,7 @@ public final class ClassifierNodeGem implements Gem
         final Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
         final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
         final Class cls = (Class) clsFigure.getSubject();
-        CompositeCommand comp = new CompositeCommand("replaced part", "removed replaced part");
+        coordinator.startTransaction("replaced part", "removed replaced part");
         
         // now form the port remap based on locations of ports
         final List<PortRemap> remaps = fancyReplace == null ?
@@ -3231,53 +3218,30 @@ public final class ClassifierNodeGem implements Gem
           movingFacet.move(figureFacet.getFullBounds().getPoint());
           movingFacet.end();
         }
-        
-        final DeltaReplacedAttribute replacement[] = new DeltaReplacedAttribute[1];
-        comp.addCommand(new AbstractCommand("", "")
-        {          
-          public void execute(boolean isTop)
-          {
-          	if (replacement[0]== null)
-          	{
-          		replacement[0] =
-                 fancyReplace == null ?
-                     createDeltaReplacedPart(cls, replaced, original) :
-                     createFancyDeltaReplacedPart(cls, other, original);
-          	}
-            GlobalSubjectRepository.repository.decrementPersistentDelete(replacement[0]);
-            if (remaps != null)
-              for (PortRemap remap : remaps)
-                GlobalSubjectRepository.repository.decrementPersistentDelete(remap);
-            
-            // move fancy replace over
-            if (fancyReplace != null)
-              replacement[0].setReplacement(fancyReplace);
-          }
 
-          public void unExecute()
-          {
-            GlobalSubjectRepository.repository.incrementPersistentDelete(replacement[0]);
-            if (remaps != null)
-              for (PortRemap remap : remaps)
-                GlobalSubjectRepository.repository.incrementPersistentDelete(remap);
-
-            // move fancy replace back
-            if (fancyReplace != null)
-            	cls.settable_getOwnedAttributes().add(fancyReplace);
-          }            
-        });
-        coordinator.executeCommandAndUpdateViews(comp);
+    		final DeltaReplacedAttribute replacement =
+           fancyReplace == null ?
+               createDeltaReplacedPart(cls, replaced, original) :
+               createFancyDeltaReplacedPart(cls, other, original);
+        if (remaps != null)
+          for (PortRemap remap : remaps)
+            GlobalSubjectRepository.repository.decrementPersistentDelete(remap);
         
-        diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
+        // move fancy replace over
+        if (fancyReplace != null)
+          replacement.setReplacement(fancyReplace);
+        coordinator.commitTransaction();
+        
+/*        diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
         {
           public void run()
           {
-            FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement[0].getReplacement());
+            FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
             diagramView.getSelection().clearAllSelection();
             diagramView.getSelection().addToSelection(createdFeature, true);
           }
         });
-      }
+*/      }
     });
 
     return replacePartItem;
@@ -3336,9 +3300,6 @@ public final class ClassifierNodeGem implements Gem
       }
     }
     
-    // delete it so we can bring it back as part of the redo command
-    GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
-    
     return replacement;
   }
   
@@ -3368,9 +3329,6 @@ public final class ClassifierNodeGem implements Gem
   { 
     DeltaReplacedAttribute replacement = owner.createDeltaReplacedAttributes();
     replacement.setReplaced(originalSubject);
-    
-    // delete it so we can bring it back as part of the redo command
-    GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
     
     return replacement;
   }

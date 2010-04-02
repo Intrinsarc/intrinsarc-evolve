@@ -61,31 +61,29 @@ public final class FeatureNodeGem implements Gem
   private FeatureComparableFacet comparableFacet = new FeatureComparableFacetImpl();
   private Element subject;
   private int stereotypeHashcode;
-  private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
     
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
 
-  private class ClipboardCommandsFacetImpl implements ClipboardCommandsFacet
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
-    public boolean hasSpecificDeleteCommand()
+    public boolean hasSpecificDeleteAction()
     {
       return false;
     }
 
-    public Command makeSpecificDeleteCommand()
+    public void makeSpecificDeleteAction()
     {
-      return null;
     }
     
-    public Command performPostDeleteTransaction()
+    public void performPostDeleteAction()
     {
       // important to use the reference rather than the figure, which gets recreated...
       final String uuid = getOriginalSubject(subject).getUuid();      
       getFeatureCompartment().addDeleted(uuid);
-      return null;
     }
 
     private FeatureCompartmentFacet getFeatureCompartment()
@@ -95,7 +93,7 @@ public final class FeatureNodeGem implements Gem
         parent.getDynamicFacet(FeatureCompartmentFacet.class);
     }
     
-    public boolean hasSpecificKillCommand()
+    public boolean hasSpecificKillAction()
     {
       return isSubjectAFeature() && (isOutOfPlace() || !atHome());
     }
@@ -106,11 +104,11 @@ public final class FeatureNodeGem implements Gem
       return extractVisualClassifier() != getSubjectAsFeature().getOwner();
     }
 
-    public Command makeSpecificKillCommand(ToolCoordinatorFacet coordinator)
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
       // be defensive
       if (figureFacet.getContainedFacet().getContainer() == null)
-        return null;
+        return;
       
       // only allow changes in the home stratum
       if (!atHome())
@@ -120,18 +118,18 @@ public final class FeatureNodeGem implements Gem
             ScreenProperties.getUndoPopupColor(),
             Color.black,
             3000);
-        return null;
+        return;
       }
 
       // if this is a replace, kill the replace delta
       Feature feature = getSubjectAsFeature();
       if (feature.getOwner() instanceof DeltaReplacedConstituent && feature.getOwner().getOwner() == extractVisualClassifier())
-        return generateReplaceDeltaKill(coordinator);
+        generateReplaceDeltaKill(coordinator);
       else
-        return generateDeleteDelta(coordinator);
+        generateDeleteDelta(coordinator);
     }
 
-    private Command generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
+    private void generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta for the replace
       coordinator.displayPopup(null, null,
@@ -140,23 +138,11 @@ public final class FeatureNodeGem implements Gem
           Color.black,
           1500);
       
-      final Feature feature = getSubjectAsFeature();
-      
-      return new AbstractCommand("Removed replace delta", "Restored replace delta")
-      {
-        public void execute(boolean isTop)
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(feature.getOwner());            
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.decrementPersistentDelete(feature.getOwner());
-        } 
-      };
+      Feature feature = getSubjectAsFeature();
+      GlobalSubjectRepository.repository.incrementPersistentDelete(feature.getOwner());            
     }
 
-    private Command generateDeleteDelta(ToolCoordinatorFacet coordinator)
+    private void generateDeleteDelta(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta
       coordinator.displayPopup(null, null,
@@ -165,9 +151,8 @@ public final class FeatureNodeGem implements Gem
           Color.black,
           1500);
       
-      final Classifier classifier = extractVisualClassifier();
-      
-      return featureTypeFacet.generateDeleteDelta(coordinator, classifier);      
+      Classifier classifier = extractVisualClassifier();      
+      featureTypeFacet.generateDeleteDelta(coordinator, classifier);      
     }
 
     private boolean atHome()
@@ -548,9 +533,8 @@ public final class FeatureNodeGem implements Gem
     /**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
-		  return null;
 		}
 
 		/**

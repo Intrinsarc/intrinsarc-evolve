@@ -277,40 +277,23 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
      }
   }
 
-  public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)
+  public void generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)
   {
     // add this to the classifier as a delete delta
-    final Element feature = FeatureNodeGem.getOriginalSubject(figureFacet.getSubject());
+    Element feature = FeatureNodeGem.getOriginalSubject(figureFacet.getSubject());
     
-    return new AbstractCommand("Added delete delta", "Removed delete delta")
+    DeltaDeletedConstituent delete;
+    if (owner instanceof ClassImpl)
     {
-      private DeltaDeletedConstituent delete;
-      
-      public void execute(boolean isTop)
-      {
-        SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-        
-        // possibly resurrect
-        if (delete != null)
-        {
-          repository.decrementPersistentDelete(delete);
-        }
-        else
-        {
-          if (owner instanceof ClassImpl)
-            delete = ((Class) owner).createDeltaDeletedAttributes();
-          else
-          if (owner instanceof InterfaceImpl)
-            delete = ((Interface) owner).createDeltaDeletedAttributes();
-          delete.setDeleted(feature);
-        }
-      }
-
-      public void unExecute()
-      {
-        GlobalSubjectRepository.repository.incrementPersistentDelete(delete);
-      } 
-    };
+      delete = ((Class) owner).createDeltaDeletedAttributes();
+      delete.setDeleted(feature);
+    }
+    else
+    if (owner instanceof InterfaceImpl)
+    {
+      delete = ((Interface) owner).createDeltaDeletedAttributes();
+      delete.setDeleted(feature);
+    }
   }
 
   public JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
@@ -321,37 +304,18 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     {
       public void actionPerformed(ActionEvent e)
       {
-        final Property replaced = (Property) figureFacet.getSubject();
-        final Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
+        Property replaced = (Property) figureFacet.getSubject();
+        Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
         final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
-        final Classifier cls = (Classifier) clsFigure.getSubject();
-        final DeltaReplacedAttribute replacement[] = new DeltaReplacedAttribute[1];
+        Classifier cls = (Classifier) clsFigure.getSubject();
         
-        Command cmd = new AbstractCommand("replaced attribute", "removed replaced attribute")
-        {          
-          public void execute(boolean isTop)
-          {
-          	if (replacement[0] == null)
-          		replacement[0] = createDeltaReplacedAttribute(cls, replaced, original);
-            GlobalSubjectRepository.repository.decrementPersistentDelete(replacement[0]);
-          }
-
-          public void unExecute()
-          {
-            GlobalSubjectRepository.repository.incrementPersistentDelete(replacement[0]);
-          }            
-        };
-        coordinator.executeCommandAndUpdateViews(cmd);
+        coordinator.startTransaction("replaced attribute", "removed replaced attribute");
+        final DeltaReplacedAttribute replacement = createDeltaReplacedAttribute(cls, replaced, original);
+        coordinator.commitTransaction();
         
-        diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
-        {
-          public void run()
-          {
-            FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement[0].getReplacement());
-            diagramView.getSelection().clearAllSelection();
-            diagramView.getSelection().addToSelection(createdFeature, true);
-          }
-        });
+        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
+        diagramView.getSelection().clearAllSelection();
+        diagramView.getSelection().addToSelection(createdFeature, true);
       }
     });
 
@@ -424,9 +388,6 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
 				attr.settable_getDefaultValues().add(v);
     	}
     }
-    
-    // make it deleted so we can resurrect it as the 1st part of the cmd
-    GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
     
     return replacement;
   }

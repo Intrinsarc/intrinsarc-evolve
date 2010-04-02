@@ -26,7 +26,7 @@ public class PartClipboardCommandsGem
   private static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
 
   private FigureFacet figureFacet;
-  private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   
   public PartClipboardCommandsGem()
   {
@@ -37,29 +37,27 @@ public class PartClipboardCommandsGem
     this.figureFacet = figureFacet;
   }
   
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
   
-  private class ClipboardCommandsFacetImpl implements ClipboardCommandsFacet
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
-    public boolean hasSpecificDeleteCommand()
+    public boolean hasSpecificDeleteAction()
     {
       return false;
     }
 
-    public Command makeSpecificDeleteCommand()
+    public void makeSpecificDeleteAction()
     {
-      return null;
     }
     
-    public Command performPostDeleteTransaction()
+    public void performPostDeleteAction()
     {
       // important to use the reference rather than the figure, which gets recreated...
       final String uuid = getOriginalSubjectAsPart(getSubject()).getUuid();      
       getSimpleContainerCompartment().addDeleted(uuid);
-      return null;
     }
 
     private SimpleContainerFacet getSimpleContainerCompartment()
@@ -69,16 +67,16 @@ public class PartClipboardCommandsGem
         parent.getDynamicFacet(SimpleContainerFacet.class);
     }
 
-    public boolean hasSpecificKillCommand()
+    public boolean hasSpecificKillAction()
     {
       return isOutOfPlace() || !atHome();
     }
 
-    public Command makeSpecificKillCommand(ToolCoordinatorFacet coordinator)
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
       // be defensive
       if (figureFacet.getContainedFacet().getContainer() == null)
-        return null;
+        return;
       
       // only allow changes in the home stratum
       if (!atHome())
@@ -88,15 +86,15 @@ public class PartClipboardCommandsGem
             ScreenProperties.getUndoPopupColor(),
             Color.black,
             3000);
-        return null;
+        return;
       }
 
       // if this is a replace, kill the replace delta
       Element subject = getSubject();
       if (subject.getOwner() instanceof DeltaReplacedConstituent && subject.getOwner().getOwner() == extractVisualClassifier())
-        return generateReplaceDeltaKill(coordinator);
+        generateReplaceDeltaKill(coordinator);
       else
-        return generateDeleteDelta(coordinator);
+        generateDeleteDelta(coordinator);
     }
   }
   
@@ -135,7 +133,7 @@ public class PartClipboardCommandsGem
   }
   
 
-  private Command generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
+  private void generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
   {
     // generate a delete delta for the replace
     coordinator.displayPopup(null, null,
@@ -143,22 +141,10 @@ public class PartClipboardCommandsGem
         ScreenProperties.getUndoPopupColor(),
         Color.black,
         1500);
-    
-    return new AbstractCommand("Removed replace delta", "Restored replace delta")
-    {
-      public void execute(boolean isTop)
-      {
-        GlobalSubjectRepository.repository.incrementPersistentDelete(getSubject().getOwner());            
-      }
-
-      public void unExecute()
-      {
-        GlobalSubjectRepository.repository.decrementPersistentDelete(getSubject().getOwner());
-      } 
-    };
+    GlobalSubjectRepository.repository.incrementPersistentDelete(getSubject().getOwner());            
   }
 
-  private Command generateDeleteDelta(ToolCoordinatorFacet coordinator)
+  private void generateDeleteDelta(ToolCoordinatorFacet coordinator)
   {
     final Classifier owner = extractVisualClassifier();
 
@@ -172,43 +158,24 @@ public class PartClipboardCommandsGem
     // add this to the classifier as a delete delta
     final Element feature = FeatureNodeGem.getOriginalSubject(getSubject());
     
-    CompositeCommand cmd = new CompositeCommand("Added delete delta", "Removed delete delta");
-    addBadConnectorDeletes(coordinator, cmd);
-    cmd.addCommand(
-      new AbstractCommand()
-      {
-        private DeltaDeletedConstituent delete;
-        
-        public void execute(boolean isTop)
-        {
-          SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-          
-          // possibly resurrect
-          if (delete != null)
-          {
-            repository.decrementPersistentDelete(delete);
-          }
-          else
-          {
-            if (owner instanceof ClassImpl)
-              delete = ((Class) owner).createDeltaDeletedAttributes();
-            else
-            if (owner instanceof InterfaceImpl)
-              delete = ((Interface) owner).createDeltaDeletedAttributes();
-            delete.setDeleted(feature);
-          }
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(delete);
-        }
-      });
+    addBadConnectorDeletes(coordinator);
     
-    return cmd;
+    // possibly resurrect
+    DeltaDeletedConstituent delete = null;
+    if (owner instanceof ClassImpl)
+    {
+      delete = ((Class) owner).createDeltaDeletedAttributes();
+      delete.setDeleted(feature);
+    }
+    else
+    if (owner instanceof InterfaceImpl)
+    {
+      delete = ((Interface) owner).createDeltaDeletedAttributes();
+      delete.setDeleted(feature);
+    }
   }
 
-  private void addBadConnectorDeletes(ToolCoordinatorFacet coordinator, CompositeCommand cmd)
+  private void addBadConnectorDeletes(ToolCoordinatorFacet coordinator)
   {
     // find any connectors in this stratum that connect to this part, and delete them
     IDeltaEngine engine = GlobalDeltaEngine.engine;
@@ -225,11 +192,11 @@ public class PartClipboardCommandsGem
       DEConnector conn = pair.getConstituent().asConnector(); 
       for (int lp = 0; lp < 2; lp++)
         if (conn.getPart(perspective, comp, lp) == part)
-          addDeleteCommand(cls, pair, cmd);
+          addDeleteCommand(cls, pair);
     }
   }
 
-  private void addDeleteCommand(final Class cls, final DeltaPair pair, CompositeCommand cmd)
+  private void addDeleteCommand(final Class cls, final DeltaPair pair)
   {
     // work out the appropriate object to delta delete or actually delete
     final Connector connector = (Connector) pair.getConstituent().getRepositoryObject();
@@ -238,69 +205,20 @@ public class PartClipboardCommandsGem
     final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
     if (connector.getOwner() == cls)
     {
-      cmd.addCommand(new AbstractCommand("", "")
-      {
-        public void execute(boolean isTop)
-        {
-          repository.incrementPersistentDelete(connector);
-        }
-
-        public void unExecute()
-        {
-          repository.decrementPersistentDelete(connector);
-        }
-      });
+      repository.incrementPersistentDelete(connector);
     }
     else
     // if this is a replace and we own it, delete the replace and add a delta delete
     if (connector.getOwner() instanceof DeltaReplacedConnector && connector.getOwner().getOwner() == cls)
     {      
-      cmd.addCommand(new AbstractCommand("", "")
-      {
-      	private DeltaDeletedConnector del;
-      	public void execute(boolean isTop)
-        {
-      		if (del == null)
-      		{
-            del = cls.createDeltaDeletedConnectors();
-            del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
-      		}
-      		else
-      		{
-	          repository.incrementPersistentDelete(connector.getOwner());
-	          repository.decrementPersistentDelete(del);
-      		}
-        }
-
-        public void unExecute()
-        {
-          repository.decrementPersistentDelete(connector.getOwner());
-          repository.incrementPersistentDelete(del);
-        }
-      });
+    	DeltaDeletedConnector del = cls.createDeltaDeletedConnectors();
+      del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
     }
     else
     // just generate a delete delta
     {      
-      cmd.addCommand(new AbstractCommand("", "")
-      {
-      	private DeltaDeletedConnector del;
-        public void execute(boolean isTop)
-        {
-        	if (del == null)
-        	{
-            del = cls.createDeltaDeletedConnectors();
-            del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
-        	}
-        	else
-        		repository.decrementPersistentDelete(del);
-        }
-
-        public void unExecute()
-        {
-          repository.incrementPersistentDelete(del);
-        }
-      });      
+      	DeltaDeletedConnector del = cls.createDeltaDeletedConnectors();
+        del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
     }
   };
 }

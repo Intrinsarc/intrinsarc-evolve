@@ -726,9 +726,9 @@ public final class BasicNamespaceNodeGem implements Gem
       figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
 		}
 
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
-			return featurelessClassifierAppearanceFacet.middleButtonPressed(figureFacet.getDiagram());
+			featurelessClassifierAppearanceFacet.middleButtonPressed(figureFacet.getDiagram());
 		}
 
 		/**
@@ -775,11 +775,11 @@ public final class BasicNamespaceNodeGem implements Gem
 	{
     public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
+      Namespace newSubject = (Namespace) miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
 
-      if (payload != null && payload.getSubject() != null)
+      if (newSubject != null)
       {
-          subject = (Namespace) payload.getSubject();
+          subject =  newSubject;
           name = subject.getName();
     	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
       }

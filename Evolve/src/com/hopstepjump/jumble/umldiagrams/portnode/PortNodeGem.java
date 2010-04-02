@@ -66,12 +66,13 @@ public final class PortNodeGem implements Gem
 	private VisibilityKind accessType = VisibilityKind.PUBLIC_LITERAL;
   private int displayType = PortDisplayTypeFacet.NORMAL_TYPE;
   private Port subject;
-  private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   private boolean instance;
   private boolean drawInferred;
   private int portKind;
   private Set<String> inferredReqNames = new HashSet<String>();
   private Set<String> inferredProvNames = new HashSet<String>();
+  private boolean someHidden;
   
 	public PortNodeGem(DiagramFacet diagram, UPoint location, boolean isForClasses, PersistentFigure pfig, boolean instance)
   {
@@ -117,28 +118,26 @@ public final class PortNodeGem implements Gem
 		this.instance = instance;
   }
 
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
 
-  private class ClipboardCommandsFacetImpl implements ClipboardCommandsFacet
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
-    public boolean hasSpecificDeleteCommand()
+    public boolean hasSpecificDeleteAction()
     {
       return false;
     }
 
-    public Command makeSpecificDeleteCommand()
+    public void makeSpecificDeleteAction()
     {
-      return null;
     }
     
-    public Command performPostDeleteTransaction()
+    public void performPostDeleteAction()
     {
       String uuid = getOriginalSubjectAsPort(subject).getUuid();
       getPortCompartment().addDeleted(uuid);
-      return null;
     }
     
     private PortCompartmentFacet getPortCompartment()
@@ -148,7 +147,7 @@ public final class PortNodeGem implements Gem
         parent.getDynamicFacet(PortCompartmentFacet.class);
     }
 
-    public boolean hasSpecificKillCommand()
+    public boolean hasSpecificKillAction()
     {
       return isOutOfPlace() || !atHome();
     }
@@ -159,11 +158,11 @@ public final class PortNodeGem implements Gem
       return extractVisualClassifier() != getSubjectAsPort().getOwner();
     }
 
-    public Command makeSpecificKillCommand(ToolCoordinatorFacet coordinator)
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
       // be defensive
       if (figureFacet.getContainedFacet().getContainer() == null)
-        return null;
+        return;
       
       // only allow changes in the home stratum
       if (!atHome())
@@ -173,18 +172,18 @@ public final class PortNodeGem implements Gem
             ScreenProperties.getUndoPopupColor(),
             Color.black,
             3000);
-        return null;
+        return;
       }
 
       // if this is a replace, kill the replace delta
       Port port = getSubjectAsPort();
       if (port.getOwner() instanceof DeltaReplacedConstituent && port.getOwner().getOwner() == extractVisualClassifier())
-        return generateReplaceDeltaKill(coordinator);
+        generateReplaceDeltaKill(coordinator);
       else
-        return generateDeleteDelta(coordinator);
+        generateDeleteDelta(coordinator);
     }
 
-    private Command generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
+    private void generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta
       coordinator.displayPopup(null, null,
@@ -194,22 +193,10 @@ public final class PortNodeGem implements Gem
           1500);
       
       final Port port = getSubjectAsPort();
-      
-      return new AbstractCommand("Removed replace delta", "Restored replace delta")
-      {
-        public void execute(boolean isTop)
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(port.getOwner());            
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.decrementPersistentDelete(port.getOwner());
-        } 
-      };
+      GlobalSubjectRepository.repository.incrementPersistentDelete(port.getOwner());            
     }
 
-    private Command generateDeleteDelta(ToolCoordinatorFacet coordinator)
+    private void generateDeleteDelta(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta
       coordinator.displayPopup(null, null,
@@ -223,31 +210,9 @@ public final class PortNodeGem implements Gem
       // add this to the classifier as a delete delta
       final Port port = getOriginalSubjectAsPort(figureFacet.getSubject());
       
-      return new AbstractCommand("Added delete delta", "Removed delete delta")
-      {
-        private DeltaDeletedConstituent delete;
-        
-        public void execute(boolean isTop)
-        {
-          SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-          
-          // possibly resurrect
-          if (delete != null)
-          {
-            repository.decrementPersistentDelete(delete);
-          }
-          else
-          {
-            delete = ((Class) classifier).createDeltaDeletedPorts();
-            delete.setDeleted(port);
-          }
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(delete);
-        } 
-      };
+      DeltaDeletedConstituent delete;
+      delete = ((Class) classifier).createDeltaDeletedPorts();
+      delete.setDeleted(port);
     }
 
     private boolean atHome()
@@ -276,6 +241,7 @@ public final class PortNodeGem implements Gem
     displayType = properties.retrieve("dispType", PortDisplayTypeFacet.NORMAL_TYPE).asInteger();
     extraText = properties.retrieve("extraText", "").asString();
     drawInferred = properties.retrieve("drawInferred", false).asBoolean();
+    someHidden = properties.retrieve("someHidden", false).asBoolean();
   }
   
   public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
@@ -555,7 +521,7 @@ public final class PortNodeGem implements Gem
       }
               
       // draw a "hiding" square if there are hidden connectors
-      if (connectorVisibility(false))
+      if (someHidden)
       {
         UDimension offset = new UDimension(1, 1);
         UPoint middle = bounds.getMiddlePoint();
@@ -1012,6 +978,7 @@ public final class PortNodeGem implements Gem
       properties.add(new PersistentProperty("dispType", displayType, PortDisplayTypeFacet.NORMAL_TYPE));
       properties.add(new PersistentProperty("extraText", extraText, null));
       properties.add(new PersistentProperty("drawInferred", drawInferred, false));
+      properties.add(new PersistentProperty("someHidden", someHidden, false));
 		}
 
 		/**
@@ -1043,6 +1010,9 @@ public final class PortNodeGem implements Gem
         update = true;
       if (nextKind != portKind)
       	update = true;
+      boolean hidden = connectorVisibility(false);
+      if (someHidden != hidden)
+      	update = true;
       
       // don't bother if there are no changes
       if (!update)
@@ -1055,6 +1025,7 @@ public final class PortNodeGem implements Gem
               null,
               false);
 
+			someHidden = hidden;
       accessType = subject.getVisibility();
       // resize, using a text utility
       figureFacet.performResizingTransaction(figureFacet.getFullBounds());
@@ -1089,31 +1060,29 @@ public final class PortNodeGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
 		  // show or hide all the connectors attached
 		  // if we have some showing and some hidden, show all
-		  boolean someHidden = connectorVisibility(false);
+		  boolean show = connectorVisibility(false);
 		  boolean someShown = connectorVisibility(true);
 		  
-		  if (!someHidden && !someShown)
-		    return null; // no connectors
+		  if (!show && !someShown)
+		    return; // no connectors
 		  
 		  // show if we have some hidden
-		  boolean show = someHidden;
-		  
 		  // make a command to hide or show...
-		  CompositeCommand hide = new CompositeCommand(show ? "Show all connections" : "Hide all connections",
-		                                               show ? "Hide all the connections" : "Show all the connections");
+		  coordinator.startTransaction(
+		  		show ? "Show all connections" : "Hide all connections",
+		      show ? "Hide all the connections" : "Show all the connections");
 		  for (Iterator iter = figureFacet.getAnchorFacet().getLinks(); iter.hasNext();)
       {
         LinkingFacet link = (LinkingFacet) iter.next();
-        FigureFacet figure = link.getFigureFacet();
-
         if (isConnector(link))
-          hide.addCommand(new HideFigureCommand(null, figure.getFigureReference(), !show, "", ""));
+        	link.getFigureFacet().setShowing(show);
       }
-      return hide;
+		  someHidden = !show;
+		  coordinator.commitTransaction();
 		}
 		
     /**

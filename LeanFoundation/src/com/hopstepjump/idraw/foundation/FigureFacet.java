@@ -71,7 +71,7 @@ public interface FigureFacet extends MainFacet
 
   /** each figure can define a popup menu */
   public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
-  public Command middleButtonPressed(ToolCoordinatorFacet coordinator);
+  public void middleButtonPressed(ToolCoordinatorFacet coordinator);
   public void produceEffect(ToolCoordinatorFacet coordinator, String effect, Object[] parameters);
   
   public void cleanUp();
@@ -101,7 +101,7 @@ public interface FigureFacet extends MainFacet
   
   /** support for the clipboard is optional */
   public ClipboardFacet getClipboardFacet();
-  public ClipboardCommandsFacet getClipboardCommandsFacet();
+  public ClipboardActionsFacet getClipboardCommandsFacet();
   
   /** form a command to delete this figure from the diagram */
   public void formDeleteTransaction();

@@ -130,7 +130,7 @@ public final class BasicNodeGem implements Gem
     state.clipboardFacet = clipboardFacet;
   }
 
-  public void connectClipboardCommandsFacet(ClipboardCommandsFacet clipboardCommandsFacet)
+  public void connectClipboardCommandsFacet(ClipboardActionsFacet clipboardCommandsFacet)
   {
     state.clipboardCommandsFacet = clipboardCommandsFacet;
   }

@@ -38,7 +38,7 @@ public interface BasicNodeAppearanceFacet extends Facet
 	
 	/** right press and middle press */ 
 	public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
-	public Command middleButtonPressed(ToolCoordinatorFacet coordinator);
+	public void middleButtonPressed(ToolCoordinatorFacet coordinator);
 
 	/** view update management */
 	public Object getSubject();

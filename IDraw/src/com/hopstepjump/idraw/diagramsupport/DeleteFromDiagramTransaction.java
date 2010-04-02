@@ -28,7 +28,7 @@ public class DeleteFromDiagramTransaction
     for (String specificTopLevelId : specificTopLevelIds)
     {
       FigureFacet figure = diagram.retrieveFigure(specificTopLevelId);
-      figure.getClipboardCommandsFacet().makeSpecificDeleteCommand();
+      figure.getClipboardCommandsFacet().makeSpecificDeleteAction();
     }
     
     // do any specific post deletes
@@ -37,7 +37,7 @@ public class DeleteFromDiagramTransaction
       {
         FigureFacet figure = diagram.retrieveFigure(topLevelId);
         if (figure.getClipboardCommandsFacet() != null)
-          figure.getClipboardCommandsFacet().performPostDeleteTransaction();
+          figure.getClipboardCommandsFacet().performPostDeleteAction();
       }
     
 			for (String id : topLevelIds)
@@ -95,6 +95,6 @@ public class DeleteFromDiagramTransaction
   {
     return
       figure.getClipboardCommandsFacet() != null &&
-      figure.getClipboardCommandsFacet().hasSpecificKillCommand();
+      figure.getClipboardCommandsFacet().hasSpecificKillAction();
   }
 }

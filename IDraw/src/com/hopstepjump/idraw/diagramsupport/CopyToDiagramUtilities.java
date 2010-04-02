@@ -148,7 +148,7 @@ public class CopyToDiagramUtilities
 
   private static void considerAdding(Set<String> topLevel, FigureFacet figure, int wantType)
   {
-    boolean hasSpecific = figure.getClipboardCommandsFacet() != null && figure.getClipboardCommandsFacet().hasSpecificDeleteCommand(); 
+    boolean hasSpecific = figure.getClipboardCommandsFacet() != null && figure.getClipboardCommandsFacet().hasSpecificDeleteAction(); 
     if (wantType == WANT_ALL ||
         wantType == WANT_SPECIFIC && hasSpecific ||
         wantType == WANT_NON_SPECIFIC && !hasSpecific)
