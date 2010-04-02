@@ -29,7 +29,6 @@ import com.hopstepjump.jumble.expander.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
-import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 import com.hopstepjump.jumble.umldiagrams.implementationarc.*;
 import com.hopstepjump.jumble.umldiagrams.linkedtextnode.*;
 import com.hopstepjump.layout.*;
@@ -61,10 +60,8 @@ public final class PortNodeGem implements Gem
 	private BasicNodeContainerFacet containerFacet = new ContainerFacetImpl();
 	private PortNodeFacet portNode = new PortFacetImpl();
 	private LinkedTextFacet linkedTextFacet;
-	private VisibilityFacet visibilityFacet = new VisibilityFacetImpl();
-  private PortDisplayTypeFacet portDisplayTypeFacet = new PortDisplayTypeFacetImpl();
 	private VisibilityKind accessType = VisibilityKind.PUBLIC_LITERAL;
-  private int displayType = PortDisplayTypeFacet.NORMAL_TYPE;
+  private PortDisplayEnum displayType = PortDisplayEnum.NORMAL_TYPE;
   private Port subject;
   private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   private boolean instance;
@@ -238,10 +235,11 @@ public final class PortNodeGem implements Gem
   	subject = (Port) pfig.getSubject();
   	PersistentProperties properties = pfig.getProperties();
     classScope = properties.retrieve("classScope", false).asBoolean();
-    displayType = properties.retrieve("dispType", PortDisplayTypeFacet.NORMAL_TYPE).asInteger();
+    displayType = PortDisplayEnum.values()[properties.retrieve("dispType", 0).asInteger()];
     extraText = properties.retrieve("extraText", "").asString();
     drawInferred = properties.retrieve("drawInferred", false).asBoolean();
     someHidden = properties.retrieve("someHidden", false).asBoolean();
+    accessType = VisibilityKind.get(pfig.getProperties().retrieve("access", 0).asInteger());
   }
   
   public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
@@ -253,8 +251,6 @@ public final class PortNodeGem implements Gem
   {
   	this.figureFacet = figureFacet;
   	figureFacet.registerDynamicFacet(portNode, PortNodeFacet.class);
-  	figureFacet.registerDynamicFacet(visibilityFacet, VisibilityFacet.class);
-    figureFacet.registerDynamicFacet(portDisplayTypeFacet, PortDisplayTypeFacet.class);
   	figureFacet.registerDynamicFacet(linkedTextOriginFacet, LinkedTextOriginFacet.class);
 	}
 
@@ -278,36 +274,6 @@ public final class PortNodeGem implements Gem
 			}
 			return formName();
 		}
-  }
-  
-  private class VisibilityFacetImpl implements VisibilityFacet
-  {
-    public Object setVisibility(VisibilityKind newAccessType)
-    {
-      VisibilityKind oldAccessType = subject.getVisibility();
-      subject.setVisibility(newAccessType);
-      return null;
-    }
-    
-    public void unSetVisibility(Object memento)
-    {
-    }
-  }
-  
-  private class PortDisplayTypeFacetImpl implements PortDisplayTypeFacet
-  {
-    public Object setDisplayType(int type)
-    {
-      displayType = type;
-
-      // we are about to autosize, so need to make a resizings command
-      figureFacet.performResizingTransaction(figureFacet.getFullBounds());
-      return null;
-    }
-
-    public void unSetDisplayType(Object memento)
-    {
-    }    
   }
   
   private class PortFacetImpl implements PortNodeFacet
@@ -407,13 +373,13 @@ public final class PortNodeGem implements Gem
 		    }				
 			}
 			
-      if (displayType != PortDisplayTypeFacet.ELIDED_TYPE)
+      if (displayType != PortDisplayEnum.ELIDED_TYPE)
       {
         ZRectangle rect = new ZRectangle(bounds);
         rect.setPenPaint(lineColor);
 				rect.setFillPaint(FILL_COLOR);
         // a possible shortcut?
-        if (displayType == PortDisplayTypeFacet.SHORTCUT_TYPE)
+        if (displayType == PortDisplayEnum.SHORTCUT_TYPE)
         {
           rect.setPenPaint(new Color(210, 210, 210));
           rect.setFillPaint(new Color(250, 250, 250));
@@ -824,9 +790,9 @@ public final class PortNodeGem implements Gem
         popup.add(linkedTextFacet.getViewLabelMenuItem(coordinator, "port"));
         Utilities.addSeparator(popup);
         JMenu displayType = new JMenu("Display type");
-        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayTypeFacet.NORMAL_TYPE, "normal"));
-        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayTypeFacet.ELIDED_TYPE, "elided"));
-        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayTypeFacet.SHORTCUT_TYPE, "shortcut"));
+        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayEnum.NORMAL_TYPE, "normal"));
+        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayEnum.ELIDED_TYPE, "elided"));
+        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayEnum.SHORTCUT_TYPE, "shortcut"));
         popup.add(displayType);
       }
       
@@ -844,19 +810,17 @@ public final class PortNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the autosized flag (as a command)
-					Command privateCommand =
-						new SetVisibilityCommand(
-						    figureFacet.getFigureReference(),
-						    newAccessType,
+					coordinator.startTransaction(
 						    "changed visibility of " + getFigureName() + " to " + newAccessType.getName(),
 						    "restored visibility of " + getFigureName() + " to " + accessType.getName());
-					coordinator.executeCommandAndUpdateViews(privateCommand);
+		      subject.setVisibility(newAccessType);
+					coordinator.commitTransaction();
 				}
 			});
 			return makePrivateItem;
 		}
 		
-    private JMenuItem getPortDisplayTypeMenuItem(final ToolCoordinatorFacet coordinator, final int newDisplayType, String type)
+    private JMenuItem getPortDisplayTypeMenuItem(final ToolCoordinatorFacet coordinator, final PortDisplayEnum newDisplayType, String type)
     {
       JCheckBoxMenuItem elidedItem = new JCheckBoxMenuItem(type);
       
@@ -867,13 +831,12 @@ public final class PortNodeGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           // toggle the autosized flag (as a command)
-          Command elideCommand =
-            new SetPortDisplayTypeCommand(
-                figureFacet.getFigureReference(),
-                newDisplayType,
+          coordinator.startTransaction(
                 "changed display type of " + getFigureName(),
                 "restored display type of " + getFigureName());
-          coordinator.executeCommandAndUpdateViews(elideCommand);
+          displayType = newDisplayType;
+          figureFacet.performResizingTransaction(figureFacet.getFullBounds());
+          coordinator.commitTransaction();
         }
       });
       return elidedItem;
@@ -914,7 +877,7 @@ public final class PortNodeGem implements Gem
       PortNodeContainerPreviewGem portNode =
         new PortNodeContainerPreviewGem(
               containerBounds,
-              displayType == PortDisplayTypeFacet.ELIDED_TYPE,
+              displayType == PortDisplayEnum.ELIDED_TYPE,
               basicGem.getPreviewFacet(),
               previews,
               provided,
@@ -975,10 +938,11 @@ public final class PortNodeGem implements Gem
 		public void addToPersistentProperties(PersistentProperties properties)
 		{
 		  properties.add(new PersistentProperty("classScope", classScope, false));
-      properties.add(new PersistentProperty("dispType", displayType, PortDisplayTypeFacet.NORMAL_TYPE));
+      properties.add(new PersistentProperty("dispType", displayType.ordinal(), 0));
       properties.add(new PersistentProperty("extraText", extraText, null));
       properties.add(new PersistentProperty("drawInferred", drawInferred, false));
       properties.add(new PersistentProperty("someHidden", someHidden, false));
+      properties.add(new PersistentProperty("access", accessType.getValue(), 0));
 		}
 
 		/**

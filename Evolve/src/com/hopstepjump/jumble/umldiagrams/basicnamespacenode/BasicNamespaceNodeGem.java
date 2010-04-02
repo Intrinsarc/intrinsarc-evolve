@@ -76,7 +76,6 @@ public final class BasicNamespaceNodeGem implements Gem
   private String figureName;
 
   private String owner = "";
-  private SuppressOwningPackageFacet showOwningPackageFacet = new SuppressOwningPackageFacetImpl();
   private boolean showOwningPackage = false;
   private boolean forceSuppressOwningPackage = false;
   private int stereotypeHashcode;
@@ -117,31 +116,6 @@ public final class BasicNamespaceNodeGem implements Gem
 		}
 	}
 
-	private class SuppressOwningPackageFacetImpl implements SuppressOwningPackageFacet
-	{
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.basicnamespacenode.ShowOwningPackageFacet#setShowOwningPackage(boolean)
-		 */
-		public Object setSuppressOwningPackage(boolean forceSuppressPackage)
-		{
-			boolean oldForceSuppressOwningPackage = forceSuppressOwningPackage;
-	
-			// make the change
-			forceSuppressOwningPackage = forceSuppressPackage;
-	
-			return new Boolean(oldForceSuppressOwningPackage);
-		}
-
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.basicnamespacenode.ShowOwningPackageFacet#unSetShowOwningPackage(Object)
-		 */
-		public void unSetSupressOwningPackage(Object memento)
-		{
-			forceSuppressOwningPackage = ((Boolean)memento).booleanValue();
-		}
-
-	}
-  
   private class DisplayAsIconFacetImpl implements DisplayAsIconFacet
   {
 	  /**
@@ -540,8 +514,11 @@ public final class BasicNamespaceNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress operations flag
-					Command forceSuppressOwningPackageCommand = new SuppressOwningPackageCommand(figureFacet.getFigureReference(), !forceSuppressOwningPackage, forceSuppressOwningPackage ? "unsuppressed owner package" : "suppressed owner package", forceSuppressOwningPackage ? "suppressed owner package" : "unsuppressed owner package");
-					coordinator.executeCommandAndUpdateViews(forceSuppressOwningPackageCommand);
+					coordinator.startTransaction(
+							forceSuppressOwningPackage ? "unsuppressed owner package" : "suppressed owner package",
+									forceSuppressOwningPackage ? "suppressed owner package" : "unsuppressed owner package");
+					forceSuppressOwningPackage = !forceSuppressOwningPackage;
+					coordinator.commitTransaction();
 				}
 			});
 			return showVisibilityItem;
@@ -1105,7 +1082,6 @@ public final class BasicNamespaceNodeGem implements Gem
 		this.figureFacet = figureFacet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
   	figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
-  	figureFacet.registerDynamicFacet(showOwningPackageFacet, SuppressOwningPackageFacet.class);
   	figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
 	}
 	

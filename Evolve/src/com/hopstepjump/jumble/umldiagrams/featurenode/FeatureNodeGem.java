@@ -56,8 +56,6 @@ public final class FeatureNodeGem implements Gem
   private TextableFacet textableFacet = new TextableFacetImpl();
   private BasicNodeFigureFacet figureFacet;
   private FeatureTypeFacet featureTypeFacet;
-  private ScopeFacet scopeFacet = new ScopeFacetImpl();
-  private VisibilityFacet visibilityFacet = new VisibilityFacetImpl();
   private FeatureComparableFacet comparableFacet = new FeatureComparableFacetImpl();
   private Element subject;
   private int stereotypeHashcode;
@@ -186,41 +184,6 @@ public final class FeatureNodeGem implements Gem
 		}
   }
   
-  private class VisibilityFacetImpl implements VisibilityFacet
-  {
-		public Object setVisibility(VisibilityKind newAccessType)
-	  {
-			Feature feature = getSubjectAsFeature();
-	  	feature.setVisibility(newAccessType);
-	  	return null;
-	  }
-	  
-	  public void unSetVisibility(Object memento)
-	  {
-	  }
-  }
-  
-  private class ScopeFacetImpl implements ScopeFacet
-  {
-	 	/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.featurenode.CmdScopeable#setScope(boolean)
-		 */
-		public Object setScope(boolean newClassifierScope)
-		{
-			Feature feature = getSubjectAsFeature();
-      boolean oldScope = feature.isStatic();
-      feature.setIsStatic(newClassifierScope);
-			return null;
-		}
-	
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.featurenode.CmdScopeable#unSetScope(Object)
-		 */
-		public void unSetScope(Object memento)
-		{
-		}
-  }
-
 	private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
 	{
 		public Manipulators getSelectionManipulators(
@@ -398,8 +361,10 @@ public final class FeatureNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// adjust the visibility
-					SetScopeCommand scopeCommand = new SetScopeCommand(figureFacet.getFigureReference(), !classifierScope, "changed scope of " + getFigureName() + " to " + (classifierScope ? "instance" : "classifier"), "restored scope of " + getFigureName() + " to " + (classifierScope ? "classifier" : "instance"));
-					coordinator.executeCommandAndUpdateViews(scopeCommand);
+					coordinator.startTransaction("changed scope of " + getFigureName() + " to " + (classifierScope ? "instance" : "classifier"), "restored scope of " + getFigureName() + " to " + (classifierScope ? "classifier" : "instance"));
+					Feature feature = getSubjectAsFeature();
+		      feature.setIsStatic(!classifierScope);
+					coordinator.commitTransaction();
 				}
 			});
 			return scopeItem;
@@ -415,8 +380,10 @@ public final class FeatureNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// adjust the visibility
-					SetVisibilityCommand visibilityCommand = new SetVisibilityCommand(figureFacet.getFigureReference(), newAccessType, "changed visibility of " + getFigureName() + " to " + newAccessType.getName(), "restored visibility of " + getFigureName() + " to " + accessType.getName());
-					coordinator.executeCommandAndUpdateViews(visibilityCommand);
+					coordinator.startTransaction("changed visibility of " + getFigureName() + " to " + newAccessType.getName(), "restored visibility of " + getFigureName() + " to " + accessType.getName());
+					Feature feature = getSubjectAsFeature();
+			  	feature.setVisibility(newAccessType);
+					coordinator.commitTransaction();
 				}
 			});
 			return accessItem;
@@ -478,7 +445,8 @@ public final class FeatureNodeGem implements Gem
 		{
 			properties.add(new PersistentProperty("name", name, ""));
 			properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
-			
+			properties.add(new PersistentProperty("access", accessType.getValue(), 0));
+			properties.add(new PersistentProperty("classifierScope", classifierScope, false));
 		}
 
     /**
@@ -675,6 +643,8 @@ public final class FeatureNodeGem implements Gem
     subject = (Element) pfig.getSubject();
     name = pfig.getProperties().retrieve("name", "").asString();
     stereotypeHashcode = pfig.getProperties().retrieve("stereoHash", 0).asInteger();
+    accessType = VisibilityKind.get(pfig.getProperties().retrieve("access", 0).asInteger());
+    classifierScope = pfig.getProperties().retrieve("classifierScope", false).asBoolean();
 	}
 
 	public String getName()
@@ -698,8 +668,6 @@ public final class FeatureNodeGem implements Gem
   {
   	this.figureFacet = figureFacet;
   	figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-  	figureFacet.registerDynamicFacet(visibilityFacet, VisibilityFacet.class);
-  	figureFacet.registerDynamicFacet(scopeFacet, ScopeFacet.class);
   	figureFacet.registerDynamicFacet(comparableFacet, FeatureComparableFacet.class);
   	figureFacet.registerDynamicFacet(featureTypeFacet, FeatureTypeFacet.class);
   }

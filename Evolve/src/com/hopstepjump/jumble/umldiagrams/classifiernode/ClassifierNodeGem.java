@@ -98,7 +98,6 @@ public final class ClassifierNodeGem implements Gem
 	private ResizeVetterFacet resizeVetterFacet = new ResizeVetterFacetImpl();
 	private ClassifierNodeFacetImpl classifierFacet = new ClassifierNodeFacetImpl();
 	private DisplayAsIconFacet displayAsIconFacet = new DisplayAsIconFacetImpl();
-  private ShowAsStateFacet showAsStateFacet = new ShowAsStateFacetImpl();
 	private LocationFacet locationFacet = new LocationFacetImpl();
 	private VisualLockFacetImpl lockFacet = new VisualLockFacetImpl();
 	private AutoSizedFacetImpl autosizedFacet = new AutoSizedFacetImpl();
@@ -107,7 +106,6 @@ public final class ClassifierNodeGem implements Gem
   private boolean showStereotype = true;
 	
   private String owner = "";
-  private SuppressOwningPackageFacet showOwningPackageFacet = new SuppressOwningPackageFacetImpl();
   private boolean showOwningPackage;
   private boolean forceSuppressOwningPackage = false;
   private int stereotypeHashcode;
@@ -270,44 +268,6 @@ public final class ClassifierNodeGem implements Gem
     return null;
   }
 
-	private class SuppressOwningPackageFacetImpl implements SuppressOwningPackageFacet
-	{
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.basicnamespacenode.ShowOwningPackageFacet#setShowOwningPackage(boolean)
-		 */
-		public Object setSuppressOwningPackage(boolean forceSuppressPackage)
-		{
-			boolean oldForceSuppressOwningPackage = forceSuppressOwningPackage;
-			
-			// make the change
-			forceSuppressOwningPackage = forceSuppressPackage;
-			
-			return new Boolean(oldForceSuppressOwningPackage);
-		}
-		
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.basicnamespacenode.ShowOwningPackageFacet#unSetShowOwningPackage(Object)
-		 */
-		public void unSetSupressOwningPackage(Object memento)
-		{
-			forceSuppressOwningPackage = ((Boolean)memento).booleanValue();
-		}
-	}
-  
-	private class ShowAsStateFacetImpl implements ShowAsStateFacet
-	{
-		public Object showAsState(boolean newShowAsState)
-		{
-			// make the change
-			showAsState = newShowAsState;
-			return null;
-		}
-		
-		public void unShowAsState(Object memento)
-		{
-		}
-	}
-	
   private class DisplayAsIconFacetImpl implements DisplayAsIconFacet
   {
     /**
@@ -1567,8 +1527,11 @@ public final class ClassifierNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress operations flag
-					Command forceSuppressOwningPackageCommand = new SuppressOwningPackageCommand(figureFacet.getFigureReference(), !forceSuppressOwningPackage, forceSuppressOwningPackage ? "unsuppressed owner package" : "suppressed owner package", forceSuppressOwningPackage ? "suppressed owner package" : "unsuppressed owner package");
-					coordinator.executeCommandAndUpdateViews(forceSuppressOwningPackageCommand);
+					coordinator.startTransaction(
+							forceSuppressOwningPackage ? "unsuppressed owner package" : "suppressed owner package",
+							forceSuppressOwningPackage ? "suppressed owner package" : "unsuppressed owner package");
+					forceSuppressOwningPackage = !forceSuppressOwningPackage;
+					coordinator.commitTransaction();
 				}
 			});
 			return showVisibilityItem;
@@ -2886,9 +2849,7 @@ public final class ClassifierNodeGem implements Gem
 		this.figureFacet = figureFacet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
 		figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
-    figureFacet.registerDynamicFacet(showAsStateFacet, ShowAsStateFacet.class);
 		figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
-		figureFacet.registerDynamicFacet(showOwningPackageFacet, SuppressOwningPackageFacet.class);
 		figureFacet.registerDynamicFacet(switchableFacet, SwitchSubjectFacet.class);
 		// override the default autosizing mechanism, which doesn't work for this
     figureFacet.registerDynamicFacet(deletedConnectorUuidsFacet, SimpleDeletedUuidsFacet.class);

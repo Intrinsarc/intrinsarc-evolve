@@ -55,7 +55,6 @@ public class GrouperNodeGem
 	private BasicNodeFigureFacet figureFacet;
 	private TextableFacetImpl textableFacet = new TextableFacetImpl();
 	private ResizeVetterFacetImpl resizeVetterFacet = new ResizeVetterFacetImpl();
-	private LocateTextFacet locateTextFacet = new LocateTextFacetImpl();
   private Comment subject = null;
 
 	private class GroupBoundsDisplayer extends ManipulatorAdapter
@@ -147,26 +146,8 @@ public class GrouperNodeGem
 	{
 		this.figureFacet = facet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-		figureFacet.registerDynamicFacet(locateTextFacet, LocateTextFacet.class);
 	}
 
-	private class LocateTextFacetImpl implements LocateTextFacet
-	{
-		
-			/*
-		 * @see com.hopstepjump.jumble.freeform.grouper.LocateTextFacet#locateText(boolean)
-		 */
-		public Object locateText(boolean inTop)
-		{
-			// need to resize this also, as the change in text may have affected the size
-			boolean oldTextAtTop = textAtTop;
-			textAtTop = inTop;
-			figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
-			return null;
-		}
-	}
-
-  
 	private class GrouperNodeFacetImpl implements GrouperNodeFacet
 	{
 		public UBounds getBoundsAfterExistingContainablesAlter(PreviewCacheFacet previews)
@@ -401,11 +382,12 @@ public class GrouperNodeGem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress attributes flag
-					Command locateTextCommand =
-						new LocateTextCommand(figureFacet.getFigureReference(), !textAtTop,
+					coordinator.startTransaction(
 								textAtTop  ? "Placed text underneath" : "Placed text above",
 								!textAtTop ? "Placed text underneath" : "Placed text above");
-					coordinator.executeCommandAndUpdateViews(locateTextCommand);
+					textAtTop = !textAtTop;
+					figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
+					coordinator.commitTransaction();
 				}
 			});
 			return locateTextItem;
