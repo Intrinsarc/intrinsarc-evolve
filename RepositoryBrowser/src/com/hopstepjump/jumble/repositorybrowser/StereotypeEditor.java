@@ -222,10 +222,10 @@ public class StereotypeEditor
 		        {
 		          public void actionPerformed(ActionEvent e)
 		          {
-		            coordinator.executeCommandAndUpdateViews(
-		                StereotypeUtilities.formDeleteAppliedRawStereotypeValueCommand(
-		                    element,
-		                    applied));
+		            StereotypeUtilities.formDeleteAppliedRawStereotypeValueTransaction(
+		            		coordinator,
+                    element,
+                    applied);
 		          }
 		        });
 		    insetPanel.add(delete, gbcRight);
@@ -287,14 +287,10 @@ public class StereotypeEditor
             GlobalSubjectRepository.repository.findOwningPackage(element)).asStratum();
   }
 
-  public Command formApplyCommand()
+  public void applyAction()
   {
-    CompositeCommand command = new CompositeCommand("", "");
     for (UMLAttributeViewer viewer : viewers.values())
-      command.addCommand(viewer.formApplyCommand());
-    
-    // if this is empty, don't bother
-    return command.isEmpty() ? null : command;
+      viewer.applyAction();
   }
 
   public boolean hasAnythingBeenModified()

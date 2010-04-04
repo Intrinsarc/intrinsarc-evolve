@@ -98,11 +98,6 @@ public final class InheritanceCreatorGem implements Gem
       return gen;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-
 		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
 		}

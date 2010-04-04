@@ -99,7 +99,6 @@ public final class ClassifierNodeGem implements Gem
 	private ClassifierNodeFacetImpl classifierFacet = new ClassifierNodeFacetImpl();
 	private DisplayAsIconFacet displayAsIconFacet = new DisplayAsIconFacetImpl();
 	private LocationFacet locationFacet = new LocationFacetImpl();
-	private VisualLockFacetImpl lockFacet = new VisualLockFacetImpl();
 	private AutoSizedFacetImpl autosizedFacet = new AutoSizedFacetImpl();
 	private BasicNodeFigureFacet figureFacet;
 	private ClassifierMiniAppearanceFacet miniAppearanceFacet;
@@ -530,24 +529,6 @@ public final class ClassifierNodeGem implements Gem
 		resizings.end();
 	}
 		
-	private class VisualLockFacetImpl implements VisualLockFacet
-	{
-		public Object lock(boolean lock)
-		{
-			locked = lock;
-			return null;
-		}
-
-		public void unLock(Object memento)
-		{
-		}
-
-		public boolean isLocked()
-		{
-			return locked;
-		}		
-	}
-	
 	private class AutoSizedFacetImpl implements AutoSizedFacet
 	{
 		public void autoSize(boolean newAutoSized)
@@ -2230,8 +2211,6 @@ public final class ClassifierNodeGem implements Gem
       {
         // take the lock value from the enclosing classifier
       	FigureFacet classifier = figureFacet.getContainedFacet().getContainer().getContainedFacet().getContainer().getFigureFacet();
-      	VisualLockFacet visual = (VisualLockFacet) classifier.getDynamicFacet(VisualLockFacet.class);
-      	boolean lock = visual.isLocked();
         
         // find any attributes to add or delete
         PartSlotHelper slotHelper =
@@ -2248,9 +2227,9 @@ public final class ClassifierNodeGem implements Gem
   			ports.clean(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT), portInstanceHelper.getConstituentUuids());
   
         if (!suppressAttributesOrSlots)
-          slotHelper.makeUpdateTransaction(attributesOrSlots, lock);
+          slotHelper.makeUpdateTransaction(attributesOrSlots, locked);
         if (!displayOnlyIcon)
-          portInstanceHelper.makeUpdateTransaction(ports, lock);
+          portInstanceHelper.makeUpdateTransaction(ports, locked);
       }
 	    
 			Property part = (Property) subject;
@@ -2853,7 +2832,6 @@ public final class ClassifierNodeGem implements Gem
 		figureFacet.registerDynamicFacet(switchableFacet, SwitchSubjectFacet.class);
 		// override the default autosizing mechanism, which doesn't work for this
     figureFacet.registerDynamicFacet(deletedConnectorUuidsFacet, SimpleDeletedUuidsFacet.class);
-    figureFacet.registerDynamicFacet(lockFacet, VisualLockFacet.class);
     figureFacet.registerDynamicFacet(autosizedFacet, AutoSizedFacet.class);
     registerAdorner();
 	}

@@ -496,7 +496,7 @@ public class DependencyArcGem implements Gem
       return subject.isThisDeleted();
     }
 
-    public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+    public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
     {
       NamedElement oldOwner = (NamedElement) subject.getClients().get(0);      
       NamedElement newOwner = DependencyCreatorGem.extractDependentClient(start.getFigureFacet().getSubject());
@@ -507,7 +507,6 @@ public class DependencyArcGem implements Gem
       subject.getClients().remove(oldOwner);
       subject.getClients().add(newOwner);
       subject.setDependencyTarget(newSupplier);
-      return null;
     }
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

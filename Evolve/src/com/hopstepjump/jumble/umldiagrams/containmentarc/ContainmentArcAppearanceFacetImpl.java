@@ -108,9 +108,8 @@ public final class ContainmentArcAppearanceFacetImpl implements BasicArcAppearan
 		return false;
 	}
 
-	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+	public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 	{
-		return null;
 	}
 
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

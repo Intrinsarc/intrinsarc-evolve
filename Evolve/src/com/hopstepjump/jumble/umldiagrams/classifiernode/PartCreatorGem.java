@@ -53,7 +53,7 @@ public class PartCreatorGem
       basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
       
       // connect up the clipboard facet
-      PartClipboardCommandsGem clip = new PartClipboardCommandsGem();
+      PartClipboardActionsGem clip = new PartClipboardActionsGem();
       clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
       basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
       
@@ -93,7 +93,7 @@ public class PartCreatorGem
       classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 
       // connect up the clipboard facet
-      PartClipboardCommandsGem clip = new PartClipboardCommandsGem();
+      PartClipboardActionsGem clip = new PartClipboardActionsGem();
       clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
       basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
       

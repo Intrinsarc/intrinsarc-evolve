@@ -126,7 +126,6 @@ public final class BasicNamespaceNodeGem implements Gem
 			// make the change
 			displayOnlyIcon = displayAsIcon;
 	
-			Command resizeCommand = null;
 			contents.getFigureFacet().setShowing(!suppressContents && !displayOnlyIcon);
 
 			// we are about to autosize, so need to make a resizings command

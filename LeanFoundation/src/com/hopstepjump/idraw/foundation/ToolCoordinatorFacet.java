@@ -18,7 +18,7 @@ import edu.umd.cs.jazz.util.*;
  */
 
 public interface ToolCoordinatorFacet extends PopupMakerFacet, TransactionManagerFacet
-{
+{	
   public void attachTo(DiagramViewFacet diagramView, ZCanvas canvas, ZNode mouseNode);
   public DiagramViewFacet getCurrentDiagramView();
   
@@ -32,9 +32,6 @@ public interface ToolCoordinatorFacet extends PopupMakerFacet, TransactionManage
   public UPoint getLastMouseLocation();
 
   public void toolFinished(ZMouseEvent event, boolean stopMultiTool);
-
-  // remove as soon as possible
-  public void executeCommandAndUpdateViews(Command command);
 
   public int invokeYesNoCancelDialog(String title, Object message);
   public int invokeErrorDialog(String title, Object message);

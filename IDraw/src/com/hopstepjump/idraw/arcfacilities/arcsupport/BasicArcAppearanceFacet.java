@@ -55,7 +55,7 @@ public interface BasicArcAppearanceFacet extends Facet
       ToolCoordinatorFacet coordinator);
 
 	public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end);
-	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end);
+	public void makeReanchorAction(AnchorFacet start, AnchorFacet end);
 
 	public Object getSubject();
 

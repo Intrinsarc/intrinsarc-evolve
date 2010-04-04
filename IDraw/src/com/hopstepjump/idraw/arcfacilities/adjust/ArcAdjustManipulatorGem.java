@@ -194,7 +194,7 @@ public final class ArcAdjustManipulatorGem implements Gem
 	      	{
 		      	coordinator.startTransaction("moved existing link point", "reverted existing link point move");
 	      		resizings.end();
-	      		toAdjust.makeReanchorCommand(node1, node2);
+	      		toAdjust.makeReanchorAction(node1, node2);
 		        coordinator.commitTransaction();
 	      	}
 	      	else

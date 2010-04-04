@@ -1318,30 +1318,17 @@ public final class PortNodeGem implements Gem
         final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
         final Classifier cls = (Classifier) clsFigure.getSubject();
         
-        Command cmd = new AbstractCommand("replaced port", "removed replaced port")
-        {          
-          private DeltaReplacedPort replacement;
-          public void execute(boolean isTop)
-          {
-          	if (replacement == null)
-          		replacement = createDeltaReplacedPort(cls, replaced, original);
-            GlobalSubjectRepository.repository.decrementPersistentDelete(replacement);
-          }
-
-          public void unExecute()
-          {
-            GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
-          }            
-        };
-        coordinator.executeCommandAndUpdateViews(cmd);
+        coordinator.startTransaction("replaced port", "removed replaced port");
+        final DeltaReplacedPort replacement = createDeltaReplacedPort(cls, replaced, original);
+        coordinator.commitTransaction();
         
         diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
         {
           public void run()
           {
-//            FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
+            FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
             diagramView.getSelection().clearAllSelection();
-//            diagramView.getSelection().addToSelection(createdFeature, true);
+            diagramView.getSelection().addToSelection(createdFeature, true);
           }
         });
       }
@@ -1372,9 +1359,6 @@ public final class PortNodeGem implements Gem
       port.setUpperBound(new Integer(replaced.getUpper()));
     if (replaced.getLowerValue() != null)
       port.setLowerBound(new Integer(replaced.getLower()));
-    
-    // delete it so it can be brought back as part of the redo
-    GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
     
     return replacement;
   }

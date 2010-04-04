@@ -622,21 +622,10 @@ public class ConnectorArcAppearanceGem implements Gem
 					{
 						public void actionPerformed(ActionEvent e)
 						{
-							coordinator.executeCommandAndUpdateViews(
-									new AbstractCommand("changed connector kind", "restored connector kind")
-									{
-										public void execute(boolean isTop)
-										{
-											subject.setKind(delegate ?
-													ConnectorKind.ASSEMBLY_LITERAL : ConnectorKind.DELEGATION_LITERAL);
-										}
-
-										public void unExecute()
-										{
-											subject.setKind(!delegate ?
-													ConnectorKind.ASSEMBLY_LITERAL : ConnectorKind.DELEGATION_LITERAL);
-										}
-									});
+							coordinator.startTransaction("changed connector kind", "restored connector kind");
+							subject.setKind(delegate ?
+									ConnectorKind.ASSEMBLY_LITERAL : ConnectorKind.DELEGATION_LITERAL);
+							coordinator.commitTransaction();
 						}
 					});
 			return item;
@@ -686,11 +675,11 @@ public class ConnectorArcAppearanceGem implements Gem
 			return subject.isThisDeleted();
 		}
 
-		public Command makeReanchorCommand(final AnchorFacet start, final AnchorFacet end)
+		public void makeReanchorAction(final AnchorFacet start, final AnchorFacet end)
 		{
 			// we are either reattaching to a new start or a new end
 			// clear out the ends and regenerate
-			final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
+			SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 			
 			ConnectorEnd oldStart;
 			ConnectorEnd oldEnd;
@@ -708,7 +697,6 @@ public class ConnectorArcAppearanceGem implements Gem
 
 			newStart.setLowerValue(oldStart.getLowerValue());
 			newEnd.setLowerValue(oldEnd.getLowerValue());
-			return null;
 		}
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

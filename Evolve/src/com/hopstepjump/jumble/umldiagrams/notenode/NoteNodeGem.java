@@ -409,26 +409,11 @@ public final class NoteNodeGem implements Gem
       {
         public void itemStateChanged(ItemEvent e)
         {
-          Command hideNoteCommand = new AbstractCommand(
+          coordinator.startTransaction(
               hideNote ? "Showed note" : "Hid note",
-              !hideNote ? "Showed note" : "Hid note")
-          {
-            public void execute(boolean isTop)
-            {
-              toggle();
-            }
-
-            public void unExecute()
-            {
-              toggle();
-            }
-
-            private void toggle()
-            {
-              hideNote = !hideNote;
-            }
-          };
-          coordinator.executeCommandAndUpdateViews(hideNoteCommand);
+              !hideNote ? "Showed note" : "Hid note");
+          hideNote = !hideNote;
+          coordinator.commitTransaction();
         }
       });
       return item;
@@ -469,8 +454,6 @@ public final class NoteNodeGem implements Gem
       JMenuItem item = new JMenuItem("Change font");
       item.addActionListener(new ActionListener()
       {
-        private Command resizeCommand;
-
         public void actionPerformed(ActionEvent e)
         {
           JFontChooser chooser = new JFontChooser();

@@ -150,14 +150,6 @@ public final class BasicArcFigureGem implements Gem
 
       return false;
     }
-
-    /**
-     * @see com.hopstepjump.idraw.foundation.ClipboardFacet#removeFromDiagram(FigureChosenFacet)
-     */
-    public Command removeFromDiagram(ChosenFiguresFacet focussedFigures)
-    {
-      return null;
-    }
   }
 
   private class BasicArcFigureFacetImpl implements FigureFacet

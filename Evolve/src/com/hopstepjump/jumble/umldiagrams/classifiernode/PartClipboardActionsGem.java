@@ -19,16 +19,15 @@ import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 
-public class PartClipboardCommandsGem
+public class PartClipboardActionsGem
 {
-  private static final ImageIcon INFO_ICON = IconLoader.loadIcon("information.png");
   private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
   private static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
 
   private FigureFacet figureFacet;
   private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   
-  public PartClipboardCommandsGem()
+  public PartClipboardActionsGem()
   {
   }
   

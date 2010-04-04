@@ -38,11 +38,6 @@ public final class BaselineCreatorGem implements Gem
 			
 	    diagram.add(basicGem.getBasicNodeFigureFacet());
 	  }
-    
-    public Object getSubject(Object memento)
-    {
-      return null;
-    }
 	
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()

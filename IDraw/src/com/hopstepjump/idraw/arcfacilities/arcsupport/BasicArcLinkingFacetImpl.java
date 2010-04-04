@@ -41,13 +41,6 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
     return oldCalcs;
   }
 
-  public void unAdjust(Object memento)
-  {
-    detachFromAnchors();
-    state.calculatedPoints = new CalculatedArcPoints((CalculatedArcPoints) memento);
-    attachToAnchors();
-  }
-
   public Object move(CalculatedArcPoints newCalculatedPoints)
   {
     CalculatedArcPoints oldCalcs = new CalculatedArcPoints(state.calculatedPoints);
@@ -55,13 +48,6 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
     state.calculatedPoints = newCalculatedPoints;
     attachToAnchors();
     return oldCalcs;
-  }
-
-  public void unMove(Object memento)
-  {
-    detachFromAnchors();
-    state.calculatedPoints = new CalculatedArcPoints((CalculatedArcPoints) memento);
-    attachToAnchors();
   }
 
   public boolean hasOutgoingsToPeripheral(PreviewCacheFacet previewFigures)
@@ -191,9 +177,9 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
 		return state.appearanceFacet.acceptsAnchors(start, end);
 	}
 
-	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+	public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 	{
-		return state.appearanceFacet.makeReanchorCommand(start, end);
+		state.appearanceFacet.makeReanchorAction(start, end);
 	}
 
   public CalculatedArcPoints getCalculated()

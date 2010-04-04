@@ -205,40 +205,24 @@ public class StereotypeUtilities
 		return isRawStereotypeApplied(element, uuid);
 	}
 
-	public static Command formAddRawStereotypeCommand(final Element classifier, final Stereotype stereotype)
+	public static void formAddRawStereotypeTransaction(ToolCoordinatorFacet coordinator, final Element classifier, final Stereotype stereotype)
 	{
 		String typeName = classifier.eClass().getName();
-		return new AbstractCommand("added stereotype to " + typeName,
-				"un-added stereotype from " + typeName)
-		{
-			public void execute(boolean isTop)
-			{
-				classifier.getAppliedBasicStereotypes().add(stereotype);
-			}
-
-			public void unExecute()
-			{
-				classifier.getAppliedBasicStereotypes().remove(stereotype);
-			}
-		};
+		coordinator.startTransaction(
+				"added stereotype to " + typeName,
+				"un-added stereotype from " + typeName);
+		classifier.getAppliedBasicStereotypes().add(stereotype);
+		coordinator.commitTransaction();
 	}
 
-	public static Command formRemoveRawStereotypeCommand(final Element classifier, final Stereotype stereotype)
+	public static void formRemoveRawStereotypeTransaction(ToolCoordinatorFacet coordinator, final Element classifier, final Stereotype stereotype)
 	{
 		String typeName = classifier.eClass().getName();
-		return new AbstractCommand("removed stereotype to " + typeName,
-				"re-added stereotype from " + typeName)
-		{
-			public void execute(boolean isTop)
-			{
-				classifier.getAppliedBasicStereotypes().remove(stereotype);
-			}
-
-			public void unExecute()
-			{
-				classifier.getAppliedBasicStereotypes().add(stereotype);
-			}
-		};
+		coordinator.startTransaction(
+				"removed stereotype to " + typeName,
+				"re-added stereotype from " + typeName);
+		classifier.getAppliedBasicStereotypes().remove(stereotype);
+		coordinator.commitTransaction();
 	}
 
 	public static List<DEComponent> findAllStereotypes(Element element)
@@ -428,78 +412,6 @@ public class StereotypeUtilities
 		}
 	}
 
-	public static Command formSetStringRawStereotypeAttributeCommand(
-			final Element classifier, final String propertyUUID, final String set)
-	{
-		// find the property, or create it
-		AppliedBasicStereotypeValue existing = null;
-		for (Object obj : classifier.getAppliedBasicStereotypeValues())
-		{
-			AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) obj;
-			if (value.getProperty().getUuid().equals(propertyUUID))
-			{
-				existing = value;
-				break;
-			}
-		}
-		final AppliedBasicStereotypeValue currentValue = existing;
-
-		// if this is null we need to create the value
-		if (currentValue == null)
-		{
-      final Property property =
-        (Property) findAllStereotypePropertiesFromRawAppliedStereotypes(classifier).get(propertyUUID).getConstituent().getRepositoryObject();
-      if (property == null)
-        return null;
-			return new AbstractCommand(
-					"setting stereotype attribute " + propertyUUID,
-					"reverting stereotype attribute " + propertyUUID)
-			{
-				private AppliedBasicStereotypeValue value;
-
-				public void execute(boolean isTop)
-				{
-					if (value != null)
-						GlobalSubjectRepository.repository.decrementPersistentDelete(value);
-					else
-					{
-						value = classifier.createAppliedBasicStereotypeValues();
-						value.setProperty(property);
-						Expression literal = (Expression) value
-								.createValue(UML2Package.eINSTANCE.getExpression());
-						literal.setBody(set);
-					}
-				}
-
-				public void unExecute()
-				{
-					GlobalSubjectRepository.repository.incrementPersistentDelete(value);
-				}
-			};
-		} else
-		{
-			return new AbstractCommand(
-					"setting stereotype attribute " + propertyUUID,
-					"reverting stereotype attribute " + propertyUUID)
-			{
-				private String oldValue;
-
-				public void execute(boolean isTop)
-				{
-					Expression literal = (Expression) currentValue.getValue();
-					oldValue = literal.getBody();
-					literal.setBody(set);
-				}
-
-				public void unExecute()
-				{
-					Expression literal = (Expression) currentValue.getValue();
-					literal.setBody(oldValue);
-				}
-			};
-		}
-	}
-
 	/**
 	 * form a command to delete the appropriate stereotype property
 	 * 
@@ -508,23 +420,14 @@ public class StereotypeUtilities
 	 * @param set
 	 * @return
 	 */
-	public static Command formDeleteAppliedRawStereotypeValueCommand(
-			final Element classifier, final AppliedBasicStereotypeValue value)
+	public static void formDeleteAppliedRawStereotypeValueTransaction(
+			ToolCoordinatorFacet coordinator, final Element classifier, final AppliedBasicStereotypeValue value)
 	{
-		return new AbstractCommand(
+		coordinator.startTransaction(
 		    "Removing applied stereotype value",
-				"Restoring applied stereotype value")
-		{
-			public void execute(boolean isTop)
-			{
-				GlobalSubjectRepository.repository.incrementPersistentDelete(value);
-			}
-
-			public void unExecute()
-			{
-				GlobalSubjectRepository.repository.decrementPersistentDelete(value);
-			}
-		};
+				"Restoring applied stereotype value");
+		GlobalSubjectRepository.repository.incrementPersistentDelete(value);
+		coordinator.commitTransaction();
 	}
 
 	public static int calculateStereotypeHashAndComponentHash(FigureFacet figureFacet, NamedElement subject)

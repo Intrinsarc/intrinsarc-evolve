@@ -221,37 +221,21 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
     {
       public void actionPerformed(ActionEvent e)
       {
-        final Operation replaced = (Operation) figureFacet.getSubject();
-        final Operation original = (Operation) ClassifierConstituentHelper.getOriginalSubject(replaced);
+        Operation replaced = (Operation) figureFacet.getSubject();
+        Operation original = (Operation) ClassifierConstituentHelper.getOriginalSubject(replaced);
         final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
-        final Classifier cls = (Classifier) clsFigure.getSubject();
+        Classifier cls = (Classifier) clsFigure.getSubject();
         final DeltaReplacedOperation replacement[] = new DeltaReplacedOperation[1];
         
-        Command cmd = new AbstractCommand("replaced operation", "removed replaced operation")
-        {          
-          public void execute(boolean isTop)
-          {
-          	if (replacement[0] == null)
-          		replacement[0] = createDeltaReplacedOperation(cls, replaced, original);
-            GlobalSubjectRepository.repository.decrementPersistentDelete(replacement[0]);
-          }
-
-          public void unExecute()
-          {
-            GlobalSubjectRepository.repository.incrementPersistentDelete(replacement[0]);
-          }            
-        };
-        coordinator.executeCommandAndUpdateViews(cmd);
+        coordinator.startTransaction("replaced operation", "removed replaced operation");
+      	if (replacement[0] == null)
+      		replacement[0] = createDeltaReplacedOperation(cls, replaced, original);
+        GlobalSubjectRepository.repository.decrementPersistentDelete(replacement[0]);
+        coordinator.commitTransaction();
         
-        diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
-        {
-          public void run()
-          {
-            FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement[0].getReplacement());
-            diagramView.getSelection().clearAllSelection();
-            diagramView.getSelection().addToSelection(createdFeature, true);
-          }
-        });
+        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement[0].getReplacement());
+        diagramView.getSelection().clearAllSelection();
+        diagramView.getSelection().addToSelection(createdFeature, true);
       }
     });
 

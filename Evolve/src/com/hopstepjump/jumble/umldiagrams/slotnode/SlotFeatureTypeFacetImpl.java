@@ -145,11 +145,6 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
   	return ValueParser.decodeParameters(values, pkg, cls);
 
 	}
-
-	public void unSetText(Object memento)
-  {
-  	((Command) memento).unExecute();
-  }
   
   private Slot getSubject()
   {

@@ -16,5 +16,4 @@ import com.hopstepjump.geometry.*;
 public interface ResizeFacet extends Facet
 {
   public Object resize(UBounds bounds);
-  public void unResize(Object memento);
 }

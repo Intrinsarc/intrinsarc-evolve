@@ -49,7 +49,7 @@ public class UMLTreeMenuCreator
           }
         });
     for (EReference ref : allRefs)
-      makeCreateCommand(createItem, repository, coordinator, element, ref);
+      addCreateAction(createItem, repository, coordinator, element, ref);
     MenuAccordion.makeMultiColumn(createItem, null, true);
     
     menu.add(createItem);
@@ -63,18 +63,9 @@ public class UMLTreeMenuCreator
         public void actionPerformed(ActionEvent e)
         {
           String className = element.eClass().getName().toLowerCase();
-          coordinator.executeCommandAndUpdateViews(new AbstractCommand("deleted " + className, "undeleted " + className)
-              {
-                public void execute(boolean isTop)
-                {
-                  repository.incrementPersistentDelete(element);
-                }
-
-                public void unExecute()
-                {
-                  repository.decrementPersistentDelete(element);
-                }
-              });
+          coordinator.startTransaction("deleted " + className, "undeleted " + className);
+          repository.incrementPersistentDelete(element);
+          coordinator.commitTransaction();
         }
       };          
 
@@ -86,7 +77,7 @@ public class UMLTreeMenuCreator
     return menu;
   }
 
-  private void makeCreateCommand(
+  private void addCreateAction(
       JMenuItem addTo,
       SubjectRepositoryFacet repository,
       ToolCoordinatorFacet coordinator,
@@ -105,13 +96,13 @@ public class UMLTreeMenuCreator
     List<EClass> subclasses = new UMLSubclassFinder(reference.getEReferenceType()).findSubClasses();
     
     for (EClass subclass : subclasses)
-      makeCreateCommand(createMenu, repository, coordinator, element, reference, subclass);
+      makeCreateAction(createMenu, repository, coordinator, element, reference, subclass);
     MenuAccordion.makeMultiColumn(createMenu, null, true);
   }
   
 
   
-  private void makeCreateCommand(
+  private void makeCreateAction(
       JMenu addTo,
       final SubjectRepositoryFacet repository,
       final ToolCoordinatorFacet coordinator,
@@ -127,60 +118,26 @@ public class UMLTreeMenuCreator
         {
           public void actionPerformed(ActionEvent e)
           {
-            Command cmd;
             if (reference.getUpperBound() == 1)
             {
-              cmd = new AbstractCommand(
+              coordinator.startTransaction(
                   "Set " + refName + DEObject.SEPARATOR + clsName + " to new " + subName,
-                  "Deleted " + subName + " from " + refName + DEObject.SEPARATOR + clsName)
-              {
-                private Element created;
+                  "Deleted " + subName + " from " + refName + DEObject.SEPARATOR + clsName);
                 
-                public void execute(boolean isTop)
-                {
-                  if (created == null)
-                    created = (Element) UML2Factory.eINSTANCE.create(subclass);
-                  else
-                    repository.decrementPersistentDelete(created);
-                  element.eSet(reference, created);
-                }
-
-                public void unExecute()
-                {
-                  element.eSet(reference, null);
-                  repository.incrementPersistentDelete(created);
-                }
-              };
+              Element created = (Element) UML2Factory.eINSTANCE.create(subclass);
+              element.eSet(reference, created);
+              coordinator.commitTransaction();
             }
             else
             {
-              cmd = new AbstractCommand(
+            	coordinator.startTransaction(
                   "Added new " + subName + " to " + refName + DEObject.SEPARATOR + clsName,
-                  "Deleted " + subName + " from " + refName + DEObject.SEPARATOR + clsName)
-              {
-                private Element created;
-                
-                public void execute(boolean isTop)
-                {
-                  if (created == null)
-                    created = (Element) UML2Factory.eINSTANCE.create(subclass);
-                  else
-                    repository.decrementPersistentDelete(created);
-                  EList list = (EList) element.eGet(reference);
-                  list.add(created);
-                }
-
-                public void unExecute()
-                {
-                  List list = (List) element.eGet(reference);
-                  list.remove(created);
-                  repository.incrementPersistentDelete(created);
-                }
-              };
+                  "Deleted " + subName + " from " + refName + DEObject.SEPARATOR + clsName);
+              Element created = (Element) UML2Factory.eINSTANCE.create(subclass);
+              EList list = (EList) element.eGet(reference);
+              list.add(created);
+              coordinator.commitTransaction();
             }
-            
-            // execute the cmd
-            coordinator.executeCommandAndUpdateViews(cmd);
           }
         });
     addTo.add(createItem);

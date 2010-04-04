@@ -504,7 +504,7 @@ public final class BasicDiagramGem implements Gem
 				pfigs.add(state.getPersistentFigure());
 				current += direction;
 			}
-			addPersistentFigures(pfigs, new UDimension(0, 0));
+			addPersistentFigures(pfigs, new UDimension(0, 0), false, true);
 			return current;
 		}
 
@@ -514,7 +514,6 @@ public final class BasicDiagramGem implements Gem
 	  {
 	  	Validator.validateFigure(figure);
 	  	addToCurrentTransaction(ADD, figure.makePersistentFigure());
-	  	
 	  	
 			setModified(true);
 		  figures.put(figure.getId(), figure);
@@ -733,7 +732,7 @@ public final class BasicDiagramGem implements Gem
 		 */
 		public void addPersistentFigures(Collection<PersistentFigure> persistentFigures, UDimension offset)
 		{
-			addPersistentFigures(persistentFigures, offset, false, true);
+			addPersistentFigures(persistentFigures, offset, true, true);
 		}
 		
 		public void modifyPersistentFigure(PersistentFigure persistentFigure, UDimension offset)

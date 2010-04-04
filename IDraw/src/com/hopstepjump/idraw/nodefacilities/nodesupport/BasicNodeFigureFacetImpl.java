@@ -215,14 +215,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
     return null;
   }
 
-  public void unMove(Object memento)
-  {
-  }
-
-  public void unResize(Object memento)
-  {
-  }
-
   public Object resize(UBounds bounds)
   {
     state.pt = bounds.getTopLeftPoint();

@@ -38,14 +38,6 @@ public class RegionCreatorGem implements Gem
       diagram.add(basicGem.getBasicNodeFigureFacet());
     }
     
-    public void unCreateFigure(Object memento)
-    {
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);
-    }
-    
     /**
      * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
      */

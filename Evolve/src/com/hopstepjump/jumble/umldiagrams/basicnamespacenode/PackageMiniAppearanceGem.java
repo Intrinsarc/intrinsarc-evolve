@@ -211,20 +211,9 @@ public class PackageMiniAppearanceGem implements Gem
           public void actionPerformed(ActionEvent e)
           {
             // toggle the readonly flag
-            Command cmd = new AbstractCommand("toggled readOnly", "set readOnly back")
-            {
-              public void execute(boolean isTop)
-              {
-                pkg.setReadOnly(!pkg.isReadOnly());
-              }
-
-              public void unExecute()
-              {
-                pkg.setReadOnly(!pkg.isReadOnly());
-              } 
-            };
-            
-            coordinator.executeCommandAndUpdateViews(cmd);
+            coordinator.startTransaction("toggled readOnly", "set readOnly back");
+            pkg.setReadOnly(!pkg.isReadOnly());
+            coordinator.commitTransaction();
           }
         });
       }

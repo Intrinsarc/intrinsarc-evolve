@@ -35,7 +35,6 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
-  private CommandManagerListenerFacetImpl commandFacet = new CommandManagerListenerFacetImpl();
   private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();
   
 	
@@ -411,15 +410,6 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 		}
   }
   
-  private class CommandManagerListenerFacetImpl implements CommandManagerListenerFacet
-  {
-    public void commandExecuted()
-    {
-      for (SubjectRepositoryListenerFacet listener : listeners)
-        listener.sendChanges();
-    }
-  }
-  
   public static ObjectDbSubjectRepositoryGem openRepository(String hostName, String dbName) throws RepositoryOpeningException
   {
     ObjectDbSubjectRepositoryGem repository = new ObjectDbSubjectRepositoryGem(hostName, dbName);
@@ -546,11 +536,5 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   public SubjectRepositoryFacet getSubjectRepositoryFacet()
   {
     return subjectFacet;
-  }
-
-
-  public CommandManagerListenerFacet getCommandManagerListenerFacet()
-  {
-    return commandFacet;
   }
 }

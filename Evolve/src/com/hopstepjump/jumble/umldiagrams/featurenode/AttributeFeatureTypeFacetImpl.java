@@ -312,8 +312,8 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
         coordinator.startTransaction("replaced attribute", "removed replaced attribute");
         final DeltaReplacedAttribute replacement = createDeltaReplacedAttribute(cls, replaced, original);
         coordinator.commitTransaction();
-        
-        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
+        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplaced());
+        System.out.println("$$ selecting replaced attr: " + createdFeature);
         diagramView.getSelection().clearAllSelection();
         diagramView.getSelection().addToSelection(createdFeature, true);
       }

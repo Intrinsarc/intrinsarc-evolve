@@ -13,11 +13,8 @@ public interface LinkingFacet extends ArcAcceptanceFacet
 	public AnchorFacet getAnchor1();
 	public AnchorFacet getAnchor2();
 	
-	public Object adjust(CalculatedArcPoints calculatedPoints);
-  public void unAdjust(Object memento);
-  
+	public Object adjust(CalculatedArcPoints calculatedPoints);  
   public Object move(CalculatedArcPoints calculatedPoints);
-  public void unMove(Object memento);
   
   public CalculatedArcPoints getCalculated();
 	
@@ -28,5 +25,5 @@ public interface LinkingFacet extends ArcAcceptanceFacet
   public Set<String> getPossibleDisplayStyles(AnchorFacet anchor);
   public UPoint getMajorPoint(int majorPoint);
   
-  public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end);
+  public void makeReanchorAction(AnchorFacet start, AnchorFacet end);
 }

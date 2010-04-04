@@ -15,11 +15,6 @@ public class BasicNodeClipboardFacetImpl implements ClipboardFacet
   {
     this.state = state;
   }
-  
-  public Command removeFromDiagram(ChosenFiguresFacet focussedFigures)
-  {
-    return null;
-  }
 
   /**
    * @see com.hopstepjump.idraw.foundation.ClipboardFacet#addIncludedInCopy(Set, FigureChosenFacet)

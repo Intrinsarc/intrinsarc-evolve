@@ -58,8 +58,8 @@ import edu.umd.cs.jazz.util.*;
 // xx. synch up diagramchange and undo/redo
 // xx. garbage collection
 // xx. adding attrs to class makes it go smaller
-// 3. fix all commands
-// 5. remove any unXXX() methods
+// xx. fix all commands
+// xx. remove any unXXX() methods
 // 4. manipulator problems: text, resizing, arc adjusting, enter on attribute
 // 5. operation replacement select etc, runWhenDiagramProcessed phase out, arc select, undo of visibility
 //-------
@@ -624,11 +624,6 @@ public final class ToolCoordinatorGem implements Gem
 		public String getUndoTransactionDescription()
 		{
 			return GlobalSubjectRepository.repository.getUndoTransactionDescription();
-		}
-
-		public void executeCommandAndUpdateViews(Command command)
-		{
-			throw new IllegalStateException("executeCommandAndUpdateViews() is deprecated");
 		}
 	}
 

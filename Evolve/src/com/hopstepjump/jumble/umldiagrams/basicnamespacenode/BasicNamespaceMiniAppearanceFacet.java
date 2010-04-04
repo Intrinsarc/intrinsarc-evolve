@@ -9,7 +9,6 @@ import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
-import com.hopstepjump.jumble.umldiagrams.base.*;
 
 import edu.umd.cs.jazz.*;
 
@@ -26,8 +25,7 @@ public interface BasicNamespaceMiniAppearanceFacet extends Facet
 	public ZNode formView(boolean displayAsIcon, UBounds bounds);
 	public Shape formShapeForPreview(UBounds bounds);  
   public void addToContextMenu(
-      JPopupMenu menu,
-      DiagramViewFacet diagramView,
+      JPopupMenu menu, DiagramViewFacet diagramView,
       ToolCoordinatorFacet coordinator);
   public Set<String> getDisplayStyles(boolean displayingOnlyAsIcon, boolean anchorIsTarget);
   

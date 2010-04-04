@@ -118,17 +118,16 @@ public class ImplementationArcGem implements Gem
 			return subject.isThisDeleted();
 		}
 
-		public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+		public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 		{
-			final Class newType = ImplementationCreatorGem.extractClassType(
+			Class newType = ImplementationCreatorGem.extractClassType(
 					(start.getFigureFacet().getSubject()));
-			final Interface newIface = (Interface) end.getFigureFacet().getSubject();
+			Interface newIface = (Interface) end.getFigureFacet().getSubject();
 
 			// change the owner
       newType.getImplementations().add(subject);
 			subject.setRealizingClassifier(newType);
 			subject.setContract(newIface);
-			return null;
 		}
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

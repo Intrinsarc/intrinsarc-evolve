@@ -138,7 +138,7 @@ public final class NodeCreateToolGem implements Gem
 	      mouseNode.removeMouseListener(mouseListener);
 	      mouseNode.removeMouseMotionListener(mouseListener);
 	      
-	      // if we still have a creation memento, then we must remove it
+	      // if we still have a creation object, then we must remove it
 	      removeCreationObject();
 	      diagramView.turnSelectionLayerOn();
 	    }

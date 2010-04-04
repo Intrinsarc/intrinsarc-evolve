@@ -102,14 +102,13 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
     return startS instanceof Classifier && startS.getClass() == endS.getClass();
 	}
 
-	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+	public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 	{
 		Classifier newSpecific = (Classifier) start.getFigureFacet().getSubject();
 		Classifier newGeneral = (Classifier) end.getFigureFacet().getSubject();
 
 		newSpecific.getGeneralizations().add(subject);
 		subject.setGeneral(newGeneral);
-		return null;
 	}
 
 	public Object getSubject()
