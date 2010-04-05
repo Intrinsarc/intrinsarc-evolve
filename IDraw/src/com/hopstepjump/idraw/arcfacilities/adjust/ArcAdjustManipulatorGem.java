@@ -13,7 +13,6 @@ import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.nodefacilities.linking.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.utility.*;
-import com.sun.xml.internal.bind.v2.runtime.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -178,13 +177,11 @@ public final class ArcAdjustManipulatorGem implements Gem
 	        // make a modification command
 	      	coordinator.startTransaction("moved existing link point", "reverted existing link point move");
 	        resizings.end();
-	        coordinator.commitTransaction();
 	        break;
 	      case MOVING_NEW_POINT_SUBSTATE:
 	        // make a modification command
 	      	coordinator.startTransaction("moved new link point", "reverted new link point move");
 	        resizings.end();
-	        coordinator.commitTransaction();
 	        break;
 	      case MOVING_OVER_LINKABLE_SUBSTATE:
 	        // make a modification command but only if this is a valid target
@@ -195,7 +192,6 @@ public final class ArcAdjustManipulatorGem implements Gem
 		      	coordinator.startTransaction("moved existing link point", "reverted existing link point move");
 	      		resizings.end();
 	      		toAdjust.makeReanchorAction(node1, node2);
-		        coordinator.commitTransaction();
 	      	}
 	      	else
 	      	{

@@ -1,7 +1,6 @@
 package com.hopstepjump.jumble.gui;
 
 import com.hopstepjump.gem.*;
-import com.hopstepjump.idraw.foundation.*;
 
 /**
  *

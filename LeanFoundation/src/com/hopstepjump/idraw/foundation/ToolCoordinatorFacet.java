@@ -19,6 +19,9 @@ import edu.umd.cs.jazz.util.*;
 
 public interface ToolCoordinatorFacet extends PopupMakerFacet, TransactionManagerFacet
 {	
+	void commitTransaction(boolean fullyCommitCurrentDiagramInForeground);
+	boolean inTransaction();
+	
   public void attachTo(DiagramViewFacet diagramView, ZCanvas canvas, ZNode mouseNode);
   public DiagramViewFacet getCurrentDiagramView();
   

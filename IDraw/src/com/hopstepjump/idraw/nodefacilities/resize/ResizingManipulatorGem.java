@@ -445,15 +445,13 @@ public final class ResizingManipulatorGem implements Gem
     {
     	coordinator.startTransaction("resizing " + toResize.getFigureName(), "undoing resize of " + toResize.getFigureName());
 	    resizer.end();
-	    coordinator.commitTransaction();
     	enter_STEADY_STATE();  // need to do this so that addToView() will display handles again
-      listener.haveFinished();
     }
     else
     {
     	enter_STEADY_STATE();  // need to do this so that addToView() will display handles again
-      listener.haveFinished();
     }
+    listener.haveFinished();
   }
 
   /**

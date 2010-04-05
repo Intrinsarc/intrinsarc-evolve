@@ -63,12 +63,11 @@ public final class BasicDiagramViewGem implements Gem
 	private BasicDiagramViewFacet basicFacet = new BasicDiagramViewFacetImpl();
 	private DiagramListenerFacet listenerFacet = new DiagramListenerFacetImpl();
   private Object modificationsLock = new Object();
-  private boolean makingModifications = false;
   private Runnable runAfterModifications;
   private DiagramViewContextFacet diagramViewContext;
   private boolean isUsingTools;
   private Set<KeyListener> keyListeners = new HashSet<KeyListener>();
-  private UPoint cursorPoint;
+  private UPoint cursorPoint = new UPoint(0, 0);
   private boolean ignoringTransitions;
   private UDimension originalScale;
   private List<DiagramFigureAdornerFacet> adorners;
@@ -220,7 +219,6 @@ public final class BasicDiagramViewGem implements Gem
 		views = new HashMap<FigureFacet, ZNode>();
 		figures = new HashMap<String, FigureFacet>();
 		containers = new HashMap<FigureFacet, ContainerFacet>();
-  	makingModifications = false;
     
 		// load the full set of figures
 		for (FigureFacet figure : diagramFacet.getFigures())
@@ -354,7 +352,6 @@ public final class BasicDiagramViewGem implements Gem
 					// also adjusts the scrollbars
 					diagramViewFacet.pan(0, 0);
 					
-					makingModifications = false;
 					synchronized (modificationsLock)
 					{
 						if (runAfterModifications != null)
@@ -368,7 +365,6 @@ public final class BasicDiagramViewGem implements Gem
 				modificationProcessor.run();
 			else
 			{
-				makingModifications = true;
 				SwingUtilities.invokeLater(modificationProcessor);
 			}
 		}
@@ -552,6 +548,8 @@ public final class BasicDiagramViewGem implements Gem
 		public FigureFacet getFigureIgnoringManipulators(UPoint e, ZNode[] nodes)
 		{
 			ZSceneGraphPath path = new ZSceneGraphPath();
+			if (e == null)
+				return null;
 			ZBounds rect = new UBounds(e, new UDimension(0.1, 0.1));
 			objectLayer.pick(rect, path);
 			ZNode node = path.getNode();
@@ -661,20 +659,6 @@ public final class BasicDiagramViewGem implements Gem
 		public DiagramFacet getDiagram()
 		{
 			return diagramFacet;
-		}
-		
-		/**
-		 * @see com.hopstepjump.idraw.foundation.DiagramViewFacet#runWhenModificationsHaveBeenProcessed(Runnable)
-		 */
-		public void runWhenModificationsHaveBeenProcessed(Runnable runnable)
-		{
-			synchronized (modificationsLock)
-			{
-				if (!makingModifications)
-					runnable.run();
-				else
-					runAfterModifications = runnable;
-			}
 		}
 		
 		/**

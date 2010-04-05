@@ -377,9 +377,6 @@ final class BasicSelectionFacetImpl implements SelectionFacet
   {
     // it is currently on the selection layer
     manipulator.cleanUp();
-    // uncomment next line to clear all handles before manipulation...
-    // I personally don't like it...
-//    turnSelectionLayerOff();
     turnSweepLayerOff();
     manipulator.addToView(sweepLayer, canvas);
   }

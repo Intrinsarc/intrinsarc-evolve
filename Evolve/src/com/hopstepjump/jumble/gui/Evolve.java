@@ -107,7 +107,7 @@ public class Evolve
     application.showGUI();
     
     // register some mbeans
-    new GUIManager().register();
+//    new GUIManager().register();
     
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;    
   }

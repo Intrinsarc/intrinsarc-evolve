@@ -380,7 +380,9 @@ public final class FeatureNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// adjust the visibility
-					coordinator.startTransaction("changed visibility of " + getFigureName() + " to " + newAccessType.getName(), "restored visibility of " + getFigureName() + " to " + accessType.getName());
+					coordinator.startTransaction(
+							"changed visibility of " + getFigureName() + " to " + newAccessType.getName(),
+							"restored visibility of " + getFigureName() + " to " + accessType.getName());
 					Feature feature = getSubjectAsFeature();
 			  	feature.setVisibility(newAccessType);
 					coordinator.commitTransaction();
@@ -495,7 +497,7 @@ public final class FeatureNodeGem implements Gem
           stereotypeHashcode == actualStereotypeHashCode)
 				return;			
 
-			updateFeatureViewAfterSubjectChanged(true);
+			updateFeatureViewAfterSubjectChanged();
 		}
 
     /**
@@ -591,7 +593,7 @@ public final class FeatureNodeGem implements Gem
     }
 	}
 	
-  private void updateFeatureViewAfterSubjectChanged(boolean isTop)
+  private void updateFeatureViewAfterSubjectChanged()
   {
     final boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
     final String newName = featureTypeFacet.makeNameFromSubject();

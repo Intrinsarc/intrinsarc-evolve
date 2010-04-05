@@ -40,35 +40,38 @@ public class DeleteFromDiagramTransaction
           figure.getClipboardCommandsFacet().performPostDeleteAction();
       }
     
-			for (String id : topLevelIds)
+    List<FigureFacet> containers = getTopLevelContainers(bothIds, diagram);
+    for (String id : topLevelIds)
 			{
 				FigureFacet figure = diagram.possiblyRetrieveFigure(id);
         if (figure != null)
           diagram.remove(figure);  // removes children also
 			}
 
-		addContainerResizingCommands(bothIds, diagram);
+		addContainerResizingCommands(containers);
 	}
 
-	private static void addContainerResizingCommands(Collection<String> topLevelIds, DiagramFacet diagram)
+	private static List<FigureFacet> getTopLevelContainers(Collection<String> topLevelIds, DiagramFacet diagram)
 	{
+		List<FigureFacet> containers = new ArrayList<FigureFacet>();
 		for (String figureId : topLevelIds)
 		{
-			FigureFacet figure = diagram.possiblyRetrieveFigure(figureId);
-			
-			// if this has a container, then make sure it gets resized
+			FigureFacet figure = diagram.possiblyRetrieveFigure(figureId);			
 			if (figure != null && figure.getContainedFacet() != null && figure.getContainedFacet().getContainer() != null)
-			{
-				FigureFacet container = figure.getContainedFacet().getContainer().getFigureFacet();
-				final FigureReference containerReference = container.getFigureReference();
-	
-				FigureFacet cont = GlobalDiagramRegistry.registry.retrieveFigure(containerReference);
-				ResizingFiguresGem gem = new ResizingFiguresGem(null, cont.getDiagram());
-				ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
-				facet.markForResizing(cont);
-				facet.recalculateSizeForContainables();
-				facet.end();
-			}
+				containers.add(figure.getContainedFacet().getContainer().getFigureFacet());
+		}
+		return containers;
+	}
+
+	private static void addContainerResizingCommands(List<FigureFacet> containers)
+	{
+		for (FigureFacet f : containers)
+		{
+			ResizingFiguresGem gem = new ResizingFiguresGem(null, f.getDiagram());
+			ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
+			facet.markForResizing(f);
+			facet.recalculateSizeForContainables();
+			facet.end();
 		}
 	}
 

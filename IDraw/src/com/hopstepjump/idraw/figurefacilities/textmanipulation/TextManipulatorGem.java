@@ -599,7 +599,6 @@ public final class TextManipulatorGem implements Gem
 	      // NOTE: we want the text *and* the selection in some cases, as this gives more info if the formSelectionList call only uses part of the text data
 	    	coordinator.startTransaction(cmdDescription, undoCmdDescription);
 			  SetTextTransaction.set(target.getFigureFacet(), current, listSelection, true);
-			  coordinator.commitTransaction();
 	    }
 	
 	    listener.haveFinished();	

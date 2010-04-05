@@ -60,8 +60,8 @@ import edu.umd.cs.jazz.util.*;
 // xx. adding attrs to class makes it go smaller
 // xx. fix all commands
 // xx. remove any unXXX() methods
-// 4. manipulator problems: text, resizing, arc adjusting, enter on attribute
-// 5. operation replacement select etc, runWhenDiagramProcessed phase out, arc select, undo of visibility
+// xx. manipulator problems: text, resizing, arc adjusting, enter on attribute
+// xx. operation replacement select etc, runWhenDiagramProcessed phase out, arc select, undo of visibility
 //-------
 // 10. remove many in subject repository?
 // 11. funny freezes
@@ -86,6 +86,7 @@ public final class ToolCoordinatorGem implements Gem
   private IEasyDock dock;
   private Semaphore sema = new Semaphore(1);
   private Semaphore sema2 = new Semaphore(1);
+  private boolean inTransaction;
   
   public ToolCoordinatorGem()
   {
@@ -463,6 +464,7 @@ public final class ToolCoordinatorGem implements Gem
 		
 		public void startTransaction(String redoName, String undoName)
 		{
+			inTransaction = true;
 			sema2.release();
 			semaBlock();
 			clearDeltaEngine();
@@ -515,6 +517,12 @@ public final class ToolCoordinatorGem implements Gem
 
 		public void commitTransaction()
 		{
+			commitTransaction(false);
+		}
+
+		public void commitTransaction(final boolean fullyCommitCurrentDiagramInForeground)
+		{
+			inTransaction = false;
 	    final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 	    
 			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
@@ -522,7 +530,8 @@ public final class ToolCoordinatorGem implements Gem
 
 			clearDeltaEngine();
 			final DiagramFacet main = getCurrentDiagramView().getDiagram();
-			updateDiagramAfterSubjectChanges(main, true);
+			updateDiagramAfterSubjectChanges(main,
+					!fullyCommitCurrentDiagramInForeground);
 			main.checkpointCommitTransaction();
 			repository.commitTransaction();
 
@@ -537,7 +546,8 @@ public final class ToolCoordinatorGem implements Gem
 	  			{
 	  				if (diagram != main)
 	  				{
-	  					updateDiagramAfterSubjectChanges(diagram, false);
+	  					if (!fullyCommitCurrentDiagramInForeground)
+	  						updateDiagramAfterSubjectChanges(diagram, false);
 	  					diagram.commitTransaction();					
 	  				}				
 	  			}
@@ -624,6 +634,11 @@ public final class ToolCoordinatorGem implements Gem
 		public String getUndoTransactionDescription()
 		{
 			return GlobalSubjectRepository.repository.getUndoTransactionDescription();
+		}
+
+		public boolean inTransaction()
+		{
+			return inTransaction;
 		}
 	}
 

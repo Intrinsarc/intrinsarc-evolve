@@ -422,6 +422,7 @@ public class UMLTreeMediator
 	public void updateTree()
 	{
 		// synch up the tree with the latest model
+		tree.repaint();
 		Set<DefaultMutableTreeNode> rootNodes = new HashSet<DefaultMutableTreeNode>();
 		rootNodes.add((DefaultMutableTreeNode) model.getRoot());
 		makeNode(null, rootNodes, null, start);

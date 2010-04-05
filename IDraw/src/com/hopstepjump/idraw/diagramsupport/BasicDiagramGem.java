@@ -230,7 +230,6 @@ public final class BasicDiagramGem implements Gem
 		
 		public void startTransaction(String redoName, String undoName)
 		{
-//			println("$$ started transaction");
 //			long start = System.currentTimeMillis();
 			before.clear();
 			forceAdjust.clear();
@@ -278,13 +277,11 @@ public final class BasicDiagramGem implements Gem
 				{
 					before.put(p.getId(), p);
 					current.addState(new UndoRedoState(action, p));
-//					println("$$ -- add of " + p.getRecreator() + ", id = " + p.getId());
 				}
 				else
 				if (action == REMOVE)
 				{
 					current.addState(new UndoRedoState(action, p));
-//					println("$$ -- removal of " + p.getRecreator() + ", id = " + p.getId());
 				}
 			}
 		}
@@ -353,7 +350,6 @@ public final class BasicDiagramGem implements Gem
 			before.clear();
 			forceAdjust.clear();
 			modsAlready.clear();
-//			println("$$ committed");
 		}
 		
 		public void undoTransaction()

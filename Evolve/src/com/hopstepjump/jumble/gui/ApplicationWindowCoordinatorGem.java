@@ -67,7 +67,7 @@ public class ApplicationWindowCoordinatorGem
 		 */
 		public void openNewApplicationWindow()
 		{
-			ApplicationWindow window = new ApplicationWindow(getWindowTitle(), errors);
+			final ApplicationWindow window = new ApplicationWindow(getWindowTitle(), errors);
 			windows.add(window);
 			
 			List<DiagramFigureAdornerFacet> adorners = new ArrayList<DiagramFigureAdornerFacet>();
@@ -91,6 +91,13 @@ public class ApplicationWindowCoordinatorGem
 				window.setVisible(false);
 	      window.setVisible(true);
 			}
+			SwingUtilities.invokeLater(new Runnable()
+			{
+				public void run()
+				{
+					window.requestFocus();
+				}
+			});
 		}
 		
 		public void exitApplication()
