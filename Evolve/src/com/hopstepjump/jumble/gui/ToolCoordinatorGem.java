@@ -62,8 +62,8 @@ import edu.umd.cs.jazz.util.*;
 // xx. remove any unXXX() methods
 // xx. manipulator problems: text, resizing, arc adjusting, enter on attribute
 // xx. operation replacement select etc, runWhenDiagramProcessed phase out, arc select, undo of visibility
+// xx. remove many in subject repository?
 //-------
-// 10. remove many in subject repository?
 // 11. funny freezes
 // 12. key press not registering initially
 

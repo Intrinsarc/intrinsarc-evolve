@@ -87,9 +87,7 @@ public class UndoRedoStackManager
 				{
 					Element e = (Element) n.getNotifier();				
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					if (el != null && !el.isEmpty())
-						throw new IllegalStateException("Cannot handle REMOVE_MANY notification of this type: " + n);
-					el.clear();
+					el.addAll((List) n.getOldValue());
 				}
 				break;
 			default:
@@ -142,9 +140,10 @@ public class UndoRedoStackManager
 				{
 					Element e = (Element) n.getNotifier();				
 					EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
-					if (el != null && !el.isEmpty())
-						throw new IllegalStateException("Cannot handle REMOVE_MANY notification of this type: " + n);
-					el.clear();
+					if (n.getNewValue() == null)
+						el.clear();
+					else
+						el.removeAll((List) n.getNewValue());
 				}
 				break;
 			default:
