@@ -40,6 +40,7 @@ import com.hopstepjump.jumble.umldiagrams.notelinkarc.*;
 import com.hopstepjump.jumble.umldiagrams.notenode.*;
 import com.hopstepjump.jumble.umldiagrams.packagenode.*;
 import com.hopstepjump.jumble.umldiagrams.portnode.*;
+import com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode.*;
 import com.hopstepjump.jumble.umldiagrams.sequencesection.*;
 import com.hopstepjump.jumble.umldiagrams.slotnode.*;
 import com.hopstepjump.jumble.umldiagrams.stereotypenode.*;
@@ -695,5 +696,7 @@ public final class ToolCoordinatorGem implements Gem
     registerRecreator(new LifelineCreatorGem().getArcCreateFacet());
     registerRecreator(new MessageCreatorGem().getArcCreateFacet());
     registerRecreator(new SequenceSectionCreatorGem().getNodeCreateFacet());
+    registerRecreator(new RequirementsFeatureCreatorGem().getNodeCreateFacet());
+    registerRecreator(new RequirementsFeatureLinkCreatorGem().getArcCreateFacet());
 	}
 }

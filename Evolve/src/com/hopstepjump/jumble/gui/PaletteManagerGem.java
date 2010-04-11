@@ -1,7 +1,6 @@
 package com.hopstepjump.jumble.gui;
 
-import static com.hopstepjump.swing.palette.RichPaletteCategoryMode.MAXIMIZED;
-import static com.hopstepjump.swing.palette.RichPaletteCategoryMode.MINIMIZED;
+import static com.hopstepjump.swing.palette.RichPaletteCategoryMode.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -40,6 +39,7 @@ import com.hopstepjump.jumble.umldiagrams.notelinkarc.*;
 import com.hopstepjump.jumble.umldiagrams.notenode.*;
 import com.hopstepjump.jumble.umldiagrams.packagenode.*;
 import com.hopstepjump.jumble.umldiagrams.portnode.*;
+import com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode.*;
 import com.hopstepjump.jumble.umldiagrams.sequencesection.*;
 import com.hopstepjump.jumble.umldiagrams.stereotypenode.*;
 import com.hopstepjump.jumble.umldiagrams.substitutionarc.*;
@@ -390,6 +390,17 @@ public class PaletteManagerGem
       palette.addEntry(makeEntry(true, "model.png",       "Model",                makeNodeCreateTool(retrieveNodeRecreator(ModelCreatorGem.NAME)), "top"));
       tools.addCategory(palette);
     }
+    
+    {
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Requirements");
+      
+      palette.addEntry(makeEntry(true, "package.png",     "Feature",              makeNodeCreateTool(retrieveNodeRecreator(RequirementsFeatureCreatorGem.NAME)), "top"));
+      palette.addEntry(makeEntry(false, "dependency.png", "Mandatory subfeature", new ArcCreateToolGem(retrieveArcRecreator(RequirementsFeatureLinkCreatorGem.NAME)).getToolFacet(), "top"));
+      palette.addEntry(makeEntry(false, "dependency.png", "Optional subfeature",  new ArcCreateToolGem(retrieveArcRecreator(RequirementsFeatureLinkCreatorGem.NAME)).getToolFacet(), "top"));
+      palette.addEntry(makeEntry(false, "dependency.png", "One or more (Or)",     new ArcCreateToolGem(retrieveArcRecreator(RequirementsFeatureLinkCreatorGem.NAME)).getToolFacet(), "top"));
+      palette.addEntry(makeEntry(false, "dependency.png", "One of (Xor)",         new ArcCreateToolGem(retrieveArcRecreator(RequirementsFeatureLinkCreatorGem.NAME)).getToolFacet(), "top"));
+      tools.addCategory(palette);
+    }
 
     {
       // make the bespoke creators
@@ -508,7 +519,7 @@ public class PaletteManagerGem
     }
     
     {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "State", MINIMIZED);
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "State", AUTOMATIC);
       ClassCreatorGem stateCreator = new ClassCreatorGem();
       stateCreator.setSuppressOperations(true);
       stateCreator.setAutoSized(false);
@@ -554,7 +565,8 @@ public class PaletteManagerGem
       palette.addEntry(makeEntry(true, "node.gif",        "Node",        makeNodeCreateTool(retrieveNodeRecreator(NodeCreatorGem.NAME))));
       tools.addCategory(palette);
     }
-    
+
+    tools.setHideMinimized(true);
     return tools;
   }
 

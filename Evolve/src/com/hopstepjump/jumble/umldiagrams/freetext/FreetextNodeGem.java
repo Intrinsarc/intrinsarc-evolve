@@ -98,35 +98,6 @@ public final class FreetextNodeGem implements Gem
     {
       return null;
     }
-
-  }
-  
-  private class ResizeVetterFacetImpl implements ResizeVetterFacet
-  {
-    /**
-     * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#startResizeVet()
-     */
-    public void startResizeVet()
-    {
-    }
-  
-    /**
-     * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#vetResizedBounds(DiagramView, int, UBounds, boolean)
-     */
-    public UBounds vetResizedBounds(DiagramViewFacet view, int corner, UBounds bounds, boolean fromCentre)
-    {
-      return bounds;
-    }
-  
-    /**
-     * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#vetResizedExtent(UBounds)
-     */
-    public UDimension vetResizedExtent(UBounds bounds)
-    {
-      if (figureFacet.isAutoSized())
-        return figureFacet.getFullBounds().getDimension();
-      return bounds.getDimension();
-    }
   }
   
   private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet

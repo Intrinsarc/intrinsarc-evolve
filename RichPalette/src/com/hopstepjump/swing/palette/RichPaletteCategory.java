@@ -365,7 +365,8 @@ public class RichPaletteCategory implements IRichPaletteCategory
   public void setHidden(boolean hidden)
   {
     this.hidden = hidden;
-    panel.setVisible(!hidden);
+    if (panel != null)
+    	panel.setVisible(!hidden);
   }
 
   public boolean isMinimized()
