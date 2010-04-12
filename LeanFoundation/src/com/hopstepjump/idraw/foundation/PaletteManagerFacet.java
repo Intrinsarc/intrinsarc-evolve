@@ -19,4 +19,6 @@ public interface PaletteManagerFacet extends Facet
   DiagramViewFacet getCurrentDiagramView();
   JComponent getPaletteComponent();
   void refreshEnabled();
+	void setFocus(String focus);
+	String getFocus();
 }

@@ -11,6 +11,7 @@ import bibliothek.extension.gui.dock.theme.*;
 import bibliothek.gui.*;
 import bibliothek.gui.dock.*;
 import bibliothek.gui.dock.common.*;
+import bibliothek.gui.dock.common.action.*;
 import bibliothek.gui.dock.common.action.predefined.*;
 import bibliothek.gui.dock.common.intern.*;
 import bibliothek.gui.dock.control.*;
@@ -18,6 +19,7 @@ import bibliothek.gui.dock.event.*;
 import bibliothek.gui.dock.title.*;
 
 import com.hopstepjump.easydock.*;
+import com.hopstepjump.swing.*;
 
 
 public class DockingFramesDock implements IEasyDock
@@ -129,9 +131,16 @@ public class DockingFramesDock implements IEasyDock
 		dockable.putAction(CDockable.ACTION_KEY_EXTERNALIZE, CBlank.BLANK);
 	}
 
-	private JComponent getInsetComponent()
+	private CAction makeButton(String name)
 	{
-		return control.getContentArea();
+		return
+		new CButton(name, null)
+		{
+			@Override
+			protected void action()
+			{
+			}
+		};
 	}
 
 	void removeMe(DockingFramesDockable dockable)

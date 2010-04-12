@@ -48,31 +48,36 @@ public class RichPaletteCategory implements IRichPaletteCategory
   private int resizedHeight;
   private boolean headerless;
   private boolean hidden;
+  private String[] focusTags;
 
-  public RichPaletteCategory(String name)
+  public RichPaletteCategory(String name, String[] focusTags)
   {
     this.name = name;
+    this.focusTags = focusTags;
   }
   
-  public RichPaletteCategory(Icon icon, String name)
+  public RichPaletteCategory(Icon icon, String name, String[] focusTags)
   {
     this.icon = icon;
     this.name = name;
+    this.focusTags = focusTags;
   }
   
-  public RichPaletteCategory(Icon icon, String name, boolean headerless)
+  public RichPaletteCategory(Icon icon, String name, boolean headerless, String[] focusTags)
   {
     this.icon = icon;
     this.name = name;
     this.headerless = headerless;
     mode = MAXIMIZED;
+    this.focusTags = focusTags;
   }
   
-  public RichPaletteCategory(Icon icon, String name, RichPaletteCategoryMode mode)
+  public RichPaletteCategory(Icon icon, String name, RichPaletteCategoryMode mode, String[] focusTags)
   {
     this.icon = icon;
     this.name = name;
     this.mode = mode;
+    this.focusTags = focusTags;
   }
   
   public void addEntry(IRichPaletteEntry entry)
@@ -391,5 +396,10 @@ public class RichPaletteCategory implements IRichPaletteCategory
 		for (IRichPaletteEntry entry : all)
 			tools.add(entry.getToolClassification(name));
 		return tools;
+	}
+
+	public String[] getFocusTags()
+	{
+		return focusTags;
 	}
 }

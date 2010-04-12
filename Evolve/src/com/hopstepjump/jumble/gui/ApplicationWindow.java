@@ -67,6 +67,7 @@ public class ApplicationWindow extends SmartJFrame
 	private DeltaAdornerFacet deltaAdorner;
 	private ErrorRegister errors;
 	private JMenuBar menuBar;
+	private IEasyDockable paletteTitle;
 
 	// icons
 	public static final ImageIcon FULLSCREEN_ICON = IconLoader.loadIcon("fullscreen.png");
@@ -214,7 +215,7 @@ public class ApplicationWindow extends SmartJFrame
 		pwidth = Math.max(50, Math.min(pwidth, 300));
 
 		palette.setPreferredSize(new Dimension(1000, 100));
-		desktop.createEmbeddedPaletteDockable(
+		paletteTitle = desktop.createEmbeddedPaletteDockable(
 				"Palette",
 				PALETTE_ICON,
 				EasyDockSideEnum.WEST,
@@ -222,6 +223,7 @@ public class ApplicationWindow extends SmartJFrame
 				false,
 				false,
 				palette);
+		setPaletteFocus(PaletteManagerGem.COMPONENT_FOCUS);
 
 		// set the title
 		setTitle(title);		
@@ -1842,7 +1844,7 @@ public class ApplicationWindow extends SmartJFrame
 			// add the help entries
 			smartMenuBar.addSectionOrderingHint(">Help", "Contents", "a");
 			smartMenuBar.addSectionOrderingHint(">Help", "About", "b");
-
+			
 			JMenuItem aboutItem = new JMenuItem(new HelpAboutAction(coordinator, popup));			
 			entries.add(new SmartMenuItemImpl(">Help", "About", aboutItem));
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
@@ -1897,6 +1899,18 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("File/Preferences", exportPreferences, null, "Export environment preferences");
 			entries.add(new SmartMenuItemImpl("File", "Maintenance", preferences));
 			
+			// add the focus menu
+			ButtonGroup focusGroup = new ButtonGroup();
+			makeFocusItem(entries, PaletteManagerGem.FEATURE_FOCUS, "shift ctrl F", focusGroup);
+			makeFocusItem(entries, PaletteManagerGem.COMPONENT_FOCUS, "shift ctrl C", focusGroup);
+			makeFocusItem(entries, PaletteManagerGem.STATE_FOCUS, "shift ctrl S", focusGroup);
+			makeFocusItem(entries, PaletteManagerGem.BEHAVIOUR_FOCUS, "shift ctrl B", focusGroup);
+			makeFocusItem(entries, PaletteManagerGem.PROFILE_FOCUS, "shift ctrl P", focusGroup);
+			makeFocusItem(entries, PaletteManagerGem.DOCUMENTATION_FOCUS, "shift ctrl D", focusGroup);
+			makeFocusItem(entries, PaletteManagerGem.CLASS_FOCUS, "shift ctrl L", focusGroup);
+			makeFocusItem(entries, PaletteManagerGem.MISCELLANEOUS_FOCUS, "shift ctrl M", focusGroup);
+			smartMenuBar.addMenuOrderingHint("Focus", "ab");
+			
 			// register some nice icons for the preference tabs
 			GlobalPreferences.preferences.registerTabIcon("Keys", KEYBOARD_ICON);
 			GlobalPreferences.preferences.registerTabIcon("Advanced", COG_ICON);
@@ -1905,9 +1919,36 @@ public class ApplicationWindow extends SmartJFrame
 			
 			return entries;
 		}
-
+	}
+	
+	private void setPaletteFocus(String focus)
+	{
+		paletteFacet.setFocus(focus);
+		paletteTitle.setTitleText(focus);
 	}
 
+	private void makeFocusItem(List<SmartMenuItem> entries, final String focus, String key, ButtonGroup group)
+	{
+		JRadioButtonMenuItem item = new UpdatingJRadioButtonMenuItem(new AbstractAction(focus)
+		{			
+			public void actionPerformed(ActionEvent e)
+			{
+				String lower = focus.toLowerCase();
+				coordinator.displayPopup(PALETTE_ICON, "Set focus", "Changed to " + lower, null, null, 1000);
+				setPaletteFocus(focus);
+			}
+		}, group)
+		{			
+			public boolean update()
+			{
+				setSelected(focus.equals(paletteFacet.getFocus()));
+				return true;
+			}
+		};
+		entries.add(new SmartMenuItemImpl("Focus", "focus", item));
+		GlobalPreferences.registerKeyAction("Focus", item, key, "Switch to " + focus);
+	}
+	
 	public void askAboutSaveAndPossiblyExit()
 	{
 		int chosen = askAboutSave("Evolve", false);
@@ -2003,6 +2044,7 @@ public class ApplicationWindow extends SmartJFrame
 
 		// clear out the previous backbone generation options
 		choice = null;
+		setPaletteFocus(PaletteManagerGem.COMPONENT_FOCUS);
 	}
 
 	public void refreshTitle(String windowTitle)

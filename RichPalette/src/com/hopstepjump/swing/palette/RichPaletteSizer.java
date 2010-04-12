@@ -25,7 +25,7 @@ public class RichPaletteSizer
       int width,
       int height)
   {
-    this.categories = categories;
+    this.categories = getShownCategories(categories);
     this.splitters = splitters;
     this.width = width;
     this.height = height;
@@ -85,7 +85,7 @@ public class RichPaletteSizer
   
   public void calculateSizes()
   {
-    List<IRichPaletteCategory> shown = getShownCategories();
+    List<IRichPaletteCategory> shown = categories;
 
     int resizedHeight = getHeight(shown, RESIZED, false);
     int maxHeight = getHeight(shown, MAXIMIZED, false);
@@ -196,7 +196,7 @@ public class RichPaletteSizer
       splitters.get(index++).setVisible(false);
   }
 
-  private List<IRichPaletteCategory> getShownCategories()
+  private List<IRichPaletteCategory> getShownCategories(List<IRichPaletteCategory> categories)
   {
     List<IRichPaletteCategory> shown = new ArrayList<IRichPaletteCategory>();
     for (IRichPaletteCategory category : categories)
