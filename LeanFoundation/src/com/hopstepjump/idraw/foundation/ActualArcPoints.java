@@ -362,12 +362,13 @@ public final class ActualArcPoints
     UPoint point = oriented.getPoint();
     AnchorPreviewFacet other = node == preview1 ? preview2 : preview1;
     boolean linkFromContained = node1 != node2 && bounds.contains(other.getLinkableBounds(oriented));
+    boolean linkStart = node == preview1;
 
     switch (oriented.getOrientation())
     {
       case OrientedPoint.ORIENTED_MIDDLE:
       case OrientedPoint.ORIENTED_UNKNOWN:
-        return node.calculateBoundaryPoint(oriented, linkFromContained, null, node.getMiddlePoint());
+        return node.calculateBoundaryPoint(oriented, linkFromContained, null, node.getMiddlePoint(), linkStart);
 
       case OrientedPoint.ORIENTED_VERTICAL:
         {
@@ -385,7 +386,7 @@ public final class ActualArcPoints
           UPoint boxPoint = new UPoint(point.getX(), bounds.getTopRightPoint().getY());
           if (reversed)
             boxPoint = new UPoint(point.getX(), bounds.getBottomLeftPoint().getY());
-          return node.calculateBoundaryPoint(oriented, linkFromContained, boxPoint, new UPoint(point.getX(), bounds.getMiddlePoint().getY()));
+          return node.calculateBoundaryPoint(oriented, linkFromContained, boxPoint, new UPoint(point.getX(), bounds.getMiddlePoint().getY()), linkStart);
         }
 
       case OrientedPoint.ORIENTED_HORIZONTAL:
@@ -405,7 +406,7 @@ public final class ActualArcPoints
           if (reversed)
             boxPoint = new UPoint(bounds.getBottomRightPoint().getX(), point.getY());
           // ask the node to calculate
-          return node.calculateBoundaryPoint(oriented, linkFromContained, boxPoint, new UPoint(bounds.getMiddlePoint().getX(), point.getY()));
+          return node.calculateBoundaryPoint(oriented, linkFromContained, boxPoint, new UPoint(bounds.getMiddlePoint().getX(), point.getY()), linkStart);
         }
     }
   }

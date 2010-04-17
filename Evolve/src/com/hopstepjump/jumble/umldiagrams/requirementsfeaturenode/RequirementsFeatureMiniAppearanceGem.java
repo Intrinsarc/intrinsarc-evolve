@@ -60,7 +60,7 @@ public class RequirementsFeatureMiniAppearanceGem implements Gem
 
 			double left = bounds.getPoint().getX();
 			double top = bounds.getPoint().getY();
-			UPoint middle = new UPoint(left + width / 2, top + height * 0.1);
+			UPoint middle = new UPoint(left + width / 2, top + height * 0.3);
 			UPoint bottomLeft = new UPoint(left + offset * 2, top + height * 0.7 - offset);
 			UPoint bottomMiddle = new UPoint(middle.getX(), top + height * 0.9 - offset);
 			UPoint bottomRight = new UPoint(left + width - offset * 2, top + height * 0.7 - offset);

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -85,6 +86,12 @@ public final class RequirementsFeatureNodeGem implements Gem
   private boolean bodyEllipsis = false;
   private boolean retired = false;
 	private SwitchSubjectFacet switchableFacet = new SwitchSubjectFacetImpl();
+	private UBounds arc2;
+	private double arc2Start;
+	private double arc2End;
+	private UBounds arc3;
+	private double arc3Start;
+	private double arc3End;
 	
 	private class SwitchSubjectFacetImpl implements SwitchSubjectFacet
 	{
@@ -250,10 +257,6 @@ public final class RequirementsFeatureNodeGem implements Gem
 	
 	private class ClassifierNodeFacetImpl implements RequirementsFeatureNodeFacet
 	{
-		public void tellContainedAboutResize(PreviewCacheFacet previews, UBounds bounds)
-		{
-		}
-		
 		/**
 		 * @see com.hopstepjump.jumble.umldiagrams.classifiernode.ClassifierNodeFacet#getShapeForPreview(UBounds)
 		 */
@@ -551,13 +554,28 @@ public final class RequirementsFeatureNodeGem implements Gem
 			
 			// draw the rectangle
 			UBounds entireBounds = sizes.getOuter();
-      ZShape rect = new ZRectangle(entireBounds);
+      ZShape rect = new ZRoundedRectangle(
+      		entireBounds.getX(), entireBounds.getY(),
+      		entireBounds.getWidth(), entireBounds.getHeight(),
+      		10, 10);
       rect.setFillPaint(fillColor);
       rect.setPenPaint(lineColor);
 			
 			
 			// group them
 			ZGroup group = new ZGroup();
+
+      if (!displayOnlyIcon)
+      {
+        ZShape shadow = new ZRoundedRectangle(
+        		entireBounds.getX() + 3, entireBounds.getY() + 3,
+        		entireBounds.getWidth(), entireBounds.getHeight(),
+        		10, 10);
+        shadow.setFillPaint(Color.LIGHT_GRAY);
+        shadow.setPenPaint(null);
+        group.addChild(new ZVisualLeaf(shadow));
+      }
+      			
 			if (!displayOnlyIcon)
 			  group.addChild(new ZVisualLeaf(rect));
 			
@@ -568,46 +586,6 @@ public final class RequirementsFeatureNodeGem implements Gem
 			if (miniAppearance != null)
 				group.addChild(miniAppearance);
 			
-      if (!displayOnlyIcon)
-      {
-        {          
-          ZPolyline poly = new ZPolyline();
-          poly.add(entireBounds.getBottomLeftPoint());
-          poly.add(entireBounds.getTopLeftPoint());
-          poly.add(entireBounds.getTopRightPoint());
-          Color newFill = fillColor.equals(Color.WHITE) ? Color.BLACK : fillColor;
-          poly.setPenPaint(newFill);
-          group.addChild(new ZVisualLeaf(poly));
-        }
-        {
-          ZPolyline poly = new ZPolyline();
-          poly.add(entireBounds.getBottomLeftPoint().add(new UDimension(1,-1)));
-          poly.add(entireBounds.getTopLeftPoint().add(new UDimension(1,1)));
-          poly.add(entireBounds.getTopRightPoint().add(new UDimension(-1,1)));
-          poly.setPenPaint(Color.WHITE);
-          group.addChild(new ZVisualLeaf(poly));
-        }
-        {
-          Color newFill = fillColor.equals(Color.WHITE) ? Color.BLACK : fillColor.darker();
-          {
-            ZPolyline poly = new ZPolyline();
-            poly.add(entireBounds.getTopRightPoint().add(new UDimension(-1,0)));
-            poly.add(entireBounds.getBottomRightPoint().add(new UDimension(-1,-1)));
-            poly.add(entireBounds.getBottomLeftPoint().add(new UDimension(1,-1)));
-            group.addChild(new ZVisualLeaf(poly));
-            poly.setPenPaint(newFill);
-          }
-          {
-            ZPolyline poly = new ZPolyline();
-            poly.add(entireBounds.getTopRightPoint());
-            poly.add(entireBounds.getBottomRightPoint());
-            poly.add(entireBounds.getBottomLeftPoint());
-            poly.setPenPaint(newFill);
-            group.addChild(new ZVisualLeaf(poly));
-          }
-        }
-      }
-      
       // possibly add in a ... for missing display attributes
       if (bodyEllipsis)
       {
@@ -625,6 +603,20 @@ public final class RequirementsFeatureNodeGem implements Gem
       if (isElementRetired())
     		addCross(sizes, group, 12, Color.RED);
 
+			// possibly draw the arcs
+			if (arc2 != null)
+			{
+				ZArc arc = new ZArc(new Arc2D.Double(arc2, arc2Start, arc2End - arc2Start, Arc2D.PIE));
+				arc.setFillPaint(Color.BLACK);
+				group.addChild(new ZVisualLeaf(arc));
+			}
+			if (arc3 != null)
+			{
+				ZArc arc = new ZArc(new Arc2D.Double(arc3, arc3Start, arc3End - arc3Start, Arc2D.OPEN));
+				arc.setFillPaint(null);
+				group.addChild(new ZVisualLeaf(arc));
+			}
+			
       // add the interpretable properties
 			group.setChildrenPickable(false);
 			group.setChildrenFindable(false);
@@ -873,6 +865,20 @@ public final class RequirementsFeatureNodeGem implements Gem
       properties.add(new PersistentProperty("addedUuids", deletedUuids));
       properties.add(new PersistentProperty("deletedUuids", deletedUuids));
       properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
+      if (arc2 != null)
+      {
+      	properties.add(new PersistentProperty("arc2P", arc2.getPoint()));
+      	properties.add(new PersistentProperty("arc2D", arc2.getDimension(), new UDimension(0, 0)));
+      	properties.add(new PersistentProperty("arc2Start", arc2Start));
+      	properties.add(new PersistentProperty("arc2End", arc2End));
+      }
+      if (arc3 != null)
+      {
+      	properties.add(new PersistentProperty("arc3P", arc3.getPoint()));
+      	properties.add(new PersistentProperty("arc3D", arc3.getDimension(), new UDimension(0, 0)));
+      	properties.add(new PersistentProperty("arc3Start", arc3Start));
+      	properties.add(new PersistentProperty("arc3End", arc3End));
+      }
 		}
 		
 		/**
@@ -931,6 +937,33 @@ public final class RequirementsFeatureNodeGem implements Gem
 					"(replaces " + props.getSubstitutesForName() + ")" :
 					"(from " + repository.getFullStratumNames((Element) props.getHomePackage().getRepositoryObject()) + ")";
 			
+			// possibly remake the arc for 1..* (type 2)
+			UPoint middle = Grid.roundToGrid(new UPoint(figureFacet.getFullBounds().getCenterX(), 0));
+			middle = new UPoint(middle.getX(), figureFacet.getFullBounds().getBottomLeftPoint().getY());
+			UDimension dim = new UDimension(16, 16);
+			UBounds arc = new UBounds(middle, new UDimension(0, 0)).addToPoint(dim.negative()).addToExtent(dim.multiply(2));
+			Double startAngle = getAngle("2", true);
+			if (startAngle != null)
+			{
+				arc2 = arc;
+				arc2Start = startAngle;
+				arc2End = getAngle("2", false);
+				if (arc2Start == arc2End)
+					arc2End += 15;  // degrees
+			}
+
+			UDimension dimN = new UDimension(19, 19);
+			UBounds arcN = new UBounds(middle, new UDimension(0, 0)).addToPoint(dimN.negative()).addToExtent(dimN.multiply(2));
+			Double startAngleN = getAngle("3", true);
+			if (startAngleN != null)
+			{
+				arc3 = arcN;
+				arc3Start = startAngleN;
+				arc3End = getAngle("3", false);
+				if (arc3Start == arc3End)
+					arc3End += 15;  // degrees
+			}
+
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
       Classifier classifierSubject = (Classifier) subject;
       RequirementsFeatureSizeInfo info = makeCurrentInfo();
@@ -948,6 +981,48 @@ public final class RequirementsFeatureNodeGem implements Gem
       updateClassifierViewAfterSubjectChanged(actualStereotypeHashcode);
 		}
 		
+		private Double getAngle(String type, boolean start)
+		{
+			Double ret = null;
+			
+			AnchorFacet anchor = figureFacet.getAnchorFacet();
+			for (Iterator<LinkingFacet> iter = figureFacet.getAnchorFacet().getLinks(); iter.hasNext();)
+			{
+				// is this one to use?
+				LinkingFacet link = iter.next();
+				Object subject = link.getFigureFacet().getSubject(); 
+				if (subject instanceof Property)
+				{
+					String def = ((Property) subject).getDefault();
+					if (type.equals(def) && link.getAnchor1() == anchor)
+					{
+						double angle = computeAngle(link);
+						if (ret == null)
+							ret = angle;
+						else
+						if (start)
+						{
+							if (angle < ret)
+								ret = angle;
+						}
+						else
+						{
+							if (angle > ret)
+								ret = angle;							
+						}
+					}
+				}
+			}
+			return ret;
+		}
+
+		private double computeAngle(LinkingFacet link)
+		{
+			List<UPoint> pts = link.getCalculated().getAllPoints();
+			UDimension dim = pts.get(0).subtract(pts.get(1));
+			return (dim.getRadians() + Math.PI) / Math.PI * -180;
+		}
+
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
@@ -1073,6 +1148,31 @@ public final class RequirementsFeatureNodeGem implements Gem
     addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
     stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
+
+    if (properties.contains("arc2P"))
+    {
+    	UPoint pt = properties.retrieve("arc2P").asUPoint();
+    	UDimension dim = properties.retrieve("arc2D").asUDimension();
+    	arc2 = new UBounds(pt, dim);
+    	arc2Start = properties.retrieve("arc2Start").asDouble();
+    	arc2End = properties.retrieve("arc2End").asDouble();
+    }
+    else
+    {
+    	arc2 = null;
+    }	
+    if (properties.contains("arc3P"))
+    {
+    	UPoint pt = properties.retrieve("arc3P").asUPoint();
+    	UDimension dim = properties.retrieve("arc3D").asUDimension();
+    	arc3 = new UBounds(pt, dim);
+    	arc3Start = properties.retrieve("arc3Start").asDouble();
+    	arc3End = properties.retrieve("arc3End").asDouble();
+    }
+    else
+    {
+    	arc3 = null;
+    }	
 	}
   
   public RequirementsFeatureNodeGem(Color initialFillColor, PersistentFigure pfig)

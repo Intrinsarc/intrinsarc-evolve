@@ -225,7 +225,7 @@ public final class RequirementsFeatureSizeInfo implements ContainerSizeInfo
 		// the title
 		ExpandingBox title = new ExpandingBox("name", zNameExtent, ExpandingBox.EXPAND_X, ExpandingBox.X_CENTRE, ExpandingBox.EXPAND_NONE, ExpandingBox.X_CENTRE);
 		ContainerBox horizontalNameContainer = new ContainerBox(">horizontalNameContainer", new HorizontalLayout());
-		BorderBox verticalNameBorder = new BorderBox(">verticalNameBorder", new UDimension(12,4), horizontalNameContainer);
+		BorderBox verticalNameBorder = new BorderBox(">verticalNameBorder", new UDimension(12,8), horizontalNameContainer);
     if (haveIcon)
       verticalNameBorder.setBottomRightInset(new UDimension(4, 4));
 		horizontalNameContainer.addBox(title);

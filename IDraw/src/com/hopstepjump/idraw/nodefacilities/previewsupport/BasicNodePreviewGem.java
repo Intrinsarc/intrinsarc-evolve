@@ -52,9 +52,9 @@ public final class BasicNodePreviewGem implements Gem
 	  	return appearanceFacet.formAnchorHighlight(showOk);
 	  }
 
-	  public UPoint calculateBoundaryPoint(OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint)
+	  public UPoint calculateBoundaryPoint(OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint, boolean linkStart)
 	  {
-			return appearanceFacet.calculateBoundaryPoint(previews, oriented, linkFromContained, boxPoint, insidePoint);
+			return appearanceFacet.calculateBoundaryPoint(previews, oriented, linkFromContained, boxPoint, insidePoint, linkStart);
 	  }
 
 	  /**returns the linkable bounds given that the next point on the line is nextPointAfterConnection*/

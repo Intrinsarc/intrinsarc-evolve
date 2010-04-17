@@ -86,20 +86,6 @@ public final class RequirementsFeatureCreatorGem implements Gem
           cls.getAppliedBasicStereotypes().add(stereo);
       }
       
-      // is this a placeholder
-      PersistentProperty place = properties.retrieve(">placeholder", false);
-      if (place.asBoolean())
-      	StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(cls, CommonRepositoryFunctions.PLACEHOLDER, true);
-      
-      // is this a factory
-      PersistentProperty fact = properties.retrieve(">factory", false);
-      if (fact.asBoolean())
-      	StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(cls, CommonRepositoryFunctions.FACTORY, true);
-      
-      // set the kind
-      PersistentProperty k = properties.retrieve(">kind", 0);
-    	cls.setComponentKind(ComponentKind.get(k.asInteger()));
-    	
     	// possibly set up a resemblance relationship
       PersistentProperty res = properties.retrieve(">resemblanceUUID", (String) null);
       if (res.asString() != null)

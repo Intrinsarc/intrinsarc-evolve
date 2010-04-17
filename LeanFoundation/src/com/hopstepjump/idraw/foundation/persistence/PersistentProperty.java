@@ -202,7 +202,13 @@ public class PersistentProperty
     setStringCollectionValue(uuids);
   }
 
-  private void setStringCollectionValue(Collection<String> uuids)
+  public PersistentProperty(String name, double value)
+	{
+  	this.name = name.intern();
+  	this.value = "" + value;
+	}
+
+	private void setStringCollectionValue(Collection<String> uuids)
   {
     StringBuffer value = new StringBuffer();
     for (String str : uuids)
@@ -376,6 +382,18 @@ public class PersistentProperty
     try
     {
       return new Integer(value).intValue();
+    }
+    catch (NumberFormatException ex)
+    {
+      return 0;
+    }
+	}
+  
+  public double asDouble()
+	{
+    try
+    {
+      return new Double(value).doubleValue();
     }
     catch (NumberFormatException ex)
     {

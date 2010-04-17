@@ -697,6 +697,6 @@ public final class ToolCoordinatorGem implements Gem
     registerRecreator(new MessageCreatorGem().getArcCreateFacet());
     registerRecreator(new SequenceSectionCreatorGem().getNodeCreateFacet());
     registerRecreator(new RequirementsFeatureCreatorGem().getNodeCreateFacet());
-    registerRecreator(new RequirementsFeatureLinkCreatorGem().getArcCreateFacet());
+    registerRecreator(new RequirementsFeatureLinkCreatorGem(0).getArcCreateFacet());
 	}
 }

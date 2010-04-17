@@ -103,6 +103,7 @@ public class ApplicationWindow extends SmartJFrame
 	public static final ImageIcon KEYBOARD_ICON = IconLoader.loadIcon("keyboard.png");
 	public static final ImageIcon COG_ICON = IconLoader.loadIcon("cog.png");
 	public static final ImageIcon VARIABLES_ICON = IconLoader.loadIcon("variables.png");
+	public static final ImageIcon TICK_ICON = IconLoader.loadIcon("tick.png");
 
 	public ApplicationWindow(String title, ErrorRegister errors)
 	{
@@ -1900,15 +1901,14 @@ public class ApplicationWindow extends SmartJFrame
 			entries.add(new SmartMenuItemImpl("File", "Maintenance", preferences));
 			
 			// add the focus menu
-			ButtonGroup focusGroup = new ButtonGroup();
-			makeFocusItem(entries, PaletteManagerGem.FEATURE_FOCUS, "shift ctrl F", focusGroup);
-			makeFocusItem(entries, PaletteManagerGem.COMPONENT_FOCUS, "shift ctrl C", focusGroup);
-			makeFocusItem(entries, PaletteManagerGem.STATE_FOCUS, "shift ctrl S", focusGroup);
-			makeFocusItem(entries, PaletteManagerGem.BEHAVIOUR_FOCUS, "shift ctrl B", focusGroup);
-			makeFocusItem(entries, PaletteManagerGem.PROFILE_FOCUS, "shift ctrl P", focusGroup);
-			makeFocusItem(entries, PaletteManagerGem.DOCUMENTATION_FOCUS, "shift ctrl D", focusGroup);
-			makeFocusItem(entries, PaletteManagerGem.CLASS_FOCUS, "shift ctrl L", focusGroup);
-			makeFocusItem(entries, PaletteManagerGem.MISCELLANEOUS_FOCUS, "shift ctrl M", focusGroup);
+			makeFocusItem(entries, PaletteManagerGem.FEATURE_FOCUS, "shift ctrl F");
+			makeFocusItem(entries, PaletteManagerGem.COMPONENT_FOCUS, "shift ctrl C");
+			makeFocusItem(entries, PaletteManagerGem.STATE_FOCUS, "shift ctrl S");
+			makeFocusItem(entries, PaletteManagerGem.BEHAVIOUR_FOCUS, "shift ctrl B");
+			makeFocusItem(entries, PaletteManagerGem.PROFILE_FOCUS, "shift ctrl P");
+			makeFocusItem(entries, PaletteManagerGem.DOCUMENTATION_FOCUS, "shift ctrl D");
+			makeFocusItem(entries, PaletteManagerGem.CLASS_FOCUS, "shift ctrl L");
+			makeFocusItem(entries, PaletteManagerGem.MISCELLANEOUS_FOCUS, "shift ctrl M");
 			smartMenuBar.addMenuOrderingHint("Focus", "ab");
 			
 			// register some nice icons for the preference tabs
@@ -1927,9 +1927,9 @@ public class ApplicationWindow extends SmartJFrame
 		paletteTitle.setTitleText(focus);
 	}
 
-	private void makeFocusItem(List<SmartMenuItem> entries, final String focus, String key, ButtonGroup group)
+	private void makeFocusItem(List<SmartMenuItem> entries, final String focus, String key)
 	{
-		JRadioButtonMenuItem item = new UpdatingJRadioButtonMenuItem(new AbstractAction(focus)
+		UpdatingJMenuItem item = new UpdatingJMenuItem(new AbstractAction(focus)
 		{			
 			public void actionPerformed(ActionEvent e)
 			{
@@ -1937,11 +1937,14 @@ public class ApplicationWindow extends SmartJFrame
 				coordinator.displayPopup(PALETTE_ICON, "Set focus", "Changed to " + lower, null, null, 1000);
 				setPaletteFocus(focus);
 			}
-		}, group)
+		})
 		{			
 			public boolean update()
 			{
-				setSelected(focus.equals(paletteFacet.getFocus()));
+				if (focus.equals(paletteFacet.getFocus()))
+					setIcon(TICK_ICON);
+				else
+					setIcon(null);
 				return true;
 			}
 		};

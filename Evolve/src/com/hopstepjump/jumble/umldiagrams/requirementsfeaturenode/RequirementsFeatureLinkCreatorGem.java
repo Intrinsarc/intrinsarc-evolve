@@ -12,9 +12,16 @@ public class RequirementsFeatureLinkCreatorGem
 {
   public static final String NAME = "feature link";
   private ArcCreateFacet arcCreateFacet = new ArcCreateFacetImpl();
+  private int type;
 
-  public RequirementsFeatureLinkCreatorGem()
+  public RequirementsFeatureLinkCreatorGem(int type)
   {
+  	this.type = type;
+  }
+  
+  public void setType(int type)
+  {
+  	this.type = type;
   }
 
   public ArcCreateFacet getArcCreateFacet()
@@ -63,6 +70,7 @@ public class RequirementsFeatureLinkCreatorGem
 
     public void initialiseExtraProperties(PersistentProperties properties)
     {
+      properties.add(new PersistentProperty("type", type, 0));
     }
     
     public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end)
@@ -84,6 +92,7 @@ public class RequirementsFeatureLinkCreatorGem
     	Class dependOn = (Class) points.getNode2().getFigureFacet().getSubject();
 
     	Property prop = main.createOwnedAttribute();
+    	prop.setStringDefault("" + type);
     	prop.setType(dependOn);
     	
     	return prop;

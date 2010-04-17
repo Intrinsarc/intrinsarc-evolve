@@ -255,7 +255,7 @@ public final class BasicArcPreviewGem implements Gem
 	    return basicPreviewFacet.getCalculatedPoints().calculateMiddlePoint(curved);
 	  }
 	
-		public UPoint calculateBoundaryPoint(OrientedPoint oriented,  boolean linkFromContained, UPoint possibleBoxPoint, UPoint insidePoint)
+		public UPoint calculateBoundaryPoint(OrientedPoint oriented,  boolean linkFromContained, UPoint possibleBoxPoint, UPoint insidePoint, boolean linkStart)
 	  {
 			// get the list of points
 			List points = basicPreviewFacet.getCalculatedPoints().getAllPointsByFlattening(curved);
@@ -333,7 +333,7 @@ public final class BasicArcPreviewGem implements Gem
 	  /**returns the linkable bounds given that the next point on the line is nextPointAfterConnection*/
 	  public UBounds getLinkableBounds(OrientedPoint orientedPoint)
 	  {
-	    UPoint possible = calculateBoundaryPoint(orientedPoint, false, null, null);
+	    UPoint possible = calculateBoundaryPoint(orientedPoint, false, null, null, true);
 	    return new UBounds(possible.subtract(new UDimension(0.1, 0.1)), new UDimension(0.2, 0.2));
 	  }
 	

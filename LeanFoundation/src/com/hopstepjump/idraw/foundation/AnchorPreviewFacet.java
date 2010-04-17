@@ -11,7 +11,7 @@ public interface AnchorPreviewFacet extends Facet
 	/** form a view to show whether linking is going to be allowed or not */
   public ZNode formAnchorHighlight(boolean showOk);
 
-  public UPoint calculateBoundaryPoint(OrientedPoint oriented, boolean linkFromContained, UPoint possibleBoxPoint, UPoint insidePoint);
+  public UPoint calculateBoundaryPoint(OrientedPoint oriented, boolean linkFromContained, UPoint possibleBoxPoint, UPoint insidePoint, boolean linkStart);
 
   /**returns the linkable bounds given that the next point on the line is nextPointAfterConnection*/
   public UBounds getLinkableBounds(OrientedPoint nextPointAfterConnection);

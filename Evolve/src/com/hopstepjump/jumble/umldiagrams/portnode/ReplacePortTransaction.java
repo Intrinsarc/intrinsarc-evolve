@@ -4,7 +4,7 @@ import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 
-public class ReplacePortCommand implements TransactionFacet
+public class ReplacePortTransaction implements TransactionFacet
 {
   public static void replace(FigureFacet addable, FigureReference featureReference, FigureReference replaced, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, String executeDescription, String unExecuteDescription)
   {

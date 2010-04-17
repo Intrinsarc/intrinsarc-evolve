@@ -12,7 +12,6 @@ import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.arcfacilities.arcsupport.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
-import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.repositorybase.*;
 
 import edu.umd.cs.jazz.*;
@@ -23,10 +22,12 @@ public class RequirementsFeatureLinkGem
   private BasicArcAppearanceFacet basicArcAppearanceFacet = new BasicArcAppearanceFacetImpl();
 	private Property subject;
 	private FigureFacet figureFacet;
+	private String type;
 
   public RequirementsFeatureLinkGem(Property subject)
   {
   	this.subject = subject;
+  	type = subject.getDefault();
   }
   
   public void connectFigureFacet(FigureFacet figureFacet)
@@ -49,13 +50,25 @@ public class RequirementsFeatureLinkGem
 			UPoint last,
 			CalculatedArcPoints calculated, boolean curved)
 	  {
-	  	// see if we want a direct style, or with arrows
-		  Set<String> styles = figureFacet.getLinkingFacet().getAnchor2().getDisplayStyles(true);
-		  return formRealisationAppearance(
-          mainArc,
-          secondLast,
-          last,
-          styles != null && styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT));
+	    // make the thin and thick lines
+	    ZGroup group = new ZGroup();
+
+	    // add the thin line
+	    group.addChild(new ZVisualLeaf(mainArc));
+
+	    double x = (int) last.getX();
+	    double y = (int) last.getY();
+	    double offset = 5;
+	    if (type.equals("0") || type.equals("1"))
+	    {
+		    ZEllipse ell = new ZEllipse(x - offset, y - offset, offset * 2, offset * 2);
+	    	ell.setFillPaint(type.equals("0") ? Color.BLACK : Color.WHITE);
+	    	group.addChild(new ZVisualLeaf(ell));
+	    }
+
+	    group.setChildrenFindable(false);
+	    group.setChildrenPickable(true);
+	    return group;
 	  }
 	  
 		/**
@@ -71,6 +84,7 @@ public class RequirementsFeatureLinkGem
 		 */
 		public void addToPersistentProperties(PersistentProperties properties)
 		{
+			properties.add(new PersistentProperty("type", type, "0"));
 		}
 	
     public void addToContextMenu(JPopupMenu menu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
@@ -92,9 +106,11 @@ public class RequirementsFeatureLinkGem
 			// model element is attached to, then delete
 			if (pass == ViewUpdatePassEnum.LAST)
 			{
+				type = subject.getDefault();
+
 				Class main = (Class) subject.getOwner();
 				Class dependsOn = (Class) subject.undeleted_getType();
-				final Class viewMain= 
+				final Class viewMain = 
 					(Class) figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject();
 				final Class viewDependsOn = (Class) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
 				
@@ -131,60 +147,14 @@ public class RequirementsFeatureLinkGem
 
     public Set<String> getPossibleDisplayStyles(AnchorFacet anchor)
     {
-     if (anchor == figureFacet.getLinkingFacet().getAnchor1())
-       return null;
-
-     HashSet<String> styles = new HashSet<String>();
-     styles.add(InterfaceCreatorGem.LINK_STYLE_DIRECT);
-     return styles;
+    	Set<String> styles = new HashSet<String>();
+    	styles.add("requirements");
+    	return styles;
     }
 
 		public void acceptPersistentProperties(PersistentFigure pfig)
 		{
+			type = pfig.getProperties().retrieve("type", "0").asString();
 		}
-  }
-  
-  /**
-   * @param mainArc
-   * @param secondLast
-   * @param last
-   * @param directStyle
-   * @return
-   */
-  private static ZNode formRealisationAppearance(ZShape mainArc, UPoint secondLast, UPoint last, boolean directStyle)
-  {
-    // make the thin and thick lines
-    ZGroup group = new ZGroup();
-
-    if (!directStyle)
-	    mainArc.setStroke(
-	    	new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 0, new float[]{3,5}, 0));
-
-    // add the thin line
-    group.addChild(new ZVisualLeaf(mainArc));
-
-    // make the arrowhead
-		if (!directStyle)
-		{
-	    ZPolygon poly = new ZPolygon(last);
-	    poly.add(last.add(new UDimension(-8, -20)));
-	    poly.add(last.add(new UDimension(8, -20)));
-	    poly.add(last);
-	    poly.setPenPaint(Color.black);
-	    poly.setFillPaint(Color.white);
-	    UDimension dimension = secondLast.subtract(last);
-	    ZTransformGroup arrowGroup = new ZTransformGroup(new ZVisualLeaf(poly));
-	    arrowGroup.rotate(dimension.getRadians() + Math.PI/2, last.getX(), last.getY());
-
-	    // add the arrow
-	    arrowGroup.setChildrenFindable(false);
-	    arrowGroup.setChildrenPickable(false);
-	    group.addChild(arrowGroup);
-		}
-
-
-    group.setChildrenFindable(false);
-    group.setChildrenPickable(true);
-    return group;
   }
 }

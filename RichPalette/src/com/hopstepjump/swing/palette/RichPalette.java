@@ -241,7 +241,7 @@ public class RichPalette implements IRichPalette
 		List<ToolClassification> tools = new ArrayList<ToolClassification>();
 		for (IRichPaletteCategory cat : categories)
 		{
-			if (cat.getMode() != RichPaletteCategoryMode.MINIMIZED)
+			if (!cat.isHidden() && cat.getMode() != RichPaletteCategoryMode.MINIMIZED)
 				tools.addAll(cat.getToolClassifications());
 		}
 		return tools;

@@ -37,8 +37,16 @@ public final class RequirementsFeaturePreviewGem implements Gem
   
   private class BasicNodeAppearanceFacetImpl implements BasicNodePreviewAppearanceFacet
   {
-	  public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint)
+	  public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint, boolean linkStart)
 	  {
+	  	UBounds bounds = getFullBounds();
+	  	if (linkStart)
+	  	{
+	  		UPoint pt = Grid.roundToGrid(new UPoint(bounds.getCenterX(), 0));
+	  		return new UPoint(pt.getX(), bounds.getBottomLeftPoint().getY());
+	  	}
+
+	  	// otherwise, just go to boundary
 	  	if (classifierFacet.isDisplayOnlyIcon())
 	  	{
 	  		Shape shape = classifierFacet.formShapeForBoundaryCalculation(bounds);
@@ -49,6 +57,7 @@ public final class RequirementsFeaturePreviewGem implements Gem
 	    UBounds newBounds = bounds;
 	    UPoint offsetPoint = oriented.getPoint();
 	    return new BoundaryCalculator(newBounds.addToExtent(new UDimension(1,1))).calculateBoundaryPoint(offsetPoint, useBox ? boxPoint : null, insidePoint);
+
 	  }
 
 		public ZNode formView(boolean debugOnly)
