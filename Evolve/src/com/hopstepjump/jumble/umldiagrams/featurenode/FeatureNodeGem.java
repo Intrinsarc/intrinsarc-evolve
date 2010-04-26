@@ -305,6 +305,7 @@ public final class FeatureNodeGem implements Gem
 			basicGem.connectPreviewCacheFacet(previews);
 			basicGem.connectFigureFacet(figureFacet);
 			previewGem.connectPreviewFacet(basicGem.getPreviewFacet());
+      basicGem.setCentreToEdge(true);
 			
 			return basicGem.getPreviewFacet();
 	  }

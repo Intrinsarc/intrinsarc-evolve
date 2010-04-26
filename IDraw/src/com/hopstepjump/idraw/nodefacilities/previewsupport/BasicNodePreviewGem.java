@@ -29,6 +29,7 @@ public final class BasicNodePreviewGem implements Gem
   private ContainerPreviewFacet containerFacet;
   private boolean displayPreview;
   private UDimension centreToEdge;
+  private boolean forceCentre;
   
   public void setCentreToEdge(UDimension centreToEdge)
   {
@@ -60,7 +61,7 @@ public final class BasicNodePreviewGem implements Gem
 	  /**returns the linkable bounds given that the next point on the line is nextPointAfterConnection*/
 	  public UBounds getLinkableBounds(OrientedPoint nextPointAfterConnection)
 	  {
-	  	if (previewFacet.getFullBounds().getDimension().equals(centreToEdge))
+	  	if (forceCentre || previewFacet.getFullBounds().getDimension().equals(centreToEdge))
 	  	{
 	  		// middle vertical or middle horizontal?
 	  		int orientation = nextPointAfterConnection.getOrientation();
@@ -320,4 +321,9 @@ public final class BasicNodePreviewGem implements Gem
       dependentOnMe.anchorPreviewHasChanged(anchorFacet);
     }
   }
+
+	public void setCentreToEdge(boolean forceCentre)
+	{
+		this.forceCentre = forceCentre;
+	}
 }

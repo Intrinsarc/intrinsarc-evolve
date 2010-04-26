@@ -491,6 +491,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 		{
 			BasicNodePreviewGem basicGem = new BasicNodePreviewGem(figureFacet, start, isFocus, true);
 			RequirementsFeaturePreviewGem previewGem = new RequirementsFeaturePreviewGem(figureFacet.getFullBounds());
+      basicGem.setCentreToEdge(true);
 			basicGem.connectPreviewCacheFacet(previews);
 			basicGem.connectFigureFacet(figureFacet);
 			basicGem.connectBasicNodePreviewAppearanceFacet(previewGem.getBasicNodePreviewAppearanceFacet());
