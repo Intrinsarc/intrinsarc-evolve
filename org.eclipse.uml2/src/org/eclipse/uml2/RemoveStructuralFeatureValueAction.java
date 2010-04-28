@@ -19,7 +19,7 @@ package org.eclipse.uml2;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * The object to access is specified dynamically, by referring to an input pin on which the object will be placed at runtime. The type of the value of this pin is the classifier that owns the specified structural feature, and the valueâ€™s multiplicity is 1..1. 
+ * The object to access is specified dynamically, by referring to an input pin on which the object will be placed at runtime. The type of the value of this pin is the classifier that owns the specified structural feature, and the value’s multiplicity is 1..1. 
  * <!-- end-model-doc -->
  *
  *

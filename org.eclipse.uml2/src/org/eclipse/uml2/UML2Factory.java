@@ -1821,6 +1821,60 @@ public interface UML2Factory extends EFactory{
 	SavedReference createSavedReference();
 
 	/**
+	 * Returns a new object of class '<em>Requirements Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirements Feature</em>'.
+	 * @generated
+	 */
+	RequirementsFeature createRequirementsFeature();
+
+	/**
+	 * Returns a new object of class '<em>Requirements Feature Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirements Feature Link</em>'.
+	 * @generated
+	 */
+	RequirementsFeatureLink createRequirementsFeatureLink();
+
+	/**
+	 * Returns a new object of class '<em>Delta Replaced Requirements Feature Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Delta Replaced Requirements Feature Link</em>'.
+	 * @generated
+	 */
+	DeltaReplacedRequirementsFeatureLink createDeltaReplacedRequirementsFeatureLink();
+
+	/**
+	 * Returns a new object of class '<em>Delta Deleted Requirements Feature Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Delta Deleted Requirements Feature Link</em>'.
+	 * @generated
+	 */
+	DeltaDeletedRequirementsFeatureLink createDeltaDeletedRequirementsFeatureLink();
+
+	/**
+	 * Returns a new object of class '<em>Delta Deleted Trace</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Delta Deleted Trace</em>'.
+	 * @generated
+	 */
+	DeltaDeletedTrace createDeltaDeletedTrace();
+
+	/**
+	 * Returns a new object of class '<em>Delta Replaced Trace</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Delta Replaced Trace</em>'.
+	 * @generated
+	 */
+	DeltaReplacedTrace createDeltaReplacedTrace();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

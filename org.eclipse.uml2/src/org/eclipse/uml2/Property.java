@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Property represents a declared state of one or more instances in terms of a named relationship to a value or values. When a property is an attribute of a classifier, the value or values are related to the instance of the classifier by being held in slots of the instance. When a property is an association end, the value or values are related to the instance or instances at the other end(s) of the association (see semantics of Association). Property is indirectly a subclass of Constructs::TypedElement. The range of valid values represented by the property can be controlled by setting the property‚Äôs type. Package AssociationClasses (‚ÄúAssociationClasses‚Äù on page 107) A property may have other properties (attributes) that serve as qualifiers. 
+ * Property represents a declared state of one or more instances in terms of a named relationship to a value or values. When a property is an attribute of a classifier, the value or values are related to the instance of the classifier by being held in slots of the instance. When a property is an association end, the value or values are related to the instance or instances at the other end(s) of the association (see semantics of Association). Property is indirectly a subclass of Constructs::TypedElement. The range of valid values represented by the property can be controlled by setting the propertyís type. Package AssociationClasses (ìAssociationClassesî on page 107) A property may have other properties (attributes) that serve as qualifiers. 
  * <!-- end-model-doc -->
  *
  * <p>

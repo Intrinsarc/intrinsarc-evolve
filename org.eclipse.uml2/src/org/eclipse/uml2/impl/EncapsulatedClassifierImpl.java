@@ -306,6 +306,10 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 					return ((InternalEList)getDeltaDeletedOperations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 					return ((InternalEList)getDeltaReplacedOperations()).basicRemove(otherEnd, msgs);
+				case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+					return ((InternalEList)getDeltaDeletedTraces()).basicRemove(otherEnd, msgs);
+				case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+					return ((InternalEList)getDeltaReplacedTraces()).basicRemove(otherEnd, msgs);
 				case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 					return ((InternalEList)getOwnedPorts()).basicRemove(otherEnd, msgs);
 				default:
@@ -454,6 +458,10 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				return getDeltaDeletedOperations();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 				return getDeltaReplacedOperations();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+				return getDeltaDeletedTraces();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+				return getDeltaReplacedTraces();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				return getOwnedPorts();
 		}
@@ -625,6 +633,14 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				getDeltaReplacedOperations().clear();
 				getDeltaReplacedOperations().addAll((Collection)newValue);
 				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				getDeltaDeletedTraces().addAll((Collection)newValue);
+				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				getDeltaReplacedTraces().addAll((Collection)newValue);
+				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				getOwnedPorts().clear();
 				getOwnedPorts().addAll((Collection)newValue);
@@ -769,6 +785,12 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
 				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				getOwnedPorts().clear();
 				return;
@@ -895,6 +917,10 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				return deltaDeletedOperations != null && !deltaDeletedOperations.isEmpty();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 				return deltaReplacedOperations != null && !deltaReplacedOperations.isEmpty();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+				return deltaDeletedTraces != null && !deltaDeletedTraces.isEmpty();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+				return deltaReplacedTraces != null && !deltaReplacedTraces.isEmpty();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				return ownedPort != null && !ownedPort.isEmpty();
 		}

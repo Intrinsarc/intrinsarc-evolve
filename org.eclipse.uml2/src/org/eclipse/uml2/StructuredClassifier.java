@@ -40,6 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.uml2.StructuredClassifier#getDeltaReplacedConnectors <em>Delta Replaced Connectors</em>}</li>
  *   <li>{@link org.eclipse.uml2.StructuredClassifier#getDeltaDeletedOperations <em>Delta Deleted Operations</em>}</li>
  *   <li>{@link org.eclipse.uml2.StructuredClassifier#getDeltaReplacedOperations <em>Delta Replaced Operations</em>}</li>
+ *   <li>{@link org.eclipse.uml2.StructuredClassifier#getDeltaDeletedTraces <em>Delta Deleted Traces</em>}</li>
+ *   <li>{@link org.eclipse.uml2.StructuredClassifier#getDeltaReplacedTraces <em>Delta Replaced Traces</em>}</li>
  * </ul>
  * </p>
  *
@@ -580,6 +582,92 @@ public interface StructuredClassifier extends Classifier{
 	 * @generated
 	 */
 	java.util.ArrayList undeleted_getDeltaReplacedOperations();
+
+
+	/**
+	 * Returns the value of the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.uml2.DeltaDeletedTrace}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Delta Deleted Traces</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Delta Deleted Traces</em>' containment reference list.
+	 * @see org.eclipse.uml2.UML2Package#getStructuredClassifier_DeltaDeletedTraces()
+	 * @model type="org.eclipse.uml2.DeltaDeletedTrace" containment="true"
+	 * @generated
+	 */
+	EList getDeltaDeletedTraces();
+
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedTrace} and appends it to the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedTrace}.
+	 * @see #getDeltaDeletedTraces()
+	 * @generated
+	 */
+	DeltaDeletedTrace createDeltaDeletedTraces();
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	EList settable_getDeltaDeletedTraces();
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	java.util.ArrayList undeleted_getDeltaDeletedTraces();
+
+
+	/**
+	 * Returns the value of the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.uml2.DeltaReplacedTrace}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Delta Replaced Traces</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Delta Replaced Traces</em>' containment reference list.
+	 * @see org.eclipse.uml2.UML2Package#getStructuredClassifier_DeltaReplacedTraces()
+	 * @model type="org.eclipse.uml2.DeltaReplacedTrace" containment="true"
+	 * @generated
+	 */
+	EList getDeltaReplacedTraces();
+
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedTrace} and appends it to the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedTrace}.
+	 * @see #getDeltaReplacedTraces()
+	 * @generated
+	 */
+	DeltaReplacedTrace createDeltaReplacedTraces();
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	EList settable_getDeltaReplacedTraces();
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	java.util.ArrayList undeleted_getDeltaReplacedTraces();
 
 
     /**

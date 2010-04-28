@@ -81,9 +81,13 @@ import org.eclipse.uml2.DeltaDeletedConnector;
 import org.eclipse.uml2.DeltaDeletedConstituent;
 import org.eclipse.uml2.DeltaDeletedOperation;
 import org.eclipse.uml2.DeltaDeletedPort;
+import org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink;
+import org.eclipse.uml2.DeltaDeletedTrace;
 import org.eclipse.uml2.DeltaReplacedConstituent;
 import org.eclipse.uml2.DeltaReplacedOperation;
 import org.eclipse.uml2.DeltaReplacedPort;
+import org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink;
+import org.eclipse.uml2.DeltaReplacedTrace;
 import org.eclipse.uml2.DeltaReplacedAttribute;
 import org.eclipse.uml2.DeltaReplacedConnector;
 import org.eclipse.uml2.Dependency;
@@ -218,6 +222,8 @@ import org.eclipse.uml2.Relationship;
 import org.eclipse.uml2.RemoveStructuralFeatureValueAction;
 import org.eclipse.uml2.RemoveVariableValueAction;
 import org.eclipse.uml2.ReplyAction;
+import org.eclipse.uml2.RequirementsFeature;
+import org.eclipse.uml2.RequirementsFeatureLink;
 import org.eclipse.uml2.SavedReference;
 import org.eclipse.uml2.SendObjectAction;
 import org.eclipse.uml2.SendSignalAction;
@@ -1063,6 +1069,24 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 			}
 			public Object caseSavedReference(SavedReference object) {
 				return createSavedReferenceAdapter();
+			}
+			public Object caseRequirementsFeature(RequirementsFeature object) {
+				return createRequirementsFeatureAdapter();
+			}
+			public Object caseRequirementsFeatureLink(RequirementsFeatureLink object) {
+				return createRequirementsFeatureLinkAdapter();
+			}
+			public Object caseDeltaReplacedRequirementsFeatureLink(DeltaReplacedRequirementsFeatureLink object) {
+				return createDeltaReplacedRequirementsFeatureLinkAdapter();
+			}
+			public Object caseDeltaDeletedRequirementsFeatureLink(DeltaDeletedRequirementsFeatureLink object) {
+				return createDeltaDeletedRequirementsFeatureLinkAdapter();
+			}
+			public Object caseDeltaDeletedTrace(DeltaDeletedTrace object) {
+				return createDeltaDeletedTraceAdapter();
+			}
+			public Object caseDeltaReplacedTrace(DeltaReplacedTrace object) {
+				return createDeltaReplacedTraceAdapter();
 			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
@@ -4498,6 +4522,90 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSavedReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.RequirementsFeature <em>Requirements Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.RequirementsFeature
+	 * @generated
+	 */
+	public Adapter createRequirementsFeatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.RequirementsFeatureLink <em>Requirements Feature Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.RequirementsFeatureLink
+	 * @generated
+	 */
+	public Adapter createRequirementsFeatureLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink <em>Delta Replaced Requirements Feature Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink
+	 * @generated
+	 */
+	public Adapter createDeltaReplacedRequirementsFeatureLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink <em>Delta Deleted Requirements Feature Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink
+	 * @generated
+	 */
+	public Adapter createDeltaDeletedRequirementsFeatureLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DeltaDeletedTrace <em>Delta Deleted Trace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DeltaDeletedTrace
+	 * @generated
+	 */
+	public Adapter createDeltaDeletedTraceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DeltaReplacedTrace <em>Delta Replaced Trace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DeltaReplacedTrace
+	 * @generated
+	 */
+	public Adapter createDeltaReplacedTraceAdapter() {
 		return null;
 	}
 

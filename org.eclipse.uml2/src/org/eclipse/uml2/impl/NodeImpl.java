@@ -562,6 +562,10 @@ public class NodeImpl extends ClassImpl implements Node {
 					return ((InternalEList)getDeltaDeletedOperations()).basicRemove(otherEnd, msgs);
 				case UML2Package.NODE__DELTA_REPLACED_OPERATIONS:
 					return ((InternalEList)getDeltaReplacedOperations()).basicRemove(otherEnd, msgs);
+				case UML2Package.NODE__DELTA_DELETED_TRACES:
+					return ((InternalEList)getDeltaDeletedTraces()).basicRemove(otherEnd, msgs);
+				case UML2Package.NODE__DELTA_REPLACED_TRACES:
+					return ((InternalEList)getDeltaReplacedTraces()).basicRemove(otherEnd, msgs);
 				case UML2Package.NODE__OWNED_PORT:
 					return ((InternalEList)getOwnedPorts()).basicRemove(otherEnd, msgs);
 				case UML2Package.NODE__OWNED_OPERATION:
@@ -730,6 +734,10 @@ public class NodeImpl extends ClassImpl implements Node {
 				return getDeltaDeletedOperations();
 			case UML2Package.NODE__DELTA_REPLACED_OPERATIONS:
 				return getDeltaReplacedOperations();
+			case UML2Package.NODE__DELTA_DELETED_TRACES:
+				return getDeltaDeletedTraces();
+			case UML2Package.NODE__DELTA_REPLACED_TRACES:
+				return getDeltaReplacedTraces();
 			case UML2Package.NODE__OWNED_PORT:
 				return getOwnedPorts();
 			case UML2Package.NODE__OWNED_OPERATION:
@@ -940,6 +948,14 @@ public class NodeImpl extends ClassImpl implements Node {
 				getDeltaReplacedOperations().clear();
 				getDeltaReplacedOperations().addAll((Collection)newValue);
 				return;
+			case UML2Package.NODE__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				getDeltaDeletedTraces().addAll((Collection)newValue);
+				return;
+			case UML2Package.NODE__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				getDeltaReplacedTraces().addAll((Collection)newValue);
+				return;
 			case UML2Package.NODE__OWNED_PORT:
 				getOwnedPorts().clear();
 				getOwnedPorts().addAll((Collection)newValue);
@@ -1125,6 +1141,12 @@ public class NodeImpl extends ClassImpl implements Node {
 			case UML2Package.NODE__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
 				return;
+			case UML2Package.NODE__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				return;
+			case UML2Package.NODE__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				return;
 			case UML2Package.NODE__OWNED_PORT:
 				getOwnedPorts().clear();
 				return;
@@ -1282,6 +1304,10 @@ public class NodeImpl extends ClassImpl implements Node {
 				return deltaDeletedOperations != null && !deltaDeletedOperations.isEmpty();
 			case UML2Package.NODE__DELTA_REPLACED_OPERATIONS:
 				return deltaReplacedOperations != null && !deltaReplacedOperations.isEmpty();
+			case UML2Package.NODE__DELTA_DELETED_TRACES:
+				return deltaDeletedTraces != null && !deltaDeletedTraces.isEmpty();
+			case UML2Package.NODE__DELTA_REPLACED_TRACES:
+				return deltaReplacedTraces != null && !deltaReplacedTraces.isEmpty();
 			case UML2Package.NODE__OWNED_PORT:
 				return ownedPort != null && !ownedPort.isEmpty();
 			case UML2Package.NODE__OWNED_OPERATION:

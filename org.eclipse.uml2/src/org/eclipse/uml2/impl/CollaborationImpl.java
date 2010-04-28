@@ -42,12 +42,14 @@ import org.eclipse.uml2.DeltaDeletedAttribute;
 import org.eclipse.uml2.DeltaDeletedConnector;
 import org.eclipse.uml2.DeltaDeletedOperation;
 import org.eclipse.uml2.DeltaDeletedPort;
+import org.eclipse.uml2.DeltaDeletedTrace;
 import org.eclipse.uml2.DeltaDeletedConstituent;
 import org.eclipse.uml2.DeltaReplacedConstituent;
 import org.eclipse.uml2.DeltaReplacedAttribute;
 import org.eclipse.uml2.DeltaReplacedConnector;
 import org.eclipse.uml2.DeltaReplacedOperation;
 import org.eclipse.uml2.DeltaReplacedPort;
+import org.eclipse.uml2.DeltaReplacedTrace;
 import org.eclipse.uml2.Namespace;
 import org.eclipse.uml2.Property;
 import org.eclipse.uml2.StringExpression;
@@ -81,6 +83,8 @@ import org.eclipse.uml2.internal.operation.StructuredClassifierOperations;
  *   <li>{@link org.eclipse.uml2.impl.CollaborationImpl#getDeltaReplacedConnectors <em>Delta Replaced Connectors</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.CollaborationImpl#getDeltaDeletedOperations <em>Delta Deleted Operations</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.CollaborationImpl#getDeltaReplacedOperations <em>Delta Replaced Operations</em>}</li>
+ *   <li>{@link org.eclipse.uml2.impl.CollaborationImpl#getDeltaDeletedTraces <em>Delta Deleted Traces</em>}</li>
+ *   <li>{@link org.eclipse.uml2.impl.CollaborationImpl#getDeltaReplacedTraces <em>Delta Replaced Traces</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.CollaborationImpl#getCollaborationRoles <em>Collaboration Role</em>}</li>
  * </ul>
  * </p>
@@ -194,6 +198,26 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * @ordered
 	 */
 	protected EList deltaReplacedOperations = null;
+
+	/**
+	 * The cached value of the '{@link #getDeltaDeletedTraces() <em>Delta Deleted Traces</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeltaDeletedTraces()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList deltaDeletedTraces = null;
+
+	/**
+	 * The cached value of the '{@link #getDeltaReplacedTraces() <em>Delta Replaced Traces</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeltaReplacedTraces()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList deltaReplacedTraces = null;
 
 	/**
 	 * The cached value of the '{@link #getCollaborationRoles() <em>Collaboration Role</em>}' reference list.
@@ -1051,6 +1075,140 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getDeltaDeletedTraces() {
+		if (deltaDeletedTraces == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+			 		// create the list lazily...
+			 		deltaDeletedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
+			 		return deltaDeletedTraces;
+			 }
+			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
+		}      
+		return deltaDeletedTraces;
+	}
+
+	
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList settable_getDeltaDeletedTraces() {
+		if (deltaDeletedTraces == null) {
+			deltaDeletedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
+		}
+		return deltaDeletedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public java.util.ArrayList undeleted_getDeltaDeletedTraces() {
+		java.util.ArrayList temp = new java.util.ArrayList();
+
+		if (deltaDeletedTraces != null) {
+			for (Object object : deltaDeletedTraces) {
+				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
+				if (!element.isThisDeleted())
+					temp.add(element);
+			}
+		}
+		return temp;
+	}
+
+
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaDeletedTrace createDeltaDeletedTraces() {
+		DeltaDeletedTrace newDeltaDeletedTraces = UML2Factory.eINSTANCE.createDeltaDeletedTrace();
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_DELETED_TRACES, null, newDeltaDeletedTraces));
+		}
+		settable_getDeltaDeletedTraces().add(newDeltaDeletedTraces);
+		return newDeltaDeletedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getDeltaReplacedTraces() {
+		if (deltaReplacedTraces == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+			 		// create the list lazily...
+			 		deltaReplacedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
+			 		return deltaReplacedTraces;
+			 }
+			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
+		}      
+		return deltaReplacedTraces;
+	}
+
+	
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList settable_getDeltaReplacedTraces() {
+		if (deltaReplacedTraces == null) {
+			deltaReplacedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
+		}
+		return deltaReplacedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public java.util.ArrayList undeleted_getDeltaReplacedTraces() {
+		java.util.ArrayList temp = new java.util.ArrayList();
+
+		if (deltaReplacedTraces != null) {
+			for (Object object : deltaReplacedTraces) {
+				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
+				if (!element.isThisDeleted())
+					temp.add(element);
+			}
+		}
+		return temp;
+	}
+
+
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedTrace createDeltaReplacedTraces() {
+		DeltaReplacedTrace newDeltaReplacedTraces = UML2Factory.eINSTANCE.createDeltaReplacedTrace();
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES, null, newDeltaReplacedTraces));
+		}
+		settable_getDeltaReplacedTraces().add(newDeltaReplacedTraces);
+		return newDeltaReplacedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 * @deprecated Use #createOwnedConnector() instead.
 	 */
@@ -1301,6 +1459,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 					return ((InternalEList)getDeltaDeletedOperations()).basicRemove(otherEnd, msgs);
 				case UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS:
 					return ((InternalEList)getDeltaReplacedOperations()).basicRemove(otherEnd, msgs);
+				case UML2Package.COLLABORATION__DELTA_DELETED_TRACES:
+					return ((InternalEList)getDeltaDeletedTraces()).basicRemove(otherEnd, msgs);
+				case UML2Package.COLLABORATION__DELTA_REPLACED_TRACES:
+					return ((InternalEList)getDeltaReplacedTraces()).basicRemove(otherEnd, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -1457,6 +1619,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				return getDeltaDeletedOperations();
 			case UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS:
 				return getDeltaReplacedOperations();
+			case UML2Package.COLLABORATION__DELTA_DELETED_TRACES:
+				return getDeltaDeletedTraces();
+			case UML2Package.COLLABORATION__DELTA_REPLACED_TRACES:
+				return getDeltaReplacedTraces();
 			case UML2Package.COLLABORATION__COLLABORATION_ROLE:
 				return getCollaborationRoles();
 		}
@@ -1647,6 +1813,14 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				getDeltaReplacedOperations().clear();
 				getDeltaReplacedOperations().addAll((Collection)newValue);
 				return;
+			case UML2Package.COLLABORATION__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				getDeltaDeletedTraces().addAll((Collection)newValue);
+				return;
+			case UML2Package.COLLABORATION__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				getDeltaReplacedTraces().addAll((Collection)newValue);
+				return;
 			case UML2Package.COLLABORATION__COLLABORATION_ROLE:
 				getCollaborationRoles().clear();
 				getCollaborationRoles().addAll((Collection)newValue);
@@ -1806,6 +1980,12 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 			case UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
 				return;
+			case UML2Package.COLLABORATION__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				return;
+			case UML2Package.COLLABORATION__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				return;
 			case UML2Package.COLLABORATION__COLLABORATION_ROLE:
 				getCollaborationRoles().clear();
 				return;
@@ -1942,6 +2122,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				return deltaDeletedOperations != null && !deltaDeletedOperations.isEmpty();
 			case UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS:
 				return deltaReplacedOperations != null && !deltaReplacedOperations.isEmpty();
+			case UML2Package.COLLABORATION__DELTA_DELETED_TRACES:
+				return deltaDeletedTraces != null && !deltaDeletedTraces.isEmpty();
+			case UML2Package.COLLABORATION__DELTA_REPLACED_TRACES:
+				return deltaReplacedTraces != null && !deltaReplacedTraces.isEmpty();
 			case UML2Package.COLLABORATION__COLLABORATION_ROLE:
 				return collaborationRole != null && !collaborationRole.isEmpty();
 		}
@@ -1982,6 +2166,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				case UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_CONNECTORS;
 				case UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_OPERATIONS;
 				case UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_OPERATIONS;
+				case UML2Package.COLLABORATION__DELTA_DELETED_TRACES: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_TRACES;
+				case UML2Package.COLLABORATION__DELTA_REPLACED_TRACES: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_TRACES;
 				default: return -1;
 			}
 		}
@@ -2008,6 +2194,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_CONNECTORS: return UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS;
 				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_OPERATIONS: return UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS;
 				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_OPERATIONS: return UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS;
+				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_TRACES: return UML2Package.COLLABORATION__DELTA_DELETED_TRACES;
+				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_TRACES: return UML2Package.COLLABORATION__DELTA_REPLACED_TRACES;
 				default: return -1;
 			}
 		}

@@ -81,9 +81,13 @@ import org.eclipse.uml2.DeltaDeletedConnector;
 import org.eclipse.uml2.DeltaDeletedConstituent;
 import org.eclipse.uml2.DeltaDeletedOperation;
 import org.eclipse.uml2.DeltaDeletedPort;
+import org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink;
+import org.eclipse.uml2.DeltaDeletedTrace;
 import org.eclipse.uml2.DeltaReplacedConstituent;
 import org.eclipse.uml2.DeltaReplacedOperation;
 import org.eclipse.uml2.DeltaReplacedPort;
+import org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink;
+import org.eclipse.uml2.DeltaReplacedTrace;
 import org.eclipse.uml2.DeltaReplacedAttribute;
 import org.eclipse.uml2.DeltaReplacedConnector;
 import org.eclipse.uml2.Dependency;
@@ -223,6 +227,8 @@ import org.eclipse.uml2.Relationship;
 import org.eclipse.uml2.RemoveStructuralFeatureValueAction;
 import org.eclipse.uml2.RemoveVariableValueAction;
 import org.eclipse.uml2.ReplyAction;
+import org.eclipse.uml2.RequirementsFeature;
+import org.eclipse.uml2.RequirementsFeatureLink;
 import org.eclipse.uml2.SavedReference;
 import org.eclipse.uml2.SendObjectAction;
 import org.eclipse.uml2.SendSignalAction;
@@ -3584,6 +3590,60 @@ public class UML2Switch {
 				if (result == null) result = caseTemplateableElement(savedReference);
 				if (result == null) result = caseElement(savedReference);
 				if (result == null) result = caseEModelElement(savedReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UML2Package.REQUIREMENTS_FEATURE: {
+				RequirementsFeature requirementsFeature = (RequirementsFeature)theEObject;
+				Object result = caseRequirementsFeature(requirementsFeature);
+				if (result == null) result = caseNamedElement(requirementsFeature);
+				if (result == null) result = caseTemplateableElement(requirementsFeature);
+				if (result == null) result = caseElement(requirementsFeature);
+				if (result == null) result = caseEModelElement(requirementsFeature);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UML2Package.REQUIREMENTS_FEATURE_LINK: {
+				RequirementsFeatureLink requirementsFeatureLink = (RequirementsFeatureLink)theEObject;
+				Object result = caseRequirementsFeatureLink(requirementsFeatureLink);
+				if (result == null) result = caseElement(requirementsFeatureLink);
+				if (result == null) result = caseEModelElement(requirementsFeatureLink);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UML2Package.DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK: {
+				DeltaReplacedRequirementsFeatureLink deltaReplacedRequirementsFeatureLink = (DeltaReplacedRequirementsFeatureLink)theEObject;
+				Object result = caseDeltaReplacedRequirementsFeatureLink(deltaReplacedRequirementsFeatureLink);
+				if (result == null) result = caseDeltaReplacedConstituent(deltaReplacedRequirementsFeatureLink);
+				if (result == null) result = caseElement(deltaReplacedRequirementsFeatureLink);
+				if (result == null) result = caseEModelElement(deltaReplacedRequirementsFeatureLink);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UML2Package.DELTA_DELETED_REQUIREMENTS_FEATURE_LINK: {
+				DeltaDeletedRequirementsFeatureLink deltaDeletedRequirementsFeatureLink = (DeltaDeletedRequirementsFeatureLink)theEObject;
+				Object result = caseDeltaDeletedRequirementsFeatureLink(deltaDeletedRequirementsFeatureLink);
+				if (result == null) result = caseDeltaDeletedConstituent(deltaDeletedRequirementsFeatureLink);
+				if (result == null) result = caseElement(deltaDeletedRequirementsFeatureLink);
+				if (result == null) result = caseEModelElement(deltaDeletedRequirementsFeatureLink);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UML2Package.DELTA_DELETED_TRACE: {
+				DeltaDeletedTrace deltaDeletedTrace = (DeltaDeletedTrace)theEObject;
+				Object result = caseDeltaDeletedTrace(deltaDeletedTrace);
+				if (result == null) result = caseDeltaDeletedConstituent(deltaDeletedTrace);
+				if (result == null) result = caseElement(deltaDeletedTrace);
+				if (result == null) result = caseEModelElement(deltaDeletedTrace);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UML2Package.DELTA_REPLACED_TRACE: {
+				DeltaReplacedTrace deltaReplacedTrace = (DeltaReplacedTrace)theEObject;
+				Object result = caseDeltaReplacedTrace(deltaReplacedTrace);
+				if (result == null) result = caseDeltaReplacedConstituent(deltaReplacedTrace);
+				if (result == null) result = caseElement(deltaReplacedTrace);
+				if (result == null) result = caseEModelElement(deltaReplacedTrace);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -7278,6 +7338,96 @@ public class UML2Switch {
 	 * @generated
 	 */
 	public Object caseSavedReference(SavedReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Requirements Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Requirements Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseRequirementsFeature(RequirementsFeature object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Requirements Feature Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Requirements Feature Link</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseRequirementsFeatureLink(RequirementsFeatureLink object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Delta Replaced Requirements Feature Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Delta Replaced Requirements Feature Link</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseDeltaReplacedRequirementsFeatureLink(DeltaReplacedRequirementsFeatureLink object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Delta Deleted Requirements Feature Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Delta Deleted Requirements Feature Link</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseDeltaDeletedRequirementsFeatureLink(DeltaDeletedRequirementsFeatureLink object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Delta Deleted Trace</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Delta Deleted Trace</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseDeltaDeletedTrace(DeltaDeletedTrace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Delta Replaced Trace</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Delta Replaced Trace</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseDeltaReplacedTrace(DeltaReplacedTrace object) {
 		return null;
 	}
 

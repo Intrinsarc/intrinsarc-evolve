@@ -303,6 +303,8 @@ public class ClassItemProvider
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedConnectors());
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedOperations());
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedOperations());
+			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedTraces());
+			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedTraces());
 			childrenFeatures.add(UML2Package.eINSTANCE.getEncapsulatedClassifier_OwnedPort());
 			childrenFeatures.add(UML2Package.eINSTANCE.getClass_OwnedOperation());
 			childrenFeatures.add(UML2Package.eINSTANCE.getClass_NestedClassifier());
@@ -437,6 +439,8 @@ public class ClassItemProvider
 			case UML2Package.CLASS__DELTA_REPLACED_CONNECTORS:
 			case UML2Package.CLASS__DELTA_DELETED_OPERATIONS:
 			case UML2Package.CLASS__DELTA_REPLACED_OPERATIONS:
+			case UML2Package.CLASS__DELTA_DELETED_TRACES:
+			case UML2Package.CLASS__DELTA_REPLACED_TRACES:
 			case UML2Package.CLASS__OWNED_PORT:
 			case UML2Package.CLASS__OWNED_OPERATION:
 			case UML2Package.CLASS__NESTED_CLASSIFIER:
@@ -516,6 +520,16 @@ public class ClassItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedOperations(),
 				 UML2Factory.eINSTANCE.createDeltaReplacedOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedTraces(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedTrace()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedTraces(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedTrace()));
 
 		newChildDescriptors.add
 			(createChildParameter

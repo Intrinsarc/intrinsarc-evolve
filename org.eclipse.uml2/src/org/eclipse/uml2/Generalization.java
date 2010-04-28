@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A generalization relates a specific classifier to a more general classifier, and is owned by the specific classifier. Package PowerTypes (‚ÄúPowerTypes‚Äù on page 109) A generalization can be designated as being a member of a particular generalization set. 
+ * A generalization relates a specific classifier to a more general classifier, and is owned by the specific classifier. Package PowerTypes (ìPowerTypesî on page 109) A generalization can be designated as being a member of a particular generalization set. 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -88,7 +88,7 @@ public interface Generalization extends DirectedRelationship{
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * References the specializing classifier in the Generalization relationship. Subsets DirectedRelationship::source and Element::owner. Package PowerTypes (‚ÄúPowerTypes‚Äù on page 109) ‚Ä¢ generalizationSet Designates a set in which instances of Generalization is considered members.
+	 * References the specializing classifier in the Generalization relationship. Subsets DirectedRelationship::source and Element::owner. Package PowerTypes (ìPowerTypesî on page 109) ï generalizationSet Designates a set in which instances of Generalization is considered members.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Specific</em>' container reference.
 	 * @see #setSpecific(Classifier)

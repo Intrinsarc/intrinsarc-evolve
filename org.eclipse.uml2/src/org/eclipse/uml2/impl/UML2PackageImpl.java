@@ -95,9 +95,13 @@ import org.eclipse.uml2.DeltaDeletedConnector;
 import org.eclipse.uml2.DeltaDeletedConstituent;
 import org.eclipse.uml2.DeltaDeletedOperation;
 import org.eclipse.uml2.DeltaDeletedPort;
+import org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink;
+import org.eclipse.uml2.DeltaDeletedTrace;
 import org.eclipse.uml2.DeltaReplacedConstituent;
 import org.eclipse.uml2.DeltaReplacedOperation;
 import org.eclipse.uml2.DeltaReplacedPort;
+import org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink;
+import org.eclipse.uml2.DeltaReplacedTrace;
 import org.eclipse.uml2.DeltaReplacedAttribute;
 import org.eclipse.uml2.DeltaReplacedConnector;
 import org.eclipse.uml2.Dependency;
@@ -247,6 +251,9 @@ import org.eclipse.uml2.Relationship;
 import org.eclipse.uml2.RemoveStructuralFeatureValueAction;
 import org.eclipse.uml2.RemoveVariableValueAction;
 import org.eclipse.uml2.ReplyAction;
+import org.eclipse.uml2.RequirementsFeature;
+import org.eclipse.uml2.RequirementsFeatureLink;
+import org.eclipse.uml2.RequirementsLinkKind;
 import org.eclipse.uml2.SavedReference;
 import org.eclipse.uml2.SendObjectAction;
 import org.eclipse.uml2.SendSignalAction;
@@ -2027,6 +2034,48 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass requirementsFeatureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass requirementsFeatureLinkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deltaReplacedRequirementsFeatureLinkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deltaDeletedRequirementsFeatureLinkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deltaDeletedTraceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deltaReplacedTraceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass j_FigureEClass = null;
 
 	/**
@@ -2140,6 +2189,13 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * @generated
 	 */
 	private EEnum portKindEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum requirementsLinkKindEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -6055,6 +6111,24 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getStructuredClassifier_DeltaDeletedTraces() {
+		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructuredClassifier_DeltaReplacedTraces() {
+		return (EReference)structuredClassifierEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCallTrigger() {
 		return callTriggerEClass;
 	}
@@ -9745,6 +9819,105 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRequirementsFeature() {
+		return requirementsFeatureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRequirementsFeature_Subfeatures() {
+		return (EReference)requirementsFeatureEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRequirementsFeature_DeltaReplacedSubfeatures() {
+		return (EReference)requirementsFeatureEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRequirementsFeature_DeltaDeletedSubfeatures() {
+		return (EReference)requirementsFeatureEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRequirementsFeatureLink() {
+		return requirementsFeatureLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRequirementsFeatureLink_Kind() {
+		return (EAttribute)requirementsFeatureLinkEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRequirementsFeatureLink_Type() {
+		return (EReference)requirementsFeatureLinkEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeltaReplacedRequirementsFeatureLink() {
+		return deltaReplacedRequirementsFeatureLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeltaDeletedRequirementsFeatureLink() {
+		return deltaDeletedRequirementsFeatureLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeltaDeletedTrace() {
+		return deltaDeletedTraceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeltaReplacedTrace() {
+		return deltaReplacedTraceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getSavedReference_To() {
 		return (EAttribute)savedReferenceEClass.getEStructuralFeatures().get(0);
 	}
@@ -10143,6 +10316,15 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 */
 	public EEnum getPortKind() {
 		return portKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getRequirementsLinkKind() {
+		return requirementsLinkKindEEnum;
 	}
 
 	/**
@@ -10596,6 +10778,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		createEReference(structuredClassifierEClass, STRUCTURED_CLASSIFIER__DELTA_REPLACED_CONNECTORS);
 		createEReference(structuredClassifierEClass, STRUCTURED_CLASSIFIER__DELTA_DELETED_OPERATIONS);
 		createEReference(structuredClassifierEClass, STRUCTURED_CLASSIFIER__DELTA_REPLACED_OPERATIONS);
+		createEReference(structuredClassifierEClass, STRUCTURED_CLASSIFIER__DELTA_DELETED_TRACES);
+		createEReference(structuredClassifierEClass, STRUCTURED_CLASSIFIER__DELTA_REPLACED_TRACES);
 
 		activityEdgeEClass = createEClass(ACTIVITY_EDGE);
 		createEReference(activityEdgeEClass, ACTIVITY_EDGE__ACTIVITY);
@@ -11342,6 +11526,23 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		createEReference(savedReferenceEClass, SAVED_REFERENCE__TO_ECLASS);
 		createEReference(savedReferenceEClass, SAVED_REFERENCE__FEATURE);
 
+		requirementsFeatureEClass = createEClass(REQUIREMENTS_FEATURE);
+		createEReference(requirementsFeatureEClass, REQUIREMENTS_FEATURE__SUBFEATURES);
+		createEReference(requirementsFeatureEClass, REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
+		createEReference(requirementsFeatureEClass, REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
+
+		requirementsFeatureLinkEClass = createEClass(REQUIREMENTS_FEATURE_LINK);
+		createEAttribute(requirementsFeatureLinkEClass, REQUIREMENTS_FEATURE_LINK__KIND);
+		createEReference(requirementsFeatureLinkEClass, REQUIREMENTS_FEATURE_LINK__TYPE);
+
+		deltaReplacedRequirementsFeatureLinkEClass = createEClass(DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK);
+
+		deltaDeletedRequirementsFeatureLinkEClass = createEClass(DELTA_DELETED_REQUIREMENTS_FEATURE_LINK);
+
+		deltaDeletedTraceEClass = createEClass(DELTA_DELETED_TRACE);
+
+		deltaReplacedTraceEClass = createEClass(DELTA_REPLACED_TRACE);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		parameterDirectionKindEEnum = createEEnum(PARAMETER_DIRECTION_KIND);
@@ -11359,6 +11560,7 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		componentKindEEnum = createEEnum(COMPONENT_KIND);
 		propertyAccessKindEEnum = createEEnum(PROPERTY_ACCESS_KIND);
 		portKindEEnum = createEEnum(PORT_KIND);
+		requirementsLinkKindEEnum = createEEnum(REQUIREMENTS_LINK_KIND);
 
 		// Create data types
 		integerEDataType = createEDataType(INTEGER);
@@ -11684,6 +11886,12 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		deltaDeletedOperationEClass.getESuperTypes().add(this.getDeltaDeletedConstituent());
 		portRemapEClass.getESuperTypes().add(this.getElement());
 		savedReferenceEClass.getESuperTypes().add(this.getPackageableElement());
+		requirementsFeatureEClass.getESuperTypes().add(this.getNamedElement());
+		requirementsFeatureLinkEClass.getESuperTypes().add(this.getElement());
+		deltaReplacedRequirementsFeatureLinkEClass.getESuperTypes().add(this.getDeltaReplacedConstituent());
+		deltaDeletedRequirementsFeatureLinkEClass.getESuperTypes().add(this.getDeltaDeletedConstituent());
+		deltaDeletedTraceEClass.getESuperTypes().add(this.getDeltaDeletedConstituent());
+		deltaReplacedTraceEClass.getESuperTypes().add(this.getDeltaReplacedConstituent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -12288,6 +12496,8 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		initEReference(getStructuredClassifier_DeltaReplacedConnectors(), this.getDeltaReplacedConnector(), null, "deltaReplacedConnectors", null, 0, -1, StructuredClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getStructuredClassifier_DeltaDeletedOperations(), this.getDeltaDeletedOperation(), null, "deltaDeletedOperations", null, 0, -1, StructuredClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getStructuredClassifier_DeltaReplacedOperations(), this.getDeltaReplacedOperation(), null, "deltaReplacedOperations", null, 0, -1, StructuredClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStructuredClassifier_DeltaDeletedTraces(), this.getDeltaDeletedTrace(), null, "deltaDeletedTraces", null, 0, -1, StructuredClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStructuredClassifier_DeltaReplacedTraces(), this.getDeltaReplacedTrace(), null, "deltaReplacedTraces", null, 0, -1, StructuredClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(activityEdgeEClass, ActivityEdge.class, "ActivityEdge", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getActivityEdge_Activity(), this.getActivity(), this.getActivity_Edge(), "activity", null, 0, 1, ActivityEdge.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -13036,6 +13246,23 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		initEReference(getSavedReference_ToEClass(), ecorePackage.getEClass(), null, "toEClass", null, 0, 1, SavedReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSavedReference_Feature(), ecorePackage.getEReference(), null, "feature", null, 0, 1, SavedReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(requirementsFeatureEClass, RequirementsFeature.class, "RequirementsFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getRequirementsFeature_Subfeatures(), this.getRequirementsFeatureLink(), null, "subfeatures", null, 0, -1, RequirementsFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getRequirementsFeature_DeltaReplacedSubfeatures(), this.getDeltaReplacedRequirementsFeatureLink(), null, "deltaReplacedSubfeatures", null, 0, -1, RequirementsFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getRequirementsFeature_DeltaDeletedSubfeatures(), this.getDeltaDeletedRequirementsFeatureLink(), null, "deltaDeletedSubfeatures", null, 0, -1, RequirementsFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(requirementsFeatureLinkEClass, RequirementsFeatureLink.class, "RequirementsFeatureLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getRequirementsFeatureLink_Kind(), this.getRequirementsLinkKind(), "kind", null, 0, 1, RequirementsFeatureLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getRequirementsFeatureLink_Type(), this.getRequirementsFeature(), null, "type", null, 1, 1, RequirementsFeatureLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(deltaReplacedRequirementsFeatureLinkEClass, DeltaReplacedRequirementsFeatureLink.class, "DeltaReplacedRequirementsFeatureLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(deltaDeletedRequirementsFeatureLinkEClass, DeltaDeletedRequirementsFeatureLink.class, "DeltaDeletedRequirementsFeatureLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(deltaDeletedTraceEClass, DeltaDeletedTrace.class, "DeltaDeletedTrace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(deltaReplacedTraceEClass, DeltaReplacedTrace.class, "DeltaReplacedTrace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind"); //$NON-NLS-1$
 		addEEnumLiteral(visibilityKindEEnum, VisibilityKind.PUBLIC_LITERAL);
@@ -13141,6 +13368,12 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		addEEnumLiteral(portKindEEnum, PortKind.HYPERPORT_START_LITERAL);
 		addEEnumLiteral(portKindEEnum, PortKind.HYPERPORT_END_LITERAL);
 		addEEnumLiteral(portKindEEnum, PortKind.AUTOCONNECT_LITERAL);
+
+		initEEnum(requirementsLinkKindEEnum, RequirementsLinkKind.class, "RequirementsLinkKind"); //$NON-NLS-1$
+		addEEnumLiteral(requirementsLinkKindEEnum, RequirementsLinkKind.MANDATORY_LITERAL);
+		addEEnumLiteral(requirementsLinkKindEEnum, RequirementsLinkKind.OPTIONAL_LITERAL);
+		addEEnumLiteral(requirementsLinkKindEEnum, RequirementsLinkKind.ONE_OF_LITERAL);
+		addEEnumLiteral(requirementsLinkKindEEnum, RequirementsLinkKind.ONE_OR_MORE_LITERAL);
 
 		// Initialize data types
 		initEDataType(integerEDataType, int.class, "Integer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

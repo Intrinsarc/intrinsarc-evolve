@@ -295,5 +295,14 @@ public class UML2Enhancer
     Enhancer.enhance("org.eclipse.uml2.impl.PortRemapImpl");
     
     Enhancer.enhance("org.eclipse.uml2.impl.SavedReferenceImpl");
+
+    // requirements features
+    Enhancer.enhance("org.eclipse.uml2.impl.DeltaReplacedTraceImpl");
+    Enhancer.enhance("org.eclipse.uml2.impl.DeltaDeletedTraceImpl");
+    Enhancer.enhance("org.eclipse.uml2.impl.DeltaReplacedRequirementsFeatureLinkImpl");
+    Enhancer.enhance("org.eclipse.uml2.impl.DeltaDeletedRequirementsFeatureLinkImpl");
+    Enhancer.enhance("org.eclipse.uml2.impl.RequirementsFeatureImpl");
+    Enhancer.enhance("org.eclipse.uml2.impl.RequirementsFeatureLinkImpl");
+
   }
 }

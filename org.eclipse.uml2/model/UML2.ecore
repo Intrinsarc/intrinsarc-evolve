@@ -2212,6 +2212,10 @@
         upperBound="-1" eType="#//DeltaDeletedOperation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deltaReplacedOperations"
         upperBound="-1" eType="#//DeltaReplacedOperation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deltaDeletedTraces" upperBound="-1"
+        eType="#//DeltaDeletedTrace" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deltaReplacedTraces" upperBound="-1"
+        eType="#//DeltaReplacedTrace" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityEdge" abstract="true" eSuperTypes="#//RedefinableElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" eType="#//Activity"
@@ -4903,4 +4907,28 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="toEClass" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RequirementsLinkKind">
+    <eLiterals name="mandatory"/>
+    <eLiterals name="optional" value="1"/>
+    <eLiterals name="one_of" value="2"/>
+    <eLiterals name="one_or_more" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RequirementsFeature" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subfeatures" upperBound="-1"
+        eType="#//RequirementsFeatureLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deltaReplacedSubfeatures"
+        upperBound="-1" eType="#//DeltaReplacedRequirementsFeatureLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deltaDeletedSubfeatures"
+        upperBound="-1" eType="#//DeltaDeletedRequirementsFeatureLink" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RequirementsFeatureLink" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//RequirementsLinkKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//RequirementsFeature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeltaReplacedRequirementsFeatureLink"
+      eSuperTypes="#//DeltaReplacedConstituent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeltaDeletedRequirementsFeatureLink"
+      eSuperTypes="#//DeltaDeletedConstituent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeltaDeletedTrace" eSuperTypes="#//DeltaDeletedConstituent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeltaReplacedTrace" eSuperTypes="#//DeltaReplacedConstituent"/>
 </ecore:EPackage>

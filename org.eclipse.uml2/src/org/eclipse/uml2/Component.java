@@ -53,7 +53,7 @@ public interface Component extends org.eclipse.uml2.Class{
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * {default = true} The kind of instantiation that applies to a Component. If false, the component is instantiated as an addressable object. If true, the Component is defined at design-time, but at runtime (or execution-time) an object specified by the Component does not exist, that is, the component is instantiated indirectly, through the instantiation of its realizing classifiers or parts. Several standard stereotypes use this meta attribute, e.g. Â«specification, Â«focusÂ», Â«subsystem Â».
+	 * {default = true} The kind of instantiation that applies to a Component. If false, the component is instantiated as an addressable object. If true, the Component is defined at design-time, but at runtime (or execution-time) an object specified by the Component does not exist, that is, the component is instantiated indirectly, through the instantiation of its realizing classifiers or parts. Several standard stereotypes use this meta attribute, e.g. «specification, «focus», «subsystem ».
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Indirectly Instantiated</em>' attribute.
 	 * @see #setIsIndirectlyInstantiated(boolean)

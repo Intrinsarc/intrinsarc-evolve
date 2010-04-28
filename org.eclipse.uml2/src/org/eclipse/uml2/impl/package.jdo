@@ -65,6 +65,8 @@
 		<field name="deltaReplacedConnectors" persistence-modifier="persistent"  />
 		<field name="deltaDeletedOperations" persistence-modifier="persistent"  />
 		<field name="deltaReplacedOperations" persistence-modifier="persistent"  />
+		<field name="deltaDeletedTraces" persistence-modifier="persistent"  />
+		<field name="deltaReplacedTraces" persistence-modifier="persistent"  />
 		<field name="ownedPort" persistence-modifier="persistent"  />
 		<field name="ownedOperation" persistence-modifier="persistent"  />
 		<field name="nestedClassifier" persistence-modifier="persistent"  />
@@ -312,6 +314,8 @@
 		<field name="deltaReplacedConnectors" persistence-modifier="persistent"  />
 		<field name="deltaDeletedOperations" persistence-modifier="persistent"  />
 		<field name="deltaReplacedOperations" persistence-modifier="persistent"  />
+		<field name="deltaDeletedTraces" persistence-modifier="persistent"  />
+		<field name="deltaReplacedTraces" persistence-modifier="persistent"  />
 	</class>
 	<class name="org.eclipse.uml2.impl.ActivityEdgeImpl" persistence-capable-superclass="org.eclipse.uml2.impl.RedefinableElementImpl" >
 		<field name="source" persistence-modifier="persistent"  />
@@ -437,6 +441,8 @@
 		<field name="deltaReplacedConnectors" persistence-modifier="persistent"  />
 		<field name="deltaDeletedOperations" persistence-modifier="persistent"  />
 		<field name="deltaReplacedOperations" persistence-modifier="persistent"  />
+		<field name="deltaDeletedTraces" persistence-modifier="persistent"  />
+		<field name="deltaReplacedTraces" persistence-modifier="persistent"  />
 		<field name="collaborationRole" persistence-modifier="persistent"  />
 	</class>
 	<class name="org.eclipse.uml2.impl.PortImpl" persistence-capable-superclass="org.eclipse.uml2.impl.PropertyImpl" >
@@ -1022,6 +1028,23 @@
 		<field name="from" persistence-modifier="persistent"  />
 		<field name="toEClass" persistence-modifier="persistent"  />
 		<field name="feature" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.RequirementsFeatureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+		<field name="subfeatures" persistence-modifier="persistent"  />
+		<field name="deltaReplacedSubfeatures" persistence-modifier="persistent"  />
+		<field name="deltaDeletedSubfeatures" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.RequirementsFeatureLinkImpl" persistence-capable-superclass="org.eclipse.uml2.impl.ElementImpl" >
+		<field name="kind" persistence-modifier="persistent" embedded="true" />
+		<field name="type" persistence-modifier="persistent"  />
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaReplacedRequirementsFeatureLinkImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaReplacedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaDeletedRequirementsFeatureLinkImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaDeletedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaDeletedTraceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaDeletedConstituentImpl" >
+	</class>
+	<class name="org.eclipse.uml2.impl.DeltaReplacedTraceImpl" persistence-capable-superclass="org.eclipse.uml2.impl.DeltaReplacedConstituentImpl" >
 	</class>
 
     </package>

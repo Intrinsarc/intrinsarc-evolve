@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.*;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * VisibilityKind is an enumeration of the following literal values: â€¢ public â€¢ private â€¢ protected â€¢ package 
+ * VisibilityKind is an enumeration of the following literal values: • public • private • protected • package 
  * <!-- end-model-doc -->
  * @see org.eclipse.uml2.UML2Package#getVisibilityKind()
  * @model

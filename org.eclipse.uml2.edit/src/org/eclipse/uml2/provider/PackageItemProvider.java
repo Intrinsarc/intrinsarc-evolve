@@ -1688,6 +1688,36 @@ public class PackageItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getPackage_AnonymousDeletedImportPlaceholders(),
 				 UML2Factory.eINSTANCE.createSavedReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getPackage_AnonymousDeletedImportPlaceholders(),
+				 UML2Factory.eINSTANCE.createRequirementsFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getPackage_AnonymousDeletedImportPlaceholders(),
+				 UML2Factory.eINSTANCE.createRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getPackage_AnonymousDeletedImportPlaceholders(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getPackage_AnonymousDeletedImportPlaceholders(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getPackage_AnonymousDeletedImportPlaceholders(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedTrace()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getPackage_AnonymousDeletedImportPlaceholders(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedTrace()));
 	}
 
 	/**

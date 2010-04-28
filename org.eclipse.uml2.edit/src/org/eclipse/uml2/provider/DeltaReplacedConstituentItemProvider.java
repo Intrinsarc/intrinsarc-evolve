@@ -1149,6 +1149,36 @@ public class DeltaReplacedConstituentItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getDeltaReplacedConstituent_Replacement(),
 				 UML2Factory.eINSTANCE.createSavedReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDeltaReplacedConstituent_Replacement(),
+				 UML2Factory.eINSTANCE.createRequirementsFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDeltaReplacedConstituent_Replacement(),
+				 UML2Factory.eINSTANCE.createRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDeltaReplacedConstituent_Replacement(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDeltaReplacedConstituent_Replacement(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDeltaReplacedConstituent_Replacement(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedTrace()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDeltaReplacedConstituent_Replacement(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedTrace()));
 	}
 
 	/**

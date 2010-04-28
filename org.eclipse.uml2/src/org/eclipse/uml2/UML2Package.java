@@ -4155,13 +4155,31 @@ public interface UML2Package extends EPackage{
 	int CLASS__DELTA_REPLACED_OPERATIONS = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__DELTA_DELETED_TRACES = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__DELTA_REPLACED_TRACES = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 13;
+
+	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_PORT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 12;
+	int CLASS__OWNED_PORT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -4170,7 +4188,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_OPERATION = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 13;
+	int CLASS__OWNED_OPERATION = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
@@ -4179,7 +4197,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPER_CLASS = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 14;
+	int CLASS__SUPER_CLASS = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' reference list.
@@ -4188,7 +4206,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__EXTENSION = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 15;
+	int CLASS__EXTENSION = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Nested Classifier</b></em>' containment reference list.
@@ -4197,7 +4215,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NESTED_CLASSIFIER = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 16;
+	int CLASS__NESTED_CLASSIFIER = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
@@ -4206,7 +4224,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__IS_ACTIVE = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 17;
+	int CLASS__IS_ACTIVE = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Owned Reception</b></em>' containment reference list.
@@ -4215,7 +4233,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_RECEPTION = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 18;
+	int CLASS__OWNED_RECEPTION = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Component Kind</b></em>' attribute.
@@ -4224,7 +4242,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__COMPONENT_KIND = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 19;
+	int CLASS__COMPONENT_KIND = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 21;
 
 	/**
 	 * The number of structural features of the the '<em>Class</em>' class.
@@ -4233,7 +4251,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 20;
+	int CLASS_FEATURE_COUNT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -12813,6 +12831,24 @@ public interface UML2Package extends EPackage{
 	int STEREOTYPE__DELTA_REPLACED_OPERATIONS = CLASS__DELTA_REPLACED_OPERATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__DELTA_DELETED_TRACES = CLASS__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__DELTA_REPLACED_TRACES = CLASS__DELTA_REPLACED_TRACES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14946,6 +14982,24 @@ public interface UML2Package extends EPackage{
 	int BEHAVIOR__DELTA_REPLACED_OPERATIONS = CLASS__DELTA_REPLACED_OPERATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__DELTA_DELETED_TRACES = CLASS__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__DELTA_REPLACED_TRACES = CLASS__DELTA_REPLACED_TRACES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15664,6 +15718,24 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int ACTIVITY__DELTA_REPLACED_OPERATIONS = BEHAVIOR__DELTA_REPLACED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__DELTA_DELETED_TRACES = BEHAVIOR__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__DELTA_REPLACED_TRACES = BEHAVIOR__DELTA_REPLACED_TRACES;
 
 	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
@@ -18465,6 +18537,24 @@ public interface UML2Package extends EPackage{
 	int ASSOCIATION_CLASS__DELTA_REPLACED_OPERATIONS = CLASS__DELTA_REPLACED_OPERATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__DELTA_DELETED_TRACES = CLASS__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__DELTA_REPLACED_TRACES = CLASS__DELTA_REPLACED_TRACES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21002,13 +21092,31 @@ public interface UML2Package extends EPackage{
 	int STRUCTURED_CLASSIFIER__DELTA_REPLACED_OPERATIONS = CLASSIFIER_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASSIFIER__DELTA_DELETED_TRACES = CLASSIFIER_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASSIFIER__DELTA_REPLACED_TRACES = CLASSIFIER_FEATURE_COUNT + 13;
+
+	/**
 	 * The number of structural features of the the '<em>Structured Classifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASSIFIER_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 12;
+	int STRUCTURED_CLASSIFIER_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -31273,13 +31381,31 @@ public interface UML2Package extends EPackage{
 	int COLLABORATION__DELTA_REPLACED_OPERATIONS = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLABORATION__DELTA_DELETED_TRACES = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLABORATION__DELTA_REPLACED_TRACES = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 13;
+
+	/**
 	 * The feature id for the '<em><b>Collaboration Role</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLABORATION__COLLABORATION_ROLE = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 12;
+	int COLLABORATION__COLLABORATION_ROLE = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the the '<em>Collaboration</em>' class.
@@ -31288,7 +31414,7 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int COLLABORATION_FEATURE_COUNT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 13;
+	int COLLABORATION_FEATURE_COUNT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -32342,6 +32468,24 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS = STRUCTURED_CLASSIFIER__DELTA_REPLACED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES = STRUCTURED_CLASSIFIER__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES = STRUCTURED_CLASSIFIER__DELTA_REPLACED_TRACES;
 
 	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
@@ -36860,6 +37004,24 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int INTERACTION__DELTA_REPLACED_OPERATIONS = BEHAVIOR__DELTA_REPLACED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__DELTA_DELETED_TRACES = BEHAVIOR__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__DELTA_REPLACED_TRACES = BEHAVIOR__DELTA_REPLACED_TRACES;
 
 	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
@@ -46354,6 +46516,24 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int STATE_MACHINE__DELTA_REPLACED_OPERATIONS = BEHAVIOR__DELTA_REPLACED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__DELTA_DELETED_TRACES = BEHAVIOR__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__DELTA_REPLACED_TRACES = BEHAVIOR__DELTA_REPLACED_TRACES;
 
 	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
@@ -63572,6 +63752,24 @@ public interface UML2Package extends EPackage{
 	int COMPONENT__DELTA_REPLACED_OPERATIONS = CLASS__DELTA_REPLACED_OPERATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__DELTA_DELETED_TRACES = CLASS__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__DELTA_REPLACED_TRACES = CLASS__DELTA_REPLACED_TRACES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64931,6 +65129,24 @@ public interface UML2Package extends EPackage{
 	int NODE__DELTA_REPLACED_OPERATIONS = CLASS__DELTA_REPLACED_OPERATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__DELTA_DELETED_TRACES = CLASS__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__DELTA_REPLACED_TRACES = CLASS__DELTA_REPLACED_TRACES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65588,6 +65804,24 @@ public interface UML2Package extends EPackage{
 	int DEVICE__DELTA_REPLACED_OPERATIONS = NODE__DELTA_REPLACED_OPERATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVICE__DELTA_DELETED_TRACES = NODE__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVICE__DELTA_REPLACED_TRACES = NODE__DELTA_REPLACED_TRACES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66243,6 +66477,24 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int EXECUTION_ENVIRONMENT__DELTA_REPLACED_OPERATIONS = NODE__DELTA_REPLACED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_ENVIRONMENT__DELTA_DELETED_TRACES = NODE__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_ENVIRONMENT__DELTA_REPLACED_TRACES = NODE__DELTA_REPLACED_TRACES;
 
 	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
@@ -67485,6 +67737,24 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int PROTOCOL_STATE_MACHINE__DELTA_REPLACED_OPERATIONS = STATE_MACHINE__DELTA_REPLACED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROTOCOL_STATE_MACHINE__DELTA_DELETED_TRACES = STATE_MACHINE__DELTA_DELETED_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROTOCOL_STATE_MACHINE__DELTA_REPLACED_TRACES = STATE_MACHINE__DELTA_REPLACED_TRACES;
 
 	/**
 	 * The feature id for the '<em><b>Owned Port</b></em>' containment reference list.
@@ -75202,6 +75472,795 @@ public interface UML2Package extends EPackage{
 	int SAVED_REFERENCE_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.uml2.impl.RequirementsFeatureImpl <em>Requirements Feature</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.uml2.impl.RequirementsFeatureImpl
+	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getRequirementsFeature()
+	 * @generated
+	 */
+	int REQUIREMENTS_FEATURE = 246;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__EANNOTATIONS = NAMED_ELEMENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__OWNED_ELEMENT = NAMED_ELEMENT__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__OWNER = NAMED_ELEMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Jdeleted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__JDELETED = NAMED_ELEMENT__JDELETED;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__DOCUMENTATION = NAMED_ELEMENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__APPLIED_BASIC_STEREOTYPES = NAMED_ELEMENT__APPLIED_BASIC_STEREOTYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotype Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__APPLIED_BASIC_STEREOTYPE_VALUES = NAMED_ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__UUID = NAMED_ELEMENT__UUID;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__TEMPLATE_BINDING = NAMED_ELEMENT__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__OWNED_TEMPLATE_SIGNATURE = NAMED_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__QUALIFIED_NAME = NAMED_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__VISIBILITY = NAMED_ELEMENT__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__CLIENT_DEPENDENCY = NAMED_ELEMENT__CLIENT_DEPENDENCY;
+
+	/**
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__NAME_EXPRESSION = NAMED_ELEMENT__NAME_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Anonymous Dependencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__OWNED_ANONYMOUS_DEPENDENCIES = NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Reverse Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__REVERSE_DEPENDENCIES = NAMED_ELEMENT__REVERSE_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Reverse Generalizations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__REVERSE_GENERALIZATIONS = NAMED_ELEMENT__REVERSE_GENERALIZATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Subfeatures</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__SUBFEATURES = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Delta Replaced Subfeatures</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Delta Deleted Subfeatures</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the the '<em>Requirements Feature</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.uml2.impl.RequirementsFeatureLinkImpl <em>Requirements Feature Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.uml2.impl.RequirementsFeatureLinkImpl
+	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getRequirementsFeatureLink()
+	 * @generated
+	 */
+	int REQUIREMENTS_FEATURE_LINK = 247;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__EANNOTATIONS = ELEMENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__OWNED_ELEMENT = ELEMENT__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__OWNER = ELEMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Jdeleted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__JDELETED = ELEMENT__JDELETED;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__APPLIED_BASIC_STEREOTYPES = ELEMENT__APPLIED_BASIC_STEREOTYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotype Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__APPLIED_BASIC_STEREOTYPE_VALUES = ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__UUID = ELEMENT__UUID;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__KIND = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK__TYPE = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the the '<em>Requirements Feature Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENTS_FEATURE_LINK_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.uml2.impl.DeltaReplacedRequirementsFeatureLinkImpl <em>Delta Replaced Requirements Feature Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.uml2.impl.DeltaReplacedRequirementsFeatureLinkImpl
+	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getDeltaReplacedRequirementsFeatureLink()
+	 * @generated
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK = 248;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__EANNOTATIONS = DELTA_REPLACED_CONSTITUENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__OWNED_ELEMENT = DELTA_REPLACED_CONSTITUENT__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__OWNER = DELTA_REPLACED_CONSTITUENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__OWNED_COMMENT = DELTA_REPLACED_CONSTITUENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Jdeleted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__JDELETED = DELTA_REPLACED_CONSTITUENT__JDELETED;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__DOCUMENTATION = DELTA_REPLACED_CONSTITUENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__APPLIED_BASIC_STEREOTYPES = DELTA_REPLACED_CONSTITUENT__APPLIED_BASIC_STEREOTYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotype Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__APPLIED_BASIC_STEREOTYPE_VALUES = DELTA_REPLACED_CONSTITUENT__APPLIED_BASIC_STEREOTYPE_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__UUID = DELTA_REPLACED_CONSTITUENT__UUID;
+
+	/**
+	 * The feature id for the '<em><b>Replaced</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__REPLACED = DELTA_REPLACED_CONSTITUENT__REPLACED;
+
+	/**
+	 * The feature id for the '<em><b>Replacement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK__REPLACEMENT = DELTA_REPLACED_CONSTITUENT__REPLACEMENT;
+
+	/**
+	 * The number of structural features of the the '<em>Delta Replaced Requirements Feature Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK_FEATURE_COUNT = DELTA_REPLACED_CONSTITUENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.uml2.impl.DeltaDeletedRequirementsFeatureLinkImpl <em>Delta Deleted Requirements Feature Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.uml2.impl.DeltaDeletedRequirementsFeatureLinkImpl
+	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getDeltaDeletedRequirementsFeatureLink()
+	 * @generated
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK = 249;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__EANNOTATIONS = DELTA_DELETED_CONSTITUENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__OWNED_ELEMENT = DELTA_DELETED_CONSTITUENT__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__OWNER = DELTA_DELETED_CONSTITUENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__OWNED_COMMENT = DELTA_DELETED_CONSTITUENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Jdeleted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__JDELETED = DELTA_DELETED_CONSTITUENT__JDELETED;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__DOCUMENTATION = DELTA_DELETED_CONSTITUENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__APPLIED_BASIC_STEREOTYPES = DELTA_DELETED_CONSTITUENT__APPLIED_BASIC_STEREOTYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotype Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__APPLIED_BASIC_STEREOTYPE_VALUES = DELTA_DELETED_CONSTITUENT__APPLIED_BASIC_STEREOTYPE_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__UUID = DELTA_DELETED_CONSTITUENT__UUID;
+
+	/**
+	 * The feature id for the '<em><b>Deleted</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK__DELETED = DELTA_DELETED_CONSTITUENT__DELETED;
+
+	/**
+	 * The number of structural features of the the '<em>Delta Deleted Requirements Feature Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_REQUIREMENTS_FEATURE_LINK_FEATURE_COUNT = DELTA_DELETED_CONSTITUENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.uml2.impl.DeltaDeletedTraceImpl <em>Delta Deleted Trace</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.uml2.impl.DeltaDeletedTraceImpl
+	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getDeltaDeletedTrace()
+	 * @generated
+	 */
+	int DELTA_DELETED_TRACE = 250;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__EANNOTATIONS = DELTA_DELETED_CONSTITUENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__OWNED_ELEMENT = DELTA_DELETED_CONSTITUENT__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__OWNER = DELTA_DELETED_CONSTITUENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__OWNED_COMMENT = DELTA_DELETED_CONSTITUENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Jdeleted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__JDELETED = DELTA_DELETED_CONSTITUENT__JDELETED;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__DOCUMENTATION = DELTA_DELETED_CONSTITUENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__APPLIED_BASIC_STEREOTYPES = DELTA_DELETED_CONSTITUENT__APPLIED_BASIC_STEREOTYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotype Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__APPLIED_BASIC_STEREOTYPE_VALUES = DELTA_DELETED_CONSTITUENT__APPLIED_BASIC_STEREOTYPE_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__UUID = DELTA_DELETED_CONSTITUENT__UUID;
+
+	/**
+	 * The feature id for the '<em><b>Deleted</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE__DELETED = DELTA_DELETED_CONSTITUENT__DELETED;
+
+	/**
+	 * The number of structural features of the the '<em>Delta Deleted Trace</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_DELETED_TRACE_FEATURE_COUNT = DELTA_DELETED_CONSTITUENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.uml2.impl.DeltaReplacedTraceImpl <em>Delta Replaced Trace</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.uml2.impl.DeltaReplacedTraceImpl
+	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getDeltaReplacedTrace()
+	 * @generated
+	 */
+	int DELTA_REPLACED_TRACE = 251;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__EANNOTATIONS = DELTA_REPLACED_CONSTITUENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__OWNED_ELEMENT = DELTA_REPLACED_CONSTITUENT__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__OWNER = DELTA_REPLACED_CONSTITUENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__OWNED_COMMENT = DELTA_REPLACED_CONSTITUENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Jdeleted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__JDELETED = DELTA_REPLACED_CONSTITUENT__JDELETED;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__DOCUMENTATION = DELTA_REPLACED_CONSTITUENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__APPLIED_BASIC_STEREOTYPES = DELTA_REPLACED_CONSTITUENT__APPLIED_BASIC_STEREOTYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Basic Stereotype Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__APPLIED_BASIC_STEREOTYPE_VALUES = DELTA_REPLACED_CONSTITUENT__APPLIED_BASIC_STEREOTYPE_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__UUID = DELTA_REPLACED_CONSTITUENT__UUID;
+
+	/**
+	 * The feature id for the '<em><b>Replaced</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__REPLACED = DELTA_REPLACED_CONSTITUENT__REPLACED;
+
+	/**
+	 * The feature id for the '<em><b>Replacement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE__REPLACEMENT = DELTA_REPLACED_CONSTITUENT__REPLACEMENT;
+
+	/**
+	 * The number of structural features of the the '<em>Delta Replaced Trace</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELTA_REPLACED_TRACE_FEATURE_COUNT = DELTA_REPLACED_CONSTITUENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75209,7 +76268,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 246;
+	int VISIBILITY_KIND = 252;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.ParameterDirectionKind <em>Parameter Direction Kind</em>}' enum.
@@ -75219,7 +76278,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getParameterDirectionKind()
 	 * @generated
 	 */
-	int PARAMETER_DIRECTION_KIND = 247;
+	int PARAMETER_DIRECTION_KIND = 253;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.AggregationKind <em>Aggregation Kind</em>}' enum.
@@ -75229,7 +76288,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getAggregationKind()
 	 * @generated
 	 */
-	int AGGREGATION_KIND = 248;
+	int AGGREGATION_KIND = 254;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.CallConcurrencyKind <em>Call Concurrency Kind</em>}' enum.
@@ -75239,7 +76298,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getCallConcurrencyKind()
 	 * @generated
 	 */
-	int CALL_CONCURRENCY_KIND = 249;
+	int CALL_CONCURRENCY_KIND = 255;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.ExpansionKind <em>Expansion Kind</em>}' enum.
@@ -75249,7 +76308,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getExpansionKind()
 	 * @generated
 	 */
-	int EXPANSION_KIND = 252;
+	int EXPANSION_KIND = 258;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.MessageKind <em>Message Kind</em>}' enum.
@@ -75259,7 +76318,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getMessageKind()
 	 * @generated
 	 */
-	int MESSAGE_KIND = 250;
+	int MESSAGE_KIND = 256;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.MessageSort <em>Message Sort</em>}' enum.
@@ -75269,7 +76328,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getMessageSort()
 	 * @generated
 	 */
-	int MESSAGE_SORT = 251;
+	int MESSAGE_SORT = 257;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.TransitionKind <em>Transition Kind</em>}' enum.
@@ -75279,7 +76338,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getTransitionKind()
 	 * @generated
 	 */
-	int TRANSITION_KIND = 254;
+	int TRANSITION_KIND = 260;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.PseudostateKind <em>Pseudostate Kind</em>}' enum.
@@ -75289,7 +76348,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 255;
+	int PSEUDOSTATE_KIND = 261;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.ObjectNodeOrderingKind <em>Object Node Ordering Kind</em>}' enum.
@@ -75299,7 +76358,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getObjectNodeOrderingKind()
 	 * @generated
 	 */
-	int OBJECT_NODE_ORDERING_KIND = 257;
+	int OBJECT_NODE_ORDERING_KIND = 263;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.InteractionOperator <em>Interaction Operator</em>}' enum.
@@ -75309,7 +76368,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getInteractionOperator()
 	 * @generated
 	 */
-	int INTERACTION_OPERATOR = 253;
+	int INTERACTION_OPERATOR = 259;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.ConnectorKind <em>Connector Kind</em>}' enum.
@@ -75319,7 +76378,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getConnectorKind()
 	 * @generated
 	 */
-	int CONNECTOR_KIND = 258;
+	int CONNECTOR_KIND = 264;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.ComponentKind <em>Component Kind</em>}' enum.
@@ -75329,7 +76388,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getComponentKind()
 	 * @generated
 	 */
-	int COMPONENT_KIND = 259;
+	int COMPONENT_KIND = 265;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.PropertyAccessKind <em>Property Access Kind</em>}' enum.
@@ -75339,7 +76398,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getPropertyAccessKind()
 	 * @generated
 	 */
-	int PROPERTY_ACCESS_KIND = 260;
+	int PROPERTY_ACCESS_KIND = 266;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.PortKind <em>Port Kind</em>}' enum.
@@ -75349,7 +76408,17 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getPortKind()
 	 * @generated
 	 */
-	int PORT_KIND = 261;
+	int PORT_KIND = 267;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.uml2.RequirementsLinkKind <em>Requirements Link Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.uml2.RequirementsLinkKind
+	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getRequirementsLinkKind()
+	 * @generated
+	 */
+	int REQUIREMENTS_LINK_KIND = 268;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.uml2.ParameterEffectKind <em>Parameter Effect Kind</em>}' enum.
@@ -75359,7 +76428,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getParameterEffectKind()
 	 * @generated
 	 */
-	int PARAMETER_EFFECT_KIND = 256;
+	int PARAMETER_EFFECT_KIND = 262;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -75368,7 +76437,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 262;
+	int INTEGER = 269;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -75377,7 +76446,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 263;
+	int BOOLEAN = 270;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -75387,7 +76456,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 264;
+	int STRING = 271;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -75396,7 +76465,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 265;
+	int UNLIMITED_NATURAL = 272;
 
 	/**
 	 * The meta object id for the '<em>Sequence</em>' data type.
@@ -75406,7 +76475,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getSequence()
 	 * @generated
 	 */
-	int SEQUENCE = 266;
+	int SEQUENCE = 273;
 
 	/**
 	 * The meta object id for the '<em>Set</em>' data type.
@@ -75416,7 +76485,7 @@ public interface UML2Package extends EPackage{
 	 * @see org.eclipse.uml2.impl.UML2PackageImpl#getSet()
 	 * @generated
 	 */
-	int SET = 267;
+	int SET = 274;
 
 
 	/**
@@ -79942,6 +81011,28 @@ public interface UML2Package extends EPackage{
 	EReference getStructuredClassifier_DeltaReplacedOperations();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.uml2.StructuredClassifier#getDeltaDeletedTraces <em>Delta Deleted Traces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Delta Deleted Traces</em>'.
+	 * @see org.eclipse.uml2.StructuredClassifier#getDeltaDeletedTraces()
+	 * @see #getStructuredClassifier()
+	 * @generated
+	 */
+	EReference getStructuredClassifier_DeltaDeletedTraces();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.uml2.StructuredClassifier#getDeltaReplacedTraces <em>Delta Replaced Traces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Delta Replaced Traces</em>'.
+	 * @see org.eclipse.uml2.StructuredClassifier#getDeltaReplacedTraces()
+	 * @see #getStructuredClassifier()
+	 * @generated
+	 */
+	EReference getStructuredClassifier_DeltaReplacedTraces();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.uml2.CallTrigger <em>Call Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84306,6 +85397,121 @@ public interface UML2Package extends EPackage{
 	EReference getSavedReference_Feature();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.uml2.RequirementsFeature <em>Requirements Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Requirements Feature</em>'.
+	 * @see org.eclipse.uml2.RequirementsFeature
+	 * @generated
+	 */
+	EClass getRequirementsFeature();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.uml2.RequirementsFeature#getSubfeatures <em>Subfeatures</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Subfeatures</em>'.
+	 * @see org.eclipse.uml2.RequirementsFeature#getSubfeatures()
+	 * @see #getRequirementsFeature()
+	 * @generated
+	 */
+	EReference getRequirementsFeature_Subfeatures();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.uml2.RequirementsFeature#getDeltaReplacedSubfeatures <em>Delta Replaced Subfeatures</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Delta Replaced Subfeatures</em>'.
+	 * @see org.eclipse.uml2.RequirementsFeature#getDeltaReplacedSubfeatures()
+	 * @see #getRequirementsFeature()
+	 * @generated
+	 */
+	EReference getRequirementsFeature_DeltaReplacedSubfeatures();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.uml2.RequirementsFeature#getDeltaDeletedSubfeatures <em>Delta Deleted Subfeatures</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Delta Deleted Subfeatures</em>'.
+	 * @see org.eclipse.uml2.RequirementsFeature#getDeltaDeletedSubfeatures()
+	 * @see #getRequirementsFeature()
+	 * @generated
+	 */
+	EReference getRequirementsFeature_DeltaDeletedSubfeatures();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.uml2.RequirementsFeatureLink <em>Requirements Feature Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Requirements Feature Link</em>'.
+	 * @see org.eclipse.uml2.RequirementsFeatureLink
+	 * @generated
+	 */
+	EClass getRequirementsFeatureLink();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.uml2.RequirementsFeatureLink#getKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Kind</em>'.
+	 * @see org.eclipse.uml2.RequirementsFeatureLink#getKind()
+	 * @see #getRequirementsFeatureLink()
+	 * @generated
+	 */
+	EAttribute getRequirementsFeatureLink_Kind();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.uml2.RequirementsFeatureLink#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.eclipse.uml2.RequirementsFeatureLink#getType()
+	 * @see #getRequirementsFeatureLink()
+	 * @generated
+	 */
+	EReference getRequirementsFeatureLink_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink <em>Delta Replaced Requirements Feature Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Delta Replaced Requirements Feature Link</em>'.
+	 * @see org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink
+	 * @generated
+	 */
+	EClass getDeltaReplacedRequirementsFeatureLink();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink <em>Delta Deleted Requirements Feature Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Delta Deleted Requirements Feature Link</em>'.
+	 * @see org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink
+	 * @generated
+	 */
+	EClass getDeltaDeletedRequirementsFeatureLink();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.uml2.DeltaDeletedTrace <em>Delta Deleted Trace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Delta Deleted Trace</em>'.
+	 * @see org.eclipse.uml2.DeltaDeletedTrace
+	 * @generated
+	 */
+	EClass getDeltaDeletedTrace();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.uml2.DeltaReplacedTrace <em>Delta Replaced Trace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Delta Replaced Trace</em>'.
+	 * @see org.eclipse.uml2.DeltaReplacedTrace
+	 * @generated
+	 */
+	EClass getDeltaReplacedTrace();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.uml2.SavedReference#getTo <em>To</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84782,6 +85988,16 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 */
 	EEnum getPortKind();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.uml2.RequirementsLinkKind <em>Requirements Link Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Requirements Link Kind</em>'.
+	 * @see org.eclipse.uml2.RequirementsLinkKind
+	 * @generated
+	 */
+	EEnum getRequirementsLinkKind();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.uml2.ParameterEffectKind <em>Parameter Effect Kind</em>}'.
