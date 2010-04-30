@@ -304,6 +304,266 @@ public class ComponentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_Realization(),
+				 UML2Factory.eINSTANCE.createRealization()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_Realization(),
+				 UML2Factory.eINSTANCE.createSubstitution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_Realization(),
+				 UML2Factory.eINSTANCE.createImplementation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createPackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createEnumeration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createDataType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createEnumerationLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createPrimitiveType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createInstanceSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createStereotype()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createProfile()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createExtension()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createActivity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createPermission()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createDependency()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createAbstraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createRealization()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createSubstitution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createGeneralizationSet()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createAssociationClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createInformationItem()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createModel()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createImplementation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createArtifact()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createManifestation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createCollaboration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createSignal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createInteraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createInteractionConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createPrimitiveFunction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createTimeConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createIntervalConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createDurationConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createDeployment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createDevice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createExecutionEnvironment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createCommunicationPath()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createProtocolStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createDeploymentSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createSavedReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createRequirementsFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
 				 UML2Factory.eINSTANCE.createClass()));
 
@@ -541,6 +801,11 @@ public class ComponentItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
 				 UML2Factory.eINSTANCE.createSavedReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComponent_OwnedMember(),
+				 UML2Factory.eINSTANCE.createRequirementsFeature()));
 	}
 
 	/**

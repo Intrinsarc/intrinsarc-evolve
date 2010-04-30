@@ -228,6 +228,11 @@ public class DeploymentItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getDeployment_Configuration(),
 				 UML2Factory.eINSTANCE.createDeploymentSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDeployment_Configuration(),
+				 UML2Factory.eINSTANCE.createDeploymentSpecification()));
 	}
 
 	/**

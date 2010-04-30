@@ -443,6 +443,17 @@ public interface Interface extends Classifier{
 	 * Creates a {@link org.eclipse.uml2.DeltaDeletedOperation} and appends it to the '<em><b>Delta Deleted Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaDeletedOperation} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedOperation}.
+	 * @see #getDeltaDeletedOperations()
+	 * @generated
+	 */
+	DeltaDeletedOperation createDeltaDeletedOperations(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedOperation} and appends it to the '<em><b>Delta Deleted Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.DeltaDeletedOperation}.
 	 * @see #getDeltaDeletedOperations()
 	 * @generated
@@ -481,6 +492,17 @@ public interface Interface extends Classifier{
 	 */
 	EList getDeltaReplacedOperations();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedOperation} and appends it to the '<em><b>Delta Replaced Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaReplacedOperation} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedOperation}.
+	 * @see #getDeltaReplacedOperations()
+	 * @generated
+	 */
+	DeltaReplacedOperation createDeltaReplacedOperations(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.DeltaReplacedOperation} and appends it to the '<em><b>Delta Replaced Operations</b></em>' containment reference list.
@@ -529,6 +551,17 @@ public interface Interface extends Classifier{
 	 * Creates a {@link org.eclipse.uml2.DeltaDeletedAttribute} and appends it to the '<em><b>Delta Deleted Attributes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaDeletedAttribute} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedAttribute}.
+	 * @see #getDeltaDeletedAttributes()
+	 * @generated
+	 */
+	DeltaDeletedAttribute createDeltaDeletedAttributes(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedAttribute} and appends it to the '<em><b>Delta Deleted Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.DeltaDeletedAttribute}.
 	 * @see #getDeltaDeletedAttributes()
 	 * @generated
@@ -567,6 +600,17 @@ public interface Interface extends Classifier{
 	 */
 	EList getDeltaReplacedAttributes();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedAttribute} and appends it to the '<em><b>Delta Replaced Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaReplacedAttribute} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedAttribute}.
+	 * @see #getDeltaReplacedAttributes()
+	 * @generated
+	 */
+	DeltaReplacedAttribute createDeltaReplacedAttributes(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.DeltaReplacedAttribute} and appends it to the '<em><b>Delta Replaced Attributes</b></em>' containment reference list.

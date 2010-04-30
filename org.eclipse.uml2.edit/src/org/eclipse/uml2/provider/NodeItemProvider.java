@@ -246,6 +246,26 @@ public class NodeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getDeploymentTarget_Deployment(),
+				 UML2Factory.eINSTANCE.createDeployment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNode_NestedNode(),
+				 UML2Factory.eINSTANCE.createNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNode_NestedNode(),
+				 UML2Factory.eINSTANCE.createDevice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNode_NestedNode(),
+				 UML2Factory.eINSTANCE.createExecutionEnvironment()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getNode_NestedNode(),
 				 UML2Factory.eINSTANCE.createNode()));
 

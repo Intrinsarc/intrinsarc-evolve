@@ -1091,6 +1091,243 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
+			public Object caseUML2_Element(Element object) {
+				return createUML2_ElementAdapter();
+			}
+			public Object caseUML2_TemplateableElement(TemplateableElement object) {
+				return createUML2_TemplateableElementAdapter();
+			}
+			public Object caseUML2_NamedElement(NamedElement object) {
+				return createUML2_NamedElementAdapter();
+			}
+			public Object caseUML2_TypedElement(TypedElement object) {
+				return createUML2_TypedElementAdapter();
+			}
+			public Object caseUML2_ParameterableElement(ParameterableElement object) {
+				return createUML2_ParameterableElementAdapter();
+			}
+			public Object caseUML2_ValueSpecification(ValueSpecification object) {
+				return createUML2_ValueSpecificationAdapter();
+			}
+			public Object caseUML2_OpaqueExpression(OpaqueExpression object) {
+				return createUML2_OpaqueExpressionAdapter();
+			}
+			public Object caseUML2_Relationship(Relationship object) {
+				return createUML2_RelationshipAdapter();
+			}
+			public Object caseUML2_Namespace(Namespace object) {
+				return createUML2_NamespaceAdapter();
+			}
+			public Object caseUML2_PackageableElement(PackageableElement object) {
+				return createUML2_PackageableElementAdapter();
+			}
+			public Object caseUML2_Type(Type object) {
+				return createUML2_TypeAdapter();
+			}
+			public Object caseUML2_RedefinableElement(RedefinableElement object) {
+				return createUML2_RedefinableElementAdapter();
+			}
+			public Object caseUML2_Classifier(Classifier object) {
+				return createUML2_ClassifierAdapter();
+			}
+			public Object caseUML2_BehavioredClassifier(BehavioredClassifier object) {
+				return createUML2_BehavioredClassifierAdapter();
+			}
+			public Object caseUML2_StructuredClassifier(StructuredClassifier object) {
+				return createUML2_StructuredClassifierAdapter();
+			}
+			public Object caseUML2_EncapsulatedClassifier(EncapsulatedClassifier object) {
+				return createUML2_EncapsulatedClassifierAdapter();
+			}
+			public Object caseUML2_Feature(Feature object) {
+				return createUML2_FeatureAdapter();
+			}
+			public Object caseUML2_MultiplicityElement(MultiplicityElement object) {
+				return createUML2_MultiplicityElementAdapter();
+			}
+			public Object caseUML2_StructuralFeature(StructuralFeature object) {
+				return createUML2_StructuralFeatureAdapter();
+			}
+			public Object caseUML2_ConnectableElement(ConnectableElement object) {
+				return createUML2_ConnectableElementAdapter();
+			}
+			public Object caseUML2_DeploymentTarget(DeploymentTarget object) {
+				return createUML2_DeploymentTargetAdapter();
+			}
+			public Object caseUML2_BehavioralFeature(BehavioralFeature object) {
+				return createUML2_BehavioralFeatureAdapter();
+			}
+			public Object caseUML2_DataType(DataType object) {
+				return createUML2_DataTypeAdapter();
+			}
+			public Object caseUML2_DeployedArtifact(DeployedArtifact object) {
+				return createUML2_DeployedArtifactAdapter();
+			}
+			public Object caseUML2_InstanceSpecification(InstanceSpecification object) {
+				return createUML2_InstanceSpecificationAdapter();
+			}
+			public Object caseUML2_LiteralSpecification(LiteralSpecification object) {
+				return createUML2_LiteralSpecificationAdapter();
+			}
+			public Object caseUML2_DirectedRelationship(DirectedRelationship object) {
+				return createUML2_DirectedRelationshipAdapter();
+			}
+			public Object caseUML2_Class(org.eclipse.uml2.Class object) {
+				return createUML2_ClassAdapter();
+			}
+			public Object caseUML2_Package(org.eclipse.uml2.Package object) {
+				return createUML2_PackageAdapter();
+			}
+			public Object caseUML2_PackageImport(PackageImport object) {
+				return createUML2_PackageImportAdapter();
+			}
+			public Object caseUML2_Association(Association object) {
+				return createUML2_AssociationAdapter();
+			}
+			public Object caseUML2_Property(Property object) {
+				return createUML2_PropertyAdapter();
+			}
+			public Object caseUML2_Behavior(Behavior object) {
+				return createUML2_BehaviorAdapter();
+			}
+			public Object caseUML2_Dependency(Dependency object) {
+				return createUML2_DependencyAdapter();
+			}
+			public Object caseUML2_Abstraction(Abstraction object) {
+				return createUML2_AbstractionAdapter();
+			}
+			public Object caseUML2_Realization(Realization object) {
+				return createUML2_RealizationAdapter();
+			}
+			public Object caseUML2_ActivityNode(ActivityNode object) {
+				return createUML2_ActivityNodeAdapter();
+			}
+			public Object caseUML2_ExecutableNode(ExecutableNode object) {
+				return createUML2_ExecutableNodeAdapter();
+			}
+			public Object caseUML2_ActivityEdge(ActivityEdge object) {
+				return createUML2_ActivityEdgeAdapter();
+			}
+			public Object caseUML2_ControlNode(ControlNode object) {
+				return createUML2_ControlNodeAdapter();
+			}
+			public Object caseUML2_FinalNode(FinalNode object) {
+				return createUML2_FinalNodeAdapter();
+			}
+			public Object caseUML2_ObjectNode(ObjectNode object) {
+				return createUML2_ObjectNodeAdapter();
+			}
+			public Object caseUML2_Pin(Pin object) {
+				return createUML2_PinAdapter();
+			}
+			public Object caseUML2_InputPin(InputPin object) {
+				return createUML2_InputPinAdapter();
+			}
+			public Object caseUML2_Trigger(Trigger object) {
+				return createUML2_TriggerAdapter();
+			}
+			public Object caseUML2_MessageTrigger(MessageTrigger object) {
+				return createUML2_MessageTriggerAdapter();
+			}
+			public Object caseUML2_Action(Action object) {
+				return createUML2_ActionAdapter();
+			}
+			public Object caseUML2_ActivityGroup(ActivityGroup object) {
+				return createUML2_ActivityGroupAdapter();
+			}
+			public Object caseUML2_StructuredActivityNode(StructuredActivityNode object) {
+				return createUML2_StructuredActivityNodeAdapter();
+			}
+			public Object caseUML2_InteractionFragment(InteractionFragment object) {
+				return createUML2_InteractionFragmentAdapter();
+			}
+			public Object caseUML2_MessageEnd(MessageEnd object) {
+				return createUML2_MessageEndAdapter();
+			}
+			public Object caseUML2_EventOccurrence(EventOccurrence object) {
+				return createUML2_EventOccurrenceAdapter();
+			}
+			public Object caseUML2_TemplateParameter(TemplateParameter object) {
+				return createUML2_TemplateParameterAdapter();
+			}
+			public Object caseUML2_TemplateSignature(TemplateSignature object) {
+				return createUML2_TemplateSignatureAdapter();
+			}
+			public Object caseUML2_InteractionOccurrence(InteractionOccurrence object) {
+				return createUML2_InteractionOccurrenceAdapter();
+			}
+			public Object caseUML2_Constraint(Constraint object) {
+				return createUML2_ConstraintAdapter();
+			}
+			public Object caseUML2_Vertex(Vertex object) {
+				return createUML2_VertexAdapter();
+			}
+			public Object caseUML2_State(State object) {
+				return createUML2_StateAdapter();
+			}
+			public Object caseUML2_StructuralFeatureAction(StructuralFeatureAction object) {
+				return createUML2_StructuralFeatureActionAdapter();
+			}
+			public Object caseUML2_WriteStructuralFeatureAction(WriteStructuralFeatureAction object) {
+				return createUML2_WriteStructuralFeatureActionAdapter();
+			}
+			public Object caseUML2_LinkAction(LinkAction object) {
+				return createUML2_LinkActionAdapter();
+			}
+			public Object caseUML2_LinkEndData(LinkEndData object) {
+				return createUML2_LinkEndDataAdapter();
+			}
+			public Object caseUML2_WriteLinkAction(WriteLinkAction object) {
+				return createUML2_WriteLinkActionAdapter();
+			}
+			public Object caseUML2_VariableAction(VariableAction object) {
+				return createUML2_VariableActionAdapter();
+			}
+			public Object caseUML2_WriteVariableAction(WriteVariableAction object) {
+				return createUML2_WriteVariableActionAdapter();
+			}
+			public Object caseUML2_InvocationAction(InvocationAction object) {
+				return createUML2_InvocationActionAdapter();
+			}
+			public Object caseUML2_CallAction(CallAction object) {
+				return createUML2_CallActionAdapter();
+			}
+			public Object caseUML2_Interval(Interval object) {
+				return createUML2_IntervalAdapter();
+			}
+			public Object caseUML2_IntervalConstraint(IntervalConstraint object) {
+				return createUML2_IntervalConstraintAdapter();
+			}
+			public Object caseUML2_CentralBufferNode(CentralBufferNode object) {
+				return createUML2_CentralBufferNodeAdapter();
+			}
+			public Object caseUML2_Node(Node object) {
+				return createUML2_NodeAdapter();
+			}
+			public Object caseUML2_StateMachine(StateMachine object) {
+				return createUML2_StateMachineAdapter();
+			}
+			public Object caseUML2_Transition(Transition object) {
+				return createUML2_TransitionAdapter();
+			}
+			public Object caseUML2_CreateLinkAction(CreateLinkAction object) {
+				return createUML2_CreateLinkActionAdapter();
+			}
+			public Object caseUML2_AcceptEventAction(AcceptEventAction object) {
+				return createUML2_AcceptEventActionAdapter();
+			}
+			public Object caseUML2_Artifact(Artifact object) {
+				return createUML2_ArtifactAdapter();
+			}
+			public Object caseUML2_J_FigureContainer(J_FigureContainer object) {
+				return createUML2_J_FigureContainerAdapter();
+			}
+			public Object caseUML2_DeltaReplacedConstituent(DeltaReplacedConstituent object) {
+				return createUML2_DeltaReplacedConstituentAdapter();
+			}
+			public Object caseUML2_DeltaDeletedConstituent(DeltaDeletedConstituent object) {
+				return createUML2_DeltaDeletedConstituentAdapter();
+			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -4648,6 +4885,1112 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Element <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Element
+	 * @generated
+	 */
+	public Adapter createUML2_ElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.TemplateableElement <em>Templateable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.TemplateableElement
+	 * @generated
+	 */
+	public Adapter createUML2_TemplateableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.NamedElement
+	 * @generated
+	 */
+	public Adapter createUML2_NamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.TypedElement <em>Typed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.TypedElement
+	 * @generated
+	 */
+	public Adapter createUML2_TypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ParameterableElement <em>Parameterable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ParameterableElement
+	 * @generated
+	 */
+	public Adapter createUML2_ParameterableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ValueSpecification <em>Value Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ValueSpecification
+	 * @generated
+	 */
+	public Adapter createUML2_ValueSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.OpaqueExpression <em>Opaque Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.OpaqueExpression
+	 * @generated
+	 */
+	public Adapter createUML2_OpaqueExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Relationship <em>Relationship</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Relationship
+	 * @generated
+	 */
+	public Adapter createUML2_RelationshipAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Namespace <em>Namespace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Namespace
+	 * @generated
+	 */
+	public Adapter createUML2_NamespaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.PackageableElement <em>Packageable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.PackageableElement
+	 * @generated
+	 */
+	public Adapter createUML2_PackageableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Type <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Type
+	 * @generated
+	 */
+	public Adapter createUML2_TypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.RedefinableElement <em>Redefinable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.RedefinableElement
+	 * @generated
+	 */
+	public Adapter createUML2_RedefinableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Classifier <em>Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Classifier
+	 * @generated
+	 */
+	public Adapter createUML2_ClassifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.BehavioredClassifier <em>Behaviored Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.BehavioredClassifier
+	 * @generated
+	 */
+	public Adapter createUML2_BehavioredClassifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.StructuredClassifier <em>Structured Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.StructuredClassifier
+	 * @generated
+	 */
+	public Adapter createUML2_StructuredClassifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.EncapsulatedClassifier <em>Encapsulated Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.EncapsulatedClassifier
+	 * @generated
+	 */
+	public Adapter createUML2_EncapsulatedClassifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Feature <em>Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Feature
+	 * @generated
+	 */
+	public Adapter createUML2_FeatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.MultiplicityElement <em>Multiplicity Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.MultiplicityElement
+	 * @generated
+	 */
+	public Adapter createUML2_MultiplicityElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.StructuralFeature <em>Structural Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.StructuralFeature
+	 * @generated
+	 */
+	public Adapter createUML2_StructuralFeatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ConnectableElement <em>Connectable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ConnectableElement
+	 * @generated
+	 */
+	public Adapter createUML2_ConnectableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DeploymentTarget <em>Deployment Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DeploymentTarget
+	 * @generated
+	 */
+	public Adapter createUML2_DeploymentTargetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.BehavioralFeature <em>Behavioral Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.BehavioralFeature
+	 * @generated
+	 */
+	public Adapter createUML2_BehavioralFeatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DataType <em>Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DataType
+	 * @generated
+	 */
+	public Adapter createUML2_DataTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DeployedArtifact <em>Deployed Artifact</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DeployedArtifact
+	 * @generated
+	 */
+	public Adapter createUML2_DeployedArtifactAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.InstanceSpecification <em>Instance Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.InstanceSpecification
+	 * @generated
+	 */
+	public Adapter createUML2_InstanceSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.LiteralSpecification <em>Literal Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.LiteralSpecification
+	 * @generated
+	 */
+	public Adapter createUML2_LiteralSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DirectedRelationship <em>Directed Relationship</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DirectedRelationship
+	 * @generated
+	 */
+	public Adapter createUML2_DirectedRelationshipAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Class <em>Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Class
+	 * @generated
+	 */
+	public Adapter createUML2_ClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Package <em>Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Package
+	 * @generated
+	 */
+	public Adapter createUML2_PackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.PackageImport <em>Package Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.PackageImport
+	 * @generated
+	 */
+	public Adapter createUML2_PackageImportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Association <em>Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Association
+	 * @generated
+	 */
+	public Adapter createUML2_AssociationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Property <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Property
+	 * @generated
+	 */
+	public Adapter createUML2_PropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Behavior <em>Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Behavior
+	 * @generated
+	 */
+	public Adapter createUML2_BehaviorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Dependency <em>Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Dependency
+	 * @generated
+	 */
+	public Adapter createUML2_DependencyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Abstraction <em>Abstraction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Abstraction
+	 * @generated
+	 */
+	public Adapter createUML2_AbstractionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Realization <em>Realization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Realization
+	 * @generated
+	 */
+	public Adapter createUML2_RealizationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ActivityNode <em>Activity Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ActivityNode
+	 * @generated
+	 */
+	public Adapter createUML2_ActivityNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ExecutableNode <em>Executable Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ExecutableNode
+	 * @generated
+	 */
+	public Adapter createUML2_ExecutableNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ActivityEdge <em>Activity Edge</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ActivityEdge
+	 * @generated
+	 */
+	public Adapter createUML2_ActivityEdgeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ControlNode <em>Control Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ControlNode
+	 * @generated
+	 */
+	public Adapter createUML2_ControlNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.FinalNode <em>Final Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.FinalNode
+	 * @generated
+	 */
+	public Adapter createUML2_FinalNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ObjectNode <em>Object Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ObjectNode
+	 * @generated
+	 */
+	public Adapter createUML2_ObjectNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Pin <em>Pin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Pin
+	 * @generated
+	 */
+	public Adapter createUML2_PinAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.InputPin <em>Input Pin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.InputPin
+	 * @generated
+	 */
+	public Adapter createUML2_InputPinAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Trigger <em>Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Trigger
+	 * @generated
+	 */
+	public Adapter createUML2_TriggerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.MessageTrigger <em>Message Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.MessageTrigger
+	 * @generated
+	 */
+	public Adapter createUML2_MessageTriggerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Action <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Action
+	 * @generated
+	 */
+	public Adapter createUML2_ActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.ActivityGroup <em>Activity Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.ActivityGroup
+	 * @generated
+	 */
+	public Adapter createUML2_ActivityGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.StructuredActivityNode <em>Structured Activity Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.StructuredActivityNode
+	 * @generated
+	 */
+	public Adapter createUML2_StructuredActivityNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.InteractionFragment <em>Interaction Fragment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.InteractionFragment
+	 * @generated
+	 */
+	public Adapter createUML2_InteractionFragmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.MessageEnd <em>Message End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.MessageEnd
+	 * @generated
+	 */
+	public Adapter createUML2_MessageEndAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.EventOccurrence <em>Event Occurrence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.EventOccurrence
+	 * @generated
+	 */
+	public Adapter createUML2_EventOccurrenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.TemplateParameter <em>Template Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.TemplateParameter
+	 * @generated
+	 */
+	public Adapter createUML2_TemplateParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.TemplateSignature <em>Template Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.TemplateSignature
+	 * @generated
+	 */
+	public Adapter createUML2_TemplateSignatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.InteractionOccurrence <em>Interaction Occurrence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.InteractionOccurrence
+	 * @generated
+	 */
+	public Adapter createUML2_InteractionOccurrenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Constraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Constraint
+	 * @generated
+	 */
+	public Adapter createUML2_ConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Vertex <em>Vertex</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Vertex
+	 * @generated
+	 */
+	public Adapter createUML2_VertexAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.State <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.State
+	 * @generated
+	 */
+	public Adapter createUML2_StateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.StructuralFeatureAction <em>Structural Feature Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.StructuralFeatureAction
+	 * @generated
+	 */
+	public Adapter createUML2_StructuralFeatureActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.WriteStructuralFeatureAction <em>Write Structural Feature Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.WriteStructuralFeatureAction
+	 * @generated
+	 */
+	public Adapter createUML2_WriteStructuralFeatureActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.LinkAction <em>Link Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.LinkAction
+	 * @generated
+	 */
+	public Adapter createUML2_LinkActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.LinkEndData <em>Link End Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.LinkEndData
+	 * @generated
+	 */
+	public Adapter createUML2_LinkEndDataAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.WriteLinkAction <em>Write Link Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.WriteLinkAction
+	 * @generated
+	 */
+	public Adapter createUML2_WriteLinkActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.VariableAction <em>Variable Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.VariableAction
+	 * @generated
+	 */
+	public Adapter createUML2_VariableActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.WriteVariableAction <em>Write Variable Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.WriteVariableAction
+	 * @generated
+	 */
+	public Adapter createUML2_WriteVariableActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.InvocationAction <em>Invocation Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.InvocationAction
+	 * @generated
+	 */
+	public Adapter createUML2_InvocationActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.CallAction <em>Call Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.CallAction
+	 * @generated
+	 */
+	public Adapter createUML2_CallActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Interval <em>Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Interval
+	 * @generated
+	 */
+	public Adapter createUML2_IntervalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.IntervalConstraint <em>Interval Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.IntervalConstraint
+	 * @generated
+	 */
+	public Adapter createUML2_IntervalConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.CentralBufferNode <em>Central Buffer Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.CentralBufferNode
+	 * @generated
+	 */
+	public Adapter createUML2_CentralBufferNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Node <em>Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Node
+	 * @generated
+	 */
+	public Adapter createUML2_NodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.StateMachine <em>State Machine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.StateMachine
+	 * @generated
+	 */
+	public Adapter createUML2_StateMachineAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Transition <em>Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Transition
+	 * @generated
+	 */
+	public Adapter createUML2_TransitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.CreateLinkAction <em>Create Link Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.CreateLinkAction
+	 * @generated
+	 */
+	public Adapter createUML2_CreateLinkActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.AcceptEventAction <em>Accept Event Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.AcceptEventAction
+	 * @generated
+	 */
+	public Adapter createUML2_AcceptEventActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.Artifact <em>Artifact</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.Artifact
+	 * @generated
+	 */
+	public Adapter createUML2_ArtifactAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.J_FigureContainer <em>JFigure Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.J_FigureContainer
+	 * @generated
+	 */
+	public Adapter createUML2_J_FigureContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DeltaReplacedConstituent <em>Delta Replaced Constituent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DeltaReplacedConstituent
+	 * @generated
+	 */
+	public Adapter createUML2_DeltaReplacedConstituentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.DeltaDeletedConstituent <em>Delta Deleted Constituent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.DeltaDeletedConstituent
+	 * @generated
+	 */
+	public Adapter createUML2_DeltaDeletedConstituentAdapter() {
 		return null;
 	}
 

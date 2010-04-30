@@ -199,6 +199,16 @@ public class AddStructuralFeatureValueActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt(),
 				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt(),
+				 UML2Factory.eINSTANCE.createValuePin()));
 	}
 
 	/**

@@ -505,6 +505,8 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 			case UML2Package.DATA_TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.DATA_TYPE__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.DATA_TYPE__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.DATA_TYPE__IS_LEAF:
@@ -535,8 +537,6 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 				return getRepresentation();
 			case UML2Package.DATA_TYPE__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.DATA_TYPE__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.DATA_TYPE__OWNED_ATTRIBUTE:
 				return getOwnedAttributes();
 			case UML2Package.DATA_TYPE__OWNED_OPERATION:
@@ -630,6 +630,9 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 			case UML2Package.DATA_TYPE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.DATA_TYPE__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.DATA_TYPE__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -666,9 +669,6 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 			case UML2Package.DATA_TYPE__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.DATA_TYPE__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.DATA_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
@@ -755,6 +755,9 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 			case UML2Package.DATA_TYPE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.DATA_TYPE__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.DATA_TYPE__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -784,9 +787,6 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 				return;
 			case UML2Package.DATA_TYPE__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.DATA_TYPE__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.DATA_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
@@ -861,6 +861,8 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.DATA_TYPE__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.DATA_TYPE__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.DATA_TYPE__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.DATA_TYPE__IS_LEAF:
@@ -891,8 +893,6 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 				return representation != null;
 			case UML2Package.DATA_TYPE__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.DATA_TYPE__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.DATA_TYPE__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case UML2Package.DATA_TYPE__OWNED_OPERATION:

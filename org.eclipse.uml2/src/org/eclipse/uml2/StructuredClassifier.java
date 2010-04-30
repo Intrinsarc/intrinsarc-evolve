@@ -261,6 +261,17 @@ public interface StructuredClassifier extends Classifier{
 	 * Creates a {@link org.eclipse.uml2.DeltaDeletedAttribute} and appends it to the '<em><b>Delta Deleted Attributes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaDeletedAttribute} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedAttribute}.
+	 * @see #getDeltaDeletedAttributes()
+	 * @generated
+	 */
+	DeltaDeletedAttribute createDeltaDeletedAttributes(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedAttribute} and appends it to the '<em><b>Delta Deleted Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.DeltaDeletedAttribute}.
 	 * @see #getDeltaDeletedAttributes()
 	 * @generated
@@ -299,6 +310,17 @@ public interface StructuredClassifier extends Classifier{
 	 */
 	EList getDeltaReplacedAttributes();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedAttribute} and appends it to the '<em><b>Delta Replaced Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaReplacedAttribute} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedAttribute}.
+	 * @see #getDeltaReplacedAttributes()
+	 * @generated
+	 */
+	DeltaReplacedAttribute createDeltaReplacedAttributes(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.DeltaReplacedAttribute} and appends it to the '<em><b>Delta Replaced Attributes</b></em>' containment reference list.
@@ -347,6 +369,17 @@ public interface StructuredClassifier extends Classifier{
 	 * Creates a {@link org.eclipse.uml2.DeltaDeletedPort} and appends it to the '<em><b>Delta Deleted Ports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaDeletedPort} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedPort}.
+	 * @see #getDeltaDeletedPorts()
+	 * @generated
+	 */
+	DeltaDeletedPort createDeltaDeletedPorts(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedPort} and appends it to the '<em><b>Delta Deleted Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.DeltaDeletedPort}.
 	 * @see #getDeltaDeletedPorts()
 	 * @generated
@@ -385,6 +418,17 @@ public interface StructuredClassifier extends Classifier{
 	 */
 	EList getDeltaReplacedPorts();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedPort} and appends it to the '<em><b>Delta Replaced Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaReplacedPort} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedPort}.
+	 * @see #getDeltaReplacedPorts()
+	 * @generated
+	 */
+	DeltaReplacedPort createDeltaReplacedPorts(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.DeltaReplacedPort} and appends it to the '<em><b>Delta Replaced Ports</b></em>' containment reference list.
@@ -433,6 +477,17 @@ public interface StructuredClassifier extends Classifier{
 	 * Creates a {@link org.eclipse.uml2.DeltaDeletedConnector} and appends it to the '<em><b>Delta Deleted Connectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaDeletedConnector} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedConnector}.
+	 * @see #getDeltaDeletedConnectors()
+	 * @generated
+	 */
+	DeltaDeletedConnector createDeltaDeletedConnectors(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedConnector} and appends it to the '<em><b>Delta Deleted Connectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.DeltaDeletedConnector}.
 	 * @see #getDeltaDeletedConnectors()
 	 * @generated
@@ -471,6 +526,17 @@ public interface StructuredClassifier extends Classifier{
 	 */
 	EList getDeltaReplacedConnectors();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedConnector} and appends it to the '<em><b>Delta Replaced Connectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaReplacedConnector} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedConnector}.
+	 * @see #getDeltaReplacedConnectors()
+	 * @generated
+	 */
+	DeltaReplacedConnector createDeltaReplacedConnectors(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.DeltaReplacedConnector} and appends it to the '<em><b>Delta Replaced Connectors</b></em>' containment reference list.
@@ -519,6 +585,17 @@ public interface StructuredClassifier extends Classifier{
 	 * Creates a {@link org.eclipse.uml2.DeltaDeletedOperation} and appends it to the '<em><b>Delta Deleted Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaDeletedOperation} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedOperation}.
+	 * @see #getDeltaDeletedOperations()
+	 * @generated
+	 */
+	DeltaDeletedOperation createDeltaDeletedOperations(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedOperation} and appends it to the '<em><b>Delta Deleted Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.DeltaDeletedOperation}.
 	 * @see #getDeltaDeletedOperations()
 	 * @generated
@@ -557,6 +634,17 @@ public interface StructuredClassifier extends Classifier{
 	 */
 	EList getDeltaReplacedOperations();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedOperation} and appends it to the '<em><b>Delta Replaced Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaReplacedOperation} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedOperation}.
+	 * @see #getDeltaReplacedOperations()
+	 * @generated
+	 */
+	DeltaReplacedOperation createDeltaReplacedOperations(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.DeltaReplacedOperation} and appends it to the '<em><b>Delta Replaced Operations</b></em>' containment reference list.
@@ -605,6 +693,17 @@ public interface StructuredClassifier extends Classifier{
 	 * Creates a {@link org.eclipse.uml2.DeltaDeletedTrace} and appends it to the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaDeletedTrace} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedTrace}.
+	 * @see #getDeltaDeletedTraces()
+	 * @generated
+	 */
+	DeltaDeletedTrace createDeltaDeletedTraces(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedTrace} and appends it to the '<em><b>Delta Deleted Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.DeltaDeletedTrace}.
 	 * @see #getDeltaDeletedTraces()
 	 * @generated
@@ -643,6 +742,17 @@ public interface StructuredClassifier extends Classifier{
 	 */
 	EList getDeltaReplacedTraces();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedTrace} and appends it to the '<em><b>Delta Replaced Traces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaReplacedTrace} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedTrace}.
+	 * @see #getDeltaReplacedTraces()
+	 * @generated
+	 */
+	DeltaReplacedTrace createDeltaReplacedTraces(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.DeltaReplacedTrace} and appends it to the '<em><b>Delta Replaced Traces</b></em>' containment reference list.

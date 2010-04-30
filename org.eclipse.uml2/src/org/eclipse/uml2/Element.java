@@ -301,6 +301,17 @@ public interface Element extends EModelElement{
 	 * Creates a {@link org.eclipse.uml2.AppliedBasicStereotypeValue} and appends it to the '<em><b>Applied Basic Stereotype Values</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.AppliedBasicStereotypeValue} to create.
+	 * @return The new {@link org.eclipse.uml2.AppliedBasicStereotypeValue}.
+	 * @see #getAppliedBasicStereotypeValues()
+	 * @generated
+	 */
+	AppliedBasicStereotypeValue createAppliedBasicStereotypeValues(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.AppliedBasicStereotypeValue} and appends it to the '<em><b>Applied Basic Stereotype Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.AppliedBasicStereotypeValue}.
 	 * @see #getAppliedBasicStereotypeValues()
 	 * @generated

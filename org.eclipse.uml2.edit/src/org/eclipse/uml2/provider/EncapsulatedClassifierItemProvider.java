@@ -159,6 +159,11 @@ public class EncapsulatedClassifierItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getEncapsulatedClassifier_OwnedPort(),
 				 UML2Factory.eINSTANCE.createPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getEncapsulatedClassifier_OwnedPort(),
+				 UML2Factory.eINSTANCE.createPort()));
 	}
 
 	/**

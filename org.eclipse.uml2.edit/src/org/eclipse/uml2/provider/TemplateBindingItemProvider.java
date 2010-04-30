@@ -211,6 +211,11 @@ public class TemplateBindingItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getTemplateBinding_ParameterSubstitution(),
 				 UML2Factory.eINSTANCE.createTemplateParameterSubstitution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTemplateBinding_ParameterSubstitution(),
+				 UML2Factory.eINSTANCE.createTemplateParameterSubstitution()));
 	}
 
 	/**

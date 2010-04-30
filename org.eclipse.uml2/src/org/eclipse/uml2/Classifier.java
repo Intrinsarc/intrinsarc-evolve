@@ -45,7 +45,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.uml2.Classifier#getUseCases <em>Use Case</em>}</li>
  *   <li>{@link org.eclipse.uml2.Classifier#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.eclipse.uml2.Classifier#getOccurrences <em>Occurrence</em>}</li>
- *   <li>{@link org.eclipse.uml2.Classifier#isRetired <em>Is Retired</em>}</li>
  * </ul>
  * </p>
  *
@@ -632,36 +631,6 @@ public interface Classifier extends Namespace, Type, RedefinableElement{
 	 * @generated
 	 */
   java.util.ArrayList undeleted_getOccurrences();
-
-
-	/**
-	 * Returns the value of the '<em><b>Is Retired</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Retired</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Retired</em>' attribute.
-	 * @see #setIsRetired(boolean)
-	 * @see org.eclipse.uml2.UML2Package#getClassifier_IsRetired()
-	 * @model dataType="org.eclipse.uml2.Boolean"
-	 * @generated
-	 */
-	boolean isRetired();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.uml2.Classifier#isRetired <em>Is Retired</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Retired</em>' attribute.
-	 * @see #isRetired()
-	 * @generated
-	 */
-	void setIsRetired(boolean value);
-
-
-
 
 
     /**

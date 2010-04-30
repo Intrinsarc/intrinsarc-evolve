@@ -391,6 +391,16 @@ public class BehaviorItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavior_Parameter(),
+				 UML2Factory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavior_OwnedParameterSet(),
+				 UML2Factory.eINSTANCE.createParameterSet()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getBehavior_OwnedParameterSet(),
 				 UML2Factory.eINSTANCE.createParameterSet()));
 	}

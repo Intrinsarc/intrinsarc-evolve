@@ -164,6 +164,16 @@ public class J_FigureContainerItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getJ_FigureContainer_Figures(),
+				 UML2Factory.eINSTANCE.createJ_Figure()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getJ_FigureContainer_Properties(),
+				 UML2Factory.eINSTANCE.createJ_Property()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getJ_FigureContainer_Properties(),
 				 UML2Factory.eINSTANCE.createJ_Property()));
 	}

@@ -257,6 +257,11 @@ public class ConnectorItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getConnector_End(),
 				 UML2Factory.eINSTANCE.createConnectorEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getConnector_End(),
+				 UML2Factory.eINSTANCE.createConnectorEnd()));
 	}
 
 	/**

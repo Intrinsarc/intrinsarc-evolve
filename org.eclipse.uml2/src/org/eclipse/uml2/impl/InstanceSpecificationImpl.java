@@ -584,6 +584,20 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PortRemap createPortRemap(EClass eClass) {
+		PortRemap newPortRemap = (PortRemap) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP, null, newPortRemap));
+		}
+		settable_getPortRemaps().add(newPortRemap);
+		return newPortRemap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */

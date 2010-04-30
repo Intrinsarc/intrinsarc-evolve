@@ -262,6 +262,8 @@ public class CommunicationPathImpl extends AssociationImpl implements Communicat
 			case UML2Package.COMMUNICATION_PATH__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.COMMUNICATION_PATH__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.COMMUNICATION_PATH__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.COMMUNICATION_PATH__IS_LEAF:
@@ -292,8 +294,6 @@ public class CommunicationPathImpl extends AssociationImpl implements Communicat
 				return getRepresentation();
 			case UML2Package.COMMUNICATION_PATH__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.COMMUNICATION_PATH__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.COMMUNICATION_PATH__RELATED_ELEMENT:
 				return getRelatedElements();
 			case UML2Package.COMMUNICATION_PATH__IS_DERIVED:
@@ -393,6 +393,9 @@ public class CommunicationPathImpl extends AssociationImpl implements Communicat
 			case UML2Package.COMMUNICATION_PATH__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.COMMUNICATION_PATH__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.COMMUNICATION_PATH__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -429,9 +432,6 @@ public class CommunicationPathImpl extends AssociationImpl implements Communicat
 			case UML2Package.COMMUNICATION_PATH__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.COMMUNICATION_PATH__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.COMMUNICATION_PATH__IS_DERIVED:
 				setIsDerived(((Boolean)newValue).booleanValue());
@@ -521,6 +521,9 @@ public class CommunicationPathImpl extends AssociationImpl implements Communicat
 			case UML2Package.COMMUNICATION_PATH__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.COMMUNICATION_PATH__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.COMMUNICATION_PATH__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -550,9 +553,6 @@ public class CommunicationPathImpl extends AssociationImpl implements Communicat
 				return;
 			case UML2Package.COMMUNICATION_PATH__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.COMMUNICATION_PATH__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.COMMUNICATION_PATH__IS_DERIVED:
 				setIsDerived(IS_DERIVED_EDEFAULT);
@@ -630,6 +630,8 @@ public class CommunicationPathImpl extends AssociationImpl implements Communicat
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.COMMUNICATION_PATH__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.COMMUNICATION_PATH__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.COMMUNICATION_PATH__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.COMMUNICATION_PATH__IS_LEAF:
@@ -660,8 +662,6 @@ public class CommunicationPathImpl extends AssociationImpl implements Communicat
 				return representation != null;
 			case UML2Package.COMMUNICATION_PATH__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.COMMUNICATION_PATH__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.COMMUNICATION_PATH__RELATED_ELEMENT:
 				return !getRelatedElements().isEmpty();
 			case UML2Package.COMMUNICATION_PATH__IS_DERIVED:

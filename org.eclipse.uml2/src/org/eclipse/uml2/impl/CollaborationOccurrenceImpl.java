@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.Collaboration;
 import org.eclipse.uml2.CollaborationOccurrence;
 import org.eclipse.uml2.Dependency;
+import org.eclipse.uml2.Permission;
 import org.eclipse.uml2.StringExpression;
 import org.eclipse.uml2.TemplateSignature;
 import org.eclipse.uml2.UML2Factory;
@@ -250,7 +251,7 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * @generated
 	 */
 	public Dependency createRoleBinding() {
-		Dependency newRoleBinding = UML2Factory.eINSTANCE.createDependency();
+		Permission newRoleBinding = UML2Factory.eINSTANCE.createPermission();
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING, null, newRoleBinding));
 		}

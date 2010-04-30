@@ -190,6 +190,11 @@ public class ReadExtentActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getReadExtentAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getReadExtentAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 	}
 
 	/**

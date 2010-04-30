@@ -282,6 +282,26 @@ public class TemplateSignatureItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getTemplateSignature_OwnedParameter(),
 				 UML2Factory.eINSTANCE.createConnectableElementTemplateParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTemplateSignature_OwnedParameter(),
+				 UML2Factory.eINSTANCE.createTemplateParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTemplateSignature_OwnedParameter(),
+				 UML2Factory.eINSTANCE.createOperationTemplateParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTemplateSignature_OwnedParameter(),
+				 UML2Factory.eINSTANCE.createClassifierTemplateParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTemplateSignature_OwnedParameter(),
+				 UML2Factory.eINSTANCE.createConnectableElementTemplateParameter()));
 	}
 
 	/**

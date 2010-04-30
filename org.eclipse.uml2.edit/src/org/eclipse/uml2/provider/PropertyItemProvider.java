@@ -635,6 +635,81 @@ public class PropertyItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getDeploymentTarget_Deployment(),
+				 UML2Factory.eINSTANCE.createDeployment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createOpaqueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createLiteralString()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createLiteralNull()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createLiteralInteger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createLiteralUnlimitedNatural()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createInstanceValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createTimeExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createDuration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createDurationInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createTimeInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
+				 UML2Factory.eINSTANCE.createPropertyValueSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getProperty_DefaultValue(),
 				 UML2Factory.eINSTANCE.createOpaqueExpression()));
 
@@ -717,6 +792,151 @@ public class PropertyItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getProperty_Qualifier(),
 				 UML2Factory.eINSTANCE.createPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_Qualifier(),
+				 UML2Factory.eINSTANCE.createProperty()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_Qualifier(),
+				 UML2Factory.eINSTANCE.createExtensionEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_Qualifier(),
+				 UML2Factory.eINSTANCE.createPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createEnumeration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createDataType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createPrimitiveType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createStereotype()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createExtension()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createActivity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createAssociationClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createInformationItem()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createArtifact()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createCollaboration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createSignal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createInteraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createDevice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createExecutionEnvironment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createCommunicationPath()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createProtocolStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createDeploymentSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createRequirementsFeature()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -842,6 +1062,81 @@ public class PropertyItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
 				 UML2Factory.eINSTANCE.createDeploymentSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_OwnedAnonymousType(),
+				 UML2Factory.eINSTANCE.createRequirementsFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createOpaqueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createLiteralString()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createLiteralNull()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createLiteralInteger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createLiteralUnlimitedNatural()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createInstanceValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createTimeExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createDuration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createDurationInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createTimeInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProperty_DefaultValues(),
+				 UML2Factory.eINSTANCE.createPropertyValueSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter

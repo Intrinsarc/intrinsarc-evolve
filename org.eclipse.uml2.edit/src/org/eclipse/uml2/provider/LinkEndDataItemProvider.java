@@ -209,6 +209,11 @@ public class LinkEndDataItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getLinkEndData_Qualifier(),
 				 UML2Factory.eINSTANCE.createQualifierValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getLinkEndData_Qualifier(),
+				 UML2Factory.eINSTANCE.createQualifierValue()));
 	}
 
 	/**

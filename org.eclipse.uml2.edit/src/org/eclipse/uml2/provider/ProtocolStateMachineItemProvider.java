@@ -169,6 +169,11 @@ public class ProtocolStateMachineItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getProtocolStateMachine_Conformance(),
 				 UML2Factory.eINSTANCE.createProtocolConformance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getProtocolStateMachine_Conformance(),
+				 UML2Factory.eINSTANCE.createProtocolConformance()));
 	}
 
 	/**

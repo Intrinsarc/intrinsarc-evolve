@@ -28,6 +28,7 @@ import org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink;
 import org.eclipse.uml2.RequirementsFeature;
 import org.eclipse.uml2.RequirementsFeatureLink;
 import org.eclipse.uml2.StringExpression;
+import org.eclipse.uml2.TemplateParameter;
 import org.eclipse.uml2.TemplateSignature;
 import org.eclipse.uml2.UML2Factory;
 import org.eclipse.uml2.UML2Package;
@@ -48,7 +49,7 @@ import org.eclipse.uml2.VisibilityKind;
  *
  * @generated
  */
-public class RequirementsFeatureImpl extends NamedElementImpl implements RequirementsFeature {
+public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFeature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,6 +167,20 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RequirementsFeatureLink createSubfeatures(EClass eClass) {
+		RequirementsFeatureLink newSubfeatures = (RequirementsFeatureLink) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES, null, newSubfeatures));
+		}
+		settable_getSubfeatures().add(newSubfeatures);
+		return newSubfeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RequirementsFeatureLink createSubfeatures() {
 		RequirementsFeatureLink newSubfeatures = UML2Factory.eINSTANCE.createRequirementsFeatureLink();
 		if (eNotificationRequired()) {
@@ -227,6 +242,20 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedRequirementsFeatureLink createDeltaReplacedSubfeatures(EClass eClass) {
+		DeltaReplacedRequirementsFeatureLink newDeltaReplacedSubfeatures = (DeltaReplacedRequirementsFeatureLink) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES, null, newDeltaReplacedSubfeatures));
+		}
+		settable_getDeltaReplacedSubfeatures().add(newDeltaReplacedSubfeatures);
+		return newDeltaReplacedSubfeatures;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -300,6 +329,20 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedRequirementsFeatureLink createDeltaDeletedSubfeatures(EClass eClass) {
+		DeltaDeletedRequirementsFeatureLink newDeltaDeletedSubfeatures = (DeltaDeletedRequirementsFeatureLink) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES, null, newDeltaDeletedSubfeatures));
+		}
+		settable_getDeltaDeletedSubfeatures().add(newDeltaDeletedSubfeatures);
+		return newDeltaDeletedSubfeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedRequirementsFeatureLink createDeltaDeletedSubfeatures() {
 		DeltaDeletedRequirementsFeatureLink newDeltaDeletedSubfeatures = UML2Factory.eINSTANCE.createDeltaDeletedRequirementsFeatureLink();
 		if (eNotificationRequired()) {
@@ -327,6 +370,14 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 					return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 				case UML2Package.REQUIREMENTS_FEATURE__CLIENT_DEPENDENCY:
 					return ((InternalEList)getClientDependencies()).basicAdd(otherEnd, msgs);
+				case UML2Package.REQUIREMENTS_FEATURE__TEMPLATE_PARAMETER:
+					if (templateParameter != null)
+						msgs = ((InternalEObject)templateParameter).eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+					return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
+				case UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -360,6 +411,10 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 					return basicSetNameExpression(null, msgs);
 				case UML2Package.REQUIREMENTS_FEATURE__OWNED_ANONYMOUS_DEPENDENCIES:
 					return ((InternalEList)getOwnedAnonymousDependencies()).basicRemove(otherEnd, msgs);
+				case UML2Package.REQUIREMENTS_FEATURE__TEMPLATE_PARAMETER:
+					return basicSetTemplateParameter(null, msgs);
+				case UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER:
+					return eBasicSetContainer(null, UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER, msgs);
 				case UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES:
 					return ((InternalEList)getSubfeatures()).basicRemove(otherEnd, msgs);
 				case UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES:
@@ -371,6 +426,23 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER:
+					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**
@@ -419,6 +491,18 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 				return getReverseDependencies();
 			case UML2Package.REQUIREMENTS_FEATURE__REVERSE_GENERALIZATIONS:
 				return getReverseGeneralizations();
+			case UML2Package.REQUIREMENTS_FEATURE__TEMPLATE_PARAMETER:
+				if (resolve) return getTemplateParameter();
+				return basicGetTemplateParameter();
+			case UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER:
+				return getOwningParameter();
+			case UML2Package.REQUIREMENTS_FEATURE__PACKAGEABLE_ELEMENT_VISIBILITY:
+				return getPackageableElement_visibility();
+			case UML2Package.REQUIREMENTS_FEATURE__PACKAGE:
+				if (resolve) return getPackage();
+				return basicGetPackage();
+			case UML2Package.REQUIREMENTS_FEATURE__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES:
 				return getSubfeatures();
 			case UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES:
@@ -493,6 +577,18 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 				getReverseGeneralizations().clear();
 				getReverseGeneralizations().addAll((Collection)newValue);
 				return;
+			case UML2Package.REQUIREMENTS_FEATURE__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
+				return;
+			case UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER:
+				setOwningParameter((TemplateParameter)newValue);
+				return;
+			case UML2Package.REQUIREMENTS_FEATURE__PACKAGEABLE_ELEMENT_VISIBILITY:
+				setPackageableElement_visibility((VisibilityKind)newValue);
+				return;
+			case UML2Package.REQUIREMENTS_FEATURE__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES:
 				getSubfeatures().clear();
 				getSubfeatures().addAll((Collection)newValue);
@@ -564,6 +660,18 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 			case UML2Package.REQUIREMENTS_FEATURE__REVERSE_GENERALIZATIONS:
 				getReverseGeneralizations().clear();
 				return;
+			case UML2Package.REQUIREMENTS_FEATURE__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
+				return;
+			case UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER:
+				setOwningParameter((TemplateParameter)null);
+				return;
+			case UML2Package.REQUIREMENTS_FEATURE__PACKAGEABLE_ELEMENT_VISIBILITY:
+				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
+				return;
+			case UML2Package.REQUIREMENTS_FEATURE__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES:
 				getSubfeatures().clear();
 				return;
@@ -611,7 +719,7 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 			case UML2Package.REQUIREMENTS_FEATURE__QUALIFIED_NAME:
 				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
 			case UML2Package.REQUIREMENTS_FEATURE__VISIBILITY:
-				return visibility != VISIBILITY_EDEFAULT;
+				return getVisibility() != VISIBILITY_EDEFAULT;
 			case UML2Package.REQUIREMENTS_FEATURE__CLIENT_DEPENDENCY:
 				return clientDependency != null && !clientDependency.isEmpty();
 			case UML2Package.REQUIREMENTS_FEATURE__NAME_EXPRESSION:
@@ -622,6 +730,16 @@ public class RequirementsFeatureImpl extends NamedElementImpl implements Require
 				return reverseDependencies != null && !reverseDependencies.isEmpty();
 			case UML2Package.REQUIREMENTS_FEATURE__REVERSE_GENERALIZATIONS:
 				return reverseGeneralizations != null && !reverseGeneralizations.isEmpty();
+			case UML2Package.REQUIREMENTS_FEATURE__TEMPLATE_PARAMETER:
+				return templateParameter != null;
+			case UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER:
+				return getOwningParameter() != null;
+			case UML2Package.REQUIREMENTS_FEATURE__PACKAGEABLE_ELEMENT_VISIBILITY:
+				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
+			case UML2Package.REQUIREMENTS_FEATURE__PACKAGE:
+				return basicGetPackage() != null;
+			case UML2Package.REQUIREMENTS_FEATURE__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES:
 				return subfeatures != null && !subfeatures.isEmpty();
 			case UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES:

@@ -325,8 +325,153 @@ public class InterfaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createProperty()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createExtensionEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getInterface_OwnedOperation(),
 				 UML2Factory.eINSTANCE.createOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_OwnedOperation(),
+				 UML2Factory.eINSTANCE.createOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createEnumeration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createDataType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createPrimitiveType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createStereotype()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createExtension()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createActivity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createAssociationClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createInformationItem()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createArtifact()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createActor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createCollaboration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createSignal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createInteraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createComponent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createDevice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createExecutionEnvironment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createCommunicationPath()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createProtocolStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_NestedClassifier(),
+				 UML2Factory.eINSTANCE.createDeploymentSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -460,8 +605,23 @@ public class InterfaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_OwnedReception(),
+				 UML2Factory.eINSTANCE.createReception()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getInterface_Protocol(),
 				 UML2Factory.eINSTANCE.createProtocolStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_Protocol(),
+				 UML2Factory.eINSTANCE.createProtocolStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_DeltaDeletedOperations(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -475,8 +635,23 @@ public class InterfaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_DeltaReplacedOperations(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getInterface_DeltaDeletedAttributes(),
 				 UML2Factory.eINSTANCE.createDeltaDeletedAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_DeltaDeletedAttributes(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInterface_DeltaReplacedAttributes(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter

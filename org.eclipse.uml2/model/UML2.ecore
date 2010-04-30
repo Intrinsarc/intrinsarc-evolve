@@ -603,6 +603,7 @@
         <details key="documentation" value="References the owning package of a package. Subsets NamedElement::namespace."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRetired" eType="#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//StructuralFeature #//ConnectableElement #//DeploymentTarget">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1234,7 +1235,6 @@
         <details key="documentation" value="References the collaboration occurrences owned by the classifier. (Subsets Element. ownedElement.)"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRetired" eType="#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//RedefinableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -4913,7 +4913,7 @@
     <eLiterals name="one_of" value="2"/>
     <eLiterals name="one_or_more" value="3"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RequirementsFeature" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="RequirementsFeature" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subfeatures" upperBound="-1"
         eType="#//RequirementsFeatureLink" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deltaReplacedSubfeatures"

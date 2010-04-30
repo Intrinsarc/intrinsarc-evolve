@@ -311,6 +311,31 @@ public class ActionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UML2Package.eINSTANCE.getAction_LocalPrecondition(),
+				 UML2Factory.eINSTANCE.createTimeConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPrecondition(),
+				 UML2Factory.eINSTANCE.createIntervalConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPrecondition(),
+				 UML2Factory.eINSTANCE.createDurationConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPrecondition(),
+				 UML2Factory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPrecondition(),
+				 UML2Factory.eINSTANCE.createInteractionConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPrecondition(),
 				 UML2Factory.eINSTANCE.createIntervalConstraint()));
 
 		newChildDescriptors.add
@@ -321,6 +346,31 @@ public class ActionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UML2Package.eINSTANCE.getAction_LocalPrecondition(),
+				 UML2Factory.eINSTANCE.createDurationConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPostcondition(),
+				 UML2Factory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPostcondition(),
+				 UML2Factory.eINSTANCE.createInteractionConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPostcondition(),
+				 UML2Factory.eINSTANCE.createTimeConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPostcondition(),
+				 UML2Factory.eINSTANCE.createIntervalConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAction_LocalPostcondition(),
 				 UML2Factory.eINSTANCE.createDurationConstraint()));
 
 		newChildDescriptors.add

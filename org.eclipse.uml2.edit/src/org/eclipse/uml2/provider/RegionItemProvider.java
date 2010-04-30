@@ -341,6 +341,36 @@ public class RegionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getRegion_Subvertex(),
+				 UML2Factory.eINSTANCE.createPseudostate()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getRegion_Subvertex(),
+				 UML2Factory.eINSTANCE.createState()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getRegion_Subvertex(),
+				 UML2Factory.eINSTANCE.createConnectionPointReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getRegion_Subvertex(),
+				 UML2Factory.eINSTANCE.createFinalState()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getRegion_Transition(),
+				 UML2Factory.eINSTANCE.createTransition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getRegion_Transition(),
+				 UML2Factory.eINSTANCE.createProtocolTransition()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getRegion_Transition(),
 				 UML2Factory.eINSTANCE.createTransition()));
 

@@ -14,12 +14,15 @@ package org.eclipse.uml2.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.AggregationKind;
 import org.eclipse.uml2.Association;
@@ -40,6 +43,7 @@ import org.eclipse.uml2.internal.operation.TypeOperations;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.uml2.impl.TypeImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.uml2.impl.TypeImpl#isRetired <em>Is Retired</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,6 +56,26 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) IBM Corporation and others."; //$NON-NLS-1$
+
+	/**
+	 * The default value of the '{@link #isRetired() <em>Is Retired</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRetired()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_RETIRED_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isRetired() <em>Is Retired</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRetired()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_RETIRED_EFLAG = 1 << 8;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,6 +123,35 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	public org.eclipse.uml2.Package basicGetPackage() {
 		return org.eclipse.uml2.Package.class.isInstance(eContainer) ? (org.eclipse.uml2.Package) eContainer : null;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isRetired() {
+		return (eFlags & IS_RETIRED_EFLAG) != 0;
+	}
+
+	
+	
+
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsRetired(boolean newIsRetired) {
+		boolean oldIsRetired = (eFlags & IS_RETIRED_EFLAG) != 0;
+		if (newIsRetired) eFlags |= IS_RETIRED_EFLAG; else eFlags &= ~IS_RETIRED_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UML2Package.TYPE__IS_RETIRED, oldIsRetired, newIsRetired));
+
+	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -266,6 +319,8 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 			case UML2Package.TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.TYPE__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -343,6 +398,9 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 			case UML2Package.TYPE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.TYPE__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -411,6 +469,9 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 			case UML2Package.TYPE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.TYPE__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -468,10 +529,11 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.TYPE__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.TYPE__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
-
 
 	public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
@@ -482,6 +544,22 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 		}
 		return eIsSetGen(eFeature);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (isRetired: "); //$NON-NLS-1$
+		result.append((eFlags & IS_RETIRED_EFLAG) != 0);
+		result.append(')');
+		return result.toString();
+	}
+
 
 	// <!-- begin-custom-operations -->
 

@@ -463,6 +463,8 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 			case UML2Package.PROTOCOL_STATE_MACHINE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.PROTOCOL_STATE_MACHINE__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.PROTOCOL_STATE_MACHINE__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.PROTOCOL_STATE_MACHINE__IS_LEAF:
@@ -493,8 +495,6 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 				return getRepresentation();
 			case UML2Package.PROTOCOL_STATE_MACHINE__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.PROTOCOL_STATE_MACHINE__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.PROTOCOL_STATE_MACHINE__OWNED_BEHAVIOR:
 				return getOwnedBehaviors();
 			case UML2Package.PROTOCOL_STATE_MACHINE__CLASSIFIER_BEHAVIOR:
@@ -670,6 +670,9 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 			case UML2Package.PROTOCOL_STATE_MACHINE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.PROTOCOL_STATE_MACHINE__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.PROTOCOL_STATE_MACHINE__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -706,9 +709,6 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 			case UML2Package.PROTOCOL_STATE_MACHINE__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.PROTOCOL_STATE_MACHINE__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.PROTOCOL_STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -923,6 +923,9 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 			case UML2Package.PROTOCOL_STATE_MACHINE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.PROTOCOL_STATE_MACHINE__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.PROTOCOL_STATE_MACHINE__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -952,9 +955,6 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 				return;
 			case UML2Package.PROTOCOL_STATE_MACHINE__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.PROTOCOL_STATE_MACHINE__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.PROTOCOL_STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -1131,6 +1131,8 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.PROTOCOL_STATE_MACHINE__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.PROTOCOL_STATE_MACHINE__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.PROTOCOL_STATE_MACHINE__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.PROTOCOL_STATE_MACHINE__IS_LEAF:
@@ -1161,8 +1163,6 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 				return representation != null;
 			case UML2Package.PROTOCOL_STATE_MACHINE__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.PROTOCOL_STATE_MACHINE__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.PROTOCOL_STATE_MACHINE__OWNED_BEHAVIOR:
 				return !getOwnedBehaviors().isEmpty();
 			case UML2Package.PROTOCOL_STATE_MACHINE__CLASSIFIER_BEHAVIOR:

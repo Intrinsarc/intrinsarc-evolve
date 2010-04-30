@@ -236,6 +236,16 @@ public class CombinedFragmentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getCombinedFragment_Operand(),
+				 UML2Factory.eINSTANCE.createInteractionOperand()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getCombinedFragment_CfragmentGate(),
+				 UML2Factory.eINSTANCE.createGate()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getCombinedFragment_CfragmentGate(),
 				 UML2Factory.eINSTANCE.createGate()));
 	}

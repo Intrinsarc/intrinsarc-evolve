@@ -300,6 +300,31 @@ public class BehavioredClassifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedBehavior(),
+				 UML2Factory.eINSTANCE.createActivity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedBehavior(),
+				 UML2Factory.eINSTANCE.createInteraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedBehavior(),
+				 UML2Factory.eINSTANCE.createStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedBehavior(),
+				 UML2Factory.eINSTANCE.createProtocolStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_Implementation(),
+				 UML2Factory.eINSTANCE.createImplementation()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getBehavioredClassifier_Implementation(),
 				 UML2Factory.eINSTANCE.createImplementation()));
 
@@ -327,6 +352,41 @@ public class BehavioredClassifierItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedTrigger(),
 				 UML2Factory.eINSTANCE.createAnyTrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedTrigger(),
+				 UML2Factory.eINSTANCE.createCallTrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedTrigger(),
+				 UML2Factory.eINSTANCE.createChangeTrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedTrigger(),
+				 UML2Factory.eINSTANCE.createSignalTrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedTrigger(),
+				 UML2Factory.eINSTANCE.createTimeTrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedTrigger(),
+				 UML2Factory.eINSTANCE.createAnyTrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedStateMachine(),
+				 UML2Factory.eINSTANCE.createStateMachine()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioredClassifier_OwnedStateMachine(),
+				 UML2Factory.eINSTANCE.createProtocolStateMachine()));
 
 		newChildDescriptors.add
 			(createChildParameter

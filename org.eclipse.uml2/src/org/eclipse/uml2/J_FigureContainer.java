@@ -12,6 +12,8 @@ import java.util.*;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>JFigure Container</b></em>'.
@@ -57,6 +59,17 @@ public interface J_FigureContainer extends Element{
 	/**
 	 * Creates a {@link org.eclipse.uml2.J_Figure} and appends it to the '<em><b>Figures</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.J_Figure} to create.
+	 * @return The new {@link org.eclipse.uml2.J_Figure}.
+	 * @see #getFigures()
+	 * @generated
+	 */
+	J_Figure createFigures(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.J_Figure} and appends it to the '<em><b>Figures</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.J_Figure}.
 	 * @see #getFigures()
@@ -96,6 +109,17 @@ public interface J_FigureContainer extends Element{
    */
   ArrayList getProperties();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.J_Property} and appends it to the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.J_Property} to create.
+	 * @return The new {@link org.eclipse.uml2.J_Property}.
+	 * @see #getProperties()
+	 * @generated
+	 */
+	J_Property createProperties(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.J_Property} and appends it to the '<em><b>Properties</b></em>' containment reference list.

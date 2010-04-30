@@ -40,6 +40,7 @@ import org.eclipse.uml2.Generalization;
 import org.eclipse.uml2.Implementation;
 import org.eclipse.uml2.NamedElement;
 import org.eclipse.uml2.Namespace;
+import org.eclipse.uml2.Permission;
 import org.eclipse.uml2.StringExpression;
 import org.eclipse.uml2.TemplateSignature;
 import org.eclipse.uml2.UML2Factory;
@@ -517,7 +518,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * @generated
 	 */
 	public Dependency createOwnedAnonymousDependencies() {
-		Dependency newOwnedAnonymousDependencies = UML2Factory.eINSTANCE.createDependency();
+		Permission newOwnedAnonymousDependencies = UML2Factory.eINSTANCE.createPermission();
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, 0, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES, null, newOwnedAnonymousDependencies));
 		}

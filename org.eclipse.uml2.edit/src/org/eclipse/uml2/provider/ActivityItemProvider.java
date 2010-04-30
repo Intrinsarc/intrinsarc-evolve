@@ -388,6 +388,16 @@ public class ActivityItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Edge(),
+				 UML2Factory.eINSTANCE.createControlFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Edge(),
+				 UML2Factory.eINSTANCE.createObjectFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getActivity_Group(),
 				 UML2Factory.eINSTANCE.createStructuredActivityNode()));
 
@@ -415,6 +425,306 @@ public class ActivityItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getActivity_Group(),
 				 UML2Factory.eINSTANCE.createInterruptibleActivityRegion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Group(),
+				 UML2Factory.eINSTANCE.createStructuredActivityNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Group(),
+				 UML2Factory.eINSTANCE.createConditionalNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Group(),
+				 UML2Factory.eINSTANCE.createLoopNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Group(),
+				 UML2Factory.eINSTANCE.createActivityPartition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Group(),
+				 UML2Factory.eINSTANCE.createExpansionRegion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Group(),
+				 UML2Factory.eINSTANCE.createInterruptibleActivityRegion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createInitialNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createActivityFinalNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createDecisionNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createMergeNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createActivityParameterNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createStructuredActivityNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createConditionalNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createLoopNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createForkNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createJoinNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createFlowFinalNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createCentralBufferNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createExpansionNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createExpansionRegion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createCreateObjectAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createDestroyObjectAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createTestIdentityAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReadSelfAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReadStructuralFeatureAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createClearStructuralFeatureAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createRemoveStructuralFeatureValueAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createAddStructuralFeatureValueAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReadLinkAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createCreateLinkAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createDestroyLinkAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createClearAssociationAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReadVariableAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createClearVariableAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createAddVariableValueAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createRemoveVariableValueAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createApplyFunctionAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createSendSignalAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createBroadcastSignalAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createSendObjectAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createCallOperationAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createCallBehaviorAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createTimeObservationAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createDurationObservationAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createDataStoreNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReadExtentAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReclassifyObjectAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReadIsClassifiedObjectAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createStartOwnedBehaviorAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReadLinkObjectEndAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReadLinkObjectEndQualifierAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createCreateLinkObjectAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createAcceptEventAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createAcceptCallAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createReplyAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivity_Node(),
+				 UML2Factory.eINSTANCE.createRaiseExceptionAction()));
 
 		newChildDescriptors.add
 			(createChildParameter

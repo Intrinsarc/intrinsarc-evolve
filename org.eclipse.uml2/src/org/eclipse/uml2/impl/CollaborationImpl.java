@@ -594,6 +594,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedAttribute createDeltaDeletedAttributes(EClass eClass) {
+		DeltaDeletedAttribute newDeltaDeletedAttributes = (DeltaDeletedAttribute) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES, null, newDeltaDeletedAttributes));
+		}
+		settable_getDeltaDeletedAttributes().add(newDeltaDeletedAttributes);
+		return newDeltaDeletedAttributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedAttribute createDeltaDeletedAttributes() {
 		DeltaDeletedAttribute newDeltaDeletedAttributes = UML2Factory.eINSTANCE.createDeltaDeletedAttribute();
 		if (eNotificationRequired()) {
@@ -655,6 +669,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedAttribute createDeltaReplacedAttributes(EClass eClass) {
+		DeltaReplacedAttribute newDeltaReplacedAttributes = (DeltaReplacedAttribute) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES, null, newDeltaReplacedAttributes));
+		}
+		settable_getDeltaReplacedAttributes().add(newDeltaReplacedAttributes);
+		return newDeltaReplacedAttributes;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -728,6 +756,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedPort createDeltaDeletedPorts(EClass eClass) {
+		DeltaDeletedPort newDeltaDeletedPorts = (DeltaDeletedPort) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_DELETED_PORTS, null, newDeltaDeletedPorts));
+		}
+		settable_getDeltaDeletedPorts().add(newDeltaDeletedPorts);
+		return newDeltaDeletedPorts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedPort createDeltaDeletedPorts() {
 		DeltaDeletedPort newDeltaDeletedPorts = UML2Factory.eINSTANCE.createDeltaDeletedPort();
 		if (eNotificationRequired()) {
@@ -789,6 +831,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedPort createDeltaReplacedPorts(EClass eClass) {
+		DeltaReplacedPort newDeltaReplacedPorts = (DeltaReplacedPort) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS, null, newDeltaReplacedPorts));
+		}
+		settable_getDeltaReplacedPorts().add(newDeltaReplacedPorts);
+		return newDeltaReplacedPorts;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -862,6 +918,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedConnector createDeltaDeletedConnectors(EClass eClass) {
+		DeltaDeletedConnector newDeltaDeletedConnectors = (DeltaDeletedConnector) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS, null, newDeltaDeletedConnectors));
+		}
+		settable_getDeltaDeletedConnectors().add(newDeltaDeletedConnectors);
+		return newDeltaDeletedConnectors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedConnector createDeltaDeletedConnectors() {
 		DeltaDeletedConnector newDeltaDeletedConnectors = UML2Factory.eINSTANCE.createDeltaDeletedConnector();
 		if (eNotificationRequired()) {
@@ -923,6 +993,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedConnector createDeltaReplacedConnectors(EClass eClass) {
+		DeltaReplacedConnector newDeltaReplacedConnectors = (DeltaReplacedConnector) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS, null, newDeltaReplacedConnectors));
+		}
+		settable_getDeltaReplacedConnectors().add(newDeltaReplacedConnectors);
+		return newDeltaReplacedConnectors;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -996,6 +1080,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedOperation createDeltaDeletedOperations(EClass eClass) {
+		DeltaDeletedOperation newDeltaDeletedOperations = (DeltaDeletedOperation) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS, null, newDeltaDeletedOperations));
+		}
+		settable_getDeltaDeletedOperations().add(newDeltaDeletedOperations);
+		return newDeltaDeletedOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedOperation createDeltaDeletedOperations() {
 		DeltaDeletedOperation newDeltaDeletedOperations = UML2Factory.eINSTANCE.createDeltaDeletedOperation();
 		if (eNotificationRequired()) {
@@ -1057,6 +1155,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedOperation createDeltaReplacedOperations(EClass eClass) {
+		DeltaReplacedOperation newDeltaReplacedOperations = (DeltaReplacedOperation) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS, null, newDeltaReplacedOperations));
+		}
+		settable_getDeltaReplacedOperations().add(newDeltaReplacedOperations);
+		return newDeltaReplacedOperations;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1130,6 +1242,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedTrace createDeltaDeletedTraces(EClass eClass) {
+		DeltaDeletedTrace newDeltaDeletedTraces = (DeltaDeletedTrace) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_DELETED_TRACES, null, newDeltaDeletedTraces));
+		}
+		settable_getDeltaDeletedTraces().add(newDeltaDeletedTraces);
+		return newDeltaDeletedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedTrace createDeltaDeletedTraces() {
 		DeltaDeletedTrace newDeltaDeletedTraces = UML2Factory.eINSTANCE.createDeltaDeletedTrace();
 		if (eNotificationRequired()) {
@@ -1191,6 +1317,20 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedTrace createDeltaReplacedTraces(EClass eClass) {
+		DeltaReplacedTrace newDeltaReplacedTraces = (DeltaReplacedTrace) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES, null, newDeltaReplacedTraces));
+		}
+		settable_getDeltaReplacedTraces().add(newDeltaReplacedTraces);
+		return newDeltaReplacedTraces;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1553,6 +1693,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 			case UML2Package.COLLABORATION__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.COLLABORATION__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.COLLABORATION__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.COLLABORATION__IS_LEAF:
@@ -1583,8 +1725,6 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				return getRepresentation();
 			case UML2Package.COLLABORATION__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.COLLABORATION__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.COLLABORATION__OWNED_BEHAVIOR:
 				return getOwnedBehaviors();
 			case UML2Package.COLLABORATION__CLASSIFIER_BEHAVIOR:
@@ -1714,6 +1854,9 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 			case UML2Package.COLLABORATION__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.COLLABORATION__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.COLLABORATION__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -1750,9 +1893,6 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 			case UML2Package.COLLABORATION__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.COLLABORATION__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.COLLABORATION__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -1902,6 +2042,9 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 			case UML2Package.COLLABORATION__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.COLLABORATION__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.COLLABORATION__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -1931,9 +2074,6 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				return;
 			case UML2Package.COLLABORATION__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.COLLABORATION__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.COLLABORATION__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -2056,6 +2196,8 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.COLLABORATION__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.COLLABORATION__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.COLLABORATION__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.COLLABORATION__IS_LEAF:
@@ -2086,8 +2228,6 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 				return representation != null;
 			case UML2Package.COLLABORATION__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.COLLABORATION__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.COLLABORATION__OWNED_BEHAVIOR:
 				return !getOwnedBehaviors().isEmpty();
 			case UML2Package.COLLABORATION__CLASSIFIER_BEHAVIOR:

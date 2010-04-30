@@ -221,6 +221,26 @@ public class DataTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getDataType_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createProperty()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDataType_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createExtensionEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDataType_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDataType_OwnedOperation(),
+				 UML2Factory.eINSTANCE.createOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getDataType_OwnedOperation(),
 				 UML2Factory.eINSTANCE.createOperation()));
 	}

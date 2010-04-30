@@ -10,6 +10,8 @@ package org.eclipse.uml2;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Requirements Feature</b></em>'.
@@ -28,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface RequirementsFeature extends NamedElement{
+public interface RequirementsFeature extends Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +54,17 @@ public interface RequirementsFeature extends NamedElement{
 	 */
 	EList getSubfeatures();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.RequirementsFeatureLink} and appends it to the '<em><b>Subfeatures</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.RequirementsFeatureLink} to create.
+	 * @return The new {@link org.eclipse.uml2.RequirementsFeatureLink}.
+	 * @see #getSubfeatures()
+	 * @generated
+	 */
+	RequirementsFeatureLink createSubfeatures(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.RequirementsFeatureLink} and appends it to the '<em><b>Subfeatures</b></em>' containment reference list.
@@ -100,6 +113,17 @@ public interface RequirementsFeature extends NamedElement{
 	 * Creates a {@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink} and appends it to the '<em><b>Delta Replaced Subfeatures</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink}.
+	 * @see #getDeltaReplacedSubfeatures()
+	 * @generated
+	 */
+	DeltaReplacedRequirementsFeatureLink createDeltaReplacedSubfeatures(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink} and appends it to the '<em><b>Delta Replaced Subfeatures</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink}.
 	 * @see #getDeltaReplacedSubfeatures()
 	 * @generated
@@ -138,6 +162,17 @@ public interface RequirementsFeature extends NamedElement{
 	 */
 	EList getDeltaDeletedSubfeatures();
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink} and appends it to the '<em><b>Delta Deleted Subfeatures</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink} to create.
+	 * @return The new {@link org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink}.
+	 * @see #getDeltaDeletedSubfeatures()
+	 * @generated
+	 */
+	DeltaDeletedRequirementsFeatureLink createDeltaDeletedSubfeatures(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink} and appends it to the '<em><b>Delta Deleted Subfeatures</b></em>' containment reference list.

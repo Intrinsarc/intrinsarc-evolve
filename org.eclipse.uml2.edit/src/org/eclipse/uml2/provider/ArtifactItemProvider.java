@@ -303,6 +303,21 @@ public class ArtifactItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getArtifact_NestedArtifact(),
+				 UML2Factory.eINSTANCE.createArtifact()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getArtifact_NestedArtifact(),
+				 UML2Factory.eINSTANCE.createDeploymentSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getArtifact_Manifestation(),
+				 UML2Factory.eINSTANCE.createManifestation()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getArtifact_Manifestation(),
 				 UML2Factory.eINSTANCE.createManifestation()));
 
@@ -310,6 +325,26 @@ public class ArtifactItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getArtifact_OwnedOperation(),
 				 UML2Factory.eINSTANCE.createOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getArtifact_OwnedOperation(),
+				 UML2Factory.eINSTANCE.createOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getArtifact_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createProperty()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getArtifact_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createExtensionEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getArtifact_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createPort()));
 
 		newChildDescriptors.add
 			(createChildParameter

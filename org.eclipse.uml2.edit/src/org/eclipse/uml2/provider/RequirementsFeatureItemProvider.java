@@ -37,7 +37,7 @@ import org.eclipse.uml2.UML2Package;
  * @generated
  */
 public class RequirementsFeatureItemProvider
-	extends NamedElementItemProvider
+	extends TypeItemProvider
 	implements	
 		IEditingDomainItemProvider,	
 		IStructuredItemContentProvider,	
@@ -165,8 +165,23 @@ public class RequirementsFeatureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getRequirementsFeature_Subfeatures(),
+				 UML2Factory.eINSTANCE.createRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getRequirementsFeature_DeltaReplacedSubfeatures(),
 				 UML2Factory.eINSTANCE.createDeltaReplacedRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getRequirementsFeature_DeltaReplacedSubfeatures(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedRequirementsFeatureLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getRequirementsFeature_DeltaDeletedSubfeatures(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedRequirementsFeatureLink()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -349,6 +349,31 @@ public class TransitionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UML2Package.eINSTANCE.getTransition_Guard(),
+				 UML2Factory.eINSTANCE.createTimeConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTransition_Guard(),
+				 UML2Factory.eINSTANCE.createIntervalConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTransition_Guard(),
+				 UML2Factory.eINSTANCE.createDurationConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTransition_Guard(),
+				 UML2Factory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTransition_Guard(),
+				 UML2Factory.eINSTANCE.createInteractionConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTransition_Guard(),
 				 UML2Factory.eINSTANCE.createIntervalConstraint()));
 
 		newChildDescriptors.add
@@ -360,6 +385,11 @@ public class TransitionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getTransition_Guard(),
 				 UML2Factory.eINSTANCE.createDurationConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTransition_Effect(),
+				 UML2Factory.eINSTANCE.createActivity()));
 
 		newChildDescriptors.add
 			(createChildParameter

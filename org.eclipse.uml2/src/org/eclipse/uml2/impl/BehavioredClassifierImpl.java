@@ -809,6 +809,8 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 			case UML2Package.BEHAVIORED_CLASSIFIER__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.BEHAVIORED_CLASSIFIER__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.BEHAVIORED_CLASSIFIER__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.BEHAVIORED_CLASSIFIER__IS_LEAF:
@@ -839,8 +841,6 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 				return getRepresentation();
 			case UML2Package.BEHAVIORED_CLASSIFIER__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.BEHAVIORED_CLASSIFIER__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.BEHAVIORED_CLASSIFIER__OWNED_BEHAVIOR:
 				return getOwnedBehaviors();
 			case UML2Package.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR:
@@ -940,6 +940,9 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 			case UML2Package.BEHAVIORED_CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.BEHAVIORED_CLASSIFIER__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.BEHAVIORED_CLASSIFIER__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -976,9 +979,6 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 			case UML2Package.BEHAVIORED_CLASSIFIER__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.BEHAVIORED_CLASSIFIER__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.BEHAVIORED_CLASSIFIER__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -1076,6 +1076,9 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 			case UML2Package.BEHAVIORED_CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.BEHAVIORED_CLASSIFIER__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.BEHAVIORED_CLASSIFIER__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -1105,9 +1108,6 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 				return;
 			case UML2Package.BEHAVIORED_CLASSIFIER__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.BEHAVIORED_CLASSIFIER__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.BEHAVIORED_CLASSIFIER__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -1191,6 +1191,8 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.BEHAVIORED_CLASSIFIER__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.BEHAVIORED_CLASSIFIER__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.BEHAVIORED_CLASSIFIER__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.BEHAVIORED_CLASSIFIER__IS_LEAF:
@@ -1221,8 +1223,6 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 				return representation != null;
 			case UML2Package.BEHAVIORED_CLASSIFIER__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.BEHAVIORED_CLASSIFIER__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.BEHAVIORED_CLASSIFIER__OWNED_BEHAVIOR:
 				return !getOwnedBehaviors().isEmpty();
 			case UML2Package.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR:

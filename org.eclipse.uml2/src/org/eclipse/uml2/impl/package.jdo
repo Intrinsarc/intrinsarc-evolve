@@ -1029,7 +1029,7 @@
 		<field name="toEClass" persistence-modifier="persistent"  />
 		<field name="feature" persistence-modifier="persistent"  />
 	</class>
-	<class name="org.eclipse.uml2.impl.RequirementsFeatureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.NamedElementImpl" >
+	<class name="org.eclipse.uml2.impl.RequirementsFeatureImpl" persistence-capable-superclass="org.eclipse.uml2.impl.TypeImpl" >
 		<field name="subfeatures" persistence-modifier="persistent"  />
 		<field name="deltaReplacedSubfeatures" persistence-modifier="persistent"  />
 		<field name="deltaDeletedSubfeatures" persistence-modifier="persistent"  />

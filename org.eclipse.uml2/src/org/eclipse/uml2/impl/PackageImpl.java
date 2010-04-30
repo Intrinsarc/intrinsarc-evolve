@@ -882,6 +882,20 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public J_DiagramHolder createJ_diagramHolder(EClass eClass) {
+		J_DiagramHolder newJ_diagramHolder = (J_DiagramHolder) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.PACKAGE__JDIAGRAM_HOLDER, null, newJ_diagramHolder));
+		}
+		setJ_diagramHolder(newJ_diagramHolder);
+		return newJ_diagramHolder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public J_DiagramHolder createJ_diagramHolder() {
 		J_DiagramHolder newJ_diagramHolder = UML2Factory.eINSTANCE.createJ_DiagramHolder();
 		if (eNotificationRequired()) {

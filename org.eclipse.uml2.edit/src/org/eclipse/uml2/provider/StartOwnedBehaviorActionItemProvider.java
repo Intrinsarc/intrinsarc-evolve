@@ -174,6 +174,16 @@ public class StartOwnedBehaviorActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getStartOwnedBehaviorAction_Object(),
 				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStartOwnedBehaviorAction_Object(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStartOwnedBehaviorAction_Object(),
+				 UML2Factory.eINSTANCE.createValuePin()));
 	}
 
 	/**

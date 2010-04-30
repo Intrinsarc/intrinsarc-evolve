@@ -19,7 +19,7 @@ import org.eclipse.uml2.UML2Factory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementsFeatureTest extends NamedElementTest {
+public class RequirementsFeatureTest extends TypeTest {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
