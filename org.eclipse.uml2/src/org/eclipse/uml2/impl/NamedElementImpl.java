@@ -515,10 +515,10 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Dependency createOwnedAnonymousDependencies() {
-		Permission newOwnedAnonymousDependencies = UML2Factory.eINSTANCE.createPermission();
+		Dependency newOwnedAnonymousDependencies = UML2Factory.eINSTANCE.createDependency();
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, 0, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES, null, newOwnedAnonymousDependencies));
 		}
