@@ -50,7 +50,12 @@ public abstract class DEConstituent extends DEObject
     return null;
   }
   
-  public DEAppliedStereotype asAppliedStereotype()
+	public DERequirementsFeatureLink asRequirementsFeatureLink()
+	{
+		return null;
+	}
+
+	public DEAppliedStereotype asAppliedStereotype()
   {
     return null;
   }
@@ -59,6 +64,11 @@ public abstract class DEConstituent extends DEObject
   {
   	return null;
   }
+
+	public DETrace asTrace()
+	{
+		return null;
+	}
 
 	public boolean isSynthetic()
 	{

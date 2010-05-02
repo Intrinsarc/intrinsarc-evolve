@@ -258,9 +258,46 @@ public class UMLNodeRendererGem implements Gem
     addIcon(null, "SimpleFactory,", null, ShortCutType.NONE, "factory.png", null);
     // extras for the non-flattened backbone view
     addIcon(null, "AppliedStereotype", null, ShortCutType.NONE, "tree-stereotype.gif", null);
+
+    // icons for requirements features
+    addIcon(RequirementsFeatureImpl.class, null, null, null, "feature.png", null);
+    
+    // add icons for feature links
+    addSubfeatureIcons("Mandatory subfeature", RequirementsLinkKind.MANDATORY_LITERAL, "mandatory-subfeature.png");
+    addSubfeatureIcons("Optional subfeature", RequirementsLinkKind.OPTIONAL_LITERAL, "optional-subfeature.png");
+    addSubfeatureIcons("One-or-more subfeature", RequirementsLinkKind.ONE_OR_MORE_LITERAL, "one-or-more-subfeature.png");
+    addSubfeatureIcons("One-of subfeature", RequirementsLinkKind.ONE_OF_LITERAL, "one-of-subfeature.png");
   }
   
-  private UMLIconDeterminer determineDirection(final ParameterDirectionKind direction)
+  private void addSubfeatureIcons(String name, final RequirementsLinkKind kind, String icon)
+	{
+    addIcon(RequirementsFeatureLinkImpl.class, name, null, null, icon,
+        new UMLIconDeterminer()
+        {
+          public boolean isRelevant(Element element)
+          {
+            return ((RequirementsFeatureLink) element).getKind().equals(kind);
+          }          
+        });
+      addIcon(DeltaDeletedRequirementsFeatureLinkImpl.class, null, null, null, icon, "delta-deleted.png",
+        new UMLIconDeterminer()
+        {
+          public boolean isRelevant(Element element)
+          {
+            return ((RequirementsFeatureLink) ((DeltaDeletedRequirementsFeatureLink) element).getDeleted()).getKind().equals(kind);
+          }          
+        });
+      addIcon(DeltaReplacedRequirementsFeatureLinkImpl.class, null, null, null, icon, "delta-replaced.png",
+        new UMLIconDeterminer()
+        {
+          public boolean isRelevant(Element element)
+          {
+            return ((RequirementsFeatureLink) ((DeltaReplacedRequirementsFeatureLink) element).getReplaced()).getKind().equals(kind);
+          }          
+        });
+	}
+
+	private UMLIconDeterminer determineDirection(final ParameterDirectionKind direction)
   {
     return new UMLIconDeterminer()
     {

@@ -1016,20 +1016,20 @@ public class CommonRepositoryFunctions
     return false;
   }
 
-  public static Collection<Classifier> translateFromSubstitutingToSubstituted(Collection<Classifier> elements)
+  public static Collection<NamedElement> translateFromSubstitutingToSubstituted(Collection<NamedElement> elements)
   {
-    List<Classifier> translated = new ArrayList<Classifier>();
-    for (Classifier element : elements)
+    List<NamedElement> translated = new ArrayList<NamedElement>();
+    for (NamedElement element : elements)
     {
-      Classifier substitution = UMLTypes.extractSubstitutedClassifier(element); 
+      NamedElement substitution = UMLTypes.extractSubstitutedClassifier(element); 
       translated.add(substitution == null ? element : substitution);
     }
     return translated;
   }
 
-  public static Classifier translateFromSubstitutingToSubstituted(Classifier element)
+  public static NamedElement translateFromSubstitutingToSubstituted(NamedElement element)
   {
-    Classifier baseElement = UMLTypes.extractSubstitutedClassifier(element);
+    NamedElement baseElement = UMLTypes.extractSubstitutedClassifier(element);
     if (baseElement == null)
       return element;
     return baseElement;

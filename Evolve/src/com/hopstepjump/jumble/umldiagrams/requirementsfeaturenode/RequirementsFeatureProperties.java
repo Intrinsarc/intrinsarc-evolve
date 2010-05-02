@@ -7,46 +7,45 @@ import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.repositorybase.*;
 
-public class RequirementsFeatureElementProperties
+public class RequirementsFeatureProperties
 {
   private boolean atHome;
   private DEStratum perspective;
   private DEElement element;
   
-  public RequirementsFeatureElementProperties(FigureFacet figure)
+  public RequirementsFeatureProperties(FigureFacet figure)
   {
   	this(figure, (Element) figure.getSubject());
   }
   
-  public RequirementsFeatureElementProperties(FigureFacet figureToCalculatePerspectiveFrom, Element elem)
+  public RequirementsFeatureProperties(FigureFacet figureToCalculatePerspectiveFrom, Element elem)
   {
   	SubjectRepositoryFacet repos = GlobalSubjectRepository.repository;
-  	Package pkg = repos.findVisuallyOwningPackage(figureToCalculatePerspectiveFrom.getDiagram(), figureToCalculatePerspectiveFrom.getContainerFacet());
-  	Package stratum = repos.findVisuallyOwningStratum(figureToCalculatePerspectiveFrom.getDiagram(), figureToCalculatePerspectiveFrom.getContainerFacet());
+  	ContainerFacet container = container(figureToCalculatePerspectiveFrom);
+  	Package pkg = repos.findVisuallyOwningPackage(figureToCalculatePerspectiveFrom.getDiagram(), container);
+  	Package stratum = repos.findVisuallyOwningStratum(figureToCalculatePerspectiveFrom.getDiagram(), container);
   	if (stratum != repos.getTopLevelModel())
   		pkg = stratum;
   	
   	if (elem != null)
     {
-      Classifier classifier = null;
-      if (elem instanceof Property)
-      {
-        if (UMLTypes.extractInstanceOfPart(elem) != null)
-          classifier = (Classifier) ((Property) elem).undeleted_getType();
-      }
-      else
-        classifier = (Classifier) elem;
+      RequirementsFeature feature = (RequirementsFeature) elem;
       
-      if (classifier == null)
+      if (feature == null)
       	return;
       
       perspective = GlobalDeltaEngine.engine.locateObject(pkg).asStratum();
-      element = GlobalDeltaEngine.engine.locateObject(classifier).asElement();
+      element = GlobalDeltaEngine.engine.locateObject(feature).asElement();
       atHome = element.getHomeStratum() == perspective;
     }
   }
   
-  public boolean isAtHome()
+  private ContainerFacet container(FigureFacet f)
+	{
+  	return f.getContainedFacet().getContainer();
+	}
+
+	public boolean isAtHome()
   {
   	return atHome;
   }

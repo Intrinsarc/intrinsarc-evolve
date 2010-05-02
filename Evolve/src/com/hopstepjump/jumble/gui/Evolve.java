@@ -1,12 +1,12 @@
 package com.hopstepjump.jumble.gui;
 
 import java.io.*;
+import java.text.*;
 import java.util.*;
 
 import javax.swing.*;
 
 import org.eclipse.emf.common.util.*;
-import org.eclipse.emf.ecore.util.*;
 
 import com.hopstepjump.backbonegenerator.*;
 import com.hopstepjump.deltaengine.errorchecking.*;
@@ -16,7 +16,6 @@ import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.jumble.html.*;
-import com.hopstepjump.jumble.management.*;
 import com.hopstepjump.jumble.repositorybrowser.*;
 import com.hopstepjump.notifications.*;
 import com.hopstepjump.repository.*;

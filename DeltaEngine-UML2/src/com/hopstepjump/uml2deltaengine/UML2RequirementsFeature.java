@@ -6,21 +6,18 @@ import org.eclipse.uml2.*;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Interface")
-public class UML2Interface extends DEInterface
+public class UML2RequirementsFeature extends DERequirementsFeature
 {
-	private org.eclipse.uml2.Interface subject;
+	private org.eclipse.uml2.RequirementsFeature subject;
   private Set<String> replacedUuids;
 
   /** the deltas for the difference calculations */
   private boolean initialiseDeltas;
-  private Deltas attributes;
-  private Deltas operations;
+  private Deltas subfeatures;
 	private Deltas appliedStereotypes;
   
-  public UML2Interface(org.eclipse.uml2.Interface subject)
+  public UML2RequirementsFeature(org.eclipse.uml2.RequirementsFeature subject)
   {
     super();
     this.subject = subject;
@@ -114,8 +111,8 @@ public class UML2Interface extends DEInterface
     {
 	  	case DELTA_APPLIED_STEREOTYPE:
 	  		return appliedStereotypes;
-      case DELTA_OPERATION:
-        return operations;
+      case DELTA_REQUIREMENT_FEATURE_LINK:
+        return subfeatures;
     }
 
     return super.getDeltas(type);
@@ -124,28 +121,14 @@ public class UML2Interface extends DEInterface
   @SuppressWarnings("unchecked")
   private void initialiseDeltas()
   {
-    // handle attributes
-    attributes = UML2Component.createDeltas(
+    // handle subfeatures
+    subfeatures = UML2Component.createDeltas(
         this,
-        ConstituentTypeEnum.DELTA_ATTRIBUTE,
-        subject.undeleted_getOwnedAttributes(),
-        subject.undeleted_getDeltaDeletedAttributes(),
-        subject.undeleted_getDeltaReplacedAttributes(),
-        new DeltaElementAcceptor()
-        {
-          public boolean accept(Element element)
-          {
-            return UMLTypes.extractInstanceOfPart(element) == null;
-          }
-        });
-    // handle operations
-    operations = UML2Component.createDeltas(
-        this,
-        ConstituentTypeEnum.DELTA_OPERATION,
-        subject.undeleted_getOwnedOperations(),
-        subject.undeleted_getDeltaDeletedOperations(),
-        subject.undeleted_getDeltaReplacedOperations(),
-        null);    
+        ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK,
+        subject.undeleted_getSubfeatures(),
+        subject.undeleted_getDeltaDeletedSubfeatures(),
+        subject.undeleted_getDeltaReplacedSubfeatures(),
+        null);
     
     // handle stereotypes
   	Set<DeltaPair> stereos = new HashSet<DeltaPair>();
@@ -166,8 +149,7 @@ public class UML2Interface extends DEInterface
     if (replacedUuids == null)
     {
       replacedUuids = new LinkedHashSet<String>();
-      UML2Component.addReplacedUuids(replacedUuids, subject.undeleted_getDeltaReplacedAttributes());
-      UML2Component.addReplacedUuids(replacedUuids, subject.undeleted_getDeltaReplacedOperations());
+      UML2Component.addReplacedUuids(replacedUuids, subject.undeleted_getDeltaReplacedSubfeatures());
     }
     
     return replacedUuids;
@@ -184,10 +166,10 @@ public class UML2Interface extends DEInterface
 			if (dep.isResemblance())
 			{
 				// get the owner of the dependency
-				if (dep.getOwner() instanceof Interface)
+				if (dep.getOwner() instanceof RequirementsFeature)
 				{
 					NamedElement real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((NamedElement) dep.getOwner());
-					if (real instanceof Interface)
+					if (real instanceof RequirementsFeature)
 						immediate.add(getEngine().locateObject(real).asElement());
 				}
 			}
@@ -206,7 +188,7 @@ public class UML2Interface extends DEInterface
 			if (dep.isReplacement())
 			{
 				Element elem = dep.getOwner();
-				if (elem instanceof Interface)
+				if (elem instanceof RequirementsFeature)
 					substituters.add(getEngine().locateObject(elem).asElement());
 			}
 		}
@@ -223,14 +205,14 @@ public class UML2Interface extends DEInterface
 
 	@Override
 	public boolean isRawRetired()
-	{
+	{		
 		return subject.isRetired();
 	}
 
 	@Override
 	public boolean isRawAbstract()
 	{
-		// interfaces are never abstract
+		// features are never abstract
 		return false;
 	}
 }

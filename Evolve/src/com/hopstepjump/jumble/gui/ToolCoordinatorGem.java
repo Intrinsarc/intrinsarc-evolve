@@ -8,6 +8,8 @@ import java.util.concurrent.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import org.eclipse.uml2.*;
+
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.easydock.*;
 import com.hopstepjump.gem.*;
@@ -118,7 +120,7 @@ public final class ToolCoordinatorGem implements Gem
 		 */
 		public Cursor displayWaitCursor()
 		{
-    	Component top = frame.getGlassPane();
+    	java.awt.Component top = frame.getGlassPane();
     	top.setVisible(true);
     	Cursor oldCursor = top.getCursor();
 			top.setCursor(new Cursor(Cursor.WAIT_CURSOR));
@@ -127,7 +129,7 @@ public final class ToolCoordinatorGem implements Gem
 
 		public void restoreCursor(Cursor oldCursor)
 		{
-    	Component top = frame.getGlassPane();
+			java.awt.Component top = frame.getGlassPane();
 			top.setCursor(oldCursor);
 			top.setVisible(false);
 		}
@@ -137,7 +139,7 @@ public final class ToolCoordinatorGem implements Gem
 		 */
 		public Cursor displayCursorForAWhile(int cursor, int msecs)
 		{
-    	Component top = frame.getGlassPane();
+			java.awt.Component top = frame.getGlassPane();
     	top.setVisible(true);
     	Cursor oldCursor = top.getCursor();
 			top.setCursor(new Cursor(cursor));
@@ -171,13 +173,13 @@ public final class ToolCoordinatorGem implements Gem
 
     public void blockInput()
     {
-    	Component top = frame.getGlassPane();
+    	java.awt.Component top = frame.getGlassPane();
     	top.setVisible(true);
     }
 
     public void restoreInput()
     {
-    	Component top = frame.getGlassPane();
+    	java.awt.Component top = frame.getGlassPane();
     	top.setVisible(false);
     }
 
@@ -697,6 +699,6 @@ public final class ToolCoordinatorGem implements Gem
     registerRecreator(new MessageCreatorGem().getArcCreateFacet());
     registerRecreator(new SequenceSectionCreatorGem().getNodeCreateFacet());
     registerRecreator(new RequirementsFeatureCreatorGem().getNodeCreateFacet());
-    registerRecreator(new RequirementsFeatureLinkCreatorGem(0).getArcCreateFacet());
+    registerRecreator(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.MANDATORY_LITERAL).getArcCreateFacet());
 	}
 }

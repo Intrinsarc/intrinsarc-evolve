@@ -12,18 +12,13 @@ public class RequirementsFeatureLinkCreatorGem
 {
   public static final String NAME = "feature link";
   private ArcCreateFacet arcCreateFacet = new ArcCreateFacetImpl();
-  private int type;
+  private RequirementsLinkKind kind;
 
-  public RequirementsFeatureLinkCreatorGem(int type)
+  public RequirementsFeatureLinkCreatorGem(RequirementsLinkKind kind)
   {
-  	this.type = type;
+  	this.kind = kind;
   }
   
-  public void setType(int type)
-  {
-  	this.type = type;
-  }
-
   public ArcCreateFacet getArcCreateFacet()
   {
     return arcCreateFacet;
@@ -40,7 +35,7 @@ public class RequirementsFeatureLinkCreatorGem
     {
       // instantiate to use conventional facets
       BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
-      RequirementsFeatureLinkGem providedGem = new RequirementsFeatureLinkGem((Property) subject);
+      RequirementsFeatureLinkGem providedGem = new RequirementsFeatureLinkGem((RequirementsFeatureLink) subject);
       providedGem.connectFigureFacet(gem.getFigureFacet());
       gem.connectBasicArcAppearanceFacet(providedGem.getBasicArcAppearanceFacet());
       diagram.add(gem.getFigureFacet());
@@ -61,7 +56,7 @@ public class RequirementsFeatureLinkCreatorGem
     {
       // instantiate to use conventional facets
       BasicArcGem gem = new BasicArcGem(this, diagram, figure);
-      RequirementsFeatureLinkGem requiredGem = new RequirementsFeatureLinkGem((Property) figure.getSubject());
+      RequirementsFeatureLinkGem requiredGem = new RequirementsFeatureLinkGem((RequirementsFeatureLink) figure.getSubject());
       requiredGem.connectFigureFacet(gem.getFigureFacet());
       gem.connectBasicArcAppearanceFacet(requiredGem.getBasicArcAppearanceFacet());
 
@@ -70,7 +65,7 @@ public class RequirementsFeatureLinkCreatorGem
 
     public void initialiseExtraProperties(PersistentProperties properties)
     {
-      properties.add(new PersistentProperty("type", type, 0));
+      properties.add(new PersistentProperty("kind", kind.getValue(), 0));
     }
     
     public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end)
@@ -78,21 +73,21 @@ public class RequirementsFeatureLinkCreatorGem
     	// start must be a port, end must be an interface
       boolean startReadOnly = start.getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
     	Element elem = (Element) start.getFigureFacet().getSubject();
-    	boolean startOk = elem instanceof Class && !startReadOnly;
+    	boolean startOk = elem instanceof RequirementsFeature && !startReadOnly;
     	if (end == null)
     		return startOk;
-    	return startOk && end.getFigureFacet().getSubject() instanceof Class;
+    	return startOk && end.getFigureFacet().getSubject() instanceof RequirementsFeature;
     }
     
     public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
     {
     	// add to the list of provided interfaces, if it isn't there already
     	CalculatedArcPoints points = new CalculatedArcPoints(calculatedPoints);
-    	Class main = (Class) points.getNode1().getFigureFacet().getSubject();
-    	Class dependOn = (Class) points.getNode2().getFigureFacet().getSubject();
+    	RequirementsFeature main = (RequirementsFeature) points.getNode1().getFigureFacet().getSubject();
+    	RequirementsFeature dependOn = (RequirementsFeature) points.getNode2().getFigureFacet().getSubject();
 
-    	Property prop = main.createOwnedAttribute();
-    	prop.setStringDefault("" + type);
+    	RequirementsFeatureLink prop = main.createSubfeatures();
+    	prop.setKind(kind);
     	prop.setType(dependOn);
     	
     	return prop;

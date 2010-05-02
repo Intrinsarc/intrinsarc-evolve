@@ -124,10 +124,10 @@ class CompositionRenderer extends DefaultTreeCellRenderer
 public class RequirementsFeatureHierarchyViewer
 {
 	private org.eclipse.uml2.Package pkg;
-	private org.eclipse.uml2.Class comp;
+	private org.eclipse.uml2.Type comp;
 	private JPanel panel;
 
-	public RequirementsFeatureHierarchyViewer(org.eclipse.uml2.Package pkg, org.eclipse.uml2.Class comp, JPanel panel)
+	public RequirementsFeatureHierarchyViewer(org.eclipse.uml2.Package pkg, org.eclipse.uml2.Type comp, JPanel panel)
 	{
 		this.pkg = pkg;
 		this.comp = comp;

@@ -20,14 +20,14 @@ import edu.umd.cs.jazz.component.*;
 public class RequirementsFeatureLinkGem
 {
   private BasicArcAppearanceFacet basicArcAppearanceFacet = new BasicArcAppearanceFacetImpl();
-	private Property subject;
+	private RequirementsFeatureLink subject;
 	private FigureFacet figureFacet;
-	private String type;
+	private int kind;
 
-  public RequirementsFeatureLinkGem(Property subject)
+  public RequirementsFeatureLinkGem(RequirementsFeatureLink subject)
   {
   	this.subject = subject;
-  	type = subject.getDefault();
+  	kind = subject.getKind().getValue();
   }
   
   public void connectFigureFacet(FigureFacet figureFacet)
@@ -59,10 +59,10 @@ public class RequirementsFeatureLinkGem
 	    double x = (int) last.getX();
 	    double y = (int) last.getY();
 	    double offset = 5;
-	    if (type.equals("0") || type.equals("1"))
+	    if (kind == RequirementsLinkKind.MANDATORY || kind == RequirementsLinkKind.OPTIONAL)
 	    {
 		    ZEllipse ell = new ZEllipse(x - offset, y - offset, offset * 2, offset * 2);
-	    	ell.setFillPaint(type.equals("0") ? Color.BLACK : Color.WHITE);
+	    	ell.setFillPaint(kind == RequirementsLinkKind.MANDATORY ? Color.BLACK : Color.WHITE);
 	    	group.addChild(new ZVisualLeaf(ell));
 	    }
 
@@ -84,7 +84,7 @@ public class RequirementsFeatureLinkGem
 		 */
 		public void addToPersistentProperties(PersistentProperties properties)
 		{
-			properties.add(new PersistentProperty("type", type, "0"));
+			properties.add(new PersistentProperty("kind", kind, 0));
 		}
 	
     public void addToContextMenu(JPopupMenu menu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
@@ -106,13 +106,13 @@ public class RequirementsFeatureLinkGem
 			// model element is attached to, then delete
 			if (pass == ViewUpdatePassEnum.LAST)
 			{
-				type = subject.getDefault();
+				kind = subject.getKind().getValue();
 
-				Class main = (Class) subject.getOwner();
-				Class dependsOn = (Class) subject.undeleted_getType();
-				final Class viewMain = 
-					(Class) figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject();
-				final Class viewDependsOn = (Class) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
+				RequirementsFeature main = (RequirementsFeature) subject.getOwner();
+				RequirementsFeature dependsOn = (RequirementsFeature) subject.undeleted_getType();
+				final RequirementsFeature viewMain = 
+					(RequirementsFeature) figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject();
+				RequirementsFeature viewDependsOn = (RequirementsFeature) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
 				
 				if (main != viewMain || dependsOn != viewDependsOn)
 					figureFacet.formDeleteTransaction();
@@ -131,12 +131,12 @@ public class RequirementsFeatureLinkGem
 
 		public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 		{
-			Class newMain = (Class)
+			RequirementsFeature newMain = (RequirementsFeature)
 					start.getFigureFacet().getSubject();
-			Class newDependsOn = (Class) end.getFigureFacet().getSubject();
+			RequirementsFeature newDependsOn = (RequirementsFeature) end.getFigureFacet().getSubject();
 
 			// change the owner and target
-			newMain.settable_getOwnedAttributes().add(subject);
+			newMain.settable_getSubfeatures().add(subject);
 			subject.setType(newDependsOn);
 		}
 
@@ -154,7 +154,7 @@ public class RequirementsFeatureLinkGem
 
 		public void acceptPersistentProperties(PersistentFigure pfig)
 		{
-			type = pfig.getProperties().retrieve("type", "0").asString();
+			kind = pfig.getProperties().retrieve("kind", 0).asInteger();
 		}
   }
 }

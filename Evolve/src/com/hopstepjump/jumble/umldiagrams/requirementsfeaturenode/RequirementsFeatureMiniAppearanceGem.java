@@ -17,6 +17,7 @@ import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
+import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.repositorybase.*;
 
 import edu.umd.cs.jazz.*;
@@ -135,7 +136,7 @@ public class RequirementsFeatureMiniAppearanceGem implements Gem
 		public JList formSelectionList(String textSoFar)
 		{
 			Collection<NamedElement> elements = GlobalSubjectRepository.repository
-					.findElementsStartingWithName(textSoFar, ClassImpl.class, false);
+					.findElementsStartingWithName(textSoFar, RequirementsFeatureImpl.class, false);
 			Vector<ElementSelection> listElements = new Vector<ElementSelection>();
 			for (NamedElement element : elements)
 				if (element != figureFacet.getSubject())
@@ -157,10 +158,10 @@ public class RequirementsFeatureMiniAppearanceGem implements Gem
 				boolean displayOnlyIcon,
 				UPoint point)
 		{
-			return null;
+			return new ToolFigureClassification("requirementsfeature,type,element", null);
 		}
 	}
-
+	
 	public static Object setElementText(FigureFacet figure,
 			TextableFacet textable, String text, Object listSelection,
 			boolean unsuppress)
@@ -204,7 +205,7 @@ public class RequirementsFeatureMiniAppearanceGem implements Gem
     	GlobalSubjectRepository.repository.findVisuallyOwningStratum(
     			figureFacet.getDiagram(),
     			figureFacet.getContainerFacet());
-    final Classifier cls = (Classifier) figureFacet.getSubject();
+    final RequirementsFeature cls = (RequirementsFeature) figureFacet.getSubject();
     final DEStratum perspective =
     	GlobalDeltaEngine.engine.locateObject(owner).asStratum();
     DEElement me = GlobalDeltaEngine.engine.locateObject(cls).asElement();
@@ -215,7 +216,7 @@ public class RequirementsFeatureMiniAppearanceGem implements Gem
 			public void actionPerformed(ActionEvent event)
 			{
 				coordinator.startTransaction("Evolve component", "Remove evolution");
-				RequirementsFeatureClipboardActionsGem.makeEvolveAction(owner, cls, figureFacet, iface, stereotype, false);
+				RequirementsFeatureClipboardActionsGem.makeEvolveAction(owner, cls, figureFacet, false);
 				coordinator.commitTransaction();
 			}
     });

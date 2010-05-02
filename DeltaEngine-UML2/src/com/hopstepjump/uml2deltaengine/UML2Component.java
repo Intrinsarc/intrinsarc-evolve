@@ -309,7 +309,7 @@ public class UML2Component extends DEComponent
 				// get the owner of the dependency
 				if (dep.getOwner() instanceof Class)
 				{
-					Classifier real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((Classifier) dep.getOwner());
+					NamedElement real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((NamedElement) dep.getOwner());
 					if (real instanceof Class)
 						immediate.add(getEngine().locateObject(real).asElement());
 				}

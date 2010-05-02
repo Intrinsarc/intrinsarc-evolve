@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
@@ -19,15 +20,11 @@ public class RequirementsFeatureClipboardActionsGem
 {
   private static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
 
-	private boolean iface;
-	private boolean stereotype;
   private FigureFacet figureFacet;
   private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   
-  public RequirementsFeatureClipboardActionsGem(boolean iface, boolean stereotype)
+  public RequirementsFeatureClipboardActionsGem()
   {
-  	this.iface = iface;
-  	this.stereotype = stereotype;
   }
   
   public void connectFigureFacet(FigureFacet figureFacet)
@@ -42,23 +39,11 @@ public class RequirementsFeatureClipboardActionsGem
   
   public static void makeEvolveAction(
 			final Package owner,
-			final Classifier original,
+			final Type original,
 			final FigureFacet existing,
-			final boolean iface,
-			final boolean stereotype,
 			final boolean retired)
 	{
-		Classifier evolution;					
-		if (iface)
-			evolution = (Classifier) owner.createOwnedMember(UML2Package.eINSTANCE.getInterface());
-		else
-		if (stereotype)
-			evolution = (Classifier) owner.createOwnedMember(UML2Package.eINSTANCE.getStereotype());
-		else
-		{
-			evolution = (Classifier) owner.createOwnedMember(UML2Package.eINSTANCE.getClass_());
-			((Class) evolution).setComponentKind(((Class) original).getComponentKind());
-		}
+		Type evolution = (Type) owner.createOwnedMember(UML2Package.eINSTANCE.getRequirementsFeature());
 
 		Dependency dep = evolution.createOwnedAnonymousDependencies();
 		dep.setResemblance(true);
@@ -109,10 +94,8 @@ public class RequirementsFeatureClipboardActionsGem
       
 			RequirementsFeatureClipboardActionsGem.makeEvolveAction(
 					owner,
-					(Classifier) figureFacet.getSubject(),
+					(Type) figureFacet.getSubject(),
 					figureFacet,
-					iface,
-					stereotype,
 					true);
     }
 

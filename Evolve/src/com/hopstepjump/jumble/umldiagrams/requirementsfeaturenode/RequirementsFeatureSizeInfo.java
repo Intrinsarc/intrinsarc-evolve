@@ -42,8 +42,7 @@ public final class RequirementsFeatureSizeInfo implements ContainerSizeInfo
 														boolean haveIcon,
 														boolean displayIconOnly,
 														UDimension minimumIconExtent,
-														String owningPackageName,
-														boolean isAbstract)
+														String owningPackageName)
 	{
 		this.topLeft = topLeft;
 		this.name = name;
@@ -55,11 +54,7 @@ public final class RequirementsFeatureSizeInfo implements ContainerSizeInfo
 		this.haveIcon = haveIcon;
 		this.displayIconOnly = displayIconOnly;
 		this.owningPackageName = owningPackageName;
-		this.minimumIconExtent = minimumIconExtent;
-		
-		// use an italic font if this is abstract
-		if (isAbstract)
-			this.font = new Font(font.getName(), Font.ITALIC, font.getSize());
+		this.minimumIconExtent = minimumIconExtent;		
 	}
 
 	public UBounds getMinContentBounds()

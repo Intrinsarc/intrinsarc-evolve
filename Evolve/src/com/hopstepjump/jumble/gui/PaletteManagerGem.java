@@ -373,8 +373,8 @@ public class PaletteManagerGem
       htmlCreator.setAutoSized(false);
       htmlCreator.setUseHTML(true);
       htmlCreator.setHideNote(true);
-      palette.addEntry(makeEntry(false, "notelink.gif",    "Note link",          new ArcCreateToolGem(retrieveArcRecreator(NoteLinkCreatorGem.NAME)).getToolFacet(), "note"));
-      palette.addEntry(makeEntry(true, "grouper.png",     "Grouper",          makeNodeCreateTool(retrieveNodeRecreator(GrouperCreatorGem.NAME)), "top"));
+      palette.addEntry(makeEntry(false, "notelink.gif",    "Note link",         new ArcCreateToolGem(retrieveArcRecreator(NoteLinkCreatorGem.NAME)).getToolFacet(), "note"));
+      palette.addEntry(makeEntry(true, "grouper.png",     "Grouper",            makeNodeCreateTool(retrieveNodeRecreator(GrouperCreatorGem.NAME)), "top"));
       tools.addCategory(palette);
     }
     
@@ -453,13 +453,13 @@ public class PaletteManagerGem
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Feature", new String[]{FEATURE_FOCUS});
       
       palette.addEntry(makeEntry(true, "feature.png",     						"Feature",              makeNodeCreateTool(retrieveNodeRecreator(RequirementsFeatureCreatorGem.NAME)), "top"));
-      palette.addEntry(makeEntry(false, "mandatory-subfeature.png", 	"Mandatory subfeature", new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(0).getArcCreateFacet()).getToolFacet(), "top"));
-      palette.addEntry(makeEntry(false, "optional-subfeature.png", 		"Optional subfeature",  new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(1).getArcCreateFacet()).getToolFacet(), "top"));
-      palette.addEntry(makeEntry(false, "one-or-more-subfeature.png", "One or more",     			new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(2).getArcCreateFacet()).getToolFacet(), "top"));
-      palette.addEntry(makeEntry(false, "one-of-subfeature.png", 			"One of (Alternative)", new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(3).getArcCreateFacet()).getToolFacet(), "top"));
+      palette.addEntry(makeEntry(false, "mandatory-subfeature.png", 	"Mandatory subfeature", new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.MANDATORY_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
+      palette.addEntry(makeEntry(false, "optional-subfeature.png", 		"Optional subfeature",  new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.OPTIONAL_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
+      palette.addEntry(makeEntry(false, "one-or-more-subfeature.png", "One or more",     			new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.ONE_OR_MORE_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
+      palette.addEntry(makeEntry(false, "one-of-subfeature.png", 			"One of (Alternative)", new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.ONE_OF_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
       palette.addEntry(makeEntry(true, "component.png",    "Component",            						makeNodeCreateTool(compositeCreator.getNodeCreateFacet()), "top"));
       palette.addEntry(makeEntry(true, "component.png",    "Component (small)",    						makeNodeCreateTool(compositeShortcutCreator.getNodeCreateFacet()), "top"));
-      palette.addEntry(makeEntry(false, "trace.png", 									"Trace",           			new ArcCreateToolGem(retrieveArcRecreator(DependencyCreatorGem.NAME)).getToolFacet(), "namespace,element"));
+      palette.addEntry(makeEntry(false, "trace.png", 									"Trace",           			new ArcCreateToolGem(retrieveArcRecreator(DependencyCreatorGem.NAME)).getToolFacet(), "class"));
       tools.addCategory(palette);
     }
 

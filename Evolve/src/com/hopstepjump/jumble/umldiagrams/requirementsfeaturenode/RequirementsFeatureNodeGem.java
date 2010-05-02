@@ -51,7 +51,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 	private Font font = ScreenProperties.getTitleFont();
 	private Font packageFont = ScreenProperties.getSecondaryFont();
 	
-	private NamedElement subject;
+	private RequirementsFeature subject;
 	
 	private Color fillColor;
   private Color initialFillColor;
@@ -61,7 +61,6 @@ public final class RequirementsFeatureNodeGem implements Gem
 	private boolean autoSized = true;
 	private boolean displayOnlyIcon = false;
 	private String name = "";
-	private boolean isAbstract = false;
 	private UDimension rememberedTLOffset = new UDimension(0, 0);
 	private UDimension rememberedBROffset = new UDimension(0, 0);
 	
@@ -97,7 +96,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 	{
 		public void switchSubject(Object newSubject)
 		{
-			subject = (NamedElement) newSubject;
+			subject = (RequirementsFeature) newSubject;
 			figureFacet.updateViewAfterSubjectChanged(ViewUpdatePassEnum.LAST);
 		}
 	};
@@ -165,26 +164,23 @@ public final class RequirementsFeatureNodeGem implements Gem
     bodyEllipsis = info.isEllipsisForBody();
   }
   
-  private void updateClassifierViewAfterSubjectChanged(int actualStereotypeHashcode)
+  private void updateFeatureViewAfterSubjectChanged(int actualStereotypeHashcode)
   {
     // should we be displaying the owner?
-    RequirementsFeatureElementProperties props = new RequirementsFeatureElementProperties(figureFacet);
+    RequirementsFeatureProperties props = new RequirementsFeatureProperties(figureFacet);
     boolean sub = props.getElement().isSubstitution();
     boolean locatedInCorrectView = props.getPerspective() == props.getElement().getHomeStratum();
 
     final boolean shouldBeDisplayingOwningPackage =
     	!locatedInCorrectView && !forceSuppressOwningPackage || sub;
 
-    final Classifier classifierSubject = (Classifier) subject;
-    
     // get a possible name for a substituted element
-    String newName = new RequirementsFeatureElementProperties(figureFacet, subject).getPerspectiveName();
+    String newName = new RequirementsFeatureProperties(figureFacet, subject).getPerspectiveName();
     
     refreshEllipsis();
     
     // set the variables
     name = newName;
-    isAbstract = classifierSubject.isAbstract();
     retired = isElementRetired();
     showOwningPackage = shouldBeDisplayingOwningPackage;
     stereotypeHashcode = actualStereotypeHashcode;
@@ -465,7 +461,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 		
     public void setText(String text, Object listSelection, boolean unsuppress)
     {
-    	subject = (NamedElement) miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
+    	subject = (RequirementsFeature) miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
     	figureFacet.updateViewAfterSubjectChanged(ViewUpdatePassEnum.LAST);      
     }
 		
@@ -705,8 +701,8 @@ public final class RequirementsFeatureNodeGem implements Gem
 
       final Package pkg = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet()); 
       final DEStratum perspective = GlobalDeltaEngine.engine.locateObject(pkg).asStratum();
-      final Class component = (Class) figureFacet.getSubject();
-      final DEComponent me = GlobalDeltaEngine.engine.locateObject(component).asComponent();
+      final Type feature = (Type) figureFacet.getSubject();
+      final DERequirementsFeature me = GlobalDeltaEngine.engine.locateObject(feature).asRequirementsFeature();
       
       JMenuItem comp = new JMenuItem("Show compositional hierarchy");
       comp.setIcon(COMPOSITION_ICON);
@@ -718,7 +714,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 					public void actionPerformed(ActionEvent e)
 					{
 						JPanel panel = new JPanel(new BorderLayout());
-		      	RequirementsFeatureHierarchyViewer viewer = new RequirementsFeatureHierarchyViewer(pkg, component, panel);
+		      	RequirementsFeatureHierarchyViewer viewer = new RequirementsFeatureHierarchyViewer(pkg, feature, panel);
 
 		        int x = coordinator.getFrameXPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_X_POS);
 		        int y = coordinator.getFrameYPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_Y_POS);
@@ -927,7 +923,7 @@ public final class RequirementsFeatureNodeGem implements Gem
       Package owningStratum = repository.findOwningStratum(subject);
       boolean locatedInCorrectView = visualStratum == owningStratum;
 
-			RequirementsFeatureElementProperties props = new RequirementsFeatureElementProperties(figureFacet, subject); 
+			RequirementsFeatureProperties props = new RequirementsFeatureProperties(figureFacet, subject); 
 			final boolean shouldBeDisplayingOwningPackage =
 				!locatedInCorrectView && !forceSuppressOwningPackage || props.getElement().isSubstitution(); 
 
@@ -943,34 +939,32 @@ public final class RequirementsFeatureNodeGem implements Gem
 			middle = new UPoint(middle.getX(), figureFacet.getFullBounds().getBottomLeftPoint().getY());
 			UDimension dim = new UDimension(16, 16);
 			UBounds arc = new UBounds(middle, new UDimension(0, 0)).addToPoint(dim.negative()).addToExtent(dim.multiply(2));
-			Double startAngle = getAngle("2", true);
+			Double startAngle = getAngle(RequirementsLinkKind.ONE_OR_MORE_LITERAL, true);
 			if (startAngle != null)
 			{
 				arc2 = arc;
 				arc2Start = startAngle;
-				arc2End = getAngle("2", false);
+				arc2End = getAngle(RequirementsLinkKind.ONE_OR_MORE_LITERAL, false);
 				if (arc2Start == arc2End)
 					arc2End += 15;  // degrees
 			}
 
 			UDimension dimN = new UDimension(19, 19);
 			UBounds arcN = new UBounds(middle, new UDimension(0, 0)).addToPoint(dimN.negative()).addToExtent(dimN.multiply(2));
-			Double startAngleN = getAngle("3", true);
+			Double startAngleN = getAngle(RequirementsLinkKind.ONE_OF_LITERAL, true);
 			if (startAngleN != null)
 			{
 				arc3 = arcN;
 				arc3Start = startAngleN;
-				arc3End = getAngle("3", false);
+				arc3End = getAngle(RequirementsLinkKind.ONE_OF_LITERAL, false);
 				if (arc3Start == arc3End)
 					arc3End += 15;  // degrees
 			}
 
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
-      Classifier classifierSubject = (Classifier) subject;
       RequirementsFeatureSizeInfo info = makeCurrentInfo();
 			if (shouldBeDisplayingOwningPackage == showOwningPackage
 			      && newName.equals(name) && owner.equals(newOwner)
-						&& classifierSubject.isAbstract() == isAbstract
             && stereotypeHashcode == actualStereotypeHashcode
             && bodyEllipsis == info.isEllipsisForBody() 
             && displayOnlyIcon == shouldDisplayOnlyIcon()
@@ -979,10 +973,10 @@ public final class RequirementsFeatureNodeGem implements Gem
 				return;
       }
 
-      updateClassifierViewAfterSubjectChanged(actualStereotypeHashcode);
+      updateFeatureViewAfterSubjectChanged(actualStereotypeHashcode);
 		}
 		
-		private Double getAngle(String type, boolean start)
+		private Double getAngle(RequirementsLinkKind kind, boolean start)
 		{
 			Double ret = null;
 			
@@ -992,10 +986,10 @@ public final class RequirementsFeatureNodeGem implements Gem
 				// is this one to use?
 				LinkingFacet link = iter.next();
 				Object subject = link.getFigureFacet().getSubject(); 
-				if (subject instanceof Property)
+				if (subject instanceof RequirementsFeatureLink)
 				{
-					String def = ((Property) subject).getDefault();
-					if (type.equals(def) && link.getAnchor1() == anchor)
+					RequirementsLinkKind def = ((RequirementsFeatureLink) subject).getKind();
+					if (kind.equals(def) && link.getAnchor1() == anchor)
 					{
 						double angle = computeAngle(link);
 						if (ret == null)
@@ -1131,7 +1125,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 	
 	private void interpretPersistentFigure(PersistentFigure pfig)
 	{
-		subject = (NamedElement) pfig.getSubject();
+		subject = (RequirementsFeature) pfig.getSubject();
 		PersistentProperties properties = pfig.getProperties();
   	name = properties.retrieve("name", "").asString();
   	owner = properties.retrieve("owner", "").asString();
@@ -1266,8 +1260,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 			haveIcon,
 			displayOnlyIcon,
 			minimumIconExtent,
-			owningPackageString,
-			isAbstract);
+			owningPackageString);
 /*    info.setEllipsisForBody(portsEllipsis || partsEllipsis || connectorsEllipsis);
 */    
 		return info;
@@ -1339,7 +1332,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 
   private boolean isElementRetired()
 	{
-		return ((Classifier) subject).isRetired();
+		return subject.isRetired();
 	}
 
 	/**

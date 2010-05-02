@@ -54,17 +54,11 @@ public final class RequirementsFeatureCreatorGem implements Gem
       if (containingReference != null)
       {
         FigureFacet container = GlobalDiagramRegistry.registry.retrieveFigure(containingReference);
-        owner = repository.findVisuallyOwningNamespace(diagram, container.getContainerFacet());
+        owner = repository.findVisuallyOwningPackage(diagram, container.getContainerFacet());
       }
       
-      Class cls = null;
-      // get the package associated with this diagram, and add the new package to it
-      if (owner instanceof Class)
-      {
-      	cls = (Class) ((Class) owner).createNestedClassifier(UML2Package.eINSTANCE.getClass_());
-      }
-      else
-        cls = (Class) ((Package) owner).createOwnedMember(UML2Package.eINSTANCE.getClass_());
+      // get the package associated with this diagram, and add the new feature to it
+       RequirementsFeature req = (RequirementsFeature) ((Package) owner).createOwnedMember(UML2Package.eINSTANCE.getRequirementsFeature());
       
     	// should we set a stereotype?
     	String stereoName = properties.retrieve(">stereotype", (String) null).asString();
@@ -73,7 +67,7 @@ public final class RequirementsFeatureCreatorGem implements Gem
         Stereotype stereo = GlobalSubjectRepository.repository.findStereotype(
             UML2Package.eINSTANCE.getClass_(), stereoName);
         if (stereo != null)
-          cls.getAppliedBasicStereotypes().add(stereo);
+          req.getAppliedBasicStereotypes().add(stereo);
       }
       
       // should we set a second stereotype?
@@ -83,7 +77,7 @@ public final class RequirementsFeatureCreatorGem implements Gem
         Stereotype stereo = GlobalSubjectRepository.repository.findStereotype(
             UML2Package.eINSTANCE.getClass_(), stereoName2);
         if (stereo != null)
-          cls.getAppliedBasicStereotypes().add(stereo);
+          req.getAppliedBasicStereotypes().add(stereo);
       }
       
     	// possibly set up a resemblance relationship
@@ -91,13 +85,13 @@ public final class RequirementsFeatureCreatorGem implements Gem
       if (res.asString() != null)
       {
       	NamedElement superElement = (NamedElement) GlobalSubjectRepository.repository.findNamedElementByUUID(res.asString());
-      	Dependency dep = cls.createOwnedAnonymousDependencies();
-        dep.settable_getClients().add(cls);
+      	Dependency dep = req.createOwnedAnonymousDependencies();
+        dep.settable_getClients().add(req);
         dep.setDependencyTarget(superElement);
         dep.setResemblance(true);
       }
        
-      return cls;
+      return req;
     }
 
     public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
@@ -112,7 +106,7 @@ public final class RequirementsFeatureCreatorGem implements Gem
       			new PersistentFigure(figureId, null, subject, actualProperties));
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			RequirementsFeatureClipboardActionsGem clip = new RequirementsFeatureClipboardActionsGem(false, false);
+			RequirementsFeatureClipboardActionsGem clip = new RequirementsFeatureClipboardActionsGem();
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
 			classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
@@ -140,7 +134,7 @@ public final class RequirementsFeatureCreatorGem implements Gem
 				new RequirementsFeatureNodeGem(INITIAL_FILL_COLOR, figure);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			RequirementsFeatureClipboardActionsGem clip = new RequirementsFeatureClipboardActionsGem(false, false);
+			RequirementsFeatureClipboardActionsGem clip = new RequirementsFeatureClipboardActionsGem();
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
 			classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
