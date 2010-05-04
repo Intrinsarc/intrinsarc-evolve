@@ -30,7 +30,8 @@ public class CallBehaviorActionTest extends CallActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(CallBehaviorActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class CallBehaviorActionTest extends CallActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallBehaviorActionTest(String name) {
+	public CallBehaviorActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class CallBehaviorActionTest extends CallActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CallBehaviorAction getFixture() {
+	private CallBehaviorAction getFixture()
+	{
 		return (CallBehaviorAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class CallBehaviorActionTest extends CallActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createCallBehaviorAction());
 	}
 
@@ -70,7 +74,8 @@ public class CallBehaviorActionTest extends CallActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

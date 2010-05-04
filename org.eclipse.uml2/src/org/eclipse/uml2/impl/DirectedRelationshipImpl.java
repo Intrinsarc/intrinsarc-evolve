@@ -56,11 +56,14 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DirectedRelationshipImpl() {
+	protected DirectedRelationshipImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (DirectedRelationshipImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -69,7 +72,8 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getDirectedRelationship();
 	}
 
@@ -78,7 +82,8 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSources() {
+	public EList getSources()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList source = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Source());
@@ -98,7 +103,8 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRelatedElementsHelper(EList relatedElement) {
+	protected EList getRelatedElementsHelper(EList relatedElement)
+	{
 		super.getRelatedElementsHelper(relatedElement);
 		EList source = getSources();
 		if (!source.isEmpty()) {
@@ -121,7 +127,8 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target) {
+	protected EList getTargetsHelper(EList target)
+	{
 		return target;
 	}
 
@@ -130,7 +137,8 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTargets() {
+	public EList getTargets()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList target = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Target());
@@ -150,9 +158,12 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.DIRECTED_RELATIONSHIP__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -169,9 +180,12 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.DIRECTED_RELATIONSHIP__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DIRECTED_RELATIONSHIP__OWNED_COMMENT:
@@ -190,8 +204,10 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DIRECTED_RELATIONSHIP__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DIRECTED_RELATIONSHIP__OWNED_ELEMENT:
@@ -226,8 +242,10 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DIRECTED_RELATIONSHIP__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -262,8 +280,10 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DIRECTED_RELATIONSHIP__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -294,8 +314,10 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DIRECTED_RELATIONSHIP__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DIRECTED_RELATIONSHIP__OWNED_ELEMENT:
@@ -330,7 +352,8 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source) {
+	protected EList getSourcesHelper(EList source)
+	{
 		return source;
 	}
 

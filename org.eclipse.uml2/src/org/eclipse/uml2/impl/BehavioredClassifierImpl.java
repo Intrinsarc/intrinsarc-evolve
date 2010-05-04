@@ -143,11 +143,14 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BehavioredClassifierImpl() {
+	protected BehavioredClassifierImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (BehavioredClassifierImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -156,7 +159,8 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getBehavioredClassifier();
 	}
 
@@ -238,7 +242,8 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Behavior getClassifierBehavior() {
+	public Behavior getClassifierBehavior()
+	{
 		return classifierBehavior;
 	}
 
@@ -252,7 +257,8 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Behavior undeleted_getClassifierBehavior() {
+  public Behavior undeleted_getClassifierBehavior()
+	{
 		Behavior temp = getClassifierBehavior();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -264,7 +270,9 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClassifierBehavior(Behavior newClassifierBehavior) {
+	public void setClassifierBehavior(Behavior newClassifierBehavior)
+	{
+
 		if (newClassifierBehavior != null && !getOwnedBehaviors().contains(newClassifierBehavior)) {
 			getOwnedBehaviors().add(newClassifierBehavior);
 		}
@@ -281,9 +289,13 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getImplementations() {
-		if (implementation == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getImplementations()
+	{
+		if (implementation == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		implementation = new com.hopstepjump.emflist.PersistentEList(Implementation.class, this, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER);
 			 		return implementation;
@@ -300,8 +312,12 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getImplementations() {
-		if (implementation == null) {
+  public EList settable_getImplementations()
+	{
+		if (implementation == null)
+		{
+			
+		
 			implementation = new com.hopstepjump.emflist.PersistentEList(Implementation.class, this, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER);
 		}
 		return implementation;
@@ -312,11 +328,14 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getImplementations() {
+  public java.util.ArrayList undeleted_getImplementations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (implementation != null) {
-			for (Object object : implementation) {
+		if (implementation != null)
+		{
+			for (Object object : implementation)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -378,9 +397,13 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedTriggers() {
-		if (ownedTrigger == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedTriggers()
+	{
+		if (ownedTrigger == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedTrigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_TRIGGER);
 			 		return ownedTrigger;
@@ -397,8 +420,12 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedTriggers() {
-		if (ownedTrigger == null) {
+  public EList settable_getOwnedTriggers()
+	{
+		if (ownedTrigger == null)
+		{
+			
+		
 			ownedTrigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_TRIGGER);
 		}
 		return ownedTrigger;
@@ -409,11 +436,14 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedTriggers() {
+  public java.util.ArrayList undeleted_getOwnedTriggers()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedTrigger != null) {
-			for (Object object : ownedTrigger) {
+		if (ownedTrigger != null)
+		{
+			for (Object object : ownedTrigger)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -478,8 +508,12 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedStateMachines() {
-		if (ownedStateMachine == null) {
+  public EList settable_getOwnedStateMachines()
+	{
+		if (ownedStateMachine == null)
+		{
+			
+		
 			ownedStateMachine = new com.hopstepjump.emflist.PersistentEList(StateMachine.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_STATE_MACHINE, UML2Package.STATE_MACHINE__STATE_MACHINE_REDEFINITION_CONTEXT);
 		}
 		return ownedStateMachine;
@@ -490,11 +524,14 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedStateMachines() {
+  public java.util.ArrayList undeleted_getOwnedStateMachines()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedStateMachine != null) {
-			for (Object object : ownedStateMachine) {
+		if (ownedStateMachine != null)
+		{
+			for (Object object : ownedStateMachine)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -527,9 +564,12 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.BEHAVIORED_CLASSIFIER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.BEHAVIORED_CLASSIFIER__TEMPLATE_BINDING:
@@ -580,9 +620,12 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.BEHAVIORED_CLASSIFIER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.BEHAVIORED_CLASSIFIER__OWNED_COMMENT:
@@ -669,9 +712,13 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClientDependencies() {
-		if (clientDependency == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getClientDependencies()
+	{
+		if (clientDependency == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__SUBSTITUTION, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
@@ -688,8 +735,12 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClientDependencies() {
-		if (clientDependency == null) {
+  public EList settable_getClientDependencies()
+	{
+		if (clientDependency == null)
+		{
+			
+		
 			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__SUBSTITUTION, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
@@ -700,11 +751,14 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClientDependencies() {
+  public java.util.ArrayList undeleted_getClientDependencies()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (clientDependency != null) {
-			for (Object object : clientDependency) {
+		if (clientDependency != null)
+		{
+			for (Object object : clientDependency)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -731,9 +785,12 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.BEHAVIORED_CLASSIFIER__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -748,8 +805,10 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIORED_CLASSIFIER__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.BEHAVIORED_CLASSIFIER__OWNED_ELEMENT:
@@ -860,8 +919,10 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIORED_CLASSIFIER__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1008,8 +1069,10 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIORED_CLASSIFIER__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1133,8 +1196,10 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIORED_CLASSIFIER__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.BEHAVIORED_CLASSIFIER__OWNED_ELEMENT:
@@ -1257,7 +1322,8 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		EList ownedBehavior = getOwnedBehaviors();
 		if (!ownedBehavior.isEmpty()) {
@@ -1275,7 +1341,8 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getBehavioredClassifier_Implementation())) {
 			ownedElement.addAll(getImplementations());

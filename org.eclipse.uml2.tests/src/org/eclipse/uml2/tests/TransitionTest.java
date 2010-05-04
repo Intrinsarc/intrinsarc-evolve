@@ -36,7 +36,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(TransitionTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TransitionTest(String name) {
+	public TransitionTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Transition getFixture() {
+	private Transition getFixture()
+	{
 		return (Transition)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createTransition());
 	}
 
@@ -76,7 +80,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * @see org.eclipse.uml2.Transition#getRedefinitionContexts()
 	 * @generated
 	 */
-	public void testGetRedefinitionContexts() {
+	public void testGetRedefinitionContexts()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,7 +133,8 @@ public class TransitionTest extends RedefinableElementTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements() {
+	public void testGetRedefinedElements()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

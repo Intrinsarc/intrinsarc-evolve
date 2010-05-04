@@ -30,7 +30,8 @@ public class ActivityParameterNodeTest extends ObjectNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ActivityParameterNodeTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ActivityParameterNodeTest extends ObjectNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityParameterNodeTest(String name) {
+	public ActivityParameterNodeTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ActivityParameterNodeTest extends ObjectNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ActivityParameterNode getFixture() {
+	private ActivityParameterNode getFixture()
+	{
 		return (ActivityParameterNode)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ActivityParameterNodeTest extends ObjectNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createActivityParameterNode());
 	}
 
@@ -70,7 +74,8 @@ public class ActivityParameterNodeTest extends ObjectNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

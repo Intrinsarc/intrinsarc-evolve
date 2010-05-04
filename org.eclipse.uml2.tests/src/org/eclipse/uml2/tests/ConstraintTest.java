@@ -36,7 +36,8 @@ public class ConstraintTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ConstraintTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class ConstraintTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstraintTest(String name) {
+	public ConstraintTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class ConstraintTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Constraint getFixture() {
+	private Constraint getFixture()
+	{
 		return (Constraint)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class ConstraintTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createConstraint());
 	}
 
@@ -76,7 +80,8 @@ public class ConstraintTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class ConstraintTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.Constraint#validateNotApplyToSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateNotApplyToSelf__DiagnosticChain_Map() {
+	public void testValidateNotApplyToSelf__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class ConstraintTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.Constraint#getContext()
 	 * @generated
 	 */
-	public void testGetContext() {
+	public void testGetContext()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class ConstraintTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

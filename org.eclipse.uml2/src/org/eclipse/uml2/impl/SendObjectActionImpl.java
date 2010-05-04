@@ -90,11 +90,14 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SendObjectActionImpl() {
+	protected SendObjectActionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (SendObjectActionImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -103,7 +106,8 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getSendObjectAction();
 	}
 
@@ -112,7 +116,8 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getTarget() {
+	public InputPin getTarget()
+	{
 		return target;
 	}
 
@@ -126,7 +131,8 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getTarget() {
+  public InputPin undeleted_getTarget()
+	{
 		InputPin temp = getTarget();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -138,10 +144,13 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(InputPin newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(InputPin newTarget, NotificationChain msgs)
+	{
+
 		InputPin oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.SEND_OBJECT_ACTION__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -154,8 +163,11 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(InputPin newTarget) {
-		if (newTarget != target) {
+	public void setTarget(InputPin newTarget)
+	{
+
+		if (newTarget != target)
+		{
 			NotificationChain msgs = null;
 			if (target != null)
 				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.SEND_OBJECT_ACTION__TARGET, null, msgs);
@@ -203,7 +215,8 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getRequest() {
+	public InputPin getRequest()
+	{
 		return request;
 	}
 
@@ -217,7 +230,8 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getRequest() {
+  public InputPin undeleted_getRequest()
+	{
 		InputPin temp = getRequest();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -229,10 +243,13 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRequest(InputPin newRequest, NotificationChain msgs) {
+	public NotificationChain basicSetRequest(InputPin newRequest, NotificationChain msgs)
+	{
+
 		InputPin oldRequest = request;
 		request = newRequest;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.SEND_OBJECT_ACTION__REQUEST, oldRequest, newRequest);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -245,8 +262,11 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRequest(InputPin newRequest) {
-		if (newRequest != request) {
+	public void setRequest(InputPin newRequest)
+	{
+
+		if (newRequest != request)
+		{
 			NotificationChain msgs = null;
 			if (request != null)
 				msgs = ((InternalEObject)request).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.SEND_OBJECT_ACTION__REQUEST, null, msgs);
@@ -294,7 +314,8 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getArguments() {
+	public EList getArguments()
+	{
 		return new EcoreEList.UnmodifiableEList(this, UML2Package.eINSTANCE.getInvocationAction_Argument(), 0, Collections.EMPTY_LIST.toArray());
 	}
 
@@ -304,9 +325,12 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SEND_OBJECT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.SEND_OBJECT_ACTION__TEMPLATE_BINDING:
@@ -349,9 +373,12 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SEND_OBJECT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.SEND_OBJECT_ACTION__OWNED_COMMENT:
@@ -404,9 +431,12 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.SEND_OBJECT_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.SEND_OBJECT_ACTION__IN_STRUCTURED_NODE:
@@ -423,8 +453,10 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SEND_OBJECT_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.SEND_OBJECT_ACTION__OWNED_ELEMENT:
@@ -517,8 +549,10 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SEND_OBJECT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -642,8 +676,10 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SEND_OBJECT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -749,8 +785,10 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SEND_OBJECT_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.SEND_OBJECT_ACTION__OWNED_ELEMENT:
@@ -849,7 +887,8 @@ public class SendObjectActionImpl extends InvocationActionImpl implements SendOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input) {
+	protected EList getInputsHelper(EList input)
+	{
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getSendObjectAction_Target())) {
 			input.add(getTarget());

@@ -37,7 +37,8 @@ public class LiteralStringTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(LiteralStringTest.class);
 	}
 
@@ -47,7 +48,8 @@ public class LiteralStringTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralStringTest(String name) {
+	public LiteralStringTest(String name)
+	{
 		super(name);
 	}
 
@@ -57,7 +59,8 @@ public class LiteralStringTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LiteralString getFixture() {
+	private LiteralString getFixture()
+	{
 		return (LiteralString)fixture;
 	}
 
@@ -67,7 +70,8 @@ public class LiteralStringTest extends LiteralSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createLiteralString());
 	}
 
@@ -77,7 +81,8 @@ public class LiteralStringTest extends LiteralSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -88,7 +93,8 @@ public class LiteralStringTest extends LiteralSpecificationTest {
 	 * @see org.eclipse.uml2.LiteralString#stringValue()
 	 * @generated
 	 */
-	public void testStringValue() {
+	public void testStringValue()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -100,7 +106,8 @@ public class LiteralStringTest extends LiteralSpecificationTest {
 	 * @see org.eclipse.uml2.LiteralString#isComputable()
 	 * @generated
 	 */
-	public void testIsComputable() {
+	public void testIsComputable()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

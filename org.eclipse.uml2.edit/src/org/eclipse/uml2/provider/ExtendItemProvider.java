@@ -57,7 +57,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendItemProvider(AdapterFactory adapterFactory) {
+	public ExtendItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRelatedElementPropertyDescriptor(object);
@@ -88,7 +91,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedElementPropertyDescriptor(Object object) {
+	protected void addRelatedElementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,7 +114,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourcePropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -132,7 +137,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -154,7 +160,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtendedCasePropertyDescriptor(Object object) {
+	protected void addExtendedCasePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -174,7 +181,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtensionPropertyDescriptor(Object object) {
+	protected void addExtensionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -196,7 +204,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionPropertyDescriptor(Object object) {
+	protected void addConditionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -218,7 +227,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtensionLocationPropertyDescriptor(Object object) {
+	protected void addExtensionLocationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -240,8 +250,10 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getExtend_Condition());
 		}
@@ -254,7 +266,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Extend"); //$NON-NLS-1$
 	}
 
@@ -264,7 +277,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Extend)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Extend_type") : //$NON-NLS-1$
@@ -278,10 +292,12 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Extend.class)) {
+		switch (notification.getFeatureID(Extend.class))
+		{
 			case UML2Package.EXTEND__CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -296,7 +312,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -356,7 +373,8 @@ public class ExtendItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -87,11 +87,14 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PropertyValueSpecificationImpl() {
+	protected PropertyValueSpecificationImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (PropertyValueSpecificationImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -100,7 +103,8 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getPropertyValueSpecification();
 	}
 
@@ -109,7 +113,8 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAliased() {
+	public boolean isAliased()
+	{
 		return (eFlags & ALIASED_EFLAG) != 0;
 	}
 
@@ -124,7 +129,9 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAliased(boolean newAliased) {
+	public void setAliased(boolean newAliased)
+	{
+
 		boolean oldAliased = (eFlags & ALIASED_EFLAG) != 0;
 		if (newAliased) eFlags |= ALIASED_EFLAG; else eFlags &= ~ALIASED_EFLAG;
 		if (eNotificationRequired())
@@ -138,11 +145,14 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getProperty() {
-		if (property != null && property.eIsProxy()) {
+	public Property getProperty()
+	{
+		if (property != null && property.eIsProxy())
+		{
 			Property oldProperty = property;
 			property = (Property)eResolveProxy((InternalEObject)property);
-			if (property != oldProperty) {
+			if (property != oldProperty)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PROPERTY_VALUE_SPECIFICATION__PROPERTY, oldProperty, property));
 			}
@@ -169,7 +179,8 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property undeleted_getProperty() {
+	public Property undeleted_getProperty()
+	{
 		Property temp = getProperty();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -181,7 +192,8 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetProperty() {
+	public Property basicGetProperty()
+	{
 		return property;
 	}
 
@@ -190,7 +202,9 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProperty(Property newProperty) {
+	public void setProperty(Property newProperty)
+	{
+
 		Property oldProperty = property;
 		property = newProperty;
 		if (eNotificationRequired())
@@ -204,9 +218,12 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PROPERTY_VALUE_SPECIFICATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PROPERTY_VALUE_SPECIFICATION__TEMPLATE_BINDING:
@@ -239,9 +256,12 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PROPERTY_VALUE_SPECIFICATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PROPERTY_VALUE_SPECIFICATION__OWNED_COMMENT:
@@ -274,9 +294,12 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.PROPERTY_VALUE_SPECIFICATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -291,8 +314,10 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROPERTY_VALUE_SPECIFICATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PROPERTY_VALUE_SPECIFICATION__OWNED_ELEMENT:
@@ -354,8 +379,10 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROPERTY_VALUE_SPECIFICATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -437,8 +464,10 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROPERTY_VALUE_SPECIFICATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -511,8 +540,10 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROPERTY_VALUE_SPECIFICATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PROPERTY_VALUE_SPECIFICATION__OWNED_ELEMENT:
@@ -570,7 +601,8 @@ public class PropertyValueSpecificationImpl extends ValueSpecificationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

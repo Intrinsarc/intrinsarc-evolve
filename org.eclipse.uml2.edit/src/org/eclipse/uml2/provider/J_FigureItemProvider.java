@@ -65,7 +65,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_FigureItemProvider(AdapterFactory adapterFactory) {
+	public J_FigureItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -75,8 +76,10 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addIdPropertyDescriptor(object);
@@ -114,7 +117,8 @@ public class J_FigureItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addIdPropertyDescriptor(Object object) {
+  protected void addIdPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -134,7 +138,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRecreatorPropertyDescriptor(Object object) {
+	protected void addRecreatorPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -154,7 +159,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAnchor1IdPropertyDescriptor(Object object) {
+	protected void addAnchor1IdPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -174,7 +180,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAnchor2IdPropertyDescriptor(Object object) {
+	protected void addAnchor2IdPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -194,7 +201,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainedNamePropertyDescriptor(Object object) {
+	protected void addContainedNamePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -214,7 +222,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTextPropertyDescriptor(Object object) {
+	protected void addTextPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -234,7 +243,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -254,7 +264,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVirtualPointPropertyDescriptor(Object object) {
+	protected void addVirtualPointPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -274,7 +285,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPointsPropertyDescriptor(Object object) {
+	protected void addPointsPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -294,7 +306,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBrOffsetPropertyDescriptor(Object object) {
+	protected void addBrOffsetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -314,7 +327,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTlOffsetPropertyDescriptor(Object object) {
+	protected void addTlOffsetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -334,7 +348,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addShowPropertyDescriptor(Object object) {
+	protected void addShowPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -354,7 +369,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAutosizedPropertyDescriptor(Object object) {
+	protected void addAutosizedPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -374,7 +390,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIconPropertyDescriptor(Object object) {
+	protected void addIconPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -394,7 +411,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPointPropertyDescriptor(Object object) {
+	protected void addPointPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -414,7 +432,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDimensionsPropertyDescriptor(Object object) {
+	protected void addDimensionsPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -434,7 +453,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSuppressAttributesPropertyDescriptor(Object object) {
+	protected void addSuppressAttributesPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -454,7 +474,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSuppressOperationsPropertyDescriptor(Object object) {
+	protected void addSuppressOperationsPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -474,7 +495,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSuppressContentsPropertyDescriptor(Object object) {
+	protected void addSuppressContentsPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -494,7 +516,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOffsetPropertyDescriptor(Object object) {
+	protected void addOffsetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -514,7 +537,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMinPropertyDescriptor(Object object) {
+	protected void addMinPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -534,7 +558,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAccessibilityPropertyDescriptor(Object object) {
+	protected void addAccessibilityPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -554,7 +579,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addClassifierScopePropertyDescriptor(Object object) {
+	protected void addClassifierScopePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -574,7 +600,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -594,7 +621,8 @@ public class J_FigureItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addSubjectPropertyDescriptor(Object object) {
+  protected void addSubjectPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -614,7 +642,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/J_Figure"); //$NON-NLS-1$
 	}
 
@@ -624,7 +653,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((J_Figure)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_J_Figure_type") : //$NON-NLS-1$
@@ -638,10 +668,12 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(J_Figure.class)) {
+		switch (notification.getFeatureID(J_Figure.class))
+		{
 			case UML2Package.JFIGURE__ID:
 			case UML2Package.JFIGURE__RECREATOR:
 			case UML2Package.JFIGURE__ANCHOR1_ID:
@@ -679,7 +711,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -689,7 +722,8 @@ public class J_FigureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

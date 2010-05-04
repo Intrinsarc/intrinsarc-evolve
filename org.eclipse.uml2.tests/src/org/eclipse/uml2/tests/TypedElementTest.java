@@ -28,7 +28,8 @@ public abstract class TypedElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElementTest(String name) {
+	public TypedElementTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class TypedElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TypedElement getFixture() {
+	private TypedElement getFixture()
+	{
 		return (TypedElement)fixture;
 	}
 

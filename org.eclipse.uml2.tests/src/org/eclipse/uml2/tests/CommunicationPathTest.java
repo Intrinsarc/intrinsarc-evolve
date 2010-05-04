@@ -30,7 +30,8 @@ public class CommunicationPathTest extends AssociationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(CommunicationPathTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class CommunicationPathTest extends AssociationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommunicationPathTest(String name) {
+	public CommunicationPathTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class CommunicationPathTest extends AssociationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CommunicationPath getFixture() {
+	private CommunicationPath getFixture()
+	{
 		return (CommunicationPath)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class CommunicationPathTest extends AssociationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createCommunicationPath());
 	}
 
@@ -70,7 +74,8 @@ public class CommunicationPathTest extends AssociationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

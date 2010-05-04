@@ -30,7 +30,8 @@ public class StringExpressionTest extends TemplateableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(StringExpressionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class StringExpressionTest extends TemplateableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringExpressionTest(String name) {
+	public StringExpressionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class StringExpressionTest extends TemplateableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private StringExpression getFixture() {
+	private StringExpression getFixture()
+	{
 		return (StringExpression)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class StringExpressionTest extends TemplateableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createStringExpression());
 	}
 
@@ -70,7 +74,8 @@ public class StringExpressionTest extends TemplateableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -83,7 +88,8 @@ public class StringExpressionTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -95,7 +101,8 @@ public class StringExpressionTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

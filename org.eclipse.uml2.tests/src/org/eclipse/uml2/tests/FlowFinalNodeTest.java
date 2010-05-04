@@ -30,7 +30,8 @@ public class FlowFinalNodeTest extends FinalNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(FlowFinalNodeTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class FlowFinalNodeTest extends FinalNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FlowFinalNodeTest(String name) {
+	public FlowFinalNodeTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class FlowFinalNodeTest extends FinalNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private FlowFinalNode getFixture() {
+	private FlowFinalNode getFixture()
+	{
 		return (FlowFinalNode)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class FlowFinalNodeTest extends FinalNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createFlowFinalNode());
 	}
 
@@ -70,7 +74,8 @@ public class FlowFinalNodeTest extends FinalNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

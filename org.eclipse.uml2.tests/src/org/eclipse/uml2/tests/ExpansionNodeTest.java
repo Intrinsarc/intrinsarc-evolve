@@ -30,7 +30,8 @@ public class ExpansionNodeTest extends ObjectNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ExpansionNodeTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ExpansionNodeTest extends ObjectNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionNodeTest(String name) {
+	public ExpansionNodeTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ExpansionNodeTest extends ObjectNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExpansionNode getFixture() {
+	private ExpansionNode getFixture()
+	{
 		return (ExpansionNode)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ExpansionNodeTest extends ObjectNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createExpansionNode());
 	}
 
@@ -70,7 +74,8 @@ public class ExpansionNodeTest extends ObjectNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

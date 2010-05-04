@@ -58,7 +58,8 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommentItemProvider(AdapterFactory adapterFactory) {
+	public CommentItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -68,8 +69,10 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addBodyPropertyDescriptor(object);
@@ -88,7 +91,8 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyPropertyDescriptor(Object object) {
+	protected void addBodyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -108,7 +112,8 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAnnotatedElementPropertyDescriptor(Object object) {
+	protected void addAnnotatedElementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -128,7 +133,8 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyExpressionPropertyDescriptor(Object object) {
+	protected void addBodyExpressionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -150,7 +156,8 @@ public class CommentItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addBinaryDataPropertyDescriptor(Object object) {
+  protected void addBinaryDataPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -170,7 +177,8 @@ public class CommentItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addBinaryFormatPropertyDescriptor(Object object) {
+  protected void addBinaryFormatPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -190,7 +198,8 @@ public class CommentItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addBinaryCountPropertyDescriptor(Object object) {
+  protected void addBinaryCountPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -212,8 +221,10 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getComment_BodyExpression());
 		}
@@ -226,7 +237,8 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Comment"); //$NON-NLS-1$
 	}
 
@@ -236,7 +248,8 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		Comment comment = (Comment)object;
 		return getString("_UI_Comment_type") + " " + comment.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -248,10 +261,12 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Comment.class)) {
+		switch (notification.getFeatureID(Comment.class))
+		{
 			case UML2Package.COMMENT__BODY:
 			case UML2Package.COMMENT__BINARY_DATA:
 			case UML2Package.COMMENT__BINARY_FORMAT:
@@ -272,7 +287,8 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -292,7 +308,8 @@ public class CommentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -30,7 +30,8 @@ public class PartDecompositionTest extends InteractionOccurrenceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(PartDecompositionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class PartDecompositionTest extends InteractionOccurrenceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PartDecompositionTest(String name) {
+	public PartDecompositionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class PartDecompositionTest extends InteractionOccurrenceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PartDecomposition getFixture() {
+	private PartDecomposition getFixture()
+	{
 		return (PartDecomposition)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class PartDecompositionTest extends InteractionOccurrenceTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createPartDecomposition());
 	}
 
@@ -70,7 +74,8 @@ public class PartDecompositionTest extends InteractionOccurrenceTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

@@ -151,7 +151,8 @@ public final class VisibilityKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final VisibilityKind[] VALUES_ARRAY =
-		new VisibilityKind[] {
+		new VisibilityKind[]
+		{
 			PUBLIC_LITERAL,
 			PRIVATE_LITERAL,
 			PROTECTED_LITERAL,
@@ -172,10 +173,13 @@ public final class VisibilityKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static VisibilityKind get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static VisibilityKind get(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			VisibilityKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(name))
+			{
 				return result;
 			}
 		}
@@ -188,8 +192,10 @@ public final class VisibilityKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static VisibilityKind get(int value) {
-		switch (value) {
+	public static VisibilityKind get(int value)
+	{
+		switch (value)
+		{
 			case PUBLIC: return PUBLIC_LITERAL;
 			case PRIVATE: return PRIVATE_LITERAL;
 			case PROTECTED: return PROTECTED_LITERAL;
@@ -209,7 +215,8 @@ public final class VisibilityKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private VisibilityKind(int value, String name) {
+	private VisibilityKind(int value, String name)
+	{
 		super(value, name);
 	}
 

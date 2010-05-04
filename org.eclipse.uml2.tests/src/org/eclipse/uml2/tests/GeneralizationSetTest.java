@@ -30,7 +30,8 @@ public class GeneralizationSetTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(GeneralizationSetTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class GeneralizationSetTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeneralizationSetTest(String name) {
+	public GeneralizationSetTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class GeneralizationSetTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private GeneralizationSet getFixture() {
+	private GeneralizationSet getFixture()
+	{
 		return (GeneralizationSet)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class GeneralizationSetTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createGeneralizationSet());
 	}
 
@@ -70,7 +74,8 @@ public class GeneralizationSetTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

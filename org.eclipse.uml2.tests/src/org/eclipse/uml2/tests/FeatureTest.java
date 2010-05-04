@@ -28,7 +28,8 @@ public abstract class FeatureTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FeatureTest(String name) {
+	public FeatureTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class FeatureTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Feature getFixture() {
+	private Feature getFixture()
+	{
 		return (Feature)fixture;
 	}
 
@@ -51,7 +53,8 @@ public abstract class FeatureTest extends RedefinableElementTest {
 	 * @see org.eclipse.uml2.Feature#getFeaturingClassifiers()
 	 * @generated
 	 */
-	public void testGetFeaturingClassifiers() {
+	public void testGetFeaturingClassifiers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

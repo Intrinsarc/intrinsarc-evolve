@@ -57,7 +57,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DependencyItemProvider(AdapterFactory adapterFactory) {
+	public DependencyItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRelatedElementPropertyDescriptor(object);
@@ -89,7 +92,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedElementPropertyDescriptor(Object object) {
+	protected void addRelatedElementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -111,7 +115,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourcePropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -133,7 +138,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -155,7 +161,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addClientPropertyDescriptor(Object object) {
+	protected void addClientPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -175,7 +182,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSupplierPropertyDescriptor(Object object) {
+	protected void addSupplierPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -195,7 +203,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDependencyTargetPropertyDescriptor(Object object) {
+	protected void addDependencyTargetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -215,7 +224,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResemblancePropertyDescriptor(Object object) {
+	protected void addResemblancePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -235,7 +245,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReplacementPropertyDescriptor(Object object) {
+	protected void addReplacementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -255,7 +266,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Dependency"); //$NON-NLS-1$
 	}
 
@@ -265,7 +277,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Dependency)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Dependency_type") : //$NON-NLS-1$
@@ -279,10 +292,12 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Dependency.class)) {
+		switch (notification.getFeatureID(Dependency.class))
+		{
 			case UML2Package.DEPENDENCY__RESEMBLANCE:
 			case UML2Package.DEPENDENCY__REPLACEMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -298,7 +313,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -308,7 +324,8 @@ public class DependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

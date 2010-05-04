@@ -30,7 +30,8 @@ public class RemoveVariableValueActionTest extends WriteVariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(RemoveVariableValueActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class RemoveVariableValueActionTest extends WriteVariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RemoveVariableValueActionTest(String name) {
+	public RemoveVariableValueActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class RemoveVariableValueActionTest extends WriteVariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private RemoveVariableValueAction getFixture() {
+	private RemoveVariableValueAction getFixture()
+	{
 		return (RemoveVariableValueAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class RemoveVariableValueActionTest extends WriteVariableActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createRemoveVariableValueAction());
 	}
 
@@ -70,7 +74,8 @@ public class RemoveVariableValueActionTest extends WriteVariableActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

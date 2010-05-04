@@ -54,7 +54,8 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectionPointReferenceItemProvider(AdapterFactory adapterFactory) {
+	public ConnectionPointReferenceItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -64,8 +65,10 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addEntryPropertyDescriptor(object);
@@ -80,7 +83,8 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEntryPropertyDescriptor(Object object) {
+	protected void addEntryPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -100,7 +104,8 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExitPropertyDescriptor(Object object) {
+	protected void addExitPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -120,7 +125,8 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/ConnectionPointReference"); //$NON-NLS-1$
 	}
 
@@ -130,7 +136,8 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ConnectionPointReference)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ConnectionPointReference_type") : //$NON-NLS-1$
@@ -144,7 +151,8 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -156,7 +164,8 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -166,7 +175,8 @@ public class ConnectionPointReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

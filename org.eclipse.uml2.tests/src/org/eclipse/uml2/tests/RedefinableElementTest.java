@@ -37,7 +37,8 @@ public abstract class RedefinableElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RedefinableElementTest(String name) {
+	public RedefinableElementTest(String name)
+	{
 		super(name);
 	}
 
@@ -47,7 +48,8 @@ public abstract class RedefinableElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private RedefinableElement getFixture() {
+	private RedefinableElement getFixture()
+	{
 		return (RedefinableElement)fixture;
 	}
 
@@ -58,7 +60,8 @@ public abstract class RedefinableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.RedefinableElement#validateRedefinitionContextValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateRedefinitionContextValid__DiagnosticChain_Map() {
+	public void testValidateRedefinitionContextValid__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -70,7 +73,8 @@ public abstract class RedefinableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.RedefinableElement#validateRedefinitionConsistent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateRedefinitionConsistent__DiagnosticChain_Map() {
+	public void testValidateRedefinitionConsistent__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -82,7 +86,8 @@ public abstract class RedefinableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.RedefinableElement#isConsistentWith(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsConsistentWith__RedefinableElement() {
+	public void testIsConsistentWith__RedefinableElement()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -94,7 +99,8 @@ public abstract class RedefinableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.RedefinableElement#isRedefinitionContextValid(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsRedefinitionContextValid__RedefinableElement() {
+	public void testIsRedefinitionContextValid__RedefinableElement()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -108,7 +114,8 @@ public abstract class RedefinableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinitionContexts()
 	 * @generated
 	 */
-	public void testGetRedefinitionContexts() {
+	public void testGetRedefinitionContexts()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -120,7 +127,8 @@ public abstract class RedefinableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements() {
+	public void testGetRedefinedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

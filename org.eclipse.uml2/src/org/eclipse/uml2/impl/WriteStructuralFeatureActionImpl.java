@@ -77,11 +77,14 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected WriteStructuralFeatureActionImpl() {
+	protected WriteStructuralFeatureActionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (WriteStructuralFeatureActionImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -90,7 +93,8 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getWriteStructuralFeatureAction();
 	}
 
@@ -99,7 +103,8 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getValue() {
+	public InputPin getValue()
+	{
 		return value;
 	}
 
@@ -113,7 +118,8 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getValue() {
+  public InputPin undeleted_getValue()
+	{
 		InputPin temp = getValue();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -125,10 +131,13 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(InputPin newValue, NotificationChain msgs) {
+	public NotificationChain basicSetValue(InputPin newValue, NotificationChain msgs)
+	{
+
 		InputPin oldValue = value;
 		value = newValue;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__VALUE, oldValue, newValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -141,8 +150,11 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(InputPin newValue) {
-		if (newValue != value) {
+	public void setValue(InputPin newValue)
+	{
+
+		if (newValue != value)
+		{
 			NotificationChain msgs = null;
 			if (value != null)
 				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__VALUE, null, msgs);
@@ -190,9 +202,12 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__TEMPLATE_BINDING:
@@ -235,9 +250,12 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__OWNED_COMMENT:
@@ -288,9 +306,12 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__IN_STRUCTURED_NODE:
@@ -307,8 +328,10 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__OWNED_ELEMENT:
@@ -399,8 +422,10 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -520,8 +545,10 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -624,8 +651,10 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION__OWNED_ELEMENT:
@@ -714,7 +743,8 @@ public abstract class WriteStructuralFeatureActionImpl extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input) {
+	protected EList getInputsHelper(EList input)
+	{
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getWriteStructuralFeatureAction_Value())) {
 			input.add(getValue());

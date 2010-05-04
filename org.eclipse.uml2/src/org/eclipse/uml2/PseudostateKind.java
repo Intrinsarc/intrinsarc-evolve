@@ -294,7 +294,8 @@ public final class PseudostateKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final PseudostateKind[] VALUES_ARRAY =
-		new PseudostateKind[] {
+		new PseudostateKind[]
+		{
 			INITIAL_LITERAL,
 			DEEP_HISTORY_LITERAL,
 			SHALLOW_HISTORY_LITERAL,
@@ -321,10 +322,13 @@ public final class PseudostateKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PseudostateKind get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static PseudostateKind get(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			PseudostateKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(name))
+			{
 				return result;
 			}
 		}
@@ -337,8 +341,10 @@ public final class PseudostateKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PseudostateKind get(int value) {
-		switch (value) {
+	public static PseudostateKind get(int value)
+	{
+		switch (value)
+		{
 			case INITIAL: return INITIAL_LITERAL;
 			case DEEP_HISTORY: return DEEP_HISTORY_LITERAL;
 			case SHALLOW_HISTORY: return SHALLOW_HISTORY_LITERAL;
@@ -359,7 +365,8 @@ public final class PseudostateKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PseudostateKind(int value, String name) {
+	private PseudostateKind(int value, String name)
+	{
 		super(value, name);
 	}
 

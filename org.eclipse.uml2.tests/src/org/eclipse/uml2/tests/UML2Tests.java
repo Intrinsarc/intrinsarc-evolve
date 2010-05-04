@@ -30,7 +30,8 @@ public class UML2Tests extends TestSuite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(suite());
 	}
 
@@ -39,7 +40,8 @@ public class UML2Tests extends TestSuite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static Test suite() {
+	public static Test suite()
+	{
 		TestSuite suite = new UML2Tests("uml2 Tests"); //$NON-NLS-1$
 		suite.addTestSuite(OpaqueExpressionTest.class);
 		suite.addTestSuite(ExpressionTest.class);
@@ -253,7 +255,8 @@ public class UML2Tests extends TestSuite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2Tests(String name) {
+	public UML2Tests(String name)
+	{
 		super(name);
 	}
 

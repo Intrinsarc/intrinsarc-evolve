@@ -90,11 +90,14 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TimeExpressionImpl() {
+	protected TimeExpressionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (TimeExpressionImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 		eFlags |= FIRST_TIME_EFLAG;
 	}
@@ -104,7 +107,8 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getTimeExpression();
 	}
 
@@ -113,7 +117,8 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isFirstTime() {
+	public boolean isFirstTime()
+	{
 		return (eFlags & FIRST_TIME_EFLAG) != 0;
 	}
 
@@ -128,7 +133,9 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFirstTime(boolean newFirstTime) {
+	public void setFirstTime(boolean newFirstTime)
+	{
+
 		boolean oldFirstTime = (eFlags & FIRST_TIME_EFLAG) != 0;
 		if (newFirstTime) eFlags |= FIRST_TIME_EFLAG; else eFlags &= ~FIRST_TIME_EFLAG;
 		if (eNotificationRequired())
@@ -142,11 +149,14 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement getEvent() {
-		if (event != null && event.eIsProxy()) {
+	public NamedElement getEvent()
+	{
+		if (event != null && event.eIsProxy())
+		{
 			NamedElement oldEvent = event;
 			event = (NamedElement)eResolveProxy((InternalEObject)event);
-			if (event != oldEvent) {
+			if (event != oldEvent)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.TIME_EXPRESSION__EVENT, oldEvent, event));
 			}
@@ -164,7 +174,8 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NamedElement undeleted_getEvent() {
+  public NamedElement undeleted_getEvent()
+	{
 		NamedElement temp = getEvent();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -176,7 +187,8 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement basicGetEvent() {
+	public NamedElement basicGetEvent()
+	{
 		return event;
 	}
 
@@ -185,7 +197,9 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEvent(NamedElement newEvent) {
+	public void setEvent(NamedElement newEvent)
+	{
+
 		NamedElement oldEvent = event;
 		event = newEvent;
 		if (eNotificationRequired())
@@ -199,9 +213,12 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.TIME_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.TIME_EXPRESSION__TEMPLATE_BINDING:
@@ -234,9 +251,12 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.TIME_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.TIME_EXPRESSION__OWNED_COMMENT:
@@ -269,9 +289,12 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.TIME_EXPRESSION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -286,8 +309,10 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TIME_EXPRESSION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.TIME_EXPRESSION__OWNED_ELEMENT:
@@ -349,8 +374,10 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TIME_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -432,8 +459,10 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TIME_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -506,8 +535,10 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TIME_EXPRESSION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.TIME_EXPRESSION__OWNED_ELEMENT:
@@ -565,7 +596,8 @@ public class TimeExpressionImpl extends ValueSpecificationImpl implements TimeEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

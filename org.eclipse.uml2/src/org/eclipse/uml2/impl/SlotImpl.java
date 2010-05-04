@@ -81,11 +81,14 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SlotImpl() {
+	protected SlotImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (SlotImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -94,7 +97,8 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getSlot();
 	}
 
@@ -103,7 +107,8 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSpecification getOwningInstance() {
+	public InstanceSpecification getOwningInstance()
+	{
 		if (eContainerFeatureID != UML2Package.SLOT__OWNING_INSTANCE) return null;
 		return (InstanceSpecification)eContainer;
 	}
@@ -149,7 +154,8 @@ public class SlotImpl extends ElementImpl implements Slot {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InstanceSpecification undeleted_getOwningInstance() {
+  public InstanceSpecification undeleted_getOwningInstance()
+	{
 		InstanceSpecification temp = getOwningInstance();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -161,8 +167,11 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningInstance(InstanceSpecification newOwningInstance) {
-		if (newOwningInstance != eContainer || (eContainerFeatureID != UML2Package.SLOT__OWNING_INSTANCE && newOwningInstance != null)) {
+	public void setOwningInstance(InstanceSpecification newOwningInstance)
+	{
+
+		if (newOwningInstance != eContainer || (eContainerFeatureID != UML2Package.SLOT__OWNING_INSTANCE && newOwningInstance != null))
+		{
 			if (EcoreUtil.isAncestor(this, newOwningInstance))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -184,9 +193,13 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getValues() {
-		if (value == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getValues()
+	{
+		if (value == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		value = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.SLOT__VALUE);
 			 		return value;
@@ -203,8 +216,12 @@ public class SlotImpl extends ElementImpl implements Slot {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getValues() {
-		if (value == null) {
+  public EList settable_getValues()
+	{
+		if (value == null)
+		{
+			
+		
 			value = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.SLOT__VALUE);
 		}
 		return value;
@@ -215,11 +232,14 @@ public class SlotImpl extends ElementImpl implements Slot {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getValues() {
+  public java.util.ArrayList undeleted_getValues()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (value != null) {
-			for (Object object : value) {
+		if (value != null)
+		{
+			for (Object object : value)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -266,11 +286,14 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuralFeature getDefiningFeature() {
-		if (definingFeature != null && definingFeature.eIsProxy()) {
+	public StructuralFeature getDefiningFeature()
+	{
+		if (definingFeature != null && definingFeature.eIsProxy())
+		{
 			StructuralFeature oldDefiningFeature = definingFeature;
 			definingFeature = (StructuralFeature)eResolveProxy((InternalEObject)definingFeature);
-			if (definingFeature != oldDefiningFeature) {
+			if (definingFeature != oldDefiningFeature)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.SLOT__DEFINING_FEATURE, oldDefiningFeature, definingFeature));
 			}
@@ -288,7 +311,8 @@ public class SlotImpl extends ElementImpl implements Slot {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StructuralFeature undeleted_getDefiningFeature() {
+  public StructuralFeature undeleted_getDefiningFeature()
+	{
 		StructuralFeature temp = getDefiningFeature();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -300,7 +324,8 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuralFeature basicGetDefiningFeature() {
+	public StructuralFeature basicGetDefiningFeature()
+	{
 		return definingFeature;
 	}
 
@@ -309,7 +334,9 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefiningFeature(StructuralFeature newDefiningFeature) {
+	public void setDefiningFeature(StructuralFeature newDefiningFeature)
+	{
+
 		StructuralFeature oldDefiningFeature = definingFeature;
 		definingFeature = newDefiningFeature;
 		if (eNotificationRequired())
@@ -323,9 +350,12 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SLOT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.SLOT__OWNING_INSTANCE:
@@ -346,9 +376,12 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SLOT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.SLOT__OWNED_COMMENT:
@@ -371,7 +404,8 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		InstanceSpecification owningInstance = getOwningInstance();			
 		if (owningInstance != null) {
 			return owningInstance;
@@ -385,7 +419,8 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getSlot_Value())) {
 			ownedElement.addAll(getValues());
@@ -399,9 +434,12 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.SLOT__OWNING_INSTANCE:
 					return eContainer.eInverseRemove(this, UML2Package.INSTANCE_SPECIFICATION__SLOT, InstanceSpecification.class, msgs);
 				default:
@@ -416,8 +454,10 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SLOT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.SLOT__OWNED_ELEMENT:
@@ -453,8 +493,10 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SLOT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -499,8 +541,10 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SLOT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -540,8 +584,10 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SLOT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.SLOT__OWNED_ELEMENT:

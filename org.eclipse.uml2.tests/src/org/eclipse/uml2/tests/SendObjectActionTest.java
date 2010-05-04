@@ -30,7 +30,8 @@ public class SendObjectActionTest extends InvocationActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(SendObjectActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class SendObjectActionTest extends InvocationActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SendObjectActionTest(String name) {
+	public SendObjectActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class SendObjectActionTest extends InvocationActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private SendObjectAction getFixture() {
+	private SendObjectAction getFixture()
+	{
 		return (SendObjectAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class SendObjectActionTest extends InvocationActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createSendObjectAction());
 	}
 
@@ -70,7 +74,8 @@ public class SendObjectActionTest extends InvocationActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -83,7 +88,8 @@ public class SendObjectActionTest extends InvocationActionTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs() {
+	public void testGetInputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -95,7 +101,8 @@ public class SendObjectActionTest extends InvocationActionTest {
 	 * @see org.eclipse.uml2.InvocationAction#getArguments()
 	 * @generated
 	 */
-	public void testGetArguments() {
+	public void testGetArguments()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

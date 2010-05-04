@@ -30,7 +30,8 @@ public class StereotypeTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(StereotypeTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class StereotypeTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StereotypeTest(String name) {
+	public StereotypeTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class StereotypeTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Stereotype getFixture() {
+	private Stereotype getFixture()
+	{
 		return (Stereotype)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class StereotypeTest extends ClassTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createStereotype());
 	}
 
@@ -70,7 +74,8 @@ public class StereotypeTest extends ClassTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

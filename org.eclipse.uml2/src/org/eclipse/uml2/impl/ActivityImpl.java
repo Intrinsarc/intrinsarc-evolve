@@ -210,11 +210,14 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActivityImpl() {
+	protected ActivityImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (ActivityImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -223,7 +226,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getActivity();
 	}
 
@@ -232,7 +236,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBody() {
+	public String getBody()
+	{
 		return body;
 	}
 
@@ -247,7 +252,9 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBody(String newBody) {
+	public void setBody(String newBody)
+	{
+
 		newBody = newBody == null ? BODY_EDEFAULT : newBody;
 		String oldBody = body;
 		body = newBody;
@@ -262,7 +269,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLanguage() {
+	public String getLanguage()
+	{
 		return language;
 	}
 
@@ -277,7 +285,9 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLanguage(String newLanguage) {
+	public void setLanguage(String newLanguage)
+	{
+
 		newLanguage = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
 		String oldLanguage = language;
 		language = newLanguage;
@@ -292,7 +302,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReadOnly() {
+	public boolean isReadOnly()
+	{
 		return (eFlags & IS_READ_ONLY_EFLAG) != 0;
 	}
 
@@ -307,7 +318,9 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsReadOnly(boolean newIsReadOnly) {
+	public void setIsReadOnly(boolean newIsReadOnly)
+	{
+
 		boolean oldIsReadOnly = (eFlags & IS_READ_ONLY_EFLAG) != 0;
 		if (newIsReadOnly) eFlags |= IS_READ_ONLY_EFLAG; else eFlags &= ~IS_READ_ONLY_EFLAG;
 		if (eNotificationRequired())
@@ -321,7 +334,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSingleExecution() {
+	public boolean isSingleExecution()
+	{
 		return (eFlags & IS_SINGLE_EXECUTION_EFLAG) != 0;
 	}
 
@@ -336,7 +350,9 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsSingleExecution(boolean newIsSingleExecution) {
+	public void setIsSingleExecution(boolean newIsSingleExecution)
+	{
+
 		boolean oldIsSingleExecution = (eFlags & IS_SINGLE_EXECUTION_EFLAG) != 0;
 		if (newIsSingleExecution) eFlags |= IS_SINGLE_EXECUTION_EFLAG; else eFlags &= ~IS_SINGLE_EXECUTION_EFLAG;
 		if (eNotificationRequired())
@@ -350,9 +366,13 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getEdges() {
-		if (edge == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getEdges()
+	{
+		if (edge == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		edge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY__EDGE, UML2Package.ACTIVITY_EDGE__ACTIVITY);
 			 		return edge;
@@ -369,8 +389,12 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getEdges() {
-		if (edge == null) {
+  public EList settable_getEdges()
+	{
+		if (edge == null)
+		{
+			
+		
 			edge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY__EDGE, UML2Package.ACTIVITY_EDGE__ACTIVITY);
 		}
 		return edge;
@@ -381,11 +405,14 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getEdges() {
+  public java.util.ArrayList undeleted_getEdges()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (edge != null) {
-			for (Object object : edge) {
+		if (edge != null)
+		{
+			for (Object object : edge)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -444,8 +471,12 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getGroups() {
-		if (group == null) {
+  public EList settable_getGroups()
+	{
+		if (group == null)
+		{
+			
+		
 			group = new com.hopstepjump.emflist.PersistentEList(ActivityGroup.class, this, UML2Package.ACTIVITY__GROUP, UML2Package.ACTIVITY_GROUP__ACTIVITY_GROUP_ACTIVITY);
 		}
 		return group;
@@ -456,11 +487,14 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getGroups() {
+  public java.util.ArrayList undeleted_getGroups()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (group != null) {
-			for (Object object : group) {
+		if (group != null)
+		{
+			for (Object object : group)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -492,9 +526,13 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getNodes() {
-		if (node == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getNodes()
+	{
+		if (node == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		node = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY__NODE, new int[] {UML2Package.ACTIVITY__ACTION}, UML2Package.ACTIVITY_NODE__ACTIVITY);
 			 		return node;
@@ -511,8 +549,12 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getNodes() {
-		if (node == null) {
+  public EList settable_getNodes()
+	{
+		if (node == null)
+		{
+			
+		
 			node = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY__NODE, new int[] {UML2Package.ACTIVITY__ACTION}, UML2Package.ACTIVITY_NODE__ACTIVITY);
 		}
 		return node;
@@ -523,11 +565,14 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getNodes() {
+  public java.util.ArrayList undeleted_getNodes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (node != null) {
-			for (Object object : node) {
+		if (node != null)
+		{
+			for (Object object : node)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -574,9 +619,13 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getActions() {
-		if (action == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getActions()
+	{
+		if (action == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		action = new com.hopstepjump.emflist.PersistentEList(Action.class, this, UML2Package.ACTIVITY__ACTION, new int[] {UML2Package.ACTIVITY__NODE});
 			 		return action;
@@ -593,8 +642,12 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getActions() {
-		if (action == null) {
+  public EList settable_getActions()
+	{
+		if (action == null)
+		{
+			
+		
 			action = new com.hopstepjump.emflist.PersistentEList(Action.class, this, UML2Package.ACTIVITY__ACTION, new int[] {UML2Package.ACTIVITY__NODE});
 		}
 		return action;
@@ -605,11 +658,14 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getActions() {
+  public java.util.ArrayList undeleted_getActions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (action != null) {
-			for (Object object : action) {
+		if (action != null)
+		{
+			for (Object object : action)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -688,9 +744,12 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ACTIVITY__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ACTIVITY__TEMPLATE_BINDING:
@@ -768,9 +827,12 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ACTIVITY__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTIVITY__OWNED_COMMENT:
@@ -884,9 +946,12 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.ACTIVITY__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.ACTIVITY__CONTEXT:
@@ -903,8 +968,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ACTIVITY__OWNED_ELEMENT:
@@ -1098,8 +1165,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1373,8 +1442,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1600,8 +1671,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ACTIVITY__OWNED_ELEMENT:
@@ -1809,7 +1882,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1831,7 +1905,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getActivity_Edge())) {
 			ownedElement.addAll(getEdges());

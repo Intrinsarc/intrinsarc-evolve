@@ -28,7 +28,8 @@ public abstract class VariableActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableActionTest(String name) {
+	public VariableActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class VariableActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private VariableAction getFixture() {
+	private VariableAction getFixture()
+	{
 		return (VariableAction)fixture;
 	}
 

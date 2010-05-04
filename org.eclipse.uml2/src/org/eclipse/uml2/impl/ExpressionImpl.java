@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -98,11 +99,14 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExpressionImpl() {
+	protected ExpressionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (ExpressionImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -111,7 +115,8 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getExpression();
 	}
 
@@ -120,7 +125,8 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSymbol() {
+	public String getSymbol()
+	{
 		return symbol;
 	}
 
@@ -135,7 +141,9 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSymbol(String newSymbol) {
+	public void setSymbol(String newSymbol)
+	{
+
 		newSymbol = newSymbol == null ? SYMBOL_EDEFAULT : newSymbol;
 		String oldSymbol = symbol;
 		symbol = newSymbol;
@@ -150,9 +158,13 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOperands() {
-		if (operand == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOperands()
+	{
+		if (operand == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		operand = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.EXPRESSION__OPERAND);
 			 		return operand;
@@ -169,8 +181,12 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOperands() {
-		if (operand == null) {
+  public EList settable_getOperands()
+	{
+		if (operand == null)
+		{
+			
+		
 			operand = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.EXPRESSION__OPERAND);
 		}
 		return operand;
@@ -181,11 +197,14 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOperands() {
+  public java.util.ArrayList undeleted_getOperands()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (operand != null) {
-			for (Object object : operand) {
+		if (operand != null)
+		{
+			for (Object object : operand)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -232,9 +251,12 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.EXPRESSION__TEMPLATE_BINDING:
@@ -267,9 +289,12 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.EXPRESSION__OWNED_COMMENT:
@@ -304,9 +329,12 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.EXPRESSION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -321,8 +349,10 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.EXPRESSION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.EXPRESSION__OWNED_ELEMENT:
@@ -393,8 +423,10 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -486,8 +518,10 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -569,8 +603,10 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.EXPRESSION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.EXPRESSION__OWNED_ELEMENT:
@@ -636,7 +672,8 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -652,7 +689,8 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getExpression_Operand())) {
 			ownedElement.addAll(getOperands());

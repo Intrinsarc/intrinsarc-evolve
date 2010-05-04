@@ -57,7 +57,8 @@ public class ContinuationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContinuationItemProvider(AdapterFactory adapterFactory) {
+	public ContinuationItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class ContinuationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSettingPropertyDescriptor(object);
@@ -82,7 +85,8 @@ public class ContinuationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSettingPropertyDescriptor(Object object) {
+	protected void addSettingPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -102,7 +106,8 @@ public class ContinuationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Continuation"); //$NON-NLS-1$
 	}
 
@@ -112,7 +117,8 @@ public class ContinuationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Continuation)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Continuation_type") : //$NON-NLS-1$
@@ -126,10 +132,12 @@ public class ContinuationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Continuation.class)) {
+		switch (notification.getFeatureID(Continuation.class))
+		{
 			case UML2Package.CONTINUATION__SETTING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -144,7 +152,8 @@ public class ContinuationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -154,7 +163,8 @@ public class ContinuationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

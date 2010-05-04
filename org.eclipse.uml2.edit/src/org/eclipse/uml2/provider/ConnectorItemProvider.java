@@ -58,7 +58,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectorItemProvider(AdapterFactory adapterFactory) {
+	public ConnectorItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -68,8 +69,10 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
@@ -87,7 +90,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addKindPropertyDescriptor(Object object) {
+	protected void addKindPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,7 +111,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -127,7 +132,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinedConnectorPropertyDescriptor(Object object) {
+	protected void addRedefinedConnectorPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -147,7 +153,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEndPropertyDescriptor(Object object) {
+	protected void addEndPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -169,7 +176,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContractPropertyDescriptor(Object object) {
+	protected void addContractPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -191,8 +199,10 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getConnector_End());
 		}
@@ -205,7 +215,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Connector"); //$NON-NLS-1$
 	}
 
@@ -215,7 +226,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Connector)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Connector_type") : //$NON-NLS-1$
@@ -229,10 +241,12 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Connector.class)) {
+		switch (notification.getFeatureID(Connector.class))
+		{
 			case UML2Package.CONNECTOR__KIND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -250,7 +264,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -270,7 +285,8 @@ public class ConnectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

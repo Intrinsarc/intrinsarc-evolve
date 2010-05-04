@@ -38,7 +38,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ElementImportTest.class);
 	}
 
@@ -48,7 +49,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementImportTest(String name) {
+	public ElementImportTest(String name)
+	{
 		super(name);
 	}
 
@@ -58,7 +60,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ElementImport getFixture() {
+	private ElementImport getFixture()
+	{
 		return (ElementImport)fixture;
 	}
 
@@ -68,7 +71,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createElementImport());
 	}
 
@@ -78,7 +82,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -89,7 +94,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.ElementImport#validateVisibilityPublicOrPrivate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateVisibilityPublicOrPrivate__DiagnosticChain_Map() {
+	public void testValidateVisibilityPublicOrPrivate__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.ElementImport#validateImportedElementIsPublic(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateImportedElementIsPublic__DiagnosticChain_Map() {
+	public void testValidateImportedElementIsPublic__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.ElementImport#getName()
 	 * @generated
 	 */
-	public void testGetName() {
+	public void testGetName()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -127,7 +135,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getTargets()
 	 * @generated
 	 */
-	public void testGetTargets() {
+	public void testGetTargets()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -139,7 +148,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getSources()
 	 * @generated
 	 */
-	public void testGetSources() {
+	public void testGetSources()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -151,7 +161,8 @@ public class ElementImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

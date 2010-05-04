@@ -28,7 +28,8 @@ public abstract class LiteralSpecificationTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralSpecificationTest(String name) {
+	public LiteralSpecificationTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class LiteralSpecificationTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LiteralSpecification getFixture() {
+	private LiteralSpecification getFixture()
+	{
 		return (LiteralSpecification)fixture;
 	}
 

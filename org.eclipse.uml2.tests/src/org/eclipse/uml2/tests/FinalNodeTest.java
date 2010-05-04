@@ -28,7 +28,8 @@ public abstract class FinalNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FinalNodeTest(String name) {
+	public FinalNodeTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class FinalNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private FinalNode getFixture() {
+	private FinalNode getFixture()
+	{
 		return (FinalNode)fixture;
 	}
 

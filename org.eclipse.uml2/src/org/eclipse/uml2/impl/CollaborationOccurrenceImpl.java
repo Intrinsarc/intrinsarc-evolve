@@ -89,11 +89,14 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CollaborationOccurrenceImpl() {
+	protected CollaborationOccurrenceImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (CollaborationOccurrenceImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -102,7 +105,8 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getCollaborationOccurrence();
 	}
 
@@ -111,11 +115,14 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collaboration getType() {
-		if (type != null && type.eIsProxy()) {
+	public Collaboration getType()
+	{
+		if (type != null && type.eIsProxy())
+		{
 			Collaboration oldType = type;
 			type = (Collaboration)eResolveProxy((InternalEObject)type);
-			if (type != oldType) {
+			if (type != oldType)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.COLLABORATION_OCCURRENCE__TYPE, oldType, type));
 			}
@@ -133,7 +140,8 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Collaboration undeleted_getType() {
+  public Collaboration undeleted_getType()
+	{
 		Collaboration temp = getType();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -145,7 +153,8 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collaboration basicGetType() {
+	public Collaboration basicGetType()
+	{
 		return type;
 	}
 
@@ -154,7 +163,9 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(Collaboration newType) {
+	public void setType(Collaboration newType)
+	{
+
 		Collaboration oldType = type;
 		type = newType;
 		if (eNotificationRequired())
@@ -168,9 +179,13 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRoleBindings() {
-		if (roleBinding == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRoleBindings()
+	{
+		if (roleBinding == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		roleBinding = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING);
 			 		return roleBinding;
@@ -187,8 +202,12 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRoleBindings() {
-		if (roleBinding == null) {
+  public EList settable_getRoleBindings()
+	{
+		if (roleBinding == null)
+		{
+			
+		
 			roleBinding = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING);
 		}
 		return roleBinding;
@@ -199,11 +218,14 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRoleBindings() {
+  public java.util.ArrayList undeleted_getRoleBindings()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (roleBinding != null) {
-			for (Object object : roleBinding) {
+		if (roleBinding != null)
+		{
+			for (Object object : roleBinding)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -264,9 +286,12 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.COLLABORATION_OCCURRENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.COLLABORATION_OCCURRENCE__TEMPLATE_BINDING:
@@ -291,9 +316,12 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.COLLABORATION_OCCURRENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.COLLABORATION_OCCURRENCE__OWNED_COMMENT:
@@ -324,8 +352,10 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COLLABORATION_OCCURRENCE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.COLLABORATION_OCCURRENCE__OWNED_ELEMENT:
@@ -379,8 +409,10 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COLLABORATION_OCCURRENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -454,8 +486,10 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COLLABORATION_OCCURRENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -519,8 +553,10 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COLLABORATION_OCCURRENCE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.COLLABORATION_OCCURRENCE__OWNED_ELEMENT:
@@ -573,7 +609,8 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getCollaborationOccurrence_RoleBinding())) {
 			ownedElement.addAll(getRoleBindings());

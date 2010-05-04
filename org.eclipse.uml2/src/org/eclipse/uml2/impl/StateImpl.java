@@ -274,11 +274,14 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateImpl() {
+	protected StateImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (StateImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -287,7 +290,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getState();
 	}
 
@@ -311,7 +315,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLeaf() {
+	public boolean isLeaf()
+	{
 		return (eFlags & IS_LEAF_EFLAG) != 0;
 	}
 
@@ -326,7 +331,9 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsLeaf(boolean newIsLeaf) {
+	public void setIsLeaf(boolean newIsLeaf)
+	{
+
 		boolean oldIsLeaf = (eFlags & IS_LEAF_EFLAG) != 0;
 		if (newIsLeaf) eFlags |= IS_LEAF_EFLAG; else eFlags &= ~IS_LEAF_EFLAG;
 		if (eNotificationRequired())
@@ -340,7 +347,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Region getContainer() {
+	public Region getContainer()
+	{
 		if (eContainerFeatureID != UML2Package.STATE__CONTAINER) return null;
 		return (Region)eContainer;
 	}
@@ -355,7 +363,8 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Region undeleted_getContainer() {
+  public Region undeleted_getContainer()
+	{
 		Region temp = getContainer();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -367,8 +376,11 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainer(Region newContainer) {
-		if (newContainer != eContainer || (eContainerFeatureID != UML2Package.STATE__CONTAINER && newContainer != null)) {
+	public void setContainer(Region newContainer)
+	{
+
+		if (newContainer != eContainer || (eContainerFeatureID != UML2Package.STATE__CONTAINER && newContainer != null))
+		{
 			if (EcoreUtil.isAncestor(this, newContainer))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -390,9 +402,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOutgoings() {
-		if (outgoing == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOutgoings()
+	{
+		if (outgoing == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		outgoing = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.STATE__OUTGOING, UML2Package.TRANSITION__SOURCE);
 			 		return outgoing;
@@ -409,8 +425,12 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOutgoings() {
-		if (outgoing == null) {
+  public EList settable_getOutgoings()
+	{
+		if (outgoing == null)
+		{
+			
+		
 			outgoing = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.STATE__OUTGOING, UML2Package.TRANSITION__SOURCE);
 		}
 		return outgoing;
@@ -421,11 +441,14 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOutgoings() {
+  public java.util.ArrayList undeleted_getOutgoings()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (outgoing != null) {
-			for (Object object : outgoing) {
+		if (outgoing != null)
+		{
+			for (Object object : outgoing)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -458,9 +481,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getIncomings() {
-		if (incoming == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getIncomings()
+	{
+		if (incoming == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		incoming = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.STATE__INCOMING, UML2Package.TRANSITION__TARGET);
 			 		return incoming;
@@ -477,8 +504,12 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getIncomings() {
-		if (incoming == null) {
+  public EList settable_getIncomings()
+	{
+		if (incoming == null)
+		{
+			
+		
 			incoming = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.STATE__INCOMING, UML2Package.TRANSITION__TARGET);
 		}
 		return incoming;
@@ -489,11 +520,14 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getIncomings() {
+  public java.util.ArrayList undeleted_getIncomings()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (incoming != null) {
-			for (Object object : incoming) {
+		if (incoming != null)
+		{
+			for (Object object : incoming)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -562,11 +596,14 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine getSubmachine() {
-		if (submachine != null && submachine.eIsProxy()) {
+	public StateMachine getSubmachine()
+	{
+		if (submachine != null && submachine.eIsProxy())
+		{
 			StateMachine oldSubmachine = submachine;
 			submachine = (StateMachine)eResolveProxy((InternalEObject)submachine);
-			if (submachine != oldSubmachine) {
+			if (submachine != oldSubmachine)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.STATE__SUBMACHINE, oldSubmachine, submachine));
 			}
@@ -584,7 +621,8 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StateMachine undeleted_getSubmachine() {
+  public StateMachine undeleted_getSubmachine()
+	{
 		StateMachine temp = getSubmachine();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -596,7 +634,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine basicGetSubmachine() {
+	public StateMachine basicGetSubmachine()
+	{
 		return submachine;
 	}
 
@@ -605,7 +644,9 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSubmachine(StateMachine newSubmachine) {
+	public void setSubmachine(StateMachine newSubmachine)
+	{
+
 		StateMachine oldSubmachine = submachine;
 		submachine = newSubmachine;
 		if (eNotificationRequired())
@@ -619,9 +660,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getConnections() {
-		if (connection == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getConnections()
+	{
+		if (connection == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		connection = new com.hopstepjump.emflist.PersistentEList(ConnectionPointReference.class, this, UML2Package.STATE__CONNECTION);
 			 		return connection;
@@ -638,8 +683,12 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getConnections() {
-		if (connection == null) {
+  public EList settable_getConnections()
+	{
+		if (connection == null)
+		{
+			
+		
 			connection = new com.hopstepjump.emflist.PersistentEList(ConnectionPointReference.class, this, UML2Package.STATE__CONNECTION);
 		}
 		return connection;
@@ -650,11 +699,14 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getConnections() {
+  public java.util.ArrayList undeleted_getConnections()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (connection != null) {
-			for (Object object : connection) {
+		if (connection != null)
+		{
+			for (Object object : connection)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -716,11 +768,14 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State getRedefinedState() {
-		if (redefinedState != null && redefinedState.eIsProxy()) {
+	public State getRedefinedState()
+	{
+		if (redefinedState != null && redefinedState.eIsProxy())
+		{
 			State oldRedefinedState = redefinedState;
 			redefinedState = (State)eResolveProxy((InternalEObject)redefinedState);
-			if (redefinedState != oldRedefinedState) {
+			if (redefinedState != oldRedefinedState)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.STATE__REDEFINED_STATE, oldRedefinedState, redefinedState));
 			}
@@ -738,7 +793,8 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public State undeleted_getRedefinedState() {
+  public State undeleted_getRedefinedState()
+	{
 		State temp = getRedefinedState();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -750,7 +806,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State basicGetRedefinedState() {
+	public State basicGetRedefinedState()
+	{
 		return redefinedState;
 	}
 
@@ -759,7 +816,9 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRedefinedState(State newRedefinedState) {
+	public void setRedefinedState(State newRedefinedState)
+	{
+
 		State oldRedefinedState = redefinedState;
 		redefinedState = newRedefinedState;
 		if (eNotificationRequired())
@@ -773,9 +832,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeferrableTriggers() {
-		if (deferrableTrigger == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeferrableTriggers()
+	{
+		if (deferrableTrigger == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deferrableTrigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.STATE__DEFERRABLE_TRIGGER);
 			 		return deferrableTrigger;
@@ -792,8 +855,12 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getDeferrableTriggers() {
-		if (deferrableTrigger == null) {
+  public EList settable_getDeferrableTriggers()
+	{
+		if (deferrableTrigger == null)
+		{
+			
+		
 			deferrableTrigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.STATE__DEFERRABLE_TRIGGER);
 		}
 		return deferrableTrigger;
@@ -804,11 +871,14 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getDeferrableTriggers() {
+  public java.util.ArrayList undeleted_getDeferrableTriggers()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deferrableTrigger != null) {
-			for (Object object : deferrableTrigger) {
+		if (deferrableTrigger != null)
+		{
+			for (Object object : deferrableTrigger)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -841,9 +911,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRegions() {
-		if (region == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRegions()
+	{
+		if (region == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		region = new com.hopstepjump.emflist.PersistentEList(Region.class, this, UML2Package.STATE__REGION, UML2Package.REGION__STATE);
 			 		return region;
@@ -860,8 +934,12 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRegions() {
-		if (region == null) {
+  public EList settable_getRegions()
+	{
+		if (region == null)
+		{
+			
+		
 			region = new com.hopstepjump.emflist.PersistentEList(Region.class, this, UML2Package.STATE__REGION, UML2Package.REGION__STATE);
 		}
 		return region;
@@ -872,11 +950,14 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRegions() {
+  public java.util.ArrayList undeleted_getRegions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (region != null) {
-			for (Object object : region) {
+		if (region != null)
+		{
+			for (Object object : region)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -938,7 +1019,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getEntry() {
+	public Activity getEntry()
+	{
 		return entry;
 	}
 
@@ -952,7 +1034,8 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity undeleted_getEntry() {
+  public Activity undeleted_getEntry()
+	{
 		Activity temp = getEntry();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -964,10 +1047,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEntry(Activity newEntry, NotificationChain msgs) {
+	public NotificationChain basicSetEntry(Activity newEntry, NotificationChain msgs)
+	{
+
 		Activity oldEntry = entry;
 		entry = newEntry;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.STATE__ENTRY, oldEntry, newEntry);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -980,8 +1066,11 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEntry(Activity newEntry) {
-		if (newEntry != entry) {
+	public void setEntry(Activity newEntry)
+	{
+
+		if (newEntry != entry)
+		{
 			NotificationChain msgs = null;
 			if (entry != null)
 				msgs = ((InternalEObject)entry).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.STATE__ENTRY, null, msgs);
@@ -1030,7 +1119,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getExit() {
+	public Activity getExit()
+	{
 		return exit;
 	}
 
@@ -1044,7 +1134,8 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity undeleted_getExit() {
+  public Activity undeleted_getExit()
+	{
 		Activity temp = getExit();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -1056,10 +1147,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExit(Activity newExit, NotificationChain msgs) {
+	public NotificationChain basicSetExit(Activity newExit, NotificationChain msgs)
+	{
+
 		Activity oldExit = exit;
 		exit = newExit;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.STATE__EXIT, oldExit, newExit);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -1072,8 +1166,11 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExit(Activity newExit) {
-		if (newExit != exit) {
+	public void setExit(Activity newExit)
+	{
+
+		if (newExit != exit)
+		{
 			NotificationChain msgs = null;
 			if (exit != null)
 				msgs = ((InternalEObject)exit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.STATE__EXIT, null, msgs);
@@ -1122,7 +1219,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getDoActivity() {
+	public Activity getDoActivity()
+	{
 		return doActivity;
 	}
 
@@ -1136,7 +1234,8 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity undeleted_getDoActivity() {
+  public Activity undeleted_getDoActivity()
+	{
 		Activity temp = getDoActivity();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -1148,10 +1247,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDoActivity(Activity newDoActivity, NotificationChain msgs) {
+	public NotificationChain basicSetDoActivity(Activity newDoActivity, NotificationChain msgs)
+	{
+
 		Activity oldDoActivity = doActivity;
 		doActivity = newDoActivity;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.STATE__DO_ACTIVITY, oldDoActivity, newDoActivity);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -1164,8 +1266,11 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDoActivity(Activity newDoActivity) {
-		if (newDoActivity != doActivity) {
+	public void setDoActivity(Activity newDoActivity)
+	{
+
+		if (newDoActivity != doActivity)
+		{
 			NotificationChain msgs = null;
 			if (doActivity != null)
 				msgs = ((InternalEObject)doActivity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.STATE__DO_ACTIVITY, null, msgs);
@@ -1214,7 +1319,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint getStateInvariant() {
+	public Constraint getStateInvariant()
+	{
 		return stateInvariant;
 	}
 
@@ -1228,7 +1334,8 @@ public class StateImpl extends NamespaceImpl implements State {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Constraint undeleted_getStateInvariant() {
+  public Constraint undeleted_getStateInvariant()
+	{
 		Constraint temp = getStateInvariant();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -1240,10 +1347,13 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStateInvariant(Constraint newStateInvariant, NotificationChain msgs) {
+	public NotificationChain basicSetStateInvariant(Constraint newStateInvariant, NotificationChain msgs)
+	{
+
 		Constraint oldStateInvariant = stateInvariant;
 		stateInvariant = newStateInvariant;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.STATE__STATE_INVARIANT, oldStateInvariant, newStateInvariant);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -1256,8 +1366,11 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStateInvariant(Constraint newStateInvariant) {
-		if (newStateInvariant != stateInvariant) {
+	public void setStateInvariant(Constraint newStateInvariant)
+	{
+
+		if (newStateInvariant != stateInvariant)
+		{
 			NotificationChain msgs = null;
 			if (stateInvariant != null)
 				msgs = ((InternalEObject)stateInvariant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.STATE__STATE_INVARIANT, null, msgs);
@@ -1305,7 +1418,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context) {
+	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context)
+	{
 		return RedefinableElementOperations.validateRedefinitionContextValid(this, diagnostics, context);
 	}
 
@@ -1314,7 +1428,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context) {
+	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context)
+	{
 		return RedefinableElementOperations.validateRedefinitionConsistent(this, diagnostics, context);
 	}
 
@@ -1323,7 +1438,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isConsistentWith(RedefinableElement redefinee) {
+	public boolean isConsistentWith(RedefinableElement redefinee)
+	{
 		return RedefinableElementOperations.isConsistentWith(this, redefinee);
 	}
 
@@ -1332,7 +1448,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRedefinitionContextValid(RedefinableElement redefinable) {
+	public boolean isRedefinitionContextValid(RedefinableElement redefinable)
+	{
 		return RedefinableElementOperations.isRedefinitionContextValid(this, redefinable);
 	}
 
@@ -1341,7 +1458,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		return getContainer();
 	}
 
@@ -1350,7 +1468,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwner(Element newOwner, NotificationChain msgs) {
+	public NotificationChain basicSetOwner(Element newOwner, NotificationChain msgs)
+	{
 		if (newOwner != null && !(newOwner instanceof Region)) {
 			throw new IllegalArgumentException(String.valueOf(newOwner));
 		}
@@ -1398,7 +1517,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements() {
+	public EList getRedefinedElements()
+	{
 		return new EcoreEList.UnmodifiableEList(this, null, 0, Collections.EMPTY_LIST.toArray());
 	}
 
@@ -1423,7 +1543,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getOwner() {
+	public Element getOwner()
+	{
 		return getContainer();
 	}
 
@@ -1432,9 +1553,12 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.STATE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.STATE__TEMPLATE_BINDING:
@@ -1475,9 +1599,12 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.STATE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.STATE__OWNED_COMMENT:
@@ -1530,9 +1657,12 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.STATE__CONTAINER:
 					return eContainer.eInverseRemove(this, UML2Package.REGION__SUBVERTEX, Region.class, msgs);
 				default:
@@ -1547,8 +1677,10 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STATE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.STATE__OWNED_ELEMENT:
@@ -1645,8 +1777,10 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STATE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1769,8 +1903,10 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STATE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1876,8 +2012,10 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STATE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.STATE__OWNED_ELEMENT:
@@ -1971,16 +2109,21 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == RedefinableElement.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == RedefinableElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.STATE__REDEFINITION_CONTEXT: return UML2Package.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT;
 				case UML2Package.STATE__IS_LEAF: return UML2Package.REDEFINABLE_ELEMENT__IS_LEAF;
 				default: return -1;
 			}
 		}
-		if (baseClass == Vertex.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == Vertex.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.STATE__CONTAINER: return UML2Package.VERTEX__CONTAINER;
 				case UML2Package.STATE__OUTGOING: return UML2Package.VERTEX__OUTGOING;
 				case UML2Package.STATE__INCOMING: return UML2Package.VERTEX__INCOMING;
@@ -1995,16 +2138,21 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == RedefinableElement.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == RedefinableElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT: return UML2Package.STATE__REDEFINITION_CONTEXT;
 				case UML2Package.REDEFINABLE_ELEMENT__IS_LEAF: return UML2Package.STATE__IS_LEAF;
 				default: return -1;
 			}
 		}
-		if (baseClass == Vertex.class) {
-			switch (baseFeatureID) {
+		if (baseClass == Vertex.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.VERTEX__CONTAINER: return UML2Package.STATE__CONTAINER;
 				case UML2Package.VERTEX__OUTGOING: return UML2Package.STATE__OUTGOING;
 				case UML2Package.VERTEX__INCOMING: return UML2Package.STATE__INCOMING;
@@ -2019,7 +2167,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -2035,7 +2184,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getState_Connection())) {
 			ownedElement.addAll(getConnections());
@@ -2061,7 +2211,8 @@ public class StateImpl extends NamespaceImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getState_Region())) {
 			ownedMember.addAll(getRegions());

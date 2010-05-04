@@ -47,7 +47,8 @@ public abstract class ElementTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementTest(String name) {
+	public ElementTest(String name)
+	{
 		super(name);
 	}
 
@@ -57,7 +58,8 @@ public abstract class ElementTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(Element fixture) {
+	protected void setFixture(Element fixture)
+	{
 		this.fixture = fixture;
 	}
 
@@ -67,7 +69,8 @@ public abstract class ElementTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Element getFixture() {
+	private Element getFixture()
+	{
 		return fixture;
 	}
 
@@ -78,7 +81,8 @@ public abstract class ElementTest extends TestCase {
 	 * @see org.eclipse.uml2.Element#validateNotOwnSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateNotOwnSelf__DiagnosticChain_Map() {
+	public void testValidateNotOwnSelf__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -90,7 +94,8 @@ public abstract class ElementTest extends TestCase {
 	 * @see org.eclipse.uml2.Element#validateHasOwner(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateHasOwner__DiagnosticChain_Map() {
+	public void testValidateHasOwner__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -102,7 +107,8 @@ public abstract class ElementTest extends TestCase {
 	 * @see org.eclipse.uml2.Element#allOwnedElements()
 	 * @generated
 	 */
-	public void testAllOwnedElements() {
+	public void testAllOwnedElements()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,7 +120,8 @@ public abstract class ElementTest extends TestCase {
 	 * @see org.eclipse.uml2.Element#mustBeOwned()
 	 * @generated
 	 */
-	public void testMustBeOwned() {
+	public void testMustBeOwned()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -128,7 +135,8 @@ public abstract class ElementTest extends TestCase {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -140,7 +148,8 @@ public abstract class ElementTest extends TestCase {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

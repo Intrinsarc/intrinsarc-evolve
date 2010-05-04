@@ -115,11 +115,14 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UseCaseImpl() {
+	protected UseCaseImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (UseCaseImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -128,7 +131,8 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getUseCase();
 	}
 
@@ -137,9 +141,13 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getIncludes() {
-		if (include == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getIncludes()
+	{
+		if (include == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		include = new com.hopstepjump.emflist.PersistentEList(Include.class, this, UML2Package.USE_CASE__INCLUDE, UML2Package.INCLUDE__INCLUDING_CASE);
 			 		return include;
@@ -156,8 +164,12 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getIncludes() {
-		if (include == null) {
+  public EList settable_getIncludes()
+	{
+		if (include == null)
+		{
+			
+		
 			include = new com.hopstepjump.emflist.PersistentEList(Include.class, this, UML2Package.USE_CASE__INCLUDE, UML2Package.INCLUDE__INCLUDING_CASE);
 		}
 		return include;
@@ -168,11 +180,14 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getIncludes() {
+  public java.util.ArrayList undeleted_getIncludes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (include != null) {
-			for (Object object : include) {
+		if (include != null)
+		{
+			for (Object object : include)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -234,9 +249,13 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getExtends() {
-		if (extend == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getExtends()
+	{
+		if (extend == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		extend = new com.hopstepjump.emflist.PersistentEList(Extend.class, this, UML2Package.USE_CASE__EXTEND, UML2Package.EXTEND__EXTENSION);
 			 		return extend;
@@ -253,8 +272,12 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getExtends() {
-		if (extend == null) {
+  public EList settable_getExtends()
+	{
+		if (extend == null)
+		{
+			
+		
 			extend = new com.hopstepjump.emflist.PersistentEList(Extend.class, this, UML2Package.USE_CASE__EXTEND, UML2Package.EXTEND__EXTENSION);
 		}
 		return extend;
@@ -265,11 +288,14 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getExtends() {
+  public java.util.ArrayList undeleted_getExtends()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (extend != null) {
-			for (Object object : extend) {
+		if (extend != null)
+		{
+			for (Object object : extend)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -331,9 +357,13 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getExtensionPoints() {
-		if (extensionPoint == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getExtensionPoints()
+	{
+		if (extensionPoint == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		extensionPoint = new com.hopstepjump.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.USE_CASE__EXTENSION_POINT, UML2Package.EXTENSION_POINT__USE_CASE);
 			 		return extensionPoint;
@@ -350,8 +380,12 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getExtensionPoints() {
-		if (extensionPoint == null) {
+  public EList settable_getExtensionPoints()
+	{
+		if (extensionPoint == null)
+		{
+			
+		
 			extensionPoint = new com.hopstepjump.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.USE_CASE__EXTENSION_POINT, UML2Package.EXTENSION_POINT__USE_CASE);
 		}
 		return extensionPoint;
@@ -362,11 +396,14 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getExtensionPoints() {
+  public java.util.ArrayList undeleted_getExtensionPoints()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (extensionPoint != null) {
-			for (Object object : extensionPoint) {
+		if (extensionPoint != null)
+		{
+			for (Object object : extensionPoint)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -428,9 +465,13 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSubjects() {
-		if (subject == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getSubjects()
+	{
+		if (subject == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		subject = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.USE_CASE__SUBJECT, UML2Package.CLASSIFIER__USE_CASE);
 			 		return subject;
@@ -447,8 +488,12 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSubjects() {
-		if (subject == null) {
+  public EList settable_getSubjects()
+	{
+		if (subject == null)
+		{
+			
+		
 			subject = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.USE_CASE__SUBJECT, UML2Package.CLASSIFIER__USE_CASE);
 		}
 		return subject;
@@ -459,11 +504,14 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSubjects() {
+  public java.util.ArrayList undeleted_getSubjects()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (subject != null) {
-			for (Object object : subject) {
+		if (subject != null)
+		{
+			for (Object object : subject)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -496,9 +544,12 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.USE_CASE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.USE_CASE__TEMPLATE_BINDING:
@@ -566,9 +617,12 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.USE_CASE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.USE_CASE__OWNED_COMMENT:
@@ -635,9 +689,12 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.USE_CASE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -652,8 +709,10 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.USE_CASE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.USE_CASE__OWNED_ELEMENT:
@@ -772,8 +831,10 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.USE_CASE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -936,8 +997,10 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.USE_CASE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1073,8 +1136,10 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.USE_CASE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.USE_CASE__OWNED_ELEMENT:
@@ -1205,7 +1270,8 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getUseCase_Include())) {
 			ownedMember.addAll(getIncludes());

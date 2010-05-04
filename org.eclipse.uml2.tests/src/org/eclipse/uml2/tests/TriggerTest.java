@@ -28,7 +28,8 @@ public abstract class TriggerTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TriggerTest(String name) {
+	public TriggerTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class TriggerTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Trigger getFixture() {
+	private Trigger getFixture()
+	{
 		return (Trigger)fixture;
 	}
 

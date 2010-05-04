@@ -69,11 +69,14 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SignalTriggerImpl() {
+	protected SignalTriggerImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (SignalTriggerImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -82,7 +85,8 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getSignalTrigger();
 	}
 
@@ -91,9 +95,13 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSignals() {
-		if (signal == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getSignals()
+	{
+		if (signal == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		signal = new com.hopstepjump.emflist.PersistentEList(Signal.class, this, UML2Package.SIGNAL_TRIGGER__SIGNAL);
 			 		return signal;
@@ -110,8 +118,12 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSignals() {
-		if (signal == null) {
+  public EList settable_getSignals()
+	{
+		if (signal == null)
+		{
+			
+		
 			signal = new com.hopstepjump.emflist.PersistentEList(Signal.class, this, UML2Package.SIGNAL_TRIGGER__SIGNAL);
 		}
 		return signal;
@@ -122,11 +134,14 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSignals() {
+  public java.util.ArrayList undeleted_getSignals()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (signal != null) {
-			for (Object object : signal) {
+		if (signal != null)
+		{
+			for (Object object : signal)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -159,9 +174,12 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SIGNAL_TRIGGER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.SIGNAL_TRIGGER__TEMPLATE_BINDING:
@@ -186,9 +204,12 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SIGNAL_TRIGGER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.SIGNAL_TRIGGER__OWNED_COMMENT:
@@ -217,8 +238,10 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SIGNAL_TRIGGER__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.SIGNAL_TRIGGER__OWNED_ELEMENT:
@@ -271,8 +294,10 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SIGNAL_TRIGGER__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -347,8 +372,10 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SIGNAL_TRIGGER__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -412,8 +439,10 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SIGNAL_TRIGGER__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.SIGNAL_TRIGGER__OWNED_ELEMENT:

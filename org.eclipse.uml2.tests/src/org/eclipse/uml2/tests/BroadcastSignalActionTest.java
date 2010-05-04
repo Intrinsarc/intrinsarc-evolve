@@ -30,7 +30,8 @@ public class BroadcastSignalActionTest extends InvocationActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(BroadcastSignalActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class BroadcastSignalActionTest extends InvocationActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BroadcastSignalActionTest(String name) {
+	public BroadcastSignalActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class BroadcastSignalActionTest extends InvocationActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private BroadcastSignalAction getFixture() {
+	private BroadcastSignalAction getFixture()
+	{
 		return (BroadcastSignalAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class BroadcastSignalActionTest extends InvocationActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createBroadcastSignalAction());
 	}
 
@@ -70,7 +74,8 @@ public class BroadcastSignalActionTest extends InvocationActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

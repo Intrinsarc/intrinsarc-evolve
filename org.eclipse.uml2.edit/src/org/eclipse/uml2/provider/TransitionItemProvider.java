@@ -60,7 +60,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TransitionItemProvider(AdapterFactory adapterFactory) {
+	public TransitionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -70,8 +71,10 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addKindPropertyDescriptor(object);
@@ -92,7 +95,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addKindPropertyDescriptor(Object object) {
+	protected void addKindPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -112,7 +116,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainerPropertyDescriptor(Object object) {
+	protected void addContainerPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -134,7 +139,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourcePropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -154,7 +160,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -174,7 +181,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinedTransitionPropertyDescriptor(Object object) {
+	protected void addRedefinedTransitionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -194,7 +202,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTriggerPropertyDescriptor(Object object) {
+	protected void addTriggerPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -214,7 +223,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGuardPropertyDescriptor(Object object) {
+	protected void addGuardPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -236,7 +246,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEffectPropertyDescriptor(Object object) {
+	protected void addEffectPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -260,8 +271,10 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getTransition_Guard());
 			childrenFeatures.add(UML2Package.eINSTANCE.getTransition_Effect());
@@ -274,7 +287,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -287,7 +301,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Transition"); //$NON-NLS-1$
 	}
 
@@ -297,7 +312,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Transition)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Transition_type") : //$NON-NLS-1$
@@ -311,10 +327,12 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Transition.class)) {
+		switch (notification.getFeatureID(Transition.class))
+		{
 			case UML2Package.TRANSITION__KIND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -333,7 +351,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -403,7 +422,8 @@ public class TransitionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

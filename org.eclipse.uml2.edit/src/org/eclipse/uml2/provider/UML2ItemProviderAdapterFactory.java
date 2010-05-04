@@ -112,8 +112,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCommentAdapter() {
-		if (commentItemProvider == null) {
+	public Adapter createCommentAdapter()
+	{
+		if (commentItemProvider == null)
+		{
 			commentItemProvider = new CommentItemProvider(this);
 		}
 
@@ -134,8 +136,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createClassAdapter() {
-		if (classItemProvider == null) {
+	public Adapter createClassAdapter()
+	{
+		if (classItemProvider == null)
+		{
 			classItemProvider = new ClassItemProvider(this);
 		}
 
@@ -156,8 +160,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPropertyAdapter() {
-		if (propertyItemProvider == null) {
+	public Adapter createPropertyAdapter()
+	{
+		if (propertyItemProvider == null)
+		{
 			propertyItemProvider = new PropertyItemProvider(this);
 		}
 
@@ -170,7 +176,8 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createOperationAdapter() {
+	public Adapter createOperationAdapter()
+	{
 		return new OperationItemProvider(this);
 	}
 
@@ -188,8 +195,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createParameterAdapter() {
-		if (parameterItemProvider == null) {
+	public Adapter createParameterAdapter()
+	{
+		if (parameterItemProvider == null)
+		{
 			parameterItemProvider = new ParameterItemProvider(this);
 		}
 
@@ -210,8 +219,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPackageAdapter() {
-		if (packageItemProvider == null) {
+	public Adapter createPackageAdapter()
+	{
+		if (packageItemProvider == null)
+		{
 			packageItemProvider = new PackageItemProvider(this);
 		}
 
@@ -232,8 +243,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createEnumerationAdapter() {
-		if (enumerationItemProvider == null) {
+	public Adapter createEnumerationAdapter()
+	{
+		if (enumerationItemProvider == null)
+		{
 			enumerationItemProvider = new EnumerationItemProvider(this);
 		}
 
@@ -254,8 +267,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDataTypeAdapter() {
-		if (dataTypeItemProvider == null) {
+	public Adapter createDataTypeAdapter()
+	{
+		if (dataTypeItemProvider == null)
+		{
 			dataTypeItemProvider = new DataTypeItemProvider(this);
 		}
 
@@ -276,8 +291,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createEnumerationLiteralAdapter() {
-		if (enumerationLiteralItemProvider == null) {
+	public Adapter createEnumerationLiteralAdapter()
+	{
+		if (enumerationLiteralItemProvider == null)
+		{
 			enumerationLiteralItemProvider = new EnumerationLiteralItemProvider(this);
 		}
 
@@ -298,8 +315,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPrimitiveTypeAdapter() {
-		if (primitiveTypeItemProvider == null) {
+	public Adapter createPrimitiveTypeAdapter()
+	{
+		if (primitiveTypeItemProvider == null)
+		{
 			primitiveTypeItemProvider = new PrimitiveTypeItemProvider(this);
 		}
 
@@ -320,8 +339,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createOpaqueExpressionAdapter() {
-		if (opaqueExpressionItemProvider == null) {
+	public Adapter createOpaqueExpressionAdapter()
+	{
+		if (opaqueExpressionItemProvider == null)
+		{
 			opaqueExpressionItemProvider = new OpaqueExpressionItemProvider(this);
 		}
 
@@ -342,8 +363,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExpressionAdapter() {
-		if (expressionItemProvider == null) {
+	public Adapter createExpressionAdapter()
+	{
+		if (expressionItemProvider == null)
+		{
 			expressionItemProvider = new ExpressionItemProvider(this);
 		}
 
@@ -364,8 +387,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createConstraintAdapter() {
-		if (constraintItemProvider == null) {
+	public Adapter createConstraintAdapter()
+	{
+		if (constraintItemProvider == null)
+		{
 			constraintItemProvider = new ConstraintItemProvider(this);
 		}
 
@@ -386,8 +411,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLiteralBooleanAdapter() {
-		if (literalBooleanItemProvider == null) {
+	public Adapter createLiteralBooleanAdapter()
+	{
+		if (literalBooleanItemProvider == null)
+		{
 			literalBooleanItemProvider = new LiteralBooleanItemProvider(this);
 		}
 
@@ -408,8 +435,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLiteralStringAdapter() {
-		if (literalStringItemProvider == null) {
+	public Adapter createLiteralStringAdapter()
+	{
+		if (literalStringItemProvider == null)
+		{
 			literalStringItemProvider = new LiteralStringItemProvider(this);
 		}
 
@@ -430,8 +459,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLiteralNullAdapter() {
-		if (literalNullItemProvider == null) {
+	public Adapter createLiteralNullAdapter()
+	{
+		if (literalNullItemProvider == null)
+		{
 			literalNullItemProvider = new LiteralNullItemProvider(this);
 		}
 
@@ -452,8 +483,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLiteralIntegerAdapter() {
-		if (literalIntegerItemProvider == null) {
+	public Adapter createLiteralIntegerAdapter()
+	{
+		if (literalIntegerItemProvider == null)
+		{
 			literalIntegerItemProvider = new LiteralIntegerItemProvider(this);
 		}
 
@@ -474,8 +507,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLiteralUnlimitedNaturalAdapter() {
-		if (literalUnlimitedNaturalItemProvider == null) {
+	public Adapter createLiteralUnlimitedNaturalAdapter()
+	{
+		if (literalUnlimitedNaturalItemProvider == null)
+		{
 			literalUnlimitedNaturalItemProvider = new LiteralUnlimitedNaturalItemProvider(this);
 		}
 
@@ -496,8 +531,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createGeneralizationAdapter() {
-		if (generalizationItemProvider == null) {
+	public Adapter createGeneralizationAdapter()
+	{
+		if (generalizationItemProvider == null)
+		{
 			generalizationItemProvider = new GeneralizationItemProvider(this);
 		}
 
@@ -518,8 +555,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInstanceSpecificationAdapter() {
-		if (instanceSpecificationItemProvider == null) {
+	public Adapter createInstanceSpecificationAdapter()
+	{
+		if (instanceSpecificationItemProvider == null)
+		{
 			instanceSpecificationItemProvider = new InstanceSpecificationItemProvider(this);
 		}
 
@@ -540,8 +579,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createSlotAdapter() {
-		if (slotItemProvider == null) {
+	public Adapter createSlotAdapter()
+	{
+		if (slotItemProvider == null)
+		{
 			slotItemProvider = new SlotItemProvider(this);
 		}
 
@@ -562,8 +603,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInstanceValueAdapter() {
-		if (instanceValueItemProvider == null) {
+	public Adapter createInstanceValueAdapter()
+	{
+		if (instanceValueItemProvider == null)
+		{
 			instanceValueItemProvider = new InstanceValueItemProvider(this);
 		}
 
@@ -584,8 +627,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createElementImportAdapter() {
-		if (elementImportItemProvider == null) {
+	public Adapter createElementImportAdapter()
+	{
+		if (elementImportItemProvider == null)
+		{
 			elementImportItemProvider = new ElementImportItemProvider(this);
 		}
 
@@ -606,8 +651,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPackageImportAdapter() {
-		if (packageImportItemProvider == null) {
+	public Adapter createPackageImportAdapter()
+	{
+		if (packageImportItemProvider == null)
+		{
 			packageImportItemProvider = new PackageImportItemProvider(this);
 		}
 
@@ -628,8 +675,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAssociationAdapter() {
-		if (associationItemProvider == null) {
+	public Adapter createAssociationAdapter()
+	{
+		if (associationItemProvider == null)
+		{
 			associationItemProvider = new AssociationItemProvider(this);
 		}
 
@@ -650,8 +699,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPackageMergeAdapter() {
-		if (packageMergeItemProvider == null) {
+	public Adapter createPackageMergeAdapter()
+	{
+		if (packageMergeItemProvider == null)
+		{
 			packageMergeItemProvider = new PackageMergeItemProvider(this);
 		}
 
@@ -672,8 +723,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createStereotypeAdapter() {
-		if (stereotypeItemProvider == null) {
+	public Adapter createStereotypeAdapter()
+	{
+		if (stereotypeItemProvider == null)
+		{
 			stereotypeItemProvider = new StereotypeItemProvider(this);
 		}
 
@@ -694,8 +747,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createProfileAdapter() {
-		if (profileItemProvider == null) {
+	public Adapter createProfileAdapter()
+	{
+		if (profileItemProvider == null)
+		{
 			profileItemProvider = new ProfileItemProvider(this);
 		}
 
@@ -716,8 +771,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createProfileApplicationAdapter() {
-		if (profileApplicationItemProvider == null) {
+	public Adapter createProfileApplicationAdapter()
+	{
+		if (profileApplicationItemProvider == null)
+		{
 			profileApplicationItemProvider = new ProfileApplicationItemProvider(this);
 		}
 
@@ -738,8 +795,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExtensionAdapter() {
-		if (extensionItemProvider == null) {
+	public Adapter createExtensionAdapter()
+	{
+		if (extensionItemProvider == null)
+		{
 			extensionItemProvider = new ExtensionItemProvider(this);
 		}
 
@@ -760,8 +819,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExtensionEndAdapter() {
-		if (extensionEndItemProvider == null) {
+	public Adapter createExtensionEndAdapter()
+	{
+		if (extensionEndItemProvider == null)
+		{
 			extensionEndItemProvider = new ExtensionEndItemProvider(this);
 		}
 
@@ -782,8 +843,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createActivityAdapter() {
-		if (activityItemProvider == null) {
+	public Adapter createActivityAdapter()
+	{
+		if (activityItemProvider == null)
+		{
 			activityItemProvider = new ActivityItemProvider(this);
 		}
 
@@ -804,8 +867,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createGeneralizationSetAdapter() {
-		if (generalizationSetItemProvider == null) {
+	public Adapter createGeneralizationSetAdapter()
+	{
+		if (generalizationSetItemProvider == null)
+		{
 			generalizationSetItemProvider = new GeneralizationSetItemProvider(this);
 		}
 
@@ -826,8 +891,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAssociationClassAdapter() {
-		if (associationClassItemProvider == null) {
+	public Adapter createAssociationClassAdapter()
+	{
+		if (associationClassItemProvider == null)
+		{
 			associationClassItemProvider = new AssociationClassItemProvider(this);
 		}
 
@@ -848,8 +915,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createModelAdapter() {
-		if (modelItemProvider == null) {
+	public Adapter createModelAdapter()
+	{
+		if (modelItemProvider == null)
+		{
 			modelItemProvider = new ModelItemProvider(this);
 		}
 
@@ -870,8 +939,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPermissionAdapter() {
-		if (permissionItemProvider == null) {
+	public Adapter createPermissionAdapter()
+	{
+		if (permissionItemProvider == null)
+		{
 			permissionItemProvider = new PermissionItemProvider(this);
 		}
 
@@ -892,8 +963,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDependencyAdapter() {
-		if (dependencyItemProvider == null) {
+	public Adapter createDependencyAdapter()
+	{
+		if (dependencyItemProvider == null)
+		{
 			dependencyItemProvider = new DependencyItemProvider(this);
 		}
 
@@ -914,8 +987,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createUsageAdapter() {
-		if (usageItemProvider == null) {
+	public Adapter createUsageAdapter()
+	{
+		if (usageItemProvider == null)
+		{
 			usageItemProvider = new UsageItemProvider(this);
 		}
 
@@ -936,8 +1011,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAbstractionAdapter() {
-		if (abstractionItemProvider == null) {
+	public Adapter createAbstractionAdapter()
+	{
+		if (abstractionItemProvider == null)
+		{
 			abstractionItemProvider = new AbstractionItemProvider(this);
 		}
 
@@ -958,8 +1035,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createRealizationAdapter() {
-		if (realizationItemProvider == null) {
+	public Adapter createRealizationAdapter()
+	{
+		if (realizationItemProvider == null)
+		{
 			realizationItemProvider = new RealizationItemProvider(this);
 		}
 
@@ -980,8 +1059,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createSubstitutionAdapter() {
-		if (substitutionItemProvider == null) {
+	public Adapter createSubstitutionAdapter()
+	{
+		if (substitutionItemProvider == null)
+		{
 			substitutionItemProvider = new SubstitutionItemProvider(this);
 		}
 
@@ -1002,8 +1083,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInformationItemAdapter() {
-		if (informationItemItemProvider == null) {
+	public Adapter createInformationItemAdapter()
+	{
+		if (informationItemItemProvider == null)
+		{
 			informationItemItemProvider = new InformationItemItemProvider(this);
 		}
 
@@ -1024,8 +1107,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInformationFlowAdapter() {
-		if (informationFlowItemProvider == null) {
+	public Adapter createInformationFlowAdapter()
+	{
+		if (informationFlowItemProvider == null)
+		{
 			informationFlowItemProvider = new InformationFlowItemProvider(this);
 		}
 
@@ -1046,8 +1131,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createArtifactAdapter() {
-		if (artifactItemProvider == null) {
+	public Adapter createArtifactAdapter()
+	{
+		if (artifactItemProvider == null)
+		{
 			artifactItemProvider = new ArtifactItemProvider(this);
 		}
 
@@ -1068,8 +1155,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createManifestationAdapter() {
-		if (manifestationItemProvider == null) {
+	public Adapter createManifestationAdapter()
+	{
+		if (manifestationItemProvider == null)
+		{
 			manifestationItemProvider = new ManifestationItemProvider(this);
 		}
 
@@ -1090,8 +1179,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createActorAdapter() {
-		if (actorItemProvider == null) {
+	public Adapter createActorAdapter()
+	{
+		if (actorItemProvider == null)
+		{
 			actorItemProvider = new ActorItemProvider(this);
 		}
 
@@ -1112,8 +1203,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExtendAdapter() {
-		if (extendItemProvider == null) {
+	public Adapter createExtendAdapter()
+	{
+		if (extendItemProvider == null)
+		{
 			extendItemProvider = new ExtendItemProvider(this);
 		}
 
@@ -1134,8 +1227,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createUseCaseAdapter() {
-		if (useCaseItemProvider == null) {
+	public Adapter createUseCaseAdapter()
+	{
+		if (useCaseItemProvider == null)
+		{
 			useCaseItemProvider = new UseCaseItemProvider(this);
 		}
 
@@ -1156,8 +1251,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExtensionPointAdapter() {
-		if (extensionPointItemProvider == null) {
+	public Adapter createExtensionPointAdapter()
+	{
+		if (extensionPointItemProvider == null)
+		{
 			extensionPointItemProvider = new ExtensionPointItemProvider(this);
 		}
 
@@ -1178,8 +1275,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createIncludeAdapter() {
-		if (includeItemProvider == null) {
+	public Adapter createIncludeAdapter()
+	{
+		if (includeItemProvider == null)
+		{
 			includeItemProvider = new IncludeItemProvider(this);
 		}
 
@@ -1200,8 +1299,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createActionAdapter() {
-		if (actionItemProvider == null) {
+	public Adapter createActionAdapter()
+	{
+		if (actionItemProvider == null)
+		{
 			actionItemProvider = new ActionItemProvider(this);
 		}
 
@@ -1222,8 +1323,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createControlFlowAdapter() {
-		if (controlFlowItemProvider == null) {
+	public Adapter createControlFlowAdapter()
+	{
+		if (controlFlowItemProvider == null)
+		{
 			controlFlowItemProvider = new ControlFlowItemProvider(this);
 		}
 
@@ -1244,8 +1347,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createObjectFlowAdapter() {
-		if (objectFlowItemProvider == null) {
+	public Adapter createObjectFlowAdapter()
+	{
+		if (objectFlowItemProvider == null)
+		{
 			objectFlowItemProvider = new ObjectFlowItemProvider(this);
 		}
 
@@ -1266,8 +1371,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInitialNodeAdapter() {
-		if (initialNodeItemProvider == null) {
+	public Adapter createInitialNodeAdapter()
+	{
+		if (initialNodeItemProvider == null)
+		{
 			initialNodeItemProvider = new InitialNodeItemProvider(this);
 		}
 
@@ -1288,8 +1395,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createActivityFinalNodeAdapter() {
-		if (activityFinalNodeItemProvider == null) {
+	public Adapter createActivityFinalNodeAdapter()
+	{
+		if (activityFinalNodeItemProvider == null)
+		{
 			activityFinalNodeItemProvider = new ActivityFinalNodeItemProvider(this);
 		}
 
@@ -1310,8 +1419,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDecisionNodeAdapter() {
-		if (decisionNodeItemProvider == null) {
+	public Adapter createDecisionNodeAdapter()
+	{
+		if (decisionNodeItemProvider == null)
+		{
 			decisionNodeItemProvider = new DecisionNodeItemProvider(this);
 		}
 
@@ -1332,8 +1443,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createMergeNodeAdapter() {
-		if (mergeNodeItemProvider == null) {
+	public Adapter createMergeNodeAdapter()
+	{
+		if (mergeNodeItemProvider == null)
+		{
 			mergeNodeItemProvider = new MergeNodeItemProvider(this);
 		}
 
@@ -1354,8 +1467,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createOutputPinAdapter() {
-		if (outputPinItemProvider == null) {
+	public Adapter createOutputPinAdapter()
+	{
+		if (outputPinItemProvider == null)
+		{
 			outputPinItemProvider = new OutputPinItemProvider(this);
 		}
 
@@ -1376,8 +1491,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInputPinAdapter() {
-		if (inputPinItemProvider == null) {
+	public Adapter createInputPinAdapter()
+	{
+		if (inputPinItemProvider == null)
+		{
 			inputPinItemProvider = new InputPinItemProvider(this);
 		}
 
@@ -1398,8 +1515,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createActivityParameterNodeAdapter() {
-		if (activityParameterNodeItemProvider == null) {
+	public Adapter createActivityParameterNodeAdapter()
+	{
+		if (activityParameterNodeItemProvider == null)
+		{
 			activityParameterNodeItemProvider = new ActivityParameterNodeItemProvider(this);
 		}
 
@@ -1420,8 +1539,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createValuePinAdapter() {
-		if (valuePinItemProvider == null) {
+	public Adapter createValuePinAdapter()
+	{
+		if (valuePinItemProvider == null)
+		{
 			valuePinItemProvider = new ValuePinItemProvider(this);
 		}
 
@@ -1442,8 +1563,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInterfaceAdapter() {
-		if (interfaceItemProvider == null) {
+	public Adapter createInterfaceAdapter()
+	{
+		if (interfaceItemProvider == null)
+		{
 			interfaceItemProvider = new InterfaceItemProvider(this);
 		}
 
@@ -1464,8 +1587,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createImplementationAdapter() {
-		if (implementationItemProvider == null) {
+	public Adapter createImplementationAdapter()
+	{
+		if (implementationItemProvider == null)
+		{
 			implementationItemProvider = new ImplementationItemProvider(this);
 		}
 
@@ -1486,8 +1611,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCallTriggerAdapter() {
-		if (callTriggerItemProvider == null) {
+	public Adapter createCallTriggerAdapter()
+	{
+		if (callTriggerItemProvider == null)
+		{
 			callTriggerItemProvider = new CallTriggerItemProvider(this);
 		}
 
@@ -1508,8 +1635,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createChangeTriggerAdapter() {
-		if (changeTriggerItemProvider == null) {
+	public Adapter createChangeTriggerAdapter()
+	{
+		if (changeTriggerItemProvider == null)
+		{
 			changeTriggerItemProvider = new ChangeTriggerItemProvider(this);
 		}
 
@@ -1530,8 +1659,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReceptionAdapter() {
-		if (receptionItemProvider == null) {
+	public Adapter createReceptionAdapter()
+	{
+		if (receptionItemProvider == null)
+		{
 			receptionItemProvider = new ReceptionItemProvider(this);
 		}
 
@@ -1552,8 +1683,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createSignalAdapter() {
-		if (signalItemProvider == null) {
+	public Adapter createSignalAdapter()
+	{
+		if (signalItemProvider == null)
+		{
 			signalItemProvider = new SignalItemProvider(this);
 		}
 
@@ -1574,8 +1707,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createSignalTriggerAdapter() {
-		if (signalTriggerItemProvider == null) {
+	public Adapter createSignalTriggerAdapter()
+	{
+		if (signalTriggerItemProvider == null)
+		{
 			signalTriggerItemProvider = new SignalTriggerItemProvider(this);
 		}
 
@@ -1596,8 +1731,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTimeTriggerAdapter() {
-		if (timeTriggerItemProvider == null) {
+	public Adapter createTimeTriggerAdapter()
+	{
+		if (timeTriggerItemProvider == null)
+		{
 			timeTriggerItemProvider = new TimeTriggerItemProvider(this);
 		}
 
@@ -1618,8 +1755,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAnyTriggerAdapter() {
-		if (anyTriggerItemProvider == null) {
+	public Adapter createAnyTriggerAdapter()
+	{
+		if (anyTriggerItemProvider == null)
+		{
 			anyTriggerItemProvider = new AnyTriggerItemProvider(this);
 		}
 
@@ -1640,8 +1779,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createVariableAdapter() {
-		if (variableItemProvider == null) {
+	public Adapter createVariableAdapter()
+	{
+		if (variableItemProvider == null)
+		{
 			variableItemProvider = new VariableItemProvider(this);
 		}
 
@@ -1662,8 +1803,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createStructuredActivityNodeAdapter() {
-		if (structuredActivityNodeItemProvider == null) {
+	public Adapter createStructuredActivityNodeAdapter()
+	{
+		if (structuredActivityNodeItemProvider == null)
+		{
 			structuredActivityNodeItemProvider = new StructuredActivityNodeItemProvider(this);
 		}
 
@@ -1684,8 +1827,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createConditionalNodeAdapter() {
-		if (conditionalNodeItemProvider == null) {
+	public Adapter createConditionalNodeAdapter()
+	{
+		if (conditionalNodeItemProvider == null)
+		{
 			conditionalNodeItemProvider = new ConditionalNodeItemProvider(this);
 		}
 
@@ -1706,8 +1851,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createClauseAdapter() {
-		if (clauseItemProvider == null) {
+	public Adapter createClauseAdapter()
+	{
+		if (clauseItemProvider == null)
+		{
 			clauseItemProvider = new ClauseItemProvider(this);
 		}
 
@@ -1728,8 +1875,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLoopNodeAdapter() {
-		if (loopNodeItemProvider == null) {
+	public Adapter createLoopNodeAdapter()
+	{
+		if (loopNodeItemProvider == null)
+		{
 			loopNodeItemProvider = new LoopNodeItemProvider(this);
 		}
 
@@ -1750,8 +1899,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createConnectorEndAdapter() {
-		if (connectorEndItemProvider == null) {
+	public Adapter createConnectorEndAdapter()
+	{
+		if (connectorEndItemProvider == null)
+		{
 			connectorEndItemProvider = new ConnectorEndItemProvider(this);
 		}
 
@@ -1772,8 +1923,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createConnectorAdapter() {
-		if (connectorItemProvider == null) {
+	public Adapter createConnectorAdapter()
+	{
+		if (connectorItemProvider == null)
+		{
 			connectorItemProvider = new ConnectorItemProvider(this);
 		}
 
@@ -1794,8 +1947,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExpansionNodeAdapter() {
-		if (expansionNodeItemProvider == null) {
+	public Adapter createExpansionNodeAdapter()
+	{
+		if (expansionNodeItemProvider == null)
+		{
 			expansionNodeItemProvider = new ExpansionNodeItemProvider(this);
 		}
 
@@ -1816,8 +1971,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExpansionRegionAdapter() {
-		if (expansionRegionItemProvider == null) {
+	public Adapter createExpansionRegionAdapter()
+	{
+		if (expansionRegionItemProvider == null)
+		{
 			expansionRegionItemProvider = new ExpansionRegionItemProvider(this);
 		}
 
@@ -1838,8 +1995,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExceptionHandlerAdapter() {
-		if (exceptionHandlerItemProvider == null) {
+	public Adapter createExceptionHandlerAdapter()
+	{
+		if (exceptionHandlerItemProvider == null)
+		{
 			exceptionHandlerItemProvider = new ExceptionHandlerItemProvider(this);
 		}
 
@@ -1860,8 +2019,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInteractionAdapter() {
-		if (interactionItemProvider == null) {
+	public Adapter createInteractionAdapter()
+	{
+		if (interactionItemProvider == null)
+		{
 			interactionItemProvider = new InteractionItemProvider(this);
 		}
 
@@ -1882,8 +2043,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLifelineAdapter() {
-		if (lifelineItemProvider == null) {
+	public Adapter createLifelineAdapter()
+	{
+		if (lifelineItemProvider == null)
+		{
 			lifelineItemProvider = new LifelineItemProvider(this);
 		}
 
@@ -1904,8 +2067,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createMessageAdapter() {
-		if (messageItemProvider == null) {
+	public Adapter createMessageAdapter()
+	{
+		if (messageItemProvider == null)
+		{
 			messageItemProvider = new MessageItemProvider(this);
 		}
 
@@ -1926,8 +2091,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createGeneralOrderingAdapter() {
-		if (generalOrderingItemProvider == null) {
+	public Adapter createGeneralOrderingAdapter()
+	{
+		if (generalOrderingItemProvider == null)
+		{
 			generalOrderingItemProvider = new GeneralOrderingItemProvider(this);
 		}
 
@@ -1948,8 +2115,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createEventOccurrenceAdapter() {
-		if (eventOccurrenceItemProvider == null) {
+	public Adapter createEventOccurrenceAdapter()
+	{
+		if (eventOccurrenceItemProvider == null)
+		{
 			eventOccurrenceItemProvider = new EventOccurrenceItemProvider(this);
 		}
 
@@ -1970,8 +2139,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExecutionOccurrenceAdapter() {
-		if (executionOccurrenceItemProvider == null) {
+	public Adapter createExecutionOccurrenceAdapter()
+	{
+		if (executionOccurrenceItemProvider == null)
+		{
 			executionOccurrenceItemProvider = new ExecutionOccurrenceItemProvider(this);
 		}
 
@@ -1992,8 +2163,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createStateInvariantAdapter() {
-		if (stateInvariantItemProvider == null) {
+	public Adapter createStateInvariantAdapter()
+	{
+		if (stateInvariantItemProvider == null)
+		{
 			stateInvariantItemProvider = new StateInvariantItemProvider(this);
 		}
 
@@ -2014,8 +2187,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createStopAdapter() {
-		if (stopItemProvider == null) {
+	public Adapter createStopAdapter()
+	{
+		if (stopItemProvider == null)
+		{
 			stopItemProvider = new StopItemProvider(this);
 		}
 
@@ -2036,8 +2211,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCreateObjectActionAdapter() {
-		if (createObjectActionItemProvider == null) {
+	public Adapter createCreateObjectActionAdapter()
+	{
+		if (createObjectActionItemProvider == null)
+		{
 			createObjectActionItemProvider = new CreateObjectActionItemProvider(this);
 		}
 
@@ -2058,8 +2235,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDestroyObjectActionAdapter() {
-		if (destroyObjectActionItemProvider == null) {
+	public Adapter createDestroyObjectActionAdapter()
+	{
+		if (destroyObjectActionItemProvider == null)
+		{
 			destroyObjectActionItemProvider = new DestroyObjectActionItemProvider(this);
 		}
 
@@ -2080,8 +2259,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTestIdentityActionAdapter() {
-		if (testIdentityActionItemProvider == null) {
+	public Adapter createTestIdentityActionAdapter()
+	{
+		if (testIdentityActionItemProvider == null)
+		{
 			testIdentityActionItemProvider = new TestIdentityActionItemProvider(this);
 		}
 
@@ -2102,8 +2283,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReadSelfActionAdapter() {
-		if (readSelfActionItemProvider == null) {
+	public Adapter createReadSelfActionAdapter()
+	{
+		if (readSelfActionItemProvider == null)
+		{
 			readSelfActionItemProvider = new ReadSelfActionItemProvider(this);
 		}
 
@@ -2124,8 +2307,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReadStructuralFeatureActionAdapter() {
-		if (readStructuralFeatureActionItemProvider == null) {
+	public Adapter createReadStructuralFeatureActionAdapter()
+	{
+		if (readStructuralFeatureActionItemProvider == null)
+		{
 			readStructuralFeatureActionItemProvider = new ReadStructuralFeatureActionItemProvider(this);
 		}
 
@@ -2146,8 +2331,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createClearStructuralFeatureActionAdapter() {
-		if (clearStructuralFeatureActionItemProvider == null) {
+	public Adapter createClearStructuralFeatureActionAdapter()
+	{
+		if (clearStructuralFeatureActionItemProvider == null)
+		{
 			clearStructuralFeatureActionItemProvider = new ClearStructuralFeatureActionItemProvider(this);
 		}
 
@@ -2168,8 +2355,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createRemoveStructuralFeatureValueActionAdapter() {
-		if (removeStructuralFeatureValueActionItemProvider == null) {
+	public Adapter createRemoveStructuralFeatureValueActionAdapter()
+	{
+		if (removeStructuralFeatureValueActionItemProvider == null)
+		{
 			removeStructuralFeatureValueActionItemProvider = new RemoveStructuralFeatureValueActionItemProvider(this);
 		}
 
@@ -2190,8 +2379,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAddStructuralFeatureValueActionAdapter() {
-		if (addStructuralFeatureValueActionItemProvider == null) {
+	public Adapter createAddStructuralFeatureValueActionAdapter()
+	{
+		if (addStructuralFeatureValueActionItemProvider == null)
+		{
 			addStructuralFeatureValueActionItemProvider = new AddStructuralFeatureValueActionItemProvider(this);
 		}
 
@@ -2212,8 +2403,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLinkEndDataAdapter() {
-		if (linkEndDataItemProvider == null) {
+	public Adapter createLinkEndDataAdapter()
+	{
+		if (linkEndDataItemProvider == null)
+		{
 			linkEndDataItemProvider = new LinkEndDataItemProvider(this);
 		}
 
@@ -2234,8 +2427,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReadLinkActionAdapter() {
-		if (readLinkActionItemProvider == null) {
+	public Adapter createReadLinkActionAdapter()
+	{
+		if (readLinkActionItemProvider == null)
+		{
 			readLinkActionItemProvider = new ReadLinkActionItemProvider(this);
 		}
 
@@ -2256,8 +2451,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createLinkEndCreationDataAdapter() {
-		if (linkEndCreationDataItemProvider == null) {
+	public Adapter createLinkEndCreationDataAdapter()
+	{
+		if (linkEndCreationDataItemProvider == null)
+		{
 			linkEndCreationDataItemProvider = new LinkEndCreationDataItemProvider(this);
 		}
 
@@ -2278,8 +2475,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCreateLinkActionAdapter() {
-		if (createLinkActionItemProvider == null) {
+	public Adapter createCreateLinkActionAdapter()
+	{
+		if (createLinkActionItemProvider == null)
+		{
 			createLinkActionItemProvider = new CreateLinkActionItemProvider(this);
 		}
 
@@ -2300,8 +2499,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDestroyLinkActionAdapter() {
-		if (destroyLinkActionItemProvider == null) {
+	public Adapter createDestroyLinkActionAdapter()
+	{
+		if (destroyLinkActionItemProvider == null)
+		{
 			destroyLinkActionItemProvider = new DestroyLinkActionItemProvider(this);
 		}
 
@@ -2322,8 +2523,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createClearAssociationActionAdapter() {
-		if (clearAssociationActionItemProvider == null) {
+	public Adapter createClearAssociationActionAdapter()
+	{
+		if (clearAssociationActionItemProvider == null)
+		{
 			clearAssociationActionItemProvider = new ClearAssociationActionItemProvider(this);
 		}
 
@@ -2344,8 +2547,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReadVariableActionAdapter() {
-		if (readVariableActionItemProvider == null) {
+	public Adapter createReadVariableActionAdapter()
+	{
+		if (readVariableActionItemProvider == null)
+		{
 			readVariableActionItemProvider = new ReadVariableActionItemProvider(this);
 		}
 
@@ -2366,8 +2571,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createClearVariableActionAdapter() {
-		if (clearVariableActionItemProvider == null) {
+	public Adapter createClearVariableActionAdapter()
+	{
+		if (clearVariableActionItemProvider == null)
+		{
 			clearVariableActionItemProvider = new ClearVariableActionItemProvider(this);
 		}
 
@@ -2388,8 +2595,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAddVariableValueActionAdapter() {
-		if (addVariableValueActionItemProvider == null) {
+	public Adapter createAddVariableValueActionAdapter()
+	{
+		if (addVariableValueActionItemProvider == null)
+		{
 			addVariableValueActionItemProvider = new AddVariableValueActionItemProvider(this);
 		}
 
@@ -2410,8 +2619,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createRemoveVariableValueActionAdapter() {
-		if (removeVariableValueActionItemProvider == null) {
+	public Adapter createRemoveVariableValueActionAdapter()
+	{
+		if (removeVariableValueActionItemProvider == null)
+		{
 			removeVariableValueActionItemProvider = new RemoveVariableValueActionItemProvider(this);
 		}
 
@@ -2432,8 +2643,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createApplyFunctionActionAdapter() {
-		if (applyFunctionActionItemProvider == null) {
+	public Adapter createApplyFunctionActionAdapter()
+	{
+		if (applyFunctionActionItemProvider == null)
+		{
 			applyFunctionActionItemProvider = new ApplyFunctionActionItemProvider(this);
 		}
 
@@ -2454,8 +2667,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPrimitiveFunctionAdapter() {
-		if (primitiveFunctionItemProvider == null) {
+	public Adapter createPrimitiveFunctionAdapter()
+	{
+		if (primitiveFunctionItemProvider == null)
+		{
 			primitiveFunctionItemProvider = new PrimitiveFunctionItemProvider(this);
 		}
 
@@ -2476,8 +2691,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createSendSignalActionAdapter() {
-		if (sendSignalActionItemProvider == null) {
+	public Adapter createSendSignalActionAdapter()
+	{
+		if (sendSignalActionItemProvider == null)
+		{
 			sendSignalActionItemProvider = new SendSignalActionItemProvider(this);
 		}
 
@@ -2498,8 +2715,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createBroadcastSignalActionAdapter() {
-		if (broadcastSignalActionItemProvider == null) {
+	public Adapter createBroadcastSignalActionAdapter()
+	{
+		if (broadcastSignalActionItemProvider == null)
+		{
 			broadcastSignalActionItemProvider = new BroadcastSignalActionItemProvider(this);
 		}
 
@@ -2520,8 +2739,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createSendObjectActionAdapter() {
-		if (sendObjectActionItemProvider == null) {
+	public Adapter createSendObjectActionAdapter()
+	{
+		if (sendObjectActionItemProvider == null)
+		{
 			sendObjectActionItemProvider = new SendObjectActionItemProvider(this);
 		}
 
@@ -2542,8 +2763,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCallOperationActionAdapter() {
-		if (callOperationActionItemProvider == null) {
+	public Adapter createCallOperationActionAdapter()
+	{
+		if (callOperationActionItemProvider == null)
+		{
 			callOperationActionItemProvider = new CallOperationActionItemProvider(this);
 		}
 
@@ -2564,8 +2787,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCallBehaviorActionAdapter() {
-		if (callBehaviorActionItemProvider == null) {
+	public Adapter createCallBehaviorActionAdapter()
+	{
+		if (callBehaviorActionItemProvider == null)
+		{
 			callBehaviorActionItemProvider = new CallBehaviorActionItemProvider(this);
 		}
 
@@ -2586,8 +2811,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createStateMachineAdapter() {
-		if (stateMachineItemProvider == null) {
+	public Adapter createStateMachineAdapter()
+	{
+		if (stateMachineItemProvider == null)
+		{
 			stateMachineItemProvider = new StateMachineItemProvider(this);
 		}
 
@@ -2608,8 +2835,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createRegionAdapter() {
-		if (regionItemProvider == null) {
+	public Adapter createRegionAdapter()
+	{
+		if (regionItemProvider == null)
+		{
 			regionItemProvider = new RegionItemProvider(this);
 		}
 
@@ -2630,8 +2859,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPseudostateAdapter() {
-		if (pseudostateItemProvider == null) {
+	public Adapter createPseudostateAdapter()
+	{
+		if (pseudostateItemProvider == null)
+		{
 			pseudostateItemProvider = new PseudostateItemProvider(this);
 		}
 
@@ -2652,8 +2883,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createStateAdapter() {
-		if (stateItemProvider == null) {
+	public Adapter createStateAdapter()
+	{
+		if (stateItemProvider == null)
+		{
 			stateItemProvider = new StateItemProvider(this);
 		}
 
@@ -2674,8 +2907,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createConnectionPointReferenceAdapter() {
-		if (connectionPointReferenceItemProvider == null) {
+	public Adapter createConnectionPointReferenceAdapter()
+	{
+		if (connectionPointReferenceItemProvider == null)
+		{
 			connectionPointReferenceItemProvider = new ConnectionPointReferenceItemProvider(this);
 		}
 
@@ -2696,8 +2931,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTransitionAdapter() {
-		if (transitionItemProvider == null) {
+	public Adapter createTransitionAdapter()
+	{
+		if (transitionItemProvider == null)
+		{
 			transitionItemProvider = new TransitionItemProvider(this);
 		}
 
@@ -2718,8 +2955,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createFinalStateAdapter() {
-		if (finalStateItemProvider == null) {
+	public Adapter createFinalStateAdapter()
+	{
+		if (finalStateItemProvider == null)
+		{
 			finalStateItemProvider = new FinalStateItemProvider(this);
 		}
 
@@ -2740,8 +2979,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCollaborationOccurrenceAdapter() {
-		if (collaborationOccurrenceItemProvider == null) {
+	public Adapter createCollaborationOccurrenceAdapter()
+	{
+		if (collaborationOccurrenceItemProvider == null)
+		{
 			collaborationOccurrenceItemProvider = new CollaborationOccurrenceItemProvider(this);
 		}
 
@@ -2762,8 +3003,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCollaborationAdapter() {
-		if (collaborationItemProvider == null) {
+	public Adapter createCollaborationAdapter()
+	{
+		if (collaborationItemProvider == null)
+		{
 			collaborationItemProvider = new CollaborationItemProvider(this);
 		}
 
@@ -2784,8 +3027,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTemplateSignatureAdapter() {
-		if (templateSignatureItemProvider == null) {
+	public Adapter createTemplateSignatureAdapter()
+	{
+		if (templateSignatureItemProvider == null)
+		{
 			templateSignatureItemProvider = new TemplateSignatureItemProvider(this);
 		}
 
@@ -2806,8 +3051,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTemplateParameterAdapter() {
-		if (templateParameterItemProvider == null) {
+	public Adapter createTemplateParameterAdapter()
+	{
+		if (templateParameterItemProvider == null)
+		{
 			templateParameterItemProvider = new TemplateParameterItemProvider(this);
 		}
 
@@ -2828,8 +3075,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createStringExpressionAdapter() {
-		if (stringExpressionItemProvider == null) {
+	public Adapter createStringExpressionAdapter()
+	{
+		if (stringExpressionItemProvider == null)
+		{
 			stringExpressionItemProvider = new StringExpressionItemProvider(this);
 		}
 
@@ -2850,8 +3099,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTemplateBindingAdapter() {
-		if (templateBindingItemProvider == null) {
+	public Adapter createTemplateBindingAdapter()
+	{
+		if (templateBindingItemProvider == null)
+		{
 			templateBindingItemProvider = new TemplateBindingItemProvider(this);
 		}
 
@@ -2872,8 +3123,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTemplateParameterSubstitutionAdapter() {
-		if (templateParameterSubstitutionItemProvider == null) {
+	public Adapter createTemplateParameterSubstitutionAdapter()
+	{
+		if (templateParameterSubstitutionItemProvider == null)
+		{
 			templateParameterSubstitutionItemProvider = new TemplateParameterSubstitutionItemProvider(this);
 		}
 
@@ -2894,8 +3147,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createOperationTemplateParameterAdapter() {
-		if (operationTemplateParameterItemProvider == null) {
+	public Adapter createOperationTemplateParameterAdapter()
+	{
+		if (operationTemplateParameterItemProvider == null)
+		{
 			operationTemplateParameterItemProvider = new OperationTemplateParameterItemProvider(this);
 		}
 
@@ -2916,8 +3171,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createClassifierTemplateParameterAdapter() {
-		if (classifierTemplateParameterItemProvider == null) {
+	public Adapter createClassifierTemplateParameterAdapter()
+	{
+		if (classifierTemplateParameterItemProvider == null)
+		{
 			classifierTemplateParameterItemProvider = new ClassifierTemplateParameterItemProvider(this);
 		}
 
@@ -2938,8 +3195,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createRedefinableTemplateSignatureAdapter() {
-		if (redefinableTemplateSignatureItemProvider == null) {
+	public Adapter createRedefinableTemplateSignatureAdapter()
+	{
+		if (redefinableTemplateSignatureItemProvider == null)
+		{
 			redefinableTemplateSignatureItemProvider = new RedefinableTemplateSignatureItemProvider(this);
 		}
 
@@ -2960,8 +3219,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createConnectableElementTemplateParameterAdapter() {
-		if (connectableElementTemplateParameterItemProvider == null) {
+	public Adapter createConnectableElementTemplateParameterAdapter()
+	{
+		if (connectableElementTemplateParameterItemProvider == null)
+		{
 			connectableElementTemplateParameterItemProvider = new ConnectableElementTemplateParameterItemProvider(this);
 		}
 
@@ -2982,8 +3243,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createForkNodeAdapter() {
-		if (forkNodeItemProvider == null) {
+	public Adapter createForkNodeAdapter()
+	{
+		if (forkNodeItemProvider == null)
+		{
 			forkNodeItemProvider = new ForkNodeItemProvider(this);
 		}
 
@@ -3004,8 +3267,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createJoinNodeAdapter() {
-		if (joinNodeItemProvider == null) {
+	public Adapter createJoinNodeAdapter()
+	{
+		if (joinNodeItemProvider == null)
+		{
 			joinNodeItemProvider = new JoinNodeItemProvider(this);
 		}
 
@@ -3026,8 +3291,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createFlowFinalNodeAdapter() {
-		if (flowFinalNodeItemProvider == null) {
+	public Adapter createFlowFinalNodeAdapter()
+	{
+		if (flowFinalNodeItemProvider == null)
+		{
 			flowFinalNodeItemProvider = new FlowFinalNodeItemProvider(this);
 		}
 
@@ -3048,8 +3315,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCentralBufferNodeAdapter() {
-		if (centralBufferNodeItemProvider == null) {
+	public Adapter createCentralBufferNodeAdapter()
+	{
+		if (centralBufferNodeItemProvider == null)
+		{
 			centralBufferNodeItemProvider = new CentralBufferNodeItemProvider(this);
 		}
 
@@ -3070,8 +3339,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createActivityPartitionAdapter() {
-		if (activityPartitionItemProvider == null) {
+	public Adapter createActivityPartitionAdapter()
+	{
+		if (activityPartitionItemProvider == null)
+		{
 			activityPartitionItemProvider = new ActivityPartitionItemProvider(this);
 		}
 
@@ -3092,8 +3363,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPortAdapter() {
-		if (portItemProvider == null) {
+	public Adapter createPortAdapter()
+	{
+		if (portItemProvider == null)
+		{
 			portItemProvider = new PortItemProvider(this);
 		}
 
@@ -3114,8 +3387,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createProtocolConformanceAdapter() {
-		if (protocolConformanceItemProvider == null) {
+	public Adapter createProtocolConformanceAdapter()
+	{
+		if (protocolConformanceItemProvider == null)
+		{
 			protocolConformanceItemProvider = new ProtocolConformanceItemProvider(this);
 		}
 
@@ -3136,8 +3411,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createProtocolStateMachineAdapter() {
-		if (protocolStateMachineItemProvider == null) {
+	public Adapter createProtocolStateMachineAdapter()
+	{
+		if (protocolStateMachineItemProvider == null)
+		{
 			protocolStateMachineItemProvider = new ProtocolStateMachineItemProvider(this);
 		}
 
@@ -3158,8 +3435,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createProtocolTransitionAdapter() {
-		if (protocolTransitionItemProvider == null) {
+	public Adapter createProtocolTransitionAdapter()
+	{
+		if (protocolTransitionItemProvider == null)
+		{
 			protocolTransitionItemProvider = new ProtocolTransitionItemProvider(this);
 		}
 
@@ -3180,8 +3459,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInteractionOccurrenceAdapter() {
-		if (interactionOccurrenceItemProvider == null) {
+	public Adapter createInteractionOccurrenceAdapter()
+	{
+		if (interactionOccurrenceItemProvider == null)
+		{
 			interactionOccurrenceItemProvider = new InteractionOccurrenceItemProvider(this);
 		}
 
@@ -3202,8 +3483,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createGateAdapter() {
-		if (gateItemProvider == null) {
+	public Adapter createGateAdapter()
+	{
+		if (gateItemProvider == null)
+		{
 			gateItemProvider = new GateItemProvider(this);
 		}
 
@@ -3224,8 +3507,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPartDecompositionAdapter() {
-		if (partDecompositionItemProvider == null) {
+	public Adapter createPartDecompositionAdapter()
+	{
+		if (partDecompositionItemProvider == null)
+		{
 			partDecompositionItemProvider = new PartDecompositionItemProvider(this);
 		}
 
@@ -3246,8 +3531,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInteractionOperandAdapter() {
-		if (interactionOperandItemProvider == null) {
+	public Adapter createInteractionOperandAdapter()
+	{
+		if (interactionOperandItemProvider == null)
+		{
 			interactionOperandItemProvider = new InteractionOperandItemProvider(this);
 		}
 
@@ -3268,8 +3555,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInteractionConstraintAdapter() {
-		if (interactionConstraintItemProvider == null) {
+	public Adapter createInteractionConstraintAdapter()
+	{
+		if (interactionConstraintItemProvider == null)
+		{
 			interactionConstraintItemProvider = new InteractionConstraintItemProvider(this);
 		}
 
@@ -3290,8 +3579,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCombinedFragmentAdapter() {
-		if (combinedFragmentItemProvider == null) {
+	public Adapter createCombinedFragmentAdapter()
+	{
+		if (combinedFragmentItemProvider == null)
+		{
 			combinedFragmentItemProvider = new CombinedFragmentItemProvider(this);
 		}
 
@@ -3312,8 +3603,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createContinuationAdapter() {
-		if (continuationItemProvider == null) {
+	public Adapter createContinuationAdapter()
+	{
+		if (continuationItemProvider == null)
+		{
 			continuationItemProvider = new ContinuationItemProvider(this);
 		}
 
@@ -3334,8 +3627,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTimeExpressionAdapter() {
-		if (timeExpressionItemProvider == null) {
+	public Adapter createTimeExpressionAdapter()
+	{
+		if (timeExpressionItemProvider == null)
+		{
 			timeExpressionItemProvider = new TimeExpressionItemProvider(this);
 		}
 
@@ -3356,8 +3651,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDurationAdapter() {
-		if (durationItemProvider == null) {
+	public Adapter createDurationAdapter()
+	{
+		if (durationItemProvider == null)
+		{
 			durationItemProvider = new DurationItemProvider(this);
 		}
 
@@ -3378,8 +3675,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTimeObservationActionAdapter() {
-		if (timeObservationActionItemProvider == null) {
+	public Adapter createTimeObservationActionAdapter()
+	{
+		if (timeObservationActionItemProvider == null)
+		{
 			timeObservationActionItemProvider = new TimeObservationActionItemProvider(this);
 		}
 
@@ -3400,8 +3699,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDurationIntervalAdapter() {
-		if (durationIntervalItemProvider == null) {
+	public Adapter createDurationIntervalAdapter()
+	{
+		if (durationIntervalItemProvider == null)
+		{
 			durationIntervalItemProvider = new DurationIntervalItemProvider(this);
 		}
 
@@ -3422,8 +3723,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createIntervalAdapter() {
-		if (intervalItemProvider == null) {
+	public Adapter createIntervalAdapter()
+	{
+		if (intervalItemProvider == null)
+		{
 			intervalItemProvider = new IntervalItemProvider(this);
 		}
 
@@ -3444,8 +3747,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTimeConstraintAdapter() {
-		if (timeConstraintItemProvider == null) {
+	public Adapter createTimeConstraintAdapter()
+	{
+		if (timeConstraintItemProvider == null)
+		{
 			timeConstraintItemProvider = new TimeConstraintItemProvider(this);
 		}
 
@@ -3466,8 +3771,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createIntervalConstraintAdapter() {
-		if (intervalConstraintItemProvider == null) {
+	public Adapter createIntervalConstraintAdapter()
+	{
+		if (intervalConstraintItemProvider == null)
+		{
 			intervalConstraintItemProvider = new IntervalConstraintItemProvider(this);
 		}
 
@@ -3488,8 +3795,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createTimeIntervalAdapter() {
-		if (timeIntervalItemProvider == null) {
+	public Adapter createTimeIntervalAdapter()
+	{
+		if (timeIntervalItemProvider == null)
+		{
 			timeIntervalItemProvider = new TimeIntervalItemProvider(this);
 		}
 
@@ -3510,8 +3819,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDurationObservationActionAdapter() {
-		if (durationObservationActionItemProvider == null) {
+	public Adapter createDurationObservationActionAdapter()
+	{
+		if (durationObservationActionItemProvider == null)
+		{
 			durationObservationActionItemProvider = new DurationObservationActionItemProvider(this);
 		}
 
@@ -3532,8 +3843,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDurationConstraintAdapter() {
-		if (durationConstraintItemProvider == null) {
+	public Adapter createDurationConstraintAdapter()
+	{
+		if (durationConstraintItemProvider == null)
+		{
 			durationConstraintItemProvider = new DurationConstraintItemProvider(this);
 		}
 
@@ -3554,8 +3867,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDataStoreNodeAdapter() {
-		if (dataStoreNodeItemProvider == null) {
+	public Adapter createDataStoreNodeAdapter()
+	{
+		if (dataStoreNodeItemProvider == null)
+		{
 			dataStoreNodeItemProvider = new DataStoreNodeItemProvider(this);
 		}
 
@@ -3576,8 +3891,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createInterruptibleActivityRegionAdapter() {
-		if (interruptibleActivityRegionItemProvider == null) {
+	public Adapter createInterruptibleActivityRegionAdapter()
+	{
+		if (interruptibleActivityRegionItemProvider == null)
+		{
 			interruptibleActivityRegionItemProvider = new InterruptibleActivityRegionItemProvider(this);
 		}
 
@@ -3598,8 +3915,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createParameterSetAdapter() {
-		if (parameterSetItemProvider == null) {
+	public Adapter createParameterSetAdapter()
+	{
+		if (parameterSetItemProvider == null)
+		{
 			parameterSetItemProvider = new ParameterSetItemProvider(this);
 		}
 
@@ -3620,8 +3939,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReadExtentActionAdapter() {
-		if (readExtentActionItemProvider == null) {
+	public Adapter createReadExtentActionAdapter()
+	{
+		if (readExtentActionItemProvider == null)
+		{
 			readExtentActionItemProvider = new ReadExtentActionItemProvider(this);
 		}
 
@@ -3642,8 +3963,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReclassifyObjectActionAdapter() {
-		if (reclassifyObjectActionItemProvider == null) {
+	public Adapter createReclassifyObjectActionAdapter()
+	{
+		if (reclassifyObjectActionItemProvider == null)
+		{
 			reclassifyObjectActionItemProvider = new ReclassifyObjectActionItemProvider(this);
 		}
 
@@ -3664,8 +3987,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReadIsClassifiedObjectActionAdapter() {
-		if (readIsClassifiedObjectActionItemProvider == null) {
+	public Adapter createReadIsClassifiedObjectActionAdapter()
+	{
+		if (readIsClassifiedObjectActionItemProvider == null)
+		{
 			readIsClassifiedObjectActionItemProvider = new ReadIsClassifiedObjectActionItemProvider(this);
 		}
 
@@ -3686,8 +4011,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createStartOwnedBehaviorActionAdapter() {
-		if (startOwnedBehaviorActionItemProvider == null) {
+	public Adapter createStartOwnedBehaviorActionAdapter()
+	{
+		if (startOwnedBehaviorActionItemProvider == null)
+		{
 			startOwnedBehaviorActionItemProvider = new StartOwnedBehaviorActionItemProvider(this);
 		}
 
@@ -3708,8 +4035,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createQualifierValueAdapter() {
-		if (qualifierValueItemProvider == null) {
+	public Adapter createQualifierValueAdapter()
+	{
+		if (qualifierValueItemProvider == null)
+		{
 			qualifierValueItemProvider = new QualifierValueItemProvider(this);
 		}
 
@@ -3730,8 +4059,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReadLinkObjectEndActionAdapter() {
-		if (readLinkObjectEndActionItemProvider == null) {
+	public Adapter createReadLinkObjectEndActionAdapter()
+	{
+		if (readLinkObjectEndActionItemProvider == null)
+		{
 			readLinkObjectEndActionItemProvider = new ReadLinkObjectEndActionItemProvider(this);
 		}
 
@@ -3752,8 +4083,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReadLinkObjectEndQualifierActionAdapter() {
-		if (readLinkObjectEndQualifierActionItemProvider == null) {
+	public Adapter createReadLinkObjectEndQualifierActionAdapter()
+	{
+		if (readLinkObjectEndQualifierActionItemProvider == null)
+		{
 			readLinkObjectEndQualifierActionItemProvider = new ReadLinkObjectEndQualifierActionItemProvider(this);
 		}
 
@@ -3774,8 +4107,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCreateLinkObjectActionAdapter() {
-		if (createLinkObjectActionItemProvider == null) {
+	public Adapter createCreateLinkObjectActionAdapter()
+	{
+		if (createLinkObjectActionItemProvider == null)
+		{
 			createLinkObjectActionItemProvider = new CreateLinkObjectActionItemProvider(this);
 		}
 
@@ -3796,8 +4131,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAcceptEventActionAdapter() {
-		if (acceptEventActionItemProvider == null) {
+	public Adapter createAcceptEventActionAdapter()
+	{
+		if (acceptEventActionItemProvider == null)
+		{
 			acceptEventActionItemProvider = new AcceptEventActionItemProvider(this);
 		}
 
@@ -3818,8 +4155,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAcceptCallActionAdapter() {
-		if (acceptCallActionItemProvider == null) {
+	public Adapter createAcceptCallActionAdapter()
+	{
+		if (acceptCallActionItemProvider == null)
+		{
 			acceptCallActionItemProvider = new AcceptCallActionItemProvider(this);
 		}
 
@@ -3840,8 +4179,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createReplyActionAdapter() {
-		if (replyActionItemProvider == null) {
+	public Adapter createReplyActionAdapter()
+	{
+		if (replyActionItemProvider == null)
+		{
 			replyActionItemProvider = new ReplyActionItemProvider(this);
 		}
 
@@ -3862,8 +4203,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createRaiseExceptionActionAdapter() {
-		if (raiseExceptionActionItemProvider == null) {
+	public Adapter createRaiseExceptionActionAdapter()
+	{
+		if (raiseExceptionActionItemProvider == null)
+		{
 			raiseExceptionActionItemProvider = new RaiseExceptionActionItemProvider(this);
 		}
 
@@ -3884,8 +4227,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeploymentAdapter() {
-		if (deploymentItemProvider == null) {
+	public Adapter createDeploymentAdapter()
+	{
+		if (deploymentItemProvider == null)
+		{
 			deploymentItemProvider = new DeploymentItemProvider(this);
 		}
 
@@ -3906,8 +4251,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createNodeAdapter() {
-		if (nodeItemProvider == null) {
+	public Adapter createNodeAdapter()
+	{
+		if (nodeItemProvider == null)
+		{
 			nodeItemProvider = new NodeItemProvider(this);
 		}
 
@@ -3928,8 +4275,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeviceAdapter() {
-		if (deviceItemProvider == null) {
+	public Adapter createDeviceAdapter()
+	{
+		if (deviceItemProvider == null)
+		{
 			deviceItemProvider = new DeviceItemProvider(this);
 		}
 
@@ -3950,8 +4299,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createExecutionEnvironmentAdapter() {
-		if (executionEnvironmentItemProvider == null) {
+	public Adapter createExecutionEnvironmentAdapter()
+	{
+		if (executionEnvironmentItemProvider == null)
+		{
 			executionEnvironmentItemProvider = new ExecutionEnvironmentItemProvider(this);
 		}
 
@@ -3972,8 +4323,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createCommunicationPathAdapter() {
-		if (communicationPathItemProvider == null) {
+	public Adapter createCommunicationPathAdapter()
+	{
+		if (communicationPathItemProvider == null)
+		{
 			communicationPathItemProvider = new CommunicationPathItemProvider(this);
 		}
 
@@ -3994,8 +4347,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createComponentAdapter() {
-		if (componentItemProvider == null) {
+	public Adapter createComponentAdapter()
+	{
+		if (componentItemProvider == null)
+		{
 			componentItemProvider = new ComponentItemProvider(this);
 		}
 
@@ -4016,8 +4371,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeploymentSpecificationAdapter() {
-		if (deploymentSpecificationItemProvider == null) {
+	public Adapter createDeploymentSpecificationAdapter()
+	{
+		if (deploymentSpecificationItemProvider == null)
+		{
 			deploymentSpecificationItemProvider = new DeploymentSpecificationItemProvider(this);
 		}
 
@@ -4038,8 +4395,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Adapter createJ_FigureContainerAdapter() {
-		if (j_FigureContainerItemProvider == null) {
+  public Adapter createJ_FigureContainerAdapter()
+	{
+		if (j_FigureContainerItemProvider == null)
+		{
 			j_FigureContainerItemProvider = new J_FigureContainerItemProvider(this);
 		}
 
@@ -4060,8 +4419,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createJ_DiagramAdapter() {
-		if (j_DiagramItemProvider == null) {
+	public Adapter createJ_DiagramAdapter()
+	{
+		if (j_DiagramItemProvider == null)
+		{
 			j_DiagramItemProvider = new J_DiagramItemProvider(this);
 		}
 
@@ -4082,8 +4443,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createJ_DiagramHolderAdapter() {
-		if (j_DiagramHolderItemProvider == null) {
+	public Adapter createJ_DiagramHolderAdapter()
+	{
+		if (j_DiagramHolderItemProvider == null)
+		{
 			j_DiagramHolderItemProvider = new J_DiagramHolderItemProvider(this);
 		}
 
@@ -4104,8 +4467,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createAppliedBasicStereotypeValueAdapter() {
-		if (appliedBasicStereotypeValueItemProvider == null) {
+	public Adapter createAppliedBasicStereotypeValueAdapter()
+	{
+		if (appliedBasicStereotypeValueItemProvider == null)
+		{
 			appliedBasicStereotypeValueItemProvider = new AppliedBasicStereotypeValueItemProvider(this);
 		}
 
@@ -4126,8 +4491,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createPropertyValueSpecificationAdapter() {
-		if (propertyValueSpecificationItemProvider == null) {
+	public Adapter createPropertyValueSpecificationAdapter()
+	{
+		if (propertyValueSpecificationItemProvider == null)
+		{
 			propertyValueSpecificationItemProvider = new PropertyValueSpecificationItemProvider(this);
 		}
 
@@ -4148,8 +4515,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedConstituentAdapter() {
-		if (deltaReplacedConstituentItemProvider == null) {
+	public Adapter createDeltaReplacedConstituentAdapter()
+	{
+		if (deltaReplacedConstituentItemProvider == null)
+		{
 			deltaReplacedConstituentItemProvider = new DeltaReplacedConstituentItemProvider(this);
 		}
 
@@ -4170,8 +4539,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedConstituentAdapter() {
-		if (deltaDeletedConstituentItemProvider == null) {
+	public Adapter createDeltaDeletedConstituentAdapter()
+	{
+		if (deltaDeletedConstituentItemProvider == null)
+		{
 			deltaDeletedConstituentItemProvider = new DeltaDeletedConstituentItemProvider(this);
 		}
 
@@ -4192,8 +4563,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedAttributeAdapter() {
-		if (deltaReplacedAttributeItemProvider == null) {
+	public Adapter createDeltaReplacedAttributeAdapter()
+	{
+		if (deltaReplacedAttributeItemProvider == null)
+		{
 			deltaReplacedAttributeItemProvider = new DeltaReplacedAttributeItemProvider(this);
 		}
 
@@ -4214,8 +4587,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedAttributeAdapter() {
-		if (deltaDeletedAttributeItemProvider == null) {
+	public Adapter createDeltaDeletedAttributeAdapter()
+	{
+		if (deltaDeletedAttributeItemProvider == null)
+		{
 			deltaDeletedAttributeItemProvider = new DeltaDeletedAttributeItemProvider(this);
 		}
 
@@ -4236,8 +4611,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedPortAdapter() {
-		if (deltaReplacedPortItemProvider == null) {
+	public Adapter createDeltaReplacedPortAdapter()
+	{
+		if (deltaReplacedPortItemProvider == null)
+		{
 			deltaReplacedPortItemProvider = new DeltaReplacedPortItemProvider(this);
 		}
 
@@ -4258,8 +4635,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedPortAdapter() {
-		if (deltaDeletedPortItemProvider == null) {
+	public Adapter createDeltaDeletedPortAdapter()
+	{
+		if (deltaDeletedPortItemProvider == null)
+		{
 			deltaDeletedPortItemProvider = new DeltaDeletedPortItemProvider(this);
 		}
 
@@ -4280,8 +4659,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedConnectorAdapter() {
-		if (deltaReplacedConnectorItemProvider == null) {
+	public Adapter createDeltaReplacedConnectorAdapter()
+	{
+		if (deltaReplacedConnectorItemProvider == null)
+		{
 			deltaReplacedConnectorItemProvider = new DeltaReplacedConnectorItemProvider(this);
 		}
 
@@ -4302,8 +4683,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedConnectorAdapter() {
-		if (deltaDeletedConnectorItemProvider == null) {
+	public Adapter createDeltaDeletedConnectorAdapter()
+	{
+		if (deltaDeletedConnectorItemProvider == null)
+		{
 			deltaDeletedConnectorItemProvider = new DeltaDeletedConnectorItemProvider(this);
 		}
 
@@ -4324,8 +4707,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedOperationAdapter() {
-		if (deltaReplacedOperationItemProvider == null) {
+	public Adapter createDeltaReplacedOperationAdapter()
+	{
+		if (deltaReplacedOperationItemProvider == null)
+		{
 			deltaReplacedOperationItemProvider = new DeltaReplacedOperationItemProvider(this);
 		}
 
@@ -4346,8 +4731,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedOperationAdapter() {
-		if (deltaDeletedOperationItemProvider == null) {
+	public Adapter createDeltaDeletedOperationAdapter()
+	{
+		if (deltaDeletedOperationItemProvider == null)
+		{
 			deltaDeletedOperationItemProvider = new DeltaDeletedOperationItemProvider(this);
 		}
 
@@ -4368,8 +4755,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Adapter createPortRemapAdapter() {
-		if (portRemapItemProvider == null) {
+  public Adapter createPortRemapAdapter()
+	{
+		if (portRemapItemProvider == null)
+		{
 			portRemapItemProvider = new PortRemapItemProvider(this);
 		}
 
@@ -4390,8 +4779,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createSavedReferenceAdapter() {
-		if (savedReferenceItemProvider == null) {
+	public Adapter createSavedReferenceAdapter()
+	{
+		if (savedReferenceItemProvider == null)
+		{
 			savedReferenceItemProvider = new SavedReferenceItemProvider(this);
 		}
 
@@ -4544,8 +4935,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createJ_FigureAdapter() {
-		if (j_FigureItemProvider == null) {
+	public Adapter createJ_FigureAdapter()
+	{
+		if (j_FigureItemProvider == null)
+		{
 			j_FigureItemProvider = new J_FigureItemProvider(this);
 		}
 
@@ -4566,8 +4959,10 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter createJ_PropertyAdapter() {
-		if (j_PropertyItemProvider == null) {
+	public Adapter createJ_PropertyAdapter()
+	{
+		if (j_PropertyItemProvider == null)
+		{
 			j_PropertyItemProvider = new J_PropertyItemProvider(this);
 		}
 
@@ -4580,7 +4975,8 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComposeableAdapterFactory getRootAdapterFactory() {
+	public ComposeableAdapterFactory getRootAdapterFactory()
+	{
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
@@ -4590,7 +4986,8 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)
+	{
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -4599,7 +4996,8 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isFactoryForType(Object type) {
+	public boolean isFactoryForType(Object type)
+	{
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
 
@@ -4609,7 +5007,8 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Adapter adapt(Notifier notifier, Object type) {
+	public Adapter adapt(Notifier notifier, Object type)
+	{
 		return super.adapt(notifier, this);
 	}
 
@@ -4618,10 +5017,13 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+	public Object adapt(Object object, Object type)
+	{
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -4635,9 +5037,11 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void associate(Adapter adapter, Notifier target) {
+	protected void associate(Adapter adapter, Notifier target)
+	{
 		super.associate(adapter, target);
-		if (adapter != null) {
+		if (adapter != null)
+		{
 			disposable.add(adapter);
 		}
 	}
@@ -4648,7 +5052,8 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void addListener(INotifyChangedListener notifyChangedListener) {
+	public void addListener(INotifyChangedListener notifyChangedListener)
+	{
 		changeNotifier.addListener(notifyChangedListener);
 	}
 
@@ -4658,7 +5063,8 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void removeListener(INotifyChangedListener notifyChangedListener) {
+	public void removeListener(INotifyChangedListener notifyChangedListener)
+	{
 		changeNotifier.removeListener(notifyChangedListener);
 	}
 
@@ -4668,10 +5074,12 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void fireNotifyChanged(Notification notification) {
+	public void fireNotifyChanged(Notification notification)
+	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -4682,7 +5090,8 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void dispose() {
+	public void dispose()
+	{
 		disposable.dispose();
 	}
 

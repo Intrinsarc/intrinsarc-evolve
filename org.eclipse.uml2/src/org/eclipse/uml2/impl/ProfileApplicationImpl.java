@@ -68,11 +68,14 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProfileApplicationImpl() {
+	protected ProfileApplicationImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (ProfileApplicationImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -81,7 +84,8 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getProfileApplication();
 	}
 
@@ -90,11 +94,14 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package getImportedPackage() {
-		if (importedPackage != null && importedPackage.eIsProxy()) {
+	public org.eclipse.uml2.Package getImportedPackage()
+	{
+		if (importedPackage != null && importedPackage.eIsProxy())
+		{
 			org.eclipse.uml2.Package oldImportedPackage = importedPackage;
 			importedPackage = (org.eclipse.uml2.Package)eResolveProxy((InternalEObject)importedPackage);
-			if (importedPackage != oldImportedPackage) {
+			if (importedPackage != oldImportedPackage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PROFILE_APPLICATION__IMPORTED_PACKAGE, oldImportedPackage, importedPackage));
 			}
@@ -112,7 +119,8 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.uml2.Package undeleted_getImportedPackage() {
+  public org.eclipse.uml2.Package undeleted_getImportedPackage()
+	{
 		org.eclipse.uml2.Package temp = getImportedPackage();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -124,7 +132,8 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package basicGetImportedPackage() {
+	public org.eclipse.uml2.Package basicGetImportedPackage()
+	{
 		return importedPackage;
 	}
 
@@ -133,11 +142,14 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Profile getImportedProfile() {
-		if (importedProfile != null && importedProfile.eIsProxy()) {
+	public Profile getImportedProfile()
+	{
+		if (importedProfile != null && importedProfile.eIsProxy())
+		{
 			Profile oldImportedProfile = importedProfile;
 			importedProfile = (Profile)eResolveProxy((InternalEObject)importedProfile);
-			if (importedProfile != oldImportedProfile) {
+			if (importedProfile != oldImportedProfile)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PROFILE_APPLICATION__IMPORTED_PROFILE, oldImportedProfile, importedProfile));
 			}
@@ -155,7 +167,8 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Profile undeleted_getImportedProfile() {
+  public Profile undeleted_getImportedProfile()
+	{
 		Profile temp = getImportedProfile();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -167,7 +180,8 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Profile basicGetImportedProfile() {
+	public Profile basicGetImportedProfile()
+	{
 		return importedProfile;
 	}
 
@@ -176,7 +190,9 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImportedProfile(Profile newImportedProfile) {
+	public void setImportedProfile(Profile newImportedProfile)
+	{
+
 		Profile oldImportedProfile = importedProfile;
 		importedProfile = newImportedProfile;
 		if (eNotificationRequired())
@@ -193,7 +209,9 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImportedPackage(org.eclipse.uml2.Package newImportedPackage) {
+	public void setImportedPackage(org.eclipse.uml2.Package newImportedPackage)
+	{
+
 		org.eclipse.uml2.Package oldImportedPackage = importedPackage;
 		importedPackage = newImportedPackage;
 		if (eNotificationRequired())
@@ -210,9 +228,12 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PROFILE_APPLICATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PROFILE_APPLICATION__IMPORTING_NAMESPACE:
@@ -233,9 +254,12 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PROFILE_APPLICATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PROFILE_APPLICATION__OWNED_COMMENT:
@@ -256,9 +280,12 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.PROFILE_APPLICATION__IMPORTING_NAMESPACE:
 					return eContainer.eInverseRemove(this, UML2Package.NAMESPACE__PACKAGE_IMPORT, Namespace.class, msgs);
 				default:
@@ -273,8 +300,10 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROFILE_APPLICATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PROFILE_APPLICATION__OWNED_ELEMENT:
@@ -319,8 +348,10 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROFILE_APPLICATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -367,8 +398,10 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROFILE_APPLICATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -411,8 +444,10 @@ public class ProfileApplicationImpl extends PackageImportImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROFILE_APPLICATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PROFILE_APPLICATION__OWNED_ELEMENT:

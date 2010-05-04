@@ -57,7 +57,8 @@ public class RedefinableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RedefinableElementItemProvider(AdapterFactory adapterFactory) {
+	public RedefinableElementItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class RedefinableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRedefinitionContextPropertyDescriptor(object);
@@ -83,7 +86,8 @@ public class RedefinableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsLeafPropertyDescriptor(Object object) {
+	protected void addIsLeafPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -103,7 +107,8 @@ public class RedefinableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinitionContextPropertyDescriptor(Object object) {
+	protected void addRedefinitionContextPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -125,7 +130,8 @@ public class RedefinableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((RedefinableElement)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_RedefinableElement_type") : //$NON-NLS-1$
@@ -139,10 +145,12 @@ public class RedefinableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RedefinableElement.class)) {
+		switch (notification.getFeatureID(RedefinableElement.class))
+		{
 			case UML2Package.REDEFINABLE_ELEMENT__IS_LEAF:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -157,7 +165,8 @@ public class RedefinableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -167,7 +176,8 @@ public class RedefinableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

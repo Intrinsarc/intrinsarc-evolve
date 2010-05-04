@@ -54,7 +54,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InformationFlowItemProvider(AdapterFactory adapterFactory) {
+	public InformationFlowItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -64,8 +65,10 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRelatedElementPropertyDescriptor(object);
@@ -83,7 +86,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedElementPropertyDescriptor(Object object) {
+	protected void addRelatedElementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -105,7 +109,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourcePropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -127,7 +132,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -149,7 +155,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRealizationPropertyDescriptor(Object object) {
+	protected void addRealizationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -169,7 +176,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConveyedPropertyDescriptor(Object object) {
+	protected void addConveyedPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -189,7 +197,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/InformationFlow"); //$NON-NLS-1$
 	}
 
@@ -199,7 +208,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((InformationFlow)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_InformationFlow_type") : //$NON-NLS-1$
@@ -213,7 +223,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -225,7 +236,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -235,7 +247,8 @@ public class InformationFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

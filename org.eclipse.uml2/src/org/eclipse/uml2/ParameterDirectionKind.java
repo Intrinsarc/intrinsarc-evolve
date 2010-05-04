@@ -147,7 +147,8 @@ public final class ParameterDirectionKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final ParameterDirectionKind[] VALUES_ARRAY =
-		new ParameterDirectionKind[] {
+		new ParameterDirectionKind[]
+		{
 			IN_LITERAL,
 			INOUT_LITERAL,
 			OUT_LITERAL,
@@ -168,10 +169,13 @@ public final class ParameterDirectionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ParameterDirectionKind get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static ParameterDirectionKind get(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ParameterDirectionKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(name))
+			{
 				return result;
 			}
 		}
@@ -184,8 +188,10 @@ public final class ParameterDirectionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ParameterDirectionKind get(int value) {
-		switch (value) {
+	public static ParameterDirectionKind get(int value)
+	{
+		switch (value)
+		{
 			case IN: return IN_LITERAL;
 			case INOUT: return INOUT_LITERAL;
 			case OUT: return OUT_LITERAL;
@@ -200,7 +206,8 @@ public final class ParameterDirectionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ParameterDirectionKind(int value, String name) {
+	private ParameterDirectionKind(int value, String name)
+	{
 		super(value, name);
 	}
 

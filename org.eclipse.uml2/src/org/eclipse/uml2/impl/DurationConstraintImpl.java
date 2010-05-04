@@ -64,11 +64,14 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DurationConstraintImpl() {
+	protected DurationConstraintImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (DurationConstraintImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -77,7 +80,8 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getDurationConstraint();
 	}
 
@@ -95,7 +99,8 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getSpecification() {
+  public ValueSpecification undeleted_getSpecification()
+	{
 		ValueSpecification temp = getSpecification();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -107,7 +112,8 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification basicGetSpecification() {
+	public ValueSpecification basicGetSpecification()
+	{
 		return specification;
 	}
 
@@ -139,9 +145,12 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.DURATION_CONSTRAINT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.DURATION_CONSTRAINT__TEMPLATE_BINDING:
@@ -178,9 +187,12 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.DURATION_CONSTRAINT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DURATION_CONSTRAINT__OWNED_COMMENT:
@@ -217,9 +229,12 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.DURATION_CONSTRAINT__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.DURATION_CONSTRAINT__NAMESPACE:
@@ -236,8 +251,10 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DURATION_CONSTRAINT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DURATION_CONSTRAINT__OWNED_ELEMENT:
@@ -302,8 +319,10 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DURATION_CONSTRAINT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -389,8 +408,10 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DURATION_CONSTRAINT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -466,8 +487,10 @@ public class DurationConstraintImpl extends IntervalConstraintImpl implements Du
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DURATION_CONSTRAINT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DURATION_CONSTRAINT__OWNED_ELEMENT:

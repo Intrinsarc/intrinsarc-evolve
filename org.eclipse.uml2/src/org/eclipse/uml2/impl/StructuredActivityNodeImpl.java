@@ -177,11 +177,14 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StructuredActivityNodeImpl() {
+	protected StructuredActivityNodeImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (StructuredActivityNodeImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -190,7 +193,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getStructuredActivityNode();
 	}
 
@@ -199,7 +203,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getMembers() {
+	public EList getMembers()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList member = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getNamespace_Member());
@@ -234,7 +239,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		if (eIsSet(UML2Package.eINSTANCE.getNamespace_OwnedRule())) {
 			ownedMember.addAll(getOwnedRules());
 		}
@@ -249,9 +255,13 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedRules() {
-		if (ownedRule == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedRules()
+	{
+		if (ownedRule == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedRule = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__OWNED_RULE, UML2Package.CONSTRAINT__NAMESPACE);
 			 		return ownedRule;
@@ -268,8 +278,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedRules() {
-		if (ownedRule == null) {
+  public EList settable_getOwnedRules()
+	{
+		if (ownedRule == null)
+		{
+			
+		
 			ownedRule = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__OWNED_RULE, UML2Package.CONSTRAINT__NAMESPACE);
 		}
 		return ownedRule;
@@ -280,11 +294,14 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedRules() {
+  public java.util.ArrayList undeleted_getOwnedRules()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedRule != null) {
-			for (Object object : ownedRule) {
+		if (ownedRule != null)
+		{
+			for (Object object : ownedRule)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -390,9 +407,13 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getElementImports() {
-		if (elementImport == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getElementImports()
+	{
+		if (elementImport == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		elementImport = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__ELEMENT_IMPORT, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 			 		return elementImport;
@@ -409,8 +430,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getElementImports() {
-		if (elementImport == null) {
+  public EList settable_getElementImports()
+	{
+		if (elementImport == null)
+		{
+			
+		
 			elementImport = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__ELEMENT_IMPORT, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return elementImport;
@@ -421,11 +446,14 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getElementImports() {
+  public java.util.ArrayList undeleted_getElementImports()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (elementImport != null) {
-			for (Object object : elementImport) {
+		if (elementImport != null)
+		{
+			for (Object object : elementImport)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -472,9 +500,13 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPackageImports() {
-		if (packageImport == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getPackageImports()
+	{
+		if (packageImport == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__PACKAGE_IMPORT, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 			 		return packageImport;
@@ -491,8 +523,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPackageImports() {
-		if (packageImport == null) {
+  public EList settable_getPackageImports()
+	{
+		if (packageImport == null)
+		{
+			
+		
 			packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__PACKAGE_IMPORT, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return packageImport;
@@ -503,11 +539,14 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPackageImports() {
+  public java.util.ArrayList undeleted_getPackageImports()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (packageImport != null) {
-			for (Object object : packageImport) {
+		if (packageImport != null)
+		{
+			for (Object object : packageImport)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -553,7 +592,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityGroup getSuperGroup() {
+	public ActivityGroup getSuperGroup()
+	{
 		ActivityGroup superGroup = basicGetSuperGroup();
 		return superGroup == null ? null : (ActivityGroup)eResolveProxy((InternalEObject)superGroup);
 	}
@@ -564,7 +604,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityGroup basicGetSuperGroup() {
+	public ActivityGroup basicGetSuperGroup()
+	{
 		return null;
 	}
 
@@ -573,7 +614,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isMustIsolate() {
+	public boolean isMustIsolate()
+	{
 		return (eFlags & MUST_ISOLATE_EFLAG) != 0;
 	}
 
@@ -588,7 +630,9 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMustIsolate(boolean newMustIsolate) {
+	public void setMustIsolate(boolean newMustIsolate)
+	{
+
 		boolean oldMustIsolate = (eFlags & MUST_ISOLATE_EFLAG) != 0;
 		if (newMustIsolate) eFlags |= MUST_ISOLATE_EFLAG; else eFlags &= ~MUST_ISOLATE_EFLAG;
 		if (eNotificationRequired())
@@ -602,7 +646,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMembersAreDistinguishable(DiagnosticChain diagnostics, Map context) {
+	public boolean validateMembersAreDistinguishable(DiagnosticChain diagnostics, Map context)
+	{
 		return NamespaceOperations.validateMembersAreDistinguishable(this, diagnostics, context);
 	}
 
@@ -611,9 +656,13 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getVariables() {
-		if (variable == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getVariables()
+	{
+		if (variable == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		variable = new com.hopstepjump.emflist.PersistentEList(Variable.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__VARIABLE, UML2Package.VARIABLE__SCOPE);
 			 		return variable;
@@ -630,8 +679,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getVariables() {
-		if (variable == null) {
+  public EList settable_getVariables()
+	{
+		if (variable == null)
+		{
+			
+		
 			variable = new com.hopstepjump.emflist.PersistentEList(Variable.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__VARIABLE, UML2Package.VARIABLE__SCOPE);
 		}
 		return variable;
@@ -642,11 +695,14 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getVariables() {
+  public java.util.ArrayList undeleted_getVariables()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (variable != null) {
-			for (Object object : variable) {
+		if (variable != null)
+		{
+			for (Object object : variable)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -708,9 +764,13 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getContainedNodes() {
-		if (containedNode == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getContainedNodes()
+	{
+		if (containedNode == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_STRUCTURED_NODE);
 			 		return containedNode;
@@ -727,8 +787,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getContainedNodes() {
-		if (containedNode == null) {
+  public EList settable_getContainedNodes()
+	{
+		if (containedNode == null)
+		{
+			
+		
 			containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_STRUCTURED_NODE);
 		}
 		return containedNode;
@@ -739,11 +803,14 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getContainedNodes() {
+  public java.util.ArrayList undeleted_getContainedNodes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (containedNode != null) {
-			for (Object object : containedNode) {
+		if (containedNode != null)
+		{
+			for (Object object : containedNode)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -790,9 +857,13 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getContainedEdges() {
-		if (containedEdge == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getContainedEdges()
+	{
+		if (containedEdge == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		containedEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_STRUCTURED_NODE);
 			 		return containedEdge;
@@ -809,8 +880,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getContainedEdges() {
-		if (containedEdge == null) {
+  public EList settable_getContainedEdges()
+	{
+		if (containedEdge == null)
+		{
+			
+		
 			containedEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.STRUCTURED_ACTIVITY_NODE__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_STRUCTURED_NODE);
 		}
 		return containedEdge;
@@ -821,11 +896,14 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getContainedEdges() {
+  public java.util.ArrayList undeleted_getContainedEdges()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (containedEdge != null) {
-			for (Object object : containedEdge) {
+		if (containedEdge != null)
+		{
+			for (Object object : containedEdge)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -872,7 +950,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set getNamesOfMember(NamedElement element) {
+	public Set getNamesOfMember(NamedElement element)
+	{
 		return NamespaceOperations.getNamesOfMember(this, element);
 	}
 
@@ -881,7 +960,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean membersAreDistinguishable() {
+	public boolean membersAreDistinguishable()
+	{
 		return NamespaceOperations.membersAreDistinguishable(this);
 	}
 
@@ -890,7 +970,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateImportedMemberDerived(DiagnosticChain diagnostics, Map context) {
+	public boolean validateImportedMemberDerived(DiagnosticChain diagnostics, Map context)
+	{
 		return NamespaceOperations.validateImportedMemberDerived(this, diagnostics, context);
 	}
 
@@ -899,7 +980,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set importedMember() {
+	public Set importedMember()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Set result = (Set) cache.get(this, UML2Package.eINSTANCE.getNamespace().getEOperations().get(4));
@@ -916,7 +998,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set importMembers(Set imps) {
+	public Set importMembers(Set imps)
+	{
 		return NamespaceOperations.importMembers(this, imps);
 	}
 
@@ -925,7 +1008,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set excludeCollisions(Set imps) {
+	public Set excludeCollisions(Set imps)
+	{
 		return NamespaceOperations.excludeCollisions(this, imps);
 	}
 
@@ -934,7 +1018,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSubgroups() {
+	public EList getSubgroups()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			try {
@@ -959,7 +1044,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		ActivityGroup superGroup = basicGetSuperGroup();			
 		if (superGroup != null) {
 			return superGroup;
@@ -977,7 +1063,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSubgroupsHelper(EList subgroup) {
+	protected EList getSubgroupsHelper(EList subgroup)
+	{
 		return subgroup;
 	}
 
@@ -986,7 +1073,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getActivity() {
+	public Activity getActivity()
+	{
 		Activity activity = basicGetActivity();
 		return activity == null ? null : (Activity)eResolveProxy((InternalEObject)activity);
 	}
@@ -1016,7 +1104,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getActivityGroup_activity() {
+	public Activity getActivityGroup_activity()
+	{
 		return getActivity();
 	}
 
@@ -1040,7 +1129,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedMembers() {
+	public EList getOwnedMembers()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			try {
@@ -1080,7 +1170,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getNamespace_ElementImport())) {
 			ownedElement.addAll(getElementImports());
@@ -1109,9 +1200,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__TEMPLATE_BINDING:
@@ -1180,9 +1274,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__OWNED_COMMENT:
@@ -1250,9 +1347,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__IN_STRUCTURED_NODE:
@@ -1271,8 +1371,10 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STRUCTURED_ACTIVITY_NODE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.STRUCTURED_ACTIVITY_NODE__OWNED_ELEMENT:
@@ -1379,8 +1481,10 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STRUCTURED_ACTIVITY_NODE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1521,8 +1625,10 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STRUCTURED_ACTIVITY_NODE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1640,8 +1746,10 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STRUCTURED_ACTIVITY_NODE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.STRUCTURED_ACTIVITY_NODE__OWNED_ELEMENT:
@@ -1755,9 +1863,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == Namespace.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == Namespace.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__MEMBER: return UML2Package.NAMESPACE__MEMBER;
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__OWNED_RULE: return UML2Package.NAMESPACE__OWNED_RULE;
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__IMPORTED_MEMBER: return UML2Package.NAMESPACE__IMPORTED_MEMBER;
@@ -1766,8 +1877,10 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 				default: return -1;
 			}
 		}
-		if (baseClass == ActivityGroup.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == ActivityGroup.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__SUPER_GROUP: return UML2Package.ACTIVITY_GROUP__SUPER_GROUP;
 				case UML2Package.STRUCTURED_ACTIVITY_NODE__ACTIVITY_GROUP_ACTIVITY: return UML2Package.ACTIVITY_GROUP__ACTIVITY_GROUP_ACTIVITY;
 				default: return -1;
@@ -1781,9 +1894,12 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == Namespace.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == Namespace.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.NAMESPACE__MEMBER: return UML2Package.STRUCTURED_ACTIVITY_NODE__MEMBER;
 				case UML2Package.NAMESPACE__OWNED_RULE: return UML2Package.STRUCTURED_ACTIVITY_NODE__OWNED_RULE;
 				case UML2Package.NAMESPACE__IMPORTED_MEMBER: return UML2Package.STRUCTURED_ACTIVITY_NODE__IMPORTED_MEMBER;
@@ -1792,8 +1908,10 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 				default: return -1;
 			}
 		}
-		if (baseClass == ActivityGroup.class) {
-			switch (baseFeatureID) {
+		if (baseClass == ActivityGroup.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.ACTIVITY_GROUP__SUPER_GROUP: return UML2Package.STRUCTURED_ACTIVITY_NODE__SUPER_GROUP;
 				case UML2Package.ACTIVITY_GROUP__ACTIVITY_GROUP_ACTIVITY: return UML2Package.STRUCTURED_ACTIVITY_NODE__ACTIVITY_GROUP_ACTIVITY;
 				default: return -1;
@@ -1807,7 +1925,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1823,7 +1942,8 @@ public class StructuredActivityNodeImpl extends ActionImpl implements Structured
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getMembersHelper(EList member) {
+	protected EList getMembersHelper(EList member)
+	{
 		EList importedMember = getImportedMembers();
 		if (!importedMember.isEmpty()) {
 			for (Iterator i = ((InternalEList) importedMember).basicIterator(); i.hasNext(); ) {

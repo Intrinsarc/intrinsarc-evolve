@@ -107,11 +107,14 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected J_DiagramImpl() {
+	protected J_DiagramImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (J_DiagramImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -120,7 +123,8 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getJ_Diagram();
 	}
 
@@ -129,7 +133,8 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
@@ -144,7 +149,9 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	public void setName(String newName)
+	{
+
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -159,7 +166,8 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public int getLastFigureId() {
+  public int getLastFigureId()
+	{
 		return lastFigureId;
 	}
 
@@ -174,7 +182,9 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setLastFigureId(int newLastFigureId) {
+  public void setLastFigureId(int newLastFigureId)
+	{
+
 		int oldLastFigureId = lastFigureId;
 		lastFigureId = newLastFigureId;
 		if (eNotificationRequired())
@@ -188,9 +198,12 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.JDIAGRAM__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -207,9 +220,12 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.JDIAGRAM__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.JDIAGRAM__OWNED_COMMENT:
@@ -232,8 +248,10 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.JDIAGRAM__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.JDIAGRAM__OWNED_ELEMENT:
@@ -270,8 +288,10 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.JDIAGRAM__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -320,8 +340,10 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.JDIAGRAM__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -364,8 +386,10 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.JDIAGRAM__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.JDIAGRAM__OWNED_ELEMENT:
@@ -401,7 +425,8 @@ public class J_DiagramImpl extends J_FigureContainerImpl implements J_Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

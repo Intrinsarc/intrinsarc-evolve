@@ -30,7 +30,8 @@ public class CallTriggerTest extends MessageTriggerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(CallTriggerTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class CallTriggerTest extends MessageTriggerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallTriggerTest(String name) {
+	public CallTriggerTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class CallTriggerTest extends MessageTriggerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CallTrigger getFixture() {
+	private CallTrigger getFixture()
+	{
 		return (CallTrigger)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class CallTriggerTest extends MessageTriggerTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createCallTrigger());
 	}
 
@@ -70,7 +74,8 @@ public class CallTriggerTest extends MessageTriggerTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

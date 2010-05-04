@@ -36,7 +36,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityGroupTest(String name) {
+	public ActivityGroupTest(String name)
+	{
 		super(name);
 	}
 
@@ -46,7 +47,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ActivityGroup getFixture() {
+	private ActivityGroup getFixture()
+	{
 		return (ActivityGroup)fixture;
 	}
 
@@ -57,7 +59,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getActivityGroup_activity()
 	 * @generated
 	 */
-	public void testGetActivityGroup_activity() {
+	public void testGetActivityGroup_activity()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -69,7 +72,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#setActivityGroup_activity(org.eclipse.uml2.Activity)
 	 * @generated
 	 */
-	public void testSetActivityGroup_activity() {
+	public void testSetActivityGroup_activity()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -81,7 +85,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getContainedNodes()
 	 * @generated
 	 */
-	public void testGetContainedNodes() {
+	public void testGetContainedNodes()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -93,7 +98,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getContainedEdges()
 	 * @generated
 	 */
-	public void testGetContainedEdges() {
+	public void testGetContainedEdges()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -107,7 +113,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getSuperGroup()
 	 * @generated
 	 */
-	public void testGetSuperGroup() {
+	public void testGetSuperGroup()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -119,7 +126,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -131,7 +139,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getSubgroups()
 	 * @generated
 	 */
-	public void testGetSubgroups() {
+	public void testGetSubgroups()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -143,7 +152,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -155,7 +165,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.ActivityNode#getActivity()
 	 * @generated
 	 */
-	public void testGetActivity() {
+	public void testGetActivity()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -167,7 +178,8 @@ public abstract class ActivityGroupTest extends ElementTest {
 	 * @see org.eclipse.uml2.ActivityNode#setActivity(org.eclipse.uml2.Activity)
 	 * @generated
 	 */
-	public void testSetActivity() {
+	public void testSetActivity()
+	{
 		// TODO: implement this redefined feature setter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

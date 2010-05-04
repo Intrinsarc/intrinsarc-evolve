@@ -224,11 +224,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PackageImpl() {
+	protected PackageImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (PackageImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -237,7 +240,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getPackage();
 	}
 
@@ -246,11 +250,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter getTemplateParameter() {
-		if (templateParameter != null && templateParameter.eIsProxy()) {
+	public TemplateParameter getTemplateParameter()
+	{
+		if (templateParameter != null && templateParameter.eIsProxy())
+		{
 			TemplateParameter oldTemplateParameter = templateParameter;
 			templateParameter = (TemplateParameter)eResolveProxy((InternalEObject)templateParameter);
-			if (templateParameter != oldTemplateParameter) {
+			if (templateParameter != oldTemplateParameter)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PACKAGE__TEMPLATE_PARAMETER, oldTemplateParameter, templateParameter));
 			}
@@ -268,7 +275,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter undeleted_getTemplateParameter() {
+  public TemplateParameter undeleted_getTemplateParameter()
+	{
 		TemplateParameter temp = getTemplateParameter();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -280,7 +288,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter basicGetTemplateParameter() {
+	public TemplateParameter basicGetTemplateParameter()
+	{
 		return templateParameter;
 	}
 
@@ -289,10 +298,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTemplateParameter(TemplateParameter newTemplateParameter, NotificationChain msgs) {
+	public NotificationChain basicSetTemplateParameter(TemplateParameter newTemplateParameter, NotificationChain msgs)
+	{
+
 		TemplateParameter oldTemplateParameter = templateParameter;
 		templateParameter = newTemplateParameter;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.PACKAGE__TEMPLATE_PARAMETER, oldTemplateParameter, newTemplateParameter);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -308,8 +320,11 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemplateParameter(TemplateParameter newTemplateParameter) {
-		if (newTemplateParameter != templateParameter) {
+	public void setTemplateParameter(TemplateParameter newTemplateParameter)
+	{
+
+		if (newTemplateParameter != templateParameter)
+		{
 			NotificationChain msgs = null;
 			if (templateParameter != null)
 				msgs = ((InternalEObject)templateParameter).eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
@@ -329,7 +344,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter getOwningParameter() {
+	public TemplateParameter getOwningParameter()
+	{
 		if (eContainerFeatureID != UML2Package.PACKAGE__OWNING_PARAMETER) return null;
 		return (TemplateParameter)eContainer;
 	}
@@ -344,7 +360,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter undeleted_getOwningParameter() {
+  public TemplateParameter undeleted_getOwningParameter()
+	{
 		TemplateParameter temp = getOwningParameter();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -356,9 +373,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningParameter(TemplateParameter newOwningParameter) {
+	public void setOwningParameter(TemplateParameter newOwningParameter)
+	{
+
 		EObject oldOwningParameter = eContainer;
-		if (newOwningParameter != eContainer || (eContainerFeatureID != UML2Package.PACKAGE__OWNING_PARAMETER && newOwningParameter != null)) {
+		if (newOwningParameter != eContainer || (eContainerFeatureID != UML2Package.PACKAGE__OWNING_PARAMETER && newOwningParameter != null))
+		{
 			if (EcoreUtil.isAncestor(this, newOwningParameter))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -451,7 +471,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package getNestingPackage() {
+	public org.eclipse.uml2.Package getNestingPackage()
+	{
 		org.eclipse.uml2.Package nestingPackage = basicGetNestingPackage();
 		return nestingPackage == null ? null : (org.eclipse.uml2.Package)eResolveProxy((InternalEObject)nestingPackage);
 	}
@@ -520,9 +541,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedMembers() {
-		if (ownedMember == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedMembers()
+	{
+		if (ownedMember == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PACKAGE__OWNED_MEMBER);
 			 		return ownedMember;
@@ -539,8 +564,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedMembers() {
-		if (ownedMember == null) {
+  public EList settable_getOwnedMembers()
+	{
+		if (ownedMember == null)
+		{
+			
+		
 			ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PACKAGE__OWNED_MEMBER);
 		}
 		return ownedMember;
@@ -551,11 +580,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedMembers() {
+  public java.util.ArrayList undeleted_getOwnedMembers()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedMember != null) {
-			for (Object object : ownedMember) {
+		if (ownedMember != null)
+		{
+			for (Object object : ownedMember)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -602,9 +634,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPackageMerges() {
-		if (packageMerge == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getPackageMerges()
+	{
+		if (packageMerge == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		packageMerge = new com.hopstepjump.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_MERGE, UML2Package.PACKAGE_MERGE__MERGING_PACKAGE);
 			 		return packageMerge;
@@ -621,8 +657,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPackageMerges() {
-		if (packageMerge == null) {
+  public EList settable_getPackageMerges()
+	{
+		if (packageMerge == null)
+		{
+			
+		
 			packageMerge = new com.hopstepjump.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_MERGE, UML2Package.PACKAGE_MERGE__MERGING_PACKAGE);
 		}
 		return packageMerge;
@@ -633,11 +673,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPackageMerges() {
+  public java.util.ArrayList undeleted_getPackageMerges()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (packageMerge != null) {
-			for (Object object : packageMerge) {
+		if (packageMerge != null)
+		{
+			for (Object object : packageMerge)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -684,9 +727,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getAppliedProfiles() {
-		if (appliedProfile == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getAppliedProfiles()
+	{
+		if (appliedProfile == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		appliedProfile = new com.hopstepjump.emflist.PersistentEList(ProfileApplication.class, this, UML2Package.PACKAGE__APPLIED_PROFILE, new int[] {UML2Package.PACKAGE__PACKAGE_IMPORT});
 			 		return appliedProfile;
@@ -703,8 +750,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getAppliedProfiles() {
-		if (appliedProfile == null) {
+  public EList settable_getAppliedProfiles()
+	{
+		if (appliedProfile == null)
+		{
+			
+		
 			appliedProfile = new com.hopstepjump.emflist.PersistentEList(ProfileApplication.class, this, UML2Package.PACKAGE__APPLIED_PROFILE, new int[] {UML2Package.PACKAGE__PACKAGE_IMPORT});
 		}
 		return appliedProfile;
@@ -715,11 +766,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getAppliedProfiles() {
+  public java.util.ArrayList undeleted_getAppliedProfiles()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (appliedProfile != null) {
-			for (Object object : appliedProfile) {
+		if (appliedProfile != null)
+		{
+			for (Object object : appliedProfile)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -737,9 +791,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPackageExtensions() {
-		if (packageExtension == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getPackageExtensions()
+	{
+		if (packageExtension == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		packageExtension = new com.hopstepjump.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_EXTENSION);
 			 		return packageExtension;
@@ -756,8 +814,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPackageExtensions() {
-		if (packageExtension == null) {
+  public EList settable_getPackageExtensions()
+	{
+		if (packageExtension == null)
+		{
+			
+		
 			packageExtension = new com.hopstepjump.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_EXTENSION);
 		}
 		return packageExtension;
@@ -768,11 +830,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPackageExtensions() {
+  public java.util.ArrayList undeleted_getPackageExtensions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (packageExtension != null) {
-			for (Object object : packageExtension) {
+		if (packageExtension != null)
+		{
+			for (Object object : packageExtension)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -819,7 +884,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_DiagramHolder getJ_diagramHolder() {
+	public J_DiagramHolder getJ_diagramHolder()
+	{
 		return j_diagramHolder;
 	}
 
@@ -833,7 +899,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_DiagramHolder undeleted_getJ_diagramHolder() {
+	public J_DiagramHolder undeleted_getJ_diagramHolder()
+	{
 		J_DiagramHolder temp = getJ_diagramHolder();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -845,10 +912,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetJ_diagramHolder(J_DiagramHolder newJ_diagramHolder, NotificationChain msgs) {
+	public NotificationChain basicSetJ_diagramHolder(J_DiagramHolder newJ_diagramHolder, NotificationChain msgs)
+	{
+
 		J_DiagramHolder oldJ_diagramHolder = j_diagramHolder;
 		j_diagramHolder = newJ_diagramHolder;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.PACKAGE__JDIAGRAM_HOLDER, oldJ_diagramHolder, newJ_diagramHolder);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -861,8 +931,11 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setJ_diagramHolder(J_DiagramHolder newJ_diagramHolder) {
-		if (newJ_diagramHolder != j_diagramHolder) {
+	public void setJ_diagramHolder(J_DiagramHolder newJ_diagramHolder)
+	{
+
+		if (newJ_diagramHolder != j_diagramHolder)
+		{
 			NotificationChain msgs = null;
 			if (j_diagramHolder != null)
 				msgs = ((InternalEObject)j_diagramHolder).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.PACKAGE__JDIAGRAM_HOLDER, null, msgs);
@@ -910,9 +983,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList getChildPackages() {
-		if (childPackages == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+  public EList getChildPackages()
+	{
+		if (childPackages == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		childPackages = new com.hopstepjump.emflist.PersistentEList(org.eclipse.uml2.Package.class, this, UML2Package.PACKAGE__CHILD_PACKAGES, UML2Package.PACKAGE__PARENT_PACKAGE);
 			 		return childPackages;
@@ -929,8 +1006,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getChildPackages() {
-		if (childPackages == null) {
+  public EList settable_getChildPackages()
+	{
+		if (childPackages == null)
+		{
+			
+		
 			childPackages = new com.hopstepjump.emflist.PersistentEList(org.eclipse.uml2.Package.class, this, UML2Package.PACKAGE__CHILD_PACKAGES, UML2Package.PACKAGE__PARENT_PACKAGE);
 		}
 		return childPackages;
@@ -941,11 +1022,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getChildPackages() {
+  public java.util.ArrayList undeleted_getChildPackages()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (childPackages != null) {
-			for (Object object : childPackages) {
+		if (childPackages != null)
+		{
+			for (Object object : childPackages)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1006,7 +1090,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.uml2.Package getParentPackage() {
+  public org.eclipse.uml2.Package getParentPackage()
+	{
 		if (eContainerFeatureID != UML2Package.PACKAGE__PARENT_PACKAGE) return null;
 		return (org.eclipse.uml2.Package)eContainer;
 	}
@@ -1021,7 +1106,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.uml2.Package undeleted_getParentPackage() {
+  public org.eclipse.uml2.Package undeleted_getParentPackage()
+	{
 		org.eclipse.uml2.Package temp = getParentPackage();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -1033,8 +1119,11 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setParentPackage(org.eclipse.uml2.Package newParentPackage) {
-		if (newParentPackage != eContainer || (eContainerFeatureID != UML2Package.PACKAGE__PARENT_PACKAGE && newParentPackage != null)) {
+  public void setParentPackage(org.eclipse.uml2.Package newParentPackage)
+	{
+
+		if (newParentPackage != eContainer || (eContainerFeatureID != UML2Package.PACKAGE__PARENT_PACKAGE && newParentPackage != null))
+		{
 			if (EcoreUtil.isAncestor(this, newParentPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -1056,7 +1145,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReadOnly() {
+	public boolean isReadOnly()
+	{
 		return (eFlags & READ_ONLY_EFLAG) != 0;
 	}
 
@@ -1071,7 +1161,9 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReadOnly(boolean newReadOnly) {
+	public void setReadOnly(boolean newReadOnly)
+	{
+
 		boolean oldReadOnly = (eFlags & READ_ONLY_EFLAG) != 0;
 		if (newReadOnly) eFlags |= READ_ONLY_EFLAG; else eFlags &= ~READ_ONLY_EFLAG;
 		if (eNotificationRequired())
@@ -1085,9 +1177,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getAnonymousDeletedImportPlaceholders() {
-		if (anonymousDeletedImportPlaceholders == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getAnonymousDeletedImportPlaceholders()
+	{
+		if (anonymousDeletedImportPlaceholders == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		anonymousDeletedImportPlaceholders = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.PACKAGE__ANONYMOUS_DELETED_IMPORT_PLACEHOLDERS);
 			 		return anonymousDeletedImportPlaceholders;
@@ -1104,8 +1200,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getAnonymousDeletedImportPlaceholders() {
-		if (anonymousDeletedImportPlaceholders == null) {
+	public EList settable_getAnonymousDeletedImportPlaceholders()
+	{
+		if (anonymousDeletedImportPlaceholders == null)
+		{
+			
+		
 			anonymousDeletedImportPlaceholders = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.PACKAGE__ANONYMOUS_DELETED_IMPORT_PLACEHOLDERS);
 		}
 		return anonymousDeletedImportPlaceholders;
@@ -1116,11 +1216,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getAnonymousDeletedImportPlaceholders() {
+	public java.util.ArrayList undeleted_getAnonymousDeletedImportPlaceholders()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (anonymousDeletedImportPlaceholders != null) {
-			for (Object object : anonymousDeletedImportPlaceholders) {
+		if (anonymousDeletedImportPlaceholders != null)
+		{
+			for (Object object : anonymousDeletedImportPlaceholders)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1152,7 +1255,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateElementsPublicOrPrivate(DiagnosticChain diagnostics, Map context) {
+	public boolean validateElementsPublicOrPrivate(DiagnosticChain diagnostics, Map context)
+	{
 		return PackageOperations.validateElementsPublicOrPrivate(this, diagnostics, context);
 	}
 
@@ -1161,7 +1265,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		TemplateParameter owningParameter = getOwningParameter();			
 		if (owningParameter != null) {
 			return owningParameter;
@@ -1175,7 +1280,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VisibilityKind getVisibility() {
+	public VisibilityKind getVisibility()
+	{
 		return getPackageableElement_visibility();
 	}
 
@@ -1184,7 +1290,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibility(VisibilityKind newVisibility) {
+	public void setVisibility(VisibilityKind newVisibility)
+	{
 		setPackageableElement_visibility(newVisibility);
 	}
 
@@ -1194,7 +1301,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean mustBeOwned() {
+	public boolean mustBeOwned()
+	{
 		return PackageOperations.mustBeOwned(this);
 	}
 
@@ -1203,7 +1311,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set visibleMembers() {
+	public Set visibleMembers()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Set result = (Set) cache.get(this, UML2Package.eINSTANCE.getPackage().getEOperations().get(1));
@@ -1220,7 +1329,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean makesVisible(NamedElement el) {
+	public boolean makesVisible(NamedElement el)
+	{
 		return PackageOperations.makesVisible(this, el);
 	}
 
@@ -1229,7 +1339,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace() {
+	public Namespace basicGetNamespace()
+	{
 		org.eclipse.uml2.Package nestingPackage = basicGetNestingPackage();			
 		if (nestingPackage != null) {
 			return nestingPackage;
@@ -1265,9 +1376,13 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPackageImports() {
-		if (packageImport == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getPackageImports()
+	{
+		if (packageImport == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PACKAGE__PACKAGE_IMPORT, new int[] {UML2Package.PACKAGE__APPLIED_PROFILE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 			 		return packageImport;
@@ -1284,8 +1399,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPackageImports() {
-		if (packageImport == null) {
+  public EList settable_getPackageImports()
+	{
+		if (packageImport == null)
+		{
+			
+		
 			packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PACKAGE__PACKAGE_IMPORT, new int[] {UML2Package.PACKAGE__APPLIED_PROFILE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return packageImport;
@@ -1296,11 +1415,14 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPackageImports() {
+  public java.util.ArrayList undeleted_getPackageImports()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (packageImport != null) {
-			for (Object object : packageImport) {
+		if (packageImport != null)
+		{
+			for (Object object : packageImport)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1318,9 +1440,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PACKAGE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PACKAGE__TEMPLATE_BINDING:
@@ -1367,9 +1492,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PACKAGE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PACKAGE__OWNED_COMMENT:
@@ -1422,9 +1550,12 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.PACKAGE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.PACKAGE__PARENT_PACKAGE:
@@ -1441,8 +1572,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PACKAGE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PACKAGE__OWNED_ELEMENT:
@@ -1533,8 +1666,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PACKAGE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1655,8 +1790,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PACKAGE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1759,8 +1896,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PACKAGE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PACKAGE__OWNED_ELEMENT:
@@ -1858,16 +1997,21 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == ParameterableElement.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == ParameterableElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.PACKAGE__TEMPLATE_PARAMETER: return UML2Package.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER;
 				case UML2Package.PACKAGE__OWNING_PARAMETER: return UML2Package.PARAMETERABLE_ELEMENT__OWNING_PARAMETER;
 				default: return -1;
 			}
 		}
-		if (baseClass == PackageableElement.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == PackageableElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.PACKAGE__PACKAGEABLE_ELEMENT_VISIBILITY: return UML2Package.PACKAGEABLE_ELEMENT__PACKAGEABLE_ELEMENT_VISIBILITY;
 				default: return -1;
 			}
@@ -1880,16 +2024,21 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == ParameterableElement.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == ParameterableElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER: return UML2Package.PACKAGE__TEMPLATE_PARAMETER;
 				case UML2Package.PARAMETERABLE_ELEMENT__OWNING_PARAMETER: return UML2Package.PACKAGE__OWNING_PARAMETER;
 				default: return -1;
 			}
 		}
-		if (baseClass == PackageableElement.class) {
-			switch (baseFeatureID) {
+		if (baseClass == PackageableElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.PACKAGEABLE_ELEMENT__PACKAGEABLE_ELEMENT_VISIBILITY: return UML2Package.PACKAGE__PACKAGEABLE_ELEMENT_VISIBILITY;
 				default: return -1;
 			}
@@ -1902,7 +2051,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

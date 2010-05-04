@@ -28,7 +28,8 @@ public abstract class InvocationActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvocationActionTest(String name) {
+	public InvocationActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class InvocationActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private InvocationAction getFixture() {
+	private InvocationAction getFixture()
+	{
 		return (InvocationAction)fixture;
 	}
 
@@ -51,7 +53,8 @@ public abstract class InvocationActionTest extends ActionTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs() {
+	public void testGetInputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
