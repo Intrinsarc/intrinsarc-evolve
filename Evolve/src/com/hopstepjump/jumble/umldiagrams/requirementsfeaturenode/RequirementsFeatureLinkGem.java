@@ -7,22 +7,34 @@ import javax.swing.*;
 
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
+import org.eclipse.uml2.Package;
+import org.eclipse.uml2.impl.*;
 
+import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.arcfacilities.arcsupport.*;
+import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.idraw.utility.*;
+import com.hopstepjump.jumble.umldiagrams.base.*;
+import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
 
 public class RequirementsFeatureLinkGem
 {
+  private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
+  private static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
+
   private BasicArcAppearanceFacet basicArcAppearanceFacet = new BasicArcAppearanceFacetImpl();
 	private RequirementsFeatureLink subject;
 	private FigureFacet figureFacet;
 	private int kind;
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
 
   public RequirementsFeatureLinkGem(RequirementsFeatureLink subject)
   {
@@ -35,11 +47,120 @@ public class RequirementsFeatureLinkGem
   	this.figureFacet = figureFacet;
   }
   
+	public ClipboardActionsFacet getClipboardCommandsFacet()
+  {
+    return clipboardCommandsFacet;
+  }
+  
   public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
   {
     return basicArcAppearanceFacet;
   }
 
+  
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
+  {
+    public boolean hasSpecificDeleteAction()
+    {
+      return false;
+    }
+
+    public void makeSpecificDeleteAction()
+    {
+    }
+    
+    public void performPostDeleteAction()
+    {
+      // important to use the reference rather than the figure, which gets recreated...
+      String uuid = FeatureNodeGem.getOriginalSubject(subject).getUuid();      
+      getSimpleDeletedUuidsFacet().addDeleted(uuid);
+    }
+
+	  private SimpleDeletedUuidsFacet getSimpleDeletedUuidsFacet()
+	  {
+	    // follow one anchor up until we find the classifier, and then look for the simple deleted uuids facet 
+	    FigureFacet clsFigure = figureFacet.getLinkingFacet().getAnchor1().getFigureFacet();
+	    return (SimpleDeletedUuidsFacet)
+	      clsFigure.getDynamicFacet(SimpleDeletedUuidsFacet.class);
+	  }
+
+    public boolean hasSpecificKillAction()
+    {
+      return isOutOfPlace() || !atHome();
+    }
+
+    /** returns true if the element is out of place */
+    private boolean isOutOfPlace()
+    {
+      return
+      	figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject() != getOwner() ||
+      	figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject() != subject.getType();
+    }
+
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
+    {
+      // only allow changes in the home stratum
+//      if (!atHome())
+//      {
+//        coordinator.displayPopup(ERROR_ICON, "Delta error",
+//            new JLabel("Must be in home stratum to delete subjects!", DELTA_ICON, JLabel.LEFT),
+//            ScreenProperties.getUndoPopupColor(),
+//            Color.black,
+//            3000);
+//        return;
+//      }
+
+      // if this is a replace, kill the replace delta
+      if (subject.getOwner() instanceof DeltaReplacedConstituent)
+        generateReplaceDeltaKill(coordinator);
+      else
+        generateDeleteDelta(coordinator);
+    }
+
+    private void generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
+    {
+      // generate a delete delta for the replace
+      coordinator.displayPopup(null, null,
+          new JLabel("Removed replace delta", DELTA_ICON, JLabel.LEADING),
+          ScreenProperties.getUndoPopupColor(),
+          Color.black,
+          1500);
+      
+      GlobalSubjectRepository.repository.incrementPersistentDelete(subject.getOwner());            
+    }
+
+    private void generateDeleteDelta(ToolCoordinatorFacet coordinator)
+    {
+      // generate a delete delta
+      coordinator.displayPopup(null, null,
+          new JLabel("Delta delete", DELTA_ICON, JLabel.LEADING),
+          ScreenProperties.getUndoPopupColor(),
+          Color.black,
+          1500);
+      
+      FigureFacet owner = figureFacet.getLinkingFacet().getAnchor1().getFigureFacet();
+      RequirementsFeature req = (RequirementsFeature) owner.getSubject();
+    	DeltaDeletedConstituent delete = req.createDeltaDeletedSubfeatures();
+      delete.setDeleted(req);
+    }
+
+    private boolean atHome()
+    {
+      // are we at home?
+    	RequirementsFeature req = getOwner();
+      Package home = GlobalSubjectRepository.repository.findOwningStratum(req);
+      FigureFacet owner = figureFacet.getLinkingFacet().getAnchor1().getFigureFacet();
+      Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), owner.getContainerFacet());
+      
+      return home == visualHome;
+    }
+  }
+  
+  private RequirementsFeature getOwner()
+  {
+  	return (RequirementsFeature) FeatureNodeGem.getOriginalSubject(figureFacet.getSubject()).getOwner();
+  }
+  
   class BasicArcAppearanceFacetImpl implements BasicArcAppearanceFacet
   {
 		public ZNode formAppearance(
@@ -108,15 +229,27 @@ public class RequirementsFeatureLinkGem
 			{
 				kind = subject.getKind().getValue();
 
-				RequirementsFeature main = (RequirementsFeature) subject.getOwner();
-				RequirementsFeature dependsOn = (RequirementsFeature) subject.undeleted_getType();
-				final RequirementsFeature viewMain = 
-					(RequirementsFeature) figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject();
-				RequirementsFeature viewDependsOn = (RequirementsFeature) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
+				DERequirementsFeature main = getOriginal(getOwner());
+				DERequirementsFeature dependsOn = getOriginal((RequirementsFeature) subject.undeleted_getType());
+				DERequirementsFeature viewMain = 
+					getOriginal((RequirementsFeature) figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject());
+				DERequirementsFeature viewDependsOn = getOriginal((RequirementsFeature) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject());
 				
 				if (main != viewMain || dependsOn != viewDependsOn)
 					figureFacet.formDeleteTransaction();
 			}
+		}
+		
+		private DERequirementsFeature getOriginal(RequirementsFeature f)
+		{
+			DERequirementsFeature req = GlobalDeltaEngine.engine.locateObject(f).asRequirementsFeature();
+			if (req.isSubstitution())
+			{
+				DERequirementsFeature de = req.getSubstitutes().iterator().next().asRequirementsFeature(); 
+				if (de != null)
+					return de;
+			}
+			return req;
 		}
 
 		public Object getSubject()

@@ -81,7 +81,7 @@ public class PartClipboardActionsGem
       if (!atHome())
       {
         coordinator.displayPopup(ERROR_ICON, "Delta error",
-            new JLabel("Must be in home stratum to delete subjects!", DELTA_ICON, JLabel.RIGHT),
+            new JLabel("Must be in home stratum to delete subjects!", DELTA_ICON, JLabel.LEFT),
             ScreenProperties.getUndoPopupColor(),
             Color.black,
             3000);

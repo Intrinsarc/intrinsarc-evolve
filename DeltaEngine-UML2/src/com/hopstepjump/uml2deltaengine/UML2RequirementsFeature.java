@@ -56,7 +56,7 @@ public class UML2RequirementsFeature extends DERequirementsFeature
       if (dep.isResemblance())
       {
         DEElement elem = getEngine().locateObject(dep.getDependencyTarget()).asElement();
-        if (elem != null && elem.asInterface() != null)
+        if (elem != null && elem.asRequirementsFeature() != null)
           resemblances.add(elem);
       }
     }

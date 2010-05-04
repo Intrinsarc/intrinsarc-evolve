@@ -35,9 +35,10 @@ public class RequirementsFeatureLinkCreatorGem
     {
       // instantiate to use conventional facets
       BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
-      RequirementsFeatureLinkGem providedGem = new RequirementsFeatureLinkGem((RequirementsFeatureLink) subject);
-      providedGem.connectFigureFacet(gem.getFigureFacet());
-      gem.connectBasicArcAppearanceFacet(providedGem.getBasicArcAppearanceFacet());
+      RequirementsFeatureLinkGem req = new RequirementsFeatureLinkGem((RequirementsFeatureLink) subject);
+      req.connectFigureFacet(gem.getFigureFacet());
+      gem.connectBasicArcAppearanceFacet(req.getBasicArcAppearanceFacet());
+	    gem.connectClipboardCommandsFacet(req.getClipboardCommandsFacet());
       diagram.add(gem.getFigureFacet());
     }
   
@@ -56,9 +57,10 @@ public class RequirementsFeatureLinkCreatorGem
     {
       // instantiate to use conventional facets
       BasicArcGem gem = new BasicArcGem(this, diagram, figure);
-      RequirementsFeatureLinkGem requiredGem = new RequirementsFeatureLinkGem((RequirementsFeatureLink) figure.getSubject());
-      requiredGem.connectFigureFacet(gem.getFigureFacet());
-      gem.connectBasicArcAppearanceFacet(requiredGem.getBasicArcAppearanceFacet());
+      RequirementsFeatureLinkGem req = new RequirementsFeatureLinkGem((RequirementsFeatureLink) figure.getSubject());
+      req.connectFigureFacet(gem.getFigureFacet());
+	    gem.connectClipboardCommandsFacet(req.getClipboardCommandsFacet());
+      gem.connectBasicArcAppearanceFacet(req.getBasicArcAppearanceFacet());
 
       return gem.getFigureFacet();
     }
