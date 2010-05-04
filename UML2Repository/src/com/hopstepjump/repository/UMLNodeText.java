@@ -97,6 +97,12 @@ public class UMLNodeText
     	return "" + value.getValue();
     }
     else
+    if (element instanceof RequirementsFeatureLink)
+    {
+    	RequirementsFeatureLink sub = (RequirementsFeatureLink) element;
+    	return "(" + getNodeText(sub.undeleted_getType()) + ")";
+    }
+    else
     if (element instanceof DeltaDeletedConstituent)
     {
       Element deleted = ((DeltaDeletedConstituent) element).getDeleted();
@@ -125,7 +131,7 @@ public class UMLNodeText
     return fullyQualifiedName.substring(fullyQualifiedName.indexOf("::") + 2);
   }
   
-  public static String getName(Classifier classifier)
+  public static String getName(NamedElement classifier)
   {
   	if (classifier == null)
   		return "";
@@ -139,9 +145,9 @@ public class UMLNodeText
   
   public static String getName(Element element)
   {
-  	if (element instanceof Classifier)
+  	if (element instanceof Classifier || element instanceof RequirementsFeature)
   	{
-  		return getName((Classifier) element);
+  		return getName((NamedElement) element);
   	}
     if (element instanceof NamedElement)
     {
@@ -359,7 +365,7 @@ public class UMLNodeText
    * extract the name by possibly using the primed version of a substituted classifier
    * @return null if no substitutions
    */
-  public static String extractSubstitutedClassifierName(Classifier subject)
+  public static String extractSubstitutedClassifierName(NamedElement subject)
   {
     Package stratum = GlobalSubjectRepository.repository.findOwningStratum(subject);
     DEStratum perspective = GlobalDeltaEngine.engine.locateObject(stratum).asStratum();
@@ -371,7 +377,7 @@ public class UMLNodeText
    * extract the name by possibly using the primed version of a substituted classifier
    * @return null if no substitutions
    */
-  public static String extractSubstitutedClassifierName(DEStratum perspective, Classifier subject)
+  public static String extractSubstitutedClassifierName(DEStratum perspective, NamedElement subject)
   {
     String newName = subject.getName();
     

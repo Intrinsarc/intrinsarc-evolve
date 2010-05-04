@@ -133,25 +133,10 @@ public abstract class StereotypeAttributeViewerBase implements UMLAttributeViewe
   /**
    * make the command to set the attribute
    */
-  public Command formApplyCommand()
+  public void applyAction()
   {
-    if (!isModified())
-      return null;
-    return new AbstractCommand("", "")
-    {
-      final Object oldEValue = getModelValue();
-      final Object newEValue = getCurrentValue();
-      
-      public void execute(boolean isTop)
-      {
-        setValue(newEValue);
-      }
-
-      public void unExecute()
-      {
-        setValue(oldEValue);
-      }
-    };
+    if (isModified())
+    	setValue(getCurrentValue());
   }
   
   protected void addOrReplaceValue(ValueSpecification value)

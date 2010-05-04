@@ -93,8 +93,6 @@ public class BackbonePrinter
 		String implClass = elem.getImplementationClass(null);
 		String impl = implClass != null ? " implementation-class " + implClass : "";
 		b.append(impl);
-		if (elem.asComponent() != null && isRawBean(elem.asComponent()))
-			b.append(" is-bean");
 		b.append("\n" + makeRString(indent, elem) + indent + "\t{\n");
 		
 		for (DeltaPair pair : elem.getDeltas(ConstituentTypeEnum.DELTA_APPLIED_STEREOTYPE).getReplaceObjects())
@@ -231,7 +229,15 @@ public class BackbonePrinter
 	
 	private boolean ignoreStereotype(DEComponent stereo)
 	{
-		return stereo.getUuid().equals("component") || stereo.getUuid().equals("interface") || stereo.getUuid().equals("primitive-type");
+		String uuid = stereo.getUuid();
+		return
+			uuid.equals("component") ||
+			uuid.equals("interface") ||
+			uuid.equals("primitive-type") ||
+			uuid.equals("port") ||
+			uuid.equals("part") ||
+			uuid.equals("attribute");
+
 	}
 	
 	private boolean isVisual(DEComponent stereo)
@@ -248,8 +254,8 @@ public class BackbonePrinter
 	private static final String[] UUIDs = {
 		DEElement.IMPLEMENTATION_STEREOTYPE_PROPERTY,
 		DEComponent.FACTORY_STEREOTYPE_PROPERTY,
-		DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY,
-		DEComponent.BEAN_STEREOTYPE_PROPERTY};
+		DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY}
+	;
 	private boolean ignoreProperty(DEAttribute prop)
 	{
 		for (String name : UUIDs)
@@ -425,6 +431,21 @@ public class BackbonePrinter
 		for (DEInterface i : interfaces)
 			preamble += name(i, true) + (++lp != size ? ", " : "");
 		return preamble;
+	}
+
+	private String name(DEElement obj)
+	{
+		if (obj == null)
+			return "???";
+		if (obj.getName() == null || obj.getName().length() == 0)
+		{
+			// if this replaces another component, use that name
+			if (obj.getSubstitutes().size() != 0)
+				return obj.getSubstitutes().iterator().next().getName() + "'";
+			return obj.getUuid();
+		}
+		else
+			return obj.getName().replace(' ', '_');
 	}
 
 	private String name(DEObject obj)

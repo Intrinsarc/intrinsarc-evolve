@@ -65,25 +65,16 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   	return name;
   }
 
-  public Object setText(String text, Object listSelection, Object memento)
+  public String setText(String text, Object listSelection)
   {
     final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository; 
-    Command cmd = (Command) memento;
-    if (cmd != null)
-    {
-    	cmd.execute(false);
-    	return cmd;
-    }
 
     // make a command to effect the changes
-    CompositeCommand command = new CompositeCommand("", "");
     final Property typed = getSubject();
     
     // save the name and type
-    final String oldName = typed.getName();
     final ValueSpecification oldLower = typed.getLowerValue();
     final ValueSpecification oldUpper = typed.getUpperValue();
-    final PropertyAccessKind oldReadWriteOnly = typed.getReadWrite();
     final Type oldType = getSubjectType(typed);    
     
     // get the new name and type
@@ -114,9 +105,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     }
     
     // set the name
-    command.addCommand(new AbstractCommand()
-    { public void execute(boolean isTop) { typed.setName(newName); }
-			public void unExecute()            { typed.setName(oldName); }});
+    typed.setName(newName);
     
     // set the start and end multiplicity
     if (newLowerMult != null)
@@ -124,19 +113,8 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     	typed.setLowerBound(new Integer(newLowerMult));
     	final ValueSpecification lowerSpec = typed.getLowerValue();
     	repository.incrementPersistentDelete(lowerSpec);
-      command.addCommand(new AbstractCommand()
-      {
-      	public void execute(boolean isTop)
-        {
-      		repository.decrementPersistentDelete(lowerSpec);
-      		typed.setLowerValue(lowerSpec);
-        }
-  			public void unExecute()
-  			{
-      		repository.incrementPersistentDelete(lowerSpec);
-  				typed.setLowerValue(oldLower);
-  			}
-  		});
+  		repository.decrementPersistentDelete(lowerSpec);
+  		typed.setLowerValue(lowerSpec);
     }
     
     PropertyAccessKind newReadWriteOnly = PropertyAccessKind.READ_WRITE_LITERAL;
@@ -151,20 +129,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     final PropertyAccessKind finalReadWrite = newReadWriteOnly;
     
     // only bother if this changes
-    if (!newReadWriteOnly.equals(oldReadWriteOnly))
-    {
-    	command.addCommand(new AbstractCommand()
-    	{
-      	public void execute(boolean isTop)
-        {
-      		typed.setReadWrite(finalReadWrite);
-        }
-  			public void unExecute()
-  			{
-      		typed.setReadWrite(oldReadWriteOnly);
-  			}	    		
-    	});
-    }
+		typed.setReadWrite(finalReadWrite);
 
     if (newUpperMult != null)
     {
@@ -172,30 +137,15 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     	typed.setUpperBound(new Integer(newUpper));
     	final ValueSpecification upperSpec = typed.getUpperValue();
     	repository.incrementPersistentDelete(upperSpec);
-      command.addCommand(new AbstractCommand()
-      {
-      	public void execute(boolean isTop)
-        {
-      		repository.decrementPersistentDelete(upperSpec);
-      		typed.setUpperValue(upperSpec);
-        }
-  			public void unExecute()
-  			{
-      		repository.incrementPersistentDelete(upperSpec);
-  				typed.setUpperValue(oldUpper);
-  			}
-  		});
+  		repository.decrementPersistentDelete(upperSpec);
+  		typed.setUpperValue(upperSpec);
     }
 
     // decrement the existing lower and upper value
     if (oldLower != null)
-	    command.addCommand(new AbstractCommand()
-	    { public void execute(boolean isTop) { repository.incrementPersistentDelete(oldLower); }
-				public void unExecute()            { repository.decrementPersistentDelete(oldLower); }});
+    	repository.incrementPersistentDelete(oldLower);
     if (oldUpper!= null)
-	    command.addCommand(new AbstractCommand()
-	    { public void execute(boolean isTop) { repository.incrementPersistentDelete(oldUpper); }
-				public void unExecute()            { repository.decrementPersistentDelete(oldUpper); }});
+    	repository.incrementPersistentDelete(oldUpper);
 
     // find or create the type
     if (newTypeName != null)
@@ -221,27 +171,15 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
         // if we can't find the type, make a new one
         final Type createdType = ((Package) repository.findOwningElement(typed, Package.class)).createOwnedClass(newTypeName, false);
         repository.incrementPersistentDelete(createdType);
-  	    command.addCommand(new AbstractCommand()
-  	    {
-  	    	public void execute(boolean isTop) {
-  	        repository.decrementPersistentDelete(createdType);
-  	    		typed.setType(createdType);
-  	    	}
-  				public void unExecute() {
-  	        repository.incrementPersistentDelete(createdType);
-  					typed.setType(oldType);
-  				}});
+        repository.decrementPersistentDelete(createdType);
+    		typed.setType(createdType);
       }
       else
-  	    command.addCommand(new AbstractCommand()
-  	    { public void execute(boolean isTop) { typed.setType(newType); }
-  				public void unExecute() { typed.setType(oldType); }});
+      	typed.setType(newType);
     }
     else
     {
-	    command.addCommand(new AbstractCommand()
-	    { public void execute(boolean isTop) { typed.setType(null); }
-				public void unExecute() { typed.setType(oldType); }});
+    	typed.setType(null);
     }
     
     // set the default value      
@@ -249,12 +187,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     {
       List<ValueSpecification> defaultValue = typed.getDefaultValues();
       if (!defaultValue.isEmpty())
-  	    command.addCommand(new AbstractCommand()
-  	    {
-  	    	private List<ValueSpecification> oldValues = new ArrayList<ValueSpecification>(typed.undeleted_getDefaultValues());
-  	    	
-  	    	public void execute(boolean isTop) { typed.settable_getDefaultValues().clear(); }
-  				public void unExecute() { typed.settable_getDefaultValues().clear(); typed.settable_getDefaultValues().addAll(0, oldValues); }});
+      	typed.settable_getDefaultValues().clear();
     }
     else
     {
@@ -265,26 +198,13 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     	// handle the default value as an opaque expression
       final Expression defaultValue = (Expression) typed.createDefaultValues(UML2Package.eINSTANCE.getExpression());
       repository.incrementPersistentDelete(defaultValue);
-	    command.addCommand(new AbstractCommand()
-	    {
-	    	private List<ValueSpecification> oldValues = new ArrayList<ValueSpecification>(typed.undeleted_getDefaultValues());
-
-	    	public void execute(boolean isTop)
-	      {
-	    		typed.settable_getDefaultValues().clear(); typed.settable_getDefaultValues().addAll(0, values);
-	    	}
-				public void unExecute()
-				{
-					typed.settable_getDefaultValues().clear(); typed.settable_getDefaultValues().addAll(0, oldValues);
-				}
-	    });
+  		typed.settable_getDefaultValues().clear(); typed.settable_getDefaultValues().addAll(0, values);
     }
     
     // resize
-    String finalText = makeNameFromSubject();
-    command.addCommand(figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(finalText)));
-    command.execute(false);
-    return command;
+    text = makeNameFromSubject();
+    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
+    return text;
   }
   
   private ValueSpecification getFirst(EList defaultValues)
@@ -294,11 +214,6 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   	return (ValueSpecification) defaultValues.get(0);
 	}
 
-	public void unSetText(Object memento)
-  {
-  	((Command) memento).unExecute();
-  }
-  
   private Property getSubject()
   {
     return (Property) figureFacet.getSubject();
@@ -326,117 +241,59 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
           figureFacet.getFigureReference(), UML2Package.eINSTANCE.getClassifier());
   }
 
-  public Command getPostContainerDropCommand()
+  public void performPostContainerDropTransaction()
   {
-    final Element subject = FeatureNodeGem.getPossibleDeltaSubject(figureFacet.getSubject());
-    final Classifier oldOwner = (Classifier) subject.getOwner();
+    Element subject = FeatureNodeGem.getPossibleDeltaSubject(figureFacet.getSubject());
+    Classifier oldOwner = (Classifier) subject.getOwner();
 
-    return new AbstractCommand("relocated after move", "unrelocated after move")
-     {
-       private Classifier newOwner;
-       
-       public void execute(boolean isTop)
-       {
-         // work out the new owner from the visual nesting
-         if (newOwner == null)
-           newOwner = findOwningVisualElement();
+    Classifier newOwner = findOwningVisualElement();
          
-         if (newOwner != oldOwner)
-         {
-           if (subject instanceof DeltaReplacedConstituent)
-           {
-             if (oldOwner instanceof Interface)
-               ((Interface) oldOwner).getDeltaReplacedAttributes().remove(subject);
-             else if (oldOwner instanceof Class)
-               ((Class) oldOwner).getDeltaReplacedAttributes().remove(subject);
-             
-             if (newOwner instanceof Interface)
-               ((Interface) newOwner).getDeltaReplacedAttributes().add(subject);
-             else if (newOwner instanceof Class)
-               ((Class) newOwner).getDeltaReplacedAttributes().add(subject);             
-           }
-           else
-           {
-             if (oldOwner instanceof Interface)
-               ((Interface) oldOwner).getOwnedAttributes().remove(subject);
-             else if (oldOwner instanceof Class)
-               ((Class) oldOwner).getOwnedAttributes().remove(subject);
-             
-             if (newOwner instanceof Interface)
-               ((Interface) newOwner).getOwnedAttributes().add(subject);
-             else if (newOwner instanceof Class)
-               ((Class) newOwner).getOwnedAttributes().add(subject);
-           }
-         }
-       }
-  
-       public void unExecute()
+     if (newOwner != oldOwner)
+     {
+       if (subject instanceof DeltaReplacedConstituent)
        {
-         if (newOwner != oldOwner)
-         {
-           if (subject instanceof DeltaReplacedConstituent)
-           {
-             if (newOwner instanceof Interface)
-               ((Interface) newOwner).getDeltaReplacedAttributes().remove(subject);
-             else if (newOwner instanceof Class)
-               ((Class) newOwner).getDeltaReplacedAttributes().remove(subject);
-              
-             if (oldOwner instanceof Interface)
-               ((Interface) oldOwner).getDeltaReplacedAttributes().add(subject);
-             else if (oldOwner instanceof Class)
-               ((Class) oldOwner).getDeltaReplacedAttributes().add(subject);           
-           }
-           else
-           {
-             if (newOwner instanceof Interface)
-               ((Interface) newOwner).getOwnedAttributes().remove(subject);
-             else if (newOwner instanceof Class)
-               ((Class) newOwner).getOwnedAttributes().remove(subject);
-              
-             if (oldOwner instanceof Interface)
-               ((Interface) oldOwner).getOwnedAttributes().add(subject);
-             else if (oldOwner instanceof Class)
-               ((Class) oldOwner).getOwnedAttributes().add(subject);
-           }
-         }
-       }        
-     };
+         if (oldOwner instanceof Interface)
+           ((Interface) oldOwner).getDeltaReplacedAttributes().remove(subject);
+         else if (oldOwner instanceof Class)
+           ((Class) oldOwner).getDeltaReplacedAttributes().remove(subject);
+         
+         if (newOwner instanceof Interface)
+           ((Interface) newOwner).getDeltaReplacedAttributes().add(subject);
+         else if (newOwner instanceof Class)
+           ((Class) newOwner).getDeltaReplacedAttributes().add(subject);             
+       }
+       else
+       {
+         if (oldOwner instanceof Interface)
+           ((Interface) oldOwner).getOwnedAttributes().remove(subject);
+         else if (oldOwner instanceof Class)
+           ((Class) oldOwner).getOwnedAttributes().remove(subject);
+         
+         if (newOwner instanceof Interface)
+           ((Interface) newOwner).getOwnedAttributes().add(subject);
+         else if (newOwner instanceof Class)
+           ((Class) newOwner).getOwnedAttributes().add(subject);
+       }
+     }
   }
 
-  public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)
+  public void generateDeleteDelta(ToolCoordinatorFacet coordinator, final Classifier owner)
   {
     // add this to the classifier as a delete delta
-    final Element feature = FeatureNodeGem.getOriginalSubject(figureFacet.getSubject());
+    Element feature = FeatureNodeGem.getOriginalSubject(figureFacet.getSubject());
     
-    return new AbstractCommand("Added delete delta", "Removed delete delta")
+    DeltaDeletedConstituent delete;
+    if (owner instanceof ClassImpl)
     {
-      private DeltaDeletedConstituent delete;
-      
-      public void execute(boolean isTop)
-      {
-        SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-        
-        // possibly resurrect
-        if (delete != null)
-        {
-          repository.decrementPersistentDelete(delete);
-        }
-        else
-        {
-          if (owner instanceof ClassImpl)
-            delete = ((Class) owner).createDeltaDeletedAttributes();
-          else
-          if (owner instanceof InterfaceImpl)
-            delete = ((Interface) owner).createDeltaDeletedAttributes();
-          delete.setDeleted(feature);
-        }
-      }
-
-      public void unExecute()
-      {
-        GlobalSubjectRepository.repository.incrementPersistentDelete(delete);
-      } 
-    };
+      delete = ((Class) owner).createDeltaDeletedAttributes();
+      delete.setDeleted(feature);
+    }
+    else
+    if (owner instanceof InterfaceImpl)
+    {
+      delete = ((Interface) owner).createDeltaDeletedAttributes();
+      delete.setDeleted(feature);
+    }
   }
 
   public JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
@@ -447,37 +304,17 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
     {
       public void actionPerformed(ActionEvent e)
       {
-        final Property replaced = (Property) figureFacet.getSubject();
-        final Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
+        Property replaced = (Property) figureFacet.getSubject();
+        Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
         final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
-        final Classifier cls = (Classifier) clsFigure.getSubject();
-        final DeltaReplacedAttribute replacement[] = new DeltaReplacedAttribute[1];
+        Classifier cls = (Classifier) clsFigure.getSubject();
         
-        Command cmd = new AbstractCommand("replaced attribute", "removed replaced attribute")
-        {          
-          public void execute(boolean isTop)
-          {
-          	if (replacement[0] == null)
-          		replacement[0] = createDeltaReplacedAttribute(cls, replaced, original);
-            GlobalSubjectRepository.repository.decrementPersistentDelete(replacement[0]);
-          }
-
-          public void unExecute()
-          {
-            GlobalSubjectRepository.repository.incrementPersistentDelete(replacement[0]);
-          }            
-        };
-        coordinator.executeCommandAndUpdateViews(cmd);
-        
-        diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
-        {
-          public void run()
-          {
-            FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement[0].getReplacement());
-            diagramView.getSelection().clearAllSelection();
-            diagramView.getSelection().addToSelection(createdFeature, true);
-          }
-        });
+        coordinator.startTransaction("replaced attribute", "removed replaced attribute");
+        final DeltaReplacedAttribute replacement = createDeltaReplacedAttribute(cls, replaced, original);
+        coordinator.commitTransaction(true);
+        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
+        diagramView.getSelection().clearAllSelection();
+        diagramView.getSelection().addToSelection(createdFeature, true);
       }
     });
 
@@ -550,9 +387,6 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
 				attr.settable_getDefaultValues().add(v);
     	}
     }
-    
-    // make it deleted so we can resurrect it as the 1st part of the cmd
-    GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
     
     return replacement;
   }

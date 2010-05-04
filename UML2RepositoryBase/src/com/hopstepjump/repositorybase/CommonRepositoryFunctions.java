@@ -2,6 +2,7 @@ package com.hopstepjump.repositorybase;
 
 import java.io.*;
 import java.util.*;
+import java.util.zip.*;
 
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
@@ -82,13 +83,16 @@ public class CommonRepositoryFunctions
 	public static final String BACKBONE_STRATUM_NAME       = "backbone";
 	
 	// backbone code generation options
-  public static final String JAVA_SOURCE_FOLDER = "backboneJavaFolder";
-  public static final String COMPOSITE_PACKAGE = "backboneCompositePackage";
-  public static final String GENERATION_PROFILE = "generationProfile";
-  public static final String SUPPRESS_JAVA_SOURCE = "backboneJavaSuppress";
-	public static final String BACKBONE_SOURCE_FOLDER = "backboneSourceFolder";
-  public static final String SUPPRESS_BACKBONE_SOURCE = "backboneSourceSuppress";
-	public static final String BACKBONE_CLASSPATH = "backboneClasspath";
+  public static final String JAVA_SOURCE_FOLDER = "bb-java-folder";
+  public static final String COMPOSITE_PACKAGE = "bb-composite-package";
+  public static final String GENERATION_PROFILE = "generation-profile";
+  public static final String SUPPRESS_JAVA_SOURCE = "bb-java-suppress";
+	public static final String BACKBONE_SOURCE_FOLDER = "bb-source-folder";
+  public static final String SUPPRESS_BACKBONE_SOURCE = "bb-source-suppress";
+	public static final String BACKBONE_CLASSPATH = "bb-classpath";
+	public static final String BACKBONE_RUN_STRATUM = "bb-run-stratum";
+	public static final String BACKBONE_RUN_COMPONENT = "bb-run-component";
+	public static final String BACKBONE_RUN_PORT = "bb-run-port";
 
 	// visual stereotypes
 	public static final String VISUAL_EFFECT = "visual-effect";
@@ -207,37 +211,6 @@ public class CommonRepositoryFunctions
     return new DbDiagramToPersistentDiagramTranslator(pkg, holder.getDiagram()).translate();      
   }
 
-  public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
-  {
-    List<DiagramFacet> diagrams = GlobalDiagramRegistry.registry.getDiagrams();
-
-    // tell all diagrams that have opening times after the execution time to revert
-//    long start = System.currentTimeMillis();
-    int reverted = 0;
-    if (pass == ViewUpdatePassEnum.START)
-    {
-      for (DiagramFacet diagram : diagrams) 
-      {
-        if (!diagram.isClipboard() && diagram.getOpeningTime() > commandExecutionTime)
-        {
-          diagram.revert();
-          reverted++;
-        }
-      }
-//      long end = System.currentTimeMillis();
-//      if (reverted != 0)
-//        System.out.println("$$ reverted " + reverted + " diagrams in " + (end - start) + "ms");
-    }
-
-    // pass the alterations to each diagram in turn
-    CompositeCommand cmd = new CompositeCommand("", "");
-    
-    for (DiagramFacet diagram : diagrams)
-      cmd.addCommand(diagram.formViewUpdateCommand(isTop, pass, initialRun));
-
-    return cmd;
-  }
-
   public void setUuid(Set<String> uuids, Element elem, String uuid)
   {
   	if (uuids.contains(uuid))
@@ -317,11 +290,14 @@ public class CommonRepositoryFunctions
     createResemblance(uuids, element, primitive);
 
     Stereotype stratum = createStereotype(uuids, profile, STRATUM, "'Package', 'Model'", "A (possibly hierarchical) container of Backbone definitions.");
-    addAttribute(uuids, stratum, DESTRUCTIVE, booleanType, "Can this stratum contain destructive (replace, delete) substitutions?");
+    Property destructive = addAttribute(uuids, stratum, DESTRUCTIVE, booleanType, "Can this stratum contain destructive (replace, delete) substitutions?");
     addAttribute(uuids, stratum, RELAXED, booleanType, "If another stratum depends on this, can it also see this stratum's dependencies?) ?");
     addAttribute(uuids, stratum, CHECK_ONCE_IF_READ_ONLY, booleanType, "Only check once if this is read-only.  No elements in the stratum can be replaced.");
     addAttribute(uuids, stratum, STRATUM_PREAMBLE, stringType, "A preamble which is inserted into the Backbone code for this stratum");
     addAttribute(uuids, stratum, BACKBONE_CLASSPATH, stringType, "The classpath to use for Backbone for this stratum");
+    addAttribute(uuids, stratum, BACKBONE_RUN_STRATUM, stringType, "The stratum of the component to use for running");
+    addAttribute(uuids, stratum, BACKBONE_RUN_COMPONENT, stringType, "The component to use for running");
+    addAttribute(uuids, stratum, BACKBONE_RUN_PORT, stringType, "The component port to use for running");
     addAttribute(uuids, stratum, BACKBONE_SOURCE_FOLDER, stringType, "The folder to generate Backbone source to");
     addAttribute(uuids, stratum, JAVA_SOURCE_FOLDER, stringType, "The folder to generate Java source to");
     addAttribute(uuids, stratum, COMPOSITE_PACKAGE, stringType, "The package to use for generating source code for composites into");
@@ -410,7 +386,11 @@ public class CommonRepositoryFunctions
 
     // the model is the top level stratum
     topLevel.getAppliedBasicStereotypes().add(stratum);
-    StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(topLevel, DESTRUCTIVE, true).execute(false);
+    // set destructive stereotype property
+		AppliedBasicStereotypeValue value = topLevel.createAppliedBasicStereotypeValues();
+		value.setProperty(destructive);
+		LiteralBoolean literal = (LiteralBoolean) value.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
+		literal.setValue(true);
     
     // make the backbone stratum
     setUuid(uuids, backbone, BACKBONE_STRATUM_NAME);
@@ -904,7 +884,7 @@ public class CommonRepositoryFunctions
    * @param to
    * @throws IOException
    */
-  public void copyFile(File from, File to) throws IOException
+  public static void copyFile(File from, File to, boolean expandUsingGZip) throws IOException
   {
     final int BUFF_SIZE = 100000;
     byte[] buffer = new byte[BUFF_SIZE];
@@ -913,7 +893,10 @@ public class CommonRepositoryFunctions
     OutputStream out = null; 
     try
     {
-      in = new FileInputStream(from);
+    	if (expandUsingGZip)
+    		in = new GZIPInputStream(new FileInputStream(from));
+    	else
+    		in = new FileInputStream(from);
       out = new FileOutputStream(to);
       while (true)
       {
@@ -951,7 +934,7 @@ public class CommonRepositoryFunctions
         copyDirectory(new File(srcDir, children[i]), new File(dstDir, children[i]));
     }
     else
-        copyFile(srcDir, dstDir);
+        copyFile(srcDir, dstDir, false);
   }
 
   public String getFullStratumNames(Element element)
@@ -1033,20 +1016,20 @@ public class CommonRepositoryFunctions
     return false;
   }
 
-  public static Collection<Classifier> translateFromSubstitutingToSubstituted(Collection<Classifier> elements)
+  public static Collection<NamedElement> translateFromSubstitutingToSubstituted(Collection<NamedElement> elements)
   {
-    List<Classifier> translated = new ArrayList<Classifier>();
-    for (Classifier element : elements)
+    List<NamedElement> translated = new ArrayList<NamedElement>();
+    for (NamedElement element : elements)
     {
-      Classifier substitution = UMLTypes.extractSubstitutedClassifier(element); 
+      NamedElement substitution = UMLTypes.extractSubstitutedClassifier(element); 
       translated.add(substitution == null ? element : substitution);
     }
     return translated;
   }
 
-  public static Classifier translateFromSubstitutingToSubstituted(Classifier element)
+  public static NamedElement translateFromSubstitutingToSubstituted(NamedElement element)
   {
-    Classifier baseElement = UMLTypes.extractSubstitutedClassifier(element);
+    NamedElement baseElement = UMLTypes.extractSubstitutedClassifier(element);
     if (baseElement == null)
       return element;
     return baseElement;

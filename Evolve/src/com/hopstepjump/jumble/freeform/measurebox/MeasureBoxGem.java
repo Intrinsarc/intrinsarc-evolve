@@ -43,12 +43,18 @@ public final class MeasureBoxGem implements Gem
   {
   }
   
-	public MeasureBoxGem(PersistentProperties properties)
+	public MeasureBoxGem(PersistentFigure pfig)
   {
-		text = properties.retrieve("text").asString();
+		interpretPersistentFigure(pfig);
   }
   
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		text = properties.retrieve("text").asString();
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
   	return appearanceFacet;
   }
@@ -91,23 +97,13 @@ public final class MeasureBoxGem implements Gem
 			return figureFacet.getFullBounds();
 		}
 	
-	  public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+	  public void setText(String newText, Object listSelection, boolean unsuppress)
 	  {
 	    // need to resize this also, as the change in text may have affected the size
-	    String oldText = text;
-	    text = newText;
-	    
-	    return new Object[]{oldText, figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(newText))};
+	    text = newText;	    
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(newText));
 	  }
 	
-	  public void unSetText(Object memento)
-	  {
-			Object[] mementos = (Object[]) memento;
-	    text = (String) mementos[0];
-	    figureFacet.adjusted();
-	    ((Command) mementos[1]).unExecute();
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
 		 */
@@ -237,18 +233,19 @@ public final class MeasureBoxGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
 		 */
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 	    ManipulatorFacet keyFocus = null;
 	    if (favoured)
 	    {
-	      TextManipulatorGem textGem = new TextManipulatorGem("changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+	      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
 	      textGem.connectTextableFacet(textableFacet);
 	      keyFocus = textGem.getManipulatorFacet();
 	    }
 	    return new Manipulators(
 	        keyFocus,
 	        new ResizingManipulatorGem(
+	        		coordinator,
 	            figureFacet,
 	            diagramView,
 	            figureFacet.getFullBounds(),
@@ -327,17 +324,15 @@ public final class MeasureBoxGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 	
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
-      return null;
 		}
 
 		/**
@@ -360,9 +355,8 @@ public final class MeasureBoxGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -379,6 +373,11 @@ public final class MeasureBoxGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
   
 	private UDimension getTextHeightAsDimension(ZText text)

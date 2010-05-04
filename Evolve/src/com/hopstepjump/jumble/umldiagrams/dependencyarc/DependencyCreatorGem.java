@@ -47,30 +47,20 @@ public class DependencyCreatorGem implements Gem
       return DependencyArcGem.FIGURE_NAME;
     }
   
-    public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
+    public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
     {
       // instantiate to use conventional facets
       BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
-      DependencyArcGem requiredGem = new DependencyArcGem((Dependency) subject, properties);
+      DependencyArcGem requiredGem = new DependencyArcGem(
+      		new PersistentFigure(figureId, null, subject, properties));
       gem.connectBasicArcAppearanceFacet(requiredGem.getBasicArcAppearanceFacet());
-      requiredGem.connectCurvableFacet(gem.getCurvableFacet());
 	    gem.connectContainerFacet(requiredGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(requiredGem.getAdvancedArcFacet());
 	    requiredGem.connectFigureFacet(gem.getFigureFacet());
       
       diagram.add(gem.getFigureFacet());
-      
-      return new FigureReference(diagram, figureId);
     }
   
-    public void unCreate(Object memento)
-    {
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);
-    }
-    
     /**
      * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
      */
@@ -82,12 +72,11 @@ public class DependencyCreatorGem implements Gem
     /**
      * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#persistence_createFromProperties(FigureReference, PersistentProperties)
      */
-    public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
+    public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure pfig)
     {
       // instantiate to use conventional facets
-      BasicArcGem gem = new BasicArcGem(this, diagram, figure);
-      DependencyArcGem requiredGem = new DependencyArcGem((Dependency) figure.getSubject(), figure.getProperties());
-      requiredGem.connectCurvableFacet(gem.getCurvableFacet());
+      BasicArcGem gem = new BasicArcGem(this, diagram, pfig);
+      DependencyArcGem requiredGem = new DependencyArcGem(pfig);
 	    gem.connectContainerFacet(requiredGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(requiredGem.getAdvancedArcFacet());
       requiredGem.connectFigureFacet(gem.getFigureFacet());
@@ -112,31 +101,15 @@ public class DependencyCreatorGem implements Gem
       return acceptsOneOrBothAnchors(start, end);
     }
     
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-      	Object[] objs = (Object[]) previouslyCreated;
-        Dependency dep = (Dependency) objs[0];
-      	List<Stereotype> stereos = (List<Stereotype>) objs[1];
-      	List<AppliedBasicStereotypeValue> stereoValues = (List<AppliedBasicStereotypeValue>) objs[2];
-
-      	repository.decrementPersistentDelete((Element) ((Object[]) previouslyCreated)[0]);
-        Element client = (Element) dep.undeleted_getClients().get(0);
-        if (!stereos.isEmpty())
-        	client.settable_getAppliedBasicStereotypes().clear();
-        for (AppliedBasicStereotypeValue value : stereoValues)
-        	GlobalSubjectRepository.repository.incrementPersistentDelete(value);      	        
-        return previouslyCreated;
-      }
-      
       // make an dependency and store it in the type
       CalculatedArcPoints points = new CalculatedArcPoints(calculatedPoints);
       NamedElement client = extractDependentClient(points.getNode1().getFigureFacet().getSubject());
       Dependency dependency = client.createOwnedAnonymousDependencies();
+      System.out.println("$$ dependency type = " + dependency.getClass());
 
       // important to set resembles or substitutes before adding the target, as this triggers the backlink 
       boolean resembles = properties.retrieve(">resembles", false).asBoolean();
@@ -186,26 +159,10 @@ public class DependencyCreatorGem implements Gem
         }
       }
 
-      return new Object[]{dependency, stereos, stereoValues};
+      return dependency;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    	Object[] objs = (Object[]) previouslyCreated;
-    	Dependency dep = (Dependency) objs[0];
-    	List<Stereotype> stereos = (List<Stereotype>) objs[1];
-    	List<AppliedBasicStereotypeValue> stereoValues = (List<AppliedBasicStereotypeValue>) objs[2];
-    	
-      Element client = (Element) dep.undeleted_getClients().get(0);
-      GlobalSubjectRepository.repository.incrementPersistentDelete(dep);
-      if (stereos != null && !stereos.isEmpty())
-      	client.settable_getAppliedBasicStereotypes().addAll(stereos);
-      if (stereoValues != null)
-        for (AppliedBasicStereotypeValue value : stereoValues)
-        	GlobalSubjectRepository.repository.decrementPersistentDelete(value);      	
-    }
-
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{      
       // if this is resemblance, indicate we have cleared the stereotype of the target
       if (resembles)
@@ -215,11 +172,6 @@ public class DependencyCreatorGem implements Gem
       			null,
 						ScreenProperties.getUndoPopupColor(),
 						Color.black, 1500);      
-		}
-		
-		public Object extractRawSubject(Object previouslyCreated)
-		{
-			return ((Object[]) previouslyCreated)[0];
 		}
   }
   

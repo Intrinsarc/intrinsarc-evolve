@@ -29,6 +29,7 @@ public final class BasicNodePreviewGem implements Gem
   private ContainerPreviewFacet containerFacet;
   private boolean displayPreview;
   private UDimension centreToEdge;
+  private boolean forceCentre;
   
   public void setCentreToEdge(UDimension centreToEdge)
   {
@@ -52,15 +53,15 @@ public final class BasicNodePreviewGem implements Gem
 	  	return appearanceFacet.formAnchorHighlight(showOk);
 	  }
 
-	  public UPoint calculateBoundaryPoint(OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint)
+	  public UPoint calculateBoundaryPoint(OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint, boolean linkStart)
 	  {
-			return appearanceFacet.calculateBoundaryPoint(previews, oriented, linkFromContained, boxPoint, insidePoint);
+			return appearanceFacet.calculateBoundaryPoint(previews, oriented, linkFromContained, boxPoint, insidePoint, linkStart);
 	  }
 
 	  /**returns the linkable bounds given that the next point on the line is nextPointAfterConnection*/
 	  public UBounds getLinkableBounds(OrientedPoint nextPointAfterConnection)
 	  {
-	  	if (previewFacet.getFullBounds().getDimension().equals(centreToEdge))
+	  	if (forceCentre || previewFacet.getFullBounds().getDimension().equals(centreToEdge))
 	  	{
 	  		// middle vertical or middle horizontal?
 	  		int orientation = nextPointAfterConnection.getOrientation();
@@ -163,19 +164,19 @@ public final class BasicNodePreviewGem implements Gem
 	    tellLinked();
 	  }
 
-	  public Command end()
+	  public void end()
 	  {
 	    // make a new move cmd for this shape
 	    if (setBounds)
-	      return new NodeResizeCommand(previewing.getFigureReference(), appearanceFacet.getFullBounds(), "resized " + previewing.getFigureName(), "restored size of " + previewing.getFigureName());
+	    {
+	      NodeResizeTransaction.resize(previewing, appearanceFacet.getFullBounds());
+	    }
 	    else
 	    {
 	      // make a new move cmd for this shape
 	      UDimension offset = appearanceFacet.getOffsetFromOriginal();
-	      if (offset.distance() == 0)
-	        return null;
-	      else
-	        return new MoveNodeFigureCommand(previewing.getFigureReference(), offset, "moved " + previewing.getFigureName(), "moved " + previewing.getFigureName() + " back");
+	      if (offset.distance() != 0)
+	        MoveNodeFigureTransaction.move(previewing, offset);
 	    }
 	  }
 	
@@ -320,4 +321,9 @@ public final class BasicNodePreviewGem implements Gem
       dependentOnMe.anchorPreviewHasChanged(anchorFacet);
     }
   }
+
+	public void setCentreToEdge(boolean forceCentre)
+	{
+		this.forceCentre = forceCentre;
+	}
 }

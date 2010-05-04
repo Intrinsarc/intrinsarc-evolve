@@ -335,9 +335,8 @@ public class NodeAppearanceGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.umldiagrams.basicnamespacenode.BasicNamespaceAppearanceFacet#middleButtonPressed()
 		 */
-		public Command middleButtonPressed(DiagramFacet diagram)
+		public void middleButtonPressed(DiagramFacet diagram)
 		{
-		  return null;
 		}
 
 		/**

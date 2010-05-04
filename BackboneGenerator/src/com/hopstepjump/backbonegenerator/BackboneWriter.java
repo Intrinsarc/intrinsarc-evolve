@@ -54,11 +54,10 @@ public class BackboneWriter
  
   public File writeBackbone(BackboneGenerationChoice choice, List<String> classpaths, List<String> untranslatedClasspaths) throws BackboneGenerationException, VariableNotFoundException
   {
-    List<DEStratum> ordered = choice.extractStrata("No tagged strata found for generation");
-    Collections.reverse(ordered);
+    List<DEStratum> ordered = choice.extractRelatedStrata();
 
     XStream x = new XStream();
-    UML2XStreamConverters.registerConverters(x);
+//    UML2XStreamConverters.registerConverters(x);
     BBXStreamConverters.registerConverters(x);
 		PreferencesFacet prefs = GlobalPreferences.preferences;
     Set<String> referenced = new LinkedHashSet<String>();

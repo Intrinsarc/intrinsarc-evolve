@@ -42,8 +42,7 @@ public class StereotypeChanger
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						coordinator.executeCommandAndUpdateViews(
-                StereotypeUtilities.formAddRawStereotypeCommand(element, toAdd));
+            StereotypeUtilities.formAddRawStereotypeTransaction(coordinator, element, toAdd);
 					}
 				});
   			addMenu.add(add);
@@ -67,8 +66,7 @@ public class StereotypeChanger
             {
               public void actionPerformed(ActionEvent e)
               {
-                coordinator.executeCommandAndUpdateViews(
-                    StereotypeUtilities.formAddRawStereotypeCommand(element, toReplaceWith));
+              	StereotypeUtilities.formAddRawStereotypeTransaction(coordinator, element, toReplaceWith);
               }
             });
         replaceMenu.add(add);
@@ -91,8 +89,7 @@ public class StereotypeChanger
   					{
   						public void actionPerformed(ActionEvent e)
   						{
-  							coordinator.executeCommandAndUpdateViews(
-                    StereotypeUtilities.formRemoveRawStereotypeCommand(element, toRemove));
+                StereotypeUtilities.formRemoveRawStereotypeTransaction(coordinator, element, toRemove);
   						}
   					});
   			deleteMenu.add(add);

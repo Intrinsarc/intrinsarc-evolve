@@ -30,7 +30,6 @@ import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.expander.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
-import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.uml2deltaengine.*;
@@ -69,44 +68,24 @@ public final class BasicNamespaceNodeGem implements Gem
   private BasicNodeFigureFacet figureFacet;
   private TextableFacetImpl textableFacet = new TextableFacetImpl();
   private ResizeVetterFacetImpl resizeVetterFacet = new ResizeVetterFacetImpl();
-  private SuppressFeaturesFacetImpl suppressFeaturesFacet = new SuppressFeaturesFacetImpl();
   private BasicNamespaceNodeFacet namespaceFacet = new BasicNamespaceNodeFacetImpl();
   private DisplayAsIconFacet displayAsIconFacet = new DisplayAsIconFacetImpl();
-  private StylableFacet stylableFacet = new StylableFacetImpl();
   private LocationFacet locationFacet = new LocationFacetImpl();
   private BasicNamespaceMiniAppearanceFacet miniAppearanceFacet;
   private BasicNamespaceAppearanceFacet featurelessClassifierAppearanceFacet;
   private String figureName;
 
   private String owner = "";
-  private SuppressOwningPackageFacet showOwningPackageFacet = new SuppressOwningPackageFacetImpl();
   private boolean showOwningPackage = false;
   private boolean forceSuppressOwningPackage = false;
   private int stereotypeHashcode;
 
-  private class StylableFacetImpl implements StylableFacet
-  {
-    public Object setFill(Color newFill)
-    {
-      Color oldFill = fillColor;
-      fillColor = newFill;
-      figureFacet.adjusted();
-      return oldFill;
-    }
-
-    public void unSetFill(Object memento)
-    {
-      fillColor = (Color) memento;
-      figureFacet.adjusted();
-    }
-  }
-  
 	private class LocationFacetImpl implements LocationFacet
 	{
 		/**
 		 * @see com.hopstepjump.idraw.figurefacilities.selectionbase.LocationFacet#setLocation(MPackage)
 		 */
-		public Object setLocation()
+		public void setLocation()
 		{
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
       
@@ -122,7 +101,7 @@ public final class BasicNamespaceNodeGem implements Gem
       // make sure that the package is not set to be owned by itself somehow
       for (Element owner = pkg; owner != null; owner = owner.getOwner())
         if (owner == subject)
-          return null;
+        	return;
       
       if (subject instanceof Package)
       {
@@ -134,66 +113,19 @@ public final class BasicNamespaceNodeGem implements Gem
         currentPkg.getChildPackages().remove(subject);
         pkg.getChildPackages().add(subject);
       }
-
-      return new Package[]{currentPkg, pkg};
 		}
-
-		/**
-		 * @see com.hopstepjump.idraw.figurefacilities.selectionbase.LocationFacet#unSetLocation(Object)
-		 */
-		public void unSetLocation(Object memento)
-		{
-      // don't bother if the memento isn't set
-      if (memento == null)
-        return;
-      
-      Package[] pkgs = (Package[]) memento;
-      Package oldPkg = pkgs[0];
-      Package newPkg = pkgs[1];
-      newPkg.getChildPackages().remove(subject);
-      oldPkg.getChildPackages().add(subject);      
-		}
-
 	}
 
-	private class SuppressOwningPackageFacetImpl implements SuppressOwningPackageFacet
-	{
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.basicnamespacenode.ShowOwningPackageFacet#setShowOwningPackage(boolean)
-		 */
-		public Object setSuppressOwningPackage(boolean forceSuppressPackage)
-		{
-			boolean oldForceSuppressOwningPackage = forceSuppressOwningPackage;
-	
-			// make the change
-			forceSuppressOwningPackage = forceSuppressPackage;
-	
-			return new Boolean(oldForceSuppressOwningPackage);
-		}
-
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.basicnamespacenode.ShowOwningPackageFacet#unSetShowOwningPackage(Object)
-		 */
-		public void unSetSupressOwningPackage(Object memento)
-		{
-			forceSuppressOwningPackage = ((Boolean)memento).booleanValue();
-		}
-
-	}
-  
   private class DisplayAsIconFacetImpl implements DisplayAsIconFacet
   {
 	  /**
 		 * @see com.hopstepjump.jumble.umldiagrams.base.DisplayAsIconFacet#displayAsIcon(boolean)
 		 */
-		public Object displayAsIcon(boolean displayAsIcon)
+		public void displayAsIcon(boolean displayAsIcon)
 		{
-			boolean oldDisplayAsIcon = displayOnlyIcon;
-	
 			// make the change
 			displayOnlyIcon = displayAsIcon;
 	
-			Command resizeCommand = null;
 			contents.getFigureFacet().setShowing(!suppressContents && !displayOnlyIcon);
 
 			// we are about to autosize, so need to make a resizings command
@@ -203,26 +135,8 @@ public final class BasicNamespaceNodeGem implements Gem
 			BasicNamespaceSizeInfo info = makeCurrentSizeInfo();
 			UBounds newBounds = info.makeActualSizes().getOuter();
 			UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
-			resizings.setFocusBounds(centredBounds);
-			
-			resizeCommand = resizings.end("resized to adjust for displayAsIcon toggle", "restored sizes to adjust for undoing displayAsIcon toggle");
-			resizeCommand.execute(false);
-			figureFacet.adjusted();
-	
-			return new Object[] {new Boolean(oldDisplayAsIcon), resizeCommand};
-		}
-	
-		public void unDisplayAsIcon(Object memento)
-		{
-			Object[] array = (Object[]) memento;
-			displayOnlyIcon = ((Boolean) array[0]).booleanValue();
-			
-			contents.getFigureFacet().setShowing(!suppressContents && !displayOnlyIcon);
-
-			Command resizeCommand = (Command) array[1];
-			if (resizeCommand != null)
-				resizeCommand.unExecute();
-			figureFacet.adjusted();
+			resizings.setFocusBounds(centredBounds);			
+			resizings.end();
 		}
 	}
   
@@ -346,41 +260,18 @@ public final class BasicNamespaceNodeGem implements Gem
     }
 	}
   
-  private class SuppressFeaturesFacetImpl implements SuppressFeaturesFacet
-  {
-	  public Object suppressFeatures(int featureType, boolean suppress)
-		{
-			boolean oldSuppressContents = suppressContents;
-			
-			// we will probably change size, so need to make a resizings command
-			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-			resizings.markForResizing(figureFacet);
+  public void suppressFeatures(boolean suppress)
+	{
+		// we will probably change size, so need to make a resizings command
+		ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+		resizings.markForResizing(figureFacet);
+
+		suppressContents = suppress;
+		contents.getFigureFacet().setShowing(!suppress);
+		resizings.setFocusBounds(getContentsSuppressedBounds(suppressContents));
+		resizings.end();	
+	}
 	
-			suppressContents = suppress;
-			contents.getFigureFacet().setShowing(!suppress);
-			resizings.setFocusBounds(getContentsSuppressedBounds(suppressContents));
-	
-			Command resizeCommand = resizings.end("resized to adjust for suppress feature toggle", "restored size after undoing suppress feature toggle");
-			resizeCommand.execute(false);
-	
-			return new Object[]{new Boolean(oldSuppressContents), resizeCommand};
-		}
-	
-		/**
-		 * @see com.giroway.jumble.umldiagrams.classdiagram.classifiernode.CmdOperationsSuppressable#unSuppressOperations(Object)
-		 */
-		public void unSuppressFeatures(Object memento)
-		{
-			Object[] objects = (Object[]) memento;
-			boolean suppress = ((Boolean) objects[0]).booleanValue();
-			Command resizeCommand = (Command) objects[1];
-	
-			suppressContents = suppress;
-			contents.getFigureFacet().setShowing(!suppressContents);
-			resizeCommand.unExecute();
-		}
-  }
-  
   private class ContainerFacetImpl implements BasicNodeContainerFacet
   {
 	  public boolean insideContainer(UPoint point)
@@ -396,26 +287,12 @@ public final class BasicNamespaceNodeGem implements Gem
 	    return list.iterator();  // this is not a reference, but is a copy, so we don't need to make it unmodifiable
 	  }
 	  
-	  public void unAddContents(Object memento)
+	  public void removeContents(ContainedFacet[] containable)
 	  {
-			// not used -- this has a static set of contents
 	  }
 	
-	  public Object removeContents(ContainedFacet[] containable)
+	  public void addContents(ContainedFacet[] containable)
 	  {
-			// not used -- this has a static set of contents
-			return null;
-	  }
-	
-	  public void unRemoveContents(Object memento)
-	  {
-			// not used -- this has a static set of contents
-	  }
-	
-	  public Object addContents(ContainedFacet[] containable)
-	  {
-			// not used -- this has a static set of contents
-			return null;
 	  }
 	
 	  public boolean isWillingToActAsBackdrop()
@@ -477,6 +354,10 @@ public final class BasicNamespaceNodeGem implements Gem
 			contents = (SimpleContainerFacet) contained.getDynamicFacet(SimpleContainerFacet.class);
 			contained.getContainedFacet().persistence_setContainer(this);
 		}
+
+		public void cleanUp()
+		{
+		}
   }
 
 	private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
@@ -484,6 +365,11 @@ public final class BasicNamespaceNodeGem implements Gem
 		public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return featurelessClassifierAppearanceFacet.getToolClassification(makeCurrentSizeInfo().makeActualSizes(), point);
+		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
 		}
 
 	  public String getFigureName()
@@ -515,7 +401,7 @@ public final class BasicNamespaceNodeGem implements Gem
 			return basicGem.getPreviewFacet();
 	  }
 	
-	  public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+	  public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 	  {
 	    // make the manipulators
 	    BasicNamespaceSizes sizes = makeCurrentSizeInfo().makeActualSizes();
@@ -523,6 +409,7 @@ public final class BasicNamespaceNodeGem implements Gem
 	    if (favoured)
 	    {
 	      TextManipulatorGem textGem = new TextManipulatorGem(
+	      		coordinator,
 	          "changed " + figureFacet.getFigureName() + " name",
 	          "restored " + figureFacet.getFigureName() + " name",
 	          name,
@@ -537,6 +424,7 @@ public final class BasicNamespaceNodeGem implements Gem
 	    return new Manipulators(
 	        keyFocus,
 	        new ResizingManipulatorGem(
+	        		coordinator,
 	            figureFacet,
 	            diagramView,
 	            sizes.getOuter(),
@@ -577,7 +465,14 @@ public final class BasicNamespaceNodeGem implements Gem
   				popup.add(getDisplayAsIconItem(diagramView, coordinator));
   			}
   			popup.add(getSuppressOwnerItem(diagramView, coordinator));
-        popup.add(getChangeColorItem(diagramView, coordinator, figureFacet, fillColor));
+        popup.add(getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
+        		new SetFillCallback()
+						{							
+							public void setFill(Color fill)
+							{
+								fillColor = fill;
+							}
+						}));
         
 				// add expansions
 				popup.addSeparator();
@@ -618,8 +513,11 @@ public final class BasicNamespaceNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress operations flag
-					Command forceSuppressOwningPackageCommand = new SuppressOwningPackageCommand(figureFacet.getFigureReference(), !forceSuppressOwningPackage, forceSuppressOwningPackage ? "unsuppressed owner package" : "suppressed owner package", forceSuppressOwningPackage ? "suppressed owner package" : "unsuppressed owner package");
-					coordinator.executeCommandAndUpdateViews(forceSuppressOwningPackageCommand);
+					coordinator.startTransaction(
+							forceSuppressOwningPackage ? "unsuppressed owner package" : "suppressed owner package",
+									forceSuppressOwningPackage ? "suppressed owner package" : "unsuppressed owner package");
+					forceSuppressOwningPackage = !forceSuppressOwningPackage;
+					coordinator.commitTransaction();
 				}
 			});
 			return showVisibilityItem;
@@ -636,8 +534,11 @@ public final class BasicNamespaceNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress operations flag
-					Command displayAsIconCommand = new DisplayAsIconCommand(figureFacet.getFigureReference(), !displayOnlyIcon, "displayed " + getFigureName() + (displayOnlyIcon ? " as box" : "as icon"), "displayed " + getFigureName() + (!displayOnlyIcon ? " as box" : "as icon"));
-					coordinator.executeCommandAndUpdateViews(displayAsIconCommand);
+					coordinator.startTransaction(
+							"displayed " + getFigureName() + (displayOnlyIcon ? " as box" : "as icon"),
+							"displayed " + getFigureName() + (!displayOnlyIcon ? " as box" : "as icon"));
+					DisplayAsIconTransaction.display(figureFacet, !displayOnlyIcon);
+					coordinator.commitTransaction();
 				}
 			});
 			return displayAsIconItem;
@@ -655,8 +556,11 @@ public final class BasicNamespaceNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress attributes flag
-					Command suppressCommand = new SuppressFeaturesCommand(figureFacet.getFigureReference(), -1, !suppressContents, (suppressContents ? "showed" : "hid") + " contents for " + getFigureName(), (!suppressContents ? "showed " : "hid ") + " contents for " + getFigureName());
-					coordinator.executeCommandAndUpdateViews(suppressCommand);
+					coordinator.startTransaction(
+							(suppressContents ? "showed" : "hid") + " contents for " + getFigureName(),
+							(!suppressContents ? "showed " : "hid ") + " contents for " + getFigureName());
+					suppressFeatures(!suppressContents);
+					coordinator.commitTransaction();
 				}
 			});
 			return suppressContentsItem;
@@ -731,6 +635,7 @@ public final class BasicNamespaceNodeGem implements Gem
 		 */
 		public void addToPersistentProperties(PersistentProperties properties)
 		{
+			properties.add(new PersistentProperty("name", name));
 			properties.add(new PersistentProperty("owner", owner));
 			properties.add(new PersistentProperty("supC", suppressContents, false));
 			properties.add(new PersistentProperty("tlOff", rememberedTLOffset, new UDimension(0,0)));
@@ -739,6 +644,7 @@ public final class BasicNamespaceNodeGem implements Gem
 			properties.add(new PersistentProperty("showVis", showOwningPackage, false));
 			properties.add(new PersistentProperty("suppVis", forceSuppressOwningPackage, false));
       properties.add(new PersistentProperty("fill", fillColor, INITIAL_FILL_COLOR));
+      properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
 		}
 
 		private boolean locatedInCorrectView()
@@ -771,67 +677,34 @@ public final class BasicNamespaceNodeGem implements Gem
 			return owningPkg == actualNamespace;
 		}
 
-		/**
-		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
-		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
 			if (subject == null || pass != ViewUpdatePassEnum.LAST)
-				return null;
+				return;
 			
 			// should we be displaying the owner?
 			final boolean shouldBeDisplayingOwningPackage = !locatedInCorrectView() && !forceSuppressOwningPackage;
 
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
       final int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(figureFacet, subject);
-			if (shouldBeDisplayingOwningPackage == showOwningPackage &&
+      if (shouldBeDisplayingOwningPackage == showOwningPackage &&
           subject.getName().equals(name) && subject.getNamespace().getName().equals(owner) &&
           stereotypeHashcode == actualStereotypeHashcode)
-				return null;
+				return;
 			
-			return new AbstractCommand("", "")
-			{
-				private Command resizing;
-				private String oldName;
-				private String oldOwner;
-				private boolean oldShowOwningPackage;
-        private int oldStereotypeHashcode;
-				
-				public void execute(boolean isTop)
-				{
-					// preserve the old variables
-					oldName = name;
-					oldOwner = owner;
-					oldShowOwningPackage = showOwningPackage;
-          oldStereotypeHashcode = stereotypeHashcode;
-					
-					// set the new variables
-					name = subject.getName();
-					
-					
-					owner = GlobalSubjectRepository.repository.findOwningStratum(subject).getName();
-					
-					showOwningPackage = shouldBeDisplayingOwningPackage;
-          stereotypeHashcode = actualStereotypeHashcode;
-					
-					// resize, using a text utility
-			    resizing = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name));
-				}
-				
-				public void unExecute()
-				{
-					name = oldName;
-					owner = oldOwner;
-					showOwningPackage = oldShowOwningPackage;
-          stereotypeHashcode = oldStereotypeHashcode;
-          resizing.unExecute();
-				}
-			};
+			// set the new variables
+    	name = subject.getName();
+			owner = GlobalSubjectRepository.repository.findOwningStratum(subject).getName();
+			showOwningPackage = shouldBeDisplayingOwningPackage;
+      stereotypeHashcode = actualStereotypeHashcode;
+			
+			// resize, using a text utility
+      figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
 		}
 
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
-			return featurelessClassifierAppearanceFacet.middleButtonPressed(figureFacet.getDiagram());
+			featurelessClassifierAppearanceFacet.middleButtonPressed(figureFacet.getDiagram());
 		}
 
 		/**
@@ -854,9 +727,8 @@ public final class BasicNamespaceNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -877,26 +749,18 @@ public final class BasicNamespaceNodeGem implements Gem
 	
 	private class TextableFacetImpl implements TextableFacet
 	{
-    public Object setText(String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      SetTextPayload payload = miniAppearanceFacet.setText(null, text, listSelection, unsuppress, oldMemento);
+      Namespace newSubject = (Namespace) miniAppearanceFacet.setText(null, text, listSelection, unsuppress);
 
-      if (payload != null)
+      if (newSubject != null)
       {
-        if (payload.getSubject() != null)
-          subject = (Namespace) payload.getSubject();
-        return payload.getMemento();
+          subject =  newSubject;
+          name = subject.getName();
+    	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
       }
-      return null;
     }
-    
-    public void unSetText(Object memento)
-    {
-      SetTextPayload payload = miniAppearanceFacet.unSetText(memento);
-      if (payload != null && payload.getSubject() != null)
-        subject = (Namespace) payload.getSubject();
-    }
-    
+
     public JList formSelectionList(String textSoFar)
     {
       return miniAppearanceFacet.formSelectionList(textSoFar);
@@ -1040,14 +904,18 @@ public final class BasicNamespaceNodeGem implements Gem
 		contents = simpleGem.getSimpleContainerFacet();
   }
 
-  public BasicNamespaceNodeGem(String figureName, Object element, PersistentProperties properties)
+  public BasicNamespaceNodeGem(String figureName, PersistentFigure pfig)
   {
   	this.figureName = figureName;
-
 		// reconstitute the subject
-		subject = (Namespace) element;
-    name = subject.getName();
-    
+  	interpretPersistentFigure(pfig);
+  }
+  
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		subject = (Namespace) pfig.getSubject();
+    name = properties.retrieve("name", "").asString();;
 		owner = properties.retrieve("owner").asString();
 		suppressContents = properties.retrieve("supC", false).asBoolean();
 		rememberedTLOffset = properties.retrieve("tlOff", new UDimension(0,0)).asUDimension();
@@ -1057,12 +925,10 @@ public final class BasicNamespaceNodeGem implements Gem
 		showOwningPackage = properties.retrieve("showVis", false).asBoolean();
 		forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
     fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
-	
+    stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
+	}
 
-		// the contained elements will arrive later
-  }
-
-  /**
+	/**
 	 * geometry calculations
 	 * 
 	 */
@@ -1214,11 +1080,8 @@ public final class BasicNamespaceNodeGem implements Gem
 	{
 		this.figureFacet = figureFacet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-		figureFacet.registerDynamicFacet(suppressFeaturesFacet, SuppressFeaturesFacet.class);
   	figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
-  	figureFacet.registerDynamicFacet(showOwningPackageFacet, SuppressOwningPackageFacet.class);
   	figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
-    figureFacet.registerDynamicFacet(stylableFacet, StylableFacet.class);
 	}
 	
 	public void connectBasicNamespaceMiniAppearanceFacet(BasicNamespaceMiniAppearanceFacet miniAppearanceFacet)
@@ -1251,7 +1114,8 @@ public final class BasicNamespaceNodeGem implements Gem
 		return namespaceFacet;
 	}
 
-  public static JMenuItem getChangeColorItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator, final FigureFacet figureFacet, final Color fillColor)
+  public static JMenuItem getChangeColorItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator, final FigureFacet figureFacet, final Color fillColor,
+  		final SetFillCallback stylable)
   {
     // for adding operations
     JMenuItem chooseColorItem = new JMenuItem("Select color");
@@ -1271,13 +1135,11 @@ public final class BasicNamespaceNodeGem implements Gem
         		null);
         if (chosen == 0)
         {
-          ChangeColorCommand changeColor =
-            new ChangeColorCommand(
-              figureFacet.getFigureReference(),
-              chooser.getColor(),
+        	coordinator.startTransaction(
               "Changed fill color",
               "Reverted fill color");
-          coordinator.executeCommandAndUpdateViews(changeColor);
+        	stylable.setFill(chooser.getColor());
+          coordinator.commitTransaction();
         }
       }
     });

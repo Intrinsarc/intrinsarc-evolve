@@ -28,10 +28,9 @@ public interface FigureFacet extends MainFacet
   public ZNode formView();
   public boolean useGlobalLayer();
   
- 	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
+ 	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass);
  	public Object getSubject();
  	public boolean hasSubjectBeenDeleted();
-  public void adjusted();
 
   /**
    * identity management
@@ -61,17 +60,18 @@ public interface FigureFacet extends MainFacet
 
   /**
    * selection methods
+   * @param coordinator TODO
    */
   public Manipulators getSelectionManipulators(
+      ToolCoordinatorFacet coordinator,
       DiagramViewFacet diagramView,
       boolean favoured,
-      boolean firstSelected,
-      boolean allowTYPE0Manipulators);
+      boolean firstSelected, boolean allowTYPE0Manipulators);
   public FigureFacet getActualFigureForSelection();
 
   /** each figure can define a popup menu */
   public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
-  public Command middleButtonPressed(ToolCoordinatorFacet coordinator);
+  public void middleButtonPressed(ToolCoordinatorFacet coordinator);
   public void produceEffect(ToolCoordinatorFacet coordinator, String effect, Object[] parameters);
   
   public void cleanUp();
@@ -101,10 +101,12 @@ public interface FigureFacet extends MainFacet
   
   /** support for the clipboard is optional */
   public ClipboardFacet getClipboardFacet();
-  public ClipboardCommandsFacet getClipboardCommandsFacet();
+  public ClipboardActionsFacet getClipboardCommandsFacet();
   
   /** form a command to delete this figure from the diagram */
-  public Command formDeleteCommand();
+  public void formDeleteTransaction();
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill);
   public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
+
+	public void acceptPersistentFigure(PersistentFigure pfig);
 }

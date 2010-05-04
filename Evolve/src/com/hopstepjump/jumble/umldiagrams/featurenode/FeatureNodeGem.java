@@ -14,7 +14,6 @@ import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulation.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
-import com.hopstepjump.idraw.figurefacilities.update.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
@@ -57,60 +56,42 @@ public final class FeatureNodeGem implements Gem
   private TextableFacet textableFacet = new TextableFacetImpl();
   private BasicNodeFigureFacet figureFacet;
   private FeatureTypeFacet featureTypeFacet;
-  private ScopeFacet scopeFacet = new ScopeFacetImpl();
-  private VisibilityFacet visibilityFacet = new VisibilityFacetImpl();
   private FeatureComparableFacet comparableFacet = new FeatureComparableFacetImpl();
   private Element subject;
   private int stereotypeHashcode;
-  private UpdateViewFacet updateViewFacet = new UpdateViewFacetImpl();
-  private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
     
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
 
-  private class ClipboardCommandsFacetImpl implements ClipboardCommandsFacet
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
-    public boolean hasSpecificDeleteCommand()
+    public boolean hasSpecificDeleteAction()
     {
       return false;
     }
 
-    public Command makeSpecificDeleteCommand()
+    public void makeSpecificDeleteAction()
     {
-      return null;
     }
     
-    public Command makePostDeleteCommand()
+    public void performPostDeleteAction()
     {
       // important to use the reference rather than the figure, which gets recreated...
-      final FigureReference reference = figureFacet.getFigureReference();
-      final String uuid = getOriginalSubject(subject).getUuid();
-      
-      return new AbstractCommand()
-      {
-        public void execute(boolean isTop)
-        {
-          getFeatureCompartment().addDeleted(uuid);
-        }
-
-        private FeatureCompartmentFacet getFeatureCompartment()
-        {
-          FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(reference);
-          FigureFacet parent = figure.getContainedFacet().getContainer().getFigureFacet();
-          return (FeatureCompartmentFacet)
-            parent.getDynamicFacet(FeatureCompartmentFacet.class);
-        }
-
-        public void unExecute()
-        {
-          getFeatureCompartment().removeDeleted(uuid);
-        } 
-      };
+      final String uuid = getOriginalSubject(subject).getUuid();      
+      getFeatureCompartment().addDeleted(uuid);
     }
 
-    public boolean hasSpecificKillCommand()
+    private FeatureCompartmentFacet getFeatureCompartment()
+    {
+      FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
+      return (FeatureCompartmentFacet)
+        parent.getDynamicFacet(FeatureCompartmentFacet.class);
+    }
+    
+    public boolean hasSpecificKillAction()
     {
       return isSubjectAFeature() && (isOutOfPlace() || !atHome());
     }
@@ -121,11 +102,11 @@ public final class FeatureNodeGem implements Gem
       return extractVisualClassifier() != getSubjectAsFeature().getOwner();
     }
 
-    public Command makeSpecificKillCommand(ToolCoordinatorFacet coordinator)
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
       // be defensive
       if (figureFacet.getContainedFacet().getContainer() == null)
-        return null;
+        return;
       
       // only allow changes in the home stratum
       if (!atHome())
@@ -135,18 +116,18 @@ public final class FeatureNodeGem implements Gem
             ScreenProperties.getUndoPopupColor(),
             Color.black,
             3000);
-        return null;
+        return;
       }
 
       // if this is a replace, kill the replace delta
       Feature feature = getSubjectAsFeature();
       if (feature.getOwner() instanceof DeltaReplacedConstituent && feature.getOwner().getOwner() == extractVisualClassifier())
-        return generateReplaceDeltaKill(coordinator);
+        generateReplaceDeltaKill(coordinator);
       else
-        return generateDeleteDelta(coordinator);
+        generateDeleteDelta(coordinator);
     }
 
-    private Command generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
+    private void generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta for the replace
       coordinator.displayPopup(null, null,
@@ -155,23 +136,11 @@ public final class FeatureNodeGem implements Gem
           Color.black,
           1500);
       
-      final Feature feature = getSubjectAsFeature();
-      
-      return new AbstractCommand("Removed replace delta", "Restored replace delta")
-      {
-        public void execute(boolean isTop)
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(feature.getOwner());            
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.decrementPersistentDelete(feature.getOwner());
-        } 
-      };
+      Feature feature = getSubjectAsFeature();
+      GlobalSubjectRepository.repository.incrementPersistentDelete(feature.getOwner());            
     }
 
-    private Command generateDeleteDelta(ToolCoordinatorFacet coordinator)
+    private void generateDeleteDelta(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta
       coordinator.displayPopup(null, null,
@@ -180,9 +149,8 @@ public final class FeatureNodeGem implements Gem
           Color.black,
           1500);
       
-      final Classifier classifier = extractVisualClassifier();
-      
-      return featureTypeFacet.generateDeleteDelta(coordinator, classifier);      
+      Classifier classifier = extractVisualClassifier();      
+      featureTypeFacet.generateDeleteDelta(coordinator, classifier);      
     }
 
     private boolean atHome()
@@ -216,54 +184,10 @@ public final class FeatureNodeGem implements Gem
 		}
   }
   
-  private class VisibilityFacetImpl implements VisibilityFacet
-  {
-		public Object setVisibility(VisibilityKind newAccessType)
-	  {
-			Feature feature = getSubjectAsFeature();
-	  	VisibilityKind oldAccessType = feature.getVisibility();
-	  	feature.setVisibility(newAccessType);
-	  	figureFacet.adjusted();
-	  	return oldAccessType;
-	  }
-	  
-	  public void unSetVisibility(Object memento)
-	  {
-	  	getSubjectAsFeature().setVisibility((VisibilityKind) memento);
-			figureFacet.adjusted();
-	  }
-  }
-  
-  private class ScopeFacetImpl implements ScopeFacet
-  {
-	 	/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.featurenode.CmdScopeable#setScope(boolean)
-		 */
-		public Object setScope(boolean newClassifierScope)
-		{
-			Feature feature = getSubjectAsFeature();
-      boolean oldScope = feature.isStatic();
-      feature.setIsStatic(newClassifierScope);
-			figureFacet.adjusted();
-			
-			return oldScope;
-		}
-	
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.featurenode.CmdScopeable#unSetScope(Object)
-		 */
-		public void unSetScope(Object memento)
-		{
-			Boolean oldClassifierScope = (Boolean) memento;
-      getSubjectAsFeature().setIsStatic(oldClassifierScope);
-			figureFacet.adjusted();
-		}
-  }
-
 	private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
 	{
 		public Manipulators getSelectionManipulators(
-		    DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		    ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 	  {
 			FeatureSizeInfo info = makeCurrentInfo();
 			FeatureSizes sizes = info.makeSizes();
@@ -280,6 +204,7 @@ public final class FeatureNodeGem implements Gem
 	    if (favoured)
 			{
 	      TextManipulatorGem textGem = new TextManipulatorGem(
+	      		coordinator,
             "change " + getFigureName() + " details",
             "restore " + getFigureName() + " details",
             name,
@@ -380,6 +305,7 @@ public final class FeatureNodeGem implements Gem
 			basicGem.connectPreviewCacheFacet(previews);
 			basicGem.connectFigureFacet(figureFacet);
 			previewGem.connectPreviewFacet(basicGem.getPreviewFacet());
+      basicGem.setCentreToEdge(true);
 			
 			return basicGem.getPreviewFacet();
 	  }
@@ -436,8 +362,10 @@ public final class FeatureNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// adjust the visibility
-					SetScopeCommand scopeCommand = new SetScopeCommand(figureFacet.getFigureReference(), !classifierScope, "changed scope of " + getFigureName() + " to " + (classifierScope ? "instance" : "classifier"), "restored scope of " + getFigureName() + " to " + (classifierScope ? "classifier" : "instance"));
-					coordinator.executeCommandAndUpdateViews(scopeCommand);
+					coordinator.startTransaction("changed scope of " + getFigureName() + " to " + (classifierScope ? "instance" : "classifier"), "restored scope of " + getFigureName() + " to " + (classifierScope ? "classifier" : "instance"));
+					Feature feature = getSubjectAsFeature();
+		      feature.setIsStatic(!classifierScope);
+					coordinator.commitTransaction();
 				}
 			});
 			return scopeItem;
@@ -453,8 +381,12 @@ public final class FeatureNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// adjust the visibility
-					SetVisibilityCommand visibilityCommand = new SetVisibilityCommand(figureFacet.getFigureReference(), newAccessType, "changed visibility of " + getFigureName() + " to " + newAccessType.getName(), "restored visibility of " + getFigureName() + " to " + accessType.getName());
-					coordinator.executeCommandAndUpdateViews(visibilityCommand);
+					coordinator.startTransaction(
+							"changed visibility of " + getFigureName() + " to " + newAccessType.getName(),
+							"restored visibility of " + getFigureName() + " to " + accessType.getName());
+					Feature feature = getSubjectAsFeature();
+			  	feature.setVisibility(newAccessType);
+					coordinator.commitTransaction();
 				}
 			});
 			return accessItem;
@@ -515,25 +447,28 @@ public final class FeatureNodeGem implements Gem
 		public void addToPersistentProperties(PersistentProperties properties)
 		{
 			properties.add(new PersistentProperty("name", name, ""));
+			properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
+			properties.add(new PersistentProperty("access", accessType.getValue(), 0));
+			properties.add(new PersistentProperty("classifierScope", classifierScope, false));
 		}
 
     /**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       if (pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
       
       int actualStereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
     	if (isSubjectAFeature())
-    		return formFeatureViewUpdateCommandAfterSubjectChanged(isTop, actualStereotypeHashcode);
+    		formFeatureViewUpdateCommandAfterSubjectChanged(actualStereotypeHashcode);
     	else
-    		return formSlotViewUpdateCommandAfterSubjectChanged(isTop, actualStereotypeHashcode);
+    		formSlotViewUpdateCommandAfterSubjectChanged(actualStereotypeHashcode);
     		
     }
 
-		public Command formSlotViewUpdateCommandAfterSubjectChanged(boolean isTop, final int actualStereotypeHashcode)
+		public void formSlotViewUpdateCommandAfterSubjectChanged(int actualStereotypeHashcode)
 		{
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
 			final boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
@@ -541,13 +476,13 @@ public final class FeatureNodeGem implements Gem
 			if (displayingLinkMark == shouldBeDisplayingLinkMark &&
           name.equals(newName) &&
           stereotypeHashcode == actualStereotypeHashcode)
-				return null;			
+				return;			
       
-			return new UpdateViewCommand(figureFacet.getFigureReference(), "updated view", "restored view");
+			updateSlotViewAfterSubjectChanged(true);
 		}
 
 
-		public Command formFeatureViewUpdateCommandAfterSubjectChanged(boolean isTop, final int actualStereotypeHashCode)
+		public void formFeatureViewUpdateCommandAfterSubjectChanged(int actualStereotypeHashCode)
 		{
 			final Feature feature = getSubjectAsFeature();
 			
@@ -561,17 +496,16 @@ public final class FeatureNodeGem implements Gem
           classifierScope == feature.isStatic() &&
           name.equals(newName) &&
           stereotypeHashcode == actualStereotypeHashCode)
-				return null;			
+				return;			
 
-			return new UpdateViewCommand(figureFacet.getFigureReference(), "updated view", "restored view");
+			updateFeatureViewAfterSubjectChanged();
 		}
 
     /**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
-		  return null;
 		}
 
 		/**
@@ -594,9 +528,9 @@ public final class FeatureNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return featureTypeFacet.getPostContainerDropCommand();
+      featureTypeFacet.performPostContainerDropTransaction();
     }
 
 		public boolean canMoveContainers()
@@ -618,6 +552,11 @@ public final class FeatureNodeGem implements Gem
     public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return new ToolFigureClassification("feature", null);
+		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
 		}
 	}
 	
@@ -644,14 +583,9 @@ public final class FeatureNodeGem implements Gem
 	  	return figureFacet;
 	  }
 
-    public Object setText(String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String text, Object listSelection, boolean unsuppress)
     {
-      return featureTypeFacet.setText(text, listSelection, oldMemento);
-    }
-
-    public void unSetText(Object memento)
-    {
-      featureTypeFacet.unSetText(memento);
+      name = featureTypeFacet.setText(text, listSelection);
     }
 
     public JList formSelectionList(String textSoFar)
@@ -660,100 +594,35 @@ public final class FeatureNodeGem implements Gem
     }
 	}
 	
-  private class UpdateViewFacetImpl implements UpdateViewFacet
+  private void updateFeatureViewAfterSubjectChanged()
   {
-    public Object updateViewAfterSubjectChanged(boolean isTop)
-    {
-      if (isSubjectAFeature())
-        return updateFeatureViewAfterSubjectChanged(isTop);
-      else
-        return updateSlotViewAfterSubjectChanged(isTop);
-    }
+    final boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
+    final String newName = featureTypeFacet.makeNameFromSubject();
 
-    public void unUpdateViewAfterSubjectChanged(Object memento)
-    {
-      if (isSubjectAFeature())
-        unUpdateFeatureViewAfterSubjectChanged(memento);
-      else
-        unUpdateSlotViewAfterSubjectChanged(memento);
-    }
-
-    private Object updateFeatureViewAfterSubjectChanged(boolean isTop)
-    {
-      boolean oldDisplayingLinkMark = displayingLinkMark;
-      VisibilityKind oldAccessType = accessType;
-      boolean oldClassifierScope = classifierScope;
-      String oldName = name;
-      int oldStereotypeHashcode = stereotypeHashcode;
-      
-      final boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
-      final String newName = featureTypeFacet.makeNameFromSubject();
-
-      // set the new variables
-      Feature feature = getSubjectAsFeature();
-      displayingLinkMark = shouldBeDisplayingLinkMark;
-      accessType = feature.getVisibility();
-      classifierScope = feature.isStatic();
-      name = newName;
-      stereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
-      
-      // resize, using a text utility
-      Command resizing = figureFacet.makeAndExecuteResizingCommand(makeCurrentInfo().makeSizes().getEntireBounds());
-      return new Object[]{oldDisplayingLinkMark, oldAccessType, oldClassifierScope, oldName, oldStereotypeHashcode, resizing};
-    }
-
-    private void unUpdateFeatureViewAfterSubjectChanged(Object memento)
-    {
-      Object[] objects = (Object[]) memento;
-      
-      boolean oldDisplayingLinkMark = (Boolean) objects[0];
-      VisibilityKind oldAccessType = (VisibilityKind) objects[1];
-      boolean oldClassifierScope = (Boolean) objects[2];
-      String oldName = (String) objects[3];
-      int oldStereotypeHashcode = (Integer) objects[4];
-      Command resizing = (Command) objects[5];
-      
-      displayingLinkMark = oldDisplayingLinkMark;
-      accessType = oldAccessType;
-      classifierScope = oldClassifierScope;
-      name = oldName;
-      stereotypeHashcode = oldStereotypeHashcode;
-      resizing.unExecute();
-    }
+    // set the new variables
+    Feature feature = getSubjectAsFeature();
+    displayingLinkMark = shouldBeDisplayingLinkMark;
+    accessType = feature.getVisibility();
+    classifierScope = feature.isStatic();
+    name = newName;
+    stereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
     
-    public Object updateSlotViewAfterSubjectChanged(boolean isTop)
-    {
-      boolean oldDisplayingLinkMark = displayingLinkMark;
-      String oldName = name;
-      int oldStereotypeHashcode = stereotypeHashcode;
+    // resize, using a text utility
+    figureFacet.performResizingTransaction(makeCurrentInfo().makeSizes().getEntireBounds());
+  }
 
-      boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
-      String newName = featureTypeFacet.makeNameFromSubject();
+  public void updateSlotViewAfterSubjectChanged(boolean isTop)
+  {
+    boolean shouldBeDisplayingLinkMark = figureFacet.getAnchorFacet().hasLinks();
+    String newName = featureTypeFacet.makeNameFromSubject();
 
-      // set the new variables
-      displayingLinkMark = shouldBeDisplayingLinkMark;
-      name = newName;
-      stereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
-      
-      // resize, using a text utility
-      Command resizing = figureFacet.makeAndExecuteResizingCommand(makeCurrentInfo().makeSizes().getEntireBounds());
-      return new Object[]{oldDisplayingLinkMark, oldName, oldStereotypeHashcode, resizing};
-    }
-      
-    public void unUpdateSlotViewAfterSubjectChanged(Object memento)
-    {
-      Object[] objects = (Object[]) memento;
-
-      boolean oldDisplayingLinkMark = (Boolean) objects[0];
-      String oldName = (String) objects[1];
-      int oldStereotypeHashcode = (Integer) objects[2];
-      Command resizing = (Command) objects[3];
-     
-      displayingLinkMark = oldDisplayingLinkMark;
-      name = oldName;
-      stereotypeHashcode = oldStereotypeHashcode;
-      resizing.unExecute();
-    }    
+    // set the new variables
+    displayingLinkMark = shouldBeDisplayingLinkMark;
+    name = newName;
+    stereotypeHashcode = StereotypeUtilities.calculateStereotypeHash(null, subject);
+    
+    // resize, using a text utility
+    figureFacet.performResizingTransaction(makeCurrentInfo().makeSizes().getEntireBounds());
   }
 
   public FeatureNodeGem(Element subject)
@@ -766,14 +635,22 @@ public final class FeatureNodeGem implements Gem
     this.selectParentWhenTextSelected = selectParentWhenTextSelected;
   }
   
-  public FeatureNodeGem(PersistentFigure figure)
+  public FeatureNodeGem(PersistentFigure pfig)
   {
     // retrieve the subject
-    subject = (Element) figure.getSubject();
-    name = figure.getProperties().retrieve("name", "").asString();
+  	interpretPersistentFigure(pfig);
   }
   
-  public String getName()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    subject = (Element) pfig.getSubject();
+    name = pfig.getProperties().retrieve("name", "").asString();
+    stereotypeHashcode = pfig.getProperties().retrieve("stereoHash", 0).asInteger();
+    accessType = VisibilityKind.get(pfig.getProperties().retrieve("access", 0).asInteger());
+    classifierScope = pfig.getProperties().retrieve("classifierScope", false).asBoolean();
+	}
+
+	public String getName()
   {
   	return name;
   }
@@ -794,11 +671,8 @@ public final class FeatureNodeGem implements Gem
   {
   	this.figureFacet = figureFacet;
   	figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-  	figureFacet.registerDynamicFacet(visibilityFacet, VisibilityFacet.class);
-  	figureFacet.registerDynamicFacet(scopeFacet, ScopeFacet.class);
   	figureFacet.registerDynamicFacet(comparableFacet, FeatureComparableFacet.class);
   	figureFacet.registerDynamicFacet(featureTypeFacet, FeatureTypeFacet.class);
-    figureFacet.registerDynamicFacet(updateViewFacet, UpdateViewFacet.class);
   }
   
   public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
@@ -979,11 +853,6 @@ public final class FeatureNodeGem implements Gem
     return group;
   }
 
-	private TypedElement getSubjectAsTypedElement()
-  {
-   return (TypedElement) subject; 
-  }
-	
 	private Feature getSubjectAsFeature()
 	{
 		return (Feature) subject;

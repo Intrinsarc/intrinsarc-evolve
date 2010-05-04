@@ -9,6 +9,5 @@ import com.hopstepjump.gem.*;
  */
 public interface DisplayAsIconFacet extends Facet
 {
-  public Object displayAsIcon(boolean displayAsIcon);
-  public void unDisplayAsIcon(Object memento);
+  public void displayAsIcon(boolean displayAsIcon);
 }

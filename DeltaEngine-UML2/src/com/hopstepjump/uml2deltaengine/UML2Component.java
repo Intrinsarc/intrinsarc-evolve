@@ -114,6 +114,7 @@ public class UML2Component extends DEComponent
     return this;
   }
   
+  @Override
   public IDeltas getDeltas(ConstituentTypeEnum type)
   {
     if (!initialiseDeltas)
@@ -146,7 +147,7 @@ public class UML2Component extends DEComponent
   @SuppressWarnings("unchecked")
   private void initialiseDeltas()
   {
-    // handle attributes
+  	// handle attributes
     attributes = createDeltas(
         this,
         ConstituentTypeEnum.DELTA_ATTRIBUTE,
@@ -308,7 +309,7 @@ public class UML2Component extends DEComponent
 				// get the owner of the dependency
 				if (dep.getOwner() instanceof Class)
 				{
-					Classifier real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((Classifier) dep.getOwner());
+					NamedElement real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((NamedElement) dep.getOwner());
 					if (real instanceof Class)
 						immediate.add(getEngine().locateObject(real).asElement());
 				}

@@ -23,8 +23,7 @@ public class FlatteningHardcoder
 {
 	public void writeFlattened(BackboneGenerationChoice choice) throws BackboneGenerationException, VariableNotFoundException, BBBadRunPointException
 	{
-    List<DEStratum> ordered = choice.extractStrata("No tagged strata found for generation");
-    Collections.reverse(ordered);
+    List<DEStratum> ordered = choice.extractRelatedStrata();
     List<String> profile = choice.getGenerationProfile();
 		org.eclipse.uml2.Package perspectivePkg = (org.eclipse.uml2.Package) ordered.get(0).getRepositoryObject();
 		String prefix = StereotypeUtilities.extractStringProperty(perspectivePkg, CommonRepositoryFunctions.COMPOSITE_PACKAGE);
@@ -40,7 +39,7 @@ public class FlatteningHardcoder
 		DEComponent comp = findNamedComponent(stratum, compName);
 		
 		// flatten so we can get the factories
-		DEStratum perspective = choice.extractSingleStratum();
+		DEStratum perspective = choice.getSingleStratum();
 		BBSimpleElementRegistry registry = new BBSimpleElementRegistry(perspective, comp);
 		BBSimpleComponent simple = new BBSimpleComponent(registry, comp);
 		simple.flatten(registry);

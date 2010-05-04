@@ -28,7 +28,7 @@ public interface PreviewFacet extends MainFacet
 	/** all previews must be moveable */
   public void move(UPoint current);
   public void setFullBounds(UBounds newBounds, boolean resizedNotMoved);
-  public Command end();
+  public void end();
 
 	/** disconnect, about to discard */  
   public void disconnect();

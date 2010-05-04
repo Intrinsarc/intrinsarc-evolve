@@ -8,9 +8,6 @@ import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 
 public interface PortAddFacet extends Facet
 {
-  public Object addPort(Object memento, FigureReference reference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location);
-  public void unAddPort(Object memento);
-  public Object replacePort(Object memento, FigureReference reference, FigureReference toReplace, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject);
-  public void unReplacePort(Object memento);
-
+  public void addPort(FigureReference reference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location);
+  public void replacePort(FigureReference reference, FigureReference toReplace, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject);
 }

@@ -38,6 +38,7 @@ public final class ResizingManipulatorGem implements Gem
   public static final int TOP_RIGHT_CORNER    = 3;
   public static final int BOTTOM_LEFT_CORNER  = 4;
 
+	private ToolCoordinatorFacet coordinator;
   private FigureFacet toResize;
   private UBounds originalBounds;
   private ZGroup group;
@@ -47,6 +48,7 @@ public final class ResizingManipulatorGem implements Gem
   private ZGroup diagramLayer;
 	private ZCanvas canvas;
 	private boolean firstSelected;
+
 
 	private class ManipulatorFacetImpl implements ManipulatorFacet
 	{
@@ -211,12 +213,14 @@ public final class ResizingManipulatorGem implements Gem
 	}
 
   public ResizingManipulatorGem(
+  		ToolCoordinatorFacet coordinator,
       FigureFacet toResize,
       DiagramViewFacet diagramView,
       UBounds originalBounds,
       ResizeVetterFacet vetter,
       boolean firstSelected)
   {
+  	this.coordinator = coordinator;
     this.toResize = toResize;
     this.originalBounds = originalBounds;
     this.diagramView = diagramView;
@@ -435,20 +439,19 @@ public final class ResizingManipulatorGem implements Gem
   private void enter_RESIZED_STATE(DiagramFacet diagram, UPoint point)
   {
     // jump back to the steady state
-    // can't generate a command without a resizer
     manipulatorFacet.cleanUp();
 
     if (borderOn)
     {
-	    Command command = resizer.end("resized " + resizer.getFocusPreview().isPreviewFor().getFigureName(), "restored size of " + resizer.getFocusPreview().isPreviewFor().getFigureName());
+    	coordinator.startTransaction("resizing " + toResize.getFigureName(), "undoing resize of " + toResize.getFigureName());
+	    resizer.end();
     	enter_STEADY_STATE();  // need to do this so that addToView() will display handles again
-      listener.haveFinished(command);
     }
     else
     {
     	enter_STEADY_STATE();  // need to do this so that addToView() will display handles again
-      listener.haveFinished(null);
     }
+    listener.haveFinished();
   }
 
   /**

@@ -21,7 +21,6 @@ public abstract class ClassifierConstituentHelper
   private boolean showing;
   /** the figures that are currently visible */
   private Set<FigureFacet> currentlyDisplayed;
-  private boolean top;
   private ConstituentTypeEnum type;
   private SimpleDeletedUuidsFacet deleted;
 
@@ -31,14 +30,12 @@ public abstract class ClassifierConstituentHelper
       boolean showing,
       Iterator<FigureFacet> figures,
       ConstituentTypeEnum type,
-      SimpleDeletedUuidsFacet deleted,
-      boolean top)
+      SimpleDeletedUuidsFacet deleted)
   {
     this.figure = classFigure;
     this.container = container;
     this.showing = showing;
     this.currentlyDisplayed = getCurrentlyDisplayed(figures);
-    this.top = top;
     this.deleted = deleted;
     this.type = type;
   }
@@ -54,13 +51,12 @@ public abstract class ClassifierConstituentHelper
    * @param top 
    * @return
    */
-  public abstract Command makeAddCommand(
+  public abstract void makeAddTransaction(
       DEStratum perspective,
       Set<FigureFacet> currentInContainerIgnoringDeletes,
       BasicNodeFigureFacet classifierFigure,
       FigureFacet container,
-      DeltaPair addOrReplace,
-      boolean top);
+      DeltaPair addOrReplace);
   
   public boolean isShowingAllConstituents()
   {
@@ -112,11 +108,11 @@ public abstract class ClassifierConstituentHelper
   	return PerspectiveHelper.extractDEStratum(figure.getDiagram(), figure.getContainedFacet().getContainer());
   }
   
-  public CompositeCommand makeUpdateCommand(boolean locked)
+  public void makeUpdateCommand(boolean locked)
   {
     // if the container isn't visible, don't bother
     if (!showing)
-      return null;
+      return;
     
     IDeltaEngine engine = GlobalDeltaEngine.engine;
 
@@ -125,12 +121,27 @@ public abstract class ClassifierConstituentHelper
     Set<DeltaPair> constituents = getConstituents(perspective, type);
     
     // work out what we need to delete
-    CompositeCommand cmd = new CompositeCommand("", "");
     List<DEObject> existing = new ArrayList<DEObject>();
     
     // delete if this shouldn't be here
     Set<String> suppressed = getVisuallySuppressed(perspective, GlobalDeltaEngine.engine.locateObject(figure.getSubject()).asElement(), type);
     Set<DEObject> visualProblems = new HashSet<DEObject>();
+    // work out what we need to add
+    if (!locked)
+	    for (DeltaPair pair : constituents)
+	    {
+	      if ((visualProblems.contains(pair.getConstituent()) ||
+	      		 !containedWithin(currentlyDisplayed, pair)) && !deleted.isDeleted(suppressed, pair.getConstituent().getUuid()))
+	      {
+          makeAddTransaction(
+              perspective,
+              currentlyDisplayed,
+              figure,
+              container,
+              pair);
+	      }
+	    }
+
     for (FigureFacet f : currentlyDisplayed)
     {
       // don't delete if this is deleted -- this is covered elsewhere
@@ -145,7 +156,7 @@ public abstract class ClassifierConstituentHelper
         		existing.contains(constituent) ||
         		visualProblem)
         {
-          cmd.addCommand(f.formDeleteCommand());
+          f.formDeleteTransaction();
           if (visualProblem)
           	visualProblems.add(constituent);
         }
@@ -153,26 +164,6 @@ public abstract class ClassifierConstituentHelper
           existing.add(constituent);
       }
     }
-     
-    // work out what we need to add
-    if (!locked)
-	    for (DeltaPair pair : constituents)
-	    {
-	      if ((visualProblems.contains(pair.getConstituent()) ||
-	      		 !containedWithin(currentlyDisplayed, pair)) && !deleted.isDeleted(suppressed, pair.getConstituent().getUuid()))
-	      {
-	        cmd.addCommand(
-	            makeAddCommand(
-	                perspective,
-	                currentlyDisplayed,
-	                figure,
-	                container,
-	                pair,
-	                top));
-	      }
-	    }
-    
-    return cmd;
   }
   
   protected boolean hasVisualProblem(BasicNodeFigureFacet container, FigureFacet sub, DEConstituent constituent)
@@ -225,12 +216,7 @@ public abstract class ClassifierConstituentHelper
     DEElement element = object.asElement();
     
     IDeltas deltas = element.getDeltas(type);
-    
-    Set<DeltaPair> pairs = new LinkedHashSet<DeltaPair>();
-    for (DeltaPair pair : deltas.getConstituents(perspective, true))
-  		pairs.add(pair);
-    
-    return pairs;
+    return new LinkedHashSet<DeltaPair>(deltas.getConstituents(perspective, true));
   }
 
   private boolean containedWithin(Set<FigureFacet> current, DeltaPair pair)
@@ -244,24 +230,6 @@ public abstract class ClassifierConstituentHelper
         DEObject constituent = engine.locateObject(figure.getSubject());
         if (pair.getConstituent() == constituent)
           return true;
-      }
-    }
-    return false;
-  }
-
-  private boolean reportContainedWithin(Set<FigureFacet> current, DeltaPair pair)
-  {
-    IDeltaEngine engine = GlobalDeltaEngine.engine;
-
-    String found = "";
-    for (FigureFacet figure : current)
-    {
-      if (figure.getSubject() != null)
-      {
-        DEObject constituent = engine.locateObject(figure.getSubject());
-        if (pair.getConstituent() == constituent)
-          return true;
-        found += constituent.getName() + " ";
       }
     }
     return false;

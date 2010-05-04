@@ -19,7 +19,7 @@ import com.hopstepjump.jumble.umldiagrams.connectorarc.*;
 public class ClassConnectorHelper extends ClassifierConstituentHelper
 {
 
-  public ClassConnectorHelper(BasicNodeFigureFacet classifierFigure, FigureFacet portsContainer, FigureFacet partsContainer, boolean portLinks, SimpleDeletedUuidsFacet deleted, boolean top)
+  public ClassConnectorHelper(BasicNodeFigureFacet classifierFigure, FigureFacet portsContainer, FigureFacet partsContainer, boolean portLinks, SimpleDeletedUuidsFacet deleted)
   {
     super(
         classifierFigure,
@@ -27,18 +27,16 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
         partsContainer.isShowing(),
         findConnectors(portsContainer, partsContainer, portLinks).iterator(),
         portLinks ? ConstituentTypeEnum.DELTA_PORT_LINK : ConstituentTypeEnum.DELTA_CONNECTOR,
-        deleted,
-        top);
+        deleted);
   }
 
   @Override
-  public Command makeAddCommand(
+  public void makeAddTransaction(
       DEStratum perspective,
       Set<FigureFacet> currentInContainerIgnoringDeletes,
       final BasicNodeFigureFacet classifierFigure,
       FigureFacet container,
-      DeltaPair addOrReplace,
-      boolean top)
+      DeltaPair addOrReplace)
   {
     // get the current sizes
     FigureFacet existing = null;
@@ -83,7 +81,7 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     
     // if we can't find one of the ports, then it hasn't been remapped correctly
     if (port1 == null || port2 == null)
-      return null;
+      return;
     
     Element subject = (Element) classifierFigure.getSubject();
     FigureFacet anchor1 = findPortFigure(classifierFigure, subject, port1, part1);
@@ -91,7 +89,7 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     
     // if we have no anchors, we can't display
     if (anchor1 == null || anchor2 == null)
-      return null;
+      return;
 
     ArcCreateFacet factory = new ConnectorCreatorGem().getArcCreateFacet();
     DiagramFacet diagram = classifierFigure.getDiagram();
@@ -128,15 +126,13 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     preview.formBetterVirtualPoint(preview.getActualPoints().getVirtualPoint().subtract(offset));
     ReferenceCalculatedArcPoints calculated = gem.getBasicArcPreviewFacet().getCalculatedPoints().getReferenceCalculatedArcPoints(diagram);
 
-    return
-      new ArcCreateFigureCommand(
+    ArcCreateFigureTransaction.create(
+    		diagram,
         addOrReplace.getConstituent().getRepositoryObject(),
         reference,
         factory,
         calculated,
-        new PersistentProperties(),
-        "created " + factory.getFigureName(),
-        "removed " + factory.getFigureName());
+        new PersistentProperties());
   }
 
   private FigureFacet findPortFigure(FigureFacet container, Object clsRepositoryObject, DEPort port, DEPart part)

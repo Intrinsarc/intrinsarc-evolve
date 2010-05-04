@@ -2,5 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Geometry"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/IDraw"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/LeanFoundation"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/UML2-ODB-Libraries"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DeltaEngine"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/EMF-Libraries"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Evolve"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/UML2Repository"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

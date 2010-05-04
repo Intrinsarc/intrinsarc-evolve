@@ -34,5 +34,5 @@ public final class BasicNodeState implements Serializable
   public AnchorFacet anchorFacet;
   public BasicNodeContainerFacet containerFacet;
   public ClipboardFacet clipboardFacet;
-  public ClipboardCommandsFacet clipboardCommandsFacet;
+  public ClipboardActionsFacet clipboardCommandsFacet;
 }

@@ -13,7 +13,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import org.eclipse.uml2.*;
-import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
@@ -25,7 +24,6 @@ import com.hopstepjump.easydock.dockingframes.*;
 import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.utility.*;
-import com.hopstepjump.jumble.alloy.*;
 import com.hopstepjump.jumble.deltaview.*;
 import com.hopstepjump.jumble.errorchecking.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
@@ -48,7 +46,7 @@ public class ApplicationWindow extends SmartJFrame
 	// the services
 	private ToolCoordinatorGem toolCoordinator;
 	private ToolCoordinatorFacet coordinator;
-	private CommandManagerFacet commandManager;
+	private TransactionManagerFacet commandManager;
 	private ApplicationWindowCoordinatorFacet applicationWindowCoordinator;
 	private PackageViewRegistryFacet viewRegistry;
 	private String title;
@@ -69,11 +67,11 @@ public class ApplicationWindow extends SmartJFrame
 	private DeltaAdornerFacet deltaAdorner;
 	private ErrorRegister errors;
 	private JMenuBar menuBar;
+	private IEasyDockable paletteTitle;
 
 	// icons
 	public static final ImageIcon FULLSCREEN_ICON = IconLoader.loadIcon("fullscreen.png");
 	public static final ImageIcon GARBAGE_ICON = IconLoader.loadIcon("garbage.png");
-	public static final ImageIcon BACKBONE_ICON = IconLoader.loadIcon("backbone.png");
 	public static final ImageIcon APPLICATION_ICON = IconLoader.loadIcon("brick.png");
 	public static final ImageIcon MAIN_FRAME_ICON = IconLoader.loadIcon("monkey-icon.png");
 	public static final ImageIcon UNDO_ICON = IconLoader.loadIcon("arrow_undo.png");
@@ -105,6 +103,7 @@ public class ApplicationWindow extends SmartJFrame
 	public static final ImageIcon KEYBOARD_ICON = IconLoader.loadIcon("keyboard.png");
 	public static final ImageIcon COG_ICON = IconLoader.loadIcon("cog.png");
 	public static final ImageIcon VARIABLES_ICON = IconLoader.loadIcon("variables.png");
+	public static final ImageIcon TICK_ICON = IconLoader.loadIcon("tick.png");
 
 	public ApplicationWindow(String title, ErrorRegister errors)
 	{
@@ -116,6 +115,18 @@ public class ApplicationWindow extends SmartJFrame
 		desktop = new DockingFramesDock(this, true);
 		setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
 		setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+
+		// allow files to be dropped onto the frame
+		new FileDropTarget(this,
+				new FileDropTarget.Listener()
+				{
+					public boolean acceptFile(File file)
+					{
+						// if this doesn't end an acceptable prefix, complain
+						openFile(file.toString(), true);
+						return true;
+					}
+				});
 	}
 
 	public IEasyDock getDesktop()
@@ -125,7 +136,7 @@ public class ApplicationWindow extends SmartJFrame
 
 	public void setUp(
 			ApplicationWindowCoordinatorFacet applicationWindowCoordinatorFacet,
-			ToolCoordinatorGem toolManagerGem, CommandManagerFacet commandManager,
+			ToolCoordinatorGem toolManagerGem,
 			final PackageViewRegistryFacet viewRegistryFacet,
 			ExtendedAdornerFacet errorAdorner, DeltaAdornerFacet deltaAdorner)
 	{
@@ -133,7 +144,7 @@ public class ApplicationWindow extends SmartJFrame
 		this.toolCoordinator = toolManagerGem;
 		popup = coordinator = toolCoordinator.getToolCoordinatorFacet();
 		this.viewRegistry = viewRegistryFacet;
-		this.commandManager = commandManager;
+		this.commandManager = toolManagerGem.getToolCoordinatorFacet();
 		this.errorAdorner = errorAdorner;
 		this.deltaAdorner = deltaAdorner;
 
@@ -205,7 +216,7 @@ public class ApplicationWindow extends SmartJFrame
 		pwidth = Math.max(50, Math.min(pwidth, 300));
 
 		palette.setPreferredSize(new Dimension(1000, 100));
-		desktop.createEmbeddedPaletteDockable(
+		paletteTitle = desktop.createEmbeddedPaletteDockable(
 				"Palette",
 				PALETTE_ICON,
 				EasyDockSideEnum.WEST,
@@ -213,6 +224,7 @@ public class ApplicationWindow extends SmartJFrame
 				false,
 				false,
 				palette);
+		setPaletteFocus(PaletteManagerGem.COMPONENT_FOCUS);
 
 		// set the title
 		setTitle(title);		
@@ -390,10 +402,9 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(frame,
+			String fileName = RepositoryUtility.chooseFileNameToCreate(frame,
 					"Select file to export to preferences to",
-					"Evolve preferences", "evolveprefs", recent
-							.getLastVisitedDirectory());
+					"Evolve preferences", "evolveprefs", recent.getLastVisitedDirectory());
 			if (fileName == null)
 				return;
 
@@ -428,7 +439,7 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(frame,
+			String fileName = RepositoryUtility.chooseFileNameToOpen(frame,
 					"Select model preferences file to load",
 					"Evolve preferences", "evolveprefs", recent
 							.getLastVisitedDirectory());
@@ -510,7 +521,7 @@ public class ApplicationWindow extends SmartJFrame
 					});
 			GlobalSubjectRepository.repository.save(frame, true, getLastVisitedDirectory());
 			GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
-			commandManager.clearCommandHistory();
+			commandManager.clearTransactionHistory();
 
 			if (displayFinalMessage)
 				monitor.stopActivityAndDisplayPopup(GARBAGE_ICON,
@@ -577,16 +588,12 @@ public class ApplicationWindow extends SmartJFrame
 		public void actionPerformed(ActionEvent e)
 		{
 			GlobalSubjectRepository.repository.refreshAll();
-			List<DiagramFacet> unmodified = GlobalDiagramRegistry.registry.refreshAllDiagrams();
-			commandManager.tellDiagramsToSendChanges();
-			commandManager.executeCommandAndUpdateViews(new CompositeCommand("", ""));
-			for (DiagramFacet diagram : unmodified)
-				diagram.resetModified();
-			commandManager.clearCommandHistory();
+			GlobalDiagramRegistry.registry.refreshAllDiagrams();
+			coordinator.clearTransactionHistory();
 			popup.displayPopup(REFRESH_ICON, "Refresh",
-					"Refreshed from database; cleared command history", ScreenProperties
+					"Refreshed from database; cleared undo/redo history", ScreenProperties
 							.getUndoPopupColor(), Color.black, 1500, true, commandManager
-							.getCommandIndex(), commandManager.getCommandMax());
+							.getTransactionPosition(), commandManager.getTotalTransactions());
 		}
 	};
 
@@ -631,19 +638,18 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
-			BackboneGenerationChoice choice = new BackboneGenerationChoice(coordinator);
-			try
-			{
-				choice.adjustSelectionForProtocolAnalysis();
-			}
-			catch (BackboneGenerationException ex)
-			{
-				coordinator.invokeErrorDialog("Protocol analysis problem...", ex.getMessage());
-				return;
-			}
-			Class cls = choice.getSingleComponent();
-			DEComponent comp = GlobalDeltaEngine.engine.locateObject(cls).asComponent();
-			
+//			BackboneGenerationChoice choice = new BackboneGenerationChoice(coordinator);
+//			try
+//			{
+//				choice.adjustSelectionForProtocolAnalysis();
+//			}
+//			catch (BackboneGenerationException ex)
+//			{
+//				coordinator.invokeErrorDialog("Protocol analysis problem...", ex.getMessage());
+//				return;
+//			}
+//			DEComponent comp = choice.getSingleComponent();
+//			
 //			try
 //			{
 //				String fsp = new ProtocolToFSPTranslator(
@@ -701,7 +707,7 @@ public class ApplicationWindow extends SmartJFrame
 	{
 		public TagBackboneAction()
 		{
-			super("Tag Backbone elements");
+			super("Tag Backbone stratum");
 		}
 
 		public void actionPerformed(ActionEvent e)
@@ -711,29 +717,21 @@ public class ApplicationWindow extends SmartJFrame
 			// save the selection
 			choice = new BackboneGenerationChoice(toolFacet);
 
-			// see if we have any strata
-			List<DEStratum> strata = null;
+			// ensure we have a single stratum
 			try
 			{
-				strata = choice.extractStrata("No strata found for tagging");
-			} catch (BackboneGenerationException ex)
+				choice.adjustSelectionForSingleStratum();
+			}
+			catch (BackboneGenerationException ex)
 			{
 				toolFacet.invokeErrorDialog("Backbone tagging problem...", ex.getMessage());
 				choice = null;
 				return;
 			}
 
-			if (strata.isEmpty())
-			{
-				// if we got here nothing has been selected
-				toolFacet.invokeErrorDialog("Backbone tagging problem...", "No strata have been found in the selection");
-				choice = null;
-			} else
-			{
-				// if we got here we were successful, so show a nice popup
-				popup.displayPopup(TAG_ICON, "Backbone tagging",
-						"Elements tagged successfully", null, null, 1200);
-			}
+			// if we got here we were successful, so show a nice popup
+			popup.displayPopup(TAG_ICON, "Backbone tagging",
+					"Stratum tagged successfully", null, null, 1200);
 		}
 	}
 
@@ -890,9 +888,8 @@ public class ApplicationWindow extends SmartJFrame
 
 		try
 		{
-			DeltaEngineCommandWrapper.clearDeltaEngine();
-			strata = choice.extractStrata("No tagged strata found for generation");
-			Collections.reverse(strata);
+			ToolCoordinatorGem.clearDeltaEngine();
+			strata = choice.extractRelatedStrata();
 			if (strata.get(strata.size() - 1) != GlobalDeltaEngine.engine.getRoot())
 			{
 				DEStratum root = GlobalDeltaEngine.engine.forceArtificialParent(new HashSet<DEStratum>(strata));
@@ -936,7 +933,7 @@ public class ApplicationWindow extends SmartJFrame
 			}
 			else
 			{
-				DeltaEngineCommandWrapper.clearDeltaEngine();
+				ToolCoordinatorGem.clearDeltaEngine();
 			}
 		}
 		catch (BackboneGenerationException ex)
@@ -1032,16 +1029,18 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
-			if (commandManager.canUndo())
+			if (commandManager.getTransactionPosition() > 0)
 			{
-				String undoName = commandManager.getUndoPresentationName();
-				commandManager.undo();
-				paletteFacet.refreshEnabled();
-
+				String undoName = commandManager.getUndoTransactionDescription();
+				
 				// display a small popup for 2 seconds
-				popup.displayPopup(UNDO_ICON, "Undo", undoName, ScreenProperties
-						.getUndoPopupColor(), Color.black, 1500, true, commandManager
-						.getCommandIndex(), commandManager.getCommandMax());
+				popup.displayPopup(UNDO_ICON, "Undo", undoName,
+						ScreenProperties.getUndoPopupColor(), Color.black, 1500, true,
+						commandManager.getTransactionPosition() - 1,
+						commandManager.getTotalTransactions());
+
+				toolCoordinator.getToolCoordinatorFacet().undoTransaction();
+				paletteFacet.refreshEnabled();
 			}
 		}
 	}
@@ -1055,16 +1054,18 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
-			if (commandManager.canRedo())
+			if (commandManager.getTransactionPosition() < commandManager.getTotalTransactions())
 			{
-				String redoName = commandManager.getRedoPresentationName();
-				commandManager.redo();
-				paletteFacet.refreshEnabled();
-
+				String redoName = commandManager.getRedoTransactionDescription();
+				
 				// display a small popup for 2 seconds
-				popup.displayPopup(REDO_ICON, "Redo", redoName, ScreenProperties
-						.getUndoPopupColor(), Color.black, 1500, true, commandManager
-						.getCommandIndex(), commandManager.getCommandMax());
+				popup.displayPopup(REDO_ICON, "Redo", redoName,
+						ScreenProperties.getUndoPopupColor(), Color.black, 1500, true,
+						commandManager.getTransactionPosition() + 1,
+						commandManager.getTotalTransactions());
+
+				toolCoordinator.getToolCoordinatorFacet().redoTransaction();
+				paletteFacet.refreshEnabled();
 			}
 		}
 	}
@@ -1083,7 +1084,8 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 			try
 			{
-				applicationWindowCoordinator.switchRepository(RepositoryUtility.useXMLRepository(null));
+				RepositoryUtility.useXMLRepository(null);
+				applicationWindowCoordinator.switchRepository();
 			}
 			catch (RepositoryOpeningException ex)
 			{
@@ -1106,8 +1108,13 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(frame,
-					"Select file to open", ".uml2 files", "uml2", recent.getLastVisitedDirectory());
+			String fileName = RepositoryUtility.chooseFileNameToOpen(
+					frame,
+					"Select file to open",
+					XMLSubjectRepositoryGem.EXTENSION_DESCRIPTION,
+					XMLSubjectRepositoryGem.EXTENSION_TYPES,
+					XMLSubjectRepositoryGem.UML2Z_SUFFIX_NO_DOT,
+					recent.getLastVisitedDirectory());
 
 			// don't go further if it hasn't been selected
 			if (fileName == null)
@@ -1117,7 +1124,8 @@ public class ApplicationWindow extends SmartJFrame
 			Cursor old = coordinator.displayWaitCursor();
 			try
 			{
-				applicationWindowCoordinator.switchRepository(RepositoryUtility.useXMLRepository(fileName));
+				RepositoryUtility.useXMLRepository(fileName);
+				applicationWindowCoordinator.switchRepository();
 				recent.addFile(fileName);
 			} catch (RepositoryOpeningException ex)
 			{
@@ -1146,17 +1154,19 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 
 			// let the user choose the filename
-			String fileName = RepositoryUtility.chooseFileName(frame,
-					"Select database file to open", ".odb files", "odb", recent
-							.getLastVisitedDirectory());
+			String fileName = RepositoryUtility.chooseFileNameToOpen(frame,
+					"Select database file to open",
+					ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX_DESCRIPTION,
+					ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX_NO_DOT,
+					recent.getLastVisitedDirectory());
 			if (fileName == null)
 				return;
 
 			recent.setLastVisitedDirectory(new File(fileName));
 			try
 			{
-				applicationWindowCoordinator.switchRepository(RepositoryUtility
-						.useObjectDbRepository(null, fileName));
+				RepositoryUtility.useObjectDbRepository(null, fileName);
+				applicationWindowCoordinator.switchRepository();
 				recent.addFile(fileName);
 			} catch (RepositoryOpeningException ex)
 			{
@@ -1189,8 +1199,8 @@ public class ApplicationWindow extends SmartJFrame
 				if (info == null)
 					return;
 
-				applicationWindowCoordinator.switchRepository(RepositoryUtility
-						.useObjectDbRepository(info[0], info[1]));
+				RepositoryUtility.useObjectDbRepository(info[0], info[1]);
+				applicationWindowCoordinator.switchRepository();
 				name = info[0] + ":" + info[1];
 				recent.addFile(name);
 			} catch (RepositoryOpeningException ex)
@@ -1412,7 +1422,7 @@ public class ApplicationWindow extends SmartJFrame
 	private void resyncDiagramsAndBrowser()
 	{
 		// make a new delta engine, just in case we had a previous one (e.g. with a backbone artificial parent)
-		DeltaEngineCommandWrapper.clearDeltaEngine();
+		ToolCoordinatorGem.clearDeltaEngine();
 		GlobalDiagramRegistry.resyncViews();
 		for (RepositoryBrowserFacet browser : browsers)
 			browser.refresh();
@@ -1502,7 +1512,7 @@ public class ApplicationWindow extends SmartJFrame
 
 								if (count != 0 && count % clearCycle == 0)
 								{
-									DeltaEngineCommandWrapper.clearDeltaEngine();
+									ToolCoordinatorGem.clearDeltaEngine();
 									deltaClear++;
 									GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
 								}
@@ -1765,7 +1775,7 @@ public class ApplicationWindow extends SmartJFrame
 			{
 				public boolean update()
 				{
-					return commandManager.canUndo();
+					return commandManager.getTransactionPosition() > 0;
 				}
 			};
 			
@@ -1777,7 +1787,7 @@ public class ApplicationWindow extends SmartJFrame
 			{
 				public boolean update()
 				{
-					return commandManager.canRedo();
+					return commandManager.getTransactionPosition() < commandManager.getTotalTransactions();
 				}
 			};
 			GlobalPreferences.registerKeyAction("Edit", redo, "ctrl Y", "Redo the last command");
@@ -1812,14 +1822,8 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("Tools",rerunItem, "ctrl R", "Run the Backbone model");
 			entries.add(new SmartMenuItemImpl("Tools", "Backbone", rerunItem));
 			
-			
-      // add the alloy interpreter
-      JMenuItem interpretAlloyItem = new JMenuItem(new InterpretAlloyAction(coordinator, commandManager, monitor));
-			GlobalPreferences.registerKeyAction("Tools",interpretAlloyItem, "ctrl I", "Interpret the Alloy visualisation on the clipboard");
-      entries.add(new SmartMenuItemImpl("Tools", "Tools", interpretAlloyItem));
-      
       // add the bean importer
-      JMenuItem beanImport = new BeanImportMenuItem(coordinator, commandManager, popup, monitor); 
+      JMenuItem beanImport = new BeanImportMenuItem(coordinator, popup, monitor); 
       entries.add(new SmartMenuItemImpl("Tools", "Beans", beanImport));      		
 			GlobalPreferences.registerKeyAction("Tools",beanImport, null, "Analyse and import JavaBeans from the classpath of the selected stratum");
 
@@ -1841,7 +1845,7 @@ public class ApplicationWindow extends SmartJFrame
 			// add the help entries
 			smartMenuBar.addSectionOrderingHint(">Help", "Contents", "a");
 			smartMenuBar.addSectionOrderingHint(">Help", "About", "b");
-
+			
 			JMenuItem aboutItem = new JMenuItem(new HelpAboutAction(coordinator, popup));			
 			entries.add(new SmartMenuItemImpl(">Help", "About", aboutItem));
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
@@ -1896,17 +1900,58 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("File/Preferences", exportPreferences, null, "Export environment preferences");
 			entries.add(new SmartMenuItemImpl("File", "Maintenance", preferences));
 			
+			// add the focus menu
+			makeFocusItem(entries, PaletteManagerGem.FEATURE_FOCUS, "shift ctrl F");
+			makeFocusItem(entries, PaletteManagerGem.COMPONENT_FOCUS, "shift ctrl C");
+			makeFocusItem(entries, PaletteManagerGem.STATE_FOCUS, "shift ctrl S");
+			makeFocusItem(entries, PaletteManagerGem.BEHAVIOUR_FOCUS, "shift ctrl B");
+			makeFocusItem(entries, PaletteManagerGem.PROFILE_FOCUS, "shift ctrl P");
+			makeFocusItem(entries, PaletteManagerGem.DOCUMENTATION_FOCUS, "shift ctrl D");
+			makeFocusItem(entries, PaletteManagerGem.CLASS_FOCUS, "shift ctrl L");
+			makeFocusItem(entries, PaletteManagerGem.MISCELLANEOUS_FOCUS, "shift ctrl M");
+			smartMenuBar.addMenuOrderingHint("Focus", "ab");
+			
 			// register some nice icons for the preference tabs
 			GlobalPreferences.preferences.registerTabIcon("Keys", KEYBOARD_ICON);
 			GlobalPreferences.preferences.registerTabIcon("Advanced", COG_ICON);
 			GlobalPreferences.preferences.registerTabIcon("Variables", VARIABLES_ICON);
-			GlobalPreferences.preferences.registerTabIcon("Backbone", BACKBONE_ICON);
+			GlobalPreferences.preferences.registerTabIcon("Backbone", null);
 			
 			return entries;
 		}
-
+	}
+	
+	private void setPaletteFocus(String focus)
+	{
+		paletteFacet.setFocus(focus);
+		paletteTitle.setTitleText(focus);
 	}
 
+	private void makeFocusItem(List<SmartMenuItem> entries, final String focus, String key)
+	{
+		UpdatingJMenuItem item = new UpdatingJMenuItem(new AbstractAction(focus)
+		{			
+			public void actionPerformed(ActionEvent e)
+			{
+				String lower = focus.toLowerCase();
+				coordinator.displayPopup(PALETTE_ICON, "Set focus", "Changed to " + lower, null, null, 1000);
+				setPaletteFocus(focus);
+			}
+		})
+		{			
+			public boolean update()
+			{
+				if (focus.equals(paletteFacet.getFocus()))
+					setIcon(TICK_ICON);
+				else
+					setIcon(null);
+				return true;
+			}
+		};
+		entries.add(new SmartMenuItemImpl("Focus", "focus", item));
+		GlobalPreferences.registerKeyAction("Focus", item, key, "Switch to " + focus);
+	}
+	
 	public void askAboutSaveAndPossiblyExit()
 	{
 		int chosen = askAboutSave("Evolve", false);
@@ -2002,6 +2047,7 @@ public class ApplicationWindow extends SmartJFrame
 
 		// clear out the previous backbone generation options
 		choice = null;
+		setPaletteFocus(PaletteManagerGem.COMPONENT_FOCUS);
 	}
 
 	public void refreshTitle(String windowTitle)
@@ -2025,10 +2071,11 @@ public class ApplicationWindow extends SmartJFrame
 				long start = System.currentTimeMillis();
 				try
 				{
-					if (name.endsWith(".uml2") || name.endsWith(".xml"))
+					if (name.endsWith(XMLSubjectRepositoryGem.UML2_SUFFIX) || name.endsWith(XMLSubjectRepositoryGem.UML2Z_SUFFIX) || name.endsWith(".xml"))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading XML repository", name, null, -1);
-						applicationWindowCoordinator.switchRepository(RepositoryUtility.useXMLRepository(name));
+						RepositoryUtility.useXMLRepository(name);
+						applicationWindowCoordinator.switchRepository();
 					}
 					else if (name.contains(":") && name.endsWith(".odb"))
 					{
@@ -2057,19 +2104,21 @@ public class ApplicationWindow extends SmartJFrame
 						String hostName = bits.get(0);
 						String dbName = bits.get(1);
 		
-						applicationWindowCoordinator.switchRepository(RepositoryUtility.useObjectDbRepository(hostName, dbName));
+						RepositoryUtility.useObjectDbRepository(hostName, dbName);
+						applicationWindowCoordinator.switchRepository();
 					}
-					else if (name.endsWith(".odb"))
+					else if (name.endsWith(ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading local database repository", name, null, -1);
-						applicationWindowCoordinator.switchRepository(RepositoryUtility.useObjectDbRepository(null, name));
+						RepositoryUtility.useObjectDbRepository(null, name);
+						applicationWindowCoordinator.switchRepository();
 					}
 					else
 					{
 						monitor.stopActivityAndDisplayPopup(
 								SAVE_ICON,
 								"Repository loading problem",
-								"File " + name + " must be of form\n\t*.uml2, *.xml, *.odb or host:*.odb",
+								"File " + name + " must be of form \n\t*.uml2, *.uml2z *.xml, *.uml2db or host:*.odb",
 								null,
 								3000,
 								false);

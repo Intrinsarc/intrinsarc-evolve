@@ -7,6 +7,7 @@ import java.util.*;
 import javax.jdo.*;
 import javax.swing.*;
 
+import org.eclipse.emf.common.notify.*;
 import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
@@ -16,23 +17,95 @@ import org.eclipse.uml2.impl.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.notifications.*;
 import com.hopstepjump.repository.garbagecollector.*;
 import com.hopstepjump.repositorybase.*;
 
 public class ObjectDbSubjectRepositoryGem implements Gem
 {
+  public static final String UML2DB_SUFFIX_DESCRIPTION = "UML2 database files (.uml2db)";
+	public static final String UML2DB_SUFFIX_NO_DOT = "uml2db";
+	public static String UML2DB_SUFFIX = ".uml2db";
   private String hostName;
   private String dbName;
   private PersistenceManagerFactory pmf; 
   private PersistenceManager pm;
   private Model topLevel;
+  private UndoRedoStackManager undoredo = new UndoRedoStackManager();
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
-  private CommandManagerListenerFacetImpl commandFacet = new CommandManagerListenerFacetImpl();
   private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();
+  
+	
+  private Adapter adapter = new Adapter()
+  {
+    public void notifyChanged(Notification notification)
+    {
+      undoredo.addNotification(notification);
+    }
+    public Notifier getTarget()
+    {
+      return null;
+    }
+    public void setTarget(Notifier arg0)
+    {
+    }
+    public boolean isAdapterForType(Object arg0)
+    {
+      return false;
+    }
+  };
+  
   private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
+		public String getRedoTransactionDescription()
+		{
+			return undoredo.getRedoDescription();
+		}
+
+		public String getUndoTransactionDescription()
+		{
+			return undoredo.getUndoDescription();
+		}
+
+		public void undoTransaction()
+		{
+			undoredo.undo();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
+		}
+		
+		public void redoTransaction()
+		{
+			undoredo.redo();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
+		}
+		
+		public int getTransactionPosition()
+		{
+			return undoredo.getCurrent();
+		}
+		
+		public int getTotalTransactions()
+		{
+			return undoredo.getStackSize();
+		}
+		
+		public void clearTransactionHistory()
+		{
+			undoredo.clearStack();
+		}
+		
+		public void enforceTransactionDepth(int desiredDepth)
+		{
+			undoredo.enforceDepth(desiredDepth);
+		}
+		
+		////////////////////////////////////////////////////
+
+		
     public Model getTopLevelModel()
     {
       return topLevel;
@@ -130,20 +203,19 @@ public class ObjectDbSubjectRepositoryGem implements Gem
         return "remotedb >> " + hostName + ":" + dbName;
     }
 
-    public void startTransaction()
+    public void startTransaction(String redoName, String undoName)
     {
       start();
       pm.evictAll();
-    }
-
-    public Transaction getCurrentTransaction()
-    {
-      return pm.currentTransaction();
+      undoredo.startTransaction(redoName, undoName);
     }
 
     public void commitTransaction()
     {
       end();
+      undoredo.commitTransaction();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
     }
 
     public void incrementPersistentDelete(Element element)
@@ -179,17 +251,13 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 
     public void close()
     {
+      GlobalNotifier.getSingleton().removeObserver(adapter);
       pm.close();
     }
     
     public PersistentDiagram retrievePersistentDiagram(Package pkg)
     {
       return common.retrievePersistentDiagram(pkg);
-    }
-
-    public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
-    {
-      return common.formUpdateDiagramsCommandAfterSubjectChanges(commandExecutionTime, isTop, pass, initialRun);
     }
 
     public String getFullyQualifiedName(Element element, String separator)
@@ -342,15 +410,6 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 		}
   }
   
-  private class CommandManagerListenerFacetImpl implements CommandManagerListenerFacet
-  {
-    public void commandExecuted()
-    {
-      for (SubjectRepositoryListenerFacet listener : listeners)
-        listener.sendChanges();
-    }
-  }
-  
   public static ObjectDbSubjectRepositoryGem openRepository(String hostName, String dbName) throws RepositoryOpeningException
   {
     ObjectDbSubjectRepositoryGem repository = new ObjectDbSubjectRepositoryGem(hostName, dbName);
@@ -410,6 +469,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     }
     else
       topLevel = (Model) c.iterator().next();
+    GlobalNotifier.getSingleton().addObserver(adapter);
   }
 
   private Collection queryPossiblyUnextentedObjects(java.lang.Class<?> cls, String filter, boolean includeSubclasses, boolean includeDeleted)
@@ -476,11 +536,5 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   public SubjectRepositoryFacet getSubjectRepositoryFacet()
   {
     return subjectFacet;
-  }
-
-
-  public CommandManagerListenerFacet getCommandManagerListenerFacet()
-  {
-    return commandFacet;
   }
 }

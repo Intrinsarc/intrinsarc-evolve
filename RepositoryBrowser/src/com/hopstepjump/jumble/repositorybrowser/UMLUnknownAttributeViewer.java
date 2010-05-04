@@ -64,9 +64,8 @@ public class UMLUnknownAttributeViewer implements UMLAttributeViewer
   }
 
 
-  public Command formApplyCommand()
+  public void applyAction()
   {
-    return null;
   }
 
 

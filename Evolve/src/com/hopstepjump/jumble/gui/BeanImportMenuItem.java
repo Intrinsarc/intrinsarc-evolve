@@ -28,7 +28,6 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 	
 	public BeanImportMenuItem(
 			final ToolCoordinatorFacet coordinator,
-			final CommandManagerFacet commandManager,
 			final PopupMakerFacet popupMaker,
 			final LongRunningTaskProgressMonitorFacet monitor)
 	{
@@ -106,11 +105,11 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 						BeanSubjectCreator creator = new BeanSubjectCreator(importer.getImportList(), pkg, finder, monitor);
 						BeanCreatedSubjects created = creator.createSubjects();						
 						
-						commandManager.clearCommandHistory();
+						coordinator.clearTransactionHistory();
 						popupMaker.displayPopup(BEAN_ADD_ICON, "Bean Import...",
 								"Imported " + created.getTotalMade() + " elements; cleared command history",
 								ScreenProperties.getUndoPopupColor(), Color.black, 3000, true,
-								commandManager.getCommandIndex(), commandManager.getCommandMax());
+								coordinator.getTransactionPosition(), coordinator.getTotalTransactions());
 					}
 				}
 				catch (BackboneGenerationException ex)

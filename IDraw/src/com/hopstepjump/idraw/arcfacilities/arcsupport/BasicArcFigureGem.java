@@ -29,24 +29,16 @@ public final class BasicArcFigureGem implements Gem
 	private BasicArcState state;
 	private Map<Class<?>, Facet> dynamicFacets = new HashMap<Class<?>, Facet>();
 	private ClipboardFacet clipFacet = new ClipboardFacetImpl();
-	private CurvableFacet curvableFacet = new CurvableFacetImpl();
   private FigureFacet figureFacet = new BasicArcFigureFacetImpl();
 	
 	public BasicArcFigureGem(BasicArcState state)
 	{
 		this.state = state;
-		figureFacet.registerDynamicFacet(curvableFacet, CurvableFacet.class);
-    state.curvableFacet = curvableFacet;
 	}
   
   public FigureFacet getFigureFacet()
   {
     return figureFacet;
-  }
-  
-  public CurvableFacet getCurvableFacet()
-  {
-    return curvableFacet;
   }
   
   public BasicArcFigureGem(PersistentProperties properties, BasicArcState state)
@@ -61,46 +53,14 @@ public final class BasicArcFigureGem implements Gem
     state.calculatedPoints = new CalculatedArcPoints(null, null, virtualPoint, Arrays.asList(allPoints));
   }
 
-  private class CurvableFacetImpl implements CurvableFacet
-  {
-    public Object curve(boolean curved)
-    {
-      makeStyle(curved);
-      Command resize = makeAndExecuteResizingCommand();
-      return new Object[]{new Boolean (!curved), resize};
-    }
-
-    public void unCurve(Object memento)
-    {
-      Object objects[] = (Object[]) memento;
-      Boolean curved = (Boolean) objects[0];
-      Command resize = (Command) objects[1];
-      makeStyle(curved.booleanValue());
-      resize.unExecute();
-    }
-
-    private void makeStyle(boolean curved)
-    {
-      state.curved = curved;
-      figureFacet.adjusted();
-    }
-    
-    public boolean isCurved()
-    {
-      return state.curved;
-    }
-  }
-
-  public Command makeAndExecuteResizingCommand()
+  public void makeAndExecuteResizingTransaction()
   {
     // this method should only be used inside a command's execution
     ResizingFiguresGem gem = new ResizingFiguresGem(null, state.diagram);
     ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
     facet.markForResizing(figureFacet);
     facet.setFocusBounds(figureFacet.getFullBounds());
-    Command command = facet.end("", "");
-    command.execute(false);
-    return command;
+    facet.end();
   }
 
   private class ClipboardFacetImpl implements ClipboardFacet
@@ -190,14 +150,6 @@ public final class BasicArcFigureGem implements Gem
 
       return false;
     }
-
-    /**
-     * @see com.hopstepjump.idraw.foundation.ClipboardFacet#removeFromDiagram(FigureChosenFacet)
-     */
-    public Command removeFromDiagram(ChosenFiguresFacet focussedFigures)
-    {
-      return null;
-    }
   }
 
   private class BasicArcFigureFacetImpl implements FigureFacet
@@ -269,12 +221,6 @@ public final class BasicArcFigureGem implements Gem
   		// adjust any possible children also
   		if (state.containerFacet != null)
   			state.containerFacet.setShowingForChildren(showing);
-  		
-  		// adjust any anchors
-  		state.linkingFacet.getAnchor1().getFigureFacet().adjusted();
-      state.linkingFacet.getAnchor2().getFigureFacet().adjusted();
-  		
-  		adjusted();
   	}
   
   	/**
@@ -301,20 +247,21 @@ public final class BasicArcFigureGem implements Gem
   	}
   
     public Manipulators getSelectionManipulators(
+        ToolCoordinatorFacet coordinator,
         DiagramViewFacet diagramView,
         boolean favoured,
-        boolean firstSelected,
-        boolean allowTYPE0Manipulators)
+        boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       if (state.advancedFacet == null)
       {
 	      return new Manipulators(
 	      	null,
-	      	new ArcAdjustManipulatorGem(getLinkingFacet(), diagramView, state.calculatedPoints, state.curved, firstSelected).getManipulatorFacet());
+	      	new ArcAdjustManipulatorGem(coordinator, getLinkingFacet(), diagramView, state.calculatedPoints, state.curved, firstSelected).getManipulatorFacet());
       }
       else
       {
         return state.advancedFacet.getSelectionManipulators(
+        		coordinator,
             diagramView,
             favoured,
             firstSelected,
@@ -364,13 +311,12 @@ public final class BasicArcFigureGem implements Gem
   				// toggle the autosized flag (as a command)
   				String figureName = state.figureFacet.getFigureName();
   				boolean curved = state.curved;
-  				Command curveCommand =
-  					new ArcCurveCommand(
-  						state.figureFacet.getFigureReference(),
-  						!curved,
+  				coordinator.startTransaction(
   						(curved ? "uncurved " : "curved ") + figureName,
   						(curved ? "curved " : "uncurved ") + figureName);
-  				coordinator.executeCommandAndUpdateViews(curveCommand);
+  				state.curved = !curved;
+  				makeAndExecuteResizingTransaction();
+  				coordinator.commitTransaction();
   			}
   		});
   		return curvedItem;
@@ -559,17 +505,16 @@ public final class BasicArcFigureGem implements Gem
   	/**
   	 * @see com.hopstepjump.idraw.foundation.FigureFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
   	 */
-  	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+  	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
   	{
-  		return state.appearanceFacet.formViewUpdateCommandAfterSubjectChanged(isTop, pass);
+  		state.appearanceFacet.updateViewAfterSubjectChanged(pass);
   	}
   
   	/**
   	 * @see com.hopstepjump.idraw.foundation.FigureFacet#middleButtonPressed(ToolCoordinatorFacet)
   	 */
-  	public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+  	public void middleButtonPressed(ToolCoordinatorFacet coordinator)
   	{
-  	  return null;
   	}
   	
   	/**
@@ -596,14 +541,6 @@ public final class BasicArcFigureGem implements Gem
   		return state.appearanceFacet.hasSubjectBeenDeleted();
   	}
   
-  	/*
-  	 * @see com.hopstepjump.idraw.arcfacilities.arcsupport.BasicArcFigureFacet#adjusted()
-  	 */
-  	public void adjusted()
-  	{
-  		state.diagram.adjusted(state.figureFacet);
-  	}
-  
     public boolean useGlobalLayer()
     {
       return true;
@@ -616,7 +553,7 @@ public final class BasicArcFigureGem implements Gem
     }
 
 
-		public Command formDeleteCommand()
+		public void formDeleteTransaction()
 		{
 	    // form a complete set of all figures to delete, including children
 	    ChosenFiguresFacet chosenFigures = new ChosenFiguresFacet()
@@ -628,17 +565,14 @@ public final class BasicArcFigureGem implements Gem
 	    };
 	    List<FigureFacet> toDelete = new ArrayList<FigureFacet>();
 	    toDelete.add(this);
-	    Set deletionFigureIds = DeleteFromDiagramHelper.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
-	    
 
-	    // make a delete command to remove the views with deleted subjects
-	    return
-	      DeleteFromDiagramHelper.makeDeleteCommand(
-	          "BasicArcFigureGem deletion", "", "", getDiagram(), deletionFigureIds, false);
+	    // remove the views with deleted subjects
+	    Set<String> deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
+      DeleteFromDiagramTransaction.delete(getDiagram(), deletionFigureIds, false);
 		}
 
 
-    public ClipboardCommandsFacet getClipboardCommandsFacet()
+    public ClipboardActionsFacet getClipboardCommandsFacet()
     {
       return state.clipboardCommandsFacet;
     }
@@ -657,6 +591,19 @@ public final class BasicArcFigureGem implements Gem
     public ToolFigureClassification getToolClassification(UPoint point, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
 			return new ToolFigureClassification(figureFacet.getFigureName(), null);
+		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			PersistentProperties properties = pfig.getProperties();
+			state.showing = properties.retrieve("show", true).asBoolean();
+	    state.curved = properties.retrieve("curved", false).asBoolean();
+
+	    UPoint virtualPoint = properties.retrieve("vtl").asUPoint();
+
+	    UPoint[] allPoints = properties.retrieve("pts").asUPointArray();
+	    state.calculatedPoints = new CalculatedArcPoints(null, null, virtualPoint, Arrays.asList(allPoints));
+	    state.appearanceFacet.acceptPersistentProperties(pfig);
 		}
   }
 }

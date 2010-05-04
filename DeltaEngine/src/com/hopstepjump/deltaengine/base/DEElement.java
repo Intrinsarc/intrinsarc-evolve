@@ -45,7 +45,7 @@ public abstract class DEElement extends DEObject
 		clearCollections(perspective);
 	}  
 
-  public IDeltas getDeltas(ConstituentTypeEnum type)
+  public synchronized IDeltas getDeltas(ConstituentTypeEnum type)
   {
   	// possibly retired?
   	if (type == ConstituentTypeEnum.DELTA_MISC)

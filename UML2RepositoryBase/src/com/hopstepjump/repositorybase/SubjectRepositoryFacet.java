@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 
-import com.hopstepjump.gem.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 
@@ -18,15 +17,13 @@ import com.hopstepjump.idraw.foundation.persistence.*;
  * (c) Andrew McVeigh 05-Sep-02
  *
  */
-public interface SubjectRepositoryFacet extends Facet
-{
+public interface SubjectRepositoryFacet extends TransactionManagerFacet
+{	
   /**
-   * transaction management
+   * delete undelete and refresh
    */
-  public void startTransaction();
   public void incrementPersistentDelete(Element element);
   public void decrementPersistentDelete(Element element);
-  public void commitTransaction();
   public void refreshAll();
   public void close();
 
@@ -50,7 +47,6 @@ public interface SubjectRepositoryFacet extends Facet
 	public void resetModified();
 	public PersistentDiagram retrievePersistentDiagram(Package pkg) throws RepositoryPersistenceException;
 	
-	public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, boolean isTop, ViewUpdatePassEnum pass, boolean initialRun);	
 	public String getFullyQualifiedName(Element element, String separator);
   public String getFullStratumNames(Element element);
 

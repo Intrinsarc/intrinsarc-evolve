@@ -19,7 +19,7 @@ public class SubstitutionsMenuMaker
   public static JMenuItem getSubstitutionsMenuItem(FigureFacet figure, final ToolCoordinatorFacet coordinator)
   {
     // if this is a composite, it can be substituted
-    final Classifier subject = (Classifier) figure.getSubject();
+    final Type subject = (Type) figure.getSubject();
     JMenuItem substituters = new JMenuItem("Determine substitutions...");
     substituters.addActionListener(new ActionListener()
     {

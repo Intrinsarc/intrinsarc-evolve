@@ -115,6 +115,7 @@ public class OldConnectorArcAppearanceGem implements Gem
     }
     
     public Manipulators getSelectionManipulators(
+    		ToolCoordinatorFacet coordinator, 
         DiagramViewFacet diagramView,
         boolean favoured,
         boolean firstSelected,
@@ -125,12 +126,13 @@ public class OldConnectorArcAppearanceGem implements Gem
 		  ManipulatorFacet keyFocus = null;
 		  if (favoured)
       {
-        keyFocus = linkedTextFacet.getTextEntryManipulator(diagramView);
+        keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
       }
 		    
       Manipulators manips = new Manipulators(
 	      	keyFocus,
 	      	new ArcAdjustManipulatorGem(
+	      			coordinator,
 	      	    figureFacet.getLinkingFacet(),
 	      	    diagramView,
 	      	    calculatedPoints,
@@ -168,24 +170,12 @@ public class OldConnectorArcAppearanceGem implements Gem
 			return false;
 		}
 		
-		public void unAddContents(Object memento)
+		public void removeContents(ContainedFacet[] containables)
 		{
-			// not applicable -- has a fixed set of containables
 		}
 		
-		public Object removeContents(ContainedFacet[] containables)
+		public void addContents(ContainedFacet[] containables)
 		{
-			return null;
-		}
-		
-		public void unRemoveContents(Object memento)
-		{
-			// not applicable -- has a fixed set of containables
-		}
-		
-		public Object addContents(ContainedFacet[] containables)
-		{
-			return null;
 		}
 		
 		public Iterator<FigureFacet> getContents()
@@ -261,6 +251,10 @@ public class OldConnectorArcAppearanceGem implements Gem
 		{
 			return false;
 		}
+
+		public void cleanUp()
+		{
+		}
 	}
   
   
@@ -328,9 +322,8 @@ public class OldConnectorArcAppearanceGem implements Gem
 			return true;
 		}
 
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 
 		public Object getSubject()
@@ -343,9 +336,8 @@ public class OldConnectorArcAppearanceGem implements Gem
 			return false;
 		}
 
-		public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+		public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 		{
-			return null;
 		}
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)
@@ -357,6 +349,12 @@ public class OldConnectorArcAppearanceGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+      if (delegatingAppearanceFacet != null)
+        delegatingAppearanceFacet.acceptPersistentProperties(pfig);
+		}
   }
 
   /**

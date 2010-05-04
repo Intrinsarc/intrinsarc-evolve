@@ -44,17 +44,20 @@ public class AssociationArcAppearanceGem implements Gem
   private boolean unidirectional;
   private BasicArcAppearanceFacet appearanceFacet = new BasicArcAppearanceFacetImpl();
   private FigureFacet figureFacet;
-  private ChangeUnidirectionalityFacet unidirectionalFacet = new ChangeUnidirectionalityFacetImpl();
-  private ChangeAssociationTypeFacet associationTypeFacet = new ChangeAssociationTypeFacetImpl();
   
-  
-  public AssociationArcAppearanceGem(PersistentProperties properties)
+  public AssociationArcAppearanceGem(PersistentFigure pfig)
   {
-    type = properties.retrieve("type", ASSOCIATION_TYPE).asInteger();
-    unidirectional = properties.retrieve("uni", false).asBoolean();
+  	interpretPersistentFigure(pfig);
   }
   
-  public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+  	PersistentProperties properties = pfig.getProperties();
+    type = properties.retrieve("type", ASSOCIATION_TYPE).asInteger();
+    unidirectional = properties.retrieve("uni", false).asBoolean();
+	}
+
+	public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
   {
     return appearanceFacet;
   }
@@ -62,45 +65,9 @@ public class AssociationArcAppearanceGem implements Gem
   public void connectFigureFacet(FigureFacet figureFacet)
   {
     this.figureFacet = figureFacet;
-    figureFacet.registerDynamicFacet(unidirectionalFacet, ChangeUnidirectionalityFacet.class);
-    figureFacet.registerDynamicFacet(associationTypeFacet, ChangeAssociationTypeFacet.class);
   }
   
   
-  private class ChangeUnidirectionalityFacetImpl implements ChangeUnidirectionalityFacet
-  {
-    public Object setUnidirectionality(boolean newUnidirectional)
-    {
-      boolean oldUnidirectional = unidirectional;
-      unidirectional = newUnidirectional;
-      figureFacet.adjusted();
-      return new Boolean(oldUnidirectional);
-    }
-
-    public void unSetUnidirectionality(Object memento)
-    {
-      unidirectional = ((Boolean) memento).booleanValue();
-      figureFacet.adjusted();
-    }    
-  }
-  
-  private class ChangeAssociationTypeFacetImpl implements ChangeAssociationTypeFacet
-  {
-    public Object setAssociationType(int newType)
-    {
-      int oldType = type;
-      type = newType;
-      figureFacet.adjusted();
-      return oldType;
-    }
-
-    public void unSetAssociationType(Object memento)
-    {
-      type = (Integer) memento;
-      figureFacet.adjusted();
-    }    
-  }
-
   private class BasicArcAppearanceFacetImpl implements BasicArcAppearanceFacet
   {
 
@@ -199,13 +166,11 @@ public class AssociationArcAppearanceGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           // adjust the visibility
-          ChangeUnidirectionalityCommand visibilityCommand =
-            new ChangeUnidirectionalityCommand(
-                figureFacet.getFigureReference(),
-                !unidirectional,
+          coordinator.startTransaction(
                 "changed unidirectionality to " + !unidirectional,
                 "restored unidirectionality to " + !unidirectional);
-          coordinator.executeCommandAndUpdateViews(visibilityCommand);
+          unidirectional = !unidirectional;
+          coordinator.commitTransaction();
         }
       });
       return item;
@@ -221,13 +186,11 @@ public class AssociationArcAppearanceGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           // adjust the visibility
-          ChangeAssociationTypeCommand visibilityCommand =
-            new ChangeAssociationTypeCommand(
-                figureFacet.getFigureReference(),
-                newType,
+        	coordinator.startTransaction(
                 "changed association type to " + name,
                 "restored association type from " + name);
-          coordinator.executeCommandAndUpdateViews(visibilityCommand);
+        	type = newType;
+        	coordinator.commitTransaction();
         }
       });
       return item;
@@ -238,9 +201,8 @@ public class AssociationArcAppearanceGem implements Gem
       return end != null && AssociationCreatorGem.acceptsOneOrBothAnchors(start, end);
 		}
 
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 
 		public Object getSubject()
@@ -253,9 +215,8 @@ public class AssociationArcAppearanceGem implements Gem
 			return false;
 		}
 
-		public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+		public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 		{
-			return null;
 		}
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)
@@ -278,6 +239,11 @@ public class AssociationArcAppearanceGem implements Gem
 		public ToolFigureClassification getToolClassification(UPoint point)
 		{
 			return new ToolFigureClassification("association", null);
+		}
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
 		}
   }
 }

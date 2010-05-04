@@ -6,7 +6,7 @@ import com.hopstepjump.uml2deltaengine.*;
 import com.thoughtworks.xstream.converters.*;
 import com.thoughtworks.xstream.io.*;
 
-public class UML2AppliedStereotypeConverter implements Converter
+/*public class UML2AppliedStereotypeConverter implements Converter
 {
 	public UML2AppliedStereotypeConverter()
 	{
@@ -34,3 +34,4 @@ public class UML2AppliedStereotypeConverter implements Converter
 		return s;
 	}
 }
+*/

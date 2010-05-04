@@ -36,7 +36,7 @@ public final class AttributeCreatorGem implements Gem
 	    return AttributeFeatureTypeFacetImpl.FIGURE_NAME;
 	  }
 	   
-	  public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+	  public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, true, false);
 	  	FeatureNodeGem featureGem = new FeatureNodeGem((Property) subject);
@@ -50,17 +50,8 @@ public final class AttributeCreatorGem implements Gem
 			basicGem.connectBasicNodeAppearanceFacet(featureGem.getBasicNodeAppearanceFacet());
 	    basicGem.connectClipboardCommandsFacet(featureGem.getClipboardCommandsFacet());
 	    diagram.add(basicGem.getBasicNodeFigureFacet());
-	    return new FigureReference(diagram, figureId);
 	  }
     
-	  public void unCreateFigure(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -90,16 +81,9 @@ public final class AttributeCreatorGem implements Gem
 			return basicGem.getBasicNodeFigureFacet();
 		}
 
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-  
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-        repository.decrementPersistentDelete((Element) previouslyCreated);
-        return previouslyCreated;
-      }
   
       Classifier owner = (Classifier) repository.findOwningElement(
           containingReference, UML2Package.eINSTANCE.getClassifier());
@@ -138,11 +122,6 @@ public final class AttributeCreatorGem implements Gem
 
       return attr;
     }
-
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-        GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }    
 
 		public void initialiseExtraProperties(PersistentProperties properties)
 		{

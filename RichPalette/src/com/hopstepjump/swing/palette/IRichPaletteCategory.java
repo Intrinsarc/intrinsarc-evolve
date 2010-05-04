@@ -24,4 +24,5 @@ public interface IRichPaletteCategory
   public boolean isMinimized();
   public Object visitEntries(IRichPaletteEntryVisitor visitor);
 	public List<ToolClassification> getToolClassifications();
+	public String[] getFocusTags();
 }

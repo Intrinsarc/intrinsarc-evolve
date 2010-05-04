@@ -32,6 +32,7 @@ public class JazzToWMFGraphics2D extends Graphics2D
 	
 	private double currentPenWidth;
 	private Graphics2D real;
+	private int textYOffset;
 	private CompositeRecord records = new CompositeRecord();
 	private ArrayList createdWMFGraphic2Ds = new ArrayList();
 	double rotationTheta;
@@ -42,7 +43,9 @@ public class JazzToWMFGraphics2D extends Graphics2D
 	public JazzToWMFGraphics2D()
 	{
 		this.real = (Graphics2D) new BufferedImage(16, 16, BufferedImage.TYPE_INT_RGB).getGraphics();
+		this.textYOffset = 0;
 		real.setStroke(new BasicStroke(1));
+		records.addRecord(new SetTextAlignRecord(SetTextAlignRecord.ALIGN_BASELINE));
 	}
 
 	public CompositeRecord getRecords()
@@ -442,7 +445,7 @@ public class JazzToWMFGraphics2D extends Graphics2D
 		Color currentColor = real.getColor();
 		textColors.addSetObjectRecords(records, new SetTextColorRecord(currentColor));
 		int xPos = (int) Math.round(real.getTransform().getTranslateX());
-		int yPos = (int) Math.round(real.getTransform().getTranslateY() + y - getFont().getSize());
+		int yPos = (int) Math.round(real.getTransform().getTranslateY() + y - 1);
 		records.addRecord(new TextOutRecord(str, xPos, yPos));
 	}
 

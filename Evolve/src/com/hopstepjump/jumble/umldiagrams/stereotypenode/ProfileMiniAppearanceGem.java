@@ -79,7 +79,7 @@ public class ProfileMiniAppearanceGem implements Gem
     {
       Utilities.addSeparator(menu);
       DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
-      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me, true));
+      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me));
     }
 
     public Set<String> getDisplayStyles(boolean displayingOnlyAsIcon, boolean anchorIsTarget)
@@ -99,20 +99,14 @@ public class ProfileMiniAppearanceGem implements Gem
       return new JList(listElements);
     }
 
-    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public Object setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
     {
       return ComponentMiniAppearanceGem.setElementText(
           figureFacet,
           textable,
           text,
           listSelection,
-          unsuppress,
-          oldMemento);
-    }
-
-    public SetTextPayload unSetText(Object memento)
-    {
-      return ComponentMiniAppearanceGem.unSetElementText(figureFacet, memento);
+          unsuppress);
     }
 	}
 }

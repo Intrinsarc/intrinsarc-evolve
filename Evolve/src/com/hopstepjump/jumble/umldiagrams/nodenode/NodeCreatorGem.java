@@ -40,16 +40,9 @@ public class NodeCreatorGem
 	    return FIGURE_NAME;
 	  }
 	
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-        repository.decrementPersistentDelete((Element) previouslyCreated);
-        return previouslyCreated;
-      }
 
       // no nested classes currently supported
       Package owner = (Package) diagram.getLinkedObject();
@@ -65,13 +58,7 @@ public class NodeCreatorGem
       return owner.createOwnedMember(UML2Package.eINSTANCE.getNode());
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-
-    
-    public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+    public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, false, false);
 	  	BasicNamespaceNodeGem componentGem = new BasicNamespaceNodeGem((Node) subject, "", diagram, figureId, FIGURE_NAME, new Color(250, 255, 240), false);
@@ -81,17 +68,8 @@ public class NodeCreatorGem
 			componentGem.connectFeaturelessClassifierAppearanceFacet(new NodeAppearanceGem().getPackageAppearanceFacet());
 	
 	    diagram.add(basicGem.getBasicNodeFigureFacet());    
-      return new FigureReference(diagram, figureId);
 	  }
     
-	  public void unCreateFigure(Object memento)
-	  {
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -106,7 +84,7 @@ public class NodeCreatorGem
 		public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
 		{
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-	  	BasicNamespaceNodeGem componentGem = new BasicNamespaceNodeGem(FIGURE_NAME, figure.getSubject(), figure.getProperties());
+	  	BasicNamespaceNodeGem componentGem = new BasicNamespaceNodeGem(FIGURE_NAME, figure);
 			basicGem.connectBasicNodeAppearanceFacet(componentGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(componentGem.getBasicNodeContainerFacet());
 			componentGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

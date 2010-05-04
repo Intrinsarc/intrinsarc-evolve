@@ -43,16 +43,9 @@ public final class PackageCreatorGem implements Gem
 	    return FIGURE_NAME;
 	  }
 	
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-        repository.decrementPersistentDelete((Element) previouslyCreated);
-        return previouslyCreated;
-      }
 
       // find a possible nested package
       Package owner = (Package) diagram.getLinkedObject();
@@ -84,19 +77,14 @@ public final class PackageCreatorGem implements Gem
       boolean relaxed = properties.retrieve(">relaxed", false).asBoolean();
       if (relaxed)
       {
-        StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(
-            pkg, CommonRepositoryFunctions.RELAXED, relaxed).execute(false);
+        StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(
+            pkg, CommonRepositoryFunctions.RELAXED, relaxed);
       }
 
       return pkg;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-
-    public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+    public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
       NamedElement owner = (NamedElement) ((subject == null) ? null : ((Package) subject).getOwner());
       PersistentProperties actualProperties = new PersistentProperties(properties);
@@ -120,23 +108,12 @@ public final class PackageCreatorGem implements Gem
 
       PackageMiniAppearanceGem miniGem = new PackageMiniAppearanceGem();
       miniGem.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
-      miniGem.connectBasicNamespaceNodeFacet(packageGem.getBasicNamespaceNodeFacet());
 			packageGem.connectBasicNamespaceMiniAppearanceFacet(miniGem.getBasicNamespaceMiniAppearanceFacet());
 
 	
 	    diagram.add(basicGem.getBasicNodeFigureFacet());
-	    
-	    return new FigureReference(diagram, figureId);
 	  }
     
-	  public void unCreateFigure(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreator#getFullName()
 		 */
@@ -148,7 +125,7 @@ public final class PackageCreatorGem implements Gem
 		public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
 		{
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-	  	BasicNamespaceNodeGem packageGem = new BasicNamespaceNodeGem(FIGURE_NAME, figure.getSubject(), figure.getProperties());
+	  	BasicNamespaceNodeGem packageGem = new BasicNamespaceNodeGem(FIGURE_NAME, figure);
 			basicGem.connectBasicNodeAppearanceFacet(packageGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(packageGem.getBasicNodeContainerFacet());
 			packageGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
@@ -158,7 +135,6 @@ public final class PackageCreatorGem implements Gem
       
       PackageMiniAppearanceGem miniGem = new PackageMiniAppearanceGem();
       miniGem.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
-      miniGem.connectBasicNamespaceNodeFacet(packageGem.getBasicNamespaceNodeFacet());
       packageGem.connectBasicNamespaceMiniAppearanceFacet(miniGem.getBasicNamespaceMiniAppearanceFacet());
 	
 	    return basicGem.getBasicNodeFigureFacet();

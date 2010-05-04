@@ -4,36 +4,36 @@ import java.io.*;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.filechooser.*;
 import javax.swing.filechooser.FileFilter;
 
 import org.eclipse.emf.common.util.*;
 
 import com.hopstepjump.deltaengine.errorchecking.*;
-import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 
 public class RepositoryUtility
 {
-  public static CommandManagerListenerFacet useObjectDbRepository(String hostName, String dbName)
-  throws RepositoryOpeningException
+	public static final ImageIcon MAIN_FRAME_ICON = IconLoader.loadIcon("xml.png");
+	public static final ImageIcon LOCALDB_ICON = IconLoader.loadIcon("database.png");
+
+	public static void useObjectDbRepository(String hostName, String dbName) throws RepositoryOpeningException
 	{
 	  closeExisting();
 	  ObjectDbSubjectRepositoryGem repositoryGem = ObjectDbSubjectRepositoryGem.openRepository(hostName, dbName);
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;
-	  return repositoryGem.getCommandManagerListenerFacet();
 	}
 	
-	public static CommandManagerListenerFacet useObjectDbRepository(ObjectDbSubjectRepositoryGem repositoryGem)
+	public static void useObjectDbRepository(ObjectDbSubjectRepositoryGem repositoryGem)
 	{
 	  closeExisting();
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;
-	  return repositoryGem.getCommandManagerListenerFacet();
 	}
 	
-	public static CommandManagerListenerFacet useXMLRepository(String fileName) throws RepositoryOpeningException
+	public static void useXMLRepository(String fileName) throws RepositoryOpeningException
 	{
 	  closeExisting();
 	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
@@ -41,7 +41,6 @@ public class RepositoryUtility
 	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;
-	  return repositoryGem.getCommandManagerListenerFacet();
 	}
 	
 	private static void closeExisting()
@@ -55,24 +54,29 @@ public class RepositoryUtility
 	  repository = null;
 	}
 	
-	public static String chooseFileName(JFrame frame, String text, String extensionType, String extension, File startDirectory)
+	private static FileView makeFileView()
 	{
-	  // ask for a file to store the model into
-	  JFileChooser chooser = new JFileChooser(startDirectory); 
-	  chooser.setDialogTitle(text);
-	  chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-	  FileFilter filter = new MyFileNameExtensionFilter(extensionType, new String[]{extension});
-	  chooser.setFileFilter(filter);
-	  if (chooser.showOpenDialog(frame) != JFileChooser.APPROVE_OPTION)
-	    return null;
-	
-	  String fileName = chooser.getSelectedFile().getAbsolutePath();
-	  if (!fileName.endsWith("." + extension) && chooser.getFileFilter() == filter)
-	    fileName += "." + extension;
-	  return fileName;
+		return new FileView()
+		{
+		  public Icon getIcon(File file)
+		  {
+		    String filename = file.getName().toLowerCase();
+		    if (filename.endsWith(XMLSubjectRepositoryGem.UML2_SUFFIX) || filename.endsWith(XMLSubjectRepositoryGem.UML2Z_SUFFIX))
+		      return MAIN_FRAME_ICON;
+			  if (filename.endsWith(ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX))
+			    return LOCALDB_ICON;
+
+		    return super.getIcon(file);
+		  }
+		};
 	}
 	
-	public static String chooseFileName(JFrame frame, String text, String extensionType[], String extensions[], File startDirectory)
+	public static String chooseFileNameToCreate(JFrame frame, String text, String extensionType, String extension, File startDirectory)
+	{
+	  return chooseFileNameToCreate(frame, text, new String[]{extensionType}, new String[]{extension}, startDirectory);
+	}
+	
+	public static String chooseFileNameToCreate(JFrame frame, String text, String extensionType[], String extensions[], File startDirectory)
 	{
 	  // ask for a file to store the model into
 	  JFileChooser chooser = new JFileChooser(startDirectory); 
@@ -85,7 +89,8 @@ public class RepositoryUtility
 		  filters.add(next);
 	  	chooser.addChoosableFileFilter(next);
 	  }
-	  if (chooser.showOpenDialog(frame) != JFileChooser.APPROVE_OPTION)
+  	chooser.setFileView(makeFileView());
+	  if (chooser.showSaveDialog(frame) != JFileChooser.APPROVE_OPTION)
 	    return null;
 	
 	  String fileName = chooser.getSelectedFile().getAbsolutePath();
@@ -93,6 +98,36 @@ public class RepositoryUtility
 	  String extension = extensions[extIndex];
 	  if (!fileName.endsWith("." + extension))
 	    fileName += "." + extension;
+	  return fileName;
+	}
+	
+	public static String chooseFileNameToOpen(JFrame frame, String text, String extensionType, String extension, File startDirectory)
+	{
+	  return chooseFileNameToOpen(frame, text, extensionType, new String[]{extension}, extension, startDirectory);
+	}
+	
+	public static String chooseFileNameToOpen(JFrame frame, String text, String extensionType, String extensions[], String extension, File startDirectory)
+	{
+	  // ask for a file to store the model into
+	  JFileChooser chooser = new JFileChooser(startDirectory); 
+	  chooser.setDialogTitle(text);
+	  chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+	  List<FileFilter> filters = new ArrayList<FileFilter>();
+  	FileFilter next = new MyFileNameExtensionFilter(extensionType, extensions);
+	  filters.add(next);
+  	chooser.addChoosableFileFilter(next);
+  	chooser.setFileView(makeFileView());
+	  if (chooser.showOpenDialog(frame) != JFileChooser.APPROVE_OPTION)
+	    return null;
+	
+	  String fileName = chooser.getSelectedFile().getAbsolutePath();
+	  int extIndex = filters.indexOf(chooser.getFileFilter());
+	  boolean endsWith = false;
+	  for (String ext : extensions)
+	  	if (fileName.endsWith("." + ext))
+	  		endsWith = true;
+	  if (!endsWith)
+	  	fileName += "." + extension;
 	  return fileName;
 	}
 	

@@ -1,11 +1,9 @@
 package com.hopstepjump.uml2deltaengine.converters;
 
-import com.hopstepjump.uml2deltaengine.*;
-import com.thoughtworks.xstream.*;
 
 public class UML2XStreamConverters
 {
-  public static void registerConverters(XStream x)
+/*  public static void registerConverters(XStream x)
   {
   	x.processAnnotations(UML2Stratum.class);
   	x.processAnnotations(UML2Component.class);
@@ -29,4 +27,5 @@ public class UML2XStreamConverters
   	x.registerConverter(new UML2SlotConverter());
   	x.registerConverter(new UML2AppliedStereotypeConverter());
   }
+  */
 }

@@ -1,6 +1,5 @@
 package com.hopstepjump.idraw.foundation.persistence;
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -8,9 +7,9 @@ import java.util.*;
  * (c) Andrew McVeigh 24-Jan-03
  *
  */
-public class PersistentFigure implements Serializable
+public class PersistentFigure
 {
-  private Object subject;
+	private Object subject;
 	private String id;
 	private String recreator;
 	private String anchor1Id;
@@ -27,6 +26,14 @@ public class PersistentFigure implements Serializable
 		properties = new PersistentProperties();
 	}
   
+	public PersistentFigure(String id, String recreator, Object subject, PersistentProperties properties)
+	{
+		this.id = id;
+		this.recreator = recreator;
+		this.subject = subject;
+		this.properties = properties;
+	}
+  
 	public PersistentFigure(PersistentFigure figure)
 	{
 		// copy over all the parts, and clone the properties
@@ -39,6 +46,34 @@ public class PersistentFigure implements Serializable
 		contentIds.addAll(figure.contentIds);
 		linkIds.addAll(figure.linkIds);
 		properties = new PersistentProperties(figure.properties);
+	}
+
+	public boolean equals(Object obj)
+	{
+  	if (!(obj instanceof PersistentFigure))
+  		return false;
+  	PersistentFigure p = (PersistentFigure) obj;
+  	return
+  		equals(id, p.id) &&
+  		equals(recreator, p.recreator) &&
+  		equals(anchor1Id, p.anchor1Id) &&
+  		equals(anchor2Id, p.anchor2Id) &&
+  		contentIds.equals(p.contentIds) &&
+  		linkIds.equals(p.linkIds) &&
+  		properties.equals(p.properties);
+	}
+
+	private boolean equals(String a, String b)
+	{
+		if (a == null || b == null)
+			return a == b;
+		return a.equals(b);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return id.hashCode();
 	}
 
 	/**
@@ -154,4 +189,9 @@ public class PersistentFigure implements Serializable
   {
     this.subject = subject;
   }
+
+	public void setProperties(PersistentProperties properties)
+	{
+		this.properties = properties;
+	}
 }

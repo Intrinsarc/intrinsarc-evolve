@@ -19,6 +19,7 @@ public interface AdvancedArcFacet extends Facet
       boolean offsetWhenMoving);
   
   Manipulators getSelectionManipulators(
+  		ToolCoordinatorFacet coordinator,
       DiagramViewFacet diagramView,
       boolean favoured,
       boolean firstSelected,

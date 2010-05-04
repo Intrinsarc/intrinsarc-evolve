@@ -2,7 +2,7 @@ package taskview.base;
 
 import com.hopstepjump.backbone.runtime.api.*;
 
-public class DemoController
+public class DemoController implements ILifecycle
 {
 // start generated code
 // attributes
@@ -18,12 +18,21 @@ public class DemoController
 
 	private class IRunRunImpl implements IRun
 	{
-
     public int run(String[] args)
     {
       System.out.println("$$ running now!");
       view.display();
       return 0;
     }
+	}
+
+
+	public void afterInit()
+	{
+		run_IRunProvided.run(null);
+	}
+
+	public void beforeDelete()
+	{
 	}
 }

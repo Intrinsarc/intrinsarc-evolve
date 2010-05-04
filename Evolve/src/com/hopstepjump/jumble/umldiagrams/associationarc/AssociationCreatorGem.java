@@ -49,7 +49,7 @@ public class AssociationCreatorGem implements Gem
 	    return "association";
 	  }
 	
-	  public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
+	  public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
 	  {
 	  	// instantiate to use conventional facets
 	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
@@ -61,23 +61,15 @@ public class AssociationCreatorGem implements Gem
       
       properties.addIfNotThere(new PersistentProperty("type", type, AssociationArcAppearanceGem.ASSOCIATION_TYPE));
       properties.addIfNotThere(new PersistentProperty("uni", unidirectional, false));
-      AssociationArcAppearanceGem delegatingAppearanceGem = new AssociationArcAppearanceGem(properties);
+      PersistentFigure pfig = new PersistentFigure(figureId, null, subject, properties);
+      AssociationArcAppearanceGem delegatingAppearanceGem = new AssociationArcAppearanceGem(pfig);
       delegatingAppearanceGem.connectFigureFacet(gem.getFigureFacet());
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
           delegatingAppearanceGem.getBasicArcAppearanceFacet());
 	    																					 
 	    diagram.add(gem.getFigureFacet());
-	    return new FigureReference(diagram, figureId);
 	  }
 	
-	  public void unCreate(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -99,7 +91,7 @@ public class AssociationCreatorGem implements Gem
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
       connectorGem.connectFigureFacet(gem.getFigureFacet(), figure.getProperties());
 
-      AssociationArcAppearanceGem delegatingAppearanceGem = new AssociationArcAppearanceGem(figure.getProperties());
+      AssociationArcAppearanceGem delegatingAppearanceGem = new AssociationArcAppearanceGem(figure);
       delegatingAppearanceGem.connectFigureFacet(gem.getFigureFacet());
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
           delegatingAppearanceGem.getBasicArcAppearanceFacet());
@@ -118,22 +110,13 @@ public class AssociationCreatorGem implements Gem
       return acceptsOneOrBothAnchors(start, end);
     }
     
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
     {
     	return null;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    }
-
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+    public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
-		}
-
-		public Object extractRawSubject(Object previouslyCreated)
-		{
-			return previouslyCreated;
 		}
 	}
   

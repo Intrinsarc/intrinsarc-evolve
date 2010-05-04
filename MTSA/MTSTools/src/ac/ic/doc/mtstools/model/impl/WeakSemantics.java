@@ -11,6 +11,7 @@ public class WeakSemantics extends BaseSemanticsByRelation implements
 		super(new FixedPointRelationConstructor(new SimulationChain().add(
 				new WeakForwardSimulation(silentActions)).add(
 				new WeakBackwardSimulation(silentActions))), silentActions);
+			
 	}
 
 }

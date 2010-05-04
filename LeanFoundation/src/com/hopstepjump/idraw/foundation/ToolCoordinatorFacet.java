@@ -17,8 +17,11 @@ import edu.umd.cs.jazz.util.*;
  * ToolCoordinator coordinates the activies of a number of tools, and allow them to emit commands.
  */
 
-public interface ToolCoordinatorFacet extends PopupMakerFacet
-{
+public interface ToolCoordinatorFacet extends PopupMakerFacet, TransactionManagerFacet
+{	
+	void commitTransaction(boolean fullyCommitCurrentDiagramInForeground);
+	boolean inTransaction();
+	
   public void attachTo(DiagramViewFacet diagramView, ZCanvas canvas, ZNode mouseNode);
   public DiagramViewFacet getCurrentDiagramView();
   
@@ -33,9 +36,6 @@ public interface ToolCoordinatorFacet extends PopupMakerFacet
 
   public void toolFinished(ZMouseEvent event, boolean stopMultiTool);
 
-  public void executeCommandAndUpdateViews(Command command);
-	public Command executeForPreview(Command command, boolean sendDiagramChanges, boolean returnCommand);
-	public void undoForPreview(Command command);
   public int invokeYesNoCancelDialog(String title, Object message);
   public int invokeErrorDialog(String title, Object message);
   public int invokeAsDialog(ImageIcon icon, String title, JComponent contents, JButton buttons[], Runnable runAfterShown);

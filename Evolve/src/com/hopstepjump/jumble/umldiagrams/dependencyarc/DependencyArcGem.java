@@ -36,7 +36,6 @@ public class DependencyArcGem implements Gem
   private AdvancedArcFacet advancedFacet = new AdvancedArcFacetImpl();
   private LinkedTextOriginFacet linkedTextOriginFacet = new LinkedTextOriginFacetImpl();
   private ContainerFacet containerFacet = new ContainerFacetImpl();
-  private CurvableFacet curvableFacet;
   private FigureFacet figureFacet;
   private Dependency subject;
   private String name = "";
@@ -46,24 +45,29 @@ public class DependencyArcGem implements Gem
   private Color color = Color.BLACK;
   private boolean substitution;
   private boolean resemblance;
+  private boolean socketStyle;
+  private boolean largeSocketStyle;
 
 
-  public DependencyArcGem(Dependency subject, PersistentProperties properties)
+  public DependencyArcGem(PersistentFigure pfig)
   {
-    this.subject = subject;
+  	interpretPersistentFigure(pfig);
+  }
+  
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    subject = (Dependency) pfig.getSubject();
+    PersistentProperties properties = pfig.getProperties();
     color = properties.retrieve("color", Color.BLACK).asColor();
     substitution = properties.retrieve("substitution", false).asBoolean();
     resemblance = properties.retrieve("resemblance", false).asBoolean();
-  }
-  
-  public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
+    socketStyle = properties.retrieve("socket", false).asBoolean();
+    largeSocketStyle = properties.retrieve("largeSocket", false).asBoolean();
+	}
+
+	public BasicArcAppearanceFacet getBasicArcAppearanceFacet()
   {
     return basicArcAppearanceFacet;
-  }
-  
-  public void connectCurvableFacet(CurvableFacet curvableFacet)
-  {
-    this.curvableFacet = curvableFacet;
   }
   
   public void connectFigureFacet(FigureFacet figureFacet)
@@ -145,24 +149,12 @@ public class DependencyArcGem implements Gem
 			return false;
 		}
 		
-		public void unAddContents(Object memento)
+		public void removeContents(ContainedFacet[] containables)
 		{
-			// not applicable -- has a fixed set of containables
 		}
 		
-		public Object removeContents(ContainedFacet[] containables)
+		public void addContents(ContainedFacet[] containables)
 		{
-			return null;
-		}
-		
-		public void unRemoveContents(Object memento)
-		{
-			// not applicable -- has a fixed set of containables
-		}
-		
-		public Object addContents(ContainedFacet[] containables)
-		{
-			return null;
 		}
 		
 		public Iterator<FigureFacet> getContents()
@@ -220,6 +212,10 @@ public class DependencyArcGem implements Gem
 		{
 			return false;
 		}
+
+		public void cleanUp()
+		{
+		}
 	}
 
   
@@ -273,6 +269,7 @@ public class DependencyArcGem implements Gem
     }
     
     public Manipulators getSelectionManipulators(
+    		ToolCoordinatorFacet coordinator, 
         DiagramViewFacet diagramView,
         boolean favoured,
         boolean firstSelected,
@@ -283,12 +280,13 @@ public class DependencyArcGem implements Gem
 		  ManipulatorFacet keyFocus = null;
 		  if (favoured)
       {
-        keyFocus = linkedTextFacet.getTextEntryManipulator(diagramView);
+        keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
       }
 		    
       Manipulators manips = new Manipulators(
 	      	keyFocus,
 	      	new ArcAdjustManipulatorGem(
+	      			coordinator,
 	      	    figureFacet.getLinkingFacet(),
 	      	    diagramView,
 	      	    calculatedPoints,
@@ -318,11 +316,11 @@ public class DependencyArcGem implements Gem
       Set<String> styles = calculated.getNode2().getDisplayStyles(true);
       if (styles == null)
         styles = new HashSet<String>();
-    	boolean socketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT);;
+    	boolean socketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT);
       boolean largeSocketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT_LARGE);
       
       if (socketStyle || largeSocketStyle)
-        return formSocketAppearance(mainArc, start, second, secondLast, last, calculated, largeSocketStyle);
+        return formSocketAppearance(mainArc, start, second, secondLast, last, calculated, largeSocketStyle, curved);
       else
         return formDependencyAppearance(mainArc, start, second, secondLast, last, calculated, color);
     }
@@ -334,7 +332,8 @@ public class DependencyArcGem implements Gem
         UPoint secondLast,
         UPoint last,
         CalculatedArcPoints calculated,
-        boolean largeSocketStyle)
+        boolean largeSocketStyle,
+        boolean curved)
     {
       ZGroup group = new ZGroup();
       UDimension offset = new UDimension(4, 4);
@@ -401,7 +400,7 @@ public class DependencyArcGem implements Gem
       }
       
       // make a (possibly curved) line
-      ZShape mainLine = CalculatedArcPoints.makeConnection(changedPoints, curvableFacet.isCurved());
+      ZShape mainLine = CalculatedArcPoints.makeConnection(changedPoints, curved);
 
       // add the thin line
       group.addChild(new ZVisualLeaf(mainLine));
@@ -430,6 +429,8 @@ public class DependencyArcGem implements Gem
       properties.add(new PersistentProperty("color", color, Color.BLACK));
       properties.add(new PersistentProperty("substitution", substitution, false));
       properties.add(new PersistentProperty("resemblance", resemblance, false));
+      properties.add(new PersistentProperty("socket", socketStyle, false));
+      properties.add(new PersistentProperty("largeSocket", largeSocketStyle, false));
     }
 
     public void addToContextMenu(JPopupMenu menu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
@@ -442,61 +443,47 @@ public class DependencyArcGem implements Gem
       return end != null && DependencyCreatorGem.acceptsOneOrBothAnchors(start, end);
     }
 
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       if (pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
       
       // if this is top and the anchors we are attached to are not the same as the ones that the
       // model element is attached to, then delete
       final Dependency dependency = subject;
-      if (isTop)
+      NamedElement owner = (NamedElement) subject.getClients().get(0);
+      NamedElement supplier = subject.undeleted_getDependencyTarget();
+      final NamedElement viewOwner = DependencyCreatorGem.extractDependentClient(figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject());
+      final NamedElement viewSupplier = (NamedElement) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
+      
+      if (owner != viewOwner || supplier != viewSupplier)
       {
-        NamedElement owner = (NamedElement) subject.getClients().get(0);
-        NamedElement supplier = subject.undeleted_getDependencyTarget();
-        final NamedElement viewOwner = DependencyCreatorGem.extractDependentClient(figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject());
-        final NamedElement viewSupplier = (NamedElement) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
-        
-        if (owner != viewOwner || supplier != viewSupplier)
-          return figureFacet.formDeleteCommand();
+        figureFacet.formDeleteTransaction();
+        return;
       }
       
       // possibly update the name
       if (!name.equals(linkedTextFacet.getText()))
-  			return new SetTextCommand(
-  			    linkedTextFacet.getFigureFacet().getFigureReference(),
+      {
+  			SetTextTransaction.set(
+  			    linkedTextFacet.getFigureFacet(),
   			    subject.getName(),
   			    null,
-  			    false,
-  			    "adjusted name",
-  			    "restored name");
+  			    false);
+      }
       
       // if the stereotypes have changed, force a redraw
       final int newHash = StereotypeUtilities.calculateStereotypeHash(null, subject);
-      if (newHash != stereotypeHash ||
-          substitution != (dependency.isReplacement()) ||
-          resemblance != (dependency.isResemblance()))
-      {
-      	return new AbstractCommand()
-      	{
-      		private int oldHash = stereotypeHash;
-					public void execute(boolean isTop)
-					{
-						figureFacet.adjusted();
-						stereotypeHash = newHash;
-						substitution = dependency.isReplacement();
-						resemblance = dependency.isResemblance();
-					}
-					public void unExecute()
-					{
-						figureFacet.adjusted();
-						stereotypeHash = oldHash;
-            substitution = dependency.isReplacement();
-            resemblance = dependency.isResemblance();
-					}
-      	};
-      }
-      return null;
+			stereotypeHash = newHash;
+			substitution = dependency.isReplacement();
+			resemblance = dependency.isResemblance();
+      
+      CalculatedArcPoints calculated  = figureFacet.getLinkingFacet().getCalculated();
+      Set<String> styles = calculated.getNode2().getDisplayStyles(true);
+      if (styles == null)
+        styles = new HashSet<String>();
+    	socketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT);
+      largeSocketStyle = styles.contains(InterfaceCreatorGem.LINK_STYLE_DIRECT_LARGE);
     }
 
     public Object getSubject()
@@ -509,34 +496,17 @@ public class DependencyArcGem implements Gem
       return subject.isThisDeleted();
     }
 
-    public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+    public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
     {
-      final NamedElement oldOwner = (NamedElement) subject.getClients().get(0);
-      final NamedElement oldSupplier = subject.getDependencyTarget();
-      
-      final NamedElement newOwner = DependencyCreatorGem.extractDependentClient(start.getFigureFacet().getSubject());
-      final NamedElement newSupplier = (NamedElement) end.getFigureFacet().getSubject();
+      NamedElement oldOwner = (NamedElement) subject.getClients().get(0);      
+      NamedElement newOwner = DependencyCreatorGem.extractDependentClient(start.getFigureFacet().getSubject());
+      NamedElement newSupplier = (NamedElement) end.getFigureFacet().getSubject();
 
-      // return a command to change these
-      return new AbstractCommand("Retargeted dependency ends", "Unretargeted dependency ends")
-      {
-        public void execute(boolean isTop)
-        {
-          // change the owner
-          newOwner.getOwnedAnonymousDependencies().add(subject);
-          subject.getClients().remove(oldOwner);
-          subject.getClients().add(newOwner);
-          subject.setDependencyTarget(newSupplier);
-        }
-
-        public void unExecute()
-        {
-          oldOwner.getOwnedAnonymousDependencies().add(subject);
-          subject.getClients().remove(newOwner);
-          subject.getClients().add(oldOwner);
-          subject.setDependencyTarget(oldSupplier);
-        }       
-      };
+      // change the owner
+      newOwner.getOwnedAnonymousDependencies().add(subject);
+      subject.getClients().remove(oldOwner);
+      subject.getClients().add(newOwner);
+      subject.setDependencyTarget(newSupplier);
     }
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)
@@ -566,6 +536,11 @@ public class DependencyArcGem implements Gem
       
       return styles;
     }
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
   
 	public static ZNode formDependencyAppearance(

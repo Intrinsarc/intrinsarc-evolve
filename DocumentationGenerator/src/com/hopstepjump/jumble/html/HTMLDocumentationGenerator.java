@@ -127,7 +127,7 @@ public class HTMLDocumentationGenerator
         // copy over the css file
         common.copyFile(
             new File(htmlResources, "site.css"),
-            new File(htmlGenerateTo, "site.css"));
+            new File(htmlGenerateTo, "site.css"), false);
 
         // remove the entire generation directory, and copy over the images
         common.copyDirectory(

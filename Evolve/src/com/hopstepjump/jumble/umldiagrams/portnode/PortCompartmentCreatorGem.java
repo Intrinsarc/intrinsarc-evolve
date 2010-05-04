@@ -33,7 +33,7 @@ public class PortCompartmentCreatorGem implements Gem
       return PortCompartmentGem.FIGURE_NAME;
     }
 
-    public Object createFigure(
+    public void createFigure(
         Object subject, DiagramFacet diagram, String figureId,
         UPoint location, PersistentProperties properties)
     {
@@ -45,15 +45,6 @@ public class PortCompartmentCreatorGem implements Gem
       basicGem.connectAnchorFacet(null);
       portGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
       basicGem.connectBasicNodeContainerFacet(portGem.getBasicNodeContainerFacet());
-      return new FigureReference(diagram, figureId);
-    }
-
-    public void unCreateFigure(Object memento)
-    {
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);
     }
 
     /**
@@ -71,7 +62,7 @@ public class PortCompartmentCreatorGem implements Gem
     public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
     {
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-      PortCompartmentGem portGem = new PortCompartmentGem(figure.getProperties());
+      PortCompartmentGem portGem = new PortCompartmentGem(figure);
       basicGem.connectBasicNodeAppearanceFacet(portGem.getBasicNodeAppearanceFacet());
 
       // a port container cannot act as an anchor
@@ -81,15 +72,11 @@ public class PortCompartmentCreatorGem implements Gem
       return basicGem.getBasicNodeFigureFacet();
     }
 
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       return null;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    }
-    
 		public void initialiseExtraProperties(PersistentProperties properties)
 		{
 		}

@@ -15,13 +15,14 @@ import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
+import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.repositorybase.*;
 
 public class ClassPartHelper extends ClassifierConstituentHelper
 {
   private NodeCreateFacet objectCreator;
 
-  public ClassPartHelper(BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted, boolean top, NodeCreateFacet creator)
+  public ClassPartHelper(ToolCoordinatorFacet coordinator, BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted)
   {
     super(
         classifierFigure,
@@ -29,19 +30,17 @@ public class ClassPartHelper extends ClassifierConstituentHelper
         container.isShowing(),
         findParts(container.getContainerFacet()).iterator(),
         ConstituentTypeEnum.DELTA_PART,
-        deleted,
-        top);
-    this.objectCreator = creator;
+        deleted);
+    this.objectCreator = new PartCreatorGem().getNodeCreateFacet();
   }
 
   @Override
-  public Command makeAddCommand(
+  public void makeAddTransaction(
       DEStratum perspective,
       Set<FigureFacet> currentInContainerIgnoringDeletes,
       final BasicNodeFigureFacet classifierFigure,
       FigureFacet container,
-      DeltaPair addOrReplace,
-      boolean top)
+      DeltaPair addOrReplace)
   {
     // get the current sizes
     FigureFacet existing = null;
@@ -91,83 +90,43 @@ public class ClassPartHelper extends ClassifierConstituentHelper
     final UBounds newBounds = new UBounds(topLeft, newOffset).centreToPoint(full.getMiddlePoint());
     
     // make a composite to hold all the changes
-    CompositeCommand add = new CompositeCommand("", "");
-    add.addCommand(new NodeAutoSizeCommand(classifierFigure.getFigureReference(), false, "", ""));
+    NodeAutoSizeTransaction.autoSize(classifierFigure, false);
     
     // resize to fit the offset at least
-    add.addCommand(ClassPortHelper.makeResizingCommand(classifierFigure.getFigureReference(), newBounds));
+    ClassPortHelper.makeResizingTransaction(classifierFigure, newBounds);
     
     // now add the part
     final UPoint partTop = newBounds.getTopLeftPoint().add(simpleOffset).add(partOffset);
     final FigureReference partReference = classifierFigure.getDiagram().makeNewFigureReference();
-    final FigureReference classifierReference = classifierFigure.getFigureReference();
     final Element subject = (Element) addOrReplace.getConstituent().getRepositoryObject();
 
-    add.addCommand(
-      new AbstractCommand("", "")
-      {
-        private Command cmd;
-       
-        public void execute(boolean isTop)
-        {
-          FigureFacet classifier = GlobalDiagramRegistry.registry.retrieveFigure(classifierReference);
-          cmd = createPart(classifier, subject, partReference, partTop);
-        }
-
-        public void unExecute()
-        {
-          cmd.unExecute();
-        }
-      });
-    
+    createPart(classifierFigure, subject, partReference, partTop);
     
     // resize to match the other part
     final UDimension finalPartSize = partSize;
     if (partSize != null)
     {
-      add.addCommand(new AbstractCommand("", "")
-      {
-        private Command cmd;
-        
-        public void execute(boolean isTop)
-        {
-          FigureFacet part = GlobalDiagramRegistry.registry.retrieveFigure(partReference);
-          cmd = ClassPortHelper.makeResizingCommand(part.getFigureReference(), new UBounds(partTop, finalPartSize));
-          cmd.execute(true);
-        }
-
-        public void unExecute()
-        {
-          cmd.unExecute();
-        }
-      });     
+      FigureFacet part = GlobalDiagramRegistry.registry.retrieveFigure(partReference);
+      ClassPortHelper.makeResizingTransaction(part, new UBounds(partTop, finalPartSize));
     }
-    
-    return add;
   }
   
-  protected Command createPart(
+  protected void createPart(
       FigureFacet owner,
       Element subject,
       FigureReference partRef,
       UPoint top)
   {
-    CompositeCommand cmd = new CompositeCommand("", "");
-    
     // create the component
-    Command objectCreate = new NodeCreateFigureCommand(
+    NodeCreateFigureTransaction.create(
+    		owner.getDiagram(),
         subject,
         partRef,
         owner.getFigureReference(),
         objectCreator,
         top,
-        false,
         new PersistentProperties(),
-        null,
-        "",
-        "");
-    cmd.addCommand(objectCreate);
-    objectCreate.execute(true);
+        null);
 
     FigureFacet figure = owner.getDiagram().retrieveFigure(partRef.getId());
 
@@ -180,23 +139,21 @@ public class ClassPartHelper extends ClassifierConstituentHelper
       ContainerFacet c = contained.getContainerFacet();
       if (c != null && c.getAcceptingSubcontainer(new ContainedFacet[]{figure.getContainedFacet()}) != null)
       {
-        cmd.addCommand(insertFigure(c.getFigureFacet(), partRef));
+        insertFigure(c.getFigureFacet(), partRef);
         break;
       }
     }
-    return cmd;
   }
   
-  protected Command insertFigure(FigureFacet owner, FigureReference reference)
+  protected void insertFigure(FigureFacet owner, FigureReference reference)
   {
     // insert the component into the package
     FigureFacet contained = GlobalDiagramRegistry.registry.retrieveFigure(reference);
     ContainerFacet accepting = owner.getContainerFacet().getAcceptingSubcontainer(
         new ContainedFacet[]{contained.getContainedFacet()});
-    ContainerAddCommand addCmd = new ContainerAddCommand(accepting.getFigureFacet().getFigureReference(),
-        new FigureReference[]{reference}, "", "");
-    addCmd.execute(true);
-    return addCmd;
+    ContainerAddTransaction.add(
+    		accepting,
+        new ContainedFacet[]{contained.getContainedFacet()});
   }
   
   private UDimension getOffsetFromSimple(FigureFacet figure)

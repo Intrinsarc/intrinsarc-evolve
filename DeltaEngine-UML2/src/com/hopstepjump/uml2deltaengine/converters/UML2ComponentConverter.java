@@ -9,7 +9,7 @@ import com.hopstepjump.uml2deltaengine.*;
 import com.thoughtworks.xstream.converters.*;
 import com.thoughtworks.xstream.io.*;
 
-public class UML2ComponentConverter implements Converter
+/*public class UML2ComponentConverter implements Converter
 {
 	public UML2ComponentConverter()
 	{
@@ -31,7 +31,7 @@ public class UML2ComponentConverter implements Converter
 			c.settable_getSubstitutes().addAll(uc.getSubstitutes());
 		
 		// handle the deltas
-		translateAttributes(uc, c);
+//		translateAttributes(uc, c);
 		translatePorts(uc, c);
 		translateParts(uc, c);
 		translateConnectors(uc, c);
@@ -158,3 +158,4 @@ public class UML2ComponentConverter implements Converter
 		return cls == UML2Component.class;
 	}
 }
+*/

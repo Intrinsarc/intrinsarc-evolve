@@ -20,7 +20,12 @@ public abstract class DEObject
     return null;
   }
   
-  public DEComponent asComponent()
+	public DERequirementsFeature asRequirementsFeature()
+	{
+		return null;
+	}
+
+	public DEComponent asComponent()
   {
     return null;
   }

@@ -23,10 +23,9 @@ public interface FeatureTypeFacet extends Facet
   public String makeShortName(String name);
   public String makeNameFromSubject();
   
-  public Object setText(String text, Object listSelection, Object oldMemento);
-  public void unSetText(Object memento);
-  public Command getPostContainerDropCommand();
-  public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner);
+  public String setText(String text, Object listSelection);
+  public void performPostContainerDropTransaction();
+  public void generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner);
   public JMenuItem getReplaceItem(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
   
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill);

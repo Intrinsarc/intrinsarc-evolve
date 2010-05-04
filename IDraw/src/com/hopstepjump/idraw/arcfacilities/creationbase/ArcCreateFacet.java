@@ -8,12 +8,8 @@ public interface ArcCreateFacet extends PersistentFigureRecreatorFacet, ArcAccep
 {
   public String getFigureName();
 
-  public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties);
-  public void uncreateNewSubject(Object previouslyCreated);
-  public Object extractRawSubject(Object previouslyCreated);
-  
-  public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties);
-  public void unCreate(Object memento);
+  public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties);
+  public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties);
   public void initialiseExtraProperties(PersistentProperties properties);
-	public void aboutToMakeCommand(ToolCoordinatorFacet coordinator);
+	public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator);
 }

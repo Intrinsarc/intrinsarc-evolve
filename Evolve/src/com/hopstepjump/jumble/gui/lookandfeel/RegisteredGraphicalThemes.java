@@ -75,6 +75,9 @@ public class RegisteredGraphicalThemes
     themes.add(new MintGraphicalTheme());
     themes.add(new AcrylGraphicalTheme());
     themes.add(new McWinGraphicalTheme());
+    themes.add(new HiFiGraphicalTheme());
+    themes.add(new NoireGraphicalTheme());
+    themes.add(new GraphiteGraphicalTheme());
     themes.add(new SystemGraphicalTheme());
     themes.add(new MetalGraphicalTheme());
     themes.add(new NimbusGraphicalTheme());

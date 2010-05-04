@@ -27,7 +27,7 @@ public class ModelMover
 	private static final Pattern NAMED_SENSIBLE = Pattern.compile("org\\.eclipse\\.uml2\\.impl\\.(.*)Impl@.*\\ (\\(j_.*)name\\:\\ ([^,]*)(.*)", Pattern.MULTILINE | Pattern.DOTALL);
 	
   public static final String UML2_EXPORT = "uml2_export";
-	public static final String UML2_EXPORT_FILES = "Evolve export files";
+	public static final String UML2_EXPORT_FILES = "evolve export files (.uml2_export)";
 	private DiagramViewFacet diagramView;
   /** save any references for later fixing */
   private List<TransientSavedReference> savedReferences;
@@ -67,8 +67,8 @@ public class ModelMover
   {
     // collect the top level elements we've been asked to export
     DiagramFacet diagram = diagramView.getDiagram();
-    Set<String> selected = CopyToDiagramHelper.getFigureIdsIncludedInSelection(diagramView, false);
-    Collection<String> topLevel = CopyToDiagramHelper.getTopLevelFigureIdsOnly(diagramView.getDiagram(), selected, 0, true);
+    Set<String> selected = CopyToDiagramUtilities.getFigureIdsIncludedInSelection(diagramView, false);
+    Collection<String> topLevel = CopyToDiagramUtilities.getTopLevelFigureIdsOnly(diagramView.getDiagram(), selected, 0, true);
     
     // turn these into elements
     Set<Package> elements = new HashSet<Package>();
@@ -172,7 +172,7 @@ public class ModelMover
 
 	        // commit
 	        repository.commitTransaction();
-	        repository.startTransaction();
+	        repository.startTransaction("", "");
   			}
   			catch (RuntimeException t)
   			{
@@ -236,7 +236,7 @@ public class ModelMover
 		if (count[0]++ % 10 == 0)
 		{
       GlobalSubjectRepository.repository.commitTransaction();
-      GlobalSubjectRepository.repository.startTransaction();
+      GlobalSubjectRepository.repository.startTransaction("", "");
 		}
 		
     // create the new element

@@ -3,6 +3,7 @@ package com.hopstepjump.repository;
 import java.io.*;
 import java.text.*;
 import java.util.*;
+import java.util.zip.*;
 
 import javax.swing.*;
 
@@ -28,20 +29,29 @@ import com.hopstepjump.repositorybase.*;
 
 public class XMLSubjectRepositoryGem implements Gem
 {
+  public static String UML2_SUFFIX = ".uml2";
+  public static String UML2Z_SUFFIX = ".uml2z";
+  public static String UML2Z_SUFFIX_NO_DOT = "uml2z";
+  public static String[] EXTENSION_TYPES = new String[]{"uml2z", "uml2"}; 
+  public static String[] EXTENSION_DESCRIPTIONS = new String[]{"compressed UML2 files (.uml2z)", "uncompressed UML2 files (.uml2)"}; 
+  public static String EXTENSION_DESCRIPTION = "UML2 files (.uml2 and .uml2z)"; 
+
   private String fileName;
   private Model topLevel;
   private Resource resource;
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
-  private CommandManagerListenerFacetImpl commandFacet = new CommandManagerListenerFacetImpl();
   private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();
   private boolean modified;
+  private UndoRedoStackManager undoredo = new UndoRedoStackManager();
+	
   private Adapter adapter = new Adapter()
   {
     public void notifyChanged(Notification notification)
     {
       modified = true;
+      undoredo.addNotification(notification);
     }
     public Notifier getTarget()
     {
@@ -55,9 +65,59 @@ public class XMLSubjectRepositoryGem implements Gem
       return false;
     }
   };
-    
-  private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
+  
+	private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
+		public String getRedoTransactionDescription()
+		{
+			return undoredo.getRedoDescription();
+		}
+
+		public String getUndoTransactionDescription()
+		{
+			return undoredo.getUndoDescription();
+		}
+
+		public void undoTransaction()
+		{
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+			undoredo.undo();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
+		}
+		
+		public void redoTransaction()
+		{
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+			undoredo.redo();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
+		}
+		
+		public int getTransactionPosition()
+		{
+			return undoredo.getCurrent();
+		}
+		
+		public int getTotalTransactions()
+		{
+			return undoredo.getStackSize();
+		}
+		
+		public void clearTransactionHistory()
+		{
+			undoredo.clearStack();
+		}
+		
+		public void enforceTransactionDepth(int desiredDepth)
+		{
+			undoredo.enforceDepth(desiredDepth);
+		}
+		
+		////////////////////////////////////////////////////
+		
     public Model getTopLevelModel()
     {
       return topLevel;
@@ -67,12 +127,12 @@ public class XMLSubjectRepositoryGem implements Gem
     {
       return true;
     }
-
+    
     public String saveAs(JFrame frame, File recentDirectory)
     {
-      String newFileName = RepositoryUtility.chooseFileName(
+      String newFileName = RepositoryUtility.chooseFileNameToCreate(
           frame,
-          "Select file to save as", ".uml2 files", "uml2", recentDirectory);
+          "Select file to save as", EXTENSION_DESCRIPTIONS, EXTENSION_TYPES, recentDirectory);
       if (newFileName == null)
         return null;
       fileName = newFileName; 
@@ -88,13 +148,13 @@ public class XMLSubjectRepositoryGem implements Gem
       return true;
     }
 
-    public String saveTo(JFrame frame, String extensionType, String extension, File recentDirectory)
+    public String saveTo(JFrame frame, String extensionDescription, String extension, File recentDirectory)
     {
-      String copyFileName = RepositoryUtility.chooseFileName(
+      String copyFileName = RepositoryUtility.chooseFileNameToCreate(
           frame,
           "Select file to copy into",
-          extensionType == null ? ".uml2 files" : extensionType,
-          extension == null ? "uml2" : extension,
+          extensionDescription == null ? EXTENSION_DESCRIPTIONS : new String[]{extensionDescription},
+          extension == null ? EXTENSION_TYPES : new String[]{extension},
           recentDirectory);
       if (copyFileName == null)
         return null;
@@ -117,6 +177,7 @@ public class XMLSubjectRepositoryGem implements Gem
     
     private void performSave(Resource resource, boolean keepExistingModificationInfo)
     {
+    	undoredo.ignoreNotifications();
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
 //      long start = System.currentTimeMillis();
       
@@ -138,7 +199,6 @@ public class XMLSubjectRepositoryGem implements Gem
           new PersistentDiagramToDbDiagramTranslator(diagram.makePersistentDiagram()).translate(holder);
           
           // set up the diagram information: time and user
-          // set up the diagram information: time and user
           String who = holder.getSavedBy();
           if (who == null || who.length() == 0 || !keepExistingModificationInfo)
           {
@@ -155,7 +215,22 @@ public class XMLSubjectRepositoryGem implements Gem
       // save the resource
       try
       {
-        resource.save(null);
+      	// possibly use compression
+      	String path = resource.getURI().toFileString();
+      	if (path.endsWith(UML2Z_SUFFIX))
+      	{
+        	GZIPOutputStream out = new GZIPOutputStream(new FileOutputStream(path));
+        	try
+        	{
+      			resource.save(out, null);
+        	}
+        	finally
+        	{
+      			out.close();      		
+        	}
+      	}
+      	else
+    			resource.save(null);
       }
       catch (IOException ex)
       {
@@ -163,6 +238,7 @@ public class XMLSubjectRepositoryGem implements Gem
       }
       modified = false;
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+    	undoredo.noticeNotifications();
     }
 
     public void addRepositoryListener(SubjectRepositoryListenerFacet listener)
@@ -182,14 +258,18 @@ public class XMLSubjectRepositoryGem implements Gem
       return fileName;
     }
 
-    public void startTransaction()
+    public void startTransaction(String redoName, String undoName)
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+      undoredo.startTransaction(redoName, undoName);
     }
 
     public void commitTransaction()
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      undoredo.commitTransaction();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
     }
 
     public void incrementPersistentDelete(Element element)
@@ -246,11 +326,6 @@ public class XMLSubjectRepositoryGem implements Gem
     public PersistentDiagram retrievePersistentDiagram(Package pkg)
     {
       return common.retrievePersistentDiagram(pkg);
-    }
-
-    public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
-    {
-      return common.formUpdateDiagramsCommandAfterSubjectChanges(commandExecutionTime, isTop, pass, initialRun);
     }
 
     public String getFullyQualifiedName(Element element, String separator)
@@ -429,16 +504,6 @@ public class XMLSubjectRepositoryGem implements Gem
 		}
   }
   
-  private class CommandManagerListenerFacetImpl implements CommandManagerListenerFacet
-  {
-    public void commandExecuted()
-    {
-      for (SubjectRepositoryListenerFacet listener : listeners)
-        listener.sendChanges();
-    }
-  }
-  
-  
   public static XMLSubjectRepositoryGem openFile(String fileName, boolean initialiseWithFoundation) throws RepositoryOpeningException
   {
     XMLSubjectRepositoryGem repository = new XMLSubjectRepositoryGem(fileName);
@@ -518,12 +583,6 @@ public class XMLSubjectRepositoryGem implements Gem
     return subjectFacet;
   }
 
-
-  public CommandManagerListenerFacet getCommandManagerListenerFacet()
-  {
-    return commandFacet;
-  }
-  
   /**
    * @return
    */
@@ -560,13 +619,40 @@ public class XMLSubjectRepositoryGem implements Gem
    */
   private Resource readXMIResource(String fileName)
   {
-    if (!new File(fileName).exists())
+  	File file = new File(fileName);
+    if (!file.exists())
       return null;
-    
+
     // create the resource where Foo will live
     ResourceSet resourceSet = new ResourceSetImpl();
-    URI fileURI = URI.createFileURI(new File(fileName).getAbsolutePath());
-    resourceSet.getPackageRegistry().put(UML2Package.eNS_URI, UML2Package.eINSTANCE);
-    return resourceSet.getResource(fileURI, true);
+    URI fileURI = URI.createFileURI(file.getAbsolutePath());
+
+    File temp = null;
+    try
+    {
+    	
+      // if this ends in .uml2z, then ungzip it and repoint the resource
+      if (fileName.endsWith(UML2Z_SUFFIX))
+      {
+      	temp = File.createTempFile("uml2", null);
+      	CommonRepositoryFunctions.copyFile(file, temp, true);
+      	fileURI = URI.createFileURI(temp.getAbsolutePath());
+      }
+      
+      resourceSet.getPackageRegistry().put(UML2Package.eNS_URI, UML2Package.eINSTANCE);
+      Resource read = resourceSet.getResource(fileURI, true);
+      read.setURI(fileURI);
+      return read;
+    }
+    catch (IOException ex)
+    {
+    	ex.printStackTrace();
+    	return null;
+    }
+    finally
+    {
+    	if (temp != null)
+    		temp.delete();
+    }
   }
 }

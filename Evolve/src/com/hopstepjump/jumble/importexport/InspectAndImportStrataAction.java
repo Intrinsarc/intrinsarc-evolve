@@ -59,7 +59,7 @@ public class InspectAndImportStrataAction extends AbstractAction
 		
 		// open the exported file into a different model
   	// ask for the file to import
-    final String fileName = RepositoryUtility.chooseFileName(
+    final String fileName = RepositoryUtility.chooseFileNameToOpen(
         frame,
         "Select exported file to inspect",
         ModelMover.UML2_EXPORT_FILES, ModelMover.UML2_EXPORT,

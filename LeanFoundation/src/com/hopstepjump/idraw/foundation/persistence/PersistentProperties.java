@@ -1,7 +1,6 @@
 package com.hopstepjump.idraw.foundation.persistence;
 
 import java.awt.*;
-import java.io.*;
 import java.util.*;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import com.hopstepjump.geometry.*;
  * (c) Andrew McVeigh 30-Aug-02
  *
  */
-public class PersistentProperties implements Cloneable, Serializable
+public class PersistentProperties implements Cloneable
 {
 	private Map<String, PersistentProperty> properties = new HashMap<String, PersistentProperty>();
 	
@@ -28,16 +27,16 @@ public class PersistentProperties implements Cloneable, Serializable
 				add(property);
 	}
 
-	public Object clone()
+	public boolean equals(Object obj)
 	{
-		try
-		{
-			return super.clone();
-		}
-		catch (CloneNotSupportedException ex)
-		{
-			throw new InternalError(ex.toString());
-		}
+		if (!(obj instanceof PersistentProperties))
+			return false;
+		return properties.equals(((PersistentProperties) obj).properties);
+	}
+
+	public int hashCode()
+	{
+		return properties.hashCode();
 	}
 	
 	public void add(PersistentProperty property)
@@ -158,7 +157,6 @@ public class PersistentProperties implements Cloneable, Serializable
 						add(property);
 	}
 	
-
   public String toString()
   {
   	String value = "";
@@ -166,4 +164,16 @@ public class PersistentProperties implements Cloneable, Serializable
   		value += property.toString() + " | ";
   	return value;
   }
+  
+	public Object clone()
+	{
+		try
+		{
+			return super.clone();
+		}
+		catch (CloneNotSupportedException ex)
+		{
+			throw new InternalError(ex.toString());
+		}
+	}
 }
