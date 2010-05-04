@@ -89,6 +89,7 @@ import org.eclipse.uml2.internal.operation.TypeOperations;
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#getOwningParameter <em>Owning Parameter</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#getPackageableElement_visibility <em>Packageable Element visibility</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#isRetired <em>Is Retired</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#isLeaf <em>Is Leaf</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#getClientDependencies <em>Client Dependency</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#getOccurrences <em>Occurrence</em>}</li>
@@ -102,7 +103,6 @@ import org.eclipse.uml2.internal.operation.TypeOperations;
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#getOwnedUseCases <em>Owned Use Case</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#getUseCases <em>Use Case</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#getRepresentation <em>Representation</em>}</li>
- *   <li>{@link org.eclipse.uml2.impl.ClassifierImpl#isRetired <em>Is Retired</em>}</li>
  * </ul>
  * </p>
  *
@@ -137,6 +137,26 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	protected static final VisibilityKind PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT = VisibilityKind.PUBLIC_LITERAL;
 
 	/**
+	 * The default value of the '{@link #isRetired() <em>Is Retired</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRetired()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_RETIRED_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isRetired() <em>Is Retired</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRetired()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_RETIRED_EFLAG = 1 << 8;
+
+	/**
 	 * The default value of the '{@link #isLeaf() <em>Is Leaf</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,7 +174,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_LEAF_EFLAG = 1 << 8;
+	protected static final int IS_LEAF_EFLAG = 1 << 9;
 
 	/**
 	 * The cached value of the '{@link #getOccurrences() <em>Occurrence</em>}' containment reference list.
@@ -184,7 +204,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_ABSTRACT_EFLAG = 1 << 9;
+	protected static final int IS_ABSTRACT_EFLAG = 1 << 10;
 
 	/**
 	 * The cached value of the '{@link #getGeneralizations() <em>Generalization</em>}' containment reference list.
@@ -255,26 +275,6 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * @ordered
 	 */
 	protected CollaborationOccurrence representation = null;
-
-	/**
-	 * The default value of the '{@link #isRetired() <em>Is Retired</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isRetired()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_RETIRED_EDEFAULT = false;
-
-	/**
-	 * The flag representing the value of the '{@link #isRetired() <em>Is Retired</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isRetired()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int IS_RETIRED_EFLAG = 1 << 10;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2026,6 +2026,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 			case UML2Package.CLASSIFIER__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.CLASSIFIER__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.CLASSIFIER__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.CLASSIFIER__IS_LEAF:
@@ -2056,8 +2058,6 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 				return getRepresentation();
 			case UML2Package.CLASSIFIER__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.CLASSIFIER__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -2147,6 +2147,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 			case UML2Package.CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.CLASSIFIER__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.CLASSIFIER__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -2183,9 +2186,6 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 			case UML2Package.CLASSIFIER__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.CLASSIFIER__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 		}
 		eDynamicSet(eFeature, newValue);
@@ -2264,6 +2264,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 			case UML2Package.CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.CLASSIFIER__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.CLASSIFIER__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -2293,9 +2296,6 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 				return;
 			case UML2Package.CLASSIFIER__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.CLASSIFIER__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 		}
 		eDynamicUnset(eFeature);
@@ -2364,6 +2364,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.CLASSIFIER__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.CLASSIFIER__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.CLASSIFIER__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.CLASSIFIER__IS_LEAF:
@@ -2394,8 +2396,6 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 				return representation != null;
 			case UML2Package.CLASSIFIER__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.CLASSIFIER__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -2432,6 +2432,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (baseClass == Type.class) {
 			switch (derivedFeatureID) {
 				case UML2Package.CLASSIFIER__PACKAGE: return UML2Package.TYPE__PACKAGE;
+				case UML2Package.CLASSIFIER__IS_RETIRED: return UML2Package.TYPE__IS_RETIRED;
 				default: return -1;
 			}
 		}
@@ -2467,6 +2468,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (baseClass == Type.class) {
 			switch (baseFeatureID) {
 				case UML2Package.TYPE__PACKAGE: return UML2Package.CLASSIFIER__PACKAGE;
+				case UML2Package.TYPE__IS_RETIRED: return UML2Package.CLASSIFIER__IS_RETIRED;
 				default: return -1;
 			}
 		}
@@ -2489,12 +2491,12 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isLeaf: "); //$NON-NLS-1$
+		result.append(" (isRetired: "); //$NON-NLS-1$
+		result.append((eFlags & IS_RETIRED_EFLAG) != 0);
+		result.append(", isLeaf: "); //$NON-NLS-1$
 		result.append((eFlags & IS_LEAF_EFLAG) != 0);
 		result.append(", isAbstract: "); //$NON-NLS-1$
 		result.append((eFlags & IS_ABSTRACT_EFLAG) != 0);
-		result.append(", isRetired: "); //$NON-NLS-1$
-		result.append((eFlags & IS_RETIRED_EFLAG) != 0);
 		result.append(')');
 		return result.toString();
 	}

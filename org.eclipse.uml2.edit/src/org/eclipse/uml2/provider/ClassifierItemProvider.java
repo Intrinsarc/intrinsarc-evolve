@@ -92,6 +92,7 @@ public class ClassifierItemProvider
 			addOwningParameterPropertyDescriptor(object);
 			addPackageableElement_visibilityPropertyDescriptor(object);
 			addPackagePropertyDescriptor(object);
+			addIsRetiredPropertyDescriptor(object);
 			addRedefinitionContextPropertyDescriptor(object);
 			addIsLeafPropertyDescriptor(object);
 			addFeaturePropertyDescriptor(object);
@@ -107,7 +108,6 @@ public class ClassifierItemProvider
 			addUseCasePropertyDescriptor(object);
 			addRepresentationPropertyDescriptor(object);
 			addOccurrencePropertyDescriptor(object);
-			addIsRetiredPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -525,9 +525,9 @@ public class ClassifierItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Classifier_isRetired_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_Classifier_isRetired_feature", "_UI_Classifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UML2Package.eINSTANCE.getClassifier_IsRetired(),
+				 getString("_UI_Type_isRetired_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Type_isRetired_feature", "_UI_Type_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UML2Package.eINSTANCE.getType_IsRetired(),
 				 true,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
@@ -590,9 +590,9 @@ public class ClassifierItemProvider
 
 		switch (notification.getFeatureID(Classifier.class)) {
 			case UML2Package.CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY:
+			case UML2Package.CLASSIFIER__IS_RETIRED:
 			case UML2Package.CLASSIFIER__IS_LEAF:
 			case UML2Package.CLASSIFIER__IS_ABSTRACT:
-			case UML2Package.CLASSIFIER__IS_RETIRED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UML2Package.CLASSIFIER__GENERALIZATION:
@@ -622,6 +622,16 @@ public class ClassifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getClassifier_Generalization(),
+				 UML2Factory.eINSTANCE.createGeneralization()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getClassifier_Substitution(),
+				 UML2Factory.eINSTANCE.createSubstitution()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getClassifier_Substitution(),
 				 UML2Factory.eINSTANCE.createSubstitution()));
 
@@ -629,6 +639,16 @@ public class ClassifierItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getClassifier_OwnedUseCase(),
 				 UML2Factory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getClassifier_OwnedUseCase(),
+				 UML2Factory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getClassifier_Occurrence(),
+				 UML2Factory.eINSTANCE.createCollaborationOccurrence()));
 
 		newChildDescriptors.add
 			(createChildParameter

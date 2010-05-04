@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Every action is ultimately a part of some activity, which is in turn optionally attached in some way to the specification of a classifierâ€”for example as the body of a method or as part of a state machine. When the activity executes, it does so in the context of some specific host instance of that classifier. This action produces this host instance, if any, on its output pin. The type of the output pin is the classifier to which the activity is associated in the user model. 
+ * Every action is ultimately a part of some activity, which is in turn optionally attached in some way to the specification of a classifier—for example as the body of a method or as part of a state machine. When the activity executes, it does so in the context of some specific host instance of that classifier. This action produces this host instance, if any, on its output pin. The type of the output pin is the classifier to which the activity is associated in the user model. 
  * <!-- end-model-doc -->
  *
  * <p>

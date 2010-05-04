@@ -421,6 +421,76 @@ public class ActivityEdgeItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createDurationInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createTimeInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createPropertyValueSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createOpaqueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createLiteralString()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createLiteralNull()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createLiteralInteger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createLiteralUnlimitedNatural()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createInstanceValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createTimeExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createDuration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
 				 UML2Factory.eINSTANCE.createInterval()));
 
 		newChildDescriptors.add
@@ -436,6 +506,76 @@ public class ActivityEdgeItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UML2Package.eINSTANCE.getActivityEdge_Guard(),
+				 UML2Factory.eINSTANCE.createPropertyValueSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createOpaqueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createLiteralString()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createLiteralNull()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createLiteralInteger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createLiteralUnlimitedNatural()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createInstanceValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createTimeExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createDuration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createDurationInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
+				 UML2Factory.eINSTANCE.createTimeInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityEdge_Weight(),
 				 UML2Factory.eINSTANCE.createPropertyValueSpecification()));
 
 		newChildDescriptors.add

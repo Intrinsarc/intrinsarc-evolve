@@ -353,8 +353,23 @@ public class InteractionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionFragment_GeneralOrdering(),
+				 UML2Factory.eINSTANCE.createGeneralOrdering()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getInteraction_Lifeline(),
 				 UML2Factory.eINSTANCE.createLifeline()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Lifeline(),
+				 UML2Factory.eINSTANCE.createLifeline()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Message(),
+				 UML2Factory.eINSTANCE.createMessage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -410,6 +425,61 @@ public class InteractionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getInteraction_Fragment(),
 				 UML2Factory.eINSTANCE.createContinuation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createInteraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createEventOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createExecutionOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createStateInvariant()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createStop()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createInteractionOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createPartDecomposition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createInteractionOperand()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createCombinedFragment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_Fragment(),
+				 UML2Factory.eINSTANCE.createContinuation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteraction_FormalGate(),
+				 UML2Factory.eINSTANCE.createGate()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -169,6 +169,11 @@ public class ReadLinkActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getReadLinkAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getReadLinkAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 	}
 
 	/**

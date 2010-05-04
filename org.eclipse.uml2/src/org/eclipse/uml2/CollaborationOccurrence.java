@@ -140,10 +140,10 @@ public interface CollaborationOccurrence extends NamedElement{
     Dependency createRoleBinding(EClass eClass);
 
 	/**
-	 * Creates a {@link org.eclipse.uml2.Dependency} and appends it to the '<em><b>Role Binding</b></em>' containment reference list.
+	 * Creates a {@link org.eclipse.uml2.Permission} and appends it to the '<em><b>Role Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.uml2.Dependency}.
+	 * @return The new {@link org.eclipse.uml2.Permission}.
 	 * @see #getRoleBindings()
 	 * @generated
 	 */

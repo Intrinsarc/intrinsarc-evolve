@@ -82,7 +82,7 @@ public interface JoinNode extends ControlNode{
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A specification giving the conditions under which the join will emit a token. Default is ‚Äúand‚Äù.
+	 * A specification giving the conditions under which the join will emit a token. Default is ìandî.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Join Spec</em>' containment reference.
 	 * @see #setJoinSpec(ValueSpecification)

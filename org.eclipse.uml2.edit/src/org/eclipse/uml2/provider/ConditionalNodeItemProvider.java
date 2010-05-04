@@ -258,6 +258,16 @@ public class ConditionalNodeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getConditionalNode_Clause(),
+				 UML2Factory.eINSTANCE.createClause()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getConditionalNode_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getConditionalNode_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
 	}

@@ -257,8 +257,23 @@ public class UseCaseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getUseCase_Include(),
+				 UML2Factory.eINSTANCE.createInclude()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getUseCase_Extend(),
 				 UML2Factory.eINSTANCE.createExtend()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getUseCase_Extend(),
+				 UML2Factory.eINSTANCE.createExtend()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getUseCase_ExtensionPoint(),
+				 UML2Factory.eINSTANCE.createExtensionPoint()));
 
 		newChildDescriptors.add
 			(createChildParameter

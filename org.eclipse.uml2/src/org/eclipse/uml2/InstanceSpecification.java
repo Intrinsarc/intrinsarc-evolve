@@ -227,6 +227,17 @@ public interface InstanceSpecification extends PackageableElement, DeploymentTar
 	/**
 	 * Creates a {@link org.eclipse.uml2.PortRemap} and appends it to the '<em><b>Port Remap</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.PortRemap} to create.
+	 * @return The new {@link org.eclipse.uml2.PortRemap}.
+	 * @see #getPortRemaps()
+	 * @generated
+	 */
+	PortRemap createPortRemap(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.PortRemap} and appends it to the '<em><b>Port Remap</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.PortRemap}.
 	 * @see #getPortRemaps()

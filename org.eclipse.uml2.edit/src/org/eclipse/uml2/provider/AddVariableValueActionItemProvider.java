@@ -199,6 +199,16 @@ public class AddVariableValueActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getAddVariableValueAction_InsertAt(),
 				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAddVariableValueAction_InsertAt(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAddVariableValueAction_InsertAt(),
+				 UML2Factory.eINSTANCE.createValuePin()));
 	}
 
 	/**

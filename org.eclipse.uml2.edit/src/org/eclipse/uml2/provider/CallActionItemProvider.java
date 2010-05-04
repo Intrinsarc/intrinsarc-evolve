@@ -184,6 +184,11 @@ public class CallActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getCallAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getCallAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 	}
 
 	/**

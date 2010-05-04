@@ -226,6 +226,11 @@ public class InteractionFragmentItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getInteractionFragment_GeneralOrdering(),
 				 UML2Factory.eINSTANCE.createGeneralOrdering()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionFragment_GeneralOrdering(),
+				 UML2Factory.eINSTANCE.createGeneralOrdering()));
 	}
 
 	/**

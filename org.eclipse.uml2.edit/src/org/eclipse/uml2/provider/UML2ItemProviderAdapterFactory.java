@@ -4399,6 +4399,138 @@ public class UML2ItemProviderAdapterFactory extends UML2AdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.uml2.RequirementsFeature} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RequirementsFeatureItemProvider requirementsFeatureItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.uml2.RequirementsFeature}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createRequirementsFeatureAdapter() {
+		if (requirementsFeatureItemProvider == null) {
+			requirementsFeatureItemProvider = new RequirementsFeatureItemProvider(this);
+		}
+
+		return requirementsFeatureItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.uml2.RequirementsFeatureLink} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RequirementsFeatureLinkItemProvider requirementsFeatureLinkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.uml2.RequirementsFeatureLink}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createRequirementsFeatureLinkAdapter() {
+		if (requirementsFeatureLinkItemProvider == null) {
+			requirementsFeatureLinkItemProvider = new RequirementsFeatureLinkItemProvider(this);
+		}
+
+		return requirementsFeatureLinkItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeltaReplacedRequirementsFeatureLinkItemProvider deltaReplacedRequirementsFeatureLinkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createDeltaReplacedRequirementsFeatureLinkAdapter() {
+		if (deltaReplacedRequirementsFeatureLinkItemProvider == null) {
+			deltaReplacedRequirementsFeatureLinkItemProvider = new DeltaReplacedRequirementsFeatureLinkItemProvider(this);
+		}
+
+		return deltaReplacedRequirementsFeatureLinkItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeltaDeletedRequirementsFeatureLinkItemProvider deltaDeletedRequirementsFeatureLinkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createDeltaDeletedRequirementsFeatureLinkAdapter() {
+		if (deltaDeletedRequirementsFeatureLinkItemProvider == null) {
+			deltaDeletedRequirementsFeatureLinkItemProvider = new DeltaDeletedRequirementsFeatureLinkItemProvider(this);
+		}
+
+		return deltaDeletedRequirementsFeatureLinkItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.uml2.DeltaDeletedTrace} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeltaDeletedTraceItemProvider deltaDeletedTraceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.uml2.DeltaDeletedTrace}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createDeltaDeletedTraceAdapter() {
+		if (deltaDeletedTraceItemProvider == null) {
+			deltaDeletedTraceItemProvider = new DeltaDeletedTraceItemProvider(this);
+		}
+
+		return deltaDeletedTraceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.uml2.DeltaReplacedTrace} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeltaReplacedTraceItemProvider deltaReplacedTraceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.uml2.DeltaReplacedTrace}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createDeltaReplacedTraceAdapter() {
+		if (deltaReplacedTraceItemProvider == null) {
+			deltaReplacedTraceItemProvider = new DeltaReplacedTraceItemProvider(this);
+		}
+
+		return deltaReplacedTraceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.uml2.J_Figure} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -169,6 +169,11 @@ public class ReadSelfActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getReadSelfAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getReadSelfAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 	}
 
 	/**

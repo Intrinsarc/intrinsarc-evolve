@@ -169,6 +169,11 @@ public class ReadStructuralFeatureActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getReadStructuralFeatureAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getReadStructuralFeatureAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 	}
 
 	/**

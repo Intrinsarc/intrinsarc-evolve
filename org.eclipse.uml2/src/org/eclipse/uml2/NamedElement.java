@@ -122,7 +122,7 @@ public interface NamedElement extends TemplateableElement{
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Determines the visibility of the NamedElement within different Namespaces within the overall model. Package Dependencies (â€œDependenciesâ€ on page 94)
+	 * Determines the visibility of the NamedElement within different Namespaces within the overall model. Package Dependencies (“Dependencies” on page 94)
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.eclipse.uml2.VisibilityKind
@@ -284,10 +284,10 @@ public interface NamedElement extends TemplateableElement{
 	Dependency createOwnedAnonymousDependencies(EClass eClass);
 
 	/**
-	 * Creates a {@link org.eclipse.uml2.Dependency} and appends it to the '<em><b>Owned Anonymous Dependencies</b></em>' containment reference list.
+	 * Creates a {@link org.eclipse.uml2.Permission} and appends it to the '<em><b>Owned Anonymous Dependencies</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.uml2.Dependency}.
+	 * @return The new {@link org.eclipse.uml2.Permission}.
 	 * @see #getOwnedAnonymousDependencies()
 	 * @generated
 	 */

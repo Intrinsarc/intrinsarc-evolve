@@ -577,6 +577,20 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public AppliedBasicStereotypeValue createAppliedBasicStereotypeValues(EClass eClass) {
+		AppliedBasicStereotypeValue newAppliedBasicStereotypeValues = (AppliedBasicStereotypeValue) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES, null, newAppliedBasicStereotypeValues));
+		}
+		settable_getAppliedBasicStereotypeValues().add(newAppliedBasicStereotypeValues);
+		return newAppliedBasicStereotypeValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public AppliedBasicStereotypeValue createAppliedBasicStereotypeValues() {
 		AppliedBasicStereotypeValue newAppliedBasicStereotypeValues = UML2Factory.eINSTANCE.createAppliedBasicStereotypeValue();
 		if (eNotificationRequired()) {

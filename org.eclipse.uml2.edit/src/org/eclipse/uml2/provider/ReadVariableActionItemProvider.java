@@ -169,6 +169,11 @@ public class ReadVariableActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getReadVariableAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getReadVariableAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 	}
 
 	/**

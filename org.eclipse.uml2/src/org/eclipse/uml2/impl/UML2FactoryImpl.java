@@ -78,9 +78,13 @@ import org.eclipse.uml2.DeltaDeletedConnector;
 import org.eclipse.uml2.DeltaDeletedConstituent;
 import org.eclipse.uml2.DeltaDeletedOperation;
 import org.eclipse.uml2.DeltaDeletedPort;
+import org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink;
+import org.eclipse.uml2.DeltaDeletedTrace;
 import org.eclipse.uml2.DeltaReplacedConstituent;
 import org.eclipse.uml2.DeltaReplacedOperation;
 import org.eclipse.uml2.DeltaReplacedPort;
+import org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink;
+import org.eclipse.uml2.DeltaReplacedTrace;
 import org.eclipse.uml2.DeltaReplacedAttribute;
 import org.eclipse.uml2.DeltaReplacedConnector;
 import org.eclipse.uml2.Dependency;
@@ -207,6 +211,9 @@ import org.eclipse.uml2.Region;
 import org.eclipse.uml2.RemoveStructuralFeatureValueAction;
 import org.eclipse.uml2.RemoveVariableValueAction;
 import org.eclipse.uml2.ReplyAction;
+import org.eclipse.uml2.RequirementsFeature;
+import org.eclipse.uml2.RequirementsFeatureLink;
+import org.eclipse.uml2.RequirementsLinkKind;
 import org.eclipse.uml2.SavedReference;
 import org.eclipse.uml2.SendObjectAction;
 import org.eclipse.uml2.SendSignalAction;
@@ -471,6 +478,12 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 			case UML2Package.DELTA_DELETED_OPERATION: return createDeltaDeletedOperation();
 			case UML2Package.PORT_REMAP: return createPortRemap();
 			case UML2Package.SAVED_REFERENCE: return createSavedReference();
+			case UML2Package.REQUIREMENTS_FEATURE: return createRequirementsFeature();
+			case UML2Package.REQUIREMENTS_FEATURE_LINK: return createRequirementsFeatureLink();
+			case UML2Package.DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK: return createDeltaReplacedRequirementsFeatureLink();
+			case UML2Package.DELTA_DELETED_REQUIREMENTS_FEATURE_LINK: return createDeltaDeletedRequirementsFeatureLink();
+			case UML2Package.DELTA_DELETED_TRACE: return createDeltaDeletedTrace();
+			case UML2Package.DELTA_REPLACED_TRACE: return createDeltaReplacedTrace();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -563,6 +576,11 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
+			case UML2Package.REQUIREMENTS_LINK_KIND: {
+				RequirementsLinkKind result = RequirementsLinkKind.get(initialValue);
+				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				return result;
+			}
 			case UML2Package.INTEGER:
 				return createIntegerFromString(eDataType, initialValue);
 			case UML2Package.BOOLEAN:
@@ -618,6 +636,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 			case UML2Package.PROPERTY_ACCESS_KIND:
 				return instanceValue == null ? null : instanceValue.toString();
 			case UML2Package.PORT_KIND:
+				return instanceValue == null ? null : instanceValue.toString();
+			case UML2Package.REQUIREMENTS_LINK_KIND:
 				return instanceValue == null ? null : instanceValue.toString();
 			case UML2Package.INTEGER:
 				return convertIntegerToString(eDataType, instanceValue);
@@ -2614,6 +2634,66 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	public SavedReference createSavedReference() {
 		SavedReferenceImpl savedReference = new SavedReferenceImpl();
 		return savedReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequirementsFeature createRequirementsFeature() {
+		RequirementsFeatureImpl requirementsFeature = new RequirementsFeatureImpl();
+		return requirementsFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequirementsFeatureLink createRequirementsFeatureLink() {
+		RequirementsFeatureLinkImpl requirementsFeatureLink = new RequirementsFeatureLinkImpl();
+		return requirementsFeatureLink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedRequirementsFeatureLink createDeltaReplacedRequirementsFeatureLink() {
+		DeltaReplacedRequirementsFeatureLinkImpl deltaReplacedRequirementsFeatureLink = new DeltaReplacedRequirementsFeatureLinkImpl();
+		return deltaReplacedRequirementsFeatureLink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaDeletedRequirementsFeatureLink createDeltaDeletedRequirementsFeatureLink() {
+		DeltaDeletedRequirementsFeatureLinkImpl deltaDeletedRequirementsFeatureLink = new DeltaDeletedRequirementsFeatureLinkImpl();
+		return deltaDeletedRequirementsFeatureLink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaDeletedTrace createDeltaDeletedTrace() {
+		DeltaDeletedTraceImpl deltaDeletedTrace = new DeltaDeletedTraceImpl();
+		return deltaDeletedTrace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedTrace createDeltaReplacedTrace() {
+		DeltaReplacedTraceImpl deltaReplacedTrace = new DeltaReplacedTraceImpl();
+		return deltaReplacedTrace;
 	}
 
 	/**

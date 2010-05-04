@@ -169,6 +169,11 @@ public class DurationObservationActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getDurationObservationAction_Duration(),
 				 UML2Factory.eINSTANCE.createDuration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDurationObservationAction_Duration(),
+				 UML2Factory.eINSTANCE.createDuration()));
 	}
 
 	/**

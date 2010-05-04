@@ -47,12 +47,14 @@ import org.eclipse.uml2.DeltaDeletedAttribute;
 import org.eclipse.uml2.DeltaDeletedConnector;
 import org.eclipse.uml2.DeltaDeletedOperation;
 import org.eclipse.uml2.DeltaDeletedPort;
+import org.eclipse.uml2.DeltaDeletedTrace;
 import org.eclipse.uml2.DeltaDeletedConstituent;
 import org.eclipse.uml2.DeltaReplacedConstituent;
 import org.eclipse.uml2.DeltaReplacedAttribute;
 import org.eclipse.uml2.DeltaReplacedConnector;
 import org.eclipse.uml2.DeltaReplacedOperation;
 import org.eclipse.uml2.DeltaReplacedPort;
+import org.eclipse.uml2.DeltaReplacedTrace;
 import org.eclipse.uml2.EncapsulatedClassifier;
 import org.eclipse.uml2.Extension;
 import org.eclipse.uml2.Namespace;
@@ -94,6 +96,8 @@ import org.eclipse.uml2.internal.operation.TypeOperations;
  *   <li>{@link org.eclipse.uml2.impl.ClassImpl#getDeltaReplacedConnectors <em>Delta Replaced Connectors</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassImpl#getDeltaDeletedOperations <em>Delta Deleted Operations</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassImpl#getDeltaReplacedOperations <em>Delta Replaced Operations</em>}</li>
+ *   <li>{@link org.eclipse.uml2.impl.ClassImpl#getDeltaDeletedTraces <em>Delta Deleted Traces</em>}</li>
+ *   <li>{@link org.eclipse.uml2.impl.ClassImpl#getDeltaReplacedTraces <em>Delta Replaced Traces</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassImpl#getOwnedPorts <em>Owned Port</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassImpl#getOwnedOperations <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.ClassImpl#getSuperClasses <em>Super Class</em>}</li>
@@ -215,6 +219,26 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * @ordered
 	 */
 	protected EList deltaReplacedOperations = null;
+
+	/**
+	 * The cached value of the '{@link #getDeltaDeletedTraces() <em>Delta Deleted Traces</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeltaDeletedTraces()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList deltaDeletedTraces = null;
+
+	/**
+	 * The cached value of the '{@link #getDeltaReplacedTraces() <em>Delta Replaced Traces</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeltaReplacedTraces()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList deltaReplacedTraces = null;
 
 	/**
 	 * The cached value of the '{@link #getOwnedPorts() <em>Owned Port</em>}' containment reference list.
@@ -699,6 +723,20 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedAttribute createDeltaDeletedAttributes(EClass eClass) {
+		DeltaDeletedAttribute newDeltaDeletedAttributes = (DeltaDeletedAttribute) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_DELETED_ATTRIBUTES, null, newDeltaDeletedAttributes));
+		}
+		settable_getDeltaDeletedAttributes().add(newDeltaDeletedAttributes);
+		return newDeltaDeletedAttributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedAttribute createDeltaDeletedAttributes() {
 		DeltaDeletedAttribute newDeltaDeletedAttributes = UML2Factory.eINSTANCE.createDeltaDeletedAttribute();
 		if (eNotificationRequired()) {
@@ -760,6 +798,20 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedAttribute createDeltaReplacedAttributes(EClass eClass) {
+		DeltaReplacedAttribute newDeltaReplacedAttributes = (DeltaReplacedAttribute) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_REPLACED_ATTRIBUTES, null, newDeltaReplacedAttributes));
+		}
+		settable_getDeltaReplacedAttributes().add(newDeltaReplacedAttributes);
+		return newDeltaReplacedAttributes;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -833,6 +885,20 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedPort createDeltaDeletedPorts(EClass eClass) {
+		DeltaDeletedPort newDeltaDeletedPorts = (DeltaDeletedPort) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_DELETED_PORTS, null, newDeltaDeletedPorts));
+		}
+		settable_getDeltaDeletedPorts().add(newDeltaDeletedPorts);
+		return newDeltaDeletedPorts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedPort createDeltaDeletedPorts() {
 		DeltaDeletedPort newDeltaDeletedPorts = UML2Factory.eINSTANCE.createDeltaDeletedPort();
 		if (eNotificationRequired()) {
@@ -894,6 +960,20 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedPort createDeltaReplacedPorts(EClass eClass) {
+		DeltaReplacedPort newDeltaReplacedPorts = (DeltaReplacedPort) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_REPLACED_PORTS, null, newDeltaReplacedPorts));
+		}
+		settable_getDeltaReplacedPorts().add(newDeltaReplacedPorts);
+		return newDeltaReplacedPorts;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -967,6 +1047,20 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedConnector createDeltaDeletedConnectors(EClass eClass) {
+		DeltaDeletedConnector newDeltaDeletedConnectors = (DeltaDeletedConnector) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_DELETED_CONNECTORS, null, newDeltaDeletedConnectors));
+		}
+		settable_getDeltaDeletedConnectors().add(newDeltaDeletedConnectors);
+		return newDeltaDeletedConnectors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedConnector createDeltaDeletedConnectors() {
 		DeltaDeletedConnector newDeltaDeletedConnectors = UML2Factory.eINSTANCE.createDeltaDeletedConnector();
 		if (eNotificationRequired()) {
@@ -1028,6 +1122,20 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedConnector createDeltaReplacedConnectors(EClass eClass) {
+		DeltaReplacedConnector newDeltaReplacedConnectors = (DeltaReplacedConnector) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_REPLACED_CONNECTORS, null, newDeltaReplacedConnectors));
+		}
+		settable_getDeltaReplacedConnectors().add(newDeltaReplacedConnectors);
+		return newDeltaReplacedConnectors;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1101,6 +1209,20 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedOperation createDeltaDeletedOperations(EClass eClass) {
+		DeltaDeletedOperation newDeltaDeletedOperations = (DeltaDeletedOperation) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_DELETED_OPERATIONS, null, newDeltaDeletedOperations));
+		}
+		settable_getDeltaDeletedOperations().add(newDeltaDeletedOperations);
+		return newDeltaDeletedOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedOperation createDeltaDeletedOperations() {
 		DeltaDeletedOperation newDeltaDeletedOperations = UML2Factory.eINSTANCE.createDeltaDeletedOperation();
 		if (eNotificationRequired()) {
@@ -1168,6 +1290,20 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaReplacedOperation createDeltaReplacedOperations(EClass eClass) {
+		DeltaReplacedOperation newDeltaReplacedOperations = (DeltaReplacedOperation) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_REPLACED_OPERATIONS, null, newDeltaReplacedOperations));
+		}
+		settable_getDeltaReplacedOperations().add(newDeltaReplacedOperations);
+		return newDeltaReplacedOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaReplacedOperation createDeltaReplacedOperations() {
 		DeltaReplacedOperation newDeltaReplacedOperations = UML2Factory.eINSTANCE.createDeltaReplacedOperation();
 		if (eNotificationRequired()) {
@@ -1175,6 +1311,168 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 		}
 		settable_getDeltaReplacedOperations().add(newDeltaReplacedOperations);
 		return newDeltaReplacedOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getDeltaDeletedTraces() {
+		if (deltaDeletedTraces == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+			 		// create the list lazily...
+			 		deltaDeletedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.CLASS__DELTA_DELETED_TRACES);
+			 		return deltaDeletedTraces;
+			 }
+			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedTrace.class, this, UML2Package.CLASS__DELTA_DELETED_TRACES);
+		}      
+		return deltaDeletedTraces;
+	}
+
+	
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList settable_getDeltaDeletedTraces() {
+		if (deltaDeletedTraces == null) {
+			deltaDeletedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.CLASS__DELTA_DELETED_TRACES);
+		}
+		return deltaDeletedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public java.util.ArrayList undeleted_getDeltaDeletedTraces() {
+		java.util.ArrayList temp = new java.util.ArrayList();
+
+		if (deltaDeletedTraces != null) {
+			for (Object object : deltaDeletedTraces) {
+				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
+				if (!element.isThisDeleted())
+					temp.add(element);
+			}
+		}
+		return temp;
+	}
+
+
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaDeletedTrace createDeltaDeletedTraces(EClass eClass) {
+		DeltaDeletedTrace newDeltaDeletedTraces = (DeltaDeletedTrace) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_DELETED_TRACES, null, newDeltaDeletedTraces));
+		}
+		settable_getDeltaDeletedTraces().add(newDeltaDeletedTraces);
+		return newDeltaDeletedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaDeletedTrace createDeltaDeletedTraces() {
+		DeltaDeletedTrace newDeltaDeletedTraces = UML2Factory.eINSTANCE.createDeltaDeletedTrace();
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_DELETED_TRACES, null, newDeltaDeletedTraces));
+		}
+		settable_getDeltaDeletedTraces().add(newDeltaDeletedTraces);
+		return newDeltaDeletedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getDeltaReplacedTraces() {
+		if (deltaReplacedTraces == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+			 		// create the list lazily...
+			 		deltaReplacedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.CLASS__DELTA_REPLACED_TRACES);
+			 		return deltaReplacedTraces;
+			 }
+			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedTrace.class, this, UML2Package.CLASS__DELTA_REPLACED_TRACES);
+		}      
+		return deltaReplacedTraces;
+	}
+
+	
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList settable_getDeltaReplacedTraces() {
+		if (deltaReplacedTraces == null) {
+			deltaReplacedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.CLASS__DELTA_REPLACED_TRACES);
+		}
+		return deltaReplacedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public java.util.ArrayList undeleted_getDeltaReplacedTraces() {
+		java.util.ArrayList temp = new java.util.ArrayList();
+
+		if (deltaReplacedTraces != null) {
+			for (Object object : deltaReplacedTraces) {
+				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
+				if (!element.isThisDeleted())
+					temp.add(element);
+			}
+		}
+		return temp;
+	}
+
+
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedTrace createDeltaReplacedTraces(EClass eClass) {
+		DeltaReplacedTrace newDeltaReplacedTraces = (DeltaReplacedTrace) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_REPLACED_TRACES, null, newDeltaReplacedTraces));
+		}
+		settable_getDeltaReplacedTraces().add(newDeltaReplacedTraces);
+		return newDeltaReplacedTraces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedTrace createDeltaReplacedTraces() {
+		DeltaReplacedTrace newDeltaReplacedTraces = UML2Factory.eINSTANCE.createDeltaReplacedTrace();
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.CLASS__DELTA_REPLACED_TRACES, null, newDeltaReplacedTraces));
+		}
+		settable_getDeltaReplacedTraces().add(newDeltaReplacedTraces);
+		return newDeltaReplacedTraces;
 	}
 
 	/**
@@ -1910,6 +2208,10 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 					return ((InternalEList)getDeltaDeletedOperations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CLASS__DELTA_REPLACED_OPERATIONS:
 					return ((InternalEList)getDeltaReplacedOperations()).basicRemove(otherEnd, msgs);
+				case UML2Package.CLASS__DELTA_DELETED_TRACES:
+					return ((InternalEList)getDeltaDeletedTraces()).basicRemove(otherEnd, msgs);
+				case UML2Package.CLASS__DELTA_REPLACED_TRACES:
+					return ((InternalEList)getDeltaReplacedTraces()).basicRemove(otherEnd, msgs);
 				case UML2Package.CLASS__OWNED_PORT:
 					return ((InternalEList)getOwnedPorts()).basicRemove(otherEnd, msgs);
 				case UML2Package.CLASS__OWNED_OPERATION:
@@ -2008,6 +2310,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 			case UML2Package.CLASS__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.CLASS__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.CLASS__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.CLASS__IS_LEAF:
@@ -2038,8 +2342,6 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				return getRepresentation();
 			case UML2Package.CLASS__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.CLASS__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.CLASS__OWNED_BEHAVIOR:
 				return getOwnedBehaviors();
 			case UML2Package.CLASS__CLASSIFIER_BEHAVIOR:
@@ -2074,6 +2376,10 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				return getDeltaDeletedOperations();
 			case UML2Package.CLASS__DELTA_REPLACED_OPERATIONS:
 				return getDeltaReplacedOperations();
+			case UML2Package.CLASS__DELTA_DELETED_TRACES:
+				return getDeltaDeletedTraces();
+			case UML2Package.CLASS__DELTA_REPLACED_TRACES:
+				return getDeltaReplacedTraces();
 			case UML2Package.CLASS__OWNED_PORT:
 				return getOwnedPorts();
 			case UML2Package.CLASS__OWNED_OPERATION:
@@ -2179,6 +2485,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 			case UML2Package.CLASS__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.CLASS__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.CLASS__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -2215,9 +2524,6 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 			case UML2Package.CLASS__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.CLASS__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.CLASS__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -2277,6 +2583,14 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 			case UML2Package.CLASS__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
 				getDeltaReplacedOperations().addAll((Collection)newValue);
+				return;
+			case UML2Package.CLASS__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				getDeltaDeletedTraces().addAll((Collection)newValue);
+				return;
+			case UML2Package.CLASS__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				getDeltaReplacedTraces().addAll((Collection)newValue);
 				return;
 			case UML2Package.CLASS__OWNED_PORT:
 				getOwnedPorts().clear();
@@ -2377,6 +2691,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 			case UML2Package.CLASS__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.CLASS__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.CLASS__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -2406,9 +2723,6 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				return;
 			case UML2Package.CLASS__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.CLASS__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.CLASS__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -2454,6 +2768,12 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				return;
 			case UML2Package.CLASS__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
+				return;
+			case UML2Package.CLASS__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				return;
+			case UML2Package.CLASS__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
 				return;
 			case UML2Package.CLASS__OWNED_PORT:
 				getOwnedPorts().clear();
@@ -2540,6 +2860,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.CLASS__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.CLASS__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.CLASS__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.CLASS__IS_LEAF:
@@ -2570,8 +2892,6 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				return representation != null;
 			case UML2Package.CLASS__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.CLASS__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.CLASS__OWNED_BEHAVIOR:
 				return !getOwnedBehaviors().isEmpty();
 			case UML2Package.CLASS__CLASSIFIER_BEHAVIOR:
@@ -2606,6 +2926,10 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				return deltaDeletedOperations != null && !deltaDeletedOperations.isEmpty();
 			case UML2Package.CLASS__DELTA_REPLACED_OPERATIONS:
 				return deltaReplacedOperations != null && !deltaReplacedOperations.isEmpty();
+			case UML2Package.CLASS__DELTA_DELETED_TRACES:
+				return deltaDeletedTraces != null && !deltaDeletedTraces.isEmpty();
+			case UML2Package.CLASS__DELTA_REPLACED_TRACES:
+				return deltaReplacedTraces != null && !deltaReplacedTraces.isEmpty();
 			case UML2Package.CLASS__OWNED_PORT:
 				return ownedPort != null && !ownedPort.isEmpty();
 			case UML2Package.CLASS__OWNED_OPERATION:
@@ -2662,6 +2986,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				case UML2Package.CLASS__DELTA_REPLACED_CONNECTORS: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_CONNECTORS;
 				case UML2Package.CLASS__DELTA_DELETED_OPERATIONS: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_OPERATIONS;
 				case UML2Package.CLASS__DELTA_REPLACED_OPERATIONS: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_OPERATIONS;
+				case UML2Package.CLASS__DELTA_DELETED_TRACES: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_TRACES;
+				case UML2Package.CLASS__DELTA_REPLACED_TRACES: return UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_TRACES;
 				default: return -1;
 			}
 		}
@@ -2694,6 +3020,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_CONNECTORS: return UML2Package.CLASS__DELTA_REPLACED_CONNECTORS;
 				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_OPERATIONS: return UML2Package.CLASS__DELTA_DELETED_OPERATIONS;
 				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_OPERATIONS: return UML2Package.CLASS__DELTA_REPLACED_OPERATIONS;
+				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_TRACES: return UML2Package.CLASS__DELTA_DELETED_TRACES;
+				case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_TRACES: return UML2Package.CLASS__DELTA_REPLACED_TRACES;
 				default: return -1;
 			}
 		}

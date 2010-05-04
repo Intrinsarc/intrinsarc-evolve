@@ -348,6 +348,11 @@ public class ActivityPartitionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getActivityPartition_Subgroup(),
 				 UML2Factory.eINSTANCE.createActivityPartition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getActivityPartition_Subgroup(),
+				 UML2Factory.eINSTANCE.createActivityPartition()));
 	}
 
 	/**

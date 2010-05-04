@@ -174,6 +174,20 @@ public class J_FigureContainerImpl extends ElementImpl implements J_FigureContai
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public J_Figure createFigures(EClass eClass) {
+		J_Figure newFigures = (J_Figure) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.JFIGURE_CONTAINER__FIGURES, null, newFigures));
+		}
+		settable_getFigures().add(newFigures);
+		return newFigures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -250,6 +264,20 @@ public class J_FigureContainerImpl extends ElementImpl implements J_FigureContai
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public J_Property createProperties(EClass eClass) {
+		J_Property newProperties = (J_Property) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.JFIGURE_CONTAINER__PROPERTIES, null, newProperties));
+		}
+		settable_getProperties().add(newProperties);
+		return newProperties;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

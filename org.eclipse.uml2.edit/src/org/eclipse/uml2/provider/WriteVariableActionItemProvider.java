@@ -164,6 +164,16 @@ public class WriteVariableActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getWriteVariableAction_Value(),
 				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getWriteVariableAction_Value(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getWriteVariableAction_Value(),
+				 UML2Factory.eINSTANCE.createValuePin()));
 	}
 
 	/**

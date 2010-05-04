@@ -237,6 +237,21 @@ public class ReadLinkObjectEndActionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getReadLinkObjectEndAction_Object(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getReadLinkObjectEndAction_Object(),
+				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getReadLinkObjectEndAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getReadLinkObjectEndAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
 	}

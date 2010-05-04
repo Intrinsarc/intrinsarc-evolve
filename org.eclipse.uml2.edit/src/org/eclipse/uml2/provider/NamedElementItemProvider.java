@@ -312,6 +312,56 @@ public class NamedElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_NameExpression(),
+				 UML2Factory.eINSTANCE.createStringExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createPermission()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createDependency()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createAbstraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createRealization()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createSubstitution()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createImplementation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createManifestation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
+				 UML2Factory.eINSTANCE.createDeployment()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
 				 UML2Factory.eINSTANCE.createDependency()));
 

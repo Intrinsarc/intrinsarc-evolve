@@ -169,6 +169,11 @@ public class TimeObservationActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getTimeObservationAction_Now(),
 				 UML2Factory.eINSTANCE.createTimeExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTimeObservationAction_Now(),
+				 UML2Factory.eINSTANCE.createTimeExpression()));
 	}
 
 	/**

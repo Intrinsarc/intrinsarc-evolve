@@ -190,6 +190,11 @@ public class J_DiagramHolderItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getJ_DiagramHolder_Diagram(),
 				 UML2Factory.eINSTANCE.createJ_Diagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getJ_DiagramHolder_Diagram(),
+				 UML2Factory.eINSTANCE.createJ_Diagram()));
 	}
 
 	/**

@@ -260,6 +260,16 @@ public class LifelineItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getLifeline_Selector(),
 				 UML2Factory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getLifeline_Selector(),
+				 UML2Factory.eINSTANCE.createOpaqueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getLifeline_Selector(),
+				 UML2Factory.eINSTANCE.createExpression()));
 	}
 
 	/**

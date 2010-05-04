@@ -122,10 +122,10 @@ public interface InstanceValue extends ValueSpecification{
 	InstanceSpecification createOwnedAnonymousInstanceValue(EClass eClass);
 
 	/**
-	 * Creates a {@link org.eclipse.uml2.InstanceSpecification} and sets the '<em><b>Owned Anonymous Instance Value</b></em>' containment reference.
+	 * Creates a {@link org.eclipse.uml2.EnumerationLiteral} and sets the '<em><b>Owned Anonymous Instance Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.uml2.InstanceSpecification}.
+	 * @return The new {@link org.eclipse.uml2.EnumerationLiteral}.
 	 * @see #getOwnedAnonymousInstanceValue()
 	 * @generated
 	 */

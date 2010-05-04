@@ -166,6 +166,16 @@ public class InstanceValueItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UML2Package.eINSTANCE.getInstanceValue_OwnedAnonymousInstanceValue(),
+				 UML2Factory.eINSTANCE.createEnumerationLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceValue_OwnedAnonymousInstanceValue(),
+				 UML2Factory.eINSTANCE.createInstanceSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceValue_OwnedAnonymousInstanceValue(),
 				 UML2Factory.eINSTANCE.createInstanceSpecification()));
 
 		newChildDescriptors.add

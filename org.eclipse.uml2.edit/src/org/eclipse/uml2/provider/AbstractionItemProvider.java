@@ -174,6 +174,16 @@ public class AbstractionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getAbstraction_Mapping(),
 				 UML2Factory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAbstraction_Mapping(),
+				 UML2Factory.eINSTANCE.createOpaqueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAbstraction_Mapping(),
+				 UML2Factory.eINSTANCE.createExpression()));
 	}
 
 	/**
