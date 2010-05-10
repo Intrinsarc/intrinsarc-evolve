@@ -55,8 +55,7 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DataStoreNodeImpl()
-	{
+	protected DataStoreNodeImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -71,8 +70,7 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getDataStoreNode();
 	}
 
@@ -81,12 +79,9 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DATA_STORE_NODE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.DATA_STORE_NODE__TEMPLATE_BINDING:
@@ -127,12 +122,9 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DATA_STORE_NODE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DATA_STORE_NODE__OWNED_COMMENT:
@@ -175,12 +167,9 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.DATA_STORE_NODE__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.DATA_STORE_NODE__IN_STRUCTURED_NODE:
@@ -197,10 +186,8 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DATA_STORE_NODE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DATA_STORE_NODE__OWNED_ELEMENT:
@@ -281,10 +268,8 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DATA_STORE_NODE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -396,10 +381,8 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DATA_STORE_NODE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -496,10 +479,8 @@ public class DataStoreNodeImpl extends CentralBufferNodeImpl implements DataStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DATA_STORE_NODE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DATA_STORE_NODE__OWNED_ELEMENT:

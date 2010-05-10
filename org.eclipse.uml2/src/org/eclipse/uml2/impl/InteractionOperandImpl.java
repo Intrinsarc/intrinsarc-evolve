@@ -118,8 +118,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InteractionOperandImpl()
-	{
+	protected InteractionOperandImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -134,8 +133,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getInteractionOperand();
 	}
 
@@ -144,13 +142,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getCovereds()
-	{
-		if (covered == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getCovereds() {
+		if (covered == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION_OPERAND__COVERED, UML2Package.LIFELINE__COVERED_BY);
 			 		return covered;
@@ -167,12 +161,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getCovereds()
-	{
-		if (covered == null)
-		{
-			
-		
+  public EList settable_getCovereds() {
+		if (covered == null) {
 			covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION_OPERAND__COVERED, UML2Package.LIFELINE__COVERED_BY);
 		}
 		return covered;
@@ -183,14 +173,11 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getCovereds()
-	{
+  public java.util.ArrayList undeleted_getCovereds() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (covered != null)
-		{
-			for (Object object : covered)
-			{
+		if (covered != null) {
+			for (Object object : covered) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -223,13 +210,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getGeneralOrderings()
-	{
-		if (generalOrdering == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getGeneralOrderings() {
+		if (generalOrdering == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		generalOrdering = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING);
 			 		return generalOrdering;
@@ -246,12 +229,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getGeneralOrderings()
-	{
-		if (generalOrdering == null)
-		{
-			
-		
+  public EList settable_getGeneralOrderings() {
+		if (generalOrdering == null) {
 			generalOrdering = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING);
 		}
 		return generalOrdering;
@@ -262,14 +241,11 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getGeneralOrderings()
-	{
+  public java.util.ArrayList undeleted_getGeneralOrderings() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (generalOrdering != null)
-		{
-			for (Object object : generalOrdering)
-			{
+		if (generalOrdering != null) {
+			for (Object object : generalOrdering) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -331,8 +307,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interaction getEnclosingInteraction()
-	{
+	public Interaction getEnclosingInteraction() {
 		if (eContainerFeatureID != UML2Package.INTERACTION_OPERAND__ENCLOSING_INTERACTION) return null;
 		return (Interaction)eContainer;
 	}
@@ -347,8 +322,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Interaction undeleted_getEnclosingInteraction()
-	{
+  public Interaction undeleted_getEnclosingInteraction() {
 		Interaction temp = getEnclosingInteraction();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -360,11 +334,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnclosingInteraction(Interaction newEnclosingInteraction)
-	{
-
-		if (newEnclosingInteraction != eContainer || (eContainerFeatureID != UML2Package.INTERACTION_OPERAND__ENCLOSING_INTERACTION && newEnclosingInteraction != null))
-		{
+	public void setEnclosingInteraction(Interaction newEnclosingInteraction) {
+		if (newEnclosingInteraction != eContainer || (eContainerFeatureID != UML2Package.INTERACTION_OPERAND__ENCLOSING_INTERACTION && newEnclosingInteraction != null)) {
 			if (EcoreUtil.isAncestor(this, newEnclosingInteraction))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -386,8 +357,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionOperand getEnclosingOperand()
-	{
+	public InteractionOperand getEnclosingOperand() {
 		if (eContainerFeatureID != UML2Package.INTERACTION_OPERAND__ENCLOSING_OPERAND) return null;
 		return (InteractionOperand)eContainer;
 	}
@@ -402,8 +372,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InteractionOperand undeleted_getEnclosingOperand()
-	{
+  public InteractionOperand undeleted_getEnclosingOperand() {
 		InteractionOperand temp = getEnclosingOperand();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -415,11 +384,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnclosingOperand(InteractionOperand newEnclosingOperand)
-	{
-
-		if (newEnclosingOperand != eContainer || (eContainerFeatureID != UML2Package.INTERACTION_OPERAND__ENCLOSING_OPERAND && newEnclosingOperand != null))
-		{
+	public void setEnclosingOperand(InteractionOperand newEnclosingOperand) {
+		if (newEnclosingOperand != eContainer || (eContainerFeatureID != UML2Package.INTERACTION_OPERAND__ENCLOSING_OPERAND && newEnclosingOperand != null)) {
 			if (EcoreUtil.isAncestor(this, newEnclosingOperand))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -441,8 +407,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionConstraint getGuard()
-	{
+	public InteractionConstraint getGuard() {
 		return guard;
 	}
 
@@ -456,8 +421,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InteractionConstraint undeleted_getGuard()
-	{
+  public InteractionConstraint undeleted_getGuard() {
 		InteractionConstraint temp = getGuard();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -469,13 +433,10 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGuard(InteractionConstraint newGuard, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetGuard(InteractionConstraint newGuard, NotificationChain msgs) {
 		InteractionConstraint oldGuard = guard;
 		guard = newGuard;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.INTERACTION_OPERAND__GUARD, oldGuard, newGuard);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -488,11 +449,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGuard(InteractionConstraint newGuard)
-	{
-
-		if (newGuard != guard)
-		{
+	public void setGuard(InteractionConstraint newGuard) {
+		if (newGuard != guard) {
 			NotificationChain msgs = null;
 			if (guard != null)
 				msgs = ((InternalEObject)guard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.INTERACTION_OPERAND__GUARD, null, msgs);
@@ -541,13 +499,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFragments()
-	{
-		if (fragment == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getFragments() {
+		if (fragment == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		fragment = new com.hopstepjump.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION_OPERAND__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_OPERAND);
 			 		return fragment;
@@ -564,12 +518,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getFragments()
-	{
-		if (fragment == null)
-		{
-			
-		
+  public EList settable_getFragments() {
+		if (fragment == null) {
 			fragment = new com.hopstepjump.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION_OPERAND__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_OPERAND);
 		}
 		return fragment;
@@ -580,14 +530,11 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getFragments()
-	{
+  public java.util.ArrayList undeleted_getFragments() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (fragment != null)
-		{
-			for (Object object : fragment)
-			{
+		if (fragment != null) {
+			for (Object object : fragment) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -634,8 +581,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace()
-	{
+	public Namespace basicGetNamespace() {
 		InteractionOperand enclosingOperand = getEnclosingOperand();			
 		if (enclosingOperand != null) {
 			return enclosingOperand;
@@ -649,12 +595,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INTERACTION_OPERAND__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INTERACTION_OPERAND__TEMPLATE_BINDING:
@@ -697,12 +640,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INTERACTION_OPERAND__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INTERACTION_OPERAND__OWNED_COMMENT:
@@ -749,12 +689,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.INTERACTION_OPERAND__ENCLOSING_INTERACTION:
 					return eContainer.eInverseRemove(this, UML2Package.INTERACTION__FRAGMENT, Interaction.class, msgs);
 				case UML2Package.INTERACTION_OPERAND__ENCLOSING_OPERAND:
@@ -771,10 +708,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION_OPERAND__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INTERACTION_OPERAND__OWNED_ELEMENT:
@@ -845,10 +780,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION_OPERAND__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -948,10 +881,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION_OPERAND__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1036,10 +967,8 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION_OPERAND__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INTERACTION_OPERAND__OWNED_ELEMENT:
@@ -1109,12 +1038,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == InteractionFragment.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == InteractionFragment.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.INTERACTION_OPERAND__COVERED: return UML2Package.INTERACTION_FRAGMENT__COVERED;
 				case UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING: return UML2Package.INTERACTION_FRAGMENT__GENERAL_ORDERING;
 				case UML2Package.INTERACTION_OPERAND__ENCLOSING_INTERACTION: return UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION;
@@ -1130,12 +1056,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == InteractionFragment.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == InteractionFragment.class) {
+			switch (baseFeatureID) {
 				case UML2Package.INTERACTION_FRAGMENT__COVERED: return UML2Package.INTERACTION_OPERAND__COVERED;
 				case UML2Package.INTERACTION_FRAGMENT__GENERAL_ORDERING: return UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING;
 				case UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION: return UML2Package.INTERACTION_OPERAND__ENCLOSING_INTERACTION;
@@ -1152,8 +1075,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getInteractionFragment_GeneralOrdering())) {
 			ownedElement.addAll(getGeneralOrderings());

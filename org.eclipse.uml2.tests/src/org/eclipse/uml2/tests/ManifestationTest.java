@@ -30,8 +30,7 @@ public class ManifestationTest extends AbstractionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ManifestationTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ManifestationTest extends AbstractionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ManifestationTest(String name)
-	{
+	public ManifestationTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ManifestationTest extends AbstractionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Manifestation getFixture()
-	{
+	private Manifestation getFixture() {
 		return (Manifestation)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ManifestationTest extends AbstractionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createManifestation());
 	}
 
@@ -74,8 +70,7 @@ public class ManifestationTest extends AbstractionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class ManifestationTest extends AbstractionTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getTargets()
 	 * @generated
 	 */
-	public void testGetTargets()
-	{
+	public void testGetTargets() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

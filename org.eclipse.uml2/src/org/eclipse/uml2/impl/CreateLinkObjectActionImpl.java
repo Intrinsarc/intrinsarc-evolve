@@ -79,8 +79,7 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CreateLinkObjectActionImpl()
-	{
+	protected CreateLinkObjectActionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -95,8 +94,7 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getCreateLinkObjectAction();
 	}
 
@@ -105,8 +103,7 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OutputPin getResult()
-	{
+	public OutputPin getResult() {
 		return result;
 	}
 
@@ -120,8 +117,7 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OutputPin undeleted_getResult()
-	{
+  public OutputPin undeleted_getResult() {
 		OutputPin temp = getResult();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -133,13 +129,10 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResult(OutputPin newResult, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetResult(OutputPin newResult, NotificationChain msgs) {
 		OutputPin oldResult = result;
 		result = newResult;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.CREATE_LINK_OBJECT_ACTION__RESULT, oldResult, newResult);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -152,11 +145,8 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResult(OutputPin newResult)
-	{
-
-		if (newResult != result)
-		{
+	public void setResult(OutputPin newResult) {
+		if (newResult != result) {
 			NotificationChain msgs = null;
 			if (result != null)
 				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.CREATE_LINK_OBJECT_ACTION__RESULT, null, msgs);
@@ -213,12 +203,8 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getEndData()
-	{
-		if (endData == null)
-		{
-			
-		
+  public EList settable_getEndData() {
+		if (endData == null) {
 			endData = new com.hopstepjump.emflist.PersistentEList(LinkEndCreationData.class, this, UML2Package.CREATE_LINK_OBJECT_ACTION__END_DATA);
 		}
 		return endData;
@@ -229,14 +215,11 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getEndData()
-	{
+  public java.util.ArrayList undeleted_getEndData() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (endData != null)
-		{
-			for (Object object : endData)
-			{
+		if (endData != null) {
+			for (Object object : endData) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -283,12 +266,9 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CREATE_LINK_OBJECT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CREATE_LINK_OBJECT_ACTION__TEMPLATE_BINDING:
@@ -331,12 +311,9 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CREATE_LINK_OBJECT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CREATE_LINK_OBJECT_ACTION__OWNED_COMMENT:
@@ -387,12 +364,9 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.CREATE_LINK_OBJECT_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.CREATE_LINK_OBJECT_ACTION__IN_STRUCTURED_NODE:
@@ -409,10 +383,8 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CREATE_LINK_OBJECT_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CREATE_LINK_OBJECT_ACTION__OWNED_ELEMENT:
@@ -500,10 +472,8 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CREATE_LINK_OBJECT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -621,10 +591,8 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CREATE_LINK_OBJECT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -724,10 +692,8 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CREATE_LINK_OBJECT_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CREATE_LINK_OBJECT_ACTION__OWNED_ELEMENT:
@@ -814,8 +780,7 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOutputsHelper(EList output)
-	{
+	protected EList getOutputsHelper(EList output) {
 		super.getOutputsHelper(output);
 		if (eIsSet(UML2Package.eINSTANCE.getCreateLinkObjectAction_Result())) {
 			output.add(getResult());

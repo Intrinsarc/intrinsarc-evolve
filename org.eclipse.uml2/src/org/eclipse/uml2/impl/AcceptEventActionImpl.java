@@ -83,8 +83,7 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AcceptEventActionImpl()
-	{
+	protected AcceptEventActionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -99,8 +98,7 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getAcceptEventAction();
 	}
 
@@ -109,13 +107,9 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTriggers()
-	{
-		if (trigger == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getTriggers() {
+		if (trigger == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		trigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.ACCEPT_EVENT_ACTION__TRIGGER);
 			 		return trigger;
@@ -132,12 +126,8 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getTriggers()
-	{
-		if (trigger == null)
-		{
-			
-		
+  public EList settable_getTriggers() {
+		if (trigger == null) {
 			trigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.ACCEPT_EVENT_ACTION__TRIGGER);
 		}
 		return trigger;
@@ -148,14 +138,11 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getTriggers()
-	{
+  public java.util.ArrayList undeleted_getTriggers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (trigger != null)
-		{
-			for (Object object : trigger)
-			{
+		if (trigger != null) {
+			for (Object object : trigger) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -188,13 +175,9 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getResults()
-	{
-		if (result == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getResults() {
+		if (result == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.ACCEPT_EVENT_ACTION__RESULT);
 			 		return result;
@@ -211,12 +194,8 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getResults()
-	{
-		if (result == null)
-		{
-			
-		
+  public EList settable_getResults() {
+		if (result == null) {
 			result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.ACCEPT_EVENT_ACTION__RESULT);
 		}
 		return result;
@@ -227,14 +206,11 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getResults()
-	{
+  public java.util.ArrayList undeleted_getResults() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (result != null)
-		{
-			for (Object object : result)
-			{
+		if (result != null) {
+			for (Object object : result) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -267,12 +243,9 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ACCEPT_EVENT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ACCEPT_EVENT_ACTION__TEMPLATE_BINDING:
@@ -315,12 +288,9 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ACCEPT_EVENT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACCEPT_EVENT_ACTION__OWNED_COMMENT:
@@ -367,12 +337,9 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.ACCEPT_EVENT_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.ACCEPT_EVENT_ACTION__IN_STRUCTURED_NODE:
@@ -389,10 +356,8 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACCEPT_EVENT_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ACCEPT_EVENT_ACTION__OWNED_ELEMENT:
@@ -480,10 +445,8 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACCEPT_EVENT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -602,10 +565,8 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACCEPT_EVENT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -705,10 +666,8 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACCEPT_EVENT_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ACCEPT_EVENT_ACTION__OWNED_ELEMENT:
@@ -795,8 +754,7 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOutputsHelper(EList output)
-	{
+	protected EList getOutputsHelper(EList output) {
 		super.getOutputsHelper(output);
 		if (eIsSet(UML2Package.eINSTANCE.getAcceptEventAction_Result())) {
 			for (Iterator i = ((InternalEList) getResults()).basicIterator(); i.hasNext(); ) {

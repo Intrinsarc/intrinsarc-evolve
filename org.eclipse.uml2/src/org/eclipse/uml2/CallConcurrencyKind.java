@@ -122,8 +122,7 @@ public final class CallConcurrencyKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final CallConcurrencyKind[] VALUES_ARRAY =
-		new CallConcurrencyKind[]
-		{
+		new CallConcurrencyKind[] {
 			SEQUENTIAL_LITERAL,
 			GUARDED_LITERAL,
 			CONCURRENT_LITERAL,
@@ -143,13 +142,10 @@ public final class CallConcurrencyKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CallConcurrencyKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static CallConcurrencyKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CallConcurrencyKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -162,10 +158,8 @@ public final class CallConcurrencyKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CallConcurrencyKind get(int value)
-	{
-		switch (value)
-		{
+	public static CallConcurrencyKind get(int value) {
+		switch (value) {
 			case SEQUENTIAL: return SEQUENTIAL_LITERAL;
 			case GUARDED: return GUARDED_LITERAL;
 			case CONCURRENT: return CONCURRENT_LITERAL;
@@ -179,8 +173,7 @@ public final class CallConcurrencyKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CallConcurrencyKind(int value, String name)
-	{
+	private CallConcurrencyKind(int value, String name) {
 		super(value, name);
 	}
 

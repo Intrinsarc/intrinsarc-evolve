@@ -28,8 +28,7 @@ public abstract class ObjectNodeTest extends ActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectNodeTest(String name)
-	{
+	public ObjectNodeTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class ObjectNodeTest extends ActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ObjectNode getFixture()
-	{
+	private ObjectNode getFixture() {
 		return (ObjectNode)fixture;
 	}
 
@@ -53,8 +51,7 @@ public abstract class ObjectNodeTest extends ActivityNodeTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

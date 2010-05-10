@@ -34,8 +34,7 @@ public class J_DiagramTest extends J_FigureContainerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(J_DiagramTest.class);
 	}
 
@@ -45,8 +44,7 @@ public class J_DiagramTest extends J_FigureContainerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_DiagramTest(String name)
-	{
+	public J_DiagramTest(String name) {
 		super(name);
 	}
 
@@ -56,8 +54,7 @@ public class J_DiagramTest extends J_FigureContainerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private J_Diagram getFixture()
-	{
+	private J_Diagram getFixture() {
 		return (J_Diagram)fixture;
 	}
 
@@ -67,8 +64,7 @@ public class J_DiagramTest extends J_FigureContainerTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createJ_Diagram());
 	}
 
@@ -78,8 +74,7 @@ public class J_DiagramTest extends J_FigureContainerTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

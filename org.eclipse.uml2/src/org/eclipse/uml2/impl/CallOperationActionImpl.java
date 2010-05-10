@@ -90,8 +90,7 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CallOperationActionImpl()
-	{
+	protected CallOperationActionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -106,8 +105,7 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getCallOperationAction();
 	}
 
@@ -116,14 +114,11 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation getOperation()
-	{
-		if (operation != null && operation.eIsProxy())
-		{
+	public Operation getOperation() {
+		if (operation != null && operation.eIsProxy()) {
 			Operation oldOperation = operation;
 			operation = (Operation)eResolveProxy((InternalEObject)operation);
-			if (operation != oldOperation)
-			{
+			if (operation != oldOperation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
 			}
@@ -141,8 +136,7 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation undeleted_getOperation()
-	{
+  public Operation undeleted_getOperation() {
 		Operation temp = getOperation();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -154,8 +148,7 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation basicGetOperation()
-	{
+	public Operation basicGetOperation() {
 		return operation;
 	}
 
@@ -164,9 +157,7 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperation(Operation newOperation)
-	{
-
+	public void setOperation(Operation newOperation) {
 		Operation oldOperation = operation;
 		operation = newOperation;
 		if (eNotificationRequired())
@@ -180,8 +171,7 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getTarget()
-	{
+	public InputPin getTarget() {
 		return target;
 	}
 
@@ -195,8 +185,7 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getTarget()
-	{
+  public InputPin undeleted_getTarget() {
 		InputPin temp = getTarget();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -208,13 +197,10 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(InputPin newTarget, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetTarget(InputPin newTarget, NotificationChain msgs) {
 		InputPin oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.CALL_OPERATION_ACTION__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -227,11 +213,8 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(InputPin newTarget)
-	{
-
-		if (newTarget != target)
-		{
+	public void setTarget(InputPin newTarget) {
+		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
 				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.CALL_OPERATION_ACTION__TARGET, null, msgs);
@@ -279,12 +262,9 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CALL_OPERATION_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CALL_OPERATION_ACTION__TEMPLATE_BINDING:
@@ -327,12 +307,9 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CALL_OPERATION_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CALL_OPERATION_ACTION__OWNED_COMMENT:
@@ -385,12 +362,9 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.CALL_OPERATION_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.CALL_OPERATION_ACTION__IN_STRUCTURED_NODE:
@@ -407,10 +381,8 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CALL_OPERATION_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CALL_OPERATION_ACTION__OWNED_ELEMENT:
@@ -508,10 +480,8 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CALL_OPERATION_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -642,10 +612,8 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CALL_OPERATION_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -757,10 +725,8 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CALL_OPERATION_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CALL_OPERATION_ACTION__OWNED_ELEMENT:
@@ -855,8 +821,7 @@ public class CallOperationActionImpl extends CallActionImpl implements CallOpera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input)
-	{
+	protected EList getInputsHelper(EList input) {
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getCallOperationAction_Target())) {
 			input.add(getTarget());

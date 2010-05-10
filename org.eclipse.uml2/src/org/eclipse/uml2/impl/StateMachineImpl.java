@@ -116,8 +116,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateMachineImpl()
-	{
+	protected StateMachineImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -132,8 +131,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getStateMachine();
 	}
 
@@ -142,13 +140,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRegions()
-	{
-		if (region == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getRegions() {
+		if (region == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		region = new com.hopstepjump.emflist.PersistentEList(Region.class, this, UML2Package.STATE_MACHINE__REGION, UML2Package.REGION__STATE_MACHINE);
 			 		return region;
@@ -165,12 +159,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRegions()
-	{
-		if (region == null)
-		{
-			
-		
+  public EList settable_getRegions() {
+		if (region == null) {
 			region = new com.hopstepjump.emflist.PersistentEList(Region.class, this, UML2Package.STATE_MACHINE__REGION, UML2Package.REGION__STATE_MACHINE);
 		}
 		return region;
@@ -181,14 +171,11 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRegions()
-	{
+  public java.util.ArrayList undeleted_getRegions() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (region != null)
-		{
-			for (Object object : region)
-			{
+		if (region != null) {
+			for (Object object : region) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -250,13 +237,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getConnectionPoints()
-	{
-		if (connectionPoint == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getConnectionPoints() {
+		if (connectionPoint == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		connectionPoint = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.STATE_MACHINE__CONNECTION_POINT);
 			 		return connectionPoint;
@@ -273,12 +256,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getConnectionPoints()
-	{
-		if (connectionPoint == null)
-		{
-			
-		
+  public EList settable_getConnectionPoints() {
+		if (connectionPoint == null) {
 			connectionPoint = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.STATE_MACHINE__CONNECTION_POINT);
 		}
 		return connectionPoint;
@@ -289,14 +268,11 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getConnectionPoints()
-	{
+  public java.util.ArrayList undeleted_getConnectionPoints() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (connectionPoint != null)
-		{
-			for (Object object : connectionPoint)
-			{
+		if (connectionPoint != null) {
+			for (Object object : connectionPoint) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -358,14 +334,11 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine getExtendedStateMachine()
-	{
-		if (extendedStateMachine != null && extendedStateMachine.eIsProxy())
-		{
+	public StateMachine getExtendedStateMachine() {
+		if (extendedStateMachine != null && extendedStateMachine.eIsProxy()) {
 			StateMachine oldExtendedStateMachine = extendedStateMachine;
 			extendedStateMachine = (StateMachine)eResolveProxy((InternalEObject)extendedStateMachine);
-			if (extendedStateMachine != oldExtendedStateMachine)
-			{
+			if (extendedStateMachine != oldExtendedStateMachine) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.STATE_MACHINE__EXTENDED_STATE_MACHINE, oldExtendedStateMachine, extendedStateMachine));
 			}
@@ -383,8 +356,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StateMachine undeleted_getExtendedStateMachine()
-	{
+  public StateMachine undeleted_getExtendedStateMachine() {
 		StateMachine temp = getExtendedStateMachine();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -396,8 +368,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine basicGetExtendedStateMachine()
-	{
+	public StateMachine basicGetExtendedStateMachine() {
 		return extendedStateMachine;
 	}
 
@@ -406,9 +377,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtendedStateMachine(StateMachine newExtendedStateMachine)
-	{
-
+	public void setExtendedStateMachine(StateMachine newExtendedStateMachine) {
 		StateMachine oldExtendedStateMachine = extendedStateMachine;
 		extendedStateMachine = newExtendedStateMachine;
 		if (eNotificationRequired())
@@ -432,8 +401,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BehavioredClassifier undeleted_getStateMachine_redefinitionContext()
-	{
+  public BehavioredClassifier undeleted_getStateMachine_redefinitionContext() {
 		BehavioredClassifier temp = getStateMachine_redefinitionContext();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -467,8 +435,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements()
-	{
+	public EList getRedefinedElements() {
 		return new EcoreEList.UnmodifiableEList(this, null, 0, Collections.EMPTY_LIST.toArray());
 	}
 
@@ -478,8 +445,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinitionContexts()
-	{
+	public EList getRedefinitionContexts() {
 		return new EcoreEList.UnmodifiableEList(this, UML2Package.eINSTANCE.getRedefinableElement_RedefinitionContext(), 0, Collections.EMPTY_LIST.toArray());
 	}
 
@@ -489,12 +455,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.STATE_MACHINE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.STATE_MACHINE__TEMPLATE_BINDING:
@@ -570,12 +533,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.STATE_MACHINE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.STATE_MACHINE__OWNED_COMMENT:
@@ -687,12 +647,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.STATE_MACHINE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.STATE_MACHINE__CONTEXT:
@@ -711,10 +668,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.STATE_MACHINE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.STATE_MACHINE__OWNED_ELEMENT:
@@ -899,10 +854,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.STATE_MACHINE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1162,10 +1115,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.STATE_MACHINE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1379,10 +1330,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.STATE_MACHINE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.STATE_MACHINE__OWNED_ELEMENT:
@@ -1579,8 +1528,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember)
-	{
+	protected EList getOwnedMembersHelper(EList ownedMember) {
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getStateMachine_Region())) {
 			ownedMember.addAll(getRegions());

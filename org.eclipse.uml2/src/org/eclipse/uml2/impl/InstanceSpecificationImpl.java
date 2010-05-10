@@ -140,8 +140,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceSpecificationImpl()
-	{
+	protected InstanceSpecificationImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -156,8 +155,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getInstanceSpecification();
 	}
 
@@ -166,13 +164,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeployments()
-	{
-		if (deployment == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeployments() {
+		if (deployment == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deployment = new com.hopstepjump.emflist.PersistentEList(Deployment.class, this, UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT, new int[] {UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 			 		return deployment;
@@ -189,12 +183,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getDeployments()
-	{
-		if (deployment == null)
-		{
-			
-		
+  public EList settable_getDeployments() {
+		if (deployment == null) {
 			deployment = new com.hopstepjump.emflist.PersistentEList(Deployment.class, this, UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT, new int[] {UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 		}
 		return deployment;
@@ -205,14 +195,11 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getDeployments()
-	{
+  public java.util.ArrayList undeleted_getDeployments() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deployment != null)
-		{
-			for (Object object : deployment)
-			{
+		if (deployment != null) {
+			for (Object object : deployment) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -322,13 +309,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSlots()
-	{
-		if (slot == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSlots() {
+		if (slot == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		slot = new com.hopstepjump.emflist.PersistentEList(Slot.class, this, UML2Package.INSTANCE_SPECIFICATION__SLOT, UML2Package.SLOT__OWNING_INSTANCE);
 			 		return slot;
@@ -345,12 +328,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSlots()
-	{
-		if (slot == null)
-		{
-			
-		
+  public EList settable_getSlots() {
+		if (slot == null) {
 			slot = new com.hopstepjump.emflist.PersistentEList(Slot.class, this, UML2Package.INSTANCE_SPECIFICATION__SLOT, UML2Package.SLOT__OWNING_INSTANCE);
 		}
 		return slot;
@@ -361,14 +340,11 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSlots()
-	{
+  public java.util.ArrayList undeleted_getSlots() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (slot != null)
-		{
-			for (Object object : slot)
-			{
+		if (slot != null) {
+			for (Object object : slot) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -415,13 +391,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClassifiers()
-	{
-		if (classifier == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getClassifiers() {
+		if (classifier == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		classifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INSTANCE_SPECIFICATION__CLASSIFIER);
 			 		return classifier;
@@ -438,12 +410,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClassifiers()
-	{
-		if (classifier == null)
-		{
-			
-		
+  public EList settable_getClassifiers() {
+		if (classifier == null) {
 			classifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INSTANCE_SPECIFICATION__CLASSIFIER);
 		}
 		return classifier;
@@ -454,14 +422,11 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClassifiers()
-	{
+  public java.util.ArrayList undeleted_getClassifiers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (classifier != null)
-		{
-			for (Object object : classifier)
-			{
+		if (classifier != null) {
+			for (Object object : classifier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -494,8 +459,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getSpecification()
-	{
+	public ValueSpecification getSpecification() {
 		return specification;
 	}
 
@@ -509,8 +473,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getSpecification()
-	{
+  public ValueSpecification undeleted_getSpecification() {
 		ValueSpecification temp = getSpecification();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -522,13 +485,10 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecification(ValueSpecification newSpecification, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetSpecification(ValueSpecification newSpecification, NotificationChain msgs) {
 		ValueSpecification oldSpecification = specification;
 		specification = newSpecification;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.INSTANCE_SPECIFICATION__SPECIFICATION, oldSpecification, newSpecification);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -541,11 +501,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecification(ValueSpecification newSpecification)
-	{
-
-		if (newSpecification != specification)
-		{
+	public void setSpecification(ValueSpecification newSpecification) {
+		if (newSpecification != specification) {
 			NotificationChain msgs = null;
 			if (specification != null)
 				msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.INSTANCE_SPECIFICATION__SPECIFICATION, null, msgs);
@@ -579,13 +536,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList getPortRemaps()
-	{
-		if (portRemap == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+  public EList getPortRemaps() {
+		if (portRemap == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		portRemap = new com.hopstepjump.emflist.PersistentEList(PortRemap.class, this, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP);
 			 		return portRemap;
@@ -602,12 +555,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPortRemaps()
-	{
-		if (portRemap == null)
-		{
-			
-		
+  public EList settable_getPortRemaps() {
+		if (portRemap == null) {
 			portRemap = new com.hopstepjump.emflist.PersistentEList(PortRemap.class, this, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP);
 		}
 		return portRemap;
@@ -618,14 +567,11 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPortRemaps()
-	{
+  public java.util.ArrayList undeleted_getPortRemaps() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (portRemap != null)
-		{
-			for (Object object : portRemap)
-			{
+		if (portRemap != null) {
+			for (Object object : portRemap) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -671,8 +617,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSlotsAreDefined(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateSlotsAreDefined(DiagnosticChain diagnostics, Map context) {
 		return InstanceSpecificationOperations.validateSlotsAreDefined(this, diagnostics, context);
 	}
 
@@ -681,8 +626,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNoDuplicateSlots(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateNoDuplicateSlots(DiagnosticChain diagnostics, Map context) {
 		return InstanceSpecificationOperations.validateNoDuplicateSlots(this, diagnostics, context);
 	}
 
@@ -691,13 +635,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClientDependencies()
-	{
-		if (clientDependency == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getClientDependencies() {
+		if (clientDependency == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY, new int[] {UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
@@ -714,12 +654,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClientDependencies()
-	{
-		if (clientDependency == null)
-		{
-			
-		
+  public EList settable_getClientDependencies() {
+		if (clientDependency == null) {
 			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY, new int[] {UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
@@ -730,14 +666,11 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClientDependencies()
-	{
+  public java.util.ArrayList undeleted_getClientDependencies() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (clientDependency != null)
-		{
-			for (Object object : clientDependency)
-			{
+		if (clientDependency != null) {
+			for (Object object : clientDependency) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -755,12 +688,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INSTANCE_SPECIFICATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INSTANCE_SPECIFICATION__TEMPLATE_BINDING:
@@ -797,12 +727,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INSTANCE_SPECIFICATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INSTANCE_SPECIFICATION__OWNED_COMMENT:
@@ -843,12 +770,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.INSTANCE_SPECIFICATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -863,10 +787,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INSTANCE_SPECIFICATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INSTANCE_SPECIFICATION__OWNED_ELEMENT:
@@ -934,10 +856,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INSTANCE_SPECIFICATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1032,10 +952,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INSTANCE_SPECIFICATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1117,10 +1035,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INSTANCE_SPECIFICATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INSTANCE_SPECIFICATION__OWNED_ELEMENT:
@@ -1196,21 +1112,16 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == DeploymentTarget.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == DeploymentTarget.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT: return UML2Package.DEPLOYMENT_TARGET__DEPLOYMENT;
 				case UML2Package.INSTANCE_SPECIFICATION__DEPLOYED_ELEMENT: return UML2Package.DEPLOYMENT_TARGET__DEPLOYED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DeployedArtifact.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == DeployedArtifact.class) {
+			switch (derivedFeatureID) {
 				default: return -1;
 			}
 		}
@@ -1222,21 +1133,16 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == DeploymentTarget.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == DeploymentTarget.class) {
+			switch (baseFeatureID) {
 				case UML2Package.DEPLOYMENT_TARGET__DEPLOYMENT: return UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT;
 				case UML2Package.DEPLOYMENT_TARGET__DEPLOYED_ELEMENT: return UML2Package.INSTANCE_SPECIFICATION__DEPLOYED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DeployedArtifact.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == DeployedArtifact.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}
@@ -1249,8 +1155,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getDeploymentTarget_Deployment())) {
 			ownedElement.addAll(getDeployments());

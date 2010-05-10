@@ -73,8 +73,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProtocolConformanceImpl()
-	{
+	protected ProtocolConformanceImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -89,8 +88,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getProtocolConformance();
 	}
 
@@ -99,8 +97,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolStateMachine getSpecificMachine()
-	{
+	public ProtocolStateMachine getSpecificMachine() {
 		if (eContainerFeatureID != UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE) return null;
 		return (ProtocolStateMachine)eContainer;
 	}
@@ -115,8 +112,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ProtocolStateMachine undeleted_getSpecificMachine()
-	{
+  public ProtocolStateMachine undeleted_getSpecificMachine() {
 		ProtocolStateMachine temp = getSpecificMachine();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -128,11 +124,8 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecificMachine(ProtocolStateMachine newSpecificMachine)
-	{
-
-		if (newSpecificMachine != eContainer || (eContainerFeatureID != UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE && newSpecificMachine != null))
-		{
+	public void setSpecificMachine(ProtocolStateMachine newSpecificMachine) {
+		if (newSpecificMachine != eContainer || (eContainerFeatureID != UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE && newSpecificMachine != null)) {
 			if (EcoreUtil.isAncestor(this, newSpecificMachine))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -154,14 +147,11 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolStateMachine getGeneralMachine()
-	{
-		if (generalMachine != null && generalMachine.eIsProxy())
-		{
+	public ProtocolStateMachine getGeneralMachine() {
+		if (generalMachine != null && generalMachine.eIsProxy()) {
 			ProtocolStateMachine oldGeneralMachine = generalMachine;
 			generalMachine = (ProtocolStateMachine)eResolveProxy((InternalEObject)generalMachine);
-			if (generalMachine != oldGeneralMachine)
-			{
+			if (generalMachine != oldGeneralMachine) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PROTOCOL_CONFORMANCE__GENERAL_MACHINE, oldGeneralMachine, generalMachine));
 			}
@@ -179,8 +169,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ProtocolStateMachine undeleted_getGeneralMachine()
-	{
+  public ProtocolStateMachine undeleted_getGeneralMachine() {
 		ProtocolStateMachine temp = getGeneralMachine();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -192,8 +181,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolStateMachine basicGetGeneralMachine()
-	{
+	public ProtocolStateMachine basicGetGeneralMachine() {
 		return generalMachine;
 	}
 
@@ -202,9 +190,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGeneralMachine(ProtocolStateMachine newGeneralMachine)
-	{
-
+	public void setGeneralMachine(ProtocolStateMachine newGeneralMachine) {
 		ProtocolStateMachine oldGeneralMachine = generalMachine;
 		generalMachine = newGeneralMachine;
 		if (eNotificationRequired())
@@ -218,8 +204,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		ProtocolStateMachine specificMachine = getSpecificMachine();			
 		if (specificMachine != null) {
 			return specificMachine;
@@ -233,8 +218,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target)
-	{
+	protected EList getTargetsHelper(EList target) {
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getProtocolConformance_GeneralMachine())) {
 			target.add(getGeneralMachine());
@@ -248,12 +232,9 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PROTOCOL_CONFORMANCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE:
@@ -274,12 +255,9 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PROTOCOL_CONFORMANCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PROTOCOL_CONFORMANCE__OWNED_COMMENT:
@@ -300,12 +278,9 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE:
 					return eContainer.eInverseRemove(this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, ProtocolStateMachine.class, msgs);
 				default:
@@ -320,10 +295,8 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PROTOCOL_CONFORMANCE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PROTOCOL_CONFORMANCE__OWNED_ELEMENT:
@@ -363,10 +336,8 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PROTOCOL_CONFORMANCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -407,10 +378,8 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PROTOCOL_CONFORMANCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -447,10 +416,8 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PROTOCOL_CONFORMANCE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PROTOCOL_CONFORMANCE__OWNED_ELEMENT:
@@ -489,8 +456,7 @@ public class ProtocolConformanceImpl extends DirectedRelationshipImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source)
-	{
+	protected EList getSourcesHelper(EList source) {
 		super.getSourcesHelper(source);
 		ProtocolStateMachine specificMachine = getSpecificMachine();
 		if (specificMachine != null) {

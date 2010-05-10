@@ -30,8 +30,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(InterfaceTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterfaceTest(String name)
-	{
+	public InterfaceTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Interface getFixture()
-	{
+	private Interface getFixture() {
 		return (Interface)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createInterface());
 	}
 
@@ -74,8 +70,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getAttributes()
 	 * @generated
 	 */
-	public void testGetAttributes()
-	{
+	public void testGetAttributes() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,8 +107,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getFeatures()
 	 * @generated
 	 */
-	public void testGetFeatures()
-	{
+	public void testGetFeatures() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -127,8 +119,7 @@ public class InterfaceTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements()
-	{
+	public void testGetRedefinedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

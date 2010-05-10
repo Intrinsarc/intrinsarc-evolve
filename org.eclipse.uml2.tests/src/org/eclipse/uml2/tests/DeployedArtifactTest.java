@@ -28,8 +28,7 @@ public abstract class DeployedArtifactTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeployedArtifactTest(String name)
-	{
+	public DeployedArtifactTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class DeployedArtifactTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DeployedArtifact getFixture()
-	{
+	private DeployedArtifact getFixture() {
 		return (DeployedArtifact)fixture;
 	}
 

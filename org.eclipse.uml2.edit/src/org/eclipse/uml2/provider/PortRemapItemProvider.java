@@ -55,8 +55,7 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PortRemapItemProvider(AdapterFactory adapterFactory)
-	{
+  public PortRemapItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,10 +65,8 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+  public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addOriginalPortPropertyDescriptor(object);
@@ -84,8 +81,7 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addOriginalPortPropertyDescriptor(Object object)
-	{
+  protected void addOriginalPortPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -105,8 +101,7 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addNewPortPropertyDescriptor(Object object)
-	{
+  protected void addNewPortPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -126,8 +121,7 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Object getImage(Object object)
-	{
+  public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/PortRemap"); //$NON-NLS-1$
 	}
 
@@ -137,8 +131,7 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getText(Object object)
-	{
+  public String getText(Object object) {
 		PortRemap portRemap = (PortRemap)object;
 		return getString("_UI_PortRemap_type") + " " + portRemap.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -150,8 +143,7 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void notifyChanged(Notification notification)
-	{
+  public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -163,8 +155,7 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+  protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -174,8 +165,7 @@ public class PortRemapItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ResourceLocator getResourceLocator()
-	{
+  public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -122,8 +122,7 @@ public final class ExpansionKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final ExpansionKind[] VALUES_ARRAY =
-		new ExpansionKind[]
-		{
+		new ExpansionKind[] {
 			PARALLEL_LITERAL,
 			ITERATIVE_LITERAL,
 			STREAM_LITERAL,
@@ -143,13 +142,10 @@ public final class ExpansionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ExpansionKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static ExpansionKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ExpansionKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -162,10 +158,8 @@ public final class ExpansionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ExpansionKind get(int value)
-	{
-		switch (value)
-		{
+	public static ExpansionKind get(int value) {
+		switch (value) {
 			case PARALLEL: return PARALLEL_LITERAL;
 			case ITERATIVE: return ITERATIVE_LITERAL;
 			case STREAM: return STREAM_LITERAL;
@@ -179,8 +173,7 @@ public final class ExpansionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExpansionKind(int value, String name)
-	{
+	private ExpansionKind(int value, String name) {
 		super(value, name);
 	}
 

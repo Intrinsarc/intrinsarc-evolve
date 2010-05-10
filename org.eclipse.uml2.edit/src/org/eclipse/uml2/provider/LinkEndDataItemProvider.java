@@ -57,8 +57,7 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkEndDataItemProvider(AdapterFactory adapterFactory)
-	{
+	public LinkEndDataItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addValuePropertyDescriptor(object);
@@ -87,8 +84,7 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object)
-	{
+	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -108,8 +104,7 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEndPropertyDescriptor(Object object)
-	{
+	protected void addEndPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -129,8 +124,7 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addQualifierPropertyDescriptor(Object object)
-	{
+	protected void addQualifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -154,10 +148,8 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getLinkEndData_Qualifier());
 		}
@@ -170,8 +162,7 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/LinkEndData"); //$NON-NLS-1$
 	}
 
@@ -181,8 +172,7 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		LinkEndData linkEndData = (LinkEndData)object;
 		return getString("_UI_LinkEndData_type") + " " + linkEndData.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -194,12 +184,10 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LinkEndData.class))
-		{
+		switch (notification.getFeatureID(LinkEndData.class)) {
 			case UML2Package.LINK_END_DATA__QUALIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -214,8 +202,7 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -235,8 +222,7 @@ public class LinkEndDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -28,8 +28,7 @@ public abstract class ParameterableClassifierTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterableClassifierTest(String name)
-	{
+	public ParameterableClassifierTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class ParameterableClassifierTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ParameterableClassifier getFixture()
-	{
+	private ParameterableClassifier getFixture() {
 		return (ParameterableClassifier)fixture;
 	}
 

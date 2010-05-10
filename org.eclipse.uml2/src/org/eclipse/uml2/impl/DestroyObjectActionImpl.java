@@ -117,8 +117,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DestroyObjectActionImpl()
-	{
+	protected DestroyObjectActionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -133,8 +132,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getDestroyObjectAction();
 	}
 
@@ -143,8 +141,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDestroyLinks()
-	{
+	public boolean isDestroyLinks() {
 		return (eFlags & IS_DESTROY_LINKS_EFLAG) != 0;
 	}
 
@@ -159,9 +156,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsDestroyLinks(boolean newIsDestroyLinks)
-	{
-
+	public void setIsDestroyLinks(boolean newIsDestroyLinks) {
 		boolean oldIsDestroyLinks = (eFlags & IS_DESTROY_LINKS_EFLAG) != 0;
 		if (newIsDestroyLinks) eFlags |= IS_DESTROY_LINKS_EFLAG; else eFlags &= ~IS_DESTROY_LINKS_EFLAG;
 		if (eNotificationRequired())
@@ -175,8 +170,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDestroyOwnedObjects()
-	{
+	public boolean isDestroyOwnedObjects() {
 		return (eFlags & IS_DESTROY_OWNED_OBJECTS_EFLAG) != 0;
 	}
 
@@ -191,9 +185,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsDestroyOwnedObjects(boolean newIsDestroyOwnedObjects)
-	{
-
+	public void setIsDestroyOwnedObjects(boolean newIsDestroyOwnedObjects) {
 		boolean oldIsDestroyOwnedObjects = (eFlags & IS_DESTROY_OWNED_OBJECTS_EFLAG) != 0;
 		if (newIsDestroyOwnedObjects) eFlags |= IS_DESTROY_OWNED_OBJECTS_EFLAG; else eFlags &= ~IS_DESTROY_OWNED_OBJECTS_EFLAG;
 		if (eNotificationRequired())
@@ -207,8 +199,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getTarget()
-	{
+	public InputPin getTarget() {
 		return target;
 	}
 
@@ -222,8 +213,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getTarget()
-	{
+  public InputPin undeleted_getTarget() {
 		InputPin temp = getTarget();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -235,13 +225,10 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(InputPin newTarget, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetTarget(InputPin newTarget, NotificationChain msgs) {
 		InputPin oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.DESTROY_OBJECT_ACTION__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -254,11 +241,8 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(InputPin newTarget)
-	{
-
-		if (newTarget != target)
-		{
+	public void setTarget(InputPin newTarget) {
+		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
 				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.DESTROY_OBJECT_ACTION__TARGET, null, msgs);
@@ -306,12 +290,9 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DESTROY_OBJECT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.DESTROY_OBJECT_ACTION__TEMPLATE_BINDING:
@@ -354,12 +335,9 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DESTROY_OBJECT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DESTROY_OBJECT_ACTION__OWNED_COMMENT:
@@ -408,12 +386,9 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.DESTROY_OBJECT_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.DESTROY_OBJECT_ACTION__IN_STRUCTURED_NODE:
@@ -430,10 +405,8 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DESTROY_OBJECT_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DESTROY_OBJECT_ACTION__OWNED_ELEMENT:
@@ -523,10 +496,8 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DESTROY_OBJECT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -646,10 +617,8 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DESTROY_OBJECT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -752,10 +721,8 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DESTROY_OBJECT_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DESTROY_OBJECT_ACTION__OWNED_ELEMENT:
@@ -843,8 +810,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -862,8 +828,7 @@ public class DestroyObjectActionImpl extends ActionImpl implements DestroyObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input)
-	{
+	protected EList getInputsHelper(EList input) {
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getDestroyObjectAction_Target())) {
 			input.add(getTarget());

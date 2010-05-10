@@ -57,8 +57,7 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkEndCreationDataItemProvider(AdapterFactory adapterFactory)
-	{
+	public LinkEndCreationDataItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIsReplaceAllPropertyDescriptor(object);
@@ -86,8 +83,7 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsReplaceAllPropertyDescriptor(Object object)
-	{
+	protected void addIsReplaceAllPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInsertAtPropertyDescriptor(Object object)
-	{
+	protected void addInsertAtPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -128,8 +123,7 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/LinkEndCreationData"); //$NON-NLS-1$
 	}
 
@@ -139,8 +133,7 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		LinkEndCreationData linkEndCreationData = (LinkEndCreationData)object;
 		return getString("_UI_LinkEndCreationData_type") + " " + linkEndCreationData.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -152,12 +145,10 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LinkEndCreationData.class))
-		{
+		switch (notification.getFeatureID(LinkEndCreationData.class)) {
 			case UML2Package.LINK_END_CREATION_DATA__IS_REPLACE_ALL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -172,8 +163,7 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -183,8 +173,7 @@ public class LinkEndCreationDataItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

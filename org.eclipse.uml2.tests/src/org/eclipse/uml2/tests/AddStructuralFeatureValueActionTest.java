@@ -30,8 +30,7 @@ public class AddStructuralFeatureValueActionTest extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(AddStructuralFeatureValueActionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class AddStructuralFeatureValueActionTest extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AddStructuralFeatureValueActionTest(String name)
-	{
+	public AddStructuralFeatureValueActionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class AddStructuralFeatureValueActionTest extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AddStructuralFeatureValueAction getFixture()
-	{
+	private AddStructuralFeatureValueAction getFixture() {
 		return (AddStructuralFeatureValueAction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class AddStructuralFeatureValueActionTest extends WriteStructuralFeatureA
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createAddStructuralFeatureValueAction());
 	}
 
@@ -74,8 +70,7 @@ public class AddStructuralFeatureValueActionTest extends WriteStructuralFeatureA
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class AddStructuralFeatureValueActionTest extends WriteStructuralFeatureA
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs()
-	{
+	public void testGetInputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

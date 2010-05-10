@@ -161,8 +161,7 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final PortKind[] VALUES_ARRAY =
-		new PortKind[]
-		{
+		new PortKind[] {
 			NORMAL_LITERAL,
 			CREATE_LITERAL,
 			HYPERPORT_START_LITERAL,
@@ -184,13 +183,10 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PortKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static PortKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			PortKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -203,10 +199,8 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PortKind get(int value)
-	{
-		switch (value)
-		{
+	public static PortKind get(int value) {
+		switch (value) {
 			case NORMAL: return NORMAL_LITERAL;
 			case CREATE: return CREATE_LITERAL;
 			case HYPERPORT_START: return HYPERPORT_START_LITERAL;
@@ -222,8 +216,7 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PortKind(int value, String name)
-	{
+	private PortKind(int value, String name) {
 		super(value, name);
 	}
 

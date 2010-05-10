@@ -30,8 +30,7 @@ public class LoopNodeTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(LoopNodeTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class LoopNodeTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LoopNodeTest(String name)
-	{
+	public LoopNodeTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class LoopNodeTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LoopNode getFixture()
-	{
+	private LoopNode getFixture() {
 		return (LoopNode)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class LoopNodeTest extends StructuredActivityNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createLoopNode());
 	}
 
@@ -74,8 +70,7 @@ public class LoopNodeTest extends StructuredActivityNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class LoopNodeTest extends StructuredActivityNodeTest {
 	 * @see org.eclipse.uml2.Action#getOutputs()
 	 * @generated
 	 */
-	public void testGetOutputs()
-	{
+	public void testGetOutputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class LoopNodeTest extends StructuredActivityNodeTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,8 +107,7 @@ public class LoopNodeTest extends StructuredActivityNodeTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs()
-	{
+	public void testGetInputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

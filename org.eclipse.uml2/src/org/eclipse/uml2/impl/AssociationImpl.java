@@ -123,8 +123,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AssociationImpl()
-	{
+	protected AssociationImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -139,8 +138,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getAssociation();
 	}
 
@@ -149,8 +147,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDerived()
-	{
+	public boolean isDerived() {
 		return (eFlags & IS_DERIVED_EFLAG) != 0;
 	}
 
@@ -165,9 +162,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsDerived(boolean newIsDerived)
-	{
-
+	public void setIsDerived(boolean newIsDerived) {
 		boolean oldIsDerived = (eFlags & IS_DERIVED_EFLAG) != 0;
 		if (newIsDerived) eFlags |= IS_DERIVED_EFLAG; else eFlags &= ~IS_DERIVED_EFLAG;
 		if (eNotificationRequired())
@@ -181,13 +176,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedEnds()
-	{
-		if (ownedEnd == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedEnds() {
+		if (ownedEnd == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedEnd = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.ASSOCIATION__OWNED_END, new int[] {UML2Package.ASSOCIATION__MEMBER_END}, UML2Package.PROPERTY__OWNING_ASSOCIATION);
 			 		return ownedEnd;
@@ -204,12 +195,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedEnds()
-	{
-		if (ownedEnd == null)
-		{
-			
-		
+  public EList settable_getOwnedEnds() {
+		if (ownedEnd == null) {
 			ownedEnd = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.ASSOCIATION__OWNED_END, new int[] {UML2Package.ASSOCIATION__MEMBER_END}, UML2Package.PROPERTY__OWNING_ASSOCIATION);
 		}
 		return ownedEnd;
@@ -220,14 +207,11 @@ public class AssociationImpl extends ClassifierImpl implements Association {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedEnds()
-	{
+  public java.util.ArrayList undeleted_getOwnedEnds() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedEnd != null)
-		{
-			for (Object object : ownedEnd)
-			{
+		if (ownedEnd != null) {
+			for (Object object : ownedEnd) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -331,13 +315,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getMemberEnds()
-	{
-		if (memberEnd == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getMemberEnds() {
+		if (memberEnd == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		memberEnd = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.ASSOCIATION__MEMBER_END, new int[] {UML2Package.ASSOCIATION__OWNED_END}, UML2Package.PROPERTY__ASSOCIATION);
 			 		return memberEnd;
@@ -354,12 +334,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getMemberEnds()
-	{
-		if (memberEnd == null)
-		{
-			
-		
+  public EList settable_getMemberEnds() {
+		if (memberEnd == null) {
 			memberEnd = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.ASSOCIATION__MEMBER_END, new int[] {UML2Package.ASSOCIATION__OWNED_END}, UML2Package.PROPERTY__ASSOCIATION);
 		}
 		return memberEnd;
@@ -370,14 +346,11 @@ public class AssociationImpl extends ClassifierImpl implements Association {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getMemberEnds()
-	{
+  public java.util.ArrayList undeleted_getMemberEnds() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (memberEnd != null)
-		{
-			for (Object object : memberEnd)
-			{
+		if (memberEnd != null) {
+			for (Object object : memberEnd) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -410,8 +383,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRelatedElements()
-	{
+	public EList getRelatedElements() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList relatedElement = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getRelationship_RelatedElement());
@@ -431,8 +403,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getFeaturesHelper(EList feature)
-	{
+	protected EList getFeaturesHelper(EList feature) {
 		super.getFeaturesHelper(feature);
 		if (eIsSet(UML2Package.eINSTANCE.getAssociation_OwnedEnd())) {
 			feature.addAll(getOwnedEnds());
@@ -446,8 +417,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember)
-	{
+	protected EList getOwnedMembersHelper(EList ownedMember) {
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getAssociation_OwnedEnd())) {
 			ownedMember.addAll(getOwnedEnds());
@@ -461,8 +431,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getMembersHelper(EList member)
-	{
+	protected EList getMembersHelper(EList member) {
 		super.getMembersHelper(member);
 		if (eIsSet(UML2Package.eINSTANCE.getAssociation_MemberEnd())) {
 			for (Iterator i = ((InternalEList) getMemberEnds()).basicIterator(); i.hasNext(); ) {
@@ -478,12 +447,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ASSOCIATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ASSOCIATION__TEMPLATE_BINDING:
@@ -534,12 +500,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ASSOCIATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ASSOCIATION__OWNED_COMMENT:
@@ -594,12 +557,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.ASSOCIATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -614,10 +574,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ASSOCIATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ASSOCIATION__OWNED_ELEMENT:
@@ -728,10 +686,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ASSOCIATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -870,10 +826,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ASSOCIATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -991,10 +945,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ASSOCIATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ASSOCIATION__OWNED_ELEMENT:
@@ -1112,12 +1064,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == Relationship.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == Relationship.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.ASSOCIATION__RELATED_ELEMENT: return UML2Package.RELATIONSHIP__RELATED_ELEMENT;
 				default: return -1;
 			}
@@ -1130,12 +1079,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == Relationship.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == Relationship.class) {
+			switch (baseFeatureID) {
 				case UML2Package.RELATIONSHIP__RELATED_ELEMENT: return UML2Package.ASSOCIATION__RELATED_ELEMENT;
 				default: return -1;
 			}
@@ -1148,8 +1094,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1165,8 +1110,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRelatedElementsHelper(EList relatedElement)
-	{
+	protected EList getRelatedElementsHelper(EList relatedElement) {
 		EList endType = getEndTypes();
 		if (!endType.isEmpty()) {
 			for (Iterator i = ((InternalEList) endType).basicIterator(); i.hasNext(); ) {

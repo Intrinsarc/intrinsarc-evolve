@@ -111,8 +111,7 @@ public final class PropertyAccessKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final PropertyAccessKind[] VALUES_ARRAY =
-		new PropertyAccessKind[]
-		{
+		new PropertyAccessKind[] {
 			READ_WRITE_LITERAL,
 			READ_ONLY_LITERAL,
 			WRITE_ONLY_LITERAL,
@@ -132,13 +131,10 @@ public final class PropertyAccessKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PropertyAccessKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static PropertyAccessKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			PropertyAccessKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -151,10 +147,8 @@ public final class PropertyAccessKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PropertyAccessKind get(int value)
-	{
-		switch (value)
-		{
+	public static PropertyAccessKind get(int value) {
+		switch (value) {
 			case READ_WRITE: return READ_WRITE_LITERAL;
 			case READ_ONLY: return READ_ONLY_LITERAL;
 			case WRITE_ONLY: return WRITE_ONLY_LITERAL;
@@ -168,8 +162,7 @@ public final class PropertyAccessKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PropertyAccessKind(int value, String name)
-	{
+	private PropertyAccessKind(int value, String name) {
 		super(value, name);
 	}
 

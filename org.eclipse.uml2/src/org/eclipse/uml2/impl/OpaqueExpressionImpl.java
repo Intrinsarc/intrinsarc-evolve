@@ -114,8 +114,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OpaqueExpressionImpl()
-	{
+	protected OpaqueExpressionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -130,8 +129,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getOpaqueExpression();
 	}
 
@@ -140,8 +138,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBody()
-	{
+	public String getBody() {
 		return body;
 	}
 
@@ -156,9 +153,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBody(String newBody)
-	{
-
+	public void setBody(String newBody) {
 		newBody = newBody == null ? BODY_EDEFAULT : newBody;
 		String oldBody = body;
 		body = newBody;
@@ -173,8 +168,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLanguage()
-	{
+	public String getLanguage() {
 		return language;
 	}
 
@@ -189,9 +183,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLanguage(String newLanguage)
-	{
-
+	public void setLanguage(String newLanguage) {
 		newLanguage = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
 		String oldLanguage = language;
 		language = newLanguage;
@@ -206,8 +198,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Parameter getResult()
-	{
+	public Parameter getResult() {
 		Parameter result = basicGetResult();
 		return result == null ? null : (Parameter)eResolveProxy((InternalEObject)result);
 	}
@@ -242,14 +233,11 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Behavior getBehavior()
-	{
-		if (behavior != null && behavior.eIsProxy())
-		{
+	public Behavior getBehavior() {
+		if (behavior != null && behavior.eIsProxy()) {
 			Behavior oldBehavior = behavior;
 			behavior = (Behavior)eResolveProxy((InternalEObject)behavior);
-			if (behavior != oldBehavior)
-			{
+			if (behavior != oldBehavior) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.OPAQUE_EXPRESSION__BEHAVIOR, oldBehavior, behavior));
 			}
@@ -267,8 +255,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Behavior undeleted_getBehavior()
-	{
+  public Behavior undeleted_getBehavior() {
 		Behavior temp = getBehavior();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -280,8 +267,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Behavior basicGetBehavior()
-	{
+	public Behavior basicGetBehavior() {
 		return behavior;
 	}
 
@@ -290,9 +276,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBehavior(Behavior newBehavior)
-	{
-
+	public void setBehavior(Behavior newBehavior) {
 		Behavior oldBehavior = behavior;
 		behavior = newBehavior;
 		if (eNotificationRequired())
@@ -306,12 +290,9 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.OPAQUE_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.OPAQUE_EXPRESSION__TEMPLATE_BINDING:
@@ -344,12 +325,9 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.OPAQUE_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.OPAQUE_EXPRESSION__OWNED_COMMENT:
@@ -382,12 +360,9 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.OPAQUE_EXPRESSION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -402,10 +377,8 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.OPAQUE_EXPRESSION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.OPAQUE_EXPRESSION__OWNED_ELEMENT:
@@ -472,10 +445,8 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.OPAQUE_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -560,10 +531,8 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.OPAQUE_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -639,10 +608,8 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.OPAQUE_EXPRESSION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.OPAQUE_EXPRESSION__OWNED_ELEMENT:
@@ -704,8 +671,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

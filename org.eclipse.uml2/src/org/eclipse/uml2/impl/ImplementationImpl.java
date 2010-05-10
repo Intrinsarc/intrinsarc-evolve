@@ -87,8 +87,7 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImplementationImpl()
-	{
+	protected ImplementationImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -103,8 +102,7 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getImplementation();
 	}
 
@@ -113,14 +111,11 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interface getContract()
-	{
-		if (contract != null && contract.eIsProxy())
-		{
+	public Interface getContract() {
+		if (contract != null && contract.eIsProxy()) {
 			Interface oldContract = contract;
 			contract = (Interface)eResolveProxy((InternalEObject)contract);
-			if (contract != oldContract)
-			{
+			if (contract != oldContract) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.IMPLEMENTATION__CONTRACT, oldContract, contract));
 			}
@@ -138,8 +133,7 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Interface undeleted_getContract()
-	{
+  public Interface undeleted_getContract() {
 		Interface temp = getContract();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -151,8 +145,7 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interface basicGetContract()
-	{
+	public Interface basicGetContract() {
 		return contract;
 	}
 
@@ -177,8 +170,7 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehavioredClassifier getImplementingClassifier()
-	{
+	public BehavioredClassifier getImplementingClassifier() {
 		if (eContainerFeatureID != UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER) return null;
 		return (BehavioredClassifier)eContainer;
 	}
@@ -193,8 +185,7 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BehavioredClassifier undeleted_getImplementingClassifier()
-	{
+  public BehavioredClassifier undeleted_getImplementingClassifier() {
 		BehavioredClassifier temp = getImplementingClassifier();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -206,14 +197,11 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementingClassifier(BehavioredClassifier newImplementingClassifier)
-	{
-
+	public void setImplementingClassifier(BehavioredClassifier newImplementingClassifier) {
 		if (newImplementingClassifier != null && !getClients().contains(newImplementingClassifier)) {
 			getClients().add(newImplementingClassifier);
 		}
-		if (newImplementingClassifier != eContainer || (eContainerFeatureID != UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER && newImplementingClassifier != null))
-		{
+		if (newImplementingClassifier != eContainer || (eContainerFeatureID != UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER && newImplementingClassifier != null)) {
 			if (EcoreUtil.isAncestor(this, newImplementingClassifier))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -235,13 +223,9 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSuppliers()
-	{
-		if (supplier == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSuppliers() {
+		if (supplier == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.IMPLEMENTATION__SUPPLIER, new int[] {UML2Package.IMPLEMENTATION__REALIZING_CLASSIFIER, UML2Package.IMPLEMENTATION__CONTRACT});
 			 		return supplier;
@@ -258,12 +242,8 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSuppliers()
-	{
-		if (supplier == null)
-		{
-			
-		
+  public EList settable_getSuppliers() {
+		if (supplier == null) {
 			supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.IMPLEMENTATION__SUPPLIER, new int[] {UML2Package.IMPLEMENTATION__REALIZING_CLASSIFIER, UML2Package.IMPLEMENTATION__CONTRACT});
 		}
 		return supplier;
@@ -274,14 +254,11 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSuppliers()
-	{
+  public java.util.ArrayList undeleted_getSuppliers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (supplier != null)
-		{
-			for (Object object : supplier)
-			{
+		if (supplier != null) {
+			for (Object object : supplier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -299,13 +276,9 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClients()
-	{
-		if (client == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getClients() {
+		if (client == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.IMPLEMENTATION__CLIENT, new int[] {UML2Package.IMPLEMENTATION__ABSTRACTION, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 			 		return client;
@@ -322,12 +295,8 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClients()
-	{
-		if (client == null)
-		{
-			
-		
+  public EList settable_getClients() {
+		if (client == null) {
 			client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.IMPLEMENTATION__CLIENT, new int[] {UML2Package.IMPLEMENTATION__ABSTRACTION, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}
 		return client;
@@ -338,14 +307,11 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClients()
-	{
+  public java.util.ArrayList undeleted_getClients() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (client != null)
-		{
-			for (Object object : client)
-			{
+		if (client != null) {
+			for (Object object : client) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -363,12 +329,9 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.IMPLEMENTATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.IMPLEMENTATION__TEMPLATE_BINDING:
@@ -411,12 +374,9 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.IMPLEMENTATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.IMPLEMENTATION__OWNED_COMMENT:
@@ -457,12 +417,9 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.IMPLEMENTATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.IMPLEMENTATION__ABSTRACTION:
@@ -481,10 +438,8 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.IMPLEMENTATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.IMPLEMENTATION__OWNED_ELEMENT:
@@ -569,10 +524,8 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.IMPLEMENTATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -680,10 +633,8 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.IMPLEMENTATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -780,10 +731,8 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.IMPLEMENTATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.IMPLEMENTATION__OWNED_ELEMENT:
@@ -874,8 +823,7 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target)
-	{
+	protected EList getTargetsHelper(EList target) {
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getImplementation_Contract())) {
 			target.add(getContract());
@@ -889,8 +837,7 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source)
-	{
+	protected EList getSourcesHelper(EList source) {
 		super.getSourcesHelper(source);
 		BehavioredClassifier implementingClassifier = getImplementingClassifier();
 		if (implementingClassifier != null) {

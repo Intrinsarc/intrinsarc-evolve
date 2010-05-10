@@ -57,8 +57,7 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_DiagramHolderItemProvider(AdapterFactory adapterFactory)
-	{
+	public J_DiagramHolderItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSaveTimePropertyDescriptor(object);
@@ -86,8 +83,7 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSaveTimePropertyDescriptor(Object object)
-	{
+	protected void addSaveTimePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSavedByPropertyDescriptor(Object object)
-	{
+	protected void addSavedByPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -130,10 +125,8 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getJ_DiagramHolder_Diagram());
 		}
@@ -146,8 +139,7 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/J_DiagramHolder"); //$NON-NLS-1$
 	}
 
@@ -157,8 +149,7 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		J_DiagramHolder j_DiagramHolder = (J_DiagramHolder)object;
 		return getString("_UI_J_DiagramHolder_type") + " " + j_DiagramHolder.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -170,12 +161,10 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(J_DiagramHolder.class))
-		{
+		switch (notification.getFeatureID(J_DiagramHolder.class)) {
 			case UML2Package.JDIAGRAM_HOLDER__SAVE_TIME:
 			case UML2Package.JDIAGRAM_HOLDER__SAVED_BY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -194,8 +183,7 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -215,8 +203,7 @@ public class J_DiagramHolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

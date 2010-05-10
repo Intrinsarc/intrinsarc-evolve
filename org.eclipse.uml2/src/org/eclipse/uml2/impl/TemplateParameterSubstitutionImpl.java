@@ -100,8 +100,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TemplateParameterSubstitutionImpl()
-	{
+	protected TemplateParameterSubstitutionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -116,8 +115,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getTemplateParameterSubstitution();
 	}
 
@@ -126,14 +124,11 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter getFormal()
-	{
-		if (formal != null && formal.eIsProxy())
-		{
+	public TemplateParameter getFormal() {
+		if (formal != null && formal.eIsProxy()) {
 			TemplateParameter oldFormal = formal;
 			formal = (TemplateParameter)eResolveProxy((InternalEObject)formal);
-			if (formal != oldFormal)
-			{
+			if (formal != oldFormal) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, oldFormal, formal));
 			}
@@ -151,8 +146,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter undeleted_getFormal()
-	{
+  public TemplateParameter undeleted_getFormal() {
 		TemplateParameter temp = getFormal();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -164,8 +158,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter basicGetFormal()
-	{
+	public TemplateParameter basicGetFormal() {
 		return formal;
 	}
 
@@ -174,9 +167,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFormal(TemplateParameter newFormal)
-	{
-
+	public void setFormal(TemplateParameter newFormal) {
 		TemplateParameter oldFormal = formal;
 		formal = newFormal;
 		if (eNotificationRequired())
@@ -190,8 +181,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateBinding getTemplateBinding()
-	{
+	public TemplateBinding getTemplateBinding() {
 		if (eContainerFeatureID != UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING) return null;
 		return (TemplateBinding)eContainer;
 	}
@@ -206,8 +196,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateBinding undeleted_getTemplateBinding()
-	{
+  public TemplateBinding undeleted_getTemplateBinding() {
 		TemplateBinding temp = getTemplateBinding();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -219,11 +208,8 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemplateBinding(TemplateBinding newTemplateBinding)
-	{
-
-		if (newTemplateBinding != eContainer || (eContainerFeatureID != UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING && newTemplateBinding != null))
-		{
+	public void setTemplateBinding(TemplateBinding newTemplateBinding) {
+		if (newTemplateBinding != eContainer || (eContainerFeatureID != UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING && newTemplateBinding != null)) {
 			if (EcoreUtil.isAncestor(this, newTemplateBinding))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -245,13 +231,9 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getActuals()
-	{
-		if (actual == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getActuals() {
+		if (actual == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		actual = new com.hopstepjump.emflist.PersistentEList(ParameterableElement.class, this, UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, new int[] {UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL});
 			 		return actual;
@@ -268,12 +250,8 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getActuals()
-	{
-		if (actual == null)
-		{
-			
-		
+  public EList settable_getActuals() {
+		if (actual == null) {
 			actual = new com.hopstepjump.emflist.PersistentEList(ParameterableElement.class, this, UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, new int[] {UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL});
 		}
 		return actual;
@@ -284,14 +262,11 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getActuals()
-	{
+  public java.util.ArrayList undeleted_getActuals() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (actual != null)
-		{
-			for (Object object : actual)
-			{
+		if (actual != null) {
+			for (Object object : actual) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -309,13 +284,9 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedActuals()
-	{
-		if (ownedActual == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedActuals() {
+		if (ownedActual == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedActual = new com.hopstepjump.emflist.PersistentEList(ParameterableElement.class, this, UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, new int[] {UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL});
 			 		return ownedActual;
@@ -332,12 +303,8 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedActuals()
-	{
-		if (ownedActual == null)
-		{
-			
-		
+  public EList settable_getOwnedActuals() {
+		if (ownedActual == null) {
 			ownedActual = new com.hopstepjump.emflist.PersistentEList(ParameterableElement.class, this, UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, new int[] {UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL});
 		}
 		return ownedActual;
@@ -348,14 +315,11 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedActuals()
-	{
+  public java.util.ArrayList undeleted_getOwnedActuals() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedActual != null)
-		{
-			for (Object object : ownedActual)
-			{
+		if (ownedActual != null) {
+			for (Object object : ownedActual) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -387,8 +351,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		TemplateBinding templateBinding = getTemplateBinding();			
 		if (templateBinding != null) {
 			return templateBinding;
@@ -402,8 +365,7 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getTemplateParameterSubstitution_OwnedActual())) {
 			ownedElement.addAll(getOwnedActuals());
@@ -417,12 +379,9 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
@@ -443,12 +402,9 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
@@ -471,12 +427,9 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, TemplateBinding.class, msgs);
 				default:
@@ -491,10 +444,8 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ELEMENT:
@@ -532,10 +483,8 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -584,10 +533,8 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -630,10 +577,8 @@ public class TemplateParameterSubstitutionImpl extends ElementImpl implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ELEMENT:

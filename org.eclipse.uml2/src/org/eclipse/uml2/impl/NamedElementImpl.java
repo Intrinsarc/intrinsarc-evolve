@@ -186,8 +186,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NamedElementImpl()
-	{
+	protected NamedElementImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -202,8 +201,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getNamedElement();
 	}
 
@@ -212,8 +210,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -228,9 +225,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName)
-	{
-
+	public void setName(String newName) {
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -268,8 +263,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VisibilityKind getVisibility()
-	{
+	public VisibilityKind getVisibility() {
 		return visibility;
 	}
 
@@ -284,9 +278,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibility(VisibilityKind newVisibility)
-	{
-
+	public void setVisibility(VisibilityKind newVisibility) {
 		VisibilityKind oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
@@ -300,13 +292,9 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClientDependencies()
-	{
-		if (clientDependency == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getClientDependencies() {
+		if (clientDependency == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
@@ -323,12 +311,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClientDependencies()
-	{
-		if (clientDependency == null)
-		{
-			
-		
+  public EList settable_getClientDependencies() {
+		if (clientDependency == null) {
 			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
@@ -339,14 +323,11 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClientDependencies()
-	{
+  public java.util.ArrayList undeleted_getClientDependencies() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (clientDependency != null)
-		{
-			for (Object object : clientDependency)
-			{
+		if (clientDependency != null) {
+			for (Object object : clientDependency) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -379,8 +360,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringExpression getNameExpression()
-	{
+	public StringExpression getNameExpression() {
 		return nameExpression;
 	}
 
@@ -394,8 +374,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StringExpression undeleted_getNameExpression()
-	{
+  public StringExpression undeleted_getNameExpression() {
 		StringExpression temp = getNameExpression();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -407,13 +386,10 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetNameExpression(StringExpression newNameExpression, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetNameExpression(StringExpression newNameExpression, NotificationChain msgs) {
 		StringExpression oldNameExpression = nameExpression;
 		nameExpression = newNameExpression;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.NAMED_ELEMENT__NAME_EXPRESSION, oldNameExpression, newNameExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -426,11 +402,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNameExpression(StringExpression newNameExpression)
-	{
-
-		if (newNameExpression != nameExpression)
-		{
+	public void setNameExpression(StringExpression newNameExpression) {
+		if (newNameExpression != nameExpression) {
 			NotificationChain msgs = null;
 			if (nameExpression != null)
 				msgs = ((InternalEObject)nameExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.NAMED_ELEMENT__NAME_EXPRESSION, null, msgs);
@@ -479,13 +452,9 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedAnonymousDependencies()
-	{
-		if (ownedAnonymousDependencies == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedAnonymousDependencies() {
+		if (ownedAnonymousDependencies == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedAnonymousDependencies = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES);
 			 		return ownedAnonymousDependencies;
@@ -502,12 +471,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getOwnedAnonymousDependencies()
-	{
-		if (ownedAnonymousDependencies == null)
-		{
-			
-		
+	public EList settable_getOwnedAnonymousDependencies() {
+		if (ownedAnonymousDependencies == null) {
 			ownedAnonymousDependencies = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES);
 		}
 		return ownedAnonymousDependencies;
@@ -518,14 +483,11 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getOwnedAnonymousDependencies()
-	{
+	public java.util.ArrayList undeleted_getOwnedAnonymousDependencies() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedAnonymousDependencies != null)
-		{
-			for (Object object : ownedAnonymousDependencies)
-			{
+		if (ownedAnonymousDependencies != null) {
+			for (Object object : ownedAnonymousDependencies) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -586,13 +548,9 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getReverseDependencies()
-	{
-		if (reverseDependencies == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getReverseDependencies() {
+		if (reverseDependencies == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		reverseDependencies = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__REVERSE_DEPENDENCIES);
 			 		return reverseDependencies;
@@ -609,12 +567,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getReverseDependencies()
-	{
-		if (reverseDependencies == null)
-		{
-			
-		
+	public EList settable_getReverseDependencies() {
+		if (reverseDependencies == null) {
 			reverseDependencies = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__REVERSE_DEPENDENCIES);
 		}
 		return reverseDependencies;
@@ -625,14 +579,11 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getReverseDependencies()
-	{
+	public java.util.ArrayList undeleted_getReverseDependencies() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (reverseDependencies != null)
-		{
-			for (Object object : reverseDependencies)
-			{
+		if (reverseDependencies != null) {
+			for (Object object : reverseDependencies) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -665,13 +616,9 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getReverseGeneralizations()
-	{
-		if (reverseGeneralizations == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getReverseGeneralizations() {
+		if (reverseGeneralizations == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		reverseGeneralizations = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.NAMED_ELEMENT__REVERSE_GENERALIZATIONS);
 			 		return reverseGeneralizations;
@@ -688,12 +635,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getReverseGeneralizations()
-	{
-		if (reverseGeneralizations == null)
-		{
-			
-		
+	public EList settable_getReverseGeneralizations() {
+		if (reverseGeneralizations == null) {
 			reverseGeneralizations = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.NAMED_ELEMENT__REVERSE_GENERALIZATIONS);
 		}
 		return reverseGeneralizations;
@@ -704,14 +647,11 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getReverseGeneralizations()
-	{
+	public java.util.ArrayList undeleted_getReverseGeneralizations() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (reverseGeneralizations != null)
-		{
-			for (Object object : reverseGeneralizations)
-			{
+		if (reverseGeneralizations != null) {
+			for (Object object : reverseGeneralizations) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -729,8 +669,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNoName(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateNoName(DiagnosticChain diagnostics, Map context) {
 		return NamedElementOperations.validateNoName(this, diagnostics, context);
 	}
 
@@ -739,8 +678,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateQualifiedName(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateQualifiedName(DiagnosticChain diagnostics, Map context) {
 		return NamedElementOperations.validateQualifiedName(this, diagnostics, context);
 	}
 
@@ -749,8 +687,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List allNamespaces()
-	{
+	public List allNamespaces() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			List result = (List) cache.get(this, UML2Package.eINSTANCE.getNamedElement().getEOperations().get(2));
@@ -767,8 +704,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDistinguishableFrom(NamedElement n, Namespace ns)
-	{
+	public boolean isDistinguishableFrom(NamedElement n, Namespace ns) {
 		return NamedElementOperations.isDistinguishableFrom(this, n, ns);
 	}
 
@@ -777,8 +713,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String separator()
-	{
+	public String separator() {
 		return NamedElementOperations.separator(this);
 	}
 
@@ -787,8 +722,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String qualifiedName()
-	{
+	public String qualifiedName() {
 		return NamedElementOperations.qualifiedName(this);
 	}
 
@@ -797,8 +731,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVisibilityNeedsOwnership(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateVisibilityNeedsOwnership(DiagnosticChain diagnostics, Map context) {
 		return NamedElementOperations.validateVisibilityNeedsOwnership(this, diagnostics, context);
 	}
 
@@ -807,8 +740,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace getNamespace()
-	{
+	public Namespace getNamespace() {
 		Namespace namespace = basicGetNamespace();
 		return namespace == null ? null : (Namespace)eResolveProxy((InternalEObject)namespace);
 	}
@@ -819,8 +751,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		Namespace namespace = basicGetNamespace();			
 		if (namespace != null) {
 			return namespace;
@@ -843,12 +774,9 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.NAMED_ELEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.NAMED_ELEMENT__TEMPLATE_BINDING:
@@ -873,12 +801,9 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.NAMED_ELEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.NAMED_ELEMENT__OWNED_COMMENT:
@@ -907,10 +832,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.NAMED_ELEMENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.NAMED_ELEMENT__OWNED_ELEMENT:
@@ -959,10 +882,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.NAMED_ELEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1029,10 +950,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.NAMED_ELEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1090,10 +1009,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.NAMED_ELEMENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.NAMED_ELEMENT__OWNED_ELEMENT:
@@ -1141,8 +1058,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1160,8 +1076,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getNamedElement_NameExpression())) {
 			ownedElement.add(getNameExpression());

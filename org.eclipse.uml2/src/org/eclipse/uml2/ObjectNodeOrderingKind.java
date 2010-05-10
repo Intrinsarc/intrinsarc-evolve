@@ -147,8 +147,7 @@ public final class ObjectNodeOrderingKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final ObjectNodeOrderingKind[] VALUES_ARRAY =
-		new ObjectNodeOrderingKind[]
-		{
+		new ObjectNodeOrderingKind[] {
 			UNORDERED_LITERAL,
 			ORDERED_LITERAL,
 			LIFO_LITERAL,
@@ -169,13 +168,10 @@ public final class ObjectNodeOrderingKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ObjectNodeOrderingKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static ObjectNodeOrderingKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ObjectNodeOrderingKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -188,10 +184,8 @@ public final class ObjectNodeOrderingKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ObjectNodeOrderingKind get(int value)
-	{
-		switch (value)
-		{
+	public static ObjectNodeOrderingKind get(int value) {
+		switch (value) {
 			case UNORDERED: return UNORDERED_LITERAL;
 			case ORDERED: return ORDERED_LITERAL;
 			case LIFO: return LIFO_LITERAL;
@@ -206,8 +200,7 @@ public final class ObjectNodeOrderingKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ObjectNodeOrderingKind(int value, String name)
-	{
+	private ObjectNodeOrderingKind(int value, String name) {
 		super(value, name);
 	}
 

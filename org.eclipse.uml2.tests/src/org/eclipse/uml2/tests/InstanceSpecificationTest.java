@@ -43,8 +43,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(InstanceSpecificationTest.class);
 	}
 
@@ -54,8 +53,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSpecificationTest(String name)
-	{
+	public InstanceSpecificationTest(String name) {
 		super(name);
 	}
 
@@ -65,8 +63,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private InstanceSpecification getFixture()
-	{
+	private InstanceSpecification getFixture() {
 		return (InstanceSpecification)fixture;
 	}
 
@@ -76,8 +73,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createInstanceSpecification());
 	}
 
@@ -87,8 +83,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -99,8 +94,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.DeploymentTarget#getDeployedElements()
 	 * @generated
 	 */
-	public void testGetDeployedElements()
-	{
+	public void testGetDeployedElements() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -112,8 +106,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.InstanceSpecification#validateSlotsAreDefined(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateSlotsAreDefined__DiagnosticChain_Map()
-	{
+	public void testValidateSlotsAreDefined__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,8 +118,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.InstanceSpecification#validateNoDuplicateSlots(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateNoDuplicateSlots__DiagnosticChain_Map()
-	{
+	public void testValidateNoDuplicateSlots__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -140,8 +132,7 @@ public class InstanceSpecificationTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

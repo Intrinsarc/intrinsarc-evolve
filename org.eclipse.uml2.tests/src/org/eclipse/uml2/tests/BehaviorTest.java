@@ -35,8 +35,7 @@ public abstract class BehaviorTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehaviorTest(String name)
-	{
+	public BehaviorTest(String name) {
 		super(name);
 	}
 
@@ -46,8 +45,7 @@ public abstract class BehaviorTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Behavior getFixture()
-	{
+	private Behavior getFixture() {
 		return (Behavior)fixture;
 	}
 
@@ -58,8 +56,7 @@ public abstract class BehaviorTest extends ClassTest {
 	 * @see org.eclipse.uml2.Behavior#getFormalParameters()
 	 * @generated
 	 */
-	public void testGetFormalParameters()
-	{
+	public void testGetFormalParameters() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -71,8 +68,7 @@ public abstract class BehaviorTest extends ClassTest {
 	 * @see org.eclipse.uml2.Behavior#getReturnResults()
 	 * @generated
 	 */
-	public void testGetReturnResults()
-	{
+	public void testGetReturnResults() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -86,8 +82,7 @@ public abstract class BehaviorTest extends ClassTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements()
-	{
+	public void testGetRedefinedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -99,8 +94,7 @@ public abstract class BehaviorTest extends ClassTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

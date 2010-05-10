@@ -30,8 +30,7 @@ public class DestroyLinkActionTest extends WriteLinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(DestroyLinkActionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class DestroyLinkActionTest extends WriteLinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DestroyLinkActionTest(String name)
-	{
+	public DestroyLinkActionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class DestroyLinkActionTest extends WriteLinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DestroyLinkAction getFixture()
-	{
+	private DestroyLinkAction getFixture() {
 		return (DestroyLinkAction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class DestroyLinkActionTest extends WriteLinkActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createDestroyLinkAction());
 	}
 
@@ -74,8 +70,7 @@ public class DestroyLinkActionTest extends WriteLinkActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

@@ -32,8 +32,7 @@ public class DeltaDeletedPortTest extends DeltaDeletedConstituentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(DeltaDeletedPortTest.class);
 	}
 
@@ -43,8 +42,7 @@ public class DeltaDeletedPortTest extends DeltaDeletedConstituentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedPortTest(String name)
-	{
+	public DeltaDeletedPortTest(String name) {
 		super(name);
 	}
 
@@ -54,8 +52,7 @@ public class DeltaDeletedPortTest extends DeltaDeletedConstituentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DeltaDeletedPort getFixture()
-	{
+	private DeltaDeletedPort getFixture() {
 		return (DeltaDeletedPort)fixture;
 	}
 
@@ -65,8 +62,7 @@ public class DeltaDeletedPortTest extends DeltaDeletedConstituentTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createDeltaDeletedPort());
 	}
 
@@ -76,8 +72,7 @@ public class DeltaDeletedPortTest extends DeltaDeletedConstituentTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

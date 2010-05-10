@@ -76,8 +76,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementItemProvider(AdapterFactory adapterFactory)
-	{
+	public ElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,10 +86,8 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addOwnedElementPropertyDescriptor(object);
@@ -110,8 +107,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedElementPropertyDescriptor(Object object)
-	{
+	protected void addOwnedElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -133,8 +129,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnerPropertyDescriptor(Object object)
-	{
+	protected void addOwnerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -156,8 +151,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedCommentPropertyDescriptor(Object object)
-	{
+	protected void addOwnedCommentPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -179,8 +173,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addJ_deletedPropertyDescriptor(Object object)
-	{
+	protected void addJ_deletedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -200,8 +193,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDocumentationPropertyDescriptor(Object object)
-	{
+	protected void addDocumentationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -221,8 +213,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAppliedBasicStereotypesPropertyDescriptor(Object object)
-	{
+	protected void addAppliedBasicStereotypesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -242,8 +233,7 @@ public class ElementItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void addUuidPropertyDescriptor(Object object)
-	{
+  protected void addUuidPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -265,10 +255,8 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getElement_OwnedComment());
 			childrenFeatures.add(UML2Package.eINSTANCE.getElement_AppliedBasicStereotypeValues());
@@ -281,8 +269,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -295,8 +282,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		Element element = (Element)object;
 		return getString("_UI_Element_type") + " " + element.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -308,12 +294,10 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Element.class))
-		{
+		switch (notification.getFeatureID(Element.class)) {
 			case UML2Package.ELEMENT__JDELETED:
 			case UML2Package.ELEMENT__DOCUMENTATION:
 			case UML2Package.ELEMENT__UUID:
@@ -334,8 +318,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -365,25 +348,20 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getCreateChildImage(Object owner, Object feature, Object child, Collection selection)
-	{
-		if (feature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)feature))
-		{
+	public Object getCreateChildImage(Object owner, Object feature, Object child, Collection selection) {
+		if (feature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)feature)) {
 			FeatureMap.Entry entry = (FeatureMap.Entry)child;
 			feature = entry.getEStructuralFeature();
 			child = entry.getValue();        
 		}
 
-		if (feature instanceof EReference && child instanceof EObject)
-		{
+		if (feature instanceof EReference && child instanceof EObject) {
 			String name = "full/obj16/" + ((EObject)child).eClass().getName(); //$NON-NLS-1$
 
-			try
-			{
+			try {
 				return getResourceLocator().getImage(name);
 			}
-			catch (Exception e)
-			{
+			catch (Exception e) {
 				UML2EditPlugin.INSTANCE.log(e);
 			}
 		}
@@ -397,8 +375,7 @@ public class ElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

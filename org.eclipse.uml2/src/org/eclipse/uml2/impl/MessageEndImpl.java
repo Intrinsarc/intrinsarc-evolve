@@ -78,8 +78,7 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MessageEndImpl()
-	{
+	protected MessageEndImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -94,8 +93,7 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getMessageEnd();
 	}
 
@@ -104,14 +102,11 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Message getReceiveMessage()
-	{
-		if (receiveMessage != null && receiveMessage.eIsProxy())
-		{
+	public Message getReceiveMessage() {
+		if (receiveMessage != null && receiveMessage.eIsProxy()) {
 			Message oldReceiveMessage = receiveMessage;
 			receiveMessage = (Message)eResolveProxy((InternalEObject)receiveMessage);
-			if (receiveMessage != oldReceiveMessage)
-			{
+			if (receiveMessage != oldReceiveMessage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.MESSAGE_END__RECEIVE_MESSAGE, oldReceiveMessage, receiveMessage));
 			}
@@ -129,8 +124,7 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Message undeleted_getReceiveMessage()
-	{
+  public Message undeleted_getReceiveMessage() {
 		Message temp = getReceiveMessage();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -142,8 +136,7 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Message basicGetReceiveMessage()
-	{
+	public Message basicGetReceiveMessage() {
 		return receiveMessage;
 	}
 
@@ -152,13 +145,10 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReceiveMessage(Message newReceiveMessage, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetReceiveMessage(Message newReceiveMessage, NotificationChain msgs) {
 		Message oldReceiveMessage = receiveMessage;
 		receiveMessage = newReceiveMessage;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.MESSAGE_END__RECEIVE_MESSAGE, oldReceiveMessage, newReceiveMessage);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -171,11 +161,8 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReceiveMessage(Message newReceiveMessage)
-	{
-
-		if (newReceiveMessage != receiveMessage)
-		{
+	public void setReceiveMessage(Message newReceiveMessage) {
+		if (newReceiveMessage != receiveMessage) {
 			NotificationChain msgs = null;
 			if (receiveMessage != null)
 				msgs = ((InternalEObject)receiveMessage).eInverseRemove(this, UML2Package.MESSAGE__RECEIVE_EVENT, Message.class, msgs);
@@ -195,14 +182,11 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Message getSendMessage()
-	{
-		if (sendMessage != null && sendMessage.eIsProxy())
-		{
+	public Message getSendMessage() {
+		if (sendMessage != null && sendMessage.eIsProxy()) {
 			Message oldSendMessage = sendMessage;
 			sendMessage = (Message)eResolveProxy((InternalEObject)sendMessage);
-			if (sendMessage != oldSendMessage)
-			{
+			if (sendMessage != oldSendMessage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.MESSAGE_END__SEND_MESSAGE, oldSendMessage, sendMessage));
 			}
@@ -220,8 +204,7 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Message undeleted_getSendMessage()
-	{
+  public Message undeleted_getSendMessage() {
 		Message temp = getSendMessage();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -233,8 +216,7 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Message basicGetSendMessage()
-	{
+	public Message basicGetSendMessage() {
 		return sendMessage;
 	}
 
@@ -243,13 +225,10 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSendMessage(Message newSendMessage, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetSendMessage(Message newSendMessage, NotificationChain msgs) {
 		Message oldSendMessage = sendMessage;
 		sendMessage = newSendMessage;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.MESSAGE_END__SEND_MESSAGE, oldSendMessage, newSendMessage);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -262,11 +241,8 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSendMessage(Message newSendMessage)
-	{
-
-		if (newSendMessage != sendMessage)
-		{
+	public void setSendMessage(Message newSendMessage) {
+		if (newSendMessage != sendMessage) {
 			NotificationChain msgs = null;
 			if (sendMessage != null)
 				msgs = ((InternalEObject)sendMessage).eInverseRemove(this, UML2Package.MESSAGE__SEND_EVENT, Message.class, msgs);
@@ -286,12 +262,9 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.MESSAGE_END__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.MESSAGE_END__TEMPLATE_BINDING:
@@ -324,12 +297,9 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.MESSAGE_END__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.MESSAGE_END__OWNED_COMMENT:
@@ -362,10 +332,8 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.MESSAGE_END__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.MESSAGE_END__OWNED_ELEMENT:
@@ -420,10 +388,8 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.MESSAGE_END__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -496,10 +462,8 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.MESSAGE_END__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -563,10 +527,8 @@ public abstract class MessageEndImpl extends NamedElementImpl implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.MESSAGE_END__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.MESSAGE_END__OWNED_ELEMENT:

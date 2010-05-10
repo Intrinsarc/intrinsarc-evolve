@@ -30,8 +30,7 @@ public class InstanceValueTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(InstanceValueTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class InstanceValueTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceValueTest(String name)
-	{
+	public InstanceValueTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class InstanceValueTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private InstanceValue getFixture()
-	{
+	private InstanceValue getFixture() {
 		return (InstanceValue)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class InstanceValueTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createInstanceValue());
 	}
 
@@ -74,8 +70,7 @@ public class InstanceValueTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

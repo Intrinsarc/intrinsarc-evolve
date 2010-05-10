@@ -58,8 +58,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PortItemProvider(AdapterFactory adapterFactory)
-	{
+	public PortItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,10 +68,8 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIsBehaviorPropertyDescriptor(object);
@@ -92,8 +89,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsBehaviorPropertyDescriptor(Object object)
-	{
+	protected void addIsBehaviorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -113,8 +109,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsServicePropertyDescriptor(Object object)
-	{
+	protected void addIsServicePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -134,8 +129,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRequiredPropertyDescriptor(Object object)
-	{
+	protected void addRequiredPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -157,8 +151,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinedPortPropertyDescriptor(Object object)
-	{
+	protected void addRedefinedPortPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -178,8 +171,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProvidedPropertyDescriptor(Object object)
-	{
+	protected void addProvidedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -201,8 +193,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProtocolPropertyDescriptor(Object object)
-	{
+	protected void addProtocolPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -222,8 +213,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addKindPropertyDescriptor(Object object)
-	{
+	protected void addKindPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -243,8 +233,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Port"); //$NON-NLS-1$
 	}
 
@@ -254,8 +243,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Port)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Port_type") : //$NON-NLS-1$
@@ -269,12 +257,10 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Port.class))
-		{
+		switch (notification.getFeatureID(Port.class)) {
 			case UML2Package.PORT__IS_BEHAVIOR:
 			case UML2Package.PORT__IS_SERVICE:
 			case UML2Package.PORT__KIND:
@@ -291,8 +277,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -302,8 +287,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -315,8 +299,7 @@ public class PortItemProvider
 			childFeature == UML2Package.eINSTANCE.getProperty_DefaultValue() ||
 			childFeature == UML2Package.eINSTANCE.getProperty_DefaultValues();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -330,8 +313,7 @@ public class PortItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

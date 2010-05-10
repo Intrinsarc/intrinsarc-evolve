@@ -30,8 +30,7 @@ public class TimeConstraintTest extends IntervalConstraintTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(TimeConstraintTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class TimeConstraintTest extends IntervalConstraintTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeConstraintTest(String name)
-	{
+	public TimeConstraintTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class TimeConstraintTest extends IntervalConstraintTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TimeConstraint getFixture()
-	{
+	private TimeConstraint getFixture() {
 		return (TimeConstraint)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class TimeConstraintTest extends IntervalConstraintTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createTimeConstraint());
 	}
 
@@ -74,8 +70,7 @@ public class TimeConstraintTest extends IntervalConstraintTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

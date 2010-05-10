@@ -136,8 +136,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RegionImpl()
-	{
+	protected RegionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -152,8 +151,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getRegion();
 	}
 
@@ -177,8 +175,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLeaf()
-	{
+	public boolean isLeaf() {
 		return (eFlags & IS_LEAF_EFLAG) != 0;
 	}
 
@@ -193,9 +190,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsLeaf(boolean newIsLeaf)
-	{
-
+	public void setIsLeaf(boolean newIsLeaf) {
 		boolean oldIsLeaf = (eFlags & IS_LEAF_EFLAG) != 0;
 		if (newIsLeaf) eFlags |= IS_LEAF_EFLAG; else eFlags &= ~IS_LEAF_EFLAG;
 		if (eNotificationRequired())
@@ -209,13 +204,9 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSubvertices()
-	{
-		if (subvertex == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSubvertices() {
+		if (subvertex == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		subvertex = new com.hopstepjump.emflist.PersistentEList(Vertex.class, this, UML2Package.REGION__SUBVERTEX, UML2Package.VERTEX__CONTAINER);
 			 		return subvertex;
@@ -232,12 +223,8 @@ public class RegionImpl extends NamespaceImpl implements Region {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSubvertices()
-	{
-		if (subvertex == null)
-		{
-			
-		
+  public EList settable_getSubvertices() {
+		if (subvertex == null) {
 			subvertex = new com.hopstepjump.emflist.PersistentEList(Vertex.class, this, UML2Package.REGION__SUBVERTEX, UML2Package.VERTEX__CONTAINER);
 		}
 		return subvertex;
@@ -248,14 +235,11 @@ public class RegionImpl extends NamespaceImpl implements Region {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSubvertices()
-	{
+  public java.util.ArrayList undeleted_getSubvertices() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (subvertex != null)
-		{
-			for (Object object : subvertex)
-			{
+		if (subvertex != null) {
+			for (Object object : subvertex) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -302,13 +286,9 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTransitions()
-	{
-		if (transition == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getTransitions() {
+		if (transition == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		transition = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.REGION__TRANSITION, UML2Package.TRANSITION__CONTAINER);
 			 		return transition;
@@ -325,12 +305,8 @@ public class RegionImpl extends NamespaceImpl implements Region {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getTransitions()
-	{
-		if (transition == null)
-		{
-			
-		
+  public EList settable_getTransitions() {
+		if (transition == null) {
 			transition = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.REGION__TRANSITION, UML2Package.TRANSITION__CONTAINER);
 		}
 		return transition;
@@ -341,14 +317,11 @@ public class RegionImpl extends NamespaceImpl implements Region {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getTransitions()
-	{
+  public java.util.ArrayList undeleted_getTransitions() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (transition != null)
-		{
-			for (Object object : transition)
-			{
+		if (transition != null) {
+			for (Object object : transition) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -409,8 +382,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine getStateMachine()
-	{
+	public StateMachine getStateMachine() {
 		if (eContainerFeatureID != UML2Package.REGION__STATE_MACHINE) return null;
 		return (StateMachine)eContainer;
 	}
@@ -425,8 +397,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StateMachine undeleted_getStateMachine()
-	{
+  public StateMachine undeleted_getStateMachine() {
 		StateMachine temp = getStateMachine();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -438,11 +409,8 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStateMachine(StateMachine newStateMachine)
-	{
-
-		if (newStateMachine != eContainer || (eContainerFeatureID != UML2Package.REGION__STATE_MACHINE && newStateMachine != null))
-		{
+	public void setStateMachine(StateMachine newStateMachine) {
+		if (newStateMachine != eContainer || (eContainerFeatureID != UML2Package.REGION__STATE_MACHINE && newStateMachine != null)) {
 			if (EcoreUtil.isAncestor(this, newStateMachine))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -464,8 +432,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State getState()
-	{
+	public State getState() {
 		if (eContainerFeatureID != UML2Package.REGION__STATE) return null;
 		return (State)eContainer;
 	}
@@ -480,8 +447,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public State undeleted_getState()
-	{
+  public State undeleted_getState() {
 		State temp = getState();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -493,11 +459,8 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setState(State newState)
-	{
-
-		if (newState != eContainer || (eContainerFeatureID != UML2Package.REGION__STATE && newState != null))
-		{
+	public void setState(State newState) {
+		if (newState != eContainer || (eContainerFeatureID != UML2Package.REGION__STATE && newState != null)) {
 			if (EcoreUtil.isAncestor(this, newState))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -519,14 +482,11 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Region getExtendedRegion()
-	{
-		if (extendedRegion != null && extendedRegion.eIsProxy())
-		{
+	public Region getExtendedRegion() {
+		if (extendedRegion != null && extendedRegion.eIsProxy()) {
 			Region oldExtendedRegion = extendedRegion;
 			extendedRegion = (Region)eResolveProxy((InternalEObject)extendedRegion);
-			if (extendedRegion != oldExtendedRegion)
-			{
+			if (extendedRegion != oldExtendedRegion) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.REGION__EXTENDED_REGION, oldExtendedRegion, extendedRegion));
 			}
@@ -544,8 +504,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Region undeleted_getExtendedRegion()
-	{
+  public Region undeleted_getExtendedRegion() {
 		Region temp = getExtendedRegion();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -557,8 +516,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Region basicGetExtendedRegion()
-	{
+	public Region basicGetExtendedRegion() {
 		return extendedRegion;
 	}
 
@@ -567,9 +525,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtendedRegion(Region newExtendedRegion)
-	{
-
+	public void setExtendedRegion(Region newExtendedRegion) {
 		Region oldExtendedRegion = extendedRegion;
 		extendedRegion = newExtendedRegion;
 		if (eNotificationRequired())
@@ -583,8 +539,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context) {
 		return RedefinableElementOperations.validateRedefinitionContextValid(this, diagnostics, context);
 	}
 
@@ -593,8 +548,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context) {
 		return RedefinableElementOperations.validateRedefinitionConsistent(this, diagnostics, context);
 	}
 
@@ -603,8 +557,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isConsistentWith(RedefinableElement redefinee)
-	{
+	public boolean isConsistentWith(RedefinableElement redefinee) {
 		return RedefinableElementOperations.isConsistentWith(this, redefinee);
 	}
 
@@ -613,8 +566,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRedefinitionContextValid(RedefinableElement redefinable)
-	{
+	public boolean isRedefinitionContextValid(RedefinableElement redefinable) {
 		return RedefinableElementOperations.isRedefinitionContextValid(this, redefinable);
 	}
 
@@ -657,8 +609,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements()
-	{
+	public EList getRedefinedElements() {
 		return new EcoreEList.UnmodifiableEList(this, null, 0, Collections.EMPTY_LIST.toArray());
 	}
 
@@ -683,8 +634,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace()
-	{
+	public Namespace basicGetNamespace() {
 		StateMachine stateMachine = getStateMachine();			
 		if (stateMachine != null) {
 			return stateMachine;
@@ -702,12 +652,9 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.REGION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.REGION__TEMPLATE_BINDING:
@@ -750,12 +697,9 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.REGION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.REGION__OWNED_COMMENT:
@@ -798,12 +742,9 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.REGION__STATE_MACHINE:
 					return eContainer.eInverseRemove(this, UML2Package.STATE_MACHINE__REGION, StateMachine.class, msgs);
 				case UML2Package.REGION__STATE:
@@ -820,10 +761,8 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REGION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.REGION__OWNED_ELEMENT:
@@ -897,10 +836,8 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REGION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -999,10 +936,8 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REGION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1087,10 +1022,8 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REGION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.REGION__OWNED_ELEMENT:
@@ -1162,12 +1095,9 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == RedefinableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == RedefinableElement.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.REGION__REDEFINITION_CONTEXT: return UML2Package.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT;
 				case UML2Package.REGION__IS_LEAF: return UML2Package.REDEFINABLE_ELEMENT__IS_LEAF;
 				default: return -1;
@@ -1181,12 +1111,9 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == RedefinableElement.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == RedefinableElement.class) {
+			switch (baseFeatureID) {
 				case UML2Package.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT: return UML2Package.REGION__REDEFINITION_CONTEXT;
 				case UML2Package.REDEFINABLE_ELEMENT__IS_LEAF: return UML2Package.REGION__IS_LEAF;
 				default: return -1;
@@ -1200,8 +1127,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1217,8 +1143,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getRegion_Subvertex())) {
 			ownedElement.addAll(getSubvertices());

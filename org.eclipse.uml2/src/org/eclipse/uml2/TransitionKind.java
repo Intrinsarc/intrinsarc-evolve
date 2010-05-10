@@ -122,8 +122,7 @@ public final class TransitionKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final TransitionKind[] VALUES_ARRAY =
-		new TransitionKind[]
-		{
+		new TransitionKind[] {
 			INTERNAL_LITERAL,
 			LOCAL_LITERAL,
 			EXTERNAL_LITERAL,
@@ -143,13 +142,10 @@ public final class TransitionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static TransitionKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static TransitionKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			TransitionKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -162,10 +158,8 @@ public final class TransitionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static TransitionKind get(int value)
-	{
-		switch (value)
-		{
+	public static TransitionKind get(int value) {
+		switch (value) {
 			case INTERNAL: return INTERNAL_LITERAL;
 			case LOCAL: return LOCAL_LITERAL;
 			case EXTERNAL: return EXTERNAL_LITERAL;
@@ -179,8 +173,7 @@ public final class TransitionKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TransitionKind(int value, String name)
-	{
+	private TransitionKind(int value, String name) {
 		super(value, name);
 	}
 

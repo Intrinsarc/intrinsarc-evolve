@@ -57,8 +57,7 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractionItemProvider(AdapterFactory adapterFactory)
-	{
+	public AbstractionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addMappingPropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMappingPropertyDescriptor(Object object)
-	{
+	protected void addMappingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,10 +106,8 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getAbstraction_Mapping());
 		}
@@ -126,8 +120,7 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Abstraction"); //$NON-NLS-1$
 	}
 
@@ -137,8 +130,7 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Abstraction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Abstraction_type") : //$NON-NLS-1$
@@ -152,12 +144,10 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Abstraction.class))
-		{
+		switch (notification.getFeatureID(Abstraction.class)) {
 			case UML2Package.ABSTRACTION__MAPPING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -172,8 +162,7 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -203,8 +192,7 @@ public class AbstractionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

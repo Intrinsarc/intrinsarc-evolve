@@ -54,8 +54,7 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VertexItemProvider(AdapterFactory adapterFactory)
-	{
+	public VertexItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addContainerPropertyDescriptor(object);
@@ -84,8 +81,7 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainerPropertyDescriptor(Object object)
-	{
+	protected void addContainerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOutgoingPropertyDescriptor(Object object)
-	{
+	protected void addOutgoingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -128,8 +123,7 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIncomingPropertyDescriptor(Object object)
-	{
+	protected void addIncomingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -149,8 +143,7 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Vertex)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Vertex_type") : //$NON-NLS-1$
@@ -164,8 +157,7 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -177,8 +169,7 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -188,8 +179,7 @@ public class VertexItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

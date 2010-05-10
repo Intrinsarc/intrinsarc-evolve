@@ -110,8 +110,7 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CombinedFragmentImpl()
-	{
+	protected CombinedFragmentImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -126,8 +125,7 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getCombinedFragment();
 	}
 
@@ -136,8 +134,7 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionOperator getInteractionOperator()
-	{
+	public InteractionOperator getInteractionOperator() {
 		return interactionOperator;
 	}
 
@@ -152,9 +149,7 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInteractionOperator(InteractionOperator newInteractionOperator)
-	{
-
+	public void setInteractionOperator(InteractionOperator newInteractionOperator) {
 		InteractionOperator oldInteractionOperator = interactionOperator;
 		interactionOperator = newInteractionOperator == null ? INTERACTION_OPERATOR_EDEFAULT : newInteractionOperator;
 		if (eNotificationRequired())
@@ -168,13 +163,9 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOperands()
-	{
-		if (operand == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOperands() {
+		if (operand == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		operand = new com.hopstepjump.emflist.PersistentEList(InteractionOperand.class, this, UML2Package.COMBINED_FRAGMENT__OPERAND);
 			 		return operand;
@@ -191,12 +182,8 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOperands()
-	{
-		if (operand == null)
-		{
-			
-		
+  public EList settable_getOperands() {
+		if (operand == null) {
 			operand = new com.hopstepjump.emflist.PersistentEList(InteractionOperand.class, this, UML2Package.COMBINED_FRAGMENT__OPERAND);
 		}
 		return operand;
@@ -207,14 +194,11 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOperands()
-	{
+  public java.util.ArrayList undeleted_getOperands() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (operand != null)
-		{
-			for (Object object : operand)
-			{
+		if (operand != null) {
+			for (Object object : operand) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -276,13 +260,9 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getCfragmentGates()
-	{
-		if (cfragmentGate == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getCfragmentGates() {
+		if (cfragmentGate == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		cfragmentGate = new com.hopstepjump.emflist.PersistentEList(Gate.class, this, UML2Package.COMBINED_FRAGMENT__CFRAGMENT_GATE);
 			 		return cfragmentGate;
@@ -299,12 +279,8 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getCfragmentGates()
-	{
-		if (cfragmentGate == null)
-		{
-			
-		
+  public EList settable_getCfragmentGates() {
+		if (cfragmentGate == null) {
 			cfragmentGate = new com.hopstepjump.emflist.PersistentEList(Gate.class, this, UML2Package.COMBINED_FRAGMENT__CFRAGMENT_GATE);
 		}
 		return cfragmentGate;
@@ -315,14 +291,11 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getCfragmentGates()
-	{
+  public java.util.ArrayList undeleted_getCfragmentGates() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (cfragmentGate != null)
-		{
-			for (Object object : cfragmentGate)
-			{
+		if (cfragmentGate != null) {
+			for (Object object : cfragmentGate) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -384,12 +357,9 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.COMBINED_FRAGMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.COMBINED_FRAGMENT__TEMPLATE_BINDING:
@@ -424,12 +394,9 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.COMBINED_FRAGMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.COMBINED_FRAGMENT__OWNED_COMMENT:
@@ -470,12 +437,9 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.COMBINED_FRAGMENT__ENCLOSING_INTERACTION:
 					return eContainer.eInverseRemove(this, UML2Package.INTERACTION__FRAGMENT, Interaction.class, msgs);
 				case UML2Package.COMBINED_FRAGMENT__ENCLOSING_OPERAND:
@@ -492,10 +456,8 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.COMBINED_FRAGMENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.COMBINED_FRAGMENT__OWNED_ELEMENT:
@@ -558,10 +520,8 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.COMBINED_FRAGMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -653,10 +613,8 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.COMBINED_FRAGMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -735,10 +693,8 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.COMBINED_FRAGMENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.COMBINED_FRAGMENT__OWNED_ELEMENT:
@@ -800,8 +756,7 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -817,8 +772,7 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getCombinedFragment_Operand())) {
 			ownedElement.addAll(getOperands());

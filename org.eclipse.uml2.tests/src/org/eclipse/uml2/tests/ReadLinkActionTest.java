@@ -30,8 +30,7 @@ public class ReadLinkActionTest extends LinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ReadLinkActionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ReadLinkActionTest extends LinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadLinkActionTest(String name)
-	{
+	public ReadLinkActionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ReadLinkActionTest extends LinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ReadLinkAction getFixture()
-	{
+	private ReadLinkAction getFixture() {
 		return (ReadLinkAction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ReadLinkActionTest extends LinkActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createReadLinkAction());
 	}
 
@@ -74,8 +70,7 @@ public class ReadLinkActionTest extends LinkActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class ReadLinkActionTest extends LinkActionTest {
 	 * @see org.eclipse.uml2.Action#getOutputs()
 	 * @generated
 	 */
-	public void testGetOutputs()
-	{
+	public void testGetOutputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

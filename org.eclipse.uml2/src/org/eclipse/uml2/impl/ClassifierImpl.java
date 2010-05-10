@@ -281,8 +281,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClassifierImpl()
-	{
+	protected ClassifierImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -297,8 +296,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getClassifier();
 	}
 
@@ -307,14 +305,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter getTemplateParameter()
-	{
-		if (templateParameter != null && templateParameter.eIsProxy())
-		{
+	public TemplateParameter getTemplateParameter() {
+		if (templateParameter != null && templateParameter.eIsProxy()) {
 			TemplateParameter oldTemplateParameter = templateParameter;
 			templateParameter = (TemplateParameter)eResolveProxy((InternalEObject)templateParameter);
-			if (templateParameter != oldTemplateParameter)
-			{
+			if (templateParameter != oldTemplateParameter) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.CLASSIFIER__TEMPLATE_PARAMETER, oldTemplateParameter, templateParameter));
 			}
@@ -332,8 +327,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter undeleted_getTemplateParameter()
-	{
+  public TemplateParameter undeleted_getTemplateParameter() {
 		TemplateParameter temp = getTemplateParameter();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -345,8 +339,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter basicGetTemplateParameter()
-	{
+	public TemplateParameter basicGetTemplateParameter() {
 		return templateParameter;
 	}
 
@@ -355,13 +348,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTemplateParameter(TemplateParameter newTemplateParameter, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetTemplateParameter(TemplateParameter newTemplateParameter, NotificationChain msgs) {
 		TemplateParameter oldTemplateParameter = templateParameter;
 		templateParameter = newTemplateParameter;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.CLASSIFIER__TEMPLATE_PARAMETER, oldTemplateParameter, newTemplateParameter);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -377,11 +367,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemplateParameter(TemplateParameter newTemplateParameter)
-	{
-
-		if (newTemplateParameter != templateParameter)
-		{
+	public void setTemplateParameter(TemplateParameter newTemplateParameter) {
+		if (newTemplateParameter != templateParameter) {
 			NotificationChain msgs = null;
 			if (templateParameter != null)
 				msgs = ((InternalEObject)templateParameter).eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
@@ -401,8 +388,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter getOwningParameter()
-	{
+	public TemplateParameter getOwningParameter() {
 		if (eContainerFeatureID != UML2Package.CLASSIFIER__OWNING_PARAMETER) return null;
 		return (TemplateParameter)eContainer;
 	}
@@ -417,8 +403,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter undeleted_getOwningParameter()
-	{
+  public TemplateParameter undeleted_getOwningParameter() {
 		TemplateParameter temp = getOwningParameter();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -430,12 +415,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningParameter(TemplateParameter newOwningParameter)
-	{
-
+	public void setOwningParameter(TemplateParameter newOwningParameter) {
 		EObject oldOwningParameter = eContainer;
-		if (newOwningParameter != eContainer || (eContainerFeatureID != UML2Package.CLASSIFIER__OWNING_PARAMETER && newOwningParameter != null))
-		{
+		if (newOwningParameter != eContainer || (eContainerFeatureID != UML2Package.CLASSIFIER__OWNING_PARAMETER && newOwningParameter != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningParameter))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -482,8 +464,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package getPackage()
-	{
+	public org.eclipse.uml2.Package getPackage() {
 		org.eclipse.uml2.Package package_ = basicGetPackage();
 		return package_ == null ? null : (org.eclipse.uml2.Package)eResolveProxy((InternalEObject)package_);
 	}
@@ -508,8 +489,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLeaf()
-	{
+	public boolean isLeaf() {
 		return (eFlags & IS_LEAF_EFLAG) != 0;
 	}
 
@@ -524,9 +504,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsLeaf(boolean newIsLeaf)
-	{
-
+	public void setIsLeaf(boolean newIsLeaf) {
 		boolean oldIsLeaf = (eFlags & IS_LEAF_EFLAG) != 0;
 		if (newIsLeaf) eFlags |= IS_LEAF_EFLAG; else eFlags &= ~IS_LEAF_EFLAG;
 		if (eNotificationRequired())
@@ -540,8 +518,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinitionContexts()
-	{
+	public EList getRedefinitionContexts() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList redefinitionContext = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getRedefinableElement_RedefinitionContext());
@@ -576,8 +553,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRedefinedElementsHelper(EList redefinedElement)
-	{
+	protected EList getRedefinedElementsHelper(EList redefinedElement) {
 		if (eIsSet(UML2Package.eINSTANCE.getClassifier_RedefinedClassifier())) {
 			for (Iterator i = ((InternalEList) getRedefinedClassifiers()).basicIterator(); i.hasNext(); ) {
 				redefinedElement.add(i.next());
@@ -591,8 +567,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAbstract()
-	{
+	public boolean isAbstract() {
 		return (eFlags & IS_ABSTRACT_EFLAG) != 0;
 	}
 
@@ -607,9 +582,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsAbstract(boolean newIsAbstract)
-	{
-
+	public void setIsAbstract(boolean newIsAbstract) {
 		boolean oldIsAbstract = (eFlags & IS_ABSTRACT_EFLAG) != 0;
 		if (newIsAbstract) eFlags |= IS_ABSTRACT_EFLAG; else eFlags &= ~IS_ABSTRACT_EFLAG;
 		if (eNotificationRequired())
@@ -623,8 +596,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFeatures()
-	{
+	public EList getFeatures() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList feature = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getClassifier_Feature());
@@ -659,8 +631,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getMembersHelper(EList member)
-	{
+	protected EList getMembersHelper(EList member) {
 		super.getMembersHelper(member);
 		EList feature = getFeatures();
 		if (!feature.isEmpty()) {
@@ -683,8 +654,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getClassifier_Generalization())) {
 			ownedElement.addAll(getGeneralizations());
@@ -704,8 +674,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getAttributesHelper(EList attribute)
-	{
+	protected EList getAttributesHelper(EList attribute) {
 		return attribute;
 	}
 
@@ -803,13 +772,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getGeneralizations()
-	{
-		if (generalization == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getGeneralizations() {
+		if (generalization == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		generalization = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.CLASSIFIER__GENERALIZATION, UML2Package.GENERALIZATION__SPECIFIC);
 			 		return generalization;
@@ -826,12 +791,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getGeneralizations()
-	{
-		if (generalization == null)
-		{
-			
-		
+  public EList settable_getGeneralizations() {
+		if (generalization == null) {
 			generalization = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.CLASSIFIER__GENERALIZATION, UML2Package.GENERALIZATION__SPECIFIC);
 		}
 		return generalization;
@@ -842,14 +803,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getGeneralizations()
-	{
+  public java.util.ArrayList undeleted_getGeneralizations() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (generalization != null)
-		{
-			for (Object object : generalization)
-			{
+		if (generalization != null) {
+			for (Object object : generalization) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -896,8 +854,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getAttributes()
-	{
+	public EList getAttributes() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList attribute = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getClassifier_Attribute());
@@ -932,8 +889,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember)
-	{
+	protected EList getOwnedMembersHelper(EList ownedMember) {
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getClassifier_OwnedUseCase())) {
 			ownedMember.addAll(getOwnedUseCases());
@@ -947,13 +903,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedClassifiers()
-	{
-		if (redefinedClassifier == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getRedefinedClassifiers() {
+		if (redefinedClassifier == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		redefinedClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.CLASSIFIER__REDEFINED_CLASSIFIER);
 			 		return redefinedClassifier;
@@ -970,12 +922,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRedefinedClassifiers()
-	{
-		if (redefinedClassifier == null)
-		{
-			
-		
+  public EList settable_getRedefinedClassifiers() {
+		if (redefinedClassifier == null) {
 			redefinedClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.CLASSIFIER__REDEFINED_CLASSIFIER);
 		}
 		return redefinedClassifier;
@@ -986,14 +934,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRedefinedClassifiers()
-	{
+  public java.util.ArrayList undeleted_getRedefinedClassifiers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (redefinedClassifier != null)
-		{
-			for (Object object : redefinedClassifier)
-			{
+		if (redefinedClassifier != null) {
+			for (Object object : redefinedClassifier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1026,13 +971,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSubstitutions()
-	{
-		if (substitution == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSubstitutions() {
+		if (substitution == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		substitution = new com.hopstepjump.emflist.PersistentEList(Substitution.class, this, UML2Package.CLASSIFIER__SUBSTITUTION, new int[] {UML2Package.CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER);
 			 		return substitution;
@@ -1049,12 +990,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSubstitutions()
-	{
-		if (substitution == null)
-		{
-			
-		
+  public EList settable_getSubstitutions() {
+		if (substitution == null) {
 			substitution = new com.hopstepjump.emflist.PersistentEList(Substitution.class, this, UML2Package.CLASSIFIER__SUBSTITUTION, new int[] {UML2Package.CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER);
 		}
 		return substitution;
@@ -1065,14 +1002,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSubstitutions()
-	{
+  public java.util.ArrayList undeleted_getSubstitutions() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (substitution != null)
-		{
-			for (Object object : substitution)
-			{
+		if (substitution != null) {
+			for (Object object : substitution) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1134,13 +1068,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPowertypeExtents()
-	{
-		if (powertypeExtent == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getPowertypeExtents() {
+		if (powertypeExtent == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		powertypeExtent = new com.hopstepjump.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, UML2Package.GENERALIZATION_SET__POWERTYPE);
 			 		return powertypeExtent;
@@ -1157,12 +1087,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPowertypeExtents()
-	{
-		if (powertypeExtent == null)
-		{
-			
-		
+  public EList settable_getPowertypeExtents() {
+		if (powertypeExtent == null) {
 			powertypeExtent = new com.hopstepjump.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, UML2Package.GENERALIZATION_SET__POWERTYPE);
 		}
 		return powertypeExtent;
@@ -1173,14 +1099,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPowertypeExtents()
-	{
+  public java.util.ArrayList undeleted_getPowertypeExtents() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (powertypeExtent != null)
-		{
-			for (Object object : powertypeExtent)
-			{
+		if (powertypeExtent != null) {
+			for (Object object : powertypeExtent) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1213,13 +1136,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedUseCases()
-	{
-		if (ownedUseCase == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedUseCases() {
+		if (ownedUseCase == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedUseCase = new com.hopstepjump.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__OWNED_USE_CASE);
 			 		return ownedUseCase;
@@ -1236,12 +1155,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedUseCases()
-	{
-		if (ownedUseCase == null)
-		{
-			
-		
+  public EList settable_getOwnedUseCases() {
+		if (ownedUseCase == null) {
 			ownedUseCase = new com.hopstepjump.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__OWNED_USE_CASE);
 		}
 		return ownedUseCase;
@@ -1252,14 +1167,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedUseCases()
-	{
+  public java.util.ArrayList undeleted_getOwnedUseCases() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedUseCase != null)
-		{
-			for (Object object : ownedUseCase)
-			{
+		if (ownedUseCase != null) {
+			for (Object object : ownedUseCase) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1321,13 +1233,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getUseCases()
-	{
-		if (useCase == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getUseCases() {
+		if (useCase == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		useCase = new com.hopstepjump.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__USE_CASE, UML2Package.USE_CASE__SUBJECT);
 			 		return useCase;
@@ -1344,12 +1252,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getUseCases()
-	{
-		if (useCase == null)
-		{
-			
-		
+  public EList settable_getUseCases() {
+		if (useCase == null) {
 			useCase = new com.hopstepjump.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__USE_CASE, UML2Package.USE_CASE__SUBJECT);
 		}
 		return useCase;
@@ -1360,14 +1264,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getUseCases()
-	{
+  public java.util.ArrayList undeleted_getUseCases() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (useCase != null)
-		{
-			for (Object object : useCase)
-			{
+		if (useCase != null) {
+			for (Object object : useCase) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1400,8 +1301,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CollaborationOccurrence getRepresentation()
-	{
+	public CollaborationOccurrence getRepresentation() {
 		return representation;
 	}
 
@@ -1415,8 +1315,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CollaborationOccurrence undeleted_getRepresentation()
-	{
+  public CollaborationOccurrence undeleted_getRepresentation() {
 		CollaborationOccurrence temp = getRepresentation();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -1428,9 +1327,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRepresentation(CollaborationOccurrence newRepresentation)
-	{
-
+	public void setRepresentation(CollaborationOccurrence newRepresentation) {
 		if (newRepresentation != null && !getOccurrences().contains(newRepresentation)) {
 			getOccurrences().add(newRepresentation);
 		}
@@ -1447,8 +1344,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRetired()
-	{
+	public boolean isRetired() {
 		return (eFlags & IS_RETIRED_EFLAG) != 0;
 	}
 
@@ -1463,9 +1359,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsRetired(boolean newIsRetired)
-	{
-
+	public void setIsRetired(boolean newIsRetired) {
 		boolean oldIsRetired = (eFlags & IS_RETIRED_EFLAG) != 0;
 		if (newIsRetired) eFlags |= IS_RETIRED_EFLAG; else eFlags &= ~IS_RETIRED_EFLAG;
 		if (eNotificationRequired())
@@ -1479,13 +1373,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOccurrences()
-	{
-		if (occurrence == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOccurrences() {
+		if (occurrence == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		occurrence = new com.hopstepjump.emflist.PersistentEList(CollaborationOccurrence.class, this, UML2Package.CLASSIFIER__OCCURRENCE, new int[] {UML2Package.CLASSIFIER__REPRESENTATION});
 			 		return occurrence;
@@ -1502,12 +1392,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOccurrences()
-	{
-		if (occurrence == null)
-		{
-			
-		
+  public EList settable_getOccurrences() {
+		if (occurrence == null) {
 			occurrence = new com.hopstepjump.emflist.PersistentEList(CollaborationOccurrence.class, this, UML2Package.CLASSIFIER__OCCURRENCE, new int[] {UML2Package.CLASSIFIER__REPRESENTATION});
 		}
 		return occurrence;
@@ -1518,14 +1404,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOccurrences()
-	{
+  public java.util.ArrayList undeleted_getOccurrences() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (occurrence != null)
-		{
-			for (Object object : occurrence)
-			{
+		if (occurrence != null) {
+			for (Object object : occurrence) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1587,8 +1470,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		TemplateParameter owningParameter = getOwningParameter();			
 		if (owningParameter != null) {
 			return owningParameter;
@@ -1602,8 +1484,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VisibilityKind getVisibility()
-	{
+	public VisibilityKind getVisibility() {
 		return getPackageableElement_visibility();
 	}
 
@@ -1612,8 +1493,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibility(VisibilityKind newVisibility)
-	{
+	public void setVisibility(VisibilityKind newVisibility) {
 		setPackageableElement_visibility(newVisibility);
 	}
 
@@ -1632,8 +1512,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateRedefinitionContextValid(DiagnosticChain diagnostics, Map context) {
 		return RedefinableElementOperations.validateRedefinitionContextValid(this, diagnostics, context);
 	}
 
@@ -1642,8 +1521,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateRedefinitionConsistent(DiagnosticChain diagnostics, Map context) {
 		return RedefinableElementOperations.validateRedefinitionConsistent(this, diagnostics, context);
 	}
 
@@ -1652,8 +1530,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace()
-	{
+	public Namespace basicGetNamespace() {
 		org.eclipse.uml2.Package package_ = basicGetPackage();			
 		if (package_ != null) {
 			return package_;
@@ -1679,8 +1556,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isConsistentWith(RedefinableElement redefinee)
-	{
+	public boolean isConsistentWith(RedefinableElement redefinee) {
 		return RedefinableElementOperations.isConsistentWith(this, redefinee);
 	}
 
@@ -1689,8 +1565,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRedefinitionContextValid(RedefinableElement redefinable)
-	{
+	public boolean isRedefinitionContextValid(RedefinableElement redefinable) {
 		return RedefinableElementOperations.isRedefinitionContextValid(this, redefinable);
 	}
 
@@ -1699,8 +1574,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set allFeatures()
-	{
+	public Set allFeatures() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Set result = (Set) cache.get(this, UML2Package.eINSTANCE.getClassifier().getEOperations().get(0));
@@ -1717,8 +1591,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNoCyclesInGeneralization(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateNoCyclesInGeneralization(DiagnosticChain diagnostics, Map context) {
 		return ClassifierOperations.validateNoCyclesInGeneralization(this, diagnostics, context);
 	}
 
@@ -1727,8 +1600,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSpecializeType(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateSpecializeType(DiagnosticChain diagnostics, Map context) {
 		return ClassifierOperations.validateSpecializeType(this, diagnostics, context);
 	}
 
@@ -1737,8 +1609,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInheritedMember(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateInheritedMember(DiagnosticChain diagnostics, Map context) {
 		return ClassifierOperations.validateInheritedMember(this, diagnostics, context);
 	}
 
@@ -1747,8 +1618,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set inheritedMember()
-	{
+	public Set inheritedMember() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Set result = (Set) cache.get(this, UML2Package.eINSTANCE.getClassifier().getEOperations().get(4));
@@ -1765,8 +1635,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set parents()
-	{
+	public Set parents() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Set result = (Set) cache.get(eResource(), this, UML2Package.eINSTANCE.getClassifier().getEOperations().get(5));
@@ -1783,8 +1652,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set allParents()
-	{
+	public Set allParents() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Set result = (Set) cache.get(this, UML2Package.eINSTANCE.getClassifier().getEOperations().get(6));
@@ -1801,8 +1669,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set inheritableMembers(Classifier c)
-	{
+	public Set inheritableMembers(Classifier c) {
 		return ClassifierOperations.inheritableMembers(this, c);
 	}
 
@@ -1811,8 +1678,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean hasVisibilityOf(NamedElement n)
-	{
+	public boolean hasVisibilityOf(NamedElement n) {
 		return ClassifierOperations.hasVisibilityOf(this, n);
 	}
 
@@ -1821,8 +1687,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set inherit(Set inhs)
-	{
+	public Set inherit(Set inhs) {
 		return ClassifierOperations.inherit(this, inhs);
 	}
 
@@ -1831,8 +1696,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean maySpecializeType(Classifier c)
-	{
+	public boolean maySpecializeType(Classifier c) {
 		return ClassifierOperations.maySpecializeType(this, c);
 	}
 
@@ -1841,8 +1705,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set general()
-	{
+	public Set general() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Set result = (Set) cache.get(eResource(), this, UML2Package.eINSTANCE.getClassifier().getEOperations().get(11));
@@ -1859,8 +1722,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateGeneralEqualsParents(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateGeneralEqualsParents(DiagnosticChain diagnostics, Map context) {
 		return ClassifierOperations.validateGeneralEqualsParents(this, diagnostics, context);
 	}
 
@@ -1869,8 +1731,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean conformsTo(Classifier other)
-	{
+	public boolean conformsTo(Classifier other) {
 		return ClassifierOperations.conformsTo(this, other);
 	}
 
@@ -1879,8 +1740,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements()
-	{
+	public EList getRedefinedElements() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			try {
@@ -1920,8 +1780,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getFeaturesHelper(EList feature)
-	{
+	protected EList getFeaturesHelper(EList feature) {
 		EList attribute = getAttributes();
 		if (!attribute.isEmpty()) {
 			for (Iterator i = ((InternalEList) attribute).basicIterator(); i.hasNext(); ) {
@@ -1936,13 +1795,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClientDependencies()
-	{
-		if (clientDependency == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getClientDependencies() {
+		if (clientDependency == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.CLASSIFIER__SUBSTITUTION}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
@@ -1959,12 +1814,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClientDependencies()
-	{
-		if (clientDependency == null)
-		{
-			
-		
+  public EList settable_getClientDependencies() {
+		if (clientDependency == null) {
 			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.CLASSIFIER__SUBSTITUTION}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
@@ -1975,14 +1826,11 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClientDependencies()
-	{
+  public java.util.ArrayList undeleted_getClientDependencies() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (clientDependency != null)
-		{
-			for (Object object : clientDependency)
-			{
+		if (clientDependency != null) {
+			for (Object object : clientDependency) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -2000,12 +1848,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CLASSIFIER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CLASSIFIER__TEMPLATE_BINDING:
@@ -2052,12 +1897,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CLASSIFIER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CLASSIFIER__OWNED_COMMENT:
@@ -2108,12 +1950,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.CLASSIFIER__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -2128,10 +1967,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLASSIFIER__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CLASSIFIER__OWNED_ELEMENT:
@@ -2232,10 +2069,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLASSIFIER__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -2363,10 +2198,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLASSIFIER__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -2475,10 +2308,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLASSIFIER__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CLASSIFIER__OWNED_ELEMENT:
@@ -2586,38 +2417,29 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == ParameterableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == ParameterableElement.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.CLASSIFIER__TEMPLATE_PARAMETER: return UML2Package.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER;
 				case UML2Package.CLASSIFIER__OWNING_PARAMETER: return UML2Package.PARAMETERABLE_ELEMENT__OWNING_PARAMETER;
 				default: return -1;
 			}
 		}
-		if (baseClass == PackageableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == PackageableElement.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY: return UML2Package.PACKAGEABLE_ELEMENT__PACKAGEABLE_ELEMENT_VISIBILITY;
 				default: return -1;
 			}
 		}
-		if (baseClass == Type.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == Type.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.CLASSIFIER__PACKAGE: return UML2Package.TYPE__PACKAGE;
 				case UML2Package.CLASSIFIER__IS_RETIRED: return UML2Package.TYPE__IS_RETIRED;
 				default: return -1;
 			}
 		}
-		if (baseClass == RedefinableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == RedefinableElement.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.CLASSIFIER__REDEFINITION_CONTEXT: return UML2Package.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT;
 				case UML2Package.CLASSIFIER__IS_LEAF: return UML2Package.REDEFINABLE_ELEMENT__IS_LEAF;
 				default: return -1;
@@ -2631,38 +2453,29 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == ParameterableElement.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == ParameterableElement.class) {
+			switch (baseFeatureID) {
 				case UML2Package.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER: return UML2Package.CLASSIFIER__TEMPLATE_PARAMETER;
 				case UML2Package.PARAMETERABLE_ELEMENT__OWNING_PARAMETER: return UML2Package.CLASSIFIER__OWNING_PARAMETER;
 				default: return -1;
 			}
 		}
-		if (baseClass == PackageableElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == PackageableElement.class) {
+			switch (baseFeatureID) {
 				case UML2Package.PACKAGEABLE_ELEMENT__PACKAGEABLE_ELEMENT_VISIBILITY: return UML2Package.CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY;
 				default: return -1;
 			}
 		}
-		if (baseClass == Type.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == Type.class) {
+			switch (baseFeatureID) {
 				case UML2Package.TYPE__PACKAGE: return UML2Package.CLASSIFIER__PACKAGE;
 				case UML2Package.TYPE__IS_RETIRED: return UML2Package.CLASSIFIER__IS_RETIRED;
 				default: return -1;
 			}
 		}
-		if (baseClass == RedefinableElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == RedefinableElement.class) {
+			switch (baseFeatureID) {
 				case UML2Package.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT: return UML2Package.CLASSIFIER__REDEFINITION_CONTEXT;
 				case UML2Package.REDEFINABLE_ELEMENT__IS_LEAF: return UML2Package.CLASSIFIER__IS_LEAF;
 				default: return -1;
@@ -2676,8 +2489,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

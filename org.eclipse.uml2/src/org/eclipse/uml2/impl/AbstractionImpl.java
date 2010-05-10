@@ -77,8 +77,7 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AbstractionImpl()
-	{
+	protected AbstractionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -93,8 +92,7 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getAbstraction();
 	}
 
@@ -103,8 +101,7 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OpaqueExpression getMapping()
-	{
+	public OpaqueExpression getMapping() {
 		return mapping;
 	}
 
@@ -118,8 +115,7 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OpaqueExpression undeleted_getMapping()
-	{
+  public OpaqueExpression undeleted_getMapping() {
 		OpaqueExpression temp = getMapping();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -131,13 +127,10 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMapping(OpaqueExpression newMapping, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetMapping(OpaqueExpression newMapping, NotificationChain msgs) {
 		OpaqueExpression oldMapping = mapping;
 		mapping = newMapping;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.ABSTRACTION__MAPPING, oldMapping, newMapping);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -150,11 +143,8 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMapping(OpaqueExpression newMapping)
-	{
-
-		if (newMapping != mapping)
-		{
+	public void setMapping(OpaqueExpression newMapping) {
+		if (newMapping != mapping) {
 			NotificationChain msgs = null;
 			if (mapping != null)
 				msgs = ((InternalEObject)mapping).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.ABSTRACTION__MAPPING, null, msgs);
@@ -202,12 +192,9 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ABSTRACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ABSTRACTION__TEMPLATE_BINDING:
@@ -242,12 +229,9 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ABSTRACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ABSTRACTION__OWNED_COMMENT:
@@ -284,12 +268,9 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.ABSTRACTION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -304,10 +285,8 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ABSTRACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ABSTRACTION__OWNED_ELEMENT:
@@ -382,10 +361,8 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ABSTRACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -481,10 +458,8 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ABSTRACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -569,10 +544,8 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ABSTRACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ABSTRACTION__OWNED_ELEMENT:
@@ -655,8 +628,7 @@ public class AbstractionImpl extends DependencyImpl implements Abstraction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getAbstraction_Mapping())) {
 			ownedElement.add(getMapping());

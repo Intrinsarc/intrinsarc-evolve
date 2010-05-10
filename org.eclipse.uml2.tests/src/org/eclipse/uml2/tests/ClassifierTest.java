@@ -61,8 +61,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierTest(String name)
-	{
+	public ClassifierTest(String name) {
 		super(name);
 	}
 
@@ -72,8 +71,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Classifier getFixture()
-	{
+	private Classifier getFixture() {
 		return (Classifier)fixture;
 	}
 
@@ -84,8 +82,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.PackageableElement#getPackageableElement_visibility()
 	 * @generated
 	 */
-	public void testGetPackageableElement_visibility()
-	{
+	public void testGetPackageableElement_visibility() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -97,8 +94,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.PackageableElement#setPackageableElement_visibility(org.eclipse.uml2.VisibilityKind)
 	 * @generated
 	 */
-	public void testSetPackageableElement_visibility()
-	{
+	public void testSetPackageableElement_visibility() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -110,8 +106,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Type#getPackage()
 	 * @generated
 	 */
-	public void testGetPackage()
-	{
+	public void testGetPackage() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -123,8 +118,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#getInheritedMembers()
 	 * @generated
 	 */
-	public void testGetInheritedMembers()
-	{
+	public void testGetInheritedMembers() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -136,8 +130,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#getGenerals()
 	 * @generated
 	 */
-	public void testGetGenerals()
-	{
+	public void testGetGenerals() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -149,8 +142,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Type#conformsTo(org.eclipse.uml2.Type)
 	 * @generated
 	 */
-	public void testConformsTo__Type()
-	{
+	public void testConformsTo__Type() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -162,8 +154,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#validateRedefinitionContextValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateRedefinitionContextValid__DiagnosticChain_Map()
-	{
+	public void testValidateRedefinitionContextValid__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -175,8 +166,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#validateRedefinitionConsistent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateRedefinitionConsistent__DiagnosticChain_Map()
-	{
+	public void testValidateRedefinitionConsistent__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -188,8 +178,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#isConsistentWith(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsConsistentWith__RedefinableElement()
-	{
+	public void testIsConsistentWith__RedefinableElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -201,8 +190,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#isRedefinitionContextValid(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsRedefinitionContextValid__RedefinableElement()
-	{
+	public void testIsRedefinitionContextValid__RedefinableElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -214,8 +202,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#allFeatures()
 	 * @generated
 	 */
-	public void testAllFeatures()
-	{
+	public void testAllFeatures() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -227,8 +214,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#validateNoCyclesInGeneralization(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateNoCyclesInGeneralization__DiagnosticChain_Map()
-	{
+	public void testValidateNoCyclesInGeneralization__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -240,8 +226,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#validateSpecializeType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateSpecializeType__DiagnosticChain_Map()
-	{
+	public void testValidateSpecializeType__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -253,8 +238,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#validateInheritedMember(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateInheritedMember__DiagnosticChain_Map()
-	{
+	public void testValidateInheritedMember__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -266,8 +250,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#inheritedMember()
 	 * @generated
 	 */
-	public void testInheritedMember()
-	{
+	public void testInheritedMember() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -279,8 +262,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#parents()
 	 * @generated
 	 */
-	public void testParents()
-	{
+	public void testParents() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -292,8 +274,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#allParents()
 	 * @generated
 	 */
-	public void testAllParents()
-	{
+	public void testAllParents() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -305,8 +286,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#inheritableMembers(org.eclipse.uml2.Classifier)
 	 * @generated
 	 */
-	public void testInheritableMembers__Classifier()
-	{
+	public void testInheritableMembers__Classifier() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -318,8 +298,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#hasVisibilityOf(org.eclipse.uml2.NamedElement)
 	 * @generated
 	 */
-	public void testHasVisibilityOf__NamedElement()
-	{
+	public void testHasVisibilityOf__NamedElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -331,8 +310,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#inherit(java.util.Set)
 	 * @generated
 	 */
-	public void testInherit__Set()
-	{
+	public void testInherit__Set() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -344,8 +322,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#maySpecializeType(org.eclipse.uml2.Classifier)
 	 * @generated
 	 */
-	public void testMaySpecializeType__Classifier()
-	{
+	public void testMaySpecializeType__Classifier() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -357,8 +334,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#general()
 	 * @generated
 	 */
-	public void testGeneral()
-	{
+	public void testGeneral() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -370,8 +346,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#validateGeneralEqualsParents(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateGeneralEqualsParents__DiagnosticChain_Map()
-	{
+	public void testValidateGeneralEqualsParents__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -383,8 +358,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#conformsTo(org.eclipse.uml2.Classifier)
 	 * @generated
 	 */
-	public void testConformsTo__Classifier()
-	{
+	public void testConformsTo__Classifier() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -398,8 +372,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner()
-	{
+	public void testGetOwner() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -411,8 +384,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace()
-	{
+	public void testGetNamespace() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -424,8 +396,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinitionContexts()
 	 * @generated
 	 */
-	public void testGetRedefinitionContexts()
-	{
+	public void testGetRedefinitionContexts() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -437,8 +408,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements()
-	{
+	public void testGetRedefinedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -450,8 +420,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#getFeatures()
 	 * @generated
 	 */
-	public void testGetFeatures()
-	{
+	public void testGetFeatures() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -463,8 +432,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Namespace#getMembers()
 	 * @generated
 	 */
-	public void testGetMembers()
-	{
+	public void testGetMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -476,8 +444,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -489,8 +456,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Classifier#getAttributes()
 	 * @generated
 	 */
-	public void testGetAttributes()
-	{
+	public void testGetAttributes() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -502,8 +468,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -515,8 +480,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.NamedElement#getVisibility()
 	 * @generated
 	 */
-	public void testGetVisibility()
-	{
+	public void testGetVisibility() {
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -528,8 +492,7 @@ public abstract class ClassifierTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.NamedElement#setVisibility(org.eclipse.uml2.VisibilityKind)
 	 * @generated
 	 */
-	public void testSetVisibility()
-	{
+	public void testSetVisibility() {
 		// TODO: implement this redefined feature setter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

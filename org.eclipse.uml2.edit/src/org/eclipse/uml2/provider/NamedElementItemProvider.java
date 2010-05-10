@@ -60,8 +60,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElementItemProvider(AdapterFactory adapterFactory)
-	{
+	public NamedElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,10 +70,8 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -94,8 +91,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
-	{
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -115,8 +111,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addQualifiedNamePropertyDescriptor(Object object)
-	{
+	protected void addQualifiedNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -138,8 +133,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVisibilityPropertyDescriptor(Object object)
-	{
+	protected void addVisibilityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -159,8 +153,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addClientDependencyPropertyDescriptor(Object object)
-	{
+	protected void addClientDependencyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -180,8 +173,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNameExpressionPropertyDescriptor(Object object)
-	{
+	protected void addNameExpressionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -203,8 +195,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReverseDependenciesPropertyDescriptor(Object object)
-	{
+	protected void addReverseDependenciesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -224,8 +215,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReverseGeneralizationsPropertyDescriptor(Object object)
-	{
+	protected void addReverseGeneralizationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -247,10 +237,8 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getNamedElement_NameExpression());
 			childrenFeatures.add(UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies());
@@ -263,8 +251,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -277,8 +264,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((NamedElement)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_NamedElement_type") : //$NON-NLS-1$
@@ -292,12 +278,10 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(NamedElement.class))
-		{
+		switch (notification.getFeatureID(NamedElement.class)) {
 			case UML2Package.NAMED_ELEMENT__NAME:
 			case UML2Package.NAMED_ELEMENT__QUALIFIED_NAME:
 			case UML2Package.NAMED_ELEMENT__VISIBILITY:
@@ -318,8 +302,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -429,8 +412,7 @@ public class NamedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -293,8 +293,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ParameterImpl()
-	{
+	protected ParameterImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -310,8 +309,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getParameter();
 	}
 
@@ -320,14 +318,11 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getType()
-	{
-		if (type != null && type.eIsProxy())
-		{
+	public Type getType() {
+		if (type != null && type.eIsProxy()) {
 			Type oldType = type;
 			type = (Type)eResolveProxy((InternalEObject)type);
-			if (type != oldType)
-			{
+			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PARAMETER__TYPE, oldType, type));
 			}
@@ -345,8 +340,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Type undeleted_getType()
-	{
+  public Type undeleted_getType() {
 		Type temp = getType();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -358,8 +352,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetType()
-	{
+	public Type basicGetType() {
 		return type;
 	}
 
@@ -368,9 +361,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(Type newType)
-	{
-
+	public void setType(Type newType) {
 		Type oldType = type;
 		type = newType;
 		if (eNotificationRequired())
@@ -384,8 +375,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isOrdered()
-	{
+	public boolean isOrdered() {
 		return (eFlags & IS_ORDERED_EFLAG) != 0;
 	}
 
@@ -400,9 +390,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsOrdered(boolean newIsOrdered)
-	{
-
+	public void setIsOrdered(boolean newIsOrdered) {
 		boolean oldIsOrdered = (eFlags & IS_ORDERED_EFLAG) != 0;
 		if (newIsOrdered) eFlags |= IS_ORDERED_EFLAG; else eFlags &= ~IS_ORDERED_EFLAG;
 		if (eNotificationRequired())
@@ -416,8 +404,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUnique()
-	{
+	public boolean isUnique() {
 		return (eFlags & IS_UNIQUE_EFLAG) != 0;
 	}
 
@@ -432,9 +419,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsUnique(boolean newIsUnique)
-	{
-
+	public void setIsUnique(boolean newIsUnique) {
 		boolean oldIsUnique = (eFlags & IS_UNIQUE_EFLAG) != 0;
 		if (newIsUnique) eFlags |= IS_UNIQUE_EFLAG; else eFlags &= ~IS_UNIQUE_EFLAG;
 		if (eNotificationRequired())
@@ -466,8 +451,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getUpperValue()
-	{
+	public ValueSpecification getUpperValue() {
 		return upperValue;
 	}
 
@@ -481,8 +465,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getUpperValue()
-	{
+  public ValueSpecification undeleted_getUpperValue() {
 		ValueSpecification temp = getUpperValue();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -494,13 +477,10 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUpperValue(ValueSpecification newUpperValue, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetUpperValue(ValueSpecification newUpperValue, NotificationChain msgs) {
 		ValueSpecification oldUpperValue = upperValue;
 		upperValue = newUpperValue;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.PARAMETER__UPPER_VALUE, oldUpperValue, newUpperValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -513,11 +493,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUpperValue(ValueSpecification newUpperValue)
-	{
-
-		if (newUpperValue != upperValue)
-		{
+	public void setUpperValue(ValueSpecification newUpperValue) {
+		if (newUpperValue != upperValue) {
 			NotificationChain msgs = null;
 			if (upperValue != null)
 				msgs = ((InternalEObject)upperValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.PARAMETER__UPPER_VALUE, null, msgs);
@@ -551,8 +528,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getLowerValue()
-	{
+	public ValueSpecification getLowerValue() {
 		return lowerValue;
 	}
 
@@ -566,8 +542,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getLowerValue()
-	{
+  public ValueSpecification undeleted_getLowerValue() {
 		ValueSpecification temp = getLowerValue();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -579,13 +554,10 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLowerValue(ValueSpecification newLowerValue, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetLowerValue(ValueSpecification newLowerValue, NotificationChain msgs) {
 		ValueSpecification oldLowerValue = lowerValue;
 		lowerValue = newLowerValue;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.PARAMETER__LOWER_VALUE, oldLowerValue, newLowerValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -598,11 +570,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLowerValue(ValueSpecification newLowerValue)
-	{
-
-		if (newLowerValue != lowerValue)
-		{
+	public void setLowerValue(ValueSpecification newLowerValue) {
+		if (newLowerValue != lowerValue) {
 			NotificationChain msgs = null;
 			if (lowerValue != null)
 				msgs = ((InternalEObject)lowerValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.PARAMETER__LOWER_VALUE, null, msgs);
@@ -645,8 +614,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterDirectionKind getDirection()
-	{
+	public ParameterDirectionKind getDirection() {
 		return direction;
 	}
 
@@ -661,9 +629,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDirection(ParameterDirectionKind newDirection)
-	{
-
+	public void setDirection(ParameterDirectionKind newDirection) {
 		ParameterDirectionKind oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
 		if (eNotificationRequired())
@@ -677,8 +643,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isException()
-	{
+	public boolean isException() {
 		return (eFlags & IS_EXCEPTION_EFLAG) != 0;
 	}
 
@@ -693,9 +658,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsException(boolean newIsException)
-	{
-
+	public void setIsException(boolean newIsException) {
 		boolean oldIsException = (eFlags & IS_EXCEPTION_EFLAG) != 0;
 		if (newIsException) eFlags |= IS_EXCEPTION_EFLAG; else eFlags &= ~IS_EXCEPTION_EFLAG;
 		if (eNotificationRequired())
@@ -709,8 +672,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isStream()
-	{
+	public boolean isStream() {
 		return (eFlags & IS_STREAM_EFLAG) != 0;
 	}
 
@@ -725,9 +687,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsStream(boolean newIsStream)
-	{
-
+	public void setIsStream(boolean newIsStream) {
 		boolean oldIsStream = (eFlags & IS_STREAM_EFLAG) != 0;
 		if (newIsStream) eFlags |= IS_STREAM_EFLAG; else eFlags &= ~IS_STREAM_EFLAG;
 		if (eNotificationRequired())
@@ -741,8 +701,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterEffectKind getEffect()
-	{
+	public ParameterEffectKind getEffect() {
 		return effect;
 	}
 
@@ -757,9 +716,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEffect(ParameterEffectKind newEffect)
-	{
-
+	public void setEffect(ParameterEffectKind newEffect) {
 		ParameterEffectKind oldEffect = effect;
 		effect = newEffect == null ? EFFECT_EDEFAULT : newEffect;
 		if (eNotificationRequired())
@@ -773,8 +730,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation getOperation()
-	{
+	public Operation getOperation() {
 		if (eContainerFeatureID != UML2Package.PARAMETER__OPERATION) return null;
 		return (Operation)eContainer;
 	}
@@ -789,8 +745,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation undeleted_getOperation()
-	{
+  public Operation undeleted_getOperation() {
 		Operation temp = getOperation();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -802,11 +757,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperation(Operation newOperation)
-	{
-
-		if (newOperation != eContainer || (eContainerFeatureID != UML2Package.PARAMETER__OPERATION && newOperation != null))
-		{
+	public void setOperation(Operation newOperation) {
+		if (newOperation != eContainer || (eContainerFeatureID != UML2Package.PARAMETER__OPERATION && newOperation != null)) {
 			if (EcoreUtil.isAncestor(this, newOperation))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -828,8 +780,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getDefaultValue()
-	{
+	public ValueSpecification getDefaultValue() {
 		return defaultValue;
 	}
 
@@ -843,8 +794,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getDefaultValue()
-	{
+  public ValueSpecification undeleted_getDefaultValue() {
 		ValueSpecification temp = getDefaultValue();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -856,13 +806,10 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDefaultValue(ValueSpecification newDefaultValue, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetDefaultValue(ValueSpecification newDefaultValue, NotificationChain msgs) {
 		ValueSpecification oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.PARAMETER__DEFAULT_VALUE, oldDefaultValue, newDefaultValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -875,11 +822,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultValue(ValueSpecification newDefaultValue)
-	{
-
-		if (newDefaultValue != defaultValue)
-		{
+	public void setDefaultValue(ValueSpecification newDefaultValue) {
+		if (newDefaultValue != defaultValue) {
 			NotificationChain msgs = null;
 			if (defaultValue != null)
 				msgs = ((InternalEObject)defaultValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.PARAMETER__DEFAULT_VALUE, null, msgs);
@@ -913,13 +857,9 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getParameterSets()
-	{
-		if (parameterSet == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getParameterSets() {
+		if (parameterSet == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		parameterSet = new com.hopstepjump.emflist.PersistentEList(ParameterSet.class, this, UML2Package.PARAMETER__PARAMETER_SET, UML2Package.PARAMETER_SET__PARAMETER);
 			 		return parameterSet;
@@ -936,12 +876,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getParameterSets()
-	{
-		if (parameterSet == null)
-		{
-			
-		
+  public EList settable_getParameterSets() {
+		if (parameterSet == null) {
 			parameterSet = new com.hopstepjump.emflist.PersistentEList(ParameterSet.class, this, UML2Package.PARAMETER__PARAMETER_SET, UML2Package.PARAMETER_SET__PARAMETER);
 		}
 		return parameterSet;
@@ -952,14 +888,11 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getParameterSets()
-	{
+  public java.util.ArrayList undeleted_getParameterSets() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (parameterSet != null)
-		{
-			for (Object object : parameterSet)
-			{
+		if (parameterSet != null) {
+			for (Object object : parameterSet) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -992,8 +925,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int lowerBound()
-	{
+	public int lowerBound() {
 		return MultiplicityElementOperations.lowerBound(this);
 	}
 
@@ -1002,8 +934,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int upperBound()
-	{
+	public int upperBound() {
 		return MultiplicityElementOperations.upperBound(this);
 	}
 
@@ -1012,8 +943,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isMultivalued()
-	{
+	public boolean isMultivalued() {
 		return MultiplicityElementOperations.isMultivalued(this);
 	}
 
@@ -1022,8 +952,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean includesCardinality(int C)
-	{
+	public boolean includesCardinality(int C) {
 		return MultiplicityElementOperations.includesCardinality(this, C);
 	}
 
@@ -1032,8 +961,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean includesMultiplicity(MultiplicityElement M)
-	{
+	public boolean includesMultiplicity(MultiplicityElement M) {
 		return MultiplicityElementOperations.includesMultiplicity(this, M);
 	}
 
@@ -1042,8 +970,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateUpperGt0(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateUpperGt0(DiagnosticChain diagnostics, Map context) {
 		return MultiplicityElementOperations.validateUpperGt0(this, diagnostics, context);
 	}
 
@@ -1052,8 +979,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLowerGe0(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateLowerGe0(DiagnosticChain diagnostics, Map context) {
 		return MultiplicityElementOperations.validateLowerGe0(this, diagnostics, context);
 	}
 
@@ -1062,8 +988,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateUpperGeLower(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateUpperGeLower(DiagnosticChain diagnostics, Map context) {
 		return MultiplicityElementOperations.validateUpperGeLower(this, diagnostics, context);
 	}
 
@@ -1072,8 +997,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLowerEqLowerbound(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateLowerEqLowerbound(DiagnosticChain diagnostics, Map context) {
 		return MultiplicityElementOperations.validateLowerEqLowerbound(this, diagnostics, context);
 	}
 
@@ -1082,8 +1006,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateUpperEqUpperbound(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateUpperEqUpperbound(DiagnosticChain diagnostics, Map context) {
 		return MultiplicityElementOperations.validateUpperEqUpperbound(this, diagnostics, context);
 	}
 
@@ -1092,8 +1015,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int lower()
-	{
+	public int lower() {
 		return MultiplicityElementOperations.lower(this);
 	}
 
@@ -1102,8 +1024,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int upper()
-	{
+	public int upper() {
 		return MultiplicityElementOperations.upper(this);
 	}
 
@@ -1112,8 +1033,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace()
-	{
+	public Namespace basicGetNamespace() {
 		Operation operation = getOperation();			
 		if (operation != null) {
 			return operation;
@@ -1127,12 +1047,9 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PARAMETER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PARAMETER__TEMPLATE_BINDING:
@@ -1173,12 +1090,9 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PARAMETER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PARAMETER__OWNED_COMMENT:
@@ -1223,12 +1137,9 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.PARAMETER__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.PARAMETER__OPERATION:
@@ -1245,10 +1156,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PARAMETER__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PARAMETER__OWNED_ELEMENT:
@@ -1335,10 +1244,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PARAMETER__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1452,10 +1359,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PARAMETER__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1558,10 +1463,8 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PARAMETER__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PARAMETER__OWNED_ELEMENT:
@@ -1645,20 +1548,15 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == TypedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == TypedElement.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.PARAMETER__TYPE: return UML2Package.TYPED_ELEMENT__TYPE;
 				default: return -1;
 			}
 		}
-		if (baseClass == MultiplicityElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == MultiplicityElement.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.PARAMETER__IS_ORDERED: return UML2Package.MULTIPLICITY_ELEMENT__IS_ORDERED;
 				case UML2Package.PARAMETER__IS_UNIQUE: return UML2Package.MULTIPLICITY_ELEMENT__IS_UNIQUE;
 				case UML2Package.PARAMETER__LOWER: return UML2Package.MULTIPLICITY_ELEMENT__LOWER;
@@ -1676,20 +1574,15 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == TypedElement.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == TypedElement.class) {
+			switch (baseFeatureID) {
 				case UML2Package.TYPED_ELEMENT__TYPE: return UML2Package.PARAMETER__TYPE;
 				default: return -1;
 			}
 		}
-		if (baseClass == MultiplicityElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == MultiplicityElement.class) {
+			switch (baseFeatureID) {
 				case UML2Package.MULTIPLICITY_ELEMENT__IS_ORDERED: return UML2Package.PARAMETER__IS_ORDERED;
 				case UML2Package.MULTIPLICITY_ELEMENT__IS_UNIQUE: return UML2Package.PARAMETER__IS_UNIQUE;
 				case UML2Package.MULTIPLICITY_ELEMENT__LOWER: return UML2Package.PARAMETER__LOWER;
@@ -1707,8 +1600,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1734,8 +1626,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getMultiplicityElement_UpperValue())) {
 			ownedElement.add(getUpperValue());

@@ -80,8 +80,7 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConnectionPointReferenceImpl()
-	{
+	protected ConnectionPointReferenceImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -96,8 +95,7 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getConnectionPointReference();
 	}
 
@@ -106,13 +104,9 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getEntries()
-	{
-		if (entry == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getEntries() {
+		if (entry == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		entry = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__ENTRY);
 			 		return entry;
@@ -129,12 +123,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getEntries()
-	{
-		if (entry == null)
-		{
-			
-		
+  public EList settable_getEntries() {
+		if (entry == null) {
 			entry = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__ENTRY);
 		}
 		return entry;
@@ -145,14 +135,11 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getEntries()
-	{
+  public java.util.ArrayList undeleted_getEntries() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (entry != null)
-		{
-			for (Object object : entry)
-			{
+		if (entry != null) {
+			for (Object object : entry) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -185,13 +172,9 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getExits()
-	{
-		if (exit == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getExits() {
+		if (exit == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		exit = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__EXIT);
 			 		return exit;
@@ -208,12 +191,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getExits()
-	{
-		if (exit == null)
-		{
-			
-		
+  public EList settable_getExits() {
+		if (exit == null) {
 			exit = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__EXIT);
 		}
 		return exit;
@@ -224,14 +203,11 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getExits()
-	{
+  public java.util.ArrayList undeleted_getExits() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (exit != null)
-		{
-			for (Object object : exit)
-			{
+		if (exit != null) {
+			for (Object object : exit) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -264,12 +240,9 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CONNECTION_POINT_REFERENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CONNECTION_POINT_REFERENCE__TEMPLATE_BINDING:
@@ -302,12 +275,9 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CONNECTION_POINT_REFERENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CONNECTION_POINT_REFERENCE__OWNED_COMMENT:
@@ -342,12 +312,9 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.CONNECTION_POINT_REFERENCE__CONTAINER:
 					return eContainer.eInverseRemove(this, UML2Package.REGION__SUBVERTEX, Region.class, msgs);
 				default:
@@ -362,10 +329,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CONNECTION_POINT_REFERENCE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CONNECTION_POINT_REFERENCE__OWNED_ELEMENT:
@@ -424,10 +389,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CONNECTION_POINT_REFERENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -513,10 +476,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CONNECTION_POINT_REFERENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -589,10 +550,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CONNECTION_POINT_REFERENCE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CONNECTION_POINT_REFERENCE__OWNED_ELEMENT:

@@ -28,8 +28,7 @@ public abstract class ParameterableElementTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterableElementTest(String name)
-	{
+	public ParameterableElementTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class ParameterableElementTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ParameterableElement getFixture()
-	{
+	private ParameterableElement getFixture() {
 		return (ParameterableElement)fixture;
 	}
 
@@ -53,8 +51,7 @@ public abstract class ParameterableElementTest extends ElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner()
-	{
+	public void testGetOwner() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

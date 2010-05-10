@@ -144,8 +144,7 @@ public final class MessageKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final MessageKind[] VALUES_ARRAY =
-		new MessageKind[]
-		{
+		new MessageKind[] {
 			COMPLETE_LITERAL,
 			LOST_LITERAL,
 			FOUND_LITERAL,
@@ -166,13 +165,10 @@ public final class MessageKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MessageKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static MessageKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			MessageKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -185,10 +181,8 @@ public final class MessageKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MessageKind get(int value)
-	{
-		switch (value)
-		{
+	public static MessageKind get(int value) {
+		switch (value) {
 			case COMPLETE: return COMPLETE_LITERAL;
 			case LOST: return LOST_LITERAL;
 			case FOUND: return FOUND_LITERAL;
@@ -203,8 +197,7 @@ public final class MessageKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private MessageKind(int value, String name)
-	{
+	private MessageKind(int value, String name) {
 		super(value, name);
 	}
 

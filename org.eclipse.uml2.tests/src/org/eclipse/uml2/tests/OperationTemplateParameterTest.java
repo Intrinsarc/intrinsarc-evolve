@@ -30,8 +30,7 @@ public class OperationTemplateParameterTest extends TemplateParameterTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(OperationTemplateParameterTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class OperationTemplateParameterTest extends TemplateParameterTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperationTemplateParameterTest(String name)
-	{
+	public OperationTemplateParameterTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class OperationTemplateParameterTest extends TemplateParameterTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private OperationTemplateParameter getFixture()
-	{
+	private OperationTemplateParameter getFixture() {
 		return (OperationTemplateParameter)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class OperationTemplateParameterTest extends TemplateParameterTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createOperationTemplateParameter());
 	}
 
@@ -74,8 +70,7 @@ public class OperationTemplateParameterTest extends TemplateParameterTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

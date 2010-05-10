@@ -78,8 +78,7 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InterruptibleActivityRegionImpl()
-	{
+	protected InterruptibleActivityRegionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -109,8 +108,7 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getInterruptibleActivityRegion();
 	}
 
@@ -119,13 +117,9 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInterruptingEdges()
-	{
-		if (interruptingEdge == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getInterruptingEdges() {
+		if (interruptingEdge == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		interruptingEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, UML2Package.ACTIVITY_EDGE__INTERRUPTS);
 			 		return interruptingEdge;
@@ -142,12 +136,8 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getInterruptingEdges()
-	{
-		if (interruptingEdge == null)
-		{
-			
-		
+  public EList settable_getInterruptingEdges() {
+		if (interruptingEdge == null) {
 			interruptingEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, UML2Package.ACTIVITY_EDGE__INTERRUPTS);
 		}
 		return interruptingEdge;
@@ -158,14 +148,11 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getInterruptingEdges()
-	{
+  public java.util.ArrayList undeleted_getInterruptingEdges() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (interruptingEdge != null)
-		{
-			for (Object object : interruptingEdge)
-			{
+		if (interruptingEdge != null) {
+			for (Object object : interruptingEdge) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -198,13 +185,9 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getContainedNodes()
-	{
-		if (containedNode == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getContainedNodes() {
+		if (containedNode == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
 			 		return containedNode;
@@ -221,12 +204,8 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getContainedNodes()
-	{
-		if (containedNode == null)
-		{
-			
-		
+  public EList settable_getContainedNodes() {
+		if (containedNode == null) {
 			containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
 		}
 		return containedNode;
@@ -237,14 +216,11 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getContainedNodes()
-	{
+  public java.util.ArrayList undeleted_getContainedNodes() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (containedNode != null)
-		{
-			for (Object object : containedNode)
-			{
+		if (containedNode != null) {
+			for (Object object : containedNode) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -277,12 +253,9 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE:
@@ -314,12 +287,9 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__OWNED_COMMENT:
@@ -351,12 +321,9 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__ACTIVITY_GROUP_ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__GROUP, Activity.class, msgs);
 				default:
@@ -371,10 +338,8 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__OWNED_ELEMENT:
@@ -412,10 +377,8 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -461,10 +424,8 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -504,10 +465,8 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__OWNED_ELEMENT:

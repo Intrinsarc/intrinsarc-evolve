@@ -49,8 +49,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(StructuredActivityNodeTest.class);
 	}
 
@@ -60,8 +59,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuredActivityNodeTest(String name)
-	{
+	public StructuredActivityNodeTest(String name) {
 		super(name);
 	}
 
@@ -71,8 +69,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private StructuredActivityNode getFixture()
-	{
+	private StructuredActivityNode getFixture() {
 		return (StructuredActivityNode)fixture;
 	}
 
@@ -82,8 +79,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createStructuredActivityNode());
 	}
 
@@ -93,8 +89,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -105,8 +100,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#getImportedMembers()
 	 * @generated
 	 */
-	public void testGetImportedMembers()
-	{
+	public void testGetImportedMembers() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -118,8 +112,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.StructuredActivityNode#getActivity()
 	 * @generated
 	 */
-	public void testGetActivity()
-	{
+	public void testGetActivity() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -131,8 +124,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#validateMembersAreDistinguishable(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateMembersAreDistinguishable__DiagnosticChain_Map()
-	{
+	public void testValidateMembersAreDistinguishable__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -144,8 +136,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#getNamesOfMember(org.eclipse.uml2.NamedElement)
 	 * @generated
 	 */
-	public void testGetNamesOfMember__NamedElement()
-	{
+	public void testGetNamesOfMember__NamedElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -157,8 +148,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#membersAreDistinguishable()
 	 * @generated
 	 */
-	public void testMembersAreDistinguishable()
-	{
+	public void testMembersAreDistinguishable() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -170,8 +160,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#validateImportedMemberDerived(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateImportedMemberDerived__DiagnosticChain_Map()
-	{
+	public void testValidateImportedMemberDerived__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -183,8 +172,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#importedMember()
 	 * @generated
 	 */
-	public void testImportedMember()
-	{
+	public void testImportedMember() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -196,8 +184,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#importMembers(java.util.Set)
 	 * @generated
 	 */
-	public void testImportMembers__Set()
-	{
+	public void testImportMembers__Set() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -209,8 +196,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#excludeCollisions(java.util.Set)
 	 * @generated
 	 */
-	public void testExcludeCollisions__Set()
-	{
+	public void testExcludeCollisions__Set() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -224,8 +210,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#getMembers()
 	 * @generated
 	 */
-	public void testGetMembers()
-	{
+	public void testGetMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -237,8 +222,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -250,8 +234,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -263,8 +246,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getSuperGroup()
 	 * @generated
 	 */
-	public void testGetSuperGroup()
-	{
+	public void testGetSuperGroup() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -276,8 +258,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner()
-	{
+	public void testGetOwner() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -289,8 +270,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getSubgroups()
 	 * @generated
 	 */
-	public void testGetSubgroups()
-	{
+	public void testGetSubgroups() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -302,8 +282,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.ActivityGroup#getActivityGroup_activity()
 	 * @generated
 	 */
-	public void testGetActivityGroup_activity()
-	{
+	public void testGetActivityGroup_activity() {
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -315,8 +294,7 @@ public class StructuredActivityNodeTest extends ActionTest {
 	 * @see org.eclipse.uml2.ActivityGroup#setActivityGroup_activity(org.eclipse.uml2.Activity)
 	 * @generated
 	 */
-	public void testSetActivityGroup_activity()
-	{
+	public void testSetActivityGroup_activity() {
 		// TODO: implement this redefined feature setter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -155,8 +155,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActivityPartitionImpl()
-	{
+	protected ActivityPartitionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -171,8 +170,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getActivityPartition();
 	}
 
@@ -191,8 +189,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity undeleted_getActivityGroup_activity()
-	{
+  public Activity undeleted_getActivityGroup_activity() {
 		Activity temp = getActivityGroup_activity();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -238,8 +235,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDimension()
-	{
+	public boolean isDimension() {
 		return (eFlags & IS_DIMENSION_EFLAG) != 0;
 	}
 
@@ -254,9 +250,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsDimension(boolean newIsDimension)
-	{
-
+	public void setIsDimension(boolean newIsDimension) {
 		boolean oldIsDimension = (eFlags & IS_DIMENSION_EFLAG) != 0;
 		if (newIsDimension) eFlags |= IS_DIMENSION_EFLAG; else eFlags &= ~IS_DIMENSION_EFLAG;
 		if (eNotificationRequired())
@@ -270,8 +264,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isExternal()
-	{
+	public boolean isExternal() {
 		return (eFlags & IS_EXTERNAL_EFLAG) != 0;
 	}
 
@@ -286,9 +279,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsExternal(boolean newIsExternal)
-	{
-
+	public void setIsExternal(boolean newIsExternal) {
 		boolean oldIsExternal = (eFlags & IS_EXTERNAL_EFLAG) != 0;
 		if (newIsExternal) eFlags |= IS_EXTERNAL_EFLAG; else eFlags &= ~IS_EXTERNAL_EFLAG;
 		if (eNotificationRequired())
@@ -302,13 +293,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getContainedEdges()
-	{
-		if (containedEdge == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getContainedEdges() {
+		if (containedEdge == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		containedEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_PARTITION);
 			 		return containedEdge;
@@ -325,12 +312,8 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getContainedEdges()
-	{
-		if (containedEdge == null)
-		{
-			
-		
+  public EList settable_getContainedEdges() {
+		if (containedEdge == null) {
 			containedEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_PARTITION);
 		}
 		return containedEdge;
@@ -341,14 +324,11 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getContainedEdges()
-	{
+  public java.util.ArrayList undeleted_getContainedEdges() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (containedEdge != null)
-		{
-			for (Object object : containedEdge)
-			{
+		if (containedEdge != null) {
+			for (Object object : containedEdge) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -381,13 +361,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getContainedNodes()
-	{
-		if (containedNode == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getContainedNodes() {
+		if (containedNode == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_PARTITION);
 			 		return containedNode;
@@ -404,12 +380,8 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getContainedNodes()
-	{
-		if (containedNode == null)
-		{
-			
-		
+  public EList settable_getContainedNodes() {
+		if (containedNode == null) {
 			containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_PARTITION);
 		}
 		return containedNode;
@@ -420,14 +392,11 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getContainedNodes()
-	{
+  public java.util.ArrayList undeleted_getContainedNodes() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (containedNode != null)
-		{
-			for (Object object : containedNode)
-			{
+		if (containedNode != null) {
+			for (Object object : containedNode) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -460,13 +429,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSubgroups()
-	{
-		if (subgroup == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSubgroups() {
+		if (subgroup == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		subgroup = new com.hopstepjump.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_PARTITION__SUBGROUP, UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION);
 			 		return subgroup;
@@ -483,12 +448,8 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSubgroups()
-	{
-		if (subgroup == null)
-		{
-			
-		
+  public EList settable_getSubgroups() {
+		if (subgroup == null) {
 			subgroup = new com.hopstepjump.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_PARTITION__SUBGROUP, UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION);
 		}
 		return subgroup;
@@ -499,14 +460,11 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSubgroups()
-	{
+  public java.util.ArrayList undeleted_getSubgroups() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (subgroup != null)
-		{
-			for (Object object : subgroup)
-			{
+		if (subgroup != null) {
+			for (Object object : subgroup) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -568,8 +526,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityPartition getSuperPartition()
-	{
+	public ActivityPartition getSuperPartition() {
 		if (eContainerFeatureID != UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION) return null;
 		return (ActivityPartition)eContainer;
 	}
@@ -584,8 +541,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ActivityPartition undeleted_getSuperPartition()
-	{
+  public ActivityPartition undeleted_getSuperPartition() {
 		ActivityPartition temp = getSuperPartition();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -597,11 +553,8 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSuperPartition(ActivityPartition newSuperPartition)
-	{
-
-		if (newSuperPartition != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION && newSuperPartition != null))
-		{
+	public void setSuperPartition(ActivityPartition newSuperPartition) {
+		if (newSuperPartition != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION && newSuperPartition != null)) {
 			if (EcoreUtil.isAncestor(this, newSuperPartition))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -623,14 +576,11 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getRepresents()
-	{
-		if (represents != null && represents.eIsProxy())
-		{
+	public Element getRepresents() {
+		if (represents != null && represents.eIsProxy()) {
 			Element oldRepresents = represents;
 			represents = (Element)eResolveProxy((InternalEObject)represents);
-			if (represents != oldRepresents)
-			{
+			if (represents != oldRepresents) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.ACTIVITY_PARTITION__REPRESENTS, oldRepresents, represents));
 			}
@@ -648,8 +598,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Element undeleted_getRepresents()
-	{
+  public Element undeleted_getRepresents() {
 		Element temp = getRepresents();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -661,8 +610,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetRepresents()
-	{
+	public Element basicGetRepresents() {
 		return represents;
 	}
 
@@ -671,9 +619,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRepresents(Element newRepresents)
-	{
-
+	public void setRepresents(Element newRepresents) {
 		Element oldRepresents = represents;
 		represents = newRepresents;
 		if (eNotificationRequired())
@@ -687,8 +633,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getActivity()
-	{
+	public Activity getActivity() {
 		return getActivityGroup_activity();
 	}
 
@@ -697,8 +642,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActivity(Activity newActivity)
-	{
+	public void setActivity(Activity newActivity) {
 		setActivityGroup_activity(newActivity);
 	}
 
@@ -708,8 +652,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		ActivityGroup superGroup = basicGetSuperGroup();			
 		if (superGroup != null) {
 			return superGroup;
@@ -727,8 +670,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getActivityPartition_Subgroup())) {
 			ownedElement.addAll(getSubgroups());
@@ -742,8 +684,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityGroup basicGetSuperGroup()
-	{
+	public ActivityGroup basicGetSuperGroup() {
 		ActivityPartition superPartition = getSuperPartition();			
 		if (superPartition != null) {
 			return superPartition;
@@ -756,8 +697,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityGroup getSuperGroup()
-	{
+	public ActivityGroup getSuperGroup() {
 		ActivityGroup superGroup = basicGetSuperGroup();
 		return superGroup == null ? null : (ActivityGroup)eResolveProxy((InternalEObject)superGroup);
 	}
@@ -768,12 +708,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ACTIVITY_PARTITION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ACTIVITY_PARTITION__TEMPLATE_BINDING:
@@ -819,12 +756,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ACTIVITY_PARTITION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTIVITY_PARTITION__OWNED_COMMENT:
@@ -870,12 +804,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.ACTIVITY_PARTITION__ACTIVITY_GROUP_ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__GROUP, Activity.class, msgs);
 				case UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION:
@@ -892,10 +823,8 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACTIVITY_PARTITION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ACTIVITY_PARTITION__OWNED_ELEMENT:
@@ -964,10 +893,8 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACTIVITY_PARTITION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1061,10 +988,8 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACTIVITY_PARTITION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1146,10 +1071,8 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACTIVITY_PARTITION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ACTIVITY_PARTITION__OWNED_ELEMENT:
@@ -1215,12 +1138,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == ActivityGroup.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == ActivityGroup.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.ACTIVITY_PARTITION__SUPER_GROUP: return UML2Package.ACTIVITY_GROUP__SUPER_GROUP;
 				case UML2Package.ACTIVITY_PARTITION__ACTIVITY_GROUP_ACTIVITY: return UML2Package.ACTIVITY_GROUP__ACTIVITY_GROUP_ACTIVITY;
 				default: return -1;
@@ -1234,12 +1154,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == ActivityGroup.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == ActivityGroup.class) {
+			switch (baseFeatureID) {
 				case UML2Package.ACTIVITY_GROUP__SUPER_GROUP: return UML2Package.ACTIVITY_PARTITION__SUPER_GROUP;
 				case UML2Package.ACTIVITY_GROUP__ACTIVITY_GROUP_ACTIVITY: return UML2Package.ACTIVITY_PARTITION__ACTIVITY_GROUP_ACTIVITY;
 				default: return -1;
@@ -1253,8 +1170,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

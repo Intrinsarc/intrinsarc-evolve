@@ -56,8 +56,7 @@ public class ExtensionPointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionPointItemProvider(AdapterFactory adapterFactory)
-	{
+	public ExtensionPointItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,10 +66,8 @@ public class ExtensionPointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addUseCasePropertyDescriptor(object);
@@ -84,8 +81,7 @@ public class ExtensionPointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUseCasePropertyDescriptor(Object object)
-	{
+	protected void addUseCasePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class ExtensionPointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ExtensionPoint"); //$NON-NLS-1$
 	}
 
@@ -118,8 +113,7 @@ public class ExtensionPointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((ExtensionPoint)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ExtensionPoint_type") : //$NON-NLS-1$
@@ -133,8 +127,7 @@ public class ExtensionPointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -146,8 +139,7 @@ public class ExtensionPointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -157,8 +149,7 @@ public class ExtensionPointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

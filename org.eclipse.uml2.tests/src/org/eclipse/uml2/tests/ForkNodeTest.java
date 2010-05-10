@@ -30,8 +30,7 @@ public class ForkNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ForkNodeTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ForkNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ForkNodeTest(String name)
-	{
+	public ForkNodeTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ForkNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ForkNode getFixture()
-	{
+	private ForkNode getFixture() {
 		return (ForkNode)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ForkNodeTest extends ControlNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createForkNode());
 	}
 
@@ -74,8 +70,7 @@ public class ForkNodeTest extends ControlNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

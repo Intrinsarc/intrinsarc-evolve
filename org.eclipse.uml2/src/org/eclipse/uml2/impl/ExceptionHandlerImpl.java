@@ -99,8 +99,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExceptionHandlerImpl()
-	{
+	protected ExceptionHandlerImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -115,8 +114,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getExceptionHandler();
 	}
 
@@ -125,8 +123,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutableNode getProtectedNode()
-	{
+	public ExecutableNode getProtectedNode() {
 		if (eContainerFeatureID != UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE) return null;
 		return (ExecutableNode)eContainer;
 	}
@@ -141,8 +138,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ExecutableNode undeleted_getProtectedNode()
-	{
+  public ExecutableNode undeleted_getProtectedNode() {
 		ExecutableNode temp = getProtectedNode();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -154,11 +150,8 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProtectedNode(ExecutableNode newProtectedNode)
-	{
-
-		if (newProtectedNode != eContainer || (eContainerFeatureID != UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE && newProtectedNode != null))
-		{
+	public void setProtectedNode(ExecutableNode newProtectedNode) {
+		if (newProtectedNode != eContainer || (eContainerFeatureID != UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE && newProtectedNode != null)) {
 			if (EcoreUtil.isAncestor(this, newProtectedNode))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -180,14 +173,11 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutableNode getHandlerBody()
-	{
-		if (handlerBody != null && handlerBody.eIsProxy())
-		{
+	public ExecutableNode getHandlerBody() {
+		if (handlerBody != null && handlerBody.eIsProxy()) {
 			ExecutableNode oldHandlerBody = handlerBody;
 			handlerBody = (ExecutableNode)eResolveProxy((InternalEObject)handlerBody);
-			if (handlerBody != oldHandlerBody)
-			{
+			if (handlerBody != oldHandlerBody) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.EXCEPTION_HANDLER__HANDLER_BODY, oldHandlerBody, handlerBody));
 			}
@@ -205,8 +195,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ExecutableNode undeleted_getHandlerBody()
-	{
+  public ExecutableNode undeleted_getHandlerBody() {
 		ExecutableNode temp = getHandlerBody();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -218,8 +207,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutableNode basicGetHandlerBody()
-	{
+	public ExecutableNode basicGetHandlerBody() {
 		return handlerBody;
 	}
 
@@ -228,9 +216,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHandlerBody(ExecutableNode newHandlerBody)
-	{
-
+	public void setHandlerBody(ExecutableNode newHandlerBody) {
 		ExecutableNode oldHandlerBody = handlerBody;
 		handlerBody = newHandlerBody;
 		if (eNotificationRequired())
@@ -244,14 +230,11 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectNode getExceptionInput()
-	{
-		if (exceptionInput != null && exceptionInput.eIsProxy())
-		{
+	public ObjectNode getExceptionInput() {
+		if (exceptionInput != null && exceptionInput.eIsProxy()) {
 			ObjectNode oldExceptionInput = exceptionInput;
 			exceptionInput = (ObjectNode)eResolveProxy((InternalEObject)exceptionInput);
-			if (exceptionInput != oldExceptionInput)
-			{
+			if (exceptionInput != oldExceptionInput) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.EXCEPTION_HANDLER__EXCEPTION_INPUT, oldExceptionInput, exceptionInput));
 			}
@@ -269,8 +252,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ObjectNode undeleted_getExceptionInput()
-	{
+  public ObjectNode undeleted_getExceptionInput() {
 		ObjectNode temp = getExceptionInput();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -282,8 +264,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectNode basicGetExceptionInput()
-	{
+	public ObjectNode basicGetExceptionInput() {
 		return exceptionInput;
 	}
 
@@ -292,9 +273,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExceptionInput(ObjectNode newExceptionInput)
-	{
-
+	public void setExceptionInput(ObjectNode newExceptionInput) {
 		ObjectNode oldExceptionInput = exceptionInput;
 		exceptionInput = newExceptionInput;
 		if (eNotificationRequired())
@@ -308,13 +287,9 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getExceptionTypes()
-	{
-		if (exceptionType == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getExceptionTypes() {
+		if (exceptionType == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		exceptionType = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.EXCEPTION_HANDLER__EXCEPTION_TYPE);
 			 		return exceptionType;
@@ -331,12 +306,8 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getExceptionTypes()
-	{
-		if (exceptionType == null)
-		{
-			
-		
+  public EList settable_getExceptionTypes() {
+		if (exceptionType == null) {
 			exceptionType = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.EXCEPTION_HANDLER__EXCEPTION_TYPE);
 		}
 		return exceptionType;
@@ -347,14 +318,11 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getExceptionTypes()
-	{
+  public java.util.ArrayList undeleted_getExceptionTypes() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (exceptionType != null)
-		{
-			for (Object object : exceptionType)
-			{
+		if (exceptionType != null) {
+			for (Object object : exceptionType) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -387,8 +355,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		ExecutableNode protectedNode = getProtectedNode();			
 		if (protectedNode != null) {
 			return protectedNode;
@@ -402,12 +369,9 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.EXCEPTION_HANDLER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE:
@@ -428,12 +392,9 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.EXCEPTION_HANDLER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.EXCEPTION_HANDLER__OWNED_COMMENT:
@@ -454,12 +415,9 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE:
 					return eContainer.eInverseRemove(this, UML2Package.EXECUTABLE_NODE__HANDLER, ExecutableNode.class, msgs);
 				default:
@@ -474,10 +432,8 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXCEPTION_HANDLER__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.EXCEPTION_HANDLER__OWNED_ELEMENT:
@@ -516,10 +472,8 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXCEPTION_HANDLER__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -567,10 +521,8 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXCEPTION_HANDLER__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -613,10 +565,8 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXCEPTION_HANDLER__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.EXCEPTION_HANDLER__OWNED_ELEMENT:

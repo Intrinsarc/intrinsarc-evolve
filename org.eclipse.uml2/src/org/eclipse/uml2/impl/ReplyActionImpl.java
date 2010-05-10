@@ -99,8 +99,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReplyActionImpl()
-	{
+	protected ReplyActionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -115,8 +114,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getReplyAction();
 	}
 
@@ -125,14 +123,11 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallTrigger getReplyToCall()
-	{
-		if (replyToCall != null && replyToCall.eIsProxy())
-		{
+	public CallTrigger getReplyToCall() {
+		if (replyToCall != null && replyToCall.eIsProxy()) {
 			CallTrigger oldReplyToCall = replyToCall;
 			replyToCall = (CallTrigger)eResolveProxy((InternalEObject)replyToCall);
-			if (replyToCall != oldReplyToCall)
-			{
+			if (replyToCall != oldReplyToCall) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.REPLY_ACTION__REPLY_TO_CALL, oldReplyToCall, replyToCall));
 			}
@@ -150,8 +145,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public CallTrigger undeleted_getReplyToCall()
-	{
+  public CallTrigger undeleted_getReplyToCall() {
 		CallTrigger temp = getReplyToCall();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -163,8 +157,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallTrigger basicGetReplyToCall()
-	{
+	public CallTrigger basicGetReplyToCall() {
 		return replyToCall;
 	}
 
@@ -173,9 +166,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplyToCall(CallTrigger newReplyToCall)
-	{
-
+	public void setReplyToCall(CallTrigger newReplyToCall) {
 		CallTrigger oldReplyToCall = replyToCall;
 		replyToCall = newReplyToCall;
 		if (eNotificationRequired())
@@ -189,13 +180,9 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getReplyValues()
-	{
-		if (replyValue == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getReplyValues() {
+		if (replyValue == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		replyValue = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.REPLY_ACTION__REPLY_VALUE);
 			 		return replyValue;
@@ -212,12 +199,8 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getReplyValues()
-	{
-		if (replyValue == null)
-		{
-			
-		
+  public EList settable_getReplyValues() {
+		if (replyValue == null) {
 			replyValue = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.REPLY_ACTION__REPLY_VALUE);
 		}
 		return replyValue;
@@ -228,14 +211,11 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getReplyValues()
-	{
+  public java.util.ArrayList undeleted_getReplyValues() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (replyValue != null)
-		{
-			for (Object object : replyValue)
-			{
+		if (replyValue != null) {
+			for (Object object : replyValue) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -268,14 +248,11 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getReturnInformation()
-	{
-		if (returnInformation != null && returnInformation.eIsProxy())
-		{
+	public InputPin getReturnInformation() {
+		if (returnInformation != null && returnInformation.eIsProxy()) {
 			InputPin oldReturnInformation = returnInformation;
 			returnInformation = (InputPin)eResolveProxy((InternalEObject)returnInformation);
-			if (returnInformation != oldReturnInformation)
-			{
+			if (returnInformation != oldReturnInformation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.REPLY_ACTION__RETURN_INFORMATION, oldReturnInformation, returnInformation));
 			}
@@ -293,8 +270,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getReturnInformation()
-	{
+  public InputPin undeleted_getReturnInformation() {
 		InputPin temp = getReturnInformation();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -306,8 +282,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin basicGetReturnInformation()
-	{
+	public InputPin basicGetReturnInformation() {
 		return returnInformation;
 	}
 
@@ -316,9 +291,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReturnInformation(InputPin newReturnInformation)
-	{
-
+	public void setReturnInformation(InputPin newReturnInformation) {
 		InputPin oldReturnInformation = returnInformation;
 		returnInformation = newReturnInformation;
 		if (eNotificationRequired())
@@ -332,12 +305,9 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.REPLY_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.REPLY_ACTION__TEMPLATE_BINDING:
@@ -380,12 +350,9 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.REPLY_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.REPLY_ACTION__OWNED_COMMENT:
@@ -432,12 +399,9 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.REPLY_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.REPLY_ACTION__IN_STRUCTURED_NODE:
@@ -454,10 +418,8 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REPLY_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.REPLY_ACTION__OWNED_ELEMENT:
@@ -549,10 +511,8 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REPLY_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -673,10 +633,8 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REPLY_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -779,10 +737,8 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REPLY_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.REPLY_ACTION__OWNED_ELEMENT:
@@ -871,8 +827,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input)
-	{
+	protected EList getInputsHelper(EList input) {
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getReplyAction_ReplyValue())) {
 			for (Iterator i = ((InternalEList) getReplyValues()).basicIterator(); i.hasNext(); ) {

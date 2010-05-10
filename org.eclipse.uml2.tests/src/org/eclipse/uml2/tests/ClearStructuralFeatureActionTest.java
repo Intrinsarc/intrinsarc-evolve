@@ -30,8 +30,7 @@ public class ClearStructuralFeatureActionTest extends StructuralFeatureActionTes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ClearStructuralFeatureActionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ClearStructuralFeatureActionTest extends StructuralFeatureActionTes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClearStructuralFeatureActionTest(String name)
-	{
+	public ClearStructuralFeatureActionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ClearStructuralFeatureActionTest extends StructuralFeatureActionTes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ClearStructuralFeatureAction getFixture()
-	{
+	private ClearStructuralFeatureAction getFixture() {
 		return (ClearStructuralFeatureAction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ClearStructuralFeatureActionTest extends StructuralFeatureActionTes
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createClearStructuralFeatureAction());
 	}
 
@@ -74,8 +70,7 @@ public class ClearStructuralFeatureActionTest extends StructuralFeatureActionTes
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

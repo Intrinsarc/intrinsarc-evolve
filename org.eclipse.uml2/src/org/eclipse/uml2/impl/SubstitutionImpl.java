@@ -85,8 +85,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SubstitutionImpl()
-	{
+	protected SubstitutionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -101,8 +100,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getSubstitution();
 	}
 
@@ -111,14 +109,11 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getContract()
-	{
-		if (contract != null && contract.eIsProxy())
-		{
+	public Classifier getContract() {
+		if (contract != null && contract.eIsProxy()) {
 			Classifier oldContract = contract;
 			contract = (Classifier)eResolveProxy((InternalEObject)contract);
-			if (contract != oldContract)
-			{
+			if (contract != oldContract) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.SUBSTITUTION__CONTRACT, oldContract, contract));
 			}
@@ -136,8 +131,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Classifier undeleted_getContract()
-	{
+  public Classifier undeleted_getContract() {
 		Classifier temp = getContract();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -149,8 +143,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier basicGetContract()
-	{
+	public Classifier basicGetContract() {
 		return contract;
 	}
 
@@ -159,9 +152,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContract(Classifier newContract)
-	{
-
+	public void setContract(Classifier newContract) {
 		if (newContract != null && !getSuppliers().contains(newContract)) {
 			getSuppliers().add(newContract);
 		}
@@ -178,8 +169,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getSubstitutingClassifier()
-	{
+	public Classifier getSubstitutingClassifier() {
 		if (eContainerFeatureID != UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER) return null;
 		return (Classifier)eContainer;
 	}
@@ -194,8 +184,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Classifier undeleted_getSubstitutingClassifier()
-	{
+  public Classifier undeleted_getSubstitutingClassifier() {
 		Classifier temp = getSubstitutingClassifier();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -207,14 +196,11 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSubstitutingClassifier(Classifier newSubstitutingClassifier)
-	{
-
+	public void setSubstitutingClassifier(Classifier newSubstitutingClassifier) {
 		if (newSubstitutingClassifier != null && !getClients().contains(newSubstitutingClassifier)) {
 			getClients().add(newSubstitutingClassifier);
 		}
-		if (newSubstitutingClassifier != eContainer || (eContainerFeatureID != UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER && newSubstitutingClassifier != null))
-		{
+		if (newSubstitutingClassifier != eContainer || (eContainerFeatureID != UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER && newSubstitutingClassifier != null)) {
 			if (EcoreUtil.isAncestor(this, newSubstitutingClassifier))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -236,13 +222,9 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSuppliers()
-	{
-		if (supplier == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSuppliers() {
+		if (supplier == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__SUPPLIER, new int[] {UML2Package.SUBSTITUTION__REALIZING_CLASSIFIER, UML2Package.SUBSTITUTION__CONTRACT});
 			 		return supplier;
@@ -259,12 +241,8 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSuppliers()
-	{
-		if (supplier == null)
-		{
-			
-		
+  public EList settable_getSuppliers() {
+		if (supplier == null) {
 			supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__SUPPLIER, new int[] {UML2Package.SUBSTITUTION__REALIZING_CLASSIFIER, UML2Package.SUBSTITUTION__CONTRACT});
 		}
 		return supplier;
@@ -275,14 +253,11 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSuppliers()
-	{
+  public java.util.ArrayList undeleted_getSuppliers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (supplier != null)
-		{
-			for (Object object : supplier)
-			{
+		if (supplier != null) {
+			for (Object object : supplier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -300,13 +275,9 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClients()
-	{
-		if (client == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getClients() {
+		if (client == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__CLIENT, new int[] {UML2Package.SUBSTITUTION__ABSTRACTION, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 			 		return client;
@@ -323,12 +294,8 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClients()
-	{
-		if (client == null)
-		{
-			
-		
+  public EList settable_getClients() {
+		if (client == null) {
 			client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__CLIENT, new int[] {UML2Package.SUBSTITUTION__ABSTRACTION, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}
 		return client;
@@ -339,14 +306,11 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClients()
-	{
+  public java.util.ArrayList undeleted_getClients() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (client != null)
-		{
-			for (Object object : client)
-			{
+		if (client != null) {
+			for (Object object : client) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -364,12 +328,9 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.SUBSTITUTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.SUBSTITUTION__TEMPLATE_BINDING:
@@ -412,12 +373,9 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.SUBSTITUTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.SUBSTITUTION__OWNED_COMMENT:
@@ -458,12 +416,9 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.SUBSTITUTION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.SUBSTITUTION__ABSTRACTION:
@@ -482,10 +437,8 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.SUBSTITUTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.SUBSTITUTION__OWNED_ELEMENT:
@@ -570,10 +523,8 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.SUBSTITUTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -681,10 +632,8 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.SUBSTITUTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -781,10 +730,8 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.SUBSTITUTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.SUBSTITUTION__OWNED_ELEMENT:
@@ -875,8 +822,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target)
-	{
+	protected EList getTargetsHelper(EList target) {
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getSubstitution_Contract())) {
 			target.add(getContract());
@@ -890,8 +836,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source)
-	{
+	protected EList getSourcesHelper(EList source) {
 		super.getSourcesHelper(source);
 		Classifier substitutingClassifier = getSubstitutingClassifier();
 		if (substitutingClassifier != null) {

@@ -40,8 +40,7 @@ public abstract class TypeTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeTest(String name)
-	{
+	public TypeTest(String name) {
 		super(name);
 	}
 
@@ -51,8 +50,7 @@ public abstract class TypeTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Type getFixture()
-	{
+	private Type getFixture() {
 		return (Type)fixture;
 	}
 
@@ -63,8 +61,7 @@ public abstract class TypeTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.Type#getPackage()
 	 * @generated
 	 */
-	public void testGetPackage()
-	{
+	public void testGetPackage() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -76,8 +73,7 @@ public abstract class TypeTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.Type#conformsTo(org.eclipse.uml2.Type)
 	 * @generated
 	 */
-	public void testConformsTo__Type()
-	{
+	public void testConformsTo__Type() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -91,8 +87,7 @@ public abstract class TypeTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace()
-	{
+	public void testGetNamespace() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

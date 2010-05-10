@@ -68,8 +68,7 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RealizationItemProvider(AdapterFactory adapterFactory)
-	{
+	public RealizationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -79,10 +78,8 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addAbstractionPropertyDescriptor(object);
@@ -97,8 +94,7 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAbstractionPropertyDescriptor(Object object)
-	{
+	protected void addAbstractionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -120,8 +116,7 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRealizingClassifierPropertyDescriptor(Object object)
-	{
+	protected void addRealizingClassifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -141,8 +136,7 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Realization"); //$NON-NLS-1$
 	}
 
@@ -152,8 +146,7 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Realization)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Realization_type") : //$NON-NLS-1$
@@ -167,8 +160,7 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -180,8 +172,7 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -191,8 +182,7 @@ public class RealizationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

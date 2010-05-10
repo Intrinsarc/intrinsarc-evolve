@@ -54,8 +54,7 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageMergeItemProvider(AdapterFactory adapterFactory)
-	{
+	public PackageMergeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addMergingPackagePropertyDescriptor(object);
@@ -83,8 +80,7 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMergingPackagePropertyDescriptor(Object object)
-	{
+	protected void addMergingPackagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,8 +102,7 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMergedPackagePropertyDescriptor(Object object)
-	{
+	protected void addMergedPackagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -127,8 +122,7 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/PackageMerge"); //$NON-NLS-1$
 	}
 
@@ -138,8 +132,7 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		PackageMerge packageMerge = (PackageMerge)object;
 		return getString("_UI_PackageMerge_type") + " " + packageMerge.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -151,8 +144,7 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -164,8 +156,7 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -175,8 +166,7 @@ public class PackageMergeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

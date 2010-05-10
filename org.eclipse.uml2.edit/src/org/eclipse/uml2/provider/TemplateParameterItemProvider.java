@@ -69,8 +69,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameterItemProvider(AdapterFactory adapterFactory)
-	{
+	public TemplateParameterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -80,10 +79,8 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSignaturePropertyDescriptor(object);
@@ -101,8 +98,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSignaturePropertyDescriptor(Object object)
-	{
+	protected void addSignaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -124,8 +120,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addParameteredElementPropertyDescriptor(Object object)
-	{
+	protected void addParameteredElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -145,8 +140,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedParameteredElementPropertyDescriptor(Object object)
-	{
+	protected void addOwnedParameteredElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -168,8 +162,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDefaultPropertyDescriptor(Object object)
-	{
+	protected void addDefaultPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -189,8 +182,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedDefaultPropertyDescriptor(Object object)
-	{
+	protected void addOwnedDefaultPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -214,10 +206,8 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getTemplateParameter_OwnedParameteredElement());
 			childrenFeatures.add(UML2Package.eINSTANCE.getTemplateParameter_OwnedDefault());
@@ -230,8 +220,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -244,8 +233,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/TemplateParameter"); //$NON-NLS-1$
 	}
 
@@ -255,8 +243,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		TemplateParameter templateParameter = (TemplateParameter)object;
 		return getString("_UI_TemplateParameter_type") + " " + templateParameter.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -268,12 +255,10 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TemplateParameter.class))
-		{
+		switch (notification.getFeatureID(TemplateParameter.class)) {
 			case UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT:
 			case UML2Package.TEMPLATE_PARAMETER__OWNED_DEFAULT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -289,8 +274,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -1680,8 +1664,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -1689,8 +1672,7 @@ public class TemplateParameterItemProvider
 			childFeature == UML2Package.eINSTANCE.getTemplateParameter_OwnedParameteredElement() ||
 			childFeature == UML2Package.eINSTANCE.getTemplateParameter_OwnedDefault();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -1704,8 +1686,7 @@ public class TemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

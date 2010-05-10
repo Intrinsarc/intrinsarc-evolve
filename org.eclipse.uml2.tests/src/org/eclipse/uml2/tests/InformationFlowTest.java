@@ -30,8 +30,7 @@ public class InformationFlowTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(InformationFlowTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class InformationFlowTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InformationFlowTest(String name)
-	{
+	public InformationFlowTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class InformationFlowTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private InformationFlow getFixture()
-	{
+	private InformationFlow getFixture() {
 		return (InformationFlow)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class InformationFlowTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createInformationFlow());
 	}
 
@@ -74,8 +70,7 @@ public class InformationFlowTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class InformationFlowTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.Relationship#getRelatedElements()
 	 * @generated
 	 */
-	public void testGetRelatedElements()
-	{
+	public void testGetRelatedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class InformationFlowTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getSources()
 	 * @generated
 	 */
-	public void testGetSources()
-	{
+	public void testGetSources() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,8 +107,7 @@ public class InformationFlowTest extends PackageableElementTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getTargets()
 	 * @generated
 	 */
-	public void testGetTargets()
-	{
+	public void testGetTargets() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

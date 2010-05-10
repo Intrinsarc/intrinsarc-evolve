@@ -69,8 +69,7 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TriggerImpl()
-	{
+	protected TriggerImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -85,8 +84,7 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getTrigger();
 	}
 
@@ -95,13 +93,9 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPorts()
-	{
-		if (port == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getPorts() {
+		if (port == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		port = new com.hopstepjump.emflist.PersistentEList(Port.class, this, UML2Package.TRIGGER__PORT);
 			 		return port;
@@ -118,12 +112,8 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPorts()
-	{
-		if (port == null)
-		{
-			
-		
+  public EList settable_getPorts() {
+		if (port == null) {
 			port = new com.hopstepjump.emflist.PersistentEList(Port.class, this, UML2Package.TRIGGER__PORT);
 		}
 		return port;
@@ -134,14 +124,11 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPorts()
-	{
+  public java.util.ArrayList undeleted_getPorts() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (port != null)
-		{
-			for (Object object : port)
-			{
+		if (port != null) {
+			for (Object object : port) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -174,12 +161,9 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.TRIGGER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.TRIGGER__TEMPLATE_BINDING:
@@ -204,12 +188,9 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.TRIGGER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.TRIGGER__OWNED_COMMENT:
@@ -238,10 +219,8 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TRIGGER__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.TRIGGER__OWNED_ELEMENT:
@@ -292,10 +271,8 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TRIGGER__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -366,10 +343,8 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TRIGGER__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -430,10 +405,8 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TRIGGER__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.TRIGGER__OWNED_ELEMENT:

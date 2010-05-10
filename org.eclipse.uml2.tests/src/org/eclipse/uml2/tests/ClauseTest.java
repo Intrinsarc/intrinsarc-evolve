@@ -30,8 +30,7 @@ public class ClauseTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ClauseTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ClauseTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClauseTest(String name)
-	{
+	public ClauseTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ClauseTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Clause getFixture()
-	{
+	private Clause getFixture() {
 		return (Clause)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ClauseTest extends ElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createClause());
 	}
 
@@ -74,8 +70,7 @@ public class ClauseTest extends ElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

@@ -81,8 +81,7 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProtocolStateMachineImpl()
-	{
+	protected ProtocolStateMachineImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -97,8 +96,7 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getProtocolStateMachine();
 	}
 
@@ -107,13 +105,9 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getConformances()
-	{
-		if (conformance == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getConformances() {
+		if (conformance == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		conformance = new com.hopstepjump.emflist.PersistentEList(ProtocolConformance.class, this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE);
 			 		return conformance;
@@ -130,12 +124,8 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getConformances()
-	{
-		if (conformance == null)
-		{
-			
-		
+  public EList settable_getConformances() {
+		if (conformance == null) {
 			conformance = new com.hopstepjump.emflist.PersistentEList(ProtocolConformance.class, this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE);
 		}
 		return conformance;
@@ -146,14 +136,11 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getConformances()
-	{
+  public java.util.ArrayList undeleted_getConformances() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (conformance != null)
-		{
-			for (Object object : conformance)
-			{
+		if (conformance != null) {
+			for (Object object : conformance) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -200,12 +187,9 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PROTOCOL_STATE_MACHINE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PROTOCOL_STATE_MACHINE__TEMPLATE_BINDING:
@@ -283,12 +267,9 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PROTOCOL_STATE_MACHINE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PROTOCOL_STATE_MACHINE__OWNED_COMMENT:
@@ -402,12 +383,9 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.PROTOCOL_STATE_MACHINE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.PROTOCOL_STATE_MACHINE__CONTEXT:
@@ -426,10 +404,8 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PROTOCOL_STATE_MACHINE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PROTOCOL_STATE_MACHINE__OWNED_ELEMENT:
@@ -616,10 +592,8 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PROTOCOL_STATE_MACHINE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -883,10 +857,8 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PROTOCOL_STATE_MACHINE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1103,10 +1075,8 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PROTOCOL_STATE_MACHINE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PROTOCOL_STATE_MACHINE__OWNED_ELEMENT:
@@ -1305,8 +1275,7 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getProtocolStateMachine_Conformance())) {
 			ownedElement.addAll(getConformances());

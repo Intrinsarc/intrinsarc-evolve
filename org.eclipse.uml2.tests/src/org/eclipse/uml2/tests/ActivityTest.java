@@ -37,8 +37,7 @@ public class ActivityTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ActivityTest.class);
 	}
 
@@ -48,8 +47,7 @@ public class ActivityTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityTest(String name)
-	{
+	public ActivityTest(String name) {
 		super(name);
 	}
 
@@ -59,8 +57,7 @@ public class ActivityTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Activity getFixture()
-	{
+	private Activity getFixture() {
 		return (Activity)fixture;
 	}
 
@@ -70,8 +67,7 @@ public class ActivityTest extends BehaviorTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createActivity());
 	}
 
@@ -81,8 +77,7 @@ public class ActivityTest extends BehaviorTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -93,8 +88,7 @@ public class ActivityTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.Activity#getGroups()
 	 * @generated
 	 */
-	public void testGetGroups()
-	{
+	public void testGetGroups() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -106,8 +100,7 @@ public class ActivityTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.Activity#getStructuredNodes()
 	 * @generated
 	 */
-	public void testGetStructuredNodes()
-	{
+	public void testGetStructuredNodes() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -121,8 +114,7 @@ public class ActivityTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

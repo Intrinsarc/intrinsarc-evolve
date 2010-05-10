@@ -28,8 +28,7 @@ public abstract class TemplateableClassifierTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableClassifierTest(String name)
-	{
+	public TemplateableClassifierTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class TemplateableClassifierTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TemplateableClassifier getFixture()
-	{
+	private TemplateableClassifier getFixture() {
 		return (TemplateableClassifier)fixture;
 	}
 

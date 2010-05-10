@@ -59,8 +59,7 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JoinNodeItemProvider(AdapterFactory adapterFactory)
-	{
+	public JoinNodeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -70,10 +69,8 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIsCombineDuplicatePropertyDescriptor(object);
@@ -88,8 +85,7 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsCombineDuplicatePropertyDescriptor(Object object)
-	{
+	protected void addIsCombineDuplicatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -109,8 +105,7 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addJoinSpecPropertyDescriptor(Object object)
-	{
+	protected void addJoinSpecPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -134,10 +129,8 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getJoinNode_JoinSpec());
 		}
@@ -150,8 +143,7 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/JoinNode"); //$NON-NLS-1$
 	}
 
@@ -161,8 +153,7 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((JoinNode)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_JoinNode_type") : //$NON-NLS-1$
@@ -176,12 +167,10 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(JoinNode.class))
-		{
+		switch (notification.getFeatureID(JoinNode.class)) {
 			case UML2Package.JOIN_NODE__IS_COMBINE_DUPLICATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -199,8 +188,7 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -350,8 +338,7 @@ public class JoinNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

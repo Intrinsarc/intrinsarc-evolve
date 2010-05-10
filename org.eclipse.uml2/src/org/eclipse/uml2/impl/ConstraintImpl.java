@@ -92,8 +92,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConstraintImpl()
-	{
+	protected ConstraintImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -108,8 +107,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getConstraint();
 	}
 
@@ -118,8 +116,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace getContext()
-	{
+	public Namespace getContext() {
 		Namespace context = basicGetContext();
 		return context == null ? null : (Namespace)eResolveProxy((InternalEObject)context);
 	}
@@ -130,8 +127,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getConstraint_Specification())) {
 			ownedElement.add(getSpecification());
@@ -145,8 +141,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetContext()
-	{
+	public Namespace basicGetContext() {
 		Namespace namespace = getNamespace();			
 		if (namespace != null) {
 			return namespace;
@@ -159,8 +154,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace getNamespace()
-	{
+	public Namespace getNamespace() {
 		if (eContainerFeatureID != UML2Package.CONSTRAINT__NAMESPACE) return null;
 		return (Namespace)eContainer;
 	}
@@ -175,8 +169,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Namespace undeleted_getNamespace()
-	{
+  public Namespace undeleted_getNamespace() {
 		Namespace temp = getNamespace();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -188,11 +181,8 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNamespace(Namespace newNamespace)
-	{
-
-		if (newNamespace != eContainer || (eContainerFeatureID != UML2Package.CONSTRAINT__NAMESPACE && newNamespace != null))
-		{
+	public void setNamespace(Namespace newNamespace) {
+		if (newNamespace != eContainer || (eContainerFeatureID != UML2Package.CONSTRAINT__NAMESPACE && newNamespace != null)) {
 			if (EcoreUtil.isAncestor(this, newNamespace))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -214,8 +204,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getSpecification()
-	{
+	public ValueSpecification getSpecification() {
 		return specification;
 	}
 
@@ -229,8 +218,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getSpecification()
-	{
+  public ValueSpecification undeleted_getSpecification() {
 		ValueSpecification temp = getSpecification();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -242,13 +230,10 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecification(ValueSpecification newSpecification, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetSpecification(ValueSpecification newSpecification, NotificationChain msgs) {
 		ValueSpecification oldSpecification = specification;
 		specification = newSpecification;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.CONSTRAINT__SPECIFICATION, oldSpecification, newSpecification);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -261,11 +246,8 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecification(ValueSpecification newSpecification)
-	{
-
-		if (newSpecification != specification)
-		{
+	public void setSpecification(ValueSpecification newSpecification) {
+		if (newSpecification != specification) {
 			NotificationChain msgs = null;
 			if (specification != null)
 				msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.CONSTRAINT__SPECIFICATION, null, msgs);
@@ -299,13 +281,9 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getConstrainedElements()
-	{
-		if (constrainedElement == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getConstrainedElements() {
+		if (constrainedElement == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		constrainedElement = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.CONSTRAINT__CONSTRAINED_ELEMENT);
 			 		return constrainedElement;
@@ -322,12 +300,8 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getConstrainedElements()
-	{
-		if (constrainedElement == null)
-		{
-			
-		
+  public EList settable_getConstrainedElements() {
+		if (constrainedElement == null) {
 			constrainedElement = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.CONSTRAINT__CONSTRAINED_ELEMENT);
 		}
 		return constrainedElement;
@@ -338,14 +312,11 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getConstrainedElements()
-	{
+  public java.util.ArrayList undeleted_getConstrainedElements() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (constrainedElement != null)
-		{
-			for (Object object : constrainedElement)
-			{
+		if (constrainedElement != null) {
+			for (Object object : constrainedElement) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -363,8 +334,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNotApplyToSelf(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateNotApplyToSelf(DiagnosticChain diagnostics, Map context) {
 		return ConstraintOperations.validateNotApplyToSelf(this, diagnostics, context);
 	}
 
@@ -373,12 +343,9 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CONSTRAINT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CONSTRAINT__TEMPLATE_BINDING:
@@ -415,12 +382,9 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CONSTRAINT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CONSTRAINT__OWNED_COMMENT:
@@ -457,12 +421,9 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.CONSTRAINT__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.CONSTRAINT__NAMESPACE:
@@ -479,10 +440,8 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CONSTRAINT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CONSTRAINT__OWNED_ELEMENT:
@@ -547,10 +506,8 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CONSTRAINT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -636,10 +593,8 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CONSTRAINT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -715,10 +670,8 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CONSTRAINT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CONSTRAINT__OWNED_ELEMENT:

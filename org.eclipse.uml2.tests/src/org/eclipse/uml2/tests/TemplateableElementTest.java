@@ -34,8 +34,7 @@ public abstract class TemplateableElementTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElementTest(String name)
-	{
+	public TemplateableElementTest(String name) {
 		super(name);
 	}
 
@@ -45,8 +44,7 @@ public abstract class TemplateableElementTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TemplateableElement getFixture()
-	{
+	private TemplateableElement getFixture() {
 		return (TemplateableElement)fixture;
 	}
 
@@ -57,8 +55,7 @@ public abstract class TemplateableElementTest extends ElementTest {
 	 * @see org.eclipse.uml2.TemplateableElement#parameterableElements()
 	 * @generated
 	 */
-	public void testParameterableElements()
-	{
+	public void testParameterableElements() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -72,8 +69,7 @@ public abstract class TemplateableElementTest extends ElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

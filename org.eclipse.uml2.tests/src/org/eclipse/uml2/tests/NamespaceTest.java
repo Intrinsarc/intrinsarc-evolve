@@ -46,8 +46,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamespaceTest(String name)
-	{
+	public NamespaceTest(String name) {
 		super(name);
 	}
 
@@ -57,8 +56,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Namespace getFixture()
-	{
+	private Namespace getFixture() {
 		return (Namespace)fixture;
 	}
 
@@ -69,8 +67,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#getImportedMembers()
 	 * @generated
 	 */
-	public void testGetImportedMembers()
-	{
+	public void testGetImportedMembers() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -82,8 +79,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#validateMembersAreDistinguishable(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateMembersAreDistinguishable__DiagnosticChain_Map()
-	{
+	public void testValidateMembersAreDistinguishable__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -95,8 +91,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#getNamesOfMember(org.eclipse.uml2.NamedElement)
 	 * @generated
 	 */
-	public void testGetNamesOfMember__NamedElement()
-	{
+	public void testGetNamesOfMember__NamedElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -108,8 +103,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#membersAreDistinguishable()
 	 * @generated
 	 */
-	public void testMembersAreDistinguishable()
-	{
+	public void testMembersAreDistinguishable() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -121,8 +115,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#validateImportedMemberDerived(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateImportedMemberDerived__DiagnosticChain_Map()
-	{
+	public void testValidateImportedMemberDerived__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -134,8 +127,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#importedMember()
 	 * @generated
 	 */
-	public void testImportedMember()
-	{
+	public void testImportedMember() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -147,8 +139,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#importMembers(java.util.Set)
 	 * @generated
 	 */
-	public void testImportMembers__Set()
-	{
+	public void testImportMembers__Set() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -160,8 +151,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#excludeCollisions(java.util.Set)
 	 * @generated
 	 */
-	public void testExcludeCollisions__Set()
-	{
+	public void testExcludeCollisions__Set() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -175,8 +165,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#getMembers()
 	 * @generated
 	 */
-	public void testGetMembers()
-	{
+	public void testGetMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -188,8 +177,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -201,8 +189,7 @@ public abstract class NamespaceTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

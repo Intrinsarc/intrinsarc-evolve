@@ -169,8 +169,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CommentImpl()
-	{
+	protected CommentImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -185,8 +184,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getComment();
 	}
 
@@ -195,8 +193,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBody()
-	{
+	public String getBody() {
 		return body;
 	}
 
@@ -211,9 +208,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBody(String newBody)
-	{
-
+	public void setBody(String newBody) {
 		newBody = newBody == null ? BODY_EDEFAULT : newBody;
 		String oldBody = body;
 		body = newBody;
@@ -228,13 +223,9 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getAnnotatedElements()
-	{
-		if (annotatedElement == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getAnnotatedElements() {
+		if (annotatedElement == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		annotatedElement = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.COMMENT__ANNOTATED_ELEMENT);
 			 		return annotatedElement;
@@ -251,12 +242,8 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getAnnotatedElements()
-	{
-		if (annotatedElement == null)
-		{
-			
-		
+  public EList settable_getAnnotatedElements() {
+		if (annotatedElement == null) {
 			annotatedElement = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.COMMENT__ANNOTATED_ELEMENT);
 		}
 		return annotatedElement;
@@ -267,14 +254,11 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getAnnotatedElements()
-	{
+  public java.util.ArrayList undeleted_getAnnotatedElements() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (annotatedElement != null)
-		{
-			for (Object object : annotatedElement)
-			{
+		if (annotatedElement != null) {
+			for (Object object : annotatedElement) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -292,8 +276,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringExpression getBodyExpression()
-	{
+	public StringExpression getBodyExpression() {
 		return bodyExpression;
 	}
 
@@ -307,8 +290,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StringExpression undeleted_getBodyExpression()
-	{
+  public StringExpression undeleted_getBodyExpression() {
 		StringExpression temp = getBodyExpression();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -320,13 +302,10 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBodyExpression(StringExpression newBodyExpression, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetBodyExpression(StringExpression newBodyExpression, NotificationChain msgs) {
 		StringExpression oldBodyExpression = bodyExpression;
 		bodyExpression = newBodyExpression;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.COMMENT__BODY_EXPRESSION, oldBodyExpression, newBodyExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -339,11 +318,8 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBodyExpression(StringExpression newBodyExpression)
-	{
-
-		if (newBodyExpression != bodyExpression)
-		{
+	public void setBodyExpression(StringExpression newBodyExpression) {
+		if (newBodyExpression != bodyExpression) {
 			NotificationChain msgs = null;
 			if (bodyExpression != null)
 				msgs = ((InternalEObject)bodyExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.COMMENT__BODY_EXPRESSION, null, msgs);
@@ -392,8 +368,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public byte[] getBinaryData()
-	{
+  public byte[] getBinaryData() {
 		return binaryData;
 	}
 
@@ -408,9 +383,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBinaryData(byte[] newBinaryData)
-	{
-
+  public void setBinaryData(byte[] newBinaryData) {
 		byte[] oldBinaryData = binaryData;
 		binaryData = newBinaryData;
 		if (eNotificationRequired())
@@ -424,8 +397,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getBinaryFormat()
-	{
+  public String getBinaryFormat() {
 		return binaryFormat;
 	}
 
@@ -440,9 +412,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBinaryFormat(String newBinaryFormat)
-	{
-
+  public void setBinaryFormat(String newBinaryFormat) {
 		newBinaryFormat = newBinaryFormat == null ? BINARY_FORMAT_EDEFAULT : newBinaryFormat;
 		String oldBinaryFormat = binaryFormat;
 		binaryFormat = newBinaryFormat;
@@ -457,8 +427,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public int getBinaryCount()
-	{
+  public int getBinaryCount() {
 		return binaryCount;
 	}
 
@@ -473,9 +442,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBinaryCount(int newBinaryCount)
-	{
-
+  public void setBinaryCount(int newBinaryCount) {
 		int oldBinaryCount = binaryCount;
 		binaryCount = newBinaryCount;
 		if (eNotificationRequired())
@@ -489,12 +456,9 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.COMMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.COMMENT__TEMPLATE_BINDING:
@@ -517,12 +481,9 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.COMMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.COMMENT__OWNED_COMMENT:
@@ -547,10 +508,8 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.COMMENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.COMMENT__OWNED_ELEMENT:
@@ -595,10 +554,8 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.COMMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -659,10 +616,8 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.COMMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -717,10 +672,8 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.COMMENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.COMMENT__OWNED_ELEMENT:
@@ -764,8 +717,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -787,8 +739,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getComment_BodyExpression())) {
 			ownedElement.add(getBodyExpression());

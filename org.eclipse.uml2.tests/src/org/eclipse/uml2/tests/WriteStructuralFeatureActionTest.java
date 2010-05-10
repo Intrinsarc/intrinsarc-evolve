@@ -28,8 +28,7 @@ public abstract class WriteStructuralFeatureActionTest extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WriteStructuralFeatureActionTest(String name)
-	{
+	public WriteStructuralFeatureActionTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class WriteStructuralFeatureActionTest extends StructuralFeature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private WriteStructuralFeatureAction getFixture()
-	{
+	private WriteStructuralFeatureAction getFixture() {
 		return (WriteStructuralFeatureAction)fixture;
 	}
 
@@ -53,8 +51,7 @@ public abstract class WriteStructuralFeatureActionTest extends StructuralFeature
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs()
-	{
+	public void testGetInputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

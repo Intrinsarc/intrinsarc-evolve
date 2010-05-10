@@ -60,8 +60,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadIsClassifiedObjectActionItemProvider(AdapterFactory adapterFactory)
-	{
+	public ReadIsClassifiedObjectActionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,10 +70,8 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIsDirectPropertyDescriptor(object);
@@ -91,8 +88,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsDirectPropertyDescriptor(Object object)
-	{
+	protected void addIsDirectPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -112,8 +108,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addClassifierPropertyDescriptor(Object object)
-	{
+	protected void addClassifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -133,8 +128,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResultPropertyDescriptor(Object object)
-	{
+	protected void addResultPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -156,8 +150,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addObjectPropertyDescriptor(Object object)
-	{
+	protected void addObjectPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -181,10 +174,8 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getReadIsClassifiedObjectAction_Result());
 			childrenFeatures.add(UML2Package.eINSTANCE.getReadIsClassifiedObjectAction_Object());
@@ -197,8 +188,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -211,8 +201,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ReadIsClassifiedObjectAction"); //$NON-NLS-1$
 	}
 
@@ -222,8 +211,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((ReadIsClassifiedObjectAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ReadIsClassifiedObjectAction_type") : //$NON-NLS-1$
@@ -237,12 +225,10 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReadIsClassifiedObjectAction.class))
-		{
+		switch (notification.getFeatureID(ReadIsClassifiedObjectAction.class)) {
 			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__IS_DIRECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -261,8 +247,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -302,8 +287,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -311,8 +295,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPrecondition() ||
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -326,8 +309,7 @@ public class ReadIsClassifiedObjectActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

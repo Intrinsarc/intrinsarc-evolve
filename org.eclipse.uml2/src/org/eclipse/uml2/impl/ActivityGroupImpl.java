@@ -71,8 +71,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected ActivityGroupImpl()
-	{
+  protected ActivityGroupImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -86,8 +85,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected EClass eStaticClass()
-	{
+  protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getActivityGroup();
 	}
 
@@ -95,8 +93,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ActivityGroup getSuperGroup()
-	{
+  public ActivityGroup getSuperGroup() {
 		ActivityGroup superGroup = basicGetSuperGroup();
 		return superGroup == null ? null : (ActivityGroup)eResolveProxy((InternalEObject)superGroup);
 	}
@@ -106,8 +103,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ActivityGroup basicGetSuperGroup()
-	{
+  public ActivityGroup basicGetSuperGroup() {
 		return null;
 	}
 
@@ -128,8 +124,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity undeleted_getActivityGroup_activity()
-	{
+  public Activity undeleted_getActivityGroup_activity() {
 		Activity temp = getActivityGroup_activity();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -170,8 +165,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList getSubgroups()
-	{
+  public EList getSubgroups() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			try {
@@ -195,8 +189,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+  protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		EList subgroup = getSubgroups();
 		if (!subgroup.isEmpty()) {
@@ -260,8 +253,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity getActivity()
-	{
+  public Activity getActivity() {
 		return getActivityGroup_activity();
 	}
 
@@ -269,8 +261,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setActivity(Activity newActivity)
-	{
+  public void setActivity(Activity newActivity) {
 		setActivityGroup_activity(newActivity);
 	}
 
@@ -279,8 +270,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Element basicGetOwner()
-	{
+  public Element basicGetOwner() {
 		ActivityGroup superGroup = basicGetSuperGroup();			
 		if (superGroup != null) {
 			return superGroup;
@@ -297,8 +287,7 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected EList getSubgroupsHelper(EList subgroup)
-	{
+  protected EList getSubgroupsHelper(EList subgroup) {
 		return subgroup;
 	}
 
@@ -306,12 +295,9 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ACTIVITY_GROUP__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -341,12 +327,9 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ACTIVITY_GROUP__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTIVITY_GROUP__OWNED_COMMENT:
@@ -376,12 +359,9 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+  public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.ACTIVITY_GROUP__ACTIVITY_GROUP_ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__GROUP, Activity.class, msgs);
 				default:
@@ -395,10 +375,8 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+  public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACTIVITY_GROUP__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ACTIVITY_GROUP__OWNED_ELEMENT:
@@ -431,10 +409,8 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+  public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACTIVITY_GROUP__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -471,10 +447,8 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+  public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACTIVITY_GROUP__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -507,10 +481,8 @@ public abstract class ActivityGroupImpl extends ElementImpl implements ActivityG
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+  public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ACTIVITY_GROUP__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ACTIVITY_GROUP__OWNED_ELEMENT:

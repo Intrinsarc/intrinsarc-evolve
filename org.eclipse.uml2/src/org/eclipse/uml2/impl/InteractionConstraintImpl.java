@@ -86,8 +86,7 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InteractionConstraintImpl()
-	{
+	protected InteractionConstraintImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -102,8 +101,7 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getInteractionConstraint();
 	}
 
@@ -112,8 +110,7 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getMinint()
-	{
+	public ValueSpecification getMinint() {
 		return minint;
 	}
 
@@ -127,8 +124,7 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getMinint()
-	{
+  public ValueSpecification undeleted_getMinint() {
 		ValueSpecification temp = getMinint();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -140,13 +136,10 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMinint(ValueSpecification newMinint, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetMinint(ValueSpecification newMinint, NotificationChain msgs) {
 		ValueSpecification oldMinint = minint;
 		minint = newMinint;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.INTERACTION_CONSTRAINT__MININT, oldMinint, newMinint);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -159,11 +152,8 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinint(ValueSpecification newMinint)
-	{
-
-		if (newMinint != minint)
-		{
+	public void setMinint(ValueSpecification newMinint) {
+		if (newMinint != minint) {
 			NotificationChain msgs = null;
 			if (minint != null)
 				msgs = ((InternalEObject)minint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.INTERACTION_CONSTRAINT__MININT, null, msgs);
@@ -197,8 +187,7 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getMaxint()
-	{
+	public ValueSpecification getMaxint() {
 		return maxint;
 	}
 
@@ -212,8 +201,7 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getMaxint()
-	{
+  public ValueSpecification undeleted_getMaxint() {
 		ValueSpecification temp = getMaxint();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -225,13 +213,10 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMaxint(ValueSpecification newMaxint, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetMaxint(ValueSpecification newMaxint, NotificationChain msgs) {
 		ValueSpecification oldMaxint = maxint;
 		maxint = newMaxint;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.INTERACTION_CONSTRAINT__MAXINT, oldMaxint, newMaxint);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -244,11 +229,8 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMaxint(ValueSpecification newMaxint)
-	{
-
-		if (newMaxint != maxint)
-		{
+	public void setMaxint(ValueSpecification newMaxint) {
+		if (newMaxint != maxint) {
 			NotificationChain msgs = null;
 			if (maxint != null)
 				msgs = ((InternalEObject)maxint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.INTERACTION_CONSTRAINT__MAXINT, null, msgs);
@@ -282,12 +264,9 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INTERACTION_CONSTRAINT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INTERACTION_CONSTRAINT__TEMPLATE_BINDING:
@@ -324,12 +303,9 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INTERACTION_CONSTRAINT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INTERACTION_CONSTRAINT__OWNED_COMMENT:
@@ -370,12 +346,9 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.INTERACTION_CONSTRAINT__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.INTERACTION_CONSTRAINT__NAMESPACE:
@@ -392,10 +365,8 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION_CONSTRAINT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INTERACTION_CONSTRAINT__OWNED_ELEMENT:
@@ -464,10 +435,8 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION_CONSTRAINT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -559,10 +528,8 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION_CONSTRAINT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -644,10 +611,8 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION_CONSTRAINT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INTERACTION_CONSTRAINT__OWNED_ELEMENT:
@@ -724,8 +689,7 @@ public class InteractionConstraintImpl extends ConstraintImpl implements Interac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getInteractionConstraint_Minint())) {
 			ownedElement.add(getMinint());

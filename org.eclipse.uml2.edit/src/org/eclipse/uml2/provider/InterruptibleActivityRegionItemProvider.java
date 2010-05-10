@@ -54,8 +54,7 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterruptibleActivityRegionItemProvider(AdapterFactory adapterFactory)
-	{
+	public InterruptibleActivityRegionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addInterruptingEdgePropertyDescriptor(object);
@@ -83,8 +80,7 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInterruptingEdgePropertyDescriptor(Object object)
-	{
+	protected void addInterruptingEdgePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -104,8 +100,7 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainedNodePropertyDescriptor(Object object)
-	{
+	protected void addContainedNodePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -125,8 +120,7 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/InterruptibleActivityRegion"); //$NON-NLS-1$
 	}
 
@@ -136,8 +130,7 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		InterruptibleActivityRegion interruptibleActivityRegion = (InterruptibleActivityRegion)object;
 		return getString("_UI_InterruptibleActivityRegion_type") + " " + interruptibleActivityRegion.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -149,8 +142,7 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -162,8 +154,7 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -173,8 +164,7 @@ public class InterruptibleActivityRegionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

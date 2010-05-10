@@ -122,8 +122,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReadIsClassifiedObjectActionImpl()
-	{
+	protected ReadIsClassifiedObjectActionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -138,8 +137,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getReadIsClassifiedObjectAction();
 	}
 
@@ -148,8 +146,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDirect()
-	{
+	public boolean isDirect() {
 		return (eFlags & IS_DIRECT_EFLAG) != 0;
 	}
 
@@ -164,9 +161,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsDirect(boolean newIsDirect)
-	{
-
+	public void setIsDirect(boolean newIsDirect) {
 		boolean oldIsDirect = (eFlags & IS_DIRECT_EFLAG) != 0;
 		if (newIsDirect) eFlags |= IS_DIRECT_EFLAG; else eFlags &= ~IS_DIRECT_EFLAG;
 		if (eNotificationRequired())
@@ -180,14 +175,11 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getClassifier()
-	{
-		if (classifier != null && classifier.eIsProxy())
-		{
+	public Classifier getClassifier() {
+		if (classifier != null && classifier.eIsProxy()) {
 			Classifier oldClassifier = classifier;
 			classifier = (Classifier)eResolveProxy((InternalEObject)classifier);
-			if (classifier != oldClassifier)
-			{
+			if (classifier != oldClassifier) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__CLASSIFIER, oldClassifier, classifier));
 			}
@@ -205,8 +197,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Classifier undeleted_getClassifier()
-	{
+  public Classifier undeleted_getClassifier() {
 		Classifier temp = getClassifier();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -218,8 +209,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier basicGetClassifier()
-	{
+	public Classifier basicGetClassifier() {
 		return classifier;
 	}
 
@@ -228,9 +218,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClassifier(Classifier newClassifier)
-	{
-
+	public void setClassifier(Classifier newClassifier) {
 		Classifier oldClassifier = classifier;
 		classifier = newClassifier;
 		if (eNotificationRequired())
@@ -244,8 +232,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OutputPin getResult()
-	{
+	public OutputPin getResult() {
 		return result;
 	}
 
@@ -259,8 +246,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OutputPin undeleted_getResult()
-	{
+  public OutputPin undeleted_getResult() {
 		OutputPin temp = getResult();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -272,13 +258,10 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResult(OutputPin newResult, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetResult(OutputPin newResult, NotificationChain msgs) {
 		OutputPin oldResult = result;
 		result = newResult;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__RESULT, oldResult, newResult);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -291,11 +274,8 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResult(OutputPin newResult)
-	{
-
-		if (newResult != result)
-		{
+	public void setResult(OutputPin newResult) {
+		if (newResult != result) {
 			NotificationChain msgs = null;
 			if (result != null)
 				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__RESULT, null, msgs);
@@ -344,8 +324,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getObject()
-	{
+	public InputPin getObject() {
 		return object;
 	}
 
@@ -359,8 +338,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getObject()
-	{
+  public InputPin undeleted_getObject() {
 		InputPin temp = getObject();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -372,13 +350,10 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetObject(InputPin newObject, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetObject(InputPin newObject, NotificationChain msgs) {
 		InputPin oldObject = object;
 		object = newObject;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__OBJECT, oldObject, newObject);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -391,11 +366,8 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setObject(InputPin newObject)
-	{
-
-		if (newObject != object)
-		{
+	public void setObject(InputPin newObject) {
+		if (newObject != object) {
 			NotificationChain msgs = null;
 			if (object != null)
 				msgs = ((InternalEObject)object).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__OBJECT, null, msgs);
@@ -443,12 +415,9 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__TEMPLATE_BINDING:
@@ -491,12 +460,9 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__OWNED_COMMENT:
@@ -547,12 +513,9 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__IN_STRUCTURED_NODE:
@@ -569,10 +532,8 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__OWNED_ELEMENT:
@@ -665,10 +626,8 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -791,10 +750,8 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -900,10 +857,8 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION__OWNED_ELEMENT:
@@ -993,8 +948,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1010,8 +964,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOutputsHelper(EList output)
-	{
+	protected EList getOutputsHelper(EList output) {
 		super.getOutputsHelper(output);
 		if (eIsSet(UML2Package.eINSTANCE.getReadIsClassifiedObjectAction_Result())) {
 			output.add(getResult());
@@ -1025,8 +978,7 @@ public class ReadIsClassifiedObjectActionImpl extends ActionImpl implements Read
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input)
-	{
+	protected EList getInputsHelper(EList input) {
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getReadIsClassifiedObjectAction_Object())) {
 			input.add(getObject());

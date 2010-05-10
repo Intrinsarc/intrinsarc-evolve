@@ -45,8 +45,7 @@ public class RegionTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(RegionTest.class);
 	}
 
@@ -56,8 +55,7 @@ public class RegionTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RegionTest(String name)
-	{
+	public RegionTest(String name) {
 		super(name);
 	}
 
@@ -67,8 +65,7 @@ public class RegionTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Region getFixture()
-	{
+	private Region getFixture() {
 		return (Region)fixture;
 	}
 
@@ -78,8 +75,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createRegion());
 	}
 
@@ -89,8 +85,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -101,8 +96,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Region#getRedefinitionContexts()
 	 * @generated
 	 */
-	public void testGetRedefinitionContexts()
-	{
+	public void testGetRedefinitionContexts() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,8 +108,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#validateRedefinitionContextValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateRedefinitionContextValid__DiagnosticChain_Map()
-	{
+	public void testValidateRedefinitionContextValid__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -127,8 +120,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#validateRedefinitionConsistent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateRedefinitionConsistent__DiagnosticChain_Map()
-	{
+	public void testValidateRedefinitionConsistent__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -140,8 +132,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#isConsistentWith(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsConsistentWith__RedefinableElement()
-	{
+	public void testIsConsistentWith__RedefinableElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -153,8 +144,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#isRedefinitionContextValid(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsRedefinitionContextValid__RedefinableElement()
-	{
+	public void testIsRedefinitionContextValid__RedefinableElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -168,8 +158,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -181,8 +170,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace()
-	{
+	public void testGetNamespace() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -194,8 +182,7 @@ public class RegionTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements()
-	{
+	public void testGetRedefinedElements() {
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

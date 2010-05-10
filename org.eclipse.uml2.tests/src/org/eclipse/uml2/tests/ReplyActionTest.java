@@ -30,8 +30,7 @@ public class ReplyActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ReplyActionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ReplyActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplyActionTest(String name)
-	{
+	public ReplyActionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ReplyActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ReplyAction getFixture()
-	{
+	private ReplyAction getFixture() {
 		return (ReplyAction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ReplyActionTest extends ActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createReplyAction());
 	}
 
@@ -74,8 +70,7 @@ public class ReplyActionTest extends ActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class ReplyActionTest extends ActionTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs()
-	{
+	public void testGetInputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

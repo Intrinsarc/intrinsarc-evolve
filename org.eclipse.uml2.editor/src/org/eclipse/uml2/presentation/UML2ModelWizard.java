@@ -170,8 +170,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection)
-	{
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(UML2EditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
@@ -184,19 +183,14 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection getInitialObjectNamesGen()
-	{
-		if (initialObjectNames == null)
-		{
+	protected Collection getInitialObjectNamesGen() {
+		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList();
-			for (Iterator classifiers = umL2Package.getEClassifiers().iterator(); classifiers.hasNext(); )
-			{
+			for (Iterator classifiers = umL2Package.getEClassifiers().iterator(); classifiers.hasNext(); ) {
 				EClassifier eClassifier = (EClassifier)classifiers.next();
-				if (eClassifier instanceof EClass)
-				{
+				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
-					if (!eClass.isAbstract())
-					{
+					if (!eClass.isAbstract()) {
 						initialObjectNames.add(eClass.getName());
 					}
 				}
@@ -221,8 +215,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EObject createInitialModel()
-	{
+	protected EObject createInitialModel() {
 		EClass eClass = (EClass)umL2Package.getEClassifier(initialObjectCreationPage.getInitialObjectName());
 		EObject rootObject = umL2Factory.create(eClass);
 		return rootObject;
@@ -234,10 +227,8 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean performFinish()
-	{
-		try
-		{
+	public boolean performFinish() {
+		try {
 			// Remember the file.
 			//
 			final IFile modelFile = getModelFile();
@@ -245,12 +236,9 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 			// Do the work within an operation.
 			//
 			WorkspaceModifyOperation operation =
-				new WorkspaceModifyOperation()
-				{
-					protected void execute(IProgressMonitor progressMonitor)
-					{
-						try
-						{
+				new WorkspaceModifyOperation() {
+					protected void execute(IProgressMonitor progressMonitor) {
+						try {
 							// Create a resource set
 							//
 							ResourceSet resourceSet = new ResourceSetImpl();
@@ -266,8 +254,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 							// Add the initial model object to the contents.
 							//
 							EObject rootObject = createInitialModel();
-							if (rootObject != null)
-							{
+							if (rootObject != null) {
 								resource.getContents().add(rootObject);
 							}
 
@@ -277,12 +264,10 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
 							resource.save(options);
 						}
-						catch (Exception exception)
-						{
+						catch (Exception exception) {
 							UML2EditorPlugin.INSTANCE.log(exception);
 						}
-						finally
-						{
+						finally {
 							progressMonitor.done();
 						}
 					}
@@ -295,14 +280,11 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
 			IWorkbenchPage page = workbenchWindow.getActivePage();
 			final IWorkbenchPart activePart = page.getActivePart();
-			if (activePart instanceof ISetSelectionTarget)
-			{
+			if (activePart instanceof ISetSelectionTarget) {
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
-					(new Runnable()
-					 {
-						 public void run()
-						 {
+					(new Runnable() {
+						 public void run() {
 							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
 						 }
 					 });
@@ -310,22 +292,19 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 
 			// Open an editor on the new file.
 			//
-			try
-			{
+			try {
 				page.openEditor
 					(new FileEditorInput(modelFile),
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
 			}
-			catch (PartInitException exception)
-			{
+			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), UML2EditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage()); //$NON-NLS-1$
 				return false;
 			}
 
 			return true;
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			UML2EditorPlugin.INSTANCE.log(exception);
 			return false;
 		}
@@ -344,8 +323,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public UML2ModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection)
-		{
+		public UML2ModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -355,26 +333,21 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected boolean validatePage()
-		{
-			if (super.validatePage())
-			{
+		protected boolean validatePage() {
+			if (super.validatePage()) {
 				// Make sure the file ends in ".uml2".
 				//
 				String requiredExt = UML2EditorPlugin.INSTANCE.getString("_UI_UML2EditorFilenameExtension"); //$NON-NLS-1$
 				String enteredExt = new Path(getFileName()).getFileExtension();
-				if (enteredExt == null || !enteredExt.equals(requiredExt))
-				{
+				if (enteredExt == null || !enteredExt.equals(requiredExt)) {
 					setErrorMessage(UML2EditorPlugin.INSTANCE.getString("_WARN_FilenameExtension", new Object [] { requiredExt })); //$NON-NLS-1$
 					return false;
 				}
-				else
-				{
+				else {
 					return true;
 				}
 			}
-			else
-			{
+			else {
 				return false;
 			}
 		}
@@ -384,8 +357,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public IFile getModelFile()
-		{
+		public IFile getModelFile() {
 			return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
 		}
 	}
@@ -424,8 +396,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public UML2ModelWizardInitialObjectCreationPage(String pageId)
-		{
+		public UML2ModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -434,8 +405,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public void createControl(Composite parent)
-		{
+		public void createControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE);
 			{
 				GridLayout layout = new GridLayout();
@@ -467,13 +437,11 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 				initialObjectField.setLayoutData(data);
 			}
 
-			for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); )
-			{
+			for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); ) {
 				initialObjectField.add(getLabel((String)i.next()));
 			}
 
-			if (initialObjectField.getItemCount() == 1)
-			{
+			if (initialObjectField.getItemCount() == 1) {
 				initialObjectField.select(0);
 			}
 			initialObjectField.addModifyListener(validator);
@@ -494,8 +462,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 				encodingField.setLayoutData(data);
 			}
 
-			for (Iterator i = getEncodings().iterator(); i.hasNext(); )
-			{
+			for (Iterator i = getEncodings().iterator(); i.hasNext(); ) {
 				encodingField.add((String)i.next());
 			}
 
@@ -512,10 +479,8 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected ModifyListener validator =
-			new ModifyListener()
-			{
-				public void modifyText(ModifyEvent e)
-				{
+			new ModifyListener() {
+				public void modifyText(ModifyEvent e) {
 					setPageComplete(validatePage());
 				}
 			};
@@ -525,8 +490,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected boolean validatePage()
-		{
+		protected boolean validatePage() {
 			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
 		}
 
@@ -535,18 +499,14 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public void setVisible(boolean visible)
-		{
+		public void setVisible(boolean visible) {
 			super.setVisible(visible);
-			if (visible)
-			{
-				if (initialObjectField.getItemCount() == 1)
-				{
+			if (visible) {
+				if (initialObjectField.getItemCount() == 1) {
 					initialObjectField.clearSelection();
 					encodingField.setFocus();
 				}
-				else
-				{
+				else {
 					encodingField.clearSelection();
 					initialObjectField.setFocus();
 				}
@@ -558,15 +518,12 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public String getInitialObjectName()
-		{
+		public String getInitialObjectName() {
 			String label = initialObjectField.getText();
 
-			for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); )
-			{
+			for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); ) {
 				String name = (String)i.next();
-				if (getLabel(name).equals(label))
-				{
+				if (getLabel(name).equals(label)) {
 					return name;
 				}
 			}
@@ -578,8 +535,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public String getEncoding()
-		{
+		public String getEncoding() {
 			return encodingField.getText();
 		}
 
@@ -589,14 +545,11 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected String getLabel(String typeName)
-		{
-			try
-			{
+		protected String getLabel(String typeName) {
+			try {
 				return UML2EditPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$
 			}
-			catch(MissingResourceException mre)
-			{
+			catch(MissingResourceException mre) {
 				UML2EditorPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
@@ -607,10 +560,8 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected Collection getEncodings()
-		{
-			if (encodings == null)
-			{
+		protected Collection getEncodings() {
+			if (encodings == null) {
 				encodings = new ArrayList();
 				for (StringTokenizer stringTokenizer = new StringTokenizer(UML2EditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) //$NON-NLS-1$
 				{
@@ -627,8 +578,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void addPages()
-	{
+	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
 		newFileCreationPage = new UML2ModelWizardNewFileCreationPage("Whatever", selection); //$NON-NLS-1$
@@ -639,25 +589,21 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
 		//
-		if (selection != null && !selection.isEmpty())
-		{
+		if (selection != null && !selection.isEmpty()) {
 			// Get the resource...
 			//
 			Object selectedElement = selection.iterator().next();
-			if (selectedElement instanceof IResource)
-			{
+			if (selectedElement instanceof IResource) {
 				// Get the resource parent, if its a file.
 				//
 				IResource selectedResource = (IResource)selectedElement;
-				if (selectedResource.getType() == IResource.FILE)
-				{
+				if (selectedResource.getType() == IResource.FILE) {
 					selectedResource = selectedResource.getParent();
 				}
 
 				// This gives us a directory...
 				//
-				if (selectedResource instanceof IFolder || selectedResource instanceof IProject)
-				{
+				if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
 					// Set this for the container.
 					//
 					newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
@@ -667,8 +613,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 					String defaultModelBaseFilename = UML2EditorPlugin.INSTANCE.getString("_UI_UML2EditorFilenameDefaultBase"); //$NON-NLS-1$
 					String defaultModelFilenameExtension = UML2EditorPlugin.INSTANCE.getString("_UI_UML2EditorFilenameExtension"); //$NON-NLS-1$
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension; //$NON-NLS-1$
-					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i)
-					{
+					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension; //$NON-NLS-1$
 					}
 					newFileCreationPage.setFileName(modelFilename);
@@ -687,8 +632,7 @@ public class UML2ModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IFile getModelFile()
-	{
+	public IFile getModelFile() {
 		return newFileCreationPage.getModelFile();
 	}
 

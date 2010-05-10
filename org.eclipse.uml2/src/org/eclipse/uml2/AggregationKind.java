@@ -122,8 +122,7 @@ public final class AggregationKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final AggregationKind[] VALUES_ARRAY =
-		new AggregationKind[]
-		{
+		new AggregationKind[] {
 			NONE_LITERAL,
 			SHARED_LITERAL,
 			COMPOSITE_LITERAL,
@@ -143,13 +142,10 @@ public final class AggregationKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AggregationKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static AggregationKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AggregationKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -162,10 +158,8 @@ public final class AggregationKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AggregationKind get(int value)
-	{
-		switch (value)
-		{
+	public static AggregationKind get(int value) {
+		switch (value) {
 			case NONE: return NONE_LITERAL;
 			case SHARED: return SHARED_LITERAL;
 			case COMPOSITE: return COMPOSITE_LITERAL;
@@ -179,8 +173,7 @@ public final class AggregationKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AggregationKind(int value, String name)
-	{
+	private AggregationKind(int value, String name) {
 		super(value, name);
 	}
 

@@ -57,8 +57,7 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierTemplateParameterItemProvider(AdapterFactory adapterFactory)
-	{
+	public ClassifierTemplateParameterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addAllowSubstitutablePropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAllowSubstitutablePropertyDescriptor(Object object)
-	{
+	protected void addAllowSubstitutablePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,8 +102,7 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ClassifierTemplateParameter"); //$NON-NLS-1$
 	}
 
@@ -117,8 +112,7 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		ClassifierTemplateParameter classifierTemplateParameter = (ClassifierTemplateParameter)object;
 		return getString("_UI_ClassifierTemplateParameter_type") + " " + classifierTemplateParameter.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -130,12 +124,10 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ClassifierTemplateParameter.class))
-		{
+		switch (notification.getFeatureID(ClassifierTemplateParameter.class)) {
 			case UML2Package.CLASSIFIER_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -150,8 +142,7 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -161,8 +152,7 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -170,8 +160,7 @@ public class ClassifierTemplateParameterItemProvider
 			childFeature == UML2Package.eINSTANCE.getTemplateParameter_OwnedParameteredElement() ||
 			childFeature == UML2Package.eINSTANCE.getTemplateParameter_OwnedDefault();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -185,8 +174,7 @@ public class ClassifierTemplateParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

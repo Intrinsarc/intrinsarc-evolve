@@ -147,8 +147,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DependencyImpl()
-	{
+	protected DependencyImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -163,8 +162,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getDependency();
 	}
 
@@ -173,8 +171,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRelatedElements()
-	{
+	public EList getRelatedElements() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList relatedElement = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getRelationship_RelatedElement());
@@ -208,8 +205,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSources()
-	{
+	public EList getSources() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList source = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Source());
@@ -246,8 +242,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTargets()
-	{
+	public EList getTargets() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList target = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Target());
@@ -267,13 +262,9 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClients()
-	{
-		if (client == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getClients() {
+		if (client == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.DEPENDENCY__CLIENT, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 			 		return client;
@@ -290,12 +281,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClients()
-	{
-		if (client == null)
-		{
-			
-		
+  public EList settable_getClients() {
+		if (client == null) {
 			client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.DEPENDENCY__CLIENT, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}
 		return client;
@@ -306,14 +293,11 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClients()
-	{
+  public java.util.ArrayList undeleted_getClients() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (client != null)
-		{
-			for (Object object : client)
-			{
+		if (client != null) {
+			for (Object object : client) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -346,13 +330,9 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSuppliers()
-	{
-		if (supplier == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSuppliers() {
+		if (supplier == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.DEPENDENCY__SUPPLIER);
 			 		return supplier;
@@ -369,12 +349,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSuppliers()
-	{
-		if (supplier == null)
-		{
-			
-		
+  public EList settable_getSuppliers() {
+		if (supplier == null) {
 			supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.DEPENDENCY__SUPPLIER);
 		}
 		return supplier;
@@ -385,14 +361,11 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSuppliers()
-	{
+  public java.util.ArrayList undeleted_getSuppliers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (supplier != null)
-		{
-			for (Object object : supplier)
-			{
+		if (supplier != null) {
+			for (Object object : supplier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -447,8 +420,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement undeleted_getDependencyTarget()
-	{
+	public NamedElement undeleted_getDependencyTarget() {
 		NamedElement temp = getDependencyTarget();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -491,8 +463,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isResemblance()
-	{
+	public boolean isResemblance() {
 		return (eFlags & RESEMBLANCE_EFLAG) != 0;
 	}
 
@@ -507,9 +478,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResemblance(boolean newResemblance)
-	{
-
+	public void setResemblance(boolean newResemblance) {
 		boolean oldResemblance = (eFlags & RESEMBLANCE_EFLAG) != 0;
 		if (newResemblance) eFlags |= RESEMBLANCE_EFLAG; else eFlags &= ~RESEMBLANCE_EFLAG;
 		if (eNotificationRequired())
@@ -523,8 +492,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReplacement()
-	{
+	public boolean isReplacement() {
 		return (eFlags & REPLACEMENT_EFLAG) != 0;
 	}
 
@@ -539,9 +507,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplacement(boolean newReplacement)
-	{
-
+	public void setReplacement(boolean newReplacement) {
 		boolean oldReplacement = (eFlags & REPLACEMENT_EFLAG) != 0;
 		if (newReplacement) eFlags |= REPLACEMENT_EFLAG; else eFlags &= ~REPLACEMENT_EFLAG;
 		if (eNotificationRequired())
@@ -605,12 +571,9 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DEPENDENCY__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DEPENDENCY__OWNED_COMMENT:
@@ -645,12 +608,9 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.DEPENDENCY__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -665,10 +625,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DEPENDENCY__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DEPENDENCY__OWNED_ELEMENT:
@@ -741,10 +699,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DEPENDENCY__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -837,10 +793,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DEPENDENCY__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -922,10 +876,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DEPENDENCY__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DEPENDENCY__OWNED_ELEMENT:
@@ -1005,20 +957,15 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == Relationship.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == Relationship.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.DEPENDENCY__RELATED_ELEMENT: return UML2Package.RELATIONSHIP__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == DirectedRelationship.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.DEPENDENCY__SOURCE: return UML2Package.DIRECTED_RELATIONSHIP__SOURCE;
 				case UML2Package.DEPENDENCY__TARGET: return UML2Package.DIRECTED_RELATIONSHIP__TARGET;
 				default: return -1;
@@ -1032,20 +979,15 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == Relationship.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == Relationship.class) {
+			switch (baseFeatureID) {
 				case UML2Package.RELATIONSHIP__RELATED_ELEMENT: return UML2Package.DEPENDENCY__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == DirectedRelationship.class) {
+			switch (baseFeatureID) {
 				case UML2Package.DIRECTED_RELATIONSHIP__SOURCE: return UML2Package.DEPENDENCY__SOURCE;
 				case UML2Package.DIRECTED_RELATIONSHIP__TARGET: return UML2Package.DEPENDENCY__TARGET;
 				default: return -1;
@@ -1059,8 +1001,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1078,8 +1019,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRelatedElementsHelper(EList relatedElement)
-	{
+	protected EList getRelatedElementsHelper(EList relatedElement) {
 		EList source = getSources();
 		if (!source.isEmpty()) {
 			for (Iterator i = ((InternalEList) source).basicIterator(); i.hasNext(); ) {

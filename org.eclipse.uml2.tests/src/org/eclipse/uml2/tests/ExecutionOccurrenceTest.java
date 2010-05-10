@@ -30,8 +30,7 @@ public class ExecutionOccurrenceTest extends InteractionFragmentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ExecutionOccurrenceTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ExecutionOccurrenceTest extends InteractionFragmentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutionOccurrenceTest(String name)
-	{
+	public ExecutionOccurrenceTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ExecutionOccurrenceTest extends InteractionFragmentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExecutionOccurrence getFixture()
-	{
+	private ExecutionOccurrence getFixture() {
 		return (ExecutionOccurrence)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ExecutionOccurrenceTest extends InteractionFragmentTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createExecutionOccurrence());
 	}
 
@@ -74,8 +70,7 @@ public class ExecutionOccurrenceTest extends InteractionFragmentTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

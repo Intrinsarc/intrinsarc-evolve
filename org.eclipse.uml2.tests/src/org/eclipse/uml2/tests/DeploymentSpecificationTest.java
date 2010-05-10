@@ -30,8 +30,7 @@ public class DeploymentSpecificationTest extends ArtifactTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(DeploymentSpecificationTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class DeploymentSpecificationTest extends ArtifactTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeploymentSpecificationTest(String name)
-	{
+	public DeploymentSpecificationTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class DeploymentSpecificationTest extends ArtifactTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DeploymentSpecification getFixture()
-	{
+	private DeploymentSpecification getFixture() {
 		return (DeploymentSpecification)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class DeploymentSpecificationTest extends ArtifactTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createDeploymentSpecification());
 	}
 
@@ -74,8 +70,7 @@ public class DeploymentSpecificationTest extends ArtifactTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

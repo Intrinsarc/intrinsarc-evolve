@@ -30,8 +30,7 @@ public class ActorTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ActorTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ActorTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActorTest(String name)
-	{
+	public ActorTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ActorTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Actor getFixture()
-	{
+	private Actor getFixture() {
 		return (Actor)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ActorTest extends ClassifierTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createActor());
 	}
 
@@ -74,8 +70,7 @@ public class ActorTest extends ClassifierTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

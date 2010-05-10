@@ -60,8 +60,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateItemProvider(AdapterFactory adapterFactory)
-	{
+	public StateItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,10 +70,8 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addRedefinitionContextPropertyDescriptor(object);
@@ -105,8 +102,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinitionContextPropertyDescriptor(Object object)
-	{
+	protected void addRedefinitionContextPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -128,8 +124,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsLeafPropertyDescriptor(Object object)
-	{
+	protected void addIsLeafPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -149,8 +144,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainerPropertyDescriptor(Object object)
-	{
+	protected void addContainerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -172,8 +166,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOutgoingPropertyDescriptor(Object object)
-	{
+	protected void addOutgoingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -193,8 +186,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIncomingPropertyDescriptor(Object object)
-	{
+	protected void addIncomingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -214,8 +206,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsCompositePropertyDescriptor(Object object)
-	{
+	protected void addIsCompositePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -237,8 +228,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsOrthogonalPropertyDescriptor(Object object)
-	{
+	protected void addIsOrthogonalPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -260,8 +250,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsSimplePropertyDescriptor(Object object)
-	{
+	protected void addIsSimplePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -283,8 +272,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsSubmachineStatePropertyDescriptor(Object object)
-	{
+	protected void addIsSubmachineStatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -306,8 +294,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSubmachinePropertyDescriptor(Object object)
-	{
+	protected void addSubmachinePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -327,8 +314,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConnectionPropertyDescriptor(Object object)
-	{
+	protected void addConnectionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -350,8 +336,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinedStatePropertyDescriptor(Object object)
-	{
+	protected void addRedefinedStatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -371,8 +356,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDeferrableTriggerPropertyDescriptor(Object object)
-	{
+	protected void addDeferrableTriggerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -392,8 +376,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRegionPropertyDescriptor(Object object)
-	{
+	protected void addRegionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -415,8 +398,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEntryPropertyDescriptor(Object object)
-	{
+	protected void addEntryPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -438,8 +420,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExitPropertyDescriptor(Object object)
-	{
+	protected void addExitPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -461,8 +442,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDoActivityPropertyDescriptor(Object object)
-	{
+	protected void addDoActivityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -484,8 +464,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStateInvariantPropertyDescriptor(Object object)
-	{
+	protected void addStateInvariantPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -509,10 +488,8 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getState_Connection());
 			childrenFeatures.add(UML2Package.eINSTANCE.getState_Region());
@@ -529,8 +506,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -543,8 +519,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/State"); //$NON-NLS-1$
 	}
 
@@ -554,8 +529,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((State)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_State_type") : //$NON-NLS-1$
@@ -569,12 +543,10 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(State.class))
-		{
+		switch (notification.getFeatureID(State.class)) {
 			case UML2Package.STATE__IS_LEAF:
 			case UML2Package.STATE__IS_COMPOSITE:
 			case UML2Package.STATE__IS_ORTHOGONAL:
@@ -601,8 +573,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -712,8 +683,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -724,8 +694,7 @@ public class StateItemProvider
 			childFeature == UML2Package.eINSTANCE.getState_Exit() ||
 			childFeature == UML2Package.eINSTANCE.getState_DoActivity();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -739,8 +708,7 @@ public class StateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -581,8 +581,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected J_FigureImpl()
-	{
+	protected J_FigureImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -597,8 +596,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getJ_Figure();
 	}
 
@@ -607,8 +605,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getId()
-	{
+  public String getId() {
 		return id;
 	}
 
@@ -623,9 +620,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setId(String newId)
-	{
-
+  public void setId(String newId) {
 		newId = newId == null ? ID_EDEFAULT : newId;
 		String oldId = id;
 		id = newId;
@@ -640,8 +635,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getRecreator()
-	{
+	public String getRecreator() {
 		return recreator;
 	}
 
@@ -656,9 +650,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRecreator(String newRecreator)
-	{
-
+	public void setRecreator(String newRecreator) {
 		newRecreator = newRecreator == null ? RECREATOR_EDEFAULT : newRecreator;
 		String oldRecreator = recreator;
 		recreator = newRecreator;
@@ -673,8 +665,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAnchor1Id()
-	{
+	public String getAnchor1Id() {
 		return anchor1Id;
 	}
 
@@ -689,9 +680,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAnchor1Id(String newAnchor1Id)
-	{
-
+	public void setAnchor1Id(String newAnchor1Id) {
 		newAnchor1Id = newAnchor1Id == null ? ANCHOR1_ID_EDEFAULT : newAnchor1Id;
 		String oldAnchor1Id = anchor1Id;
 		anchor1Id = newAnchor1Id;
@@ -706,8 +695,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAnchor2Id()
-	{
+	public String getAnchor2Id() {
 		return anchor2Id;
 	}
 
@@ -722,9 +710,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAnchor2Id(String newAnchor2Id)
-	{
-
+	public void setAnchor2Id(String newAnchor2Id) {
 		newAnchor2Id = newAnchor2Id == null ? ANCHOR2_ID_EDEFAULT : newAnchor2Id;
 		String oldAnchor2Id = anchor2Id;
 		anchor2Id = newAnchor2Id;
@@ -739,8 +725,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getContainedName()
-	{
+	public String getContainedName() {
 		return containedName;
 	}
 
@@ -755,9 +740,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainedName(String newContainedName)
-	{
-
+	public void setContainedName(String newContainedName) {
 		newContainedName = newContainedName == null ? CONTAINED_NAME_EDEFAULT : newContainedName;
 		String oldContainedName = containedName;
 		containedName = newContainedName;
@@ -772,8 +755,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText()
-	{
+	public String getText() {
 		return text;
 	}
 
@@ -788,9 +770,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setText(String newText)
-	{
-
+	public void setText(String newText) {
 		newText = newText == null ? TEXT_EDEFAULT : newText;
 		String oldText = text;
 		text = newText;
@@ -805,8 +785,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -821,9 +800,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName)
-	{
-
+	public void setName(String newName) {
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -838,8 +815,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getVirtualPoint()
-	{
+	public String getVirtualPoint() {
 		return virtualPoint;
 	}
 
@@ -854,9 +830,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVirtualPoint(String newVirtualPoint)
-	{
-
+	public void setVirtualPoint(String newVirtualPoint) {
 		newVirtualPoint = newVirtualPoint == null ? VIRTUAL_POINT_EDEFAULT : newVirtualPoint;
 		String oldVirtualPoint = virtualPoint;
 		virtualPoint = newVirtualPoint;
@@ -871,8 +845,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPoints()
-	{
+	public String getPoints() {
 		return points;
 	}
 
@@ -887,9 +860,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPoints(String newPoints)
-	{
-
+	public void setPoints(String newPoints) {
 		newPoints = newPoints == null ? POINTS_EDEFAULT : newPoints;
 		String oldPoints = points;
 		points = newPoints;
@@ -904,8 +875,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBrOffset()
-	{
+	public String getBrOffset() {
 		return brOffset;
 	}
 
@@ -920,9 +890,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBrOffset(String newBrOffset)
-	{
-
+	public void setBrOffset(String newBrOffset) {
 		newBrOffset = newBrOffset == null ? BR_OFFSET_EDEFAULT : newBrOffset;
 		String oldBrOffset = brOffset;
 		brOffset = newBrOffset;
@@ -937,8 +905,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTlOffset()
-	{
+	public String getTlOffset() {
 		return tlOffset;
 	}
 
@@ -953,9 +920,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTlOffset(String newTlOffset)
-	{
-
+	public void setTlOffset(String newTlOffset) {
 		newTlOffset = newTlOffset == null ? TL_OFFSET_EDEFAULT : newTlOffset;
 		String oldTlOffset = tlOffset;
 		tlOffset = newTlOffset;
@@ -970,8 +935,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getShow()
-	{
+  public String getShow() {
 		return show;
 	}
 
@@ -986,9 +950,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setShow(String newShow)
-	{
-
+  public void setShow(String newShow) {
 		newShow = newShow == null ? SHOW_EDEFAULT : newShow;
 		String oldShow = show;
 		show = newShow;
@@ -1003,8 +965,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getAutosized()
-	{
+  public String getAutosized() {
 		return autosized;
 	}
 
@@ -1019,9 +980,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setAutosized(String newAutosized)
-	{
-
+  public void setAutosized(String newAutosized) {
 		newAutosized = newAutosized == null ? AUTOSIZED_EDEFAULT : newAutosized;
 		String oldAutosized = autosized;
 		autosized = newAutosized;
@@ -1036,8 +995,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getIcon()
-	{
+  public String getIcon() {
 		return icon;
 	}
 
@@ -1052,9 +1010,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIcon(String newIcon)
-	{
-
+  public void setIcon(String newIcon) {
 		newIcon = newIcon == null ? ICON_EDEFAULT : newIcon;
 		String oldIcon = icon;
 		icon = newIcon;
@@ -1069,8 +1025,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPoint()
-	{
+	public String getPoint() {
 		return point;
 	}
 
@@ -1085,9 +1040,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPoint(String newPoint)
-	{
-
+	public void setPoint(String newPoint) {
 		newPoint = newPoint == null ? POINT_EDEFAULT : newPoint;
 		String oldPoint = point;
 		point = newPoint;
@@ -1102,8 +1055,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDimensions()
-	{
+	public String getDimensions() {
 		return dimensions;
 	}
 
@@ -1118,9 +1070,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDimensions(String newDimensions)
-	{
-
+	public void setDimensions(String newDimensions) {
 		newDimensions = newDimensions == null ? DIMENSIONS_EDEFAULT : newDimensions;
 		String oldDimensions = dimensions;
 		dimensions = newDimensions;
@@ -1135,8 +1085,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getSuppressAttributes()
-	{
+  public String getSuppressAttributes() {
 		return suppressAttributes;
 	}
 
@@ -1151,9 +1100,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSuppressAttributes(String newSuppressAttributes)
-	{
-
+  public void setSuppressAttributes(String newSuppressAttributes) {
 		newSuppressAttributes = newSuppressAttributes == null ? SUPPRESS_ATTRIBUTES_EDEFAULT : newSuppressAttributes;
 		String oldSuppressAttributes = suppressAttributes;
 		suppressAttributes = newSuppressAttributes;
@@ -1168,8 +1115,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getSuppressOperations()
-	{
+  public String getSuppressOperations() {
 		return suppressOperations;
 	}
 
@@ -1184,9 +1130,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSuppressOperations(String newSuppressOperations)
-	{
-
+  public void setSuppressOperations(String newSuppressOperations) {
 		newSuppressOperations = newSuppressOperations == null ? SUPPRESS_OPERATIONS_EDEFAULT : newSuppressOperations;
 		String oldSuppressOperations = suppressOperations;
 		suppressOperations = newSuppressOperations;
@@ -1201,8 +1145,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getSuppressContents()
-	{
+  public String getSuppressContents() {
 		return suppressContents;
 	}
 
@@ -1217,9 +1160,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSuppressContents(String newSuppressContents)
-	{
-
+  public void setSuppressContents(String newSuppressContents) {
 		newSuppressContents = newSuppressContents == null ? SUPPRESS_CONTENTS_EDEFAULT : newSuppressContents;
 		String oldSuppressContents = suppressContents;
 		suppressContents = newSuppressContents;
@@ -1234,8 +1175,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getOffset()
-	{
+	public String getOffset() {
 		return offset;
 	}
 
@@ -1250,9 +1190,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOffset(String newOffset)
-	{
-
+	public void setOffset(String newOffset) {
 		newOffset = newOffset == null ? OFFSET_EDEFAULT : newOffset;
 		String oldOffset = offset;
 		offset = newOffset;
@@ -1267,8 +1205,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getMin()
-	{
+	public String getMin() {
 		return min;
 	}
 
@@ -1283,9 +1220,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMin(String newMin)
-	{
-
+	public void setMin(String newMin) {
 		newMin = newMin == null ? MIN_EDEFAULT : newMin;
 		String oldMin = min;
 		min = newMin;
@@ -1300,8 +1235,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAccessibility()
-	{
+	public String getAccessibility() {
 		return accessibility;
 	}
 
@@ -1316,9 +1250,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAccessibility(String newAccessibility)
-	{
-
+	public void setAccessibility(String newAccessibility) {
 		newAccessibility = newAccessibility == null ? ACCESSIBILITY_EDEFAULT : newAccessibility;
 		String oldAccessibility = accessibility;
 		accessibility = newAccessibility;
@@ -1333,8 +1265,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getClassifierScope()
-	{
+  public String getClassifierScope() {
 		return classifierScope;
 	}
 
@@ -1349,9 +1280,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setClassifierScope(String newClassifierScope)
-	{
-
+  public void setClassifierScope(String newClassifierScope) {
 		newClassifierScope = newClassifierScope == null ? CLASSIFIER_SCOPE_EDEFAULT : newClassifierScope;
 		String oldClassifierScope = classifierScope;
 		classifierScope = newClassifierScope;
@@ -1366,8 +1295,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getType()
-	{
+	public String getType() {
 		return type;
 	}
 
@@ -1382,9 +1310,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(String newType)
-	{
-
+	public void setType(String newType) {
 		newType = newType == null ? TYPE_EDEFAULT : newType;
 		String oldType = type;
 		type = newType;
@@ -1399,14 +1325,11 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Element getSubject()
-	{
-		if (subject != null && subject.eIsProxy())
-		{
+  public Element getSubject() {
+		if (subject != null && subject.eIsProxy()) {
 			Element oldSubject = subject;
 			subject = (Element)eResolveProxy((InternalEObject)subject);
-			if (subject != oldSubject)
-			{
+			if (subject != oldSubject) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.JFIGURE__SUBJECT, oldSubject, subject));
 			}
@@ -1424,8 +1347,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Element undeleted_getSubject()
-	{
+  public Element undeleted_getSubject() {
 		Element temp = getSubject();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -1437,8 +1359,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Element basicGetSubject()
-	{
+  public Element basicGetSubject() {
 		return subject;
 	}
 
@@ -1447,9 +1368,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSubject(Element newSubject)
-	{
-
+  public void setSubject(Element newSubject) {
 		Element oldSubject = subject;
 		subject = newSubject;
 		if (eNotificationRequired())
@@ -1463,12 +1382,9 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.JFIGURE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -1485,12 +1401,9 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.JFIGURE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.JFIGURE__OWNED_COMMENT:
@@ -1513,10 +1426,8 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.JFIGURE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.JFIGURE__OWNED_ELEMENT:
@@ -1600,10 +1511,8 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.JFIGURE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1721,10 +1630,8 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.JFIGURE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1836,10 +1743,8 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.JFIGURE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.JFIGURE__OWNED_ELEMENT:
@@ -1921,8 +1826,7 @@ public class J_FigureImpl extends J_FigureContainerImpl implements J_Figure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

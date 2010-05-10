@@ -54,8 +54,7 @@ public class MessageEndItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MessageEndItemProvider(AdapterFactory adapterFactory)
-	{
+	public MessageEndItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class MessageEndItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addReceiveMessagePropertyDescriptor(object);
@@ -83,8 +80,7 @@ public class MessageEndItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReceiveMessagePropertyDescriptor(Object object)
-	{
+	protected void addReceiveMessagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -104,8 +100,7 @@ public class MessageEndItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSendMessagePropertyDescriptor(Object object)
-	{
+	protected void addSendMessagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -125,8 +120,7 @@ public class MessageEndItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((MessageEnd)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_MessageEnd_type") : //$NON-NLS-1$
@@ -140,8 +134,7 @@ public class MessageEndItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -153,8 +146,7 @@ public class MessageEndItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -164,8 +156,7 @@ public class MessageEndItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

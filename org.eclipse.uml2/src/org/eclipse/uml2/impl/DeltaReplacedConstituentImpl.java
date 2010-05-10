@@ -75,8 +75,7 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DeltaReplacedConstituentImpl()
-	{
+	protected DeltaReplacedConstituentImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -91,8 +90,7 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getDeltaReplacedConstituent();
 	}
 
@@ -101,14 +99,11 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getReplaced()
-	{
-		if (replaced != null && replaced.eIsProxy())
-		{
+	public Element getReplaced() {
+		if (replaced != null && replaced.eIsProxy()) {
 			Element oldReplaced = replaced;
 			replaced = (Element)eResolveProxy((InternalEObject)replaced);
-			if (replaced != oldReplaced)
-			{
+			if (replaced != oldReplaced) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.DELTA_REPLACED_CONSTITUENT__REPLACED, oldReplaced, replaced));
 			}
@@ -126,8 +121,7 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element undeleted_getReplaced()
-	{
+	public Element undeleted_getReplaced() {
 		Element temp = getReplaced();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -139,8 +133,7 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetReplaced()
-	{
+	public Element basicGetReplaced() {
 		return replaced;
 	}
 
@@ -149,9 +142,7 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplaced(Element newReplaced)
-	{
-
+	public void setReplaced(Element newReplaced) {
 		Element oldReplaced = replaced;
 		replaced = newReplaced;
 		if (eNotificationRequired())
@@ -165,8 +156,7 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getReplacement()
-	{
+	public Element getReplacement() {
 		return replacement;
 	}
 
@@ -180,8 +170,7 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element undeleted_getReplacement()
-	{
+	public Element undeleted_getReplacement() {
 		Element temp = getReplacement();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -193,13 +182,10 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReplacement(Element newReplacement, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetReplacement(Element newReplacement, NotificationChain msgs) {
 		Element oldReplacement = replacement;
 		replacement = newReplacement;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.DELTA_REPLACED_CONSTITUENT__REPLACEMENT, oldReplacement, newReplacement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -212,11 +198,8 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplacement(Element newReplacement)
-	{
-
-		if (newReplacement != replacement)
-		{
+	public void setReplacement(Element newReplacement) {
+		if (newReplacement != replacement) {
 			NotificationChain msgs = null;
 			if (replacement != null)
 				msgs = ((InternalEObject)replacement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.DELTA_REPLACED_CONSTITUENT__REPLACEMENT, null, msgs);
@@ -250,12 +233,9 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DELTA_REPLACED_CONSTITUENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -272,12 +252,9 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DELTA_REPLACED_CONSTITUENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DELTA_REPLACED_CONSTITUENT__OWNED_COMMENT:
@@ -298,10 +275,8 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DELTA_REPLACED_CONSTITUENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DELTA_REPLACED_CONSTITUENT__OWNED_ELEMENT:
@@ -335,10 +310,8 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DELTA_REPLACED_CONSTITUENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -379,10 +352,8 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DELTA_REPLACED_CONSTITUENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -419,10 +390,8 @@ public class DeltaReplacedConstituentImpl extends ElementImpl implements DeltaRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DELTA_REPLACED_CONSTITUENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DELTA_REPLACED_CONSTITUENT__OWNED_ELEMENT:

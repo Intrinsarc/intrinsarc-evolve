@@ -69,8 +69,7 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReceptionImpl()
-	{
+	protected ReceptionImpl() {
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -85,8 +84,7 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getReception();
 	}
 
@@ -95,14 +93,11 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signal getSignal()
-	{
-		if (signal != null && signal.eIsProxy())
-		{
+	public Signal getSignal() {
+		if (signal != null && signal.eIsProxy()) {
 			Signal oldSignal = signal;
 			signal = (Signal)eResolveProxy((InternalEObject)signal);
-			if (signal != oldSignal)
-			{
+			if (signal != oldSignal) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.RECEPTION__SIGNAL, oldSignal, signal));
 			}
@@ -120,8 +115,7 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Signal undeleted_getSignal()
-	{
+  public Signal undeleted_getSignal() {
 		Signal temp = getSignal();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -133,8 +127,7 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signal basicGetSignal()
-	{
+	public Signal basicGetSignal() {
 		return signal;
 	}
 
@@ -143,9 +136,7 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSignal(Signal newSignal)
-	{
-
+	public void setSignal(Signal newSignal) {
 		Signal oldSignal = signal;
 		signal = newSignal;
 		if (eNotificationRequired())
@@ -159,12 +150,9 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.RECEPTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.RECEPTION__TEMPLATE_BINDING:
@@ -197,12 +185,9 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.RECEPTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.RECEPTION__OWNED_COMMENT:
@@ -243,10 +228,8 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.RECEPTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.RECEPTION__OWNED_ELEMENT:
@@ -330,10 +313,8 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.RECEPTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -443,10 +424,8 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.RECEPTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -540,10 +519,8 @@ public class ReceptionImpl extends BehavioralFeatureImpl implements Reception {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.RECEPTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.RECEPTION__OWNED_ELEMENT:

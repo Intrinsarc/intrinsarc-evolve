@@ -54,8 +54,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutionOccurrenceItemProvider(AdapterFactory adapterFactory)
-	{
+	public ExecutionOccurrenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addStartPropertyDescriptor(object);
@@ -84,8 +81,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStartPropertyDescriptor(Object object)
-	{
+	protected void addStartPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -105,8 +101,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFinishPropertyDescriptor(Object object)
-	{
+	protected void addFinishPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -126,8 +121,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBehaviorPropertyDescriptor(Object object)
-	{
+	protected void addBehaviorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -147,8 +141,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ExecutionOccurrence"); //$NON-NLS-1$
 	}
 
@@ -158,8 +151,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((ExecutionOccurrence)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ExecutionOccurrence_type") : //$NON-NLS-1$
@@ -173,8 +165,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -186,8 +177,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -197,8 +187,7 @@ public class ExecutionOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 
