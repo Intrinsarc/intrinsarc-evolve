@@ -4,9 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
-import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 
 import com.hopstepjump.deltaengine.base.*;

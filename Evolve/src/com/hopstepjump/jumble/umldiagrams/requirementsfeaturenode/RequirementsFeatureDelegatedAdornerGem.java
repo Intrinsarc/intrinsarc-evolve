@@ -15,18 +15,10 @@ public class RequirementsFeatureDelegatedAdornerGem
 {
   private DelegatedDeltaAdornerFacet adorner = new DelegatedDeltaAdornerFacetImpl();
   private FigureFacet cls;
-  private FigureFacet attributes;
-  private FigureFacet operations;
-  private FigureFacet ports;
-  private FigureFacet parts;
   
-  public RequirementsFeatureDelegatedAdornerGem(FigureFacet cls, FigureFacet attributes, FigureFacet operations, FigureFacet ports, FigureFacet parts)
+  public RequirementsFeatureDelegatedAdornerGem(FigureFacet cls)
   {
     this.cls = cls;
-    this.attributes = attributes;
-    this.operations = operations;
-    this.ports = ports;
-    this.parts = parts;
   }
   
   public Facet getDelegatedDeltaAdornerFacet()
@@ -39,65 +31,27 @@ public class RequirementsFeatureDelegatedAdornerGem
     public Map<FigureFacet, Integer> getDeltaDisplaysAtHome()
     {
       Map<FigureFacet, Integer> displays = new HashMap<FigureFacet, Integer>();
-      Class subject = (Class) cls.getSubject();
+      RequirementsFeature subject = (RequirementsFeature) cls.getSubject();
       
-      InterfaceDelegatedAdornerGem.determineAdornments(
-          displays,
-          cls,
-          attributes.getContainerFacet().getContents(),
-          subject.undeleted_getOwnedAttributes(),
-          subject.undeleted_getDeltaDeletedAttributes(),
-          subject.undeleted_getDeltaReplacedAttributes(),
-          false);
-          
-      InterfaceDelegatedAdornerGem.determineAdornments(
-          displays,
-          cls,
-          parts.getContainerFacet().getContents(),
-          subject.undeleted_getOwnedAttributes(),
-          subject.undeleted_getDeltaDeletedAttributes(),
-          subject.undeleted_getDeltaReplacedAttributes(),
-          false);
-          
-      InterfaceDelegatedAdornerGem.determineAdornments(
-          displays,
-          cls,
-          operations.getContainerFacet().getContents(),
-          subject.undeleted_getOwnedOperations(),
-          subject.undeleted_getDeltaDeletedOperations(),
-          subject.undeleted_getDeltaReplacedOperations(),
-          false);
+      // get all of the features linking to this
+      // draw an ellipsis if the full set of subfeatures are not shown
+      List<FigureFacet> figures = new ArrayList<FigureFacet>();
+      for (Iterator<LinkingFacet> iter = cls.getAnchorFacet().getLinks(); iter.hasNext();)
+      {
+      	LinkingFacet link = iter.next();
+      	if (link.getAnchor1().getFigureFacet() == cls)
+      		figures.add(link.getFigureFacet());
+      }
 
+      
       InterfaceDelegatedAdornerGem.determineAdornments(
           displays,
           cls,
-          ports.getContainerFacet().getContents(),
-          subject.undeleted_getOwnedPorts(),
-          subject.undeleted_getDeltaDeletedPorts(),
-          subject.undeleted_getDeltaReplacedPorts(),
+          figures.iterator(),
+          subject.undeleted_getSubfeatures(),
+          subject.undeleted_getDeltaDeletedSubfeatures(),
+          subject.undeleted_getDeltaReplacedSubfeatures(),
           false);
-      
-      // find all the connectors for this class
-      Set<FigureFacet> connectorFigures = ClassConnectorHelper.findConnectors(ports, parts, false);
-      InterfaceDelegatedAdornerGem.determineAdornments(
-          displays,
-          cls,
-          connectorFigures.iterator(),
-          subject.undeleted_getOwnedConnectors(),
-          subject.undeleted_getDeltaDeletedConnectors(),
-          subject.undeleted_getDeltaReplacedConnectors(),
-          true);
-      
-      // find all the port links for this class
-      Set<FigureFacet> portLinkFigures = ClassConnectorHelper.findConnectors(ports, parts, true);
-      InterfaceDelegatedAdornerGem.determineAdornments(
-          displays,
-          cls,
-          portLinkFigures.iterator(),
-          subject.undeleted_getOwnedConnectors(),
-          subject.undeleted_getDeltaDeletedConnectors(),
-          subject.undeleted_getDeltaReplacedConnectors(),
-          true);
       
       return displays;
     }

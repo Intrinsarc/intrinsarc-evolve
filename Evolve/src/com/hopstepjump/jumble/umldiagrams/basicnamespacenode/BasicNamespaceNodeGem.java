@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import net.xoetrope.editor.color.*;
 
+import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 
@@ -21,6 +22,7 @@ import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
@@ -28,8 +30,11 @@ import com.hopstepjump.idraw.nodefacilities.resizebase.*;
 import com.hopstepjump.idraw.nodefacilities.style.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.expander.*;
+import com.hopstepjump.jumble.gui.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
+import com.hopstepjump.jumble.umldiagrams.packagenode.*;
+import com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.uml2deltaengine.*;
@@ -484,12 +489,36 @@ public final class BasicNamespaceNodeGem implements Gem
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						new Expander().expand(
+						UBounds bounds = figureFacet.getFullBounds();
+						final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
+						ITargetResolver resolver = new ITargetResolver()
+						{
+							public Element resolveTarget(Element relationship)
+							{
+								return ((Dependency) relationship).undeleted_getDependencyTarget();
+							}
+							
+							public UPoint determineTargetLocation(Element target, int index)
+							{
+								return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
+							}
+
+							public NodeCreateFacet getNodeCreator(Element target)
+							{
+								if (!(target instanceof Package))
+										return null;
+								if (UML2DeltaEngine.isRawPackage(target))
+									return PaletteManagerGem.makePackageCreator();
+								return PaletteManagerGem.makeStrictStratumCreator();
+							}
+						};
+						
+						new Expander(
+								coordinator,
 								figureFacet,
-								null,
-								UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
-								new DependencyCreatorGem().getArcCreateFacet(),
-								coordinator);
+								subject.undeleted_getOwnedAnonymousDependencies(),
+								resolver,
+								new DependencyCreatorGem().getArcCreateFacet()).expand();
 					}
 				});
 				popup.add(expand);

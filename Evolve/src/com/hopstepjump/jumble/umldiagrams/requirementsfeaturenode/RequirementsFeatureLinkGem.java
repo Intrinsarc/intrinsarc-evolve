@@ -1,14 +1,13 @@
 package com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.*;
 
 import org.eclipse.uml2.*;
-import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
-import org.eclipse.uml2.impl.*;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.geometry.*;
@@ -17,10 +16,10 @@ import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.utility.*;
-import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
+import com.hopstepjump.swing.enhanced.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -86,29 +85,21 @@ public class RequirementsFeatureLinkGem
 
     public boolean hasSpecificKillAction()
     {
-      return isOutOfPlace() || !atHome();
-    }
-
-    /** returns true if the element is out of place */
-    private boolean isOutOfPlace()
-    {
-      return
-      	figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject() != getOwner() ||
-      	figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject() != subject.getType();
+      return !atHome();
     }
 
     public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
       // only allow changes in the home stratum
-//      if (!atHome())
-//      {
-//        coordinator.displayPopup(ERROR_ICON, "Delta error",
-//            new JLabel("Must be in home stratum to delete subjects!", DELTA_ICON, JLabel.LEFT),
-//            ScreenProperties.getUndoPopupColor(),
-//            Color.black,
-//            3000);
-//        return;
-//      }
+      if (!visualOwnerAtHome())
+      {
+        coordinator.displayPopup(ERROR_ICON, "Delta error",
+            new JLabel("Must be in home stratum to delete subjects!", DELTA_ICON, JLabel.LEFT),
+            ScreenProperties.getUndoPopupColor(),
+            Color.black,
+            3000);
+        return;
+      }
 
       // if this is a replace, kill the replace delta
       if (subject.getOwner() instanceof DeltaReplacedConstituent)
@@ -141,24 +132,53 @@ public class RequirementsFeatureLinkGem
       FigureFacet owner = figureFacet.getLinkingFacet().getAnchor1().getFigureFacet();
       RequirementsFeature req = (RequirementsFeature) owner.getSubject();
     	DeltaDeletedConstituent delete = req.createDeltaDeletedSubfeatures();
-      delete.setDeleted(req);
-    }
-
-    private boolean atHome()
-    {
-      // are we at home?
-    	RequirementsFeature req = getOwner();
-      Package home = GlobalSubjectRepository.repository.findOwningStratum(req);
-      FigureFacet owner = figureFacet.getLinkingFacet().getAnchor1().getFigureFacet();
-      Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), owner.getContainerFacet());
-      
-      return home == visualHome;
+      delete.setDeleted(subject);
     }
   }
   
-  private RequirementsFeature getOwner()
+  private boolean atHome()
   {
-  	return (RequirementsFeature) FeatureNodeGem.getOriginalSubject(figureFacet.getSubject()).getOwner();
+    // are we at home? -- defined by whether the actual owner is in its home stratum
+  	RequirementsFeature req = getOwner(subject);
+  	Package home = GlobalSubjectRepository.repository.findOwningStratum(req);
+    Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), getOwnerFigure().getContainerFacet());
+    
+    return home == visualHome;
+  }
+
+  private boolean visualOwnerAtHome()
+  {
+    // are we at home? -- defined by whether the actual owner is in its home stratum
+  	RequirementsFeature req = getVisualOwner(figureFacet);
+  	Package home = GlobalSubjectRepository.repository.findOwningStratum(req);
+    Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), getOwnerFigure().getContainerFacet());
+    
+    return home == visualHome;
+  }
+  
+  private FigureFacet getOwnerFigure()
+  {
+  	return figureFacet.getLinkingFacet().getAnchor1().getFigureFacet();
+  }
+  
+  private RequirementsFeature getOwner(RequirementsFeatureLink subject)
+  {
+  	if (subject.getOwner() instanceof DeltaReplacedRequirementsFeatureLink)
+  		return (RequirementsFeature) ((DeltaReplacedRequirementsFeatureLink) subject.getOwner()).getOwner();
+  	return (RequirementsFeature) subject.getOwner();
+  }
+  
+  private RequirementsFeature getVisualOwner(FigureFacet figure)
+  {
+  	FigureFacet owner = figure.getLinkingFacet().getAnchor1().getFigureFacet();
+  	return (RequirementsFeature) owner.getSubject();
+  }
+  
+  private DERequirementsFeature getVisualTarget()
+  {
+  	FigureFacet target = figureFacet.getLinkingFacet().getAnchor2().getFigureFacet();
+  	DERequirementsFeature de = GlobalDeltaEngine.engine.locateObject(target.getSubject()).asRequirementsFeature();
+  	return de.getSubstitutesOrSelf().iterator().next().asRequirementsFeature();
   }
   
   class BasicArcAppearanceFacetImpl implements BasicArcAppearanceFacet
@@ -210,15 +230,71 @@ public class RequirementsFeatureLinkGem
 	
     public void addToContextMenu(JPopupMenu menu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
     {
+      // only add a replace if this is not visually at home
+    	if (getVisualOwner(figureFacet) != getOwner(subject))
+      {
+        JMenuItem replaceItem = getReplaceItem(diagramView, coordinator);
+        menu.add(replaceItem);
+        Utilities.addSeparator(menu);
+      }
+    }
+    
+    private JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
+    {
+      // for adding operations
+      JMenuItem replace = new JMenuItem("Replace");
+      replace.addActionListener(new ActionListener()
+      {
+        public void actionPerformed(ActionEvent e)
+        {
+        	RequirementsFeatureLink replace = (RequirementsFeatureLink) figureFacet.getSubject();
+          coordinator.startTransaction("replaced subfeature", "removed replaced subfeature");
+          RequirementsFeatureLink replacement = createDeltaReplacedLink(getVisualOwner(figureFacet), replace);
+          
+          // change the subject so we don't lose the graphical view
+          RequirementsFeatureLinkCreatorGem gem = new RequirementsFeatureLinkCreatorGem(subject.getKind());
+          PersistentFigure pfig = figureFacet.makePersistentFigure();
+          pfig.setSubject(replacement);
+          DiagramFacet diagram = figureFacet.getDiagram();
+          FigureReference reference = diagram.makeNewFigureReference();
+          gem.getArcCreateFacet().create(
+          		replacement,
+          		diagram,
+          		reference.getId(),
+          		figureFacet.getLinkingFacet().getCalculated().getReferenceCalculatedArcPoints(diagram),
+          		figureFacet.makePersistentFigure().getProperties());
+          coordinator.commitTransaction(true);
+          
+          // select the replaced figure
+          diagramView.getSelection().clearAllSelection();
+          diagramView.getSelection().addToSelection(diagram.retrieveFigure(reference.getId()));
+        }
+      });
+
+      return replace;
+    }
+    
+    private RequirementsFeatureLink createDeltaReplacedLink(RequirementsFeature owner, RequirementsFeatureLink replace)
+    { 
+    	DeltaReplacedRequirementsFeatureLink replacement = owner.createDeltaReplacedSubfeatures();
+      replacement.setReplaced(replace);
+      RequirementsFeatureLink next = (RequirementsFeatureLink) replacement.createReplacement(UML2Package.eINSTANCE.getRequirementsFeatureLink());
+      next.setKind(replace.getKind());
+      next.setType(replace.getType());
+      return next;
     }
     
 		public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end)
 		{
-    	// start must be a port, end must be an interface
+			// ensure we are even authorised...
+			if (getOwner(subject) != getVisualOwner(figureFacet))
+				return false;
+			
+    	// start must be a req feature, end must be a req feature
       boolean startReadOnly = start.getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
     	boolean startOk =
-    		start.getFigureFacet().getSubject() instanceof Class && !startReadOnly;
-    	return startOk && end.getFigureFacet().getSubject() instanceof Class;
+    		start.getFigureFacet().getSubject() instanceof RequirementsFeature && !startReadOnly;
+    	return startOk && end.getFigureFacet().getSubject() instanceof RequirementsFeature;
 		}
 
 		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
@@ -229,29 +305,31 @@ public class RequirementsFeatureLinkGem
 			{
 				kind = subject.getKind().getValue();
 
-				DERequirementsFeature main = getOriginal(getOwner());
-				DERequirementsFeature dependsOn = getOriginal((RequirementsFeature) subject.undeleted_getType());
-				DERequirementsFeature viewMain = 
-					getOriginal((RequirementsFeature) figureFacet.getLinkingFacet().getAnchor1().getFigureFacet().getSubject());
-				DERequirementsFeature viewDependsOn = getOriginal((RequirementsFeature) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject());
+				// is this in the correct place?
+				// first, ensure that the element is included
+				IDeltaEngine engine = GlobalDeltaEngine.engine;
+				DERequirementsFeature dereq = engine.locateObject(getOwner(subject)).asRequirementsFeature();
+	      Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), getOwnerFigure().getContainerFacet());
+	      DEStratum perspective = engine.locateObject(visualHome).asStratum();
+	      
+	      boolean found = false;
+	      DERequirementsFeature visualTarget = getVisualTarget();
+	      for (DeltaPair pair : dereq.getDeltas(ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK).getConstituents(perspective))
+	      {
+	      	if (pair.getConstituent().getUuid().equals(subject.getUuid()))
+	      	{
+	      		// ensure this links to the correct element
+	      		if (pair.getConstituent().asRequirementsFeatureLink().getSubfeature() == visualTarget)
+	      			found = true;
+	      		break;
+	      	}
+	      }
 				
-				if (main != viewMain || dependsOn != viewDependsOn)
-					figureFacet.formDeleteTransaction();
+	      if (!found)
+	      	figureFacet.formDeleteTransaction();
 			}
 		}
 		
-		private DERequirementsFeature getOriginal(RequirementsFeature f)
-		{
-			DERequirementsFeature req = GlobalDeltaEngine.engine.locateObject(f).asRequirementsFeature();
-			if (req.isSubstitution())
-			{
-				DERequirementsFeature de = req.getSubstitutes().iterator().next().asRequirementsFeature(); 
-				if (de != null)
-					return de;
-			}
-			return req;
-		}
-
 		public Object getSubject()
 		{
 			return subject;

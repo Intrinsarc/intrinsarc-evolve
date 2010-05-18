@@ -313,7 +313,7 @@ public abstract class ClassifierConstituentHelper
   public static Class extractVisualClassifierFromConnector(FigureFacet linking)
   {
   	FigureFacet f = extractVisualClassifierFigureFromConnector(linking);
-  	// this is a hack -- i don't know why it is nill sometimes
+  	// this is a hack -- i don't know why it is null sometimes
   	if (f == null)
   		return null;
     return (Class) f.getSubject();
@@ -388,4 +388,19 @@ public abstract class ClassifierConstituentHelper
     
     return null;
   }
+  
+  /**
+   * look through the top level
+   * @param top
+   * @param subject
+   * @return
+   */
+  public static FigureFacet findArc(DiagramFacet diagram, Object subject)
+  {
+  	for (FigureFacet figure : diagram.getFigures())
+  		if (figure.getSubject() == subject && figure.getContainedFacet() == null)
+  			return figure;
+  	return null;
+  }
+
 }

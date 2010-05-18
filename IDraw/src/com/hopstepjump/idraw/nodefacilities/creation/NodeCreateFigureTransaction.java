@@ -9,7 +9,7 @@ import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 
 public class NodeCreateFigureTransaction implements TransactionFacet
 {
-  public static void create(
+  public static FigureFacet create(
   		DiagramFacet diagram,
   		Object useSubject,
   		FigureReference reference,
@@ -37,5 +37,6 @@ public class NodeCreateFigureTransaction implements TransactionFacet
     resizings.markForResizing(figure);
     resizings.setFocusBounds(figure.getRecalculatedFullBoundsForDiagramResize(false));
     resizings.end();
+    return figure;
   }
 }

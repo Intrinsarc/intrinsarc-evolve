@@ -421,20 +421,8 @@ public class PaletteManagerGem
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Package", null);
       
-      {
-        PackageCreatorGem stratumCreator = new PackageCreatorGem(false);
-        stratumCreator.setStereotype(CommonRepositoryFunctions.STRATUM);
-        stratumCreator.setFillColor(new Color(193, 206, 236));
-        stratumCreator.setRelaxed(true);
-        palette.addEntry(makeEntry(true, "relaxed-stratum.png", "Relaxed stratum", makeNodeCreateTool(stratumCreator.getNodeCreateFacet()), "top", null));
-      }
-      
-      {
-        PackageCreatorGem stratumCreator = new PackageCreatorGem(false);
-        stratumCreator.setStereotype(CommonRepositoryFunctions.STRATUM);
-        stratumCreator.setFillColor(new Color(193, 206, 236));      
-        palette.addEntry(makeEntry(true, "strict-stratum.png", "Strict stratum", makeNodeCreateTool(stratumCreator.getNodeCreateFacet()), "top", null));
-      }
+		  palette.addEntry(makeEntry(true, "relaxed-stratum.png", "Relaxed stratum", makeNodeCreateTool(makePackageCreator()), "top", null));
+		  palette.addEntry(makeEntry(true, "strict-stratum.png", "Strict stratum", makeNodeCreateTool(makeStrictStratumCreator()), "top", null));
       
       palette.addEntry(makeEntry(false, "dependency.png", "Dependency",           new ArcCreateToolGem(retrieveArcRecreator(DependencyCreatorGem.NAME)).getToolFacet(), "namespace,element"));
       palette.addEntry(makeEntry(true, "package.png",     "Package",              makeNodeCreateTool(retrieveNodeRecreator(PackageCreatorGem.NAME)), "top"));
@@ -626,6 +614,27 @@ public class PaletteManagerGem
     tools.setHideMinimized(true);
     return tools;
   }
+
+	public static NodeCreateFacet makeStrictStratumCreator()
+	{
+		{
+		  PackageCreatorGem stratumCreator = new PackageCreatorGem(false);
+		  stratumCreator.setStereotype(CommonRepositoryFunctions.STRATUM);
+		  stratumCreator.setFillColor(new Color(193, 206, 236));
+		  return stratumCreator.getNodeCreateFacet();
+		}
+	}
+
+	public static NodeCreateFacet makePackageCreator()
+	{
+		{
+		  PackageCreatorGem stratumCreator = new PackageCreatorGem(false);
+		  stratumCreator.setStereotype(CommonRepositoryFunctions.STRATUM);
+		  stratumCreator.setFillColor(new Color(193, 206, 236));
+		  stratumCreator.setRelaxed(true);
+		  return stratumCreator.getNodeCreateFacet();
+		}
+	}
 
   private IRichPaletteEntry makeEntry(boolean node, String icon, String name, final ToolFacet tool)
   {

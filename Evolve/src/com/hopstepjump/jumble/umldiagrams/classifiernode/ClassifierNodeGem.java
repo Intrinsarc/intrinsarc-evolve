@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.*;
 
+import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
@@ -23,6 +24,7 @@ import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
@@ -38,12 +40,14 @@ import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
 import com.hopstepjump.jumble.umldiagrams.constituenthelpers.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
 import com.hopstepjump.jumble.umldiagrams.featurenode.*;
+import com.hopstepjump.jumble.umldiagrams.packagenode.*;
 import com.hopstepjump.jumble.umldiagrams.portnode.*;
 import com.hopstepjump.jumble.umldiagrams.slotnode.*;
 import com.hopstepjump.repository.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
+import com.hopstepjump.uml2deltaengine.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -1283,12 +1287,35 @@ public final class ClassifierNodeGem implements Gem
   				{
   					public void actionPerformed(ActionEvent e)
   					{
-  						new Expander().expand(
+  						UBounds bounds = figureFacet.getFullBounds();
+  						final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
+  						ITargetResolver resolver = new ITargetResolver()
+  						{
+  							public Element resolveTarget(Element relationship)
+  							{
+  								return ((Dependency) relationship).undeleted_getDependencyTarget();
+  							}
+  							
+  							public UPoint determineTargetLocation(Element target, int index)
+  							{
+  								return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
+  							}
+  							
+  							public NodeCreateFacet getNodeCreator(Element element)
+  							{
+  								ElementProperties props = new ElementProperties(figureFacet);
+  								if (props.isLeaf() || props.isComposite())
+  									return new ClassCreatorGem().getNodeCreateFacet();
+  								return new ClassCreatorGem().getNodeCreateFacet();
+  							}
+  						};
+  				    
+  						new Expander(
+  								coordinator,
   								figureFacet,
-  								null,
-  								UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
-  								new DependencyCreatorGem().getArcCreateFacet(),
-  								coordinator);
+  								subject.undeleted_getOwnedAnonymousDependencies(),
+  								resolver,
+  								new DependencyCreatorGem().getArcCreateFacet()).expand();
   					}
   				});
   				popup.add(expand);
@@ -2230,6 +2257,7 @@ public final class ClassifierNodeGem implements Gem
           slotHelper.makeUpdateTransaction(attributesOrSlots, locked);
         if (!displayOnlyIcon)
           portInstanceHelper.makeUpdateTransaction(ports, locked);
+        return;
       }
 	    
 			Property part = (Property) subject;

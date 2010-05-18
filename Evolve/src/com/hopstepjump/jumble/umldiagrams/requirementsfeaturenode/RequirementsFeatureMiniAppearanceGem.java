@@ -17,14 +17,15 @@ import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
-import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
 
 public class RequirementsFeatureMiniAppearanceGem implements Gem
 {
+	public static final ImageIcon EVOLVE_ICON = IconLoader.loadIcon("monkey-icon.png");
 	private RequirementsFeatureMiniAppearanceFacet miniAppearanceFacet = new RequirementsFeatureMiniAppearanceFacetImpl();
 	private FigureFacet figureFacet;
 
@@ -200,7 +201,7 @@ public class RequirementsFeatureMiniAppearanceGem implements Gem
 	public static JMenuItem makeEvolveCommand(final ToolCoordinatorFacet coordinator, final FigureFacet figureFacet, final boolean iface, final boolean stereotype)
 	{
 		// if this is not at home, allow evolution
-    JMenuItem evolve = new JMenuItem("Evolve");
+    JMenuItem evolve = new JMenuItem("Evolve", EVOLVE_ICON);
     final Package owner =
     	GlobalSubjectRepository.repository.findVisuallyOwningStratum(
     			figureFacet.getDiagram(),

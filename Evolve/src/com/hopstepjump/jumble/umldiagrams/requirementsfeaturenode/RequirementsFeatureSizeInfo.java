@@ -27,9 +27,6 @@ public final class RequirementsFeatureSizeInfo implements ContainerSizeInfo
 	private boolean haveIcon;
 	private boolean displayIconOnly;
 	private String owningPackageName;
-	private boolean ellipsisForAttributes;
-  private boolean ellipsisForOperations;
-  private boolean ellipsisForBody;
 	private UDimension minimumIconExtent;
 	
 	/** constructor */
@@ -200,13 +197,12 @@ public final class RequirementsFeatureSizeInfo implements ContainerSizeInfo
 		
 		// if we have ports, make sure we have a nice border around the edges
 		int sideWidth = 0;
-		int bottomHeight = ellipsisForBody ? 6 : 0;
 		int topHeight = 0;
 		
 		BorderBox borderBox = new BorderBox(
 		    null, 
 		    new UDimension(sideWidth, topHeight),
-				new UDimension(sideWidth, bottomHeight),
+				new UDimension(sideWidth, 0),
 		    insideOuter);
 		
 		ContainerBox container = new ContainerBox("full", new VerticalLayout());
@@ -294,35 +290,5 @@ public final class RequirementsFeatureSizeInfo implements ContainerSizeInfo
   public UDimension getExtent()
   {
   	return extent;
-  }
-
-  public boolean isEllipsisForAttributes()
-  {
-    return ellipsisForAttributes;
-  }
-
-  public void setEllipsisForAttributes(boolean ellipsisForAttributes)
-  {
-    this.ellipsisForAttributes = ellipsisForAttributes;
-  }
-
-  public void setEllipsisForOperations(boolean ellipsisForOperations)
-  {
-    this.ellipsisForOperations = ellipsisForOperations;
-  }
-
-  public boolean isEllipsisForOperations()
-  {
-    return ellipsisForOperations;
-  }
-
-  public boolean isEllipsisForBody()
-  {
-    return ellipsisForBody;
-  }
-
-  public void setEllipsisForBody(boolean ellipsisForBody)
-  {
-    this.ellipsisForBody = ellipsisForBody;
   }
 }

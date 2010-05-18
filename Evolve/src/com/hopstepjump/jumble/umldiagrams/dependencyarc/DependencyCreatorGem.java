@@ -109,7 +109,6 @@ public class DependencyCreatorGem implements Gem
       CalculatedArcPoints points = new CalculatedArcPoints(calculatedPoints);
       NamedElement client = extractDependentClient(points.getNode1().getFigureFacet().getSubject());
       Dependency dependency = client.createOwnedAnonymousDependencies();
-      System.out.println("$$ dependency type = " + dependency.getClass());
 
       // important to set resembles or substitutes before adding the target, as this triggers the backlink 
       boolean resembles = properties.retrieve(">resembles", false).asBoolean();

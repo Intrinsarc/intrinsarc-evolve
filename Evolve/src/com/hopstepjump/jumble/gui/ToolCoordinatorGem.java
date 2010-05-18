@@ -54,22 +54,6 @@ import edu.umd.cs.jazz.component.*;
 import edu.umd.cs.jazz.event.*;
 import edu.umd.cs.jazz.util.*;
 
-// to fix:
-// xx. inferred interfaces lag & pkg name not updating
-// xx. remove all adjusted()
-// xx. fix up formviewupdate -- no need to say "updated"
-// xx. synch up diagramchange and undo/redo
-// xx. garbage collection
-// xx. adding attrs to class makes it go smaller
-// xx. fix all commands
-// xx. remove any unXXX() methods
-// xx. manipulator problems: text, resizing, arc adjusting, enter on attribute
-// xx. operation replacement select etc, runWhenDiagramProcessed phase out, arc select, undo of visibility
-// xx. remove many in subject repository?
-//-------
-// 11. funny freezes
-// 12. key press not registering initially
-
 public final class ToolCoordinatorGem implements Gem
 {
 	public static final int MSEC_VIEW_UPDATE_DELAY = 100;

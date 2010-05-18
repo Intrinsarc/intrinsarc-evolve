@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.*;
 
+import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
@@ -22,6 +23,7 @@ import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
@@ -35,7 +37,6 @@ import com.hopstepjump.jumble.packageview.base.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
-import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
@@ -43,6 +44,17 @@ import com.hopstepjump.swing.enhanced.*;
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
 
+
+// TODO:
+// (done) 1. prevent retargeting of non-replaced link
+// (done) 3. delta view for reqfeatures + links
+// (done) 1b. fix retargeting of start 
+// (done) 1a. fix ellipsis
+// (done) 2. cleanuuids in reqfeaturenode?
+// (done) 4. expand mechanism for full subfeatures (+ others?)
+// 1c. fix subject deletion of link when type is deleted
+// 5. traces (from classifier + ellipsis) + repres model element + any affected evolve changes
+// 6. requirements composition explorer
 
 public final class RequirementsFeatureNodeGem implements Gem
 {
@@ -158,13 +170,34 @@ public final class RequirementsFeatureNodeGem implements Gem
 		}
   }
 
-  private void refreshEllipsis()
+  private boolean isEllipsisForBody()
   {
-    RequirementsFeatureSizeInfo info = makeCurrentInfo();
-    bodyEllipsis = info.isEllipsisForBody();
+		// add ellipsis if the full set of links are not expanded
+		IDeltaEngine engine = GlobalDeltaEngine.engine;
+		DERequirementsFeature dereq = engine.locateObject(subject).asRequirementsFeature();
+    Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet());
+    Set<String> uuids = new HashSet<String>();
+    for (DeltaPair pair : dereq.getDeltas(ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK).getConstituents(engine.locateObject(visualHome).asStratum()))
+    	uuids.add(pair.getConstituent().getUuid());
+    
+    // draw an ellipsis if the full set of subfeatures are not shown
+    for (Iterator<LinkingFacet> iter = figureFacet.getAnchorFacet().getLinks(); iter.hasNext();)
+    {
+    	LinkingFacet link = iter.next();
+    	if (link.getAnchor1().getFigureFacet() == figureFacet)
+    		uuids.remove(UUID(link.getFigureFacet().getSubject()));
+    }
+		
+    return !uuids.isEmpty();
   }
   
-  private void updateFeatureViewAfterSubjectChanged(int actualStereotypeHashcode)
+  
+	private Object UUID(Object subject)
+	{
+		return ((Element) subject).getUuid();
+	}
+
+  private void updateFeatureViewAfterSubjectChanged(int actualStereotypeHashcode, boolean ellipsisForBody)
   {
     // should we be displaying the owner?
     RequirementsFeatureProperties props = new RequirementsFeatureProperties(figureFacet);
@@ -177,7 +210,7 @@ public final class RequirementsFeatureNodeGem implements Gem
     // get a possible name for a substituted element
     String newName = new RequirementsFeatureProperties(figureFacet, subject).getPerspectiveName();
     
-    refreshEllipsis();
+    this.bodyEllipsis = ellipsisForBody;
     
     // set the variables
     name = newName;
@@ -678,18 +711,49 @@ public final class RequirementsFeatureNodeGem implements Gem
 				// add expansions
 				JMenu expand = new JMenu("Expand");
 				expand.setIcon(Expander.EXPAND_ICON);
-				JMenuItem deps = new JMenuItem("dependencies");
+				JMenuItem deps = new JMenuItem("subfeatures");
 				expand.add(deps);
 				deps.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
-					{
-						new Expander().expand(
+					{						
+						UBounds bounds = figureFacet.getFullBounds();
+						final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
+						ITargetResolver resolver = new ITargetResolver()
+						{
+							public Element resolveTarget(Element relationship)
+							{
+								return ((RequirementsFeatureLink) relationship).undeleted_getType();
+							}
+							
+							public UPoint determineTargetLocation(Element target, int index)
+							{
+								return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
+							}
+							
+							public NodeCreateFacet getNodeCreator(Element target)
+							{
+								if (target instanceof RequirementsFeature)
+									return new RequirementsFeatureCreatorGem().getNodeCreateFacet();
+								return null;
+							}
+						};
+						
+						// work out the links that should be present
+						List<Element> links = new ArrayList<Element>();
+						IDeltaEngine engine = GlobalDeltaEngine.engine;
+						DERequirementsFeature dereq = engine.locateObject(subject).asRequirementsFeature();
+				    Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet());
+				    for (DeltaPair pair : dereq.getDeltas(ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK).getConstituents(engine.locateObject(visualHome).asStratum()))
+				    	links.add((Element) pair.getConstituent().getRepositoryObject());
+				    
+				    // expand now
+						new Expander(
+								coordinator,
 								figureFacet,
-								null,
-								UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
-								new DependencyCreatorGem().getArcCreateFacet(),
-								coordinator);
+								links,
+								resolver,
+								new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.MANDATORY_LITERAL).getArcCreateFacet()).expand();
 					}
 				});
 				popup.add(expand);
@@ -862,6 +926,7 @@ public final class RequirementsFeatureNodeGem implements Gem
       properties.add(new PersistentProperty("addedUuids", deletedUuids));
       properties.add(new PersistentProperty("deletedUuids", deletedUuids));
       properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
+      properties.add(new PersistentProperty("ellipsis", bodyEllipsis, false));
       if (arc2 != null)
       {
       	properties.add(new PersistentProperty("arc2P", arc2.getPoint()));
@@ -894,24 +959,8 @@ public final class RequirementsFeatureNodeGem implements Gem
 		 */
 		private void formViewUpdateCommandAfterFeatureChanged(ViewUpdatePassEnum pass)
 		{
-		  if (pass == ViewUpdatePassEnum.MIDDLE)
+		  if (pass != ViewUpdatePassEnum.LAST)
 		    return;
-		  
-		  // on the first pass, add or delete any constituents
-		  if (pass == ViewUpdatePassEnum.START)
-		  {
-/*        // find any parts to add or delete
-        ClassPartHelper partHelper =
-          new ClassPartHelper(
-          		null,
-              figureFacet,
-              primitiveContents,
-              contents);
-        partHelper.cleanUuids();
-*/        
-/*        if (isContentsShowing())
-          partHelper.makeUpdateCommand(locked); */
-		  	}
 		  
       int actualStereotypeHashcode = calculateStereotypeHashcode();
 
@@ -962,18 +1011,18 @@ public final class RequirementsFeatureNodeGem implements Gem
 			}
 
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
-      RequirementsFeatureSizeInfo info = makeCurrentInfo();
+			boolean ellipsis = isEllipsisForBody();
 			if (shouldBeDisplayingOwningPackage == showOwningPackage
 			      && newName.equals(name) && owner.equals(newOwner)
             && stereotypeHashcode == actualStereotypeHashcode
-            && bodyEllipsis == info.isEllipsisForBody() 
+            && bodyEllipsis == ellipsis 
             && displayOnlyIcon == shouldDisplayOnlyIcon()
             && isElementRetired() == retired)
       {
 				return;
       }
 
-      updateFeatureViewAfterSubjectChanged(actualStereotypeHashcode);
+      updateFeatureViewAfterSubjectChanged(actualStereotypeHashcode, ellipsis);
 		}
 		
 		private Double getAngle(RequirementsLinkKind kind, boolean start)
@@ -1143,6 +1192,7 @@ public final class RequirementsFeatureNodeGem implements Gem
     addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
     stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
+    bodyEllipsis = properties.retrieve("ellipsis", false).asBoolean();
 
     if (properties.contains("arc2P"))
     {
@@ -1202,7 +1252,7 @@ public final class RequirementsFeatureNodeGem implements Gem
 	private void registerAdorner()
 	{
     RequirementsFeatureDelegatedAdornerGem adorner =
-    	new RequirementsFeatureDelegatedAdornerGem(figureFacet, null, null, null, null);
+    	new RequirementsFeatureDelegatedAdornerGem(figureFacet);
     figureFacet.registerDynamicFacet(adorner.getDelegatedDeltaAdornerFacet(), DelegatedDeltaAdornerFacet.class);
 	}
 	
@@ -1261,8 +1311,6 @@ public final class RequirementsFeatureNodeGem implements Gem
 			displayOnlyIcon,
 			minimumIconExtent,
 			owningPackageString);
-/*    info.setEllipsisForBody(portsEllipsis || partsEllipsis || connectorsEllipsis);
-*/    
 		return info;
 	}
 	

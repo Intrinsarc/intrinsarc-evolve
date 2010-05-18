@@ -20,6 +20,7 @@ import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulation.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
@@ -730,19 +731,34 @@ public final class PortNodeGem implements Gem
 					public void actionPerformed(ActionEvent e)
 					{
 						Type type = ((Port) figureFacet.getSubject()).undeleted_getType();
-						new Expander().expand(
+						UBounds bounds = figureFacet.getFullBounds();
+						final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
+						ITargetResolver resolver = new ITargetResolver()
+						{
+							public Element resolveTarget(Element relationship)
+							{
+								return ((Dependency) relationship).undeleted_getDependencyTarget();
+							}
+							
+							public UPoint determineTargetLocation(Element target, int index)
+							{
+								return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
+							}
+							
+							public NodeCreateFacet getNodeCreator(Element element)
+							{
+								if (element instanceof Interface)
+									return new InterfaceCreatorGem().getNodeCreateFacet();
+								return null;
+							}
+						};
+
+						new Expander(
+								coordinator,
 								figureFacet,
-								type,
-								UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
-								new DependencyCreatorGem().getArcCreateFacet(),
-								coordinator);
-						new Expander().expand(
-								figureFacet,
-								type,
-								UML2Package.eINSTANCE.getBehavioredClassifier_Implementation(),
-								new ImplementationCreatorGem().getArcCreateFacet(),
-								coordinator);
-	
+								type.undeleted_getOwnedAnonymousDependencies(),
+								resolver,
+								new DependencyCreatorGem().getArcCreateFacet()).expand();
 					}
 				});
 				popup.add(expand);
