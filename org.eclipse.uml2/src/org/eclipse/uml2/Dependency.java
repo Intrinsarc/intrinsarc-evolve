@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.uml2.Dependency#getDependencyTarget <em>Dependency Target</em>}</li>
  *   <li>{@link org.eclipse.uml2.Dependency#isResemblance <em>Resemblance</em>}</li>
  *   <li>{@link org.eclipse.uml2.Dependency#isReplacement <em>Replacement</em>}</li>
+ *   <li>{@link org.eclipse.uml2.Dependency#isTrace <em>Trace</em>}</li>
  * </ul>
  * </p>
  *
@@ -233,6 +234,36 @@ public interface Dependency extends PackageableElement, DirectedRelationship{
 	 * @generated
 	 */
 	void setReplacement(boolean value);
+
+
+
+
+
+	/**
+	 * Returns the value of the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Trace</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Trace</em>' attribute.
+	 * @see #setTrace(boolean)
+	 * @see org.eclipse.uml2.UML2Package#getDependency_Trace()
+	 * @model dataType="org.eclipse.uml2.Boolean"
+	 * @generated
+	 */
+	boolean isTrace();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.uml2.Dependency#isTrace <em>Trace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Trace</em>' attribute.
+	 * @see #isTrace()
+	 * @generated
+	 */
+	void setTrace(boolean value);
 
 
 

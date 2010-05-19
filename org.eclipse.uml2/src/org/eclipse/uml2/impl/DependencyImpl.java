@@ -59,6 +59,7 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
  *   <li>{@link org.eclipse.uml2.impl.DependencyImpl#getDependencyTarget <em>Dependency Target</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.DependencyImpl#isResemblance <em>Resemblance</em>}</li>
  *   <li>{@link org.eclipse.uml2.impl.DependencyImpl#isReplacement <em>Replacement</em>}</li>
+ *   <li>{@link org.eclipse.uml2.impl.DependencyImpl#isTrace <em>Trace</em>}</li>
  * </ul>
  * </p>
  *
@@ -141,6 +142,26 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 * @ordered
 	 */
 	protected static final int REPLACEMENT_EFLAG = 1 << 9;
+
+	/**
+	 * The default value of the '{@link #isTrace() <em>Trace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTrace()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean TRACE_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isTrace() <em>Trace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTrace()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int TRACE_EFLAG = 1 << 10;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -519,6 +540,35 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTrace() {
+		return (eFlags & TRACE_EFLAG) != 0;
+	}
+
+	
+	
+
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTrace(boolean newTrace) {
+		boolean oldTrace = (eFlags & TRACE_EFLAG) != 0;
+		if (newTrace) eFlags |= TRACE_EFLAG; else eFlags &= ~TRACE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UML2Package.DEPENDENCY__TRACE, oldTrace, newTrace));
+
+	}
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 *
 	public void setDependencyTarget(NamedElement newDependencyTarget) {
@@ -690,6 +740,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 				return isResemblance() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.DEPENDENCY__REPLACEMENT:
 				return isReplacement() ? Boolean.TRUE : Boolean.FALSE;
+			case UML2Package.DEPENDENCY__TRACE:
+				return isTrace() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -784,6 +836,9 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 			case UML2Package.DEPENDENCY__REPLACEMENT:
 				setReplacement(((Boolean)newValue).booleanValue());
 				return;
+			case UML2Package.DEPENDENCY__TRACE:
+				setTrace(((Boolean)newValue).booleanValue());
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -867,6 +922,9 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 			case UML2Package.DEPENDENCY__REPLACEMENT:
 				setReplacement(REPLACEMENT_EDEFAULT);
 				return;
+			case UML2Package.DEPENDENCY__TRACE:
+				setTrace(TRACE_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -938,6 +996,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 				return ((eFlags & RESEMBLANCE_EFLAG) != 0) != RESEMBLANCE_EDEFAULT;
 			case UML2Package.DEPENDENCY__REPLACEMENT:
 				return ((eFlags & REPLACEMENT_EFLAG) != 0) != REPLACEMENT_EDEFAULT;
+			case UML2Package.DEPENDENCY__TRACE:
+				return ((eFlags & TRACE_EFLAG) != 0) != TRACE_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -1009,6 +1069,8 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 		result.append((eFlags & RESEMBLANCE_EFLAG) != 0);
 		result.append(", replacement: "); //$NON-NLS-1$
 		result.append((eFlags & REPLACEMENT_EFLAG) != 0);
+		result.append(", trace: "); //$NON-NLS-1$
+		result.append((eFlags & TRACE_EFLAG) != 0);
 		result.append(')');
 		return result.toString();
 	}

@@ -503,6 +503,8 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 				return isResemblance() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.IMPLEMENTATION__REPLACEMENT:
 				return isReplacement() ? Boolean.TRUE : Boolean.FALSE;
+			case UML2Package.IMPLEMENTATION__TRACE:
+				return isTrace() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.IMPLEMENTATION__MAPPING:
 				return getMapping();
 			case UML2Package.IMPLEMENTATION__ABSTRACTION:
@@ -609,6 +611,9 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 			case UML2Package.IMPLEMENTATION__REPLACEMENT:
 				setReplacement(((Boolean)newValue).booleanValue());
 				return;
+			case UML2Package.IMPLEMENTATION__TRACE:
+				setTrace(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.IMPLEMENTATION__MAPPING:
 				setMapping((OpaqueExpression)newValue);
 				return;
@@ -707,6 +712,9 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 			case UML2Package.IMPLEMENTATION__REPLACEMENT:
 				setReplacement(REPLACEMENT_EDEFAULT);
 				return;
+			case UML2Package.IMPLEMENTATION__TRACE:
+				setTrace(TRACE_EDEFAULT);
+				return;
 			case UML2Package.IMPLEMENTATION__MAPPING:
 				setMapping((OpaqueExpression)null);
 				return;
@@ -793,6 +801,8 @@ public class ImplementationImpl extends RealizationImpl implements Implementatio
 				return ((eFlags & RESEMBLANCE_EFLAG) != 0) != RESEMBLANCE_EDEFAULT;
 			case UML2Package.IMPLEMENTATION__REPLACEMENT:
 				return ((eFlags & REPLACEMENT_EFLAG) != 0) != REPLACEMENT_EDEFAULT;
+			case UML2Package.IMPLEMENTATION__TRACE:
+				return ((eFlags & TRACE_EFLAG) != 0) != TRACE_EDEFAULT;
 			case UML2Package.IMPLEMENTATION__MAPPING:
 				return mapping != null;
 			case UML2Package.IMPLEMENTATION__ABSTRACTION:

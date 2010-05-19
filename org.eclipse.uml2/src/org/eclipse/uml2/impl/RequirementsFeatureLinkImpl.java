@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.uml2.DirectedRelationship;
+import org.eclipse.uml2.Element;
 import org.eclipse.uml2.RequirementsFeature;
 import org.eclipse.uml2.RequirementsFeatureLink;
 import org.eclipse.uml2.RequirementsLinkKind;
@@ -398,5 +400,15 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 		return result.toString();
 	}
 
+	
+
+	/**
+	 * handle deletion of type
+	 * @generated NOT
+	 */
+	public boolean isThisDeleted()
+	{
+		return type == null || type.isThisDeleted() || super.isThisDeleted();
+	}
 
 } //RequirementsFeatureLinkImpl

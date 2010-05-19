@@ -4694,6 +4694,15 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDependency_Trace() {
+		return (EAttribute)dependencyEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUsage() {
 		return usageEClass;
 	}
@@ -10723,6 +10732,7 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		createEReference(dependencyEClass, DEPENDENCY__DEPENDENCY_TARGET);
 		createEAttribute(dependencyEClass, DEPENDENCY__RESEMBLANCE);
 		createEAttribute(dependencyEClass, DEPENDENCY__REPLACEMENT);
+		createEAttribute(dependencyEClass, DEPENDENCY__TRACE);
 
 		usageEClass = createEClass(USAGE);
 
@@ -12442,6 +12452,7 @@ public class UML2PackageImpl extends EPackageImpl implements UML2Package {
 		initEReference(getDependency_DependencyTarget(), theUML2Package_1.getNamedElement(), null, "dependencyTarget", null, 0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDependency_Resemblance(), theUML2Package_1.getBoolean(), "resemblance", null, 0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDependency_Replacement(), theUML2Package_1.getBoolean(), "replacement", null, 0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDependency_Trace(), theUML2Package_1.getBoolean(), "trace", null, 0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(usageEClass, Usage.class, "Usage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

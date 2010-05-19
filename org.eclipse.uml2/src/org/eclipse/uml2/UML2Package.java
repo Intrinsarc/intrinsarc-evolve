@@ -17134,6 +17134,15 @@ public interface UML2Package extends EPackage{
 	int PERMISSION__REPLACEMENT = UML2Package.DEPENDENCY__REPLACEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION__TRACE = UML2Package.DEPENDENCY__TRACE;
+
+	/**
 	 * The number of structural features of the the '<em>Permission</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17413,13 +17422,22 @@ public interface UML2Package extends EPackage{
 	int DEPENDENCY__REPLACEMENT = UML2Package.PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__TRACE = UML2Package.PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the the '<em>Dependency</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_FEATURE_COUNT = UML2Package.PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
+	int DEPENDENCY_FEATURE_COUNT = UML2Package.PACKAGEABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -17690,6 +17708,15 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int USAGE__REPLACEMENT = UML2Package.DEPENDENCY__REPLACEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USAGE__TRACE = UML2Package.DEPENDENCY__TRACE;
 
 	/**
 	 * The number of structural features of the the '<em>Usage</em>' class.
@@ -17969,6 +17996,15 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int ABSTRACTION__REPLACEMENT = UML2Package.DEPENDENCY__REPLACEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACTION__TRACE = UML2Package.DEPENDENCY__TRACE;
 
 	/**
 	 * The feature id for the '<em><b>Mapping</b></em>' containment reference.
@@ -18257,6 +18293,15 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int REALIZATION__REPLACEMENT = UML2Package.ABSTRACTION__REPLACEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REALIZATION__TRACE = UML2Package.ABSTRACTION__TRACE;
 
 	/**
 	 * The feature id for the '<em><b>Mapping</b></em>' containment reference.
@@ -18563,6 +18608,15 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int SUBSTITUTION__REPLACEMENT = UML2Package.REALIZATION__REPLACEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSTITUTION__TRACE = UML2Package.REALIZATION__TRACE;
 
 	/**
 	 * The feature id for the '<em><b>Mapping</b></em>' containment reference.
@@ -28168,6 +28222,15 @@ public interface UML2Package extends EPackage{
 	int IMPLEMENTATION__REPLACEMENT = UML2Package.REALIZATION__REPLACEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLEMENTATION__TRACE = UML2Package.REALIZATION__TRACE;
+
+	/**
 	 * The feature id for the '<em><b>Mapping</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28940,6 +29003,15 @@ public interface UML2Package extends EPackage{
 	 * @ordered
 	 */
 	int MANIFESTATION__REPLACEMENT = UML2Package.ABSTRACTION__REPLACEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIFESTATION__TRACE = UML2Package.ABSTRACTION__TRACE;
 
 	/**
 	 * The feature id for the '<em><b>Mapping</b></em>' containment reference.
@@ -64175,6 +64247,15 @@ public interface UML2Package extends EPackage{
 	int DEPLOYMENT__REPLACEMENT = UML2Package.DEPENDENCY__REPLACEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Trace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT__TRACE = UML2Package.DEPENDENCY__TRACE;
+
+	/**
 	 * The feature id for the '<em><b>Deployed Artifact</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79366,6 +79447,17 @@ public interface UML2Package extends EPackage{
 	 * @generated
 	 */
 	EAttribute getDependency_Replacement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.uml2.Dependency#isTrace <em>Trace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Trace</em>'.
+	 * @see org.eclipse.uml2.Dependency#isTrace()
+	 * @see #getDependency()
+	 * @generated
+	 */
+	EAttribute getDependency_Trace();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.uml2.Usage <em>Usage</em>}'.

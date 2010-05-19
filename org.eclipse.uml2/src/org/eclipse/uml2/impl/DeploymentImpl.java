@@ -612,6 +612,8 @@ public class DeploymentImpl extends DependencyImpl implements Deployment {
 				return isResemblance() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.DEPLOYMENT__REPLACEMENT:
 				return isReplacement() ? Boolean.TRUE : Boolean.FALSE;
+			case UML2Package.DEPLOYMENT__TRACE:
+				return isTrace() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.DEPLOYMENT__DEPLOYED_ARTIFACT:
 				return getDeployedArtifacts();
 			case UML2Package.DEPLOYMENT__LOCATION:
@@ -712,6 +714,9 @@ public class DeploymentImpl extends DependencyImpl implements Deployment {
 			case UML2Package.DEPLOYMENT__REPLACEMENT:
 				setReplacement(((Boolean)newValue).booleanValue());
 				return;
+			case UML2Package.DEPLOYMENT__TRACE:
+				setTrace(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.DEPLOYMENT__DEPLOYED_ARTIFACT:
 				getDeployedArtifacts().clear();
 				getDeployedArtifacts().addAll((Collection)newValue);
@@ -806,6 +811,9 @@ public class DeploymentImpl extends DependencyImpl implements Deployment {
 			case UML2Package.DEPLOYMENT__REPLACEMENT:
 				setReplacement(REPLACEMENT_EDEFAULT);
 				return;
+			case UML2Package.DEPLOYMENT__TRACE:
+				setTrace(TRACE_EDEFAULT);
+				return;
 			case UML2Package.DEPLOYMENT__DEPLOYED_ARTIFACT:
 				getDeployedArtifacts().clear();
 				return;
@@ -886,6 +894,8 @@ public class DeploymentImpl extends DependencyImpl implements Deployment {
 				return ((eFlags & RESEMBLANCE_EFLAG) != 0) != RESEMBLANCE_EDEFAULT;
 			case UML2Package.DEPLOYMENT__REPLACEMENT:
 				return ((eFlags & REPLACEMENT_EFLAG) != 0) != REPLACEMENT_EDEFAULT;
+			case UML2Package.DEPLOYMENT__TRACE:
+				return ((eFlags & TRACE_EFLAG) != 0) != TRACE_EDEFAULT;
 			case UML2Package.DEPLOYMENT__DEPLOYED_ARTIFACT:
 				return deployedArtifact != null && !deployedArtifact.isEmpty();
 			case UML2Package.DEPLOYMENT__LOCATION:
