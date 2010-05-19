@@ -1,6 +1,7 @@
 package com.hopstepjump.jumble.umldiagrams.classifiernode;
 
 import org.eclipse.uml2.*;
+import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 
 import com.hopstepjump.deltaengine.base.*;
@@ -160,5 +161,10 @@ public class ElementProperties
 	public DEElement getElement()
 	{
 		return element;
-	} 
+	}
+
+	public boolean isPrimitive()
+	{
+		return ((Class) element.getRepositoryObject()).getComponentKind().equals(ComponentKind.PRIMITIVE_LITERAL);
+	}
 }

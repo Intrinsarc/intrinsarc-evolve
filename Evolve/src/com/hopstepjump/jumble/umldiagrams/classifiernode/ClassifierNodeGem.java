@@ -33,6 +33,7 @@ import com.hopstepjump.idraw.nodefacilities.style.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.deltaview.*;
 import com.hopstepjump.jumble.expander.*;
+import com.hopstepjump.jumble.gui.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.jumble.packageview.base.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
@@ -1291,9 +1292,9 @@ public final class ClassifierNodeGem implements Gem
   						final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
   						ITargetResolver resolver = new ITargetResolver()
   						{
-  							public Element resolveTarget(Element relationship)
+  							public List<Element> resolveTargets(Element relationship)
   							{
-  								return ((Dependency) relationship).undeleted_getDependencyTarget();
+  								return ((Dependency) relationship).getTargets();
   							}
   							
   							public UPoint determineTargetLocation(Element target, int index)
@@ -1301,12 +1302,28 @@ public final class ClassifierNodeGem implements Gem
   								return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
   							}
   							
-  							public NodeCreateFacet getNodeCreator(Element element)
+  							public NodeCreateFacet getNodeCreator(Element target)
   							{
-  								ElementProperties props = new ElementProperties(figureFacet);
-  								if (props.isLeaf() || props.isComposite())
-  									return new ClassCreatorGem().getNodeCreateFacet();
-  								return new ClassCreatorGem().getNodeCreateFacet();
+  								if (target instanceof Interface)
+  									return new InterfaceCreatorGem().getNodeCreateFacet();
+  								if (target.getClass() == ClassImpl.class)
+  								{
+	  								ElementProperties props = new ElementProperties(figureFacet, target);
+	  								if (props.isPrimitive())
+	  									return PaletteManagerGem.makePrimitiveCreator(false);
+	  								if (props.isLeaf() || props.isComposite())
+	  									return PaletteManagerGem.makeCompositeShortcutCreator();
+	  								if (props.isFactory())
+	  									return PaletteManagerGem.makeFactoryCreator(true);
+	  								if (props.isPlaceholder())
+	  									return PaletteManagerGem.makePlaceholderCreator(true);
+	  								if (props.isState())
+	  									return PaletteManagerGem.makeStateCreator(false);
+	  								ClassCreatorGem gem = new ClassCreatorGem();
+	  								gem.setDisplayOnlyIcon(false);
+	  								return gem.getNodeCreateFacet();
+  								}
+  								return null;
   							}
   						};
   				    

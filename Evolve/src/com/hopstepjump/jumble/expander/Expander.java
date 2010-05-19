@@ -48,6 +48,15 @@ public class Expander
 		coordinator.commitTransaction();
 	}
 
+	public void expandWithoutTransaction()
+	{
+		for (Element rel : relations)
+		{
+			if (!rel.isThisDeleted())
+				expand(rel);
+		}
+	}
+
 	private void expand(Element rel)
 	{
 		// don't expand if there is already a figure satisfying the relationship
@@ -60,26 +69,28 @@ public class Expander
 		}
 		
 		// handle any targets		
-		Element target = resolver.resolveTarget(rel);
-		if (target == null || target.isThisDeleted())
-			return;
-		
-		// find any figures on the diagram that correspond to "t"
-		List<FigureFacet> figures = findFiguresWithSubject(diagram, target);
-		// pick the one closest to the source
-		FigureFacet closest = chooseClosest(from, figures);
-		// create the arc between figure and f
-		if (closest != null)
-			createArc(from, rel, closest, arcCreator, coordinator);
-		else
+		for (Element target : resolver.resolveTargets(rel))
 		{
-			// we cannot find, so the node figure must be created
-			NodeCreateFacet creator = resolver.getNodeCreator(target);
-		
-			if (creator != null)
+			if (target == null || target.isThisDeleted())
+				continue;
+			
+			// find any figures on the diagram that correspond to "t"
+			List<FigureFacet> figures = findFiguresWithSubject(diagram, target);
+			// pick the one closest to the source
+			FigureFacet closest = chooseClosest(from, figures);
+			// create the arc between figure and f
+			if (closest != null)
+				createArc(from, rel, closest, arcCreator, coordinator);
+			else
 			{
-				FigureFacet node = createNode(creator, target);
-				createArc(from, rel, node, arcCreator, coordinator);
+				// we cannot find, so the node figure must be created
+				NodeCreateFacet creator = resolver.getNodeCreator(target);
+			
+				if (creator != null)
+				{
+					FigureFacet node = createNode(creator, target);
+					createArc(from, rel, node, arcCreator, coordinator);
+				}
 			}
 		}
 	}

@@ -730,19 +730,34 @@ public final class PortNodeGem implements Gem
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						Type type = ((Port) figureFacet.getSubject()).undeleted_getType();
+						Class type = (Class) ((Port) figureFacet.getSubject()).undeleted_getType();
 						UBounds bounds = figureFacet.getFullBounds();
-						final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
+						final UBounds clsBounds = figureFacet.getContainedFacet().getContainer().getFigureFacet().getFullBounds();
+						final UPoint mid = bounds.getMiddlePoint();
 						ITargetResolver resolver = new ITargetResolver()
 						{
-							public Element resolveTarget(Element relationship)
+							private int count = -1;
+							private ClosestLine closest = PortNodeContainerPreviewGem.classifyPoint(mid, clsBounds);
+							public List<Element> resolveTargets(Element relationship)
 							{
-								return ((Dependency) relationship).undeleted_getDependencyTarget();
+								// works for dependencies and implementations
+								return ((Dependency) relationship).getTargets();
 							}
 							
 							public UPoint determineTargetLocation(Element target, int index)
 							{
-								return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
+								count++;
+								switch (closest.getLineNumber())
+								{
+								case 0:
+									return mid.add(new UDimension(-50 + 40 * count, -100));
+								case 1:
+									return mid.add(new UDimension(-100, -50 + 40 * count));
+								case 2:
+									return mid.add(new UDimension(-50 + 40 * count, 100));
+								default:
+									return mid.add(new UDimension(100, -50 + 40 * count));
+								}
 							}
 							
 							public NodeCreateFacet getNodeCreator(Element element)
@@ -753,12 +768,21 @@ public final class PortNodeGem implements Gem
 							}
 						};
 
+						String name = figureFacet.getFigureName();
+						coordinator.startTransaction("expanded from " + name, "unexpanded from " + name);
 						new Expander(
 								coordinator,
 								figureFacet,
 								type.undeleted_getOwnedAnonymousDependencies(),
 								resolver,
-								new DependencyCreatorGem().getArcCreateFacet()).expand();
+								new DependencyCreatorGem().getArcCreateFacet()).expandWithoutTransaction();
+						new Expander(
+								coordinator,
+								figureFacet,
+								type.undeleted_getImplementations(),
+								resolver,
+								new ImplementationCreatorGem().getArcCreateFacet()).expandWithoutTransaction();
+						coordinator.commitTransaction();
 					}
 				});
 				popup.add(expand);

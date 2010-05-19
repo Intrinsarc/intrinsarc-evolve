@@ -493,9 +493,9 @@ public final class BasicNamespaceNodeGem implements Gem
 						final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
 						ITargetResolver resolver = new ITargetResolver()
 						{
-							public Element resolveTarget(Element relationship)
+							public List<Element> resolveTargets(Element relationship)
 							{
-								return ((Dependency) relationship).undeleted_getDependencyTarget();
+								return ((Dependency) relationship).getTargets();
 							}
 							
 							public UPoint determineTargetLocation(Element target, int index)
@@ -508,7 +508,9 @@ public final class BasicNamespaceNodeGem implements Gem
 								if (!(target instanceof Package))
 										return null;
 								if (UML2DeltaEngine.isRawPackage(target))
-									return PaletteManagerGem.makePackageCreator();
+									return  (NodeCreateFacet) PersistentFigureRecreatorRegistry.registry.retrieveRecreator(PackageCreatorGem.NAME);
+								if (target instanceof Model)
+									return  (NodeCreateFacet) PersistentFigureRecreatorRegistry.registry.retrieveRecreator(ModelCreatorGem.NAME);
 								return PaletteManagerGem.makeStrictStratumCreator();
 							}
 						};
