@@ -38,7 +38,7 @@ public class XMLSubjectRepositoryGem implements Gem
 
   private String fileName;
   private Model topLevel;
-  private Resource resource;
+  private XMIResourceImpl resource;
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
@@ -604,20 +604,21 @@ public class XMLSubjectRepositoryGem implements Gem
   /**
    * @return
    */
-  private Resource createXMIResource(String fileName)
+  private XMIResourceImpl createXMIResource(String fileName)
   {
     // create the resource where Foo will live
     ResourceSet resourceSet = new ResourceSetImpl();
     String file = fileName == null ? "" : fileName;
     URI fileURI = URI.createFileURI(new File(file).getAbsolutePath());
-    Resource resource = resourceSet.createResource(fileURI);
+    XMIResourceImpl resource = (XMIResourceImpl) resourceSet.createResource(fileURI);
+    resource.setEncoding("utf-8");
     return resource;
   }
 
   /**
    * @return
    */
-  private Resource readXMIResource(String fileName)
+  private XMIResourceImpl readXMIResource(String fileName)
   {
   	File file = new File(fileName);
     if (!file.exists())
@@ -640,9 +641,10 @@ public class XMLSubjectRepositoryGem implements Gem
       }
       
       resourceSet.getPackageRegistry().put(UML2Package.eNS_URI, UML2Package.eINSTANCE);
-      Resource read = resourceSet.getResource(fileURI, true);
+      XMLResourceImpl read = (XMLResourceImpl) resourceSet.getResource(fileURI, true);
       read.setURI(fileURI);
-      return read;
+      read.setEncoding("utf-8");
+      return (XMIResourceImpl) read;
     }
     catch (IOException ex)
     {

@@ -12,11 +12,9 @@ import org.eclipse.uml2.Package;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.arcfacilities.arcsupport.*;
-import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.utility.*;
-import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
@@ -70,18 +68,7 @@ public class RequirementsFeatureLinkGem
     
     public void performPostDeleteAction()
     {
-      // important to use the reference rather than the figure, which gets recreated...
-      String uuid = FeatureNodeGem.getOriginalSubject(subject).getUuid();      
-      getSimpleDeletedUuidsFacet().addDeleted(uuid);
     }
-
-	  private SimpleDeletedUuidsFacet getSimpleDeletedUuidsFacet()
-	  {
-	    // follow one anchor up until we find the classifier, and then look for the simple deleted uuids facet 
-	    FigureFacet clsFigure = figureFacet.getLinkingFacet().getAnchor1().getFigureFacet();
-	    return (SimpleDeletedUuidsFacet)
-	      clsFigure.getDynamicFacet(SimpleDeletedUuidsFacet.class);
-	  }
 
     public boolean hasSpecificKillAction()
     {

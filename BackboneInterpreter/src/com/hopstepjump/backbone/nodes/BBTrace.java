@@ -13,7 +13,7 @@ public class BBTrace extends DETrace implements INode, Serializable
   private transient DEObject parent;
   @XStreamAsAttribute
   private String uuid = BBUidGenerator.newUuid(getClass());
-	private DEElement target;
+	private DERequirementsFeature target;
 	private List<DEAppliedStereotype> appliedStereotypes;
   
   public BBTrace()
@@ -66,7 +66,7 @@ public class BBTrace extends DETrace implements INode, Serializable
 	}
 
 	@Override
-	public DEElement getTarget()
+	public DERequirementsFeature getTarget()
 	{
 		return target;
 	}

@@ -4,7 +4,6 @@ import java.util.*;
 
 import javax.swing.*;
 
-import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 
 import com.hopstepjump.geometry.*;
@@ -68,30 +67,32 @@ public class Expander
 				return;
 		}
 		
-		// handle any targets		
-		for (Element target : resolver.resolveTargets(rel))
-		{
-			if (target == null || target.isThisDeleted())
-				continue;
-			
-			// find any figures on the diagram that correspond to "t"
-			List<FigureFacet> figures = findFiguresWithSubject(diagram, target);
-			// pick the one closest to the source
-			FigureFacet closest = chooseClosest(from, figures);
-			// create the arc between figure and f
-			if (closest != null)
-				createArc(from, rel, closest, arcCreator, coordinator);
-			else
+		// handle any targets
+		List<Element> targets = resolver.resolveTargets(rel);
+		if (targets != null)
+			for (Element target : resolver.resolveTargets(rel))
 			{
-				// we cannot find, so the node figure must be created
-				NodeCreateFacet creator = resolver.getNodeCreator(target);
-			
-				if (creator != null)
+				if (target == null || target.isThisDeleted())
+					continue;
+				
+				// find any figures on the diagram that correspond to "t"
+				List<FigureFacet> figures = findFiguresWithSubject(diagram, target);
+				// pick the one closest to the source
+				FigureFacet closest = chooseClosest(from, figures);
+				// create the arc between figure and f
+				if (closest != null)
+					createArc(from, rel, closest, arcCreator, coordinator);
+				else
 				{
-					FigureFacet node = createNode(creator, target);
-					createArc(from, rel, node, arcCreator, coordinator);
+					// we cannot find, so the node figure must be created
+					NodeCreateFacet creator = resolver.getNodeCreator(target);
+				
+					if (creator != null)
+					{
+						FigureFacet node = createNode(creator, target);
+						createArc(from, rel, node, arcCreator, coordinator);
+					}
 				}
-			}
 		}
 	}
 

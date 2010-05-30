@@ -35,6 +35,7 @@ public class LinkedTextGem implements Gem
 	private LinkedTextFacet linkedTextFacet = new LinkedTextFacetImpl();
   private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   private int majorPointType;
+  private String prefix;
 
 	public LinkedTextGem(String text, boolean suppress, int majorPointType)
   {
@@ -54,6 +55,7 @@ public class LinkedTextGem implements Gem
 		text = properties.retrieve("text", "").asString();
     suppress = properties.retrieve("suppress", false).asBoolean();
     majorPointType = properties.retrieve("majorPt", CalculatedArcPoints.MAJOR_POINT_MIDDLE).asInteger();
+		prefix = properties.retrieve("prefix", (String) null).asString();
 	}
 
 	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
@@ -120,7 +122,7 @@ public class LinkedTextGem implements Gem
       TextManipulatorGem textGem = new TextManipulatorGem(
       		coordinator,
       		"changed port text", "restored port text",
-      		text, 
+      		getPrefixedText(text), 
       		font,
       		lineColor,
       		Color.white,
@@ -131,7 +133,7 @@ public class LinkedTextGem implements Gem
 	      new OriginLineManipulatorGem(figureFacet, getMajorPoint());
 	    decorator.setDecoratedManipulatorFacet(textGem.getManipulatorFacet());
 
-	    if (text.length() == 0)
+	    if (getPrefixedText(text).length() == 0)
 	    {
 		    EmptyTextManipulatorGem decorator2 =
 	    		new EmptyTextManipulatorGem(diagramView, figureFacet, figureFacet.getFullBounds().getTopLeftPoint(), "(?)");
@@ -181,7 +183,7 @@ public class LinkedTextGem implements Gem
 		 */
 		public UBounds vetTextResizedExtent(String text)
 		{
-			ZText nameText = new ZText(text, font);	
+			ZText nameText = new ZText(getPrefixedText(text), font);	
 			return new UBounds(
 			    figureFacet.getFullBounds().getTopLeftPoint(),
 			    new UBounds(nameText.getBounds()).getDimension());
@@ -189,6 +191,14 @@ public class LinkedTextGem implements Gem
 	
 	  public void setText(String newText, Object listSelection, boolean unsuppress)
 	  {
+	  	// remove any prefix and any space
+	  	if (newText != null && prefix != null && newText.startsWith(prefix))
+	  	{
+	  		newText = newText.substring(prefix.length());
+	  		if (newText.startsWith(" "))
+	  			newText = newText.substring(1);
+	  	}
+	  	
 	    // need to resize this also, as the change in text may have affected the size
 	    text = extractOriginFacet().textChanged(newText, majorPointType);
 	    
@@ -243,7 +253,7 @@ public class LinkedTextGem implements Gem
 			UBounds bounds = figureFacet.getFullBounds();
 
 			// place some text indicating the dimensions
-			ZText nameText = new ZText(text, font);
+			ZText nameText = new ZText(getPrefixedText(text), font);
 			UPoint start = bounds.getTopLeftPoint();
 			nameText.setTranslation(start);
 			nameText.setPenColor(lineColor);
@@ -276,7 +286,7 @@ public class LinkedTextGem implements Gem
 	    if (favoured)
 	    {
 		    ManipulatorFacet keyFocus = null;
-	      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed text", "restored text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+	      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed text", "restored text", getPrefixedText(text), font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
 	      textGem.connectTextableFacet(linkedTextFacet);
 	      keyFocus = textGem.getManipulatorFacet();
 
@@ -318,7 +328,7 @@ public class LinkedTextGem implements Gem
 		 */
 		public UDimension getCreationExtent()
 		{
-			ZText nameText = new ZText(text, font);	
+			ZText nameText = new ZText(getPrefixedText(text), font);	
 			return new UBounds(nameText.getBounds()).getDimension();
 		}
 	
@@ -367,6 +377,7 @@ public class LinkedTextGem implements Gem
 			properties.add(new PersistentProperty("text", text));
       properties.add(new PersistentProperty("suppress", suppress, false));
       properties.add(new PersistentProperty("majorPt", majorPointType, CalculatedArcPoints.MAJOR_POINT_MIDDLE));
+			properties.add(new PersistentProperty("prefix", prefix, null));
 		}
 
 		/**
@@ -447,8 +458,17 @@ public class LinkedTextGem implements Gem
     return extractOriginFacet().getMajorPoint(majorPointType);
   }
 
-	private UDimension getTextHeightAsDimension(ZText text)
+	public void addPrefix(String prefix)
 	{
-		return new UDimension(0, text.getBounds().getHeight());
+		this.prefix = prefix;
+	}
+	
+	private String getPrefixedText(String text)
+	{
+		if (prefix != null && text.length() > 0)
+			return prefix + " " + text;
+		if (prefix != null)
+			return prefix;
+		return text;
 	}
 }

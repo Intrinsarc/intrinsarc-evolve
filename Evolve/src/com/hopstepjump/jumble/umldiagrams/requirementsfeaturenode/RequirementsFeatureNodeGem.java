@@ -51,8 +51,9 @@ import edu.umd.cs.jazz.component.*;
 // (done) 1a. fix ellipsis
 // (done) 2. cleanuuids in reqfeaturenode?
 // (done) 4. expand mechanism for full subfeatures (+ others?)
-// 1c. fix subject deletion of link when type is deleted + immutable trace flag + traces on classifier
+// (done) 1c. fix subject deletion of link when type is deleted + immutable trace flag + traces on classifier
 // 5. traces (from classifier + ellipsis)
+//         /* deleting from display, expansion in class */ delta view, replacement, ellipsis in class
 // 6. requirements composition explorer
 
 public final class RequirementsFeatureNodeGem implements Gem

@@ -113,7 +113,11 @@ public class UML2DeltaEngine implements IDeltaEngine
     {
     	convert = new UML2RequirementsFeatureLink((RequirementsFeatureLink) repositoryObject);
     }
-    // need to handle trace
+    else
+    if (cls == DependencyImpl.class)
+    {
+    	convert = new UML2Trace((Dependency) repositoryObject);
+    }
     
     // store it away in the map
     if (convert != null)

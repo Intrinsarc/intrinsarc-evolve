@@ -583,7 +583,8 @@ public final class TextManipulatorGem implements Gem
 	  {
       if (state == EDITING_STATE)
       {
-	      sendMouseEventToText(point, MouseEvent.MOUSE_RELEASED, event.getModifiers());
+      	if (event != null)
+      		sendMouseEventToText(point, MouseEvent.MOUSE_RELEASED, event.getModifiers());
       }
 	  }
 	

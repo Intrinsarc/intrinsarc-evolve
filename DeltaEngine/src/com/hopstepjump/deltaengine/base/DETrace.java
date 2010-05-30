@@ -2,7 +2,7 @@ package com.hopstepjump.deltaengine.base;
 
 public abstract class DETrace extends DEConstituent
 {
-  public abstract DEElement getTarget();
+  public abstract DERequirementsFeature getTarget();
   
   public DETrace()
   {

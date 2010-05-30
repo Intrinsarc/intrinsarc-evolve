@@ -46,6 +46,7 @@ import com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode.*;
 import com.hopstepjump.jumble.umldiagrams.sequencesection.*;
 import com.hopstepjump.jumble.umldiagrams.slotnode.*;
 import com.hopstepjump.jumble.umldiagrams.stereotypenode.*;
+import com.hopstepjump.jumble.umldiagrams.tracearc.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.uml2deltaengine.*;
 
@@ -683,6 +684,7 @@ public final class ToolCoordinatorGem implements Gem
     registerRecreator(new MessageCreatorGem().getArcCreateFacet());
     registerRecreator(new SequenceSectionCreatorGem().getNodeCreateFacet());
     registerRecreator(new RequirementsFeatureCreatorGem().getNodeCreateFacet());
+    registerRecreator(new TraceCreatorGem().getArcCreateFacet());
     registerRecreator(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.MANDATORY_LITERAL).getArcCreateFacet());
 	}
 }

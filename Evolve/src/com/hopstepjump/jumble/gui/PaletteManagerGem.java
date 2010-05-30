@@ -41,6 +41,7 @@ import com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode.*;
 import com.hopstepjump.jumble.umldiagrams.sequencesection.*;
 import com.hopstepjump.jumble.umldiagrams.stereotypenode.*;
 import com.hopstepjump.jumble.umldiagrams.substitutionarc.*;
+import com.hopstepjump.jumble.umldiagrams.tracearc.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.palette.*;
@@ -403,7 +404,7 @@ public class PaletteManagerGem
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Package", null);
       
 		  palette.addEntry(makeEntry(true, "relaxed-stratum.png", "Relaxed stratum", makeNodeCreateTool(makeRelaxedStratumCreator()), "top", null));
-		  palette.addEntry(makeEntry(true, "strict-stratum.png", "Strict stratum", makeNodeCreateTool(makeStrictStratumCreator()), "top", null));
+		  palette.addEntry(makeEntry(true, "strict-stratum.png", "Strict stratum",   makeNodeCreateTool(makeStrictStratumCreator()), "top", null));
       
       palette.addEntry(makeEntry(false, "dependency.png", "Dependency",           new ArcCreateToolGem(retrieveArcRecreator(DependencyCreatorGem.NAME)).getToolFacet(), "namespace,element"));
       palette.addEntry(makeEntry(true, "package.png",     "Package",              makeNodeCreateTool(retrieveNodeRecreator(PackageCreatorGem.NAME)), "top"));
@@ -428,12 +429,12 @@ public class PaletteManagerGem
       palette.addEntry(makeEntry(false, "one-of-subfeature.png", 			"One of (Alternative)", new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.ONE_OF_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
       palette.addEntry(makeEntry(true, "component.png",    "Component",            						makeNodeCreateTool(compositeCreator.getNodeCreateFacet()), "top"));
       palette.addEntry(makeEntry(true, "component.png",    "Component (small)",    						makeNodeCreateTool(compositeShortcutCreator), "top"));
-      palette.addEntry(makeEntry(false, "trace.png", 									"Trace",           			new ArcCreateToolGem(retrieveArcRecreator(DependencyCreatorGem.NAME)).getToolFacet(), "class"));
+      palette.addEntry(makeEntry(false, "trace.png", 									"Trace",           		  new ArcCreateToolGem(new TraceCreatorGem().getArcCreateFacet()).getToolFacet(), "class,interface"));
+      
       tools.addCategory(palette);
     }
 
-    {
-      
+    { 
       {
         RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Interface", new String[]{COMPONENT_FOCUS, STATE_FOCUS, CLASS_FOCUS});
         palette.addEntry(makeEntry(true, "interface.png",    "Interface",            makeNodeCreateTool(interfaceCreator.getNodeCreateFacet()), "top"));

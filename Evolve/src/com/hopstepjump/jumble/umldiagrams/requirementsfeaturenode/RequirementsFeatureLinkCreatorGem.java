@@ -1,7 +1,6 @@
 package com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode;
 
 import org.eclipse.uml2.*;
-import org.eclipse.uml2.Class;
 
 import com.hopstepjump.idraw.arcfacilities.arcsupport.*;
 import com.hopstepjump.idraw.arcfacilities.creationbase.*;

@@ -126,7 +126,7 @@ public class UMLElementViewer
       	return new UMLStringAttributeViewer(element, feature, listener, readOnly);
       }
       if (name.equals("Boolean"))
-        return new UMLBooleanAttributeViewer(element, feature, listener, fName.equals("resemblance") || fName.equals("replacement"));
+        return new UMLBooleanAttributeViewer(element, feature, listener, fName.equals("resemblance") || fName.equals("replacement") || fName.equals("trace"));
     }
     
     // handle enumerations

@@ -267,6 +267,24 @@ public class UMLNodeRendererGem implements Gem
     addSubfeatureIcons("Optional subfeature", RequirementsLinkKind.OPTIONAL_LITERAL, "optional-subfeature.png");
     addSubfeatureIcons("One-or-more subfeature", RequirementsLinkKind.ONE_OR_MORE_LITERAL, "one-or-more-subfeature.png");
     addSubfeatureIcons("One-of subfeature", RequirementsLinkKind.ONE_OF_LITERAL, "one-of-subfeature.png");
+
+    // add icons for trace links
+    addIcon(DeltaDeletedTraceImpl.class, null, null, null, "dependency.png", "delta-deleted.png",
+      new UMLIconDeterminer()
+      {
+        public boolean isRelevant(Element element)
+        {
+          return ((Dependency) ((DeltaDeletedTrace) element).getDeleted()).isTrace();
+        }          
+      });
+    addIcon(DeltaReplacedTraceImpl.class, null, null, null, "dependency.png", "delta-replaced.png",
+      new UMLIconDeterminer()
+      {
+        public boolean isRelevant(Element element)
+        {
+          return ((Dependency) ((DeltaReplacedTrace) element).getReplaced()).isTrace();
+        }          
+      });
   }
   
   private void addSubfeatureIcons(String name, final RequirementsLinkKind kind, String icon)
