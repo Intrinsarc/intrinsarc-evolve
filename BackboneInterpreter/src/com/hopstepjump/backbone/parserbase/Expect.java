@@ -19,6 +19,23 @@ public class Expect
 		return this;
 	}
 	
+	public Expect literal()
+	{
+		return literal((String[]) null);
+	}
+	
+	public Expect literal(String[] literal)
+	{
+		Token t = tok.next();
+		if (t == null)
+			tok.throwParseException("Expected literal but found end of file", false);
+		if (!t.getType().equals(TokenType.LITERAL))
+			tok.throwParseException("Expected literal but found " + t, true);
+		if (literal != null)
+			literal[0] = t.getText();
+		return this;
+	}
+	
 	public Expect optionalLiteral(String literal, final boolean toSet[])
 	{
 		toSet[0] = false;
@@ -26,8 +43,9 @@ public class Expect
 				new LiteralPatternMatcher(literal),
 				new IAction()
 				{
-					public void act(Expect expect, Token tok)
+					public void act()
 					{
+						tok.next();
 						toSet[0] = true;
 					}
 				}));
@@ -42,32 +60,34 @@ public class Expect
 	{
 		return optional(false, matched, matches);
 	}
-	
-	public Expect name(String[] uuidToSet, String[] nameToSet)
+
+	public Expect uuid(String[] uuid)
 	{
-		return name("", uuidToSet, nameToSet);
+		uuid(uuid, null);
+		return this;
 	}
 	
-	public Expect name(String prefixIfNotGlobal, String[] uuidToSet, String[] nameToSet)
+	public Expect uuid(String[] uuidToSet, String[] nameToSet)
 	{
 		Token t = tok.next();
 		if (t == null)
 			tok.throwParseException("Expected a name but found end of file", false);
 		if (!t.getType().equals(TokenType.LITERAL))
 			tok.throwParseException("Expected a name but found " + t, true);
-		String full = t.getText();
-		if (!full.contains("-") && !full.contains("."))
-			full = prefixIfNotGlobal + "." + full;
-		uuidToSet[0] = full;
+		uuidToSet[0] = t.getText();
 		
 		// peek for a string
 		Token p = tok.peek();
 		if (p != null && p.getType().equals(TokenType.DESCRIPTIVE_NAME))
 		{
-			nameToSet[0] = tok.next().getText();
+			if (nameToSet != null)
+				nameToSet[0] = tok.next().getText();
 		}
 		else
-			nameToSet[0] = null;
+		{
+			if (nameToSet != null)
+				nameToSet[0] = null;
+		}
 		
 		return this;
 	}
@@ -113,20 +133,33 @@ public class Expect
 		return this;
 	}
 
-	public Expect guard(String literal, IAction action)
+	public Expect guard(String literal, IAction ifTrue)
+	{
+		return guard(literal, ifTrue, null);
+	}
+	
+	public Expect guard(String literal, IAction ifTrue, IAction ifFalse)
 	{
 		// peek to see if we have a match
 		if (tok.peek().equals(new Token(TokenType.LITERAL, literal)))
-			action.act(this, tok.next());
+		{
+			tok.next();
+			ifTrue.act();
+		}
+		else
+		{
+			if (ifFalse != null)
+				ifFalse.act();
+		}
 		return this;
 	}
 	
 	public Expect inside(IAction action)
 	{
-		action.act(this, null);
+		action.act();
 		return this;
 	}
-	
+
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
@@ -142,17 +175,12 @@ public class Expect
 				tok.throwParseException("Expected one of the following " + getDescriptions(matches) + " but found end of file", false);
 			return this;
 		}
-		if (!t.getType().equals(TokenType.LITERAL) && !mustHaveOne)
-			return this;
-		if (!t.getType().equals(TokenType.LITERAL))
-			tok.throwParseException("Expected one of the following " + getDescriptions(matches) + " but found " + t, false);
 		int lp = 0;
 		for (Match m : matches)
 		{
 			if (m.getMatcher().matches(t))
 			{
-				m.getAction().act(this, t);
-				tok.next();
+				m.getAction().act();
 				if (matched != null)
 					matched[0] = true;
 				return this;
@@ -175,5 +203,30 @@ public class Expect
 			strs = m.getMatcher().getDescription();
 		}
 		return strs;
+	}
+
+	public Token next()
+	{
+		return tok.next();
+	}
+
+
+	public Token peek()
+	{
+		return tok.peek();
+	}
+
+	public Token parameter()
+	{
+		final Token t[] = {null};
+		oneOf(new ParameterMatch(
+			new IAction()
+			{
+				public void act()
+				{
+					t[0] = next();
+				}
+			}));
+		return t[0];
 	}
 }

@@ -19,7 +19,7 @@ public class RawStratumParseTests
 		boolean relaxed[] = {false};
 		List<String> dependsOn = new ArrayList<String>();
 		parseStratumDeclaration("stratum a is-relaxed;", uuid, name, relaxed, dependsOn);
-		assertEquals("global.a", uuid[0]);
+		assertEquals("a", uuid[0]);
 		assertTrue(relaxed[0]);
 	}
 	
@@ -41,10 +41,10 @@ public class RawStratumParseTests
 		boolean relaxed[] = {false};
 		List<String> dependsOn = new ArrayList<String>();
 		parseStratumDeclaration("stratum a is-relaxed depends-on test1, test2-a-b;", uuid, name, relaxed, dependsOn);
-		assertEquals("global.a", uuid[0]);
+		assertEquals("a", uuid[0]);
 		assertTrue(relaxed[0]);
 		assertEquals(2, dependsOn.size());
-		assertEquals("global.test1", dependsOn.get(0));
+		assertEquals("test1", dependsOn.get(0));
 		assertEquals("test2-a-b", dependsOn.get(1));
 	}
 	
@@ -53,10 +53,10 @@ public class RawStratumParseTests
 		final Expect ex = new Expect(new Tokenizer(new StringReader(decl)));
 		ex.
 			literal("stratum").
-			name("global", uuid, name).
+			uuid(uuid, name).
 			optionalLiteral("is-relaxed", relaxed).
 			guard("depends-on",
-					new IAction() { public void act(Expect e, Token t) { parseNames(ex, dependsOn); } }).
+					new IAction() { public void act() { parseNames(ex, dependsOn); } }).
 			literal(";");
 	}
 	
@@ -66,9 +66,11 @@ public class RawStratumParseTests
 				",",
 				new LiteralMatch(
 						new IAction()
-						{ public void act(Expect e, Token t)
+						{ public void act()
 							{
-								dependsOn.add(e.makeName("global", t.getText()));
+								String uuid[] = {""};
+								ex.uuid(uuid);
+								dependsOn.add(uuid[0]);
 							}
 						}));		
 	}

@@ -218,6 +218,15 @@ public class TokenizerTests
 		assertEquals(new Token(TokenType.LITERAL, "\u00bb"), t);
 	}
 	
+	@Test
+	public void testDots() throws IOException
+	{
+		StringReader reader = new StringReader("a.b.c");
+		Tokenizer tok = new Tokenizer(reader);
+		Token t = tok.next();
+		assertEquals(new Token(TokenType.LITERAL, "a.b.c"), t);	
+	}
+	
 	public void assessLineAndPosition(String text, int nexts, int line, int pos) throws IOException
 	{
 		StringReader reader = new StringReader(text);

@@ -33,7 +33,7 @@ public class BBInterface extends DEInterface implements INode, Serializable
   @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedOperations;
   private List<BBReplacedOperation> replacedOperations;
-  private List<DEOperation> addedOperations;
+  private List<BBOperation> addedOperations;
 
 	// for going the other way
   private transient List<DEElement> substituters;
@@ -130,10 +130,10 @@ public class BBInterface extends DEInterface implements INode, Serializable
     return replacedOperations;
   }
 
-  public List<DEOperation> settable_getAddedOperations()
+  public List<BBOperation> settable_getAddedOperations()
   {
     if (addedOperations == null)
-      addedOperations = new ArrayList<DEOperation>();
+      addedOperations = new ArrayList<BBOperation>();
     return addedOperations;
   }
 

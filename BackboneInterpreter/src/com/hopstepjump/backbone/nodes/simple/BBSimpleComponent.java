@@ -323,8 +323,9 @@ public class BBSimpleComponent extends BBSimpleElement
 				getMap(c.getFactory()).addConnector(c);
 		
 		// set up any hyperconnectors required
-		for (BBSimplePart p : parts)
-			processHyperConnections(registry.getPerspective(), p);
+		if (parts != null)
+			for (BBSimplePart p : parts)
+				processHyperConnections(registry.getPerspective(), p);
 	}
 
 	private void processHyperConnections(DEStratum perspective, BBSimplePart part)

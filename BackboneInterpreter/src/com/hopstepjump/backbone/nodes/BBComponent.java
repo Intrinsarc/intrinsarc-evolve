@@ -44,25 +44,25 @@ public class BBComponent extends DEComponent implements INode, Serializable
   @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedPorts;
   private List<BBReplacedPort> replacedPorts;
-  private List<DEPort> addedPorts;
+  private List<BBPort> addedPorts;
   
   // the parts
   @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedParts;
   private List<BBReplacedPart> replacedParts;
-  private List<DEPart> addedParts;
+  private List<BBPart> addedParts;
   
   // the connectors
   @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedConnectors;
   private List<BBReplacedConnector> replacedConnectors;
-  private List<DEConnector> addedConnectors;
+  private List<BBConnector> addedConnectors;
   
   // the connectors
   @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedPortLinks;
   private List<BBReplacedConnector> replacedPortLinks;
-  private List<DEConnector> addedPortLinks;
+  private List<BBConnector> addedPortLinks;
 	
   // for going the other way
   private transient List<DEElement> substituters;
@@ -209,10 +209,10 @@ public class BBComponent extends DEComponent implements INode, Serializable
     return replacedPorts;
   }
 
-  public List<DEPort> settable_getAddedPorts()
+  public List<BBPort> settable_getAddedPorts()
   {
     if (addedPorts == null)
-      addedPorts = new ArrayList<DEPort>();
+      addedPorts = new ArrayList<BBPort>();
     return addedPorts;
   }
 
@@ -231,10 +231,10 @@ public class BBComponent extends DEComponent implements INode, Serializable
     return replacedParts;
   }
 
-  public List<DEPart> settable_getAddedParts()
+  public List<BBPart> settable_getAddedParts()
   {
     if (addedParts == null)
-      addedParts = new ArrayList<DEPart>();
+      addedParts = new ArrayList<BBPart>();
     return addedParts;
   }
 
@@ -253,10 +253,10 @@ public class BBComponent extends DEComponent implements INode, Serializable
     return replacedConnectors;
   }
 
-  public List<DEConnector> settable_getAddedConnectors()
+  public List<BBConnector> settable_getAddedConnectors()
   {
     if (addedConnectors == null)
-      addedConnectors = new ArrayList<DEConnector>();
+      addedConnectors = new ArrayList<BBConnector>();
     return addedConnectors;
   }
 
@@ -275,10 +275,10 @@ public class BBComponent extends DEComponent implements INode, Serializable
     return replacedPortLinks;
   }
 
-  public List<DEConnector> settable_getAddedPortLinks()
+  public List<BBConnector> settable_getAddedPortLinks()
   {
     if (addedPortLinks == null)
-      addedPortLinks = new ArrayList<DEConnector>();
+      addedPortLinks = new ArrayList<BBConnector>();
     return addedPortLinks;
   }
 

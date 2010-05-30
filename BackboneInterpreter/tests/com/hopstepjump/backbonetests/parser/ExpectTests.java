@@ -20,12 +20,13 @@ public class ExpectTests
 	public void expectOptionals()
 	{
 		final String res[] = {""};
-		makeExpect(" hello andrew goodbye").literal("hello").
+		final Expect ex = makeExpect(" hello andrew goodbye"); 
+		ex.literal("hello").
 			oneOf(
 					new Match(
 							new LiteralPatternMatcher("andrew"),
 							new IAction()
-							{ public void act(Expect expect, Token tok) { res[0] = "optional"; }})).
+							{ public void act() { ex.literal("andrew"); res[0] = "optional"; }})).
 			literal("goodbye");
 		assertEquals("optional", res[0]);
 	}
@@ -50,25 +51,25 @@ public class ExpectTests
 			oneOf(
 					new Match(
 							new LiteralPatternMatcher("andrew"),
-							new IAction() { public void act(Expect expect, Token tok) { res[0] = "andrew"; }}),
+							new IAction() { public void act() { res[0] = "andrew"; }}),
 					new Match(
 							new LiteralPatternMatcher("freddo"),
-							new IAction() { public void act(Expect expect, Token tok) { res[0] = "freddo"; }}));
+							new IAction() { public void act() { res[0] = "freddo"; }}));
 		return res[0];
 	}
 	
 	@Test
-	public void expectNames()
+	public void expectUUIDs()
 	{
 		String uuid[] = {""};
 		String name[] = {""};
-		makeExpect("a1-2-3/hello/").name("foo", uuid, name);
+		makeExpect("a1-2-3/hello/").uuid(uuid, name);
 		assertEquals("a1-2-3", uuid[0]);
 		assertEquals("hello", name[0]);
-		makeExpect("a1.2").name("foo", uuid, name);
+		makeExpect("a1.2").uuid(uuid, name);
 		assertEquals("a1.2", uuid[0]);
-		makeExpect("Test").name("foo",uuid,  name);
-		assertEquals("foo.Test", uuid[0]);
+		makeExpect("Test").uuid(uuid,  name);
+		assertEquals("Test", uuid[0]);
 	}
 	
 	

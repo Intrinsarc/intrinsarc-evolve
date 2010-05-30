@@ -28,12 +28,6 @@ public class BBParameter extends DEParameter implements LazyResolver, Serializab
   	return this;
   }
 	
-	public BBParameter(DEAttribute attr)
-	{
-		this.realAttribute = attr;
-		attribute = attr.getUuid() + " (" + attr.getFullyQualifiedName() + ")";
-	}
-	
 	@Override
 	public DEAttribute getAttribute()
 	{
