@@ -118,6 +118,7 @@ public final class ClassifierNodeGem implements Gem
   private Set<String> deletedUuids = new HashSet<String>();
   private boolean attributeEllipsis = false;
   private boolean operationEllipsis = false;
+  private boolean traceEllipsis = false;
   private boolean bodyEllipsis = false;
   private boolean retired = false;
 	private SwitchSubjectFacet switchableFacet = new SwitchSubjectFacetImpl();
@@ -188,6 +189,32 @@ public final class ClassifierNodeGem implements Gem
 			deletedUuids.clear();
 		}
   }
+  
+  private boolean isTraceEllipsis()
+  {
+		// add ellipsis if the full set of links are not expanded
+		IDeltaEngine engine = GlobalDeltaEngine.engine;
+		DEElement dereq = engine.locateObject(subject).asElement();
+    Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet());
+    Set<String> uuids = new HashSet<String>();
+    for (DeltaPair pair : dereq.getDeltas(ConstituentTypeEnum.DELTA_TRACE).getConstituents(engine.locateObject(visualHome).asStratum()))
+    	uuids.add(pair.getConstituent().getUuid());
+    
+    // draw an ellipsis if the full set of subfeatures are not shown
+    for (Iterator<LinkingFacet> iter = figureFacet.getAnchorFacet().getLinks(); iter.hasNext();)
+    {
+    	LinkingFacet link = iter.next();
+    	if (link.getAnchor1().getFigureFacet() == figureFacet)
+    		uuids.remove(UUID(link.getFigureFacet().getSubject()));
+    }
+		
+    return !uuids.isEmpty();
+  }
+  
+	private String UUID(Object subject)
+	{
+		return ((Element) subject).getUuid();
+	}
 
   private void refreshEllipsis()
   {
@@ -197,7 +224,7 @@ public final class ClassifierNodeGem implements Gem
     bodyEllipsis = isPart ? false : info.isEllipsisForBody();
   }
   
-  private void updateClassifierViewAfterSubjectChanged(int actualStereotypeHashcode)
+  private void updateClassifierViewAfterSubjectChanged(int actualStereotypeHashcode, boolean traceEllipsis)
   {
     // should we be displaying the owner?
     ElementProperties props = new ElementProperties(figureFacet);
@@ -222,6 +249,7 @@ public final class ClassifierNodeGem implements Gem
     String newName = new ElementProperties(figureFacet, subject).getPerspectiveName();
     
     refreshEllipsis();
+    this.traceEllipsis = traceEllipsis;
     
     // set the variables
     name = newName;
@@ -1121,6 +1149,19 @@ public final class ClassifierNodeGem implements Gem
         }
       }
       
+      // possibly add in a ... for missing display attributes
+      if (traceEllipsis)
+      {
+        UPoint pt = sizes.getFull().getPoint();
+        UPoint start = pt.add(new UDimension(6, 6));
+        for (int lp = 0; lp < 3; lp++)
+        {
+          ZRectangle dot = new ZRectangle(new UBounds(start, new UDimension(1, 1)));
+          group.addChild(new ZVisualLeaf(dot));
+          start = start.add(new UDimension(0, 4));
+        }
+      }
+      
       // is this a retirement?
       if (isElementRetired())
     		addCross(sizes, group, 12, Color.RED);
@@ -1352,18 +1393,22 @@ public final class ClassifierNodeGem implements Gem
   				expand.add(deps);
   				deps.addActionListener(new DependencyExpander(coordinator, new DependencyCreatorGem().getArcCreateFacet(), subject.undeleted_getOwnedAnonymousDependencies()));
   				
-  				JMenuItem traces = new JMenuItem("traces");
-  				expand.add(traces);
   				
-					// work out the links that should be present
-					List<Element> links = new ArrayList<Element>();
-					IDeltaEngine engine = GlobalDeltaEngine.engine;
-					DEElement decomp = engine.locateObject(subject).asElement();
-			    Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet());
-			    for (DeltaPair pair : decomp.getDeltas(ConstituentTypeEnum.DELTA_TRACE).getConstituents(engine.locateObject(visualHome).asStratum()))
-			    	links.add((Element) pair.getConstituent().getRepositoryObject());
-  				
-  				traces.addActionListener(new DependencyExpander(coordinator, new TraceCreatorGem().getArcCreateFacet(), links));
+  				if (!isInterface)
+  				{
+	  				JMenuItem traces = new JMenuItem("traces");
+	  				expand.add(traces);
+	  				
+						// work out the links that should be present
+						List<Element> links = new ArrayList<Element>();
+						IDeltaEngine engine = GlobalDeltaEngine.engine;
+						DEElement decomp = engine.locateObject(subject).asElement();
+				    Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet());
+				    for (DeltaPair pair : decomp.getDeltas(ConstituentTypeEnum.DELTA_TRACE).getConstituents(engine.locateObject(visualHome).asStratum()))
+				    	links.add((Element) pair.getConstituent().getRepositoryObject());
+	  				
+	  				traces.addActionListener(new DependencyExpander(coordinator, new TraceCreatorGem().getArcCreateFacet(), links));
+  				}
 
   				popup.add(expand);
   			}
@@ -2253,6 +2298,10 @@ public final class ClassifierNodeGem implements Gem
       properties.add(new PersistentProperty("deletedUuids", deletedUuids));
       properties.add(new PersistentProperty("locked", locked, false));
       properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
+      properties.add(new PersistentProperty("traceEllipsis", traceEllipsis, false));
+      properties.add(new PersistentProperty("attrEllipsis", attributeEllipsis, false));
+      properties.add(new PersistentProperty("opEllipsis", operationEllipsis, false));
+      properties.add(new PersistentProperty("bodyEllipsis", bodyEllipsis, false));
 		}
 		
 		/**
@@ -2458,6 +2507,10 @@ public final class ClassifierNodeGem implements Gem
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
       Classifier classifierSubject = (Classifier) subject;
       ClassifierSizeInfo info = makeCurrentInfo();
+      
+			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
+			boolean trEllipsis = isTraceEllipsis();
+      
 			if (shouldBeDisplayingOwningPackage == showOwningPackage
 			      && newName.equals(name) && owner.equals(newOwner)
 						&& classifierSubject.isAbstract() == isAbstract
@@ -2468,12 +2521,13 @@ public final class ClassifierNodeGem implements Gem
             && bodyEllipsis == info.isEllipsisForBody() 
             && displayOnlyIcon == shouldDisplayOnlyIcon()
             && isElementRetired() == retired
-            && shouldBeState == showAsState)
+            && shouldBeState == showAsState
+            && trEllipsis == traceEllipsis)
       {
 				return;
       }
 
-      updateClassifierViewAfterSubjectChanged(actualStereotypeHashcode);
+      updateClassifierViewAfterSubjectChanged(actualStereotypeHashcode, trEllipsis);
 		}
 		
 		/**
@@ -2852,6 +2906,11 @@ public final class ClassifierNodeGem implements Gem
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
     locked = properties.retrieve("locked", false).asBoolean();
     stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
+    
+    traceEllipsis = properties.retrieve("traceEllipsis", false).asBoolean();
+    attributeEllipsis = properties.retrieve("attributeEllipsis", false).asBoolean();
+    operationEllipsis = properties.retrieve("operationEllipsis", false).asBoolean();
+    bodyEllipsis = properties.retrieve("bodyEllipsis", false).asBoolean();
 	}
   
 	// work out what we is suppressed by virtue of a stereotype

@@ -50,7 +50,7 @@ public class ConnectorCreatorGem implements Gem
 	    gem.connectContainerFacet(connectorGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
 	    connectorGem.connectFigureFacet(gem.getFigureFacet());
-	    gem.connectClipboardCommandsFacet(connectorGem.getClipboardCommandsFacet());
+	    gem.connectClipboardActionsFacet(connectorGem.getClipboardCommandsFacet());
 	    																					 
 	    diagram.add(gem.getFigureFacet());
 	  }
@@ -75,7 +75,7 @@ public class ConnectorCreatorGem implements Gem
 	    gem.connectContainerFacet(connectorGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
       connectorGem.connectFigureFacet(gem.getFigureFacet());
-      gem.connectClipboardCommandsFacet(connectorGem.getClipboardCommandsFacet());
+      gem.connectClipboardActionsFacet(connectorGem.getClipboardCommandsFacet());
 	  	
 	  	return gem.getFigureFacet();
 		}

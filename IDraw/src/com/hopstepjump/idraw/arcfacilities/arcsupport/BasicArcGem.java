@@ -100,7 +100,7 @@ public final class BasicArcGem implements Gem
 	  state.containerFacet = containerFacet;
 	}
 	
-  public void connectClipboardCommandsFacet(ClipboardActionsFacet clipboardCommandsFacet)
+  public void connectClipboardActionsFacet(ClipboardActionsFacet clipboardCommandsFacet)
   {
     state.clipboardCommandsFacet = clipboardCommandsFacet;
   }

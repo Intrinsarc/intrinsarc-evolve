@@ -2,6 +2,7 @@ package com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode;
 
 import org.eclipse.uml2.*;
 
+import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.idraw.arcfacilities.arcsupport.*;
 import com.hopstepjump.idraw.arcfacilities.creationbase.*;
 import com.hopstepjump.idraw.foundation.*;
@@ -37,7 +38,7 @@ public class RequirementsFeatureLinkCreatorGem
       RequirementsFeatureLinkGem req = new RequirementsFeatureLinkGem((RequirementsFeatureLink) subject);
       req.connectFigureFacet(gem.getFigureFacet());
       gem.connectBasicArcAppearanceFacet(req.getBasicArcAppearanceFacet());
-	    gem.connectClipboardCommandsFacet(req.getClipboardCommandsFacet());
+	    gem.connectClipboardActionsFacet(req.getClipboardCommandsFacet());
       diagram.add(gem.getFigureFacet());
     }
   
@@ -58,7 +59,7 @@ public class RequirementsFeatureLinkCreatorGem
       BasicArcGem gem = new BasicArcGem(this, diagram, figure);
       RequirementsFeatureLinkGem req = new RequirementsFeatureLinkGem((RequirementsFeatureLink) figure.getSubject());
       req.connectFigureFacet(gem.getFigureFacet());
-	    gem.connectClipboardCommandsFacet(req.getClipboardCommandsFacet());
+	    gem.connectClipboardActionsFacet(req.getClipboardCommandsFacet());
       gem.connectBasicArcAppearanceFacet(req.getBasicArcAppearanceFacet());
 
       return gem.getFigureFacet();
@@ -71,13 +72,7 @@ public class RequirementsFeatureLinkCreatorGem
     
     public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end)
     {
-    	// start must be a port, end must be an interface
-      boolean startReadOnly = start.getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
-    	Element elem = (Element) start.getFigureFacet().getSubject();
-    	boolean startOk = elem instanceof RequirementsFeature && !startReadOnly;
-    	if (end == null)
-    		return startOk;
-    	return startOk && end.getFigureFacet().getSubject() instanceof RequirementsFeature;
+    	return acceptsOneOrBothAnchors(start, end);
     }
     
     public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
@@ -89,7 +84,7 @@ public class RequirementsFeatureLinkCreatorGem
 
     	RequirementsFeatureLink prop = main.createSubfeatures();
     	prop.setKind(kind);
-    	prop.setType(dependOn);
+    	prop.setType(getRealTarget(dependOn));
     	
     	return prop;
     }
@@ -97,5 +92,23 @@ public class RequirementsFeatureLinkCreatorGem
 		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
 		}
+  }
+  
+  public static boolean acceptsOneOrBothAnchors(AnchorFacet start, AnchorFacet end)
+  {
+  	// start must be a port, end must be an interface
+    boolean startReadOnly = start.getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
+  	Element elem = (Element) start.getFigureFacet().getSubject();
+  	boolean startOk = elem instanceof RequirementsFeature && !startReadOnly;
+  	if (end == null)
+  		return startOk;
+  	return startOk && end.getFigureFacet().getSubject() instanceof RequirementsFeature;
+  }
+  
+  public static RequirementsFeature getRealTarget(NamedElement element)
+  {
+    // change the owner, but make sure we take the original
+    DEElement elem = GlobalDeltaEngine.engine.locateObject(element).asElement().getSubstitutesOrSelf().iterator().next();
+    return (RequirementsFeature) elem.getRepositoryObject();  	
   }
 }

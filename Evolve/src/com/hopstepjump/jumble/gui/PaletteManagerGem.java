@@ -429,7 +429,7 @@ public class PaletteManagerGem
       palette.addEntry(makeEntry(false, "one-of-subfeature.png", 			"One of (Alternative)", new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.ONE_OF_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
       palette.addEntry(makeEntry(true, "component.png",    "Component",            						makeNodeCreateTool(compositeCreator.getNodeCreateFacet()), "top"));
       palette.addEntry(makeEntry(true, "component.png",    "Component (small)",    						makeNodeCreateTool(compositeShortcutCreator), "top"));
-      palette.addEntry(makeEntry(false, "trace.png", 									"Trace",           		  new ArcCreateToolGem(new TraceCreatorGem().getArcCreateFacet()).getToolFacet(), "class,interface"));
+      palette.addEntry(makeEntry(false, "trace.png", 									"Trace",           		  new ArcCreateToolGem(new TraceCreatorGem().getArcCreateFacet()).getToolFacet(), "class"));
       
       tools.addCategory(palette);
     }

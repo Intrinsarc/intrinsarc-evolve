@@ -15,6 +15,7 @@ import com.hopstepjump.idraw.arcfacilities.arcsupport.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.utility.*;
+import com.hopstepjump.jumble.umldiagrams.tracearc.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
@@ -273,15 +274,11 @@ public class RequirementsFeatureLinkGem
     
 		public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end)
 		{
-			// ensure we are even authorised...
+      // ensure we are even authorised...
 			if (getOwner(subject) != getVisualOwner(figureFacet))
 				return false;
 			
-    	// start must be a req feature, end must be a req feature
-      boolean startReadOnly = start.getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
-    	boolean startOk =
-    		start.getFigureFacet().getSubject() instanceof RequirementsFeature && !startReadOnly;
-    	return startOk && end.getFigureFacet().getSubject() instanceof RequirementsFeature;
+      return start.getFigureFacet() == figureFacet.getLinkingFacet().getAnchor1().getFigureFacet() && RequirementsFeatureLinkCreatorGem.acceptsOneOrBothAnchors(start, end);
 		}
 
 		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
@@ -306,7 +303,7 @@ public class RequirementsFeatureLinkGem
 	      	if (pair.getConstituent().getUuid().equals(subject.getUuid()))
 	      	{
 	      		// ensure this links to the correct element
-	      		if (pair.getConstituent().asRequirementsFeatureLink().getSubfeature() == visualTarget)
+	      		if (pair.getConstituent().asRequirementsFeatureLink().getSubfeature().getSubstitutesOrSelf().iterator().next() == visualTarget)
 	      			found = true;
 	      		break;
 	      	}
@@ -329,13 +326,8 @@ public class RequirementsFeatureLinkGem
 
 		public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 		{
-			RequirementsFeature newMain = (RequirementsFeature)
-					start.getFigureFacet().getSubject();
 			RequirementsFeature newDependsOn = (RequirementsFeature) end.getFigureFacet().getSubject();
-
-			// change the owner and target
-			newMain.settable_getSubfeatures().add(subject);
-			subject.setType(newDependsOn);
+			subject.setType(RequirementsFeatureLinkCreatorGem.getRealTarget(newDependsOn));
 		}
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)

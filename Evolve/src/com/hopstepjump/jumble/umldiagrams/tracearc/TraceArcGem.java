@@ -1,6 +1,7 @@
 package com.hopstepjump.jumble.umldiagrams.tracearc;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
 import com.hopstepjump.jumble.umldiagrams.linkedtextnode.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.enhanced.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -324,11 +326,73 @@ public class TraceArcGem implements Gem
     public void addToContextMenu(JPopupMenu menu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
     {
       menu.add(linkedTextFacet.getViewLabelMenuItem(coordinator, "dependency"));
+
+      Utilities.addSeparator(menu);
+      // only add a replace if this is not visually at home
+    	if (getVisualOwner(figureFacet) != getOwner(subject))
+      {
+        JMenuItem replaceItem = getReplaceItem(diagramView, coordinator);
+        menu.add(replaceItem);
+        Utilities.addSeparator(menu);
+      }
+    }
+    
+    private JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
+    {
+      // for adding operations
+      JMenuItem replace = new JMenuItem("Replace");
+      replace.addActionListener(new ActionListener()
+      {
+        public void actionPerformed(ActionEvent e)
+        {
+        	Dependency replace = (Dependency) figureFacet.getSubject();
+          coordinator.startTransaction("replaced trace", "removed replaced trace");
+          Dependency replacement = createDeltaReplacedTrace(getVisualOwner(figureFacet), replace);
+          
+          // change the subject so we don't lose the graphical view
+          TraceCreatorGem gem = new TraceCreatorGem();
+          PersistentFigure pfig = figureFacet.makePersistentFigure();
+          pfig.setSubject(replacement);
+          DiagramFacet diagram = figureFacet.getDiagram();
+          FigureReference reference = diagram.makeNewFigureReference();
+          gem.getArcCreateFacet().create(
+          		replacement,
+          		diagram,
+          		reference.getId(),
+          		figureFacet.getLinkingFacet().getCalculated().getReferenceCalculatedArcPoints(diagram),
+          		figureFacet.makePersistentFigure().getProperties());
+          coordinator.commitTransaction(true);
+          
+          // select the replaced figure
+          diagramView.getSelection().clearAllSelection();
+          diagramView.getSelection().addToSelection(diagram.retrieveFigure(reference.getId()));
+        }
+      });
+
+      return replace;
+    }
+    
+    private Dependency createDeltaReplacedTrace(Class owner, Dependency replace)
+    { 
+    	DeltaReplacedTrace replacement = owner.createDeltaReplacedTraces();
+      replacement.setReplaced(replace);
+      
+      Dependency next = (Dependency) replacement.createReplacement(UML2Package.eINSTANCE.getDependency());
+      next.setTrace(true);
+      next.settable_getClients().add(owner);
+      next.setDependencyTarget(replace.getDependencyTarget());
+      replacement.setReplacement(next);
+      
+      return next;
     }
     
     public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end)
     {
-      return end != null && TraceCreatorGem.acceptsOneOrBothAnchors(start, end);
+    	// ensure we are even authorised...
+			if (getOwner(subject) != getVisualOwner(figureFacet))
+				return false;
+
+      return start.getFigureFacet() == figureFacet.getLinkingFacet().getAnchor1().getFigureFacet() && TraceCreatorGem.acceptsOneOrBothAnchors(start, end);
     }
     
     private Class getOwner(Dependency subject)
@@ -375,7 +439,7 @@ public class TraceArcGem implements Gem
       	if (pair.getConstituent().getUuid().equals(subject.getUuid()))
       	{
       		// ensure this links to the correct element
-      		if (pair.getConstituent().asTrace().getTarget() == visualTarget)
+      		if (pair.getConstituent().asTrace().getTarget().getSubstitutesOrSelf().iterator().next() == visualTarget)
       			found = true;
       		break;
       	}
@@ -407,15 +471,8 @@ public class TraceArcGem implements Gem
 
     public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
     {
-      NamedElement oldOwner = (NamedElement) subject.getClients().get(0);      
-      NamedElement newOwner = DependencyCreatorGem.extractDependentClient(start.getFigureFacet().getSubject());
       NamedElement newSupplier = (NamedElement) end.getFigureFacet().getSubject();
-
-      // change the owner
-      newOwner.getOwnedAnonymousDependencies().add(subject);
-      subject.getClients().remove(oldOwner);
-      subject.getClients().add(newOwner);
-      subject.setDependencyTarget(newSupplier);
+      setTarget(newSupplier);
     }
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)
@@ -433,5 +490,12 @@ public class TraceArcGem implements Gem
 			interpretPersistentFigure(pfig);
 		}
   }  
+  
+  private void setTarget(NamedElement element)
+  {
+    // change the owner, but make sure we take the original
+    DEElement elem = GlobalDeltaEngine.engine.locateObject(element).asElement().getSubstitutesOrSelf().iterator().next();
+    subject.setDependencyTarget((NamedElement) elem.getRepositoryObject());  	
+  }
 }
 

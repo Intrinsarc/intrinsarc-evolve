@@ -184,6 +184,7 @@ public class DeltaAdornerGem
                         return UMLTypes.extractInstanceOfPart(element) != null;
                       }
                     });
+                reportDeletes(panel, cls.undeleted_getDeltaDeletedTraces(), "traces", null);
               }
               if (subject instanceof Interface)
               {
@@ -270,7 +271,7 @@ public class DeltaAdornerGem
             {
               DelegatedDeltaAdornerFacet delegated =
                 (DelegatedDeltaAdornerFacet) figure.getDynamicFacet(DelegatedDeltaAdornerFacet.class);
-              displays.putAll(delegated.getDeltaDisplaysAtHome());              
+              displays.putAll(delegated.getDeltaDisplaysAtHome());
             }
           }
         }

@@ -7,6 +7,7 @@ import javax.swing.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 
+import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.idraw.arcfacilities.arcsupport.*;
 import com.hopstepjump.idraw.arcfacilities.creationbase.*;
@@ -55,7 +56,7 @@ public class TraceCreatorGem implements Gem
 
 	    TraceClipboardActionsImpl clipActions = new TraceClipboardActionsImpl();
 	    clipActions.connectFigureFacet(gem.getFigureFacet());
-	    gem.connectClipboardCommandsFacet(clipActions);
+	    gem.connectClipboardActionsFacet(clipActions);
 
 	    requiredGem.connectFigureFacet(gem.getFigureFacet());
       
@@ -84,7 +85,7 @@ public class TraceCreatorGem implements Gem
 
 	    TraceClipboardActionsImpl clipActions = new TraceClipboardActionsImpl();
 	    clipActions.connectFigureFacet(gem.getFigureFacet());
-	    gem.connectClipboardCommandsFacet(clipActions);
+	    gem.connectClipboardActionsFacet(clipActions);
 
       gem.connectBasicArcAppearanceFacet(requiredGem.getBasicArcAppearanceFacet());
 
@@ -117,7 +118,7 @@ public class TraceCreatorGem implements Gem
       NamedElement supplier = (NamedElement) points.getNode2().getFigureFacet().getSubject();
       
       dependency.settable_getClients().add(client);
-      dependency.setDependencyTarget(supplier);
+      dependency.setDependencyTarget(getRealTarget(supplier));
       
     	// should we set a stereotype?
     	String stereoName = properties.retrieve(">stereotype", (String) null).asString();
@@ -184,5 +185,12 @@ public class TraceCreatorGem implements Gem
     return
       startOk &&
       end.getFigureFacet().getSubject() instanceof RequirementsFeature && end.getFigureFacet().getSubject() != start.getFigureFacet().getSubject();
+  }
+  
+  public static NamedElement getRealTarget(NamedElement element)
+  {
+    // change the owner, but make sure we take the original
+    DEElement elem = GlobalDeltaEngine.engine.locateObject(element).asElement().getSubstitutesOrSelf().iterator().next();
+    return (NamedElement) elem.getRepositoryObject();  	
   }
 }

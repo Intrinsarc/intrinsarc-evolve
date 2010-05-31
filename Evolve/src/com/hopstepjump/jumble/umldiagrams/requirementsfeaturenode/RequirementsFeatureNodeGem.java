@@ -52,8 +52,7 @@ import edu.umd.cs.jazz.component.*;
 // (done) 2. cleanuuids in reqfeaturenode?
 // (done) 4. expand mechanism for full subfeatures (+ others?)
 // (done) 1c. fix subject deletion of link when type is deleted + immutable trace flag + traces on classifier
-// 5. traces (from classifier + ellipsis)
-//         /* deleting from display, expansion in class */ delta view, replacement, ellipsis in class
+// (done) 5. traces (from classifier + ellipsis)
 // 6. requirements composition explorer
 
 public final class RequirementsFeatureNodeGem implements Gem
@@ -192,7 +191,7 @@ public final class RequirementsFeatureNodeGem implements Gem
   }
   
   
-	private Object UUID(Object subject)
+	private String UUID(Object subject)
 	{
 		return ((Element) subject).getUuid();
 	}
@@ -766,7 +765,6 @@ public final class RequirementsFeatureNodeGem implements Gem
       popup.add(ResemblancePerspectiveTree.makeMenuItem(diagramView.getDiagram(), figureFacet, coordinator));
 
       final Package pkg = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet()); 
-      final DEStratum perspective = GlobalDeltaEngine.engine.locateObject(pkg).asStratum();
       final Type feature = (Type) figureFacet.getSubject();
       final DERequirementsFeature me = GlobalDeltaEngine.engine.locateObject(feature).asRequirementsFeature();
       

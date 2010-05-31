@@ -40,8 +40,7 @@ public class InterfaceDelegatedAdornerGem
           attributes.getContainerFacet().getContents(),
           subject.undeleted_getOwnedAttributes(),
           subject.undeleted_getDeltaDeletedAttributes(),
-          subject.undeleted_getDeltaReplacedAttributes(),
-          false);
+          subject.undeleted_getDeltaReplacedAttributes());
           
       determineAdornments(
           displays,
@@ -49,8 +48,7 @@ public class InterfaceDelegatedAdornerGem
           operations.getContainerFacet().getContents(),
           subject.undeleted_getOwnedOperations(),
           subject.undeleted_getDeltaDeletedOperations(),
-          subject.undeleted_getDeltaReplacedOperations(),
-          false);
+          subject.undeleted_getDeltaReplacedOperations());
                 
       return displays;
     }
@@ -62,8 +60,7 @@ public class InterfaceDelegatedAdornerGem
       Iterator<FigureFacet> contents,
       ArrayList<Element> adds,
       ArrayList<DeltaDeletedConstituent> deletes,
-      ArrayList<DeltaReplacedConstituent> replacements,
-      boolean middle)
+      ArrayList<DeltaReplacedConstituent> replacements)
   {
     Set<Element> replaced = new HashSet<Element>();
     for (DeltaReplacedConstituent constituent : replacements)
