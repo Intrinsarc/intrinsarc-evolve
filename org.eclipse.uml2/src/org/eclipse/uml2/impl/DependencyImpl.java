@@ -464,7 +464,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 */
 	public void setDependencyTarget(NamedElement newDependencyTarget) {
 		// save away important other relationships, but omit straight dependencies and implementations
-		if (isReplacement() || isResemblance() || getClass() != DependencyImpl.class && getClass() != ImplementationImpl.class)
+		if (isReplacement() || isResemblance() || isTrace() || getClass() != DependencyImpl.class && getClass() != ImplementationImpl.class)
 		{
 			if (newDependencyTarget != dependencyTarget && dependencyTarget instanceof NamedElement)
 				((NamedElement) dependencyTarget).settable_getReverseDependencies().remove(this);
