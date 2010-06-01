@@ -56,6 +56,7 @@ import edu.umd.cs.jazz.component.*;
 // (done) 1c. fix subject deletion of link when type is deleted + immutable trace flag + traces on classifier
 // (done) 5. traces (from classifier + ellipsis)
 // 6. requirements composition explorer
+//       -- limit to non-replacements, reverse traces, test fully
 
 public final class RequirementsFeatureNodeGem implements Gem
 {
@@ -772,10 +773,10 @@ public final class RequirementsFeatureNodeGem implements Gem
       popup.add(ResemblancePerspectiveTree.makeMenuItem(diagramView.getDiagram(), figureFacet, coordinator));
 
       final Package pkg = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet()); 
-      final Type feature = (Type) figureFacet.getSubject();
+      final RequirementsFeature feature = (RequirementsFeature) figureFacet.getSubject();
       final DERequirementsFeature me = GlobalDeltaEngine.engine.locateObject(feature).asRequirementsFeature();
       
-      JMenuItem comp = new JMenuItem("Show compositional hierarchy");
+      JMenuItem comp = new JMenuItem("Show feature hierarchy");
       comp.setIcon(COMPOSITION_ICON);
       popup.add(comp);
       if (me != null)
@@ -784,17 +785,17 @@ public final class RequirementsFeatureNodeGem implements Gem
       	{
 					public void actionPerformed(ActionEvent e)
 					{
-						JPanel panel = new JPanel(new BorderLayout());
-		      	RequirementsFeatureHierarchyViewer viewer = new RequirementsFeatureHierarchyViewer(pkg, feature, panel);
-
 		        int x = coordinator.getFrameXPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_X_POS);
 		        int y = coordinator.getFrameYPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_Y_POS);
 		        int width = coordinator.getIntegerPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_WIDTH);
 		        int height = coordinator.getIntegerPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_HEIGHT);
 
+						JPanel panel = new JPanel(new BorderLayout());
+		      	RequirementsFeatureHierarchyViewer viewer = new RequirementsFeatureHierarchyViewer(pkg, feature, panel, width);
+
 		        viewer.constructComponent();
 		        coordinator.getDock().createExternalPaletteDockable(
-		            "Compositional hierarchy",
+		            "Feature hierarchy",
 		            COMPOSITION_ICON,
 		            new Point(x, y), new Dimension(width, height),
 		            true,
@@ -819,44 +820,6 @@ public final class RequirementsFeatureNodeGem implements Gem
       }
       
 			return popup;
-		}
-		
-    private JMenuItem getShowStereotypeItem(DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
-    {
-      JMenuItem item = new JCheckBoxMenuItem("Stereotype");
-      item.setSelected(showStereotype);
-      item.addItemListener(new ItemListener()
-          {
-            public void itemStateChanged(ItemEvent e)
-            {
-              showStereotype = !showStereotype;
-              RequirementsFeatureSizeInfo info = makeCurrentInfo();
-              figureFacet.performResizingTransaction(
-                  formCentredBounds(info, null).getOuter());                  
-            }
-          });
-      return item;
-    }
-
-		private JMenuItem getSuppressOwnerItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
-		{
-			// for adding operations
-			JCheckBoxMenuItem showVisibilityItem = new JCheckBoxMenuItem("Suppress owner");
-			showVisibilityItem.setState(forceSuppressOwningPackage);
-			
-			showVisibilityItem.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					// toggle the suppress operations flag
-					coordinator.startTransaction(
-							forceSuppressOwningPackage ? "unsuppressed owner package" : "suppressed owner package",
-							forceSuppressOwningPackage ? "suppressed owner package" : "unsuppressed owner package");
-					forceSuppressOwningPackage = !forceSuppressOwningPackage;
-					coordinator.commitTransaction();
-				}
-			});
-			return showVisibilityItem;
 		}
 		
 		private JMenuItem getDisplayAsIconItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)

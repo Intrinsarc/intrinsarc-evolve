@@ -1,16 +1,18 @@
 package com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode;
 
 import java.awt.*;
-import java.awt.Component;
 import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.event.*;
 import javax.swing.tree.*;
 
+import org.eclipse.emf.common.util.*;
 import org.eclipse.uml2.*;
 
 import com.hopstepjump.deltaengine.base.*;
+import com.hopstepjump.jumble.repositorybrowser.*;
 import com.hopstepjump.swing.*;
 
 
@@ -52,6 +54,11 @@ class Node
 		return recursive;
 	}
 	
+	public DERequirementsFeature getFeature()
+	{
+		return feature;
+	}
+	
 	private boolean includes(DERequirementsFeature child)
 	{
 		if (child == feature)
@@ -76,7 +83,7 @@ class CompositionRenderer extends DefaultTreeCellRenderer
 	public static final ImageIcon OPTIONAL_ICON = IconLoader.loadIcon("optional-subfeature.png");
 	
 	@Override
-	public Component getTreeCellRendererComponent(
+	public java.awt.Component getTreeCellRendererComponent(
 			JTree tree,
 			Object value,
 			boolean sel,
@@ -91,21 +98,22 @@ class CompositionRenderer extends DefaultTreeCellRenderer
     	return super.getTreeCellRendererComponent(tree, "", selected, expanded, leaf, row, hasFocus);
 
     Icon icon = FEATURE_ICON;
-    switch (user.getKind())
-    {
-    case MANDATORY:
-    	icon = MANDATORY_ICON;
-    	break;
-    case ONE_OF:
-    	icon = ONE_OF_ICON;
-    	break;
-    case ONE_OR_MORE:
-    	icon = ONE_OR_MORE_ICON;
-    	break;
-    case OPTIONAL:
-    	icon = OPTIONAL_ICON;
-    	break;
-    }
+    if (user.getKind() != null)
+	    switch (user.getKind())
+	    {
+	    case MANDATORY:
+	    	icon = MANDATORY_ICON;
+	    	break;
+	    case ONE_OF:
+	    	icon = ONE_OF_ICON;
+	    	break;
+	    case ONE_OR_MORE:
+	    	icon = ONE_OR_MORE_ICON;
+	    	break;
+	    case OPTIONAL:
+	    	icon = OPTIONAL_ICON;
+	    	break;
+	    }
     setLeafIcon(icon);
     setOpenIcon(icon);
     setClosedIcon(icon);
@@ -134,33 +142,67 @@ class CompositionRenderer extends DefaultTreeCellRenderer
 public class RequirementsFeatureHierarchyViewer
 {
 	private org.eclipse.uml2.Package pkg;
-	private org.eclipse.uml2.Type comp;
+	private RequirementsFeature feature;
 	private JPanel panel;
+	private int width;
 
-	public RequirementsFeatureHierarchyViewer(org.eclipse.uml2.Package pkg, org.eclipse.uml2.Type comp, JPanel panel)
+	public RequirementsFeatureHierarchyViewer(org.eclipse.uml2.Package pkg, RequirementsFeature feature, JPanel panel, int width)
 	{
 		this.pkg = pkg;
-		this.comp = comp;
+		this.feature = getOriginalFeature(feature);
 		this.panel = panel;
+		this.width = width;
 	}
 	
+	private RequirementsFeature getOriginalFeature(RequirementsFeature feature)
+	{
+		// get the original
+		DERequirementsFeature req = GlobalDeltaEngine.engine.locateObject(feature).asRequirementsFeature();
+		return (RequirementsFeature) req.getSubstitutesOrSelf().iterator().next().getRepositoryObject();
+	}
+
 	public void constructComponent()
 	{
 		panel.removeAll();
 		DEObject pObj = GlobalDeltaEngine.engine.locateObject(pkg);
-		DEObject cObj = GlobalDeltaEngine.engine.locateObject(comp);
-		if (pObj == null || cObj == null)
+		DEObject rObj = GlobalDeltaEngine.engine.locateObject(feature);
+		if (pObj == null || rObj == null)
 			return;
 		DEStratum perspective = pObj.asStratum();
-		DERequirementsFeature feature = cObj.asRequirementsFeature();
-		
+		DERequirementsFeature req = rObj.asRequirementsFeature();
 		
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode();
 		final JTree tree = new JTree(root);
 		tree.setCellRenderer(new CompositionRenderer());
-		populateTree(root, perspective, feature, null, false);
+		populateTree(root, perspective, req, null, null);
 		
-		panel.add(tree, BorderLayout.CENTER);
+		// set up a splitpane: left = features, right = implementing components
+		JSplitPane split = new JSplitPane();
+		JScrollPane left = new JScrollPane(tree);
+		left.setBackground(Color.WHITE);
+		
+		JPanel implementers = new JPanel(new BorderLayout());
+    final DefaultMutableTreeNode implRoot = new DefaultMutableTreeNode(
+        new UMLTreeUserObject(
+            null,
+            ShortCutType.NONE,
+            null,
+            "Implementing components",
+            false,
+            0,
+            0));
+		
+		final JTree list = new JTree(implRoot);
+		list.setCellRenderer(new UMLNodeRendererGem(null).getTreeCellRenderer());
+		implementers.add(list, BorderLayout.CENTER);
+		
+		final JScrollPane right = new JScrollPane(implementers);
+		right.setBackground(Color.WHITE);
+		split.setLeftComponent(left);
+		split.setRightComponent(right);
+		
+		split.setDividerLocation(panel.getWidth() > 0 ? (int) (panel.getWidth() / 2.5) : (int) (width / 2.5));
+		panel.add(split, BorderLayout.CENTER);
 		
 		tree.setRootVisible(false);
     TreeExpander.expandEntireTree(tree, true, null);
@@ -175,15 +217,80 @@ public class RequirementsFeatureHierarchyViewer
 		JMenuItem[] items = new JMenuItem[]{new JMenuItem(), new JMenuItem(), refreshItem};
 		TreeExpander.addExpandAndCollapseItems(tree, items);
 		TreeExpander.addPopupMenu(tree, items);
+		
+		// listen to the focus, so we can find implementing components
+		tree.addTreeSelectionListener(new TreeSelectionListener()
+		{
+			public void valueChanged(TreeSelectionEvent e)
+			{
+				// get the selected item
+				implRoot.removeAllChildren();
+				DefaultMutableTreeNode sel = findSingleSelectedNode(tree);
+				if (sel != null)
+				{
+					Node node = (Node) sel.getUserObject();
+					RequirementsFeature f = (RequirementsFeature) node.getFeature().getRepositoryObject();
+					
+					for (Object obj : f.getReverseDependencies())
+					{
+						Dependency dep = (Dependency) obj;
+//						if (dep.isTrace())
+						{
+							// add to the list
+							EList ls = dep.getClients();
+							if (!ls.isEmpty())
+							{
+								for (Object lso : ls)
+								{
+									Element elem = (Element) lso;
+									if (!elem.isThisDeleted())
+									{
+										DEElement comp = GlobalDeltaEngine.engine.locateObject(lso).asElement();
+										if (comp != null)
+										{
+									    DefaultMutableTreeNode tn = new DefaultMutableTreeNode(
+									        new UMLTreeUserObject(
+									            (Element) comp.getRepositoryObject(),
+									            ShortCutType.NONE,
+									            null,
+									            comp.getFullyQualifiedName(),
+									            false,
+									            0,
+									            0));
+											
+											implRoot.add(tn);
+										}
+									}
+								}
+							}
+						}
+					}
+			    TreeExpander.expandEntireTree(list, true, null);
+				}
+				
+				((DefaultTreeModel) list.getModel()).reload();
+				right.repaint();
+			}
+		});
+		
+		panel.revalidate();		
 	}
+	
+  private DefaultMutableTreeNode findSingleSelectedNode(JTree tree)
+  {
+    TreePath path = tree.getSelectionModel().getSelectionPath();
+    if (path != null && tree.getSelectionCount() == 1)
+      return (DefaultMutableTreeNode) path.getLastPathComponent();
+    return null;
+  }
 
-	private void populateTree(DefaultMutableTreeNode treeParent, DEStratum perspective, DERequirementsFeature feature, SubfeatureKindEnum kind, Node parentNode, boolean isPart)
+	private void populateTree(DefaultMutableTreeNode treeParent, DEStratum perspective, DERequirementsFeature feature, SubfeatureKindEnum kind, Node parentNode)
 	{
 		Set<DeltaPair> partPairs =
 			feature == null ?
 					new HashSet<DeltaPair>() :
 					feature.getDeltas(ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK).getConstituents(perspective, true);
-		Node current = new Node(parentNode, perspective, feature, kind, !partPairs.isEmpty());
+		Node current = new Node(parentNode, perspective, feature, kind);
 		
 		DefaultMutableTreeNode child = new DefaultMutableTreeNode(current);
 		treeParent.add(child);
@@ -191,10 +298,14 @@ public class RequirementsFeatureHierarchyViewer
 		// expand this out, unless it is recursive
 		if (!current.isRecursive())
 		{
-			for (DeltaPair pair : partPairs)
+			for (SubfeatureKindEnum k : SubfeatureKindEnum.values())
 			{
-				DERequirementsFeatureLink link = pair.getConstituent().asRequirementsFeatureLink();
-				populateTree(child, perspective, link.getSubfeature(), link.getKind(),current, true);
+				for (DeltaPair pair : partPairs)
+				{
+					DERequirementsFeatureLink link = pair.getConstituent().asRequirementsFeatureLink();
+					if (k == link.getKind())
+						populateTree(child, perspective, link.getSubfeature(), link.getKind(), current);
+				}
 			}
 		}
 	}
