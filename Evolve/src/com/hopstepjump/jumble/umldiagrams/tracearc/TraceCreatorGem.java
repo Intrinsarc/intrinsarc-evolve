@@ -185,9 +185,9 @@ public class TraceCreatorGem implements Gem
     return
       startOk &&
       end.getFigureFacet().getSubject() instanceof RequirementsFeature && end.getFigureFacet().getSubject() != start.getFigureFacet().getSubject();
-  }
-  
-  public static NamedElement getRealTarget(NamedElement element)
+	}
+
+	public static NamedElement getRealTarget(NamedElement element)
   {
     // change the owner, but make sure we take the original
     DEElement elem = GlobalDeltaEngine.engine.locateObject(element).asElement().getSubstitutesOrSelf().iterator().next();

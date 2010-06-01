@@ -234,7 +234,7 @@ public class RequirementsFeatureHierarchyViewer
 					for (Object obj : f.getReverseDependencies())
 					{
 						Dependency dep = (Dependency) obj;
-//						if (dep.isTrace())
+						if (!dep.isThisDeleted() && dep.isTrace())
 						{
 							// add to the list
 							EList ls = dep.getClients();

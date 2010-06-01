@@ -37,7 +37,6 @@ import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
-import com.hopstepjump.jumble.umldiagrams.tracearc.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
@@ -55,8 +54,8 @@ import edu.umd.cs.jazz.component.*;
 // (done) 4. expand mechanism for full subfeatures (+ others?)
 // (done) 1c. fix subject deletion of link when type is deleted + immutable trace flag + traces on classifier
 // (done) 5. traces (from classifier + ellipsis)
-// 6. requirements composition explorer
-//       -- limit to non-replacements, reverse traces, test fully
+// (done) 6. requirements composition explorer
+// 7. rules (no link to replacements, no self-composition)
 
 public final class RequirementsFeatureNodeGem implements Gem
 {
