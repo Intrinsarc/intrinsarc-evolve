@@ -468,7 +468,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 		{
 			if (newDependencyTarget != dependencyTarget && dependencyTarget instanceof NamedElement)
 				((NamedElement) dependencyTarget).settable_getReverseDependencies().remove(this);
-			if (newDependencyTarget != null)
+			if (newDependencyTarget != null && newDependencyTarget.settable_getReverseDependencies().indexOf(this) == -1)
 				newDependencyTarget.settable_getReverseDependencies().add(this);
 		}
 
