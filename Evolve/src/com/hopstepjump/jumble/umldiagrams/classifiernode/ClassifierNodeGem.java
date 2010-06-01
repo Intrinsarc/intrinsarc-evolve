@@ -736,72 +736,6 @@ public final class ClassifierNodeGem implements Gem
 	
 	private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
 	{
-    private final class DependencyExpander implements ActionListener
-		{
-			private ToolCoordinatorFacet coordinator;
-			private ArcCreateFacet creator;
-			private List<Element> links;
-
-			public DependencyExpander(ToolCoordinatorFacet coordinator, ArcCreateFacet creator, List<Element> links)
-			{
-				this.coordinator = coordinator;
-				this.creator = creator;
-				this.links = links;
-			}
-
-			public void actionPerformed(ActionEvent e)
-			{
-				UBounds bounds = figureFacet.getFullBounds();
-				final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
-				ITargetResolver resolver = new ITargetResolver()
-				{
-					public List<Element> resolveTargets(Element relationship)
-					{
-						Dependency dep = (Dependency) relationship;
-						return ((Dependency) relationship).getTargets();
-					}
-					
-					public UPoint determineTargetLocation(Element target, int index)
-					{
-						return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
-					}
-					
-					public NodeCreateFacet getNodeCreator(Element target)
-					{
-						if (target instanceof RequirementsFeature)
-							return new RequirementsFeatureCreatorGem().getNodeCreateFacet();
-						if (target instanceof Interface)
-							return new InterfaceCreatorGem().getNodeCreateFacet();
-						if (target.getClass() == ClassImpl.class)
-						{
-							ElementProperties props = new ElementProperties(figureFacet, target);
-							if (props.isPrimitive())
-								return PaletteManagerGem.makePrimitiveCreator(false);
-							if (props.isLeaf() || props.isComposite())
-								return PaletteManagerGem.makeCompositeShortcutCreator();
-							if (props.isFactory())
-								return PaletteManagerGem.makeFactoryCreator(true);
-							if (props.isPlaceholder())
-								return PaletteManagerGem.makePlaceholderCreator(true);
-							if (props.isState())
-								return PaletteManagerGem.makeStateCreator(false);
-							ClassCreatorGem gem = new ClassCreatorGem();
-							gem.setDisplayOnlyIcon(false);
-							return gem.getNodeCreateFacet();
-						}
-						return null;
-					}
-				};
-			  
-				new Expander(
-						coordinator,
-						figureFacet,
-						links,
-						resolver,
-						creator).expand();
-			}
-		}
-
 		public String getFigureName()
 		{
 			return figureName;
@@ -1391,9 +1325,8 @@ public final class ClassifierNodeGem implements Gem
   				expand.setIcon(Expander.EXPAND_ICON);
   				JMenuItem deps = new JMenuItem("dependencies");
   				expand.add(deps);
-  				deps.addActionListener(new DependencyExpander(coordinator, new DependencyCreatorGem().getArcCreateFacet(), subject.undeleted_getOwnedAnonymousDependencies()));
-  				
-  				
+  				deps.addActionListener(new DependencyExpander(figureFacet, coordinator, new DependencyCreatorGem().getArcCreateFacet(), subject.undeleted_getOwnedAnonymousDependencies()));
+  				  				
   				if (!isInterface)
   				{
 	  				JMenuItem traces = new JMenuItem("traces");
@@ -1407,7 +1340,7 @@ public final class ClassifierNodeGem implements Gem
 				    for (DeltaPair pair : decomp.getDeltas(ConstituentTypeEnum.DELTA_TRACE).getConstituents(engine.locateObject(visualHome).asStratum()))
 				    	links.add((Element) pair.getConstituent().getRepositoryObject());
 	  				
-	  				traces.addActionListener(new DependencyExpander(coordinator, new TraceCreatorGem().getArcCreateFacet(), links));
+	  				traces.addActionListener(new DependencyExpander(figureFacet, coordinator, new TraceCreatorGem().getArcCreateFacet(), links));
   				}
 
   				popup.add(expand);

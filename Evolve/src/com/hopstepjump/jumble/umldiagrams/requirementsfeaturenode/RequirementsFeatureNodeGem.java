@@ -36,6 +36,8 @@ import com.hopstepjump.jumble.packageview.base.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
+import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
+import com.hopstepjump.jumble.umldiagrams.tracearc.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
@@ -710,9 +712,14 @@ public final class RequirementsFeatureNodeGem implements Gem
 				// add expansions
 				JMenu expand = new JMenu("Expand");
 				expand.setIcon(Expander.EXPAND_ICON);
-				JMenuItem deps = new JMenuItem("subfeatures");
+				JMenuItem deps = new JMenuItem("dependencies");
 				expand.add(deps);
-				deps.addActionListener(new ActionListener()
+				deps.addActionListener(new DependencyExpander(figureFacet, coordinator, new DependencyCreatorGem().getArcCreateFacet(), subject.undeleted_getOwnedAnonymousDependencies()));
+				
+				JMenuItem subs = new JMenuItem("subfeatures");
+				expand.add(subs);
+
+				subs.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
 					{						

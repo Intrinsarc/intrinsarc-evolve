@@ -1,11 +1,14 @@
 package com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode;
 
 import java.awt.*;
+import java.awt.Component;
 import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.*;
 import javax.swing.tree.*;
+
+import org.eclipse.uml2.*;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.swing.*;
@@ -18,22 +21,20 @@ import com.hopstepjump.swing.*;
 class Node
 {
 	private Node parent;
-	private String partName;
 	private DEStratum perspective;
-	private String componentName;
-	private DEComponent component;
-	private boolean composite;
+	private String featureName;
+	private DERequirementsFeature feature;
 	private boolean recursive;
+	private SubfeatureKindEnum kind;
 	
-	public Node(Node parent, String partName, DEStratum perspective, DEComponent component, boolean composite)
+	public Node(Node parent, DEStratum perspective, DERequirementsFeature feature, SubfeatureKindEnum kind)
 	{
 		this.parent = parent;
-		this.partName = partName;
-		this.componentName = component == null ? "(no type)" : component.getName(perspective);
+		this.featureName = feature == null ? "??" : feature.getName(perspective);
 		this.perspective = perspective;
-		this.component = component;
-		this.composite = composite;
-		recursive = parent != null && parent.includes(component);
+		this.feature = feature;
+		recursive = parent != null && parent.includes(feature);
+		this.kind = kind;
 	}
 	
 	public DEStratum getPerspective()
@@ -43,8 +44,7 @@ class Node
 	
 	public String getName()
 	{
-		return
-			componentName + (partName != null && partName.length() != 0 ? ", <b>" + partName : "");
+		return featureName;
 	}
 	
 	public boolean isRecursive()
@@ -52,31 +52,28 @@ class Node
 		return recursive;
 	}
 	
-	private boolean includes(DEComponent child)
+	private boolean includes(DERequirementsFeature child)
 	{
-		if (child == component)
+		if (child == feature)
 			return true;
 		if (parent != null)
 			return parent.includes(child);
 		return false;
-	}
+	}	
 	
-	public String getPartName()
+	public SubfeatureKindEnum getKind()
 	{
-		return partName;
-	}
-
-	public boolean isComposite()
-	{
-		return composite;
+		return kind;
 	}
 }
 
 class CompositionRenderer extends DefaultTreeCellRenderer
 {
-	public static final ImageIcon LEAF_ICON = IconLoader.loadIcon("leaf.png");
-	public static final ImageIcon COMPOSITE_ICON = IconLoader.loadIcon("composite.png");
-	public static final ImageIcon PART_ICON = IconLoader.loadIcon("part.png");
+	public static final ImageIcon FEATURE_ICON = IconLoader.loadIcon("feature.png");
+	public static final ImageIcon MANDATORY_ICON = IconLoader.loadIcon("mandatory-subfeature.png");
+	public static final ImageIcon ONE_OF_ICON = IconLoader.loadIcon("one-of-subfeature.png");
+	public static final ImageIcon ONE_OR_MORE_ICON = IconLoader.loadIcon("one-or-more-subfeature.png");
+	public static final ImageIcon OPTIONAL_ICON = IconLoader.loadIcon("optional-subfeature.png");
 	
 	@Override
 	public Component getTreeCellRendererComponent(
@@ -93,14 +90,27 @@ class CompositionRenderer extends DefaultTreeCellRenderer
     if (user == null)
     	return super.getTreeCellRendererComponent(tree, "", selected, expanded, leaf, row, hasFocus);
 
-    Icon icon = user.getPartName() == null ? (user.isComposite() ? COMPOSITE_ICON : LEAF_ICON) : PART_ICON;
+    Icon icon = FEATURE_ICON;
+    switch (user.getKind())
+    {
+    case MANDATORY:
+    	icon = MANDATORY_ICON;
+    	break;
+    case ONE_OF:
+    	icon = ONE_OF_ICON;
+    	break;
+    case ONE_OR_MORE:
+    	icon = ONE_OR_MORE_ICON;
+    	break;
+    case OPTIONAL:
+    	icon = OPTIONAL_ICON;
+    	break;
+    }
     setLeafIcon(icon);
     setOpenIcon(icon);
     setClosedIcon(icon);
 
     String name = "<html>" + user.getName();
-    if (user.getPartName() == null)
-    	name += " <span color='gray'>(from perspective " + user.getPerspective().getFullyQualifiedName() + ")";
     java.awt.Component c = super.getTreeCellRendererComponent(
     		tree,
     		name,
@@ -142,13 +152,13 @@ public class RequirementsFeatureHierarchyViewer
 		if (pObj == null || cObj == null)
 			return;
 		DEStratum perspective = pObj.asStratum();
-		DEComponent component = cObj.asComponent();
+		DERequirementsFeature feature = cObj.asRequirementsFeature();
 		
 		
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode();
 		final JTree tree = new JTree(root);
 		tree.setCellRenderer(new CompositionRenderer());
-		populateTree(root, null, perspective, component, null, false);
+		populateTree(root, perspective, feature, null, false);
 		
 		panel.add(tree, BorderLayout.CENTER);
 		
@@ -167,13 +177,13 @@ public class RequirementsFeatureHierarchyViewer
 		TreeExpander.addPopupMenu(tree, items);
 	}
 
-	private void populateTree(DefaultMutableTreeNode treeParent, String partName, DEStratum perspective, DEComponent component, Node parentNode, boolean isPart)
+	private void populateTree(DefaultMutableTreeNode treeParent, DEStratum perspective, DERequirementsFeature feature, SubfeatureKindEnum kind, Node parentNode, boolean isPart)
 	{
 		Set<DeltaPair> partPairs =
-			component == null ?
+			feature == null ?
 					new HashSet<DeltaPair>() :
-					component.getDeltas(ConstituentTypeEnum.DELTA_PART).getConstituents(perspective, true);
-		Node current = new Node(parentNode, partName, perspective, component, !partPairs.isEmpty());
+					feature.getDeltas(ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK).getConstituents(perspective, true);
+		Node current = new Node(parentNode, perspective, feature, kind, !partPairs.isEmpty());
 		
 		DefaultMutableTreeNode child = new DefaultMutableTreeNode(current);
 		treeParent.add(child);
@@ -183,8 +193,8 @@ public class RequirementsFeatureHierarchyViewer
 		{
 			for (DeltaPair pair : partPairs)
 			{
-				DEPart part = pair.getConstituent().asPart();
-				populateTree(child, part.getName(), perspective, part.getType(), current, true);
+				DERequirementsFeatureLink link = pair.getConstituent().asRequirementsFeatureLink();
+				populateTree(child, perspective, link.getSubfeature(), link.getKind(),current, true);
 			}
 		}
 	}
