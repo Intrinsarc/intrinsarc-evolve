@@ -533,6 +533,7 @@ public class UML2Editor
 		List factories = new ArrayList();
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new UML2ItemProviderAdapterFactory());
+		factories.add(new UML2ItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());
 

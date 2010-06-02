@@ -91,13 +91,12 @@ public final class FeatureCompartmentGem implements Gem
 	   */
 	  public UDimension getMinimumExtent()
 	  {
-	  	Iterator iter = features.iterator();
 	  	double height = 0;
 	  	double width = 0;
 	  	boolean haveAtLeastOneOp = false;
-	  	while (iter.hasNext())
+
+	  	for (FigureFacet figure : features)
 	  	{
-	  		FigureFacet figure = (FigureFacet) iter.next();
 	  		UDimension opDim = figure.getFullBounds().getDimension();
 				height += opDim.getHeight();
 				width = Math.max(width, opDim.getWidth());			
@@ -362,84 +361,29 @@ public final class FeatureCompartmentGem implements Gem
 		/*
 		 * @see CmdContainerable#addContainables(CmdContainable[])
 		 */
-		public Object addContents(ContainedFacet[] containables)
+		public void addContents(ContainedFacet[] containables)
 		{
-			// make a list of the current containables
-			List current = makeCurrentFeatures();
-	
-			// add the operations to the list -- acceptsContained() makes sure that these are the correct type
+			// add the operations to the list -- acceptsContained() makes sure that these are the correct type			
 			for (int lp = 0; lp < containables.length; lp++)
 			{
 				features.add(containables[lp].getFigureFacet());
 				containables[lp].setContainer(this);
 			}
-				
-			// return the old list
-			return current;
-		}
-	
-		private List makeCurrentFeatures()
-		{
-			List<FigureReference> current = new ArrayList<FigureReference>();
-			for (FigureFacet f : features)
-				current.add(f.getFigureReference());
-			return current;
 		}
 		
-		private void restoreOldFeatures(List oldOps)
-		{
-			features = new HashSet<FigureFacet>();
-			Iterator iter = oldOps.iterator();
-			while (iter.hasNext())
-			{
-				FigureReference ref = (FigureReference) iter.next();
-
-				FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(ref);
-				ContainedFacet port = figure.getContainedFacet();
-				if (port != null)
-				{
-					port.setContainer(this);
-					features.add(figure);
-				}
-			}
-		}
-
 		/*
 		 * @see CmdContainerable#removeContainables(CmdContainable[])
 		 */
-		public Object removeContents(ContainedFacet[] containables)
+		public void removeContents(ContainedFacet[] containables)
 		{
-			// make a list of the current containables
-			List current = makeCurrentFeatures();
-	
 			// remove the operations from the list
 			for (int lp = 0; lp < containables.length; lp++)
 			{
 				containables[lp].setContainer(null);
 				features.remove(containables[lp].getFigureFacet());
 			}
-			
-			// return the old list
-			return current;
 		}
 	
-		/*
-		 * @see CmdContainerable#unAddContainables(Object)
-		 */
-		public void unAddContents(Object memento)
-		{
-			restoreOldFeatures((List) memento);
-		}
-	
-		/*
-		 * @see CmdContainerable#unRemoveContainables(Object)
-		 */
-		public void unRemoveContents(Object memento)
-		{
-			restoreOldFeatures((List) memento);
-			// set the positions of the operations
-		}
-
   	public FigureFacet getFigureFacet()
   	{
   		return figureFacet;
@@ -485,12 +429,17 @@ public final class FeatureCompartmentGem implements Gem
 			features.add(contained);
 			contained.getContainedFacet().persistence_setContainer(this);
 		}
+
+		public void cleanUp()
+		{
+			features.clear();
+		}
   }
 	
 	private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
 	{
 		public Manipulators getSelectionManipulators(
-		    DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		    ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 	  {
 	    return null;
 	  }
@@ -547,13 +496,6 @@ public final class FeatureCompartmentGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.foundation.FigureFacet#cleanUp()
-		 */
-		public void cleanUp()
-		{
-		}
-		
-		/**
 		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getAutoSizedBounds(IDiagram)
 		 */
 		public UBounds getAutoSizedBounds(boolean autoSized)
@@ -602,17 +544,15 @@ public final class FeatureCompartmentGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
-		  return null;
 		}
 
 		/**
@@ -635,9 +575,8 @@ public final class FeatureCompartmentGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -659,99 +598,34 @@ public final class FeatureCompartmentGem implements Gem
 		{
 			return new ToolFigureClassification(FIGURE_NAME, null);
 		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
 	}
 	
 	private class FeatureAddFacetImpl implements FeatureAddFacet
 	{
-		public Object addFeature(Object memento, FigureReference reference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location)
+		public void addFeature(FigureReference reference, NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location)
 		{
-			// if we have created the cmd before, just reexecute
-			if (memento != null)
-			{
-				((Command) memento).execute(false);
-				return memento;
-			}
-			
 			// set the location so that the operation will be inserted last
 	    if (location == null)
 	      location = figureFacet.getFullBounds().getBottomLeftPoint();
-			CompositeCommand comp = new CompositeCommand("added to " + FIGURE_NAME, "removed from " + FIGURE_NAME);
 			
 	    // adjust resizings to accommodate operation preview
-	    NodeCreateFigureCommand createNodeCmd = new NodeCreateFigureCommand(
+	    NodeCreateFigureTransaction.create(
+	    		figureFacet.getDiagram(),
 	        useSubject,
 	        reference,
 	        figureFacet.getFigureReference(),
 	        factory,
 	        location,
-	        false,
 	        properties,
-	        relatedSubject,
-	        "",
-	        "");
-	    createNodeCmd.execute(false);
+	        relatedSubject);
 	    
-	    ContainerAddCommand addCmd = new ContainerAddCommand(figureFacet.getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container");
-	    addCmd.execute(false);
-	
-			// add the commands to the compound edit
-		  comp.addCommand(createNodeCmd);
-		  comp.addCommand(addCmd);
-			return comp;
+	    ContainerAddTransaction.add(figureFacet.getContainerFacet(), new FigureReference[]{reference});
 		}
-	
-		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.featurenode.CmdFeatureAddable#unAddFeature(Object)
-		 */
-		public void unAddFeature(Object memento)
-		{
-			((Command) memento).unExecute();
-		}
-
-    public Object replaceFeature(Object memento, FigureReference replacement, FigureReference replaced, NodeCreateFacet factory,
-        PersistentProperties properties, Object useSubject, Object relatedSubject)
-    {
-      // if we have created the cmd before, just reexecute
-      if (memento != null)
-      {
-        ((Command) memento).execute(false);
-        return memento;
-      }
-      
-      DiagramFacet diagram = figureFacet.getDiagram();
-      
-      // set the location so that the feature will be inserted last
-      FigureFacet replacedFigure = diagram.retrieveFigure(replaced.getId());
-      UPoint location = replacedFigure.getFullBounds().getTopLeftPoint();
-      CompositeCommand comp = new CompositeCommand("replaced " + FIGURE_NAME, "removed replace " + FIGURE_NAME);
-      
-      // adjust resizings to accommodate operation preview
-      NodeCreateFigureCommand createNodeCmd = new NodeCreateFigureCommand(
-          useSubject,
-          replacement,
-          figureFacet.getFigureReference(),
-          factory,
-          location,
-          false,
-          properties,
-          relatedSubject,
-          "created " + factory.getFigureName(),
-          "removed " + factory.getFigureName());
-      createNodeCmd.execute(false);
-      
-      ContainerAddCommand addCmd = new ContainerAddCommand(figureFacet.getFigureReference(), new FigureReference[]{replacement}, "added containables to container", "removed containables from container");
-      addCmd.execute(false);
-
-      // add the commands to the compound edit
-      comp.addCommand(createNodeCmd);
-      comp.addCommand(addCmd);
-      return comp;
-    }
-
-    public void unReplaceFeature(Object memento)
-    {
-      ((Command) memento).unExecute();
-    }
 	}
 
 	public FeatureCompartmentGem(int containsFeatureType)
@@ -765,9 +639,15 @@ public final class FeatureCompartmentGem implements Gem
 	  this.contentsCanMoveContainers = contentsCanMoveContainers;
 	}
 	
-	public FeatureCompartmentGem(PersistentProperties properties, int featureType)
+	public FeatureCompartmentGem(PersistentFigure pfig, int featureType)
 	{
 		containsFeatureType = featureType;
+		interpretPersistentFigure(pfig);
+	}
+	
+	private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
 		addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());		
 		deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
 	}

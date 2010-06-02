@@ -403,6 +403,16 @@ public class BehavioralFeatureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioralFeature_FormalParameter(),
+				 UML2Factory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getBehavioralFeature_ReturnResult(),
+				 UML2Factory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getBehavioralFeature_ReturnResult(),
 				 UML2Factory.eINSTANCE.createParameter()));
 	}

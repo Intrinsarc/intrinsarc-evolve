@@ -102,28 +102,13 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
     return startS instanceof Classifier && startS.getClass() == endS.getClass();
 	}
 
-	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+	public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 	{
-		final Classifier oldSpecific = subject.getSpecific();
-		final Classifier oldGeneral = subject.getGeneral();
-		final Classifier newSpecific = (Classifier) start.getFigureFacet().getSubject();
-		final Classifier newGeneral = (Classifier) end.getFigureFacet().getSubject();
+		Classifier newSpecific = (Classifier) start.getFigureFacet().getSubject();
+		Classifier newGeneral = (Classifier) end.getFigureFacet().getSubject();
 
-		// return a command to change these
-		return new AbstractCommand("Retargeted generalization ends", "Unretargeted generalization ends")
-		{
-			public void execute(boolean isTop)
-			{
-				newSpecific.getGeneralizations().add(subject);
-				subject.setGeneral(newGeneral);
-			}
-
-			public void unExecute()
-			{
-				oldSpecific.getGeneralizations().add(subject);
-				subject.setGeneral(oldGeneral);
-			}			
-		};
+		newSpecific.getGeneralizations().add(subject);
+		subject.setGeneral(newGeneral);
 	}
 
 	public Object getSubject()
@@ -136,11 +121,11 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
 		return subject.isThisDeleted();
 	}
 
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 	{
 		// if this is top and the anchors we are attached to are not the same as the ones that the
 		// model element is attached to, then delete
-		if (isTop && pass == ViewUpdatePassEnum.LAST)
+		if (pass == ViewUpdatePassEnum.LAST)
 		{
 			Classifier specific = subject.getSpecific();
 			Classifier general = subject.getGeneral();
@@ -148,9 +133,8 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
 			Classifier viewGeneral = (Classifier)figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
 			
 			if (specific != viewSpecific || general != viewGeneral)
-				return figureFacet.formDeleteCommand();
+				figureFacet.formDeleteTransaction();
 		}
-		return null;
 	}
 
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill)
@@ -162,4 +146,8 @@ public final class InheritanceArcAppearanceFacetImpl implements BasicArcAppearan
   {
     return null;
   }
+
+	public void acceptPersistentProperties(PersistentFigure pfig)
+	{
+	}
 }

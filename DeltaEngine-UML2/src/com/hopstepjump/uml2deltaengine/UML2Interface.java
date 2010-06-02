@@ -186,7 +186,7 @@ public class UML2Interface extends DEInterface
 				// get the owner of the dependency
 				if (dep.getOwner() instanceof Interface)
 				{
-					Classifier real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((Classifier) dep.getOwner());
+					NamedElement real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((NamedElement) dep.getOwner());
 					if (real instanceof Interface)
 						immediate.add(getEngine().locateObject(real).asElement());
 				}

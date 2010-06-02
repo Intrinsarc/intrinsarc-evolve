@@ -54,9 +54,8 @@ public class StereotypeUnknownAttributeViewer implements UMLAttributeViewer
   }
 
 
-  public Command formApplyCommand()
+  public void applyAction()
   {
-    return null;
   }
 
 

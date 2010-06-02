@@ -25,7 +25,7 @@ public interface BasicNamespaceAppearanceFacet extends Facet
 	public Shape formShapeForBoundaryCalculation(UBounds bounds, BasicNamespaceSizes sizes);
 	public boolean useBoxForOutsideBoundaryCalculation();
 	
-	public Command middleButtonPressed(DiagramFacet diagram);
+	public void middleButtonPressed(DiagramFacet diagram);
 	public boolean isEmptyAndCanBeDeleted(Namespace subject);
 	public ToolFigureClassification getToolClassification(BasicNamespaceSizes sizes, UPoint point);
 }

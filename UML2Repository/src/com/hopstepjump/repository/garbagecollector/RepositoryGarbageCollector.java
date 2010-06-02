@@ -88,7 +88,7 @@ public class RepositoryGarbageCollector
       return 0;
     
     // start a transaction for this package
-    repository.startTransaction();
+    repository.startTransaction("", "");
 
     int lp = 0;
     try

@@ -17,5 +17,5 @@ public interface BasicNodeFigureFacet extends FigureFacet
 	public BasicNodeAutoSizedFacet getBasicNodeAutoSizedFacet();
 	
 	/** adjust on the diagram */
-	public Command makeAndExecuteResizingCommand(UBounds newSize);
+	public void performResizingTransaction(UBounds newSize);
 }

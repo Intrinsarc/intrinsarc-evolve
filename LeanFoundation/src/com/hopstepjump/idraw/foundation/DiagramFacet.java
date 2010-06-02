@@ -2,20 +2,24 @@ package com.hopstepjump.idraw.foundation;
 
 import java.util.*;
 
-import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 
 
-public interface DiagramFacet extends Facet
+public interface DiagramFacet extends TransactionManagerFacet
 {
+	/** additional undo/redo support */
+	public void checkpointCommitTransaction();
+	public void completeUndoTransaction();
+	public void completeRedoTransaction();
+	public void forceAdjust(FigureFacet figure);
+
 	/** for chained diagrams */
 	public DiagramFacet getSource();
   public Object getLinkedObject();
   public void setLinkedObject(Object linkedObject);
 
   public int getFigureId();
-  public void adjusted(FigureFacet figure);
   public boolean contains(FigureFacet figure );
 
 	public void addProperty(String name, String value);
@@ -27,10 +31,12 @@ public interface DiagramFacet extends Facet
   /** make persistent figures of all the ids (no children or links followed) */
   public Map<String, PersistentFigure> makePersistentFigures(String[] ids, boolean includeChildren);
 
-	public void revert();
   public void resyncViews();
+  // adjust the diagram, requiring undo/redo support
+  public void revert();
   public void add(FigureFacet figure );
   public void remove(FigureFacet figure);
+  //////////////////////////////////////////////////
 
   public List<FigureFacet> getFigures( );
   public boolean isEmpty();
@@ -49,17 +55,15 @@ public interface DiagramFacet extends Facet
   public void resetModified();
   public long getLRUTime();
   public void setLRUTime(long time);
-	public long getOpeningTime();
 	public boolean isClipboard();
   public void resizeEntireDiagram();
   
   /**
    * view update management -- due to subjects altering
-   * @param isTop 
    * @param pass TODO
    * @param initialRun TODO
    */
-  public Command formViewUpdateCommand(boolean isTop, ViewUpdatePassEnum pass, boolean initialRun);
+  public void formViewUpdate(ViewUpdatePassEnum pass, boolean initialRun);
   public void regenerate(PersistentDiagram diagram);
   public boolean isReadOnly();
   public Object getPossiblePerspective();

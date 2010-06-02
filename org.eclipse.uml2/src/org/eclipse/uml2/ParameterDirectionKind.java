@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.PersistentAbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * ParameterDirectionKind is an enumeration of the following literal values: â€¢ in Indicates that parameter values are passed into the behavioral element by the caller. â€¢ inout Indicates that parameter values are passed into a behavioral element by the caller and then back out to the caller from the behavioral element. â€¢ out Indicates that parameter values are passed from a behavioral element out to the caller. â€¢ return Indicates that parameter values are passed as return values from a behavioral element back to the caller. 
+ * ParameterDirectionKind is an enumeration of the following literal values: • in Indicates that parameter values are passed into the behavioral element by the caller. • inout Indicates that parameter values are passed into a behavioral element by the caller and then back out to the caller from the behavioral element. • out Indicates that parameter values are passed from a behavioral element out to the caller. • return Indicates that parameter values are passed as return values from a behavioral element back to the caller. 
  * <!-- end-model-doc -->
  * @see org.eclipse.uml2.UML2Package#getParameterDirectionKind()
  * @model

@@ -85,7 +85,5 @@ public interface DiagramViewFacet extends Facet
   public JPopupMenu makeContextMenu(ToolCoordinatorFacet coordinator);
   public void middleButtonPressed();
   public SmartMenuContributorFacet getSmartMenuContributorFacet();
-  
-  public void runWhenModificationsHaveBeenProcessed(Runnable runnable);
   public List<DiagramFigureAdornerFacet> getAdorners();
 }

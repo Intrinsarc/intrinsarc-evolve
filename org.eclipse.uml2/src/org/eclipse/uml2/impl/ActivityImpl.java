@@ -215,6 +215,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (ActivityImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -837,6 +839,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 					return ((InternalEList)getDeltaDeletedOperations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTIVITY__DELTA_REPLACED_OPERATIONS:
 					return ((InternalEList)getDeltaReplacedOperations()).basicRemove(otherEnd, msgs);
+				case UML2Package.ACTIVITY__DELTA_DELETED_TRACES:
+					return ((InternalEList)getDeltaDeletedTraces()).basicRemove(otherEnd, msgs);
+				case UML2Package.ACTIVITY__DELTA_REPLACED_TRACES:
+					return ((InternalEList)getDeltaReplacedTraces()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTIVITY__OWNED_PORT:
 					return ((InternalEList)getOwnedPorts()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTIVITY__OWNED_OPERATION:
@@ -960,6 +966,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 			case UML2Package.ACTIVITY__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.ACTIVITY__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.ACTIVITY__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.ACTIVITY__IS_LEAF:
@@ -990,8 +998,6 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 				return getRepresentation();
 			case UML2Package.ACTIVITY__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.ACTIVITY__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.ACTIVITY__OWNED_BEHAVIOR:
 				return getOwnedBehaviors();
 			case UML2Package.ACTIVITY__CLASSIFIER_BEHAVIOR:
@@ -1026,6 +1032,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 				return getDeltaDeletedOperations();
 			case UML2Package.ACTIVITY__DELTA_REPLACED_OPERATIONS:
 				return getDeltaReplacedOperations();
+			case UML2Package.ACTIVITY__DELTA_DELETED_TRACES:
+				return getDeltaDeletedTraces();
+			case UML2Package.ACTIVITY__DELTA_REPLACED_TRACES:
+				return getDeltaReplacedTraces();
 			case UML2Package.ACTIVITY__OWNED_PORT:
 				return getOwnedPorts();
 			case UML2Package.ACTIVITY__OWNED_OPERATION:
@@ -1170,6 +1180,9 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 			case UML2Package.ACTIVITY__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.ACTIVITY__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.ACTIVITY__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -1206,9 +1219,6 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 			case UML2Package.ACTIVITY__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.ACTIVITY__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.ACTIVITY__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -1268,6 +1278,14 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 			case UML2Package.ACTIVITY__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
 				getDeltaReplacedOperations().addAll((Collection)newValue);
+				return;
+			case UML2Package.ACTIVITY__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				getDeltaDeletedTraces().addAll((Collection)newValue);
+				return;
+			case UML2Package.ACTIVITY__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				getDeltaReplacedTraces().addAll((Collection)newValue);
 				return;
 			case UML2Package.ACTIVITY__OWNED_PORT:
 				getOwnedPorts().clear();
@@ -1425,6 +1443,9 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 			case UML2Package.ACTIVITY__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.ACTIVITY__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.ACTIVITY__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -1454,9 +1475,6 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 				return;
 			case UML2Package.ACTIVITY__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.ACTIVITY__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.ACTIVITY__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -1502,6 +1520,12 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 				return;
 			case UML2Package.ACTIVITY__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
+				return;
+			case UML2Package.ACTIVITY__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				return;
+			case UML2Package.ACTIVITY__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
 				return;
 			case UML2Package.ACTIVITY__OWNED_PORT:
 				getOwnedPorts().clear();
@@ -1636,6 +1660,8 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.ACTIVITY__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.ACTIVITY__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.ACTIVITY__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.ACTIVITY__IS_LEAF:
@@ -1666,8 +1692,6 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 				return representation != null;
 			case UML2Package.ACTIVITY__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.ACTIVITY__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.ACTIVITY__OWNED_BEHAVIOR:
 				return !getOwnedBehaviors().isEmpty();
 			case UML2Package.ACTIVITY__CLASSIFIER_BEHAVIOR:
@@ -1702,6 +1726,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 				return deltaDeletedOperations != null && !deltaDeletedOperations.isEmpty();
 			case UML2Package.ACTIVITY__DELTA_REPLACED_OPERATIONS:
 				return deltaReplacedOperations != null && !deltaReplacedOperations.isEmpty();
+			case UML2Package.ACTIVITY__DELTA_DELETED_TRACES:
+				return deltaDeletedTraces != null && !deltaDeletedTraces.isEmpty();
+			case UML2Package.ACTIVITY__DELTA_REPLACED_TRACES:
+				return deltaReplacedTraces != null && !deltaReplacedTraces.isEmpty();
 			case UML2Package.ACTIVITY__OWNED_PORT:
 				return ownedPort != null && !ownedPort.isEmpty();
 			case UML2Package.ACTIVITY__OWNED_OPERATION:

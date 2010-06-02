@@ -22,21 +22,16 @@ public class FeatureSuppressToggleManipulator extends ManipulatorAdapter
   private ZGroup diagramLayer;
   private ZGroup group;
   private int featureType;
-  private String featureName;
   private boolean featureSuppressed;
   private ManipulatorListenerFacet listener;
+  private ManipulatorListenerFacet appListener;
   private UPoint location;
   private int size;
-  private FigureReference reference;
-  private String name;
 
   public FeatureSuppressToggleManipulator(FigureReference reference, String name, UPoint location, int size,
       int featureType, String featureName, boolean featureSuppressed)
   {
-    this.reference = reference;
-    this.name = name;
     this.featureType = featureType;
-    this.featureName = featureName;
     this.featureSuppressed = featureSuppressed;
     this.location = location;
     this.size = size;
@@ -84,25 +79,17 @@ public class FeatureSuppressToggleManipulator extends ManipulatorAdapter
     this.listener = listener;
   }
 
+  public void setAppListener(ManipulatorListenerFacet listener)
+  {
+    this.appListener = listener;
+  }
+
   /** Invoked when a mouse button has been released on this figure */
   public void mouseReleased(FigureFacet over, UPoint point, ZMouseEvent event)
   {
-    listener.haveFinished(makeToggleSuppressFeaturesCommand(reference, name, featureType, featureName,
-        featureSuppressed));
-  }
-
-  /**
-   * make a command to allow feature suppression
-   */
-  public static Command makeToggleSuppressFeaturesCommand(FigureReference reference, String figureName, int featureType,
-      String featureName, boolean suppressed)
-  {
-    return new SuppressFeaturesCommand(
-        reference, 
-        featureType, 
-        !suppressed, (suppressed ? "showed " : "hid ") + " "
-        	+ featureName + " for " + figureName, (!suppressed ? "showed " : "hid ") + " " + featureName + " for "
-        	+ figureName);
+    listener.haveFinished();
+    if (appListener != null)
+    	appListener.haveFinished();
   }
 
   public void setLayoutOnly()

@@ -279,6 +279,11 @@ public class CommentItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getComment_BodyExpression(),
 				 UML2Factory.eINSTANCE.createStringExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getComment_BodyExpression(),
+				 UML2Factory.eINSTANCE.createStringExpression()));
 	}
 
 	/**

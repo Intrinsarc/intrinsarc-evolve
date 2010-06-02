@@ -267,22 +267,21 @@ public final class ArcCreateToolGem implements Gem
     previewFigure.setNode2Preview(arcable.getFigureFacet().getSinglePreview(diagram).getAnchorPreviewFacet());
 
     // get the created figure via its reference
-    final FigureReference reference = diagram.makeNewFigureReference();
+    FigureReference reference = diagram.makeNewFigureReference();
 
 	  // make the arc
     PersistentProperties properties = new PersistentProperties();
     factory.initialiseExtraProperties(properties);
-    factory.aboutToMakeCommand(coordinator);
-	  ArcCreateFigureCommand cmd =
-      new ArcCreateFigureCommand(
+    factory.aboutToMakeTransaction(coordinator);
+    coordinator.startTransaction("created " + factory.getFigureName(), "removed " + factory.getFigureName());
+    ArcCreateFigureTransaction.create(
+    		diagram,
       	null,
         reference,
         factory,
         previewFigure.getReferenceCalculatedPoints(diagram),
-        properties,
-        "created " + factory.getFigureName(),
-        "removed " + factory.getFigureName());
-	  coordinator.executeCommandAndUpdateViews(cmd);
+        properties);
+	  coordinator.commitTransaction();
 	  diagramView.getSelection().clearAllSelection();	
 	  diagramView.addFigureToSelectionViaId(reference.getId());
 

@@ -51,7 +51,7 @@ public interface LinkEndData extends Element{
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Input pin that provides the specified object for the given end. This pin is omitted if the link-end data specifies an â€œopenâ€ end for reading.
+	 * Input pin that provides the specified object for the given end. This pin is omitted if the link-end data specifies an “open” end for reading.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' reference.
 	 * @see #setValue(InputPin)

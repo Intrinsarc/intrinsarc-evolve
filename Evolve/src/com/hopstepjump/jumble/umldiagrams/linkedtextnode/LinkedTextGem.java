@@ -33,9 +33,9 @@ public class LinkedTextGem implements Gem
 	private BasicNodeAppearanceFacet appearanceFacet = new BasicNodeAppearanceFacetImpl();
 	private BasicNodeFigureFacet figureFacet;
 	private LinkedTextFacet linkedTextFacet = new LinkedTextFacetImpl();
-  private HideLinkedTextFacetImpl hideLinkedTextFacet = new HideLinkedTextFacetImpl();
-  private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   private int majorPointType;
+  private String prefix;
 
 	public LinkedTextGem(String text, boolean suppress, int majorPointType)
   {
@@ -44,14 +44,21 @@ public class LinkedTextGem implements Gem
 	  this.majorPointType = majorPointType;
   }
   
-	public LinkedTextGem(PersistentProperties properties)
+	public LinkedTextGem(PersistentFigure pfig)
   {
+		interpretPersistentFigure(pfig);
+  }
+  
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
 		text = properties.retrieve("text", "").asString();
     suppress = properties.retrieve("suppress", false).asBoolean();
     majorPointType = properties.retrieve("majorPt", CalculatedArcPoints.MAJOR_POINT_MIDDLE).asInteger();
-  }
-  
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+		prefix = properties.retrieve("prefix", (String) null).asString();
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
   	return appearanceFacet;
   }
@@ -66,84 +73,67 @@ public class LinkedTextGem implements Gem
   	this.figureFacet = figureFacet;
   	figureFacet.registerDynamicFacet(linkedTextFacet, TextableFacet.class);
   	figureFacet.registerDynamicFacet(linkedTextFacet, LinkedTextFacet.class);
-    figureFacet.registerDynamicFacet(hideLinkedTextFacet, HideLinkedTextFacet.class);
     figureFacet.setShowing(!suppress);
 	}
   
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
 
-  private class ClipboardCommandsFacetImpl implements ClipboardCommandsFacet
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
-    public boolean hasSpecificDeleteCommand()
+    public boolean hasSpecificDeleteAction()
     {
       return true;
     }
     
-    public Command makeSpecificDeleteCommand()
+    public void makeSpecificDeleteAction()
     {
-      return new HideLinkedTextCommand(figureFacet.getFigureReference(), true, "", "");
+    	hideLinkedText(true);
     }
     
-    public Command makePostDeleteCommand()
+    public void performPostDeleteAction()
     {
-      return null;
     }
 
-    public boolean hasSpecificKillCommand()
+    public boolean hasSpecificKillAction()
     {
       return false;
     }
 
-    public Command makeSpecificKillCommand(ToolCoordinatorFacet coordinator)
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
-      return null;
     }
   }
   
-  private class HideLinkedTextFacetImpl implements HideLinkedTextFacet
+  private void hideLinkedText(boolean hide)
   {
-    public Object hideLinkedText(boolean hide)
-    {
-      boolean oldHide = suppress;
-      
-      // make the change
-      suppress = hide;
-      figureFacet.setShowing(!suppress);
-      Command resizeCommand =
-        figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
-      
-      return new Object[] { new Boolean(oldHide), resizeCommand };
-    }
-    
-    /**
-     * @see com.giroway.jumble.nodefacilities.resizebase.CmdAutoSizeable#unAutoSize(Object)
-     */
-    public void unHideLinkedText(Object memento)
-    {
-      Object[] array = (Object[]) memento;
-      suppress = ((Boolean) array[0]).booleanValue();
-      Command resizeCommand = (Command) array[1];
-      
-      figureFacet.setShowing(!suppress);
-      resizeCommand.unExecute();
-    }
+    // make the change
+    suppress = hide;
+    figureFacet.setShowing(!suppress);
+    figureFacet.performResizingTransaction(figureFacet.getFullBounds());      
   }
   
   private class LinkedTextFacetImpl implements LinkedTextFacet
   {
-    public ManipulatorFacet getTextEntryManipulator(DiagramViewFacet diagramView)
+    public ManipulatorFacet getTextEntryManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView)
     {
-      TextManipulatorGem textGem = new TextManipulatorGem("changed port text", "restored port text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+      TextManipulatorGem textGem = new TextManipulatorGem(
+      		coordinator,
+      		"changed port text", "restored port text",
+      		getPrefixedText(text), 
+      		font,
+      		lineColor,
+      		Color.white,
+      		TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
       textGem.connectTextableFacet(linkedTextFacet);
 
 	    OriginLineManipulatorGem decorator =
 	      new OriginLineManipulatorGem(figureFacet, getMajorPoint());
 	    decorator.setDecoratedManipulatorFacet(textGem.getManipulatorFacet());
 
-	    if (text.length() == 0)
+	    if (getPrefixedText(text).length() == 0)
 	    {
 		    EmptyTextManipulatorGem decorator2 =
 	    		new EmptyTextManipulatorGem(diagramView, figureFacet, figureFacet.getFullBounds().getTopLeftPoint(), "(?)");
@@ -164,13 +154,11 @@ public class LinkedTextGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           // toggle the label viewing flag (as a command)
-          Command hideCommand =
-            new HideLinkedTextCommand(
-                figureFacet.getFigureReference(),
-                !suppress,
+          coordinator.startTransaction(
                 suppress ? "show " + name + " label" : "hide " + name + " label",
                 suppress ? "hide " + name + " label" : "show " + name + " label");
-          coordinator.executeCommandAndUpdateViews(hideCommand);
+          hideLinkedText(!suppress);
+          coordinator.commitTransaction();
         }
       });
       
@@ -195,42 +183,34 @@ public class LinkedTextGem implements Gem
 		 */
 		public UBounds vetTextResizedExtent(String text)
 		{
-			ZText nameText = new ZText(text, font);	
+			ZText nameText = new ZText(getPrefixedText(text), font);	
 			return new UBounds(
 			    figureFacet.getFullBounds().getTopLeftPoint(),
 			    new UBounds(nameText.getBounds()).getDimension());
 		}
 	
-	  public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+	  public void setText(String newText, Object listSelection, boolean unsuppress)
 	  {
+	  	// remove any prefix and any space
+	  	if (newText != null && prefix != null && newText.startsWith(prefix))
+	  	{
+	  		newText = newText.substring(prefix.length());
+	  		if (newText.startsWith(" "))
+	  			newText = newText.substring(1);
+	  	}
+	  	
 	    // need to resize this also, as the change in text may have affected the size
-	    String oldText = text;
 	    text = extractOriginFacet().textChanged(newText, majorPointType);
 	    
 	    // change the visibility
-	    boolean oldSuppress = suppress;
 	    if (unsuppress)
 	    {
 	    	suppress = false;
 	    	figureFacet.setShowing(true);
 	    }
-	    
-	    return new Object[]{
-	        oldText,
-	        oldSuppress,
-	        figureFacet.makeAndExecuteResizingCommand(linkedTextFacet.vetTextResizedExtent(newText))};
+	    figureFacet.performResizingTransaction(linkedTextFacet.vetTextResizedExtent(newText));
 	  }
 	
-	  public void unSetText(Object memento)
-	  {
-			Object[] mementos = (Object[]) memento;
-	    text = (String) mementos[0];
-    	suppress = (Boolean) mementos[1];
-    	figureFacet.setShowing(!suppress);
-	    extractOriginFacet().textChanged(text, majorPointType);
-	    ((Command) mementos[2]).unExecute();
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
 		 */
@@ -273,7 +253,7 @@ public class LinkedTextGem implements Gem
 			UBounds bounds = figureFacet.getFullBounds();
 
 			// place some text indicating the dimensions
-			ZText nameText = new ZText(text, font);
+			ZText nameText = new ZText(getPrefixedText(text), font);
 			UPoint start = bounds.getTopLeftPoint();
 			nameText.setTranslation(start);
 			nameText.setPenColor(lineColor);
@@ -300,13 +280,13 @@ public class LinkedTextGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
 		 */
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 		  ManipulatorFacet primaryFocus = null;
 	    if (favoured)
 	    {
 		    ManipulatorFacet keyFocus = null;
-	      TextManipulatorGem textGem = new TextManipulatorGem("changed text", "restored text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+	      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed text", "restored text", getPrefixedText(text), font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
 	      textGem.connectTextableFacet(linkedTextFacet);
 	      keyFocus = textGem.getManipulatorFacet();
 
@@ -348,7 +328,7 @@ public class LinkedTextGem implements Gem
 		 */
 		public UDimension getCreationExtent()
 		{
-			ZText nameText = new ZText(text, font);	
+			ZText nameText = new ZText(getPrefixedText(text), font);	
 			return new UBounds(nameText.getBounds()).getDimension();
 		}
 	
@@ -397,22 +377,21 @@ public class LinkedTextGem implements Gem
 			properties.add(new PersistentProperty("text", text));
       properties.add(new PersistentProperty("suppress", suppress, false));
       properties.add(new PersistentProperty("majorPt", majorPointType, CalculatedArcPoints.MAJOR_POINT_MIDDLE));
+			properties.add(new PersistentProperty("prefix", prefix, null));
 		}
 
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
-			return null;
 		}
 	
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
-		  return null;
 		}
 
 		/**
@@ -435,9 +414,8 @@ public class LinkedTextGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -457,6 +435,11 @@ public class LinkedTextGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
   
   private LinkedTextOriginFacet extractOriginFacet()
@@ -475,8 +458,17 @@ public class LinkedTextGem implements Gem
     return extractOriginFacet().getMajorPoint(majorPointType);
   }
 
-	private UDimension getTextHeightAsDimension(ZText text)
+	public void addPrefix(String prefix)
 	{
-		return new UDimension(0, text.getBounds().getHeight());
+		this.prefix = prefix;
+	}
+	
+	private String getPrefixedText(String text)
+	{
+		if (prefix != null && text.length() > 0)
+			return prefix + " " + text;
+		if (prefix != null)
+			return prefix;
+		return text;
 	}
 }

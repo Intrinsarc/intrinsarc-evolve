@@ -15,6 +15,7 @@ public class RichPalette implements IRichPalette
   private java.util.List<IRichPaletteCategory> categories = new ArrayList<IRichPaletteCategory>();
   private RichPaletteEntry currentSelection;
   private List<JPanel> splitters = new ArrayList<JPanel>();
+  private String focus;
 
   public RichPalette()
   {
@@ -112,6 +113,8 @@ public class RichPalette implements IRichPalette
 
   public void workOutSizesAndAdjust()
   {
+  	if (split == null)
+  		return;
     RichPaletteSizer sizer = new RichPaletteSizer(categories, splitters, split.getWidth(), split.getHeight());
     sizer.calculateSizes();
   }
@@ -128,7 +131,31 @@ public class RichPalette implements IRichPalette
     return split.getWidth();
   }
   
-  public JPopupMenu getPopupMenu()
+  public void setHideMinimized(boolean hide)
+  {
+    for (IRichPaletteCategory category : categories)
+    	category.setHidden(!containsFocus(category.getFocusTags()));
+    	
+    if (hide)
+  	{
+      // look at any categories which are minimized and tell them to be hidden also
+      for (IRichPaletteCategory category : categories)
+      {
+        if (category.isMinimized() && !category.isHidden())
+          category.setHidden(true);
+      }
+  	}
+    workOutSizesAndAdjust();
+  }
+  
+  private boolean containsFocus(String[] focusTags)
+	{
+  	if (focusTags == null)
+  		return true;
+		return Arrays.asList(focusTags).contains(focus);
+	}
+
+	public JPopupMenu getPopupMenu()
   {
     JPopupMenu popup = new JPopupMenu();
     JMenuItem hide = new JMenuItem("Hide minimized");
@@ -140,13 +167,7 @@ public class RichPalette implements IRichPalette
     {
       public void actionPerformed(ActionEvent e)
       {
-        // look at any categories which are minimized and tell them to be hidden also
-        for (IRichPaletteCategory category : categories)
-        {
-          if (category.isMinimized())
-            category.setHidden(true);
-        }
-        workOutSizesAndAdjust();
+      	setHideMinimized(true);
       } 
     });
     
@@ -154,13 +175,7 @@ public class RichPalette implements IRichPalette
     {
       public void actionPerformed(ActionEvent e)
       {
-        // look at any categories which are hidden, and re-show them
-        for (IRichPaletteCategory category : categories)
-        {
-          if (category.isHidden())
-            category.setHidden(false);
-        }
-        workOutSizesAndAdjust();
+      	setHideMinimized(false);
       } 
     });
     
@@ -226,9 +241,20 @@ public class RichPalette implements IRichPalette
 		List<ToolClassification> tools = new ArrayList<ToolClassification>();
 		for (IRichPaletteCategory cat : categories)
 		{
-			if (cat.getMode() != RichPaletteCategoryMode.MINIMIZED)
+			if (!cat.isHidden() && cat.getMode() != RichPaletteCategoryMode.MINIMIZED)
 				tools.addAll(cat.getToolClassifications());
 		}
 		return tools;
+	}
+
+	public void setFocus(String focus)
+	{
+		this.focus = focus;
+    setHideMinimized(false);
+	}
+
+	public String getFocus()
+	{
+		return focus;
 	}
 }

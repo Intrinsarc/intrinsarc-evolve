@@ -1,8 +1,5 @@
 package com.hopstepjump.jumble.gui;
 
-import static com.hopstepjump.swing.palette.RichPaletteCategoryMode.MAXIMIZED;
-import static com.hopstepjump.swing.palette.RichPaletteCategoryMode.MINIMIZED;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
@@ -40,9 +37,11 @@ import com.hopstepjump.jumble.umldiagrams.notelinkarc.*;
 import com.hopstepjump.jumble.umldiagrams.notenode.*;
 import com.hopstepjump.jumble.umldiagrams.packagenode.*;
 import com.hopstepjump.jumble.umldiagrams.portnode.*;
+import com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode.*;
 import com.hopstepjump.jumble.umldiagrams.sequencesection.*;
 import com.hopstepjump.jumble.umldiagrams.stereotypenode.*;
 import com.hopstepjump.jumble.umldiagrams.substitutionarc.*;
+import com.hopstepjump.jumble.umldiagrams.tracearc.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.palette.*;
@@ -54,6 +53,14 @@ import edu.umd.cs.jazz.util.*;
 public class PaletteManagerGem
 {
   private static final ImageIcon FOLDER = IconLoader.loadIcon("folder.png");
+  public static final String FEATURE_FOCUS = "Feature focus";
+  public static final String COMPONENT_FOCUS = "Component focus";
+  public static final String STATE_FOCUS = "State focus";
+  public static final String BEHAVIOUR_FOCUS = "Behaviour focus";
+  public static final String PROFILE_FOCUS = "Profile focus";
+  public static final String DOCUMENTATION_FOCUS = "Documentation focus";
+  public static final String CLASS_FOCUS = "Class focus";
+  public static final String MISCELLANEOUS_FOCUS = "Miscellaneous focus";
 
   private RichPalette tools;
   private IRichPaletteEntry select;
@@ -275,6 +282,16 @@ public class PaletteManagerGem
           activateLatestSelectionTool();
       }
     }
+
+		public void setFocus(String focus)
+		{
+			tools.setFocus(focus);
+		}
+
+		public String getFocus()
+		{
+			return tools.getFocus();
+		}
   }
   
   private boolean isCurrentDiagramReadOnly()
@@ -287,50 +304,64 @@ public class PaletteManagerGem
     if (tools != null)
       return tools;
     
+    GlobalPopupMenuFacet popupFacet = new GlobalPopupMenuFacet()
+    {
+      public void addToContextMenu(JPopupMenu popupMenu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator, FigureFacet figure)
+      {
+        if (!figure.isSubjectReadOnlyInDiagramContext(false))
+        {
+          Object subject = figure.getSubject();
+          if (subject instanceof Element)
+            new StereotypeChanger().createMenu(popupMenu, coordinator, (Element) subject);
+        }
+      }       
+    };
+
+    // make the bespoke creators
+    NodeCreateFacet compositeShortcutCreator = makeCompositeShortcutCreator();
+    ClassCreatorGem compositeCreator = new ClassCreatorGem();
+    compositeCreator.setSuppressOperations(true);
+    compositeCreator.setAutoSized(false);
+    compositeCreator.setComponentKind(ComponentKindEnum.NORMAL);
+    compositeCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
+    NodeCreateFacet placeholderCreator = makePlaceholderCreator(false);
+    NodeCreateFacet factoryCreator = makeFactoryCreator(false);
+    InterfaceCreatorGem interfaceShortcutCreator = new InterfaceCreatorGem();
+    interfaceShortcutCreator.setStereotype(CommonRepositoryFunctions.INTERFACE);
+    interfaceShortcutCreator.setSuppressOperations(true);
+    interfaceShortcutCreator.setAutosized(true);
+    InterfaceCreatorGem interfaceCreator = new InterfaceCreatorGem();
+    interfaceCreator.setStereotype(CommonRepositoryFunctions.INTERFACE);
+    ConnectorCreatorGem delegateConnectorCreator = new ConnectorCreatorGem();
+    delegateConnectorCreator.setDelegate(true);
+    ConnectorCreatorGem portLinkCreator = new ConnectorCreatorGem();
+    portLinkCreator.setPortLink(true);
+
     tools = new RichPalette();
     {
-      GlobalPopupMenuFacet popupFacet = new GlobalPopupMenuFacet()
-      {
-        public void addToContextMenu(JPopupMenu popupMenu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator, FigureFacet figure)
-        {
-          if (!figure.isSubjectReadOnlyInDiagramContext(false))
-          {
-            Object subject = figure.getSubject();
-            if (subject instanceof Element)
-              new StereotypeChanger().createMenu(popupMenu, coordinator, (Element) subject);
-          }
-        }       
-      };
-      RichPaletteCategory palette = new RichPaletteCategory(null, "Selection", true);
+      RichPaletteCategory palette = new RichPaletteCategory(null, "Selection", true, null);
 
       SelectionToolGem selectionToolGem = new SelectionToolGem(false);
       selectionToolGem.connectGlobalPopupMenuFacet(popupFacet);
       selectionToolGem.connectToolClassificationFacet(toolClassifier);
       palette.addEntry(select = makeEntry(false, "select.png", "Select", selectionToolGem.getToolFacet(), true, "", ""));
-      SelectionToolGem layoutToolGem = new SelectionToolGem(true);
-      layoutToolGem.connectGlobalPopupMenuFacet(popupFacet);
-      layoutToolGem.connectToolClassificationFacet(toolClassifier);
-      palette.addEntry(makeEntry(false, "layout.png", "Layout", layoutToolGem.getToolFacet(), true, "", ""));
-      palette.addEntry(makeEntry(false, "magnifier.png", "Zoom", new ZoomToolGem().getToolFacet()));
       tools.addCategory(palette);
     }
 
     {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Notes", MINIMIZED);
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Notes", null);
       palette.addEntry(makeEntry(true, "note.png",        "Note",               makeNodeCreateTool(retrieveNodeRecreator(NoteCreatorGem.NAME)), "top"));
       NoteCreatorGem htmlCreator = new NoteCreatorGem();
       htmlCreator.setAutoSized(false);
       htmlCreator.setUseHTML(true);
       htmlCreator.setHideNote(true);
-      palette.addEntry(makeEntry(false, "notelink.gif",    "Note link",          new ArcCreateToolGem(retrieveArcRecreator(NoteLinkCreatorGem.NAME)).getToolFacet(), "note"));
-      palette.addEntry(makeEntry(true, "grouper.png",     "Grouper",          makeNodeCreateTool(retrieveNodeRecreator(GrouperCreatorGem.NAME)), "top"));
-      palette.addEntry(makeEntry(true, "text_smallcaps.png",    "Free text",    makeNodeCreateTool((retrieveNodeRecreator(FreetextCreatorGem.NAME))), "top"));
-      palette.addEntry(makeEntry(true, "measure.gif",    "Measure box",    			makeNodeCreateTool((retrieveNodeRecreator(MeasureBoxCreatorGem.NAME))), "top"));
+      palette.addEntry(makeEntry(false, "notelink.gif",    "Note link",         new ArcCreateToolGem(retrieveArcRecreator(NoteLinkCreatorGem.NAME)).getToolFacet(), "note"));
+      palette.addEntry(makeEntry(true, "grouper.png",     "Grouper",            makeNodeCreateTool(retrieveNodeRecreator(GrouperCreatorGem.NAME)), "top"));
       tools.addCategory(palette);
     }
     
     {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Documentation", MINIMIZED);
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Documentation", new String[]{DOCUMENTATION_FOCUS});
 
       PackageCreatorGem topCreator = new PackageCreatorGem(true);
       topCreator.setStereotype(CommonRepositoryFunctions.DOCUMENTATION_TOP);
@@ -364,75 +395,48 @@ public class PaletteManagerGem
       palette.addEntry(makeEntry(true, "doc-image.png",   "Image",            makeNodeCreateTool(retrieveNodeRecreator(ImageCreatorGem.NAME)), "top"));
       palette.addEntry(makeEntry(true, "photos.png",      "Image gallery",    makeNodeCreateTool(imageGalleryCreator.getNodeCreateFacet()), "top"));
       palette.addEntry(makeEntry(true, "htmlnote.png",    "HTML note",        makeNodeCreateTool(htmlCreator.getNodeCreateFacet()), "top"));
+      palette.addEntry(makeEntry(true, "measure.gif",    "Measure box",    			makeNodeCreateTool((retrieveNodeRecreator(MeasureBoxCreatorGem.NAME))), "top"));
+      palette.addEntry(makeEntry(true, "text_smallcaps.png",    "Free text",    makeNodeCreateTool((retrieveNodeRecreator(FreetextCreatorGem.NAME))), "top"));
       tools.addCategory(palette);
     }
     
     {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Package");
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Package", null);
       
-      {
-        PackageCreatorGem stratumCreator = new PackageCreatorGem(false);
-        stratumCreator.setStereotype(CommonRepositoryFunctions.STRATUM);
-        stratumCreator.setFillColor(new Color(193, 206, 236));
-        stratumCreator.setRelaxed(true);
-        palette.addEntry(makeEntry(true, "relaxed-stratum.png", "Relaxed stratum", makeNodeCreateTool(stratumCreator.getNodeCreateFacet()), "top", null));
-      }
-      
-      {
-        PackageCreatorGem stratumCreator = new PackageCreatorGem(false);
-        stratumCreator.setStereotype(CommonRepositoryFunctions.STRATUM);
-        stratumCreator.setFillColor(new Color(193, 206, 236));      
-        palette.addEntry(makeEntry(true, "strict-stratum.png", "Strict stratum", makeNodeCreateTool(stratumCreator.getNodeCreateFacet()), "top", null));
-      }
+		  palette.addEntry(makeEntry(true, "relaxed-stratum.png", "Relaxed stratum", makeNodeCreateTool(makeRelaxedStratumCreator()), "top", null));
+		  palette.addEntry(makeEntry(true, "strict-stratum.png", "Strict stratum",   makeNodeCreateTool(makeStrictStratumCreator()), "top", null));
       
       palette.addEntry(makeEntry(false, "dependency.png", "Dependency",           new ArcCreateToolGem(retrieveArcRecreator(DependencyCreatorGem.NAME)).getToolFacet(), "namespace,element"));
       palette.addEntry(makeEntry(true, "package.png",     "Package",              makeNodeCreateTool(retrieveNodeRecreator(PackageCreatorGem.NAME)), "top"));
-      palette.addEntry(makeEntry(true, "model.png",       "Model",                makeNodeCreateTool(retrieveNodeRecreator(ModelCreatorGem.NAME)), "top"));
+      tools.addCategory(palette);
+    }
+    
+    {
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Evolution", new String[]{COMPONENT_FOCUS, FEATURE_FOCUS, STATE_FOCUS, PROFILE_FOCUS});
+      palette.addEntry(makeEntry(false, "resemblance.png",  "Resemblance",         new ArcCreateToolGem(SubstitutionUtilities.makeResemblanceCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
+      palette.addEntry(makeEntry(false, "replacement.png",  "Replacement",         new ArcCreateToolGem(SubstitutionUtilities.makeReplacementCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
+      palette.addEntry(makeEntry(false, "evolution.png",  "Evolution",             new ArcCreateToolGem(SubstitutionUtilities.makeEvolutionCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
       tools.addCategory(palette);
     }
 
     {
-      // make the bespoke creators
-      ClassCreatorGem compositeShortcutCreator = new ClassCreatorGem();
-      compositeShortcutCreator.setSuppressOperations(true);
-      compositeShortcutCreator.setSuppressAttributes(true);
-      compositeShortcutCreator.setDisplayOnlyIcon(true);
-      compositeShortcutCreator.setAutoSized(true);
-      compositeShortcutCreator.setComponentKind(ComponentKindEnum.NORMAL);
-      compositeShortcutCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
-      ClassCreatorGem compositeCreator = new ClassCreatorGem();
-      compositeCreator.setSuppressOperations(true);
-      compositeCreator.setAutoSized(false);
-      compositeCreator.setComponentKind(ComponentKindEnum.NORMAL);
-      compositeCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
-      ClassCreatorGem placeholderCreator = new ClassCreatorGem();
-      placeholderCreator.setSuppressOperations(true);
-      placeholderCreator.setAutoSized(false);
-      placeholderCreator.setPlaceholder(true);
-      placeholderCreator.setFillColor(Color.WHITE);
-      placeholderCreator.setComponentKind(ComponentKindEnum.NORMAL);
-      placeholderCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
-      ClassCreatorGem factoryCreator = new ClassCreatorGem();
-      factoryCreator.setSuppressOperations(true);
-      factoryCreator.setAutoSized(false);
-      factoryCreator.setFactory(true);
-      factoryCreator.setFillColor(Color.WHITE);
-      factoryCreator.setComponentKind(ComponentKindEnum.NORMAL);
-      factoryCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
-      factoryCreator.setResemblance(CommonRepositoryFunctions.FACTORY_BASE);
-      InterfaceCreatorGem interfaceShortcutCreator = new InterfaceCreatorGem();
-      interfaceShortcutCreator.setStereotype(CommonRepositoryFunctions.INTERFACE);
-      interfaceShortcutCreator.setSuppressOperations(true);
-      interfaceShortcutCreator.setAutosized(true);
-      InterfaceCreatorGem interfaceCreator = new InterfaceCreatorGem();
-      interfaceCreator.setStereotype(CommonRepositoryFunctions.INTERFACE);
-      ConnectorCreatorGem delegateConnectorCreator = new ConnectorCreatorGem();
-      delegateConnectorCreator.setDelegate(true);
-      ConnectorCreatorGem portLinkCreator = new ConnectorCreatorGem();
-      portLinkCreator.setPortLink(true);
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Feature", new String[]{FEATURE_FOCUS});
       
+      palette.addEntry(makeEntry(true, "feature.png",     						"Feature",              makeNodeCreateTool(retrieveNodeRecreator(RequirementsFeatureCreatorGem.NAME)), "top"));
+      palette.addEntry(makeEntry(false, "mandatory-subfeature.png", 	"Mandatory subfeature", new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.MANDATORY_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
+      palette.addEntry(makeEntry(false, "optional-subfeature.png", 		"Optional subfeature",  new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.OPTIONAL_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
+      palette.addEntry(makeEntry(false, "one-or-more-subfeature.png", "One or more",     			new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.ONE_OR_MORE_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
+      palette.addEntry(makeEntry(false, "one-of-subfeature.png", 			"One of (Alternative)", new ArcCreateToolGem(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.ONE_OF_LITERAL).getArcCreateFacet()).getToolFacet(), "requirementsfeature"));
+      palette.addEntry(makeEntry(true, "component.png",    "Component",            						makeNodeCreateTool(compositeCreator.getNodeCreateFacet()), "top"));
+      palette.addEntry(makeEntry(true, "component.png",    "Component (small)",    						makeNodeCreateTool(compositeShortcutCreator), "top"));
+      palette.addEntry(makeEntry(false, "trace.png", 									"Trace",           		  new ArcCreateToolGem(new TraceCreatorGem().getArcCreateFacet()).getToolFacet(), "class"));
+      
+      tools.addCategory(palette);
+    }
+
+    { 
       {
-        RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Interface", MAXIMIZED);
+        RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Interface", new String[]{COMPONENT_FOCUS, STATE_FOCUS, CLASS_FOCUS});
         palette.addEntry(makeEntry(true, "interface.png",    "Interface",            makeNodeCreateTool(interfaceCreator.getNodeCreateFacet()), "top"));
         palette.addEntry(makeEntry(true, "interface.png",    "Interface (small)",    makeNodeCreateTool(interfaceShortcutCreator.getNodeCreateFacet()), "top"));
         palette.addEntry(makeEntry(false, "provided.png",  "Provides",             new ArcCreateToolGem(retrieveArcRecreator(ImplementationCreatorGem.NAME)).getToolFacet(), "port", "class"));
@@ -441,19 +445,13 @@ public class PaletteManagerGem
       }
 
       {
-        RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Component", MAXIMIZED);
-	      palette.addEntry(makeEntry(false, "resemblance.png",  "Resemblance",         new ArcCreateToolGem(SubstitutionUtilities.makeResemblanceCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
-	      palette.addEntry(makeEntry(false, "replacement.png",  "Replacement",         new ArcCreateToolGem(SubstitutionUtilities.makeReplacementCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
-	      palette.addEntry(makeEntry(false, "evolution.png",  "Evolution",             new ArcCreateToolGem(SubstitutionUtilities.makeEvolutionCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
+        RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Component", new String[]{COMPONENT_FOCUS});
 	      palette.addEntry(makeEntry(true, "component.png",    "Component",            makeNodeCreateTool(compositeCreator.getNodeCreateFacet()), "top"));
-	      palette.addEntry(makeEntry(true, "component.png",    "Component (small)",    makeNodeCreateTool(compositeShortcutCreator.getNodeCreateFacet()), "top"));
-	      ClassCreatorGem primitiveCreator = new ClassCreatorGem();
-	      primitiveCreator.setComponentKind(ComponentKindEnum.PRIMITIVE);
-	      primitiveCreator.setStereotype(CommonRepositoryFunctions.PRIMITIVE_TYPE);
-	      primitiveCreator.setFillColor(new Color(180, 180, 255));
-	      palette.addEntry(makeEntry(true, "class.png",        "Primitive type",       makeNodeCreateTool(primitiveCreator.getNodeCreateFacet()), "top"));
-	      palette.addEntry(makeEntry(true, "factory.png",      "Factory",              makeNodeCreateTool(factoryCreator.getNodeCreateFacet()), "top"));
-	      palette.addEntry(makeEntry(true, "placeholder.png",  "Placeholder",          makeNodeCreateTool(placeholderCreator.getNodeCreateFacet()), "top"));
+	      palette.addEntry(makeEntry(true, "component.png",    "Component (small)",    makeNodeCreateTool(compositeShortcutCreator), "top"));
+	      NodeCreateFacet primitiveCreator = makePrimitiveCreator(false);
+	      palette.addEntry(makeEntry(true, "class.png",        "Primitive type",       makeNodeCreateTool(primitiveCreator), "top"));
+	      palette.addEntry(makeEntry(true, "factory.png",      "Factory",              makeNodeCreateTool(factoryCreator), "top"));
+	      palette.addEntry(makeEntry(true, "placeholder.png",  "Placeholder",          makeNodeCreateTool(placeholderCreator), "top"));
 	      {
 	      	PortCreatorGem creator = new PortCreatorGem();
 	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
@@ -482,7 +480,60 @@ public class PaletteManagerGem
       }
 
       {
-        RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Part", MAXIMIZED);
+        RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "State", new String[]{STATE_FOCUS});
+        NodeCreateFacet stateCreator = makeStateCreator(false);
+        palette.addEntry(makeEntry(true, "state.png",           "State",            makeNodeCreateTool(stateCreator), "top"));
+        ClassCreatorGem compositeStateCreator = new ClassCreatorGem();
+        compositeStateCreator.setSuppressOperations(true);
+        compositeStateCreator.setAutoSized(false);
+        compositeStateCreator.setComponentKind(ComponentKindEnum.NORMAL);
+        compositeStateCreator.setStereotype(CommonRepositoryFunctions.STATE);
+        compositeStateCreator.setResemblance(CommonRepositoryFunctions.COMPOSITE_STATE_CLASS);
+        palette.addEntry(makeEntry(true, "composite-state.png", "Composite state",  makeNodeCreateTool(compositeStateCreator.getNodeCreateFacet()), "top"));
+        
+        ConnectorCreatorGem transitionCreator = new ConnectorCreatorGem();
+        transitionCreator.setDirected(true);
+        palette.addEntry(makeEntry(false, "transition.png", "Transition", new ArcCreateToolGem(transitionCreator.getArcCreateFacet()).getToolFacet(), "port"));
+        tools.addCategory(palette);
+
+	      NodeCreateFacet primitiveCreator = makePrimitiveCreator(false);
+	      palette.addEntry(makeEntry(true, "class.png",        "Primitive type",       makeNodeCreateTool(primitiveCreator), "top"));
+
+	      {
+	      	PortCreatorGem creator = new PortCreatorGem();
+	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
+	      	palette.addEntry(makeEntry(true, "port.png",         "Port",                 makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));
+	      }
+
+	      {
+	      	PortCreatorGem creator = new PortCreatorGem();
+	      	creator.setPortKind(PortKind.HYPERPORT_START_LITERAL);
+	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
+		      palette.addEntry(makeEntry(true, "hyperport-start.png", "Start hyperport", makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
+	      }
+	      {
+	      	PortCreatorGem creator = new PortCreatorGem();
+	      	creator.setPortKind(PortKind.HYPERPORT_END_LITERAL);
+	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
+		      palette.addEntry(makeEntry(true, "hyperport-end.png",   "End hyperport",   makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
+	      }
+	      {
+	      	PortCreatorGem creator = new PortCreatorGem();
+	      	creator.setPortKind(PortKind.AUTOCONNECT_LITERAL);
+	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
+		      palette.addEntry(makeEntry(true, "autoconnect.png",   "Autoconnect port",  makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
+	      }
+      }
+
+      {
+        RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Profile", new String[]{PROFILE_FOCUS});
+        palette.addEntry(makeEntry(true, "profile.png",     "Profile",          makeNodeCreateTool(retrieveNodeRecreator(ProfileCreatorGem.NAME)), "top", null));
+        palette.addEntry(makeEntry(true, "stereotype.gif",  "Stereotype",       makeNodeCreateTool(retrieveNodeRecreator(StereotypeCreatorGem.NAME)), "top", null));
+        tools.addCategory(palette);
+      }
+      
+      {
+        RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Part", new String[]{COMPONENT_FOCUS, STATE_FOCUS});
 	      palette.addEntry(makeEntry(true,  "part.png",         "Part",                 makeNodeCreateTool((retrieveNodeRecreator(PartCreatorGem.NAME))), "class", "part"));
 	      palette.addEntry(makeEntry(false, "portlink.png",     "Port link",            new ArcCreateToolGem(portLinkCreator.getArcCreateFacet()).getToolFacet(), "port"));
 	      palette.addEntry(makeEntry(false, "connector.png",    "Connector",            new ArcCreateToolGem(retrieveArcRecreator(ConnectorCreatorGem.NAME)).getToolFacet(), "port", null));
@@ -492,7 +543,7 @@ public class PaletteManagerGem
     }
 
     {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Class", MINIMIZED);
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Class", new String[]{CLASS_FOCUS});
       ClassCreatorGem classCreator = new ClassCreatorGem();
       classCreator.setFillColor(Color.WHITE);
       palette.addEntry(makeEntry(true,  "class.png",       "Class",              makeNodeCreateTool(classCreator.getNodeCreateFacet()), "top", null));
@@ -508,37 +559,7 @@ public class PaletteManagerGem
     }
     
     {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "State", MINIMIZED);
-      ClassCreatorGem stateCreator = new ClassCreatorGem();
-      stateCreator.setSuppressOperations(true);
-      stateCreator.setAutoSized(false);
-      stateCreator.setComponentKind(ComponentKindEnum.NORMAL);
-      stateCreator.setStereotype(CommonRepositoryFunctions.STATE);
-      stateCreator.setResemblance(CommonRepositoryFunctions.STATE_CLASS);
-      palette.addEntry(makeEntry(true, "state.png",           "State",            makeNodeCreateTool(stateCreator.getNodeCreateFacet()), "top"));
-      ClassCreatorGem compositeStateCreator = new ClassCreatorGem();
-      compositeStateCreator.setSuppressOperations(true);
-      compositeStateCreator.setAutoSized(false);
-      compositeStateCreator.setComponentKind(ComponentKindEnum.NORMAL);
-      compositeStateCreator.setStereotype(CommonRepositoryFunctions.STATE);
-      compositeStateCreator.setResemblance(CommonRepositoryFunctions.COMPOSITE_STATE_CLASS);
-      palette.addEntry(makeEntry(true, "composite-state.png", "Composite state",  makeNodeCreateTool(compositeStateCreator.getNodeCreateFacet()), "top"));
-      
-      ConnectorCreatorGem transitionCreator = new ConnectorCreatorGem();
-      transitionCreator.setDirected(true);
-      palette.addEntry(makeEntry(false, "transition.png", "Transition", new ArcCreateToolGem(transitionCreator.getArcCreateFacet()).getToolFacet(), "port"));
-      tools.addCategory(palette);
-    }
-
-    {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Profile", MINIMIZED);
-      palette.addEntry(makeEntry(true, "profile.png",     "Profile",          makeNodeCreateTool(retrieveNodeRecreator(ProfileCreatorGem.NAME)), "top", null));
-      palette.addEntry(makeEntry(true, "stereotype.gif",  "Stereotype",       makeNodeCreateTool(retrieveNodeRecreator(StereotypeCreatorGem.NAME)), "top", null));
-      tools.addCategory(palette);
-    }
-    
-    {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Sequence", MINIMIZED);
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Sequence", new String[]{BEHAVIOUR_FOCUS});
       palette.addEntry(makeEntry(false, "call.gif",     "Call (synchronous)",  new ArcCreateToolGem(new MessageCreatorGem(MessageArcAppearanceGem.CALL_TYPE).getArcCreateFacet()).getToolFacet()));
       palette.addEntry(makeEntry(false, "return.gif",   "Return",              new ArcCreateToolGem(new MessageCreatorGem(MessageArcAppearanceGem.RETURN_TYPE).getArcCreateFacet()).getToolFacet()));
       palette.addEntry(makeEntry(false, "send.gif",     "Send (asynchronous)", new ArcCreateToolGem(new MessageCreatorGem(MessageArcAppearanceGem.SEND_TYPE).getArcCreateFacet()).getToolFacet()));
@@ -550,13 +571,102 @@ public class PaletteManagerGem
     }
 
     {
-      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Deployment", MINIMIZED);
+      RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Deployment", new String[]{MISCELLANEOUS_FOCUS});
+      palette.addEntry(makeEntry(true, "model.png",       "Model",                makeNodeCreateTool(retrieveNodeRecreator(ModelCreatorGem.NAME)), "top"));
       palette.addEntry(makeEntry(true, "node.gif",        "Node",        makeNodeCreateTool(retrieveNodeRecreator(NodeCreatorGem.NAME))));
+      SelectionToolGem layoutToolGem = new SelectionToolGem(true);
+      layoutToolGem.connectGlobalPopupMenuFacet(popupFacet);
+      layoutToolGem.connectToolClassificationFacet(toolClassifier);
+      palette.addEntry(makeEntry(false, "layout.png", "Layout", layoutToolGem.getToolFacet(), true, "", ""));
+      palette.addEntry(makeEntry(false, "magnifier.png", "Zoom", new ZoomToolGem().getToolFacet()));
       tools.addCategory(palette);
     }
-    
+
+    tools.setHideMinimized(true);
     return tools;
   }
+
+	public static NodeCreateFacet makePrimitiveCreator(boolean icon)
+	{
+		ClassCreatorGem primitiveCreator = new ClassCreatorGem();
+		primitiveCreator.setComponentKind(ComponentKindEnum.PRIMITIVE);
+		primitiveCreator.setStereotype(CommonRepositoryFunctions.PRIMITIVE_TYPE);
+		primitiveCreator.setFillColor(new Color(180, 180, 255));
+		primitiveCreator.setDisplayOnlyIcon(icon);
+		return primitiveCreator.getNodeCreateFacet();
+	}
+
+	public static NodeCreateFacet makeStateCreator(boolean icon)
+	{
+		ClassCreatorGem stateCreator = new ClassCreatorGem();
+		stateCreator.setSuppressOperations(true);
+		stateCreator.setAutoSized(false);
+		stateCreator.setComponentKind(ComponentKindEnum.NORMAL);
+		stateCreator.setStereotype(CommonRepositoryFunctions.STATE);
+		stateCreator.setResemblance(CommonRepositoryFunctions.STATE_CLASS);
+		stateCreator.setDisplayOnlyIcon(icon);
+		return stateCreator.getNodeCreateFacet();
+	}
+
+	public static NodeCreateFacet makeFactoryCreator(boolean icon)
+	{
+		ClassCreatorGem factoryCreator = new ClassCreatorGem();
+    factoryCreator.setSuppressOperations(true);
+    factoryCreator.setAutoSized(false);
+    factoryCreator.setFactory(true);
+    factoryCreator.setFillColor(Color.WHITE);
+    factoryCreator.setComponentKind(ComponentKindEnum.NORMAL);
+    factoryCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
+    factoryCreator.setResemblance(CommonRepositoryFunctions.FACTORY_BASE);
+    factoryCreator.setDisplayOnlyIcon(icon);
+		return factoryCreator.getNodeCreateFacet();
+	}
+
+	public static NodeCreateFacet makePlaceholderCreator(boolean icon)
+	{
+		ClassCreatorGem placeholderCreator = new ClassCreatorGem();
+    placeholderCreator.setSuppressOperations(true);
+    placeholderCreator.setAutoSized(false);
+    placeholderCreator.setPlaceholder(true);
+    placeholderCreator.setFillColor(Color.WHITE);
+    placeholderCreator.setComponentKind(ComponentKindEnum.NORMAL);
+    placeholderCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
+    placeholderCreator.setDisplayOnlyIcon(icon);
+		return placeholderCreator.getNodeCreateFacet();
+	}
+
+	public static NodeCreateFacet makeCompositeShortcutCreator()
+	{
+		ClassCreatorGem compositeShortcutCreator = new ClassCreatorGem();
+    compositeShortcutCreator.setSuppressOperations(true);
+    compositeShortcutCreator.setSuppressAttributes(true);
+    compositeShortcutCreator.setDisplayOnlyIcon(true);
+    compositeShortcutCreator.setAutoSized(true);
+    compositeShortcutCreator.setComponentKind(ComponentKindEnum.NORMAL);
+    compositeShortcutCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
+		return compositeShortcutCreator.getNodeCreateFacet();
+	}
+
+	public static NodeCreateFacet makeStrictStratumCreator()
+	{
+		{
+		  PackageCreatorGem creator = new PackageCreatorGem(false);
+		  creator.setStereotype(CommonRepositoryFunctions.STRATUM);
+		  creator.setFillColor(new Color(193, 206, 236));
+		  return creator.getNodeCreateFacet();
+		}
+	}
+
+	public static NodeCreateFacet makeRelaxedStratumCreator()
+	{
+		{
+		  PackageCreatorGem creator = new PackageCreatorGem(false);
+		  creator.setStereotype(CommonRepositoryFunctions.STRATUM);
+		  creator.setFillColor(new Color(193, 206, 236));
+		  creator.setRelaxed(true);
+		  return creator.getNodeCreateFacet();
+		}
+	}
 
   private IRichPaletteEntry makeEntry(boolean node, String icon, String name, final ToolFacet tool)
   {

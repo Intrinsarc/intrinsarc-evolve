@@ -278,6 +278,31 @@ public class NamespaceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UML2Package.eINSTANCE.getNamespace_OwnedRule(),
+				 UML2Factory.eINSTANCE.createTimeConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamespace_OwnedRule(),
+				 UML2Factory.eINSTANCE.createIntervalConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamespace_OwnedRule(),
+				 UML2Factory.eINSTANCE.createDurationConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamespace_OwnedRule(),
+				 UML2Factory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamespace_OwnedRule(),
+				 UML2Factory.eINSTANCE.createInteractionConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamespace_OwnedRule(),
 				 UML2Factory.eINSTANCE.createIntervalConstraint()));
 
 		newChildDescriptors.add
@@ -294,6 +319,21 @@ public class NamespaceItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getNamespace_ElementImport(),
 				 UML2Factory.eINSTANCE.createElementImport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamespace_ElementImport(),
+				 UML2Factory.eINSTANCE.createElementImport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamespace_PackageImport(),
+				 UML2Factory.eINSTANCE.createPackageImport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getNamespace_PackageImport(),
+				 UML2Factory.eINSTANCE.createProfileApplication()));
 
 		newChildDescriptors.add
 			(createChildParameter

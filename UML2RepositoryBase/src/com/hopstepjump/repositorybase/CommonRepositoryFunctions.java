@@ -211,37 +211,6 @@ public class CommonRepositoryFunctions
     return new DbDiagramToPersistentDiagramTranslator(pkg, holder.getDiagram()).translate();      
   }
 
-  public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
-  {
-    List<DiagramFacet> diagrams = GlobalDiagramRegistry.registry.getDiagrams();
-
-    // tell all diagrams that have opening times after the execution time to revert
-//    long start = System.currentTimeMillis();
-    int reverted = 0;
-    if (pass == ViewUpdatePassEnum.START)
-    {
-      for (DiagramFacet diagram : diagrams) 
-      {
-        if (!diagram.isClipboard() && diagram.getOpeningTime() > commandExecutionTime)
-        {
-          diagram.revert();
-          reverted++;
-        }
-      }
-//      long end = System.currentTimeMillis();
-//      if (reverted != 0)
-//        System.out.println("$$ reverted " + reverted + " diagrams in " + (end - start) + "ms");
-    }
-
-    // pass the alterations to each diagram in turn
-    CompositeCommand cmd = new CompositeCommand("", "");
-    
-    for (DiagramFacet diagram : diagrams)
-      cmd.addCommand(diagram.formViewUpdateCommand(isTop, pass, initialRun));
-
-    return cmd;
-  }
-
   public void setUuid(Set<String> uuids, Element elem, String uuid)
   {
   	if (uuids.contains(uuid))
@@ -321,7 +290,7 @@ public class CommonRepositoryFunctions
     createResemblance(uuids, element, primitive);
 
     Stereotype stratum = createStereotype(uuids, profile, STRATUM, "'Package', 'Model'", "A (possibly hierarchical) container of Backbone definitions.");
-    addAttribute(uuids, stratum, DESTRUCTIVE, booleanType, "Can this stratum contain destructive (replace, delete) substitutions?");
+    Property destructive = addAttribute(uuids, stratum, DESTRUCTIVE, booleanType, "Can this stratum contain destructive (replace, delete) substitutions?");
     addAttribute(uuids, stratum, RELAXED, booleanType, "If another stratum depends on this, can it also see this stratum's dependencies?) ?");
     addAttribute(uuids, stratum, CHECK_ONCE_IF_READ_ONLY, booleanType, "Only check once if this is read-only.  No elements in the stratum can be replaced.");
     addAttribute(uuids, stratum, STRATUM_PREAMBLE, stringType, "A preamble which is inserted into the Backbone code for this stratum");
@@ -417,7 +386,11 @@ public class CommonRepositoryFunctions
 
     // the model is the top level stratum
     topLevel.getAppliedBasicStereotypes().add(stratum);
-    StereotypeUtilities.formSetBooleanRawStereotypeAttributeCommand(topLevel, DESTRUCTIVE, true).execute(false);
+    // set destructive stereotype property
+		AppliedBasicStereotypeValue value = topLevel.createAppliedBasicStereotypeValues();
+		value.setProperty(destructive);
+		LiteralBoolean literal = (LiteralBoolean) value.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
+		literal.setValue(true);
     
     // make the backbone stratum
     setUuid(uuids, backbone, BACKBONE_STRATUM_NAME);
@@ -1043,20 +1016,20 @@ public class CommonRepositoryFunctions
     return false;
   }
 
-  public static Collection<Classifier> translateFromSubstitutingToSubstituted(Collection<Classifier> elements)
+  public static Collection<NamedElement> translateFromSubstitutingToSubstituted(Collection<NamedElement> elements)
   {
-    List<Classifier> translated = new ArrayList<Classifier>();
-    for (Classifier element : elements)
+    List<NamedElement> translated = new ArrayList<NamedElement>();
+    for (NamedElement element : elements)
     {
-      Classifier substitution = UMLTypes.extractSubstitutedClassifier(element); 
+      NamedElement substitution = UMLTypes.extractSubstitutedClassifier(element); 
       translated.add(substitution == null ? element : substitution);
     }
     return translated;
   }
 
-  public static Classifier translateFromSubstitutingToSubstituted(Classifier element)
+  public static NamedElement translateFromSubstitutingToSubstituted(NamedElement element)
   {
-    Classifier baseElement = UMLTypes.extractSubstitutedClassifier(element);
+    NamedElement baseElement = UMLTypes.extractSubstitutedClassifier(element);
     if (baseElement == null)
       return element;
     return baseElement;

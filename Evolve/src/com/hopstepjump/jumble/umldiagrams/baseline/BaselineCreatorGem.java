@@ -29,7 +29,7 @@ public final class BaselineCreatorGem implements Gem
 	    return NAME;
 	  }
 	
-	  public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+	  public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, true, false);
 	  	BaselineNodeGem baselineGem = new BaselineNodeGem(NAME, false);
@@ -37,22 +37,8 @@ public final class BaselineCreatorGem implements Gem
 			baselineGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 			
 	    diagram.add(basicGem.getBasicNodeFigureFacet());
-	    return new FigureReference(diagram, figureId);
 	  }
-    
-    public Object getSubject(Object memento)
-    {
-      return null;
-    }
 	
-	  public void unCreateFigure(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -74,13 +60,9 @@ public final class BaselineCreatorGem implements Gem
 			return basicGem.getBasicNodeFigureFacet();			
 		}
 
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       return null;
-    }
-
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
     }
 
 		public void initialiseExtraProperties(PersistentProperties properties)

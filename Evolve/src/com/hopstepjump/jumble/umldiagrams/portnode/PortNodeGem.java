@@ -20,6 +20,7 @@ import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulation.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
@@ -29,7 +30,6 @@ import com.hopstepjump.jumble.expander.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
-import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 import com.hopstepjump.jumble.umldiagrams.implementationarc.*;
 import com.hopstepjump.jumble.umldiagrams.linkedtextnode.*;
 import com.hopstepjump.layout.*;
@@ -61,21 +61,21 @@ public final class PortNodeGem implements Gem
 	private BasicNodeContainerFacet containerFacet = new ContainerFacetImpl();
 	private PortNodeFacet portNode = new PortFacetImpl();
 	private LinkedTextFacet linkedTextFacet;
-	private VisibilityFacet visibilityFacet = new VisibilityFacetImpl();
-  private PortDisplayTypeFacet portDisplayTypeFacet = new PortDisplayTypeFacetImpl();
 	private VisibilityKind accessType = VisibilityKind.PUBLIC_LITERAL;
-  private int displayType = PortDisplayTypeFacet.NORMAL_TYPE;
+  private PortDisplayEnum displayType = PortDisplayEnum.NORMAL_TYPE;
   private Port subject;
-  private ClipboardCommandsFacet clipboardCommandsFacet = new ClipboardCommandsFacetImpl();
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
   private boolean instance;
   private boolean drawInferred;
   private int portKind;
   private Set<String> inferredReqNames = new HashSet<String>();
   private Set<String> inferredProvNames = new HashSet<String>();
+  private boolean someHidden;
   
-	public PortNodeGem(Port subject, DiagramFacet diagram, String figureId, UPoint location, boolean isForClasses, PersistentProperties properties, boolean instance)
+	public PortNodeGem(DiagramFacet diagram, UPoint location, boolean isForClasses, PersistentFigure pfig, boolean instance)
   {
-		this.subject = subject;
+		this.subject = (Port) pfig.getSubject();
+		String figureId = pfig.getId();
   	BasicNodeGem basicLinkedTextGem = new BasicNodeGem(
   	    LinkedTextCreatorGem.RECREATOR_NAME,
   	    diagram,
@@ -86,8 +86,12 @@ public final class PortNodeGem implements Gem
   	    true);
     
     // possibly seed persistent properties
+  	PersistentProperties properties = pfig.getProperties();
   	if (properties == null)
-  	  properties = new PersistentProperties();
+  	{
+  		properties = new PersistentProperties();
+  	  pfig.setProperties(properties);
+  	}
     properties.addIfNotThere(new PersistentProperty("classScope", isForClasses, true));
     String name = subject == null ? "" : subject.getName();
     LinkedTextGem linkedTextGem = new LinkedTextGem(name, false, CalculatedArcPoints.MAJOR_POINT_MIDDLE);
@@ -102,63 +106,46 @@ public final class PortNodeGem implements Gem
 		linkedTextFacet = linkedTextGem.getLinkedTextFacet();
 		
 		// start with the text showing
-    interpretOptionalProperties(properties);
+    interpretOptionalProperties(pfig);
     this.instance = instance;
   }
   
 	public PortNodeGem(PersistentFigure figure, boolean instance)
   {
-		this.subject = (Port) figure.getSubject(); 
-		interpretOptionalProperties(figure.getProperties());
+		interpretOptionalProperties(figure);
 		this.instance = instance;
   }
 
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return clipboardCommandsFacet;
   }
 
-  private class ClipboardCommandsFacetImpl implements ClipboardCommandsFacet
+  private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
-    public boolean hasSpecificDeleteCommand()
+    public boolean hasSpecificDeleteAction()
     {
       return false;
     }
 
-    public Command makeSpecificDeleteCommand()
+    public void makeSpecificDeleteAction()
     {
-      return null;
     }
     
-    public Command makePostDeleteCommand()
+    public void performPostDeleteAction()
     {
-      // important to use the reference rather than the figure, which gets recreated...
-      final FigureReference reference = figureFacet.getFigureReference();
-      final String uuid = getOriginalSubjectAsPort(subject).getUuid();
-      
-      return new AbstractCommand()
-      {
-        public void execute(boolean isTop)
-        {
-          getPortCompartment().addDeleted(uuid);
-        }
-
-        private PortCompartmentFacet getPortCompartment()
-        {
-          FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(reference);
-          FigureFacet parent = figure.getContainedFacet().getContainer().getFigureFacet();
-          return (PortCompartmentFacet)
-            parent.getDynamicFacet(PortCompartmentFacet.class);
-        }
-
-        public void unExecute()
-        {
-          getPortCompartment().removeDeleted(uuid);
-        } 
-      };
+      String uuid = getOriginalSubjectAsPort(subject).getUuid();
+      getPortCompartment().addDeleted(uuid);
+    }
+    
+    private PortCompartmentFacet getPortCompartment()
+    {
+      FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
+      return (PortCompartmentFacet)
+        parent.getDynamicFacet(PortCompartmentFacet.class);
     }
 
-    public boolean hasSpecificKillCommand()
+    public boolean hasSpecificKillAction()
     {
       return isOutOfPlace() || !atHome();
     }
@@ -169,32 +156,32 @@ public final class PortNodeGem implements Gem
       return extractVisualClassifier() != getSubjectAsPort().getOwner();
     }
 
-    public Command makeSpecificKillCommand(ToolCoordinatorFacet coordinator)
+    public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
       // be defensive
       if (figureFacet.getContainedFacet().getContainer() == null)
-        return null;
+        return;
       
       // only allow changes in the home stratum
       if (!atHome())
       {
         coordinator.displayPopup(ERROR_ICON, "Delta error",
-            new JLabel("Must be in home stratum to delete subjects!", DELTA_ICON, JLabel.RIGHT),
+            new JLabel("Must be in home stratum to delete subjects!", DELTA_ICON, JLabel.LEFT),
             ScreenProperties.getUndoPopupColor(),
             Color.black,
             3000);
-        return null;
+        return;
       }
 
       // if this is a replace, kill the replace delta
       Port port = getSubjectAsPort();
       if (port.getOwner() instanceof DeltaReplacedConstituent && port.getOwner().getOwner() == extractVisualClassifier())
-        return generateReplaceDeltaKill(coordinator);
+        generateReplaceDeltaKill(coordinator);
       else
-        return generateDeleteDelta(coordinator);
+        generateDeleteDelta(coordinator);
     }
 
-    private Command generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
+    private void generateReplaceDeltaKill(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta
       coordinator.displayPopup(null, null,
@@ -204,22 +191,10 @@ public final class PortNodeGem implements Gem
           1500);
       
       final Port port = getSubjectAsPort();
-      
-      return new AbstractCommand("Removed replace delta", "Restored replace delta")
-      {
-        public void execute(boolean isTop)
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(port.getOwner());            
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.decrementPersistentDelete(port.getOwner());
-        } 
-      };
+      GlobalSubjectRepository.repository.incrementPersistentDelete(port.getOwner());            
     }
 
-    private Command generateDeleteDelta(ToolCoordinatorFacet coordinator)
+    private void generateDeleteDelta(ToolCoordinatorFacet coordinator)
     {
       // generate a delete delta
       coordinator.displayPopup(null, null,
@@ -233,31 +208,9 @@ public final class PortNodeGem implements Gem
       // add this to the classifier as a delete delta
       final Port port = getOriginalSubjectAsPort(figureFacet.getSubject());
       
-      return new AbstractCommand("Added delete delta", "Removed delete delta")
-      {
-        private DeltaDeletedConstituent delete;
-        
-        public void execute(boolean isTop)
-        {
-          SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-          
-          // possibly resurrect
-          if (delete != null)
-          {
-            repository.decrementPersistentDelete(delete);
-          }
-          else
-          {
-            delete = ((Class) classifier).createDeltaDeletedPorts();
-            delete.setDeleted(port);
-          }
-        }
-
-        public void unExecute()
-        {
-          GlobalSubjectRepository.repository.incrementPersistentDelete(delete);
-        } 
-      };
+      DeltaDeletedConstituent delete;
+      delete = ((Class) classifier).createDeltaDeletedPorts();
+      delete.setDeleted(port);
     }
 
     private boolean atHome()
@@ -278,11 +231,16 @@ public final class PortNodeGem implements Gem
   /**
    * @param properties
    */
-  private void interpretOptionalProperties(PersistentProperties properties)
+  private void interpretOptionalProperties(PersistentFigure pfig)
   {
+  	subject = (Port) pfig.getSubject();
+  	PersistentProperties properties = pfig.getProperties();
     classScope = properties.retrieve("classScope", false).asBoolean();
-    displayType = properties.retrieve("dispType", PortDisplayTypeFacet.NORMAL_TYPE).asInteger();
+    displayType = PortDisplayEnum.values()[properties.retrieve("dispType", 0).asInteger()];
     extraText = properties.retrieve("extraText", "").asString();
+    drawInferred = properties.retrieve("drawInferred", false).asBoolean();
+    someHidden = properties.retrieve("someHidden", false).asBoolean();
+    accessType = VisibilityKind.get(pfig.getProperties().retrieve("access", 0).asInteger());
   }
   
   public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
@@ -294,8 +252,6 @@ public final class PortNodeGem implements Gem
   {
   	this.figureFacet = figureFacet;
   	figureFacet.registerDynamicFacet(portNode, PortNodeFacet.class);
-  	figureFacet.registerDynamicFacet(visibilityFacet, VisibilityFacet.class);
-    figureFacet.registerDynamicFacet(portDisplayTypeFacet, PortDisplayTypeFacet.class);
   	figureFacet.registerDynamicFacet(linkedTextOriginFacet, LinkedTextOriginFacet.class);
 	}
 
@@ -319,49 +275,6 @@ public final class PortNodeGem implements Gem
 			}
 			return formName();
 		}
-  }
-  
-  private class VisibilityFacetImpl implements VisibilityFacet
-  {
-    public Object setVisibility(VisibilityKind newAccessType)
-    {
-      VisibilityKind oldAccessType = subject.getVisibility();
-      subject.setVisibility(newAccessType);
-      figureFacet.adjusted();
-      return oldAccessType;
-    }
-    
-    public void unSetVisibility(Object memento)
-    {
-      subject.setVisibility((VisibilityKind) memento);
-      figureFacet.adjusted();
-    }
-  }
-  
-  private class PortDisplayTypeFacetImpl implements PortDisplayTypeFacet
-  {
-    public Object setDisplayType(int type)
-    {
-      int oldDisplayType = displayType;
-      displayType = type;
-
-      // we are about to autosize, so need to make a resizings command
-      Command resizeCommand = figureFacet.makeAndExecuteResizingCommand(
-          figureFacet.getFullBounds());
-      
-      return new Object[] { new Integer(oldDisplayType), resizeCommand };
-    }
-
-    public void unSetDisplayType(Object memento)
-    {
-      Object[] array = (Object[]) memento;
-      displayType = ((Integer) array[0]).intValue();
-      
-      Command resizeCommand = (Command) array[1];
-      if (resizeCommand != null)
-        resizeCommand.unExecute();
-      figureFacet.adjusted();
-    }    
   }
   
   private class PortFacetImpl implements PortNodeFacet
@@ -426,8 +339,8 @@ public final class PortNodeGem implements Gem
 			// should we display the inferred interfaces?
 			if (drawInferred && figureFacet.getContainedFacet().getContainer() != null)
 			{
-		    List<String> provided = new ArrayList<String>(inferredProvNames);
-		    List<String> required = new ArrayList<String>(inferredReqNames);
+		    List<String> provided = new ArrayList<String>(getInferredProvidedNames());
+		    List<String> required = new ArrayList<String>(getInferredRequiredNames());
 		    Collections.sort(provided);
 		    Collections.sort(required);
 		    int lineNumber[] = {0};
@@ -461,13 +374,13 @@ public final class PortNodeGem implements Gem
 		    }				
 			}
 			
-      if (displayType != PortDisplayTypeFacet.ELIDED_TYPE)
+      if (displayType != PortDisplayEnum.ELIDED_TYPE)
       {
         ZRectangle rect = new ZRectangle(bounds);
         rect.setPenPaint(lineColor);
 				rect.setFillPaint(FILL_COLOR);
         // a possible shortcut?
-        if (displayType == PortDisplayTypeFacet.SHORTCUT_TYPE)
+        if (displayType == PortDisplayEnum.SHORTCUT_TYPE)
         {
           rect.setPenPaint(new Color(210, 210, 210));
           rect.setFillPaint(new Color(250, 250, 250));
@@ -575,7 +488,7 @@ public final class PortNodeGem implements Gem
       }
               
       // draw a "hiding" square if there are hidden connectors
-      if (connectorVisibility(false))
+      if (someHidden)
       {
         UDimension offset = new UDimension(1, 1);
         UPoint middle = bounds.getMiddlePoint();
@@ -686,16 +599,17 @@ public final class PortNodeGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
 		 */
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 		  ManipulatorFacet keyFocus = null;
 		  if (favoured)
-		    keyFocus = linkedTextFacet.getTextEntryManipulator(diagramView);
+		    keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
 		    
 	    Manipulators manipulators =
 	      new Manipulators(
 	          keyFocus,
 	          new ResizingManipulatorGem(
+	          		coordinator,
 	              figureFacet,
 	              diagramView,
 	              figureFacet.getFullBounds(),
@@ -816,20 +730,59 @@ public final class PortNodeGem implements Gem
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						Type type = ((Port) figureFacet.getSubject()).undeleted_getType();
-						new Expander().expand(
+						Class type = (Class) ((Port) figureFacet.getSubject()).undeleted_getType();
+						UBounds bounds = figureFacet.getFullBounds();
+						final UBounds clsBounds = figureFacet.getContainedFacet().getContainer().getFigureFacet().getFullBounds();
+						final UPoint mid = bounds.getMiddlePoint();
+						ITargetResolver resolver = new ITargetResolver()
+						{
+							private int count = -1;
+							private ClosestLine closest = PortNodeContainerPreviewGem.classifyPoint(mid, clsBounds);
+							public List<Element> resolveTargets(Element relationship)
+							{
+								// works for dependencies and implementations
+								return ((Dependency) relationship).getTargets();
+							}
+							
+							public UPoint determineTargetLocation(Element target, int index)
+							{
+								count++;
+								switch (closest.getLineNumber())
+								{
+								case 0:
+									return mid.add(new UDimension(-50 + 40 * count, -100));
+								case 1:
+									return mid.add(new UDimension(-100, -50 + 40 * count));
+								case 2:
+									return mid.add(new UDimension(-50 + 40 * count, 100));
+								default:
+									return mid.add(new UDimension(100, -50 + 40 * count));
+								}
+							}
+							
+							public NodeCreateFacet getNodeCreator(Element element)
+							{
+								if (element instanceof Interface)
+									return new InterfaceCreatorGem().getNodeCreateFacet();
+								return null;
+							}
+						};
+
+						String name = figureFacet.getFigureName();
+						coordinator.startTransaction("expanded from " + name, "unexpanded from " + name);
+						new Expander(
+								coordinator,
 								figureFacet,
-								type,
-								UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies(),
-								new DependencyCreatorGem().getArcCreateFacet(),
-								coordinator);
-						new Expander().expand(
+								type.undeleted_getOwnedAnonymousDependencies(),
+								resolver,
+								new DependencyCreatorGem().getArcCreateFacet()).expandWithoutTransaction();
+						new Expander(
+								coordinator,
 								figureFacet,
-								type,
-								UML2Package.eINSTANCE.getBehavioredClassifier_Implementation(),
-								new ImplementationCreatorGem().getArcCreateFacet(),
-								coordinator);
-	
+								type.undeleted_getImplementations(),
+								resolver,
+								new ImplementationCreatorGem().getArcCreateFacet()).expandWithoutTransaction();
+						coordinator.commitTransaction();
 					}
 				});
 				popup.add(expand);
@@ -877,9 +830,9 @@ public final class PortNodeGem implements Gem
         popup.add(linkedTextFacet.getViewLabelMenuItem(coordinator, "port"));
         Utilities.addSeparator(popup);
         JMenu displayType = new JMenu("Display type");
-        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayTypeFacet.NORMAL_TYPE, "normal"));
-        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayTypeFacet.ELIDED_TYPE, "elided"));
-        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayTypeFacet.SHORTCUT_TYPE, "shortcut"));
+        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayEnum.NORMAL_TYPE, "normal"));
+        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayEnum.ELIDED_TYPE, "elided"));
+        displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayEnum.SHORTCUT_TYPE, "shortcut"));
         popup.add(displayType);
       }
       
@@ -897,19 +850,17 @@ public final class PortNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the autosized flag (as a command)
-					Command privateCommand =
-						new SetVisibilityCommand(
-						    figureFacet.getFigureReference(),
-						    newAccessType,
+					coordinator.startTransaction(
 						    "changed visibility of " + getFigureName() + " to " + newAccessType.getName(),
 						    "restored visibility of " + getFigureName() + " to " + accessType.getName());
-					coordinator.executeCommandAndUpdateViews(privateCommand);
+		      subject.setVisibility(newAccessType);
+					coordinator.commitTransaction();
 				}
 			});
 			return makePrivateItem;
 		}
 		
-    private JMenuItem getPortDisplayTypeMenuItem(final ToolCoordinatorFacet coordinator, final int newDisplayType, String type)
+    private JMenuItem getPortDisplayTypeMenuItem(final ToolCoordinatorFacet coordinator, final PortDisplayEnum newDisplayType, String type)
     {
       JCheckBoxMenuItem elidedItem = new JCheckBoxMenuItem(type);
       
@@ -920,13 +871,12 @@ public final class PortNodeGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           // toggle the autosized flag (as a command)
-          Command elideCommand =
-            new SetPortDisplayTypeCommand(
-                figureFacet.getFigureReference(),
-                newDisplayType,
+          coordinator.startTransaction(
                 "changed display type of " + getFigureName(),
                 "restored display type of " + getFigureName());
-          coordinator.executeCommandAndUpdateViews(elideCommand);
+          displayType = newDisplayType;
+          figureFacet.performResizingTransaction(figureFacet.getFullBounds());
+          coordinator.commitTransaction();
         }
       });
       return elidedItem;
@@ -967,7 +917,7 @@ public final class PortNodeGem implements Gem
       PortNodeContainerPreviewGem portNode =
         new PortNodeContainerPreviewGem(
               containerBounds,
-              displayType == PortDisplayTypeFacet.ELIDED_TYPE,
+              displayType == PortDisplayEnum.ELIDED_TYPE,
               basicGem.getPreviewFacet(),
               previews,
               provided,
@@ -1028,86 +978,65 @@ public final class PortNodeGem implements Gem
 		public void addToPersistentProperties(PersistentProperties properties)
 		{
 		  properties.add(new PersistentProperty("classScope", classScope, false));
-      properties.add(new PersistentProperty("dispType", displayType, PortDisplayTypeFacet.NORMAL_TYPE));
+      properties.add(new PersistentProperty("dispType", displayType.ordinal(), 0));
       properties.add(new PersistentProperty("extraText", extraText, null));
+      properties.add(new PersistentProperty("drawInferred", drawInferred, false));
+      properties.add(new PersistentProperty("someHidden", someHidden, false));
+      properties.add(new PersistentProperty("access", accessType.getValue(), 0));
 		}
 
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
 		 */
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
 			if (subject == null || pass != ViewUpdatePassEnum.LAST)
-				return null;
+				return;
 
 			// don't bother if the text is still the same
 			String subjectName = formName();
 			boolean sameName = linkedTextFacet.getText().equals(subjectName);
 			boolean sameVisibility = subject.getVisibility().equals(accessType);
 			final boolean shouldDrawInferred = shouldDrawInferred();
-			final Set<String> provNames = shouldDrawInferred ? getInferredProvidedNames() : new HashSet<String>();
-			final Set<String> reqNames = shouldDrawInferred ? getInferredRequiredNames() : new HashSet<String>();
+			final Set<String> provNames = getInferredProvidedNames();
+			final Set<String> reqNames = getInferredRequiredNames();
 			final int nextKind = subject.getKind().getValue();
 
 			boolean update = false;
 			if (shouldDrawInferred != drawInferred)
 				update = true;
-			if (shouldDrawInferred && !(provNames.equals(inferredProvNames) && reqNames.equals(inferredReqNames)))
+			if (!provNames.equals(inferredProvNames) || !reqNames.equals(inferredReqNames))
+			{
 				update = true;
+				figureFacet.getDiagram().forceAdjust(figureFacet);
+			}
       if (!sameName || !sameVisibility)
         update = true;
       if (nextKind != portKind)
       	update = true;
+      boolean hidden = connectorVisibility(false);
+      if (someHidden != hidden)
+      	update = true;
       
       // don't bother if there are no changes
       if (!update)
-      	return null;
+      	return;
 
-      final Command setText = sameName ? null :
-          new SetTextCommand(
-              linkedTextFacet.getFigureFacet().getFigureReference(),
+			if (!sameName)
+          SetTextTransaction.set(
+              linkedTextFacet.getFigureFacet(),
               subjectName,
               null,
-              false,
-              "adjusted name",
-              "restored name");
+              false);
 
-      return new AbstractCommand()
-      {
-        private VisibilityKind newAccessType = subject.getVisibility();
-        private VisibilityKind oldAccessType = accessType;
-        private Set<String> oldProv = inferredProvNames;
-        private Set<String> oldReq = inferredReqNames;
-        private boolean oldDrawInferred = drawInferred;
-        private int oldKind = portKind;
-        private Command resizing;
-        
-        public void execute(boolean isTop)
-        {
-          if (setText != null)
-            setText.execute(isTop);
-          
-          accessType = newAccessType;
-          // resize, using a text utility
-          resizing = figureFacet.makeAndExecuteResizingCommand(figureFacet.getFullBounds());
-          inferredProvNames = provNames;
-          inferredReqNames = reqNames;
-          portKind = nextKind;
-          drawInferred = shouldDrawInferred;
-        }
-
-        public void unExecute()
-        {
-          if (setText != null)
-            setText.unExecute();
-          accessType = oldAccessType;
-          inferredProvNames = oldProv;
-          inferredReqNames = oldReq;
-          drawInferred = oldDrawInferred;
-          portKind = oldKind;
-          resizing.unExecute();
-        }
-      };
+			someHidden = hidden;
+      accessType = subject.getVisibility();
+      // resize, using a text utility
+      figureFacet.performResizingTransaction(figureFacet.getFullBounds());
+      inferredProvNames = provNames;
+      inferredReqNames = reqNames;
+      portKind = nextKind;
+      drawInferred = shouldDrawInferred;
 		}
 		
 		private Set<String> getInferredRequiredNames()
@@ -1135,31 +1064,29 @@ public final class PortNodeGem implements Gem
 		/**
 		 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
 		 */
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
 		  // show or hide all the connectors attached
 		  // if we have some showing and some hidden, show all
-		  boolean someHidden = connectorVisibility(false);
+		  boolean show = connectorVisibility(false);
 		  boolean someShown = connectorVisibility(true);
 		  
-		  if (!someHidden && !someShown)
-		    return null; // no connectors
+		  if (!show && !someShown)
+		    return; // no connectors
 		  
 		  // show if we have some hidden
-		  boolean show = someHidden;
-		  
 		  // make a command to hide or show...
-		  CompositeCommand hide = new CompositeCommand(show ? "Show all connections" : "Hide all connections",
-		                                               show ? "Hide all the connections" : "Show all the connections");
+		  coordinator.startTransaction(
+		  		show ? "Show all connections" : "Hide all connections",
+		      show ? "Hide all the connections" : "Show all the connections");
 		  for (Iterator iter = figureFacet.getAnchorFacet().getLinks(); iter.hasNext();)
       {
         LinkingFacet link = (LinkingFacet) iter.next();
-        FigureFacet figure = link.getFigureFacet();
-
         if (isConnector(link))
-          hide.addCommand(new HideFigureCommand(null, figure.getFigureReference(), !show, "", ""));
+        	link.getFigureFacet().setShowing(show);
       }
-      return hide;
+		  someHidden = !show;
+		  coordinator.commitTransaction();
 		}
 		
     /**
@@ -1186,9 +1113,8 @@ public final class PortNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -1233,6 +1159,11 @@ public final class PortNodeGem implements Gem
 			else
 				return new ToolFigureClassification("port,element", "class");
 		}
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretOptionalProperties(pfig);
+		}
   }
   
 	private class ContainerFacetImpl implements BasicNodeContainerFacet
@@ -1251,24 +1182,12 @@ public final class PortNodeGem implements Gem
 			return false;
 		}
 		
-		public void unAddContents(Object memento)
+		public void removeContents(ContainedFacet[] containables)
 		{
-			// not applicable -- has a fixed set of containables
 		}
 		
-		public Object removeContents(ContainedFacet[] containables)
+		public void addContents(ContainedFacet[] containables)
 		{
-			return null;
-		}
-		
-		public void unRemoveContents(Object memento)
-		{
-			// not applicable -- has a fixed set of containables
-		}
-		
-		public Object addContents(ContainedFacet[] containables)
-		{
-			return null;
 		}
 		
 		public Iterator<FigureFacet> getContents()
@@ -1334,6 +1253,10 @@ public final class PortNodeGem implements Gem
 		public boolean directlyAcceptsItems()
 		{
 			return false;
+		}
+
+		public void cleanUp()
+		{
 		}
 	}
   
@@ -1435,32 +1358,13 @@ public final class PortNodeGem implements Gem
         final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
         final Classifier cls = (Classifier) clsFigure.getSubject();
         
-        Command cmd = new AbstractCommand("replaced port", "removed replaced port")
-        {          
-          private DeltaReplacedPort replacement;
-          public void execute(boolean isTop)
-          {
-          	if (replacement == null)
-          		replacement = createDeltaReplacedPort(cls, replaced, original);
-            GlobalSubjectRepository.repository.decrementPersistentDelete(replacement);
-          }
-
-          public void unExecute()
-          {
-            GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
-          }            
-        };
-        coordinator.executeCommandAndUpdateViews(cmd);
+        coordinator.startTransaction("replaced port", "removed replaced port");
+        final DeltaReplacedPort replacement = createDeltaReplacedPort(cls, replaced, original);
+        coordinator.commitTransaction(true);
         
-        diagramView.runWhenModificationsHaveBeenProcessed(new Runnable()
-        {
-          public void run()
-          {
-//            FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
-            diagramView.getSelection().clearAllSelection();
-//            diagramView.getSelection().addToSelection(createdFeature, true);
-          }
-        });
+        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
+        diagramView.getSelection().clearAllSelection();
+        diagramView.getSelection().addToSelection(createdFeature, true);
       }
     });
 
@@ -1490,9 +1394,6 @@ public final class PortNodeGem implements Gem
     if (replaced.getLowerValue() != null)
       port.setLowerBound(new Integer(replaced.getLower()));
     
-    // delete it so it can be brought back as part of the redo
-    GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
-    
     return replacement;
   }
   
@@ -1518,13 +1419,6 @@ public final class PortNodeGem implements Gem
 		if (subject.getOwner() instanceof DeltaReplacedPort)
 			return (Port) ((DeltaReplacedPort) subject.getOwner()).undeleted_getReplaced();
 		return subject;
-	}
-
-	private Class getOwningComponent()
-	{
-		if (subject.getOwner() instanceof DeltaReplacedPort)
-			return (Class) subject.getOwner().getOwner();
-		return (Class) subject.getOwner();
 	}
 	
 	/** work out the bounds of the inferred interfaces 

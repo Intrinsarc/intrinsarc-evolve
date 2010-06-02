@@ -55,27 +55,8 @@ public class GrouperNodeGem
 	private BasicNodeFigureFacet figureFacet;
 	private TextableFacetImpl textableFacet = new TextableFacetImpl();
 	private ResizeVetterFacetImpl resizeVetterFacet = new ResizeVetterFacetImpl();
-	private LocateTextFacet locateTextFacet = new LocateTextFacetImpl();
-  private StylableFacet stylableFacet = new StylableFacetImpl();
   private Comment subject = null;
 
-  private class StylableFacetImpl implements StylableFacet
-  {
-    public Object setFill(Color newFill)
-    {
-      Color oldFill = fillColor;
-      fillColor = newFill;
-      figureFacet.adjusted();
-      return oldFill;
-    }
-
-    public void unSetFill(Object memento)
-    {
-      fillColor = (Color) memento;
-      figureFacet.adjusted();
-    }
-  } 
-  
 	private class GroupBoundsDisplayer extends ManipulatorAdapter
 	{
 		private ZGroup diagramLayer;
@@ -107,14 +88,19 @@ public class GrouperNodeGem
 	/**
 	 * @param properties
 	 */
-	public GrouperNodeGem(PersistentFigure figure)
+	public GrouperNodeGem(PersistentFigure pfig)
 	{
-    // reconstitute the subject
-    subject = (Comment) figure.getSubject();
-    PersistentProperties properties = figure.getProperties();
+		interpretPersistentFigure(pfig);
+  }
+
+	private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    subject = (Comment) pfig.getSubject();
+    PersistentProperties properties = pfig.getProperties();
+		name = properties.retrieve("name", "").asString();
 		textAtTop = properties.retrieve("textAtTop", false).asBoolean();
     fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
-  }
+	}
 
 	/**
 	 * @param diagram
@@ -160,40 +146,8 @@ public class GrouperNodeGem
 	{
 		this.figureFacet = facet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-		figureFacet.registerDynamicFacet(locateTextFacet, LocateTextFacet.class);
-    figureFacet.registerDynamicFacet(stylableFacet, StylableFacet.class);
 	}
 
-	private class LocateTextFacetImpl implements LocateTextFacet
-	{
-		
-			/*
-		 * @see com.hopstepjump.jumble.freeform.grouper.LocateTextFacet#locateText(boolean)
-		 */
-		public Object locateText(boolean inTop)
-		{
-			// need to resize this also, as the change in text may have affected the size
-			boolean oldTextAtTop = textAtTop;
-			textAtTop = inTop;
-
-			return new Object[]
-				{new Boolean(oldTextAtTop),
-				 figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(name))};
-		}
-	
-		/*
-		 * @see com.hopstepjump.jumble.freeform.grouper.LocateTextFacet#unLocateText(java.lang.Object)
-		 */
-		public void unLocateText(Object memento)
-		{
-			Object[] mementos = (Object[]) memento;
-			textAtTop = ((Boolean) mementos[0]).booleanValue();
-			figureFacet.adjusted();
-			((Command) mementos[1]).unExecute();
-		}
-	}
-
-  
 	private class GrouperNodeFacetImpl implements GrouperNodeFacet
 	{
 		public UBounds getBoundsAfterExistingContainablesAlter(PreviewCacheFacet previews)
@@ -243,26 +197,14 @@ public class GrouperNodeGem
 			return list.iterator();  // this is not a reference, but is a copy, so we don't need to make it unmodifiable
 		}
 	  
-		public void unAddContents(Object memento)
-		{
-			// not used -- this has a static set of contents, which is the simple container
-		}
-	
-		public Object removeContents(ContainedFacet[] containable)
-		{
-			// not used -- this has a static set of contents
-			return null;
-		}
-	
-		public void unRemoveContents(Object memento)
+		public void removeContents(ContainedFacet[] containable)
 		{
 			// not used -- this has a static set of contents
 		}
 	
-		public Object addContents(ContainedFacet[] containable)
+		public void addContents(ContainedFacet[] containable)
 		{
 			// not used -- this has a static set of contents
-			return null;
 		}
 	
 		public boolean isWillingToActAsBackdrop()
@@ -305,6 +247,10 @@ public class GrouperNodeGem
 			contents = (SimpleContainerFacet) contained.getDynamicFacet(SimpleContainerFacet.class);
 			contained.getContainedFacet().persistence_setContainer(this);
 		}
+
+		public void cleanUp()
+		{
+		}
 	}
 
 	private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
@@ -337,7 +283,7 @@ public class GrouperNodeGem
 			return basicGem.getPreviewFacet();
 		}
 	
-		public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
 			// make the manipulators
 			GrouperSizes sizes = makeCurrentSizeInfo().makeActualSizes(false);
@@ -345,9 +291,11 @@ public class GrouperNodeGem
 			if (favoured)
 			{
 				TextManipulatorGem textGem =
-					new TextManipulatorGem("changed grouper text", "restored grouper text", name,
-																 font, Color.black,
-																 fillColor.equals(ScreenProperties.getTransparentColor()) ? Color.WHITE : fillColor, TextManipulatorGem.TEXT_PANE_CENTRED_TYPE);
+					new TextManipulatorGem(
+							coordinator, 
+							"changed grouper text", "restored grouper text", name,
+							font, Color.black,
+							fillColor.equals(ScreenProperties.getTransparentColor()) ? Color.WHITE : fillColor, TextManipulatorGem.TEXT_PANE_CENTRED_TYPE);
 				textGem.connectTextableFacet(textableFacet);
 				keyFocus = textGem.getManipulatorFacet();
 			}
@@ -357,11 +305,12 @@ public class GrouperNodeGem
 					keyFocus,
 					new GroupBoundsDisplayer(),
 					new ResizingManipulatorGem(
-						figureFacet,
-						diagramView,
-						sizes.getOuter(),
-						resizeVetterFacet,
-						firstSelected).getManipulatorFacet());
+							coordinator,
+							figureFacet,
+							diagramView,
+							sizes.getOuter(),
+							resizeVetterFacet,
+							firstSelected).getManipulatorFacet());
 		}
 	
 		public ZNode formView()
@@ -411,7 +360,14 @@ public class GrouperNodeGem
   			popup.add(figureFacet.getBasicNodeAutoSizedFacet().getAutoSizedMenuItem(coordinator));
         Utilities.addSeparator(popup);
   			popup.add(getTextAtTopMenuItem(coordinator));
-        popup.add(BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet, fillColor));
+        popup.add(BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
+        		new SetFillCallback()
+						{							
+							public void setFill(Color fill)
+							{
+								fillColor = fill;
+							}
+						}));
 			}
 			return popup;
 		}
@@ -426,11 +382,12 @@ public class GrouperNodeGem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress attributes flag
-					Command locateTextCommand =
-						new LocateTextCommand(figureFacet.getFigureReference(), !textAtTop,
+					coordinator.startTransaction(
 								textAtTop  ? "Placed text underneath" : "Placed text above",
 								!textAtTop ? "Placed text underneath" : "Placed text above");
-					coordinator.executeCommandAndUpdateViews(locateTextCommand);
+					textAtTop = !textAtTop;
+					figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
+					coordinator.commitTransaction();
 				}
 			});
 			return locateTextItem;
@@ -513,37 +470,21 @@ public class GrouperNodeGem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       if (subject == null || pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
       
       // if neither the name or the namespace has changed suppress any command
       if (subject.getBody().equals(name))
-        return null;
+        return;
       
-      return new AbstractCommand("", "")
-      {
-        private Command resizing;
-        private String oldText;
-        
-        public void execute(boolean isTop)
-        {
-          oldText = name;
-          name = subject.getBody();
-          UBounds bounds = textableFacet.vetTextResizedExtent(name);
-          resizing = figureFacet.makeAndExecuteResizingCommand(bounds);
-        }
-        
-        public void unExecute()
-        {
-          name = oldText;
-          resizing.unExecute();
-        }
-      };
+      name = subject.getBody();
+      UBounds bounds = textableFacet.vetTextResizedExtent(name);
+      figureFacet.performResizingTransaction(bounds);
     }
 
-		public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+		public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 		{
 			// want to open the parent diagram
 				new CursorWaitingAction(
@@ -555,7 +496,6 @@ public class GrouperNodeGem
 						true),
 					coordinator,
 					0).actionPerformed(null);
-		  return null;
 		}
 
 		/**
@@ -669,9 +609,8 @@ public class GrouperNodeGem
       // copy the insides to the clipboard
       DiagramFacet clipboard = GlobalPackageViewRegistry.activeRegistry.getClipboardDiagram(PackageViewRegistryGem.CLIPBOARD_TYPE);
       DiagramFacet here = figureFacet.getDiagram();
-      Command command =
-        CopyAction.CopyCommandGenerator.makeCopyToClipboardCommand(clipboard.getDiagramReference(), here.getDiagramReference(), includedFigureIds);
-      coordinator.executeForPreview(command, true, false);
+      CopyAction.CopyCommandGenerator.copyToClipboard(clipboard, here, includedFigureIds);
+    //  coordinator.executeForPreview(command, true, false);
       
       // now, save the clipboard to the directory in EPS format
       // make a new diagram view, and copy it to the system clipboard as an image
@@ -689,9 +628,8 @@ public class GrouperNodeGem
       return view;
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -708,27 +646,22 @@ public class GrouperNodeGem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
 	}
 	
 	private class TextableFacetImpl implements TextableFacet
 	{
-    public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String newText, Object listSelection, boolean unsuppress)
     {
-      String oldText = subject.getBody();
-      subject.setBody(newText);     
-      return oldText;
+      subject.setBody(newText);
+      name = newText;
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
     }
   
-    public void unSetText(Object memento)
-    {
-      subject.setBody((String) memento);
-    }
-    
-    String getText()
-    {
-      return name;
-    }
-  	  
 		/**
 		 * vetting for the text and resizing manipulators
 		 * 

@@ -232,6 +232,16 @@ public class StateMachineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getStateMachine_Region(),
+				 UML2Factory.eINSTANCE.createRegion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStateMachine_ConnectionPoint(),
+				 UML2Factory.eINSTANCE.createPseudostate()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getStateMachine_ConnectionPoint(),
 				 UML2Factory.eINSTANCE.createPseudostate()));
 	}

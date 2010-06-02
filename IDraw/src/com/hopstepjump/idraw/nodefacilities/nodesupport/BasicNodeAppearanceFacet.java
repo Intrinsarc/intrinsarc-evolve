@@ -29,7 +29,7 @@ public interface BasicNodeAppearanceFacet extends Facet
   public String getFigureName();
   public UBounds getAutoSizedBounds(boolean autoSized);
   public PreviewFacet makeNodePreviewFigure(PreviewCacheFacet previews, DiagramFacet diagram, UPoint start, boolean isFocus);
-  public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators);
+  public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators);
 	public UDimension getCreationExtent();
 	public FigureFacet getActualFigureForSelection();
 	public boolean acceptsContainer(ContainerFacet container);
@@ -38,17 +38,19 @@ public interface BasicNodeAppearanceFacet extends Facet
 	
 	/** right press and middle press */ 
 	public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator);
-	public Command middleButtonPressed(ToolCoordinatorFacet coordinator);
+	public void middleButtonPressed(ToolCoordinatorFacet coordinator);
 
 	/** view update management */
 	public Object getSubject();
 	public boolean hasSubjectBeenDeleted();
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass);
   public void produceEffect(ToolCoordinatorFacet coordinator, String effect, Object[] parameters);
 
   /** form a command after a visual move has taken place */
-  public Command getPostContainerDropCommand();
+  public void performPostContainerDropTransaction();
 	public boolean canMoveContainers();
 	public boolean isSubjectReadOnlyInDiagramContext(boolean kill);
+
+	public void acceptPersistentFigure(PersistentFigure pfig);
 
 }

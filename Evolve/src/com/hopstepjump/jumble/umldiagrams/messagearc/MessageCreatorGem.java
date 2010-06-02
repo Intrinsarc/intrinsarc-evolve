@@ -38,7 +38,7 @@ public class MessageCreatorGem implements Gem
 	    return getActualFigureName(type);
 	  }
 	
-	  public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
+	  public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
 	  {
 	  	// instantiate to use conventional facets
 	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
@@ -49,23 +49,13 @@ public class MessageCreatorGem implements Gem
 	    connectorGem.connectFigureFacet(gem.getFigureFacet(), properties);
       
       properties.addIfNotThere(new PersistentProperty("type", type, MessageArcAppearanceGem.CALL_TYPE));
-      MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(properties);
-      delegatingAppearanceGem.connectFigureFacet(gem.getFigureFacet());
+      MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(
+      		new PersistentFigure(figureId, null, subject, properties));
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
-          delegatingAppearanceGem.getBasicArcAppearanceFacet());
-	    																					 
+          delegatingAppearanceGem.getBasicArcAppearanceFacet());	    																					 
 	    diagram.add(gem.getFigureFacet());
-	    return new FigureReference(diagram, figureId);
 	  }
 	
-	  public void unCreate(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -87,8 +77,7 @@ public class MessageCreatorGem implements Gem
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
       connectorGem.connectFigureFacet(gem.getFigureFacet(), figure.getProperties());
 
-      MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(figure.getProperties());
-      delegatingAppearanceGem.connectFigureFacet(gem.getFigureFacet());
+      MessageArcAppearanceGem delegatingAppearanceGem = new MessageArcAppearanceGem(figure);
       connectorGem.connectDelegatingBasicArcAppearanceFacet(
           delegatingAppearanceGem.getBasicArcAppearanceFacet());
 	  	
@@ -106,22 +95,13 @@ public class MessageCreatorGem implements Gem
       return true;
     }
     
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
     {
     	return null;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    }
-
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
-		}
-		
-		public Object extractRawSubject(Object previouslyCreated)
-		{
-			return previouslyCreated;
 		}
 	}
   

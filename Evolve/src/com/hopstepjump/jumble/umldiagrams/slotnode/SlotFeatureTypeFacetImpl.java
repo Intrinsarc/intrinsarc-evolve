@@ -21,11 +21,13 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
 {
 	public static final String FIGURE_NAME = "slot";  // for the creator
   private BasicNodeFigureFacet figureFacet;
+	private TextableFacet textableFacet;
   private Pattern pattern = Pattern.compile("(\\w+)\\s*(?:\\(\\s*(.*)\\s*\\)|=\\s*(.*))\\s*");
 
   public SlotFeatureTypeFacetImpl(BasicNodeFigureFacet figureFacet, TextableFacet textableFacet)
   {
     this.figureFacet = figureFacet;
+    this.textableFacet = textableFacet;
   }
   
 	/**
@@ -54,15 +56,8 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
   	return overriddenName != null ? overriddenName : name;
   }
 
-  public Object setText(String text, Object listSelection, Object memento)
+  public String setText(String text, Object listSelection)
   {
-    Command cmd = (Command) memento;
-    if (cmd != null)
-    {
-    	cmd.execute(false);
-    	return cmd;
-    }
-
     // make a command to effect the changes
     final Slot slot = getSubject();
     
@@ -119,54 +114,23 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
 	    
 	    // if the value matches a property, create a PropertyValueSpecification, which is
 	    // possible aliased
-      Command newCmd = new AbstractCommand()
-      {
-      	private PropertyValueSpecification newExpression;
-      	
-  			public void execute(boolean isTop)
-  			{
-  				slot.setDefiningFeature(newAttribute);
-  				slot.settable_getValues().clear();
-  				if (valueSpec != null)
-  					slot.settable_getValues().add(valueSpec);
-  			}
-
-  			public void unExecute()
-  			{
-  				slot.setDefiningFeature(oldAttribute);
-  				slot.settable_getValues().clear();
-					slot.settable_getValues().addAll(oldExpressions);
-  			}    	
-      };
-      newCmd.execute(false);
-      return newCmd;
+			slot.setDefiningFeature(newAttribute);
+			slot.settable_getValues().clear();
+			if (valueSpec != null)
+				slot.settable_getValues().add(valueSpec);
     }
     else
     {
 	    final List<ValueSpecification> values = resolveParameters(slot, newValue);
 	    
-	    // make a new command to set the values
-	    Command newCmd = new AbstractCommand()
-	    {
-	    	private Expression newExpression;
-	    	
-				public void execute(boolean isTop)
-				{
-					slot.setDefiningFeature(newAttribute);
-	    		slot.settable_getValues().clear();
-	    		slot.settable_getValues().addAll(0, values);
-				}
-	
-				public void unExecute()
-				{
-					slot.setDefiningFeature(oldAttribute);
-	    		slot.settable_getValues().clear();
-	    		slot.settable_getValues().addAll(0, oldExpressions);
-				}    	
-	    };
-	    newCmd.execute(false);
-	    return newCmd;
+			slot.setDefiningFeature(newAttribute);
+  		slot.settable_getValues().clear();
+  		slot.settable_getValues().addAll(0, values);
     }
+    
+    String finalText = makeNameFromSubject();
+    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(finalText));
+    return finalText;
   }
   
   private List<ValueSpecification> resolveParameters(Slot slot, String values)
@@ -181,11 +145,6 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
   	return ValueParser.decodeParameters(values, pkg, cls);
 
 	}
-
-	public void unSetText(Object memento)
-  {
-  	((Command) memento).unExecute();
-  }
   
   private Slot getSubject()
   {
@@ -216,14 +175,12 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
           figureFacet.getFigureReference(), UML2Package.eINSTANCE.getClass_());
   }
 
-  public Command getPostContainerDropCommand()
+  public void performPostContainerDropTransaction()
   {
-    return null;
   }
 
-  public Command generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner)
+  public void generateDeleteDelta(ToolCoordinatorFacet coordinator, Classifier owner)
   {
-    return null;
   }
 
   public JMenuItem getReplaceItem(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)

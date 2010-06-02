@@ -164,6 +164,16 @@ public class LinkActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getLinkAction_EndData(),
 				 UML2Factory.eINSTANCE.createLinkEndCreationData()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getLinkAction_EndData(),
+				 UML2Factory.eINSTANCE.createLinkEndData()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getLinkAction_EndData(),
+				 UML2Factory.eINSTANCE.createLinkEndCreationData()));
 	}
 
 	/**

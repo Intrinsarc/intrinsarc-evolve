@@ -94,7 +94,7 @@ public final class BasicNamespacePreviewGem implements Gem
   
   private class BasicNodeAppearanceFacetImpl implements BasicNodePreviewAppearanceFacet
   {
-	  public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint)
+	  public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint, boolean linkStart)
 	  {
 	  	return featurelessFacet.calculateBoundaryPoint(previews, bounds, oriented, linkFromContained, boxPoint, insidePoint);
 	  }

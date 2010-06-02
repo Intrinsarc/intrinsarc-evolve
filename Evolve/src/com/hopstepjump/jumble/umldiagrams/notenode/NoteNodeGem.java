@@ -109,26 +109,14 @@ public final class NoteNodeGem implements Gem
                               // don't need to make it unmodifiable
     }
 
-    public void unAddContents(Object memento)
+    public void removeContents(ContainedFacet[] containable)
     {
       // not used -- this has a static set of contents
     }
 
-    public Object removeContents(ContainedFacet[] containable)
+    public void addContents(ContainedFacet[] containable)
     {
       // not used -- this has a static set of contents
-      return null;
-    }
-
-    public void unRemoveContents(Object memento)
-    {
-      // not used -- this has a static set of contents
-    }
-
-    public Object addContents(ContainedFacet[] containable)
-    {
-      // not used -- this has a static set of contents
-      return null;
     }
 
     public boolean isWillingToActAsBackdrop()
@@ -183,6 +171,10 @@ public final class NoteNodeGem implements Gem
       primitiveContents = contained;
       contained.getContainedFacet().persistence_setContainer(this);
     }
+
+		public void cleanUp()
+		{
+		}
   }
 
   private class LocationFacetImpl implements LocationFacet
@@ -190,7 +182,7 @@ public final class NoteNodeGem implements Gem
     /**
      * @see com.hopstepjump.idraw.figurefacilities.selectionbase.LocationFacet#setLocation(MPackage)
      */
-    public Object setLocation()
+    public void setLocation()
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 
@@ -206,25 +198,10 @@ public final class NoteNodeGem implements Gem
       // make sure that the package is not set to be owned by itself somehow
       for (Element owner = space; owner != null; owner = owner.getOwner())
         if (owner == subject)
-          return null;
+          return;
 
       currentSpace.getOwnedComments().remove(subject);
       space.getOwnedComments().add(subject);
-
-      return new Namespace[]{currentSpace, space};
-    }
-
-    public void unSetLocation(Object memento)
-    {
-      // don't bother if the memento isn't set
-      if (memento == null)
-        return;
-
-      Namespace[] spaces = (Namespace[]) memento;
-      Namespace oldSpace = spaces[0];
-      Namespace newSpace = spaces[1];
-      newSpace.getOwnedComments().remove(subject);
-      oldSpace.getOwnedComments().add(subject);
     }
   }
 
@@ -247,16 +224,11 @@ public final class NoteNodeGem implements Gem
     }
 
 
-    public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String newText, Object listSelection, boolean unsuppress)
     {
-      String oldText = subject.getBody();
       subject.setBody(newText);
-      return oldText;
-    }
-
-    public void unSetText(Object memento)
-    {
-      subject.setBody((String) memento);
+      text = subject.getBody();
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
     }
 
     public FigureFacet getFigureFacet()
@@ -308,13 +280,16 @@ public final class NoteNodeGem implements Gem
   		return new ToolFigureClassification(FIGURE_NAME, null);
 		}
 
-    public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected,
-        boolean allowTYPE0Manipulators)
+    public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured,
+        boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       ManipulatorFacet keyFocus = null;
       if (favoured)
       {
-        TextManipulatorGem textGem = new TextManipulatorGem("changed note text", "restored note text", textableFacet.getText(),
+        TextManipulatorGem textGem = new TextManipulatorGem(
+        		coordinator, 
+        		"changed note text", "restored note text",
+        		textableFacet.getText(),
             font, Color.black, fillColor, useHTML
                 ? TextManipulatorGem.TEXT_HTML_TYPE
                 : TextManipulatorGem.TEXT_AREA_TYPE);
@@ -325,6 +300,7 @@ public final class NoteNodeGem implements Gem
 
       return new Manipulators(keyFocus,
       		new ResizingManipulatorGem(
+      				coordinator,
       				figureFacet,
       				diagramView,
       				figureFacet.getFullBounds(),
@@ -433,27 +409,11 @@ public final class NoteNodeGem implements Gem
       {
         public void itemStateChanged(ItemEvent e)
         {
-          Command hideNoteCommand = new AbstractCommand(
+          coordinator.startTransaction(
               hideNote ? "Showed note" : "Hid note",
-              !hideNote ? "Showed note" : "Hid note")
-          {
-            public void execute(boolean isTop)
-            {
-              toggle();
-            }
-
-            public void unExecute()
-            {
-              toggle();
-            }
-
-            private void toggle()
-            {
-              hideNote = !hideNote;
-              figureFacet.adjusted();
-            }
-          };
-          coordinator.executeCommandAndUpdateViews(hideNoteCommand);
+              !hideNote ? "Showed note" : "Hid note");
+          hideNote = !hideNote;
+          coordinator.commitTransaction();
         }
       });
       return item;
@@ -467,25 +427,8 @@ public final class NoteNodeGem implements Gem
       {
         public void itemStateChanged(ItemEvent e)
         {
-          Command hideNoteCommand = new AbstractCommand(
-              useHTML ? "Used plain text" : "Showed HTML text",
-              !useHTML ? "Used plain text" : "Showed HTML text")
-          {
-            private Command resizing;
-
-            public void execute(boolean isTop)
-            {
-              useHTML = !useHTML;
-              resizing = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
-            }
-
-            public void unExecute()
-            {
-              useHTML = !useHTML;
-              resizing.unExecute();
-            }
-          };
-          coordinator.executeCommandAndUpdateViews(hideNoteCommand);
+          useHTML = !useHTML;
+          figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
         }
       });
       return item;
@@ -499,25 +442,8 @@ public final class NoteNodeGem implements Gem
       {
         public void itemStateChanged(ItemEvent e)
         {
-          Command wordWrapCommand = new AbstractCommand(
-              wordWrap ? "Word wrapping off" : "Word wrapping on",
-              !wordWrap ? "Word wrapping off" : "Word wrapping on")
-          {
-            private Command resizing;
-
-            public void execute(boolean isTop)
-            {
-              wordWrap = !wordWrap;
-              resizing = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
-            }
-
-            public void unExecute()
-            {
-              wordWrap = !wordWrap;
-              resizing.unExecute();
-            }
-          };
-          coordinator.executeCommandAndUpdateViews(wordWrapCommand);
+          wordWrap = !wordWrap;
+          figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
         }
       });
       return item;
@@ -528,8 +454,6 @@ public final class NoteNodeGem implements Gem
       JMenuItem item = new JMenuItem("Change font");
       item.addActionListener(new ActionListener()
       {
-        private Command resizeCommand;
-
         public void actionPerformed(ActionEvent e)
         {
           JFontChooser chooser = new JFontChooser();
@@ -538,23 +462,8 @@ public final class NoteNodeGem implements Gem
 
           if (chosen == 0)
           {
-            final Font newFont = chooser.getSelectedFont();
-            final Font oldFont = font;
-            Command changeBoxTypeCommand = new AbstractCommand("Changed font", "Restored font")
-            {
-              public void execute(boolean isTop)
-              {
-                font = newFont;
-                resizeCommand = figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(text));
-              }
-
-              public void unExecute()
-              {
-                font = oldFont;
-                resizeCommand.unExecute();
-              }
-            };
-            coordinator.executeCommandAndUpdateViews(changeBoxTypeCommand);
+            font = chooser.getSelectedFont();
+            figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
           }
         }
       });
@@ -652,42 +561,25 @@ public final class NoteNodeGem implements Gem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       if (subject == null || pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
 
       // if neither the name or the namespace has changed suppress any command
       if (subject.getBody().equals(text))
-        return null;
+        return;
 
-      return new AbstractCommand("", "")
-      {
-        private Command resizing;
-        private String oldText;
-
-        public void execute(boolean isTop)
-        {
-          oldText = text;
-          text = subject.getBody();
-          UBounds bounds = textableFacet.vetTextResizedExtent(text);
-          resizing = figureFacet.makeAndExecuteResizingCommand(bounds);
-        }
-
-        public void unExecute()
-        {
-          text = oldText;
-          resizing.unExecute();
-        }
-      };
+      text = subject.getBody();
+      UBounds bounds = textableFacet.vetTextResizedExtent(text);
+      figureFacet.performResizingTransaction(bounds);
     }
 
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
      */
-    public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+    public void middleButtonPressed(ToolCoordinatorFacet coordinator)
     {
-      return null;
     }
 
     /**
@@ -714,9 +606,8 @@ public final class NoteNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
     public boolean canMoveContainers()
@@ -733,6 +624,11 @@ public final class NoteNodeGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
 
   public NoteNodeGem(Comment subject, DiagramFacet diagram, String figureId, boolean useHTML, boolean hideNote, boolean wordWrap)
@@ -754,18 +650,23 @@ public final class NoteNodeGem implements Gem
     primitiveContents = contents.getFigureFacet();
   }
 
-  public NoteNodeGem(PersistentFigure figure)
+  public NoteNodeGem(PersistentFigure pfig)
   {
-    // reconstitute the subject
-    subject = (Comment) figure.getSubject();
-    text = subject.getBody();
-    hideNote = figure.getProperties().retrieve("hideNote", false).asBoolean();
-    useHTML = figure.getProperties().retrieve("useHTML", false).asBoolean();
-    wordWrap = figure.getProperties().retrieve("wordWrap", true).asBoolean();
-    font = figure.getProperties().retrieve("font", ScreenProperties.getPrimaryFont()).asFont();
+  	interpretPersistentFigure(pfig);
   }
 
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+    subject = (Comment) pfig.getSubject();
+    text = subject.getBody();
+    PersistentProperties properties = pfig.getProperties();
+    hideNote = properties.retrieve("hideNote", false).asBoolean();
+    useHTML = properties.retrieve("useHTML", false).asBoolean();
+    wordWrap = properties.retrieve("wordWrap", true).asBoolean();
+    font = properties.retrieve("font", ScreenProperties.getPrimaryFont()).asFont();
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
     return appearanceFacet;
   }

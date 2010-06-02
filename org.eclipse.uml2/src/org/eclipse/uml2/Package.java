@@ -387,6 +387,17 @@ public interface Package extends Namespace, PackageableElement{
 	 * Creates a {@link org.eclipse.uml2.J_DiagramHolder} and sets the '<em><b>Jdiagram Holder</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.J_DiagramHolder} to create.
+	 * @return The new {@link org.eclipse.uml2.J_DiagramHolder}.
+	 * @see #getJ_diagramHolder()
+	 * @generated
+	 */
+	J_DiagramHolder createJ_diagramHolder(EClass eClass);
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.J_DiagramHolder} and sets the '<em><b>Jdiagram Holder</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.uml2.J_DiagramHolder}.
 	 * @see #getJ_diagramHolder()
 	 * @generated

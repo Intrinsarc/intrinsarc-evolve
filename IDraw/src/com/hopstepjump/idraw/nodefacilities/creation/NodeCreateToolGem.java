@@ -138,7 +138,7 @@ public final class NodeCreateToolGem implements Gem
 	      mouseNode.removeMouseListener(mouseListener);
 	      mouseNode.removeMouseMotionListener(mouseListener);
 	      
-	      // if we still have a creation memento, then we must remove it
+	      // if we still have a creation object, then we must remove it
 	      removeCreationObject();
 	      diagramView.turnSelectionLayerOn();
 	    }
@@ -180,31 +180,29 @@ public final class NodeCreateToolGem implements Gem
     {
 	    // make the figure
 	    FigureReference reference = diagram.makeNewFigureReference();
-	    Command cmd = null;
 
 	    PersistentProperties properties = new PersistentProperties();
 	    // pass the properties from the indicated factory to the one retrieved via the registry
 	    factory.initialiseExtraProperties(properties);
 	    
+	    String name = factory.getFigureName();
+	    coordinator.startTransaction("created " + name, "removed " + name);
 	    if (acceptingContainer == null)
-	    	cmd = new NodeCreateFigureCommand(null, reference, null, factory, creationPoint, false, properties, null, "created " + factory.getFigureName(), "removed " + factory.getFigureName());
+	    	NodeCreateFigureTransaction.create(diagram, null, reference, null, factory, creationPoint, properties, null);
 	    else
-	    	cmd = new NodeCreateFigureCommand(null, reference, acceptingContainer.getFigureFacet().getFigureReference(), factory, creationPoint, false, properties, null, "created " + factory.getFigureName(), "removed " + factory.getFigureName());
+	    	NodeCreateFigureTransaction.create(diagram, null, reference, acceptingContainer.getFigureFacet().getFigureReference(), factory, creationPoint, properties, null);
 
     	if (acceptingResizings != null && acceptingContainer != null)
 			{
 		    // we need to make a composite command with:
-		    // 1) the create figure command
-		    // 2) the container resizing command (also a composite!)
-		    // 3) the containment command
-	      CompositeCommand comp = new CompositeCommand("created " + factory.getFigureName() + " in " + intoContainer.getFigureFacet().getFigureName(), "removed " + factory.getFigureName() + " from " + intoContainer.getFigureFacet().getFigureName());
-	      comp.addCommand(acceptingResizings.end("resized container to fit created node", "restored container size after removing node"));
-	      comp.addCommand(cmd);
-	      comp.addCommand(new ContainerAddCommand(acceptingContainer.getFigureFacet().getFigureReference(), new FigureReference[]{reference}, "added containables to container", "removed containables from container"));
-	      cmd = comp;
+		    // 1) the create figure transaction
+		    // 2) the container resizing transaction
+		    // 3) the containment transaction
+	      acceptingResizings.end();
+	      ContainerAddTransaction.add(acceptingContainer, new FigureReference[]{reference});
 			}
 		
-      coordinator.executeCommandAndUpdateViews(cmd);
+      coordinator.commitTransaction();
       diagramView.getSelection().clearAllSelection();
 
       // highlight the created figure
@@ -367,7 +365,7 @@ public final class NodeCreateToolGem implements Gem
   {
     // make a temporary diagram that looks like the one we are going to place the figure on
     // and then make a temporary figure on it, in preview mode
-    BasicDiagramGem temporaryDiagramGem = new BasicDiagramGem(diagram.getDiagramReference(), false, null);
+    BasicDiagramGem temporaryDiagramGem = new BasicDiagramGem(diagram.getDiagramReference(), false, null, true);
     DiagramFacet temporaryDiagram = temporaryDiagramGem.getDiagramFacet();
     FigureReference creationReference = temporaryDiagram.makeNewFigureReference();
     factory.createFigure(null, temporaryDiagram, creationReference.getId(), UPoint.ZERO, null);

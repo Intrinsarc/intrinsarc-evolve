@@ -241,6 +241,16 @@ public class TestIdentityActionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getTestIdentityAction_First(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTestIdentityAction_First(),
+				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getTestIdentityAction_Second(),
 				 UML2Factory.eINSTANCE.createInputPin()));
 
@@ -248,6 +258,21 @@ public class TestIdentityActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getTestIdentityAction_Second(),
 				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTestIdentityAction_Second(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTestIdentityAction_Second(),
+				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTestIdentityAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 
 		newChildDescriptors.add
 			(createChildParameter

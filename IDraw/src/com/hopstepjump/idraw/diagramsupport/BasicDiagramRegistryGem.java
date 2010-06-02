@@ -68,7 +68,7 @@ public final class BasicDiagramRegistryGem implements Gem
   
         // make sure that we handles any needed changes to this diagram
         for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
-          lruDiagram.formViewUpdateCommand(true, pass, false).execute(false);
+          lruDiagram.formViewUpdate(pass, false);
 
         // make sure this is shown as unmodified
         if (forceToNotModified)
@@ -104,7 +104,7 @@ public final class BasicDiagramRegistryGem implements Gem
   
         // make sure that we handles any needed changes to this diagram
         for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
-          lruDiagram.formViewUpdateCommand(true, pass, true).execute(false);
+          lruDiagram.formViewUpdate(pass, true);
 
         // make sure this is shown as unmodified
         lruDiagram.resetModified();
@@ -119,7 +119,7 @@ public final class BasicDiagramRegistryGem implements Gem
       DiagramFacet diagram = diagrams.get(reference);
       if (diagram == null)
       {
-        BasicDiagramGem gem = new BasicDiagramGem(reference, true, null);
+        BasicDiagramGem gem = new BasicDiagramGem(reference, true, null, false);
         gem.connectBasicDiagramReadOnlyFacet(
             new BasicDiagramReadOnlyFacet()
             {

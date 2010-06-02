@@ -79,6 +79,7 @@ public class DependencyItemProvider
 			addDependencyTargetPropertyDescriptor(object);
 			addResemblancePropertyDescriptor(object);
 			addReplacementPropertyDescriptor(object);
+			addTracePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -250,6 +251,26 @@ public class DependencyItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Trace feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTracePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Dependency_trace_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Dependency_trace_feature", "_UI_Dependency_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UML2Package.eINSTANCE.getDependency_Trace(),
+				 true,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Dependency.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,6 +306,7 @@ public class DependencyItemProvider
 		switch (notification.getFeatureID(Dependency.class)) {
 			case UML2Package.DEPENDENCY__RESEMBLANCE:
 			case UML2Package.DEPENDENCY__REPLACEMENT:
+			case UML2Package.DEPENDENCY__TRACE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

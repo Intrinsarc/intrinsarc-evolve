@@ -229,6 +229,8 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (PackageImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -876,6 +878,20 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 
 	}
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public J_DiagramHolder createJ_diagramHolder(EClass eClass) {
+		J_DiagramHolder newJ_diagramHolder = (J_DiagramHolder) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.PACKAGE__JDIAGRAM_HOLDER, null, newJ_diagramHolder));
+		}
+		setJ_diagramHolder(newJ_diagramHolder);
+		return newJ_diagramHolder;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

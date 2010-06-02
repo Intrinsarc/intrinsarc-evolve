@@ -91,11 +91,11 @@ public class ImplementationArcGem implements Gem
     	return startOk && end.getFigureFacet().getSubject() instanceof Interface;
 		}
 
-		public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+		public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 		{
 			// if this is top and the anchors we are attached to are not the same as the ones that the
 			// model element is attached to, then delete
-			if (isTop && pass == ViewUpdatePassEnum.LAST)
+			if (pass == ViewUpdatePassEnum.LAST)
 			{
 				Classifier type = subject.getRealizingClassifier();
 				Classifier iface = subject.getContract();
@@ -104,9 +104,8 @@ public class ImplementationArcGem implements Gem
 				final Interface viewIface = (Interface) figureFacet.getLinkingFacet().getAnchor2().getFigureFacet().getSubject();
 				
 				if (type != viewType || iface != viewIface)
-					return figureFacet.formDeleteCommand();
+					figureFacet.formDeleteTransaction();
 			}
-			return null;
 		}
 
 		public Object getSubject()
@@ -119,33 +118,16 @@ public class ImplementationArcGem implements Gem
 			return subject.isThisDeleted();
 		}
 
-		public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+		public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 		{
-			final Class oldType = (Class) subject.getRealizingClassifier();
-			final Interface oldIface = subject.getContract();
-			
-			final Class newType = ImplementationCreatorGem.extractClassType(
+			Class newType = ImplementationCreatorGem.extractClassType(
 					(start.getFigureFacet().getSubject()));
-			final Interface newIface = (Interface) end.getFigureFacet().getSubject();
+			Interface newIface = (Interface) end.getFigureFacet().getSubject();
 
-			// return a command to change these
-			return new AbstractCommand("Retargeted generalization ends", "Unretargeted generalization ends")
-			{
-				public void execute(boolean isTop)
-				{
-					// change the owner
-          newType.getImplementations().add(subject);
-					subject.setRealizingClassifier(newType);
-					subject.setContract(newIface);
-				}
-
-				public void unExecute()
-				{
-          oldType.getImplementations().add(subject);
-					subject.setRealizingClassifier(oldType);
-					subject.setContract(oldIface);
-				}				
-			};
+			// change the owner
+      newType.getImplementations().add(subject);
+			subject.setRealizingClassifier(newType);
+			subject.setContract(newIface);
 		}
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)
@@ -162,6 +144,10 @@ public class ImplementationArcGem implements Gem
      styles.add(InterfaceCreatorGem.LINK_STYLE_DIRECT);
      return styles;
     }
+
+		public void acceptPersistentProperties(PersistentFigure pfig)
+		{
+		}
   }
   
   /**

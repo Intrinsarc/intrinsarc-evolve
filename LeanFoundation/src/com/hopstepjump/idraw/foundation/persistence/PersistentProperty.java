@@ -1,7 +1,6 @@
 package com.hopstepjump.idraw.foundation.persistence;
 
 import java.awt.*;
-import java.io.*;
 import java.util.*;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import com.hopstepjump.geometry.*;
  * (c) Andrew McVeigh 30-Aug-02
  *
  */
-public class PersistentProperty implements Serializable
+public class PersistentProperty
 {
 	private String name;
 	private String value;
@@ -203,7 +202,13 @@ public class PersistentProperty implements Serializable
     setStringCollectionValue(uuids);
   }
 
-  private void setStringCollectionValue(Collection<String> uuids)
+  public PersistentProperty(String name, double value)
+	{
+  	this.name = name.intern();
+  	this.value = "" + value;
+	}
+
+	private void setStringCollectionValue(Collection<String> uuids)
   {
     StringBuffer value = new StringBuffer();
     for (String str : uuids)
@@ -213,7 +218,8 @@ public class PersistentProperty implements Serializable
 
   private void setNameAndValue(String name, String value, String defaultValue)
   {
-    this.name = name;
+  	if (name != null)
+  		this.name = name.intern();
     this.value = value;
     this.isDefaultValue = (value == null && defaultValue == null) || (value.equals(defaultValue));
   }
@@ -383,8 +389,35 @@ public class PersistentProperty implements Serializable
     }
 	}
   
+  public double asDouble()
+	{
+    try
+    {
+      return new Double(value).doubleValue();
+    }
+    catch (NumberFormatException ex)
+    {
+      return 0;
+    }
+	}
+  
   public String toString()
   {
   	return name + " = " + value;
   }
+  
+  @Override
+	public boolean equals(Object obj)
+	{
+		if (!(obj instanceof PersistentProperty))
+			return false;
+		PersistentProperty p = (PersistentProperty) obj;
+		return name == p.name && (value == null ? (value == p.value) : value.equals(p.value));
+	}
+
+	@Override
+	public int hashCode()
+	{
+			return (name != null ? name.hashCode() : 0) ^ (value != null ? value.hashCode() : 0);
+	}
 }

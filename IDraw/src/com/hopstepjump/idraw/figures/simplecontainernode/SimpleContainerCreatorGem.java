@@ -33,7 +33,7 @@ public class SimpleContainerCreatorGem implements Gem
 	    return SimpleContainerGem.FIGURE_NAME;
 	  }
 
-	  public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+	  public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, new UPoint(0,0), true, false);
 			SimpleContainerGem simpleGem = new SimpleContainerGem(new UDimension(0,0), new UDimension(4,4), true);
@@ -43,17 +43,8 @@ public class SimpleContainerCreatorGem implements Gem
 			basicGem.connectAnchorFacet(null);
 			simpleGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectBasicNodeContainerFacet(simpleGem.getBasicNodeContainerFacet());
-			return new FigureReference(diagram, figureId);
 	  }
     
-	  public void unCreateFigure(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getName()
 		 */
@@ -68,7 +59,7 @@ public class SimpleContainerCreatorGem implements Gem
 		public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
 		{
 	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-			SimpleContainerGem simpleGem = new SimpleContainerGem(figure.getProperties());
+			SimpleContainerGem simpleGem = new SimpleContainerGem(figure);
 			basicGem.connectBasicNodeAppearanceFacet(simpleGem.getBasicNodeAppearanceFacet());
 			
 			// a simple container cannot act as an anchor
@@ -78,13 +69,9 @@ public class SimpleContainerCreatorGem implements Gem
 			return basicGem.getBasicNodeFigureFacet();
 		}
 
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       return null;
-    }
-
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
     }
 
 		public void initialiseExtraProperties(PersistentProperties properties)

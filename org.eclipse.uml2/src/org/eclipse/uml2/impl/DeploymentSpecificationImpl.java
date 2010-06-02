@@ -104,6 +104,8 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (DeploymentSpecificationImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -369,6 +371,8 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 			case UML2Package.DEPLOYMENT_SPECIFICATION__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_LEAF:
@@ -399,8 +403,6 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 				return getRepresentation();
 			case UML2Package.DEPLOYMENT_SPECIFICATION__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__FILE_NAME:
 				return getFileName();
 			case UML2Package.DEPLOYMENT_SPECIFICATION__NESTED_ARTIFACT:
@@ -504,6 +506,9 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 			case UML2Package.DEPLOYMENT_SPECIFICATION__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -540,9 +545,6 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 			case UML2Package.DEPLOYMENT_SPECIFICATION__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__FILE_NAME:
 				setFileName((String)newValue);
@@ -646,6 +648,9 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 			case UML2Package.DEPLOYMENT_SPECIFICATION__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -675,9 +680,6 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 				return;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__FILE_NAME:
 				setFileName(FILE_NAME_EDEFAULT);
@@ -767,6 +769,8 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_LEAF:
@@ -797,8 +801,6 @@ public class DeploymentSpecificationImpl extends ArtifactImpl implements Deploym
 				return representation != null;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.DEPLOYMENT_SPECIFICATION__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.DEPLOYMENT_SPECIFICATION__FILE_NAME:
 				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
 			case UML2Package.DEPLOYMENT_SPECIFICATION__NESTED_ARTIFACT:

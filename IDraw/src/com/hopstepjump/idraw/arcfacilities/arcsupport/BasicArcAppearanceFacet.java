@@ -23,6 +23,7 @@ public interface BasicArcAppearanceFacet extends Facet
 	 * persistence
 	 */
 	public void addToPersistentProperties(PersistentProperties properties);
+	public void acceptPersistentProperties(PersistentFigure pfig);
 
 	/** form the appearance possibly using the main arc
 	 * 
@@ -54,13 +55,13 @@ public interface BasicArcAppearanceFacet extends Facet
       ToolCoordinatorFacet coordinator);
 
 	public boolean acceptsAnchors(AnchorFacet start, AnchorFacet end);
-	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end);
+	public void makeReanchorAction(AnchorFacet start, AnchorFacet end);
 
 	public Object getSubject();
 
 	public boolean hasSubjectBeenDeleted();
 
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass);
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass);
 
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill);
 }

@@ -196,6 +196,11 @@ public class DeploymentTargetItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getDeploymentTarget_Deployment(),
 				 UML2Factory.eINSTANCE.createDeployment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getDeploymentTarget_Deployment(),
+				 UML2Factory.eINSTANCE.createDeployment()));
 	}
 
 	/**

@@ -190,6 +190,11 @@ public class StringExpressionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getStringExpression_SubExpression(),
 				 UML2Factory.eINSTANCE.createStringExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStringExpression_SubExpression(),
+				 UML2Factory.eINSTANCE.createStringExpression()));
 	}
 
 	/**

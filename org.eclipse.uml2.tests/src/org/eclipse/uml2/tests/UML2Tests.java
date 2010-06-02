@@ -239,6 +239,12 @@ public class UML2Tests extends TestSuite {
 		suite.addTestSuite(DeltaDeletedOperationTest.class);
 		suite.addTestSuite(PortRemapTest.class);
 		suite.addTestSuite(SavedReferenceTest.class);
+		suite.addTestSuite(RequirementsFeatureTest.class);
+		suite.addTestSuite(RequirementsFeatureLinkTest.class);
+		suite.addTestSuite(DeltaReplacedRequirementsFeatureLinkTest.class);
+		suite.addTestSuite(DeltaDeletedRequirementsFeatureLinkTest.class);
+		suite.addTestSuite(DeltaDeletedTraceTest.class);
+		suite.addTestSuite(DeltaReplacedTraceTest.class);
 		return suite;
 	}
 

@@ -184,6 +184,7 @@ public class DeltaAdornerGem
                         return UMLTypes.extractInstanceOfPart(element) != null;
                       }
                     });
+                reportDeletes(panel, cls.undeleted_getDeltaDeletedTraces(), "traces", null);
               }
               if (subject instanceof Interface)
               {
@@ -198,10 +199,15 @@ public class DeltaAdornerGem
                     });
                   reportDeletes(panel, iface.undeleted_getDeltaDeletedOperations(), "operations", null);                
               }
+              if (subject instanceof RequirementsFeature)
+              {
+                RequirementsFeature req = (RequirementsFeature) subject;
+                reportDeletes(panel, req.undeleted_getDeltaDeletedSubfeatures(), "subfeatures", null);
+              }
               break;
             case DELTA_REPLACE:
               // report on the original which was replaced
-              Feature feature = (Feature) figure.getSubject();
+              Element feature = (Element) figure.getSubject();
               Element replaced = ((DeltaReplacedConstituent) feature.getOwner()).getReplaced();
 
               String display =
@@ -251,6 +257,7 @@ public class DeltaAdornerGem
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
       
       for (FigureFacet figure : figures)
+      {
         if (figure.getSubject() instanceof Classifier)
         {
           Classifier cls = (Classifier) figure.getSubject();
@@ -264,10 +271,29 @@ public class DeltaAdornerGem
             {
               DelegatedDeltaAdornerFacet delegated =
                 (DelegatedDeltaAdornerFacet) figure.getDynamicFacet(DelegatedDeltaAdornerFacet.class);
+              displays.putAll(delegated.getDeltaDisplaysAtHome());
+            }
+          }
+        }
+
+        if (figure.getSubject() instanceof RequirementsFeature)
+        {
+          RequirementsFeature req = (RequirementsFeature) figure.getSubject();
+          
+          // only adorn if this is at home
+          if (repository.findVisuallyOwningStratum(figure.getDiagram(), figure.getContainedFacet().getContainer()) ==
+              repository.findOwningStratum(req))
+          {
+            // ask the class to adorn itself
+            if (figure.hasDynamicFacet(DelegatedDeltaAdornerFacet.class))
+            {
+              DelegatedDeltaAdornerFacet delegated =
+                (DelegatedDeltaAdornerFacet) figure.getDynamicFacet(DelegatedDeltaAdornerFacet.class);
               displays.putAll(delegated.getDeltaDisplaysAtHome());              
             }
           }
         }
+      }
       
       return displays;
     }

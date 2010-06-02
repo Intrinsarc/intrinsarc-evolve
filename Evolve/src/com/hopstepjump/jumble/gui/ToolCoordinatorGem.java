@@ -3,10 +3,14 @@ package com.hopstepjump.jumble.gui;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.reflect.*;
+import java.util.concurrent.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
 
+import org.eclipse.uml2.*;
+
+import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.easydock.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
@@ -38,22 +42,28 @@ import com.hopstepjump.jumble.umldiagrams.notelinkarc.*;
 import com.hopstepjump.jumble.umldiagrams.notenode.*;
 import com.hopstepjump.jumble.umldiagrams.packagenode.*;
 import com.hopstepjump.jumble.umldiagrams.portnode.*;
+import com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode.*;
 import com.hopstepjump.jumble.umldiagrams.sequencesection.*;
 import com.hopstepjump.jumble.umldiagrams.slotnode.*;
 import com.hopstepjump.jumble.umldiagrams.stereotypenode.*;
-import com.hopstepjump.swing.*;
+import com.hopstepjump.jumble.umldiagrams.tracearc.*;
+import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.uml2deltaengine.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
 import edu.umd.cs.jazz.event.*;
 import edu.umd.cs.jazz.util.*;
 
-
 public final class ToolCoordinatorGem implements Gem
-{		    
+{
+	public static final int MSEC_VIEW_UPDATE_DELAY = 100;
+	public static Preference UNDO_REDO_SIZE = new Preference(
+			"Advanced",
+			"Size of undo/redo history",
+			100);
 	private static final Font POPUP_FONT = new Font("Arial", Font.BOLD, 16);
-  private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
-  private CommandManagerFacet commandManagerFacet;
+	
 	private ToolCoordinatorFacet coordinatorFacet = new ToolCoordinatorFacetImpl();
   private JFrame frame;
   private PaletteManagerFacet paletteFacet;
@@ -62,7 +72,10 @@ public final class ToolCoordinatorGem implements Gem
   private int currentPopupNumber = 0;
   private ZCanvas currentCanvas;
   private IEasyDock dock;
-
+  private Semaphore sema = new Semaphore(1);
+  private Semaphore sema2 = new Semaphore(1);
+  private boolean inTransaction;
+  
   public ToolCoordinatorGem()
   {
   	registerRecreators();
@@ -87,58 +100,12 @@ public final class ToolCoordinatorGem implements Gem
 	    paletteFacet.toolFinished(e, stopMultiTool);
 	  }
 	  
-	  public void executeCommandAndUpdateViews(Command command)
-	  {
-	    // we want to change the cursor only if the delay is longer than 0.4 seconds
-			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
-			waiter.displayWaitCursorAfterDelay();
-			
-			try
-			{
-			  commandManagerFacet.executeCommandAndUpdateViews(command);
-			}
-			catch (ReadOnlyException ex)
-			{
-			  // the command has failed because it attempted to modify a readOnly resource
-			  displayPopup(
-			      ERROR_ICON,
-			      "Read only!",
-			      "Attempt to modify read only elements",
-			      ScreenProperties.getUndoPopupColor(),
-			      Color.black, 
-			      1500);
-			}
-			catch (Exception ex)
-			{
-			  // best to catch and report on exceptions here.  invokeAndWait() as used in the TextManipulatorGem
-			  // seems to silently consume exceptions...
-			  ex.printStackTrace();
-			}
-			
-			waiter.restoreOldCursor();
-      paletteFacet.refreshEnabled();
-      GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
-	  }
-	  
-		public Command executeForPreview(Command command, boolean sendDiagramChanges, boolean returnCommand)
-		{
-	  	return commandManagerFacet.executeForPreview(command, sendDiagramChanges, returnCommand);
-		}
-
-		/**
-		 * @see com.hopstepjump.idraw.foundation.ToolCoordinatorFacet#undoForPreview(Command)
-		 */
-		public void undoForPreview(Command command)
-		{
-			commandManagerFacet.undoForPreview(command);
-		}
-
 		/**
 		 * @see com.hopstepjump.idraw.foundation.ToolCoordinatorFacet#displayWaitCursor()
 		 */
 		public Cursor displayWaitCursor()
 		{
-    	Component top = frame.getGlassPane();
+    	java.awt.Component top = frame.getGlassPane();
     	top.setVisible(true);
     	Cursor oldCursor = top.getCursor();
 			top.setCursor(new Cursor(Cursor.WAIT_CURSOR));
@@ -147,7 +114,7 @@ public final class ToolCoordinatorGem implements Gem
 
 		public void restoreCursor(Cursor oldCursor)
 		{
-    	Component top = frame.getGlassPane();
+			java.awt.Component top = frame.getGlassPane();
 			top.setCursor(oldCursor);
 			top.setVisible(false);
 		}
@@ -157,7 +124,7 @@ public final class ToolCoordinatorGem implements Gem
 		 */
 		public Cursor displayCursorForAWhile(int cursor, int msecs)
 		{
-    	Component top = frame.getGlassPane();
+			java.awt.Component top = frame.getGlassPane();
     	top.setVisible(true);
     	Cursor oldCursor = top.getCursor();
 			top.setCursor(new Cursor(cursor));
@@ -170,6 +137,7 @@ public final class ToolCoordinatorGem implements Gem
 			}
 			return oldCursor;
 		}
+		
 		/**
 		 * @see com.hopstepjump.idraw.foundation.ToolCoordinatorFacet#attachToFrame(JFrame)
 		 */
@@ -190,13 +158,13 @@ public final class ToolCoordinatorGem implements Gem
 
     public void blockInput()
     {
-    	Component top = frame.getGlassPane();
+    	java.awt.Component top = frame.getGlassPane();
     	top.setVisible(true);
     }
 
     public void restoreInput()
     {
-    	Component top = frame.getGlassPane();
+    	java.awt.Component top = frame.getGlassPane();
     	top.setVisible(false);
     }
 
@@ -475,13 +443,198 @@ public final class ToolCoordinatorGem implements Gem
 		{
 			return GlobalPreferences.preferences.getRawPreference(preference).asInteger();
 		}
+
+		private void semaBlock()
+		{
+			sema.acquireUninterruptibly();
+			sema.release();			
+		}
+		
+		public void startTransaction(String redoName, String undoName)
+		{
+			inTransaction = true;
+			sema2.release();
+			semaBlock();
+			clearDeltaEngine();
+			GlobalSubjectRepository.repository.startTransaction(redoName, undoName);
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.startTransaction(redoName, undoName);
+		}
+		
+		public void undoTransaction()
+		{
+			semaBlock();
+			GlobalSubjectRepository.repository.undoTransaction();
+			clearDeltaEngine();
+			final DiagramFacet main = getCurrentDiagramView().getDiagram();
+			main.undoTransaction();
+			inBackground(
+				new Runnable()
+				{
+					public void run()
+					{
+		  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+		  				if (d != main)
+		  					d.undoTransaction();
+		  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+		  				d.completeUndoTransaction();						
+					}
+				});
+		}
+
+		public void redoTransaction()
+		{
+			semaBlock();
+			GlobalSubjectRepository.repository.redoTransaction();
+			clearDeltaEngine();
+			final DiagramFacet main = getCurrentDiagramView().getDiagram();
+			main.redoTransaction();
+			inBackground(
+				new Runnable()
+				{
+					public void run()
+					{
+		  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+		  				if (d != main)
+		  					d.redoTransaction();
+		  			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+		  				d.completeRedoTransaction();						
+					}
+				});
+		}
+
+		public void commitTransaction()
+		{
+			commitTransaction(false);
+		}
+
+		public void commitTransaction(final boolean fullyCommitCurrentDiagramInForeground)
+		{
+			inTransaction = false;
+	    final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
+	    
+			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
+			waiter.displayWaitCursorAfterDelay();
+
+			clearDeltaEngine();
+			final DiagramFacet main = getCurrentDiagramView().getDiagram();
+			updateDiagramAfterSubjectChanges(main,
+					!fullyCommitCurrentDiagramInForeground);
+			main.checkpointCommitTransaction();
+			repository.commitTransaction();
+
+			// possibly update in the background
+			inBackground(new Runnable()
+	    {
+	    	public void run()
+	    	{
+	  			updateDiagramAfterSubjectChanges(main, false);
+	  			main.commitTransaction();
+	  			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
+	  			{
+	  				if (diagram != main)
+	  				{
+	  					if (!fullyCommitCurrentDiagramInForeground)
+	  						updateDiagramAfterSubjectChanges(diagram, false);
+	  					diagram.commitTransaction();					
+	  				}				
+	  			}
+	        GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
+	        enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
+	    	}
+	    });
+			waiter.restoreOldCursor();
+      paletteFacet.refreshEnabled();
+		}
+	
+		private void inBackground(final Runnable runnable)
+		{
+			boolean background = GlobalPreferences.preferences.getRawPreference(BasicDiagramGem.BACKGROUND_VIEW_UPDATES).asBoolean();
+			if (!background)
+				runnable.run();
+			else
+			{
+  			sema.acquireUninterruptibly();
+				sema2.acquireUninterruptibly();
+				new Thread(new Runnable()
+		    {
+		    	public void run()
+		    	{
+		    		try
+						{
+							Thread.sleep(100);
+						}
+		    		catch (InterruptedException e)
+						{
+						}
+						sema2.acquireUninterruptibly();
+		    		runnable.run();
+		    		sema2.release();
+		  			sema.release();
+		    	}
+		    }).start();
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						sema2.release();
+					}
+				});
+			}
+		}
+		
+		private void updateDiagramAfterSubjectChanges(DiagramFacet diagram, boolean initialRun)
+	  {
+	    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
+		      diagram.formViewUpdate(pass, initialRun);
+	  }		
+
+		public void clearTransactionHistory()
+		{
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.clearTransactionHistory();
+			GlobalSubjectRepository.repository.clearTransactionHistory();
+		}
+
+		public void enforceTransactionDepth(int desiredDepth)
+		{
+			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+				d.enforceTransactionDepth(desiredDepth);
+			GlobalSubjectRepository.repository.enforceTransactionDepth(desiredDepth);
+			
+		}
+
+		public String getRedoTransactionDescription()
+		{
+			return GlobalSubjectRepository.repository.getRedoTransactionDescription();
+		}
+
+		public int getTotalTransactions()
+		{
+			return GlobalSubjectRepository.repository.getTotalTransactions();
+		}
+
+		public int getTransactionPosition()
+		{
+			return GlobalSubjectRepository.repository.getTransactionPosition();
+		}
+
+		public String getUndoTransactionDescription()
+		{
+			return GlobalSubjectRepository.repository.getUndoTransactionDescription();
+		}
+
+		public boolean inTransaction()
+		{
+			return inTransaction;
+		}
 	}
 
-	public void connectCommandManagerFacet(CommandManagerFacet commandManagerFacet)
+	public static void clearDeltaEngine()
 	{
-		this.commandManagerFacet = commandManagerFacet;
+	  GlobalDeltaEngine.engine = new UML2DeltaEngine();
 	}
-	
+
 	private void registerRecreator(PersistentFigureRecreatorFacet recreatorFacet)
 	{
 		PersistentFigureRecreatorRegistry.registry.registerRecreator(recreatorFacet);
@@ -530,5 +683,8 @@ public final class ToolCoordinatorGem implements Gem
     registerRecreator(new LifelineCreatorGem().getArcCreateFacet());
     registerRecreator(new MessageCreatorGem().getArcCreateFacet());
     registerRecreator(new SequenceSectionCreatorGem().getNodeCreateFacet());
+    registerRecreator(new RequirementsFeatureCreatorGem().getNodeCreateFacet());
+    registerRecreator(new TraceCreatorGem().getArcCreateFacet());
+    registerRecreator(new RequirementsFeatureLinkCreatorGem(RequirementsLinkKind.MANDATORY_LITERAL).getArcCreateFacet());
 	}
 }

@@ -24,7 +24,7 @@ public final class NaryPreviewGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.nodefacilities.previewsupport.BasicNodePreviewAppearanceFacet#calculateBoundaryPoint(OrientedPoint, boolean, UPoint, UPoint)
 		 */
-		public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented, boolean linkFromContained, UPoint boxPoint, UPoint insidePoint)
+		public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented, boolean linkFromContained, UPoint boxPoint, UPoint insidePoint, boolean linkStart)
 		{
 	    return new BoundaryCalculator(getDiamond(bounds).getShape()).
 	    	calculateBoundaryPoint(oriented.getPoint(), null, insidePoint);

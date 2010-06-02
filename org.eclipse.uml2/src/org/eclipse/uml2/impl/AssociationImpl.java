@@ -128,6 +128,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (AssociationImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -633,6 +635,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			case UML2Package.ASSOCIATION__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.ASSOCIATION__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.ASSOCIATION__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.ASSOCIATION__IS_LEAF:
@@ -663,8 +667,6 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return getRepresentation();
 			case UML2Package.ASSOCIATION__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.ASSOCIATION__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.ASSOCIATION__RELATED_ELEMENT:
 				return getRelatedElements();
 			case UML2Package.ASSOCIATION__IS_DERIVED:
@@ -764,6 +766,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			case UML2Package.ASSOCIATION__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.ASSOCIATION__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.ASSOCIATION__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -800,9 +805,6 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			case UML2Package.ASSOCIATION__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.ASSOCIATION__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.ASSOCIATION__IS_DERIVED:
 				setIsDerived(((Boolean)newValue).booleanValue());
@@ -892,6 +894,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			case UML2Package.ASSOCIATION__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.ASSOCIATION__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.ASSOCIATION__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -921,9 +926,6 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return;
 			case UML2Package.ASSOCIATION__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.ASSOCIATION__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.ASSOCIATION__IS_DERIVED:
 				setIsDerived(IS_DERIVED_EDEFAULT);
@@ -1001,6 +1003,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.ASSOCIATION__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.ASSOCIATION__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.ASSOCIATION__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.ASSOCIATION__IS_LEAF:
@@ -1031,8 +1035,6 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return representation != null;
 			case UML2Package.ASSOCIATION__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.ASSOCIATION__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.ASSOCIATION__RELATED_ELEMENT:
 				return !getRelatedElements().isEmpty();
 			case UML2Package.ASSOCIATION__IS_DERIVED:

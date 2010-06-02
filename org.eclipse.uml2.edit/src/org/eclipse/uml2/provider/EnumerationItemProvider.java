@@ -169,6 +169,11 @@ public class EnumerationItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getEnumeration_OwnedLiteral(),
 				 UML2Factory.eINSTANCE.createEnumerationLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getEnumeration_OwnedLiteral(),
+				 UML2Factory.eINSTANCE.createEnumerationLiteral()));
 	}
 
 	/**

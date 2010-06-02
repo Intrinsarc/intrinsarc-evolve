@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.PersistentAbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * The datatype ParameterEffectKind is an enumeration that indicates the effect of a behavior on values passed in or out of its parameters (see â€œParameter (as specialized)â€ on page 354). 
+ * The datatype ParameterEffectKind is an enumeration that indicates the effect of a behavior on values passed in or out of its parameters (see “Parameter (as specialized)” on page 354). 
  * <!-- end-model-doc -->
  * @see org.eclipse.uml2.UML2Package#getParameterEffectKind()
  * @model

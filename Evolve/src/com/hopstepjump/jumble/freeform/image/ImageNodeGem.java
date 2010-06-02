@@ -21,7 +21,6 @@ import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.idraw.nodefacilities.resizebase.*;
-import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.repositorybase.*;
 
 import edu.umd.cs.jazz.*;
@@ -37,12 +36,10 @@ import edu.umd.cs.jazz.component.*;
  */
 public final class ImageNodeGem implements Gem
 {
-  private Font font = ScreenProperties.getPrimaryFont();
   static final String FIGURE_NAME = "image";
   private BasicNodeAppearanceFacet appearanceFacet = new BasicNodeAppearanceFacetImpl();
   private ResizeVetterFacet resizeVetterFacet = new ResizeVetterFacetImpl();
   private LocationFacet locationFacet = new LocationFacetImpl();
-  private ImagableFacet imagableFacet = new ImagableFacetImpl();
   private BasicNodeFigureFacet figureFacet;
   private Comment subject;
   private ZImage cachedImage;
@@ -53,10 +50,9 @@ public final class ImageNodeGem implements Gem
     this.subject = (Comment) subject;
   }
   
-  public ImageNodeGem(PersistentFigure figure)
+  public ImageNodeGem(PersistentFigure pfig)
   {
-    // reconstitute the subject
-    subject = (Comment) figure.getSubject();
+    subject = (Comment) pfig.getSubject();
   }
   
   public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
@@ -68,35 +64,8 @@ public final class ImageNodeGem implements Gem
   {
     this.figureFacet = figureFacet;
     figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
-    figureFacet.registerDynamicFacet(imagableFacet, ImagableFacet.class);
   }
 
-  private class ImagableFacetImpl implements ImagableFacet
-  {
-    public Object setImage(String type, byte[] imageData)
-    {
-      String oldType = subject.getBinaryFormat();
-      byte[] oldData = subject.getBinaryData();
-      int oldCount = subject.getBinaryCount();
-      subject.setBinaryFormat("Image/" + type);
-      subject.setBinaryData(imageData);
-      subject.setBinaryCount(subject.getBinaryCount() + 1);
-      return new Object[]{oldType, oldData, oldCount};
-    }
-
-    public void unSetImage(Object memento)
-    {
-      Object[] objects = (Object[]) memento;
-      String type = (String) objects[0];
-      byte[] data = (byte[]) objects[1];
-      int oldCount = (Integer) objects[2];
-      subject.setBinaryFormat(type);
-      subject.setBinaryData(data);
-      subject.setBinaryCount(oldCount);
-
-    }
-  }
-  
   private class ResizeVetterFacetImpl implements ResizeVetterFacet
   {
     /**
@@ -140,7 +109,7 @@ public final class ImageNodeGem implements Gem
     /**
      * @see com.hopstepjump.idraw.figurefacilities.selectionbase.LocationFacet#setLocation(MPackage)
      */
-    public Object setLocation()
+    public void setLocation()
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
       
@@ -155,25 +124,10 @@ public final class ImageNodeGem implements Gem
       // make sure that the package is not set to be owned by itself somehow
       for (Element owner = space; owner != null; owner = owner.getOwner())
         if (owner == subject)
-          return null;
+          return;
       
       currentSpace.getOwnedComments().remove(subject);
       space.getOwnedComments().add(subject);
-
-      return new Namespace[]{currentSpace, space};
-    }
-
-    public void unSetLocation(Object memento)
-    {
-      // don't bother if the memento isn't set
-      if (memento == null)
-        return;
-      
-      Namespace[] spaces = (Namespace[]) memento;
-      Namespace oldSpace = spaces[0];
-      Namespace newSpace = spaces[1];
-      newSpace.getOwnedComments().remove(subject);
-      oldSpace.getOwnedComments().add(subject);      
     }
   }
   
@@ -201,12 +155,11 @@ public final class ImageNodeGem implements Gem
      */
     public ZNode formView()
     {
+    	// possibly remake the cached image
+    	makeCachedImage();
+    	
       UBounds bounds = figureFacet.getFullBounds();
       ZGroup group = new ZGroup();
-      
-      // possible cache the image
-      if (cachedImage == null)
-        makeCachedImage();
       
       if (cachedImage != null)
       {
@@ -254,11 +207,12 @@ public final class ImageNodeGem implements Gem
     /**
      * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
      */
-    public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+    public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       return new Manipulators(
           null,
           new ResizingManipulatorGem(
+          		coordinator,
               figureFacet,
               diagramView,
               figureFacet.getFullBounds(),
@@ -308,9 +262,12 @@ public final class ImageNodeGem implements Gem
             int suffixIndex = selectedName.lastIndexOf('.'); 
             if (suffixIndex != -1 && selectedName.length() > suffixIndex)
               suffix = selectedName.substring(suffixIndex + 1).toLowerCase();
-            
-            Command cmd = new LoadImageCommand(figureFacet.getFigureReference(), suffix, bytes, "loaded new image", "unloaded image");
-            coordinator.executeCommandAndUpdateViews(cmd);
+
+            coordinator.startTransaction("loaded new image", "unloaded image");
+            subject.setBinaryFormat("Image/" + suffix);
+            subject.setBinaryData(bytes);
+            subject.setBinaryCount(subject.getBinaryCount() + 1);
+            coordinator.commitTransaction();
           }
           catch (Throwable ex)
           {
@@ -376,53 +333,38 @@ public final class ImageNodeGem implements Gem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
       int newCount = subject.getBinaryCount();
       if (newCount == oldCount || pass != ViewUpdatePassEnum.LAST)
-        return null;
+        return;
       
-      return new AbstractCommand("", "")
-      {
-        private Command resizing;
-        private String oldText;
-        
-        public void execute(boolean isTop)
-        {
-          oldCount = subject.getBinaryCount();
-          
-          // get the new width and height
-          // we are about to autosize, so need to make a resizings command
-          makeCachedImage();          
-          resizing = figureFacet.makeAndExecuteResizingCommand(
-              appearanceFacet.getAutoSizedBounds(figureFacet.isAutoSized()));
-        }
-        
-        public void unExecute()
-        {
-          oldCount = subject.getBinaryCount();
-          makeCachedImage();
-          resizing.unExecute();
-        }
-      };
+      // get the new width and height
+      makeCachedImage();          
+      figureFacet.performResizingTransaction(
+          appearanceFacet.getAutoSizedBounds(figureFacet.isAutoSized()));
     }
 
     private void makeCachedImage()
     {
-      // load the binary data into the ZImage
-      byte[] data = subject.getBinaryData();
-      if (data == null)
-        cachedImage = null;
-      else
-        cachedImage = new ZImage(data);
+      int newCount = subject.getBinaryCount();
+      if (oldCount != newCount)
+      {
+	      // load the binary data into the ZImage
+	      byte[] data = subject.getBinaryData();
+	      if (data == null)
+	        cachedImage = null;
+	      else
+	        cachedImage = new ZImage(data);
+	      oldCount = newCount;
+      }
     }
   
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
      */
-    public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+    public void middleButtonPressed(ToolCoordinatorFacet coordinator)
     {
-      return null;
     }
 
     /**
@@ -449,9 +391,8 @@ public final class ImageNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
     public boolean canMoveContainers()
@@ -468,10 +409,9 @@ public final class ImageNodeGem implements Gem
     {
       return null;
     }
-  }
-  
-  private UDimension getTextHeightAsDimension(ZText text)
-  {
-    return new UDimension(0, text.getBounds().getHeight());
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+		}
   }
 }

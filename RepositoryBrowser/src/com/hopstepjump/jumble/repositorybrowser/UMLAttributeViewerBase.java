@@ -94,25 +94,10 @@ public abstract class UMLAttributeViewerBase implements UMLAttributeViewer
   /**
    * make the command to set the attribute
    */
-  public Command formApplyCommand()
+  public void applyAction()
   {
-    if (!isModified())
-      return null;
-    return new AbstractCommand("", "")
-    {
-      final Object oldEValue = getModelValue();
-      final Object newEValue = getCurrentValue();
-      
-      public void execute(boolean isTop)
-      {
-        element.eSet(attribute, newEValue);
-      }
-
-      public void unExecute()
-      {
-        element.eSet(attribute, oldEValue);
-      }
-    };
+    if (isModified())
+    	element.eSet(attribute, getCurrentValue());
   }
   
   protected abstract JComponent installAttributeEditor(JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight);

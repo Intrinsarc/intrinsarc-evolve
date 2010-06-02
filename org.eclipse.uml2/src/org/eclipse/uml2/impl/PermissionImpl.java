@@ -56,6 +56,8 @@ public class PermissionImpl extends DependencyImpl implements Permission {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (PermissionImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -229,6 +231,8 @@ public class PermissionImpl extends DependencyImpl implements Permission {
 				return isResemblance() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.PERMISSION__REPLACEMENT:
 				return isReplacement() ? Boolean.TRUE : Boolean.FALSE;
+			case UML2Package.PERMISSION__TRACE:
+				return isTrace() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -323,6 +327,9 @@ public class PermissionImpl extends DependencyImpl implements Permission {
 			case UML2Package.PERMISSION__REPLACEMENT:
 				setReplacement(((Boolean)newValue).booleanValue());
 				return;
+			case UML2Package.PERMISSION__TRACE:
+				setTrace(((Boolean)newValue).booleanValue());
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -406,6 +413,9 @@ public class PermissionImpl extends DependencyImpl implements Permission {
 			case UML2Package.PERMISSION__REPLACEMENT:
 				setReplacement(REPLACEMENT_EDEFAULT);
 				return;
+			case UML2Package.PERMISSION__TRACE:
+				setTrace(TRACE_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -477,6 +487,8 @@ public class PermissionImpl extends DependencyImpl implements Permission {
 				return ((eFlags & RESEMBLANCE_EFLAG) != 0) != RESEMBLANCE_EDEFAULT;
 			case UML2Package.PERMISSION__REPLACEMENT:
 				return ((eFlags & REPLACEMENT_EFLAG) != 0) != REPLACEMENT_EDEFAULT;
+			case UML2Package.PERMISSION__TRACE:
+				return ((eFlags & TRACE_EFLAG) != 0) != TRACE_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}

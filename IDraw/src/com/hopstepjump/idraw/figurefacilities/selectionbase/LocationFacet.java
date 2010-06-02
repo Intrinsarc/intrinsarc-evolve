@@ -9,6 +9,5 @@ import com.hopstepjump.gem.*;
  */
 public interface LocationFacet extends Facet
 {
-	public Object setLocation();
-  public void unSetLocation(Object memento);
+	public void setLocation();
 }

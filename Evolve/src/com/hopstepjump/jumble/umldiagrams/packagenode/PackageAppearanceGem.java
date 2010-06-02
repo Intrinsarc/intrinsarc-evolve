@@ -399,13 +399,12 @@ public class PackageAppearanceGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.umldiagrams.basicnamespacenode.BasicNamespaceAppearanceFacet#makeMiddleButtonCommand()
 		 */
-		public Command middleButtonPressed(DiagramFacet diagram)
+		public void middleButtonPressed(DiagramFacet diagram)
 		{
 			// want to open the diagram for this package
 		  UBounds contentBounds = nodeFacet.getBoundsForDiagramZooming();
 			GlobalPackageViewRegistry.activeRegistry.open(
 			    (Package) nodeFacet.getSubject(), true, false, contentBounds, GlobalPackageViewRegistry.activeRegistry.getFocussedView().getFixedPerspective(), true);
-			return null;
 		}
 
 		/**

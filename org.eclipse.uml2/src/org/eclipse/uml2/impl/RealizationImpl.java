@@ -91,6 +91,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (RealizationImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -521,6 +523,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 				return isResemblance() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.REALIZATION__REPLACEMENT:
 				return isReplacement() ? Boolean.TRUE : Boolean.FALSE;
+			case UML2Package.REALIZATION__TRACE:
+				return isTrace() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.REALIZATION__MAPPING:
 				return getMapping();
 			case UML2Package.REALIZATION__ABSTRACTION:
@@ -622,6 +626,9 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 			case UML2Package.REALIZATION__REPLACEMENT:
 				setReplacement(((Boolean)newValue).booleanValue());
 				return;
+			case UML2Package.REALIZATION__TRACE:
+				setTrace(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.REALIZATION__MAPPING:
 				setMapping((OpaqueExpression)newValue);
 				return;
@@ -714,6 +721,9 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 			case UML2Package.REALIZATION__REPLACEMENT:
 				setReplacement(REPLACEMENT_EDEFAULT);
 				return;
+			case UML2Package.REALIZATION__TRACE:
+				setTrace(TRACE_EDEFAULT);
+				return;
 			case UML2Package.REALIZATION__MAPPING:
 				setMapping((OpaqueExpression)null);
 				return;
@@ -794,6 +804,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 				return ((eFlags & RESEMBLANCE_EFLAG) != 0) != RESEMBLANCE_EDEFAULT;
 			case UML2Package.REALIZATION__REPLACEMENT:
 				return ((eFlags & REPLACEMENT_EFLAG) != 0) != REPLACEMENT_EDEFAULT;
+			case UML2Package.REALIZATION__TRACE:
+				return ((eFlags & TRACE_EFLAG) != 0) != TRACE_EDEFAULT;
 			case UML2Package.REALIZATION__MAPPING:
 				return mapping != null;
 			case UML2Package.REALIZATION__ABSTRACTION:

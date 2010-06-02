@@ -10,18 +10,27 @@ public class DiagramRecreator
       DiagramFacet diagram, 
       Collection<PersistentFigure> persistentFigures,
       Map<String, FigureFacet> /* id -> FigureFacet */ existingFigures,
+      boolean add,
       RecreatorListener listener)
   {
     for (PersistentFigure pfig : persistentFigures)
     {
-    	PersistentFigureRecreatorFacet recreatorFacet = PersistentFigureRecreatorRegistry.registry.retrieveRecreator(pfig.getRecreator());
-  		FigureFacet figure = recreatorFacet.createFigure(diagram, pfig);
-  		Validator.validateFigure(figure);
-  
-  		String id = figure.getId();
-  	  existingFigures.put(id, figure);
-  	  if (listener != null)
-  	  	listener.addedFigure(figure);
+    	if (add)
+    	{
+	    	PersistentFigureRecreatorFacet recreatorFacet = PersistentFigureRecreatorRegistry.registry.retrieveRecreator(pfig.getRecreator());
+	  		FigureFacet figure = recreatorFacet.createFigure(diagram, pfig);
+	  		Validator.validateFigure(figure);
+	  
+	  		String id = figure.getId();
+	  	  existingFigures.put(id, figure);
+	  	  if (listener != null)
+	  	  	listener.addedFigure(figure);
+    	}
+    	else
+    	{
+      	FigureFacet figure = diagram.retrieveFigure(pfig.getId());
+      	figure.acceptPersistentFigure(pfig);
+    	}
     }
     
     // set up any links or containment hierarchies
@@ -65,7 +74,8 @@ public class DiagramRecreator
   		for (String contentId : pfig.getContentIds())
     	{
     		FigureFacet content = retrieveFigure(existingFigures, contentId);
-  			figure.getContainerFacet().persistence_addContained(content);
+    		if (content != null)
+    			figure.getContainerFacet().persistence_addContained(content);
     	}
     }
   }

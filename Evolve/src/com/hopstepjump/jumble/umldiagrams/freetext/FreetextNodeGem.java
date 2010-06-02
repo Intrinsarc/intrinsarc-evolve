@@ -29,7 +29,6 @@ public final class FreetextNodeGem implements Gem
   private Font font = ScreenProperties.getPrimaryFont();
   private String text;
   private BasicNodeAppearanceFacet appearanceFacet = new BasicNodeAppearanceFacetImpl();
-  private ResizeVetterFacet resizeVetterFacet = new ResizeVetterFacetImpl();
   private TextableFacet textableFacet = new TextableFacetImpl();
   private BasicNodeFigureFacet figureFacet;  
 
@@ -38,12 +37,18 @@ public final class FreetextNodeGem implements Gem
     this.text = "";
   }
   
-  public FreetextNodeGem(PersistentProperties properties)
-  {
-    text = properties.retrieve("text").asString();
+  public FreetextNodeGem(PersistentFigure pfig)
+  {  	
+  	interpretPersistentFigure(pfig);
   }
   
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		text = properties.retrieve("text").asString();
+	}
+
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
     return appearanceFacet;
   }
@@ -75,24 +80,12 @@ public final class FreetextNodeGem implements Gem
           new UBounds(nameText.getBounds()).getDimension());
     }
   
-    public Object setText(String newText, Object listSelection, boolean unsuppress, Object oldMemento)
+    public void setText(String newText, Object listSelection, boolean unsuppress)
     {
-      // need to resize this also, as the change in text may have affected the size
-      String oldText = text;
       text = newText;
-      
-      return new Object[]{
-          oldText,
-          figureFacet.makeAndExecuteResizingCommand(textableFacet.vetTextResizedExtent(newText))};
+	    figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(text));
     }
   
-    public void unSetText(Object memento)
-    {
-      Object[] mementos = (Object[]) memento;
-      text = (String) mementos[0];
-      ((Command) mementos[1]).unExecute();
-    }
-    
     /**
      * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
      */
@@ -104,35 +97,6 @@ public final class FreetextNodeGem implements Gem
     public JList formSelectionList(String textSoFar)
     {
       return null;
-    }
-
-  }
-  
-  private class ResizeVetterFacetImpl implements ResizeVetterFacet
-  {
-    /**
-     * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#startResizeVet()
-     */
-    public void startResizeVet()
-    {
-    }
-  
-    /**
-     * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#vetResizedBounds(DiagramView, int, UBounds, boolean)
-     */
-    public UBounds vetResizedBounds(DiagramViewFacet view, int corner, UBounds bounds, boolean fromCentre)
-    {
-      return bounds;
-    }
-  
-    /**
-     * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#vetResizedExtent(UBounds)
-     */
-    public UDimension vetResizedExtent(UBounds bounds)
-    {
-      if (figureFacet.isAutoSized())
-        return figureFacet.getFullBounds().getDimension();
-      return bounds.getDimension();
     }
   }
   
@@ -181,13 +145,13 @@ public final class FreetextNodeGem implements Gem
     /**
      * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
      */
-    public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+    public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       ManipulatorFacet primaryFocus = null;
       if (favoured)
       {
         ManipulatorFacet keyFocus = null;
-        TextManipulatorGem textGem = new TextManipulatorGem("changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+        TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
         textGem.connectTextableFacet(textableFacet);
         keyFocus = textGem.getManipulatorFacet();
         primaryFocus = keyFocus;
@@ -276,17 +240,15 @@ public final class FreetextNodeGem implements Gem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
-      return null;
     }
   
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
      */
-    public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+    public void middleButtonPressed(ToolCoordinatorFacet coordinator)
     {
-      return null;
     }
 
     /**
@@ -309,9 +271,8 @@ public final class FreetextNodeGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -333,10 +294,10 @@ public final class FreetextNodeGem implements Gem
 		{
 			return new ToolFigureClassification(FIGURE_NAME, null);
 		}
-  }
-  
-  private UDimension getTextHeightAsDimension(ZText text)
-  {
-    return new UDimension(0, text.getBounds().getHeight());
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
 }

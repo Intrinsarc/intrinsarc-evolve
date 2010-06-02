@@ -38,16 +38,7 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
     detachFromAnchors();
     state.calculatedPoints = newCalculatedPoints;
     attachToAnchors();
-    state.diagram.adjusted(getFigureFacet());
     return oldCalcs;
-  }
-
-  public void unAdjust(Object memento)
-  {
-    detachFromAnchors();
-    state.calculatedPoints = new CalculatedArcPoints((CalculatedArcPoints) memento);
-    attachToAnchors();
-    state.diagram.adjusted(getFigureFacet());
   }
 
   public Object move(CalculatedArcPoints newCalculatedPoints)
@@ -56,16 +47,7 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
     detachFromAnchors();
     state.calculatedPoints = newCalculatedPoints;
     attachToAnchors();
-    state.diagram.adjusted(getFigureFacet());
     return oldCalcs;
-  }
-
-  public void unMove(Object memento)
-  {
-    detachFromAnchors();
-    state.calculatedPoints = new CalculatedArcPoints((CalculatedArcPoints) memento);
-    attachToAnchors();
-    state.diagram.adjusted(getFigureFacet());
   }
 
   public boolean hasOutgoingsToPeripheral(PreviewCacheFacet previewFigures)
@@ -114,7 +96,6 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
   {
     state.calculatedPoints.getNode1().removeLinked(state.linkingFacet);
     state.calculatedPoints.getNode2().removeLinked(state.linkingFacet);
-    state.diagram.adjusted(getFigureFacet());
   }
 
   public void attachToAnchors()
@@ -126,9 +107,7 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
 	private void persistence_attachToAnchors()
 	{
 		state.calculatedPoints.getNode1().persistence_addLinked(this);
-		state.calculatedPoints.getNode2().persistence_addLinked(this);
-    state.diagram.adjusted(state.calculatedPoints.getNode1().getFigureFacet());
-    state.diagram.adjusted(state.calculatedPoints.getNode2().getFigureFacet());    
+		state.calculatedPoints.getNode2().persistence_addLinked(this);    
 	}
 
   public FigureFacet getFigureFacet()
@@ -198,9 +177,9 @@ final class BasicArcLinkingFacetImpl implements LinkingFacet
 		return state.appearanceFacet.acceptsAnchors(start, end);
 	}
 
-	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+	public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 	{
-		return state.appearanceFacet.makeReanchorCommand(start, end);
+		state.appearanceFacet.makeReanchorAction(start, end);
 	}
 
   public CalculatedArcPoints getCalculated()

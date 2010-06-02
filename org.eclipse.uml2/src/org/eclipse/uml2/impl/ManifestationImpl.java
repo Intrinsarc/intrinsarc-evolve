@@ -87,6 +87,8 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (ManifestationImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -375,6 +377,8 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 				return isResemblance() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.MANIFESTATION__REPLACEMENT:
 				return isReplacement() ? Boolean.TRUE : Boolean.FALSE;
+			case UML2Package.MANIFESTATION__TRACE:
+				return isTrace() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.MANIFESTATION__MAPPING:
 				return getMapping();
 			case UML2Package.MANIFESTATION__UTILIZED_ELEMENT:
@@ -474,6 +478,9 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 			case UML2Package.MANIFESTATION__REPLACEMENT:
 				setReplacement(((Boolean)newValue).booleanValue());
 				return;
+			case UML2Package.MANIFESTATION__TRACE:
+				setTrace(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.MANIFESTATION__MAPPING:
 				setMapping((OpaqueExpression)newValue);
 				return;
@@ -563,6 +570,9 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 			case UML2Package.MANIFESTATION__REPLACEMENT:
 				setReplacement(REPLACEMENT_EDEFAULT);
 				return;
+			case UML2Package.MANIFESTATION__TRACE:
+				setTrace(TRACE_EDEFAULT);
+				return;
 			case UML2Package.MANIFESTATION__MAPPING:
 				setMapping((OpaqueExpression)null);
 				return;
@@ -640,6 +650,8 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 				return ((eFlags & RESEMBLANCE_EFLAG) != 0) != RESEMBLANCE_EDEFAULT;
 			case UML2Package.MANIFESTATION__REPLACEMENT:
 				return ((eFlags & REPLACEMENT_EFLAG) != 0) != REPLACEMENT_EDEFAULT;
+			case UML2Package.MANIFESTATION__TRACE:
+				return ((eFlags & TRACE_EFLAG) != 0) != TRACE_EDEFAULT;
 			case UML2Package.MANIFESTATION__MAPPING:
 				return mapping != null;
 			case UML2Package.MANIFESTATION__UTILIZED_ELEMENT:

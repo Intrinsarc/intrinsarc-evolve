@@ -234,26 +234,10 @@ public final class MovingFiguresGem implements Gem
 	    // not valid, as this is always at the end of the chain
 	  }
 	
-	  public Command end(String description, String undoDescription)
+	  public void end()
 	  {
-	    // generate the cmd, and detach all dependents
-	    CompositeCommand composite = new CompositeCommand(description, undoDescription);
-	
-	    Iterator iter = allFigures.values().iterator();
-	    int count = 0;
-	    while (iter.hasNext())
-	    {
-	      PreviewFacet moving = (PreviewFacet) iter.next();
-	      Command cmd = moving.end();
-	      if (cmd != null)
-	      {
-	        count++;
-	        composite.addCommand(cmd);
-	      }
-	    }
-	    if (description == null)
-		    composite.setDescriptions("moved " + count + " figures", "Moved " + count + " figures back");
-	    return composite;
+	    for (PreviewFacet moving : allFigures.values())
+	      moving.end();
 	  }
 
 	  /**

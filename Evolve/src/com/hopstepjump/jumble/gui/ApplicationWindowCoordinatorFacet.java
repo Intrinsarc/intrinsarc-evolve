@@ -1,7 +1,6 @@
 package com.hopstepjump.jumble.gui;
 
 import com.hopstepjump.gem.*;
-import com.hopstepjump.idraw.foundation.*;
 
 /**
  *
@@ -15,6 +14,6 @@ public interface ApplicationWindowCoordinatorFacet extends Facet
 	public void closingApplicationWindow(ApplicationWindow window);
 	public int getNumberOfOpenApplicationWindows();
 	public void exitApplication();
-  public void switchRepository(CommandManagerListenerFacet facet);
+  public void switchRepository();
   public void refreshWindowTitles();
 }

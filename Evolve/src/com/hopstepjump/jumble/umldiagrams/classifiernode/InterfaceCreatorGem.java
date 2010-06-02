@@ -53,16 +53,9 @@ public class InterfaceCreatorGem implements Gem
 			return "Interface";
 		}
 	
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-        repository.decrementPersistentDelete((Element) previouslyCreated);
-        return previouslyCreated;
-      }
 
       Namespace owner = (Namespace) diagram.getLinkedObject();
       
@@ -106,12 +99,7 @@ public class InterfaceCreatorGem implements Gem
       return iface;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-
-    public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+    public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 		{
       InterfaceMiniAppearanceGem miniAppearanceGem = new InterfaceMiniAppearanceGem();
       ClassifierMiniAppearanceFacet miniAppearanceFacet =
@@ -122,16 +110,13 @@ public class InterfaceCreatorGem implements Gem
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, true, false);
 			ClassifierNodeGem classifierGem =
 				new ClassifierNodeGem(
-            (Interface) subject,
             diagram,
-            figureId,
             Color.WHITE,
-            actualProperties,
+      			new PersistentFigure(figureId, null, subject, actualProperties),
             false);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			basicGem.connectBasicNodeAutoSizedFacet(classifierGem.getBasicNodeAutoSizedFacet());
-			ClassifierClipboardCommandsGem clip = new ClassifierClipboardCommandsGem(true, false);
+			ClassifierClipboardActionsGem clip = new ClassifierClipboardActionsGem(true, false);
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
 			classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
@@ -139,17 +124,8 @@ public class InterfaceCreatorGem implements Gem
       miniAppearanceGem.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 				
 			diagram.add(basicGem.getBasicNodeFigureFacet());
-      return new FigureReference(diagram, figureId);
 		}
     
-    public void unCreateFigure(Object memento)
-		{
-      FigureReference figureReference = (FigureReference) memento;
-      DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-      FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-      diagram.remove(figure);      
-		}
-		
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -172,8 +148,7 @@ public class InterfaceCreatorGem implements Gem
 				new ClassifierNodeGem(Color.WHITE, false, figure);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
-			basicGem.connectBasicNodeAutoSizedFacet(classifierGem.getBasicNodeAutoSizedFacet());
-			ClassifierClipboardCommandsGem clip = new ClassifierClipboardCommandsGem(true, false);
+			ClassifierClipboardActionsGem clip = new ClassifierClipboardActionsGem(true, false);
 			clip.connectFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectClipboardCommandsFacet(clip.getClipboardCommandsFacet());
 			classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

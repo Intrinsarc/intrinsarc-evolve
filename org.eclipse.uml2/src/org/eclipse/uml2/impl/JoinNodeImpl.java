@@ -101,6 +101,8 @@ public class JoinNodeImpl extends ControlNodeImpl implements JoinNode {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (JoinNodeImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 		eFlags |= IS_COMBINE_DUPLICATE_EFLAG;
 	}

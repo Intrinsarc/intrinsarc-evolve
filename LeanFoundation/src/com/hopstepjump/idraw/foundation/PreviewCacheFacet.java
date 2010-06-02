@@ -22,5 +22,5 @@ public interface PreviewCacheFacet extends Facet
   public PreviewFacet getCachedPreviewOrMakeOne(FigureFacet previewable);
   public boolean nodeIsInFocusOfPreview(FigureFacet previewable);
   public void disconnect();
-  public Command end(String description, String undoableDescription);
+  public void end();
 }

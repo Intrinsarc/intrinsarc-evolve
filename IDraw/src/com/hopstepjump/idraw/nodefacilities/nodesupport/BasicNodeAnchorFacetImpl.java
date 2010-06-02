@@ -21,7 +21,6 @@ public final class BasicNodeAnchorFacetImpl implements AnchorFacet
   public void addLinked(LinkingFacet addLinked)
   {
     state.linked.add(addLinked);
-    adjustLinksAndFigure();
   }
 
 	public void persistence_addLinked(LinkingFacet addLinked)
@@ -30,23 +29,9 @@ public final class BasicNodeAnchorFacetImpl implements AnchorFacet
     //adjustLinksAndFigure();
 	}
 
-  /**
-   * 
-   */
-  private void adjustLinksAndFigure()
-  {
-    state.figureFacet.adjusted();
-    for (Iterator<LinkingFacet> links = getLinks(); links.hasNext();)
-    {
-      LinkingFacet link = links.next();
-      link.getFigureFacet().adjusted();
-    }
-  }
-
   public void removeLinked(LinkingFacet removeLinked)
   {
   	state.linked.remove(removeLinked);
-    adjustLinksAndFigure();
   }
 
   public boolean isInvolvedInMoving(PreviewCacheFacet previewFigures)
@@ -101,6 +86,11 @@ public final class BasicNodeAnchorFacetImpl implements AnchorFacet
 		Collection<LinkingFacet> links = new ArrayList<LinkingFacet>();
 		links.addAll(state.linked);
 		return links.iterator();
+	}
+
+	public void cleanUp()
+	{
+		state.linked.clear();
 	}
 }
 

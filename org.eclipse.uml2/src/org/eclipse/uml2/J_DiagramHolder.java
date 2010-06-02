@@ -9,6 +9,8 @@
 package org.eclipse.uml2;
 
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>JDiagram Holder</b></em>'.
@@ -61,6 +63,17 @@ public interface J_DiagramHolder extends Element{
 	 */
 	void setDiagram(J_Diagram value);
 
+
+	/**
+	 * Creates a {@link org.eclipse.uml2.J_Diagram} and sets the '<em><b>Diagram</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.J_Diagram} to create.
+	 * @return The new {@link org.eclipse.uml2.J_Diagram}.
+	 * @see #getDiagram()
+	 * @generated
+	 */
+	J_Diagram createDiagram(EClass eClass);
 
 	/**
 	 * Creates a {@link org.eclipse.uml2.J_Diagram} and sets the '<em><b>Diagram</b></em>' containment reference.

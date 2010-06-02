@@ -23,6 +23,7 @@ public class UML2Component extends DEComponent
   private Deltas ports;
   private Deltas connectors;
   private Deltas portLinks;
+  private Deltas traces;
   private Deltas appliedStereotypes;
 
   public UML2Component(org.eclipse.uml2.Class subject)
@@ -114,6 +115,7 @@ public class UML2Component extends DEComponent
     return this;
   }
   
+  @Override
   public IDeltas getDeltas(ConstituentTypeEnum type)
   {
     if (!initialiseDeltas)
@@ -138,6 +140,8 @@ public class UML2Component extends DEComponent
         return connectors;
       case DELTA_PORT_LINK:
         return portLinks;
+      case DELTA_TRACE:
+        return traces;
     }
     
     return super.getDeltas(type);
@@ -146,7 +150,7 @@ public class UML2Component extends DEComponent
   @SuppressWarnings("unchecked")
   private void initialiseDeltas()
   {
-    // handle attributes
+  	// handle attributes
     attributes = createDeltas(
         this,
         ConstituentTypeEnum.DELTA_ATTRIBUTE,
@@ -219,6 +223,21 @@ public class UML2Component extends DEComponent
           }
         });
     
+    // handle traces
+    traces = createDeltas(
+        this,
+        ConstituentTypeEnum.DELTA_TRACE,
+        subject.undeleted_getOwnedAnonymousDependencies(),
+        subject.undeleted_getDeltaDeletedTraces(),
+        subject.undeleted_getDeltaReplacedTraces(),
+        new DeltaElementAcceptor()
+        {
+          public boolean accept(Element element)
+          {
+            return ((Dependency) element).isTrace();
+          }
+        });
+    
     // handle stereotypes
   	Set<DeltaPair> stereos = new LinkedHashSet<DeltaPair>();
   	for (DEAppliedStereotype appl : getReplacedAppliedStereotypes())
@@ -242,6 +261,7 @@ public class UML2Component extends DEComponent
       addReplacedUuids(replacedUuids, subject.undeleted_getDeltaReplacedOperations());
       addReplacedUuids(replacedUuids, subject.undeleted_getDeltaReplacedPorts());
       addReplacedUuids(replacedUuids, subject.undeleted_getDeltaReplacedConnectors());
+      addReplacedUuids(replacedUuids, subject.undeleted_getDeltaReplacedTraces());
     }
     
     return replacedUuids;
@@ -308,7 +328,7 @@ public class UML2Component extends DEComponent
 				// get the owner of the dependency
 				if (dep.getOwner() instanceof Class)
 				{
-					Classifier real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((Classifier) dep.getOwner());
+					NamedElement real = CommonRepositoryFunctions.translateFromSubstitutingToSubstituted((NamedElement) dep.getOwner());
 					if (real instanceof Class)
 						immediate.add(getEngine().locateObject(real).asElement());
 				}

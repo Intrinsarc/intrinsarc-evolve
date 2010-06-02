@@ -169,6 +169,11 @@ public class CreateLinkObjectActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getCreateLinkObjectAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getCreateLinkObjectAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 	}
 
 	/**

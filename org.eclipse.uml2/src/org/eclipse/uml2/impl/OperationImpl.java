@@ -245,6 +245,8 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (OperationImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -1354,6 +1356,20 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter createFormalParameter(EClass eClass) {
+		Parameter newFormalParameter = (Parameter) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.OPERATION__FORMAL_PARAMETER, null, newFormalParameter));
+		}
+		settable_getFormalParameters().add(newFormalParameter);
+		return newFormalParameter;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

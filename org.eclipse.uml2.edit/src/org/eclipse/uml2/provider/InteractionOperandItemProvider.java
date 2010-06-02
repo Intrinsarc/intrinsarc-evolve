@@ -304,8 +304,68 @@ public class InteractionOperandItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionFragment_GeneralOrdering(),
+				 UML2Factory.eINSTANCE.createGeneralOrdering()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getInteractionOperand_Guard(),
 				 UML2Factory.eINSTANCE.createInteractionConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Guard(),
+				 UML2Factory.eINSTANCE.createInteractionConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createInteraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createEventOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createExecutionOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createStateInvariant()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createStop()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createInteractionOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createPartDecomposition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createInteractionOperand()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createCombinedFragment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOperand_Fragment(),
+				 UML2Factory.eINSTANCE.createContinuation()));
 
 		newChildDescriptors.add
 			(createChildParameter

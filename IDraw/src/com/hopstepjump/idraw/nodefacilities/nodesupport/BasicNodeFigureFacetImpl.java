@@ -34,13 +34,22 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 		registerDynamicFacet(this, ResizeFacet.class);
 	}
 	
-	public BasicNodeFigureFacetImpl(PersistentProperties properties, BasicNodeState state, boolean useGlobalLayer)
+	public BasicNodeFigureFacetImpl(PersistentFigure pfig, BasicNodeState state, boolean useGlobalLayer)
 	{
 		this(state, useGlobalLayer);
-		
+		PersistentProperties properties = pfig.getProperties();
 		state.pt = properties.retrieve("pt").asUPoint();
 		state.resizedExtent = properties.retrieve("dim", new UDimension(0,0)).asUDimension();
 		state.showing = properties.retrieve("show", true).asBoolean();
+	}
+
+	public void acceptPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
+		state.pt = properties.retrieve("pt").asUPoint();
+		state.resizedExtent = properties.retrieve("dim", new UDimension(0,0)).asUDimension();
+		state.showing = properties.retrieve("show", true).asBoolean();
+		state.appearanceFacet.acceptPersistentFigure(pfig);
 	}
 
   public String getId()
@@ -57,10 +66,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	{
 		state.showing = showing;
 
-		// we must generate updates such that the container is always shown first and hidden last!
-		if (showing)
-			state.diagram.adjusted(this);
-
 		if (state.containerFacet != null)
 			state.containerFacet.setShowingForChildren(showing);
 
@@ -70,8 +75,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 			LinkingFacet linkingFacet = (LinkingFacet) iter.next();
 			linkingFacet.getFigureFacet().setShowing(showing);
 		}
-		
-		state.diagram.adjusted(this);
 	}
 
 	public boolean isShowing()
@@ -104,6 +107,12 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
   	ContainerFacet container = state.containedFacet.getContainer();
   	if (container != null)
   		container.removeContents(new ContainedFacet[]{state.containedFacet});
+  	
+  	// remove any contained and linking objects
+  	if (state.containerFacet != null)
+  		state.containerFacet.cleanUp();
+  	if (state.anchorFacet != null)
+  		state.anchorFacet.cleanUp();
   }
   
   public void addPreviewToCache(DiagramFacet diagram, PreviewCacheFacet previewFigures, UPoint start, boolean addMyself)
@@ -185,9 +194,9 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
   	return state.appearanceFacet.makeNodePreviewFigure(previews, diagram, start, isFocus);
   }
   
-  public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
+  public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
   {
-  	return state.appearanceFacet.getSelectionManipulators(diagramView, favoured, firstSelected, allowTYPE0Manipulators);
+  	return state.appearanceFacet.getSelectionManipulators(coordinator, diagramView, favoured, firstSelected, allowTYPE0Manipulators);
   }
   
 	public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
@@ -202,35 +211,15 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 
   public Object move(UDimension offset)
   {
-    UPoint oldPt = new UPoint(state.pt);
-
     state.pt = state.pt.add(offset);
-    state.diagram.adjusted(state.figureFacet);
-
-    return oldPt;  // this is the memento we will be passed later
-  }
-
-  public void unMove(Object memento)
-  {
-    state.pt = (UPoint) memento;
-    state.diagram.adjusted(state.figureFacet);
-  }
-
-  public void unResize(Object memento)
-  {
-    UBounds oldBounds = (UBounds) memento;
-    state.pt = oldBounds.getTopLeftPoint();
-    state.resizedExtent = oldBounds.getDimension();
-    state.diagram.adjusted(state.figureFacet);
+    return null;
   }
 
   public Object resize(UBounds bounds)
   {
-    UBounds oldBounds = new UBounds(state.pt, state.resizedExtent);
     state.pt = bounds.getTopLeftPoint();
     state.resizedExtent = bounds.getDimension();
-    state.diagram.adjusted(state.figureFacet);
-    return oldBounds;
+    return null;
   }
 
 	/**
@@ -242,14 +231,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 		if (facet == null)
 			throw new FacetNotFoundException("Cannot find facet corresponding to " + facetClass + " in " + state.appearanceFacet);
 		return facet;
-	}
-	
-	/**
-	 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeFigureFacet#getDiagram()
-	 */
-	public void adjusted()
-	{
-		state.diagram.adjusted(this);
 	}
 
 	/**
@@ -330,18 +311,16 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	}
 	
 	/**
-	 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeFigureFacet#makeAndExecuteResizingCommand()
+	 * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeFigureFacet#makeAndExecuteResizingTransaction()
 	 */
-	public Command makeAndExecuteResizingCommand(UBounds newBounds)
+	public void performResizingTransaction(UBounds newBounds)
 	{
 		// this method should only be used inside a command's execution
 		ResizingFiguresGem gem = new ResizingFiguresGem(null, state.diagram);
 		ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
 		facet.markForResizing(this);
 		facet.setFocusBounds(newBounds);
-		Command command = facet.end("", "");
-		command.execute(false);
-		return command;
+		facet.end();
 	}
 
 	public PersistentFigure makePersistentFigure()
@@ -351,7 +330,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 		PersistentProperties properties = pFigure.getProperties();
 		properties.add(new PersistentProperty("pt", state.pt));
 		properties.add(new PersistentProperty("dim", state.resizedExtent, new UDimension(0,0)));
-
+		
 		// add the autosized property for this figure
 		properties.add(new PersistentProperty("auto", state.autoSizedFacet.isAutoSized(), true));
 		properties.add(new PersistentProperty("show", state.showing, true));
@@ -388,17 +367,17 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	/**
 	 * @see com.hopstepjump.idraw.foundation.FigureFacet#subjectChanged()
 	 */
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 	{
-		return state.appearanceFacet.formViewUpdateCommandAfterSubjectChanged(isTop, pass);
+		state.appearanceFacet.updateViewAfterSubjectChanged(pass);
 	}
 
 	/**
 	 * @see com.hopstepjump.idraw.foundation.FigureFacet#getMiddleButtonCommand()
 	 */
-	public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+	public void middleButtonPressed(ToolCoordinatorFacet coordinator)
 	{
-		return state.appearanceFacet.middleButtonPressed(coordinator);
+		state.appearanceFacet.middleButtonPressed(coordinator);
 	}
 
 	/**
@@ -434,7 +413,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
       state.appearanceFacet.produceEffect(coordinator, effect, parameters);
   }
 
-  public Command formDeleteCommand()
+  public void formDeleteTransaction()
   {
     // form a complete set of all figures to delete, including children
     ChosenFiguresFacet chosenFigures = new ChosenFiguresFacet()
@@ -446,16 +425,13 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
     };
     List<FigureFacet> toDelete = new ArrayList<FigureFacet>();
     toDelete.add(this);
-    Set deletionFigureIds = DeleteFromDiagramHelper.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
-    
 
-    // make a delete command to remove the views with deleted subjects
-    return
-      DeleteFromDiagramHelper.makeDeleteCommand(
-          "BasicNodeFigureGem deletion", "", "", getDiagram(), deletionFigureIds, false);
+    // remove the views with deleted subjects
+    Set<String> deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(toDelete, chosenFigures, false);
+    DeleteFromDiagramTransaction.delete(getDiagram(), deletionFigureIds, false);
   }
 
-  public ClipboardCommandsFacet getClipboardCommandsFacet()
+  public ClipboardActionsFacet getClipboardCommandsFacet()
   {
     return state.clipboardCommandsFacet;
   }

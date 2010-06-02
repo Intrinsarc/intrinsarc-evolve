@@ -111,6 +111,8 @@ public class J_DiagramHolderImpl extends ElementImpl implements J_DiagramHolder 
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (J_DiagramHolderImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -185,6 +187,20 @@ public class J_DiagramHolderImpl extends ElementImpl implements J_DiagramHolder 
 
 	}
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public J_Diagram createDiagram(EClass eClass) {
+		J_Diagram newDiagram = (J_Diagram) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.JDIAGRAM_HOLDER__DIAGRAM, null, newDiagram));
+		}
+		setDiagram(newDiagram);
+		return newDiagram;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

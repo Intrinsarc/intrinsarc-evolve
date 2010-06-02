@@ -194,6 +194,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (InterfaceImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -796,6 +798,20 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedOperation createDeltaDeletedOperations(EClass eClass) {
+		DeltaDeletedOperation newDeltaDeletedOperations = (DeltaDeletedOperation) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS, null, newDeltaDeletedOperations));
+		}
+		settable_getDeltaDeletedOperations().add(newDeltaDeletedOperations);
+		return newDeltaDeletedOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedOperation createDeltaDeletedOperations() {
 		DeltaDeletedOperation newDeltaDeletedOperations = UML2Factory.eINSTANCE.createDeltaDeletedOperation();
 		if (eNotificationRequired()) {
@@ -857,6 +873,20 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedOperation createDeltaReplacedOperations(EClass eClass) {
+		DeltaReplacedOperation newDeltaReplacedOperations = (DeltaReplacedOperation) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS, null, newDeltaReplacedOperations));
+		}
+		settable_getDeltaReplacedOperations().add(newDeltaReplacedOperations);
+		return newDeltaReplacedOperations;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -930,6 +960,20 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DeltaDeletedAttribute createDeltaDeletedAttributes(EClass eClass) {
+		DeltaDeletedAttribute newDeltaDeletedAttributes = (DeltaDeletedAttribute) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES, null, newDeltaDeletedAttributes));
+		}
+		settable_getDeltaDeletedAttributes().add(newDeltaDeletedAttributes);
+		return newDeltaDeletedAttributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeltaDeletedAttribute createDeltaDeletedAttributes() {
 		DeltaDeletedAttribute newDeltaDeletedAttributes = UML2Factory.eINSTANCE.createDeltaDeletedAttribute();
 		if (eNotificationRequired()) {
@@ -991,6 +1035,20 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 
 
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeltaReplacedAttribute createDeltaReplacedAttributes(EClass eClass) {
+		DeltaReplacedAttribute newDeltaReplacedAttributes = (DeltaReplacedAttribute) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, 0, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES, null, newDeltaReplacedAttributes));
+		}
+		settable_getDeltaReplacedAttributes().add(newDeltaReplacedAttributes);
+		return newDeltaReplacedAttributes;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1209,6 +1267,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 			case UML2Package.INTERFACE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.INTERFACE__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.INTERFACE__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.INTERFACE__IS_LEAF:
@@ -1239,8 +1299,6 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 				return getRepresentation();
 			case UML2Package.INTERFACE__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.INTERFACE__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.INTERFACE__OWNED_ATTRIBUTE:
 				return getOwnedAttributes();
 			case UML2Package.INTERFACE__OWNED_OPERATION:
@@ -1350,6 +1408,9 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 			case UML2Package.INTERFACE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.INTERFACE__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.INTERFACE__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -1386,9 +1447,6 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 			case UML2Package.INTERFACE__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.INTERFACE__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.INTERFACE__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
@@ -1506,6 +1564,9 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 			case UML2Package.INTERFACE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.INTERFACE__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.INTERFACE__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -1535,9 +1596,6 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 				return;
 			case UML2Package.INTERFACE__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.INTERFACE__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.INTERFACE__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
@@ -1636,6 +1694,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.INTERFACE__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.INTERFACE__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.INTERFACE__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.INTERFACE__IS_LEAF:
@@ -1666,8 +1726,6 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 				return representation != null;
 			case UML2Package.INTERFACE__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.INTERFACE__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.INTERFACE__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case UML2Package.INTERFACE__OWNED_OPERATION:

@@ -15,5 +15,4 @@ import com.hopstepjump.geometry.*;
 public interface MoveFacet extends Facet
 {
   public Object move(UDimension offset);
-  public void unMove(Object memento);
 }

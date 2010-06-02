@@ -294,8 +294,88 @@ public class InstanceSpecificationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getDeploymentTarget_Deployment(),
+				 UML2Factory.eINSTANCE.createDeployment()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getInstanceSpecification_Slot(),
 				 UML2Factory.eINSTANCE.createSlot()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Slot(),
+				 UML2Factory.eINSTANCE.createSlot()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createOpaqueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createLiteralString()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createLiteralNull()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createLiteralInteger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createLiteralUnlimitedNatural()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createInstanceValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createTimeExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createDuration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createDurationInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createTimeInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
+				 UML2Factory.eINSTANCE.createPropertyValueSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -366,6 +446,11 @@ public class InstanceSpecificationItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getInstanceSpecification_Specification(),
 				 UML2Factory.eINSTANCE.createPropertyValueSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInstanceSpecification_PortRemap(),
+				 UML2Factory.eINSTANCE.createPortRemap()));
 
 		newChildDescriptors.add
 			(createChildParameter

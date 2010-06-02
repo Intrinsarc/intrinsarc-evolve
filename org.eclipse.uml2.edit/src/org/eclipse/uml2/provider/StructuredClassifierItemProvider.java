@@ -190,6 +190,8 @@ public class StructuredClassifierItemProvider
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedConnectors());
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedOperations());
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedOperations());
+			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedTraces());
+			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedTraces());
 		}
 		return childrenFeatures;
 	}
@@ -240,6 +242,8 @@ public class StructuredClassifierItemProvider
 			case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_CONNECTORS:
 			case UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_OPERATIONS:
 			case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
+			case UML2Package.STRUCTURED_CLASSIFIER__DELTA_DELETED_TRACES:
+			case UML2Package.STRUCTURED_CLASSIFIER__DELTA_REPLACED_TRACES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -273,8 +277,33 @@ public class StructuredClassifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createProperty()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createExtensionEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute(),
+				 UML2Factory.eINSTANCE.createPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getStructuredClassifier_OwnedConnector(),
 				 UML2Factory.eINSTANCE.createConnector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_OwnedConnector(),
+				 UML2Factory.eINSTANCE.createConnector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedAttributes(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -288,8 +317,23 @@ public class StructuredClassifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedAttributes(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedPorts(),
 				 UML2Factory.eINSTANCE.createDeltaDeletedPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedPorts(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedPorts(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedPort()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -303,6 +347,16 @@ public class StructuredClassifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedConnectors(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedConnector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedConnectors(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedConnector()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedConnectors(),
 				 UML2Factory.eINSTANCE.createDeltaReplacedConnector()));
 
@@ -313,8 +367,38 @@ public class StructuredClassifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedOperations(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedOperations(),
 				 UML2Factory.eINSTANCE.createDeltaReplacedOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedOperations(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedTraces(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedTrace()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaDeletedTraces(),
+				 UML2Factory.eINSTANCE.createDeltaDeletedTrace()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedTraces(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedTrace()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getStructuredClassifier_DeltaReplacedTraces(),
+				 UML2Factory.eINSTANCE.createDeltaReplacedTrace()));
 	}
 
 	/**

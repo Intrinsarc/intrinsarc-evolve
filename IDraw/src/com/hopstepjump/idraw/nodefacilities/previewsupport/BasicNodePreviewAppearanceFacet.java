@@ -20,5 +20,5 @@ public interface BasicNodePreviewAppearanceFacet
 
   public ZNode formView(boolean debugOnly);
   public ZNode formAnchorHighlight(boolean showOk);
- 	public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint);
+ 	public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint, boolean linkStart);
 }

@@ -40,6 +40,7 @@ import org.eclipse.uml2.Generalization;
 import org.eclipse.uml2.Implementation;
 import org.eclipse.uml2.NamedElement;
 import org.eclipse.uml2.Namespace;
+import org.eclipse.uml2.Permission;
 import org.eclipse.uml2.StringExpression;
 import org.eclipse.uml2.TemplateSignature;
 import org.eclipse.uml2.UML2Factory;
@@ -190,6 +191,8 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (NamedElementImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -514,7 +517,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Dependency createOwnedAnonymousDependencies() {
 		Dependency newOwnedAnonymousDependencies = UML2Factory.eINSTANCE.createDependency();

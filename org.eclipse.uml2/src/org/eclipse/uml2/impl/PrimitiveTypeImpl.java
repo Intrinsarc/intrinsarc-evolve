@@ -57,6 +57,8 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (PrimitiveTypeImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -262,6 +264,8 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 			case UML2Package.PRIMITIVE_TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.PRIMITIVE_TYPE__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.PRIMITIVE_TYPE__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.PRIMITIVE_TYPE__IS_LEAF:
@@ -292,8 +296,6 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 				return getRepresentation();
 			case UML2Package.PRIMITIVE_TYPE__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.PRIMITIVE_TYPE__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.PRIMITIVE_TYPE__OWNED_ATTRIBUTE:
 				return getOwnedAttributes();
 			case UML2Package.PRIMITIVE_TYPE__OWNED_OPERATION:
@@ -387,6 +389,9 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 			case UML2Package.PRIMITIVE_TYPE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.PRIMITIVE_TYPE__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.PRIMITIVE_TYPE__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -423,9 +428,6 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 			case UML2Package.PRIMITIVE_TYPE__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.PRIMITIVE_TYPE__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.PRIMITIVE_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
@@ -512,6 +514,9 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 			case UML2Package.PRIMITIVE_TYPE__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.PRIMITIVE_TYPE__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.PRIMITIVE_TYPE__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -541,9 +546,6 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 				return;
 			case UML2Package.PRIMITIVE_TYPE__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.PRIMITIVE_TYPE__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.PRIMITIVE_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
@@ -618,6 +620,8 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.PRIMITIVE_TYPE__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.PRIMITIVE_TYPE__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.PRIMITIVE_TYPE__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.PRIMITIVE_TYPE__IS_LEAF:
@@ -648,8 +652,6 @@ public class PrimitiveTypeImpl extends DataTypeImpl implements PrimitiveType {
 				return representation != null;
 			case UML2Package.PRIMITIVE_TYPE__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.PRIMITIVE_TYPE__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.PRIMITIVE_TYPE__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case UML2Package.PRIMITIVE_TYPE__OWNED_OPERATION:

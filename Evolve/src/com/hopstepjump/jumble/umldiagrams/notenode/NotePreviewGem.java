@@ -93,7 +93,7 @@ public final class NotePreviewGem implements Gem
   
 	private class BasicNodeAppearanceFacetImpl implements BasicNodePreviewAppearanceFacet
 	{
-		public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint)
+		public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented,  boolean linkFromContained, UPoint boxPoint, UPoint insidePoint, boolean linkStart)
 		{
 			UPoint offsetPoint = oriented.getPoint();
 			return new BoundaryCalculator(bounds.addToExtent(new UDimension(1,1))).calculateBoundaryPoint(offsetPoint, boxPoint, insidePoint);

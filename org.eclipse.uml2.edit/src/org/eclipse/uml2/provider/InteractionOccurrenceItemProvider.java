@@ -232,6 +232,21 @@ public class InteractionOccurrenceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOccurrence_ActualGate(),
+				 UML2Factory.eINSTANCE.createGate()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOccurrence_Argument(),
+				 UML2Factory.eINSTANCE.createInputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getInteractionOccurrence_Argument(),
+				 UML2Factory.eINSTANCE.createValuePin()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getInteractionOccurrence_Argument(),
 				 UML2Factory.eINSTANCE.createInputPin()));
 

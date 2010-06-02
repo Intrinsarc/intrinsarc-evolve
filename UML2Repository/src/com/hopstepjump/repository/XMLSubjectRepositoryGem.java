@@ -38,18 +38,20 @@ public class XMLSubjectRepositoryGem implements Gem
 
   private String fileName;
   private Model topLevel;
-  private Resource resource;
+  private XMIResourceImpl resource;
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
-  private CommandManagerListenerFacetImpl commandFacet = new CommandManagerListenerFacetImpl();
   private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();
   private boolean modified;
+  private UndoRedoStackManager undoredo = new UndoRedoStackManager();
+	
   private Adapter adapter = new Adapter()
   {
     public void notifyChanged(Notification notification)
     {
       modified = true;
+      undoredo.addNotification(notification);
     }
     public Notifier getTarget()
     {
@@ -63,9 +65,59 @@ public class XMLSubjectRepositoryGem implements Gem
       return false;
     }
   };
-    
-  private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
+  
+	private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
+		public String getRedoTransactionDescription()
+		{
+			return undoredo.getRedoDescription();
+		}
+
+		public String getUndoTransactionDescription()
+		{
+			return undoredo.getUndoDescription();
+		}
+
+		public void undoTransaction()
+		{
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+			undoredo.undo();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
+		}
+		
+		public void redoTransaction()
+		{
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+			undoredo.redo();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
+		}
+		
+		public int getTransactionPosition()
+		{
+			return undoredo.getCurrent();
+		}
+		
+		public int getTotalTransactions()
+		{
+			return undoredo.getStackSize();
+		}
+		
+		public void clearTransactionHistory()
+		{
+			undoredo.clearStack();
+		}
+		
+		public void enforceTransactionDepth(int desiredDepth)
+		{
+			undoredo.enforceDepth(desiredDepth);
+		}
+		
+		////////////////////////////////////////////////////
+		
     public Model getTopLevelModel()
     {
       return topLevel;
@@ -125,6 +177,7 @@ public class XMLSubjectRepositoryGem implements Gem
     
     private void performSave(Resource resource, boolean keepExistingModificationInfo)
     {
+    	undoredo.ignoreNotifications();
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
 //      long start = System.currentTimeMillis();
       
@@ -185,6 +238,7 @@ public class XMLSubjectRepositoryGem implements Gem
       }
       modified = false;
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+    	undoredo.noticeNotifications();
     }
 
     public void addRepositoryListener(SubjectRepositoryListenerFacet listener)
@@ -204,14 +258,18 @@ public class XMLSubjectRepositoryGem implements Gem
       return fileName;
     }
 
-    public void startTransaction()
+    public void startTransaction(String redoName, String undoName)
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+      undoredo.startTransaction(redoName, undoName);
     }
 
     public void commitTransaction()
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      undoredo.commitTransaction();
+      for (SubjectRepositoryListenerFacet listener : listeners)
+        listener.sendChanges();
     }
 
     public void incrementPersistentDelete(Element element)
@@ -268,11 +326,6 @@ public class XMLSubjectRepositoryGem implements Gem
     public PersistentDiagram retrievePersistentDiagram(Package pkg)
     {
       return common.retrievePersistentDiagram(pkg);
-    }
-
-    public Command formUpdateDiagramsCommandAfterSubjectChanges(long commandExecutionTime, boolean isTop, ViewUpdatePassEnum pass, boolean initialRun)
-    {
-      return common.formUpdateDiagramsCommandAfterSubjectChanges(commandExecutionTime, isTop, pass, initialRun);
     }
 
     public String getFullyQualifiedName(Element element, String separator)
@@ -451,16 +504,6 @@ public class XMLSubjectRepositoryGem implements Gem
 		}
   }
   
-  private class CommandManagerListenerFacetImpl implements CommandManagerListenerFacet
-  {
-    public void commandExecuted()
-    {
-      for (SubjectRepositoryListenerFacet listener : listeners)
-        listener.sendChanges();
-    }
-  }
-  
-  
   public static XMLSubjectRepositoryGem openFile(String fileName, boolean initialiseWithFoundation) throws RepositoryOpeningException
   {
     XMLSubjectRepositoryGem repository = new XMLSubjectRepositoryGem(fileName);
@@ -540,12 +583,6 @@ public class XMLSubjectRepositoryGem implements Gem
     return subjectFacet;
   }
 
-
-  public CommandManagerListenerFacet getCommandManagerListenerFacet()
-  {
-    return commandFacet;
-  }
-  
   /**
    * @return
    */
@@ -567,20 +604,21 @@ public class XMLSubjectRepositoryGem implements Gem
   /**
    * @return
    */
-  private Resource createXMIResource(String fileName)
+  private XMIResourceImpl createXMIResource(String fileName)
   {
     // create the resource where Foo will live
     ResourceSet resourceSet = new ResourceSetImpl();
     String file = fileName == null ? "" : fileName;
     URI fileURI = URI.createFileURI(new File(file).getAbsolutePath());
-    Resource resource = resourceSet.createResource(fileURI);
+    XMIResourceImpl resource = (XMIResourceImpl) resourceSet.createResource(fileURI);
+    resource.setEncoding("utf-8");
     return resource;
   }
 
   /**
    * @return
    */
-  private Resource readXMIResource(String fileName)
+  private XMIResourceImpl readXMIResource(String fileName)
   {
   	File file = new File(fileName);
     if (!file.exists())
@@ -603,9 +641,10 @@ public class XMLSubjectRepositoryGem implements Gem
       }
       
       resourceSet.getPackageRegistry().put(UML2Package.eNS_URI, UML2Package.eINSTANCE);
-      Resource read = resourceSet.getResource(fileURI, true);
+      XMLResourceImpl read = (XMLResourceImpl) resourceSet.getResource(fileURI, true);
       read.setURI(fileURI);
-      return read;
+      read.setEncoding("utf-8");
+      return (XMIResourceImpl) read;
     }
     catch (IOException ex)
     {

@@ -134,6 +134,8 @@ public class ComponentImpl extends ClassImpl implements Component {
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (ComponentImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -632,6 +634,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 					return ((InternalEList)getDeltaDeletedOperations()).basicRemove(otherEnd, msgs);
 				case UML2Package.COMPONENT__DELTA_REPLACED_OPERATIONS:
 					return ((InternalEList)getDeltaReplacedOperations()).basicRemove(otherEnd, msgs);
+				case UML2Package.COMPONENT__DELTA_DELETED_TRACES:
+					return ((InternalEList)getDeltaDeletedTraces()).basicRemove(otherEnd, msgs);
+				case UML2Package.COMPONENT__DELTA_REPLACED_TRACES:
+					return ((InternalEList)getDeltaReplacedTraces()).basicRemove(otherEnd, msgs);
 				case UML2Package.COMPONENT__OWNED_PORT:
 					return ((InternalEList)getOwnedPorts()).basicRemove(otherEnd, msgs);
 				case UML2Package.COMPONENT__OWNED_OPERATION:
@@ -734,6 +740,8 @@ public class ComponentImpl extends ClassImpl implements Component {
 			case UML2Package.COMPONENT__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.COMPONENT__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.COMPONENT__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.COMPONENT__IS_LEAF:
@@ -764,8 +772,6 @@ public class ComponentImpl extends ClassImpl implements Component {
 				return getRepresentation();
 			case UML2Package.COMPONENT__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.COMPONENT__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.COMPONENT__OWNED_BEHAVIOR:
 				return getOwnedBehaviors();
 			case UML2Package.COMPONENT__CLASSIFIER_BEHAVIOR:
@@ -800,6 +806,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 				return getDeltaDeletedOperations();
 			case UML2Package.COMPONENT__DELTA_REPLACED_OPERATIONS:
 				return getDeltaReplacedOperations();
+			case UML2Package.COMPONENT__DELTA_DELETED_TRACES:
+				return getDeltaDeletedTraces();
+			case UML2Package.COMPONENT__DELTA_REPLACED_TRACES:
+				return getDeltaReplacedTraces();
 			case UML2Package.COMPONENT__OWNED_PORT:
 				return getOwnedPorts();
 			case UML2Package.COMPONENT__OWNED_OPERATION:
@@ -915,6 +925,9 @@ public class ComponentImpl extends ClassImpl implements Component {
 			case UML2Package.COMPONENT__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.COMPONENT__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.COMPONENT__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -951,9 +964,6 @@ public class ComponentImpl extends ClassImpl implements Component {
 			case UML2Package.COMPONENT__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.COMPONENT__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.COMPONENT__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -1013,6 +1023,14 @@ public class ComponentImpl extends ClassImpl implements Component {
 			case UML2Package.COMPONENT__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
 				getDeltaReplacedOperations().addAll((Collection)newValue);
+				return;
+			case UML2Package.COMPONENT__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				getDeltaDeletedTraces().addAll((Collection)newValue);
+				return;
+			case UML2Package.COMPONENT__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				getDeltaReplacedTraces().addAll((Collection)newValue);
 				return;
 			case UML2Package.COMPONENT__OWNED_PORT:
 				getOwnedPorts().clear();
@@ -1124,6 +1142,9 @@ public class ComponentImpl extends ClassImpl implements Component {
 			case UML2Package.COMPONENT__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.COMPONENT__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.COMPONENT__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -1153,9 +1174,6 @@ public class ComponentImpl extends ClassImpl implements Component {
 				return;
 			case UML2Package.COMPONENT__OCCURRENCE:
 				getOccurrences().clear();
-				return;
-			case UML2Package.COMPONENT__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
 				return;
 			case UML2Package.COMPONENT__OWNED_BEHAVIOR:
 				getOwnedBehaviors().clear();
@@ -1201,6 +1219,12 @@ public class ComponentImpl extends ClassImpl implements Component {
 				return;
 			case UML2Package.COMPONENT__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
+				return;
+			case UML2Package.COMPONENT__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				return;
+			case UML2Package.COMPONENT__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
 				return;
 			case UML2Package.COMPONENT__OWNED_PORT:
 				getOwnedPorts().clear();
@@ -1296,6 +1320,8 @@ public class ComponentImpl extends ClassImpl implements Component {
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.COMPONENT__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.COMPONENT__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.COMPONENT__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.COMPONENT__IS_LEAF:
@@ -1326,8 +1352,6 @@ public class ComponentImpl extends ClassImpl implements Component {
 				return representation != null;
 			case UML2Package.COMPONENT__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.COMPONENT__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.COMPONENT__OWNED_BEHAVIOR:
 				return !getOwnedBehaviors().isEmpty();
 			case UML2Package.COMPONENT__CLASSIFIER_BEHAVIOR:
@@ -1362,6 +1386,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 				return deltaDeletedOperations != null && !deltaDeletedOperations.isEmpty();
 			case UML2Package.COMPONENT__DELTA_REPLACED_OPERATIONS:
 				return deltaReplacedOperations != null && !deltaReplacedOperations.isEmpty();
+			case UML2Package.COMPONENT__DELTA_DELETED_TRACES:
+				return deltaDeletedTraces != null && !deltaDeletedTraces.isEmpty();
+			case UML2Package.COMPONENT__DELTA_REPLACED_TRACES:
+				return deltaReplacedTraces != null && !deltaReplacedTraces.isEmpty();
 			case UML2Package.COMPONENT__OWNED_PORT:
 				return ownedPort != null && !ownedPort.isEmpty();
 			case UML2Package.COMPONENT__OWNED_OPERATION:

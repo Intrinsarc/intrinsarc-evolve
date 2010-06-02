@@ -108,31 +108,19 @@ public class PortCompartmentGem implements Gem
 
   private class PortAddFacetImpl implements PortAddFacet
   {
-    public Object addPort(Object memento, FigureReference reference, NodeCreateFacet factory,
+    public void addPort(FigureReference reference, NodeCreateFacet factory,
         PersistentProperties properties, Object useSubject, Object relatedSubject, UPoint location)
     {
-      // if we have created the cmd before, just reexecute
-      if (memento != null)
-      {
-        ((Command) memento).execute(false);
-        return memento;
-      }
-      
-      // make the composite and execute it
-      CompositeCommand comp = new CompositeCommand("", "");
       // adjust resizings to accommodate operation preview
-      NodeCreateFigureCommand createNodeCmd = new NodeCreateFigureCommand(
+      NodeCreateFigureTransaction.create(
+      		figureFacet.getDiagram(),
           useSubject,
           reference,
           figureFacet.getFigureReference(),
           factory,
           new UPoint(0,0),
-          false,
           null,
-          relatedSubject,
-          "created " + factory.getFigureName(),
-          "removed " + factory.getFigureName());
-      createNodeCmd.execute(true);
+          relatedSubject);
       
       // get hold of the figure
       DiagramFacet diagram = figureFacet.getDiagram();
@@ -148,60 +136,32 @@ public class PortCompartmentGem implements Gem
       movings.indicateMovingFigures(movingFigure);
       movings.move(location);      
   
-      ContainerAddCommand addCmd =
-        new ContainerAddCommand(
-            figureFacet.getFigureReference(),
-            new FigureReference[]{reference},
-            "added containables to container",
-            "removed containables from container");
-      addCmd.execute(true);
+	    ContainerAddTransaction.add(
+	        figureFacet.getContainerFacet(),
+	        new FigureReference[]{reference});
 
       resizings.resizeToAddContainables(new ContainedPreviewFacet[]{movings.getCachedPreview(figure).getContainedPreviewFacet()}, location);
-      Command resizingsCmd = resizings.end("resized to fit new port", "restored size after removing port");
-      resizingsCmd.execute(true);
-  
-      // add the commands to the compound edit
-      comp.addCommand(createNodeCmd);
-      comp.addCommand(addCmd);
-      comp.addCommand(resizingsCmd);
-      return comp;
+      resizings.end();
     }
 
-    public void unAddPort(Object memento)
-    {
-      ((Command) memento).unExecute();
-    }
-
-    public Object replacePort(Object memento, FigureReference reference, FigureReference toReplace,
+    public void replacePort(FigureReference reference, FigureReference toReplace,
         NodeCreateFacet factory, PersistentProperties properties, Object useSubject, Object relatedSubject)
     {
-      // if we have created the cmd before, just reexecute
-      if (memento != null)
-      {
-        ((Command) memento).execute(false);
-        return memento;
-      }
-      
       // use the location of the previous port
       DiagramFacet diagram = figureFacet.getDiagram();
       FigureFacet replacedFigure = diagram.retrieveFigure(toReplace.getId());
       UPoint location = replacedFigure.getFullBounds().getTopLeftPoint();
 
-      // make the composite and execute it
-      CompositeCommand comp = new CompositeCommand("", "");
       // adjust resizings to accommodate operation preview
-      NodeCreateFigureCommand createNodeCmd = new NodeCreateFigureCommand(
+      NodeCreateFigureTransaction.create(
+      		diagram,
           useSubject,
           reference,
           figureFacet.getFigureReference(),
           factory,
           new UPoint(0,0),
-          false,
           null,
-          relatedSubject,
-          "created " + factory.getFigureName(),
-          "removed " + factory.getFigureName());
-      createNodeCmd.execute(true);
+          relatedSubject);
       
       // get hold of the figure
       FigureFacet figure = diagram.retrieveFigure(reference.getId());
@@ -216,34 +176,17 @@ public class PortCompartmentGem implements Gem
       movings.indicateMovingFigures(movingFigure);
       movings.move(location);
   
-      ContainerAddCommand addCmd =
-        new ContainerAddCommand(
-            figureFacet.getFigureReference(),
-            new FigureReference[]{reference},
-            "added containables to container",
-            "removed containables from container");
-      addCmd.execute(true);
+      ContainerAddTransaction.add(
+	      figureFacet.getContainerFacet(),
+	      new FigureReference[]{reference});
 
       resizings.resizeToAddContainables(new ContainedPreviewFacet[]{movings.getCachedPreview(figure).getContainedPreviewFacet()}, location);
-      Command resizingsCmd = resizings.end("resized to fit new port", "restored size after removing port");
-      resizingsCmd.execute(true);
-  
-      // add the commands to the compound edit
-      comp.addCommand(createNodeCmd);
-      comp.addCommand(addCmd);
-      comp.addCommand(resizingsCmd);
-      return comp;
-    }
-
-    public void unReplacePort(Object memento)
-    {
-      ((Command) memento).unExecute();
+      resizings.end();
     }
   }
 
   private class ContainerFacetImpl implements BasicNodeContainerFacet
   {
-
     public boolean insideContainer(UPoint point)
     {
       return figureFacet.getFullBounds().contains(point);
@@ -254,13 +197,7 @@ public class PortCompartmentGem implements Gem
       return getContentsList().iterator();
     }
 
-    public void unAddContents(Object memento)
-    {
-      ContainedFacet[] containable = makeContained((FigureReference[]) memento);
-      removeContents(containable);
-    }
-
-    public Object removeContents(ContainedFacet[] containable)
+    public void removeContents(ContainedFacet[] containable)
     {
       // tell each containable that they are now contained by this
       for (int lp = 0; lp < containable.length; lp++)
@@ -268,18 +205,8 @@ public class PortCompartmentGem implements Gem
         contents.remove(containable[lp].getFigureFacet());
         containable[lp].setContainer(null);
       }
-      figureFacet.adjusted();
-
-      return makeFigureReferences(containable);
     }
-
-    public void unRemoveContents(Object memento)
-    {
-      ContainedFacet[] containable = makeContained((FigureReference[]) memento);
-      addContents(containable);
-    }
-
-    public Object addContents(ContainedFacet[] containable)
+    public void addContents(ContainedFacet[] containable)
     {
       // tell each containable that they are now contained by this
       for (int lp = 0; lp < containable.length; lp++)
@@ -287,27 +214,6 @@ public class PortCompartmentGem implements Gem
         contents.add(containable[lp].getFigureFacet());
         containable[lp].setContainer(this);
       }
-      figureFacet.adjusted();
-
-      return makeFigureReferences(containable);
-    }
-
-    private FigureReference[] makeFigureReferences(ContainedFacet[] containable)
-    {
-      int length = containable.length;
-      FigureReference[] references = new FigureReference[length];
-      for (int lp = 0; lp < length; lp++)
-        references[lp] = containable[lp].getFigureFacet().getFigureReference();
-      return references;
-    }
-
-    private ContainedFacet[] makeContained(FigureReference[] figures)
-    {
-      int length = figures.length;
-      ContainedFacet[] containable = new ContainedFacet[length];
-      for (int lp = 0; lp < length; lp++)
-        containable[lp] = GlobalDiagramRegistry.registry.retrieveFigure(figures[lp]).getContainedFacet();
-      return containable;
     }
 
     public boolean isWillingToActAsBackdrop()
@@ -390,12 +296,17 @@ public class PortCompartmentGem implements Gem
       contents.add(contained);
       contained.getContainedFacet().persistence_setContainer(containerFacet);
     }
+
+		public void cleanUp()
+		{
+			contents.clear();
+		}
   }
 
   private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
   {
-    public Manipulators getSelectionManipulators(DiagramViewFacet diagramView, boolean favoured, boolean firstSelected,
-        boolean allowTYPE0Manipulators)
+    public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured,
+        boolean firstSelected, boolean allowTYPE0Manipulators)
     {
       return null; // not needed -- this is not directly selectable
     }
@@ -507,17 +418,15 @@ public class PortCompartmentGem implements Gem
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#formViewUpdateCommandAfterSubjectChanged(boolean)
      */
-    public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+    public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
     {
-      return null;
     }
 
     /**
      * @see com.hopstepjump.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
      */
-    public Command middleButtonPressed(ToolCoordinatorFacet coordinator)
+    public void middleButtonPressed(ToolCoordinatorFacet coordinator)
     {
-      return null;
     }
 
     /**
@@ -540,9 +449,8 @@ public class PortCompartmentGem implements Gem
     {
     }
 
-    public Command getPostContainerDropCommand()
+    public void performPostContainerDropTransaction()
     {
-      return null;
     }
 
 		public boolean canMoveContainers()
@@ -559,6 +467,11 @@ public class PortCompartmentGem implements Gem
     {
       return null;
     }
+
+		public void acceptPersistentFigure(PersistentFigure pfig)
+		{
+			interpretPersistentFigure(pfig);
+		}
   }
 
   public static PortCompartmentGem createAndWireUp(
@@ -592,14 +505,20 @@ public class PortCompartmentGem implements Gem
     this.classScope = classScope;
   }
 
-  public PortCompartmentGem(PersistentProperties properties)
+  public PortCompartmentGem(PersistentFigure pfig)
   {
+  	interpretPersistentFigure(pfig);
+  }
+
+  private void interpretPersistentFigure(PersistentFigure pfig)
+	{
+		PersistentProperties properties = pfig.getProperties();
     classScope = properties.retrieve("classScope", false).asBoolean();
     addedUuids = new HashSet<String>(properties.retrieve("addedUuids").asStringCollection());
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids").asStringCollection());
-  }
+	}
 
-  public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
+	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
   {
     return appearanceFacet;
   }

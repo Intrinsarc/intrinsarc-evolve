@@ -31,37 +31,12 @@ public class DeleteAction extends AbstractAction
 	      return;
 
 		SelectionFacet selection = diagramView.getSelection();
-		Set includedFigures = DeleteFromDiagramHelper.getFigureIdsIncludedInDelete(selection.getSelectedFigures(), selection, false);
+		Set includedFigures = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(selection.getSelectedFigures(), selection, false);
 		
-		Command cmd = new DeleteCommandGenerator(
-		    diagramView.getDiagram().getDiagramReference(),
-		    includedFigures,
-		    "Delete Key deletion",
+		coordinator.startTransaction(
 		    "deleted figures from diagram",
-		    "restored deleted figures in diagram").generateCommand();
-		coordinator.executeCommandAndUpdateViews(cmd);
-	}
-
-	static class DeleteCommandGenerator
-	{
-		private DiagramReference srcReference;
-		private Set includedDeleteFigureIds;
-		private String name;
-		private String executeDescription;
-		private String unexecuteDescription;
-	
-		public DeleteCommandGenerator(DiagramReference srcReference, Set includedDeleteFigureIds, String name, String executeDescription, String unexecuteDescription)
-		{
-			this.srcReference = srcReference;
-			this.includedDeleteFigureIds = includedDeleteFigureIds;
-			this.name = name;
-			this.executeDescription = executeDescription;
-			this.unexecuteDescription = unexecuteDescription;		
-		}
-	
-		public Command generateCommand()
-		{
-			return DeleteFromDiagramHelper.makeDeleteCommand(name, executeDescription, unexecuteDescription, GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(srcReference), includedDeleteFigureIds, true);
-		}
+		    "restored deleted figures in diagram");
+		DeleteFromDiagramTransaction.delete(diagramView.getDiagram(), includedFigures, true);
+		coordinator.commitTransaction();
 	}
 }

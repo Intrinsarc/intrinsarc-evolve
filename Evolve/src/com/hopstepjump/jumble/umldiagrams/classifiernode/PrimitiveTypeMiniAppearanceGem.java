@@ -108,16 +108,11 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
       return new JList(listElements);
     }
 
-    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public Object setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
     {
-      return setElementText(figureFacet, textable, text, listSelection, unsuppress, oldMemento);
+      return setElementText(figureFacet, textable, text, listSelection, unsuppress);
     }
 
-    public SetTextPayload unSetText(Object memento)
-    {
-      return unSetElementText(figureFacet, memento);
-    }
-    
 		public ToolFigureClassification getToolClassification(
 				ClassifierSizes sizes,
 				boolean displayOnlyIcon,
@@ -139,7 +134,7 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
 		}
   }
   
-  public static SetTextPayload setElementText(FigureFacet figure, TextableFacet textable, String text, Object listSelection, boolean unsuppress, Object oldMemento)
+  public static Object setElementText(FigureFacet figure, TextableFacet textable, String text, Object listSelection, boolean unsuppress)
   {
     NamedElement subject = (NamedElement) figure.getSubject();
     String oldText = subject.getName();
@@ -155,7 +150,7 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
     {
       // just change the name
       subject.setName(text);
-      return new SetTextPayload(null, new Object[]{oldText, null, false, subject});
+      return subject;
     }
     
     ElementSelection sel = (ElementSelection) listSelection;
@@ -163,30 +158,12 @@ public class PrimitiveTypeMiniAppearanceGem implements Gem
     {
       // delete the previous subject
       GlobalSubjectRepository.repository.incrementPersistentDelete(subject);
-      return new SetTextPayload(sel.getElement(), new Object[]{null, subject, true});
+      return sel.getElement();
     }
     else
     {
       // just link to the new object
-      return new SetTextPayload(sel.getElement(), new Object[]{null, subject, false});
+      return sel.getElement();
     }
-  }
-
-  public static SetTextPayload unSetElementText(FigureFacet figure, Object memento)
-  {
-    SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;      
-    Object[] saved = (Object[]) memento;
-    NamedElement subject = (NamedElement) figure.getSubject();
-
-    if (saved[0] != null)
-      subject.setName((String) saved[0]);
-    Classifier oldSubject = (Classifier) saved[1];
-    Boolean oldDeleted = (Boolean) saved[2];
-    if (oldDeleted)
-      repository.decrementPersistentDelete(oldSubject);
-    if (oldSubject != null)
-      subject = oldSubject;
-    
-    return new SetTextPayload(subject, null);
   }
 }

@@ -126,7 +126,7 @@ public class UMLElementViewer
       	return new UMLStringAttributeViewer(element, feature, listener, readOnly);
       }
       if (name.equals("Boolean"))
-        return new UMLBooleanAttributeViewer(element, feature, listener, fName.equals("resemblance") || fName.equals("replacement"));
+        return new UMLBooleanAttributeViewer(element, feature, listener, fName.equals("resemblance") || fName.equals("replacement") || fName.equals("trace"));
     }
     
     // handle enumerations
@@ -180,14 +180,10 @@ public class UMLElementViewer
       viewer.investigateChange();
   }
 
-  public Command formApplyCommand()
+  public void applyAction()
   {
-    CompositeCommand command = new CompositeCommand("", "");
     for (UMLAttributeViewer viewer : viewers)
-      command.addCommand(viewer.formApplyCommand());
-    
-    // if this is empty, don't bother
-    return command.isEmpty() ? null : command;
+      viewer.applyAction();
   }
 
   public boolean hasAnythingBeenModified()

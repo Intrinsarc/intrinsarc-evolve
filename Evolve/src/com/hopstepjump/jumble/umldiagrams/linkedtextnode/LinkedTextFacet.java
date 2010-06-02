@@ -10,7 +10,7 @@ import com.hopstepjump.idraw.foundation.*;
  */
 public interface LinkedTextFacet extends TextableFacet
 {
-  public ManipulatorFacet getTextEntryManipulator(DiagramViewFacet diagramView);
+  public ManipulatorFacet getTextEntryManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView);
   public JMenuItem getViewLabelMenuItem(ToolCoordinatorFacet coordinator, String labelType);
   public boolean isHidden();
   public String getText();

@@ -60,9 +60,8 @@ public final class NoteLinkArcAppearanceFacetImpl implements BasicArcAppearanceF
 		return true;
 	}
 
-	public Command formViewUpdateCommandAfterSubjectChanged(boolean isTop, ViewUpdatePassEnum pass)
+	public void updateViewAfterSubjectChanged(ViewUpdatePassEnum pass)
 	{
-		return null;
 	}
 
 	public Object getSubject()
@@ -75,9 +74,8 @@ public final class NoteLinkArcAppearanceFacetImpl implements BasicArcAppearanceF
 		return false;
 	}
 
-	public Command makeReanchorCommand(AnchorFacet start, AnchorFacet end)
+	public void makeReanchorAction(AnchorFacet start, AnchorFacet end)
 	{
-		return null;
 	}
 
   public boolean isSubjectReadOnlyInDiagramContext(boolean kill)
@@ -89,4 +87,8 @@ public final class NoteLinkArcAppearanceFacetImpl implements BasicArcAppearanceF
   {
     return null;
   }
+
+	public void acceptPersistentProperties(PersistentFigure pfig)
+	{
+	}
 }

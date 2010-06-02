@@ -190,6 +190,11 @@ public class CreateObjectActionItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getCreateObjectAction_Result(),
 				 UML2Factory.eINSTANCE.createOutputPin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getCreateObjectAction_Result(),
+				 UML2Factory.eINSTANCE.createOutputPin()));
 	}
 
 	/**

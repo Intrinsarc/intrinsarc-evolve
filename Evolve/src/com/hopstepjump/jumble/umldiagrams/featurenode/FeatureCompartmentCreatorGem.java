@@ -38,7 +38,7 @@ public class FeatureCompartmentCreatorGem implements Gem
 	    return FeatureCompartmentGem.FIGURE_NAME;
 	  }
 
-	  public Object createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
+	  public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
 	    BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, new UPoint(0,0), true, false);
 			FeatureCompartmentGem featureGem = new FeatureCompartmentGem(featureType);
@@ -48,18 +48,8 @@ public class FeatureCompartmentCreatorGem implements Gem
 			basicGem.connectAnchorFacet(null);
 			featureGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 			basicGem.connectBasicNodeContainerFacet(featureGem.getBasicNodeContainerFacet());
-
-			return new FigureReference(diagram, figureId);
 	  }
 	
-	  public void unCreateFigure(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
-	  }
-	  
 		/**
 		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreatorFacet#getFullName()
 		 */
@@ -74,7 +64,7 @@ public class FeatureCompartmentCreatorGem implements Gem
 		public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
 		{
 	    BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
-			FeatureCompartmentGem featureGem = new FeatureCompartmentGem(figure.getProperties(), featureType);
+			FeatureCompartmentGem featureGem = new FeatureCompartmentGem(figure, featureType);
 			featureGem.setContentsCanMoveContainers(contentsCanMoveContainers);
 			basicGem.connectBasicNodeAppearanceFacet(featureGem.getBasicNodeAppearanceFacet());
 			// a compartment cannot act as an anchor
@@ -84,15 +74,11 @@ public class FeatureCompartmentCreatorGem implements Gem
 			return basicGem.getBasicNodeFigureFacet();
 		}
 
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, FigureReference containingReference, Object relatedSubject, PersistentProperties properties)
     {
       return null;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-    }
-    
 		public void initialiseExtraProperties(PersistentProperties properties)
 		{
 		}

@@ -4,7 +4,6 @@ import java.util.*;
 
 import javax.swing.*;
 
-import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 
 import com.hopstepjump.geometry.*;
@@ -13,62 +12,102 @@ import com.hopstepjump.idraw.arcfacilities.creationbase.*;
 import com.hopstepjump.idraw.arcfacilities.previewsupport.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
+import com.hopstepjump.idraw.nodefacilities.creation.*;
+import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.swing.*;
 
 public class Expander
 {
   public static final ImageIcon EXPAND_ICON = IconLoader.loadIcon("expand.png");
+  private ToolCoordinatorFacet coordinator;
+  private FigureFacet from;
+  private List<Element> relations;
+  private ITargetResolver resolver;
+  private ArcCreateFacet arcCreator;
+  private int index;
 
-	public Expander()
+	public Expander(ToolCoordinatorFacet coordinator, FigureFacet from, List<Element> relations, ITargetResolver resolver, ArcCreateFacet arcCreator)
 	{
+		this.coordinator = coordinator;
+		this.from = from;
+		this.relations = relations;
+		this.resolver = resolver;
+		this.arcCreator = arcCreator;
 	}
 	
-	public void expand(FigureFacet figure, Element from, EReference reference, ArcCreateFacet creator,  ToolCoordinatorFacet coordinator)
+	public void expand()
 	{
-		// get all the potential elements that we need to link to
-		if (from == null)
-			from = (Element) figure.getSubject();
-		if (reference.isMany())
+		String name = from.getFigureName();
+		coordinator.startTransaction("expanded from " + name, "unexpanded from " + name);
+		for (Element rel : relations)
 		{
-			for (DirectedRelationship rel : (List<DirectedRelationship>) from.eGet(reference))
-			{
-				if (!rel.isThisDeleted())
-					expand(figure, rel, creator, coordinator);
-			}
+			if (!rel.isThisDeleted())
+				expand(rel);
 		}
-		else
+		coordinator.commitTransaction();
+	}
+
+	public void expandWithoutTransaction()
+	{
+		for (Element rel : relations)
 		{
-			DirectedRelationship rel = (DirectedRelationship) from.eGet(reference);
-			if (rel != null && !rel.isThisDeleted())
-				expand(figure, rel, creator, coordinator);
+			if (!rel.isThisDeleted())
+				expand(rel);
 		}
 	}
 
-	private void expand(FigureFacet figure, DirectedRelationship rel, ArcCreateFacet creator,  ToolCoordinatorFacet coordinator)
+	private void expand(Element rel)
 	{
 		// don't expand if there is already a figure satisfying the relationship
-		DiagramFacet diagram = figure.getDiagram();
+		DiagramFacet diagram = from.getDiagram();
 		for (FigureFacet link : findFiguresWithSubject(diagram, rel))
 		{
 			LinkingFacet l = link.getLinkingFacet();
-			if (l != null && (l.getAnchor1() == figure.getAnchorFacet() || l.getAnchor2() == figure.getAnchorFacet()))
+			if (l != null && (l.getAnchor1() == from.getAnchorFacet() || l.getAnchor2() == from.getAnchorFacet()))
 				return;
 		}
 		
 		// handle any targets
-		for (Element e : (List<Element>) rel.getTargets())
-		{
-			if (!e.isThisDeleted())
+		List<Element> targets = resolver.resolveTargets(rel);
+		if (targets != null)
+			for (Element target : resolver.resolveTargets(rel))
 			{
+				if (target == null || target.isThisDeleted())
+					continue;
+				
 				// find any figures on the diagram that correspond to "t"
-				List<FigureFacet> figures = findFiguresWithSubject(diagram, e);
+				List<FigureFacet> figures = findFiguresWithSubject(diagram, target);
 				// pick the one closest to the source
-				FigureFacet closest = chooseClosest(figure, figures);
+				FigureFacet closest = chooseClosest(from, figures);
 				// create the arc between figure and f
 				if (closest != null)
-					createArc(figure, rel, closest, creator, coordinator);
-			}
+					createArc(from, rel, closest, arcCreator, coordinator);
+				else
+				{
+					// we cannot find, so the node figure must be created
+					NodeCreateFacet creator = resolver.getNodeCreator(target);
+				
+					if (creator != null)
+					{
+						FigureFacet node = createNode(creator, target);
+						createArc(from, rel, node, arcCreator, coordinator);
+					}
+				}
 		}
+	}
+
+	private FigureFacet createNode(NodeCreateFacet factory, Element target)
+	{
+    // make the figure
+		DiagramFacet diagram = from.getDiagram();
+    FigureReference reference = diagram.makeNewFigureReference();
+
+    PersistentProperties properties = new PersistentProperties();
+    factory.initialiseExtraProperties(properties);
+    
+    // ask for a point
+    UPoint location = resolver.determineTargetLocation(target, index++);        
+  	return NodeCreateFigureTransaction.create(diagram, target, reference, null, factory, location, properties, null);
 	}
 
 	private FigureFacet chooseClosest(FigureFacet figure, List<FigureFacet> figures)
@@ -88,7 +127,7 @@ public class Expander
 		return closest;
 	}
 
-	private void createArc(FigureFacet from, DirectedRelationship rel, FigureFacet to, ArcCreateFacet creator, ToolCoordinatorFacet coordinator)
+	private void createArc(FigureFacet from, Element rel, FigureFacet to, ArcCreateFacet creator, ToolCoordinatorFacet coordinator)
 	{
 		DiagramFacet diagram = from.getDiagram();
 		AnchorFacet arcable = from.getAnchorFacet();
@@ -107,17 +146,14 @@ public class Expander
     // make the arc
     PersistentProperties properties = new PersistentProperties();
     creator.initialiseExtraProperties(properties);
-    creator.aboutToMakeCommand(coordinator);
-	  ArcCreateFigureCommand cmd =
-      new ArcCreateFigureCommand(
+    creator.aboutToMakeTransaction(coordinator);
+    ArcCreateFigureTransaction.create(
+    		diagram,
       	rel,
         reference,
         creator,
         previewFigure.getReferenceCalculatedPoints(diagram),
-        properties,
-        "created " + creator.getFigureName() + " via expansion",
-        "removed " + creator.getFigureName());
-	  coordinator.executeCommandAndUpdateViews(cmd);
+        properties);
 	}
 
 	private List<FigureFacet> findFiguresWithSubject(DiagramFacet diagram, Element t)

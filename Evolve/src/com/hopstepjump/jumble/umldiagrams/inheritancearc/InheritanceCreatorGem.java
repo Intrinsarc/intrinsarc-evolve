@@ -30,22 +30,12 @@ public final class InheritanceCreatorGem implements Gem
 	    return InheritanceArcAppearanceFacetImpl.FIGURE_NAME;
 	  }
 	
-	  public Object create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
+	  public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
 	  {
 	  	// instantiate to use conventional facets
 	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
-	    gem.connectBasicArcAppearanceFacet(new InheritanceArcAppearanceFacetImpl(gem.getFigureFacet(), (Generalization) subject));
-	    														
+	    gem.connectBasicArcAppearanceFacet(new InheritanceArcAppearanceFacetImpl(gem.getFigureFacet(), (Generalization) subject));	    														
 	    diagram.add(gem.getFigureFacet());
-	    return new FigureReference(diagram, figureId);
-	  }
-	
-	  public void unCreate(Object memento)
-	  {
-	    FigureReference figureReference = (FigureReference) memento;
-	    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(figureReference.getDiagramReference());
-	    FigureFacet figure = GlobalDiagramRegistry.registry.retrieveFigure(figureReference);
-	    diagram.remove(figure);
 	  }
 	  
 		/**
@@ -87,16 +77,9 @@ public final class InheritanceCreatorGem implements Gem
       return startS instanceof Classifier && startS.getClass() == endS.getClass();
     }
     
-    public Object createNewSubject(Object previouslyCreated, DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
+    public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
     {
       SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-
-      // possibly resurrect
-      if (previouslyCreated != null)
-      {
-        repository.decrementPersistentDelete((Element) previouslyCreated);
-        return previouslyCreated;
-      }
 
       // resolve to figures
       CalculatedArcPoints points = new CalculatedArcPoints(calculatedPoints);
@@ -115,18 +98,8 @@ public final class InheritanceCreatorGem implements Gem
       return gen;
     }
 
-    public void uncreateNewSubject(Object previouslyCreated)
-    {
-      GlobalSubjectRepository.repository.incrementPersistentDelete((Element) previouslyCreated);
-    }
-
-		public void aboutToMakeCommand(ToolCoordinatorFacet coordinator)
+		public void aboutToMakeTransaction(ToolCoordinatorFacet coordinator)
 		{
-		}
-		
-		public Object extractRawSubject(Object previouslyCreated)
-		{
-			return previouslyCreated;
 		}
 	} 
 }

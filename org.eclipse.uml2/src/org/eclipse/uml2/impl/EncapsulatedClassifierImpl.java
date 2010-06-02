@@ -82,6 +82,8 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (EncapsulatedClassifierImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -306,6 +308,10 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 					return ((InternalEList)getDeltaDeletedOperations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 					return ((InternalEList)getDeltaReplacedOperations()).basicRemove(otherEnd, msgs);
+				case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+					return ((InternalEList)getDeltaDeletedTraces()).basicRemove(otherEnd, msgs);
+				case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+					return ((InternalEList)getDeltaReplacedTraces()).basicRemove(otherEnd, msgs);
 				case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 					return ((InternalEList)getOwnedPorts()).basicRemove(otherEnd, msgs);
 				default:
@@ -398,6 +404,8 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 			case UML2Package.ENCAPSULATED_CLASSIFIER__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_RETIRED:
+				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__REDEFINITION_CONTEXT:
 				return getRedefinitionContexts();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_LEAF:
@@ -428,8 +436,6 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				return getRepresentation();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OCCURRENCE:
 				return getOccurrences();
-			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_RETIRED:
-				return isRetired() ? Boolean.TRUE : Boolean.FALSE;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_ATTRIBUTE:
 				return getOwnedAttributes();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__PART:
@@ -454,6 +460,10 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				return getDeltaDeletedOperations();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 				return getDeltaReplacedOperations();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+				return getDeltaDeletedTraces();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+				return getDeltaReplacedTraces();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				return getOwnedPorts();
 		}
@@ -545,6 +555,9 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 			case UML2Package.ENCAPSULATED_CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility((VisibilityKind)newValue);
 				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_RETIRED:
+				setIsRetired(((Boolean)newValue).booleanValue());
+				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_LEAF:
 				setIsLeaf(((Boolean)newValue).booleanValue());
 				return;
@@ -581,9 +594,6 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OCCURRENCE:
 				getOccurrences().clear();
 				getOccurrences().addAll((Collection)newValue);
-				return;
-			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_RETIRED:
-				setIsRetired(((Boolean)newValue).booleanValue());
 				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
@@ -624,6 +634,14 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
 				getDeltaReplacedOperations().addAll((Collection)newValue);
+				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				getDeltaDeletedTraces().addAll((Collection)newValue);
+				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
+				getDeltaReplacedTraces().addAll((Collection)newValue);
 				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				getOwnedPorts().clear();
@@ -706,6 +724,9 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 			case UML2Package.ENCAPSULATED_CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY:
 				setPackageableElement_visibility(PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT);
 				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_RETIRED:
+				setIsRetired(IS_RETIRED_EDEFAULT);
+				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -736,9 +757,6 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OCCURRENCE:
 				getOccurrences().clear();
 				return;
-			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_RETIRED:
-				setIsRetired(IS_RETIRED_EDEFAULT);
-				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
 				return;
@@ -768,6 +786,12 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 				getDeltaReplacedOperations().clear();
+				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+				getDeltaDeletedTraces().clear();
+				return;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+				getDeltaReplacedTraces().clear();
 				return;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				getOwnedPorts().clear();
@@ -839,6 +863,8 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				return getPackageableElement_visibility() != PACKAGEABLE_ELEMENT_VISIBILITY_EDEFAULT;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__PACKAGE:
 				return basicGetPackage() != null;
+			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_RETIRED:
+				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__REDEFINITION_CONTEXT:
 				return !getRedefinitionContexts().isEmpty();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_LEAF:
@@ -869,8 +895,6 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				return representation != null;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OCCURRENCE:
 				return occurrence != null && !occurrence.isEmpty();
-			case UML2Package.ENCAPSULATED_CLASSIFIER__IS_RETIRED:
-				return ((eFlags & IS_RETIRED_EFLAG) != 0) != IS_RETIRED_EDEFAULT;
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__PART:
@@ -895,6 +919,10 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 				return deltaDeletedOperations != null && !deltaDeletedOperations.isEmpty();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_OPERATIONS:
 				return deltaReplacedOperations != null && !deltaReplacedOperations.isEmpty();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_DELETED_TRACES:
+				return deltaDeletedTraces != null && !deltaDeletedTraces.isEmpty();
+			case UML2Package.ENCAPSULATED_CLASSIFIER__DELTA_REPLACED_TRACES:
+				return deltaReplacedTraces != null && !deltaReplacedTraces.isEmpty();
 			case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT:
 				return ownedPort != null && !ownedPort.isEmpty();
 		}

@@ -199,6 +199,21 @@ public class TemplateableElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getTemplateableElement_TemplateBinding(),
+				 UML2Factory.eINSTANCE.createTemplateBinding()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTemplateableElement_OwnedTemplateSignature(),
+				 UML2Factory.eINSTANCE.createTemplateSignature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getTemplateableElement_OwnedTemplateSignature(),
+				 UML2Factory.eINSTANCE.createRedefinableTemplateSignature()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getTemplateableElement_OwnedTemplateSignature(),
 				 UML2Factory.eINSTANCE.createTemplateSignature()));
 

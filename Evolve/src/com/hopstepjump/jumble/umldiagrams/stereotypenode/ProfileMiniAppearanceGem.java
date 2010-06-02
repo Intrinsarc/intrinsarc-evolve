@@ -99,20 +99,14 @@ public class ProfileMiniAppearanceGem implements Gem
       return new JList(listElements);
     }
 
-    public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress, Object oldMemento)
+    public Object setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress)
     {
       return ComponentMiniAppearanceGem.setElementText(
           figureFacet,
           textable,
           text,
           listSelection,
-          unsuppress,
-          oldMemento);
-    }
-
-    public SetTextPayload unSetText(Object memento)
-    {
-      return ComponentMiniAppearanceGem.unSetElementText(figureFacet, memento);
+          unsuppress);
     }
 	}
 }

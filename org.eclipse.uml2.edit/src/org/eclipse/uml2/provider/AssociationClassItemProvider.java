@@ -285,6 +285,21 @@ public class AssociationClassItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getAssociation_OwnedEnd(),
 				 UML2Factory.eINSTANCE.createPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAssociation_OwnedEnd(),
+				 UML2Factory.eINSTANCE.createProperty()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAssociation_OwnedEnd(),
+				 UML2Factory.eINSTANCE.createExtensionEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getAssociation_OwnedEnd(),
+				 UML2Factory.eINSTANCE.createPort()));
 	}
 
 	/**

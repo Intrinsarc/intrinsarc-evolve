@@ -419,13 +419,12 @@ public class UMLDetailMediator
   {
     // form a command by asking each element in turn
     String name = element.eClass().getName().toLowerCase();
-    CompositeCommand cmd = new CompositeCommand("updated details of " + name, "restored details of " + name);
-    cmd.addCommand(attributeViewer.formApplyCommand());
-    cmd.addCommand(referenceViewer.formApplyCommand());
-    cmd.addCommand(documentationViewer.formApplyCommand()); 
-    cmd.addCommand(stereotypeEditor.formApplyCommand());
-    if (!cmd.isEmpty())
-      coordinator.executeCommandAndUpdateViews(cmd);
+    coordinator.startTransaction("updated details of " + name, "restored details of " + name);
+    attributeViewer.applyAction();
+    referenceViewer.applyAction();
+    documentationViewer.applyAction(); 
+    stereotypeEditor.applyAction();
+    coordinator.commitTransaction();
   }
 
   public int getSelectedTabIndex()

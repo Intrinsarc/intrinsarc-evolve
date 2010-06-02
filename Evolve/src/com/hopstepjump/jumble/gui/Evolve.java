@@ -1,6 +1,7 @@
 package com.hopstepjump.jumble.gui;
 
 import java.io.*;
+import java.text.*;
 import java.util.*;
 
 import javax.swing.*;
@@ -15,7 +16,6 @@ import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.jumble.html.*;
-import com.hopstepjump.jumble.management.*;
 import com.hopstepjump.jumble.repositorybrowser.*;
 import com.hopstepjump.notifications.*;
 import com.hopstepjump.repository.*;
@@ -32,7 +32,6 @@ public class Evolve
   public static final String BEST_VERSION = "1.6";
 	public static final int MAX_UNMODIFIED_UNVIEWED_DIAGRAMS = 5;
 
-	private CommandManagerFacet commandManagerFacet;
 	private ToolCoordinatorGem toolManager;
 	/** the application window coordinator manages a number of windows */
 	private ApplicationWindowCoordinatorGem windowCoordinator;
@@ -107,7 +106,7 @@ public class Evolve
     application.showGUI();
     
     // register some mbeans
-    new GUIManager().register();
+//    new GUIManager().register();
     
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;    
   }
@@ -119,8 +118,10 @@ public class Evolve
 				new PreferenceTypeFile(), "The XML file that will be loaded on startup.");
 		GlobalPreferences.preferences.addPreferenceSlot(OPEN_DIAGRAMS, new PreferenceTypeInteger(),
 				"The maximum number of unviewed, but unmodified, diagrams that are allowed to be open.");
-		GlobalPreferences.preferences.addPreferenceSlot(ViewUpdateWrapperCommand.BACKGROUND_VIEW_UPDATES, new PreferenceTypeBoolean(),
-				"Perform any view updates that might be slow in the background.  Gives a faster response time, but is less tested.");
+		GlobalPreferences.preferences.addPreferenceSlot(BasicDiagramGem.BACKGROUND_VIEW_UPDATES, new PreferenceTypeBoolean(),
+				"Perform any view updates that might be slow in the background, giving a faster response time, but is less tested.");
+		GlobalPreferences.preferences.addPreferenceSlot(ToolCoordinatorGem.UNDO_REDO_SIZE, new PreferenceTypeInteger(),
+				"The number of undo/redo commands stored.");
 		BrowserInvoker.registerPreferenceSlots();
 		RepositoryBrowserGem.registerPreferenceSlots();
 	}
@@ -144,7 +145,7 @@ public class Evolve
 
 	private void setUpGUI()
 	{
-		windowCoordinator.setUp(toolManager, commandManagerFacet, errors);
+		windowCoordinator.setUp(toolManager, errors);
 	}
 
 	private void showGUI()
@@ -154,10 +155,6 @@ public class Evolve
 
 	private void setUpServices()
 	{
-		BasicCommandManagerGem commandManagerGem = new BasicCommandManagerGem();
-		commandManagerGem.connectCommandWrapperFacet(new DeltaEngineCommandWrapper());
-		commandManagerFacet = commandManagerGem.getCommandManagerFacet();
-
 		// make the diagram registry
 		int max = GlobalPreferences.preferences.getRawPreference(OPEN_DIAGRAMS).asInteger();
 		max = Math.max(Math.min(max, 20), 0);
@@ -166,32 +163,24 @@ public class Evolve
 		GlobalDiagramRegistry.registry = registryGem.getDiagramRegistryFacet();
 
 		// start with an empty XML repository
-		CommandManagerListenerFacet listener = null;
 		try
 		{
 			String initialXMLRepository = GlobalPreferences.preferences.getRawPreference(
 					new Preference("Locations", "Initial XML repository")).asString();
 			// we need the delta engine for setting up the model
-			DeltaEngineCommandWrapper.clearDeltaEngine();
-			listener = RepositoryUtility.useXMLRepository((initialXMLRepository != null && new File(initialXMLRepository)
+			ToolCoordinatorGem.clearDeltaEngine();
+			RepositoryUtility.useXMLRepository((initialXMLRepository != null && new File(initialXMLRepository)
 					.exists()) ? initialXMLRepository : null);
 			// the delta engine needs to be cleared, as it gets into an odd state
 			// during CommonRepositoryFunctions.initializeModel()
-			DeltaEngineCommandWrapper.clearDeltaEngine();
+			ToolCoordinatorGem.clearDeltaEngine();
 		}
 		catch (RepositoryOpeningException e)
 		{
 			// will never happen with a new XML repository
 		}
 
-		// get the command manager to tell the subject repository when a command has
-		// been executed
-		// -- this is used to tell repository listeners that they can send changes
-		// out to clients
-		commandManagerGem.connectCommandManagerListenerFacet(listener);
-
 		// make the tool manager and connect it up
 		toolManager = new ToolCoordinatorGem();
-		toolManager.connectCommandManagerFacet(commandManagerFacet);
 	}
 }

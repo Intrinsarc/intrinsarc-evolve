@@ -159,6 +159,11 @@ public class ExecutableNodeItemProvider
 			(createChildParameter
 				(UML2Package.eINSTANCE.getExecutableNode_Handler(),
 				 UML2Factory.eINSTANCE.createExceptionHandler()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getExecutableNode_Handler(),
+				 UML2Factory.eINSTANCE.createExceptionHandler()));
 	}
 
 	/**

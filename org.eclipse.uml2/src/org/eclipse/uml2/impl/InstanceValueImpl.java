@@ -88,6 +88,8 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+		if (InstanceValueImpl.class.equals(getClass()))
+			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -240,7 +242,7 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * @generated
 	 */
 	public InstanceSpecification createOwnedAnonymousInstanceValue() {
-		InstanceSpecification newOwnedAnonymousInstanceValue = UML2Factory.eINSTANCE.createInstanceSpecification();
+		EnumerationLiteral newOwnedAnonymousInstanceValue = UML2Factory.eINSTANCE.createEnumerationLiteral();
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, 0, UML2Package.INSTANCE_VALUE__OWNED_ANONYMOUS_INSTANCE_VALUE, null, newOwnedAnonymousInstanceValue));
 		}

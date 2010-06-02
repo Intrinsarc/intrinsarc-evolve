@@ -9,7 +9,6 @@ import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
-import com.hopstepjump.jumble.umldiagrams.base.*;
 
 import edu.umd.cs.jazz.*;
 
@@ -26,13 +25,11 @@ public interface BasicNamespaceMiniAppearanceFacet extends Facet
 	public ZNode formView(boolean displayAsIcon, UBounds bounds);
 	public Shape formShapeForPreview(UBounds bounds);  
   public void addToContextMenu(
-      JPopupMenu menu,
-      DiagramViewFacet diagramView,
+      JPopupMenu menu, DiagramViewFacet diagramView,
       ToolCoordinatorFacet coordinator);
   public Set<String> getDisplayStyles(boolean displayingOnlyAsIcon, boolean anchorIsTarget);
   
   /** allows the node to delegate the list selection on naming to the appearance */
   public JList formSelectionList(String textSoFar);
-  public SetTextPayload setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress, Object oldMemento);
-  public SetTextPayload unSetText(Object memento);
+  public Object setText(TextableFacet textable, String text, Object listSelection, boolean unsuppress);
 }

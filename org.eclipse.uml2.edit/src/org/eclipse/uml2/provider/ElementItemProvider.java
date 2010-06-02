@@ -328,6 +328,16 @@ public class ElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(UML2Package.eINSTANCE.getElement_OwnedComment(),
+				 UML2Factory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UML2Package.eINSTANCE.getElement_AppliedBasicStereotypeValues(),
+				 UML2Factory.eINSTANCE.createAppliedBasicStereotypeValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(UML2Package.eINSTANCE.getElement_AppliedBasicStereotypeValues(),
 				 UML2Factory.eINSTANCE.createAppliedBasicStereotypeValue()));
 	}

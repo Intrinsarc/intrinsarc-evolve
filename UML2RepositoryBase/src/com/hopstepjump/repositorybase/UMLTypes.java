@@ -33,7 +33,7 @@ public class UMLTypes
    * find the classifier that this is substituting
    * @return null if no substitutions
    */
-  public static Classifier extractSubstitutedClassifier(Classifier subject)
+  public static NamedElement extractSubstitutedClassifier(NamedElement subject)
   {
     // do we have any substitution
   	if (subject == null || subject.undeleted_getClientDependencies() == null)
@@ -44,8 +44,8 @@ public class UMLTypes
       if (dep.isReplacement())
       {
         NamedElement target = dep.undeleted_getDependencyTarget();
-        if (target != null && target instanceof Classifier)
-          return (Classifier) target;
+        if (target != null && target instanceof NamedElement)
+          return (NamedElement) target;
       }
     }
     
@@ -57,9 +57,6 @@ public class UMLTypes
    */
   public static boolean isClassifierSubstituting(NamedElement subject)
   {
-  	if (!(subject instanceof Classifier))
-  		return false;
-  	
   	// do we have any substitutions
   	for (Object obj : subject.undeleted_getClientDependencies())
   	{
