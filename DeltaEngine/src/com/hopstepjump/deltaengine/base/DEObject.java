@@ -67,7 +67,7 @@ public abstract class DEObject
   public String getFullyQualifiedName(String separator)
   {
     if (getParent() != null && getParent() != getEngine().getRoot())
-      return getParent().getFullyQualifiedName() + separator + getName();
+      return getParent().getFullyQualifiedName(separator) + separator + getName();
     return getName();
   }
   

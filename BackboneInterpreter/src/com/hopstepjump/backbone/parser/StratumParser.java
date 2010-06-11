@@ -46,6 +46,8 @@ public class StratumParser
 	protected void parseElements()
 	{
 		ex.zeroOrMore(
+				new LiteralMatch("feature",
+						new IAction() { public void act() { new FeatureParser(ex).parse(); } }),
 				new LiteralMatch("component",
 						new IAction() { public void act() { new ComponentParser(ex).parse(); } }),
 				new LiteralMatch("interface",

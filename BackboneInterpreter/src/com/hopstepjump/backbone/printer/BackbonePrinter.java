@@ -1,6 +1,7 @@
 package com.hopstepjump.backbone.printer;
 
 import java.util.*;
+import java.util.regex.*;
 
 import com.hopstepjump.deltaengine.base.*;
 
@@ -13,11 +14,14 @@ public class BackbonePrinter
 {
 	private DEStratum perspective;
 	private DEObject object;
+	/** how do we want to see the output? */
+	private BackbonePrinterMode mode;
 
-	public BackbonePrinter(DEStratum perspective, DEObject object)
+	public BackbonePrinter(DEStratum perspective, DEObject object, BackbonePrinterMode mode)
 	{
 		this.perspective = perspective;
 		this.object = object;
+		this.mode = mode;
 	}
 	
 	public String makePrintString(String indent)
@@ -39,21 +43,15 @@ public class BackbonePrinter
 				b.append("\n\tdepends-on ");
 				int lp = 0;
 				for (DEStratum d : pkg.getRawDependsOn())
-					b.append(name(d) + (++lp != dSize ? ", " : ""));
+					b.append(reference(d) + (++lp != dSize ? ", " : ""));
 			}
 			
-			// list the children
-			int nSize = pkg.getDirectlyNestedPackages().size(); 
-			if (nSize != 0)
-			{
-				b.append("\n\tnests ");
-				int lp = 0;
-				for (DEStratum n : pkg.getDirectlyNestedPackages())
-					b.append(name(n) + (++lp != nSize ? ", " : ""));
-			}
 			b.append("\n" + indent + "{\n");
 			
 			// elements
+			for (DEElement elem : pkg.getChildElements())
+				if (elem.asRequirementsFeature() != null)
+					makeElementString(indent, b, elem);
 			for (DEElement elem : pkg.getChildElements())
 				if (elem.asInterface() != null)
 					makeElementString(indent, b, elem);
@@ -74,10 +72,16 @@ public class BackbonePrinter
 
 	private void makeElementString(String indent, StringBuilder b, DEElement elem)
 	{
+		if (elem.asRequirementsFeature() != null)
+		{
+			DERequirementsFeature feature = elem.asRequirementsFeature();
+			b.append(indent + "\tfeature " + name(feature));
+		}
+		else
 		if (elem.asInterface() != null)
 		{
 			DEInterface iface = elem.asInterface();
-			b.append(indent + "\tinterface " + name(iface, true));
+			b.append(indent + "\tinterface " + name(iface));
 		}
 		else
 		if (elem.asComponent() != null)
@@ -125,6 +129,7 @@ public class BackbonePrinter
 		appendAll(b, indent, "parts", elem, ConstituentTypeEnum.DELTA_PART, null);
 		appendAll(b, indent, "connectors", elem, ConstituentTypeEnum.DELTA_CONNECTOR, null);
 		appendAll(b, indent, "port-links", elem, ConstituentTypeEnum.DELTA_PORT_LINK, null);
+		appendAll(b, indent, "subfeatures", elem, ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK, null);
 		
 		b.append(indent + "\t}\n\n");
 	}
@@ -145,7 +150,7 @@ public class BackbonePrinter
 			ret += " resembles ";
 			int lp = 0;
 			for (DEElement e : c.getRawResembles())
-				ret += name(e, true) + (++lp != size ? ", " : "");
+				ret += reference(e) + (++lp != size ? ", " : "");
 		}
 		size = c.getSubstitutes().size();
 		if (size > 0)
@@ -153,7 +158,7 @@ public class BackbonePrinter
 			ret += " replaces ";
 			int lp = 0;
 			for (DEElement e : c.getSubstitutes())
-				ret += name(e, true) + (++lp != size ? ", " : "");
+				ret += reference(e) + (++lp != size ? ", " : "");
 		}
 		if (ret.length() == 0)
 			return "";
@@ -168,7 +173,7 @@ public class BackbonePrinter
 		{
 			b.append(indent + "\t\tdelete-" + preamble + ":\n");
 			for (String uuid : deletes)
-				b.append(indent + "\t\t\t" + name(GlobalDeltaEngine.engine.locateObjectForStereotype(uuid)) + ";\n");
+				b.append(indent + "\t\t\t" + reference(GlobalDeltaEngine.engine.locateObjectForStereotype(uuid)) + ";\n");
 		}
 	}
 
@@ -182,32 +187,58 @@ public class BackbonePrinter
 			List<DeltaPair> sorted = new ArrayList<DeltaPair>(pairs);
 			if (sorter != null)
 				Collections.sort(sorted, sorter);
+			DeltaPair last = sorted.isEmpty() ? null : sorted.get(sorted.size() - 1);
 			for (DeltaPair pair : sorted)
 			{
 				DEObject obj = pair.getConstituent();
 				if (obj instanceof DEOperation)
-					appendOperationString(indent, b, pair);
+					appendOperationString(indent, b, pair, replace, pair == last);
 				else
 				if (obj instanceof DEAttribute)
-					appendAttributeString(indent, b, element, pair);
+					appendAttributeString(indent, b, element, pair, replace, pair == last);
 				else
 				if (obj instanceof DEPort)
-					appendPortString(indent, b, pair);
+					appendPortString(indent, b, pair, replace, pair == last);
 				else
 				if (obj instanceof DEConnector)
-					appendConnectorString(indent, b, pair);
+					appendConnectorString(indent, b, pair, replace, pair == last);
 				else
 				if (obj instanceof DEPart)
-					appendPartString(indent, b, element, pair);
+					appendPartString(indent, b, element, pair, replace, pair == last);
+				else
+				if (obj instanceof DERequirementsFeatureLink)
+					appendRequirementsFeatureLinkString(indent, b, pair, replace, pair == last);
 			}
 			return true;
 		}		
 		return false;
 	}
 
-	private void appendOperationString(String indent, StringBuilder b, DeltaPair pair)
+	private void appendRequirementsFeatureLinkString(String indent, StringBuilder b, DeltaPair pair, boolean replace, boolean last)
 	{
-		b.append(indent + "\t\t\t" + makeReplace(pair) + makeAppliedStereotypeString(pair.getConstituent()) + name(pair.getConstituent()) + ";\n");
+		DERequirementsFeatureLink link = pair.getConstituent().asRequirementsFeatureLink();		
+		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(pair.getConstituent()) + reference(pair.getConstituent()) + " " + translateLinkKind(link.getKind()) + (last ? ";\n" : ",\n"));
+	}
+
+	private String translateLinkKind(SubfeatureKindEnum kind)
+	{
+		switch (kind)
+		{
+		case MANDATORY:
+			return "is-mandatory";
+		case ONE_OF:
+			return "is-one-of";
+		case ONE_OR_MORE:
+			return "is-one-or-more";
+		case OPTIONAL:
+			return "is-optional";
+		}
+		throw new IllegalStateException("Cannot translate subfeature link kind: " + kind);
+	}
+
+	private void appendOperationString(String indent, StringBuilder b, DeltaPair pair, boolean replace, boolean last)
+	{
+		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(pair.getConstituent()) + reference(pair.getConstituent()) + (last ? ";\n" : ",\n"));
 	}
 
 	private boolean showStereotype(DeltaPair pair)
@@ -279,7 +310,7 @@ public class BackbonePrinter
 		if (isVisual(appl.getStereotype()))
 			return "";
 
-		String name = name(appl.getStereotype(), true);
+		String name = reference(appl.getStereotype());
 		boolean standard = ignoreStereotype(appl.getStereotype());
 		String str = "\u00ab" + name;
 		Map<DEAttribute, String> props = appl.getProperties();
@@ -296,20 +327,20 @@ public class BackbonePrinter
 						;  // show nothing for false
 					else
 					if (val.equals("true"))
-						str += (lp++ == 0 ? "" : ", ") + prop;
+						str += (lp++ == 0 ? "" : ", ") + reference(prop);
 					else
-						str += (lp++ == 0 ? "" : ", ") + prop + " = " + props.get(prop);
+						str += (lp++ == 0 ? "" : ", ") + reference(prop) + " = " + props.get(prop);
 				}
 			}
 		}
 		return str + "\u00bb ";
 	}
 
-	private void appendAttributeString(String indent, StringBuilder b, DEElement element, DeltaPair pair)
+	private void appendAttributeString(String indent, StringBuilder b, DEElement element, DeltaPair pair, boolean replace, boolean last)
 	{
 		DEAttribute attr = pair.getConstituent().asAttribute();
 		b.append(indent + "\t\t\t");
-		b.append(makeReplace(pair) + makeAppliedStereotypeString(attr));
+		b.append(makeReplace(pair, replace) + makeAppliedStereotypeString(attr));
 		if (attr.isWriteOnly())
 			b.append("write-only ");
 		if (attr.isReadOnly())
@@ -317,7 +348,7 @@ public class BackbonePrinter
 
 		b.append(name(attr));
 		if (attr.getType() != null)
-			b.append(": " + name(attr.getType(), true));
+			b.append(": " + reference(attr.getType()));
 		int dvSize = attr.getDefaultValue().size();
 		if (dvSize != 0)
 		{
@@ -328,7 +359,7 @@ public class BackbonePrinter
 			for (DEParameter p : attr.getDefaultValue())
 			{
 				if (p.getAttribute() != null)
-					b.append(name(p.getAttribute(perspective, element)));
+					b.append(reference(p.getAttribute(perspective, element)));
 				else
 				if (p.getLiteral() != null)
 					b.append(p.getLiteral());
@@ -338,21 +369,24 @@ public class BackbonePrinter
 				b.append(")");
 		}
 		
-		b.append(";\n");
+		if (last)
+			b.append(";\n");
+		else
+			b.append(",\n");
 	}
 
-	private void appendConnectorString(String indent, StringBuilder b, DeltaPair pair)
+	private void appendConnectorString(String indent, StringBuilder b, DeltaPair pair, boolean replace, boolean last)
 	{
 		DEConnector conn = pair.getConstituent().asConnector();
-		b.append(indent + "\t\t\t" + makeReplace(pair) + makeAppliedStereotypeString(conn) + name(conn) +
+		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(conn) + name(conn) +
 				(conn.isDelegate() ? " delegates-from " : " joins ") +
-				makeConnectorEndString(conn, 0) + " to " + makeConnectorEndString(conn, 1) + ";\n");
+				makeConnectorEndString(conn, 0) + " to " + makeConnectorEndString(conn, 1) + (last ? ";\n" : ",\n"));
 	}
 
-	private String makeReplace(DeltaPair pair)
+	private String makeReplace(DeltaPair pair, boolean replace)
 	{
-		if (pair.getOriginal() != null)
-			return pair.getOriginal() != pair.getConstituent() ? (name(pair.getOriginal()) +  " becomes ") : "";
+		if (replace && pair.getOriginal() != null)
+			return replace ? (reference(pair.getOriginal()) +  " becomes ") : "";
 		return "";
 	}
 
@@ -360,24 +394,24 @@ public class BackbonePrinter
 	{
 		DEPart part = conn.getOriginalPart(index);
 		if (part == null)
-			return name(conn.getOriginalPort(index));
-		return name(conn.getOriginalPort(index)) + "@" + name(part);
+			return reference(conn.getOriginalPort(index));
+		return name(conn.getOriginalPort(index)) + "@" + reference(part);
 	}
 
-	private void appendPartString(String indent, StringBuilder b, DEElement element, DeltaPair pair)
+	private void appendPartString(String indent, StringBuilder b, DEElement element, DeltaPair pair, boolean replace, boolean last)
 	{
 		DEPart part = pair.getConstituent().asPart();
-		b.append(indent + "\t\t\t" + makeReplace(pair) + makeAppliedStereotypeString(part) + name(part));
+		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(part) + name(part));
 		int sSize = part.getSlots().size();
 		if (part.getType() != null)
-			b.append(": " + name(part.getType(), true) + (sSize == 0 ? ";\n" : "\n"));
+			b.append(": " + reference(part.getType()) + (sSize == 0 ? ";\n" : "\n"));
 		int slp = 0;
 		for (DESlot slot : part.getSlots())
 		{
 			if (slot.isAliased())
 			{
 				DEAttribute attr = slot.getAttribute(perspective, part.getType());
-				b.append(indent + "\t\t\t\t" + name(attr) + " (" + name(slot.getEnvironmentAlias(perspective, element)) + ");\n");
+				b.append(indent + "\t\t\t\t" + reference(attr) + " (" + reference(slot.getEnvironmentAlias(perspective, element)) + ");\n");
 			}
 			else
 			{
@@ -385,14 +419,14 @@ public class BackbonePrinter
 				if (dvSize != 0)
 				{
 					DEAttribute attr = slot.getAttribute(perspective, part.getType());
-					b.append(indent + "\t\t\t\t" + name(attr) + " = ");
+					b.append(indent + "\t\t\t\t" + reference(attr) + " = ");
 					if (dvSize > 1)
 						b.append("(");
 					int lp = 0;
 					for (DEParameter p : slot.getValue())
 					{
 						if (p.getAttribute() != null)
-							b.append(name(p.getAttribute()));
+							b.append(reference(p.getAttribute()));
 						else
 						if (p.getLiteral() != null)
 							b.append(p.getLiteral());
@@ -406,10 +440,10 @@ public class BackbonePrinter
 		}
 	}
 
-	private void appendPortString(String indent, StringBuilder b, DeltaPair pair)
+	private void appendPortString(String indent, StringBuilder b, DeltaPair pair, boolean replace, boolean last)
 	{
 		DEPort port = pair.getConstituent().asPort();
-		b.append(indent + "\t\t\t" + makeReplace(pair) + makeAppliedStereotypeString(port) + name(port));
+		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(port) + name(port));
 		if (port.getPortKind() == PortKindEnum.CREATE)
 			b.append(" is-create-port");
 		if (port.getPortKind() == PortKindEnum.HYPERPORT_START)
@@ -418,7 +452,10 @@ public class BackbonePrinter
 			b.append(" is-hyperport-end");
 		b.append(makeInterfacesString(" provides ", port.getSetProvidedInterfaces()));
 		b.append(makeInterfacesString(" requires ", port.getSetRequiredInterfaces()));
-		b.append(";\n");
+		if (last)
+			b.append(";\n");
+		else
+			b.append(",\n");
 	}
 
 	private String makeInterfacesString(String preamble, Set<? extends DEInterface> interfaces)
@@ -429,44 +466,83 @@ public class BackbonePrinter
 		int lp = 0;
 		preamble += " ";
 		for (DEInterface i : interfaces)
-			preamble += name(i, true) + (++lp != size ? ", " : "");
+			preamble += reference(i) + (++lp != size ? ", " : "");
 		return preamble;
-	}
-
-	private String name(DEElement obj)
-	{
-		if (obj == null)
-			return "???";
-		if (obj.getName() == null || obj.getName().length() == 0)
-		{
-			// if this replaces another component, use that name
-			if (obj.getSubstitutes().size() != 0)
-				return obj.getSubstitutes().iterator().next().getName() + "'";
-			return obj.getUuid();
-		}
-		else
-			return obj.getName().replace(' ', '_');
 	}
 
 	private String name(DEObject obj)
 	{
-		if (obj == null)
-			return "???";
-		if (obj.getName() == null || obj.getName().length() == 0)
-			return obj.getUuid();
-		else
-			return obj.getName().replace(' ', '_');
-	}
-
-	private String name(DEElement obj, boolean applyPerspective)
-	{
-		String name = applyPerspective ? obj.getName(perspective) : obj.getName();
-		if (name == null || name.length() == 0)
-			return obj.getUuid();
-		else
-			return name.replace(' ', '_');
+		return objectId(obj, false);
 	}
 	
+	private String reference(DEObject obj)
+	{
+		return objectId(obj, true);
+	}
+	
+	private static Pattern WHITE = Pattern.compile("\\s", Pattern.MULTILINE);
+	private String objectId(DEObject obj, boolean reference)
+	{
+		if (obj == null)
+			throw new IllegalStateException("Found no object for name");
+		String uuid = "U" + obj.getUuid();
+		if (obj.getName() == null || obj.getName().length() == 0)
+			return uuid;
+		else
+		{
+			// if a reference, use full path
+			if (mode == BackbonePrinterMode.PRETTY || mode == BackbonePrinterMode.REAL_NAMES)
+			{
+				String name = obj.getName();
+				return WHITE.matcher(name).replaceAll("_");
+			}
+			else
+			{
+				String name = obj.getName();
+				return uuid + "/" + WHITE.matcher(name).replaceAll("_") + "/";
+			}
+		}
+	}
+
+	private String name(DEElement obj)
+	{
+		return elementId(obj, false);
+	}
+	
+	private String reference(DEElement obj)
+	{
+		return elementId(obj, true);
+	}
+	
+	private String elementId(DEElement obj, boolean reference)
+	{
+		if (obj == null)
+			throw new IllegalStateException("Found no object for name");
+		String uuid = "U" + obj.getUuid();
+		if (obj.getName() == null || obj.getName().length() == 0)
+			return uuid;
+		else
+		{
+			// if a reference, use full path
+			if (mode == BackbonePrinterMode.PRETTY)
+			{
+				String name = obj.getName();
+				return WHITE.matcher(name).replaceAll("_");
+			}
+			else
+			if (mode == BackbonePrinterMode.REAL_NAMES)
+			{
+				String name = reference ? obj.getFullyQualifiedName("::") : obj.getName();
+				return WHITE.matcher(name).replaceAll("_");
+			}
+			else
+			{
+				String name = obj.getName();
+				return uuid + "/" + WHITE.matcher(name).replaceAll("_") + "/";
+			}
+		}
+	}
+
 	private boolean isRawPlaceholder(DEComponent c)
   {
     DEAppliedStereotype applied = c.getAppliedStereotype(c.getHomeStratum());

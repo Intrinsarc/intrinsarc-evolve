@@ -219,7 +219,9 @@ public class PackageMiniAppearanceGem implements Gem
       }
       
       DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
-      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me));
+      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code (pretty)", coordinator, me, me, BackbonePrinterMode.PRETTY));
+      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code (names)", coordinator, me, me, BackbonePrinterMode.REAL_NAMES));
+      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code (uuids)", coordinator, me, me, BackbonePrinterMode.REAL_UUIDS));
 
       boolean readOnly = repository.isContainerContextReadOnly(figureFacet);
       if (!readOnly && isStratum())
@@ -478,7 +480,7 @@ public class PackageMiniAppearanceGem implements Gem
     }
   }
   
-  public static JMenuItem makeShowBackboneCodeItem(String menuText, final ToolCoordinatorFacet coordinator, final DEStratum perspective, final DEObject object)
+  public static JMenuItem makeShowBackboneCodeItem(String menuText, final ToolCoordinatorFacet coordinator, final DEStratum perspective, final DEObject object, final BackbonePrinterMode mode)
   {
     JMenuItem code = new JMenuItem(menuText);
     code.addActionListener(new ActionListener()
@@ -496,13 +498,13 @@ public class PackageMiniAppearanceGem implements Gem
             new Point(x, y), new Dimension(width, height),
             true,
             true,
-            makeBackbone(perspective, object, new JPanel()));
+            makeBackbone(perspective, object, new JPanel(), mode));
         }
     });
     return code;
   }
   
-	private static JPanel makeBackbone(final DEStratum perspective, final DEObject object, final JPanel pane)
+	private static JPanel makeBackbone(final DEStratum perspective, final DEObject object, final JPanel pane, final BackbonePrinterMode mode)
 	{
 		pane.setLayout(new BorderLayout());
 		final JEditorPane editor = new JEditorPane();
@@ -519,7 +521,7 @@ public class PackageMiniAppearanceGem implements Gem
     {
       public void actionPerformed(ActionEvent e)
       {
-      	makeBackbone(perspective, object, pane);
+      	makeBackbone(perspective, object, pane, mode);
       }
     });
     editor.addMouseListener(new MouseAdapter()
@@ -532,7 +534,7 @@ public class PackageMiniAppearanceGem implements Gem
       }
     });
     
-    String backbone = new BackbonePrinter(perspective, object).makePrintString("");
+    String backbone = new BackbonePrinter(perspective, object, mode).makePrintString("");
     editor.setText(backbone);
     
 		pane.revalidate();

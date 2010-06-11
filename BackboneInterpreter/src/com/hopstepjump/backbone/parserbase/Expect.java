@@ -63,7 +63,8 @@ public class Expect
 
 	public Expect uuid(String[] uuid)
 	{
-		uuid(uuid, null);
+		String name[] = {""};
+		uuid(uuid, name);
 		return this;
 	}
 	

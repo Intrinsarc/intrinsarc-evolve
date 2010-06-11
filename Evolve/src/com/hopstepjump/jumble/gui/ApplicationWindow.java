@@ -2074,6 +2074,7 @@ public class ApplicationWindow extends SmartJFrame
 					if (name.endsWith(XMLSubjectRepositoryGem.UML2_SUFFIX) || name.endsWith(XMLSubjectRepositoryGem.UML2Z_SUFFIX) || name.endsWith(".xml"))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading XML repository", name, null, -1);
+						long st = System.currentTimeMillis();
 						RepositoryUtility.useXMLRepository(name);
 						applicationWindowCoordinator.switchRepository();
 					}

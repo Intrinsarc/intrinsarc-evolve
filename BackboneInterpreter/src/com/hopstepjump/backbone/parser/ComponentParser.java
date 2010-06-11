@@ -93,9 +93,9 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							ParserUtilities.parseAppliedStereotype(ex);
 							String uuid[] = {""};
 							ex.uuid(uuid).literal("becomes");
+							ParserUtilities.parseAppliedStereotype(ex);
 							parseLink();
 						}
 					})).
@@ -143,9 +143,9 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							ParserUtilities.parseAppliedStereotype(ex);
 							String uuid[] = {""};
 							ex.uuid(uuid).literal("becomes");
+							ParserUtilities.parseAppliedStereotype(ex);
 							parseConnector();
 						}
 					})).
@@ -221,9 +221,9 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							ParserUtilities.parseAppliedStereotype(ex);
 							String uuid[] = {""};
 							ex.uuid(uuid).literal("becomes");
+							ParserUtilities.parseAppliedStereotype(ex);
 							parsePart();
 						}
 					})).
@@ -296,9 +296,9 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							ParserUtilities.parseAppliedStereotype(ex);
 							String uuid[] = {""};
 							ex.uuid(uuid).literal("becomes");
+							ParserUtilities.parseAppliedStereotype(ex);
 							parsePort();
 						}
 					})).
@@ -377,9 +377,9 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							ParserUtilities.parseAppliedStereotype(ex);
 							String uuid[] = {""};
 							ex.uuid(uuid).literal("becomes");
+							ParserUtilities.parseAppliedStereotype(ex);
 							parseAttribute();
 						}
 					})).
@@ -411,7 +411,7 @@ public class ComponentParser
 		final boolean writeOnly[] = {false};
 		ex.
 			optionalLiteral("read-only", readOnly).
-			optionalLiteral("read-only", writeOnly).
+			optionalLiteral("write-only", writeOnly).
 			uuid(uuid).
 			literal(":").
 			uuid(type).

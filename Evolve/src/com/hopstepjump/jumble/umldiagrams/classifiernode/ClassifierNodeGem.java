@@ -13,6 +13,7 @@ import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
+import com.hopstepjump.backbone.printer.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
@@ -1379,7 +1380,7 @@ public final class ClassifierNodeGem implements Gem
   	      final DEComponent me = GlobalDeltaEngine.engine.locateObject(component).asComponent();
   	      if (me != null)
   	      {
-  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas", coordinator, perspective, me));
+  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas", coordinator, perspective, me, BackbonePrinterMode.PRETTY));
 //  		      // show canonical backbone code
 //  		      BBComponent bb = new BBComponent(me.getUuid());
 //  		      bb.setRawName(me.getName());

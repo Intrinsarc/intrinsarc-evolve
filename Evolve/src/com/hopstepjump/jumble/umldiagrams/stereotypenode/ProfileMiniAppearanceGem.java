@@ -8,6 +8,7 @@ import javax.swing.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.impl.*;
 
+import com.hopstepjump.backbone.printer.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
@@ -79,7 +80,7 @@ public class ProfileMiniAppearanceGem implements Gem
     {
       Utilities.addSeparator(menu);
       DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
-      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me));
+      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me, BackbonePrinterMode.PRETTY));
     }
 
     public Set<String> getDisplayStyles(boolean displayingOnlyAsIcon, boolean anchorIsTarget)

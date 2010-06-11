@@ -122,7 +122,7 @@ public class UML2Stratum extends DEStratum
 	private void getChildElements(List<DEElement> elements, Package pkg)
 	{
 		for (Object member : pkg.undeleted_getOwnedMembers())
-			if (member instanceof Classifier)
+			if (member instanceof Classifier || member instanceof RequirementsFeature)
 			{
 				DEObject obj = GlobalDeltaEngine.engine.locateObject(member);
 				if (obj != null && obj.asElement() != null)
