@@ -52,7 +52,7 @@ public class BBParameter extends DEParameter implements LazyResolver
 	    if (tk.hasMoreTokens())
 	    	uuid = tk.nextToken();
 	    
-	    realAttribute = GlobalNodeRegistry.registry.retrieveNode(null, null, DEAttribute.class, uuid).asConstituent().asAttribute();
+	    realAttribute = GlobalNodeRegistry.registry.retrieveNode(null, DEAttribute.class, uuid).asConstituent().asAttribute();
 		}
 	}
 

@@ -54,9 +54,6 @@ public class BackboneWriter
   {
     List<DEStratum> ordered = choice.extractRelatedStrata();
 
-    XStream x = new XStream();
-//    UML2XStreamConverters.registerConverters(x);
-    BBXStreamConverters.registerConverters(x);
 		PreferencesFacet prefs = GlobalPreferences.preferences;
     Set<String> referenced = new LinkedHashSet<String>();
     BBLoadList loadListUntranslated = new BBLoadList();
@@ -133,7 +130,7 @@ public class BackboneWriter
 		        File bbBase = new File(expanded);
 	        	if (topmost == null)
 	        		topmost = new File(expanded);
-	          generator.generateBackboneSource(getPeerUniqueName(stratum), bbBase, x);
+	          generator.generateBackboneSource(getPeerUniqueName(stratum), bbBase);
 	        }
 	        catch (IOException e)
 	        {
@@ -168,7 +165,7 @@ public class BackboneWriter
 		        try
 		        {
 		        	File bbBase = new File(expanded);
-		          generator.generateBackboneSource(getPeerUniqueName(stratum), bbBase, x);
+		          generator.generateBackboneSource(getPeerUniqueName(stratum), bbBase);
 		        }
 		        catch (IOException e)
 		        {
@@ -192,7 +189,7 @@ public class BackboneWriter
     	loadListUntranslated.settable_getVariables().add(new BBVariableDefinition(name, prefs.getRawVariableValue(name)));
     
     String name = "system.loadlist";
-    write(topmost, name, x.toXML(loadListUntranslated));
+    write(topmost, name, null); //x.toXML(loadListUntranslated));
     return new File(topmost, name);
   }
 

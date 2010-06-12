@@ -12,12 +12,10 @@ import com.hopstepjump.backbone.nodes.converters.*;
  */
 public class StratumReader
 {
-  private XStream x;
   private File directory;
   
-  public StratumReader(XStream x, File directory, boolean top)
+  public StratumReader(File directory, boolean top)
   {
-    this.x = x;
     this.directory = directory;
   }
   
@@ -50,13 +48,13 @@ public class StratumReader
     
     try
     {
-      Object obj = x.fromXML(buffered);
+      Object obj = null; //x.fromXML(buffered);
       if (!(obj instanceof BBStratum))
         throw new StratumLoadingException("Did not find a stratum definition inside " + file);
 
       return (BBStratum) obj;
     }
-    catch(ConversionException ex)
+/*    catch(ConversionException ex)
     {
       // possibly a node issue
       if (ex.getCause() instanceof BBNodeNotFoundException)
@@ -64,7 +62,7 @@ public class StratumReader
       ex.printStackTrace();
       throw new StratumLoadingException("Cannot load due to XStream conversion error");
     }
-    finally
+*/    finally
     {
       try
       {

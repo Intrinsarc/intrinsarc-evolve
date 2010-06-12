@@ -10,12 +10,10 @@ import com.hopstepjump.backbone.nodes.insides.*;
 
 public class LoadListReader
 {
-  private XStream x;
   private File loadList;
   
-  public LoadListReader(XStream x, File loadList)
+  public LoadListReader(File loadList)
   {
-    this.x = x;
     this.loadList = loadList;
   }
   
@@ -36,7 +34,7 @@ public class LoadListReader
     
     try
     {
-      Object obj = x.fromXML(buffered);
+      Object obj = null; //x.fromXML(buffered);
       if (!(obj instanceof BBLoadList))
         throw new StratumLoadingException("Did not find a load list inside " + loadList);
 
@@ -49,7 +47,7 @@ public class LoadListReader
       List<BBStratum> strata = new ArrayList<BBStratum>();
       for (BBStratumDirectory directory : directories)
       {
-        StratumReader reader = new StratumReader(x, new File(directory.getPath()), true);
+        StratumReader reader = new StratumReader(new File(directory.getPath()), true);
         BBStratum stratum = reader.readStratum();        
         strata.add(stratum);
       }			

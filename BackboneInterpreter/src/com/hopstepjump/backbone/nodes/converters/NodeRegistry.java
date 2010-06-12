@@ -37,11 +37,11 @@ public class NodeRegistry
   /**
    * retrieve the node from the map, or throw an exception
    */
-  public DEObject retrieveNode(HierarchicalStreamReader reader, String possibleLocation, Class<?> cls, String uuid) throws BBNodeNotFoundException
+  public DEObject retrieveNode(String possibleLocation, Class<?> cls, String uuid) throws BBNodeNotFoundException
   {
   	DEObject node = nodes.get(uuid);
   	if (node == null)
-      throw new BBNodeNotFoundException("Cannot find " + cls.getName() + " with uuid = " + uuid, determineLocation(reader));
+      throw new BBNodeNotFoundException("Cannot find " + cls.getName() + " with uuid = " + uuid, determineLocation());
 
   	// make sure the element is compatible
   	if (!cls.isAssignableFrom(node.getClass()))
@@ -53,7 +53,7 @@ public class NodeRegistry
   		else
         throw new BBNodeNotFoundException(
             "Found element with uuid = " + uuid + ", but type was " + node.getClass().getName() + ", not " + cls.getName(),
-            determineLocation(reader));
+            determineLocation());
   	}
   	else
   		return node;
@@ -62,7 +62,7 @@ public class NodeRegistry
   /**
    * determine the location in terms of nodes and values
    **/
-  public static String determineLocation(HierarchicalStreamReader reader)
+  public static String determineLocation()
   {
     List<String> parts = new ArrayList<String>();
     for (;;)
@@ -70,8 +70,8 @@ public class NodeRegistry
       // must do it this way, as there doesn't seem to be a way in XStream to work out if we are at the top
       try
       {
-        String name = reader.getNodeName();
-        String value = reader.getValue();
+        String name = null; //reader.getNodeName();
+        String value = null; //reader.getValue();
        
         if (value != null && value.length() != 0)
           parts.add(name + ": \"" + value + "\"");
@@ -91,7 +91,7 @@ public class NodeRegistry
         }
         return ret;
       }
-      reader.moveUp();
+      //reader.moveUp();
     }
   }
 

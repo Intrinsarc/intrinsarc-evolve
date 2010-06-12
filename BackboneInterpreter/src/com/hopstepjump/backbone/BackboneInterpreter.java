@@ -40,9 +40,7 @@ public class BackboneInterpreter
 		
 		String tab = "      |  ";
 		System.out.println(tab + "loading system from " + loadListFile);
-		XStream x = new XStream();
-		BBXStreamConverters.registerConverters(x);
-		LoadListReader reader = new LoadListReader(x, new File(loadListFile));
+		LoadListReader reader = new LoadListReader(new File(loadListFile));
 		
 		// install the delta engine
 		GlobalDeltaEngine.engine = new BBDeltaEngine();

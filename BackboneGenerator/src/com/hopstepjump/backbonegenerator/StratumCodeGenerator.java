@@ -13,7 +13,7 @@ public class StratumCodeGenerator
     this.stratum = stratum;
   }
 
-  public void generateBackboneSource(String name, File base, XStream x) throws BackboneGenerationException, IOException
+  public void generateBackboneSource(String name, File base) throws BackboneGenerationException, IOException
   {
     // generate the files for this stratum
     base.mkdirs();
@@ -26,7 +26,7 @@ public class StratumCodeGenerator
       writer = new BufferedWriter(new FileWriter(sfile));
 
       // write the XStream representation to the file
-	    String str = x.toXML(stratum);
+	    String str = null; //x.toXML(stratum);
 	    writer.append(str);
     }
     catch (IOException e)

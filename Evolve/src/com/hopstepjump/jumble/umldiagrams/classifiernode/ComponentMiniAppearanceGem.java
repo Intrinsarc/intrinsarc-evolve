@@ -25,7 +25,6 @@ import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
-import com.thoughtworks.xstream.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -288,8 +287,6 @@ public class ComponentMiniAppearanceGem implements Gem
 
 				private String remakeTree(final JPanel pane, final IEasyDockable[] dockable)
 				{
-					XStream xstr = new XStream();
-					BBSimpleXStreamConverters.registerConverters(xstr);
 					DEStratum perspective = GlobalDeltaEngine.engine.locateObject(
 							GlobalSubjectRepository.repository.findVisuallyOwningStratum(
 									figureFacet.getDiagram(), figureFacet.getContainerFacet())).asStratum();
@@ -298,7 +295,7 @@ public class ComponentMiniAppearanceGem implements Gem
 					BBSimpleElementRegistry registry = new BBSimpleElementRegistry(perspective, flat);
 					BBSimpleComponent top = new BBSimpleComponent(registry, flat);
 					top.flatten(registry);
-					final JTree tree = new XMLTreeBuilder().buildFromXML(new StringBufferInputStream(xstr.toXML(top)), 4);
+					final JTree tree = new XMLTreeBuilder().buildFromXML(new StringBufferInputStream(null /*xstr.toXML(top)*/), 4);
 					tree.setRootVisible(false);
 					tree.setCellRenderer(new UMLNodeRendererGem(null)
 							.getStringTreeCellRenderer());

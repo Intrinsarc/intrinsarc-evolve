@@ -17,7 +17,6 @@
 	<classpathentry kind="lib" path="/CommonResources/l2fprod-common-fontchooser.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BackboneInterpreter"/>
 	<classpathentry kind="lib" path="/CommonResources/JSyntaxPane.jar"/>
-	<classpathentry kind="lib" path="/CommonResources/xstream-1.3.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BeanImporter"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
