@@ -13,7 +13,8 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
-import com.hopstepjump.backbonegenerator.*;
+import com.hopstepjump.backbone.generator.*;
+import com.hopstepjump.backbone.printers.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
@@ -534,7 +535,9 @@ public class PackageMiniAppearanceGem implements Gem
       }
     });
     
-    String backbone = new BackbonePrinter(perspective, object, mode).makePrintString("");
+    String backbone = object.asStratum() != null ?
+    		new StratumPrinter(perspective, object.asStratum(), mode).makePrintString("") :
+    			new ElementPrinter(perspective, object.asElement(), mode).makePrintString("");
     editor.setText(backbone);
     
 		pane.revalidate();

@@ -19,6 +19,18 @@ public class Expect
 		return this;
 	}
 	
+	public Expect string(String str[])
+	{
+		Token t = tok.next();
+		if (t == null)
+			tok.throwParseException("Expected string but found end of file", false);
+		if (!t.getType().equals(TokenType.STRING))
+			tok.throwParseException("Expected literal but found " + t, true);
+		if (str != null)
+			str[0] = t.getText();
+		return this;
+	}
+	
 	public Expect literal()
 	{
 		return literal((String[]) null);

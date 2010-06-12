@@ -1,15 +1,14 @@
 package com.hopstepjump.backbone.nodes;
 
-import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 
-public class BBLoadList implements Serializable
+public class BBLoadList
 {
-	private List<BBVariableDefinition> variables;
-	private List<BBStratumDirectory> strataDirectories;
+	private List<BBVariableDefinition> variables = new ArrayList<BBVariableDefinition>();
+	private List<BBStratumDirectory> strataDirectories = new ArrayList<BBStratumDirectory>();
 	
 	public BBLoadList()
 	{
@@ -17,16 +16,11 @@ public class BBLoadList implements Serializable
 	
   public List<BBStratumDirectory> settable_getStrataDirectories()
   {
-  	if (strataDirectories == null)
-  		strataDirectories = new ArrayList<BBStratumDirectory>();
   	return strataDirectories;
   }
   
   public List<BBStratumDirectory> getTranslatedStrataDirectories() throws BBVariableNotFoundException
   {
-  	if (strataDirectories == null)
-  		return new ArrayList<BBStratumDirectory>();
-  	
   	List<BBStratumDirectory> translated = new ArrayList<BBStratumDirectory>();
   	for (BBStratumDirectory d : strataDirectories)
   		translated.add(new BBStratumDirectory(expandVariables(d.getPath()), d.getStratumName()));
@@ -63,8 +57,6 @@ public class BBLoadList implements Serializable
 
 	private String getVariable(String name)
 	{
-		if (variables == null)
-			return null;
 		for (BBVariableDefinition var : variables)
 		{
 			if (var.getName().equals(name))
@@ -92,8 +84,6 @@ public class BBLoadList implements Serializable
 
   public List<BBVariableDefinition> settable_getVariables()
   {
-  	if (variables == null)
-  		variables = new ArrayList<BBVariableDefinition>();
   	return variables;
   }
 }

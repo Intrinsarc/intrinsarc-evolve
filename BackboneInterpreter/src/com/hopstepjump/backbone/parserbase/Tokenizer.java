@@ -61,10 +61,8 @@ public class Tokenizer
 		}
 		if (ch == '/' && peekChar() != '/')
 			return readDescriptiveName();			
-		if (Character.isDigit(first))
-			return readNumber(ch);
-		if (Character.isJavaIdentifierStart(ch))
-			return readLiteral(ch);
+		if (ch == '.' || Character.isDigit(first) || Character.isJavaIdentifierStart(ch))
+			return readNumberOrLiteral(ch);
 		if (ch == '"')
 			return readString();
 		if (ch == '\'')
@@ -166,36 +164,36 @@ public class Tokenizer
 		return (char) next;
 	}
 
-	private Token readLiteral(char ch)
+	private Token readNumberOrLiteral(char ch)
 	{
+		// read until we have no more reasonable characters
 		StringBuilder b = new StringBuilder();
 		b.append(ch);
 		int next;
+		boolean forceLiteral = forceLiteral(ch);
+		int dashes = 0;
+		
 		while ((next = peekChar()) != -1)
 		{
-			if (!Character.isJavaIdentifierPart(next) && next != '-' && next != '.')
-				break;
-			b.append((char) next);
-			nextChar();
-		}
-		return new Token(TokenType.LITERAL, b.toString());
-	}
-
-	private Token readNumber(char ch)
-	{
-		// read until we have no more number-like symbols
-		StringBuilder b = new StringBuilder();
-		b.append(ch);
-		int next;
-		while ((next = peekChar()) != -1)
-		{
-			if (Character.isDigit(next) || next == '.' || next == 'e' || next == 'E' || next == '-' || next == '+')
+			if (Character.isJavaIdentifierPart(next) || next == '-' || next == '.')
 				b.append((char) next);
 			else
 				break;
+			
+			// is this a literal?
+			if (next == '-')
+				dashes++;
+			if (forceLiteral(next))
+				forceLiteral = true;
+			
 			nextChar();
 		}
-		// parse
+		
+		// if this contains alphas or more than one 
+		if (forceLiteral || dashes > 1)
+			return new Token(TokenType.LITERAL, b.toString());
+		
+		// otherwise, parse as a number
 		String n = b.toString();
 		if (n.contains("e") || n.contains("E") || n.contains("."))
 		{
@@ -205,7 +203,7 @@ public class Tokenizer
 			}
 			catch (NumberFormatException ex)
 			{
-				throwParseException("Problem parsing double", false);
+				throwParseException("Problem parsing double: " + n, false);
 			}
 			return new Token(TokenType.DOUBLE, n);
 		}
@@ -221,6 +219,11 @@ public class Tokenizer
 		return new Token(TokenType.INTEGER, n);
 	}
 
+	private boolean forceLiteral(int next)
+	{
+		return Character.isJavaIdentifierPart(next) && !Character.isDigit(next) && next != 'e' && next != 'E';
+	}
+	
 	private void readGeneralComment()
 	{
 		// read past the *

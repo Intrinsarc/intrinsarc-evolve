@@ -162,7 +162,7 @@ public class TokenizerTests
 	@Test
 	public void testExpectInteger() throws IOException
 	{
-		StringReader reader = new StringReader("12hello 1.23e-8 178.2 /* hello */ 57");
+		StringReader reader = new StringReader("12 hello 1.23e-8 178.2 /* hello */ 57");
 		Tokenizer tok = new Tokenizer(reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.INTEGER, "12"), t);

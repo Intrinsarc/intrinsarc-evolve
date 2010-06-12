@@ -7,20 +7,19 @@ import org.junit.*;
 import com.hopstepjump.backbone.parser.*;
 import com.hopstepjump.backbone.parserbase.*;
 
-public class StratumParserTests
+public class LoadListParserTests
 {
 	@Test
 	public void TestSimple() throws FileNotFoundException
 	{
-		System.out.println("$$ dir = " + new File("test").getAbsolutePath());
-		for (int lp = 0; lp < 10; lp++)
-		{
 			final Expect ex =
 				new Expect(
 						new Tokenizer(
-								new FileReader("tests/com/hopstepjump/backbonetests/parser/test.bb")));
+								new FileReader("tests/com/hopstepjump/backbonetests/parser/simple.loadlist")));
 			
-			new StratumParser(ex).parse();
-		}
+			new LoadListParser(ex).parse();
+			
+			// test the contents
+			
 	}
 }

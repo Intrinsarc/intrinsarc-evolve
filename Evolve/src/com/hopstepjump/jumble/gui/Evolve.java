@@ -8,7 +8,7 @@ import javax.swing.*;
 
 import org.eclipse.emf.common.util.*;
 
-import com.hopstepjump.backbonegenerator.*;
+import com.hopstepjump.backbone.generator.*;
 import com.hopstepjump.deltaengine.errorchecking.*;
 import com.hopstepjump.idraw.diagramsupport.*;
 import com.hopstepjump.idraw.environment.*;

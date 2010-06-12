@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import org.eclipse.uml2.Package;
 
-import com.hopstepjump.backbonegenerator.*;
+import com.hopstepjump.backbone.generator.*;
 import com.hopstepjump.beanimporter.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.idraw.environment.*;

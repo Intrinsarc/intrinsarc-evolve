@@ -13,7 +13,8 @@ import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
-import com.hopstepjump.backbonegenerator.*;
+import com.hopstepjump.backbone.generator.*;
+import com.hopstepjump.backbone.printers.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
