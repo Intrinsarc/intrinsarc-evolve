@@ -3,7 +3,6 @@ package com.hopstepjump.backbonegenerator;
 import java.io.*;
 
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.*;
 
 public class StratumCodeGenerator
 {

@@ -4,20 +4,15 @@ import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
-import com.hopstepjump.backbone.nodes.converters.BBXStreamConverters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Attribute")
-public class BBAttribute extends DEAttribute implements INode,Serializable
+public class BBAttribute extends DEAttribute implements INode
 {
   private transient DEObject parent;
-  @XStreamAsAttribute
   private String name;
   private String uuid = BBUidGenerator.newUuid(getClass());
-  @XStreamConverter(ElementReferenceConverter.class)
-  private DEElement type[];
+  private DEElement type;
   private List<DEParameter> defaultValue;
   private List<DEAppliedStereotype> appliedStereotypes;
 	private Boolean readOnly;
@@ -83,15 +78,12 @@ public class BBAttribute extends DEAttribute implements INode,Serializable
 
   public DEElement getType()
   {
-    return type[0];
+    return type;
   }
 
   public void setType(DEElement type)
   {
-  	if (type == null)
-  		this.type = null;
-  	else
-  		this.type = new DEElement[]{type};
+		this.type = type;
   }
 
 	public List<DEParameter> getDefaultValue()

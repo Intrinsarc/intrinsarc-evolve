@@ -1,9 +1,5 @@
 package com.hopstepjump.uml2deltaengine.converters;
 
-import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.uml2deltaengine.*;
-import com.thoughtworks.xstream.converters.*;
-import com.thoughtworks.xstream.io.*;
 
 /*public class UML2OperationConverter implements Converter
 {

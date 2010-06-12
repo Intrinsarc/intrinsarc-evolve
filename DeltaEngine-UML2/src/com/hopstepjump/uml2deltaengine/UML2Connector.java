@@ -5,9 +5,7 @@ import java.util.*;
 import org.eclipse.uml2.*;
 
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Connector")
 public class UML2Connector extends DEConnector
 {
   private Connector subject;

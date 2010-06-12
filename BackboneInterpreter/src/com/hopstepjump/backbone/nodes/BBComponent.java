@@ -5,61 +5,44 @@ import java.net.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
-import com.hopstepjump.backbone.nodes.converters.BBXStreamConverters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Component")
-public class BBComponent extends DEComponent implements INode, Serializable
+public class BBComponent extends DEComponent implements INode
 {
   private transient DEObject parent;
-  @XStreamAlias("name")
-  @XStreamAsAttribute
   private String rawName;
   private String uuid = BBUidGenerator.newUuid(getClass());
-  @XStreamAsAttribute
   private String kind;
   private Boolean retired;
-  @XStreamAlias("abstract")
-  private Boolean isAbstract;
-  
-  @XStreamAlias("substitutes")
-  @XStreamConverter(ComponentReferencesConverter.class)
+  private Boolean isAbstract;  
   private List<DEElement> substitutes;
-  @XStreamConverter(ComponentReferencesConverter.class)
   private List<DEElement> resembles;
   
   // the stereotypes
-  @XStreamAlias("appliedStereotypes")
   private List<DEAppliedStereotype> replacedAppliedStereotypes;
   
   // the attributes
-  @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedAttributes;
   private List<BBReplacedAttribute> replacedAttributes;
   private List<BBAttribute> addedAttributes;
   
   // the ports
-  @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedPorts;
   private List<BBReplacedPort> replacedPorts;
   private List<BBPort> addedPorts;
   
   // the parts
-  @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedParts;
   private List<BBReplacedPart> replacedParts;
   private List<BBPart> addedParts;
   
   // the connectors
-  @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedConnectors;
   private List<BBReplacedConnector> replacedConnectors;
   private List<BBConnector> addedConnectors;
   
   // the connectors
-  @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedPortLinks;
   private List<BBReplacedConnector> replacedPortLinks;
   private List<BBConnector> addedPortLinks;

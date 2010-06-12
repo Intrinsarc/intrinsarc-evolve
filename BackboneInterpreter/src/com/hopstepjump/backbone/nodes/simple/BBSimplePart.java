@@ -4,17 +4,13 @@ import java.util.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Part")
 public class BBSimplePart extends BBSimpleObject
 {
-	@XStreamAsAttribute
 	private String name;
 	private transient String rawName;
 	private transient int depth;
 	private transient BBSimpleLevel level;
-	@XStreamConverter(SimpleReferenceConverter.class)
 	private BBSimpleComponent type;
 	private List<BBSimpleSlot> slots;
 	private transient boolean resolved;

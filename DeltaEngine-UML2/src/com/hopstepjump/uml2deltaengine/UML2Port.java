@@ -7,9 +7,7 @@ import org.eclipse.uml2.Class;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Port")
 public class UML2Port extends DEPort
 {
   private Port subject;

@@ -7,9 +7,7 @@ import org.eclipse.uml2.Class;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Component")
 public class UML2Component extends DEComponent
 {
   private org.eclipse.uml2.Class subject;

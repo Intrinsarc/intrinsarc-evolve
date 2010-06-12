@@ -7,9 +7,7 @@ import org.eclipse.uml2.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Attribute")
 public class UML2Attribute extends DEAttribute
 {
   private Property subject;

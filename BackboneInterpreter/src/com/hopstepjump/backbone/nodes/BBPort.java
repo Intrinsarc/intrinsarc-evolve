@@ -4,26 +4,17 @@ import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
-import com.hopstepjump.backbone.nodes.converters.BBXStreamConverters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Port")
 public class BBPort extends DEPort implements INode, Serializable
 {
   private transient DEObject parent;
-  @XStreamAsAttribute
   private String name;
-  @XStreamAsAttribute
   private String uuid = BBUidGenerator.newUuid(getClass());
   private Integer lowerBound;
   private Integer upperBound;
-  @XStreamAlias("provides")
-  @XStreamConverter(InterfaceReferencesConverter.class)
   private List<DEInterface> setProvides;
-  @XStreamAlias("requires")
-  @XStreamConverter(InterfaceReferencesConverter.class)
   private List<DEInterface> setRequires;
   private Boolean suppressGeneration;
 	private List<DEAppliedStereotype> appliedStereotypes;

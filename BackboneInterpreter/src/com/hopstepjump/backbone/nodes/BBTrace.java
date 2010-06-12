@@ -6,12 +6,10 @@ import java.util.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
 public class BBTrace extends DETrace implements INode, Serializable
 {
   private transient DEObject parent;
-  @XStreamAsAttribute
   private String uuid = BBUidGenerator.newUuid(getClass());
 	private DERequirementsFeature target;
 	private List<DEAppliedStereotype> appliedStereotypes;

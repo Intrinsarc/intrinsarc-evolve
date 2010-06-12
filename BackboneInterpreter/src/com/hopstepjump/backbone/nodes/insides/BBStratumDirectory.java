@@ -1,8 +1,6 @@
 package com.hopstepjump.backbone.nodes.insides;
 
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("directories")
 public class BBStratumDirectory
 {
 	private String path;

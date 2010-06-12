@@ -5,8 +5,6 @@ import java.io.*;
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.converters.*;
-import com.thoughtworks.xstream.*;
-import com.thoughtworks.xstream.converters.*;
 
 /**
  * reads a stratum in from a directory.  will look through all child directories for child strata

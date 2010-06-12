@@ -1,4 +1,4 @@
-package com.hopstepjump.backbone.printer;
+package com.hopstepjump.backbonegenerator;
 
 import java.util.*;
 import java.util.regex.*;

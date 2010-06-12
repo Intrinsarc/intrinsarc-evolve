@@ -6,9 +6,7 @@ import org.eclipse.uml2.*;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Interface")
 public class UML2Interface extends DEInterface
 {
 	private org.eclipse.uml2.Interface subject;

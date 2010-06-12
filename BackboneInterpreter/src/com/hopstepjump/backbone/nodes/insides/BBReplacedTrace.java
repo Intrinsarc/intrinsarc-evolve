@@ -6,8 +6,8 @@ public class BBReplacedTrace extends BBReplacedConstituent
 {
 	public BBReplacedTrace() {}
 	
-	public BBReplacedTrace(String uuid, DEConstituent replacing)
+	public BBReplacedTrace(String uuid, DEConstituent replacement)
 	{
-		super(uuid, replacing);
+		super(uuid, replacement);
 	}
 }

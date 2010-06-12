@@ -1,32 +1,22 @@
 package com.hopstepjump.backbone.nodes;
 
-import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
-import com.hopstepjump.backbone.nodes.converters.BBXStreamConverters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Connector")
-public class BBConnector extends DEConnector implements INode, Serializable
+public class BBConnector extends DEConnector implements INode
 {
-  private transient DEObject parent;
-  @XStreamAsAttribute
+  private DEObject parent;
   private String name;
-  @XStreamAsAttribute
   private String uuid = BBUidGenerator.newUuid(getClass());
-  @XStreamConverter(PortReferenceConverter.class)
-  private DEPort fromPort[];
-  @XStreamConverter(PartReferenceConverter.class)
-  private DEPart fromPart[];
+  private DEPort fromPort;
+  private DEPart fromPart;
   private String fromIndex;
   private Boolean fromTakeNext;
-  @XStreamConverter(PortReferenceConverter.class)
-  private DEPort toPort[] = new DEPort[1];
-  @XStreamConverter(PartReferenceConverter.class)
-  private DEPart toPart[] = new DEPart[1];
+  private DEPort toPort;
+  private DEPart toPart;
   private String toIndex;
   private Boolean toTakeNext;
   private Boolean delegate;
@@ -59,18 +49,12 @@ public class BBConnector extends DEConnector implements INode, Serializable
 
 	public void setFromPort(DEPort port)
   {
-		if (port == null)
-			fromPort = null;
-		else
-			fromPort = new DEPort[]{port};
+		fromPort = port;
   }
 
 	public void setFromPart(DEPart part)
 	{
-		if (part == null)
-			fromPart = null;
-		else
-			fromPart = new DEPart[]{part};
+		fromPart = part;
 	} 
 
   public void setFromIndex(String fromIndex)
@@ -88,18 +72,12 @@ public class BBConnector extends DEConnector implements INode, Serializable
 
   public void setToPort(DEPort port)
   {
-  	if (port == null)
-  		toPort = null;
-  	else
-  		toPort = new DEPort[]{port};
+		toPort = port;
   }
 
 	public void setToPart(DEPart part)
 	{
-		if (part == null)
-			toPart = null;
-		else
-			toPart = new DEPart[]{part};
+		toPart = part;
 	} 
 
   public void setToIndex(String toIndex)
@@ -167,16 +145,12 @@ public class BBConnector extends DEConnector implements INode, Serializable
 
   public DEPort getOriginalPort(int index)
   {
-  	if (index == 0)
-  		return toPort == null ? null : toPort[0];
-  	return fromPort == null ? null : fromPort[0];
+  	return index == 0 ? toPort : fromPort;
   }
 
   public DEPart getOriginalPart(int index)
   {
-  	if (index == 0)
-  		return toPart == null ? null : toPart[0];
-  	return fromPart == null ? null : fromPart[0];
+  	return index == 0 ? toPart : fromPart;
   }
 
 	@Override

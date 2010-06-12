@@ -4,18 +4,13 @@ import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
-import com.hopstepjump.backbone.nodes.converters.BBXStreamConverters.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Slot")
 public class BBSlot extends DESlot implements INode, Serializable
 {
 	private transient DEObject parent;
-  @XStreamConverter(AttributeReferenceConverter.class)
-	private DEAttribute attribute[];
-  @XStreamConverter(AttributeReferenceConverter.class)
-	private DEAttribute environmentAlias[];
+	private DEAttribute attribute;
+	private DEAttribute environmentAlias;
 	private List<DEParameter> value;
 	private List<DEAppliedStereotype> appliedStereotypes;
 
@@ -23,14 +18,14 @@ public class BBSlot extends DESlot implements INode, Serializable
 	
 	public BBSlot(DEAttribute attribute, List<DEParameter> value)
 	{
-		this.attribute = new DEAttribute[]{attribute};
+		this.attribute = attribute;
 		this.value = value;
 	}
 	
 	public BBSlot(DEAttribute attribute, DEAttribute environmentAlias)
 	{
-		this.attribute = new DEAttribute[]{attribute};
-		this.environmentAlias = new DEAttribute[]{environmentAlias};
+		this.attribute = attribute;
+		this.environmentAlias = environmentAlias;
 	}
 	
   private Object readResolve()
@@ -42,17 +37,13 @@ public class BBSlot extends DESlot implements INode, Serializable
   @Override
 	public DEAttribute getAttribute()
 	{
-		if (attribute == null)
-			return null;
-		return attribute[0];
+		return attribute;
 	}
 
 	@Override
 	public DEAttribute getEnvironmentAlias()
 	{
-		if (environmentAlias == null)
-			return null;
-		return environmentAlias[0];
+		return environmentAlias;
 	}
 
 	@Override

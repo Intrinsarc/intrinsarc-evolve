@@ -7,7 +7,6 @@ import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
-import com.thoughtworks.xstream.*;
 
 public class LoadListReader
 {

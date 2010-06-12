@@ -7,17 +7,12 @@ import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.simple.internal.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Attribute")
 public class BBSimpleAttribute extends BBSimpleObject
 {	
-	@XStreamAsAttribute
 	private String name;
 	private transient String rawName;
-  @XStreamConverter(SimpleReferencesConverter.class)
-  private BBSimpleElement type[] = new BBSimpleElement[1];
-  @XStreamConverter(SimpleReferenceConverter.class)
+  private BBSimpleElement type;
   private BBSimpleAttribute alias;
   private List<BBSimpleParameter> defaultValue;
   private transient int factory;
@@ -56,7 +51,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 			}
 		}
 			
-		type[0] = registry.retrieve(complex.getType().asElement());
+		type = registry.retrieve(complex.getType().asElement());
 		this.complex = complex;
 		position = PositionEnum.TOP;
 		this.owner = owner;
@@ -181,7 +176,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 	{
 		if (resolved)
 			return;
-		type[0].resolveImplementation(registry);
+		type.resolveImplementation(registry);
 
 		if (defaultValue != null)
 		{
@@ -193,7 +188,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 			for (BBSimpleParameter p : defaultValue)
 				p.resolveImplementation(registry, this);
 	    isDefault = defaultValue.size() == 1 && defaultValue.get(0).isDefault();
-			constructor = resolveConstructor(type[0].getImplementationClass(), defaultValue, this);
+			constructor = resolveConstructor(type.getImplementationClass(), defaultValue, this);
 		}
 
 		// place here so we aren't resolved for the above methods
@@ -290,7 +285,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 
 	public BBSimpleElement getType()
 	{
-		return type[0];
+		return type;
 	}
 	
 	public BBSimpleAttribute getAlias()
@@ -429,7 +424,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 				return constructor.newInstance();
 
 			// (2) has this been overridden by the program caller?
-			Class<?> implClass = type[0].getImplementationClass();
+			Class<?> implClass = type.getImplementationClass();
 			if (setNames != null && position == PositionEnum.TOP && setNames.contains(originalName))
 			{
 				setNames.remove(originalName);
@@ -470,7 +465,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 		}
 		catch (Exception ex)
 		{
-			throw new BBRuntimeException("Problem when constructing " + type[0].getImplementationClass() + " in factory " + factory, owner, ex);
+			throw new BBRuntimeException("Problem when constructing " + type.getImplementationClass() + " in factory " + factory, owner, ex);
 		}
 	}
 	

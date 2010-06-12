@@ -7,13 +7,10 @@ import java.util.regex.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.simple.internal.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Value")
 public class BBSimpleParameter
 {
 	private String literal;
-	@XStreamConverter(SimpleReferenceConverter.class)
 	private BBSimpleAttribute attribute;
 	private transient Object resolvedLiteral;
 	private transient boolean isDefault;

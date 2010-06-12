@@ -6,8 +6,8 @@ public class BBReplacedRequirementsFeatureLink extends BBReplacedConstituent
 {
 	public BBReplacedRequirementsFeatureLink() {}
 	
-	public BBReplacedRequirementsFeatureLink(String uuid, DEConstituent replacing)
+	public BBReplacedRequirementsFeatureLink(String uuid, DEConstituent replacement)
 	{
-		super(uuid, replacing);
+		super(uuid, replacement);
 	}
 }

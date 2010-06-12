@@ -6,15 +6,11 @@ import java.util.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Operation")
 public class BBOperation extends DEOperation implements INode, Serializable
 {
-  private transient DEObject parent;
-  @XStreamAsAttribute
+  private DEObject parent;
   private String name;
-  @XStreamAsAttribute
   private String uuid = BBUidGenerator.newUuid(getClass());
 	private List<DEAppliedStereotype> appliedStereotypes;
   

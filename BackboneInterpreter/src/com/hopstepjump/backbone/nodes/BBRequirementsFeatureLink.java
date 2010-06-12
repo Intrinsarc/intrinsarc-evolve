@@ -6,13 +6,11 @@ import java.util.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
 public class BBRequirementsFeatureLink extends DERequirementsFeatureLink implements INode, Serializable
 {
   private transient DEObject parent;
   private String name;
-  @XStreamAsAttribute
   private String uuid = BBUidGenerator.newUuid(getClass());
 	private SubfeatureKindEnum kind;
 	private DERequirementsFeature subfeature;

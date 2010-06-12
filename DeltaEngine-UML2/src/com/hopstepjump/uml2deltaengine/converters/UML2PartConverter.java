@@ -1,12 +1,5 @@
 package com.hopstepjump.uml2deltaengine.converters;
 
-import java.util.*;
-
-import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.deltaengine.base.*;
-import com.hopstepjump.uml2deltaengine.*;
-import com.thoughtworks.xstream.converters.*;
-import com.thoughtworks.xstream.io.*;
 
 /*public class UML2PartConverter implements Converter
 {

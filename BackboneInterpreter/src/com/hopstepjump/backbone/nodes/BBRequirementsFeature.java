@@ -6,13 +6,10 @@ import java.util.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
 public class BBRequirementsFeature extends DEInterface implements INode, Serializable
 {
   private transient DEObject parent;
-  @XStreamAlias("name")
-  @XStreamAsAttribute
   private String rawName;
   private String uuid = BBUidGenerator.newUuid(getClass());  
   private List<DEElement> substitutes;
@@ -20,7 +17,6 @@ public class BBRequirementsFeature extends DEInterface implements INode, Seriali
   private Boolean retired;
   
   // the stereotypes
-  @XStreamAlias("appliedStereotypes")
   private List<DEAppliedStereotype> replacedAppliedStereotypes;
   
   // the constituents  

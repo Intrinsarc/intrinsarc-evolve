@@ -5,14 +5,10 @@ import java.util.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.insides.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("LoadList")
 public class BBLoadList implements Serializable
 {
-	@XStreamImplicit
 	private List<BBVariableDefinition> variables;
-	@XStreamImplicit
 	private List<BBStratumDirectory> strataDirectories;
 	
 	public BBLoadList()

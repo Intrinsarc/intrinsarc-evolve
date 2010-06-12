@@ -1,29 +1,25 @@
 package com.hopstepjump.backbone.nodes.insides;
 
 import java.io.*;
-import java.util.*;
 
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
 public class BBReplacedConstituent implements Serializable
 {
-	@XStreamAlias("original")
 	private String uuid;
-	@XStreamImplicit
-	private List<DEConstituent> with = new ArrayList<DEConstituent>();
+	private DEConstituent replacement;
 
 	public BBReplacedConstituent() {}
 	
-	public BBReplacedConstituent(String uuid, DEConstituent replacing)
+	public BBReplacedConstituent(String uuid, DEConstituent replacement)
 	{
 		this.uuid = uuid;
-		with.add(replacing);
+		this.replacement = replacement;
 	}
 
 	public DEConstituent getReplacement()
 	{
-		return with.get(0);
+		return replacement;
 	}
 
 	public String getUuid()

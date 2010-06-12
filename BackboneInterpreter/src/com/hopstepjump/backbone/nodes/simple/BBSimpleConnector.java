@@ -7,25 +7,19 @@ import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.backbone.nodes.simple.internal.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
 class PortFieldMap extends HashMap<BBSimpleInterface, ReflectivePort>{}
 class ConstructorFieldMap extends HashMap<BBSimpleInterface, Constructor>{}
 
-@XStreamAlias("Connector")
 public class BBSimpleConnector extends BBSimpleObject
 {
-	@XStreamAsAttribute
 	private String name;
 	private transient String rawName;
-	@XStreamAsAttribute
 	private Boolean delegate;
 	private String originalIndex[];
 	private Integer index[];
 	private boolean takeNext[];
-  @XStreamConverter(SimpleReferencesConverter.class)
 	private BBSimplePort ports[] = new BBSimplePort[2];
-  @XStreamConverter(SimpleReferencesConverter.class)
 	private BBSimplePart parts[] = new BBSimplePart[2];
   private transient boolean resolved;
   private transient PortFieldMap provPortFields[] = new PortFieldMap[]{new PortFieldMap(), new PortFieldMap()};

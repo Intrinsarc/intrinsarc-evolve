@@ -4,33 +4,23 @@ import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
-import com.hopstepjump.backbone.nodes.converters.BBXStreamConverters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Interface")
 public class BBInterface extends DEInterface implements INode, Serializable
 {
   private transient DEObject parent;
-  @XStreamAlias("name")
-  @XStreamAsAttribute
   private String rawName;
   private String uuid = BBUidGenerator.newUuid(getClass());  
-  @XStreamAlias("substitutes")
-  @XStreamConverter(InterfaceReferencesConverter.class)
   private List<DEElement> substitutes;
-  @XStreamConverter(InterfaceReferencesConverter.class)
   private List<DEElement> resembles;
   private Boolean factoryInterface;
   private Boolean retired;
   
   // the stereotypes
-  @XStreamAlias("appliedStereotypes")
   private List<DEAppliedStereotype> replacedAppliedStereotypes;
   
   // the constituents  
-  @XStreamConverter(StringReferencesConverter.class)
   private List<String> deletedOperations;
   private List<BBReplacedOperation> replacedOperations;
   private List<BBOperation> addedOperations;

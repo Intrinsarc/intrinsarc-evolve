@@ -1,5 +1,7 @@
 package com.hopstepjump.backbonegenerator;
 
+import static com.hopstepjump.backbonegenerator.hardcoded.common.WriterHelper.*;
+
 import java.io.*;
 import java.util.*;
 
@@ -10,10 +12,6 @@ import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.repositorybase.*;
-import com.hopstepjump.uml2deltaengine.converters.*;
-import com.thoughtworks.xstream.*;
-
-import static com.hopstepjump.backbonegenerator.hardcoded.common.WriterHelper.*;
 
 /**
  * write out the backbone for the strata

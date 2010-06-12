@@ -6,14 +6,10 @@ import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.backbone.runtime.api.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Slot")
 public class BBSimpleSlot extends BBSimpleObject
 {
-	@XStreamConverter(SimpleReferenceConverter.class)
 	private BBSimpleAttribute attribute;
-	@XStreamConverter(SimpleReferenceConverter.class)
 	private BBSimpleAttribute environmentAlias;
 	private List<BBSimpleParameter> value;
 	private transient Object valueObject;

@@ -6,9 +6,7 @@ import org.eclipse.uml2.*;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("AppliedStereotype")
 public class UML2AppliedStereotype extends DEAppliedStereotype
 {
 	private Element parent;

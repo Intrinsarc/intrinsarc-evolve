@@ -4,17 +4,12 @@ import java.util.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Port")
 public class BBSimplePort extends BBSimpleObject
 {
-	@XStreamAsAttribute
 	private String name;
 	private transient String rawName;
-  @XStreamConverter(SimpleReferencesConverter.class)
 	private List<BBSimpleInterface> provides;
-  @XStreamConverter(SimpleReferencesConverter.class)
 	private List<BBSimpleInterface> requires;
   private int upperBound;
   private int lowerBound;

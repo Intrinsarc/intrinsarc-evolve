@@ -7,9 +7,7 @@ import org.eclipse.uml2.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Slot")
 public class UML2Slot extends DESlot
 {
 	private Slot subject;

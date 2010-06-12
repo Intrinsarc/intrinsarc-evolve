@@ -6,9 +6,7 @@ import org.eclipse.uml2.*;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Part")
 public class UML2Part extends DEPart
 {
   private Property subject;

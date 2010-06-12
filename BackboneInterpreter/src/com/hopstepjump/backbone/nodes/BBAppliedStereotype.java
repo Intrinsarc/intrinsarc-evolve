@@ -3,15 +3,11 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.BBXStreamConverters.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("AppliedStereotype")
-public class BBAppliedStereotype extends DEAppliedStereotype implements Serializable
+public class BBAppliedStereotype extends DEAppliedStereotype
 {
   private transient DEObject parent;
-  @XStreamConverter(ComponentReferenceConverter.class)
 	private DEComponent[] stereotype = new DEComponent[1];
 	private Map<DEAttribute, String> properties;
 	

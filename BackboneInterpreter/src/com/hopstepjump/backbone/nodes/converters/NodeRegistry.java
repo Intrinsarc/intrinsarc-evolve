@@ -5,7 +5,6 @@ import java.util.*;
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.io.*;
 
 public class NodeRegistry
 {

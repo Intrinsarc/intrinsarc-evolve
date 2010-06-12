@@ -4,12 +4,9 @@ import java.util.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.simple.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("SimpleFactory")
 public class BBSimpleFactory
 {
-	@XStreamAsAttribute
 	private int factory;
 	private transient BBSimpleComponent component;
 	private List<BBSimpleAttribute> attributes;

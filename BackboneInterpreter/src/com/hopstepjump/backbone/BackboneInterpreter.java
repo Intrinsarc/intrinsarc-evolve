@@ -12,7 +12,6 @@ import com.hopstepjump.backbone.readers.*;
 import com.hopstepjump.backbone.runtime.api.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.deltaengine.errorchecking.*;
-import com.thoughtworks.xstream.*;
 
 public class BackboneInterpreter
 {

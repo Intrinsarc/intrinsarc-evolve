@@ -7,9 +7,7 @@ import org.eclipse.uml2.Package;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Stratum")
 public class UML2Stratum extends DEStratum
 {
   private Package subject;

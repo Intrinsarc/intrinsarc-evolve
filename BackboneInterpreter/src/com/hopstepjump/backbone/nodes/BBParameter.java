@@ -6,10 +6,8 @@ import java.util.*;
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Value")
-public class BBParameter extends DEParameter implements LazyResolver, Serializable
+public class BBParameter extends DEParameter implements LazyResolver
 {
 	private String literal;
 	private String attribute;

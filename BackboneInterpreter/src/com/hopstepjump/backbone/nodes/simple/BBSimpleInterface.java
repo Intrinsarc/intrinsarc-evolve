@@ -4,16 +4,12 @@ import java.util.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Interface")
 public class BBSimpleInterface extends BBSimpleElement
 {
-	@XStreamAsAttribute
 	private String name;
 	private transient String rawName;
 	private transient Class implementationClass;
-	@XStreamAsAttribute
 	private String implementationClassName;
 	private transient String uuid;
 	private transient Set<BBSimpleInterface> supersPlusMe;

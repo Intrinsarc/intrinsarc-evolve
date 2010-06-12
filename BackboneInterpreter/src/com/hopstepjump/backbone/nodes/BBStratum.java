@@ -4,25 +4,16 @@ import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
-import com.hopstepjump.backbone.nodes.converters.BBXStreamConverters.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
-@XStreamAlias("Stratum")
 public class BBStratum extends DEStratum implements Serializable
 {
 	private transient DEStratum parent;
-	@XStreamAsAttribute
   private String name;
   private String uuid;
-  @XStreamAlias("parent")
   private String parentUuid;
-	@XStreamAsAttribute
   private Boolean destructive;
-	@XStreamAsAttribute
   private Boolean relaxed;
-  @XStreamAlias("dependsOn")
-  @XStreamConverter(PackageReferencesConverter.class)
   private List<DEStratum> rawDependsOn;
   private List<DEElement> elements;
   private transient List<DEStratum> childPackages;

@@ -6,18 +6,14 @@ import java.util.*;
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.simple.internal.*;
 import com.hopstepjump.deltaengine.base.*;
-import com.thoughtworks.xstream.annotations.*;
 
 
-@XStreamAlias("Component")
 public class BBSimpleComponent extends BBSimpleElement
 {
-	@XStreamAsAttribute
 	private String name;
 	private transient String rawName;
 	private Boolean factory;
 	private Boolean bean;
-	@XStreamAsAttribute
 	private Boolean leaf;
 	private List<BBSimplePort>                ports;
 	private transient List<BBSimpleAttribute> attributes;
@@ -25,10 +21,8 @@ public class BBSimpleComponent extends BBSimpleElement
 	private transient List<BBSimpleConnector> connectors;
 	private transient Class<?> implementationClass;
 	private transient boolean resolved;
-	@XStreamAsAttribute
 	private String implementationClassName;
 	private Boolean lifecycleCallbacks;
-	@XStreamImplicit
 	private List<BBSimpleFactory> map = new ArrayList<BBSimpleFactory>();
 	private transient Constructor<?> constructor;
 	private transient String uuid;
