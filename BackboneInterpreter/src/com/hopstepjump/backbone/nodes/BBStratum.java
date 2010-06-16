@@ -8,7 +8,7 @@ import com.hopstepjump.deltaengine.base.*;
 
 public class BBStratum extends DEStratum implements Serializable
 {
-	private transient DEStratum parent;
+	private DEStratum parent;
   private String name;
   private String uuid;
   private String parentUuid;
@@ -16,22 +16,25 @@ public class BBStratum extends DEStratum implements Serializable
   private Boolean relaxed;
   private List<DEStratum> rawDependsOn;
   private List<DEElement> elements;
-  private transient List<DEStratum> childPackages;
+  private List<DEStratum> childPackages;
 
-  public BBStratum() {}
-  
+  public BBStratum(String uuid, String name)
+  {
+  	this.uuid = uuid;
+  	if (name == null)
+  		this.name = uuid;
+  	else
+  		this.name = name;
+  	GlobalNodeRegistry.registry.addNode(this);
+  }
+
   public BBStratum(String uuid)
   {
   	this.uuid = uuid;
   	this.name = uuid;
+  	GlobalNodeRegistry.registry.addNode(this);
   }
 
-  private Object readResolve()
-  {
-  	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
-  }
-  
   @Override
   public String getName()
   {

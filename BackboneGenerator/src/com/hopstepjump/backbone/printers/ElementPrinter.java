@@ -57,7 +57,7 @@ public class ElementPrinter
 		
 		for (DeltaPair pair : elem.getDeltas(ConstituentTypeEnum.DELTA_APPLIED_STEREOTYPE).getReplaceObjects())
 		{
-			if (showStereotype(pair))
+			if (showStereotype(pair.getConstituent().asAppliedStereotype()))
 				b.append(indent + "\t\t" + makeAppliedStereotypeString(pair.getConstituent().asAppliedStereotype()) + "\n");
 		}
 		appendAll(b, indent, "operations", elem, ConstituentTypeEnum.DELTA_OPERATION, null);
@@ -197,10 +197,9 @@ public class ElementPrinter
 		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(pair.getConstituent()) + ref.reference(pair.getConstituent()) + (last ? ";\n" : ",\n"));
 	}
 
-	private boolean showStereotype(DeltaPair pair)
+	private boolean showStereotype(DEAppliedStereotype applied)
 	{
 		// if this only has the expected set of properties, then ignore it
-		DEAppliedStereotype applied = pair.getConstituent().asAppliedStereotype();
 		if (!ignoreStereotype(applied.getStereotype()))
 			return true;
 		
@@ -257,7 +256,8 @@ public class ElementPrinter
 			return "";
 		String str = "";
 		for (DEAppliedStereotype applied : obj.getAppliedStereotypes())
-			str += makeAppliedStereotypeString(applied);
+			if (showStereotype(applied))
+				str += makeAppliedStereotypeString(applied);
 		return str;
 	}
 	
@@ -273,11 +273,16 @@ public class ElementPrinter
 		int lp = 0;
 		if (props != null)
 		{
-			str += ": ";
+			boolean first = false;
 			for (DEAttribute prop : props.keySet())
 			{
-				if (!standard || !ignoreProperty(prop))
+				if (!standard && !ignoreProperty(prop))
 				{
+					if (first)
+					{
+						str += ": ";
+						first = false;
+					}
 					String val = props.get(prop);
 					if (val.equals("false"))
 						;  // show nothing for false
@@ -285,7 +290,7 @@ public class ElementPrinter
 					if (val.equals("true"))
 						str += (lp++ == 0 ? "" : ", ") + ref.reference(prop);
 					else
-						str += (lp++ == 0 ? "" : ", ") + ref.reference(prop) + " = " + props.get(prop);
+						str += (lp++ == 0 ? "" : ", ") + ref.reference(prop) + " = \"" + props.get(prop) + "\"";
 				}
 			}
 		}
@@ -360,7 +365,7 @@ public class ElementPrinter
 		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(part) + ref.name(part));
 		int sSize = part.getSlots().size();
 		if (part.getType() != null)
-			b.append(": " + ref.reference(part.getType()) + (sSize == 0 ? ";\n" : "\n"));
+			b.append(": " + ref.reference(part.getType()) + (sSize == 0 ? "" : "\n"));
 		int slp = 0;
 		for (DESlot slot : part.getSlots())
 		{
@@ -390,10 +395,11 @@ public class ElementPrinter
 					}
 					if (dvSize > 1)
 						b.append(")");
-					b.append(++slp != sSize ? ",\n" : ";\n");
+					b.append(++slp != sSize ? "\n" : "");
 				}
 			}
 		}
+		b.append(last ? ";\n" : ",\n");
 	}
 
 	private void appendPortString(String indent, StringBuilder b, DeltaPair pair, boolean replace, boolean last)

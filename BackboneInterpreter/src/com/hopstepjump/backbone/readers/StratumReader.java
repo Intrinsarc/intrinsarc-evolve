@@ -5,6 +5,8 @@ import java.io.*;
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.parser.*;
+import com.hopstepjump.backbone.parserbase.*;
 
 /**
  * reads a stratum in from a directory.  will look through all child directories for child strata
@@ -14,7 +16,7 @@ public class StratumReader
 {
   private File directory;
   
-  public StratumReader(File directory, boolean top)
+  public StratumReader(File directory)
   {
     this.directory = directory;
   }
@@ -31,46 +33,19 @@ public class StratumReader
   	throw new StratumLoadingException("Found no .bb files in " + directory);
   }
   
-  private BBStratum readStratum(File file) throws StratumLoadingException, BBNodeNotFoundException
+  private BBStratum readStratum(File stratum) throws StratumLoadingException, BBNodeNotFoundException
   {
-    if (!file.exists())
-      throw new StratumLoadingException("Cannot read " + file);
+    if (!stratum.exists())
+      throw new StratumLoadingException("Cannot read " + stratum);
     
-    BufferedReader buffered;
-    try
-    {
-      buffered = new BufferedReader(new FileReader(file));
-    }
-    catch (FileNotFoundException ex)
-    {
-      throw new StratumLoadingException("Cannot find file to read stratum from " + file);
-    }
-    
-    try
-    {
-      Object obj = null; //x.fromXML(buffered);
-      if (!(obj instanceof BBStratum))
-        throw new StratumLoadingException("Did not find a stratum definition inside " + file);
-
-      return (BBStratum) obj;
-    }
-/*    catch(ConversionException ex)
-    {
-      // possibly a node issue
-      if (ex.getCause() instanceof BBNodeNotFoundException)
-        throw (BBNodeNotFoundException) ex.getCause();
-      ex.printStackTrace();
-      throw new StratumLoadingException("Cannot load due to XStream conversion error");
-    }
-*/    finally
-    {
-      try
-      {
-        buffered.close();
-      }
-      catch (IOException e)
-      {
-      }
-    }
+  	Expect expect = LoadListReader.makeExpect(stratum);
+  	try
+  	{
+  		return new StratumParser(expect).parse();
+  	}
+  	catch (ParseException ex)
+  	{
+      throw new StratumLoadingException("Parsing problem with: " + stratum + ", message is: " + ex.getMessage());    	
+  	}
   }
 }

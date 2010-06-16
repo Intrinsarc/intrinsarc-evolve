@@ -38,13 +38,6 @@ public class UML2Component extends DEComponent
   	return applied;
 	}
   
-	@Override
-  public Object readResolve()
-  {
-  	super.readResolve();
-  	return this;
-  }
-  
   @Override
   public List<DEElement> getRawSubstitutes()
   {

@@ -1,7 +1,5 @@
 package com.hopstepjump.backbone.nodes;
 
-import java.io.*;
-import java.net.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
@@ -10,7 +8,7 @@ import com.hopstepjump.deltaengine.base.*;
 
 public class BBComponent extends DEComponent implements INode
 {
-  private transient DEObject parent;
+  private DEObject parent;
   private String rawName;
   private String uuid = BBUidGenerator.newUuid(getClass());
   private String kind;
@@ -48,29 +46,36 @@ public class BBComponent extends DEComponent implements INode
   private List<BBConnector> addedPortLinks;
 	
   // for going the other way
-  private transient List<DEElement> substituters;
-  private transient Set<DEElement> resemblers;
+  private List<DEElement> substituters;
+  private Set<DEElement> resemblers;
   
   // the deltas for the difference calculations
-  private transient boolean initialiseDeltas;
-  private transient Deltas attributes;
-  private transient Deltas parts;
-  private transient Deltas ports;
-  private transient Deltas connectors;
-  private transient Deltas portLinks;
-  private transient Deltas appliedStereotypes;
+  private boolean initialiseDeltas;
+  private Deltas attributes;
+  private Deltas parts;
+  private Deltas ports;
+  private Deltas connectors;
+  private Deltas portLinks;
+  private Deltas appliedStereotypes;
   
   // other cached variables
-  private transient Set<String> replacedUuids;
+  private Set<String> replacedUuids;
   
-	public BBComponent() {}
-	
   public BBComponent(String uuid)
   {
+  	this(uuid, uuid);
+  }
+  
+  public BBComponent(String uuid, String name)
+  {
   	this.uuid = uuid;
+  	this.rawName = name;
   	this.rawName = uuid;
   	kind = ComponentKindEnum.NORMAL.name();
-  	readResolve();
+  	GlobalNodeRegistry.registry.addNode(this);
+
+    substituters = new ArrayList<DEElement>();
+    resemblers = new HashSet<DEElement>();
   }
   
   public List<DEAppliedStereotype> settable_getReplacedAppliedStereotypes()
@@ -79,16 +84,6 @@ public class BBComponent extends DEComponent implements INode
   		replacedAppliedStereotypes = new ArrayList<DEAppliedStereotype>();
   	return replacedAppliedStereotypes;
 	}
-
-	protected Object readResolve()
-  {
-  	super.readResolve();
-  	GlobalNodeRegistry.registry.addNode(this);
-
-    substituters = new ArrayList<DEElement>();
-    resemblers = new HashSet<DEElement>();
-  	return this;
-  }
 
   public void setParent(DEObject parent)
   {
@@ -435,26 +430,6 @@ public class BBComponent extends DEComponent implements INode
     		pairs,
     		ConstituentTypeEnum.DELTA_APPLIED_STEREOTYPE);
   }
-
-  /**
-   * code to allocate a UUID for factories and placeholders
-   */
-	private static String hostName;
-	static
-	{
-		try
-		{
-			hostName = java.net.InetAddress.getLocalHost().getHostName();
-		}
-		catch (UnknownHostException e)
-		{
-			hostName = ""; 
-		}
-	}
-  private String makeNewUUID()
-	{
-		return hostName + "-" + UUID.randomUUID();
-	}
 
 	@Override
   public Set<String> getReplaceUuidsOnly()

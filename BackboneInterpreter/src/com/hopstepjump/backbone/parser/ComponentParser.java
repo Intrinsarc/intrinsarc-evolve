@@ -5,6 +5,7 @@ import java.util.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.backbone.parserbase.*;
+import com.hopstepjump.deltaengine.base.*;
 
 public class ComponentParser
 {
@@ -17,9 +18,8 @@ public class ComponentParser
 	
 	public BBComponent parse()
 	{
-		final BBComponent c = new BBComponent();
-		
 		final String uuid[] = {null};
+		final String name[] = {null};
 		boolean factory[] = {false};
 		boolean placeholder[] = {false};
 		boolean primitive[] = {false};
@@ -29,7 +29,17 @@ public class ComponentParser
 		final String implementation[] = {null};
 		ex.literal();
 		ex.
-			uuid(uuid).
+			uuid(uuid, name);
+		
+		final BBComponent c = new BBComponent(uuid[0], name[0]);
+		
+		c.setComponentKind(ComponentKindEnum.NORMAL);
+		if (primitive[0])
+			c.setComponentKind(ComponentKindEnum.PRIMITIVE);
+		if (stereotype[0])
+			c.setComponentKind(ComponentKindEnum.STEREOTYPE);
+
+		ex.
 			optionalLiteral("is-factory", factory).
 			optionalLiteral("is-placeholder", placeholder).
 			optionalLiteral("is-primitive", primitive).
@@ -72,11 +82,11 @@ public class ComponentParser
 					new LiteralMatch("connectors",
 							new IAction() { public void act() { parseAddedConnectors(c.settable_getAddedConnectors()); } }),
 					
-					new LiteralMatch("delete-links",
+					new LiteralMatch("delete-port-links",
 						new IAction() { public void act() { parseDeletions(c.settable_getDeletedPortLinks()); } }),
-					new LiteralMatch("replace-links",
+					new LiteralMatch("replace-port-links",
 							new IAction() { public void act() { parseReplacedLinks(c.settable_getReplacedPortLinks()); } }),
-					new LiteralMatch("links",
+					new LiteralMatch("port-links",
 							new IAction() { public void act() { parseAddedLinks(c.settable_getAddedPortLinks()); } })).
 			literal("}");
 
@@ -120,12 +130,16 @@ public class ComponentParser
 	
 	private BBConnector parseLink()
 	{
-		final BBConnector connector = new BBConnector();
 		String uuid[] = {""};
+		String name[] = {""};
 		String end1[] = {""};
 		String end2[] = {""};
 		ex.
-			uuid(uuid).
+			uuid(uuid, name);
+		
+		BBConnector connector = new BBConnector(uuid[0]);
+		
+		ex.
 			literal("joins").
 			uuid(end1).
 			literal("to").
@@ -170,10 +184,14 @@ public class ComponentParser
 	
 	private BBConnector parseConnector()
 	{
-		final BBConnector connector = new BBConnector();
 		String uuid[] = {""};
+		String name[] = {""};
 		ex.
-			uuid(uuid).
+			uuid(uuid, name);
+		
+		BBConnector connector = new BBConnector(uuid[0]);
+
+		ex.
 			literal("joins");
 		end();
 		ex.literal("to");
@@ -248,11 +266,16 @@ public class ComponentParser
 	
 	private BBPart parsePart()
 	{
-		final BBPart part= new BBPart();
 		String uuid[] = {""};
+		String name[] = {""};
 		String type[] = {""};
 		ex.
-			uuid(uuid).
+			uuid(uuid, name);
+		
+		final BBPart part= new BBPart(uuid[0]);
+		part.setName(name[0]);
+
+		ex.
 			literal(":").
 			uuid(type).
 			zeroOrMore(
@@ -323,13 +346,20 @@ public class ComponentParser
 	
 	private BBPort parsePort()
 	{
-		final BBPort port = new BBPort();
 		String uuid[] = {""};
+		String name[] = {""};
 		final List<String> provides = new ArrayList<String>();
 		final List<String> requires = new ArrayList<String>();
 		
+		boolean create[] = {false};
 		ex.
-			uuid(uuid).
+			uuid(uuid, name);
+
+		final BBPort port = new BBPort(uuid[0]);
+		port.setName(name[0]);
+
+		ex.
+			optionalLiteral("is-create-port", create).
 			guard("provides",
 					new IAction() {
 						public void act()

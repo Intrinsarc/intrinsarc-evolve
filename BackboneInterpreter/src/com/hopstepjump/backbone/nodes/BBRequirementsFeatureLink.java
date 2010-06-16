@@ -16,21 +16,12 @@ public class BBRequirementsFeatureLink extends DERequirementsFeatureLink impleme
 	private DERequirementsFeature subfeature;
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBRequirementsFeatureLink()
+  public BBRequirementsFeatureLink(String uuid)
   {
-  }
-  
-  private Object readResolve()
-  {
+  	this.uuid = uuid;
   	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
   }
   
-  public void setUuid(String uuid)
-  {
-    this.uuid = uuid;
-  }
-
   @Override
   public DEObject getParent()
   {

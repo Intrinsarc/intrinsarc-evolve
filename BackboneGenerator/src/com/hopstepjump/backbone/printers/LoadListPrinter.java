@@ -8,13 +8,10 @@ import com.hopstepjump.backbone.nodes.insides.*;
 public class LoadListPrinter
 {
 	private BBLoadList list;
-	/** how do we want to see the output? */
-	private ReferenceHelper ref;
 	
 	public LoadListPrinter(BBLoadList list, BackbonePrinterMode mode)
 	{
 		this.list = list;
-		this.ref = new ReferenceHelper(mode);
 	}
 	
 	public String makePrintString(String indent)

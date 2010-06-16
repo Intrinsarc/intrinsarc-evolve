@@ -6,9 +6,9 @@ load-list
     directories:
         "test" = "$BB/src/test",
         "backbone" = "$BB/base/backbone",
-        "backbone_::_implementation" = "$BB/base/backbone/implementation",
-        "backbone_::_api" = "$BB/base/backbone/api",
-        "backbone_::_documentation_profile" = "$BB/base/backbone/documentation profile",
-        "backbone_::_standard_profile" = "$BB/base/backbone/standard profile",
-        "backbone_::_backbone_profile" = "$BB/base/backbone/backbone profile";
+        "backbone :: implementation" = "$BB/base/backbone/implementation",
+        "backbone :: api" = "$BB/base/backbone/api",
+        "backbone :: documentation_profile" = "$BB/base/backbone/documentation profile",
+        "backbone :: standard_profile" = "$BB/base/backbone/standard profile",
+        "backbone :: backbone_profile" = "$BB/base/backbone/backbone profile";
 }

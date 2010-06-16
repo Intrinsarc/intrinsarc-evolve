@@ -37,7 +37,7 @@ public abstract class DEElement extends DEObject
     
   public DEElement()
   {
-  	readResolve();
+  	clearCollections();
   }
   
 	public void clearCache(DEStratum perspective)
@@ -104,12 +104,6 @@ public abstract class DEElement extends DEObject
   	shallowDestructive = null;		
 	}
 	
-  protected Object readResolve()
-  {
-  	clearCollections();
-  	return this;
-  }
-  
   public String getName()
   {
   	return getRawName();

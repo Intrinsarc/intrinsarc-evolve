@@ -9,7 +9,7 @@ import com.hopstepjump.deltaengine.base.*;
 
 public class BBPart extends DEPart implements INode, Serializable
 {
-  private transient DEObject parent;
+  private DEObject parent;
   private String name;
   private String uuid = BBUidGenerator.newUuid(getClass());
   private DEComponent[] type = new DEComponent[1];
@@ -19,11 +19,10 @@ public class BBPart extends DEPart implements INode, Serializable
 	private transient boolean synthetic;
 	private transient boolean pullUp;
 
-	public BBPart() {}
-	
   public BBPart(String uuid)
   {
   	this.uuid = uuid;
+  	GlobalNodeRegistry.registry.addNode(this);
   }
 
   public BBPart(String uuid, boolean synthetic, boolean pullUp)
@@ -33,12 +32,6 @@ public class BBPart extends DEPart implements INode, Serializable
 		this.pullUp = pullUp;
   }
 
-  private Object readResolve()
-  {
-  	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
-  }
-  
   @Override
   public DEPort asPort()
   {

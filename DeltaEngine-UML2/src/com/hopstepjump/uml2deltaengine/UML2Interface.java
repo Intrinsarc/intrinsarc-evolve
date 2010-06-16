@@ -20,18 +20,9 @@ public class UML2Interface extends DEInterface
   
   public UML2Interface(org.eclipse.uml2.Interface subject)
   {
-    super();
     this.subject = subject;
   }
   
-  @Override
-  public Object readResolve()
-  {
-  	super.readResolve();
-		replacedUuids = null;
-  	return this;
-  }
-
   @Override
   public List<DEElement> getRawSubstitutes()
   {

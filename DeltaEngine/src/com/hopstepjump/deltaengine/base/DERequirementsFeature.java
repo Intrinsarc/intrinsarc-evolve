@@ -13,12 +13,6 @@ public abstract class DERequirementsFeature extends DEElement
 	}
 
 
-	protected Object readResolve()
-	{
-		super.readResolve();
-		return this;
-	}
-
 	@Override
 	public DERequirementsFeature asRequirementsFeature()
 	{

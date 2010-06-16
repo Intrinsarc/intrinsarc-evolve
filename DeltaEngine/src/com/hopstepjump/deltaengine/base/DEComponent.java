@@ -42,6 +42,7 @@ public abstract class DEComponent extends DEElement
 
 	public DEComponent()
 	{
+		clearCollections();
 	}
 
 	@Override
@@ -86,13 +87,6 @@ public abstract class DEComponent extends DEElement
 		for (PortPartPerspective ppp : new HashSet<PortPartPerspective>(cached.keySet()))
 			if (ppp.getPerspective() == perspective)
 				cached.remove(ppp);
-	}
-
-	protected Object readResolve()
-	{
-		super.readResolve();
-		clearCollections();
-		return this;
 	}
 
 	@Override

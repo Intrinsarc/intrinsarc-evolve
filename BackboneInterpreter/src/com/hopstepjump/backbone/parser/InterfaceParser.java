@@ -17,15 +17,18 @@ public class InterfaceParser
 	
 	public BBInterface parse()
 	{
-		final BBInterface i = new BBInterface();
-		
 		final String uuid[] = {null};
+		final String name[] = {null};
 		final List<String> resembles = new ArrayList<String>();
 		final String replaces[] = {null};
 		final String implementation[] = {null};
 		ex.literal();
 		ex.
-			uuid(uuid).
+			uuid(uuid, name);
+		
+		final BBInterface i = new BBInterface(uuid[0], name[0]);
+		
+		ex.
 			oneOf(new LiteralMatch("implementation-class",
 					new IAction() { public void act() { ex.literal().literal(implementation); } })).
 			guard("resembles",
@@ -84,10 +87,11 @@ public class InterfaceParser
 	
 	private BBOperation parseOperation()
 	{
-		final BBOperation operation = new BBOperation();
 		String uuid[] = {""};
+		String name[] = {""};
 		ex.
-			uuid(uuid);
+			uuid(uuid, name);
+		final BBOperation operation = new BBOperation(uuid[0], name[0]);
 		return operation;
 	}
 

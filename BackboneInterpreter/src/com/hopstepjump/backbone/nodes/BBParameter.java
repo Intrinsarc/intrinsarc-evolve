@@ -13,19 +13,11 @@ public class BBParameter extends DEParameter implements LazyResolver
 	private String attribute;
 	private transient DEAttribute realAttribute;
 
-	public BBParameter() {}
-	
 	public BBParameter(String literal)
 	{
 		this.literal = literal;
 	}
 
-	protected Object readResolve()
-  {
-  	GlobalNodeRegistry.registry.addLazyResolver(this);
-  	return this;
-  }
-	
 	@Override
 	public DEAttribute getAttribute()
 	{
@@ -52,7 +44,7 @@ public class BBParameter extends DEParameter implements LazyResolver
 	    if (tk.hasMoreTokens())
 	    	uuid = tk.nextToken();
 	    
-	    realAttribute = GlobalNodeRegistry.registry.retrieveNode(null, DEAttribute.class, uuid).asConstituent().asAttribute();
+	    realAttribute = GlobalNodeRegistry.registry.getNode(uuid).asConstituent().asAttribute();
 		}
 	}
 

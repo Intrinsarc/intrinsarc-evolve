@@ -47,7 +47,7 @@ public class ReferenceHelper
 			else
 			{
 				String name = obj.getName();
-				if (hasNoDashes(uuid))
+				if (isReadable(uuid))
 					return uuid;
 				return uuid + "/" + WHITE.matcher(name).replaceAll("_") + "/";
 			}
@@ -88,15 +88,19 @@ public class ReferenceHelper
 			else
 			{
 				String name = obj.getName();
-				if (hasNoDashes(uuid))
+				if (isReadable(uuid))
 					return uuid;
 				return uuid + "/" + WHITE.matcher(name).replaceAll("_") + "/";
 			}
 		}
 	}
 
-	private boolean hasNoDashes(String uuid)
+	private Pattern NON_READABLE_UUID = Pattern.compile("[a-fA-F0-9\\-]+");
+	/**
+	 * returns true if the pattern is readable -- i.e. isn't a match for a non-readable UUID
+	 */
+	private boolean isReadable(String uuid)
 	{
-		return !uuid.contains("-");
+		return !NON_READABLE_UUID.matcher(uuid).matches();
 	}
 }

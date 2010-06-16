@@ -24,14 +24,6 @@ public class UML2RequirementsFeature extends DERequirementsFeature
   }
   
   @Override
-  public Object readResolve()
-  {
-  	super.readResolve();
-		replacedUuids = null;
-  	return this;
-  }
-
-  @Override
   public List<DEElement> getRawSubstitutes()
   {
     // filter owned dependencies

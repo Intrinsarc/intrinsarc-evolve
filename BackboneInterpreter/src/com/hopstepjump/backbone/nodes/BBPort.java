@@ -24,23 +24,16 @@ public class BBPort extends DEPort implements INode, Serializable
 	private PortKindEnum portKind;
 	private Boolean ordered;
  
-	public BBPort() {}
-	
   public BBPort(String uuid)
   {
   	this.uuid = uuid;
+  	GlobalNodeRegistry.registry.addNode(this);
   }
   
   public BBPort(String uuid, String name)
   {
   	this.uuid = uuid;
   	this.name = name;
-  }
-  
-  private Object readResolve()
-  {
-  	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
   }
   
   @Override

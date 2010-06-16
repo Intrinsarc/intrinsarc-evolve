@@ -18,14 +18,19 @@ public class FeatureParser
 	
 	public BBRequirementsFeature parse()
 	{
-		final BBRequirementsFeature f = new BBRequirementsFeature();
-		
 		final String uuid[] = {null};
+		final String name[] = {null};
 		final List<String> resembles = new ArrayList<String>();
 		final String replaces[] = {null};
 		ex.literal();
 		ex.
-			uuid(uuid).
+			uuid(uuid, name);
+		
+		final BBRequirementsFeature f = new BBRequirementsFeature(uuid[0]);
+		f.setRawName(name[0]);
+		
+
+		ex.
 			guard("resembles",
 					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, resembles); } }).
 			guard("replaces",
@@ -82,11 +87,14 @@ public class FeatureParser
 	
 	private BBRequirementsFeatureLink parseSubfeature()
 	{
-		final BBRequirementsFeatureLink operation = new BBRequirementsFeatureLink();
 		String uuid[] = {""};
 		final SubfeatureKindEnum kind[] = {null};
 		ex.
-			uuid(uuid).
+			uuid(uuid);
+		
+		final BBRequirementsFeatureLink operation = new BBRequirementsFeatureLink(uuid[0]);
+		
+		ex.
 			oneOf(
 					new LiteralMatch("is-mandatory",
 							new IAction() { public void act() { kind[0] = SubfeatureKindEnum.MANDATORY; } }),

@@ -14,21 +14,13 @@ public class BBOperation extends DEOperation implements INode, Serializable
   private String uuid = BBUidGenerator.newUuid(getClass());
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBOperation()
+  public BBOperation(String uuid, String name)
   {
-  }
-  
-  private Object readResolve()
-  {
+  	this.uuid = uuid;
+  	this.name = name;
   	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
   }
   
-  public void setUuid(String uuid)
-  {
-    this.uuid = uuid;
-  }
-
   public void setName(String name)
   {
     this.name = name;

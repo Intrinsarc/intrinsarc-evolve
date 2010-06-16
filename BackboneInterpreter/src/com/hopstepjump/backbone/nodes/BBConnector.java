@@ -23,11 +23,10 @@ public class BBConnector extends DEConnector implements INode
 	private List<DEAppliedStereotype> appliedStereotypes;
 	private transient boolean synthetic;
   
-	public BBConnector() {}
-	
   public BBConnector(String uuid)
   {
   	this.uuid = uuid;
+  	GlobalNodeRegistry.registry.addNode(this);
   }
 
   public BBConnector(String uuid, boolean synthetic)
@@ -36,12 +35,6 @@ public class BBConnector extends DEConnector implements INode
 		this.synthetic = synthetic;
 	}
 
-	private Object readResolve()
-  {
-  	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
-  }
-  
   public void setParent(DEObject parent)
   {
     this.parent = parent;

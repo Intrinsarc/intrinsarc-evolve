@@ -8,14 +8,12 @@ import com.hopstepjump.deltaengine.base.*;
 
 public class BBSlot extends DESlot implements INode, Serializable
 {
-	private transient DEObject parent;
+	private DEObject parent;
 	private DEAttribute attribute;
 	private DEAttribute environmentAlias;
 	private List<DEParameter> value;
 	private List<DEAppliedStereotype> appliedStereotypes;
 
-	public BBSlot() {}
-	
 	public BBSlot(DEAttribute attribute, List<DEParameter> value)
 	{
 		this.attribute = attribute;
@@ -28,12 +26,6 @@ public class BBSlot extends DESlot implements INode, Serializable
 		this.environmentAlias = environmentAlias;
 	}
 	
-  private Object readResolve()
-  {
-  	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
-  }
-  
   @Override
 	public DEAttribute getAttribute()
 	{

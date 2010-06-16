@@ -7,6 +7,8 @@ import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parser.*;
+import com.hopstepjump.backbone.parserbase.*;
 
 public class LoadListReader
 {
@@ -22,47 +24,71 @@ public class LoadListReader
     if (!loadList.exists())
       throw new StratumLoadingException("Cannot read load list from " + loadList);
     
-    BufferedReader buffered;
+  	Expect expect = makeExpect(loadList);
+  	BBLoadList node = null;
+  	try
+  	{
+  		node = new LoadListParser(expect).parse();
+  	}
+  	catch (ParseException ex)
+  	{
+      throw new StratumLoadingException("Parsing problem with: " + loadList + ", message is: " + ex.getMessage());    	
+  	}
+  	
+    List<BBStratumDirectory> directories = new ArrayList<BBStratumDirectory>(node.getTranslatedStrataDirectories());
+    // need to load the last first
+    Collections.reverse(directories);
+    
+    // look through each directory and recursively load any stratum files
+    List<BBStratum> strata = new ArrayList<BBStratum>();
+    for (BBStratumDirectory directory : directories)
+    {
+      StratumReader reader = new StratumReader(new File(directory.getPath()));
+      BBStratum stratum = reader.readStratum();    
+      strata.add(stratum);
+    }			
+    
+    return strata;
+  }
+  
+  /**
+   * make an expect on a file's contents 
+   */
+  public static Expect makeExpect(File file) throws StratumLoadingException
+  {
+    StringBuffer buf = new StringBuffer();
+    BufferedReader buffered = null;
     try
     {
-      buffered = new BufferedReader(new FileReader(loadList));
+    	buffered = new BufferedReader(new FileReader(file));
+    	String line;
+    	while ((line = buffered.readLine()) != null)
+    	{
+    		buf.append(line);
+    		buf.append("\n");
+    	}
     }
     catch (FileNotFoundException ex)
     {
-      throw new StratumLoadingException("Cannot find file to read load list " + loadList);
+      throw new StratumLoadingException("File not found: " + file);
     }
-    
-    try
+    catch (IOException ex)
     {
-      Object obj = null; //x.fromXML(buffered);
-      if (!(obj instanceof BBLoadList))
-        throw new StratumLoadingException("Did not find a load list inside " + loadList);
-
-      BBLoadList node = (BBLoadList) obj;
-      List<BBStratumDirectory> directories = new ArrayList<BBStratumDirectory>(node.getTranslatedStrataDirectories());
-      // need to load the last first
-      Collections.reverse(directories);
-      
-      // look through each directory and recursively load any stratum files
-      List<BBStratum> strata = new ArrayList<BBStratum>();
-      for (BBStratumDirectory directory : directories)
-      {
-        StratumReader reader = new StratumReader(new File(directory.getPath()), true);
-        BBStratum stratum = reader.readStratum();        
-        strata.add(stratum);
-      }			
-      
-      return strata;
+      throw new StratumLoadingException("Problem loading file during reading: " + file);    	
     }
     finally
     {
-      try
-      {
-        buffered.close();
-      }
-      catch (IOException e)
-      {
-      }
+    	// close the reader
+    	try
+			{
+    		if (buffered != null)
+    			buffered.close();
+			}
+    	catch (IOException e)
+			{
+			}
     }
+    
+    return new Expect(new Tokenizer(new StringReader(buf.toString())));
   }
 }

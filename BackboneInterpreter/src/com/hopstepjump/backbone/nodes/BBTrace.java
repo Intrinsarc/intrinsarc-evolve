@@ -14,21 +14,12 @@ public class BBTrace extends DETrace implements INode, Serializable
 	private DERequirementsFeature target;
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBTrace()
+  public BBTrace(String uuid)
   {
-  }
-  
-  private Object readResolve()
-  {
+  	this.uuid = uuid;
   	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
   }
   
-  public void setUuid(String uuid)
-  {
-    this.uuid = uuid;
-  }
-
   @Override
   public DEObject getParent()
   {

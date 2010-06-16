@@ -26,6 +26,7 @@ public class BBAttribute extends DEAttribute implements INode
   public BBAttribute(String uuid)
   {
   	this(uuid, false, false);
+  	GlobalNodeRegistry.registry.addNode(this);
   }
 
   public BBAttribute(String uuid, boolean synthetic, boolean pullUp)
@@ -35,12 +36,6 @@ public class BBAttribute extends DEAttribute implements INode
   	this.pullUp = pullUp;
   }
 
-  private Object readResolve()
-  {
-  	GlobalNodeRegistry.registry.addNode(this);
-  	return this;
-  }
-  
   @Override
   public DEPort asPort()
   {

@@ -36,26 +36,16 @@ public class BBRequirementsFeature extends DEInterface implements INode, Seriali
   // other cached variables
   private transient Set<String> replacedUuids;
   
-  public BBRequirementsFeature() {}
-  
   public BBRequirementsFeature(String uuid)
   {
   	this.uuid = uuid;
   	this.rawName = uuid;
-  	readResolve();
-  }
-
-  protected Object readResolve()
-  {
-  	super.readResolve();
   	GlobalNodeRegistry.registry.addNode(this);
   	
     substituters = new ArrayList<DEElement>();
     resemblers = new HashSet<DEElement>();
-
-  	return this;
   }
-  
+
   public void setParent(DEObject parent)
   {
     this.parent = parent;
