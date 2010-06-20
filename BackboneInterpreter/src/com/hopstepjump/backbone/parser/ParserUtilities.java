@@ -2,7 +2,9 @@ package com.hopstepjump.backbone.parser;
 
 import java.util.*;
 
+import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.parserbase.*;
+import com.hopstepjump.deltaengine.base.*;
 
 public class ParserUtilities
 {
@@ -23,8 +25,9 @@ public class ParserUtilities
 						}));		
 	}
 	
-	public static void parseAppliedStereotype(final Expect ex)
+	public static BBAppliedStereotype parseAppliedStereotype(final Expect ex)
 	{
+		BBAppliedStereotype applied = new BBAppliedStereotype();
 		ex.guard("\u00ab",
 			new IAction()
 			{
@@ -59,6 +62,7 @@ public class ParserUtilities
 					ex.literal("\u00bb");
 				}
 			});
+		return applied;
 	}
 	
 

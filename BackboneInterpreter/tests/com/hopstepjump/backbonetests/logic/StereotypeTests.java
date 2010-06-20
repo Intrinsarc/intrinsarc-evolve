@@ -1,4 +1,4 @@
-package com.hopstepjump.backbonetests;
+package com.hopstepjump.backbonetests.logic;
 
 import java.util.*;
 

@@ -2,7 +2,6 @@ package com.hopstepjump.backbone.nodes.converters;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -39,9 +38,9 @@ public class NodeRegistry
 		lazies.add(lazy);
 	}
 	
-	public void resolveLazyReferences() throws BBNodeNotFoundException
+	public void resolveLazyReferences()
 	{
-		for (LazyResolver lazy : lazies)
-			lazy.resolveLazyReferences();
+		for (LazyResolver l : lazies)
+			l.resolveLazyReferences();
 	}
 }

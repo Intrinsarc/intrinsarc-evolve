@@ -40,30 +40,13 @@ public class BackboneInterpreter
 		
 		String tab = "      |  ";
 		System.out.println(tab + "loading system from " + loadListFile);
-		LoadListReader reader = new LoadListReader(new File(loadListFile));
-		
-		// install the delta engine
-		GlobalDeltaEngine.engine = new BBDeltaEngine();
 		
 		try
 		{
-			long start = System.currentTimeMillis();
-			List<BBStratum> system = reader.readSystem();
-			GlobalNodeRegistry.registry.resolveLazyReferences();
-			long end = System.currentTimeMillis();
-			System.out.println(tab + "loaded " + system.size() + " packages succesfully in " + (end - start) + "ms");
+			List<BBStratum> system = loadSystem(new File(loadListFile), tab);
 			
-			// tell each package about their parent
-			// anything that doesn't have a loaded parent gets the model
 			BBStratum root = GlobalNodeRegistry.registry.getRoot();
-			for (BBStratum pkg : system)
-			{
-				DEObject parent = GlobalNodeRegistry.registry.getNode(pkg.getParentUuid());
-				if (parent == null)
-					parent = root;
-				pkg.setParentAndTellChildren((BBStratum) parent);
-			}
-			
+
 			// perform the error check
 			if (nocheck)
 				System.out.println("Skipping checking phase");
@@ -77,7 +60,7 @@ public class BackboneInterpreter
 	    	final int totalPermutations = detector.calculatePerspectivePermutations(system, -1, true);
 	    	int extraSize = size > 1 ? size - 2 : 0;
 				System.out.println(tab + "total package combinations to check is " + totalPermutations + " + " + (extraSize + 1) + " at home");
-	    	start = System.currentTimeMillis();
+	    	long start = System.currentTimeMillis();
 	    	
 	    	// check all at home
 	    	if (size > 1)
@@ -86,7 +69,7 @@ public class BackboneInterpreter
 	    	// now check at the top level perspective
 	      detector.checkAllInOrder(system, -1, true, null);
 	      
-				end = System.currentTimeMillis();
+				long end = System.currentTimeMillis();
 				if (errors.countErrors() > 0)
 				{
 					System.out.println(tab + "found " + errors.countErrors() + " errors in " + (end - start) + "ms");
@@ -182,6 +165,30 @@ public class BackboneInterpreter
 
 			System.exit(-1);
 		}
+	}
+	
+	public static List<BBStratum> loadSystem(File loadListFile, String tab) throws BBNodeNotFoundException, BBVariableNotFoundException, StratumLoadingException
+	{
+		LoadListReader reader = new LoadListReader(loadListFile);			
+		// install the delta engine
+		GlobalDeltaEngine.engine = new BBDeltaEngine();
+		long start = System.currentTimeMillis();
+		List<BBStratum> system = reader.readSystem();
+		long end = System.currentTimeMillis();
+		System.out.println(tab + "loaded " + system.size() + " packages succesfully in " + (end - start) + "ms");
+		
+		// tell each package about their parent
+		// anything that doesn't have a loaded parent gets the model
+		BBStratum root = GlobalNodeRegistry.registry.getRoot();
+		for (BBStratum pkg : system)
+		{
+			DEObject parent = GlobalNodeRegistry.registry.getNode(pkg.getParentUuid());
+			if (parent == null)
+				parent = root;
+			pkg.setParentAndTellChildren((BBStratum) parent);
+		}
+
+		return system;
 	}
 	
 	private static DEPort findNamedPort(String fullName, DEStratum perspective, DEComponent runComponent, String portName) throws BBBadRunPointException

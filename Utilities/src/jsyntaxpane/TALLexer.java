@@ -13,8 +13,8 @@ public final class TALLexer implements Lexer
 	private static final String[] TOP_KEYWORDS = {
 		"stratum", "component", "interface"};
 	private static final String[] MODIFIERS = {
-		"is-relaxed", "is-destructive", "depends-on", "nests",
-		"is-composite", "is-leaf", "is-primitivetype", "is-factory", "is-placeholder",
+		"parent", "is-normal", "is-relaxed", "is-destructive", "depends-on", "nests",
+		"is-composite", "is-leaf", "is-primitive", "is-factory", "is-placeholder",
 		"resembles", "replaces", "implementation-class", "is-factory-interface", "is-bean",
 		"is-create-port", "is-hyperport-start", "is-hyperport-end", "read-only", "write-only", "becomes"};
 	private static final String[] INSIDE_KEYWORDS = {
@@ -83,5 +83,4 @@ public final class TALLexer implements Lexer
 		}
 		return false;
 	}
-
 }

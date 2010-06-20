@@ -23,7 +23,7 @@ public class StratumPrinter
 		StringBuilder b = new StringBuilder();
 
 		b.append(indent + "stratum " + ref.name(stratum));
-		b.append(indent + "\nparent " + ref.name(stratum.getParent()));
+		b.append(indent + "\n\tparent " + ref.name(stratum.getParent()) + "\n\t");
 		if (stratum.isRelaxed())
 			b.append(" is-relaxed");
 		if (stratum.isDestructive())

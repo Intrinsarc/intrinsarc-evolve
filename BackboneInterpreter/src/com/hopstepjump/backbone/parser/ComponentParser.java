@@ -3,6 +3,7 @@ package com.hopstepjump.backbone.parser;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.*;
+import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
@@ -18,12 +19,16 @@ public class ComponentParser
 	
 	public BBComponent parse()
 	{
+		NodeRegistry reg = GlobalNodeRegistry.registry;
+		
 		final String uuid[] = {null};
 		final String name[] = {null};
+		boolean normal[] = {false};
 		boolean factory[] = {false};
 		boolean placeholder[] = {false};
 		boolean primitive[] = {false};
 		boolean stereotype[] = {false};
+		boolean bean[] = {false};
 		final List<String> resembles = new ArrayList<String>();
 		final String replaces[] = {null};
 		final String implementation[] = {null};
@@ -33,17 +38,13 @@ public class ComponentParser
 		
 		final BBComponent c = new BBComponent(uuid[0], name[0]);
 		
-		c.setComponentKind(ComponentKindEnum.NORMAL);
-		if (primitive[0])
-			c.setComponentKind(ComponentKindEnum.PRIMITIVE);
-		if (stereotype[0])
-			c.setComponentKind(ComponentKindEnum.STEREOTYPE);
-
 		ex.
+			optionalLiteral("is-normal", normal).
 			optionalLiteral("is-factory", factory).
 			optionalLiteral("is-placeholder", placeholder).
 			optionalLiteral("is-primitive", primitive).
 			optionalLiteral("is-stereotype", stereotype).
+			optionalLiteral("is-bean", bean).
 			guard("implementation-class",
 					new IAction() { public void act() { ex.literal(implementation); } }).
 			guard("resembles",
@@ -51,7 +52,34 @@ public class ComponentParser
 			guard("replaces",
 					new IAction() { public void act() { ex.uuid(replaces); } }).
 			literal("{");
-		ParserUtilities.parseAppliedStereotype(ex);
+		BBAppliedStereotype stereo = ParserUtilities.parseAppliedStereotype(ex);
+		
+		c.setComponentKind(ComponentKindEnum.NORMAL);
+		if (primitive[0])
+			c.setComponentKind(ComponentKindEnum.PRIMITIVE);
+		if (stereotype[0])
+			c.setComponentKind(ComponentKindEnum.STEREOTYPE);
+
+		// possibly add a stereotype
+		if (factory[0] || normal[0] || placeholder[0] || bean[0] || resembles.size() == 0 || implementation[0] != null)
+		{
+			if (stereo == null)
+			{
+				stereo = new BBAppliedStereotype();
+				stereo.setStereotype(reg.getNode("component").asComponent());
+				c.settable_getReplacedAppliedStereotypes().add(stereo);
+			}
+
+			if (factory[0])
+				addBooleanStereotypeProperty(stereo, DEComponent.FACTORY_STEREOTYPE_PROPERTY, true);
+			if (placeholder[0])
+				addBooleanStereotypeProperty(stereo, DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY, true);
+			if (factory[0])
+				addBooleanStereotypeProperty(stereo, DEComponent.BEAN_STEREOTYPE_PROPERTY, true);
+			if (implementation[0] != null)
+				addStringStereotypeProperty(stereo, DEComponent.BEAN_STEREOTYPE_PROPERTY, implementation[0]);			
+		}
+		
 		ex.
 			zeroOrMore(
 					new LiteralMatch("delete-attributes",
@@ -93,6 +121,20 @@ public class ComponentParser
 		return c;
 	}
 	
+	private void addBooleanStereotypeProperty(BBAppliedStereotype stereo, String attrUUID, boolean value)
+	{
+		stereo.settable_getProperties().put(
+				GlobalNodeRegistry.registry.getNode(attrUUID).asConstituent().asAttribute(),
+				value ? "true" : "false");
+	}
+
+	private void addStringStereotypeProperty(BBAppliedStereotype stereo, String attrUUID, String value)
+	{
+		stereo.settable_getProperties().put(
+				GlobalNodeRegistry.registry.getNode(attrUUID).asConstituent().asAttribute(),
+				value);
+	}
+
 	private void parseReplacedLinks(List<BBReplacedConnector> replacedLinks)
 	{
 		ex.literal().literal(":").

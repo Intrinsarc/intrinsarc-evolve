@@ -1,7 +1,6 @@
 package com.hopstepjump.backbone.printers;
 
 import java.util.*;
-import java.util.regex.*;
 
 import com.hopstepjump.deltaengine.base.*;
 
@@ -44,8 +43,10 @@ public class ElementPrinter
 		{
 			DEComponent c = elem.asComponent();
 			b.append(indent + "\tcomponent " + ref.name(c) +
+					(isNormal(c) ? " is-normal" : "") +
 					(isRawFactory(c) ? " is-factory" : "") +
 					(isRawPlaceholder(c) ? " is-placeholder" : "") +
+					(isRawBean(c) ? " is-bean" : "") +
 					(c.getComponentKind() == ComponentKindEnum.PRIMITIVE ? " is-primitive" :
 					  (c.getComponentKind() == ComponentKindEnum.STEREOTYPE ? " is-stereotype" : "")));
 		}
@@ -240,6 +241,7 @@ public class ElementPrinter
 	private static final String[] UUIDs = {
 		DEElement.IMPLEMENTATION_STEREOTYPE_PROPERTY,
 		DEComponent.FACTORY_STEREOTYPE_PROPERTY,
+		DEComponent.BEAN_STEREOTYPE_PROPERTY,
 		DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY}
 	;
 	private boolean ignoreProperty(DEAttribute prop)
@@ -432,9 +434,17 @@ public class ElementPrinter
 		return preamble;
 	}
 
+	private boolean isNormal(DEComponent c)
+	{
+    DEAppliedStereotype applied = c.getRawAppliedStereotype();
+    return
+    	applied != null && !c.getRawResembles().isEmpty() &&
+    	!isRawPlaceholder(c) && !isRawFactory(c) && !isRawBean(c);
+	}
+	
 	private boolean isRawPlaceholder(DEComponent c)
   {
-    DEAppliedStereotype applied = c.getAppliedStereotype(c.getHomeStratum());
+    DEAppliedStereotype applied = c.getRawAppliedStereotype();
     if (applied == null)
       return false;
     return applied.getBooleanProperty(DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY);
@@ -442,7 +452,7 @@ public class ElementPrinter
 
 	private boolean isRawBean(DEComponent c)
   {
-    DEAppliedStereotype applied = c.getAppliedStereotype(c.getHomeStratum());
+    DEAppliedStereotype applied = c.getRawAppliedStereotype();
     if (applied == null)
       return false;
     return applied.getBooleanProperty(DEComponent.BEAN_STEREOTYPE_PROPERTY);
@@ -450,7 +460,7 @@ public class ElementPrinter
 
   private boolean isRawFactory(DEComponent c)
   {
-    DEAppliedStereotype applied = c.getAppliedStereotype(c.getHomeStratum());
+    DEAppliedStereotype applied = c.getRawAppliedStereotype();
     if (applied == null)
       return false;
     return applied.getBooleanProperty(DEComponent.FACTORY_STEREOTYPE_PROPERTY);

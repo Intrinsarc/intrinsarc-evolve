@@ -16,7 +16,7 @@ import com.hopstepjump.swing.*;
 
 public class HelpAboutAction extends AbstractAction
 {
-  private static final String TANARC_URL = "http://www.tanarc.com";
+  private static final String TANARC_URL = "http://www.intrinsys.com";
 	public static final ImageIcon WORLD_ICON = IconLoader.loadIcon("world.png");
   private ToolCoordinatorFacet coordinator;
   private PopupMakerFacet popup;
@@ -45,10 +45,9 @@ public class HelpAboutAction extends AbstractAction
           preferred,
           "Description", 
           evolve + " is programmed by Andrew McVeigh.<br>" +
-          "&copy; A. McVeigh 2003-2009<br><br><a href='" + TANARC_URL + "'>Tangible Architecture</a><br><br>" +
+          "&copy; A. McVeigh 2003-2010<br><br><a href='" + TANARC_URL + "'>Intrinsic Systems</a><br><br>" +
           evolve + " is an environment for modeling, maintaining and extending systems built from components.<br><br>" +
-          "The work descends from research I started in 2002/2003" + 
-          " to make naturally extensible applications"));
+          "The work is the culmination of research I started in 2002/2003 to make naturally extensible applications"));
 
     tabs.add(
         makeTextPanel(
@@ -56,7 +55,7 @@ public class HelpAboutAction extends AbstractAction
           "Libraries", 
           "eclipse UML2 -> EPL<br>Objectdb1.04 -> Commercial<br>JTattoo -> Commercial<br>Xoetrope color wheel -> free" +
           "<br>L2fprod common components -> free<br>FreeHep (for SVG, EPS, WMF) -> free<br>JDO 1.01 -> free spec" +
-          "<br>  JICon, Created by Claude Duguay, Copyright (c) 2002"));
+          "<br>  JSyntaxPane ->free<br>JICon, Created by Claude Duguay, Copyright (c) 2002"));
 
     tabs.add(
         makeTextPanel(

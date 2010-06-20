@@ -858,6 +858,16 @@ public abstract class DEElement extends DEObject
 		return getAppliedStereotypes(getHomeStratum());
 	}
 	
+	public DEAppliedStereotype getRawAppliedStereotype()
+	{
+		return getAppliedStereotype(null);
+	}
+
+	public List<DEAppliedStereotype> getRawAppliedStereotypes()
+	{
+		return getAppliedStereotypes(null);
+	}
+	
 	public List<DEAppliedStereotype> getAppliedStereotypes(DEStratum perspective)
 	{
 		// note: we can have more than 1, but this is an error that will be picked up by the element rules
