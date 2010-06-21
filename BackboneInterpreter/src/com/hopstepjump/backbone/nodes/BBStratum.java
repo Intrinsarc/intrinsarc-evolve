@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBStratum extends DEStratum implements Serializable
@@ -18,13 +19,10 @@ public class BBStratum extends DEStratum implements Serializable
   private List<DEElement> elements;
   private List<DEStratum> childPackages;
 
-  public BBStratum(String uuid, String name)
+  public BBStratum(UUIDReference reference)
   {
-  	this.uuid = uuid;
-  	if (name == null)
-  		this.name = uuid;
-  	else
-  		this.name = name;
+  	this.uuid = reference.getUUID();
+  	this.name = reference.getName();
   	GlobalNodeRegistry.registry.addNode(this);
   }
 
@@ -193,5 +191,14 @@ public class BBStratum extends DEStratum implements Serializable
 	{
 		// not needed here
 		return false;
+	}
+
+	public void resolveLazyReferences()
+	{
+		if (elements != null)
+		{
+			for (DEElement e : elements)
+				e.resolveLazyReferences();
+		}
 	}
 }

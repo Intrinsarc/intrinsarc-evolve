@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBInterface extends DEInterface implements INode, Serializable
@@ -12,8 +13,8 @@ public class BBInterface extends DEInterface implements INode, Serializable
   private transient DEObject parent;
   private String rawName;
   private String uuid = BBUidGenerator.newUuid(getClass());  
-  private List<DEElement> substitutes;
-  private List<DEElement> resembles;
+  private LazyObjects<DEElement> resembles = new LazyObjects<DEElement>(DEElement.class);
+  private LazyObjects<DEElement> substitutes = new LazyObjects<DEElement>(DEElement.class);
   private Boolean factoryInterface;
   private Boolean retired;
   
@@ -37,15 +38,10 @@ public class BBInterface extends DEInterface implements INode, Serializable
   // other cached variables
   private transient Set<String> replacedUuids;
   
-  public BBInterface(String uuid)
+  public BBInterface(UUIDReference reference)
   {
-  	this(uuid, uuid);
-  }
-
-  public BBInterface(String uuid, String name)
-  {
-  	this.uuid = uuid;
-  	this.rawName = name;
+  	this.uuid = reference.getUUID();
+  	this.rawName = reference.getName();
   	GlobalNodeRegistry.registry.addNode(this);
   	
     substituters = new ArrayList<DEElement>();
@@ -63,10 +59,10 @@ public class BBInterface extends DEInterface implements INode, Serializable
     
   	// tell anything we resemble or substitute about ourselves
   	if (resembles != null)
-  		for (DEElement r : resembles)
+  		for (DEElement r : resembles.getObjects())
   			r.getPossibleImmediateSubElements().add(this);
   	if (substitutes != null)
-  		for (DEElement r : substitutes)
+  		for (DEElement r : substitutes.getObjects())
   			r.getSubstituters().add(this);
   }
 
@@ -122,17 +118,13 @@ public class BBInterface extends DEInterface implements INode, Serializable
     return addedOperations;
   }
 
-  public List<DEElement> settable_getRawResembles()
+  public LazyObjects<DEElement> settable_getRawResembles()
   {
-    if (resembles == null)
-      resembles = new ArrayList<DEElement>();
     return resembles;
   }
   
-  public List<DEElement> settable_getRawSubstitutes()
+  public LazyObjects<DEElement> settable_getRawSubstitutes()
   {
-    if (substitutes == null)
-      substitutes = new ArrayList<DEElement>();
     return substitutes;
   }
 
@@ -154,9 +146,7 @@ public class BBInterface extends DEInterface implements INode, Serializable
 	@Override
 	public List<? extends DEElement> getRawResembles()
 	{
-    if (resembles == null)
-      return new ArrayList<DEElement>();
-    return resembles;
+    return resembles.getObjects();
 	}
 	
   @Override
@@ -188,10 +178,7 @@ public class BBInterface extends DEInterface implements INode, Serializable
   @Override
   public List<DEElement> getRawSubstitutes()
   {
-    List<DEElement> raw = new ArrayList<DEElement>();
-    if (substitutes != null)
-      raw.addAll(substitutes);
-    return raw;
+  	return substitutes.getObjects();
   }
 
   @Override
@@ -285,5 +272,29 @@ public class BBInterface extends DEInterface implements INode, Serializable
 	{
 		// interfaces are never abstract
 		return false;
+	}
+	
+	@Override
+	public void resolveLazyReferences()
+	{
+		resembles.resolve();
+		substitutes.resolve();
+		resolve(replacedAppliedStereotypes);
+		resolveReplace(replacedOperations);
+		resolve(addedOperations);
+	}
+	
+	private void resolveReplace(List<? extends BBReplacedConstituent> replaced)
+	{
+		if (replaced != null)
+			for (BBReplacedConstituent c : replaced)
+				c.getReplacement().resolveLazyReferences();
+	}
+	
+	private void resolve(List<? extends DEObject> objects)
+	{
+		if (objects != null)
+			for (DEObject obj : objects)
+				obj.resolveLazyReferences();
 	}
 }

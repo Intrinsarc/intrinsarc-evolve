@@ -8,6 +8,7 @@ import com.hopstepjump.backbone.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.deltaengine.errorchecking.*;
 
@@ -52,7 +53,7 @@ public class TestBase
 		d.settable_getRawDependsOn().add(c);
 		
 		// set up some stereotypes
-		componentStereo = new BBComponent("component");
+		componentStereo = new BBComponent(new UUIDReference("component"));
 		componentStereo.setComponentKind(ComponentKindEnum.STEREOTYPE);
 		componentStereo.setParent(global);
 		impl = new BBAttribute(DEElement.IMPLEMENTATION_STEREOTYPE_PROPERTY);
@@ -60,7 +61,7 @@ public class TestBase
 		appliedComponentStereo = new BBAppliedStereotype();
 		appliedComponentStereo.setStereotype(componentStereo);
 		appliedComponentStereo.settable_getProperties().put(impl, "foo");
-		interfaceStereo = new BBComponent("interface");
+		interfaceStereo = new BBComponent(new UUIDReference("interface"));
 		interfaceStereo.setComponentKind(ComponentKindEnum.STEREOTYPE);
 		interfaceStereo.setParent(global);
 		interfaceStereo.settable_getAddedAttributes().add(impl);
@@ -138,7 +139,7 @@ public class TestBase
 	protected void makePrimitive(String name, BBComponent[] component, BBPort[] provPort, BBInterface provIface, BBInterface provIface_req, boolean manyProv, BBPort[] reqPort, BBInterface reqIface, BBInterface reqIface_prov, boolean manyReq)
 	{
 		// make the component
-		BBComponent comp = new BBComponent(name);
+		BBComponent comp = new BBComponent(new UUIDReference(name));
 		comp.settable_getReplacedAppliedStereotypes().add(appliedComponentStereo);
 		a.settable_getElements().add(comp);
 		comp.setParent(a);

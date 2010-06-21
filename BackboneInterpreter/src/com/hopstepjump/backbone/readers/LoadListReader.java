@@ -41,6 +41,7 @@ public class LoadListReader
     
     // look through each directory and recursively load any stratum files
     List<BBStratum> strata = new ArrayList<BBStratum>();
+    GlobalNodeRegistry.registry = new NodeRegistry();
     for (BBStratumDirectory directory : directories)
     {
       StratumReader reader = new StratumReader(new File(directory.getPath()));
@@ -89,6 +90,6 @@ public class LoadListReader
 			}
     }
     
-    return new Expect(new Tokenizer(new StringReader(buf.toString())));
+    return new Expect(new Tokenizer(file.toString(), new StringReader(buf.toString())));
   }
 }

@@ -19,24 +19,19 @@ public class ComponentParser
 	
 	public BBComponent parse()
 	{
-		NodeRegistry reg = GlobalNodeRegistry.registry;
-		
-		final String uuid[] = {null};
-		final String name[] = {null};
+		final UUIDReference uuid = new UUIDReference();
 		boolean normal[] = {false};
 		boolean factory[] = {false};
 		boolean placeholder[] = {false};
 		boolean primitive[] = {false};
 		boolean stereotype[] = {false};
 		boolean bean[] = {false};
-		final List<String> resembles = new ArrayList<String>();
-		final String replaces[] = {null};
 		final String implementation[] = {null};
-		ex.literal();
+		ex.literal("component");
 		ex.
-			uuid(uuid, name);
+			uuid(uuid);
 		
-		final BBComponent c = new BBComponent(uuid[0], name[0]);
+		final BBComponent c = new BBComponent(uuid);
 		
 		ex.
 			optionalLiteral("is-normal", normal).
@@ -48,11 +43,14 @@ public class ComponentParser
 			guard("implementation-class",
 					new IAction() { public void act() { ex.literal(implementation); } }).
 			guard("resembles",
-					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, resembles); } }).
+					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, c.settable_getRawResembles()); } }).
 			guard("replaces",
-					new IAction() { public void act() { ex.uuid(replaces); } }).
+					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, c.settable_getReplaces()); } }).
 			literal("{");
-		BBAppliedStereotype stereo = ParserUtilities.parseAppliedStereotype(ex);
+		
+		// handle stereotypes
+		List<BBAppliedStereotype> stereos = ParserUtilities.parseAppliedStereotype(ex);
+		c.settable_getReplacedAppliedStereotypes().addAll(stereos);
 		
 		c.setComponentKind(ComponentKindEnum.NORMAL);
 		if (primitive[0])
@@ -61,14 +59,17 @@ public class ComponentParser
 			c.setComponentKind(ComponentKindEnum.STEREOTYPE);
 
 		// possibly add a stereotype
-		if (factory[0] || normal[0] || placeholder[0] || bean[0] || resembles.size() == 0 || implementation[0] != null)
+		if (factory[0] || normal[0] || placeholder[0] || bean[0] || c.settable_getRawResembles().isEmpty() || implementation[0] != null)
 		{
-			if (stereo == null)
+			BBAppliedStereotype stereo;
+			if (stereos.isEmpty())
 			{
 				stereo = new BBAppliedStereotype();
-				stereo.setStereotype(reg.getNode("component").asComponent());
+				stereo.setStereotype(new UUIDReference("component"));
 				c.settable_getReplacedAppliedStereotypes().add(stereo);
 			}
+			else
+				stereo = stereos.get(0);
 
 			if (factory[0])
 				addBooleanStereotypeProperty(stereo, DEComponent.FACTORY_STEREOTYPE_PROPERTY, true);
@@ -77,7 +78,7 @@ public class ComponentParser
 			if (factory[0])
 				addBooleanStereotypeProperty(stereo, DEComponent.BEAN_STEREOTYPE_PROPERTY, true);
 			if (implementation[0] != null)
-				addStringStereotypeProperty(stereo, DEComponent.BEAN_STEREOTYPE_PROPERTY, implementation[0]);			
+				addStringStereotypeProperty(stereo, DEComponent.IMPLEMENTATION_STEREOTYPE_PROPERTY, implementation[0]);			
 		}
 		
 		ex.
@@ -124,14 +125,14 @@ public class ComponentParser
 	private void addBooleanStereotypeProperty(BBAppliedStereotype stereo, String attrUUID, boolean value)
 	{
 		stereo.settable_getProperties().put(
-				GlobalNodeRegistry.registry.getNode(attrUUID).asConstituent().asAttribute(),
+				GlobalNodeRegistry.registry.getNode(attrUUID, DEAttribute.class),
 				value ? "true" : "false");
 	}
 
 	private void addStringStereotypeProperty(BBAppliedStereotype stereo, String attrUUID, String value)
 	{
 		stereo.settable_getProperties().put(
-				GlobalNodeRegistry.registry.getNode(attrUUID).asConstituent().asAttribute(),
+				GlobalNodeRegistry.registry.getNode(attrUUID, DEAttribute.class),
 				value);
 	}
 
@@ -145,8 +146,8 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							String uuid[] = {""};
-							ex.uuid(uuid).literal("becomes");
+							UUIDReference reference = new UUIDReference();
+							ex.uuid(reference).literal("becomes");
 							ParserUtilities.parseAppliedStereotype(ex);
 							parseLink();
 						}
@@ -172,21 +173,18 @@ public class ComponentParser
 	
 	private BBConnector parseLink()
 	{
-		String uuid[] = {""};
-		String name[] = {""};
-		String end1[] = {""};
-		String end2[] = {""};
+		UUIDReference reference = new UUIDReference();
+		UUIDReference refEnd1 = new UUIDReference();
+		UUIDReference refEnd2 = new UUIDReference();
 		ex.
-			uuid(uuid, name);
-		
-		BBConnector connector = new BBConnector(uuid[0]);
+			uuid(reference);
 		
 		ex.
 			literal("joins").
-			uuid(end1).
+			uuid(refEnd1).
 			literal("to").
-			uuid(end2);
-		return connector;
+			uuid(refEnd2);
+		return null;
 	}
 	
 	private void parseReplacedConnectors(List<BBReplacedConnector> replacedConnectors)
@@ -199,8 +197,8 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							String uuid[] = {""};
-							ex.uuid(uuid).literal("becomes");
+							UUIDReference reference = new UUIDReference();
+							ex.uuid(reference).literal("becomes");
 							ParserUtilities.parseAppliedStereotype(ex);
 							parseConnector();
 						}
@@ -226,28 +224,24 @@ public class ComponentParser
 	
 	private BBConnector parseConnector()
 	{
-		String uuid[] = {""};
-		String name[] = {""};
+		UUIDReference reference = new UUIDReference();
 		ex.
-			uuid(uuid, name);
+			uuid(reference);
 		
-		BBConnector connector = new BBConnector(uuid[0]);
-
 		ex.
 			literal("joins");
 		end();
 		ex.literal("to");
 		end();
-		connector.setUuid(uuid[0]);
-		return connector;
+		return null;
 	}
 	
 	private void end()
 	{
-		String portUUID[] = {""};		
-		final String partUUID[] = {""};
+		UUIDReference portRef = new UUIDReference();
+		final UUIDReference partRef = new UUIDReference();
 		ex.
-			uuid(portUUID).
+			uuid(portRef).
 			guard("[",
 				new IAction()
 				{
@@ -266,7 +260,7 @@ public class ComponentParser
 				{
 					public void act()
 					{
-						ex.uuid(partUUID);						
+						ex.uuid(partRef);						
 					}
 				});					
 	}
@@ -281,8 +275,8 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							String uuid[] = {""};
-							ex.uuid(uuid).literal("becomes");
+							UUIDReference reference = new UUIDReference();
+							ex.uuid(reference).literal("becomes");
 							ParserUtilities.parseAppliedStereotype(ex);
 							parsePart();
 						}
@@ -308,26 +302,22 @@ public class ComponentParser
 	
 	private BBPart parsePart()
 	{
-		String uuid[] = {""};
-		String name[] = {""};
-		String type[] = {""};
+		UUIDReference reference = new UUIDReference();
+		UUIDReference typeRef = new UUIDReference();
 		ex.
-			uuid(uuid, name);
+			uuid(reference);
 		
-		final BBPart part= new BBPart(uuid[0]);
-		part.setName(name[0]);
-
 		ex.
 			literal(":").
-			uuid(type).
+			uuid(typeRef).
 			zeroOrMore(
 					new NonSemiColonOrCommaMatch(
 						new IAction() {
 							public void act()
 							{
-								String partUUID[] = {""};
+								UUIDReference partRef = new UUIDReference();
 								ex.
-									uuid(partUUID).
+									uuid(partRef).
 									guard("=",
 										new IAction()
 										{
@@ -342,13 +332,13 @@ public class ComponentParser
 											public void act()
 											{
 												String aliasUUID[] = {""};
-												ex.literal("(").uuid(aliasUUID).literal(")");
+												UUIDReference aliasRef = new UUIDReference();
+												ex.literal("(").uuid(aliasRef).literal(")");
 											}
 										});										
 							}
 						}));
-		part.setUuid(uuid[0]);
-		return part;
+		return null;
 	}
 	
 	private void parseReplacedPorts(List<BBReplacedPort> replacedPorts)
@@ -361,8 +351,8 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							String uuid[] = {""};
-							ex.uuid(uuid).literal("becomes");
+							UUIDReference reference = new UUIDReference();
+							ex.uuid(reference).literal("becomes");
 							ParserUtilities.parseAppliedStereotype(ex);
 							parsePort();
 						}
@@ -388,17 +378,13 @@ public class ComponentParser
 	
 	private BBPort parsePort()
 	{
-		String uuid[] = {""};
-		String name[] = {""};
-		final List<String> provides = new ArrayList<String>();
-		final List<String> requires = new ArrayList<String>();
+		UUIDReference reference = new UUIDReference();
+		final LazyObjects<DEInterface> provides = new LazyObjects<DEInterface>(DEInterface.class);
+		final LazyObjects<DEInterface> requires = new LazyObjects<DEInterface>(DEInterface.class);
 		
 		boolean create[] = {false};
 		ex.
-			uuid(uuid, name);
-
-		final BBPort port = new BBPort(uuid[0]);
-		port.setName(name[0]);
+			uuid(reference);
 
 		ex.
 			optionalLiteral("is-create-port", create).
@@ -417,12 +403,11 @@ public class ComponentParser
 						}
 					});
 		
-		port.setUuid(uuid[0]);
-		return port;
+		return null;
 	}
 	
 
-	private void parseInterfaces(final List<String> ifaces)
+	private void parseInterfaces(final LazyObjects<DEInterface> ifaces)
 	{
 		ex.
 			oneOrMore(
@@ -432,14 +417,14 @@ public class ComponentParser
 						{
 							public void act()
 							{
-								String uuid[] = {""};
-								ex.uuid(uuid);
-								ifaces.add(uuid[0]);
+								UUIDReference reference = new UUIDReference();
+								ex.uuid(reference);
+								ifaces.addReference(reference);
 							}
 						}));
 	}
 
-	private void parseReplacedAttributes(List<BBReplacedAttribute> replacedAttributes)
+	private void parseReplacedAttributes(final List<BBReplacedAttribute> replacedAttributes)
 	{
 		ex.literal().literal(":").
 		oneOrMore(
@@ -449,15 +434,15 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							String uuid[] = {""};
-							ex.uuid(uuid).literal("becomes");
-							ParserUtilities.parseAppliedStereotype(ex);
-							parseAttribute();
+							UUIDReference ref = new UUIDReference();
+							ex.uuid(ref).literal("becomes");
+							replacedAttributes.add(new BBReplacedAttribute(ref, parseAttribute()));
 						}
 					})).
-		literal(";");	}
+		literal(";");
+	}
 
-	private void parseAddedAttributes(List<BBAttribute> addedAttributes)
+	private void parseAddedAttributes(final List<BBAttribute> addedAttributes)
 	{
 		ex.literal().literal(":").
 			oneOrMore(
@@ -467,8 +452,7 @@ public class ComponentParser
 						{
 							public void act()
 							{
-								ParserUtilities.parseAppliedStereotype(ex);
-								parseAttribute();
+								addedAttributes.add(parseAttribute());
 							}
 						})).
 			literal(";");
@@ -476,30 +460,36 @@ public class ComponentParser
 	
 	private BBAttribute parseAttribute()
 	{
-		final BBAttribute attr = new BBAttribute();
-		String uuid[] = {""};
-		String type[] = {""};
+		UUIDReference ref = new UUIDReference();
+		UUIDReference typeRef = new UUIDReference();
 		final boolean readOnly[] = {false};
 		final boolean writeOnly[] = {false};
 		ex.
 			optionalLiteral("read-only", readOnly).
 			optionalLiteral("write-only", writeOnly).
-			uuid(uuid).
+			uuid(ref);
+		
+		final BBAttribute attr = new BBAttribute(ref.getUUID());
+		
+		attr.setAppliedStereotypes(ParserUtilities.parseAppliedStereotype(ex));
+		ex.
 			literal(":").
-			uuid(type).
+			uuid(typeRef).
 			guard("=",
 					new IAction() {
 						public void act()
 						{
-							parseParameters(new ArrayList<String>());
+							attr.setDefaultValue(parseParameters(new ArrayList<String>()));
 						}
 					});
-		attr.setUuid(uuid[0]);
+		attr.setType(typeRef);
+		
 		return attr;
 	}
 	
-	private void parseParameters(final List<String> parameters)
+	private List<DEParameter> parseParameters(final List<String> parameters)
 	{
+		final List<DEParameter> params = new ArrayList<DEParameter>();
 		ex.
 			guard("(",
 				new IAction() {
@@ -531,6 +521,7 @@ public class ComponentParser
 										}));
 					}
 				});
+		return params;
 	}
 
 	private void parseDeletions(List<String> deletedUUIDs)

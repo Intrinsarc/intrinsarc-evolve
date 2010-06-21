@@ -73,19 +73,9 @@ public class Expect
 		return optional(false, matched, matches);
 	}
 
-	public Expect uuid(String[] uuid)
-	{
-		return null;
-	}
-	
-	public Expect uuid(String[] uuid, String[] name)
-	{
-		return null;
-	}
-	
 	public Expect uuid(UUIDReference reference)
 	{
-		reference.setFile(tok.getFileName());
+		reference.setFile(tok.getFile());
 		reference.setLine(tok.getCurrentLine());
 		reference.setPos(tok.getCurrentPos());
 		Token t = tok.next();

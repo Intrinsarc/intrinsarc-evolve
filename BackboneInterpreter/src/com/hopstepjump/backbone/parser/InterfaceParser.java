@@ -3,8 +3,10 @@ package com.hopstepjump.backbone.parser;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.*;
+import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.backbone.parserbase.*;
+import com.hopstepjump.deltaengine.base.*;
 
 public class InterfaceParser
 {
@@ -17,26 +19,27 @@ public class InterfaceParser
 	
 	public BBInterface parse()
 	{
-		final String uuid[] = {null};
-		final String name[] = {null};
-		final List<String> resembles = new ArrayList<String>();
-		final String replaces[] = {null};
+		UUIDReference ref = new UUIDReference();
 		final String implementation[] = {null};
 		ex.literal();
 		ex.
-			uuid(uuid, name);
+			uuid(ref);
 		
-		final BBInterface i = new BBInterface(uuid[0], name[0]);
+		final BBInterface i = new BBInterface(ref);
 		
 		ex.
 			oneOf(new LiteralMatch("implementation-class",
 					new IAction() { public void act() { ex.literal().literal(implementation); } })).
 			guard("resembles",
-					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, resembles); } }).
+					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, i.settable_getRawResembles()); } }).
 			guard("replaces",
-					new IAction() { public void act() { ex.uuid(replaces); } }).
+					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, i.settable_getRawSubstitutes()); } }).
 			literal("{");
-		ParserUtilities.parseAppliedStereotype(ex);
+		
+		// handle stereotypes
+		List<BBAppliedStereotype> stereos = ParserUtilities.parseAppliedStereotype(ex);
+		i.settable_getReplacedAppliedStereotypes().addAll(stereos);
+		
 		ex.
 			zeroOrMore(
 					new LiteralMatch("delete-attributes",
@@ -47,7 +50,31 @@ public class InterfaceParser
 						new IAction() { public void act() { parseAddedOperations(i.settable_getAddedOperations()); } })).
 		  literal("}");
 		
+		// possibly add a stereotype
+		if (i.settable_getRawResembles().isEmpty() || implementation[0] != null)
+		{
+			BBAppliedStereotype stereo;
+			if (stereos.isEmpty())
+			{
+				stereo = new BBAppliedStereotype();
+				stereo.setStereotype(new UUIDReference("interface"));
+				i.settable_getReplacedAppliedStereotypes().add(stereo);
+			}
+			else
+				stereo = stereos.get(0);
+
+			if (implementation[0] != null)
+				addStringStereotypeProperty(stereo, DEComponent.IMPLEMENTATION_STEREOTYPE_PROPERTY, implementation[0]);			
+		}
+
 		return i;
+	}
+	
+	private void addStringStereotypeProperty(BBAppliedStereotype stereo, String attrUUID, String value)
+	{
+		stereo.settable_getProperties().put(
+				GlobalNodeRegistry.registry.getNode(attrUUID, DEAttribute.class),
+				value);
 	}
 
 	private void parseReplacedOperations(List<BBReplacedOperation> replacedOperations)
@@ -61,8 +88,8 @@ public class InterfaceParser
 						public void act()
 						{
 							ParserUtilities.parseAppliedStereotype(ex);
-							String uuid[] = {""};
-							ex.uuid(uuid).literal("becomes");
+							UUIDReference ref = new UUIDReference();
+							ex.uuid(ref).literal("becomes");
 							parseOperation();
 						}
 					})).
@@ -87,11 +114,10 @@ public class InterfaceParser
 	
 	private BBOperation parseOperation()
 	{
-		String uuid[] = {""};
-		String name[] = {""};
+		UUIDReference ref = new UUIDReference();
 		ex.
-			uuid(uuid, name);
-		final BBOperation operation = new BBOperation(uuid[0], name[0]);
+			uuid(ref);
+		final BBOperation operation = new BBOperation(ref);
 		return operation;
 	}
 

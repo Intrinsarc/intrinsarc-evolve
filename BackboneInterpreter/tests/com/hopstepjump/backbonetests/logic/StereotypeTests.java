@@ -5,6 +5,7 @@ import java.util.*;
 import org.junit.*;
 
 import com.hopstepjump.backbone.nodes.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 
@@ -19,23 +20,23 @@ public class StereotypeTests extends TestBase
 	@Override
 	protected void postSetup()
 	{
-		stereo = new BBComponent("stereo");
+		stereo = new BBComponent(new UUIDReference("stereo"));
 		stereo.setComponentKind(ComponentKindEnum.STEREOTYPE);
 		stereoAttr = new BBAttribute("stereoAttr");
 		stereo.settable_getAddedAttributes().add(stereoAttr);
 		
-		stereo.settable_getRawResembles().add(componentStereo);
+		stereo.settable_getRawResembles().addObject(componentStereo);
 		applied = new BBAppliedStereotype();
 		applied.setStereotype(stereo);
 		applied.settable_getProperties().put(stereoAttr, "bar");
 		applied.settable_getProperties().put(impl, "zoo");
 		
-		comp = new BBComponent("Test");
+		comp = new BBComponent(new UUIDReference("Test"));
 		comp.setRawName("Test");
 		comp.settable_getReplacedAppliedStereotypes().add(applied);
 		a.settable_getElements().add(comp);
 
-		simpleComp = new BBComponent("Test2");
+		simpleComp = new BBComponent(new UUIDReference(("Test2")));
 		simpleComp.setRawName("Test2");
 		simpleComp.settable_getReplacedAppliedStereotypes().add(appliedComponentStereo);
 		a.settable_getElements().add(simpleComp);

@@ -12,7 +12,7 @@ public abstract class DEObject
   public abstract String getName();
   public abstract Object getRepositoryObject();
   public abstract DEObject getParent();
-	public abstract List<DEAppliedStereotype> getAppliedStereotypes();
+	public abstract List<? extends DEAppliedStereotype> getAppliedStereotypes();
   
   /** type testing */
   public DEStratum asStratum()
@@ -127,10 +127,10 @@ public abstract class DEObject
     return getClass().getSimpleName() + "(" + name + ")";
   }
   
-  public List<DEAppliedStereotype> extractAppliedStereotypes(DEStratum perspective)
+  public List<? extends DEAppliedStereotype> extractAppliedStereotypes(DEStratum perspective)
   {
   	// packages/strata do not have stereotypes directly in Backbone, so ignore
-  	List<DEAppliedStereotype> applied = new ArrayList<DEAppliedStereotype>();
+  	List<? extends DEAppliedStereotype> applied = new ArrayList<DEAppliedStereotype>();
   	if (asStratum() != null)
   		return applied;
   	
@@ -175,5 +175,9 @@ public abstract class DEObject
   	if (appl == null)
   		return null;
   	return appl.getStringProperty(propertyUUID);
+  }
+  
+  public void resolveLazyReferences()
+  {  	
   }
 }

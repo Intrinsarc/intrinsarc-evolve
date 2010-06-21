@@ -16,7 +16,7 @@ public class TokenizerTests
 	public void testExpectString() throws IOException
 	{
 		StringReader reader = new StringReader("\"hello\"");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.STRING, "hello"), t);
 	}
@@ -25,7 +25,7 @@ public class TokenizerTests
 	public void testExpectStringNotClosed() throws IOException
 	{
 		StringReader reader = new StringReader("\"hello");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		tok.next();
 	}
 
@@ -33,7 +33,7 @@ public class TokenizerTests
 	public void testExpectStringMultiLine() throws IOException
 	{
 		StringReader reader = new StringReader("\"hello\ngoodbye\" name");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.STRING, "hello\ngoodbye"), t);
 	}
@@ -42,7 +42,7 @@ public class TokenizerTests
 	public void testExpectColon() throws IOException
 	{
 		StringReader reader = new StringReader("hello: name");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.LITERAL, "hello"), t);
 		t = tok.next();
@@ -55,7 +55,7 @@ public class TokenizerTests
 	public void testExpectStringAfterWhite() throws IOException
 	{
 		StringReader reader = new StringReader("  \t\t  \"hello\"");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.STRING, "hello"), t);
 	}
@@ -64,7 +64,7 @@ public class TokenizerTests
 	public void testExpectStringTwo() throws IOException
 	{
 		StringReader reader = new StringReader("  \t\t  \"hello\"  \t\"goodbye\"\t  ");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.STRING, "hello"), t);
 		t = tok.next();
@@ -76,7 +76,7 @@ public class TokenizerTests
 	{
 		String inp = "\"hello\\\"\\n\\t\\r\\\\there\"";
 		StringReader reader = new StringReader(inp);
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.STRING, "hello\"\n\t\r\\there"), t);
 	}
@@ -85,7 +85,7 @@ public class TokenizerTests
 	public void testExpectStringEscapes2() throws IOException
 	{
 		StringReader reader = new StringReader("  \"hel\\\"lo'\"");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.STRING, "hel\"lo'"), t);
 	}
@@ -94,7 +94,7 @@ public class TokenizerTests
 	public void testExpectChar() throws IOException
 	{
 		StringReader reader = new StringReader("  'a'");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.CHAR, "a"), t);
 	}
@@ -103,7 +103,7 @@ public class TokenizerTests
 	public void testExpectCharEscape() throws IOException
 	{
 		StringReader reader = new StringReader("  '\\\''");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.CHAR, "\'"), t);
 	}
@@ -112,7 +112,7 @@ public class TokenizerTests
 	public void testExpectCharEscape2() throws IOException
 	{
 		StringReader reader = new StringReader("  '\\t'");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.CHAR, "\t"), t);
 	}
@@ -121,7 +121,7 @@ public class TokenizerTests
 	public void testExpectCharQuote() throws IOException
 	{
 		StringReader reader = new StringReader("  '\"'");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.CHAR, "\""), t);
 	}
@@ -130,14 +130,14 @@ public class TokenizerTests
 	public void testExpectCharFailure() throws IOException
 	{
 		StringReader reader = new StringReader("  ''");
-		new Tokenizer(reader).next();
+		new Tokenizer("file", reader).next();
 	}
 
 	@Test
 	public void testExpectLineComment() throws IOException
 	{
 		StringReader reader = new StringReader("  hello\nthere//comment\nandrew");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.LITERAL, "hello"), t);
 		t = tok.next();
@@ -150,7 +150,7 @@ public class TokenizerTests
 	public void testExpectGeneralComment() throws IOException
 	{
 		StringReader reader = new StringReader("  hello\nthere/* comment \n\n*/\nandrew");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.LITERAL, "hello"), t);
 		t = tok.next();
@@ -163,7 +163,7 @@ public class TokenizerTests
 	public void testExpectInteger() throws IOException
 	{
 		StringReader reader = new StringReader("12 hello 1.23e-8 178.2 /* hello */ 57");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.INTEGER, "12"), t);
 		t = tok.next();
@@ -180,7 +180,7 @@ public class TokenizerTests
 	public void testDescriptiveName() throws IOException
 	{
 		StringReader reader = new StringReader("/* hello */ a-b-c/Test a-2 hello/1.2");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.LITERAL, "a-b-c"), t);	
 		t = tok.next();
@@ -209,7 +209,7 @@ public class TokenizerTests
 	public void testGuillemets() throws IOException
 	{
 		StringReader reader = new StringReader("/* hello */ \u00abhello\u00bb");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.LITERAL, "\u00ab"), t);	
 		t = tok.next();
@@ -222,7 +222,7 @@ public class TokenizerTests
 	public void testDots() throws IOException
 	{
 		StringReader reader = new StringReader("a.b.c");
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		Token t = tok.next();
 		assertEquals(new Token(TokenType.LITERAL, "a.b.c"), t);	
 	}
@@ -230,7 +230,7 @@ public class TokenizerTests
 	public void assessLineAndPosition(String text, int nexts, int line, int pos) throws IOException
 	{
 		StringReader reader = new StringReader(text);
-		Tokenizer tok = new Tokenizer(reader);
+		Tokenizer tok = new Tokenizer("file", reader);
 		for (int lp = 0; lp < nexts; lp++)
 			tok.next();
 		boolean caught = false;

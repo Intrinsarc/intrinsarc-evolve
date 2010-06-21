@@ -3,12 +3,13 @@ package com.hopstepjump.backbone.parser;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.*;
+import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class ParserUtilities
 {
-	public static void parseUUIDs(final Expect ex, final List<String> uuids)
+	public static <T> void parseUUIDs(final Expect ex, final LazyObjects<T> references)
 	{
 		ex.oneOrMore(
 				",",
@@ -17,21 +18,36 @@ public class ParserUtilities
 						{
 							public void act()
 							{
-								String uuid[] = {""};
-								String name[] = {""};
-								ex.uuid(uuid, name);
-								uuids.add(uuid[0]);
+								UUIDReference reference = new UUIDReference();
+								ex.uuid(reference);
+								references.addReference(reference);
 							}
 						}));		
 	}
 	
-	public static BBAppliedStereotype parseAppliedStereotype(final Expect ex)
+	public static <T> void parseUUIDs(final Expect ex, final List<String> references)
 	{
-		BBAppliedStereotype applied = new BBAppliedStereotype();
+		ex.oneOrMore(
+				",",
+				new LiteralMatch(
+						new IAction()
+						{
+							public void act()
+							{
+								UUIDReference reference = new UUIDReference();
+								ex.uuid(reference);
+								references.add(reference.getUUID());
+							}
+						}));		
+	}
+	
+	public static List<BBAppliedStereotype> parseAppliedStereotype(final Expect ex)
+	{
+		List<BBAppliedStereotype> stereos = new ArrayList<BBAppliedStereotype>();
 		ex.guard("\u00ab",
 			new IAction()
 			{
-				final String stereoUUID[] = {""};
+				final UUIDReference stereo = new UUIDReference();
 				public void act()
 				{
 					ex.oneOrMore(",",
@@ -40,37 +56,39 @@ public class ParserUtilities
 									{
 										public void act()
 										{
-											ex.uuid(stereoUUID).
-											guard(":",
-												new IAction()
-												{
-													public void act()
+											BBAppliedStereotype applied = new BBAppliedStereotype();
+											ex.uuid(stereo);
+											ex.
+												guard(":",
+													new IAction()
 													{
-														ex.oneOrMore(",",
-																new LiteralMatch(
-																		new IAction()
-																		{
-																			public void act()
+														public void act()
+														{
+															ex.oneOrMore(",",
+																	new LiteralMatch(
+																			new IAction()
 																			{
-																				parseAppliedValue(ex);
-																			}
-																		}));
-													}
-												});
+																				public void act()
+																				{
+																					parseAppliedValue(ex);
+																				}
+																			}));
+														}
+													});
 										}
 									}));
 					ex.literal("\u00bb");
 				}
 			});
-		return applied;
+		return stereos;
 	}
 	
 
 	private static void parseAppliedValue(final Expect ex)
 	{
-		String attrUUID[] = {""};
+		UUIDReference attr = new UUIDReference();
 		ex.
-			uuid(attrUUID).
+			uuid(attr).
 			guard("=",
 				new IAction()
 				{

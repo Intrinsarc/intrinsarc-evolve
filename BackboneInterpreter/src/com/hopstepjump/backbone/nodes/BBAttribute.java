@@ -1,10 +1,10 @@
 package com.hopstepjump.backbone.nodes;
 
-import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBAttribute extends DEAttribute implements INode
@@ -12,9 +12,9 @@ public class BBAttribute extends DEAttribute implements INode
   private transient DEObject parent;
   private String name;
   private String uuid = BBUidGenerator.newUuid(getClass());
-  private DEElement type;
+  private LazyObject<DEElement> type = new LazyObject<DEElement>(DEElement.class);
   private List<DEParameter> defaultValue;
-  private List<DEAppliedStereotype> appliedStereotypes;
+  private List<BBAppliedStereotype> appliedStereotypes;
 	private Boolean readOnly;
 	private Boolean writeOnly;
 	private Boolean suppressGeneration;
@@ -73,12 +73,17 @@ public class BBAttribute extends DEAttribute implements INode
 
   public DEElement getType()
   {
-    return type;
+    return type.getObject();
   }
 
   public void setType(DEElement type)
   {
-		this.type = type;
+		this.type.setObject(type);
+  }
+
+  public void setType(UUIDReference reference)
+  {
+		this.type.setReference(reference);
   }
 
 	public List<DEParameter> getDefaultValue()
@@ -135,13 +140,13 @@ public class BBAttribute extends DEAttribute implements INode
 		this.writeOnly = writeOnly ? true : null;
 	}
 
-	public void setAppliedStereotypes(List<DEAppliedStereotype> appliedStereotypes)
+	public void setAppliedStereotypes(List<BBAppliedStereotype> appliedStereotypes)
 	{
 		this.appliedStereotypes = appliedStereotypes.isEmpty() ? null : appliedStereotypes;
 	}
 
 	@Override
-	public List<DEAppliedStereotype> getAppliedStereotypes()
+	public List<? extends DEAppliedStereotype> getAppliedStereotypes()
 	{
 		return appliedStereotypes == null ? new ArrayList<DEAppliedStereotype>() : appliedStereotypes;
 	}
@@ -155,5 +160,19 @@ public class BBAttribute extends DEAttribute implements INode
 	public void setSuppressGeneration(boolean suppress)
 	{
 		this.suppressGeneration = suppress ? true : null;
+	}
+	
+	@Override
+	public void resolveLazyReferences()
+	{
+		type.resolve();
+		resolve(appliedStereotypes);
+	}
+	
+	private void resolve(List<? extends DEObject> objects)
+	{
+		if (objects != null)
+			for (DEObject obj : objects)
+				obj.resolveLazyReferences();
 	}
 }

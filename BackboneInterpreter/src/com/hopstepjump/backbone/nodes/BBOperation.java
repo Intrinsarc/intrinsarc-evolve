@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBOperation extends DEOperation implements INode, Serializable
@@ -14,10 +15,10 @@ public class BBOperation extends DEOperation implements INode, Serializable
   private String uuid = BBUidGenerator.newUuid(getClass());
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBOperation(String uuid, String name)
+  public BBOperation(UUIDReference reference)
   {
-  	this.uuid = uuid;
-  	this.name = name;
+  	this.uuid = reference.getUUID();
+  	this.name = reference.getName();
   	GlobalNodeRegistry.registry.addNode(this);
   }
   

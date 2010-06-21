@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBRequirementsFeatureLink extends DERequirementsFeatureLink implements INode, Serializable
@@ -16,9 +17,10 @@ public class BBRequirementsFeatureLink extends DERequirementsFeatureLink impleme
 	private DERequirementsFeature subfeature;
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBRequirementsFeatureLink(String uuid)
+  public BBRequirementsFeatureLink(UUIDReference reference)
   {
-  	this.uuid = uuid;
+  	this.uuid = reference.getUUID();
+  	this.name = reference.getName();
   	GlobalNodeRegistry.registry.addNode(this);
   }
   

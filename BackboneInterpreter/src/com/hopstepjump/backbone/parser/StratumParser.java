@@ -5,6 +5,7 @@ import java.util.*;
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.parserbase.*;
+import com.hopstepjump.deltaengine.base.*;
 
 public class StratumParser
 {
@@ -17,9 +18,8 @@ public class StratumParser
 	
 	public BBStratum parse()
 	{
-		String uuid[] = {null};
-		String name[] = {null};
-		final String parentUuid[] = {null};
+		UUIDReference reference = new UUIDReference();
+		final UUIDReference parentRef = new UUIDReference();
 		boolean relaxed[] = {false};
 		boolean destructive[] = {false};
 		final List<String> dependsOn = new ArrayList<String>();
@@ -27,14 +27,14 @@ public class StratumParser
 		// the parser
 		ex.
 			literal("stratum").
-			uuid(uuid, name);
+			uuid(reference);
 		
-		BBStratum bb = new BBStratum(uuid[0], name[0]);
+		BBStratum bb = new BBStratum(reference);
 		final BBStratum stratum[]= new BBStratum[]{bb};
 
 		ex.
 			guard("parent",
-					new IAction() { public void act() { ex.uuid(parentUuid); } }). 
+					new IAction() { public void act() { ex.uuid(parentRef); } }). 
 			optionalLiteral("is-relaxed", relaxed).
 			optionalLiteral("is-destructive", destructive).
 			guard("depends-on",
@@ -48,8 +48,9 @@ public class StratumParser
 		bb.setDestructive(destructive[0]);
 		bb.setRelaxed(relaxed[0]);
 		for (String dep : dependsOn)
-			bb.settable_getRawDependsOn().add(GlobalNodeRegistry.registry.getNode(dep).asStratum());
-		bb.setParentUuid(parentUuid[0]);
+			bb.settable_getRawDependsOn().add(GlobalNodeRegistry.registry.getNode(dep, DEStratum.class));
+		bb.setParentUuid(parentRef.getUUID());
+		bb.resolveLazyReferences();
 		
 		return bb;
 	}

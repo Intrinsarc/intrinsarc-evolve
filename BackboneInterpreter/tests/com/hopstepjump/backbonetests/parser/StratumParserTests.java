@@ -15,10 +15,11 @@ public class StratumParserTests
 		System.out.println("$$ dir = " + new File("test").getAbsolutePath());
 		for (int lp = 0; lp < 10; lp++)
 		{
+			String file = "tests/com/hopstepjump/backbonetests/parser/test.bb";
 			final Expect ex =
 				new Expect(
 						new Tokenizer(
-								new FileReader("tests/com/hopstepjump/backbonetests/parser/test.bb")));
+								file, new FileReader(file)));
 			
 			new StratumParser(ex).parse();
 		}

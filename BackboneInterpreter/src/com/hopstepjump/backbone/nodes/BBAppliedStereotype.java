@@ -2,34 +2,33 @@ package com.hopstepjump.backbone.nodes;
 
 import java.util.*;
 
+import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBAppliedStereotype extends DEAppliedStereotype
 {
   private transient DEObject parent;
-	private DEComponent[] stereotype = new DEComponent[1];
+	private LazyObject<DEComponent> stereotype = new LazyObject<DEComponent>(DEComponent.class);
+	private Map<LazyObject<DEAttribute>, String> lazyProperties;
 	private Map<DEAttribute, String> properties;
+	private boolean addedLazy;
 	
 	public BBAppliedStereotype()
 	{		
 	}
 	
-	public BBAppliedStereotype(DEAppliedStereotype us)
-	{
-		stereotype[0] = us.getStereotype();
-		Map<DEAttribute, String> props = us.getProperties();
-		if (props != null && !props.isEmpty())
-		{
-			properties = new HashMap<DEAttribute, String>();
-			for (DEAttribute key : props.keySet())
-				properties.put(key, props.get(key));
-		}
-	}
-
 	@Override
 	public String getName()
 	{
 		return "";
+	}
+	
+	public Map<LazyObject<DEAttribute>, String> settable_getLazyProperties()
+	{
+		if (lazyProperties == null)
+			lazyProperties = new HashMap<LazyObject<DEAttribute>, String>();
+		return lazyProperties;		
 	}
 	
 	public Map<DEAttribute, String> settable_getProperties()
@@ -42,9 +41,14 @@ public class BBAppliedStereotype extends DEAppliedStereotype
 	@Override
 	public Map<DEAttribute, String> getProperties()
 	{
-		if (properties == null)
-			return new HashMap<DEAttribute, String>();
-		return properties;
+		Map<DEAttribute, String> props = settable_getProperties();
+		if (!addedLazy)
+		{
+			for (LazyObject<DEAttribute> attr : lazyProperties.keySet())
+				props.put(attr.getObject(), properties.get(attr));
+			addedLazy = true;
+		}
+		return props;
 	}
 
   public void setParent(DEObject parent)
@@ -55,7 +59,7 @@ public class BBAppliedStereotype extends DEAppliedStereotype
 	@Override
 	public DEComponent getStereotype()
 	{
-		return stereotype[0];
+		return stereotype.getObject();
 	}
 
 	@Override
@@ -66,6 +70,12 @@ public class BBAppliedStereotype extends DEAppliedStereotype
 	
 	public void setStereotype(DEComponent stereo)
 	{
-		stereotype[0] = stereo;
+		stereotype.setObject(stereo);
+	}
+
+	
+	public void setStereotype(UUIDReference stereo)
+	{
+		stereotype.setReference(stereo);
 	}
 }

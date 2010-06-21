@@ -8,7 +8,17 @@ public class UUIDReference
 	private int line;
 	private int pos;
 	
-	public void setUuid(String uuid)
+	public UUIDReference()
+	{
+	}
+	
+	public UUIDReference(String uuid)
+	{
+		this.uuid = uuid;
+		this.name = uuid;
+	}
+	
+	public void setUUID(String uuid)
 	{
 		this.uuid = uuid;
 	}
@@ -33,7 +43,7 @@ public class UUIDReference
 		this.pos = pos;
 	}
 
-	public String getUuid()
+	public String getUUID()
 	{
 		return uuid;
 	}
@@ -56,5 +66,10 @@ public class UUIDReference
 	public int getPos()
 	{
 		return pos;
+	}
+	
+	public String toString()
+	{
+		return file + ", line = " + line + ", position = " + pos;
 	}
 }

@@ -18,23 +18,19 @@ public class FeatureParser
 	
 	public BBRequirementsFeature parse()
 	{
-		final String uuid[] = {null};
-		final String name[] = {null};
-		final List<String> resembles = new ArrayList<String>();
-		final String replaces[] = {null};
+		UUIDReference ref = new UUIDReference();
+
 		ex.literal();
 		ex.
-			uuid(uuid, name);
+			uuid(ref);
 		
-		final BBRequirementsFeature f = new BBRequirementsFeature(uuid[0]);
-		f.setRawName(name[0]);
-		
+		final BBRequirementsFeature f = new BBRequirementsFeature(ref);
 
 		ex.
 			guard("resembles",
-					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, resembles); } }).
+					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, f.settable_getRawResembles()); } }).
 			guard("replaces",
-					new IAction() { public void act() { ex.uuid(replaces); } }).
+					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, f.settable_getRawReplaces()); } }).
 			literal("{");
 		ParserUtilities.parseAppliedStereotype(ex);
 		ex.
@@ -61,8 +57,8 @@ public class FeatureParser
 						public void act()
 						{
 							ParserUtilities.parseAppliedStereotype(ex);
-							String uuid[] = {""};
-							ex.uuid(uuid).literal("becomes");
+							UUIDReference ref = new UUIDReference();
+							ex.uuid(ref).literal("becomes");
 							parseSubfeature();
 						}
 					})).
@@ -87,12 +83,12 @@ public class FeatureParser
 	
 	private BBRequirementsFeatureLink parseSubfeature()
 	{
-		String uuid[] = {""};
+		UUIDReference ref = new UUIDReference();
 		final SubfeatureKindEnum kind[] = {null};
 		ex.
-			uuid(uuid);
+			uuid(ref);
 		
-		final BBRequirementsFeatureLink operation = new BBRequirementsFeatureLink(uuid[0]);
+		final BBRequirementsFeatureLink operation = new BBRequirementsFeatureLink(ref);
 		
 		ex.
 			oneOf(

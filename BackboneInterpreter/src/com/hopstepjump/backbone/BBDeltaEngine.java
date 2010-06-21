@@ -49,6 +49,6 @@ public class BBDeltaEngine implements IDeltaEngine
 	
 	public DEObject locateObjectForStereotype(String uuid)
 	{
-		return GlobalNodeRegistry.registry.getNode(uuid);
+		return GlobalNodeRegistry.registry.getNode(uuid, DEComponent.class);
 	}
 }

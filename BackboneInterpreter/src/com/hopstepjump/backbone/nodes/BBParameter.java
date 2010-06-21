@@ -7,7 +7,7 @@ import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.deltaengine.base.*;
 
-public class BBParameter extends DEParameter implements LazyResolver
+public class BBParameter extends DEParameter
 {
 	private String literal;
 	private String attribute;
@@ -44,7 +44,7 @@ public class BBParameter extends DEParameter implements LazyResolver
 	    if (tk.hasMoreTokens())
 	    	uuid = tk.nextToken();
 	    
-	    realAttribute = GlobalNodeRegistry.registry.getNode(uuid).asConstituent().asAttribute();
+	    realAttribute = GlobalNodeRegistry.registry.getNode(uuid, DEAttribute.class);
 		}
 	}
 

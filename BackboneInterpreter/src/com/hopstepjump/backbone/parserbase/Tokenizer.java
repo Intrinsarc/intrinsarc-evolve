@@ -10,6 +10,22 @@ import java.io.*;
 
 public class Tokenizer
 {
+	private String file;
+	public String getFile()
+	{
+		return file;
+	}
+
+	public int getCurrentLine()
+	{
+		return currentLine;
+	}
+
+	public int getCurrentPos()
+	{
+		return currentPos;
+	}
+
 	private Reader reader;
 	private int lastChar = -1;
 	private Token lastToken;
@@ -18,7 +34,7 @@ public class Tokenizer
 	private int previousLine;
 	private int previousPos;
 	
-	public Tokenizer(Reader reader)
+	public Tokenizer(String file, Reader reader)
 	{
 		this.reader = reader;
 	}

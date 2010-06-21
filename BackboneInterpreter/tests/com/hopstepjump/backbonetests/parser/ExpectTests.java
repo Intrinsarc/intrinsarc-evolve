@@ -61,20 +61,19 @@ public class ExpectTests
 	@Test
 	public void expectUUIDs()
 	{
-		String uuid[] = {""};
-		String name[] = {""};
-		makeExpect("a1-2-3/hello/").uuid(uuid, name);
-		assertEquals("a1-2-3", uuid[0]);
-		assertEquals("hello", name[0]);
-		makeExpect("a1.2").uuid(uuid, name);
-		assertEquals("a1.2", uuid[0]);
-		makeExpect("Test").uuid(uuid,  name);
-		assertEquals("Test", uuid[0]);
+		UUIDReference ref = new UUIDReference();
+		makeExpect("a1-2-3/hello/").uuid(ref);
+		assertEquals("a1-2-3", ref.getUUID());
+		assertEquals("hello", ref.getName());
+		makeExpect("a1.2").uuid(ref);
+		assertEquals("a1.2", ref.getUUID());
+		makeExpect("Test").uuid(ref);
+		assertEquals("Test", ref.getUUID());
 	}
 	
 	
 	private Expect makeExpect(String text)
 	{
-		return new Expect(new Tokenizer(new StringReader(text)));
+		return new Expect(new Tokenizer("file", new StringReader(text)));
 	}
 }

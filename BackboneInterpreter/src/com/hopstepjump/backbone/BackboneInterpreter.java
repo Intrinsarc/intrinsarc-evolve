@@ -182,7 +182,7 @@ public class BackboneInterpreter
 		BBStratum root = GlobalNodeRegistry.registry.getRoot();
 		for (BBStratum pkg : system)
 		{
-			DEObject parent = GlobalNodeRegistry.registry.getNode(pkg.getParentUuid());
+			DEStratum parent = GlobalNodeRegistry.registry.getNode(pkg.getParentUuid(), DEStratum.class);
 			if (parent == null)
 				parent = root;
 			pkg.setParentAndTellChildren((BBStratum) parent);

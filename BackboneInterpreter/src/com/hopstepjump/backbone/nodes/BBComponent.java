@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBComponent extends DEComponent implements INode
@@ -14,8 +15,8 @@ public class BBComponent extends DEComponent implements INode
   private String kind;
   private Boolean retired;
   private Boolean isAbstract;  
-  private List<DEElement> substitutes;
-  private List<DEElement> resembles;
+  private LazyObjects<DEElement> replaces = new LazyObjects<DEElement>(DEElement.class);
+  private LazyObjects<DEElement> resembles = new LazyObjects<DEElement>(DEElement.class);
   
   // the stereotypes
   private List<DEAppliedStereotype> replacedAppliedStereotypes;
@@ -61,16 +62,10 @@ public class BBComponent extends DEComponent implements INode
   // other cached variables
   private Set<String> replacedUuids;
   
-  public BBComponent(String uuid)
+  public BBComponent(UUIDReference reference)
   {
-  	this(uuid, uuid);
-  }
-  
-  public BBComponent(String uuid, String name)
-  {
-  	this.uuid = uuid;
-  	this.rawName = name;
-  	this.rawName = uuid;
+  	this.uuid = reference.getUUID();
+  	this.rawName = reference.getName();
   	kind = ComponentKindEnum.NORMAL.name();
   	GlobalNodeRegistry.registry.addNode(this);
 
@@ -102,10 +97,10 @@ public class BBComponent extends DEComponent implements INode
 
   	// tell anything we resemble or substitute about ourselves
   	if (resembles != null)
-  		for (DEElement r : resembles)
+  		for (DEElement r : resembles.getObjects())
   			r.getPossibleImmediateSubElements().add(this);
-  	if (substitutes != null)
-  		for (DEElement r : substitutes)
+  	if (replaces != null)
+  		for (DEElement r : replaces.getObjects())
   			r.getSubstituters().add(this);
   }
 
@@ -262,18 +257,14 @@ public class BBComponent extends DEComponent implements INode
 
   //////////////////////////////////////////////////////
   
-  public List<DEElement> settable_getSubstitutes()
+  public LazyObjects<DEElement> settable_getReplaces()
   {
-    if (substitutes == null)
-      substitutes = new ArrayList<DEElement>();
-    return substitutes;
+    return replaces;
   }
 
-  public List<DEElement> settable_getRawResembles()
+  public LazyObjects<DEElement> settable_getRawResembles()
   {
-    if (resembles == null)
-      resembles = new ArrayList<DEElement>();
-    return resembles;
+  	return resembles;
   }
   
   ////////////////////// contract functions ///////////////////////
@@ -293,17 +284,13 @@ public class BBComponent extends DEComponent implements INode
 	@Override
 	public List<DEElement> getRawSubstitutes()
 	{
-    if (substitutes == null)
-      return new ArrayList<DEElement>();
-    return substitutes;
+    return replaces.getObjects();
 	}
 
 	@Override
 	public List<? extends DEElement> getRawResembles()
 	{
-    if (resembles == null)
-      return new ArrayList<DEElement>();
-    return resembles;
+    return resembles.getObjects();
 	}
 
   @Override
@@ -509,5 +496,37 @@ public class BBComponent extends DEComponent implements INode
 	public boolean isRawAbstract()
 	{
 		return isAbstract != null ? isAbstract: false;
+	}
+	
+	@Override
+	public void resolveLazyReferences()
+	{
+		resembles.resolve();
+		replaces.resolve();
+		resolve(replacedAppliedStereotypes);
+		resolveReplace(replacedAttributes);
+		resolve(addedAttributes);
+		resolveReplace(replacedPorts);
+		resolve(addedPorts);
+		resolveReplace(replacedParts);
+		resolve(addedParts);
+		resolveReplace(replacedConnectors);
+		resolve(addedConnectors);
+		resolveReplace(replacedPortLinks);
+		resolve(addedPortLinks);
+	}
+
+	private void resolveReplace(List<? extends BBReplacedConstituent> replaced)
+	{
+		if (replaced != null)
+			for (BBReplacedConstituent c : replaced)
+				c.getReplacement().resolveLazyReferences();
+	}
+
+	private void resolve(List<? extends DEObject> objects)
+	{
+		if (objects != null)
+			for (DEObject obj : objects)
+				obj.resolveLazyReferences();
 	}
 }
