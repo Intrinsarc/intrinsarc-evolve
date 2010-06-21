@@ -75,32 +75,32 @@ public class Expect
 
 	public Expect uuid(String[] uuid)
 	{
-		String name[] = {""};
-		uuid(uuid, name);
-		return this;
+		return null;
 	}
 	
-	public Expect uuid(String[] uuidToSet, String[] nameToSet)
+	public Expect uuid(String[] uuid, String[] name)
 	{
+		return null;
+	}
+	
+	public Expect uuid(UUIDReference reference)
+	{
+		reference.setFile(tok.getFileName());
+		reference.setLine(tok.getCurrentLine());
+		reference.setPos(tok.getCurrentPos());
 		Token t = tok.next();
 		if (t == null)
 			tok.throwParseException("Expected a name but found end of file", false);
 		if (!t.getType().equals(TokenType.LITERAL))
 			tok.throwParseException("Expected a name but found " + t, true);
-		uuidToSet[0] = t.getText();
 		
 		// peek for a string
 		Token p = tok.peek();
+		reference.setName(reference.getUUID());
 		if (p != null && p.getType().equals(TokenType.DESCRIPTIVE_NAME))
-		{
-			if (nameToSet != null)
-				nameToSet[0] = tok.next().getText();
-		}
+				reference.setName(tok.next().getText());
 		else
-		{
-			if (nameToSet != null)
-				nameToSet[0] = null;
-		}
+			reference.setUUID(t.getText());
 		
 		return this;
 	}
