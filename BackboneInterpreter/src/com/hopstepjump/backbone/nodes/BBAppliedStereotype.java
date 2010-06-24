@@ -12,7 +12,6 @@ public class BBAppliedStereotype extends DEAppliedStereotype
 	private LazyObject<DEComponent> stereotype = new LazyObject<DEComponent>(DEComponent.class);
 	private Map<LazyObject<DEAttribute>, String> lazyProperties;
 	private Map<DEAttribute, String> properties;
-	private boolean addedLazy;
 	
 	public BBAppliedStereotype()
 	{		
@@ -41,14 +40,9 @@ public class BBAppliedStereotype extends DEAppliedStereotype
 	@Override
 	public Map<DEAttribute, String> getProperties()
 	{
-		Map<DEAttribute, String> props = settable_getProperties();
-		if (!addedLazy)
-		{
-			for (LazyObject<DEAttribute> attr : lazyProperties.keySet())
-				props.put(attr.getObject(), properties.get(attr));
-			addedLazy = true;
-		}
-		return props;
+		if (properties == null)
+			return new HashMap<DEAttribute, String>(); 
+		return properties;
 	}
 
   public void setParent(DEObject parent)
@@ -74,8 +68,24 @@ public class BBAppliedStereotype extends DEAppliedStereotype
 	}
 
 	
-	public void setStereotype(UUIDReference stereo)
+	public void setStereotype(UuidReference stereo)
 	{
 		stereotype.setReference(stereo);
+	}
+	
+	@Override
+	public void resolveLazyReferences()
+	{
+		stereotype.resolve();
+		if (lazyProperties != null)
+		{
+			Map<DEAttribute, String> props = settable_getProperties();
+			for (LazyObject<DEAttribute> attr : lazyProperties.keySet())
+			{
+				attr.resolve();
+				props.put(attr.getObject(), lazyProperties.get(attr));
+			}
+		}
+		lazyProperties = null;
 	}
 }

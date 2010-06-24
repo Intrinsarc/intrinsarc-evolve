@@ -73,24 +73,24 @@ public class Expect
 		return optional(false, matched, matches);
 	}
 
-	public Expect uuid(UUIDReference reference)
+	public Expect uuid(UuidReference reference)
 	{
 		reference.setFile(tok.getFile());
 		reference.setLine(tok.getCurrentLine());
 		reference.setPos(tok.getCurrentPos());
 		Token t = tok.next();
 		if (t == null)
-			tok.throwParseException("Expected a name but found end of file", false);
+			tok.throwParseException("Expected a UUID but found end of file", false);
 		if (!t.getType().equals(TokenType.LITERAL))
-			tok.throwParseException("Expected a name but found " + t, true);
+			tok.throwParseException("Expected a UUID but found " + t, true);
+		reference.setUUID(t.getText());
 		
 		// peek for a string
 		Token p = tok.peek();
-		reference.setName(reference.getUUID());
 		if (p != null && p.getType().equals(TokenType.DESCRIPTIVE_NAME))
 				reference.setName(tok.next().getText());
 		else
-			reference.setUUID(t.getText());
+			reference.setName(t.getText());
 		
 		return this;
 	}
@@ -231,5 +231,12 @@ public class Expect
 				}
 			}));
 		return t[0];
+	}
+
+	public UuidReference nextUuid()
+	{
+		UuidReference reference = new UuidReference();
+		uuid(reference);
+		return reference;
 	}
 }

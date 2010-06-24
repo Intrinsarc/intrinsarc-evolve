@@ -1,13 +1,14 @@
 package com.hopstepjump.backbone.nodes.insides;
 
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBReplacedPart extends BBReplacedConstituent
 {
 	public BBReplacedPart() {}
 	
-	public BBReplacedPart(String uuid, DEConstituent replacement)
+	public BBReplacedPart(UuidReference reference, DEConstituent replacement)
 	{
-		super(uuid, replacement);
+		super(reference.getUuid(), replacement);
 	}
 }

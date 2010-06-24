@@ -10,4 +10,8 @@ public abstract class DEParameter
 	{
 		return DESlot.translateOriginalToConstituent(perspective, element, getAttribute());
 	}
+	
+	public void resolveLazyReferences()
+	{
+	}
 }

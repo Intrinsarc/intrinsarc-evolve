@@ -61,14 +61,14 @@ public class ExpectTests
 	@Test
 	public void expectUUIDs()
 	{
-		UUIDReference ref = new UUIDReference();
+		UuidReference ref = new UuidReference();
 		makeExpect("a1-2-3/hello/").uuid(ref);
-		assertEquals("a1-2-3", ref.getUUID());
+		assertEquals("a1-2-3", ref.getUuid());
 		assertEquals("hello", ref.getName());
 		makeExpect("a1.2").uuid(ref);
-		assertEquals("a1.2", ref.getUUID());
+		assertEquals("a1.2", ref.getUuid());
 		makeExpect("Test").uuid(ref);
-		assertEquals("Test", ref.getUUID());
+		assertEquals("Test", ref.getUuid());
 	}
 	
 	

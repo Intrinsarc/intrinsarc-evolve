@@ -18,7 +18,7 @@ public class FeatureParser
 	
 	public BBRequirementsFeature parse()
 	{
-		UUIDReference ref = new UUIDReference();
+		UuidReference ref = new UuidReference();
 
 		ex.literal();
 		ex.
@@ -57,7 +57,7 @@ public class FeatureParser
 						public void act()
 						{
 							ParserUtilities.parseAppliedStereotype(ex);
-							UUIDReference ref = new UUIDReference();
+							UuidReference ref = new UuidReference();
 							ex.uuid(ref).literal("becomes");
 							parseSubfeature();
 						}
@@ -83,7 +83,7 @@ public class FeatureParser
 	
 	private BBRequirementsFeatureLink parseSubfeature()
 	{
-		UUIDReference ref = new UUIDReference();
+		UuidReference ref = new UuidReference();
 		final SubfeatureKindEnum kind[] = {null};
 		ex.
 			uuid(ref);

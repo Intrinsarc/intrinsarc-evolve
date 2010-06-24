@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBPart extends DEPart implements INode, Serializable
@@ -12,17 +13,24 @@ public class BBPart extends DEPart implements INode, Serializable
   private DEObject parent;
   private String name;
   private String uuid = BBUidGenerator.newUuid(getClass());
-  private DEComponent[] type = new DEComponent[1];
+  private LazyObject<DEComponent> type = new LazyObject<DEComponent>(DEComponent.class);
   private List<DESlot> slots;
   private List<BBPortRemap> remaps;
-	private List<DEAppliedStereotype> appliedStereotypes;
+	private List<? extends DEAppliedStereotype> appliedStereotypes;
 	private transient boolean synthetic;
 	private transient boolean pullUp;
 
   public BBPart(String uuid)
   {
   	this.uuid = uuid;
+  	this.name = uuid;
   	GlobalNodeRegistry.registry.addNode(this);
+  }
+
+  public BBPart(UuidReference reference)
+  {
+  	this(reference.getUuid());
+  	name = reference.getName();
   }
 
   public BBPart(String uuid, boolean synthetic, boolean pullUp)
@@ -30,6 +38,8 @@ public class BBPart extends DEPart implements INode, Serializable
   	this.uuid = uuid;
 		this.synthetic = synthetic;
 		this.pullUp = pullUp;
+  	GlobalNodeRegistry.registry.addNode(this);
+  	resolveLazyReferences();
   }
 
   @Override
@@ -69,12 +79,17 @@ public class BBPart extends DEPart implements INode, Serializable
 
   public DEComponent getType()
   {
-    return type[0];
+    return type.getObject();
   }
 
   public void setType(DEComponent type)
   {
-    this.type[0] = type;
+    this.type.setObject(type);
+  }
+
+  public void setType(UuidReference reference)
+  {
+    this.type.setReference(reference);
   }
 
   public void setUuid(String uuid)
@@ -131,14 +146,32 @@ public class BBPart extends DEPart implements INode, Serializable
 		return pullUp;
 	}
 
-	public void setAppliedStereotypes(List<DEAppliedStereotype> appliedStereotypes)
+	public void setAppliedStereotypes(List<? extends DEAppliedStereotype> appliedStereotypes)
 	{
 		this.appliedStereotypes = appliedStereotypes.isEmpty() ? null : appliedStereotypes;
 	}
 
 	@Override
-	public List<DEAppliedStereotype> getAppliedStereotypes()
+	public List<? extends DEAppliedStereotype> getAppliedStereotypes()
 	{
 		return appliedStereotypes == null ? new ArrayList<DEAppliedStereotype>() : appliedStereotypes;
-	}	
+	}
+
+	@Override
+	public void resolveLazyReferences()
+	{
+		type.resolve();
+		resolve(slots);
+		resolve(appliedStereotypes);
+		if (remaps != null)
+			for (BBPortRemap remap : remaps)
+				remap.resolveLazyReferences();
+	}
+	
+	private void resolve(List<? extends DEObject> objects)
+	{
+		if (objects != null)
+			for (DEObject obj : objects)
+				obj.resolveLazyReferences();
+	}
 }

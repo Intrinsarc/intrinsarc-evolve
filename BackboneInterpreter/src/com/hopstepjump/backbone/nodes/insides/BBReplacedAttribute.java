@@ -7,8 +7,8 @@ public class BBReplacedAttribute extends BBReplacedConstituent
 {
 	public BBReplacedAttribute() {}
 	
-	public BBReplacedAttribute(UUIDReference reference, DEConstituent replacement)
+	public BBReplacedAttribute(UuidReference reference, DEConstituent replacement)
 	{
-		super(reference.getUUID(), replacement);
+		super(reference.getUuid(), replacement);
 	}
 }

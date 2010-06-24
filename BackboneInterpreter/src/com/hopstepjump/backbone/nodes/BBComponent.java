@@ -62,15 +62,21 @@ public class BBComponent extends DEComponent implements INode
   // other cached variables
   private Set<String> replacedUuids;
   
-  public BBComponent(UUIDReference reference)
+  public BBComponent(String uuid)
   {
-  	this.uuid = reference.getUUID();
-  	this.rawName = reference.getName();
+  	this.uuid = uuid;
+  	this.rawName = uuid;
   	kind = ComponentKindEnum.NORMAL.name();
   	GlobalNodeRegistry.registry.addNode(this);
 
     substituters = new ArrayList<DEElement>();
     resemblers = new HashSet<DEElement>();
+  }
+  
+  public BBComponent(UuidReference reference)
+  {
+  	this(reference.getUuid());
+  	rawName = reference.getName();
   }
   
   public List<DEAppliedStereotype> settable_getReplacedAppliedStereotypes()

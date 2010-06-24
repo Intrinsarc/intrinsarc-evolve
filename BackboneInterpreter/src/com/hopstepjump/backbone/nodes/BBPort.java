@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBPort extends DEPort implements INode, Serializable
@@ -14,19 +15,22 @@ public class BBPort extends DEPort implements INode, Serializable
   private String uuid = BBUidGenerator.newUuid(getClass());
   private Integer lowerBound;
   private Integer upperBound;
-  private List<DEInterface> setProvides;
-  private List<DEInterface> setRequires;
+  private LazyObjects<DEInterface> setLazyProvides;
+  private LazyObjects<DEInterface> setLazyRequires;
+  private Set<DEInterface> setProvides;
+  private Set<DEInterface> setRequires;
   private Boolean suppressGeneration;
 	private List<DEAppliedStereotype> appliedStereotypes;
-	private Boolean createPort;
-	private Boolean beanMain;
-	private Boolean beanNoName;
+	private boolean createPort;
+	private boolean beanMain;
+	private boolean beanNoName;
 	private PortKindEnum portKind;
 	private Boolean ordered;
  
-  public BBPort(String uuid)
+  public BBPort(UuidReference reference)
   {
-  	this.uuid = uuid;
+  	this.uuid = reference.getUuid();
+  	this.name = reference.getName();
   	GlobalNodeRegistry.registry.addNode(this);
   }
   
@@ -34,6 +38,7 @@ public class BBPort extends DEPort implements INode, Serializable
   {
   	this.uuid = uuid;
   	this.name = name;
+  	GlobalNodeRegistry.registry.addNode(this);
   }
   
   @Override
@@ -88,17 +93,31 @@ public class BBPort extends DEPort implements INode, Serializable
     this.parent = parent;
   }
   
-  public List<DEInterface> settable_getSetProvidedInterfaces()
+  public LazyObjects<DEInterface> settable_getLazySetProvidedInterfaces()
+  {
+  	if (setLazyProvides == null)
+  		setLazyProvides = new LazyObjects<DEInterface>(DEInterface.class);
+  	return setLazyProvides;
+  }
+
+  public LazyObjects<DEInterface> settable_getLazySetRequiredInterfaces()
+  {
+  	if (setLazyRequires == null)
+  		setLazyRequires = new LazyObjects<DEInterface>(DEInterface.class);
+  	return setLazyRequires;
+  }
+
+  public Set<DEInterface> settable_getSetProvidedInterfaces()
   {
   	if (setProvides == null)
-  		setProvides = new ArrayList<DEInterface>();
+  		setProvides = new HashSet<DEInterface>();
   	return setProvides;
   }
 
-  public List<DEInterface> settable_getSetRequiredInterfaces()
+  public Set<DEInterface> settable_getSetRequiredInterfaces()
   {
   	if (setRequires == null)
-  		setRequires = new ArrayList<DEInterface>();
+  		setRequires = new HashSet<DEInterface>();
   	return setRequires;
   }
 
@@ -138,7 +157,7 @@ public class BBPort extends DEPort implements INode, Serializable
 
 	public void setCreatePort(boolean create)
 	{
-		createPort = create ? true : null;
+		createPort = create;
 	}
 	
 	public void setAppliedStereotypes(List<DEAppliedStereotype> appliedStereotypes)
@@ -154,7 +173,7 @@ public class BBPort extends DEPort implements INode, Serializable
 
 	public void setBeanMain(boolean beanMain)
 	{
-		this.beanMain = beanMain ? true : null;
+		this.beanMain = beanMain;
 	}
 	
 	public void setBeanNoName(boolean beanNoName)
@@ -165,13 +184,13 @@ public class BBPort extends DEPort implements INode, Serializable
 	@Override
 	public boolean isBeanMain()
 	{
-		return beanMain != null && beanMain;
+		return beanMain;
 	}
 
 	@Override
 	public boolean isBeanNoName()
 	{
-		return beanNoName != null && beanNoName;
+		return beanNoName;
 	}
 
 	public void setPortKind(PortKindEnum portKind)
@@ -187,12 +206,33 @@ public class BBPort extends DEPort implements INode, Serializable
 
 	public void setOrdered(boolean ordered)
 	{
-		this.ordered = ordered ? true : null;
+		this.ordered = ordered;
 	}
 	
 	@Override
 	public boolean isOrdered()
 	{
 		return ordered != null ? ordered : false;
+	}
+
+	@Override
+	public void resolveLazyReferences()
+	{
+		if (setLazyProvides != null)
+		{
+			setLazyProvides.resolve();
+			settable_getSetProvidedInterfaces().addAll(setLazyProvides.asObjectsSet());
+			setLazyProvides = null;
+		}
+		if (setLazyRequires != null)
+		{
+			setLazyRequires.resolve();
+			settable_getSetRequiredInterfaces().addAll(setLazyRequires.asObjectsSet());
+			setLazyRequires = null;
+		}
+		
+		if (appliedStereotypes != null)
+			for (DEObject obj : appliedStereotypes)
+				obj.resolveLazyReferences();
 	}	
 }

@@ -1,6 +1,6 @@
 package com.hopstepjump.backbone.parserbase;
 
-public class UUIDReference
+public class UuidReference
 {
 	private String uuid;
 	private String name;
@@ -8,11 +8,11 @@ public class UUIDReference
 	private int line;
 	private int pos;
 	
-	public UUIDReference()
+	public UuidReference()
 	{
 	}
 	
-	public UUIDReference(String uuid)
+	public UuidReference(String uuid)
 	{
 		this.uuid = uuid;
 		this.name = uuid;
@@ -43,7 +43,7 @@ public class UUIDReference
 		this.pos = pos;
 	}
 
-	public String getUUID()
+	public String getUuid()
 	{
 		return uuid;
 	}

@@ -18,8 +18,8 @@ public class StratumParser
 	
 	public BBStratum parse()
 	{
-		UUIDReference reference = new UUIDReference();
-		final UUIDReference parentRef = new UUIDReference();
+		UuidReference reference = new UuidReference();
+		final UuidReference parentRef = new UuidReference();
 		boolean relaxed[] = {false};
 		boolean destructive[] = {false};
 		final List<String> dependsOn = new ArrayList<String>();
@@ -49,7 +49,7 @@ public class StratumParser
 		bb.setRelaxed(relaxed[0]);
 		for (String dep : dependsOn)
 			bb.settable_getRawDependsOn().add(GlobalNodeRegistry.registry.getNode(dep, DEStratum.class));
-		bb.setParentUuid(parentRef.getUUID());
+		bb.setParentUuid(parentRef.getUuid());
 		bb.resolveLazyReferences();
 		
 		return bb;

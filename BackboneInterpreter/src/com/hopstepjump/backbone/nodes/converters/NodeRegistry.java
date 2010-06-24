@@ -13,10 +13,15 @@ public class NodeRegistry
   private BBStratum root;
   public NodeRegistry()
   {
+  }
+  
+  public NodeRegistry initialize()
+  {
   	root = new BBStratum("model");
   	root.setName("model");
   	root.setDestructive(true);
   	addNode(root);
+  	return this;
   }
   
   public BBStratum getRoot()
@@ -29,13 +34,13 @@ public class NodeRegistry
     nodes.put(node.getUuid(), node);
   }
   
-  public <T> T getNode(UUIDReference reference, Class<T> cls)
+  public <T> T getNode(UuidReference reference, Class<T> cls)
   {
-  	DEObject obj = nodes.get(reference.getUUID());
+  	DEObject obj = nodes.get(reference.getUuid());
   	if (obj == null)
-  		throw new BBNodeNotFoundException("Object " + cls.getName() + ", UUID = " + reference.getUUID() + " not found", reference.toString());
+  		throw new BBNodeNotFoundException("Object " + cls.getName() + ", UUID = " + reference.getUuid() + " not found", reference.toString());
   	if (!(cls.isAssignableFrom(obj.getClass())))
-  		throw new BBNodeNotFoundException("Found " + cls.getName() + ", UUID = " + reference.getUUID() + " but it is not an instance of " + cls.getName(), reference.toString());
+  		throw new BBNodeNotFoundException("Found " + cls.getName() + ", UUID = " + reference.getUuid() + " but it is not an instance of " + cls.getName(), reference.toString());
   	return (T) obj;
   }
   
@@ -48,4 +53,9 @@ public class NodeRegistry
   		throw new BBNodeNotFoundException("Found " + cls.getName() + ", UUID = " + uuid, "");
   	return (T) obj;
   }
+
+	public boolean hasNode(UuidReference uuidReference)
+	{
+		return nodes.containsKey(uuidReference.getUuid());
+	}
 }

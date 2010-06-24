@@ -38,10 +38,12 @@ public class StratumReader
     if (!stratum.exists())
       throw new StratumLoadingException("Cannot read " + stratum);
     
+		System.out.println("$$ reading stratum " + stratum);
   	Expect expect = LoadListReader.makeExpect(stratum);
   	try
   	{
-  		return new StratumParser(expect).parse();
+  		BBStratum st = new StratumParser(expect).parse();
+  		return st;
   	}
   	catch (ParseException ex)
   	{

@@ -24,4 +24,8 @@ public class BBPortRemap implements Serializable
 	{
 		return port[0];
 	}
+
+	public void resolveLazyReferences()
+	{
+	}
 }

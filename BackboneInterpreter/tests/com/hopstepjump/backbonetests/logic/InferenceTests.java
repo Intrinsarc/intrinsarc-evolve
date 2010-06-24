@@ -61,15 +61,15 @@ public class InferenceTests extends TestBase
 	protected void postSetup()
 	{
 		// make the interfaces
-		aIface = new BBInterface(new UUIDReference("aIface"));
-		bIface = new BBInterface(new UUIDReference("bIface"));
+		aIface = new BBInterface("aIface");
+		bIface = new BBInterface("bIface");
 		bIface.settable_getRawResembles().addObject(aIface);
-		cIface = new BBInterface(new UUIDReference("cIface"));
+		cIface = new BBInterface("cIface");
 		cIface.settable_getRawResembles().addObject(aIface);
-		dIface = new BBInterface(new UUIDReference("dIface"));
+		dIface = new BBInterface("dIface");
 		dIface.settable_getRawResembles().addObject(bIface);
 		dIface.settable_getRawResembles().addObject(cIface);
-		eIface = new BBInterface(new UUIDReference("eIface"));
+		eIface = new BBInterface("eIface");
 		a.settable_getElements().add(aIface);
 		a.settable_getElements().add(bIface);
 		a.settable_getElements().add(cIface);
@@ -97,7 +97,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase1()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case1"));
+		BBComponent ccase = new BBComponent("case1");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort port = new BBPort("port", "port");
@@ -133,7 +133,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase2()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case2"));
+		BBComponent ccase = new BBComponent("case2");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort port = new BBPort("port", "port");
@@ -177,7 +177,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase3()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case3"));
+		BBComponent ccase = new BBComponent("case3");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		
@@ -212,7 +212,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase4()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case4"));
+		BBComponent ccase = new BBComponent("case4");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		
@@ -247,7 +247,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase5()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case5"));
+		BBComponent ccase = new BBComponent("case5");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort port = new BBPort("port", "port");
@@ -280,7 +280,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase6()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case6"));
+		BBComponent ccase = new BBComponent("case6");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort port = new BBPort("port", "port");
@@ -327,7 +327,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase7()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case7"));
+		BBComponent ccase = new BBComponent("case7");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		
@@ -362,7 +362,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase8()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case8"));
+		BBComponent ccase = new BBComponent("case8");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		
@@ -410,7 +410,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase9()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case9"));
+		BBComponent ccase = new BBComponent("case9");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		
@@ -459,7 +459,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase10()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case10"));
+		BBComponent ccase = new BBComponent("case10");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort port = new BBPort("port", "port");
@@ -496,7 +496,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase11()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case11"));
+		BBComponent ccase = new BBComponent("case11");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		
@@ -534,7 +534,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase12()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case12"));
+		BBComponent ccase = new BBComponent("case12");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort port = new BBPort("port", "port");
@@ -559,7 +559,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase13()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case13"));
+		BBComponent ccase = new BBComponent("case13");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		
@@ -587,7 +587,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase14()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case14"));
+		BBComponent ccase = new BBComponent("case14");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort port = new BBPort("port", "port");
@@ -621,7 +621,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase15()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case15"));
+		BBComponent ccase = new BBComponent("case15");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort pport = new BBPort("pport", "pport");
@@ -666,7 +666,7 @@ public class InferenceTests extends TestBase
 	@Test
 	public void inferenceCase16()
 	{
-		BBComponent ccase = new BBComponent(new UUIDReference("case16"));
+		BBComponent ccase = new BBComponent("case16");
 		a.settable_getElements().add(ccase);
 		ccase.setParent(a);
 		BBPort port = new BBPort("port", "port");

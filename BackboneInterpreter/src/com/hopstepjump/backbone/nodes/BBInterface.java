@@ -38,16 +38,22 @@ public class BBInterface extends DEInterface implements INode, Serializable
   // other cached variables
   private transient Set<String> replacedUuids;
   
-  public BBInterface(UUIDReference reference)
+  public BBInterface(String uuid)
   {
-  	this.uuid = reference.getUUID();
-  	this.rawName = reference.getName();
+  	this.uuid = uuid;
+  	this.rawName = uuid;
   	GlobalNodeRegistry.registry.addNode(this);
   	
     substituters = new ArrayList<DEElement>();
     resemblers = new HashSet<DEElement>();
   }
 
+  public BBInterface(UuidReference reference)
+  {
+  	this(reference.getUuid());
+  	rawName = reference.getName();
+  }
+  
   public void setParent(DEObject parent)
   {
     this.parent = parent;

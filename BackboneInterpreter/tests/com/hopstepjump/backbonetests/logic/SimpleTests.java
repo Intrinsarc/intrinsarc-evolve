@@ -13,11 +13,11 @@ public class SimpleTests extends TestBase
 	public void resemblanceWithOneAttribute()
 	{
 		// create a component with a composite and an attribute, and resemble it to see if we pick up the attributes
-		BBComponent base = new BBComponent(new UUIDReference("base"));
+		BBComponent base = new BBComponent(new UuidReference("base"));
 		top.settable_getElements().add(base);
-		BBAttribute attr = new BBAttribute("attr"); 
+		BBAttribute attr = new BBAttribute(new UuidReference("attr")); 
 		base.settable_getAddedAttributes().add(attr);
-		BBComponent extension = new BBComponent(new UUIDReference("extension"));
+		BBComponent extension = new BBComponent(new UuidReference("extension"));
 		extension.settable_getRawResembles().addObject(base);
 		
 		// test that the attributes are present
@@ -29,13 +29,13 @@ public class SimpleTests extends TestBase
 	public void resemblanceWithDeletedAttribute()
 	{
 		// create a component with a composite and an attribute, and resemble it to see if we pick up the attributes
-		BBComponent base = new BBComponent(new UUIDReference("base"));
+		BBComponent base = new BBComponent(new UuidReference("base"));
 		top.settable_getElements().add(base);
-		BBAttribute attr = new BBAttribute("attr"); 
+		BBAttribute attr = new BBAttribute(new UuidReference("attr")); 
 		base.settable_getAddedAttributes().add(attr);
-		BBAttribute attr2 = new BBAttribute("attr2"); 
+		BBAttribute attr2 = new BBAttribute(new UuidReference("attr2")); 
 		base.settable_getAddedAttributes().add(attr2);
-		BBComponent extension = new BBComponent(new UUIDReference("extension"));
+		BBComponent extension = new BBComponent(new UuidReference("extension"));
 		extension.settable_getRawResembles().addObject(base);
 		extension.settable_getDeletedAttributes().add(attr.getUuid());
 		
@@ -48,16 +48,16 @@ public class SimpleTests extends TestBase
 	public void resemblanceWithReplacedAttribute()
 	{
 		// create a component with a composite and an attribute, and resemble it to see if we pick up the attributes
-		BBComponent base = new BBComponent(new UUIDReference("base"));
+		BBComponent base = new BBComponent(new UuidReference("base"));
 		top.settable_getElements().add(base);
-		BBAttribute attr = new BBAttribute("attr"); 
+		BBAttribute attr = new BBAttribute(new UuidReference("attr")); 
 		base.settable_getAddedAttributes().add(attr);
-		BBAttribute attr2 = new BBAttribute("attr2"); 
+		BBAttribute attr2 = new BBAttribute(new UuidReference("attr2")); 
 		base.settable_getAddedAttributes().add(attr2);
-		BBComponent extension = new BBComponent(new UUIDReference("extension"));
+		BBComponent extension = new BBComponent(new UuidReference("extension"));
 		extension.settable_getRawResembles().addObject(base);
-		BBAttribute repAttr = new BBAttribute("repAttr");
-		BBReplacedAttribute replaced = new BBReplacedAttribute(new UUIDReference(attr.getUuid()), repAttr);
+		BBAttribute repAttr = new BBAttribute(new UuidReference("repAttr"));
+		BBReplacedAttribute replaced = new BBReplacedAttribute(new UuidReference(attr.getUuid()), repAttr);
 		extension.settable_getReplacedAttributes().add(replaced);
 		
 		// test that the attributes are present

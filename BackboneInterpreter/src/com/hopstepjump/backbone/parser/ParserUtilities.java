@@ -18,7 +18,7 @@ public class ParserUtilities
 						{
 							public void act()
 							{
-								UUIDReference reference = new UUIDReference();
+								UuidReference reference = new UuidReference();
 								ex.uuid(reference);
 								references.addReference(reference);
 							}
@@ -34,9 +34,9 @@ public class ParserUtilities
 						{
 							public void act()
 							{
-								UUIDReference reference = new UUIDReference();
+								UuidReference reference = new UuidReference();
 								ex.uuid(reference);
-								references.add(reference.getUUID());
+								references.add(reference.getUuid());
 							}
 						}));		
 	}
@@ -47,7 +47,7 @@ public class ParserUtilities
 		ex.guard("\u00ab",
 			new IAction()
 			{
-				final UUIDReference stereo = new UUIDReference();
+				final UuidReference stereo = new UuidReference();
 				public void act()
 				{
 					ex.oneOrMore(",",
@@ -86,7 +86,7 @@ public class ParserUtilities
 
 	private static void parseAppliedValue(final Expect ex)
 	{
-		UUIDReference attr = new UUIDReference();
+		UuidReference attr = new UuidReference();
 		ex.
 			uuid(attr).
 			guard("=",

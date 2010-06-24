@@ -36,6 +36,7 @@ public class Tokenizer
 	
 	public Tokenizer(String file, Reader reader)
 	{
+		this.file = file;
 		this.reader = reader;
 	}
 	

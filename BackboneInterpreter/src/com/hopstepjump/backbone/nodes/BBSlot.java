@@ -4,38 +4,45 @@ import java.io.*;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBSlot extends DESlot implements INode, Serializable
 {
 	private DEObject parent;
-	private DEAttribute attribute;
-	private DEAttribute environmentAlias;
+	private LazyObject<DEAttribute> attribute = new LazyObject<DEAttribute>(DEAttribute.class);
+	private LazyObject<DEAttribute> environmentAlias;
 	private List<DEParameter> value;
 	private List<DEAppliedStereotype> appliedStereotypes;
 
-	public BBSlot(DEAttribute attribute, List<DEParameter> value)
+	public BBSlot(UuidReference attribute, List<DEParameter> value)
 	{
-		this.attribute = attribute;
+		this.attribute.setReference(attribute);
 		this.value = value;
 	}
 	
-	public BBSlot(DEAttribute attribute, DEAttribute environmentAlias)
+	public BBSlot(DEAttribute attr, DEAttribute alias)
 	{
-		this.attribute = attribute;
-		this.environmentAlias = environmentAlias;
+		this.attribute.setObject(attr);
+		this.environmentAlias = new LazyObject<DEAttribute>(DEAttribute.class, alias);
+	}
+	
+	public BBSlot(UuidReference attribute, UuidReference environmentAlias)
+	{
+		this.attribute.setReference(attribute);
+		this.environmentAlias = new LazyObject<DEAttribute>(DEAttribute.class, environmentAlias);
 	}
 	
   @Override
 	public DEAttribute getAttribute()
 	{
-		return attribute;
+		return attribute.getObject();
 	}
 
 	@Override
 	public DEAttribute getEnvironmentAlias()
 	{
-		return environmentAlias;
+		return environmentAlias.getObject();
 	}
 
 	@Override
@@ -88,5 +95,16 @@ public class BBSlot extends DESlot implements INode, Serializable
 	public List<DEAppliedStereotype> getAppliedStereotypes()
 	{
 		return appliedStereotypes == null ? new ArrayList<DEAppliedStereotype>() : appliedStereotypes;
+	}
+
+	@Override
+	public void resolveLazyReferences()
+	{
+		if (appliedStereotypes != null)
+			for (DEAppliedStereotype app : appliedStereotypes)
+				app.resolveLazyReferences();
+		attribute.resolve();
+		if (environmentAlias != null)
+			environmentAlias.resolve();
 	}	
 }

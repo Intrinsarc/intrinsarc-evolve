@@ -8,6 +8,7 @@ import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.simple.*;
 import com.hopstepjump.backbone.nodes.simple.internal.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.backbone.readers.*;
 import com.hopstepjump.backbone.runtime.api.*;
 import com.hopstepjump.deltaengine.base.*;
@@ -179,13 +180,15 @@ public class BackboneInterpreter
 		
 		// tell each package about their parent
 		// anything that doesn't have a loaded parent gets the model
+		NodeRegistry reg = GlobalNodeRegistry.registry;
 		BBStratum root = GlobalNodeRegistry.registry.getRoot();
 		for (BBStratum pkg : system)
 		{
-			DEStratum parent = GlobalNodeRegistry.registry.getNode(pkg.getParentUuid(), DEStratum.class);
-			if (parent == null)
-				parent = root;
-			pkg.setParentAndTellChildren((BBStratum) parent);
+			String parentUUID = pkg.getParentUuid();
+			if (reg.hasNode(new UuidReference(parentUUID)))
+					pkg.setParentAndTellChildren((BBStratum) reg.getNode(parentUUID, DEStratum.class));
+			else
+				pkg.setParentAndTellChildren(root);
 		}
 
 		return system;

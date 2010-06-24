@@ -62,5 +62,5 @@ public abstract class DEAppliedStereotype extends DEConstituent
 	public DEAppliedStereotype asAppliedStereotype()
 	{
 		return this;
-	}
+	}	
 }

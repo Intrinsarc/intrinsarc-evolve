@@ -17,9 +17,9 @@ public class BBRequirementsFeatureLink extends DERequirementsFeatureLink impleme
 	private DERequirementsFeature subfeature;
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBRequirementsFeatureLink(UUIDReference reference)
+  public BBRequirementsFeatureLink(UuidReference reference)
   {
-  	this.uuid = reference.getUUID();
+  	this.uuid = reference.getUuid();
   	this.name = reference.getName();
   	GlobalNodeRegistry.registry.addNode(this);
   }

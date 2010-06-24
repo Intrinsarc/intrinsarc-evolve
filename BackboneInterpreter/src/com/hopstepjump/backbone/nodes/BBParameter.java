@@ -1,29 +1,30 @@
 package com.hopstepjump.backbone.nodes;
 
-import java.io.*;
-import java.util.*;
-
-import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBParameter extends DEParameter
 {
 	private String literal;
-	private String attribute;
-	private transient DEAttribute realAttribute;
+	private LazyObject<DEAttribute> attribute;
 
 	public BBParameter(String literal)
 	{
 		this.literal = literal;
 	}
 
+	public BBParameter(UuidReference reference)
+	{
+		this.attribute = new LazyObject<DEAttribute>(DEAttribute.class, reference);
+	}
+
 	@Override
 	public DEAttribute getAttribute()
 	{
-		if (realAttribute == null)
+		if (attribute == null)
 			return null;
-		return realAttribute;
+		return attribute.getObject();
 	}
 
 	@Override
@@ -32,20 +33,10 @@ public class BBParameter extends DEParameter
 		return literal;
 	}
 
-	public void resolveLazyReferences() throws BBNodeNotFoundException
+	@Override
+	public void resolveLazyReferences()
 	{
 		if (attribute != null)
-		{
-	    String raw = attribute.trim();
-	    
-	    // take this up to the first space
-	    String uuid = raw;
-	    StringTokenizer tk = new StringTokenizer(raw);
-	    if (tk.hasMoreTokens())
-	    	uuid = tk.nextToken();
-	    
-	    realAttribute = GlobalNodeRegistry.registry.getNode(uuid, DEAttribute.class);
-		}
+			attribute.resolve();
 	}
-
 }

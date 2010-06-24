@@ -1,14 +1,15 @@
 package com.hopstepjump.backbone.nodes.converters;
 
 import com.hopstepjump.backbone.parserbase.*;
+import com.hopstepjump.deltaengine.base.*;
 
 public class LazyObject<T>
 {
-	private UUIDReference reference;
+	private UuidReference reference;
 	private T object;
 	private Class<T> cls;
 	
-	public LazyObject(UUIDReference reference, Class<T> cls)
+	public LazyObject(UuidReference reference, Class<T> cls)
 	{
 		this.reference = reference;
 		this.cls = cls;
@@ -19,7 +20,19 @@ public class LazyObject<T>
 		this.cls = cls;
 	}
 	
-	public void setReference(UUIDReference reference)
+	public LazyObject(Class<T> cls, UuidReference reference)
+	{
+		this.cls = cls;
+		this.reference = reference;
+	}
+	
+	public LazyObject(Class<T> cls, T object)
+	{
+		this.cls = cls;
+		this.object = object;
+	}
+
+	public void setReference(UuidReference reference)
 	{
 		this.reference = reference;
 	}
@@ -31,7 +44,9 @@ public class LazyObject<T>
 	
 	public void resolve()
 	{
-		object = GlobalNodeRegistry.registry.getNode(reference, cls);
+		if (object == null)
+			object = GlobalNodeRegistry.registry.getNode(reference, cls);
+		reference = null;
 	}
 	
 	public T getObject()

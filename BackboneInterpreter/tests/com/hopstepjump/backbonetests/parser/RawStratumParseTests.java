@@ -51,7 +51,7 @@ public class RawStratumParseTests
 	private void parseStratumDeclaration(String decl, String uuid[], String name[], boolean relaxed[], final List<String> dependsOn)
 	{
 		final Expect ex = new Expect(new Tokenizer("file", new StringReader(decl)));
-		UUIDReference ref = new UUIDReference();
+		UuidReference ref = new UuidReference();
 		ex.
 			literal("stratum").
 			uuid(ref).
@@ -59,7 +59,7 @@ public class RawStratumParseTests
 			guard("depends-on",
 					new IAction() { public void act() { parseNames(ex, dependsOn); } }).
 			literal(";");
-		uuid[0] = ref.getUUID();
+		uuid[0] = ref.getUuid();
 		name[0] = ref.getName();
 	}
 	
@@ -71,9 +71,9 @@ public class RawStratumParseTests
 						new IAction()
 						{ public void act()
 							{
-								UUIDReference ref = new UUIDReference();
+								UuidReference ref = new UuidReference();
 								ex.uuid(ref);
-								dependsOn.add(ref.getUUID());
+								dependsOn.add(ref.getUuid());
 							}
 						}));		
 	}

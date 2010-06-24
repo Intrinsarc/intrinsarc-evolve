@@ -1,6 +1,0 @@
-load-list
-{
-	directories:
-		"A" = "./tests/com/hopstepjump/backbonetests/loader/backbone/a",
-		"B" = "./tests/com/hopstepjump/backbonetests/loader/backbone/b";
-}
