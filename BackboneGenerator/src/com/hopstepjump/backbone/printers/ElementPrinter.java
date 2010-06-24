@@ -15,7 +15,7 @@ public class ElementPrinter
 	{
 		this.perspective = perspective;
 		this.element = object;
-		ref = new ReferenceHelper(mode);
+		ref = new ReferenceHelper(element.getHomeStratum(), mode);
 	}
 	
 	public String makePrintString(String indent)

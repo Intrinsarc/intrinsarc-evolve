@@ -486,7 +486,7 @@ public class BackbonePrinter
 		else
 		{
 			// if a reference, use full path
-			if (mode == BackbonePrinterMode.PRETTY || mode == BackbonePrinterMode.REAL_NAMES)
+			if (mode == BackbonePrinterMode.REAL_NAMES)
 			{
 				String name = obj.getName();
 				return WHITE.matcher(name).replaceAll("_");
@@ -519,12 +519,6 @@ public class BackbonePrinter
 		else
 		{
 			// if a reference, use full path
-			if (mode == BackbonePrinterMode.PRETTY)
-			{
-				String name = obj.getName();
-				return WHITE.matcher(name).replaceAll("_");
-			}
-			else
 			if (mode == BackbonePrinterMode.REAL_NAMES)
 			{
 				String name = reference ? obj.getFullyQualifiedName("::") : obj.getName();

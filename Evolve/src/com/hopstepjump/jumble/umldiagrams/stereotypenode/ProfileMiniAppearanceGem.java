@@ -81,7 +81,7 @@ public class ProfileMiniAppearanceGem implements Gem
     {
       Utilities.addSeparator(menu);
       DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
-      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me, BackbonePrinterMode.PRETTY));
+      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me, BackbonePrinterMode.REAL_NAMES));
     }
 
     public Set<String> getDisplayStyles(boolean displayingOnlyAsIcon, boolean anchorIsTarget)

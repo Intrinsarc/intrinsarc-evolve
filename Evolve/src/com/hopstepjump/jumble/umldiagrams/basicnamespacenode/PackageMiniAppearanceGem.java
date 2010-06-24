@@ -220,9 +220,7 @@ public class PackageMiniAppearanceGem implements Gem
       }
       
       DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
-      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code (pretty)", coordinator, me, me, BackbonePrinterMode.PRETTY));
-      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code (names)", coordinator, me, me, BackbonePrinterMode.REAL_NAMES));
-      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code (uuids)", coordinator, me, me, BackbonePrinterMode.REAL_UUIDS));
+      menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me, BackbonePrinterMode.REAL_NAMES));
 
       boolean readOnly = repository.isContainerContextReadOnly(figureFacet);
       if (!readOnly && isStratum())

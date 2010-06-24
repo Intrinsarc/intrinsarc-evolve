@@ -15,7 +15,7 @@ public class StratumPrinter
 		this.perspective = perspective;
 		this.stratum = stratum;
 		this.mode = mode;
-		this.ref = new ReferenceHelper(mode);
+		this.ref = new ReferenceHelper(stratum, mode);
 	}
 	
 	public String makePrintString(String indent)

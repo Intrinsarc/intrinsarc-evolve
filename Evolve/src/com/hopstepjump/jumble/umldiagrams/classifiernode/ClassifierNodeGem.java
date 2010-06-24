@@ -1368,24 +1368,10 @@ public final class ClassifierNodeGem implements Gem
 
         if (!isInterface)
         {
-  	      JMenu backbone = new JMenu("Show Backbone code");
-  	      popup.add(backbone);
   	      // show backbone code
   	      final Package pkg = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet()); 
-  	      final DEStratum perspective = GlobalDeltaEngine.engine.locateObject(pkg).asStratum();
   	      final Class component = (Class) figureFacet.getSubject();
   	      final DEComponent me = GlobalDeltaEngine.engine.locateObject(component).asComponent();
-  	      if (me != null)
-  	      {
-  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Deltas", coordinator, perspective, me, BackbonePrinterMode.PRETTY));
-//  		      // show canonical backbone code
-//  		      BBComponent bb = new BBComponent(me.getUuid());
-//  		      bb.setRawName(me.getName());
-//  		      bb.setComponentKind(me.getComponentKind());
-//  		      copyCanonicalConstituents(perspective, bb, me);
-//  		      backbone.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Expanded", coordinator, perspective, bb));
-  	      }
-  	      
   	      JMenuItem comp = new JMenuItem("Show compositional hierarchy");
   	      comp.setIcon(COMPOSITION_ICON);
   	      popup.add(comp);

@@ -75,8 +75,6 @@ public class WriterHelper
     try
     {
       writer = new BufferedWriter(new FileWriter(file));
-
-      // write the XStream representation to the file
 	    writer.append(str);
     }
     catch (IOException e)

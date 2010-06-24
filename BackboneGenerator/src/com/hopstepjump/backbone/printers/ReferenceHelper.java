@@ -7,21 +7,23 @@ import com.hopstepjump.deltaengine.base.*;
 public class ReferenceHelper
 {
 	private static Pattern WHITE = Pattern.compile("\\s", Pattern.MULTILINE);
+	private DEStratum current;
 	private BackbonePrinterMode mode;
 	
-	public ReferenceHelper(BackbonePrinterMode mode)
+	public ReferenceHelper(DEStratum current, BackbonePrinterMode mode)
 	{
+		this.current = current;
 		this.mode = mode;
 	}
 	
 	public String name(DEObject obj)
 	{
-		return objectId(obj, false);
+		return objectId(obj);
 	}
 	
 	public String reference(DEObject obj)
 	{
-		return objectId(obj, true);
+		return objectId(obj);
 	}
 	
 	public String safeName(String name)
@@ -29,17 +31,17 @@ public class ReferenceHelper
 		return WHITE.matcher(name).replaceAll("_");
 	}
 	
-	private String objectId(DEObject obj, boolean reference)
+	private String objectId(DEObject obj)
 	{
 		if (obj == null)
 			throw new IllegalStateException("Found no object for name");
 		String uuid = obj.getUuid();
-		if (obj.getName() == null || obj.getName().length() == 0)
+		if (obj.getName() == null || obj.getName().length() == 0 || isReadable(uuid))
 			return uuid;
 		else
 		{
 			// if a reference, use full path
-			if (mode == BackbonePrinterMode.PRETTY || mode == BackbonePrinterMode.REAL_NAMES)
+			if (mode == BackbonePrinterMode.REAL_NAMES)
 			{
 				String name = obj.getName();
 				return WHITE.matcher(name).replaceAll("_");
@@ -47,9 +49,7 @@ public class ReferenceHelper
 			else
 			{
 				String name = obj.getName();
-				if (isReadable(uuid))
-					return uuid;
-				return uuid + "/" + WHITE.matcher(name).replaceAll("_") + "/";
+				return uuid + "/" + name + "/";
 			}
 		}
 	}
@@ -69,28 +69,24 @@ public class ReferenceHelper
 		if (obj == null)
 			throw new IllegalStateException("Found no object for name");
 		String uuid = obj.getUuid();
-		if (obj.getName() == null || obj.getName().length() == 0)
+		if (obj.getName() == null || obj.getName().length() == 0 || isReadable(uuid))
 			return uuid;
 		else
 		{
 			// if a reference, use full path
-			if (mode == BackbonePrinterMode.PRETTY)
-			{
-				String name = obj.getName();
-				return WHITE.matcher(name).replaceAll("_");
-			}
-			else
 			if (mode == BackbonePrinterMode.REAL_NAMES)
 			{
-				String name = reference ? obj.getFullyQualifiedName("::") : obj.getName();
-				return WHITE.matcher(name).replaceAll("_");
+				// if the uuid is readable, don't use the name
+				String name = reference && current != obj.getHomeStratum() ?
+						obj.getFullyQualifiedName("::") : obj.getName();
+				return WHITE.matcher(name).replaceAll("_").replace('/', '_');
 			}
 			else
 			{
 				String name = obj.getName();
 				if (isReadable(uuid))
 					return uuid;
-				return uuid + "/" + WHITE.matcher(name).replaceAll("_") + "/";
+				return uuid + "/" + name.replace('/', '_') + "/";
 			}
 		}
 	}
