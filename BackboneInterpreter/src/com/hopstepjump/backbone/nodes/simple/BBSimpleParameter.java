@@ -8,13 +8,31 @@ import java.util.regex.*;
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.simple.internal.*;
 
-public class BBSimpleParameter
+public class BBSimpleParameter extends BBSimpleObject
 {
 	private String literal;
 	private BBSimpleAttribute attribute;
 	private transient Object resolvedLiteral;
 	private transient boolean isDefault;
 	private transient boolean resolved;
+	
+	@Override
+	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
+	{
+		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		List<BBSimpleObject> t = new ArrayList<BBSimpleObject>();
+		t.add(attribute);
+		children.put("attribute", t);
+		
+		return children;
+	}
+
+	@Override
+	public String getTreeDescription()
+	{
+		return
+			"Parameter" + (literal != null ? ", literal = " + literal : "");
+	}
 	
 	public BBSimpleParameter(String expression)
 	{
@@ -134,5 +152,17 @@ public class BBSimpleParameter
 	public Object getResolvedLiteral()
 	{
 		return resolvedLiteral;
+	}
+
+	@Override
+	public String getName()
+	{
+		return null;
+	}
+
+	@Override
+	public String getRawName()
+	{
+		return null;
 	}
 }

@@ -9,7 +9,7 @@ import com.hopstepjump.backbone.nodes.simple.internal.*;
 import com.hopstepjump.deltaengine.base.*;
 
 class PortFieldMap extends HashMap<BBSimpleInterface, ReflectivePort>{}
-class ConstructorFieldMap extends HashMap<BBSimpleInterface, Constructor>{}
+class ConstructorFieldMap extends HashMap<BBSimpleInterface, Constructor<?>>{}
 
 public class BBSimpleConnector extends BBSimpleObject
 {
@@ -21,11 +21,27 @@ public class BBSimpleConnector extends BBSimpleObject
 	private boolean takeNext[];
 	private BBSimplePort ports[] = new BBSimplePort[2];
 	private BBSimplePart parts[] = new BBSimplePart[2];
-  private transient boolean resolved;
-  private transient PortFieldMap provPortFields[] = new PortFieldMap[]{new PortFieldMap(), new PortFieldMap()};
-  private transient PortFieldMap reqPortFields[] = new PortFieldMap[]{new PortFieldMap(), new PortFieldMap()};
-  private Boolean hyperConnector;
+  private boolean resolved;
+  private PortFieldMap provPortFields[] = new PortFieldMap[]{new PortFieldMap(), new PortFieldMap()};
+  private PortFieldMap reqPortFields[] = new PortFieldMap[]{new PortFieldMap(), new PortFieldMap()};
+  private boolean hyperConnector;
 
+	@Override
+	public String getTreeDescription()
+	{
+		String desc =
+			"Connector " + rawName;
+		if (hyperConnector)
+			desc += ", hyper";
+		if (index != null)
+			desc += ", from index = " + index[0] + ", to index = " + index[1];
+		if (takeNext != null)
+			desc += ", from take next = " + takeNext[0] + ", to take next = " + takeNext[1];
+		return desc;
+	}
+	
+
+  
 	public BBSimpleConnector(
 			BBSimpleElementRegistry registry,
 			DEComponent component,
@@ -157,7 +173,7 @@ public class BBSimpleConnector extends BBSimpleObject
 
 	public boolean isHyperConnector()
 	{
-		return hyperConnector != null ? hyperConnector : false;
+		return hyperConnector;
 	}
 
 	private void copyFromOther(BBSimpleConnector original)
@@ -422,5 +438,22 @@ public class BBSimpleConnector extends BBSimpleObject
 	{
 		// -1 signifies unlimited upper bound
 		return port.getUpperBound() > 1 || port.getUpperBound() == -1;
+	}
+	
+	@Override
+	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
+	{
+		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		children.put("from", makeList(ports[0], parts[0]));
+		children.put("to", makeList(ports[1], parts[1]));
+		return children;
+	}
+
+	private List<? extends BBSimpleObject> makeList(BBSimpleObject obj1, BBSimpleObject obj2)
+	{
+		List<BBSimpleObject> t = new ArrayList<BBSimpleObject>();
+		t.add(obj1);
+		t.add(obj2);
+		return t;
 	}
 }

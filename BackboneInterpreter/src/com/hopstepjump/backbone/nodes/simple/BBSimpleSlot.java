@@ -136,4 +136,26 @@ public class BBSimpleSlot extends BBSimpleObject
 	{
 	  reflectiveField.set(obj, value);
 	}
+	
+	@Override
+	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
+	{
+		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		List<BBSimpleObject> t = new ArrayList<BBSimpleObject>();
+		t.add(attribute);
+		children.put("attribute", t);
+		children.put("value", value);		
+		List<BBSimpleObject> a = new ArrayList<BBSimpleObject>();
+		a.add(environmentAlias);
+		children.put("alias", a);
+		
+		return children;
+	}
+
+	@Override
+	public String getTreeDescription()
+	{
+		return
+			"slot";
+	}
 }

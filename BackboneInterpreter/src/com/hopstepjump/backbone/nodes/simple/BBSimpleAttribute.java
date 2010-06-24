@@ -15,20 +15,20 @@ public class BBSimpleAttribute extends BBSimpleObject
   private BBSimpleElement type;
   private BBSimpleAttribute alias;
   private List<BBSimpleParameter> defaultValue;
-  private transient int factory;
-  private transient boolean resolved;
-  private transient DEAttribute complex;
-  private transient Constructor<?> constructor;
+  private int factory;
+  private boolean resolved;
+  private DEAttribute complex;
+  private Constructor<?> constructor;
   private PositionEnum position;
-  private transient boolean isDefault;
-  private transient String originalName;
-  private transient BBSimpleElement owner;
+  private boolean isDefault;
+  private String originalName;
+  private BBSimpleElement owner;
   private String uuid;
   private boolean readOnly;
   private boolean writeOnly;
-	private transient boolean isFactoryNumber;
-	private transient boolean isNull;
-  
+	private boolean isFactoryNumber;
+	private boolean isNull;
+  	
 	public BBSimpleAttribute(BBSimpleElementRegistry registry, DEAttribute complex, List<BBSimpleAttribute> attributes, BBSimpleElement owner)
 	{
 		rawName = complex.getName();
@@ -488,4 +488,25 @@ public class BBSimpleAttribute extends BBSimpleObject
   {
     return writeOnly;
   }
+  
+	@Override
+	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
+	{
+		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		List<BBSimpleObject> t = new ArrayList<BBSimpleObject>();
+		t.add(type);
+		children.put("type", t);
+		children.put("default value", defaultValue);
+		List<BBSimpleObject> al = new ArrayList<BBSimpleObject>();
+		al.add(alias);
+		children.put("alias", al);
+		return children;
+	}
+
+	@Override
+	public String getTreeDescription()
+	{
+		return
+			"Attribute " + rawName + " (" + complex.getUuid() + ")";
+	}
 }

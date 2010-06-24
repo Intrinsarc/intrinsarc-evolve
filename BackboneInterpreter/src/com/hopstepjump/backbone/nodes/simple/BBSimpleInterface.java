@@ -9,7 +9,7 @@ public class BBSimpleInterface extends BBSimpleElement
 {
 	private String name;
 	private transient String rawName;
-	private transient Class implementationClass;
+	private Class<?> implementationClass;
 	private String implementationClassName;
 	private transient String uuid;
 	private transient Set<BBSimpleInterface> supersPlusMe;
@@ -88,5 +88,14 @@ public class BBSimpleInterface extends BBSimpleElement
 	public DEInterface getComplex()
 	{
 		return complex;
+	}
+	
+	@Override
+	public String getTreeDescription()
+	{
+		String desc = "Interface " + rawName + " (" + uuid + ")";
+		if (implementationClassName != null)
+			desc += ", implementation = " + implementationClassName;
+		return desc;
 	}
 }

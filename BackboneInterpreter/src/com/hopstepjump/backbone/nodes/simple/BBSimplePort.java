@@ -120,4 +120,21 @@ public class BBSimplePort extends BBSimpleObject
 	{
 		return complex.getPortKind() == PortKindEnum.HYPERPORT_END;
 	}
+	
+	@Override
+	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
+	{
+		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		children.put("provided interfaces", provides);
+		children.put("required interfaces", requires);
+		return children;
+	}
+
+	@Override
+	public String getTreeDescription()
+	{
+		return
+			"Port " + rawName + " (" + complex.getUuid() + "), lower bound = " + lowerBound +
+			", upper bound = " + upperBound;
+	}
 }

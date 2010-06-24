@@ -8,18 +8,18 @@ import com.hopstepjump.deltaengine.base.*;
 public class BBSimplePart extends BBSimpleObject
 {
 	private String name;
-	private transient String rawName;
-	private transient int depth;
-	private transient BBSimpleLevel level;
+	private String rawName;
+	private int depth;
+	private BBSimpleLevel level;
 	private BBSimpleComponent type;
 	private List<BBSimpleSlot> slots;
-	private transient boolean resolved;
-	private transient DEPart complex;
-	private transient int factory;
-	private transient BBSimpleComponent owner;
-	private transient List<DEPart> partStack;
-	private transient Map<BBSimplePort, Map<String, Class<?>>> allProvidedToRequired;
-	private transient Map<BBSimplePort, Map<String, String>> allProvidedToRequiredNames;	
+	private boolean resolved;
+	private DEPart complex;
+	private int factory;
+	private BBSimpleComponent owner;
+	private List<DEPart> partStack;
+	private Map<BBSimplePort, Map<String, Class<?>>> allProvidedToRequired;
+	private Map<BBSimplePort, Map<String, String>> allProvidedToRequiredNames;	
 	
 	public BBSimplePart(BBSimpleElementRegistry registry, BBSimpleComponent component, DEPart complex, BBSimpleComponent owner)
 	{
@@ -251,5 +251,23 @@ public class BBSimplePart extends BBSimpleObject
 	public BBSimpleLevel getLevel()
 	{
 		return level;
+	}
+	
+	@Override
+	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
+	{
+		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		List<BBSimpleObject> t = new ArrayList<BBSimpleObject>();
+		t.add(type);
+		children.put("type", t);
+		children.put("slots", slots);
+		return children;
+	}
+
+	@Override
+	public String getTreeDescription()
+	{
+		String desc = (factory > 0 ? "SimpleFactory, " : "Part ") + rawName + " (" + complex.getUuid() + ")";
+		return desc;
 	}
 }

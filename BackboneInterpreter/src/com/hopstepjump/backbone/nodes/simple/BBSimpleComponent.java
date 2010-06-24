@@ -11,22 +11,22 @@ import com.hopstepjump.deltaengine.base.*;
 public class BBSimpleComponent extends BBSimpleElement
 {
 	private String name;
-	private transient String rawName;
+	private String rawName;
 	private Boolean factory;
 	private Boolean bean;
 	private Boolean leaf;
-	private List<BBSimplePort>                ports;
-	private transient List<BBSimpleAttribute> attributes;
-	private transient List<BBSimplePart>      parts;
-	private transient List<BBSimpleConnector> connectors;
-	private transient Class<?> implementationClass;
-	private transient boolean resolved;
+	private List<BBSimplePort>      ports;
+	private List<BBSimpleAttribute> attributes;
+	private List<BBSimplePart>      parts;
+	private List<BBSimpleConnector> connectors;
+	private Class<?> implementationClass;
+	private boolean resolved;
 	private String implementationClassName;
 	private Boolean lifecycleCallbacks;
 	private List<BBSimpleFactory> map = new ArrayList<BBSimpleFactory>();
-	private transient Constructor<?> constructor;
-	private transient String uuid;
-	private transient DEComponent complex;
+	private Constructor<?> constructor;
+	private String uuid;
+	private DEComponent complex;
 	
 	public BBSimpleComponent(BBSimpleElementRegistry registry, DEComponent complex)
 	{
@@ -789,5 +789,28 @@ public class BBSimpleComponent extends BBSimpleElement
 	public DEElement getComplex()
 	{
 		return complex;
+	}
+	
+	@Override
+	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
+	{
+		if (!top)
+			return null;
+		
+		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		children.put("attributes", attributes);
+		children.put("ports", ports);
+		children.put("parts", parts);
+		children.put("connectors", connectors);
+		return children;
+	}
+
+	@Override
+	public String getTreeDescription()
+	{
+		String desc = "Component " + rawName + " (" + uuid + ")";
+		if (implementationClassName != null)
+			desc += ", implementation = " + implementationClassName;
+		return desc;
 	}
 }

@@ -1,9 +1,12 @@
 package com.hopstepjump.jumble.umldiagrams.classifiernode;
 
 import java.awt.*;
+import java.awt.List;
 import java.awt.event.*;
+import java.util.*;
 
 import javax.swing.*;
+import javax.swing.tree.*;
 
 import org.eclipse.uml2.*;
 
@@ -67,6 +70,7 @@ public class FlattenedTreeMaker
 				
 				final JTree tree = makeTree(top);
 				tree.setRootVisible(false);
+				TreeExpander.expandTree(tree, null, true, null, null, 3);
 				tree.setCellRenderer(new UMLNodeRendererGem(null).getStringTreeCellRenderer());
 				JScrollPane scroller = new JScrollPane(tree);
 				pane.removeAll();
@@ -107,7 +111,40 @@ public class FlattenedTreeMaker
 
 	private JTree makeTree(BBSimpleComponent top)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode();
+		JTree tree = new JTree(root);		
+		addNodes(root, top, 0);
+		return tree;
+	}
+
+	private void addNodes(DefaultMutableTreeNode parent, BBSimpleObject object, int depth)
+	{
+		DefaultMutableTreeNode node = new DefaultMutableTreeNode(object.getTreeDescription());
+		parent.add(node);
+		Map<String, java.util.List<? extends BBSimpleObject>> map = object.getChildren(depth == 0);
+		if (map != null)
+			for (String head : map.keySet())
+			{
+				java.util.List<? extends BBSimpleObject> ls = map.get(head);
+				if (!isReallyEmpty(ls))
+				{
+					DefaultMutableTreeNode header = new DefaultMutableTreeNode(head);
+					node.add(header);
+					
+					for (BBSimpleObject obj : ls)
+						if (obj != null)
+							addNodes(header, obj, depth + 1);
+				}
+			}
+	}
+	
+	private boolean isReallyEmpty(java.util.List<? extends BBSimpleObject> ls)
+	{
+		if (ls == null)
+			return true;
+		for (BBSimpleObject obj : ls)
+			if (obj != null)
+				return false;
+		return true;
 	}
 }
