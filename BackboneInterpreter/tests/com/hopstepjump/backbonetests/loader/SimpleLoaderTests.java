@@ -68,6 +68,8 @@ public class SimpleLoaderTests
 		assertEquals("port", port.getName());
 		assertEquals(1, port.getSetProvidedInterfaces().size());
 		assertEquals(0, port.getSetRequiredInterfaces().size());
+		// should be provides irun
+		assertEquals("IRun", port.getSetProvidedInterfaces().iterator().next().getUuid());
 		
 		// should have a single attribute called age
 		Set<DeltaPair> attrs = a.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getAddObjects();

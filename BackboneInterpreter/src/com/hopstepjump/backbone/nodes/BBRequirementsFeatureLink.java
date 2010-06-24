@@ -3,8 +3,8 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -17,7 +17,7 @@ public class BBRequirementsFeatureLink extends DERequirementsFeatureLink impleme
 	private DERequirementsFeature subfeature;
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBRequirementsFeatureLink(UuidReference reference)
+  public BBRequirementsFeatureLink(LazyReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.name = reference.getName();

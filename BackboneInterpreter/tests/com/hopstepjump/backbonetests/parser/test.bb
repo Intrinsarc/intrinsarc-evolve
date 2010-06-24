@@ -8,9 +8,9 @@ stratum 3a7c94bf-a683-4bf4-abbd-72f821eeb197/dual_window/ is-relaxed is-destruct
             «port» f06e19f7-0b0b-4471-b9c1-38f1c375b1df/bigFont/,
             «port» 0cd9b6f1-b65f-4856-a87d-9a94ae10a1d4/bigFont/;
         parts:
-            bcfe7ddb-1b31-476a-b011-020e9424ad6e: 78f252b9-b031-4463-8bba-4566b4385ee8/WindowCombiner/;
+            bcfe7ddb-1b31-476a-b011-020e9424ad6e: 78f252b9-b031-4463-8bba-4566b4385ee8/WindowCombiner/,
             e601efdd-acad-4a1a-a966-c0538e2abb35: 7cc98f81-8cd4-48b1-a121-880c879c2839/TransitionsWindow/
-                2cb307bf-4e0a-448c-a97f-539b66beb744/extension/ = ".aut";
+                2cb307bf-4e0a-448c-a97f-539b66beb744/extension/ = ".aut",
             e3ac3806-45db-4d65-96f9-609213eb9a35: 3a720347-363a-4af4-a3e3-efc92e3cb57d/AlphabetWindow/;
         connectors:
             031487d2-68bb-47a5-8f07-5cce1eb86839 joins cb340c9b-d72d-4128-9dc9-4d2a7a04d2cc/window/ to c575bec6-a2f5-4c71-9b82-1826810fefcf/main/@bcfe7ddb-1b31-476a-b011-020e9424ad6e,
@@ -27,7 +27,7 @@ stratum 3a7c94bf-a683-4bf4-abbd-72f821eeb197/dual_window/ is-relaxed is-destruct
             «port» a325179e-09b4-4bc3-94e4-6136c8de1820/windows/ requires b8c1c9e2-1dfd-48b3-8ddf-9de667288d92/IWindow/;
     }
 
-    component 3899efcd-c376-474b-b372-a143e0d076ea/DualWindowFactory/ is-factory
+    component 3899efcd-c376-474b-b372-a143e0d076ea/DualWindowFactory/
          resembles FactoryBase
     {
         ports:

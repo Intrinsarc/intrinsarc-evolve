@@ -5,7 +5,7 @@ import java.util.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.nodes.simple.*;
 import com.hopstepjump.backbone.nodes.simple.internal.*;
 import com.hopstepjump.backbone.parserbase.*;
@@ -16,9 +16,11 @@ import com.hopstepjump.deltaengine.errorchecking.*;
 
 public class BackboneInterpreter
 {
+	private static final String ARROW = "      |";
+	
 	public static void main(String args[])
 	{
-		System.out.println("> Backbone v2.0");
+		System.out.println("Backbone v2.0");
 		
 		// ensure we have enough arguments
 		if (args.length < 4)
@@ -39,7 +41,7 @@ public class BackboneInterpreter
 		// port may be null
 		String port = args.length > 3 + offset ? args[3 + offset] : null;
 		
-		String tab = "      |  ";
+		String tab = ARROW + "  ";
 		System.out.println(tab + "loading system from " + loadListFile);
 		
 		try
@@ -86,7 +88,7 @@ public class BackboneInterpreter
 			}
 			
 			String fullName = stratum + "::" + component + (port == null ? "" : "." + port);
-			System.out.println("> running " + fullName);
+			System.out.println(ARROW + " running " + fullName);
 			
 			// find the correct stratum
 			DEStratum runStratum = findNamedStratum(fullName, new StringTokenizer(stratum, "::"), root);
@@ -106,8 +108,10 @@ public class BackboneInterpreter
 			BBSimplePort provider = null;
 			if (port != null && top.getPorts() != null)
 				for (BBSimplePort p : top.getPorts())
-					if (p.getName().equals(port))
+				{
+					if (p.getRawName().equals(port))
 						provider = p;
+				}
 			if (provider != null)
 			{
 				if (provider.getRequires().size() != 0 || provider.getProvides().size() != 1)
@@ -185,7 +189,7 @@ public class BackboneInterpreter
 		for (BBStratum pkg : system)
 		{
 			String parentUUID = pkg.getParentUuid();
-			if (reg.hasNode(new UuidReference(parentUUID)))
+			if (reg.hasNode(new LazyReference(parentUUID)))
 					pkg.setParentAndTellChildren((BBStratum) reg.getNode(parentUUID, DEStratum.class));
 			else
 				pkg.setParentAndTellChildren(root);

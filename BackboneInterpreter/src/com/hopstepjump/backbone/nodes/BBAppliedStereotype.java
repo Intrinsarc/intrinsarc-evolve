@@ -2,7 +2,7 @@ package com.hopstepjump.backbone.nodes;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -68,7 +68,7 @@ public class BBAppliedStereotype extends DEAppliedStereotype
 	}
 
 	
-	public void setStereotype(UuidReference stereo)
+	public void setStereotype(LazyReference stereo)
 	{
 		stereotype.setReference(stereo);
 	}

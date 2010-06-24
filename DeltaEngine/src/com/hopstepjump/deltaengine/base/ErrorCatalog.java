@@ -43,7 +43,8 @@ public class ErrorCatalog
 	public static final ErrorDescription CANNOT_HAVE_PARTS = new ErrorDescription("No parts allowed in this type of component");
 	public static final ErrorDescription COMPOSITE_CANNOT_HAVE_PORT_LINKS = new ErrorDescription("No port links allowed in composites");
 	public static final ErrorDescription NO_DIRECT_PORT_CONNECTIONS_ALLOWED = new ErrorDescription("No port to port connections allowed");
-	public static final ErrorDescription NO_CONNECTOR_LOOPBACKS = new ErrorDescription("Connector loopbacks are not allowed");
+// currently disabled -- seems like an unnecessarily harsh restriction AMcV 24/6/2010
+//	public static final ErrorDescription NO_CONNECTOR_LOOPBACKS = new ErrorDescription("Connector loopbacks are not allowed");
 	public static final ErrorDescription PARENT_OF_DESTRUCTIVE_STRATUM_MUST_BE_DESTRUCTIVE_ALSO = new ErrorDescription("A destructive stratum must have a destructive parent stratum");
 	public static final ErrorDescription HOME_OF_DESTRUCTIVE_ELEMENT_MUST_BE_DESTRUCTIVE_ALSO = new ErrorDescription("A destructive element must have a destructive home stratum");
 	public static final ErrorDescription CANNOT_SEE_TYPE = new ErrorDescription("Type is not visible");

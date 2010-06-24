@@ -7,12 +7,13 @@ import java.util.*;
 
 import org.junit.*;
 
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 
 public class RawStratumParseTests
 {
 	@Test
-	public void TestStratumParse()
+	public void testStratumParse()
 	{
 		String uuid[] = {""};
 		String name[] = {""};
@@ -24,7 +25,7 @@ public class RawStratumParseTests
 	}
 	
 	@Test(expected=ParseException.class)
-	public void TestStratumParseFail()
+	public void testStratumParseFail()
 	{
 		String uuid[] = {""};
 		String name[] = {""};
@@ -34,7 +35,7 @@ public class RawStratumParseTests
 	}
 	
 	@Test
-	public void TestStratumParse2()
+	public void testStratumParse2()
 	{
 		String uuid[] = {""};
 		String name[] = {""};
@@ -51,7 +52,7 @@ public class RawStratumParseTests
 	private void parseStratumDeclaration(String decl, String uuid[], String name[], boolean relaxed[], final List<String> dependsOn)
 	{
 		final Expect ex = new Expect(new Tokenizer("file", new StringReader(decl)));
-		UuidReference ref = new UuidReference();
+		LazyReference ref = new LazyReference();
 		ex.
 			literal("stratum").
 			uuid(ref).
@@ -71,7 +72,7 @@ public class RawStratumParseTests
 						new IAction()
 						{ public void act()
 							{
-								UuidReference ref = new UuidReference();
+								LazyReference ref = new LazyReference();
 								ex.uuid(ref);
 								dependsOn.add(ref.getUuid());
 							}

@@ -3,8 +3,8 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -15,7 +15,7 @@ public class BBOperation extends DEOperation implements INode, Serializable
   private String uuid = BBUidGenerator.newUuid(getClass());
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBOperation(UuidReference reference)
+  public BBOperation(LazyReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.name = reference.getName();

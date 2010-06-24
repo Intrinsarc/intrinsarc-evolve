@@ -3,10 +3,7 @@ package com.hopstepjump.backbonetests.logic;
 import org.junit.*;
 
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
-
-
 
 public class InferenceTests extends TestBase
 {

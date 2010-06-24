@@ -124,10 +124,9 @@ public class BBSimpleInstantiatedFactory
 			if (end != -1)
 			{
 				BBSimpleConnectorEnd connEnd = conn.makeSimpleConnectorEnd(1 - end);
-				
 				BBSimplePart part = connEnd.getPart();
 				Object object = iparts.get(part);
-				ReflectivePort field = BBSimpleConnector.getPortField(part.getType(), provider, IRun.class, true);
+				ReflectivePort field = BBSimpleConnector.getPortField(part.getType(), connEnd.getPort(), IRun.class, true);
 				((IRun) field.getSingle(IRun.class, object)).run(args);
 			}
 		}

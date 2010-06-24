@@ -6,8 +6,8 @@ import org.junit.*;
 
 import com.hopstepjump.backbone.*;
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.deltaengine.errorchecking.*;
@@ -24,7 +24,7 @@ public class TestBase
 	{
 		BBDeltaEngine engine = new BBDeltaEngine();
 		GlobalDeltaEngine.engine = engine;
-		GlobalNodeRegistry.registry = new NodeRegistry();
+		GlobalNodeRegistry.reset();
 		
 		top = engine.getRoot();
 		a = new BBStratum("a");
@@ -53,15 +53,15 @@ public class TestBase
 		d.settable_getRawDependsOn().add(c);
 		
 		// set up some stereotypes
-		componentStereo = new BBComponent(new UuidReference("component"));
+		componentStereo = new BBComponent(new LazyReference("component"));
 		componentStereo.setComponentKind(ComponentKindEnum.STEREOTYPE);
 		componentStereo.setParent(global);
-		impl = new BBAttribute(new UuidReference(DEElement.IMPLEMENTATION_STEREOTYPE_PROPERTY));
+		impl = new BBAttribute(new LazyReference(DEElement.IMPLEMENTATION_STEREOTYPE_PROPERTY));
 		componentStereo.settable_getAddedAttributes().add(impl);
 		appliedComponentStereo = new BBAppliedStereotype();
 		appliedComponentStereo.setStereotype(componentStereo);
 		appliedComponentStereo.settable_getProperties().put(impl, "foo");
-		interfaceStereo = new BBComponent(new UuidReference("interface"));
+		interfaceStereo = new BBComponent(new LazyReference("interface"));
 		interfaceStereo.setComponentKind(ComponentKindEnum.STEREOTYPE);
 		interfaceStereo.setParent(global);
 		interfaceStereo.settable_getAddedAttributes().add(impl);
@@ -139,7 +139,7 @@ public class TestBase
 	protected void makePrimitive(String name, BBComponent[] component, BBPort[] provPort, BBInterface provIface, BBInterface provIface_req, boolean manyProv, BBPort[] reqPort, BBInterface reqIface, BBInterface reqIface_prov, boolean manyReq)
 	{
 		// make the component
-		BBComponent comp = new BBComponent(new UuidReference(name));
+		BBComponent comp = new BBComponent(new LazyReference(name));
 		comp.settable_getReplacedAppliedStereotypes().add(appliedComponentStereo);
 		a.settable_getElements().add(comp);
 		comp.setParent(a);
@@ -149,7 +149,7 @@ public class TestBase
 		BBPort req = null;
 		if (provPort != null)
 		{
-			BBPort port = new BBPort(new UuidReference(name + "ProvPort"));
+			BBPort port = new BBPort(new LazyReference(name + "ProvPort"));
 			port.setName(port.getUuid());
 			comp.settable_getAddedPorts().add(port);
 			port.setParent(comp);
@@ -170,7 +170,7 @@ public class TestBase
 
 		if (reqPort != null)
 		{
-			BBPort port = new BBPort(new UuidReference(name + "ReqPort"));
+			BBPort port = new BBPort(new LazyReference(name + "ReqPort"));
 			port.setName(port.getUuid());
 			comp.settable_getAddedPorts().add(port);
 			port.setParent(comp);

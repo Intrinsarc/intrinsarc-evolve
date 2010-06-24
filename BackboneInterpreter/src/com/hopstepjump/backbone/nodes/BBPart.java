@@ -3,8 +3,8 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -27,7 +27,7 @@ public class BBPart extends DEPart implements INode, Serializable
   	GlobalNodeRegistry.registry.addNode(this);
   }
 
-  public BBPart(UuidReference reference)
+  public BBPart(LazyReference reference)
   {
   	this(reference.getUuid());
   	name = reference.getName();
@@ -39,7 +39,6 @@ public class BBPart extends DEPart implements INode, Serializable
 		this.synthetic = synthetic;
 		this.pullUp = pullUp;
   	GlobalNodeRegistry.registry.addNode(this);
-  	resolveLazyReferences();
   }
 
   @Override
@@ -87,7 +86,7 @@ public class BBPart extends DEPart implements INode, Serializable
     this.type.setObject(type);
   }
 
-  public void setType(UuidReference reference)
+  public void setType(LazyReference reference)
   {
     this.type.setReference(reference);
   }

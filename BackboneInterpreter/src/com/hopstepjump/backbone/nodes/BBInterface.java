@@ -3,8 +3,8 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -48,7 +48,7 @@ public class BBInterface extends DEInterface implements INode, Serializable
     resemblers = new HashSet<DEElement>();
   }
 
-  public BBInterface(UuidReference reference)
+  public BBInterface(LazyReference reference)
   {
   	this(reference.getUuid());
   	rawName = reference.getName();

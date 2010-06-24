@@ -6,6 +6,7 @@ import java.io.*;
 
 import org.junit.*;
 
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 
 public class ExpectTests
@@ -61,7 +62,7 @@ public class ExpectTests
 	@Test
 	public void expectUUIDs()
 	{
-		UuidReference ref = new UuidReference();
+		LazyReference ref = new LazyReference();
 		makeExpect("a1-2-3/hello/").uuid(ref);
 		assertEquals("a1-2-3", ref.getUuid());
 		assertEquals("hello", ref.getName());

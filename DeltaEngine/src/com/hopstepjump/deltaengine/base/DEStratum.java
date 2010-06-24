@@ -19,29 +19,29 @@ public abstract class DEStratum extends DEObject
    * flattened is the full transformation down to a flat package structure where every package
    * is explicit about its full dependency set.  Used to check circularity.
    */
-  private transient Set<DEStratum> transitive;
+  private Set<DEStratum> transitive;
 
   /**
    * this is the same as transitive, but also includes this package
    */
-  private transient Set<DEStratum> transitivePlusMe;
+  private Set<DEStratum> transitivePlusMe;
 
   /**
    * stratumVisibleFlattened is the full transformation down to a flat package structure, as above, but respecting the
    * strict/relaxed stratum rules. 
    */
-  private transient Set<DEStratum> canSee;
-  private transient Set<DEStratum> canSeePlusMe;
+  private Set<DEStratum> canSee;
+  private Set<DEStratum> canSeePlusMe;
 
   /**
    * visibleDistinctStratumFlattened is the visible stratum from this one, removing any stratum of direct dependencies 
    */
-  private transient Set<DEStratum> simpleDependsOn;
+  private Set<DEStratum> simpleDependsOn;
 
   /**
    * this is all the strata that a dependency to this stratum will expose the client to
    */
-  private transient Set<DEStratum> exposesStrata;
+  private Set<DEStratum> exposesStrata;
 
   /**
    * need an engine to locate objects during the course of computation

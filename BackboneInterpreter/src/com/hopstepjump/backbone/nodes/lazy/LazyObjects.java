@@ -1,4 +1,4 @@
-package com.hopstepjump.backbone.nodes.converters;
+package com.hopstepjump.backbone.nodes.lazy;
 
 import java.util.*;
 
@@ -7,11 +7,11 @@ import com.hopstepjump.deltaengine.base.*;
 
 public class LazyObjects<T>
 {
-	private List<UuidReference> references;
+	private List<LazyReference> references;
 	private List<T> objects = new ArrayList<T>();
 	private Class<T> cls;
 	
-	public LazyObjects(List<UuidReference> references, Class<T> cls)
+	public LazyObjects(List<LazyReference> references, Class<T> cls)
 	{
 		this.references = references;
 		this.cls = cls;
@@ -19,11 +19,11 @@ public class LazyObjects<T>
 	
 	public LazyObjects(Class<T> cls)
 	{
-		this.references = new ArrayList<UuidReference>();
+		this.references = new ArrayList<LazyReference>();
 		this.cls = cls;
 	}
 	
-	public void addReference(UuidReference reference)
+	public void addReference(LazyReference reference)
 	{
 		references.add(reference);
 	}
@@ -35,7 +35,7 @@ public class LazyObjects<T>
 	
 	public void resolve()
 	{
-		for (UuidReference ref : references)
+		for (LazyReference ref : references)
 		{
 			T obj = GlobalNodeRegistry.registry.getNode(ref, cls);
 			objects.add(obj);

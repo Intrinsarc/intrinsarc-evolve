@@ -2,8 +2,8 @@ package com.hopstepjump.backbone.nodes;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -73,7 +73,7 @@ public class BBComponent extends DEComponent implements INode
     resemblers = new HashSet<DEElement>();
   }
   
-  public BBComponent(UuidReference reference)
+  public BBComponent(LazyReference reference)
   {
   	this(reference.getUuid());
   	rawName = reference.getName();

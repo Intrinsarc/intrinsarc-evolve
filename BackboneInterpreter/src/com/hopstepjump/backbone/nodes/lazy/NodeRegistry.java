@@ -1,4 +1,4 @@
-package com.hopstepjump.backbone.nodes.converters;
+package com.hopstepjump.backbone.nodes.lazy;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public class NodeRegistry
     nodes.put(node.getUuid(), node);
   }
   
-  public <T> T getNode(UuidReference reference, Class<T> cls)
+  public <T> T getNode(LazyReference reference, Class<T> cls)
   {
   	DEObject obj = nodes.get(reference.getUuid());
   	if (obj == null)
@@ -54,7 +54,7 @@ public class NodeRegistry
   	return (T) obj;
   }
 
-	public boolean hasNode(UuidReference uuidReference)
+	public boolean hasNode(LazyReference uuidReference)
 	{
 		return nodes.containsKey(uuidReference.getUuid());
 	}

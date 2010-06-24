@@ -14,7 +14,7 @@ public class StrataTests extends TestBase
 		testPackages("Transitivity of c", c.getTransitive(), new DEStratum[]{a, aa, ab, aba, global});
 		testPackages("Transitivity of d", d.getTransitive(), new DEStratum[]{a, aa, ab, aba, c, b, global});
 		testPackages("Transitivity of e", e.getTransitive(), new DEStratum[]{a, aa, ab, aba, b, global});
-		testPackages("Transitivity of lonely", lonely.getTransitive(), new DEStratum[]{});
+		testPackages("Transitivity of lonely", lonely.getTransitive(), new DEStratum[]{});		
 		testPackages("Transitivity of top", top.getTransitive(), new DEStratum[]{a, aa, ab, aba, lonely, b, c, d, e, global});
 	}
 	

@@ -1,4 +1,4 @@
-package com.hopstepjump.backbone.nodes.converters;
+package com.hopstepjump.backbone.readers;
 
 public class StratumLoadingException extends Exception
 {

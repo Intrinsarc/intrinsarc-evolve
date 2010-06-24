@@ -3,7 +3,7 @@ package com.hopstepjump.backbone.parser;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -18,7 +18,7 @@ public class ParserUtilities
 						{
 							public void act()
 							{
-								UuidReference reference = new UuidReference();
+								LazyReference reference = new LazyReference();
 								ex.uuid(reference);
 								references.addReference(reference);
 							}
@@ -34,7 +34,7 @@ public class ParserUtilities
 						{
 							public void act()
 							{
-								UuidReference reference = new UuidReference();
+								LazyReference reference = new LazyReference();
 								ex.uuid(reference);
 								references.add(reference.getUuid());
 							}
@@ -47,7 +47,7 @@ public class ParserUtilities
 		ex.guard("\u00ab",
 			new IAction()
 			{
-				final UuidReference stereo = new UuidReference();
+				final LazyReference stereo = new LazyReference();
 				public void act()
 				{
 					ex.oneOrMore(",",
@@ -86,7 +86,7 @@ public class ParserUtilities
 
 	private static void parseAppliedValue(final Expect ex)
 	{
-		UuidReference attr = new UuidReference();
+		LazyReference attr = new LazyReference();
 		ex.
 			uuid(attr).
 			guard("=",

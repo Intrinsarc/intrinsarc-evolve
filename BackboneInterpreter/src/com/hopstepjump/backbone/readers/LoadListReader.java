@@ -5,8 +5,8 @@ import java.util.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parser.*;
 import com.hopstepjump.backbone.parserbase.*;
 
@@ -41,7 +41,6 @@ public class LoadListReader
     
     // look through each directory and recursively load any stratum files
     List<BBStratum> strata = new ArrayList<BBStratum>();
-    GlobalNodeRegistry.registry = new NodeRegistry();
     for (BBStratumDirectory directory : directories)
     {
       StratumReader reader = new StratumReader(new File(directory.getPath()));

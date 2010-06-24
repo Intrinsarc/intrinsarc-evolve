@@ -3,8 +3,8 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -37,7 +37,7 @@ public class BBRequirementsFeature extends DEInterface implements INode, Seriali
   // other cached variables
   private transient Set<String> replacedUuids;
   
-  public BBRequirementsFeature(UuidReference reference)
+  public BBRequirementsFeature(LazyReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.rawName = reference.getName();

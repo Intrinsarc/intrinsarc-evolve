@@ -2,8 +2,8 @@ package com.hopstepjump.backbone.nodes;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -24,7 +24,7 @@ public class BBConnector extends DEConnector implements INode
 	private List<DEAppliedStereotype> appliedStereotypes;
 	private transient boolean synthetic;
   
-  public BBConnector(UuidReference reference)
+  public BBConnector(LazyReference reference)
   {
   	this(reference.getUuid());
   	this.name = reference.getName();
@@ -54,7 +54,7 @@ public class BBConnector extends DEConnector implements INode
 		fromPort = new LazyObject<DEPort>(DEPort.class, port);
   }
 
-	public void setLazyFromPort(UuidReference reference)
+	public void setLazyFromPort(LazyReference reference)
   {
 		fromPort = new LazyObject<DEPort>(DEPort.class, reference);
   }
@@ -64,7 +64,7 @@ public class BBConnector extends DEConnector implements INode
 		fromPart = new LazyObject<DEPart>(DEPart.class, part);
 	} 
 
-	public void setLazyFromPart(UuidReference reference)
+	public void setLazyFromPart(LazyReference reference)
 	{
 		fromPart = new LazyObject<DEPart>(DEPart.class, reference);
 	} 
@@ -87,7 +87,7 @@ public class BBConnector extends DEConnector implements INode
 		toPort = new LazyObject<DEPort>(DEPort.class, port);
   }
 
-  public void setLazyToPort(UuidReference reference)
+  public void setLazyToPort(LazyReference reference)
   {
 		toPort = new LazyObject<DEPort>(DEPort.class, reference);
   }
@@ -97,7 +97,7 @@ public class BBConnector extends DEConnector implements INode
 		toPart = new LazyObject<DEPart>(DEPart.class, part);
 	} 
 
-	public void setLazyToPart(UuidReference reference)
+	public void setLazyToPart(LazyReference reference)
 	{
 		toPart = new LazyObject<DEPart>(DEPart.class, reference);
 	} 

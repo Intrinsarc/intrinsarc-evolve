@@ -3,7 +3,7 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -19,7 +19,7 @@ public class BBStratum extends DEStratum implements Serializable
   private List<DEElement> elements;
   private List<DEStratum> childPackages;
 
-  public BBStratum(UuidReference reference)
+  public BBStratum(LazyReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.name = reference.getName();

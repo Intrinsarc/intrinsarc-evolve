@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -18,7 +19,7 @@ public class FeatureParser
 	
 	public BBRequirementsFeature parse()
 	{
-		UuidReference ref = new UuidReference();
+		LazyReference ref = new LazyReference();
 
 		ex.literal();
 		ex.
@@ -57,7 +58,7 @@ public class FeatureParser
 						public void act()
 						{
 							ParserUtilities.parseAppliedStereotype(ex);
-							UuidReference ref = new UuidReference();
+							LazyReference ref = new LazyReference();
 							ex.uuid(ref).literal("becomes");
 							parseSubfeature();
 						}
@@ -83,7 +84,7 @@ public class FeatureParser
 	
 	private BBRequirementsFeatureLink parseSubfeature()
 	{
-		UuidReference ref = new UuidReference();
+		LazyReference ref = new LazyReference();
 		final SubfeatureKindEnum kind[] = {null};
 		ex.
 			uuid(ref);

@@ -4,7 +4,7 @@ import java.io.*;
 
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parser.*;
 import com.hopstepjump.backbone.parserbase.*;
 
@@ -38,7 +38,6 @@ public class StratumReader
     if (!stratum.exists())
       throw new StratumLoadingException("Cannot read " + stratum);
     
-		System.out.println("$$ reading stratum " + stratum);
   	Expect expect = LoadListReader.makeExpect(stratum);
   	try
   	{

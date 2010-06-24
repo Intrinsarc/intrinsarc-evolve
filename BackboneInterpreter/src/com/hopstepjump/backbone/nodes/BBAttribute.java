@@ -2,8 +2,8 @@ package com.hopstepjump.backbone.nodes;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -23,7 +23,7 @@ public class BBAttribute extends DEAttribute implements INode
   
 	public BBAttribute() {}
 	
-  public BBAttribute(UuidReference reference)
+  public BBAttribute(LazyReference reference)
   {
   	this(reference.getUuid(), false, false);
   	this.name = reference.getName();
@@ -82,7 +82,7 @@ public class BBAttribute extends DEAttribute implements INode
 		this.type.setObject(type);
   }
 
-  public void setType(UuidReference reference)
+  public void setType(LazyReference reference)
   {
 		this.type.setReference(reference);
   }

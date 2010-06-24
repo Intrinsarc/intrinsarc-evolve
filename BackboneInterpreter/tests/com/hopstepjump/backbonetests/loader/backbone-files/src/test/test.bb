@@ -12,7 +12,7 @@ stratum 1b6f8bf2-0b26-4256-be5b-b57e1a931911/test/
         attributes:
             fe5f1c72-3ca4-4cc8-a4c4-0b848fd5d749/age/: int;
         ports:
-            839a6dfe-3f1d-424a-bd8d-e7e158611fe9/port/ provides 0c81e34c-aa3e-44ba-8260-737fa5b629d5/IFace/;
+            839a6dfe-3f1d-424a-bd8d-e7e158611fe9/port/ provides IRun;
     }
 
     component d161022c-ee9c-437a-9e8b-9518a441af5d/B/

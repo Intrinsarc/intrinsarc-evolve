@@ -3,8 +3,8 @@ package com.hopstepjump.backbone.parser;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.nodes.converters.*;
 import com.hopstepjump.backbone.nodes.insides.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -19,7 +19,7 @@ public class InterfaceParser
 	
 	public BBInterface parse()
 	{
-		UuidReference ref = new UuidReference();
+		LazyReference ref = new LazyReference();
 		final String implementation[] = {null};
 		ex.literal();
 		ex.
@@ -57,7 +57,7 @@ public class InterfaceParser
 			if (stereos.isEmpty())
 			{
 				stereo = new BBAppliedStereotype();
-				stereo.setStereotype(new UuidReference("interface"));
+				stereo.setStereotype(new LazyReference("interface"));
 				i.settable_getReplacedAppliedStereotypes().add(stereo);
 			}
 			else
@@ -73,7 +73,7 @@ public class InterfaceParser
 	private void addStringStereotypeProperty(BBAppliedStereotype stereo, String attrUUID, String value)
 	{
 		stereo.settable_getLazyProperties().put(
-				new LazyObject<DEAttribute>(DEAttribute.class, new UuidReference(attrUUID)),
+				new LazyObject<DEAttribute>(DEAttribute.class, new LazyReference(attrUUID)),
 				value);
 	}
 
@@ -88,7 +88,7 @@ public class InterfaceParser
 						public void act()
 						{
 							ParserUtilities.parseAppliedStereotype(ex);
-							UuidReference ref = new UuidReference();
+							LazyReference ref = new LazyReference();
 							ex.uuid(ref).literal("becomes");
 							parseOperation();
 						}
@@ -114,7 +114,7 @@ public class InterfaceParser
 	
 	private BBOperation parseOperation()
 	{
-		UuidReference ref = new UuidReference();
+		LazyReference ref = new LazyReference();
 		ex.
 			uuid(ref);
 		final BBOperation operation = new BBOperation(ref);

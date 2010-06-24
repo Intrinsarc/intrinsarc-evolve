@@ -231,9 +231,12 @@ public class ComponentErrorChecker
       	
       	if (part1 == null && part2 == null)
       		errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.NO_DIRECT_PORT_CONNECTIONS_ALLOWED);
+
       	// cannot loopback on the same port instance
-      	if (part1 == part2 && port1 == port2)
-      		errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.NO_CONNECTOR_LOOPBACKS);
+      	// disable for now, i'm not sure it's ever a problem
+      	// i.e. inference use case 16 seems fine with it in... AMcV 24/6/2010
+//      	if (part1 == part2 && port1 == port2)
+//      		errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.NO_CONNECTOR_LOOPBACKS);
       	
       	// if a component links to an ordered port, then it must have an index set, unless it is a delegate
       	if (!conn.isDelegate())

@@ -1,0 +1,9789 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 56 20 539 771
+%%Creator: FreeHEP Graphics2D Driver
+%%Producer: org.freehep.graphicsio.ps.PSGraphics2D Revision: 1.2 
+%%For: 
+%%Title: 
+%%CreationDate: Monday, 10 September 2007 13:05:18 o'clock BST
+%%LanguageLevel: 3
+%%EndComments
+%%BeginProlog
+100 dict dup begin
+
+%
+% File: org/freehep/graphicsio.ps/PSProlog.txt
+% Author: Charles Loomis
+%
+
+% Redefinitions which save some space in the output file.  These are also
+% the same as the PDF operators.
+/q {gsave} def
+/Q {grestore} def
+
+/n {newpath} def
+/m {moveto} def
+/l {lineto} def
+/c {curveto} def
+/h {closepath} def
+
+/re {4 -2 roll moveto
+     dup 0 exch rlineto exch 0 rlineto
+     neg 0 exch rlineto closepath} def
+
+/f {fill} def
+/f* {eofill} def
+/F {gsave vg&FC fill grestore} def
+/F* {gsave vg&FC eofill grestore} def
+
+/s {closepath stroke} def
+/S {stroke} def
+
+/b {closepath gsave vg&FC fill grestore
+    gsave stroke grestore newpath} def
+/B {gsave vg&FC fill grestore gsave stroke grestore newpath} def
+/b* {closepath gsave vg&FC eofill grestore
+    gsave stroke grestore newpath} def
+/B* {gsave vg&FC eofill grestore gsave stroke grestore newpath} def
+
+/g {1 array astore /vg&fcolor exch def} def
+/G {setgray} def
+/k {4 array astore /vg&fcolor exch def} def
+/K {setcmykcolor} def
+/rg {3 array astore /vg&fcolor exch def} def
+/RG {setrgbcolor} def
+
+% Initialize the fill color.
+0 0 0 rg
+
+/vg&FC {mark vg&fcolor aload pop
+        counttomark 1 eq {G} if
+        counttomark 3 eq {RG} if
+        counttomark 4 eq {K} if
+        cleartomark } def
+
+/vg&DFC {/vg&fcolor exch def} def
+
+/vg&C {mark exch aload pop
+       counttomark 1 eq {G} if
+       counttomark 3 eq {RG} if
+       counttomark 4 eq {K} if
+       cleartomark } def
+
+/w {setlinewidth} def
+/j {setlinejoin} def
+/J {setlinecap} def
+/M {setmiterlimit} def
+/d {setdash} def
+/i {setflat} def
+
+/W {clip} def
+/W* {eoclip} def
+
+% Setup the default graphics state.
+% (black; 1 pt. linewidth; miter join; butt-ends; solid)
+/defaultGraphicsState {0 g 1 w 0 j 0 J [] 0 d} def
+
+% Emulation of the rectangle operators for PostScript implementations
+% which do not implement all Level 2 features.  This is an INCOMPLETE
+% emulation; only the "x y width height rect..." form is emulated.
+/*rf {gsave newpath re fill grestore} def
+/*rs {gsave newpath re stroke grestore} def
+/*rc {newpath re clip} def
+/rf  /rectfill where {pop /rectfill}{/*rf} ifelse load def
+/rs  /rectstroke where {pop /rectstroke}{/*rs} ifelse load def
+/rc  /rectclip where {pop /rectclip}{/*rc} ifelse load def
+
+% Emulation of the selectfont operator.  This includes a 20% increase in
+% the fontsize which is necessary to get sizes similar to the Java fonts.
+/*sf {exch findfont exch
+      dup type /arraytype eq {makefont}{scalefont} ifelse setfont} bind def
+/sf /selectfont where {pop {1.2 mul selectfont}}{{1.2 mul *sf}} ifelse def
+
+% Special version of stroke which allows the dash pattern to continue
+% across path segments.  (This may be needed for PostScript although
+% modern printers seem to do this correctly.)
+/vg&stroke {
+  currentdash pop length 0 eq
+  {stroke}
+  {
+    currentdash /vg&doffset exch def pop
+    flattenpath
+    {m vg&resetdash}
+    {2 copy
+     currentpoint
+     3 -1 roll sub dup mul
+     3 1 roll sub dup mul
+     add sqrt
+     3 1 roll l
+     currentdash 3 -1 roll add setdash}
+     {}
+     {h vg&resetdash}
+     pathforall
+     stroke
+     vg&resetdash
+  } ifelse
+} def
+/vg&resetdash {currentdash pop vg&doffset setdash} def
+
+% Initialize variables for safety.
+/delta 0 def
+/xv 0 def  /yv 0 def  /width 0 def  /height 0 def
+
+% Initialize to portrait INTERNATIONAL (Letter-height, A4-width) page.
+/pw 595 def  /ph 791  def  /po true def /ftp false def
+
+% Initialize margins to 20 points.
+/ml 20 def  /mr 20 def  /mt 20 def  /mb 20 def
+
+% Temporary matrices.
+/smatrix 0 def  /nmatrix 0 def
+
+% set page size (usage: <page width><page height> setpagesize)
+/setpagesize {/ph exch def /pw exch def} def
+
+% set page orientation (usage: portrait or landscape)
+/portrait {/po true def} def
+/landscape {/po false def} def
+
+% force natural size for image (usage: naturalsize)
+/naturalsize {/ftp false def} def
+
+% resize image to fill page (usage: fittopage)
+/fittopage {/ftp true def} def
+
+% set margins of the page (usage: <left><bottom><top><right> setmargins)
+/setmargins {/mr exch def /mt exch def /mb exch def /ml exch def} def
+
+% set the graphic's size (usage: <width><height> setsize)
+/setsize {/gh exch def /gw exch def} def
+
+% set the graphic's origin (usage: <x0><y0> setorigin)
+/setorigin {/gy exch def /gx exch def} def
+
+% calculate image center
+/imagecenter {pw ml sub mr sub 2 div ml add
+              ph mt sub mb sub 2 div mb add} def
+
+% calculate the necessary scaling
+/imagescale {po {gw}{gh} ifelse pw ml sub mr sub div
+             po {gh}{gw} ifelse ph mt sub mb sub div
+             2 copy lt {exch} if pop
+             ftp not {1 2 copy lt {exch} if pop} if
+             1 exch div /sfactor exch def
+             /gw gw sfactor mul def /gh gh sfactor mul def} def
+
+% calculate image origin
+/imageorigin {pw ml sub mr sub 2 div ml add
+              po {gw}{gh} ifelse 2 div sub
+              ph mt sub mb sub 2 div mb add
+              po {gh}{gw} ifelse 2 div po {add}{sub} ifelse} def
+
+% calculate the clipping origin
+/cliporigin  {pw ml sub mr sub 2 div ml add
+              po {gw}{gh} ifelse 2 div sub floor
+              ph mt sub mb sub 2 div mb add
+              po {gh}{gw} ifelse 2 div sub floor} def
+
+% Set the clipping region to the bounding box.
+/cliptobounds {cliporigin po {gw}{gh} ifelse 1 add
+                          po {gh}{gw} ifelse 1 add rc} def
+
+% set the base transformation matrix (usage: setbasematrix)
+/setbasematrix {imageorigin translate
+                po {0}{90} ifelse rotate
+                sfactor sfactor neg scale
+                /defaultmatrix matrix currentmatrix def} def
+
+% The lower-right bias in drawing 1 pt. wide lines.
+/bias  {q 0.5 0.5 translate} def
+/unbias {Q} def
+
+% Draw a line. (x0 y0 x1 y1 line)
+/L {bias n m l S unbias} def
+
+% Polyline primitive.
+/polyline  {n m 1 exch 1 exch
+           {pop currentfile token pop currentfile token pop l} for
+           } def
+
+% Draw a polyline (n x0 y0 OPL x1 y1 x2 y2 ... ... xn yn)
+/OPL {bias polyline S unbias} def
+
+% Draw a closed polyline (n x0 y0 CPL x1 y1 x2 y2 ... ... xn yn)
+/CPL {bias polyline s unbias} def
+
+% Draw a filled polyline (n x0 y0 FPL x1 y1 x2 y2 ... ... xn yn)
+/FPL {polyline h f*} def
+
+% Draw an oval. (x y w h OVL)
+/OVL {matrix currentmatrix /smatrix exch def
+      /height exch def /width exch def
+      /yv exch def /xv exch def
+      width 2 div xv add height 2 div yv add translate
+      width currentlinewidth sub 2 div
+      height currentlinewidth sub 2 div neg
+      scale n 0 0 1 5 -2 roll arc
+      smatrix setmatrix S} def
+
+% Draw a filled oval. (x y w h FOVL)
+/FOVL {matrix currentmatrix /smatrix exch def
+      /height exch def /width exch def
+      /yv exch def /xv exch def
+      width 2 div xv add height 2 div yv add translate
+      width 2 div
+      height 2 div neg
+      scale n 0 0 m 0 0 1 5 -2 roll arc
+      h smatrix setmatrix f} def
+
+% Draw a rounded rectangle. (x y w h arcwidth archeight RREC)
+/RREC {matrix currentmatrix /smatrix exch def
+      2 div /ah exch def
+      2 div /aw exch def
+      /height exch def /width exch def
+      /yv exch def /xv exch def
+      aw ah scale matrix
+      currentmatrix /nmatrix exch def
+      smatrix setmatrix
+      n xv width add aw sub yv m
+      nmatrix setmatrix
+      currentpoint exch 1 add exch
+      currentpoint 1 add exch 1 add exch
+      1 arct smatrix setmatrix
+      xv width add yv height add ah sub l
+      nmatrix setmatrix
+      currentpoint 1 add
+      currentpoint exch 1 sub exch 1 add
+      1 arct smatrix setmatrix
+      xv aw add yv height add l
+      nmatrix setmatrix
+      currentpoint exch 1 sub exch
+      currentpoint exch 1 sub exch 1 sub
+      1 arct smatrix setmatrix
+      xv yv ah add l
+      nmatrix setmatrix
+      currentpoint 1 sub
+      currentpoint exch 1 add exch 1 sub
+      1 arct smatrix setmatrix
+      s} def
+
+% Draw a filled rounded rectangle. (x y w h arcwidth archeight FRREC)
+/FRREC{matrix currentmatrix /smatrix exch def
+      2 div /ah exch def
+      2 div /aw exch def
+      /height exch def /width exch def
+      /yv exch def /xv exch def
+      aw ah scale matrix
+      currentmatrix /nmatrix exch def
+      smatrix setmatrix
+      n xv width add aw sub yv m
+      nmatrix setmatrix
+      currentpoint exch 1 add exch
+      currentpoint 1 add exch 1 add exch
+      1 arct smatrix setmatrix
+      xv width add yv height add ah sub l
+      nmatrix setmatrix
+      currentpoint 1 add
+      currentpoint exch 1 sub exch 1 add
+      1 arct smatrix setmatrix
+      xv aw add yv height add l
+      nmatrix setmatrix
+      currentpoint exch 1 sub exch
+      currentpoint exch 1 sub exch 1 sub
+      1 arct smatrix setmatrix
+      xv yv ah add l
+      nmatrix setmatrix
+      currentpoint 1 sub
+      currentpoint exch 1 add exch 1 sub
+      1 arct smatrix setmatrix
+      h f} def
+
+% Draw a string.  (string x y STR)
+/STR {q m 1 -1 scale recshow Q} def
+
+% Define basic plot symbols.
+/xys   {/siz exch def /yv exch def /xv exch def} def
+/hline {xys n xv siz 2. div sub yv m siz 0 rlineto S} def
+/vline {xys n xv yv siz 2. div sub m 0 siz rlineto S} def
+/plus  {xys n xv yv siz 2. div sub m 0 siz rlineto
+                    xv siz 2. div sub yv m siz 0 rlineto S} def
+/dot   {n 2. div 0 360 arc s} def
+/fdot  {n 2. div 0 360 arc h f} def
+/box   {xys n xv siz 2 sqrt div 2 div sub yv siz 2 sqrt div 2 div sub
+                    siz 2 sqrt div dup rs} def
+/fbox  {xys n xv siz 2 sqrt div 2 div sub yv siz 2 sqrt div 2 div sub
+                       siz 2 sqrt div dup rf} def
+/tridn{xys n xv yv siz 3 sqrt div add m
+                       siz 2. div neg 3 sqrt 2. div siz mul neg rlineto
+                       siz 0 rlineto s} def
+/ftridn{xys n xv yv siz 3 sqrt div add m
+                       siz 2. div neg 3 sqrt 2. div siz mul neg rlineto
+                       siz 0 rlineto h f} def
+
+% Symbols defined in terms of the others.
+/star     {3 copy cross plus} def
+/cross    {xys q xv yv translate 45 rotate 0 0 siz plus Q} def
+/diamond  {xys q xv yv translate 45 rotate 0 0 siz box Q} def
+/fdiamond {xys q xv yv translate 45 rotate 0 0 siz fbox Q} def
+/triup    {xys q xv yv translate 180 rotate 0 0 siz tridn Q} def
+/ftriup   {xys q xv yv translate 180 rotate 0 0 siz ftridn Q} def
+
+% Define the composite fonts used to print Unicode strings.
+% Undefine particular values in an encoding array.
+/vg&undef { {exch dup 3 -1 roll /.notdef put} forall } def
+/vg&redef { {3 -1 roll dup 4 2 roll put} forall } def
+
+% usage: key encoding basefontname vg&newbasefont font
+/vg&newbasefont {
+findfont dup length dict copy
+  begin
+    currentdict /FID undef
+    /Encoding exch def
+    dup /FontName exch def
+    currentdict
+  end
+definefont
+} def
+
+% usage: key encoding basefontname vg&newskewedbasefont font
+/vg&newskewedbasefont {
+findfont dup length dict copy
+  begin
+    currentdict /FID undef
+    /Encoding exch def
+    dup /FontName exch def
+    exch FontMatrix exch matrix concatmatrix /FontMatrix exch def
+    currentdict
+  end
+definefont
+} def
+
+% usage: basekey suffix vg&nconcat name
+/vg&nconcat {
+  2 {dup length string cvs exch} repeat
+  dup length 3 -1 roll dup length 3 -1 roll add string
+  dup 0 4 -1 roll dup length 5 1 roll putinterval
+  dup 4 -2 roll exch putinterval cvn
+} def
+
+%usage: fontname vg&skewmatrix matrix
+/vg&skewmatrix {
+findfont dup /FontInfo known
+  {
+    /FontInfo get dup /ItalicAngle known
+    {
+      [ 1 0 4 -1 roll /ItalicAngle get neg dup sin exch cos div 1 0 0 ]
+    }
+    {pop matrix} ifelse
+  }
+  {pop matrix} ifelse
+} def
+
+% usage: newfontname basefontname vg&newcompositefont --
+/vg&newcompositefont {
+/vg&fstyle exch def
+/vg&bfont exch def
+/vg&fname exch def
+<<
+/FontStyleBits vg&fstyle
+/FontType 0
+/FontMatrix matrix
+/FontName vg&fname
+/FMapType 2
+/Encoding [ 0 1 255 {pop 6} for ]
+          dup 16#00 0 put % Latin
+          dup 16#03 1 put % Greek
+          dup 16#20 2 put % Punctuation
+          dup 16#21 3 put % Arrows
+          dup 16#22 4 put % MathOps
+          dup 16#27 5 put % Dingbats
+
+/FDepVector [
+vg&bfont /-UC-Latin vg&nconcat UCLatinEncoding
+vg&bfont vg&newbasefont
+
+vg&bfont vg&skewmatrix
+vg&bfont /-UC-Greek vg&nconcat UCGreekEncoding
+/Symbol vg&newskewedbasefont
+
+vg&bfont /-UC-Punctuation vg&nconcat UCPunctuationEncoding
+vg&bfont vg&newbasefont
+
+/Arrows-UC findfont
+/MathOps-UC findfont
+/Dingbats-UC findfont
+/Undefined-UC findfont ]
+>>
+vg&fname exch definefont pop
+} def
+
+% Null encoding vector (all elements set to .notdef)
+/NullEncoding [ 256 {/.notdef} repeat ] def
+
+% Unicode Latin encoding (unicode codes \u0000-\u00ff)
+/UCLatinEncoding
+  ISOLatin1Encoding dup length array copy
+  dup 16#60 /grave put
+  [ 16#90 16#91 16#92 16#93 16#94 16#95 16#96
+    16#97 16#98 16#9a 16#9b 16#9d 16#9e 16#9f
+  ] vg&undef
+  def
+
+% Unicode Greek encoding (unicode codes \u0370-\u03ff)
+/UCGreekEncoding
+  NullEncoding dup length array copy
+  << 16#91 /Alpha    16#92 /Beta      16#93 /Gamma    16#94 /Delta
+     16#95 /Epsilon  16#96 /Zeta      16#97 /Eta      16#98 /Theta
+     16#99 /Iota     16#9a /Kappa     16#9b /Lambda   16#9c /Mu
+     16#9d /Nu       16#9e /Xi        16#9f /Omicron  16#a0 /Pi
+     16#a1 /Rho      16#a3 /Sigma     16#a4 /Tau      16#a5 /Upsilon
+     16#a6 /Phi      16#a7 /Chi       16#a8 /Psi      16#a9 /Omega
+     16#b1 /alpha    16#b2 /beta      16#b3 /gamma    16#b4 /delta
+     16#b5 /epsilon  16#b6 /zeta      16#b7 /eta      16#b8 /theta
+     16#b9 /iota     16#ba /kappa     16#bb /lambda   16#bc /mu
+     16#bd /nu       16#be /xi        16#bf /omicron  16#c0 /pi
+     16#c1 /rho      16#c2 /sigma1    16#c3 /sigma    16#c4 /tau
+     16#c5 /upsilon  16#c6 /phi1      16#c7 /chi      16#c8 /psi
+     16#c9 /omega    16#7e /semicolon 16#87 /dotmath  16#d1 /theta1
+     16#d2 /Upsilon1 16#d5 /phi       16#d6 /omega1
+  >> vg&redef
+  def
+
+% Unicode punctuation encoding (unicode codes \u2000-\u206f)
+/UCPunctuationEncoding
+  NullEncoding dup length array copy
+  << 16#10 /hyphen          16#11 /hyphen              16#12 /endash
+     16#13 /emdash          16#18 /quoteleft           16#19 /quoteright
+     16#1a /quotesinglbase  16#1b /quotesingle         16#1c /quotedblleft
+     16#1d /quotedblright   16#1e /quotedblbase        16#1f /quotedbl
+     16#20 /dagger          16#21 /daggerdbl           16#22 /bullet
+     16#24 /period          16#26 /ellipsis            16#27 /periodcentered
+     16#30 /perthousand     16#44 /fraction
+     16#70 /zerosuperior    16#74 /foursuperior        16#75 /fivesuperior
+     16#76 /sixsuperior     16#77 /sevensuperior       16#78 /eightsuperior
+     16#79 /ninesuperior    16#7b /hyphensuperior      16#7d /parenleftsuperior
+     16#7e /parenrightsuperior
+     16#80 /zeroinferior    16#84 /fourinferior        16#85 /fiveinferior
+     16#81 /oneinferior     16#82 /twoinferior         16#83 /threeinferior
+     16#86 /sixinferior     16#87 /seveninferior       16#88 /eightinferior
+     16#89 /nineinferior    16#8b /hypheninferior      16#8d /parenleftinferior
+     16#8e /parenrightinferior
+  >> vg&redef
+  def
+
+% Unicode mathematical operators encoding (unicode codes \u2200-\u22ff)
+/UCMathOpsEncoding
+  NullEncoding dup length array copy
+  << 16#00 /universal       16#02 /partialdiff         16#03 /existential
+     16#05 /emptyset        16#06 /Delta               16#07 /gradient
+     16#08 /element         16#09 /notelement          16#0b /suchthat
+     16#0f /product         16#11 /summation           16#12 /minus
+     16#15 /fraction        16#17 /asteriskmath        16#19 /bullet
+     16#1a /radical         16#1d /proportional        16#1e /infinity
+     16#20 /angle           16#23 /bar                 16#27 /logicaland
+     16#28 /logicalor       16#29 /intersection        16#2a /union
+     16#2b /integral        16#34 /therefore           16#36 /colon
+     16#3c /similar         16#45 /congruent           16#48 /approxequal
+     16#60 /notequal        16#61 /equivalence         16#64 /lessequal
+     16#65 /greaterequal    16#82 /propersubset        16#83 /propersuperset
+     16#86 /reflexsubset    16#87 /reflexsuperset      16#95 /circleplus
+     16#97 /circlemultiply  16#a5 /perpendicular       16#03 /existential
+     16#c0 /logicaland      16#c1 /logicalor           16#c2 /intersection
+     16#c3 /union           16#c4 /diamond             16#c5 /dotmath
+  >> vg&redef
+  def
+
+% Unicode arrows encoding (unicode codes \u2190-\u21ff)
+% Also includes those "Letterlike" unicode characters
+% which are available in the symbol font. (unicode codes \u2100-\u214f)
+/UCArrowsEncoding
+  NullEncoding dup length array copy
+  << 16#11 /Ifraktur        16#1c /Rfraktur            16#22 /trademarkserif
+     16#35 /aleph
+     16#90 /arrowleft       16#91 /arrowup             16#92 /arrowright
+     16#93 /arrowdown       16#94 /arrowboth           16#d0 /arrowdblleft
+     16#d1 /arrowdblup      16#d2 /arrowdblright       16#d3 /arrowdbldown
+     16#d4 /arrowdblboth
+  >> vg&redef
+  def
+
+/ZapfDingbats findfont /Encoding get
+dup length array copy /UCDingbatsEncoding exch def
+16#20 1 16#7f {
+  dup 16#20 sub exch
+  UCDingbatsEncoding exch get
+  UCDingbatsEncoding 3 1 roll put
+} for
+16#a0 1 16#ff {
+  dup 16#40 sub exch
+  UCDingbatsEncoding exch get
+  UCDingbatsEncoding 3 1 roll put
+} for
+UCDingbatsEncoding [ 16#c0 1 16#ff {} for ] vg&undef
+[ 16#00  16#05 16#0a 16#0b  16#28 16#4c 16#4e  16#53 16#54 16#55  16#57 16#5f
+  16#60  16#68 16#69 16#6a  16#6b 16#6c 16#6d  16#6e 16#6f 16#70  16#71 16#72
+  16#73  16#74 16#75 16#95  16#96 16#97 16#b0  16#bf
+] vg&undef pop
+
+% Define the base fonts which don't change.
+/Undefined-UC NullEncoding       /Helvetica    vg&newbasefont pop
+/MathOps-UC   UCMathOpsEncoding  /Symbol       vg&newbasefont pop
+/Arrows-UC    UCArrowsEncoding   /Symbol       vg&newbasefont pop
+/Dingbats-UC  UCDingbatsEncoding /ZapfDingbats vg&newbasefont pop
+
+% Make the SansSerif composite fonts.
+/SansSerif /Helvetica 16#00 vg&newcompositefont
+/SansSerif-Bold /Helvetica-Bold 16#01 vg&newcompositefont
+/SansSerif-Italic /Helvetica-Oblique 16#02 vg&newcompositefont
+/SansSerif-BoldItalic /Helvetica-BoldOblique 16#03 vg&newcompositefont
+
+% Make the Serif composite fonts.
+/Serif /Times-Roman 16#00 vg&newcompositefont
+/Serif-Bold /Times-Bold 16#01 vg&newcompositefont
+/Serif-Italic /Times-Italic 16#02 vg&newcompositefont
+/Serif-BoldItalic /Times-BoldItalic 16#03 vg&newcompositefont
+
+% Make the Monospaced composite fonts.
+/Monospaced /Courier 16#00 vg&newcompositefont
+/Monospaced-Bold /Courier-Bold 16#01 vg&newcompositefont
+/Monospaced-Italic /Courier-Oblique 16#02 vg&newcompositefont
+/Monospaced-BoldItalic /Courier-BoldOblique 16#03 vg&newcompositefont
+
+% Make the Dialog composite fonts.
+/Dialog /Helvetica 16#00 vg&newcompositefont
+/Dialog-Bold /Helvetica-Bold 16#01 vg&newcompositefont
+/Dialog-Italic /Helvetica-Oblique 16#02 vg&newcompositefont
+/Dialog-BoldItalic /Helvetica-BoldOblique 16#03 vg&newcompositefont
+
+% Make the DialogInput composite fonts.
+/DialogInput /Helvetica 16#00 vg&newcompositefont
+/DialogInput-Bold /Helvetica-Bold 16#01 vg&newcompositefont
+/DialogInput-Italic /Helvetica-Oblique 16#02 vg&newcompositefont
+/DialogInput-BoldItalic /Helvetica-BoldOblique 16#03 vg&newcompositefont
+
+% Make the Typewriter composite fonts (JDK 1.1 only).
+/Typewriter /Courier 16#00 vg&newcompositefont
+/Typewriter-Bold /Courier-Bold 16#01 vg&newcompositefont
+/Typewriter-Italic /Courier-Oblique 16#02 vg&newcompositefont
+/Typewriter-BoldItalic /Courier-BoldOblique 16#03 vg&newcompositefont
+
+
+/cfontH {
+ dup /fontsize exch def /SansSerif exch sf
+ /vg&fontstyles [{cfontH} {cfontHB} {cfontHI} {cfontHBI}] def
+} def
+/cfontHB {
+  dup /fontsize exch def /SansSerif-Bold exch sf
+ /vg&fontstyles [{cfontH} {cfontHB} {cfontHI} {cfontHBI}] def
+} def
+/cfontHI {
+ dup /fontsize exch def /SansSerif-Italic exch sf
+ /vg&fontstyles [{cfontH} {cfontHB} {cfontHI} {cfontHBI}] def
+} def
+/cfontHBI {
+ dup /fontsize exch def /SansSerif-BoldItalic exch sf
+ /vg&fontstyles [{cfontH} {cfontHB} {cfontHI} {cfontHBI}] def
+} def
+
+/cfontT {
+ dup /fontsize exch def /Serif exch sf
+ /vg&fontstyles [{cfontT} {cfontTB} {cfontTI} {cfontTBI}] def
+} def
+/cfontTB {
+ dup /fontsize exch def /Serif-Bold exch sf
+ /vg&fontstyles [{cfontT} {cfontTB} {cfontTI} {cfontTBI}] def
+} def
+/cfontTI {
+ dup /fontsize exch def /Serif-Italic exch sf
+ /vg&fontstyles [{cfontT} {cfontTB} {cfontTI} {cfontTBI}] def
+} def
+/cfontTBI {
+ dup /fontsize exch def /Serif-BoldItalic exch sf
+ /vg&fontstyles [{cfontT} {cfontTB} {cfontTI} {cfontTBI}] def
+} def
+
+/cfontC {
+ dup /fontsize exch def /Typewriter exch sf
+ /vg&fontstyles [{cfontC} {cfontCB} {cfontCI} {cfontCBI}] def
+} def
+/cfontCB {
+ dup /fontsize exch def /Typewriter-Bold exch sf
+ /vg&fontstyles [{cfontC} {cfontCB} {cfontCI} {cfontCBI}] def
+} def
+/cfontCI {
+ dup /fontsize exch def /Typewriter-Italic exch sf
+ /vg&fontstyles [{cfontC} {cfontCB} {cfontCI} {cfontCBI}] def
+} def
+/cfontCBI {
+ dup /fontsize exch def /Typewriter-BoldItalic exch sf
+ /vg&fontstyles [{cfontC} {cfontCB} {cfontCI} {cfontCBI}] def
+} def
+
+% Darken or lighten the current color.
+/darken {0.7 exch exp 3 copy
+         q 4 -1 roll vg&C
+         currentrgbcolor 3 {4 -2 roll mul} repeat
+         3 array astore Q} def
+
+/displayColorMap
+<< /Cr   [1.00 0.00 0.00]       /Cg     [0.00 1.00 0.00]
+   /Cb   [0.00 0.00 1.00]       /Cc     [1.00 0.00 0.00 0.00]
+   /Cm   [0.00 1.00 0.00 0.00]  /Cy     [0.00 0.00 1.00 0.00]
+   /Co   [1.00 0.78 0.00]       /Cp     [1.00 0.67 0.67]
+   /Cw   [1   ]                 /Cgrl   [0.75]
+   /Cgr  [0.50]                 /Cgrd   [0.25]
+   /Ck   [0   ]
+   /CGr  [1.00 0.00 0.00]       /CGg    [0.00 1.00 0.00]
+   /CGb  [0.00 0.00 1.00]       /CGc    [1.00 0.00 0.00 0.00]
+   /CGm  [0.00 1.00 0.00 0.00]  /CGy    [0.00 0.00 1.00 0.00]
+   /CGo  [1.00 0.78 0.00]       /CGp    [1.00 0.67 0.67]
+   /CGw  [1   ]                 /CGgrl  [0.75]
+   /CGgr [0.50]                 /CGgrd  [0.25]
+   /CGk  [0   ]
+   /CIr  [1.00 0.00 0.00]       /CIg    [0.00 1.00 0.00]
+   /CIb  [0.00 0.00 1.00]       /CIc    [1.00 0.00 0.00 0.00]
+   /CIm  [0.00 1.00 0.00 0.00]  /CIy    [0.00 0.00 1.00 0.00]
+   /CIo  [1.00 0.78 0.00]       /CIp    [1.00 0.67 0.67]
+   /CIw  [1   ]                 /CIgrl  [0.75]
+   /CIgr [0.50]                 /CIgrd  [0.25]
+   /CIk  [0   ]
+>> def
+
+/printColorMap
+<< /Cr   [1.00 0.33 0.33]       /Cg     [0.33 1.00 0.33]
+   /Cb   [0.33 0.33 1.00]       /Cc     [1.00 0.00 0.00 0.00]
+   /Cm   [0.00 1.00 0.00 0.00]  /Cy     [0.00 0.00 1.00 0.00]
+   /Co   [1.00 0.78 0.00]       /Cp     [1.00 0.67 0.67]
+   /Cw   [1   ]                 /Cgrl   [0.75]
+   /Cgr  [0.50]                 /Cgrd   [0.25]
+   /Ck   [0   ]
+   /CGr  [1.00 0.33 0.33]       /CGg    [0.33 1.00 0.33]
+   /CGb  [0.33 0.33 1.00]       /CGc    [1.00 0.00 0.00 0.00]
+   /CGm  [0.00 1.00 0.00 0.00]  /CGy    [0.00 0.00 1.00 0.00]
+   /CGo  [1.00 0.78 0.00]       /CGp    [1.00 0.67 0.67]
+   /CGw  [1   ]                 /CGgrl  [0.75]
+   /CGgr [0.50]                 /CGgrd  [0.25]
+   /CGk  [0   ]
+   /CIr  [1.00 0.33 0.33]       /CIg    [0.33 1.00 0.33]
+   /CIb  [0.33 0.33 1.00]       /CIc    [1.00 0.00 0.00 0.00]
+   /CIm  [0.00 1.00 0.00 0.00]  /CIy    [0.00 0.00 1.00 0.00]
+   /CIo  [1.00 0.78 0.00]       /CIp    [1.00 0.67 0.67]
+   /CIw  [1   ]                 /CIgrl  [0.75]
+   /CIgr [0.50]                 /CIgrd  [0.25]
+   /CIk  [0   ]
+>> def
+
+/grayColorMap
+<< /Cr   [0   ]                 /Cg     [0   ]
+   /Cb   [0   ]                 /Cc     [0   ]
+   /Cm   [0   ]                 /Cy     [0   ]
+   /Co   [0   ]                 /Cp     [0   ]
+   /Cw   [0   ]                 /Cgrl   [0   ]
+   /Cgr  [0   ]                 /Cgrd   [0   ]
+   /Ck   [0   ]
+   /CGr  [0.75]                 /CGg    [1   ]
+   /CGb  [0.50]                 /CGc    [0.75]
+   /CGm  [0.50]                 /CGy    [1   ]
+   /CGo  [0.75]                 /CGp    [1   ]
+   /CGw  [0   ]                 /CGgrl  [0.25]
+   /CGgr [0.50]                 /CGgrd  [0.75]
+   /CGk  [1   ]
+   /CIr  [1   ]                 /CIg    [1   ]
+   /CIb  [1   ]                 /CIc    [1   ]
+   /CIm  [1   ]                 /CIy    [1   ]
+   /CIo  [1   ]                 /CIp    [1   ]
+   /CIw  [1   ]                 /CIgrl  [1   ]
+   /CIgr [1   ]                 /CIgrd  [1   ]
+   /CIk  [1   ]
+>> def
+
+/bwColorMap
+<< /Cr   [0   ]                 /Cg     [0   ]
+   /Cb   [0   ]                 /Cc     [0   ]
+   /Cm   [0   ]                 /Cy     [0   ]
+   /Co   [0   ]                 /Cp     [0   ]
+   /Cw   [0   ]                 /Cgrl   [0   ]
+   /Cgr  [0   ]                 /Cgrd   [0   ]
+   /Ck   [0   ]
+   /CGr  [1   ]                 /CGg    [1   ]
+   /CGb  [1   ]                 /CGc    [1   ]
+   /CGm  [1   ]                 /CGy    [1   ]
+   /CGo  [1   ]                 /CGp    [1   ]
+   /CGw  [0   ]                 /CGgrl  [1   ]
+   /CGgr [1   ]                 /CGgrd  [1   ]
+   /CGk  [1   ]
+   /CIr  [1   ]                 /CIg    [1   ]
+   /CIb  [1   ]                 /CIc    [1   ]
+   /CIm  [1   ]                 /CIy    [1   ]
+   /CIo  [1   ]                 /CIp    [1   ]
+   /CIw  [1   ]                 /CIgrl  [1   ]
+   /CIgr [1   ]                 /CIgrd  [1   ]
+   /CIk  [1   ]
+>> def
+
+%
+% The following routines handle the alignment of and printing of
+% tagged strings.
+%
+
+% Predefine the bounding box values.
+/bbllx 0 def /bblly 0 def /bburx 0 def /bbury 0 def
+
+% This routine pops the first unicode character off of a string and returns
+% the remainder of the string, the character code of first character,
+% and a "true" if the string was non-zero length.
+% <string>      popfirst <remaining string> <true>
+% <null string> popfirst <false>
+/popfirst {
+  dup length 1 gt
+    {dup 0 get /vg&fbyte exch def
+     dup 1 get /vg&cbyte exch def
+     dup length 2 sub 2 exch getinterval true}
+    {pop false} ifelse
+} def
+
+% This routine shows a single unicode character given the font and
+% character codes.
+% <font code> <char code> unicharshow --
+/unicharshow {
+  2 string
+  dup 0 5 -1 roll put
+  dup 1 4 -1 roll put
+  internalshow
+} def
+
+% This is an internal routine to alternate between determining the
+% bounding box for stringsize and showing the string for recshow.
+% <string> internalshow --
+/internalshow {show} def
+
+% This is an internal routine to alternate between determining the
+% bounding box for stringsize and stroking various ornaments.
+% <string> internalstroke --
+/internalstroke {S} def
+
+% Sets up internalshow to use the null device to determine string size.
+% -- nullinternalshow --
+/nullinternalshow {/internalshow {false charpath flattenpath
+                                  pathbbox updatebbox} def} def
+
+% Sets up internalstroke to use the null device to determine string size.
+% -- nullinternalstroke --
+/nullinternalstroke {
+ /internalstroke {flattenpath pathbbox updatebbox} def} def
+
+% This routine tests to see if the character code matches the first
+% character of a string.
+% <char code> <string> testchar <char code> <true or false>
+/testchar {exch dup 3 -1 roll 0 get eq} def
+
+% Raise the text baseline for superscripts.
+% -- raise --
+/raise {
+  0 fontsize 2 div rmoveto
+  /fontsize fontsize 2 mul 3 div def
+  currentfont /FontName get fontsize sf
+} def
+
+% Un-raise the text baseline for superscripts.
+% -- unraise --
+/unraise {
+  /fontsize fontsize 1.5 mul def
+  0 fontsize 2 div neg rmoveto
+} def
+
+% Lower the text baseline for subscripts.
+% -- lower --
+/lower {
+  0 fontsize 3 div neg rmoveto
+  /fontsize fontsize 2 mul 3 div def
+  currentfont /FontName get fontsize sf
+} def
+
+% Un-lower the text baseline for subscripts.
+% -- unlower --
+/unlower {
+  /fontsize fontsize 1.5 mul def
+  0 fontsize 3 div rmoveto
+} def
+
+% Compare the top two elements on the stack and leave only the
+% larger one.
+/maxval {2 copy gt {pop} {exch pop} ifelse} def
+
+% Tokenize a string.  Do not use the usual PostScript token because
+% parentheses will not be interpreted correctly because of rescanning
+% of the string.
+/vg&token {/vg&string exch def /vg&index -1 def /vg&level 0 def
+0 2 vg&string length 2 sub {
+  dup dup 1 add exch vg&string exch get 8 bitshift vg&string 3 -1 roll get or
+  dup 16#f0fe eq {pop 1}{16#f0ff eq {-1}{0} ifelse} ifelse
+  /vg&level exch vg&level add def
+  vg&level 0 eq {/vg&index exch def exit} if pop
+} for
+vg&index 0 ge {
+  vg&string vg&index 2 add dup vg&string length exch sub getinterval
+  vg&index 2 gt {vg&string 2 vg&index 2 sub getinterval}{()} ifelse
+  true}
+{false} ifelse
+} bind def
+
+% Recursively show an unicode string.
+% <string> recshow --
+/recshow {
+  popfirst
+  {
+    % Test to see if this is a string attribute.
+    vg&fbyte 16#f0 and 16#e0 eq
+    {
+      q
+
+      % Font style.
+      currentfont dup /FontStyleBits known {/FontStyleBits get}{pop 0} ifelse
+      vg&cbyte or vg&fontstyles exch get fontsize exch exec
+
+      vg&token pop recshow currentpoint Q m recshow
+    }
+    {
+      vg&fbyte 16#F8 and 16#F0 eq {
+
+        % Superscript and/or subscript.
+        vg&cbyte 16#00 eq {
+          vg&token pop exch vg&token pop 3 -1 roll
+          q raise recshow unraise currentpoint pop Q exch
+          q lower recshow unlower currentpoint pop Q
+          maxval currentpoint exch pop m recshow } if
+
+        % Strikeout.
+        vg&cbyte 16#01 eq {
+          vg&token pop currentpoint 3 -1 roll recshow
+          q 0 J vg&underline vg&uthick w
+          currentpoint 4 -2 roll fontsize 3 div add moveto
+          fontsize 3 div add lineto internalstroke Q
+          recshow} if
+
+        % Underline.
+        vg&cbyte 16#02 eq {
+          vg&token pop currentpoint 3 -1 roll recshow
+          q 0 J vg&underline vg&uthick w
+          currentpoint 4 -2 roll vg&uoffset add moveto
+          vg&uoffset add lineto internalstroke Q
+          recshow} if
+
+        % Dashed underline.
+        vg&cbyte 16#03 eq {
+          vg&token pop currentpoint 3 -1 roll recshow
+          q 0 J [ vg&uthick 5 mul vg&uthick 2 mul] 0 d
+          vg&underline vg&uthick w
+          currentpoint 4 -2 roll vg&uoffset add moveto
+          vg&uoffset add lineto internalstroke Q
+          recshow} if
+
+        % Dotted underline.
+        vg&cbyte 16#04 eq {
+          vg&token pop currentpoint 3 -1 roll recshow
+          q 1 J [ 0 vg&uthick 3 mul] 0 d
+          vg&underline vg&uthick w
+          currentpoint 4 -2 roll vg&uoffset add moveto
+          vg&uoffset add lineto internalstroke Q
+          recshow} if
+
+        % Thick underline.
+        vg&cbyte 16#05 eq {
+          vg&token pop currentpoint 3 -1 roll recshow
+          q 0 J vg&underline vg&uthick 2 mul w
+          currentpoint 4 -2 roll vg&uoffset vg&uthick 2 div sub add moveto
+          vg&uoffset vg&uthick 2 div sub add lineto internalstroke Q
+          recshow} if
+
+        % Gray thick underline.
+        vg&cbyte 16#06 eq {
+          vg&token pop currentpoint 3 -1 roll recshow
+          q 0 J vg&underline vg&uthick 2 mul w 0.5 setgray
+          currentpoint 4 -2 roll vg&uoffset vg&uthick 2 div sub add moveto
+          vg&uoffset vg&uthick 2 div sub add lineto internalstroke Q
+          recshow} if
+
+        % Overbar.
+        vg&cbyte 16#07 eq {
+          vg&token pop dup stringsize relative 4 1 roll pop pop exch
+          3 -1 roll recshow
+          q 0 J vg&underline vg&uthick w
+          vg&uoffset neg add dup currentpoint pop exch m l internalstroke Q
+          recshow} if
+      }
+      {
+        vg&fbyte vg&cbyte unicharshow recshow
+      } ifelse
+    } ifelse
+  } if
+} def
+
+% Get the underline position and thickness from the current font.
+/vg&underline {
+
+currentfont dup /FontType get 0 eq {/FDepVector get 0 get} if
+dup dup /FontInfo known {
+  /FontInfo get dup
+  dup /UnderlinePosition known {
+    /UnderlinePosition get /vg&uoffset exch def
+  }
+  {
+    pop /vg&uoffset 0 def
+  } ifelse
+  dup /UnderlineThickness known {
+    /UnderlineThickness get /vg&uthick exch def
+  }
+  {
+    pop /vg&uthick 0 def
+  } ifelse
+}
+{
+  pop /vg&uoffset 0 def /vg&uthick 0 def
+} ifelse
+/FontMatrix get
+currentfont dup /FontType get 0 eq
+{/FontMatrix get matrix concatmatrix}{pop} ifelse
+dup 0 vg&uoffset 3 -1 roll transform /vg&uoffset exch def pop
+0 vg&uthick 3 -1 roll transform /vg&uthick exch def pop
+} def
+
+% Make a frame with the coordinates on the stack.
+% <llx> <lly> <urx> <ury> frame --
+/frame {4 copy m 3 1 roll exch l 4 -2 roll l l h} def
+
+% Resets the accumulated bounding box to a degenerate box at the
+% current point.
+% -- resetbbox --
+/resetbbox {
+  currentpoint 2 copy
+  /bbury exch def
+  /bburx exch def
+  /bblly exch def
+  /bbllx exch def
+} def
+
+% Update the accumulated bounding box.
+% <llx'> <lly'> <urx'> <ury'> updatebbox --
+/updatebbox {
+  dup bbury gt {/bbury exch def} {pop} ifelse
+  dup bburx gt {/bburx exch def} {pop} ifelse
+  dup bblly lt {/bblly exch def} {pop} ifelse
+  dup bbllx lt {/bbllx exch def} {pop} ifelse
+} def
+
+% Set the bounding box to the values on the stack.
+% <llx'> <lly'> <urx'> <ury'> updatebbox --
+/restorebbox {
+  /bbury exch def /bburx exch def /bblly exch def /bbllx exch def
+} def
+
+% Push the accumulated bounding box onto the stack.
+% -- pushbbox <llx> <lly> <urx> <ury>
+/pushbbox {bbllx bblly bburx bbury} def
+
+% Make the relative bounding box relative to the currentpoint.
+% <llx'> <lly'> <urx'> <ury'> inflate <llx> <lly> <urx> <ury>
+/inflate {
+  2 {fontsize 0.2 mul add 4 1 roll} repeat
+  2 {fontsize 0.2 mul sub 4 1 roll} repeat
+} def
+
+% Make the relative bounding box relative to the currentpoint.
+% <llx'> <lly'> <urx'> <ury'> relative <llx> <lly> <urx> <ury>
+/relative {
+  currentpoint 3 -1 roll add 3 1 roll add exch 4 2 roll
+  currentpoint 3 -1 roll add 3 1 roll add exch 4 2 roll
+} def
+
+% Returns the size of a string appropriate for recshow.
+% <string> stringsize <llx> <lly> <urx> <ury>
+/stringsize {
+  pushbbox /internalshow load /internalstroke load 7 -1 roll
+  q
+  nulldevice 0 0 m
+  nullinternalshow nullinternalstroke
+  resetbbox
+  recshow
+  /internalstroke exch def /internalshow exch def
+  pushbbox 8 -4 roll restorebbox
+  Q
+} def
+
+% Calculate values for string positioning.
+/calcval {4 copy
+  3 -1 roll sub /widy exch def sub neg /widx exch def
+  pop pop /dy exch def /dx exch def} def
+
+% Utilities to position a string.
+% First letter (U=upper, C=center, B=baseline, L=lower)
+% Second letter (L=left, C=center, R=right)
+/align [
+{calcval dx neg widy dy add neg rmoveto} % UL
+{calcval dx neg widy 2 div dy add neg rmoveto} % CL
+{calcval dx neg 0 rmoveto} % BL
+{calcval dx neg dy neg rmoveto} % LL
+{calcval widx dx add neg widy dy add neg rmoveto} % UR
+{calcval widx dx add neg widy 2 div dy add neg rmoveto} % CR
+{calcval widx dx add neg 0 rmoveto} % BR
+{calcval widx dx add neg dy neg rmoveto} % LR
+{calcval widx 2 div dx add neg widy dy add neg rmoveto} % UC
+{calcval widx 2 div dx add neg widy 2 div dy add neg rmoveto} % CC
+{calcval widx 2 div dx add neg 0 rmoveto} % BC
+{calcval widx 2 div dx add neg dy neg rmoveto} % LC
+] def
+
+/vg&str {m q 1 -1 scale dup stringsize 4 copy align 11 -1 roll get exec
+         q inflate relative frame exch exec Q recshow Q} def
+
+end /procDict exch def
+%%EndProlog
+
+%%BeginSetup
+save
+procDict begin
+printColorMap begin
+595 791 setpagesize
+20 20 20 20 setmargins
+0 0 setorigin
+1141 1776 setsize
+naturalsize
+portrait
+imagescale
+cliptobounds
+setbasematrix
+/Helvetica 10 sf
+defaultGraphicsState
+%%EndSetup
+
+0.0 0.0 0.0 RG
+[ 1.0 0.0 0.0 1.0 0.0 0.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+2 J
+0 j
+10.0 M
+[ ] 0.0 d
+1.0 1.0 1.0 RG
+0.0 0.0 1141.0 1776.0 rf
+0.0 0.0 0.0 RG
+-28.0 -28.0 translate
+0 0 1165 1800 rc
+1.0 1.0 1.0 RG
+q
+q
+0.0 0.0 0.0 RG
+[ 1.0 0.0 0.0 1.0 0.0 0.0 ] concat
+-1.0 -1.0 1167.0 1802.0 rc
+[ 1.0 0.0 0.0 1.0 0.0 0.0 ] concat
+0.0 0.0 100000.0 100000.0 rc
+[ 1.0 0.0 0.0 1.0 0.0 0.0 ] concat
+-2.0 -2.0 1169.0 1804.0 rc
+[ 1.0 0.0 0.0 1.0 0.0 0.0 ] concat
+584.5 120.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+2 j
+0 j
+1.0 0.6 0.6 RG
+newpath
+104.0 1368.0 m
+460.0 1368.0 l
+460.0 1484.0 l
+104.0 1484.0 l
+104.0 1368.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+104.0 1368.0 m
+460.0 1368.0 l
+460.0 1484.0 l
+104.0 1484.0 l
+104.0 1368.0 l
+h
+S
+239.518555 1376.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 13: -ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+437.037109 1376.0 m
+448.0 1376.0 l
+448.0 1389.962890 l
+437.037109 1389.962890 l
+437.037109 1376.0 l
+h
+f
+newpath
+437.037109 1376.0 m
+448.0 1376.0 l
+448.0 1389.962890 l
+437.037109 1389.962890 l
+437.037109 1376.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+434.037109 1378.981445 m
+440.037109 1378.981445 l
+440.037109 1381.981445 l
+434.037109 1381.981445 l
+434.037109 1378.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+434.037109 1378.981445 m
+440.037109 1378.981445 l
+440.037109 1381.981445 l
+434.037109 1381.981445 l
+434.037109 1378.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+434.037109 1383.981445 m
+440.037109 1383.981445 l
+440.037109 1386.981445 l
+434.037109 1386.981445 l
+434.037109 1383.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+434.037109 1383.981445 m
+440.037109 1383.981445 l
+440.037109 1386.981445 l
+434.037109 1386.981445 l
+434.037109 1383.981445 l
+h
+S
+2 j
+1.0 0.6 0.6 RG
+newpath
+104.0 1484.0 m
+104.0 1368.0 l
+460.0 1368.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+105.0 1483.0 m
+105.0 1369.0 l
+459.0 1369.0 l
+S
+0.698039 0.419608 0.419608 RG
+newpath
+459.0 1368.0 m
+459.0 1483.0 l
+105.0 1483.0 l
+S
+newpath
+460.0 1368.0 m
+460.0 1484.0 l
+104.0 1484.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+240.0 1408.0 m
+334.0 1408.0 l
+334.0 1450.0 l
+240.0 1450.0 l
+240.0 1408.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+240.0 1408.0 m
+334.0 1408.0 l
+334.0 1450.0 l
+240.0 1450.0 l
+240.0 1408.0 l
+h
+S
+260.018555 1416.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+311.037109 1416.0 m
+322.0 1416.0 l
+322.0 1429.962890 l
+311.037109 1429.962890 l
+311.037109 1416.0 l
+h
+f
+newpath
+311.037109 1416.0 m
+322.0 1416.0 l
+322.0 1429.962890 l
+311.037109 1429.962890 l
+311.037109 1416.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+308.037109 1418.981445 m
+314.037109 1418.981445 l
+314.037109 1421.981445 l
+308.037109 1421.981445 l
+308.037109 1418.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+308.037109 1418.981445 m
+314.037109 1418.981445 l
+314.037109 1421.981445 l
+308.037109 1421.981445 l
+308.037109 1418.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+308.037109 1423.981445 m
+314.037109 1423.981445 l
+314.037109 1426.981445 l
+308.037109 1426.981445 l
+308.037109 1423.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+308.037109 1423.981445 m
+314.037109 1423.981445 l
+314.037109 1426.981445 l
+308.037109 1426.981445 l
+308.037109 1423.981445 l
+h
+S
+2 j
+newpath
+260.018554 1429.962890 m
+303.018554 1429.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+240.0 1450.0 m
+240.0 1408.0 l
+334.0 1408.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+241.0 1449.0 m
+241.0 1409.0 l
+333.0 1409.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+333.0 1408.0 m
+333.0 1449.0 l
+241.0 1449.0 l
+S
+newpath
+334.0 1408.0 m
+334.0 1450.0 l
+240.0 1450.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 0.6 0.6 RG
+newpath
+748.0 1124.0 m
+1016.0 1124.0 l
+1016.0 1240.0 l
+748.0 1240.0 l
+748.0 1124.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+748.0 1124.0 m
+1016.0 1124.0 l
+1016.0 1240.0 l
+748.0 1240.0 l
+748.0 1124.0 l
+h
+S
+839.518555 1132.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 12: -ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+993.037109 1132.0 m
+1004.0 1132.0 l
+1004.0 1145.962890 l
+993.037109 1145.962890 l
+993.037109 1132.0 l
+h
+f
+newpath
+993.037109 1132.0 m
+1004.0 1132.0 l
+1004.0 1145.962890 l
+993.037109 1145.962890 l
+993.037109 1132.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+990.037109 1134.981445 m
+996.037109 1134.981445 l
+996.037109 1137.981445 l
+990.037109 1137.981445 l
+990.037109 1134.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+990.037109 1134.981445 m
+996.037109 1134.981445 l
+996.037109 1137.981445 l
+990.037109 1137.981445 l
+990.037109 1134.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+990.037109 1139.981445 m
+996.037109 1139.981445 l
+996.037109 1142.981445 l
+990.037109 1142.981445 l
+990.037109 1139.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+990.037109 1139.981445 m
+996.037109 1139.981445 l
+996.037109 1142.981445 l
+990.037109 1142.981445 l
+990.037109 1139.981445 l
+h
+S
+2 j
+1.0 0.6 0.6 RG
+newpath
+748.0 1240.0 m
+748.0 1124.0 l
+1016.0 1124.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+749.0 1239.0 m
+749.0 1125.0 l
+1015.0 1125.0 l
+S
+0.698039 0.419608 0.419608 RG
+newpath
+1015.0 1124.0 m
+1015.0 1239.0 l
+749.0 1239.0 l
+S
+newpath
+1016.0 1124.0 m
+1016.0 1240.0 l
+748.0 1240.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+824.0 1168.0 m
+919.0 1168.0 l
+919.0 1210.0 l
+824.0 1210.0 l
+824.0 1168.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+824.0 1168.0 m
+919.0 1168.0 l
+919.0 1210.0 l
+824.0 1210.0 l
+824.0 1168.0 l
+h
+S
+844.018555 1176.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BProv) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+896.037109 1176.0 m
+907.0 1176.0 l
+907.0 1189.962890 l
+896.037109 1189.962890 l
+896.037109 1176.0 l
+h
+f
+newpath
+896.037109 1176.0 m
+907.0 1176.0 l
+907.0 1189.962890 l
+896.037109 1189.962890 l
+896.037109 1176.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+893.037109 1178.981445 m
+899.037109 1178.981445 l
+899.037109 1181.981445 l
+893.037109 1181.981445 l
+893.037109 1178.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+893.037109 1178.981445 m
+899.037109 1178.981445 l
+899.037109 1181.981445 l
+893.037109 1181.981445 l
+893.037109 1178.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+893.037109 1183.981445 m
+899.037109 1183.981445 l
+899.037109 1186.981445 l
+893.037109 1186.981445 l
+893.037109 1183.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+893.037109 1183.981445 m
+899.037109 1183.981445 l
+899.037109 1186.981445 l
+893.037109 1186.981445 l
+893.037109 1183.981445 l
+h
+S
+2 j
+newpath
+844.018554 1189.962890 m
+888.018554 1189.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+824.0 1210.0 m
+824.0 1168.0 l
+919.0 1168.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+825.0 1209.0 m
+825.0 1169.0 l
+918.0 1169.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+918.0 1168.0 m
+918.0 1209.0 l
+825.0 1209.0 l
+S
+newpath
+919.0 1168.0 m
+919.0 1210.0 l
+824.0 1210.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+507.860352 1692.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(A) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 1.0 1.0 RG
+newpath
+524.0 1676.0 m
+524.0 1682.627416 518.627416 1688.0 512.0 1688.0  c
+505.372583 1688.0 500.0 1682.627416 500.0 1676.0  c
+500.0 1669.372583 505.372583 1664.0 512.0 1664.0  c
+518.627416 1664.0 524.0 1669.372583 524.0 1676.0  c
+h
+f
+2 j
+0.0 0.0 0.0 RG
+newpath
+524.0 1676.0 m
+524.0 1682.627416 518.627416 1688.0 512.0 1688.0  c
+505.372583 1688.0 500.0 1682.627416 500.0 1676.0  c
+500.0 1669.372583 505.372583 1664.0 512.0 1664.0  c
+518.627416 1664.0 524.0 1669.372583 524.0 1676.0  c
+h
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 1.0 0.8 RG
+newpath
+413.0 1280.0 m
+220.0 1280.0 l
+220.0 1323.0 l
+428.0 1323.0 l
+428.0 1295.0 l
+413.0 1280.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+413.0 1280.0 m
+220.0 1280.0 l
+220.0 1323.0 l
+428.0 1323.0 l
+428.0 1295.0 l
+413.0 1280.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+413.0 1280.0 m
+413.0 1295.0 l
+428.0 1295.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+413.0 1280.0 m
+413.0 1295.0 l
+428.0 1295.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 223.0 1283.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000D\000 \000i\000s\000 \000t\000h\000e\000 \000o\000n\000l\000y\000 \000o\000n\000e\000 \000w\000h\000i\000c\000h\000 \000c\000a\000n\000 ) show
+Q
+0.0 27.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000s\000a\000t\000i\000s\000f\000y\000 \000b\000o\000t\000h\000.\000.\000.) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+48.5 1444.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+2 j
+0 j
+1.0 1.0 0.8 RG
+newpath
+1037.0 780.0 m
+816.0 780.0 l
+816.0 823.0 l
+1052.0 823.0 l
+1052.0 795.0 l
+1037.0 780.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+1037.0 780.0 m
+816.0 780.0 l
+816.0 823.0 l
+1052.0 823.0 l
+1052.0 795.0 l
+1037.0 780.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+1037.0 780.0 m
+1037.0 795.0 l
+1052.0 795.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+1037.0 780.0 m
+1037.0 795.0 l
+1052.0 795.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 819.0 783.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000o\000n\000l\000y\000 \000A\000 \000c\000a\000n\000 \000b\000e\000 \000o\000f\000f\000e\000r\000e\000d\000 \000a\000s\000 \000i\000t\000 \000i\000s\000 \000t\000h\000e\000 ) show
+Q
+0.0 27.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000l\000o\000w\000e\000s\000t\000 \000c\000o\000m\000m\000o\000n\000 \000d\000e\000n\000o\000m\000i\000n\000a\000t\000o\000r) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+536.5 452.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 1.0 1.0 RG
+newpath
+552.0 436.0 m
+552.0 442.627416 546.627416 448.0 540.0 448.0  c
+533.372583 448.0 528.0 442.627416 528.0 436.0  c
+528.0 429.372583 533.372583 424.0 540.0 424.0  c
+546.627416 424.0 552.0 429.372583 552.0 436.0  c
+h
+f
+2 j
+0.0 0.0 0.0 RG
+newpath
+552.0 436.0 m
+552.0 442.627416 546.627416 448.0 540.0 448.0  c
+533.372583 448.0 528.0 442.627416 528.0 436.0  c
+528.0 429.372583 533.372583 424.0 540.0 424.0  c
+546.627416 424.0 552.0 429.372583 552.0 436.0  c
+h
+S
+0.0 0.0 0.0 RG
+0 j
+0.6 1.0 0.6 RG
+newpath
+688.0 376.0 m
+1064.0 376.0 l
+1064.0 488.0 l
+688.0 488.0 l
+688.0 376.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+688.0 376.0 m
+1064.0 376.0 l
+1064.0 488.0 l
+688.0 488.0 l
+688.0 376.0 l
+h
+S
+836.018555 384.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 6: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+1041.037109 384.0 m
+1052.0 384.0 l
+1052.0 397.962890 l
+1041.037109 397.962890 l
+1041.037109 384.0 l
+h
+f
+newpath
+1041.037109 384.0 m
+1052.0 384.0 l
+1052.0 397.962890 l
+1041.037109 397.962890 l
+1041.037109 384.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1038.037109 386.981445 m
+1044.037109 386.981445 l
+1044.037109 389.981445 l
+1038.037109 389.981445 l
+1038.037109 386.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1038.037109 386.981445 m
+1044.037109 386.981445 l
+1044.037109 389.981445 l
+1038.037109 389.981445 l
+1038.037109 386.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1038.037109 391.981445 m
+1044.037109 391.981445 l
+1044.037109 394.981445 l
+1038.037109 394.981445 l
+1038.037109 391.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1038.037109 391.981445 m
+1044.037109 391.981445 l
+1044.037109 394.981445 l
+1038.037109 394.981445 l
+1038.037109 391.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+688.0 488.0 m
+688.0 376.0 l
+1064.0 376.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+689.0 487.0 m
+689.0 377.0 l
+1063.0 377.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+1063.0 376.0 m
+1063.0 487.0 l
+689.0 487.0 l
+S
+newpath
+1064.0 376.0 m
+1064.0 488.0 l
+688.0 488.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+748.0 420.0 m
+846.025390 420.0 l
+846.025390 462.0 l
+748.0 462.0 l
+748.0 420.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+748.0 420.0 m
+846.025390 420.0 l
+846.025390 462.0 l
+748.0 462.0 l
+748.0 420.0 l
+h
+S
+768.0 428.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+823.0625 428.0 m
+834.025390 428.0 l
+834.025390 441.962890 l
+823.0625 441.962890 l
+823.0625 428.0 l
+h
+f
+newpath
+823.0625 428.0 m
+834.025390 428.0 l
+834.025390 441.962890 l
+823.0625 441.962890 l
+823.0625 428.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+820.0625 430.981445 m
+826.0625 430.981445 l
+826.0625 433.981445 l
+820.0625 433.981445 l
+820.0625 430.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+820.0625 430.981445 m
+826.0625 430.981445 l
+826.0625 433.981445 l
+820.0625 433.981445 l
+820.0625 430.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+820.0625 435.981445 m
+826.0625 435.981445 l
+826.0625 438.981445 l
+820.0625 438.981445 l
+820.0625 435.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+820.0625 435.981445 m
+826.0625 435.981445 l
+826.0625 438.981445 l
+820.0625 438.981445 l
+820.0625 435.981445 l
+h
+S
+2 j
+newpath
+768.0 441.962890 m
+815.0625 441.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+748.0 462.0 m
+748.0 420.0 l
+846.025390 420.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+749.0 461.0 m
+749.0 421.0 l
+845.025390 421.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+845.025390 420.0 m
+845.025390 461.0 l
+749.0 461.0 l
+S
+newpath
+846.025390 420.0 m
+846.025390 462.0 l
+748.0 462.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+904.0 420.0 m
+1001.0 420.0 l
+1001.0 462.0 l
+904.0 462.0 l
+904.0 420.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+904.0 420.0 m
+1001.0 420.0 l
+1001.0 462.0 l
+904.0 462.0 l
+904.0 420.0 l
+h
+S
+924.018555 428.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+978.037109 428.0 m
+989.0 428.0 l
+989.0 441.962890 l
+978.037109 441.962890 l
+978.037109 428.0 l
+h
+f
+newpath
+978.037109 428.0 m
+989.0 428.0 l
+989.0 441.962890 l
+978.037109 441.962890 l
+978.037109 428.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+975.037109 430.981445 m
+981.037109 430.981445 l
+981.037109 433.981445 l
+975.037109 433.981445 l
+975.037109 430.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+975.037109 430.981445 m
+981.037109 430.981445 l
+981.037109 433.981445 l
+975.037109 433.981445 l
+975.037109 430.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+975.037109 435.981445 m
+981.037109 435.981445 l
+981.037109 438.981445 l
+975.037109 438.981445 l
+975.037109 435.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+975.037109 435.981445 m
+981.037109 435.981445 l
+981.037109 438.981445 l
+975.037109 438.981445 l
+975.037109 435.981445 l
+h
+S
+2 j
+newpath
+924.018554 441.962890 m
+970.018554 441.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+904.0 462.0 m
+904.0 420.0 l
+1001.0 420.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+905.0 461.0 m
+905.0 421.0 l
+1000.0 421.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+1000.0 420.0 m
+1000.0 461.0 l
+905.0 461.0 l
+S
+newpath
+1001.0 420.0 m
+1001.0 462.0 l
+904.0 462.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 1.0 0.8 RG
+newpath
+961.0 504.0 m
+760.0 504.0 l
+760.0 547.0 l
+976.0 547.0 l
+976.0 519.0 l
+961.0 504.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+961.0 504.0 m
+760.0 504.0 l
+760.0 547.0 l
+976.0 547.0 l
+976.0 519.0 l
+961.0 504.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+961.0 504.0 m
+961.0 519.0 l
+976.0 519.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+961.0 504.0 m
+961.0 519.0 l
+976.0 519.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 763.0 507.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000c\000a\000s\000e\000 \0006\000a\000 \000-\000v\000e\000:) show
+Q
+0.0 27.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000n\000e\000i\000t\000h\000e\000r\000 \000i\000n\000t\000e\000r\000f\000a\000c\000e\000 \000c\000a\000n\000 \000b\000e\000 \000C) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+1.0 0.6 0.6 RG
+newpath
+104.0 604.0 m
+492.0 604.0 l
+492.0 756.0 l
+104.0 756.0 l
+104.0 604.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+104.0 604.0 m
+492.0 604.0 l
+492.0 756.0 l
+104.0 756.0 l
+104.0 604.0 l
+h
+S
+259.518555 608.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 7: -ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+477.037109 608.0 m
+488.0 608.0 l
+488.0 621.962890 l
+477.037109 621.962890 l
+477.037109 608.0 l
+h
+f
+newpath
+477.037109 608.0 m
+488.0 608.0 l
+488.0 621.962890 l
+477.037109 621.962890 l
+477.037109 608.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+474.037109 610.981445 m
+480.037109 610.981445 l
+480.037109 613.981445 l
+474.037109 613.981445 l
+474.037109 610.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+474.037109 610.981445 m
+480.037109 610.981445 l
+480.037109 613.981445 l
+474.037109 613.981445 l
+474.037109 610.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+474.037109 615.981445 m
+480.037109 615.981445 l
+480.037109 618.981445 l
+474.037109 618.981445 l
+474.037109 615.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+474.037109 615.981445 m
+480.037109 615.981445 l
+480.037109 618.981445 l
+474.037109 618.981445 l
+474.037109 615.981445 l
+h
+S
+2 j
+1.0 0.6 0.6 RG
+newpath
+104.0 756.0 m
+104.0 604.0 l
+492.0 604.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+105.0 755.0 m
+105.0 605.0 l
+491.0 605.0 l
+S
+0.698039 0.419608 0.419608 RG
+newpath
+491.0 604.0 m
+491.0 755.0 l
+105.0 755.0 l
+S
+newpath
+492.0 604.0 m
+492.0 756.0 l
+104.0 756.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+256.0 668.0 m
+354.025390 668.0 l
+354.025390 710.0 l
+256.0 710.0 l
+256.0 668.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+256.0 668.0 m
+354.025390 668.0 l
+354.025390 710.0 l
+256.0 710.0 l
+256.0 668.0 l
+h
+S
+276.0 676.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+331.0625 676.0 m
+342.025390 676.0 l
+342.025390 689.962890 l
+331.0625 689.962890 l
+331.0625 676.0 l
+h
+f
+newpath
+331.0625 676.0 m
+342.025390 676.0 l
+342.025390 689.962890 l
+331.0625 689.962890 l
+331.0625 676.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+328.0625 678.981445 m
+334.0625 678.981445 l
+334.0625 681.981445 l
+328.0625 681.981445 l
+328.0625 678.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+328.0625 678.981445 m
+334.0625 678.981445 l
+334.0625 681.981445 l
+328.0625 681.981445 l
+328.0625 678.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+328.0625 683.981445 m
+334.0625 683.981445 l
+334.0625 686.981445 l
+328.0625 686.981445 l
+328.0625 683.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+328.0625 683.981445 m
+334.0625 683.981445 l
+334.0625 686.981445 l
+328.0625 686.981445 l
+328.0625 683.981445 l
+h
+S
+2 j
+newpath
+276.0 689.962890 m
+323.0625 689.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+256.0 710.0 m
+256.0 668.0 l
+354.025390 668.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+257.0 709.0 m
+257.0 669.0 l
+353.025390 669.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+353.025390 668.0 m
+353.025390 709.0 l
+257.0 709.0 l
+S
+newpath
+354.025390 668.0 m
+354.025390 710.0 l
+256.0 710.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+128.0 668.0 m
+221.0 668.0 l
+221.0 710.0 l
+128.0 710.0 l
+128.0 668.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+128.0 668.0 m
+221.0 668.0 l
+221.0 710.0 l
+128.0 710.0 l
+128.0 668.0 l
+h
+S
+148.018555 676.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+198.037109 676.0 m
+209.0 676.0 l
+209.0 689.962890 l
+198.037109 689.962890 l
+198.037109 676.0 l
+h
+f
+newpath
+198.037109 676.0 m
+209.0 676.0 l
+209.0 689.962890 l
+198.037109 689.962890 l
+198.037109 676.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+195.037109 678.981445 m
+201.037109 678.981445 l
+201.037109 681.981445 l
+195.037109 681.981445 l
+195.037109 678.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+195.037109 678.981445 m
+201.037109 678.981445 l
+201.037109 681.981445 l
+195.037109 681.981445 l
+195.037109 678.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+195.037109 683.981445 m
+201.037109 683.981445 l
+201.037109 686.981445 l
+195.037109 686.981445 l
+195.037109 683.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+195.037109 683.981445 m
+201.037109 683.981445 l
+201.037109 686.981445 l
+195.037109 686.981445 l
+195.037109 683.981445 l
+h
+S
+2 j
+newpath
+148.018554 689.962890 m
+190.018554 689.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+128.0 710.0 m
+128.0 668.0 l
+221.0 668.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+129.0 709.0 m
+129.0 669.0 l
+220.0 669.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+220.0 668.0 m
+220.0 709.0 l
+129.0 709.0 l
+S
+newpath
+221.0 668.0 m
+221.0 710.0 l
+128.0 710.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+388.0 668.0 m
+484.0 668.0 l
+484.0 710.0 l
+388.0 710.0 l
+388.0 668.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+388.0 668.0 m
+484.0 668.0 l
+484.0 710.0 l
+388.0 710.0 l
+388.0 668.0 l
+h
+S
+408.018555 676.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AProv) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+461.037109 676.0 m
+472.0 676.0 l
+472.0 689.962890 l
+461.037109 689.962890 l
+461.037109 676.0 l
+h
+f
+newpath
+461.037109 676.0 m
+472.0 676.0 l
+472.0 689.962890 l
+461.037109 689.962890 l
+461.037109 676.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+458.037109 678.981445 m
+464.037109 678.981445 l
+464.037109 681.981445 l
+458.037109 681.981445 l
+458.037109 678.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+458.037109 678.981445 m
+464.037109 678.981445 l
+464.037109 681.981445 l
+458.037109 681.981445 l
+458.037109 678.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+458.037109 683.981445 m
+464.037109 683.981445 l
+464.037109 686.981445 l
+458.037109 686.981445 l
+458.037109 683.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+458.037109 683.981445 m
+464.037109 683.981445 l
+464.037109 686.981445 l
+458.037109 686.981445 l
+458.037109 683.981445 l
+h
+S
+2 j
+newpath
+408.018554 689.962890 m
+453.018554 689.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+388.0 710.0 m
+388.0 668.0 l
+484.0 668.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+389.0 709.0 m
+389.0 669.0 l
+483.0 669.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+483.0 668.0 m
+483.0 709.0 l
+389.0 709.0 l
+S
+newpath
+484.0 668.0 m
+484.0 710.0 l
+388.0 710.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 1.0 0.8 RG
+newpath
+437.0 516.0 m
+264.0 516.0 l
+264.0 559.0 l
+452.0 559.0 l
+452.0 531.0 l
+437.0 516.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+437.0 516.0 m
+264.0 516.0 l
+264.0 559.0 l
+452.0 559.0 l
+452.0 531.0 l
+437.0 516.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+437.0 516.0 m
+437.0 531.0 l
+452.0 531.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+437.0 516.0 m
+437.0 531.0 l
+452.0 531.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 267.0 519.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000s\000h\000o\000u\000l\000d\000 \000b\000e\000 \000B\000,\000 \000r\000e\000f\000l\000e\000c\000t\000i\000n\000g\000 \000w\000h\000a\000t\000 ) show
+Q
+0.0 27.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000i\000s\000 \000a\000c\000t\000u\000a\000l\000l\000y\000 \000p\000r\000o\000v\000i\000d\000e\000d) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+0.6 1.0 0.6 RG
+newpath
+128.0 380.0 m
+488.0 380.0 l
+488.0 500.0 l
+128.0 500.0 l
+128.0 380.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+128.0 380.0 m
+488.0 380.0 l
+488.0 500.0 l
+128.0 500.0 l
+128.0 380.0 l
+h
+S
+268.018555 388.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 5: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+465.037109 388.0 m
+476.0 388.0 l
+476.0 401.962890 l
+465.037109 401.962890 l
+465.037109 388.0 l
+h
+f
+newpath
+465.037109 388.0 m
+476.0 388.0 l
+476.0 401.962890 l
+465.037109 401.962890 l
+465.037109 388.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+462.037109 390.981445 m
+468.037109 390.981445 l
+468.037109 393.981445 l
+462.037109 393.981445 l
+462.037109 390.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+462.037109 390.981445 m
+468.037109 390.981445 l
+468.037109 393.981445 l
+462.037109 393.981445 l
+462.037109 390.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+462.037109 395.981445 m
+468.037109 395.981445 l
+468.037109 398.981445 l
+462.037109 398.981445 l
+462.037109 395.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+462.037109 395.981445 m
+468.037109 395.981445 l
+468.037109 398.981445 l
+462.037109 398.981445 l
+462.037109 395.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+128.0 500.0 m
+128.0 380.0 l
+488.0 380.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+129.0 499.0 m
+129.0 381.0 l
+487.0 381.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+487.0 380.0 m
+487.0 499.0 l
+129.0 499.0 l
+S
+newpath
+488.0 380.0 m
+488.0 500.0 l
+128.0 500.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+140.0 416.0 m
+224.0 416.0 l
+224.0 458.0 l
+140.0 458.0 l
+140.0 416.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+140.0 416.0 m
+224.0 416.0 l
+224.0 458.0 l
+140.0 458.0 l
+140.0 416.0 l
+h
+S
+160.0 424.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BProv) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+160.0 437.962890 m
+204.0 437.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+140.0 458.0 m
+140.0 416.0 l
+224.0 416.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+141.0 457.0 m
+141.0 417.0 l
+223.0 417.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+223.0 416.0 m
+223.0 457.0 l
+141.0 457.0 l
+S
+newpath
+224.0 416.0 m
+224.0 458.0 l
+140.0 458.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+308.0 416.0 m
+406.025390 416.0 l
+406.025390 458.0 l
+308.0 458.0 l
+308.0 416.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+308.0 416.0 m
+406.025390 416.0 l
+406.025390 458.0 l
+308.0 458.0 l
+308.0 416.0 l
+h
+S
+328.0 424.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+383.0625 424.0 m
+394.025390 424.0 l
+394.025390 437.962890 l
+383.0625 437.962890 l
+383.0625 424.0 l
+h
+f
+newpath
+383.0625 424.0 m
+394.025390 424.0 l
+394.025390 437.962890 l
+383.0625 437.962890 l
+383.0625 424.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+380.0625 426.981445 m
+386.0625 426.981445 l
+386.0625 429.981445 l
+380.0625 429.981445 l
+380.0625 426.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+380.0625 426.981445 m
+386.0625 426.981445 l
+386.0625 429.981445 l
+380.0625 429.981445 l
+380.0625 426.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+380.0625 431.981445 m
+386.0625 431.981445 l
+386.0625 434.981445 l
+380.0625 434.981445 l
+380.0625 431.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+380.0625 431.981445 m
+386.0625 431.981445 l
+386.0625 434.981445 l
+380.0625 434.981445 l
+380.0625 431.981445 l
+h
+S
+2 j
+newpath
+328.0 437.962890 m
+375.0625 437.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+308.0 458.0 m
+308.0 416.0 l
+406.025390 416.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+309.0 457.0 m
+309.0 417.0 l
+405.025390 417.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+405.025390 416.0 m
+405.025390 457.0 l
+309.0 457.0 l
+S
+newpath
+406.025390 416.0 m
+406.025390 458.0 l
+308.0 458.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 0.6 0.6 RG
+newpath
+656.0 216.0 m
+1092.0 216.0 l
+1092.0 328.0 l
+656.0 328.0 l
+656.0 216.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+656.0 216.0 m
+1092.0 216.0 l
+1092.0 328.0 l
+656.0 328.0 l
+656.0 216.0 l
+h
+S
+834.518555 220.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(Case 4: -ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+1077.037109 220.0 m
+1088.0 220.0 l
+1088.0 233.962890 l
+1077.037109 233.962890 l
+1077.037109 220.0 l
+h
+f
+newpath
+1077.037109 220.0 m
+1088.0 220.0 l
+1088.0 233.962890 l
+1077.037109 233.962890 l
+1077.037109 220.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1074.037109 222.981445 m
+1080.037109 222.981445 l
+1080.037109 225.981445 l
+1074.037109 225.981445 l
+1074.037109 222.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1074.037109 222.981445 m
+1080.037109 222.981445 l
+1080.037109 225.981445 l
+1074.037109 225.981445 l
+1074.037109 222.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1074.037109 227.981445 m
+1080.037109 227.981445 l
+1080.037109 230.981445 l
+1074.037109 230.981445 l
+1074.037109 227.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1074.037109 227.981445 m
+1080.037109 227.981445 l
+1080.037109 230.981445 l
+1074.037109 230.981445 l
+1074.037109 227.981445 l
+h
+S
+2 j
+1.0 0.6 0.6 RG
+newpath
+656.0 328.0 m
+656.0 216.0 l
+1092.0 216.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+657.0 327.0 m
+657.0 217.0 l
+1091.0 217.0 l
+S
+0.698039 0.419608 0.419608 RG
+newpath
+1091.0 216.0 m
+1091.0 327.0 l
+657.0 327.0 l
+S
+newpath
+1092.0 216.0 m
+1092.0 328.0 l
+656.0 328.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+680.0 256.0 m
+773.0 256.0 l
+773.0 298.0 l
+680.0 298.0 l
+680.0 256.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+680.0 256.0 m
+773.0 256.0 l
+773.0 298.0 l
+680.0 298.0 l
+680.0 256.0 l
+h
+S
+700.018555 264.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+750.037109 264.0 m
+761.0 264.0 l
+761.0 277.962890 l
+750.037109 277.962890 l
+750.037109 264.0 l
+h
+f
+newpath
+750.037109 264.0 m
+761.0 264.0 l
+761.0 277.962890 l
+750.037109 277.962890 l
+750.037109 264.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+747.037109 266.981445 m
+753.037109 266.981445 l
+753.037109 269.981445 l
+747.037109 269.981445 l
+747.037109 266.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+747.037109 266.981445 m
+753.037109 266.981445 l
+753.037109 269.981445 l
+747.037109 269.981445 l
+747.037109 266.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+747.037109 271.981445 m
+753.037109 271.981445 l
+753.037109 274.981445 l
+747.037109 274.981445 l
+747.037109 271.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+747.037109 271.981445 m
+753.037109 271.981445 l
+753.037109 274.981445 l
+747.037109 274.981445 l
+747.037109 271.981445 l
+h
+S
+2 j
+newpath
+700.018554 277.962890 m
+742.018554 277.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+680.0 298.0 m
+680.0 256.0 l
+773.0 256.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+681.0 297.0 m
+681.0 257.0 l
+772.0 257.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+772.0 256.0 m
+772.0 297.0 l
+681.0 297.0 l
+S
+newpath
+773.0 256.0 m
+773.0 298.0 l
+680.0 298.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+964.0 256.0 m
+1059.0 256.0 l
+1059.0 298.0 l
+964.0 298.0 l
+964.0 256.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+964.0 256.0 m
+1059.0 256.0 l
+1059.0 298.0 l
+964.0 298.0 l
+964.0 256.0 l
+h
+S
+984.018555 264.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : EProv) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+1036.037109 264.0 m
+1047.0 264.0 l
+1047.0 277.962890 l
+1036.037109 277.962890 l
+1036.037109 264.0 l
+h
+f
+newpath
+1036.037109 264.0 m
+1047.0 264.0 l
+1047.0 277.962890 l
+1036.037109 277.962890 l
+1036.037109 264.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1033.037109 266.981445 m
+1039.037109 266.981445 l
+1039.037109 269.981445 l
+1033.037109 269.981445 l
+1033.037109 266.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1033.037109 266.981445 m
+1039.037109 266.981445 l
+1039.037109 269.981445 l
+1033.037109 269.981445 l
+1033.037109 266.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1033.037109 271.981445 m
+1039.037109 271.981445 l
+1039.037109 274.981445 l
+1033.037109 274.981445 l
+1033.037109 271.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1033.037109 271.981445 m
+1039.037109 271.981445 l
+1039.037109 274.981445 l
+1033.037109 274.981445 l
+1033.037109 271.981445 l
+h
+S
+2 j
+newpath
+984.018554 277.962890 m
+1028.018554 277.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+964.0 298.0 m
+964.0 256.0 l
+1059.0 256.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+965.0 297.0 m
+965.0 257.0 l
+1058.0 257.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+1058.0 256.0 m
+1058.0 297.0 l
+965.0 297.0 l
+S
+newpath
+1059.0 256.0 m
+1059.0 298.0 l
+964.0 298.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+820.0 256.0 m
+918.025390 256.0 l
+918.025390 298.0 l
+820.0 298.0 l
+820.0 256.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+820.0 256.0 m
+918.025390 256.0 l
+918.025390 298.0 l
+820.0 298.0 l
+820.0 256.0 l
+h
+S
+840.0 264.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+895.0625 264.0 m
+906.025390 264.0 l
+906.025390 277.962890 l
+895.0625 277.962890 l
+895.0625 264.0 l
+h
+f
+newpath
+895.0625 264.0 m
+906.025390 264.0 l
+906.025390 277.962890 l
+895.0625 277.962890 l
+895.0625 264.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+892.0625 266.981445 m
+898.0625 266.981445 l
+898.0625 269.981445 l
+892.0625 269.981445 l
+892.0625 266.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+892.0625 266.981445 m
+898.0625 266.981445 l
+898.0625 269.981445 l
+892.0625 269.981445 l
+892.0625 266.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+892.0625 271.981445 m
+898.0625 271.981445 l
+898.0625 274.981445 l
+892.0625 274.981445 l
+892.0625 271.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+892.0625 271.981445 m
+898.0625 271.981445 l
+898.0625 274.981445 l
+892.0625 274.981445 l
+892.0625 271.981445 l
+h
+S
+2 j
+newpath
+840.0 277.962890 m
+887.0625 277.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+820.0 298.0 m
+820.0 256.0 l
+918.025390 256.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+821.0 297.0 m
+821.0 257.0 l
+917.025390 257.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+917.025390 256.0 m
+917.025390 297.0 l
+821.0 297.0 l
+S
+newpath
+918.025390 256.0 m
+918.025390 298.0 l
+820.0 298.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+51.860352 1692.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(A) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+2 j
+0 j
+0.6 1.0 0.6 RG
+newpath
+104.0 228.0 m
+512.0 228.0 l
+512.0 320.0 l
+104.0 320.0 l
+104.0 228.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+104.0 228.0 m
+512.0 228.0 l
+512.0 320.0 l
+104.0 320.0 l
+104.0 228.0 l
+h
+S
+267.018555 232.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(Case 3: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+497.037109 232.0 m
+508.0 232.0 l
+508.0 245.962890 l
+497.037109 245.962890 l
+497.037109 232.0 l
+h
+f
+newpath
+497.037109 232.0 m
+508.0 232.0 l
+508.0 245.962890 l
+497.037109 245.962890 l
+497.037109 232.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+494.037109 234.981445 m
+500.037109 234.981445 l
+500.037109 237.981445 l
+494.037109 237.981445 l
+494.037109 234.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+494.037109 234.981445 m
+500.037109 234.981445 l
+500.037109 237.981445 l
+494.037109 237.981445 l
+494.037109 234.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+494.037109 239.981445 m
+500.037109 239.981445 l
+500.037109 242.981445 l
+494.037109 242.981445 l
+494.037109 239.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+494.037109 239.981445 m
+500.037109 239.981445 l
+500.037109 242.981445 l
+494.037109 242.981445 l
+494.037109 239.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+104.0 320.0 m
+104.0 228.0 l
+512.0 228.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+105.0 319.0 m
+105.0 229.0 l
+511.0 229.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+511.0 228.0 m
+511.0 319.0 l
+105.0 319.0 l
+S
+newpath
+512.0 228.0 m
+512.0 320.0 l
+104.0 320.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+260.0 260.0 m
+358.025390 260.0 l
+358.025390 302.0 l
+260.0 302.0 l
+260.0 260.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+260.0 260.0 m
+358.025390 260.0 l
+358.025390 302.0 l
+260.0 302.0 l
+260.0 260.0 l
+h
+S
+280.0 268.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+335.0625 268.0 m
+346.025390 268.0 l
+346.025390 281.962890 l
+335.0625 281.962890 l
+335.0625 268.0 l
+h
+f
+newpath
+335.0625 268.0 m
+346.025390 268.0 l
+346.025390 281.962890 l
+335.0625 281.962890 l
+335.0625 268.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+332.0625 270.981445 m
+338.0625 270.981445 l
+338.0625 273.981445 l
+332.0625 273.981445 l
+332.0625 270.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+332.0625 270.981445 m
+338.0625 270.981445 l
+338.0625 273.981445 l
+332.0625 273.981445 l
+332.0625 270.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+332.0625 275.981445 m
+338.0625 275.981445 l
+338.0625 278.981445 l
+332.0625 278.981445 l
+332.0625 275.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+332.0625 275.981445 m
+338.0625 275.981445 l
+338.0625 278.981445 l
+332.0625 278.981445 l
+332.0625 275.981445 l
+h
+S
+2 j
+newpath
+280.0 281.962890 m
+327.0625 281.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+260.0 302.0 m
+260.0 260.0 l
+358.025390 260.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+261.0 301.0 m
+261.0 261.0 l
+357.025390 261.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+357.025390 260.0 m
+357.025390 301.0 l
+261.0 301.0 l
+S
+newpath
+358.025390 260.0 m
+358.025390 302.0 l
+260.0 302.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+124.0 260.0 m
+217.0 260.0 l
+217.0 302.0 l
+124.0 302.0 l
+124.0 260.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+124.0 260.0 m
+217.0 260.0 l
+217.0 302.0 l
+124.0 302.0 l
+124.0 260.0 l
+h
+S
+144.018555 268.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+194.037109 268.0 m
+205.0 268.0 l
+205.0 281.962890 l
+194.037109 281.962890 l
+194.037109 268.0 l
+h
+f
+newpath
+194.037109 268.0 m
+205.0 268.0 l
+205.0 281.962890 l
+194.037109 281.962890 l
+194.037109 268.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+191.037109 270.981445 m
+197.037109 270.981445 l
+197.037109 273.981445 l
+191.037109 273.981445 l
+191.037109 270.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+191.037109 270.981445 m
+197.037109 270.981445 l
+197.037109 273.981445 l
+191.037109 273.981445 l
+191.037109 270.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+191.037109 275.981445 m
+197.037109 275.981445 l
+197.037109 278.981445 l
+191.037109 278.981445 l
+191.037109 275.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+191.037109 275.981445 m
+197.037109 275.981445 l
+197.037109 278.981445 l
+191.037109 278.981445 l
+191.037109 275.981445 l
+h
+S
+2 j
+newpath
+144.018554 281.962890 m
+186.018554 281.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+124.0 302.0 m
+124.0 260.0 l
+217.0 260.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+125.0 301.0 m
+125.0 261.0 l
+216.0 261.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+216.0 260.0 m
+216.0 301.0 l
+125.0 301.0 l
+S
+newpath
+217.0 260.0 m
+217.0 302.0 l
+124.0 302.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+400.0 260.0 m
+495.0 260.0 l
+495.0 302.0 l
+400.0 302.0 l
+400.0 260.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+400.0 260.0 m
+495.0 260.0 l
+495.0 302.0 l
+400.0 302.0 l
+400.0 260.0 l
+h
+S
+420.018555 268.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BProv) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+472.037109 268.0 m
+483.0 268.0 l
+483.0 281.962890 l
+472.037109 281.962890 l
+472.037109 268.0 l
+h
+f
+newpath
+472.037109 268.0 m
+483.0 268.0 l
+483.0 281.962890 l
+472.037109 281.962890 l
+472.037109 268.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+469.037109 270.981445 m
+475.037109 270.981445 l
+475.037109 273.981445 l
+469.037109 273.981445 l
+469.037109 270.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+469.037109 270.981445 m
+475.037109 270.981445 l
+475.037109 273.981445 l
+469.037109 273.981445 l
+469.037109 270.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+469.037109 275.981445 m
+475.037109 275.981445 l
+475.037109 278.981445 l
+469.037109 278.981445 l
+469.037109 275.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+469.037109 275.981445 m
+475.037109 275.981445 l
+475.037109 278.981445 l
+469.037109 278.981445 l
+469.037109 275.981445 l
+h
+S
+2 j
+newpath
+420.018554 281.962890 m
+464.018554 281.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+400.0 302.0 m
+400.0 260.0 l
+495.0 260.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+401.0 301.0 m
+401.0 261.0 l
+494.0 261.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+494.0 260.0 m
+494.0 301.0 l
+401.0 301.0 l
+S
+newpath
+495.0 260.0 m
+495.0 302.0 l
+400.0 302.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.6 1.0 0.6 RG
+newpath
+640.0 32.0 m
+1089.0 32.0 l
+1089.0 160.0 l
+640.0 160.0 l
+640.0 32.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+640.0 32.0 m
+1089.0 32.0 l
+1089.0 160.0 l
+640.0 160.0 l
+640.0 32.0 l
+h
+S
+823.518555 40.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(Case 2: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+1066.037109 40.0 m
+1077.0 40.0 l
+1077.0 53.962890 l
+1066.037109 53.962890 l
+1066.037109 40.0 l
+h
+f
+newpath
+1066.037109 40.0 m
+1077.0 40.0 l
+1077.0 53.962890 l
+1066.037109 53.962890 l
+1066.037109 40.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1063.037109 42.981445 m
+1069.037109 42.981445 l
+1069.037109 45.981445 l
+1063.037109 45.981445 l
+1063.037109 42.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1063.037109 42.981445 m
+1069.037109 42.981445 l
+1069.037109 45.981445 l
+1063.037109 45.981445 l
+1063.037109 42.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1063.037109 47.981445 m
+1069.037109 47.981445 l
+1069.037109 50.981445 l
+1063.037109 50.981445 l
+1063.037109 47.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1063.037109 47.981445 m
+1069.037109 47.981445 l
+1069.037109 50.981445 l
+1063.037109 50.981445 l
+1063.037109 47.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+640.0 160.0 m
+640.0 32.0 l
+1089.0 32.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+641.0 159.0 m
+641.0 33.0 l
+1088.0 33.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+1088.0 32.0 m
+1088.0 159.0 l
+641.0 159.0 l
+S
+newpath
+1089.0 32.0 m
+1089.0 160.0 l
+640.0 160.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+984.0 84.0 m
+1077.0 84.0 l
+1077.0 126.0 l
+984.0 126.0 l
+984.0 84.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+984.0 84.0 m
+1077.0 84.0 l
+1077.0 126.0 l
+984.0 126.0 l
+984.0 84.0 l
+h
+S
+1004.018555 92.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+1054.037109 92.0 m
+1065.0 92.0 l
+1065.0 105.962890 l
+1054.037109 105.962890 l
+1054.037109 92.0 l
+h
+f
+newpath
+1054.037109 92.0 m
+1065.0 92.0 l
+1065.0 105.962890 l
+1054.037109 105.962890 l
+1054.037109 92.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1051.037109 94.981445 m
+1057.037109 94.981445 l
+1057.037109 97.981445 l
+1051.037109 97.981445 l
+1051.037109 94.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1051.037109 94.981445 m
+1057.037109 94.981445 l
+1057.037109 97.981445 l
+1051.037109 97.981445 l
+1051.037109 94.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1051.037109 99.981445 m
+1057.037109 99.981445 l
+1057.037109 102.981445 l
+1051.037109 102.981445 l
+1051.037109 99.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1051.037109 99.981445 m
+1057.037109 99.981445 l
+1057.037109 102.981445 l
+1051.037109 102.981445 l
+1051.037109 99.981445 l
+h
+S
+2 j
+newpath
+1004.018554 105.962890 m
+1046.018554 105.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+984.0 126.0 m
+984.0 84.0 l
+1077.0 84.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+985.0 125.0 m
+985.0 85.0 l
+1076.0 85.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+1076.0 84.0 m
+1076.0 125.0 l
+985.0 125.0 l
+S
+newpath
+1077.0 84.0 m
+1077.0 126.0 l
+984.0 126.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+832.0 84.0 m
+930.025390 84.0 l
+930.025390 126.0 l
+832.0 126.0 l
+832.0 84.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+832.0 84.0 m
+930.025390 84.0 l
+930.025390 126.0 l
+832.0 126.0 l
+832.0 84.0 l
+h
+S
+852.0 92.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+907.0625 92.0 m
+918.025390 92.0 l
+918.025390 105.962890 l
+907.0625 105.962890 l
+907.0625 92.0 l
+h
+f
+newpath
+907.0625 92.0 m
+918.025390 92.0 l
+918.025390 105.962890 l
+907.0625 105.962890 l
+907.0625 92.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+904.0625 94.981445 m
+910.0625 94.981445 l
+910.0625 97.981445 l
+904.0625 97.981445 l
+904.0625 94.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+904.0625 94.981445 m
+910.0625 94.981445 l
+910.0625 97.981445 l
+904.0625 97.981445 l
+904.0625 94.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+904.0625 99.981445 m
+910.0625 99.981445 l
+910.0625 102.981445 l
+904.0625 102.981445 l
+904.0625 99.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+904.0625 99.981445 m
+910.0625 99.981445 l
+910.0625 102.981445 l
+904.0625 102.981445 l
+904.0625 99.981445 l
+h
+S
+2 j
+newpath
+852.0 105.962890 m
+899.0625 105.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+832.0 126.0 m
+832.0 84.0 l
+930.025390 84.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+833.0 125.0 m
+833.0 85.0 l
+929.025390 85.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+929.025390 84.0 m
+929.025390 125.0 l
+833.0 125.0 l
+S
+newpath
+930.025390 84.0 m
+930.025390 126.0 l
+832.0 126.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+688.0 84.0 m
+786.025390 84.0 l
+786.025390 126.0 l
+688.0 126.0 l
+688.0 84.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+688.0 84.0 m
+786.025390 84.0 l
+786.025390 126.0 l
+688.0 126.0 l
+688.0 84.0 l
+h
+S
+708.0 92.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+763.0625 92.0 m
+774.025390 92.0 l
+774.025390 105.962890 l
+763.0625 105.962890 l
+763.0625 92.0 l
+h
+f
+newpath
+763.0625 92.0 m
+774.025390 92.0 l
+774.025390 105.962890 l
+763.0625 105.962890 l
+763.0625 92.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+760.0625 94.981445 m
+766.0625 94.981445 l
+766.0625 97.981445 l
+760.0625 97.981445 l
+760.0625 94.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+760.0625 94.981445 m
+766.0625 94.981445 l
+766.0625 97.981445 l
+760.0625 97.981445 l
+760.0625 94.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+760.0625 99.981445 m
+766.0625 99.981445 l
+766.0625 102.981445 l
+760.0625 102.981445 l
+760.0625 99.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+760.0625 99.981445 m
+766.0625 99.981445 l
+766.0625 102.981445 l
+760.0625 102.981445 l
+760.0625 99.981445 l
+h
+S
+2 j
+newpath
+708.0 105.962890 m
+755.0625 105.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+688.0 126.0 m
+688.0 84.0 l
+786.025390 84.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+689.0 125.0 m
+689.0 85.0 l
+785.025390 85.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+785.025390 84.0 m
+785.025390 125.0 l
+689.0 125.0 l
+S
+newpath
+786.025390 84.0 m
+786.025390 126.0 l
+688.0 126.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+540.5 944.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+2 j
+0 j
+0.6 1.0 0.6 RG
+newpath
+688.0 600.0 m
+1084.0 600.0 l
+1084.0 760.0 l
+688.0 760.0 l
+688.0 600.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+688.0 600.0 m
+1084.0 600.0 l
+1084.0 760.0 l
+688.0 760.0 l
+688.0 600.0 l
+h
+S
+846.018555 608.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 8: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+1061.037109 608.0 m
+1072.0 608.0 l
+1072.0 621.962890 l
+1061.037109 621.962890 l
+1061.037109 608.0 l
+h
+f
+newpath
+1061.037109 608.0 m
+1072.0 608.0 l
+1072.0 621.962890 l
+1061.037109 621.962890 l
+1061.037109 608.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1058.037109 610.981445 m
+1064.037109 610.981445 l
+1064.037109 613.981445 l
+1058.037109 613.981445 l
+1058.037109 610.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1058.037109 610.981445 m
+1064.037109 610.981445 l
+1064.037109 613.981445 l
+1058.037109 613.981445 l
+1058.037109 610.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1058.037109 615.981445 m
+1064.037109 615.981445 l
+1064.037109 618.981445 l
+1058.037109 618.981445 l
+1058.037109 615.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1058.037109 615.981445 m
+1064.037109 615.981445 l
+1064.037109 618.981445 l
+1058.037109 618.981445 l
+1058.037109 615.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+688.0 760.0 m
+688.0 600.0 l
+1084.0 600.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+689.0 759.0 m
+689.0 601.0 l
+1083.0 601.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+1083.0 600.0 m
+1083.0 759.0 l
+689.0 759.0 l
+S
+newpath
+1084.0 600.0 m
+1084.0 760.0 l
+688.0 760.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+732.0 696.0 m
+827.0 696.0 l
+827.0 738.0 l
+732.0 738.0 l
+732.0 696.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+732.0 696.0 m
+827.0 696.0 l
+827.0 738.0 l
+732.0 738.0 l
+732.0 696.0 l
+h
+S
+752.018555 704.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BProv) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+804.037109 704.0 m
+815.0 704.0 l
+815.0 717.962890 l
+804.037109 717.962890 l
+804.037109 704.0 l
+h
+f
+newpath
+804.037109 704.0 m
+815.0 704.0 l
+815.0 717.962890 l
+804.037109 717.962890 l
+804.037109 704.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+801.037109 706.981445 m
+807.037109 706.981445 l
+807.037109 709.981445 l
+801.037109 709.981445 l
+801.037109 706.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+801.037109 706.981445 m
+807.037109 706.981445 l
+807.037109 709.981445 l
+801.037109 709.981445 l
+801.037109 706.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+801.037109 711.981445 m
+807.037109 711.981445 l
+807.037109 714.981445 l
+801.037109 714.981445 l
+801.037109 711.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+801.037109 711.981445 m
+807.037109 711.981445 l
+807.037109 714.981445 l
+801.037109 714.981445 l
+801.037109 711.981445 l
+h
+S
+2 j
+newpath
+752.018554 717.962890 m
+796.018554 717.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+732.0 738.0 m
+732.0 696.0 l
+827.0 696.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+733.0 737.0 m
+733.0 697.0 l
+826.0 697.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+826.0 696.0 m
+826.0 737.0 l
+733.0 737.0 l
+S
+newpath
+827.0 696.0 m
+827.0 738.0 l
+732.0 738.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+732.0 640.0 m
+828.0 640.0 l
+828.0 682.0 l
+732.0 682.0 l
+732.0 640.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+732.0 640.0 m
+828.0 640.0 l
+828.0 682.0 l
+732.0 682.0 l
+732.0 640.0 l
+h
+S
+752.018555 648.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AProv) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+805.037109 648.0 m
+816.0 648.0 l
+816.0 661.962890 l
+805.037109 661.962890 l
+805.037109 648.0 l
+h
+f
+newpath
+805.037109 648.0 m
+816.0 648.0 l
+816.0 661.962890 l
+805.037109 661.962890 l
+805.037109 648.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+802.037109 650.981445 m
+808.037109 650.981445 l
+808.037109 653.981445 l
+802.037109 653.981445 l
+802.037109 650.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+802.037109 650.981445 m
+808.037109 650.981445 l
+808.037109 653.981445 l
+802.037109 653.981445 l
+802.037109 650.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+802.037109 655.981445 m
+808.037109 655.981445 l
+808.037109 658.981445 l
+802.037109 658.981445 l
+802.037109 655.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+802.037109 655.981445 m
+808.037109 655.981445 l
+808.037109 658.981445 l
+802.037109 658.981445 l
+802.037109 655.981445 l
+h
+S
+2 j
+newpath
+752.018554 661.962890 m
+797.018554 661.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+732.0 682.0 m
+732.0 640.0 l
+828.0 640.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+733.0 681.0 m
+733.0 641.0 l
+827.0 641.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+827.0 640.0 m
+827.0 681.0 l
+733.0 681.0 l
+S
+newpath
+828.0 640.0 m
+828.0 682.0 l
+732.0 682.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+860.0 660.0 m
+1013.830078 660.0 l
+1013.830078 702.0 l
+860.0 702.0 l
+860.0 660.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+860.0 660.0 m
+1013.830078 660.0 l
+1013.830078 702.0 l
+860.0 702.0 l
+860.0 660.0 l
+h
+S
+880.0 668.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AProvManyThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+990.867187 668.0 m
+1001.830078 668.0 l
+1001.830078 681.962890 l
+990.867187 681.962890 l
+990.867187 668.0 l
+h
+f
+newpath
+990.867187 668.0 m
+1001.830078 668.0 l
+1001.830078 681.962890 l
+990.867187 681.962890 l
+990.867187 668.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+987.867187 670.981445 m
+993.867187 670.981445 l
+993.867187 673.981445 l
+987.867187 673.981445 l
+987.867187 670.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+987.867187 670.981445 m
+993.867187 670.981445 l
+993.867187 673.981445 l
+987.867187 673.981445 l
+987.867187 670.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+987.867187 675.981445 m
+993.867187 675.981445 l
+993.867187 678.981445 l
+987.867187 678.981445 l
+987.867187 675.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+987.867187 675.981445 m
+993.867187 675.981445 l
+993.867187 678.981445 l
+987.867187 678.981445 l
+987.867187 675.981445 l
+h
+S
+2 j
+newpath
+880.0 681.962890 m
+982.867187 681.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+860.0 702.0 m
+860.0 660.0 l
+1013.830078 660.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+861.0 701.0 m
+861.0 661.0 l
+1012.830078 661.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+1012.830078 660.0 m
+1012.830078 701.0 l
+861.0 701.0 l
+S
+newpath
+1013.830078 660.0 m
+1013.830078 702.0 l
+860.0 702.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 1.0 0.8 RG
+newpath
+349.0 764.0 m
+216.0 764.0 l
+216.0 807.0 l
+364.0 807.0 l
+364.0 779.0 l
+349.0 764.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+349.0 764.0 m
+216.0 764.0 l
+216.0 807.0 l
+364.0 807.0 l
+364.0 779.0 l
+349.0 764.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+349.0 764.0 m
+349.0 779.0 l
+364.0 779.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+349.0 764.0 m
+349.0 779.0 l
+364.0 779.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 219.0 767.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000c\000a\000n\000 \000o\000n\000l\000y\000 \000p\000r\000o\000v\000i\000d\000e\000 \000A) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+1.0 1.0 0.8 RG
+newpath
+457.0 1012.0 m
+248.0 1012.0 l
+248.0 1060.0 l
+472.0 1060.0 l
+472.0 1027.0 l
+457.0 1012.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+457.0 1012.0 m
+248.0 1012.0 l
+248.0 1060.0 l
+472.0 1060.0 l
+472.0 1027.0 l
+457.0 1012.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+457.0 1012.0 m
+457.0 1027.0 l
+472.0 1027.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+457.0 1012.0 m
+457.0 1027.0 l
+472.0 1027.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 251.0 1015.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000m\000u\000s\000t\000 \000b\000e\000 \000B\000 \000t\000o\000 \000s\000u\000p\000p\000o\000r\000t\000 \000t\000h\000e\000 \000r\000e\000q\000u\000i\000r\000e\000d\000 ) show
+Q
+0.0 27.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000B\000.\000 \000 \000s\000h\000o\000u\000l\000d\000 \000b\000e\000 \000s\000a\000m\000e\000 \000r\000e\000s\000u\000l\000t\000 \000e\000v\000e\000n\000 \000i\000f\000 ) show
+Q
+0.0 42.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000p\000o\000r\000t\000 \000i\000s\000 \000n\000o\000t\000 \000i\000n\000d\000e\000x\000e\000d) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+0.6 1.0 0.6 RG
+newpath
+120.0 1108.0 m
+464.0 1108.0 l
+464.0 1258.0 l
+120.0 1258.0 l
+120.0 1108.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+120.0 1108.0 m
+464.0 1108.0 l
+464.0 1258.0 l
+120.0 1258.0 l
+120.0 1108.0 l
+h
+S
+248.018555 1116.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 11: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+441.037109 1116.0 m
+452.0 1116.0 l
+452.0 1129.962890 l
+441.037109 1129.962890 l
+441.037109 1116.0 l
+h
+f
+newpath
+441.037109 1116.0 m
+452.0 1116.0 l
+452.0 1129.962890 l
+441.037109 1129.962890 l
+441.037109 1116.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+438.037109 1118.981445 m
+444.037109 1118.981445 l
+444.037109 1121.981445 l
+438.037109 1121.981445 l
+438.037109 1118.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+438.037109 1118.981445 m
+444.037109 1118.981445 l
+444.037109 1121.981445 l
+438.037109 1121.981445 l
+438.037109 1118.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+438.037109 1123.981445 m
+444.037109 1123.981445 l
+444.037109 1126.981445 l
+438.037109 1126.981445 l
+438.037109 1123.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+438.037109 1123.981445 m
+444.037109 1123.981445 l
+444.037109 1126.981445 l
+438.037109 1126.981445 l
+438.037109 1123.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+120.0 1258.0 m
+120.0 1108.0 l
+464.0 1108.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+121.0 1257.0 m
+121.0 1109.0 l
+463.0 1109.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+463.0 1108.0 m
+463.0 1257.0 l
+121.0 1257.0 l
+S
+newpath
+464.0 1108.0 m
+464.0 1258.0 l
+120.0 1258.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+208.0 1204.0 m
+301.962890 1204.0 l
+301.962890 1245.962890 l
+208.0 1245.962890 l
+208.0 1204.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+208.0 1204.0 m
+301.962890 1204.0 l
+301.962890 1245.962890 l
+208.0 1245.962890 l
+208.0 1204.0 l
+h
+S
+228.0 1212.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : CReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+279.0 1212.0 m
+289.962890 1212.0 l
+289.962890 1225.962890 l
+279.0 1225.962890 l
+279.0 1212.0 l
+h
+f
+newpath
+279.0 1212.0 m
+289.962890 1212.0 l
+289.962890 1225.962890 l
+279.0 1225.962890 l
+279.0 1212.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+276.0 1214.981445 m
+282.0 1214.981445 l
+282.0 1217.981445 l
+276.0 1217.981445 l
+276.0 1214.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+276.0 1214.981445 m
+282.0 1214.981445 l
+282.0 1217.981445 l
+276.0 1217.981445 l
+276.0 1214.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+276.0 1219.981445 m
+282.0 1219.981445 l
+282.0 1222.981445 l
+276.0 1222.981445 l
+276.0 1219.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+276.0 1219.981445 m
+282.0 1219.981445 l
+282.0 1222.981445 l
+276.0 1222.981445 l
+276.0 1219.981445 l
+h
+S
+2 j
+newpath
+228.0 1225.962890 m
+271.0 1225.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+208.0 1245.962890 m
+208.0 1204.0 l
+301.962890 1204.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+209.0 1244.962890 m
+209.0 1205.0 l
+300.962890 1205.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+300.962890 1204.0 m
+300.962890 1244.962890 l
+209.0 1244.962890 l
+S
+newpath
+301.962890 1204.0 m
+301.962890 1245.962890 l
+208.0 1245.962890 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+208.0 1144.0 m
+301.0 1144.0 l
+301.0 1186.0 l
+208.0 1186.0 l
+208.0 1144.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+208.0 1144.0 m
+301.0 1144.0 l
+301.0 1186.0 l
+208.0 1186.0 l
+208.0 1144.0 l
+h
+S
+228.018555 1152.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+278.037109 1152.0 m
+289.0 1152.0 l
+289.0 1165.962890 l
+278.037109 1165.962890 l
+278.037109 1152.0 l
+h
+f
+newpath
+278.037109 1152.0 m
+289.0 1152.0 l
+289.0 1165.962890 l
+278.037109 1165.962890 l
+278.037109 1152.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+275.037109 1154.981445 m
+281.037109 1154.981445 l
+281.037109 1157.981445 l
+275.037109 1157.981445 l
+275.037109 1154.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+275.037109 1154.981445 m
+281.037109 1154.981445 l
+281.037109 1157.981445 l
+275.037109 1157.981445 l
+275.037109 1154.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+275.037109 1159.981445 m
+281.037109 1159.981445 l
+281.037109 1162.981445 l
+275.037109 1162.981445 l
+275.037109 1159.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+275.037109 1159.981445 m
+281.037109 1159.981445 l
+281.037109 1162.981445 l
+275.037109 1162.981445 l
+275.037109 1159.981445 l
+h
+S
+2 j
+newpath
+228.018554 1165.962890 m
+270.018554 1165.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+208.0 1186.0 m
+208.0 1144.0 l
+301.0 1144.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+209.0 1185.0 m
+209.0 1145.0 l
+300.0 1145.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+300.0 1144.0 m
+300.0 1185.0 l
+209.0 1185.0 l
+S
+newpath
+301.0 1144.0 m
+301.0 1186.0 l
+208.0 1186.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+68.5 120.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+2 j
+0 j
+624.5 456.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+2 j
+0 j
+519.5 1200.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(D) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+2 j
+0 j
+1083.860352 1204.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(A) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 1.0 1.0 RG
+newpath
+1100.0 1188.0 m
+1100.0 1194.627416 1094.627416 1200.0 1088.0 1200.0  c
+1081.372583 1200.0 1076.0 1194.627416 1076.0 1188.0  c
+1076.0 1181.372583 1081.372583 1176.0 1088.0 1176.0  c
+1094.627416 1176.0 1100.0 1181.372583 1100.0 1188.0  c
+h
+f
+2 j
+0.0 0.0 0.0 RG
+newpath
+1100.0 1188.0 m
+1100.0 1194.627416 1094.627416 1200.0 1088.0 1200.0  c
+1081.372583 1200.0 1076.0 1194.627416 1076.0 1188.0  c
+1076.0 1181.372583 1081.372583 1176.0 1088.0 1176.0  c
+1094.627416 1176.0 1100.0 1181.372583 1100.0 1188.0  c
+h
+S
+0.0 0.0 0.0 RG
+0 j
+1139.860352 696.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(A) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 1.0 1.0 RG
+newpath
+1156.0 680.0 m
+1156.0 686.627416 1150.627416 692.0 1144.0 692.0  c
+1137.372583 692.0 1132.0 686.627416 1132.0 680.0  c
+1132.0 673.372583 1137.372583 668.0 1144.0 668.0  c
+1150.627416 668.0 1156.0 673.372583 1156.0 680.0  c
+h
+f
+2 j
+0.0 0.0 0.0 RG
+newpath
+1156.0 680.0 m
+1156.0 686.627416 1150.627416 692.0 1144.0 692.0  c
+1137.372583 692.0 1132.0 686.627416 1132.0 680.0  c
+1132.0 673.372583 1137.372583 668.0 1144.0 668.0  c
+1150.627416 668.0 1156.0 673.372583 1156.0 680.0  c
+h
+S
+0.0 0.0 0.0 RG
+0 j
+0.6 1.0 0.6 RG
+newpath
+136.0 36.0 m
+492.0 36.0 l
+492.0 156.0 l
+136.0 156.0 l
+136.0 36.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+136.0 36.0 m
+492.0 36.0 l
+492.0 156.0 l
+136.0 156.0 l
+136.0 36.0 l
+h
+S
+273.018555 44.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(Case 1: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+469.037109 44.0 m
+480.0 44.0 l
+480.0 57.962890 l
+469.037109 57.962890 l
+469.037109 44.0 l
+h
+f
+newpath
+469.037109 44.0 m
+480.0 44.0 l
+480.0 57.962890 l
+469.037109 57.962890 l
+469.037109 44.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+466.037109 46.981445 m
+472.037109 46.981445 l
+472.037109 49.981445 l
+466.037109 49.981445 l
+466.037109 46.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+466.037109 46.981445 m
+472.037109 46.981445 l
+472.037109 49.981445 l
+466.037109 49.981445 l
+466.037109 46.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+466.037109 51.981445 m
+472.037109 51.981445 l
+472.037109 54.981445 l
+466.037109 54.981445 l
+466.037109 51.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+466.037109 51.981445 m
+472.037109 51.981445 l
+472.037109 54.981445 l
+466.037109 54.981445 l
+466.037109 51.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+136.0 156.0 m
+136.0 36.0 l
+492.0 36.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+137.0 155.0 m
+137.0 37.0 l
+491.0 37.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+491.0 36.0 m
+491.0 155.0 l
+137.0 155.0 l
+S
+newpath
+492.0 36.0 m
+492.0 156.0 l
+136.0 156.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+204.0 84.0 m
+302.025390 84.0 l
+302.025390 126.0 l
+204.0 126.0 l
+204.0 84.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+204.0 84.0 m
+302.025390 84.0 l
+302.025390 126.0 l
+204.0 126.0 l
+204.0 84.0 l
+h
+S
+224.0 92.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+279.0625 92.0 m
+290.025390 92.0 l
+290.025390 105.962890 l
+279.0625 105.962890 l
+279.0625 92.0 l
+h
+f
+newpath
+279.0625 92.0 m
+290.025390 92.0 l
+290.025390 105.962890 l
+279.0625 105.962890 l
+279.0625 92.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+276.0625 94.981445 m
+282.0625 94.981445 l
+282.0625 97.981445 l
+276.0625 97.981445 l
+276.0625 94.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+276.0625 94.981445 m
+282.0625 94.981445 l
+282.0625 97.981445 l
+276.0625 97.981445 l
+276.0625 94.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+276.0625 99.981445 m
+282.0625 99.981445 l
+282.0625 102.981445 l
+276.0625 102.981445 l
+276.0625 99.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+276.0625 99.981445 m
+282.0625 99.981445 l
+282.0625 102.981445 l
+276.0625 102.981445 l
+276.0625 99.981445 l
+h
+S
+2 j
+newpath
+224.0 105.962890 m
+271.0625 105.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+204.0 126.0 m
+204.0 84.0 l
+302.025390 84.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+205.0 125.0 m
+205.0 85.0 l
+301.025390 85.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+301.025390 84.0 m
+301.025390 125.0 l
+205.0 125.0 l
+S
+newpath
+302.025390 84.0 m
+302.025390 126.0 l
+204.0 126.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+368.0 84.0 m
+461.0 84.0 l
+461.0 126.0 l
+368.0 126.0 l
+368.0 84.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+368.0 84.0 m
+461.0 84.0 l
+461.0 126.0 l
+368.0 126.0 l
+368.0 84.0 l
+h
+S
+388.018555 92.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+438.037109 92.0 m
+449.0 92.0 l
+449.0 105.962890 l
+438.037109 105.962890 l
+438.037109 92.0 l
+h
+f
+newpath
+438.037109 92.0 m
+449.0 92.0 l
+449.0 105.962890 l
+438.037109 105.962890 l
+438.037109 92.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+435.037109 94.981445 m
+441.037109 94.981445 l
+441.037109 97.981445 l
+435.037109 97.981445 l
+435.037109 94.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+435.037109 94.981445 m
+441.037109 94.981445 l
+441.037109 97.981445 l
+435.037109 97.981445 l
+435.037109 94.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+435.037109 99.981445 m
+441.037109 99.981445 l
+441.037109 102.981445 l
+435.037109 102.981445 l
+435.037109 99.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+435.037109 99.981445 m
+441.037109 99.981445 l
+441.037109 102.981445 l
+435.037109 102.981445 l
+435.037109 99.981445 l
+h
+S
+2 j
+newpath
+388.018554 105.962890 m
+430.018554 105.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+368.0 126.0 m
+368.0 84.0 l
+461.0 84.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+369.0 125.0 m
+369.0 85.0 l
+460.0 85.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+460.0 84.0 m
+460.0 125.0 l
+369.0 125.0 l
+S
+newpath
+461.0 84.0 m
+461.0 126.0 l
+368.0 126.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+1116.5 452.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 1.0 1.0 RG
+newpath
+1132.0 436.0 m
+1132.0 442.627416 1126.627416 448.0 1120.0 448.0  c
+1113.372583 448.0 1108.0 442.627416 1108.0 436.0  c
+1108.0 429.372583 1113.372583 424.0 1120.0 424.0  c
+1126.627416 424.0 1132.0 429.372583 1132.0 436.0  c
+h
+f
+2 j
+0.0 0.0 0.0 RG
+newpath
+1132.0 436.0 m
+1132.0 442.627416 1126.627416 448.0 1120.0 448.0  c
+1113.372583 448.0 1108.0 442.627416 1108.0 436.0  c
+1108.0 429.372583 1113.372583 424.0 1120.0 424.0  c
+1126.627416 424.0 1132.0 429.372583 1132.0 436.0  c
+h
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 0.6 0.6 RG
+newpath
+740.0 872.0 m
+1028.0 872.0 l
+1028.0 992.0 l
+740.0 992.0 l
+740.0 872.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+740.0 872.0 m
+1028.0 872.0 l
+1028.0 992.0 l
+740.0 992.0 l
+740.0 872.0 l
+h
+S
+841.518555 880.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 10: -ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+1005.037109 880.0 m
+1016.0 880.0 l
+1016.0 893.962890 l
+1005.037109 893.962890 l
+1005.037109 880.0 l
+h
+f
+newpath
+1005.037109 880.0 m
+1016.0 880.0 l
+1016.0 893.962890 l
+1005.037109 893.962890 l
+1005.037109 880.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1002.037109 882.981445 m
+1008.037109 882.981445 l
+1008.037109 885.981445 l
+1002.037109 885.981445 l
+1002.037109 882.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1002.037109 882.981445 m
+1008.037109 882.981445 l
+1008.037109 885.981445 l
+1002.037109 885.981445 l
+1002.037109 882.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1002.037109 887.981445 m
+1008.037109 887.981445 l
+1008.037109 890.981445 l
+1002.037109 890.981445 l
+1002.037109 887.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1002.037109 887.981445 m
+1008.037109 887.981445 l
+1008.037109 890.981445 l
+1002.037109 890.981445 l
+1002.037109 887.981445 l
+h
+S
+2 j
+1.0 0.6 0.6 RG
+newpath
+740.0 992.0 m
+740.0 872.0 l
+1028.0 872.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+741.0 991.0 m
+741.0 873.0 l
+1027.0 873.0 l
+S
+0.698039 0.419608 0.419608 RG
+newpath
+1027.0 872.0 m
+1027.0 991.0 l
+741.0 991.0 l
+S
+newpath
+1028.0 872.0 m
+1028.0 992.0 l
+740.0 992.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+840.0 912.0 m
+938.025390 912.0 l
+938.025390 954.0 l
+840.0 954.0 l
+840.0 912.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+840.0 912.0 m
+938.025390 912.0 l
+938.025390 954.0 l
+840.0 954.0 l
+840.0 912.0 l
+h
+S
+860.0 920.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+915.0625 920.0 m
+926.025390 920.0 l
+926.025390 933.962890 l
+915.0625 933.962890 l
+915.0625 920.0 l
+h
+f
+newpath
+915.0625 920.0 m
+926.025390 920.0 l
+926.025390 933.962890 l
+915.0625 933.962890 l
+915.0625 920.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+912.0625 922.981445 m
+918.0625 922.981445 l
+918.0625 925.981445 l
+912.0625 925.981445 l
+912.0625 922.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+912.0625 922.981445 m
+918.0625 922.981445 l
+918.0625 925.981445 l
+912.0625 925.981445 l
+912.0625 922.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+912.0625 927.981445 m
+918.0625 927.981445 l
+918.0625 930.981445 l
+912.0625 930.981445 l
+912.0625 927.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+912.0625 927.981445 m
+918.0625 927.981445 l
+918.0625 930.981445 l
+912.0625 930.981445 l
+912.0625 927.981445 l
+h
+S
+2 j
+newpath
+860.0 933.962890 m
+907.0625 933.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+840.0 954.0 m
+840.0 912.0 l
+938.025390 912.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+841.0 953.0 m
+841.0 913.0 l
+937.025390 913.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+937.025390 912.0 m
+937.025390 953.0 l
+841.0 953.0 l
+S
+newpath
+938.025390 912.0 m
+938.025390 954.0 l
+840.0 954.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 1.0 0.8 RG
+newpath
+1021.0 1512.0 m
+764.0 1512.0 l
+764.0 1555.0 l
+1036.0 1555.0 l
+1036.0 1527.0 l
+1021.0 1512.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+1021.0 1512.0 m
+764.0 1512.0 l
+764.0 1555.0 l
+1036.0 1555.0 l
+1036.0 1527.0 l
+1021.0 1512.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+1021.0 1512.0 m
+1021.0 1527.0 l
+1036.0 1527.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+1021.0 1512.0 m
+1021.0 1527.0 l
+1036.0 1527.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 767.0 1515.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000d\000e\000p\000e\000n\000d\000i\000n\000g\000 \000o\000n\000 \000d\000i\000r\000e\000c\000t\000i\000o\000n\000,\000 \000c\000o\000u\000l\000d\000 \000b\000o\000t\000h\000 \000b\000e\000 \000B\000,\000 \000o\000r\000 ) show
+Q
+0.0 27.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000c\000o\000u\000l\000d\000 \000b\000e\000 \000p\000r\000o\000v\000 \000B\000,\000 \000r\000e\000q\000 \000A) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+1.0 1.0 0.8 RG
+newpath
+397.0 1756.0 m
+156.0 1756.0 l
+156.0 1799.0 l
+412.0 1799.0 l
+412.0 1771.0 l
+397.0 1756.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+397.0 1756.0 m
+156.0 1756.0 l
+156.0 1799.0 l
+412.0 1799.0 l
+412.0 1771.0 l
+397.0 1756.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+397.0 1756.0 m
+397.0 1771.0 l
+412.0 1771.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+397.0 1756.0 m
+397.0 1771.0 l
+412.0 1771.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 159.0 1759.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000A\000 \000p\000r\000o\000p\000a\000g\000a\000t\000e\000s\000,\000 \000w\000i\000t\000h\000 \000n\000o\000 \000l\000i\000n\000k\000s\000 \000c\000r\000e\000a\000t\000e\000d\000 \000d\000u\000e\000 ) show
+Q
+0.0 27.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000t\000o\000 \000i\000n\000t\000e\000r\000n\000a\000l\000 \000B) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+1.0 1.0 1.0 RG
+newpath
+1152.0 1480.0 m
+1152.0 1486.627416 1146.627416 1492.0 1140.0 1492.0  c
+1133.372583 1492.0 1128.0 1486.627416 1128.0 1480.0  c
+1128.0 1473.372583 1133.372583 1468.0 1140.0 1468.0  c
+1146.627416 1468.0 1152.0 1473.372583 1152.0 1480.0  c
+h
+f
+2 j
+0.0 0.0 0.0 RG
+newpath
+1152.0 1480.0 m
+1152.0 1486.627416 1146.627416 1492.0 1140.0 1492.0  c
+1133.372583 1492.0 1128.0 1486.627416 1128.0 1480.0  c
+1128.0 1473.372583 1133.372583 1468.0 1140.0 1468.0  c
+1146.627416 1468.0 1152.0 1473.372583 1152.0 1480.0  c
+h
+S
+0.0 0.0 0.0 RG
+0 j
+2 j
+0 j
+0.6 1.0 0.6 RG
+newpath
+108.0 1568.0 m
+464.0 1568.0 l
+464.0 1728.0 l
+108.0 1728.0 l
+108.0 1568.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+108.0 1568.0 m
+464.0 1568.0 l
+464.0 1728.0 l
+108.0 1728.0 l
+108.0 1568.0 l
+h
+S
+242.018555 1576.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 15: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+441.037109 1576.0 m
+452.0 1576.0 l
+452.0 1589.962890 l
+441.037109 1589.962890 l
+441.037109 1576.0 l
+h
+f
+newpath
+441.037109 1576.0 m
+452.0 1576.0 l
+452.0 1589.962890 l
+441.037109 1589.962890 l
+441.037109 1576.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+438.037109 1578.981445 m
+444.037109 1578.981445 l
+444.037109 1581.981445 l
+438.037109 1581.981445 l
+438.037109 1578.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+438.037109 1578.981445 m
+444.037109 1578.981445 l
+444.037109 1581.981445 l
+438.037109 1581.981445 l
+438.037109 1578.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+438.037109 1583.981445 m
+444.037109 1583.981445 l
+444.037109 1586.981445 l
+438.037109 1586.981445 l
+438.037109 1583.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+438.037109 1583.981445 m
+444.037109 1583.981445 l
+444.037109 1586.981445 l
+438.037109 1586.981445 l
+438.037109 1583.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+108.0 1728.0 m
+108.0 1568.0 l
+464.0 1568.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+109.0 1727.0 m
+109.0 1569.0 l
+463.0 1569.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+463.0 1568.0 m
+463.0 1727.0 l
+109.0 1727.0 l
+S
+newpath
+464.0 1568.0 m
+464.0 1728.0 l
+108.0 1728.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+248.0 1660.0 m
+399.0 1660.0 l
+399.0 1694.0 l
+248.0 1694.0 l
+248.0 1660.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+248.0 1660.0 m
+399.0 1660.0 l
+399.0 1694.0 l
+248.0 1694.0 l
+248.0 1660.0 l
+h
+S
+268.018555 1668.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AReqManyThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+376.037109 1668.0 m
+387.0 1668.0 l
+387.0 1681.962890 l
+376.037109 1681.962890 l
+376.037109 1668.0 l
+h
+f
+newpath
+376.037109 1668.0 m
+387.0 1668.0 l
+387.0 1681.962890 l
+376.037109 1681.962890 l
+376.037109 1668.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+373.037109 1670.981445 m
+379.037109 1670.981445 l
+379.037109 1673.981445 l
+373.037109 1673.981445 l
+373.037109 1670.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+373.037109 1670.981445 m
+379.037109 1670.981445 l
+379.037109 1673.981445 l
+373.037109 1673.981445 l
+373.037109 1670.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+373.037109 1675.981445 m
+379.037109 1675.981445 l
+379.037109 1678.981445 l
+373.037109 1678.981445 l
+373.037109 1675.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+373.037109 1675.981445 m
+379.037109 1675.981445 l
+379.037109 1678.981445 l
+373.037109 1678.981445 l
+373.037109 1675.981445 l
+h
+S
+2 j
+newpath
+268.018554 1681.962890 m
+368.018554 1681.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+248.0 1694.0 m
+248.0 1660.0 l
+399.0 1660.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+249.0 1693.0 m
+249.0 1661.0 l
+398.0 1661.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+398.0 1660.0 m
+398.0 1693.0 l
+249.0 1693.0 l
+S
+newpath
+399.0 1660.0 m
+399.0 1694.0 l
+248.0 1694.0 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+136.0 1600.0 m
+231.0 1600.0 l
+231.0 1642.0 l
+136.0 1642.0 l
+136.0 1600.0 l
+h
+f
+0 j
+0.0 0.0 0.0 RG
+newpath
+136.0 1600.0 m
+231.0 1600.0 l
+231.0 1642.0 l
+136.0 1642.0 l
+136.0 1600.0 l
+h
+S
+156.018555 1608.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BProv) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+208.037109 1608.0 m
+219.0 1608.0 l
+219.0 1621.962890 l
+208.037109 1621.962890 l
+208.037109 1608.0 l
+h
+f
+newpath
+208.037109 1608.0 m
+219.0 1608.0 l
+219.0 1621.962890 l
+208.037109 1621.962890 l
+208.037109 1608.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+205.037109 1610.981445 m
+211.037109 1610.981445 l
+211.037109 1613.981445 l
+205.037109 1613.981445 l
+205.037109 1610.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+205.037109 1610.981445 m
+211.037109 1610.981445 l
+211.037109 1613.981445 l
+205.037109 1613.981445 l
+205.037109 1610.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+205.037109 1615.981445 m
+211.037109 1615.981445 l
+211.037109 1618.981445 l
+205.037109 1618.981445 l
+205.037109 1615.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+205.037109 1615.981445 m
+211.037109 1615.981445 l
+211.037109 1618.981445 l
+205.037109 1618.981445 l
+205.037109 1615.981445 l
+h
+S
+2 j
+newpath
+156.018554 1621.962890 m
+200.018554 1621.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+136.0 1642.0 m
+136.0 1600.0 l
+231.0 1600.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+137.0 1641.0 m
+137.0 1601.0 l
+230.0 1601.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+230.0 1600.0 m
+230.0 1641.0 l
+137.0 1641.0 l
+S
+newpath
+231.0 1600.0 m
+231.0 1642.0 l
+136.0 1642.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+680.5 952.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+2 j
+0 j
+1084.5 952.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(B) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 1.0 1.0 RG
+newpath
+1100.0 936.0 m
+1100.0 942.627416 1094.627416 948.0 1088.0 948.0  c
+1081.372583 948.0 1076.0 942.627416 1076.0 936.0  c
+1076.0 929.372583 1081.372583 924.0 1088.0 924.0  c
+1094.627416 924.0 1100.0 929.372583 1100.0 936.0  c
+h
+f
+2 j
+0.0 0.0 0.0 RG
+newpath
+1100.0 936.0 m
+1100.0 942.627416 1094.627416 948.0 1088.0 948.0  c
+1081.372583 948.0 1076.0 942.627416 1076.0 936.0  c
+1076.0 929.372583 1081.372583 924.0 1088.0 924.0  c
+1094.627416 924.0 1100.0 929.372583 1100.0 936.0  c
+h
+S
+0.0 0.0 0.0 RG
+0 j
+1.0 1.0 0.8 RG
+newpath
+965.0 1012.0 m
+808.0 1012.0 l
+808.0 1055.0 l
+980.0 1055.0 l
+980.0 1027.0 l
+965.0 1012.0 l
+h
+f*
+0.7 w
+2 J
+2 j
+0.0 0.0 0.0 RG
+newpath
+965.0 1012.0 m
+808.0 1012.0 l
+808.0 1055.0 l
+980.0 1055.0 l
+980.0 1027.0 l
+965.0 1012.0 l
+h
+S
+1.0 1.0 0.8 RG
+newpath
+965.0 1012.0 m
+965.0 1027.0 l
+980.0 1027.0 l
+h
+f*
+1.0 w
+0 J
+10.0 M
+0.0 0.0 0.0 RG
+newpath
+965.0 1012.0 m
+965.0 1027.0 l
+980.0 1027.0 l
+h
+S
+[ 1.0 0.0 0.0 1.0 811.0 1015.0 ] concat
+2 J
+0 j
+q
+q
+0.0 0.0 0.0 RG
+0.0 0.0 0.0 RG
+0.0 12.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000n\000e\000i\000t\000h\000e\000r\000 \000p\000o\000r\000t\000 \000c\000a\000n\000 \000b\000e\000 \000B\000,\000 ) show
+Q
+0.0 27.0 moveto
+q 1 -1 scale
+/SansSerif findfont 12.0 scalefont setfont
+(\000m\000u\000s\000t\000 \000b\000e\000 \000A) show
+Q
+Q
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.0 0.0 0.0 RG
+0 J
+0.6 1.0 0.6 RG
+newpath
+116.0 852.0 m
+492.0 852.0 l
+492.0 1002.0 l
+116.0 1002.0 l
+116.0 852.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+116.0 852.0 m
+492.0 852.0 l
+492.0 1002.0 l
+116.0 1002.0 l
+116.0 852.0 l
+h
+S
+264.018555 860.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 9: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+469.037109 860.0 m
+480.0 860.0 l
+480.0 873.962890 l
+469.037109 873.962890 l
+469.037109 860.0 l
+h
+f
+newpath
+469.037109 860.0 m
+480.0 860.0 l
+480.0 873.962890 l
+469.037109 873.962890 l
+469.037109 860.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+466.037109 862.981445 m
+472.037109 862.981445 l
+472.037109 865.981445 l
+466.037109 865.981445 l
+466.037109 862.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+466.037109 862.981445 m
+472.037109 862.981445 l
+472.037109 865.981445 l
+466.037109 865.981445 l
+466.037109 862.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+466.037109 867.981445 m
+472.037109 867.981445 l
+472.037109 870.981445 l
+466.037109 870.981445 l
+466.037109 867.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+466.037109 867.981445 m
+472.037109 867.981445 l
+472.037109 870.981445 l
+466.037109 870.981445 l
+466.037109 867.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+116.0 1002.0 m
+116.0 852.0 l
+492.0 852.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+117.0 1001.0 m
+117.0 853.0 l
+491.0 853.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+491.0 852.0 m
+491.0 1001.0 l
+117.0 1001.0 l
+S
+newpath
+492.0 852.0 m
+492.0 1002.0 l
+116.0 1002.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+176.0 884.0 m
+270.0 884.0 l
+270.0 926.0 l
+176.0 926.0 l
+176.0 884.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+176.0 884.0 m
+270.0 884.0 l
+270.0 926.0 l
+176.0 926.0 l
+176.0 884.0 l
+h
+S
+196.018555 892.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+247.037109 892.0 m
+258.0 892.0 l
+258.0 905.962890 l
+247.037109 905.962890 l
+247.037109 892.0 l
+h
+f
+newpath
+247.037109 892.0 m
+258.0 892.0 l
+258.0 905.962890 l
+247.037109 905.962890 l
+247.037109 892.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+244.037109 894.981445 m
+250.037109 894.981445 l
+250.037109 897.981445 l
+244.037109 897.981445 l
+244.037109 894.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+244.037109 894.981445 m
+250.037109 894.981445 l
+250.037109 897.981445 l
+244.037109 897.981445 l
+244.037109 894.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+244.037109 899.981445 m
+250.037109 899.981445 l
+250.037109 902.981445 l
+244.037109 902.981445 l
+244.037109 899.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+244.037109 899.981445 m
+250.037109 899.981445 l
+250.037109 902.981445 l
+244.037109 902.981445 l
+244.037109 899.981445 l
+h
+S
+2 j
+newpath
+196.018554 905.962890 m
+239.018554 905.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+176.0 926.0 m
+176.0 884.0 l
+270.0 884.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+177.0 925.0 m
+177.0 885.0 l
+269.0 885.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+269.0 884.0 m
+269.0 925.0 l
+177.0 925.0 l
+S
+newpath
+270.0 884.0 m
+270.0 926.0 l
+176.0 926.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+176.0 940.0 m
+269.0 940.0 l
+269.0 982.0 l
+176.0 982.0 l
+176.0 940.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+176.0 940.0 m
+269.0 940.0 l
+269.0 982.0 l
+176.0 982.0 l
+176.0 940.0 l
+h
+S
+196.018555 948.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : BReq) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+246.037109 948.0 m
+257.0 948.0 l
+257.0 961.962890 l
+246.037109 961.962890 l
+246.037109 948.0 l
+h
+f
+newpath
+246.037109 948.0 m
+257.0 948.0 l
+257.0 961.962890 l
+246.037109 961.962890 l
+246.037109 948.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+243.037109 950.981445 m
+249.037109 950.981445 l
+249.037109 953.981445 l
+243.037109 953.981445 l
+243.037109 950.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+243.037109 950.981445 m
+249.037109 950.981445 l
+249.037109 953.981445 l
+243.037109 953.981445 l
+243.037109 950.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+243.037109 955.981445 m
+249.037109 955.981445 l
+249.037109 958.981445 l
+243.037109 958.981445 l
+243.037109 955.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+243.037109 955.981445 m
+249.037109 955.981445 l
+249.037109 958.981445 l
+243.037109 958.981445 l
+243.037109 955.981445 l
+h
+S
+2 j
+newpath
+196.018554 961.962890 m
+238.018554 961.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+176.0 982.0 m
+176.0 940.0 l
+269.0 940.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+177.0 981.0 m
+177.0 941.0 l
+268.0 941.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+268.0 940.0 m
+268.0 981.0 l
+177.0 981.0 l
+S
+newpath
+269.0 940.0 m
+269.0 982.0 l
+176.0 982.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+312.0 908.0 m
+463.0 908.0 l
+463.0 950.0 l
+312.0 950.0 l
+312.0 908.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+312.0 908.0 m
+463.0 908.0 l
+463.0 950.0 l
+312.0 950.0 l
+312.0 908.0 l
+h
+S
+332.018555 916.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : AReqManyThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+440.037109 916.0 m
+451.0 916.0 l
+451.0 929.962890 l
+440.037109 929.962890 l
+440.037109 916.0 l
+h
+f
+newpath
+440.037109 916.0 m
+451.0 916.0 l
+451.0 929.962890 l
+440.037109 929.962890 l
+440.037109 916.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+437.037109 918.981445 m
+443.037109 918.981445 l
+443.037109 921.981445 l
+437.037109 921.981445 l
+437.037109 918.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+437.037109 918.981445 m
+443.037109 918.981445 l
+443.037109 921.981445 l
+437.037109 921.981445 l
+437.037109 918.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+437.037109 923.981445 m
+443.037109 923.981445 l
+443.037109 926.981445 l
+437.037109 926.981445 l
+437.037109 923.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+437.037109 923.981445 m
+443.037109 923.981445 l
+443.037109 926.981445 l
+437.037109 926.981445 l
+437.037109 923.981445 l
+h
+S
+2 j
+newpath
+332.018554 929.962890 m
+432.018554 929.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+312.0 950.0 m
+312.0 908.0 l
+463.0 908.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+313.0 949.0 m
+313.0 909.0 l
+462.0 909.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+462.0 908.0 m
+462.0 949.0 l
+313.0 949.0 l
+S
+newpath
+463.0 908.0 m
+463.0 950.0 l
+312.0 950.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.6 1.0 0.6 RG
+newpath
+660.0 1364.0 m
+1092.0 1364.0 l
+1092.0 1496.0 l
+660.0 1496.0 l
+660.0 1364.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+660.0 1364.0 m
+1092.0 1364.0 l
+1092.0 1496.0 l
+660.0 1496.0 l
+660.0 1364.0 l
+h
+S
+832.018555 1372.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+(case 14: +ve) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+1069.037109 1372.0 m
+1080.0 1372.0 l
+1080.0 1385.962890 l
+1069.037109 1385.962890 l
+1069.037109 1372.0 l
+h
+f
+newpath
+1069.037109 1372.0 m
+1080.0 1372.0 l
+1080.0 1385.962890 l
+1069.037109 1385.962890 l
+1069.037109 1372.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1066.037109 1374.981445 m
+1072.037109 1374.981445 l
+1072.037109 1377.981445 l
+1066.037109 1377.981445 l
+1066.037109 1374.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1066.037109 1374.981445 m
+1072.037109 1374.981445 l
+1072.037109 1377.981445 l
+1066.037109 1377.981445 l
+1066.037109 1374.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+1066.037109 1379.981445 m
+1072.037109 1379.981445 l
+1072.037109 1382.981445 l
+1066.037109 1382.981445 l
+1066.037109 1379.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1066.037109 1379.981445 m
+1072.037109 1379.981445 l
+1072.037109 1382.981445 l
+1066.037109 1382.981445 l
+1066.037109 1379.981445 l
+h
+S
+2 j
+0.6 1.0 0.6 RG
+newpath
+660.0 1496.0 m
+660.0 1364.0 l
+1092.0 1364.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+661.0 1495.0 m
+661.0 1365.0 l
+1091.0 1365.0 l
+S
+0.419608 0.698039 0.419608 RG
+newpath
+1091.0 1364.0 m
+1091.0 1495.0 l
+661.0 1495.0 l
+S
+newpath
+1092.0 1364.0 m
+1092.0 1496.0 l
+660.0 1496.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+676.0 1420.0 m
+802.0 1420.0 l
+802.0 1462.0 l
+676.0 1462.0 l
+676.0 1420.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+676.0 1420.0 m
+802.0 1420.0 l
+802.0 1462.0 l
+676.0 1462.0 l
+676.0 1420.0 l
+h
+S
+696.018555 1428.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : ProvBReqA) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+779.037109 1428.0 m
+790.0 1428.0 l
+790.0 1441.962890 l
+779.037109 1441.962890 l
+779.037109 1428.0 l
+h
+f
+newpath
+779.037109 1428.0 m
+790.0 1428.0 l
+790.0 1441.962890 l
+779.037109 1441.962890 l
+779.037109 1428.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+776.037109 1430.981445 m
+782.037109 1430.981445 l
+782.037109 1433.981445 l
+776.037109 1433.981445 l
+776.037109 1430.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+776.037109 1430.981445 m
+782.037109 1430.981445 l
+782.037109 1433.981445 l
+776.037109 1433.981445 l
+776.037109 1430.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+776.037109 1435.981445 m
+782.037109 1435.981445 l
+782.037109 1438.981445 l
+776.037109 1438.981445 l
+776.037109 1435.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+776.037109 1435.981445 m
+782.037109 1435.981445 l
+782.037109 1438.981445 l
+776.037109 1438.981445 l
+776.037109 1435.981445 l
+h
+S
+2 j
+newpath
+696.018554 1441.962890 m
+771.018554 1441.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+676.0 1462.0 m
+676.0 1420.0 l
+802.0 1420.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+677.0 1461.0 m
+677.0 1421.0 l
+801.0 1421.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+801.0 1420.0 m
+801.0 1461.0 l
+677.0 1461.0 l
+S
+newpath
+802.0 1420.0 m
+802.0 1462.0 l
+676.0 1462.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+0.862745 0.862745 0.862745 RG
+newpath
+864.0 1420.0 m
+1017.0 1420.0 l
+1017.0 1462.0 l
+864.0 1462.0 l
+864.0 1420.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+864.0 1420.0 m
+1017.0 1420.0 l
+1017.0 1462.0 l
+864.0 1462.0 l
+864.0 1420.0 l
+h
+S
+884.018555 1428.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( : ProvBReqAThru) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+994.037109 1428.0 m
+1005.0 1428.0 l
+1005.0 1441.962890 l
+994.037109 1441.962890 l
+994.037109 1428.0 l
+h
+f
+newpath
+994.037109 1428.0 m
+1005.0 1428.0 l
+1005.0 1441.962890 l
+994.037109 1441.962890 l
+994.037109 1428.0 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+991.037109 1430.981445 m
+997.037109 1430.981445 l
+997.037109 1433.981445 l
+991.037109 1433.981445 l
+991.037109 1430.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+991.037109 1430.981445 m
+997.037109 1430.981445 l
+997.037109 1433.981445 l
+991.037109 1433.981445 l
+991.037109 1430.981445 l
+h
+S
+1.0 1.0 1.0 RG
+newpath
+991.037109 1435.981445 m
+997.037109 1435.981445 l
+997.037109 1438.981445 l
+991.037109 1438.981445 l
+991.037109 1435.981445 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+991.037109 1435.981445 m
+997.037109 1435.981445 l
+997.037109 1438.981445 l
+991.037109 1438.981445 l
+991.037109 1435.981445 l
+h
+S
+2 j
+newpath
+884.018554 1441.962890 m
+986.018554 1441.962890 l
+S
+0.862745 0.862745 0.862745 RG
+newpath
+864.0 1462.0 m
+864.0 1420.0 l
+1017.0 1420.0 l
+S
+1.0 1.0 1.0 RG
+newpath
+865.0 1461.0 m
+865.0 1421.0 l
+1016.0 1421.0 l
+S
+0.603922 0.603922 0.603922 RG
+newpath
+1016.0 1420.0 m
+1016.0 1461.0 l
+865.0 1461.0 l
+S
+newpath
+1017.0 1420.0 m
+1017.0 1462.0 l
+864.0 1462.0 l
+S
+0.0 0.0 0.0 RG
+0 j
+2 j
+0.0 0.0 0.0 RG
+newpath
+407.0 1676.0 m
+456.0 1676.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+416.0 1660.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+392.0 1660.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+440.0 1660.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+116.0 1676.0 m
+240.0 1676.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+164.0 1660.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+100.0 1660.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+220.0 1676.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+([1]) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+233.933758 1632.973848 m
+245.396806 1668.037289 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+224.0 1636.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+216.0 1616.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+228.0 1652.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+([0]) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+2 J
+[ 3.0 5.0 ] 0.0 d
+newpath
+385.486813 516.039142 m
+479.929470 442.301221 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+0.941176 0.941176 0.941176 RG
+newpath
+232.0 1420.0 m
+248.0 1420.0 l
+248.0 1436.0 l
+232.0 1436.0 l
+232.0 1420.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+232.0 1420.0 m
+248.0 1420.0 l
+248.0 1436.0 l
+232.0 1436.0 l
+232.0 1420.0 l
+h
+S
+232.0 1404.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+96.0 1420.0 m
+112.0 1420.0 l
+112.0 1436.0 l
+96.0 1436.0 l
+96.0 1420.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+96.0 1420.0 m
+112.0 1420.0 l
+112.0 1436.0 l
+96.0 1436.0 l
+96.0 1420.0 l
+h
+S
+96.0 1404.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+781.0 276.0 m
+812.0 276.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+780.0 260.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+764.0 260.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+796.0 260.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+472.0 1184.0 m
+511.408821 1184.0 l
+S
+newpath
+524.0 1172.0 m
+517.372583 1172.0 512.0 1177.372583 512.0 1184.0  c
+512.0 1190.627416 517.372583 1196.0 524.0 1196.0  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+0.941176 0.941176 0.941176 RG
+newpath
+911.0 1180.0 m
+927.0 1180.0 l
+927.0 1196.0 l
+911.0 1196.0 l
+911.0 1180.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+911.0 1180.0 m
+927.0 1180.0 l
+927.0 1196.0 l
+911.0 1196.0 l
+911.0 1180.0 l
+h
+S
+911.0 1164.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+1008.0 1180.0 m
+1024.0 1180.0 l
+1024.0 1196.0 l
+1008.0 1196.0 l
+1008.0 1180.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1008.0 1180.0 m
+1024.0 1180.0 l
+1024.0 1196.0 l
+1008.0 1196.0 l
+1008.0 1180.0 l
+h
+S
+1008.0 1164.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 J
+2 j
+[ 3.0 5.0 ] 0.0 d
+newpath
+349.671911 1279.953931 m
+455.953414 1190.753384 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+311.074185 1225.525894 m
+455.915330 1186.195333 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+368.0 1188.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+296.0 1208.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+440.0 1172.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+310.106985 1165.117421 m
+455.948896 1183.012134 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+368.0 1160.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+296.0 1148.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+440.0 1168.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+2 J
+[ 3.0 5.0 ] 0.0 d
+newpath
+389.328908 1012.003620 m
+484.075386 934.483775 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+938.025390 104.0 m
+976.0 104.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+940.0 88.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+924.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+960.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+96.0 1428.0 m
+64.355829 1428.0 l
+S
+newpath
+52.0 1440.0 m
+58.627416 1440.0 64.0 1434.627416 64.0 1428.0  c
+64.0 1421.372583 58.627416 1416.0 52.0 1416.0  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+2 J
+[ 3.0 5.0 ] 0.0 d
+0.0 0.0 0.0 RG
+newpath
+822.784414 504.022596 m
+697.008507 444.279041 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+0.941176 0.941176 0.941176 RG
+newpath
+838.025390 428.0 m
+854.025390 428.0 l
+854.025390 444.0 l
+838.025390 444.0 l
+838.025390 428.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+838.025390 428.0 m
+854.025390 428.0 l
+854.025390 444.0 l
+838.025390 444.0 l
+838.025390 428.0 l
+h
+S
+838.025391 412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+740.0 432.0 m
+756.0 432.0 l
+756.0 448.0 l
+740.0 448.0 l
+740.0 432.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+740.0 432.0 m
+756.0 432.0 l
+756.0 448.0 l
+740.0 448.0 l
+740.0 432.0 l
+h
+S
+740.0 416.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+896.0 428.0 m
+912.0 428.0 l
+912.0 444.0 l
+896.0 444.0 l
+896.0 428.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+896.0 428.0 m
+912.0 428.0 l
+912.0 444.0 l
+896.0 444.0 l
+896.0 428.0 l
+h
+S
+896.0 412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+993.0 428.0 m
+1009.0 428.0 l
+1009.0 444.0 l
+993.0 444.0 l
+993.0 428.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+993.0 428.0 m
+1009.0 428.0 l
+1009.0 444.0 l
+993.0 444.0 l
+993.0 428.0 l
+h
+S
+993.0 412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+1056.0 428.0 m
+1072.0 428.0 l
+1072.0 444.0 l
+1056.0 444.0 l
+1056.0 428.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1056.0 428.0 m
+1072.0 428.0 l
+1072.0 444.0 l
+1056.0 444.0 l
+1056.0 428.0 l
+h
+S
+1056.0 412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+680.0 432.0 m
+696.0 432.0 l
+696.0 448.0 l
+680.0 448.0 l
+680.0 432.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+680.0 432.0 m
+696.0 432.0 l
+696.0 448.0 l
+680.0 448.0 l
+680.0 432.0 l
+h
+S
+680.0 416.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+696.0 440.0 m
+740.0 440.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+704.0 424.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+680.0 424.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+724.0 424.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+2 J
+[ 3.0 5.0 ] 0.0 d
+newpath
+915.179158 503.956455 m
+1055.895626 439.700721 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+278.890014 913.080008 m
+304.033623 927.447784 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+280.0 904.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+264.0 896.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+300.0 912.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+([0]) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+278.026064 954.122562 m
+304.088264 937.151827 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+280.0 928.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+260.0 940.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+300.0 944.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+([1]) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+248.0 680.0 m
+264.0 680.0 l
+264.0 696.0 l
+248.0 696.0 l
+248.0 680.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+248.0 680.0 m
+264.0 680.0 l
+264.0 696.0 l
+248.0 696.0 l
+248.0 680.0 l
+h
+S
+248.0 664.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+346.025390 680.0 m
+362.025390 680.0 l
+362.025390 696.0 l
+346.025390 696.0 l
+346.025390 680.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+346.025390 680.0 m
+362.025390 680.0 l
+362.025390 696.0 l
+346.025390 696.0 l
+346.025390 680.0 l
+h
+S
+346.025391 664.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+213.0 680.0 m
+229.0 680.0 l
+229.0 696.0 l
+213.0 696.0 l
+213.0 680.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+213.0 680.0 m
+229.0 680.0 l
+229.0 696.0 l
+213.0 696.0 l
+213.0 680.0 l
+h
+S
+213.0 664.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+380.0 680.0 m
+396.0 680.0 l
+396.0 696.0 l
+380.0 696.0 l
+380.0 680.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+380.0 680.0 m
+396.0 680.0 l
+396.0 696.0 l
+380.0 696.0 l
+380.0 680.0 l
+h
+S
+380.0 664.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+1021.830078 680.0 m
+1076.0 680.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1028.0 664.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+996.0 664.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1060.0 664.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+414.025390 436.0 m
+480.0 436.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+464.0 420.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+416.0 420.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+512.0 420.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+232.0 436.0 m
+300.0 436.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+252.0 420.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+204.0 420.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+300.0 420.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+471.0 928.0 m
+484.0 928.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+452.0 912.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+440.0 912.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+468.0 912.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+216.0 428.0 m
+232.0 428.0 l
+232.0 444.0 l
+216.0 444.0 l
+216.0 428.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+216.0 428.0 m
+232.0 428.0 l
+232.0 444.0 l
+216.0 444.0 l
+216.0 428.0 l
+h
+S
+216.0 412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+300.0 428.0 m
+316.0 428.0 l
+316.0 444.0 l
+300.0 444.0 l
+300.0 428.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+300.0 428.0 m
+316.0 428.0 l
+316.0 444.0 l
+300.0 444.0 l
+300.0 428.0 l
+h
+S
+300.0 412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+398.025390 428.0 m
+414.025390 428.0 l
+414.025390 444.0 l
+398.025390 444.0 l
+398.025390 428.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+398.025390 428.0 m
+414.025390 428.0 l
+414.025390 444.0 l
+398.025390 444.0 l
+398.025390 428.0 l
+h
+S
+398.025391 412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+480.0 428.0 m
+496.0 428.0 l
+496.0 444.0 l
+480.0 444.0 l
+480.0 428.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+480.0 428.0 m
+496.0 428.0 l
+496.0 444.0 l
+480.0 444.0 l
+480.0 428.0 l
+h
+S
+480.0 412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 J
+2 j
+[ 3.0 5.0 ] 0.0 d
+newpath
+960.576074 779.973379 m
+1076.043577 686.444702 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+0.941176 0.941176 0.941176 RG
+newpath
+765.0 268.0 m
+781.0 268.0 l
+781.0 284.0 l
+765.0 284.0 l
+765.0 268.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+765.0 268.0 m
+781.0 268.0 l
+781.0 284.0 l
+765.0 284.0 l
+765.0 268.0 l
+h
+S
+765.0 252.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+956.0 268.0 m
+972.0 268.0 l
+972.0 284.0 l
+956.0 284.0 l
+956.0 268.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+956.0 268.0 m
+972.0 268.0 l
+972.0 284.0 l
+956.0 284.0 l
+956.0 268.0 l
+h
+S
+956.0 252.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+910.025390 268.0 m
+926.025390 268.0 l
+926.025390 284.0 l
+910.025390 284.0 l
+910.025390 268.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+910.025390 268.0 m
+926.025390 268.0 l
+926.025390 284.0 l
+910.025390 284.0 l
+910.025390 268.0 l
+h
+S
+910.025391 252.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+812.0 268.0 m
+828.0 268.0 l
+828.0 284.0 l
+812.0 284.0 l
+812.0 268.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+812.0 268.0 m
+828.0 268.0 l
+828.0 284.0 l
+812.0 284.0 l
+812.0 268.0 l
+h
+S
+812.0 252.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+1024.0 1188.0 m
+1075.408821 1188.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+854.025390 436.0 m
+896.0 436.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+860.0 420.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+840.0 420.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+880.0 420.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+252.0 272.0 m
+268.0 272.0 l
+268.0 288.0 l
+252.0 288.0 l
+252.0 272.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+252.0 272.0 m
+268.0 272.0 l
+268.0 288.0 l
+252.0 288.0 l
+252.0 272.0 l
+h
+S
+252.0 256.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+350.025390 272.0 m
+366.025390 272.0 l
+366.025390 288.0 l
+350.025390 288.0 l
+350.025390 272.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+350.025390 272.0 m
+366.025390 272.0 l
+366.025390 288.0 l
+350.025390 288.0 l
+350.025390 272.0 l
+h
+S
+350.025391 256.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+209.0 272.0 m
+225.0 272.0 l
+225.0 288.0 l
+209.0 288.0 l
+209.0 272.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+209.0 272.0 m
+225.0 272.0 l
+225.0 288.0 l
+209.0 288.0 l
+209.0 272.0 l
+h
+S
+209.0 256.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+392.0 272.0 m
+408.0 272.0 l
+408.0 288.0 l
+392.0 288.0 l
+392.0 272.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+392.0 272.0 m
+408.0 272.0 l
+408.0 288.0 l
+392.0 288.0 l
+392.0 272.0 l
+h
+S
+392.0 256.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+1009.0 436.0 m
+1056.0 436.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1016.0 420.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+992.0 420.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1040.0 420.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+1092.0 680.0 m
+1131.408821 680.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+0.941176 0.941176 0.941176 RG
+newpath
+976.0 96.0 m
+992.0 96.0 l
+992.0 112.0 l
+976.0 112.0 l
+976.0 96.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+976.0 96.0 m
+992.0 96.0 l
+992.0 112.0 l
+976.0 112.0 l
+976.0 96.0 l
+h
+S
+976.0 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+922.025390 96.0 m
+938.025390 96.0 l
+938.025390 112.0 l
+922.025390 112.0 l
+922.025390 96.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+922.025390 96.0 m
+938.025390 96.0 l
+938.025390 112.0 l
+922.025390 112.0 l
+922.025390 96.0 l
+h
+S
+922.025391 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+824.0 96.0 m
+840.0 96.0 l
+840.0 112.0 l
+824.0 112.0 l
+824.0 96.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+824.0 96.0 m
+840.0 96.0 l
+840.0 112.0 l
+824.0 112.0 l
+824.0 96.0 l
+h
+S
+824.0 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+778.025390 96.0 m
+794.025390 96.0 l
+794.025390 112.0 l
+778.025390 112.0 l
+778.025390 96.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+778.025390 96.0 m
+794.025390 96.0 l
+794.025390 112.0 l
+778.025390 112.0 l
+778.025390 96.0 l
+h
+S
+778.025391 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+680.0 96.0 m
+696.0 96.0 l
+696.0 112.0 l
+680.0 112.0 l
+680.0 96.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+680.0 96.0 m
+696.0 96.0 l
+696.0 112.0 l
+680.0 112.0 l
+680.0 96.0 l
+h
+S
+680.0 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+632.0 96.0 m
+648.0 96.0 l
+648.0 112.0 l
+632.0 112.0 l
+632.0 96.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+632.0 96.0 m
+648.0 96.0 l
+648.0 112.0 l
+632.0 112.0 l
+632.0 96.0 l
+h
+S
+632.0 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+496.0 436.0 m
+527.408821 436.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+2 J
+[ 3.0 5.0 ] 0.0 d
+0.0 0.0 0.0 RG
+newpath
+311.636523 763.973866 m
+379.987238 695.971879 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+632.0 104.0 m
+600.355829 104.0 l
+S
+newpath
+588.0 116.0 m
+594.627416 116.0 600.0 110.627416 600.0 104.0  c
+600.0 97.372583 594.627416 92.0 588.0 92.0  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+748.0 936.0 m
+832.0 936.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+748.0 920.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+680.0 920.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+816.0 920.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+926.025390 276.0 m
+956.0 276.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+924.0 260.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+912.0 260.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+940.0 260.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+819.0 712.0 m
+835.0 712.0 l
+835.0 728.0 l
+819.0 728.0 l
+819.0 712.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+819.0 712.0 m
+835.0 712.0 l
+835.0 728.0 l
+819.0 728.0 l
+819.0 712.0 l
+h
+S
+819.0 696.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+820.0 652.0 m
+836.0 652.0 l
+836.0 668.0 l
+820.0 668.0 l
+820.0 652.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+820.0 652.0 m
+836.0 652.0 l
+836.0 668.0 l
+820.0 668.0 l
+820.0 652.0 l
+h
+S
+820.0 636.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+852.0 676.0 m
+868.0 676.0 l
+868.0 692.0 l
+852.0 692.0 l
+852.0 676.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+852.0 676.0 m
+868.0 676.0 l
+868.0 692.0 l
+852.0 692.0 l
+852.0 676.0 l
+h
+S
+0.941176 0.941176 0.941176 RG
+newpath
+1005.830078 672.0 m
+1021.830078 672.0 l
+1021.830078 688.0 l
+1005.830078 688.0 l
+1005.830078 672.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1005.830078 672.0 m
+1021.830078 672.0 l
+1021.830078 688.0 l
+1005.830078 688.0 l
+1005.830078 672.0 l
+h
+S
+1005.830078 656.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+1076.0 672.0 m
+1092.0 672.0 l
+1092.0 688.0 l
+1076.0 688.0 l
+1076.0 672.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1076.0 672.0 m
+1092.0 672.0 l
+1092.0 688.0 l
+1076.0 688.0 l
+1076.0 672.0 l
+h
+S
+1076.0 656.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+1072.0 436.0 m
+1107.408821 436.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+837.042308 666.781731 m
+852.021492 678.016119 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+836.0 656.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+820.0 648.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+848.0 664.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+([0]) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+834.278219 712.060124 m
+852.002943 692.724061 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+836.0 684.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+820.0 696.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+852.0 700.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+([1]) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+500.0 928.0 m
+531.408821 928.0 l
+S
+newpath
+544.0 916.0 m
+537.372583 916.0 532.0 921.372583 532.0 928.0  c
+532.0 934.627416 537.372583 940.0 544.0 940.0  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+2 J
+[ 3.0 5.0 ] 0.0 d
+0.0 0.0 0.0 RG
+newpath
+859.937269 1011.934310 m
+749.100423 941.761631 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+0.941176 0.941176 0.941176 RG
+newpath
+293.962890 1220.0 m
+309.962890 1220.0 l
+309.962890 1236.0 l
+293.962890 1236.0 l
+293.962890 1220.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+293.962890 1220.0 m
+309.962890 1220.0 l
+309.962890 1236.0 l
+293.962890 1236.0 l
+293.962890 1220.0 l
+h
+S
+293.962891 1204.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+293.0 1156.0 m
+309.0 1156.0 l
+309.0 1172.0 l
+293.0 1172.0 l
+293.0 1156.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+293.0 1156.0 m
+309.0 1156.0 l
+309.0 1172.0 l
+293.0 1172.0 l
+293.0 1156.0 l
+h
+S
+293.0 1140.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+456.0 1176.0 m
+472.0 1176.0 l
+472.0 1192.0 l
+456.0 1192.0 l
+456.0 1176.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+456.0 1176.0 m
+472.0 1176.0 l
+472.0 1192.0 l
+456.0 1192.0 l
+456.0 1176.0 l
+h
+S
+456.0 1160.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+927.0 1188.0 m
+1008.0 1188.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+968.0 1172.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+912.0 1172.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1024.0 1172.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+294.025390 96.0 m
+310.025390 96.0 l
+310.025390 112.0 l
+294.025390 112.0 l
+294.025390 96.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+294.025390 96.0 m
+310.025390 96.0 l
+310.025390 112.0 l
+294.025390 112.0 l
+294.025390 96.0 l
+h
+S
+294.025391 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+196.0 96.0 m
+212.0 96.0 l
+212.0 112.0 l
+196.0 112.0 l
+196.0 96.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+196.0 96.0 m
+212.0 96.0 l
+212.0 112.0 l
+196.0 112.0 l
+196.0 96.0 l
+h
+S
+196.0 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+360.0 96.0 m
+376.0 96.0 l
+376.0 112.0 l
+360.0 112.0 l
+360.0 96.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+360.0 96.0 m
+376.0 96.0 l
+376.0 112.0 l
+360.0 112.0 l
+360.0 96.0 l
+h
+S
+360.0 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+128.0 96.0 m
+144.0 96.0 l
+144.0 112.0 l
+128.0 112.0 l
+128.0 96.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+128.0 96.0 m
+144.0 96.0 l
+144.0 112.0 l
+128.0 112.0 l
+128.0 96.0 l
+h
+S
+128.0 80.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+310.025390 104.0 m
+360.0 104.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+320.0 88.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+296.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+344.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+648.0 104.0 m
+680.0 104.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+648.0 88.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+632.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+664.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+930.025390 928.0 m
+946.025390 928.0 l
+946.025390 944.0 l
+930.025390 944.0 l
+930.025390 928.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+930.025390 928.0 m
+946.025390 928.0 l
+946.025390 944.0 l
+930.025390 944.0 l
+930.025390 928.0 l
+h
+S
+930.025391 912.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+832.0 928.0 m
+848.0 928.0 l
+848.0 944.0 l
+832.0 944.0 l
+832.0 928.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+832.0 928.0 m
+848.0 928.0 l
+848.0 944.0 l
+832.0 944.0 l
+832.0 928.0 l
+h
+S
+832.0 912.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+732.0 928.0 m
+748.0 928.0 l
+748.0 944.0 l
+732.0 944.0 l
+732.0 928.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+732.0 928.0 m
+748.0 928.0 l
+748.0 944.0 l
+732.0 944.0 l
+732.0 928.0 l
+h
+S
+732.0 912.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+1020.0 928.0 m
+1036.0 928.0 l
+1036.0 944.0 l
+1020.0 944.0 l
+1020.0 928.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1020.0 928.0 m
+1036.0 928.0 l
+1036.0 944.0 l
+1020.0 944.0 l
+1020.0 928.0 l
+h
+S
+1020.0 912.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+128.0 104.0 m
+84.355829 104.0 l
+S
+newpath
+72.0 116.0 m
+78.627416 116.0 84.0 110.627416 84.0 104.0  c
+84.0 97.372583 78.627416 92.0 72.0 92.0  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+100.0 1676.0 m
+68.355829 1676.0 l
+S
+newpath
+56.0 1688.0 m
+62.627416 1688.0 68.0 1682.627416 68.0 1676.0  c
+68.0 1669.372583 62.627416 1664.0 56.0 1664.0  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+472.0 1676.0 m
+499.408821 1676.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+1101.091734 1447.576445 m
+1130.315913 1471.929927 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+2 J
+[ 3.0 5.0 ] 0.0 d
+0.0 0.0 0.0 RG
+newpath
+944.149499 1512.000113 m
+1083.989968 1443.900718 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+362.025390 688.0 m
+380.0 688.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+356.0 672.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+348.0 672.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+364.0 672.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+1101.091734 1432.423554 m
+1130.315913 1408.070072 l
+S
+newpath
+1132.317787 1390.781344 m
+1127.226464 1395.024113 1126.538575 1402.590890 1130.781344 1407.682212  c
+1135.024113 1412.773535 1142.590890 1413.461424 1147.682212 1409.218655  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+0.941176 0.941176 0.941176 RG
+newpath
+391.0 1668.0 m
+407.0 1668.0 l
+407.0 1684.0 l
+391.0 1684.0 l
+391.0 1668.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+391.0 1668.0 m
+407.0 1668.0 l
+407.0 1684.0 l
+391.0 1684.0 l
+391.0 1668.0 l
+h
+S
+391.0 1652.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( [0..*]) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+240.0 1668.0 m
+256.0 1668.0 l
+256.0 1684.0 l
+240.0 1684.0 l
+240.0 1668.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+240.0 1668.0 m
+256.0 1668.0 l
+256.0 1684.0 l
+240.0 1684.0 l
+240.0 1668.0 l
+h
+S
+240.0 1652.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+223.0 1616.0 m
+239.0 1616.0 l
+239.0 1632.0 l
+223.0 1632.0 l
+223.0 1616.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+223.0 1616.0 m
+239.0 1616.0 l
+239.0 1632.0 l
+223.0 1632.0 l
+223.0 1616.0 l
+h
+S
+223.0 1600.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+100.0 1668.0 m
+116.0 1668.0 l
+116.0 1684.0 l
+100.0 1684.0 l
+100.0 1668.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+100.0 1668.0 m
+116.0 1668.0 l
+116.0 1684.0 l
+100.0 1684.0 l
+100.0 1668.0 l
+h
+S
+100.0 1652.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+456.0 1668.0 m
+472.0 1668.0 l
+472.0 1684.0 l
+456.0 1684.0 l
+456.0 1668.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+456.0 1668.0 m
+472.0 1668.0 l
+472.0 1684.0 l
+456.0 1684.0 l
+456.0 1668.0 l
+h
+S
+456.0 1652.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+946.025390 936.0 m
+1020.0 936.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+992.0 920.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+932.0 920.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1056.0 920.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+229.0 688.0 m
+248.0 688.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+224.0 672.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+212.0 672.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+232.0 672.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+144.0 104.0 m
+196.0 104.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+152.0 88.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+120.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+180.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+2 J
+[ 3.0 5.0 ] 0.0 d
+newpath
+322.115052 1756.007345 m
+456.007795 1680.506715 l
+S
+7.0 w
+0 J
+10.0 M
+[ ] 0.0 d
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+1036.0 936.0 m
+1075.408821 936.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+732.0 936.0 m
+696.355829 936.0 l
+S
+newpath
+684.0 948.0 m
+690.627416 948.0 696.0 942.627416 696.0 936.0  c
+696.0 929.372583 690.627416 924.0 684.0 924.0  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+0.941176 0.941176 0.941176 RG
+newpath
+262.0 900.0 m
+278.0 900.0 l
+278.0 916.0 l
+262.0 916.0 l
+262.0 900.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+262.0 900.0 m
+278.0 900.0 l
+278.0 916.0 l
+262.0 916.0 l
+262.0 900.0 l
+h
+S
+262.0 884.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+261.0 952.0 m
+277.0 952.0 l
+277.0 968.0 l
+261.0 968.0 l
+261.0 952.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+261.0 952.0 m
+277.0 952.0 l
+277.0 968.0 l
+261.0 968.0 l
+261.0 952.0 l
+h
+S
+261.0 936.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+304.0 924.0 m
+320.0 924.0 l
+320.0 940.0 l
+304.0 940.0 l
+304.0 924.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+304.0 924.0 m
+320.0 924.0 l
+320.0 940.0 l
+304.0 940.0 l
+304.0 924.0 l
+h
+S
+0.941176 0.941176 0.941176 RG
+newpath
+455.0 920.0 m
+471.0 920.0 l
+471.0 936.0 l
+455.0 936.0 l
+455.0 920.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+455.0 920.0 m
+471.0 920.0 l
+471.0 936.0 l
+455.0 936.0 l
+455.0 920.0 l
+h
+S
+455.0 904.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+484.0 920.0 m
+500.0 920.0 l
+500.0 936.0 l
+484.0 936.0 l
+484.0 920.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+484.0 920.0 m
+500.0 920.0 l
+500.0 936.0 l
+484.0 936.0 l
+484.0 920.0 l
+h
+S
+484.0 904.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+2 j
+newpath
+810.0 1440.0 m
+856.0 1440.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+816.0 1424.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+792.0 1424.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+840.0 1424.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+1025.0 1440.0 m
+1084.0 1440.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+1036.0 1424.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1008.0 1424.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1064.0 1424.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+680.0 440.0 m
+640.355829 440.0 l
+S
+newpath
+628.0 452.0 m
+634.627416 452.0 640.0 446.627416 640.0 440.0  c
+640.0 433.372583 634.627416 428.0 628.0 428.0  c
+S
+7.0 w
+0.0 0.0 0.0 RG
+1.0 w
+0.0 0.0 0.0 RG
+newpath
+366.025390 280.0 m
+392.0 280.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+362.0 264.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+346.0 264.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+378.0 264.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+794.025390 104.0 m
+824.0 104.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+792.0 88.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+780.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+808.0 88.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+232.0 1428.0 m
+112.0 1428.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+160.0 1412.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+216.0 1412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+100.0 1412.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+1.0 w
+newpath
+225.0 280.0 m
+252.0 280.0 l
+S
+7.0 w
+0.0 0.0 0.0 RG
+222.0 264.0 translate
+0.0 0.0 0.0 RG
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+210.0 264.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+230.0 264.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+794.0 1432.0 m
+810.0 1432.0 l
+810.0 1448.0 l
+794.0 1448.0 l
+794.0 1432.0 l
+h
+f
+1.0 w
+0 j
+0.0 0.0 0.0 RG
+newpath
+794.0 1432.0 m
+810.0 1432.0 l
+810.0 1448.0 l
+794.0 1448.0 l
+794.0 1432.0 l
+h
+S
+794.0 1416.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+856.0 1432.0 m
+872.0 1432.0 l
+872.0 1448.0 l
+856.0 1448.0 l
+856.0 1432.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+856.0 1432.0 m
+872.0 1432.0 l
+872.0 1448.0 l
+856.0 1448.0 l
+856.0 1432.0 l
+h
+S
+856.0 1416.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+1009.0 1432.0 m
+1025.0 1432.0 l
+1025.0 1448.0 l
+1009.0 1448.0 l
+1009.0 1432.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1009.0 1432.0 m
+1025.0 1432.0 l
+1025.0 1448.0 l
+1009.0 1448.0 l
+1009.0 1432.0 l
+h
+S
+1009.0 1416.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+0.941176 0.941176 0.941176 RG
+newpath
+1084.0 1432.0 m
+1100.0 1432.0 l
+1100.0 1448.0 l
+1084.0 1448.0 l
+1084.0 1432.0 l
+h
+f
+0.0 0.0 0.0 RG
+newpath
+1084.0 1432.0 m
+1100.0 1432.0 l
+1100.0 1448.0 l
+1084.0 1448.0 l
+1084.0 1432.0 l
+h
+S
+1084.0 1416.0 translate
+0.0 11.402344 moveto
+q 1 -1 scale
+/Helvetica findfont 12.0 scalefont setfont
+( ) show
+Q
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+0.0 0.0 m
+0.0 1800.0 l
+1165.0 1800.0 l
+1165.0 0.0 l
+h
+W
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+[ 1.0 0.0 0.0 1.0 -28.0 -28.0 ] defaultmatrix matrix concatmatrix setmatrix
+newpath
+0.0 0.0 m
+0.0 1800.0 l
+1165.0 1800.0 l
+1165.0 0.0 l
+h
+W
+Q
+end end restore showpage
+
+%%Trailer
+%%EOF

@@ -3,7 +3,7 @@ package com.hopstepjump.backbone.parser;
 import java.util.*;
 
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -18,8 +18,8 @@ public class StratumParser
 	
 	public BBStratum parse()
 	{
-		UuidReference reference = new UuidReference();
-		final UuidReference parentRef = new UuidReference();
+		LazyReference reference = new LazyReference();
+		final LazyReference parentRef = new LazyReference();
 		boolean relaxed[] = {false};
 		boolean destructive[] = {false};
 		final List<String> dependsOn = new ArrayList<String>();

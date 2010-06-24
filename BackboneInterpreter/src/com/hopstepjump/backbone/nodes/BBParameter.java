@@ -1,6 +1,6 @@
 package com.hopstepjump.backbone.nodes;
 
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -14,7 +14,7 @@ public class BBParameter extends DEParameter
 		this.literal = literal;
 	}
 
-	public BBParameter(UuidReference reference)
+	public BBParameter(LazyReference reference)
 	{
 		this.attribute = new LazyObject<DEAttribute>(DEAttribute.class, reference);
 	}

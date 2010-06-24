@@ -1,5 +1,7 @@
 package com.hopstepjump.backbone.parserbase;
 
+import com.hopstepjump.backbone.nodes.lazy.*;
+
 public class Expect
 {
 	private Tokenizer tok;
@@ -73,7 +75,7 @@ public class Expect
 		return optional(false, matched, matches);
 	}
 
-	public Expect uuid(UuidReference reference)
+	public Expect uuid(LazyReference reference)
 	{
 		reference.setFile(tok.getFile());
 		reference.setLine(tok.getCurrentLine());
@@ -233,9 +235,9 @@ public class Expect
 		return t[0];
 	}
 
-	public UuidReference nextUuid()
+	public LazyReference nextUuid()
 	{
-		UuidReference reference = new UuidReference();
+		LazyReference reference = new LazyReference();
 		uuid(reference);
 		return reference;
 	}

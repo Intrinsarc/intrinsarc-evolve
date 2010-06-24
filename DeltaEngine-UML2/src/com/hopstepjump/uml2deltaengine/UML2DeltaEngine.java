@@ -9,7 +9,7 @@ import org.eclipse.uml2.impl.*;
 
 import com.hopstepjump.backbone.expanders.*;
 import com.hopstepjump.backbone.nodes.*;
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.repositorybase.*;
 
@@ -145,7 +145,7 @@ public class UML2DeltaEngine implements IDeltaEngine
 
 	public DEStratum forceArtificialParent(Set<DEStratum> strata)
 	{
-		GlobalNodeRegistry.registry = new NodeRegistry().initialize();
+		GlobalNodeRegistry.reset();
 		BBStratum newRoot = new BBStratum("model");
 		newRoot.setUuid("model");
 		root = newRoot;

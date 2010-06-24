@@ -3,7 +3,7 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.converters.*;
+import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
@@ -15,7 +15,7 @@ public class BBSlot extends DESlot implements INode, Serializable
 	private List<DEParameter> value;
 	private List<DEAppliedStereotype> appliedStereotypes;
 
-	public BBSlot(UuidReference attribute, List<DEParameter> value)
+	public BBSlot(LazyReference attribute, List<DEParameter> value)
 	{
 		this.attribute.setReference(attribute);
 		this.value = value;
@@ -27,7 +27,7 @@ public class BBSlot extends DESlot implements INode, Serializable
 		this.environmentAlias = new LazyObject<DEAttribute>(DEAttribute.class, alias);
 	}
 	
-	public BBSlot(UuidReference attribute, UuidReference environmentAlias)
+	public BBSlot(LazyReference attribute, LazyReference environmentAlias)
 	{
 		this.attribute.setReference(attribute);
 		this.environmentAlias = new LazyObject<DEAttribute>(DEAttribute.class, environmentAlias);
@@ -42,6 +42,8 @@ public class BBSlot extends DESlot implements INode, Serializable
 	@Override
 	public DEAttribute getEnvironmentAlias()
 	{
+		if (environmentAlias == null)
+			return null;
 		return environmentAlias.getObject();
 	}
 
