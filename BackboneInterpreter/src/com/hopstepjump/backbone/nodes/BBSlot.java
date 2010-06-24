@@ -15,7 +15,7 @@ public class BBSlot extends DESlot implements INode, Serializable
 	private List<DEParameter> value;
 	private List<DEAppliedStereotype> appliedStereotypes;
 
-	public BBSlot(LazyReference attribute, List<DEParameter> value)
+	public BBSlot(UuidReference attribute, List<DEParameter> value)
 	{
 		this.attribute.setReference(attribute);
 		this.value = value;
@@ -27,7 +27,7 @@ public class BBSlot extends DESlot implements INode, Serializable
 		this.environmentAlias = new LazyObject<DEAttribute>(DEAttribute.class, alias);
 	}
 	
-	public BBSlot(LazyReference attribute, LazyReference environmentAlias)
+	public BBSlot(UuidReference attribute, UuidReference environmentAlias)
 	{
 		this.attribute.setReference(attribute);
 		this.environmentAlias = new LazyObject<DEAttribute>(DEAttribute.class, environmentAlias);

@@ -1,6 +1,6 @@
 package com.hopstepjump.backbone.nodes.lazy;
 
-public class LazyReference
+public class UuidReference
 {
 	private String uuid;
 	private String name;
@@ -8,11 +8,11 @@ public class LazyReference
 	private int line;
 	private int pos;
 	
-	public LazyReference()
+	public UuidReference()
 	{
 	}
 	
-	public LazyReference(String uuid)
+	public UuidReference(String uuid)
 	{
 		this.uuid = uuid;
 		this.name = uuid;

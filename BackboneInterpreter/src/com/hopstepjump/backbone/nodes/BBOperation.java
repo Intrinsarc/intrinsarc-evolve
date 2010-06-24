@@ -15,7 +15,7 @@ public class BBOperation extends DEOperation implements INode, Serializable
   private String uuid = BBUidGenerator.newUuid(getClass());
 	private List<DEAppliedStereotype> appliedStereotypes;
   
-  public BBOperation(LazyReference reference)
+  public BBOperation(UuidReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.name = reference.getName();

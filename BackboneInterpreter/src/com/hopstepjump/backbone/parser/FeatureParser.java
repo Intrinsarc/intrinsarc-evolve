@@ -19,7 +19,7 @@ public class FeatureParser
 	
 	public BBRequirementsFeature parse()
 	{
-		LazyReference ref = new LazyReference();
+		UuidReference ref = new UuidReference();
 
 		ex.literal();
 		ex.
@@ -33,7 +33,11 @@ public class FeatureParser
 			guard("replaces",
 					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, f.settable_getRawReplaces()); } }).
 			literal("{");
-		ParserUtilities.parseAppliedStereotype(ex);
+
+		// handle stereotypes
+		List<BBAppliedStereotype> stereos = ParserUtilities.parseAppliedStereotype(ex);
+		f.settable_getReplacedAppliedStereotypes().addAll(stereos);
+		
 		ex.
 			zeroOrMore(
 					new LiteralMatch("delete-subfeatures",
@@ -58,7 +62,7 @@ public class FeatureParser
 						public void act()
 						{
 							ParserUtilities.parseAppliedStereotype(ex);
-							LazyReference ref = new LazyReference();
+							UuidReference ref = new UuidReference();
 							ex.uuid(ref).literal("becomes");
 							parseSubfeature();
 						}
@@ -75,7 +79,6 @@ public class FeatureParser
 						{
 							public void act()
 							{
-								ParserUtilities.parseAppliedStereotype(ex);
 								parseSubfeature();
 							}
 						})).
@@ -84,12 +87,15 @@ public class FeatureParser
 	
 	private BBRequirementsFeatureLink parseSubfeature()
 	{
-		LazyReference ref = new LazyReference();
+		List<BBAppliedStereotype> applied = ParserUtilities.parseAppliedStereotype(ex);
+		
+		UuidReference ref = new UuidReference();
 		final SubfeatureKindEnum kind[] = {null};
 		ex.
 			uuid(ref);
 		
-		final BBRequirementsFeatureLink operation = new BBRequirementsFeatureLink(ref);
+		final BBRequirementsFeatureLink sub = new BBRequirementsFeatureLink(ref);
+		sub.setAppliedStereotypes(applied);
 		
 		ex.
 			oneOf(
@@ -103,7 +109,7 @@ public class FeatureParser
 							new IAction() { public void act() { kind[0] = SubfeatureKindEnum.ONE_OR_MORE; } })							
 					).literal();
 
-		return operation;
+		return sub;
 	}
 
 	private void parseDeletions(List<String> deletedUUIDs)

@@ -68,7 +68,7 @@ public class BBAppliedStereotype extends DEAppliedStereotype
 	}
 
 	
-	public void setStereotype(LazyReference stereo)
+	public void setStereotype(UuidReference stereo)
 	{
 		stereotype.setReference(stereo);
 	}

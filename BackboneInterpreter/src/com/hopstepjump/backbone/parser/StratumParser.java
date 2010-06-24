@@ -18,8 +18,8 @@ public class StratumParser
 	
 	public BBStratum parse()
 	{
-		LazyReference reference = new LazyReference();
-		final LazyReference parentRef = new LazyReference();
+		UuidReference reference = new UuidReference();
+		final UuidReference parentRef = new UuidReference();
 		boolean relaxed[] = {false};
 		boolean destructive[] = {false};
 		final List<String> dependsOn = new ArrayList<String>();

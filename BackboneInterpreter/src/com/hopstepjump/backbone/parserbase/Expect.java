@@ -75,7 +75,7 @@ public class Expect
 		return optional(false, matched, matches);
 	}
 
-	public Expect uuid(LazyReference reference)
+	public Expect uuid(UuidReference reference)
 	{
 		reference.setFile(tok.getFile());
 		reference.setLine(tok.getCurrentLine());
@@ -235,9 +235,9 @@ public class Expect
 		return t[0];
 	}
 
-	public LazyReference nextUuid()
+	public UuidReference nextUuid()
 	{
-		LazyReference reference = new LazyReference();
+		UuidReference reference = new UuidReference();
 		uuid(reference);
 		return reference;
 	}

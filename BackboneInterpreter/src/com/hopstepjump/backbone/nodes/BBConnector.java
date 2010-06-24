@@ -24,7 +24,7 @@ public class BBConnector extends DEConnector implements INode
 	private List<DEAppliedStereotype> appliedStereotypes;
 	private transient boolean synthetic;
   
-  public BBConnector(LazyReference reference)
+  public BBConnector(UuidReference reference)
   {
   	this(reference.getUuid());
   	this.name = reference.getName();
@@ -54,7 +54,7 @@ public class BBConnector extends DEConnector implements INode
 		fromPort = new LazyObject<DEPort>(DEPort.class, port);
   }
 
-	public void setLazyFromPort(LazyReference reference)
+	public void setLazyFromPort(UuidReference reference)
   {
 		fromPort = new LazyObject<DEPort>(DEPort.class, reference);
   }
@@ -64,7 +64,7 @@ public class BBConnector extends DEConnector implements INode
 		fromPart = new LazyObject<DEPart>(DEPart.class, part);
 	} 
 
-	public void setLazyFromPart(LazyReference reference)
+	public void setLazyFromPart(UuidReference reference)
 	{
 		fromPart = new LazyObject<DEPart>(DEPart.class, reference);
 	} 
@@ -87,7 +87,7 @@ public class BBConnector extends DEConnector implements INode
 		toPort = new LazyObject<DEPort>(DEPort.class, port);
   }
 
-  public void setLazyToPort(LazyReference reference)
+  public void setLazyToPort(UuidReference reference)
   {
 		toPort = new LazyObject<DEPort>(DEPort.class, reference);
   }
@@ -97,7 +97,7 @@ public class BBConnector extends DEConnector implements INode
 		toPart = new LazyObject<DEPart>(DEPart.class, part);
 	} 
 
-	public void setLazyToPart(LazyReference reference)
+	public void setLazyToPart(UuidReference reference)
 	{
 		toPart = new LazyObject<DEPart>(DEPart.class, reference);
 	} 

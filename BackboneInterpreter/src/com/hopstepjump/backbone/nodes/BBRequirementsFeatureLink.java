@@ -3,21 +3,19 @@ package com.hopstepjump.backbone.nodes;
 import java.io.*;
 import java.util.*;
 
-import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.backbone.nodes.lazy.*;
-import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBRequirementsFeatureLink extends DERequirementsFeatureLink implements INode, Serializable
 {
   private transient DEObject parent;
   private String name;
-  private String uuid = BBUidGenerator.newUuid(getClass());
+  private String uuid;
 	private SubfeatureKindEnum kind;
-	private DERequirementsFeature subfeature;
-	private List<DEAppliedStereotype> appliedStereotypes;
+	private LazyObject<DERequirementsFeature> subfeature = new LazyObject<DERequirementsFeature>(DERequirementsFeature.class);
+	private List<? extends DEAppliedStereotype> appliedStereotypes;
   
-  public BBRequirementsFeatureLink(LazyReference reference)
+  public BBRequirementsFeatureLink(UuidReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.name = reference.getName();
@@ -47,13 +45,13 @@ public class BBRequirementsFeatureLink extends DERequirementsFeatureLink impleme
     this.parent = parent;
   }
 
-	public void setAppliedStereotypes(List<DEAppliedStereotype> appliedStereotypes)
+	public void setAppliedStereotypes(List<BBAppliedStereotype> appliedStereotypes)
 	{
 		this.appliedStereotypes = appliedStereotypes.isEmpty() ? null : appliedStereotypes;
 	}
 
 	@Override
-	public List<DEAppliedStereotype> getAppliedStereotypes()
+	public List<? extends DEAppliedStereotype> getAppliedStereotypes()
 	{
 		return appliedStereotypes == null ? new ArrayList<DEAppliedStereotype>() : appliedStereotypes;
 	}
@@ -75,9 +73,14 @@ public class BBRequirementsFeatureLink extends DERequirementsFeatureLink impleme
 		this.name = name;
 	}
 	
+	public void setSubfeature(UuidReference reference)
+	{
+		this.subfeature.setReference(reference);
+	}
+	
 	@Override
 	public DERequirementsFeature getSubfeature()
 	{
-		return subfeature;
+		return subfeature.getObject();
 	}
 }

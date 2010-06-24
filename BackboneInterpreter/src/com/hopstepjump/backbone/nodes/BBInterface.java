@@ -48,7 +48,7 @@ public class BBInterface extends DEInterface implements INode, Serializable
     resemblers = new HashSet<DEElement>();
   }
 
-  public BBInterface(LazyReference reference)
+  public BBInterface(UuidReference reference)
   {
   	this(reference.getUuid());
   	rawName = reference.getName();

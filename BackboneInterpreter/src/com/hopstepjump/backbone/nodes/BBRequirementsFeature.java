@@ -37,7 +37,7 @@ public class BBRequirementsFeature extends DEInterface implements INode, Seriali
   // other cached variables
   private transient Set<String> replacedUuids;
   
-  public BBRequirementsFeature(LazyReference reference)
+  public BBRequirementsFeature(UuidReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.rawName = reference.getName();

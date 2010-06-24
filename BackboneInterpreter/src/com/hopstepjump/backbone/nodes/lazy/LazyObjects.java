@@ -7,11 +7,11 @@ import com.hopstepjump.deltaengine.base.*;
 
 public class LazyObjects<T>
 {
-	private List<LazyReference> references;
+	private List<UuidReference> references;
 	private List<T> objects = new ArrayList<T>();
 	private Class<T> cls;
 	
-	public LazyObjects(List<LazyReference> references, Class<T> cls)
+	public LazyObjects(List<UuidReference> references, Class<T> cls)
 	{
 		this.references = references;
 		this.cls = cls;
@@ -19,11 +19,11 @@ public class LazyObjects<T>
 	
 	public LazyObjects(Class<T> cls)
 	{
-		this.references = new ArrayList<LazyReference>();
+		this.references = new ArrayList<UuidReference>();
 		this.cls = cls;
 	}
 	
-	public void addReference(LazyReference reference)
+	public void addReference(UuidReference reference)
 	{
 		references.add(reference);
 	}
@@ -35,7 +35,7 @@ public class LazyObjects<T>
 	
 	public void resolve()
 	{
-		for (LazyReference ref : references)
+		for (UuidReference ref : references)
 		{
 			T obj = GlobalNodeRegistry.registry.getNode(ref, cls);
 			objects.add(obj);

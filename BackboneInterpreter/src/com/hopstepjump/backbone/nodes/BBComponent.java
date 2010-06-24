@@ -73,7 +73,7 @@ public class BBComponent extends DEComponent implements INode
     resemblers = new HashSet<DEElement>();
   }
   
-  public BBComponent(LazyReference reference)
+  public BBComponent(UuidReference reference)
   {
   	this(reference.getUuid());
   	rawName = reference.getName();

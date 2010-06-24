@@ -52,7 +52,7 @@ public class RawStratumParseTests
 	private void parseStratumDeclaration(String decl, String uuid[], String name[], boolean relaxed[], final List<String> dependsOn)
 	{
 		final Expect ex = new Expect(new Tokenizer("file", new StringReader(decl)));
-		LazyReference ref = new LazyReference();
+		UuidReference ref = new UuidReference();
 		ex.
 			literal("stratum").
 			uuid(ref).
@@ -72,7 +72,7 @@ public class RawStratumParseTests
 						new IAction()
 						{ public void act()
 							{
-								LazyReference ref = new LazyReference();
+								UuidReference ref = new UuidReference();
 								ex.uuid(ref);
 								dependsOn.add(ref.getUuid());
 							}

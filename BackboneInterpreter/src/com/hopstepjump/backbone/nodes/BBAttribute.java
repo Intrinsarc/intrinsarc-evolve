@@ -23,7 +23,7 @@ public class BBAttribute extends DEAttribute implements INode
   
 	public BBAttribute() {}
 	
-  public BBAttribute(LazyReference reference)
+  public BBAttribute(UuidReference reference)
   {
   	this(reference.getUuid(), false, false);
   	this.name = reference.getName();
@@ -82,7 +82,7 @@ public class BBAttribute extends DEAttribute implements INode
 		this.type.setObject(type);
   }
 
-  public void setType(LazyReference reference)
+  public void setType(UuidReference reference)
   {
 		this.type.setReference(reference);
   }

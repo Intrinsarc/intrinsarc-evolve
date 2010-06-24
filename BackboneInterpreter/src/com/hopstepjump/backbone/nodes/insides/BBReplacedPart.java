@@ -8,7 +8,7 @@ public class BBReplacedPart extends BBReplacedConstituent
 {
 	public BBReplacedPart() {}
 	
-	public BBReplacedPart(LazyReference reference, DEConstituent replacement)
+	public BBReplacedPart(UuidReference reference, DEConstituent replacement)
 	{
 		super(reference.getUuid(), replacement);
 	}

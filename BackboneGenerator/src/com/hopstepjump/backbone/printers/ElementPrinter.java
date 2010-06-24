@@ -365,16 +365,21 @@ public class ElementPrinter
 	{
 		DEPart part = pair.getConstituent().asPart();
 		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(part) + ref.name(part));
-		int sSize = part.getSlots().size();
+		List<DESlot> slots = part.getSlots();
+		int size = part.getSlots().size();
 		if (part.getType() != null)
-			b.append(": " + ref.reference(part.getType()) + (sSize == 0 ? "" : "\n"));
+			b.append(": " + ref.reference(part.getType()));
+
+		// slots
 		int slp = 0;
+		if (size > 0)
+			b.append("\n" + indent + "\t\t\t\tslots:\n");			
 		for (DESlot slot : part.getSlots())
 		{
 			if (slot.isAliased())
 			{
 				DEAttribute attr = slot.getAttribute(perspective, part.getType());
-				b.append(indent + "\t\t\t\t" + ref.reference(attr) + " (" + ref.reference(slot.getEnvironmentAlias(perspective, element)) + ");\n");
+				b.append(indent + "\t\t\t\t\t" + ref.reference(attr) + " (" + ref.reference(slot.getEnvironmentAlias(perspective, element)) + ")");
 			}
 			else
 			{
@@ -382,7 +387,7 @@ public class ElementPrinter
 				if (dvSize != 0)
 				{
 					DEAttribute attr = slot.getAttribute(perspective, part.getType());
-					b.append(indent + "\t\t\t\t" + ref.reference(attr) + " = ");
+					b.append(indent + "\t\t\t\t\t" + ref.reference(attr) + " = ");
 					if (dvSize > 1)
 						b.append("(");
 					int lp = 0;
@@ -397,11 +402,26 @@ public class ElementPrinter
 					}
 					if (dvSize > 1)
 						b.append(")");
-					b.append(++slp != sSize ? "\n" : "");
 				}
 			}
+			b.append(++slp != size ? "\n" : "");
 		}
-		b.append(last ? ";\n" : ",\n");
+		
+		// any remaps?
+		Set<DeltaPair> remaps = part.getPortRemaps();
+		if (!remaps.isEmpty())
+		{
+			b.append(indent + "\t\t\t\tport-remaps:\n");
+			int count = remaps.size();
+			int lp = 0;
+			for (DeltaPair remap : remaps)
+			{
+				b.append(indent + "\t\t\t\t\t" + ref.reference(remap.getConstituent()) + " maps-onto " + remap.getUuid() + "\n");
+				if (++lp != count)
+					b.append("\n");
+			}
+		}
+		b.append(last ? ";\n" : ",");
 	}
 
 	private void appendPortString(String indent, StringBuilder b, DeltaPair pair, boolean replace, boolean last)

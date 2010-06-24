@@ -20,8 +20,6 @@ public class A
 
 	private class IRunPortImpl implements IRun
 	{
-
-		@Override
 		public int run(String[] args)
 		{
 			System.out.println("$$ ran correctly, age = " + age.get());

@@ -24,7 +24,8 @@ public final class TALLexer implements Lexer
 		"delete-parts:", "parts:", "replace-parts:", 
 		"delete-connectors:", "connectors:", "replace-connectors:",
 		"delete-port-links:", "port-links:", "replace-port-links:",
-		"joins", "to", "delegates-from"};
+		"slots:", "port-remaps:",
+		"joins", "to", "delegates-from", "maps-onto"};
 	private static final char GUILLEMET_START = '\u00ab';
 	private static final char GUILLEMET_END   = '\u00bb';
 	private int offset;

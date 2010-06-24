@@ -8,7 +8,7 @@ public class BBReplacedAttribute extends BBReplacedConstituent
 {
 	public BBReplacedAttribute() {}
 	
-	public BBReplacedAttribute(LazyReference reference, DEConstituent replacement)
+	public BBReplacedAttribute(UuidReference reference, DEConstituent replacement)
 	{
 		super(reference.getUuid(), replacement);
 	}

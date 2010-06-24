@@ -8,7 +8,7 @@ public class BBReplacedConnector extends BBReplacedConstituent
 {
 	public BBReplacedConnector() {}
 	
-	public BBReplacedConnector(LazyReference reference, DEConstituent replacement)
+	public BBReplacedConnector(UuidReference reference, DEConstituent replacement)
 	{
 		super(reference.getUuid(), replacement);
 	}

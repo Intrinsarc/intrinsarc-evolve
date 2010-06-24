@@ -62,7 +62,7 @@ public class ExpectTests
 	@Test
 	public void expectUUIDs()
 	{
-		LazyReference ref = new LazyReference();
+		UuidReference ref = new UuidReference();
 		makeExpect("a1-2-3/hello/").uuid(ref);
 		assertEquals("a1-2-3", ref.getUuid());
 		assertEquals("hello", ref.getName());

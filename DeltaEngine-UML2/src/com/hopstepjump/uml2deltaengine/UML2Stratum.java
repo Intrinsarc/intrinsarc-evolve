@@ -139,11 +139,6 @@ public class UML2Stratum extends DEStratum
 		this.parent = parent;
 	}
 
-	public Collection<? extends DEElement> getChildElementsInDependencyOrder()
-	{
-		return getChildElementsInDependencyOrder(getChildElements());
-	}
-
 	@Override
 	public List<DEAppliedStereotype> getAppliedStereotypes()
 	{

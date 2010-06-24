@@ -19,7 +19,7 @@ public class BBStratum extends DEStratum implements Serializable
   private List<DEElement> elements;
   private List<DEStratum> childPackages;
 
-  public BBStratum(LazyReference reference)
+  public BBStratum(UuidReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.name = reference.getName();

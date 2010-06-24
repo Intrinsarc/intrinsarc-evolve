@@ -18,7 +18,7 @@ public class ParserUtilities
 						{
 							public void act()
 							{
-								LazyReference reference = new LazyReference();
+								UuidReference reference = new UuidReference();
 								ex.uuid(reference);
 								references.addReference(reference);
 							}
@@ -34,7 +34,7 @@ public class ParserUtilities
 						{
 							public void act()
 							{
-								LazyReference reference = new LazyReference();
+								UuidReference reference = new UuidReference();
 								ex.uuid(reference);
 								references.add(reference.getUuid());
 							}
@@ -47,7 +47,7 @@ public class ParserUtilities
 		ex.guard("\u00ab",
 			new IAction()
 			{
-				final LazyReference stereo = new LazyReference();
+				final UuidReference stereo = new UuidReference();
 				public void act()
 				{
 					ex.oneOrMore(",",
@@ -86,7 +86,7 @@ public class ParserUtilities
 
 	private static void parseAppliedValue(final Expect ex)
 	{
-		LazyReference attr = new LazyReference();
+		UuidReference attr = new UuidReference();
 		ex.
 			uuid(attr).
 			guard("=",

@@ -19,7 +19,7 @@ public class InterfaceParser
 	
 	public BBInterface parse()
 	{
-		LazyReference ref = new LazyReference();
+		UuidReference ref = new UuidReference();
 		final String implementation[] = {null};
 		ex.literal();
 		ex.
@@ -57,7 +57,7 @@ public class InterfaceParser
 			if (stereos.isEmpty())
 			{
 				stereo = new BBAppliedStereotype();
-				stereo.setStereotype(new LazyReference("interface"));
+				stereo.setStereotype(new UuidReference("interface"));
 				i.settable_getReplacedAppliedStereotypes().add(stereo);
 			}
 			else
@@ -73,7 +73,7 @@ public class InterfaceParser
 	private void addStringStereotypeProperty(BBAppliedStereotype stereo, String attrUUID, String value)
 	{
 		stereo.settable_getLazyProperties().put(
-				new LazyObject<DEAttribute>(DEAttribute.class, new LazyReference(attrUUID)),
+				new LazyObject<DEAttribute>(DEAttribute.class, new UuidReference(attrUUID)),
 				value);
 	}
 
@@ -88,7 +88,7 @@ public class InterfaceParser
 						public void act()
 						{
 							ParserUtilities.parseAppliedStereotype(ex);
-							LazyReference ref = new LazyReference();
+							UuidReference ref = new UuidReference();
 							ex.uuid(ref).literal("becomes");
 							parseOperation();
 						}
@@ -114,7 +114,7 @@ public class InterfaceParser
 	
 	private BBOperation parseOperation()
 	{
-		LazyReference ref = new LazyReference();
+		UuidReference ref = new UuidReference();
 		ex.
 			uuid(ref);
 		final BBOperation operation = new BBOperation(ref);

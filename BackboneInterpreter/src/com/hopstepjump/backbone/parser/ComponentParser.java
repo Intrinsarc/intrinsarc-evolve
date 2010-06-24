@@ -19,7 +19,7 @@ public class ComponentParser
 	
 	public BBComponent parse()
 	{
-		final LazyReference uuid = new LazyReference();
+		final UuidReference uuid = new UuidReference();
 		boolean normal[] = {false};
 		boolean factory[] = {false};
 		boolean placeholder[] = {false};
@@ -65,7 +65,7 @@ public class ComponentParser
 			if (stereos.isEmpty())
 			{
 				stereo = new BBAppliedStereotype();
-				stereo.setStereotype(new LazyReference("component"));
+				stereo.setStereotype(new UuidReference("component"));
 				c.settable_getReplacedAppliedStereotypes().add(stereo);
 			}
 			else
@@ -132,7 +132,7 @@ public class ComponentParser
 	private void addStringStereotypeProperty(BBAppliedStereotype stereo, String attrUUID, String value)
 	{
 		stereo.settable_getLazyProperties().put(
-				new LazyObject<DEAttribute>(DEAttribute.class, new LazyReference(attrUUID)),
+				new LazyObject<DEAttribute>(DEAttribute.class, new UuidReference(attrUUID)),
 				value); 
 	}
 
@@ -146,7 +146,7 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							LazyReference reference = new LazyReference();
+							UuidReference reference = new UuidReference();
 							ex.uuid(reference).literal("becomes");
 							ParserUtilities.parseAppliedStereotype(ex);
 							parseLink();
@@ -172,9 +172,9 @@ public class ComponentParser
 	
 	private BBConnector parseLink()
 	{
-		LazyReference reference = new LazyReference();
-		LazyReference refEnd1 = new LazyReference();
-		LazyReference refEnd2 = new LazyReference();
+		UuidReference reference = new UuidReference();
+		UuidReference refEnd1 = new UuidReference();
+		UuidReference refEnd2 = new UuidReference();
 		ex.
 			uuid(reference);
 		
@@ -196,7 +196,7 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							LazyReference reference = new LazyReference();
+							UuidReference reference = new UuidReference();
 							ex.uuid(reference).literal("becomes");
 							replacedConnectors.add(new BBReplacedConnector(reference, parseConnector()));
 						}
@@ -223,7 +223,7 @@ public class ComponentParser
 	{
 		List<BBAppliedStereotype> applied = ParserUtilities.parseAppliedStereotype(ex);
 
-		LazyReference reference = new LazyReference();
+		UuidReference reference = new UuidReference();
 		ex.
 			uuid(reference);
 		
@@ -238,8 +238,8 @@ public class ComponentParser
 	
 	private void end(final BBConnector connector, final boolean from)
 	{
-		LazyReference portRef = new LazyReference();
-		final LazyReference partRef = new LazyReference();
+		UuidReference portRef = new UuidReference();
+		final UuidReference partRef = new UuidReference();
 		ex.
 			uuid(portRef);
 		
@@ -310,7 +310,7 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							LazyReference reference = new LazyReference();
+							UuidReference reference = new UuidReference();
 							ex.uuid(reference).literal("becomes");
 							replacedParts.add(new BBReplacedPart(reference, parsePart()));
 						}
@@ -337,8 +337,8 @@ public class ComponentParser
 	{
 		List<BBAppliedStereotype> applied = ParserUtilities.parseAppliedStereotype(ex);
 		
-		LazyReference reference = new LazyReference();
-		LazyReference typeRef = new LazyReference();
+		UuidReference reference = new UuidReference();
+		UuidReference typeRef = new UuidReference();
 		ex.
 			uuid(reference).
 			literal(":").
@@ -350,38 +350,86 @@ public class ComponentParser
 		part.setType(typeRef);
 		
 		ex.
-			zeroOrMore(
-					new NonSemiColonOrCommaMatch(
-						new IAction() {
-							public void act()
-							{
-								final LazyReference attrRef = new LazyReference();
-								ex.
-									uuid(attrRef).
-									guard("=",
-										new IAction()
-										{
-											public void act()
-											{
-												
-												BBSlot slot = new BBSlot(attrRef, parseParameters());
-												part.settable_getSlots().add(slot);
-											}
-										},
-										// aliased
-										new IAction()
-										{
-											public void act()
-											{
-												LazyReference aliasRef = new LazyReference();
-												ex.literal("(").uuid(aliasRef).literal(")");
-												BBSlot slot = new BBSlot(attrRef, aliasRef);
-												part.settable_getSlots().add(slot);
-											}
-										});										
-							}
-						}));
+			guard("slots", new SlotsProcessor(part)).
+			guard("port-remaps", new RemapProcessor(part));
+		
 		return part;
+	}
+	
+	private class RemapProcessor implements IAction
+	{
+		private BBPart part;
+		public RemapProcessor(BBPart part)
+		{
+			this.part = part;
+		}
+		
+		public void act()
+		{
+			ex.literal(":").
+				zeroOrMore(
+						new NonSemiColonOrCommaMatch(null,
+							new IAction() {
+								public void act()
+								{
+									UuidReference portRef = new UuidReference();
+									UuidReference originalPortRef = new UuidReference();
+									ex.
+										uuid(portRef).
+										literal("maps-onto").
+										uuid(originalPortRef);
+									
+									BBPortRemap remap = new BBPortRemap(originalPortRef.getUuid(), portRef);
+									part.settable_getPortRemaps().add(remap);
+								}
+							}));
+		}
+	}
+
+	
+	private class SlotsProcessor implements IAction
+	{
+		private BBPart part;
+		public SlotsProcessor(BBPart part)
+		{
+			this.part = part;
+		}
+		
+		public void act()
+		{
+			ex.literal(":").
+				zeroOrMore(
+						new NonSemiColonOrCommaMatch("port-remaps",
+							new IAction() {
+								public void act()
+								{
+									final UuidReference attrRef = new UuidReference();
+									ex.
+										uuid(attrRef).
+										guard("=",
+											new IAction()
+											{
+												public void act()
+												{
+													
+													BBSlot slot = new BBSlot(attrRef, parseParameters());
+													part.settable_getSlots().add(slot);
+												}
+											},
+											// aliased
+											new IAction()
+											{
+												public void act()
+												{
+													UuidReference aliasRef = new UuidReference();
+													ex.literal("(").uuid(aliasRef).literal(")");
+													BBSlot slot = new BBSlot(attrRef, aliasRef);
+													part.settable_getSlots().add(slot);
+												}
+											});										
+								}
+							}));
+		}
 	}
 	
 	private void parseReplacedPorts(final List<BBReplacedPort> replacedPorts)
@@ -394,7 +442,7 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							LazyReference reference = new LazyReference();
+							UuidReference reference = new UuidReference();
 							ex.uuid(reference).literal("becomes");
 							replacedPorts.add(new BBReplacedPort(reference.getUuid(), parsePort()));
 						}
@@ -419,7 +467,7 @@ public class ComponentParser
 	
 	private BBPort parsePort()
 	{
-		LazyReference reference = new LazyReference();
+		UuidReference reference = new UuidReference();
 		boolean create[] = {false};
 		
 		ParserUtilities.parseAppliedStereotype(ex);
@@ -460,7 +508,7 @@ public class ComponentParser
 						{
 							public void act()
 							{
-								LazyReference reference = new LazyReference();
+								UuidReference reference = new UuidReference();
 								ex.uuid(reference);
 								ifaces.addReference(reference);
 							}
@@ -477,7 +525,7 @@ public class ComponentParser
 					{
 						public void act()
 						{
-							LazyReference ref = new LazyReference();
+							UuidReference ref = new UuidReference();
 							ex.uuid(ref).literal("becomes");
 							replacedAttributes.add(new BBReplacedAttribute(ref, parseAttribute()));
 						}
@@ -505,8 +553,8 @@ public class ComponentParser
 	{
 		List<BBAppliedStereotype> applied = ParserUtilities.parseAppliedStereotype(ex);
 		
-		LazyReference ref = new LazyReference();
-		LazyReference typeRef = new LazyReference();
+		UuidReference ref = new UuidReference();
+		UuidReference typeRef = new UuidReference();
 		final boolean readOnly[] = {false};
 		final boolean writeOnly[] = {false};
 		ex.

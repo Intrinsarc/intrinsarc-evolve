@@ -189,7 +189,7 @@ public class BackboneInterpreter
 		for (BBStratum pkg : system)
 		{
 			String parentUUID = pkg.getParentUuid();
-			if (reg.hasNode(new LazyReference(parentUUID)))
+			if (reg.hasNode(new UuidReference(parentUUID)))
 					pkg.setParentAndTellChildren((BBStratum) reg.getNode(parentUUID, DEStratum.class));
 			else
 				pkg.setParentAndTellChildren(root);

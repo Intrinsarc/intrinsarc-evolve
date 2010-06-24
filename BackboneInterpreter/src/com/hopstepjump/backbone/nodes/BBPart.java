@@ -27,7 +27,7 @@ public class BBPart extends DEPart implements INode, Serializable
   	GlobalNodeRegistry.registry.addNode(this);
   }
 
-  public BBPart(LazyReference reference)
+  public BBPart(UuidReference reference)
   {
   	this(reference.getUuid());
   	name = reference.getName();
@@ -86,7 +86,7 @@ public class BBPart extends DEPart implements INode, Serializable
     this.type.setObject(type);
   }
 
-  public void setType(LazyReference reference)
+  public void setType(UuidReference reference)
   {
     this.type.setReference(reference);
   }

@@ -27,7 +27,7 @@ public class BBPort extends DEPort implements INode, Serializable
 	private PortKindEnum portKind;
 	private Boolean ordered;
  
-  public BBPort(LazyReference reference)
+  public BBPort(UuidReference reference)
   {
   	this.uuid = reference.getUuid();
   	this.name = reference.getName();

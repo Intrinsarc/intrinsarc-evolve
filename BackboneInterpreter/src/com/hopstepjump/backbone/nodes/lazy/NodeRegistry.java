@@ -34,7 +34,7 @@ public class NodeRegistry
     nodes.put(node.getUuid(), node);
   }
   
-  public <T> T getNode(LazyReference reference, Class<T> cls)
+  public <T> T getNode(UuidReference reference, Class<T> cls)
   {
   	DEObject obj = nodes.get(reference.getUuid());
   	if (obj == null)
@@ -54,7 +54,7 @@ public class NodeRegistry
   	return (T) obj;
   }
 
-	public boolean hasNode(LazyReference uuidReference)
+	public boolean hasNode(UuidReference uuidReference)
 	{
 		return nodes.containsKey(uuidReference.getUuid());
 	}
