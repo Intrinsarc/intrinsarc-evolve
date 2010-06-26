@@ -35,14 +35,14 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
-  private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();
-  
+  private Set<SubjectRepositoryListenerFacet> listeners = new HashSet<SubjectRepositoryListenerFacet>();  
 	
   private Adapter adapter = new Adapter()
   {
     public void notifyChanged(Notification notification)
     {
-      undoredo.addNotification(notification);
+    	if (!GlobalSubjectRepository.ignoreUpdates)
+    		undoredo.addNotification(notification);
     }
     public Notifier getTarget()
     {

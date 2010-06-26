@@ -644,9 +644,9 @@ public class ConnectorArcAppearanceGem implements Gem
       	SetTextTransaction.set(startLinkedTextFacet.getFigureFacet(), getConnectionIndexString(0), null, false);
       
       // see if the connection ends are correct for the end
-      if (!getConnectionIndexString(1).equals(endLinkedTextFacet.getText()))
+/*xxx      if (!getConnectionIndexString(1).equals(endLinkedTextFacet.getText()))
       	SetTextTransaction.set(endLinkedTextFacet.getFigureFacet(), getConnectionIndexString(1), null, false);
-      
+*/      
       // is this a different type of connector now?
       final boolean subjectIsDelegate = subject.getKind().equals(ConnectorKind.DELEGATION_LITERAL);
       final boolean subjectIsPortLink = subject.getKind().equals(ConnectorKind.PORT_LINK_LITERAL);

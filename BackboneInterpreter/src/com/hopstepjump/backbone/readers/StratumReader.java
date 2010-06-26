@@ -41,7 +41,9 @@ public class StratumReader
   	Expect expect = LoadListReader.makeExpect(stratum);
   	try
   	{
+  		long start = System.currentTimeMillis();
   		BBStratum st = new StratumParser(expect).parse();
+  		long end = System.currentTimeMillis();
   		return st;
   	}
   	catch (ParseException ex)

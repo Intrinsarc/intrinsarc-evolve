@@ -238,7 +238,7 @@ public class Tokenizer
 
 	private boolean forceLiteral(int next)
 	{
-		return Character.isJavaIdentifierPart(next) && !Character.isDigit(next) && next != 'e' && next != 'E';
+		return next == 'e' || next == 'E' || Character.isJavaIdentifierPart(next) && !Character.isDigit(next) && next != 'e' && next != 'E';
 	}
 	
 	private void readGeneralComment()

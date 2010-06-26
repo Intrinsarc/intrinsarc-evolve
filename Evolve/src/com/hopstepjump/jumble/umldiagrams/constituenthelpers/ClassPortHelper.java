@@ -39,6 +39,8 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 		for (FigureFacet f : currentInContainerIgnoringDeletes)
 		{
 			// don't delete if this is deleted -- this is covered elsewhere
+			if (f.getSubject() == null)
+				continue;
 			Element originalSubject = getOriginalSubject(f.getSubject());
 
 			if (addOrReplace.getUuid().equals(originalSubject.getUuid()))

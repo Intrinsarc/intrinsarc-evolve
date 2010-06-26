@@ -73,7 +73,7 @@ public class PartPortInstanceHelper
       // don't delete if this is deleted -- this is covered elsewhere
       Element subject = (Element) f.getSubject();
       
-      if (!subject.isThisDeleted() &&
+      if (subject != null && !subject.isThisDeleted() &&
           !uuids.contains(subject.getUuid()))
           f.formDeleteTransaction();
     }

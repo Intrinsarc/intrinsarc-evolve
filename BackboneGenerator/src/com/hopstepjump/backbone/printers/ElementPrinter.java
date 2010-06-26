@@ -47,6 +47,7 @@ public class ElementPrinter
 					(isRawFactory(c) ? " is-factory" : "") +
 					(isRawPlaceholder(c) ? " is-placeholder" : "") +
 					(isRawBean(c) ? " is-bean" : "") +
+					(hasLifecycleCallbacks(c) ? " has-lifecycle-callbacks" : "") +
 					(c.getComponentKind() == ComponentKindEnum.PRIMITIVE ? " is-primitive" :
 					  (c.getComponentKind() == ComponentKindEnum.STEREOTYPE ? " is-stereotype" : "")));
 		}
@@ -129,14 +130,29 @@ public class ElementPrinter
 		if (!deletes.isEmpty())
 		{
 			b.append(indent + "\t\tdelete-" + preamble + ":\n");
+			int size = deletes.size();
+			int lp = 0;
 			for (String uuid : deletes)
-				b.append(indent + "\t\t\t" + ref.reference(GlobalDeltaEngine.engine.locateObjectForStereotype(uuid)) + ";\n");
+			{
+				b.append(indent + "\t\t\t" + ref.reference(GlobalDeltaEngine.engine.locateObjectForStereotype(uuid)));
+				if (++lp == size)
+					b.append(";\n");
+				else
+					b.append(",\n");
+			}
 		}
 	}
 
 	private boolean append(StringBuilder b, String indent, String preamble, DEElement element, ConstituentTypeEnum type, boolean replace, Comparator<DeltaPair> sorter)
 	{
 		IDeltas deltas = element.getDeltas(type);
+		
+		// get all the possible constituents so we can find the original to translate replacement
+		Set<DeltaPair> all = deltas.getConstituents(perspective);
+		Map<String, DEConstituent> originals = new HashMap<String, DEConstituent>();
+		for (DeltaPair p : all)
+			originals.put(p.getUuid(), p.getOriginal());
+		
 		Set<DeltaPair> pairs = replace ? deltas.getReplaceObjects() : deltas.getAddObjects();
 		if (!pairs.isEmpty())
 		{
@@ -145,26 +161,28 @@ public class ElementPrinter
 			if (sorter != null)
 				Collections.sort(sorted, sorter);
 			DeltaPair last = sorted.isEmpty() ? null : sorted.get(sorted.size() - 1);
-			for (DeltaPair pair : sorted)
+			for (DeltaPair p : sorted)
 			{
+				DeltaPair pair = new DeltaPair(p.getUuid(), originals.get(p.getUuid()), p.getConstituent());
+				
 				DEObject obj = pair.getConstituent();
 				if (obj instanceof DEOperation)
-					appendOperationString(indent, b, pair, replace, pair == last);
+					appendOperationString(indent, b, pair, replace, p == last);
 				else
 				if (obj instanceof DEAttribute)
-					appendAttributeString(indent, b, element, pair, replace, pair == last);
+					appendAttributeString(indent, b, element, pair, replace, p == last);
 				else
 				if (obj instanceof DEPort)
-					appendPortString(indent, b, pair, replace, pair == last);
+					appendPortString(indent, b, pair, replace, p == last);
 				else
 				if (obj instanceof DEConnector)
-					appendConnectorString(indent, b, pair, replace, pair == last);
+					appendConnectorString(indent, b, pair, replace, p == last);
 				else
 				if (obj instanceof DEPart)
-					appendPartString(indent, b, element, pair, replace, pair == last);
+					appendPartString(indent, b, element, pair, replace, p == last);
 				else
 				if (obj instanceof DERequirementsFeatureLink)
-					appendRequirementsFeatureLinkString(indent, b, pair, replace, pair == last);
+					appendRequirementsFeatureLinkString(indent, b, pair, replace, p == last);
 			}
 			return true;
 		}		
@@ -200,7 +218,7 @@ public class ElementPrinter
 
 	private boolean showStereotype(DEAppliedStereotype applied)
 	{
-		// if this only has the expected set of properties, then ignore it
+		// if this is non-standard, we must show
 		if (!ignoreStereotype(applied.getStereotype()))
 			return true;
 		
@@ -218,6 +236,7 @@ public class ElementPrinter
 	{
 		String uuid = stereo.getUuid();
 		return
+		  isVisual(stereo) ||
 			uuid.equals("component") ||
 			uuid.equals("interface") ||
 			uuid.equals("primitive-type") ||
@@ -242,7 +261,8 @@ public class ElementPrinter
 		DEElement.IMPLEMENTATION_STEREOTYPE_PROPERTY,
 		DEComponent.FACTORY_STEREOTYPE_PROPERTY,
 		DEComponent.BEAN_STEREOTYPE_PROPERTY,
-		DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY}
+		DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY,
+		DEComponent.LIFECYCLE_CALLBACKS_PROPERTY}
 	;
 	private boolean ignoreProperty(DEAttribute prop)
 	{
@@ -260,25 +280,21 @@ public class ElementPrinter
 		for (DEAppliedStereotype applied : obj.getAppliedStereotypes())
 			if (showStereotype(applied))
 				str += makeAppliedStereotypeString(applied);
-		return str;
+		return str + " ";
 	}
 	
 	private String makeAppliedStereotypeString(DEAppliedStereotype appl)
 	{
-		if (isVisual(appl.getStereotype()))
-			return "";
-
 		String name = ref.reference(appl.getStereotype());
-		boolean standard = ignoreStereotype(appl.getStereotype());
 		String str = "\u00ab" + name;
 		Map<DEAttribute, String> props = appl.getProperties();
 		int lp = 0;
 		if (props != null)
 		{
-			boolean first = false;
+			boolean first = true;
 			for (DEAttribute prop : props.keySet())
 			{
-				if (!standard && !ignoreProperty(prop))
+				if (!ignoreProperty(prop))
 				{
 					if (first)
 					{
@@ -356,9 +372,10 @@ public class ElementPrinter
 	private String makeConnectorEndString(DEConnector conn, int index)
 	{
 		DEPart part = conn.getOriginalPart(index);
+		String ind = conn.getIndex(index) != null ? "[" + conn.getIndex(index) + "]" : "";
 		if (part == null)
-			return ref.reference(conn.getOriginalPort(index));
-		return ref.name(conn.getOriginalPort(index)) + "@" + ref.reference(part);
+			return ref.reference(conn.getOriginalPort(index)) + ind;
+		return ref.name(conn.getOriginalPort(index)) + ind + "@" + ref.reference(part);
 	}
 
 	private void appendPartString(String indent, StringBuilder b, DEElement element, DeltaPair pair, boolean replace, boolean last)
@@ -366,7 +383,7 @@ public class ElementPrinter
 		DEPart part = pair.getConstituent().asPart();
 		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(part) + ref.name(part));
 		List<DESlot> slots = part.getSlots();
-		int size = part.getSlots().size();
+		int size = slots.size();
 		if (part.getType() != null)
 			b.append(": " + ref.reference(part.getType()));
 
@@ -374,7 +391,7 @@ public class ElementPrinter
 		int slp = 0;
 		if (size > 0)
 			b.append("\n" + indent + "\t\t\t\tslots:\n");			
-		for (DESlot slot : part.getSlots())
+		for (DESlot slot : slots)
 		{
 			if (slot.isAliased())
 			{
@@ -421,19 +438,29 @@ public class ElementPrinter
 					b.append("\n");
 			}
 		}
-		b.append(last ? ";\n" : ",");
+		b.append(last ? ";\n" : ",\n");
 	}
 
 	private void appendPortString(String indent, StringBuilder b, DeltaPair pair, boolean replace, boolean last)
 	{
 		DEPort port = pair.getConstituent().asPort();
 		b.append(indent + "\t\t\t" + makeReplace(pair, replace) + makeAppliedStereotypeString(port) + ref.name(port));
+		if (port.getLowerBound() != 1 || port.getUpperBound() != 1)
+			b.append("[" + port.getLowerBound() + " upto " + (port.getUpperBound() == -1 ? "*" : port.getUpperBound()) + "]");
 		if (port.getPortKind() == PortKindEnum.CREATE)
 			b.append(" is-create-port");
 		if (port.getPortKind() == PortKindEnum.HYPERPORT_START)
 			b.append(" is-hyperport-start");
 		if (port.getPortKind() == PortKindEnum.HYPERPORT_END)
 			b.append(" is-hyperport-end");
+		if (port.getPortKind() == PortKindEnum.AUTOCONNECT)
+			b.append(" is-autoconnect");
+		if (port.isOrdered())
+			b.append(" is-ordered");
+		if (port.isBeanMain())
+			b.append(" is-bean-main");
+		if (port.isBeanNoName())
+			b.append(" is-bean-noname");
 		b.append(makeInterfacesString(" provides", port.getSetProvidedInterfaces()));
 		b.append(makeInterfacesString(" requires", port.getSetRequiredInterfaces()));
 		if (last)
@@ -450,7 +477,7 @@ public class ElementPrinter
 		int lp = 0;
 		preamble += " ";
 		for (DEInterface i : interfaces)
-			preamble += ref.reference(i) + (++lp != size ? ", " : "");
+			preamble += ref.reference(i) + (++lp != size ? " & " : "");
 		return preamble;
 	}
 
@@ -476,6 +503,14 @@ public class ElementPrinter
     if (applied == null)
       return false;
     return applied.getBooleanProperty(DEComponent.BEAN_STEREOTYPE_PROPERTY);
+  }
+
+	private boolean hasLifecycleCallbacks(DEComponent c)
+  {
+    DEAppliedStereotype applied = c.getRawAppliedStereotype();
+    if (applied == null)
+      return false;
+    return applied.getBooleanProperty(DEComponent.LIFECYCLE_CALLBACKS_PROPERTY);
   }
 
   private boolean isRawFactory(DEComponent c)

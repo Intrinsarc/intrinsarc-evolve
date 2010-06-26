@@ -8,7 +8,6 @@ import com.hopstepjump.backbone.nodes.*;
 import com.hopstepjump.backbone.nodes.lazy.*;
 import com.hopstepjump.backbone.nodes.simple.*;
 import com.hopstepjump.backbone.nodes.simple.internal.*;
-import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.backbone.readers.*;
 import com.hopstepjump.backbone.runtime.api.*;
 import com.hopstepjump.deltaengine.base.*;
@@ -33,6 +32,7 @@ public class BackboneInterpreter
 
 	private static void run(String[] args)
 	{
+		boolean displayTreeOnly = false;
 		boolean nocheck = args[0].equals("-nocheck");
 		int offset = nocheck ? 1 : 0;
 		String loadListFile = args[0 + offset];
@@ -93,6 +93,13 @@ public class BackboneInterpreter
 			// find the correct stratum
 			DEStratum runStratum = findNamedStratum(fullName, new StringTokenizer(stratum, "::"), root);
 			DEComponent runComponent = findNamedComponent(fullName, runStratum, component);
+			
+			// should we just display a nice tree?
+			if (displayTreeOnly)
+			{
+				new FlattenedTreeMaker().makeTreeWindow(root, runComponent);
+				return;
+			}
 
 			// flatten out
 			BBSimpleElementRegistry registry = new BBSimpleElementRegistry(root, runComponent);
@@ -131,6 +138,7 @@ public class BackboneInterpreter
 		catch (BBNodeNotFoundException e)
 		{
 			System.err.println("Problem finding reference: " + e.getMessage());
+			System.err.println("Location of error: " + e.getLocation());
 			System.exit(-1);
 		}
 		catch (StratumLoadingException e)

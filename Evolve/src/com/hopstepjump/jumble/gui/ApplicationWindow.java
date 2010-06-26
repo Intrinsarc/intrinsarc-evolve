@@ -488,6 +488,7 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 			}
 
+			applicationWindowCoordinator.switchRepository();
 			monitor.displayInterimPopup(GARBAGE_ICON,
 					"Garbage collection in progress...", "Started collecting.",
 					ScreenProperties.getUndoPopupColor(), -1);

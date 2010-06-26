@@ -12,9 +12,9 @@ public class BBSimpleComponent extends BBSimpleElement
 {
 	private String name;
 	private String rawName;
-	private Boolean factory;
-	private Boolean bean;
-	private Boolean leaf;
+	private boolean factory;
+	private boolean bean;
+	private boolean leaf;
 	private List<BBSimplePort>      ports;
 	private List<BBSimpleAttribute> attributes;
 	private List<BBSimplePart>      parts;
@@ -22,7 +22,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	private Class<?> implementationClass;
 	private boolean resolved;
 	private String implementationClassName;
-	private Boolean lifecycleCallbacks;
+	private boolean lifecycleCallbacks;
 	private List<BBSimpleFactory> map = new ArrayList<BBSimpleFactory>();
 	private Constructor<?> constructor;
 	private String uuid;
@@ -31,7 +31,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	public BBSimpleComponent(BBSimpleElementRegistry registry, DEComponent complex)
 	{
 		this.complex = complex;
-		rawName = complex.getName();
+		rawName = complex.getTopName();
 		name = registry.makeName(rawName);
 		uuid = complex.getUuid();
 		copyAttributes(registry, complex);
@@ -255,7 +255,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	
 	public boolean isLeaf()
 	{
-		return leaf != null;
+		return leaf;
 	}
 	
 	public List<BBSimpleAttribute> getAttributes()
@@ -641,6 +641,7 @@ public class BBSimpleComponent extends BBSimpleElement
 			// don't copy over if this isn't a bean and it isn't set
 			if (type.isBean() && slot == null)
 			  continue;
+
 			BBSimpleAttribute newAttr =
 				slot != null ?
 						new BBSimpleAttribute(registry, slot, factory, part.getFactory(), full, position, copiedFromFrame) :
@@ -702,7 +703,7 @@ public class BBSimpleComponent extends BBSimpleElement
 
 	public boolean isFactory()
 	{
-		return factory == null ? false : factory;
+		return factory;
 	}
 
 	private void remapConnectors(List<BBSimpleConnector> conns, BBSimplePart matchPart, BBSimplePort matchEnd, BBSimplePart newPart, BBSimplePort newPort, int factory)
@@ -773,17 +774,17 @@ public class BBSimpleComponent extends BBSimpleElement
 
   public boolean isBean()
   {
-    return bean != null ? bean : false;
+    return bean;
   }
   
   public void setLifecycleCallbacks(boolean callbacks)
   {
-  	lifecycleCallbacks = callbacks ? true : null;
+  	lifecycleCallbacks = callbacks;
   }
   
   public boolean hasLifecycleCallbacks()
   {
-  	return lifecycleCallbacks == null ? false : lifecycleCallbacks;
+  	return lifecycleCallbacks;
   }
 
 	public DEElement getComplex()
@@ -794,10 +795,13 @@ public class BBSimpleComponent extends BBSimpleElement
 	@Override
 	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
 	{
-		if (!top)
-			return null;
-		
 		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		if (top)
+		{
+			children.put("factories", map);
+			return children;
+		}
+		
 		children.put("attributes", attributes);
 		children.put("ports", ports);
 		children.put("parts", parts);
@@ -808,7 +812,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	@Override
 	public String getTreeDescription()
 	{
-		String desc = "Component " + rawName + " (" + uuid + ")";
+		String desc = "Component " + name;
 		if (implementationClassName != null)
 			desc += ", implementation = " + implementationClassName;
 		return desc;

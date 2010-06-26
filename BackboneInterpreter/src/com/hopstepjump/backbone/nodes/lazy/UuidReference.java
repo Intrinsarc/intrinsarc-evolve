@@ -70,6 +70,6 @@ public class UuidReference
 	
 	public String toString()
 	{
-		return file + ", line = " + line + ", position = " + pos;
+		return "uuidreference(uuid=" + uuid + ", name = " + name + ", file = " + file + ", line = " + line + ", position = " + pos;
 	}
 }

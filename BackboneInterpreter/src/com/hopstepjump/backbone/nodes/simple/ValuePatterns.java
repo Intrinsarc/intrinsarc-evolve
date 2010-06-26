@@ -15,7 +15,17 @@ public class ValuePatterns
 	public static final String NULL_PATTERN = "null";
 	public static final String VAR_PATTERN = "[a-zA-Z_$\\!\\?][a-zA-Z0-9_$\\!\\?]*";
 	public static final int NUM_PATTERNS = 9;
-	public static final Pattern OR_PATTERN = Pattern.compile("(\\s*(?:(?:\"(" + STRING_PATTERN +")\")|(" + FLOAT_PATTERN + ")|(" + DOUBLE_PATTERN + ")|(" + CHAR_PATTERN + ")|(" + INT_PATTERN + ")|(" + BOOLEAN_PATTERN + ")|(" + NULL_PATTERN + ")|(" + VAR_PATTERN + ")|(" + INTERNAL_PATTERN + "))).*");
+	public static final Pattern OR_PATTERN = Pattern.compile(
+			"(\\s*(?:(?:\"(" +
+				STRING_PATTERN +")\")|(" +
+				FLOAT_PATTERN + ")|(" +
+				DOUBLE_PATTERN + ")|(" +
+				CHAR_PATTERN + ")|(" +
+				INT_PATTERN + ")|(" +
+				BOOLEAN_PATTERN + ")|(" +
+				NULL_PATTERN + ")|(" +
+				VAR_PATTERN + ")|(" +
+				INTERNAL_PATTERN + "))).*");
 
 	public static final String DEFAULT_PATTERN = "default";
 }

@@ -131,6 +131,8 @@ public class UML2DeltaEngine implements IDeltaEngine
 
 	public static boolean isRawPackage(Element elem)
 	{
+		if (elem == null)
+			return true;
 		return
 			elem.getClass() == PackageImpl.class && 
 			!UMLTypes.isStratum(elem);

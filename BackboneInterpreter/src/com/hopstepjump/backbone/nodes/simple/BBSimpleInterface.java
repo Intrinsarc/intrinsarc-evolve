@@ -18,7 +18,7 @@ public class BBSimpleInterface extends BBSimpleElement
 	public BBSimpleInterface(BBSimpleElementRegistry registry, DEInterface complex)
 	{
 		this.complex = complex;
-		rawName = complex.getName();
+		rawName = complex.getTopName();
 		uuid = complex.getUuid();
 		name = registry.makeName(rawName);
 		implementationClassName = complex.getImplementationClass(registry.getPerspective());
@@ -93,7 +93,7 @@ public class BBSimpleInterface extends BBSimpleElement
 	@Override
 	public String getTreeDescription()
 	{
-		String desc = "Interface " + rawName + " (" + uuid + ")";
+		String desc = "Interface " + name;
 		if (implementationClassName != null)
 			desc += ", implementation = " + implementationClassName;
 		return desc;

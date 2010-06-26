@@ -108,5 +108,8 @@ public class BBSlot extends DESlot implements INode, Serializable
 		attribute.resolve();
 		if (environmentAlias != null)
 			environmentAlias.resolve();
+		if (value != null)
+			for (DEParameter p : value)
+				p.resolveLazyReferences();
 	}	
 }

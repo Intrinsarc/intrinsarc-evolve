@@ -50,8 +50,11 @@ public class XMLSubjectRepositoryGem implements Gem
   {
     public void notifyChanged(Notification notification)
     {
-      modified = true;
-      undoredo.addNotification(notification);
+    	if (!GlobalSubjectRepository.ignoreUpdates)
+    	{
+    		modified = true;
+    		undoredo.addNotification(notification);
+    	}
     }
     public Notifier getTarget()
     {

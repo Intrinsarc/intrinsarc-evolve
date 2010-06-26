@@ -419,13 +419,14 @@ public class ModelMover
 		{
 			public void run()
 			{
+				GlobalSubjectRepository.ignoreUpdates = true;
+				
 		    // initialise any fields
 		    savedReferences = new ArrayList<TransientSavedReference>();
 		    translate = new HashMap<String, Element>();
 		    topLevelOfFrom = GlobalSubjectRepository.repository.getTopLevelModel();
 		    
 		    XMLSubjectRepositoryGem repositoryGem;
-		    boolean originalModified = GlobalSubjectRepository.repository.getSaveInformation().getRepositoryToSave();
 		    try
 		    {
 		      repositoryGem = XMLSubjectRepositoryGem.openFile(null, false);
@@ -479,11 +480,10 @@ public class ModelMover
 		    lazyOff();
 		    savedName[0] = fileName;
 		    
-		    // put the repository back to the original state
-		    if (!originalModified)
-		    	GlobalSubjectRepository.repository.resetModified();
+				GlobalSubjectRepository.ignoreUpdates = false;
 			}
 		});
+		
 		return savedName[0];
   }
   

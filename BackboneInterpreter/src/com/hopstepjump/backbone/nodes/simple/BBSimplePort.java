@@ -134,7 +134,7 @@ public class BBSimplePort extends BBSimpleObject
 	public String getTreeDescription()
 	{
 		return
-			"Port " + rawName + " (" + complex.getUuid() + "), lower bound = " + lowerBound +
+			"Port " + name + ", lower bound = " + lowerBound +
 			", upper bound = " + upperBound;
 	}
 }

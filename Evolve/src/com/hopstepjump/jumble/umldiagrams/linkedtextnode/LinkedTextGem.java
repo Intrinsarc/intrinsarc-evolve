@@ -200,7 +200,7 @@ public class LinkedTextGem implements Gem
 	  	}
 	  	
 	    // need to resize this also, as the change in text may have affected the size
-	    text = extractOriginFacet().textChanged(newText, majorPointType);
+	  	text = extractOriginFacet().textChanged(newText, majorPointType);
 	    
 	    // change the visibility
 	    if (unsuppress)

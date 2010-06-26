@@ -26,6 +26,7 @@ public class ComponentParser
 		boolean primitive[] = {false};
 		boolean stereotype[] = {false};
 		boolean bean[] = {false};
+		boolean lifecycle[] = {false};
 		final String implementation[] = {null};
 		ex.literal("component");
 		ex.
@@ -40,6 +41,7 @@ public class ComponentParser
 			optionalLiteral("is-primitive", primitive).
 			optionalLiteral("is-stereotype", stereotype).
 			optionalLiteral("is-bean", bean).
+			optionalLiteral("has-lifecycle-callbacks", lifecycle).
 			guard("implementation-class",
 					new IAction() { public void act() { ex.literal(implementation); } }).
 			guard("resembles",
@@ -75,10 +77,12 @@ public class ComponentParser
 				addBooleanStereotypeProperty(stereo, DEComponent.FACTORY_STEREOTYPE_PROPERTY, true);
 			if (placeholder[0])
 				addBooleanStereotypeProperty(stereo, DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY, true);
-			if (factory[0])
+			if (bean[0])
 				addBooleanStereotypeProperty(stereo, DEComponent.BEAN_STEREOTYPE_PROPERTY, true);
 			if (implementation[0] != null)
 				addStringStereotypeProperty(stereo, DEComponent.IMPLEMENTATION_STEREOTYPE_PROPERTY, implementation[0]);			
+			if (lifecycle[0])
+				addBooleanStereotypeProperty(stereo, DEComponent.LIFECYCLE_CALLBACKS_PROPERTY, true);
 		}
 		
 		ex.
@@ -469,14 +473,72 @@ public class ComponentParser
 	{
 		UuidReference reference = new UuidReference();
 		boolean create[] = {false};
+		boolean hyperStart[] = {false};
+		boolean hyperEnd[] = {false};
+		boolean autoConnect[] = {false};
+		boolean ordered[] = {false};
+		boolean beanMain[] = {false};
+		boolean beanNoName[] = {false};
 		
 		ParserUtilities.parseAppliedStereotype(ex);
 		ex.
-			uuid(reference).
-			optionalLiteral("is-create-port", create);
-
+			uuid(reference);
 		final BBPort port = new BBPort(reference);
-		port.setCreatePort(create[0]);
+
+		ex.guard("[",
+				new IAction()
+				{
+					public void act()
+					{
+						// read the lower, .. and upper
+						int lower[] = {0};
+						int upper[] = {0};
+						final boolean upperUnbounded[] = {false};
+						ex.
+							integer(lower).
+							literal("upto").
+							guard("*", new IAction()
+							{
+								public void act()
+								{
+									upperUnbounded[0] = true;
+								}
+							});
+						
+						if (!upperUnbounded[0])
+							ex.integer(upper);
+						ex.literal("]");
+						
+						port.setLowerBound(lower[0]);
+						if (upperUnbounded[0])
+							port.setUpperBound(-1);
+						else
+							port.setUpperBound(upper[0]);
+					}
+				}).
+			optionalLiteral("is-create-port", create).
+			optionalLiteral("is-hyperport-start", hyperStart).
+			optionalLiteral("is-hyperport-end", hyperEnd).
+			optionalLiteral("is-autoconnect", autoConnect).
+			optionalLiteral("is-ordered", ordered).
+			optionalLiteral("is-bean-main", beanMain).
+			optionalLiteral("is-bean-noname", beanNoName);
+			
+
+		if (create[0])
+			port.setPortKind(PortKindEnum.CREATE);
+		if (hyperStart[0])
+			port.setPortKind(PortKindEnum.HYPERPORT_START);
+		if (hyperEnd[0])
+			port.setPortKind(PortKindEnum.HYPERPORT_END);
+		if (autoConnect[0])
+			port.setPortKind(PortKindEnum.AUTOCONNECT);
+		if (ordered[0])
+			port.setOrdered(true);
+		if (beanMain[0])
+			port.setBeanMain(true);
+		if (beanNoName[0])
+			port.setBeanNoName(true);
 
 		ex.
 			guard("provides",
@@ -595,11 +657,7 @@ public class ComponentParser
 										{
 											public void act()
 											{
-												Token tok = ex.peek();
-												if (tok.getType() == TokenType.LITERAL)
-													params.add(new BBParameter(ex.nextUuid()));
-												else
-													params.add(new BBParameter(ex.next().getText()));
+												parseParameter(params);
 											}
 										})).literal(")");
 					}
@@ -613,16 +671,24 @@ public class ComponentParser
 										{
 											public void act()
 											{
-												Token tok = ex.peek();
-												if (tok.getType() == TokenType.LITERAL)
-													params.add(new BBParameter(ex.nextUuid()));
-												else
-													params.add(new BBParameter(ex.next().getText()));
+												parseParameter(params);
 											}
 										}));
 					}
 				});
 		return params;
+	}
+
+	private void parseParameter(final List<DEParameter> params)
+	{
+		Token tok = ex.peek();
+		if (tok.getType() == TokenType.LITERAL && !tok.getText().equals("null") && !tok.getText().equals("true") && !tok.getText().equals("false"))
+			params.add(new BBParameter(ex.nextUuid()));
+		else
+		if (tok.getType() == TokenType.STRING)
+			params.add(new BBParameter("\"" + ex.next().getText() + "\""));
+		else
+			params.add(new BBParameter(ex.next().getText()));
 	}
 
 	private void parseDeletions(List<String> deletedUUIDs)

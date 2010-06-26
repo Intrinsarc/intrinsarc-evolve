@@ -5,12 +5,11 @@ import java.util.*;
 
 import com.hopstepjump.backbone.nodes.insides.*;
 import com.hopstepjump.backbone.nodes.lazy.*;
-import com.hopstepjump.backbone.parserbase.*;
 import com.hopstepjump.deltaengine.base.*;
 
 public class BBPort extends DEPort implements INode, Serializable
 {
-  private transient DEObject parent;
+  private DEObject parent;
   private String name;
   private String uuid = BBUidGenerator.newUuid(getClass());
   private Integer lowerBound;
@@ -21,10 +20,9 @@ public class BBPort extends DEPort implements INode, Serializable
   private Set<DEInterface> setRequires;
   private Boolean suppressGeneration;
 	private List<DEAppliedStereotype> appliedStereotypes;
-	private boolean createPort;
 	private boolean beanMain;
 	private boolean beanNoName;
-	private PortKindEnum portKind;
+	private PortKindEnum portKind = PortKindEnum.NORMAL;
 	private Boolean ordered;
  
   public BBPort(UuidReference reference)
@@ -155,11 +153,6 @@ public class BBPort extends DEPort implements INode, Serializable
 		return suppressGeneration == null ? false : true;
 	}
 
-	public void setCreatePort(boolean create)
-	{
-		createPort = create;
-	}
-	
 	public void setAppliedStereotypes(List<DEAppliedStereotype> appliedStereotypes)
 	{
 		this.appliedStereotypes = appliedStereotypes.isEmpty() ? null : appliedStereotypes;

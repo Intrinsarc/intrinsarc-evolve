@@ -211,6 +211,8 @@ public final class ClassifierNodeGem implements Gem
   
 	private String UUID(Object subject)
 	{
+		if (subject == null)
+			return null;
 		return ((Element) subject).getUuid();
 	}
 

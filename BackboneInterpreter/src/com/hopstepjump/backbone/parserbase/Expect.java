@@ -50,6 +50,18 @@ public class Expect
 		return this;
 	}
 	
+	public Expect integer(int[] integer)
+	{
+		Token t = tok.next();
+		if (t == null)
+			tok.throwParseException("Expected integer but found end of file", false);
+		if (!t.getType().equals(TokenType.INTEGER))
+			tok.throwParseException("Expected integer but found " + t, true);
+		if (integer != null)
+			integer[0] = Integer.parseInt(t.getText());
+		return this;
+	}
+	
 	public Expect optionalLiteral(String literal, final boolean toSet[])
 	{
 		toSet[0] = false;

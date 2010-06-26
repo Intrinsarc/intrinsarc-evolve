@@ -112,7 +112,7 @@ public class ReflectivePort
     }
  
     if (setSingle == null && addNoIndexed == null && addIndexed == null)
-      throw new BBImplementationInstantiationException("Cannot find method for setting port " + portName + " of " + partTypeClass, partType);      
+      throw new BBImplementationInstantiationException("Cannot find method for setting port " + portName + " of " + partTypeClass + ", bean = " + isBean, partType);      
   }
 
   private String makeSingular(String name)

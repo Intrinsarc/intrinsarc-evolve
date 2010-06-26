@@ -54,8 +54,8 @@ public class InspectAndImportStrataAction extends AbstractAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// save the state of the model
-		SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-		boolean modified = repository.getSaveInformation().getRepositoryToSave();
+		GlobalSubjectRepository.ignoreUpdates = true;
+		System.out.println("$$ disabled updates");
 		
 		// open the exported file into a different model
   	// ask for the file to import
@@ -75,6 +75,7 @@ public class InspectAndImportStrataAction extends AbstractAction
 		catch (RepositoryOpeningException ex)
 		{
 			coordinator.invokeErrorDialog("File cannot be loaded for browsing", ex.getMessage());
+			GlobalSubjectRepository.ignoreUpdates = false;
 			return;
 		}
 		finally
@@ -157,13 +158,11 @@ public class InspectAndImportStrataAction extends AbstractAction
 					panel.setDividerLocation(0.3);
 				}
 			});
-		
-		// restore the modification state
-		if (!modified)
-			repository.resetModified();
-		
+				
 		if (chosen == 0)
 			importPackages(export);
+		System.out.println("$$ reenabled updates");
+		GlobalSubjectRepository.ignoreUpdates = false;
 	}		
 
 	private void importPackages(SubjectRepositoryFacet toImport)

@@ -9,4 +9,5 @@ package com.hopstepjump.repositorybase;
 public class GlobalSubjectRepository
 {
 	public static SubjectRepositoryFacet repository;
+	public static boolean ignoreUpdates;
 }

@@ -26,22 +26,6 @@ public class BBSimpleConnector extends BBSimpleObject
   private PortFieldMap reqPortFields[] = new PortFieldMap[]{new PortFieldMap(), new PortFieldMap()};
   private boolean hyperConnector;
 
-	@Override
-	public String getTreeDescription()
-	{
-		String desc =
-			"Connector " + rawName;
-		if (hyperConnector)
-			desc += ", hyper";
-		if (index != null)
-			desc += ", from index = " + index[0] + ", to index = " + index[1];
-		if (takeNext != null)
-			desc += ", from take next = " + takeNext[0] + ", to take next = " + takeNext[1];
-		return desc;
-	}
-	
-
-  
 	public BBSimpleConnector(
 			BBSimpleElementRegistry registry,
 			DEComponent component,
@@ -455,5 +439,19 @@ public class BBSimpleConnector extends BBSimpleObject
 		t.add(obj1);
 		t.add(obj2);
 		return t;
+	}
+	
+	@Override
+	public String getTreeDescription()
+	{
+		String desc =
+			"Connector " + name;
+		if (hyperConnector)
+			desc += ", hyper";
+		if (index != null)
+			desc += ", from index = " + index[0] + ", to index = " + index[1];
+		if (takeNext != null)
+			desc += ", from take next = " + takeNext[0] + ", to take next = " + takeNext[1];
+		return desc;
 	}
 }

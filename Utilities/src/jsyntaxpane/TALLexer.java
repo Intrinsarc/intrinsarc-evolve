@@ -11,21 +11,26 @@ public final class TALLexer implements Lexer
 {
 	private Reader reader;
 	private static final String[] TOP_KEYWORDS = {
-		"stratum", "component", "interface"};
+		"stratum", "component", "interface"
+		};
 	private static final String[] MODIFIERS = {
 		"parent", "is-normal", "is-relaxed", "is-destructive", "depends-on", "nests",
 		"is-composite", "is-leaf", "is-primitive", "is-factory", "is-placeholder",
 		"resembles", "replaces", "implementation-class", "is-factory-interface", "is-bean",
-		"is-create-port", "is-hyperport-start", "is-hyperport-end", "read-only", "write-only", "becomes"};
+		};
 	private static final String[] INSIDE_KEYWORDS = {
 		"delete-operations:", "operations:", "replace-operations:", 
 		"delete-attributes:", "attributes:", "replace-attributes:", 
 		"delete-ports:", "ports:", "replace-ports:", 
 		"delete-parts:", "parts:", "replace-parts:", 
 		"delete-connectors:", "connectors:", "replace-connectors:",
-		"delete-port-links:", "port-links:", "replace-port-links:",
-		"slots:", "port-remaps:",
-		"joins", "to", "delegates-from", "maps-onto"};
+		"delete-port-links:", "port-links:", "replace-port-links:"
+		};
+	private static final String[] JOINING_KEYWORDS = {
+		"is-create-port", "is-hyperport-start", "is-hyperport-end", "read-only", "write-only", "becomes",
+		"maps-onto", "ports-remaps:", "slots:", "joins", "to", "delegates-from",
+		"is-ordered", "is-bean-main", "is-bean-noname", "provides", "requires", "upto"
+		};
 	private static final char GUILLEMET_START = '\u00ab';
 	private static final char GUILLEMET_END   = '\u00bb';
 	private int offset;
@@ -65,6 +70,9 @@ public final class TALLexer implements Lexer
 				else
 				if (isKeyword(b.toString(), INSIDE_KEYWORDS))
 					return new Token(TokenType.REGEX, start, length);					
+				else
+					if (isKeyword(b.toString(), JOINING_KEYWORDS))
+						return new Token(TokenType.TYPE, start, length);					
 				else
 					return new Token(TokenType.OPER, start, length);
 			}

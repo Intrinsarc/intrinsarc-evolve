@@ -5,7 +5,7 @@ import java.util.*;
 import com.hopstepjump.backbone.exceptions.*;
 import com.hopstepjump.backbone.nodes.simple.*;
 
-public class BBSimpleFactory
+public class BBSimpleFactory extends BBSimpleObject
 {
 	private int factory;
 	private transient BBSimpleComponent component;
@@ -67,8 +67,10 @@ public class BBSimpleFactory
 			for (BBSimpleAttribute attr : attributes)
 				attr.resolveImplementation(registry);
 		if (parts != null)
+		{
 			for (BBSimplePart part : parts)
 				part.resolveImplementation(registry);
+		}
 		if (connectors != null)
 			for (BBSimpleConnector conn : connectors)
 				conn.resolveImplementation(registry);
@@ -105,5 +107,35 @@ public class BBSimpleFactory
 
 		Collections.sort(ends);		
 		return ends;
+	}
+
+	@Override
+	public String getName()
+	{
+		return null;
+	}
+
+	@Override
+	public String getRawName()
+	{
+		return null;
+	}
+	
+	@Override
+	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
+	{
+		Map<String, List<? extends BBSimpleObject>> children = new LinkedHashMap<String, List<? extends BBSimpleObject>>();
+		List<BBSimpleObject> comp = new ArrayList<BBSimpleObject>();
+		comp.add(component);
+		children.put("attributes", attributes);
+		children.put("parts", parts);
+		children.put("connectors", connectors);
+		return children;
+	}
+
+	@Override
+	public String getTreeDescription()
+	{
+		return "SimpleFactory, id = " + factory;
 	}
 }

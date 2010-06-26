@@ -114,8 +114,7 @@ public class RepositoryGarbageCollector
       lp = 0;
       for (RemovalEntry entry : containmentsToRemove)
       {
-      	if (lp % 10 == 0)
-      		updater.update("Removed " + lp + " redundant containments");
+    		updater.update("Removed " + lp + " redundant containments");
       	lp++;
         Element owner = entry.getOwner();
         EReference ref = entry.getReference();

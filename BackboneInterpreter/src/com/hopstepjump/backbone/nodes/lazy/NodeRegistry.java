@@ -40,7 +40,10 @@ public class NodeRegistry
   	if (obj == null)
   		throw new BBNodeNotFoundException("Object " + cls.getName() + ", UUID = " + reference.getUuid() + " not found", reference.toString());
   	if (!(cls.isAssignableFrom(obj.getClass())))
-  		throw new BBNodeNotFoundException("Found " + cls.getName() + ", UUID = " + reference.getUuid() + " but it is not an instance of " + cls.getName(), reference.toString());
+  		throw new BBNodeNotFoundException(
+  				"Found UUID = " + reference.getUuid() + ", name = " + obj.getName() +
+  				" but it is not an instance of " + cls.getName() + ", class is " + obj.getClass(),
+  				reference.toString());
   	return (T) obj;
   }
   
@@ -50,7 +53,10 @@ public class NodeRegistry
   	if (obj == null)
   		throw new BBNodeNotFoundException("Object " + cls.getName() + ", UUID = " + uuid, "");
   	if (!(cls.isAssignableFrom(obj.getClass())))
-  		throw new BBNodeNotFoundException("Found " + cls.getName() + ", UUID = " + uuid, "");
+  		throw new BBNodeNotFoundException(
+  				"Found  UUID = " + uuid + ", name = " + obj.getName() +
+  				" but it is not an instance of " + cls.getName() + ", class is " + obj.getClass(),
+  				"");
   	return (T) obj;
   }
 

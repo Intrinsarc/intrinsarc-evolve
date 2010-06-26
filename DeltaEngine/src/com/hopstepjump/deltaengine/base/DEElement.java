@@ -125,6 +125,15 @@ public abstract class DEElement extends DEObject
   	return false;
   }
   
+  public String getTopName()
+  {
+  	// find the very topmost perspective
+  	DEStratum top = getHomeStratum();
+  	while (top.getParent() != null)
+  		top = top.getParentStratum();
+  	return getName(top);
+  }
+  
   public String getName(DEStratum perspective)
   {
   	if (isSubstitution())

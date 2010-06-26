@@ -507,6 +507,6 @@ public class BBSimpleAttribute extends BBSimpleObject
 	public String getTreeDescription()
 	{
 		return
-			"Attribute " + rawName + " (" + complex.getUuid() + ")";
+			"Attribute " + name;
 	}
 }

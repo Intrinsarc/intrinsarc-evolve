@@ -12,9 +12,9 @@ public class BBSimpleParameter extends BBSimpleObject
 {
 	private String literal;
 	private BBSimpleAttribute attribute;
-	private transient Object resolvedLiteral;
-	private transient boolean isDefault;
-	private transient boolean resolved;
+	private Object resolvedLiteral;
+	private boolean isDefault;
+	private boolean resolved;
 	
 	@Override
 	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
@@ -71,7 +71,7 @@ public class BBSimpleParameter extends BBSimpleObject
 		if (resolved)
 			return;		
 		resolved = true;
-		
+
 		if (attribute != null)
 			attribute.resolveImplementation(registry);
 		else

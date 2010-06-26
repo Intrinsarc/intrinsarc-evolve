@@ -47,7 +47,7 @@ public class BBSimplePart extends BBSimpleObject
 		partStack.add(p.complex);
 		partStack.addAll(enclosingPart.partStack);
 		rawName = p.getRawName();
-		name = registry.makeName(fullName == null ? "" : fullName + " :: ") + rawName;
+		name = registry.makeName(fullName == null ? "" : fullName + " :: ") + " " + rawName;
 		complex = p.complex;
 		type = p.type;
 		owner = p.owner;
@@ -212,11 +212,6 @@ public class BBSimplePart extends BBSimpleObject
 		this.slots = slots;
 	}
 
-	public void setFactory(int factory)
-	{
-		this.factory = factory;
-	}
-
 	public String getRequiredImplementationNameForProvided(BBSimpleElementRegistry registry, BBSimplePort simplePort, BBSimpleInterface provided)
 	{
 		if (allProvidedToRequiredNames == null)
@@ -267,7 +262,6 @@ public class BBSimplePart extends BBSimpleObject
 	@Override
 	public String getTreeDescription()
 	{
-		String desc = (factory > 0 ? "SimpleFactory, " : "Part ") + rawName + " (" + complex.getUuid() + ")";
-		return desc;
+		return "Part " + name;
 	}
 }
