@@ -419,8 +419,6 @@ public class ModelMover
 		{
 			public void run()
 			{
-				GlobalSubjectRepository.ignoreUpdates = true;
-				
 		    // initialise any fields
 		    savedReferences = new ArrayList<TransientSavedReference>();
 		    translate = new HashMap<String, Element>();
@@ -478,9 +476,7 @@ public class ModelMover
 		    		UML2_EXPORT_FILES, UML2_EXPORT,
 		    		PreferenceTypeDirectory.recent.getLastVisitedDirectory());
 		    lazyOff();
-		    savedName[0] = fileName;
-		    
-				GlobalSubjectRepository.ignoreUpdates = false;
+		    savedName[0] = fileName;		    
 			}
 		});
 		

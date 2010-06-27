@@ -192,21 +192,18 @@ public class BeanImporter
 		conformSize(new JButton[]{add, remove, importLeaves, cancel});
 		int buttonNumber[] = new int[]{0};
 		assignNumber(importLeaves, buttonNumber, 1);
+		
+		// set the sizes
+		panel.setDividerLocation((int)(panel.getPreferredSize().height * 0.45));
+		insideBottom.setDividerLocation(panel.getPreferredSize().width / 2 - 5);
+		insideTop.setDividerLocation(panel.getPreferredSize().width / 2 - 5);
+
 		coordinator.invokeAsDialog(
 				BEAN_ADD_ICON,
 				"Import into " + title,
 				panel,
 				new JButton[]{importLeaves, cancel},
-				new Runnable()
-				{
-					public void run()
-					{
-						panel.setDividerLocation(0.45);
-						insideBottom.setDividerLocation(0.5);
-						insideTop.setDividerLocation(0.5);
-						panel.revalidate();
-					}
-				});
+				null);
 		return buttonNumber[0];
 	}
 

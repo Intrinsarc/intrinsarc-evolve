@@ -40,14 +40,17 @@ public class BBSimpleSlot extends BBSimpleObject
 						value.add(new BBSimpleParameter(simple));
 				}
 				else
-					value.add(new BBSimpleParameter(p.getLiteral()));					
+				{
+					value.add(new BBSimpleParameter(p.getLiteral()));
+				}
 		}
 
 		// the attribute must be in the type of the part
 		BBSimpleComponent partComp = registry.retrieveComponent(partType);
+		DEAttribute complexAttr = complex.getAttribute(registry.getPerspective(), partComp.getComplex());
 		for (BBSimpleAttribute attr : partComp.getAttributes())
 		{
-			if (attr.getComplex() == complex.getAttribute())
+			if (attr.getComplex() == complexAttr)
 			{
 				attribute = attr;
 				break;

@@ -1,0 +1,198 @@
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing other 0.7
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\series bold
+Evolve: 11/12/2008, 30/1/2009
+\end_layout
+
+\begin_layout Standard
+To do before selling
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Defects:
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+undo not fully working after class tabbing 
+\end_layout
+
+\begin_layout Enumerate
+attribute issues (aliasing, defaults, 
+\color green
+replace of attr with default
+\color inherit
+)
+\end_layout
+
+\begin_layout Enumerate
+undo after ageX replace – error adorner holds onto old state?
+\end_layout
+
+\begin_layout Enumerate
+classpath separator to use space and quotes
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Features
+\end_layout
+
+\begin_layout Enumerate
+better looking component diagrams (a la yworks example)
+\begin_inset Newline newline
+\end_inset
+
+(2 days)
+\end_layout
+
+\begin_layout Enumerate
+allow refresh of leaves upon reimport
+\begin_inset Newline newline
+\end_inset
+
+(3 days)
+\end_layout
+
+\begin_layout Enumerate
+fix component destruction
+\begin_inset Newline newline
+\end_inset
+
+(1 day)
+\end_layout
+
+\begin_layout Enumerate
+better “port location” when pressing spacebar on class
+\begin_inset Newline newline
+\end_inset
+
+(0.5 days)
+\end_layout
+
+\begin_layout Enumerate
+more rules implemented including composition and stereo visibility...
+\begin_inset Newline newline
+\end_inset
+
+(3 days)
+\end_layout
+
+\begin_layout Enumerate
+simplify attr + operation options + menu items disabled rather than removed
+\begin_inset Newline newline
+\end_inset
+
+(0.5 days)
+\end_layout
+
+\begin_layout Enumerate
+full example with complex scenario for documentation
+\begin_inset Newline newline
+\end_inset
+
+(2 days + 1 day fixing)
+\end_layout
+
+\begin_layout Enumerate
+documentation + web site
+\begin_inset Newline newline
+\end_inset
+
+(10 days...
+ take initial from phd, including statecharts)
+\end_layout
+
+\begin_layout Enumerate
+do website, go into beta
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Next up:
+\end_layout
+
+\begin_layout Enumerate
+jar deployment + editing off deployed jars
+\begin_inset Newline newline
+\end_inset
+
+(5 days)
+\end_layout
+
+\begin_layout Enumerate
+visual resemblance
+\begin_inset Newline newline
+\end_inset
+
+(2 days)
+\end_layout
+
+\begin_layout Enumerate
+fix editing + positioning of connector ends
+\begin_inset Newline newline
+\end_inset
+
+(3 days)
+\end_layout
+
+\begin_layout Enumerate
+concurrency via actors and possibly concurrent state machines + expanded
+ state mechanisms such as history
+\begin_inset Newline newline
+\end_inset
+
+(??)
+\end_layout
+
+\end_body
+\end_document

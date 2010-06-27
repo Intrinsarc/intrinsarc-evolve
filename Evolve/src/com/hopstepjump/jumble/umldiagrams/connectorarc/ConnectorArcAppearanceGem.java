@@ -228,6 +228,10 @@ public class ConnectorArcAppearanceGem implements Gem
 		 */
 		private String handleEndChange(String newText, int index, LinkedTextFacet linkedTextFacet)
 		{
+			// don't change if we don't have to
+			if (newText.equals(getConnectionIndexString(index)))
+				return newText;
+			
 			ConnectorEnd end = (ConnectorEnd) subject.getEnds().get(index);
 			Matcher matcher = match.matcher(newText);
 			Matcher matcherAlpha = matchAlpha.matcher(newText);
@@ -644,9 +648,9 @@ public class ConnectorArcAppearanceGem implements Gem
       	SetTextTransaction.set(startLinkedTextFacet.getFigureFacet(), getConnectionIndexString(0), null, false);
       
       // see if the connection ends are correct for the end
-/*xxx      if (!getConnectionIndexString(1).equals(endLinkedTextFacet.getText()))
+      if (!getConnectionIndexString(1).equals(endLinkedTextFacet.getText()))
       	SetTextTransaction.set(endLinkedTextFacet.getFigureFacet(), getConnectionIndexString(1), null, false);
-*/      
+      
       // is this a different type of connector now?
       final boolean subjectIsDelegate = subject.getKind().equals(ConnectorKind.DELEGATION_LITERAL);
       final boolean subjectIsPortLink = subject.getKind().equals(ConnectorKind.PORT_LINK_LITERAL);

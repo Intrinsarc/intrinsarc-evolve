@@ -50,13 +50,23 @@ public class InspectAndImportStrataAction extends AbstractAction
 		this.monitor = monitor;
 		this.saver = saver;
 	}
-
+	
 	public void actionPerformed(ActionEvent e)
 	{
+		try
+		{
+			GlobalSubjectRepository.ignoreUpdates = true;
+			internalActionPerformed(e);
+		}
+		finally
+		{
+			GlobalSubjectRepository.ignoreUpdates = false;			
+		}
+	}
+
+	public void internalActionPerformed(ActionEvent e)
+	{
 		// save the state of the model
-		GlobalSubjectRepository.ignoreUpdates = true;
-		System.out.println("$$ disabled updates");
-		
 		// open the exported file into a different model
   	// ask for the file to import
     final String fileName = RepositoryUtility.chooseFileNameToOpen(
@@ -75,7 +85,6 @@ public class InspectAndImportStrataAction extends AbstractAction
 		catch (RepositoryOpeningException ex)
 		{
 			coordinator.invokeErrorDialog("File cannot be loaded for browsing", ex.getMessage());
-			GlobalSubjectRepository.ignoreUpdates = false;
 			return;
 		}
 		finally
@@ -149,20 +158,18 @@ public class InspectAndImportStrataAction extends AbstractAction
     JButton cancel = new JButton("Cancel", CANCEL_ICON);
     JButton buttons[] = new JButton[]{imp, cancel};
     BeanImporter.conformSize(buttons);
+    panel.setDividerLocation(180);
 		int chosen = coordinator.invokeAsDialog(IMPORT_ICON, "Exported file: " + fileName, panel, buttons,
 			new Runnable()
 			{
 				public void run()
 				{
 					t.setSelectionRow(0);
-					panel.setDividerLocation(0.3);
 				}
 			});
 				
 		if (chosen == 0)
 			importPackages(export);
-		System.out.println("$$ reenabled updates");
-		GlobalSubjectRepository.ignoreUpdates = false;
 	}		
 
 	private void importPackages(SubjectRepositoryFacet toImport)

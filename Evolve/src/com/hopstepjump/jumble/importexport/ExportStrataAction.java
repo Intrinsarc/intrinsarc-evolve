@@ -46,13 +46,21 @@ public class ExportStrataAction extends AbstractAction
 					ScreenProperties.getUndoPopupColor(), Color.black, 1500);
 			return;
 		}
-		String filename = exporter.exportPackages(monitor);
-		if (filename != null)
+		try
 		{
-			PreferenceTypeDirectory.recent.setLastVisitedDirectory(new File(filename));
-			popup.displayPopup(EXPORT_ICON, "Export successful",
-					"Strata exported to " + filename, ScreenProperties.getUndoPopupColor(),
-					Color.black, 3000);
+			GlobalSubjectRepository.ignoreUpdates = true;
+			String filename = exporter.exportPackages(monitor);
+			if (filename != null)
+			{
+				PreferenceTypeDirectory.recent.setLastVisitedDirectory(new File(filename));
+				popup.displayPopup(EXPORT_ICON, "Export successful",
+						"Strata exported to " + filename, ScreenProperties.getUndoPopupColor(),
+						Color.black, 3000);
+			}
+		}
+		finally
+		{
+			GlobalSubjectRepository.ignoreUpdates = true;
 		}
 	}
 }

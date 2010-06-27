@@ -69,15 +69,23 @@ public class RepositoryGarbageCollector
   
   public int collectGarbage()
   {
-    referencesToRemove.clear();
-    containmentsToRemove.clear();
+  	try
+  	{
+  		GlobalSubjectRepository.ignoreUpdates = true;
+  		referencesToRemove.clear();
+  		containmentsToRemove.clear();
     
-    // iterate over every package, from top to bottom
-    // if the package is deleted, remove it
-    // otherwise, consider deleting any elements in it which need to be collected
-    // and iterate through sub-packages
-    collect(repository.getTopLevelModel());
-    return removeElements();
+  		// iterate over every package, from top to bottom
+  		// if the package is deleted, remove it
+  		// otherwise, consider deleting any elements in it which need to be collected
+  		// and iterate through sub-packages
+  		collect(repository.getTopLevelModel());
+  		return removeElements();
+  	}
+  	finally
+  	{
+  		GlobalSubjectRepository.ignoreUpdates = false;
+  	}
   }
   
   private int removeElements()
@@ -114,7 +122,7 @@ public class RepositoryGarbageCollector
       lp = 0;
       for (RemovalEntry entry : containmentsToRemove)
       {
-    		updater.update("Removed " + lp + " redundant containments");
+    		updater.update("Removed " + lp + " redundant containments (may take a while...)");
       	lp++;
         Element owner = entry.getOwner();
         EReference ref = entry.getReference();

@@ -335,8 +335,8 @@ public class ApplicationWindow extends SmartJFrame
 				});
 		browserGem.getRepositoryBrowserFacet().selectFirstElements();
 
-		browserFacet.setTreeDivider(0.5);
-		browserFacet.setDetailDivider(0.30);
+		browserFacet.setTreeDivider(height / 2);
+		browserFacet.setDetailDivider((int)(width * .3));
 
 		browsers.add(browserFacet);
 		browserDockables.put(browserFacet, dockable);
@@ -1739,7 +1739,7 @@ public class ApplicationWindow extends SmartJFrame
 			entries.add(new SmartMenuItemImpl("File", "Browser", openBrowser));
 
 			// add the model import / export features
-			JMenuItem examineExport = new JMenuItem(new InspectAndImportStrataAction(coordinator, popup, frame, monitor,
+			JMenuItem examineImport = new JMenuItem(new InspectAndImportStrataAction(coordinator, popup, frame, monitor,
 				new ISaver()
 				{
 					public int askAboutSave(String message)
@@ -1757,8 +1757,8 @@ public class ApplicationWindow extends SmartJFrame
 						return new RefreshAction();
 					}
 				}));
-			entries.add(new SmartMenuItemImpl("File", "ImportExport", examineExport));
-			GlobalPreferences.registerKeyAction("File", examineExport, null, "Inspect and possibly import an external model");
+			entries.add(new SmartMenuItemImpl("File", "ImportExport", examineImport));
+			GlobalPreferences.registerKeyAction("File", examineImport, null, "Inspect and possibly import an external model");
 			JMenuItem exportItem = new UpdatingJMenuItem(new ExportStrataAction(coordinator, popup, frame, monitor))
 			{
 				public boolean update()

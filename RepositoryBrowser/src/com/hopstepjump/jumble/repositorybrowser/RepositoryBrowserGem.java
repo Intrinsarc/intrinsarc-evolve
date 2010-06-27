@@ -266,17 +266,17 @@ public class RepositoryBrowserGem implements Gem
     /*
      * @see com.hopstepjump.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#setDetailDivider(double)
      */
-    public void setDetailDivider(double location)
+    public void setDetailDivider(int size)
     {
-      detailSplitter.setDividerLocation(location);
+      detailSplitter.setDividerLocation(size);
     }
 
     /*
      * @see com.hopstepjump.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#setTreeDivider(double)
      */
-    public void setTreeDivider(double location)
+    public void setTreeDivider(int size)
     {
-      treeSplitter.setDividerLocation(location);
+      treeSplitter.setDividerLocation(size);
     }
 
     /*
