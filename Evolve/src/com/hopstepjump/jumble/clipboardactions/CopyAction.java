@@ -27,8 +27,6 @@ import edu.umd.cs.jazz.util.*;
 
 public class CopyAction extends AbstractAction
 {
-  public static boolean USE_FREEHEP = false;
-
   /** the emf export is offset by this much */
   private static final int offset = 32;
   /** we want to offset each side by this much */
@@ -99,7 +97,7 @@ public class CopyAction extends AbstractAction
     // move it to the clipboard
     String headerString =
       "{\\rtf1\\ansi\\ansicpg1252\\uc1 \\viewkind1\\viewscale100"
-        + "{{\\*\\shppict{\\pict\\picscalex25\\picscaley25\\piccropl0"
+        + "{{\\*\\shppict{\\pict\\picscalex64\\picscaley50\\piccropl0"
         + "\\piccropr0\\piccropt0\\piccropb0\\emfblip{\\*}";
     String footerString = "}}\\par }}";
     try
