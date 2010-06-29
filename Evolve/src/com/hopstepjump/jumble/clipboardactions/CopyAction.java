@@ -97,7 +97,7 @@ public class CopyAction extends AbstractAction
     // move it to the clipboard
     String headerString =
       "{\\rtf1\\ansi\\ansicpg1252\\uc1 \\viewkind1\\viewscale100"
-        + "{{\\*\\shppict{\\pict\\picscalex64\\picscaley50\\piccropl0"
+        + "{{\\*\\shppict{\\pict\\picscalex67\\picscaley50\\piccropl0"
         + "\\piccropr0\\piccropt0\\piccropb0\\emfblip{\\*}";
     String footerString = "}}\\par }}";
     try
