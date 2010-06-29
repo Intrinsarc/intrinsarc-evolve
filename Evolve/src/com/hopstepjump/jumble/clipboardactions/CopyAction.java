@@ -29,7 +29,7 @@ import edu.umd.cs.jazz.util.*;
 
 public class CopyAction extends AbstractAction
 {
-  public static boolean USE_FREEHEP = false;
+  public static boolean USE_FREEHEP = true;
 
   /** the emf export is offset by this much */
   private static final int offset = 32;
