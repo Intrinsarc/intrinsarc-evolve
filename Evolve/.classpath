@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="/IDraw"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="/WMFWriter"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/UML2Repository"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RepositoryBrowser"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BackboneGenerator"/>

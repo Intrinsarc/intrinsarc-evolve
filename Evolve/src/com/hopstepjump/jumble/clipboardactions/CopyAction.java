@@ -15,8 +15,6 @@ import com.hopstepjump.idraw.diagramsupport.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.utility.*;
-import com.hopstepjump.wmf.*;
-import com.hopstepjump.wmf.records.*;
 
 import edu.umd.cs.jazz.util.*;
 
@@ -29,7 +27,7 @@ import edu.umd.cs.jazz.util.*;
 
 public class CopyAction extends AbstractAction
 {
-  public static boolean USE_FREEHEP = true;
+  public static boolean USE_FREEHEP = false;
 
   /** the emf export is offset by this much */
   private static final int offset = 32;
@@ -83,55 +81,10 @@ public class CopyAction extends AbstractAction
     UBounds bounds = view.getDrawnBounds();
   
     // copy to clipboard
-    if (USE_FREEHEP)
-    	copyToClipboardAsFreeHepMetafile(canvas, bounds);
-    else
-    	copyToClipboardAsMyMetafile(canvas, bounds);
+  	copyToClipboardAsExtendedMetafile(canvas, bounds);
   }
 
-	public static void copyToClipboardAsMyMetafile(ZCanvas canvas, UBounds bounds)
-  {
-  	double x = Math.max(bounds.getX() - 1, 0);
-  	double y = Math.max(bounds.getY() - 1, 0);
-  	double width = bounds.getWidth() + 1;
-  	double height = bounds.getHeight() + 1;
-  	int rx = (int) Math.round(x);
-  	int ry = (int) Math.round(y);
-  	int rwidth = (int) Math.round(width);
-  	int rheight = (int) Math.round(height);
-  	canvas.setSize((int)Math.round(x + width), (int)Math.round(y + height));
-  	
-  	// move it to the clipboard
-  	JazzToWMFGraphics2D g2d = new JazzToWMFGraphics2D();
-  	canvas.paint(g2d);
-  	
-  	String headerString = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1033{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}}\\viewkind4\\uc1\\pard";
-  	String footerString = "\\par}";
-  
-  	// place the data on the clipboard
-  	WMFFormat data = new WMFFormat(60, 60, rwidth, rheight);
-  	data.addRecord(new SetWindowOriginRecord(rx, ry));
-  	data.addRecord(new SetWindowExtentRecord(rwidth, rheight));
-  	data.addRecord(g2d.getRecords());
-  	
-  	ByteArrayOutputStream clipOut = new ByteArrayOutputStream();
-  	try
-  	{
-  		clipOut.write(headerString.getBytes());
-  		// adds the end record also
-  		data.writeRTFBytes(clipOut, true);
-  		clipOut.write(footerString.getBytes());
-  	}
-  	catch (IOException ex)
-  	{
-  	}
-  
-  	InputStream s = new ByteArrayInputStream(clipOut.toByteArray());
-  	MetafileTransferable transferImage = new MetafileTransferable(s);
-  	Toolkit.getDefaultToolkit().getSystemClipboard().setContents(transferImage, transferImage);
-  }
-	
-  private static void copyToClipboardAsFreeHepMetafile(ZCanvas canvas, UBounds bounds)
+  private static void copyToClipboardAsExtendedMetafile(ZCanvas canvas, UBounds bounds)
   {
     double x = bounds.getX() - 1;
     double y = bounds.getY() - 1;
@@ -145,9 +98,9 @@ public class CopyAction extends AbstractAction
 
     // move it to the clipboard
     String headerString =
-      "{\\rtf1\\ansi\\ansicpg1252\\uc1 \\viewkind1\\viewscale200"
-        + "{{\\*\\shppict{\\pict\\picscalex100\\picscaley100\\piccropl0"
-        + "\\piccropr0\\piccropt0\\piccropb0\\picw425\\pich425\\picwgoal241\\pichgoal241\\emfblip{\\*}";
+      "{\\rtf1\\ansi\\ansicpg1252\\uc1 \\viewkind1\\viewscale100"
+        + "{{\\*\\shppict{\\pict\\picscalex25\\picscaley25\\piccropl0"
+        + "\\piccropr0\\piccropt0\\piccropb0\\emfblip{\\*}";
     String footerString = "}}\\par }}";
     try
     {
