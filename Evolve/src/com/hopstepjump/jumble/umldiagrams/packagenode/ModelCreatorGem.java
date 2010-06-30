@@ -12,6 +12,7 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.repositorybase.*;
 
 /**
@@ -22,7 +23,6 @@ import com.hopstepjump.repositorybase.*;
 public class ModelCreatorGem implements Gem
 {
   public static final String NAME = "Model";
-  private static final Color FILL_COLOR =  new Color(255, 213, 255);
   private static final String FIGURE_NAME = "model";
   private NodeCreateFacet nodeCreateFacet = new NodeCreateFacetImpl();
   private boolean autoSized;
@@ -68,7 +68,8 @@ public class ModelCreatorGem implements Gem
       NamedElement owner = (NamedElement) ((subject == null) ? null : ((Package) subject).getOwner());
       
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, autoSized, false);
-      BasicNamespaceNodeGem packageGem = new BasicNamespaceNodeGem((Package) subject, owner == null ? "" : owner.getName(), diagram, figureId, FIGURE_NAME, FILL_COLOR, false);
+      BasicNamespaceNodeGem packageGem = new BasicNamespaceNodeGem(
+      		(Package) subject, owner == null ? "" : owner.getName(), diagram, figureId, FIGURE_NAME, BaseColors.getColorPreference(BaseColors.MODEL_COLOR), false);
       basicGem.connectBasicNodeAppearanceFacet(packageGem.getBasicNodeAppearanceFacet());
       basicGem.connectBasicNodeContainerFacet(packageGem.getBasicNodeContainerFacet());
       packageGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

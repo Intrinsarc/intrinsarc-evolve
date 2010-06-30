@@ -7,22 +7,24 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 
 import com.hopstepjump.geometry.*;
+import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.repositorybase.*;
 
 public class PartCreatorGem
 {
-  public static final Color INITIAL_FILL_COLOR = new Color(185, 198, 106);
   public static final String NAME = "Part";
   private NodeCreateFacet nodeCreateFacet = new NodeCreateFacetImpl();
   private boolean suppressAttributes = false;
   private boolean suppressOperations = true;
   private boolean displayOnlyIcon = false;
+  private Preference fillColorPreference;
   
-  public PartCreatorGem()
+	public PartCreatorGem()
   {
   }
 
@@ -46,7 +48,7 @@ public class PartCreatorGem
       ClassifierNodeGem classifierGem =
         new ClassifierNodeGem(
             diagram,
-            INITIAL_FILL_COLOR,
+            getFillColor(),
       			new PersistentFigure(figureId, null, subject, actualProperties),
             true);
       basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
@@ -87,7 +89,10 @@ public class PartCreatorGem
     {
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
       ClassifierNodeGem classifierGem =
-        new ClassifierNodeGem(INITIAL_FILL_COLOR, true, figure);
+        new ClassifierNodeGem(
+        		getFillColor(),
+        		true,
+        		figure);
       basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
       basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
       classifierGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
@@ -156,6 +161,19 @@ public class PartCreatorGem
       properties.addIfNotThere(new PersistentProperty("supO", suppressOperations, false));
       properties.addIfNotThere(new PersistentProperty("icon", displayOnlyIcon, false));
 			properties.addIfNotThere(new PersistentProperty("auto", false, true));
-		}
+      properties.addIfNotThere(new PersistentProperty("fill", getFillColor(), Color.WHITE));
+		}		
   }
+  
+  public void setFillColorPreference(Preference fillColorPreference)
+	{
+		this.fillColorPreference = fillColorPreference;
+	}
+
+	private Color getFillColor()
+	{
+		if (fillColorPreference == null)
+			return BaseColors.getColorPreference(BaseColors.PART_COLOR);
+		return BaseColors.getColorPreference(fillColorPreference);
+	}
 }

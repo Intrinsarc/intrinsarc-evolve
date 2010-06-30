@@ -24,6 +24,7 @@ import com.hopstepjump.jumble.repositorybrowser.*;
 import com.hopstepjump.jumble.umldiagrams.associationarc.*;
 import com.hopstepjump.jumble.umldiagrams.baseline.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.jumble.umldiagrams.connectorarc.*;
 import com.hopstepjump.jumble.umldiagrams.containmentarc.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
@@ -484,12 +485,16 @@ public class PaletteManagerGem
         NodeCreateFacet stateCreator = makeStateCreator(false);
         palette.addEntry(makeEntry(true, "state.png",           "State",            makeNodeCreateTool(stateCreator), "top"));
         ClassCreatorGem compositeStateCreator = new ClassCreatorGem();
+        compositeStateCreator.setFillColorPrefence(BaseColors.STATE_COLOR);
         compositeStateCreator.setSuppressOperations(true);
         compositeStateCreator.setAutoSized(false);
         compositeStateCreator.setComponentKind(ComponentKindEnum.NORMAL);
         compositeStateCreator.setStereotype(CommonRepositoryFunctions.STATE);
         compositeStateCreator.setResemblance(CommonRepositoryFunctions.COMPOSITE_STATE_CLASS);
         palette.addEntry(makeEntry(true, "composite-state.png", "Composite state",  makeNodeCreateTool(compositeStateCreator.getNodeCreateFacet()), "top"));
+
+        PartCreatorGem statePartCreator = new PartCreatorGem();
+        palette.addEntry(makeEntry(true, "state.png", "State part",  makeNodeCreateTool(statePartCreator.getNodeCreateFacet()), "class"));
         
         ConnectorCreatorGem transitionCreator = new ConnectorCreatorGem();
         transitionCreator.setDirected(true);
@@ -534,7 +539,9 @@ public class PaletteManagerGem
       
       {
         RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Part", new String[]{COMPONENT_FOCUS, STATE_FOCUS});
-	      palette.addEntry(makeEntry(true,  "part.png",         "Part",                 makeNodeCreateTool((retrieveNodeRecreator(PartCreatorGem.NAME))), "class", "part"));
+        PartCreatorGem partCreator = new PartCreatorGem();
+        partCreator.setFillColorPreference(BaseColors.PART_COLOR);        
+	      palette.addEntry(makeEntry(true,  "part.png",         "Part",                 makeNodeCreateTool(partCreator.getNodeCreateFacet()), "class", "part"));
 	      palette.addEntry(makeEntry(false, "portlink.png",     "Port link",            new ArcCreateToolGem(portLinkCreator.getArcCreateFacet()).getToolFacet(), "port"));
 	      palette.addEntry(makeEntry(false, "connector.png",    "Connector",            new ArcCreateToolGem(retrieveArcRecreator(ConnectorCreatorGem.NAME)).getToolFacet(), "port", null));
 	      palette.addEntry(makeEntry(false, "dependency.png",   "Delegation connector", new ArcCreateToolGem(delegateConnectorCreator.getArcCreateFacet()).getToolFacet(), "port"));
@@ -545,7 +552,7 @@ public class PaletteManagerGem
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Class", new String[]{CLASS_FOCUS});
       ClassCreatorGem classCreator = new ClassCreatorGem();
-      classCreator.setFillColor(Color.WHITE);
+      classCreator.setFillColorPrefence(BaseColors.CLASS_COLOR);
       palette.addEntry(makeEntry(true,  "class.png",       "Class",              makeNodeCreateTool(classCreator.getNodeCreateFacet()), "top", null));
       palette.addEntry(makeEntry(false, "inheritance.gif", "Inheritance",        new ArcCreateToolGem(retrieveArcRecreator(InheritanceCreatorGem.NAME)).getToolFacet(), "element", null));
       palette.addEntry(makeEntry(false, "interface.png",   "Interface",          makeNodeCreateTool(retrieveNodeRecreator(InterfaceCreatorGem.NAME)), "top", null));
@@ -591,7 +598,7 @@ public class PaletteManagerGem
 		ClassCreatorGem primitiveCreator = new ClassCreatorGem();
 		primitiveCreator.setComponentKind(ComponentKindEnum.PRIMITIVE);
 		primitiveCreator.setStereotype(CommonRepositoryFunctions.PRIMITIVE_TYPE);
-		primitiveCreator.setFillColor(new Color(180, 180, 255));
+		primitiveCreator.setFillColorPrefence(BaseColors.PRIMITIVE_COLOR);
 		primitiveCreator.setDisplayOnlyIcon(icon);
 		return primitiveCreator.getNodeCreateFacet();
 	}
@@ -599,6 +606,7 @@ public class PaletteManagerGem
 	public static NodeCreateFacet makeStateCreator(boolean icon)
 	{
 		ClassCreatorGem stateCreator = new ClassCreatorGem();
+    stateCreator.setFillColorPrefence(BaseColors.STATE_COLOR);
 		stateCreator.setSuppressOperations(true);
 		stateCreator.setAutoSized(false);
 		stateCreator.setComponentKind(ComponentKindEnum.NORMAL);
@@ -614,7 +622,7 @@ public class PaletteManagerGem
     factoryCreator.setSuppressOperations(true);
     factoryCreator.setAutoSized(false);
     factoryCreator.setFactory(true);
-    factoryCreator.setFillColor(Color.WHITE);
+    factoryCreator.setFillColorPrefence(BaseColors.FACTORY_COLOR);
     factoryCreator.setComponentKind(ComponentKindEnum.NORMAL);
     factoryCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
     factoryCreator.setResemblance(CommonRepositoryFunctions.FACTORY_BASE);
@@ -628,7 +636,7 @@ public class PaletteManagerGem
     placeholderCreator.setSuppressOperations(true);
     placeholderCreator.setAutoSized(false);
     placeholderCreator.setPlaceholder(true);
-    placeholderCreator.setFillColor(Color.WHITE);
+    placeholderCreator.setFillColorPrefence(BaseColors.PLACEHOLDER_COLOR);
     placeholderCreator.setComponentKind(ComponentKindEnum.NORMAL);
     placeholderCreator.setStereotype(CommonRepositoryFunctions.COMPONENT);
     placeholderCreator.setDisplayOnlyIcon(icon);
@@ -651,6 +659,7 @@ public class PaletteManagerGem
 	{
 		{
 		  PackageCreatorGem creator = new PackageCreatorGem(false);
+		  creator.setFillColorPreference(BaseColors.STRATUM_COLOR);
 		  creator.setStereotype(CommonRepositoryFunctions.STRATUM);
 		  return creator.getNodeCreateFacet();
 		}
@@ -660,6 +669,7 @@ public class PaletteManagerGem
 	{
 		{
 		  PackageCreatorGem creator = new PackageCreatorGem(false);
+		  creator.setFillColorPreference(BaseColors.STRATUM_COLOR);
 		  creator.setStereotype(CommonRepositoryFunctions.STRATUM);
 		  creator.setRelaxed(true);
 		  return creator.getNodeCreateFacet();

@@ -32,6 +32,7 @@ import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.expander.*;
 import com.hopstepjump.jumble.gui.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
 import com.hopstepjump.jumble.umldiagrams.packagenode.*;
 import com.hopstepjump.jumble.umldiagrams.requirementsfeaturenode.*;
@@ -49,7 +50,8 @@ import edu.umd.cs.jazz.*;
 
 public final class BasicNamespaceNodeGem implements Gem
 {
-  public static final ImageIcon ERROR_ICON = IconLoader.loadIcon("warning.png");
+  private static final Color COLOR_PREFERENCE = BaseColors.getColorPreference(BaseColors.PACKAGE_COLOR);
+	public static final ImageIcon ERROR_ICON = IconLoader.loadIcon("warning.png");
   public static final ImageIcon COLOR_WHEEL_ICON = IconLoader.loadIcon("color_wheel.png");
   
 	private Font font = ScreenProperties.getPrimaryFont();
@@ -58,8 +60,6 @@ public final class BasicNamespaceNodeGem implements Gem
 	private Namespace subject;
   private Color lineColor = Color.black;
   private Color fillColor;
-  private static final Color INITIAL_FILL_COLOR = new Color(240, 250, 255);
-
   private String name = "";
   private UBounds minVetBounds;
   private boolean suppressContents = false;
@@ -674,7 +674,7 @@ public final class BasicNamespaceNodeGem implements Gem
 			properties.add(new PersistentProperty("icon", displayOnlyIcon, false));
 			properties.add(new PersistentProperty("showVis", showOwningPackage, false));
 			properties.add(new PersistentProperty("suppVis", forceSuppressOwningPackage, false));
-      properties.add(new PersistentProperty("fill", fillColor, INITIAL_FILL_COLOR));
+      properties.add(new PersistentProperty("fill", fillColor, null));
       properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
 		}
 
@@ -955,7 +955,7 @@ public final class BasicNamespaceNodeGem implements Gem
 
 		showOwningPackage = properties.retrieve("showVis", false).asBoolean();
 		forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
-    fillColor = properties.retrieve("fill", INITIAL_FILL_COLOR).asColor();
+    fillColor = properties.retrieve("fill", COLOR_PREFERENCE).asColor();
     stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
 	}
 

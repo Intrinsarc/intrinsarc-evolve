@@ -17,6 +17,7 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.jumble.html.*;
 import com.hopstepjump.jumble.repositorybrowser.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.notifications.*;
 import com.hopstepjump.repository.*;
 import com.hopstepjump.repositorybase.*;
@@ -46,6 +47,7 @@ public class Evolve
     RegisteredGraphicalThemes themes = RegisteredGraphicalThemes.getInstance(); 
     themes.registerPreferenceSlots();
     themes.interpretPreferences();
+    BaseColors.registerPreferenceSlots();
     BackboneWriter.registerPreferenceSlots();
     HTMLDocumentationGenerator.registerPreferenceSlots();
     PreferenceTypeDirectory.registerPreferenceSlots();

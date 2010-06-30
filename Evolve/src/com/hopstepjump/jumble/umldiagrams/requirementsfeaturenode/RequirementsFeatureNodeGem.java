@@ -36,6 +36,7 @@ import com.hopstepjump.jumble.packageview.base.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
@@ -54,7 +55,6 @@ public class RequirementsFeatureNodeGem implements Gem
 	private RequirementsFeature subject;
 	
 	private Color fillColor;
-  private Color initialFillColor;
 	private Color lineColor = Color.BLACK;
 	
 	/** persistent attributes */
@@ -577,7 +577,7 @@ public class RequirementsFeatureNodeGem implements Gem
       {
   			// draw the rectangle
   			UBounds bounds = sizes.getOuter();
-  			group.addChild(new FancyRectangleMaker(bounds, 10, fillColor, true, 3).make());
+  			group.addChild(new FancyRectangleMaker(bounds, 10, fillColor, true, 2.5).make());
       }
       			
 			if (name.length() > 0)
@@ -861,7 +861,7 @@ public class RequirementsFeatureNodeGem implements Gem
 			properties.add(new PersistentProperty("showVis", showOwningPackage, false));
       properties.add(new PersistentProperty("showStereo", showStereotype, true));
 			properties.add(new PersistentProperty("suppVis", forceSuppressOwningPackage, false));
-      properties.add(new PersistentProperty("fill", fillColor, initialFillColor));
+      properties.add(new PersistentProperty("fill", fillColor, null));
       properties.add(new PersistentProperty("addedUuids", deletedUuids));
       properties.add(new PersistentProperty("deletedUuids", deletedUuids));
       properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
@@ -1104,10 +1104,10 @@ public class RequirementsFeatureNodeGem implements Gem
 	
 	public RequirementsFeatureNodeGem(
 		DiagramFacet diagram,
-		Color initialFillColor,
+		Color fillColor,
 		PersistentFigure pfig)
 	{
-    this.initialFillColor = initialFillColor;
+    this.fillColor = fillColor;
     interpretPersistentFigure(pfig);    
 	}
 	
@@ -1127,7 +1127,7 @@ public class RequirementsFeatureNodeGem implements Gem
     showStereotype = properties.retrieve("showStereo", true).asBoolean();
     forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
 
-    fillColor = properties.retrieve("fill", initialFillColor).asColor();
+    fillColor = properties.retrieve("fill", Color.WHITE).asColor();
     addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
     stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
@@ -1159,9 +1159,9 @@ public class RequirementsFeatureNodeGem implements Gem
     }	
 	}
   
-  public RequirementsFeatureNodeGem(Color initialFillColor, PersistentFigure pfig)
+  public RequirementsFeatureNodeGem(Color fillColor, PersistentFigure pfig)
 	{
-    this.initialFillColor = initialFillColor;    
+    this.fillColor = fillColor;    
     interpretPersistentFigure(pfig);
   }
   

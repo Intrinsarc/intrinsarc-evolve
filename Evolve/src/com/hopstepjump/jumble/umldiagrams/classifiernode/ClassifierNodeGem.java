@@ -12,10 +12,7 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
-import org.freehep.graphicsio.emf.gdi.*;
 
-import com.hopstepjump.backbone.generator.*;
-import com.hopstepjump.backbone.printers.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
@@ -38,6 +35,7 @@ import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.jumble.packageview.base.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.jumble.umldiagrams.constituenthelpers.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
 import com.hopstepjump.jumble.umldiagrams.featurenode.*;
@@ -55,7 +53,8 @@ import edu.umd.cs.jazz.component.*;
 
 public final class ClassifierNodeGem implements Gem
 {
-  private static final ImageIcon ATTRIBUTE = IconLoader.loadIcon("tree-private-attribute.png");
+  private static final Color COLOR_PREFERENCE = BaseColors.getColorPreference(BaseColors.DEFAULT_COLOR);
+	private static final ImageIcon ATTRIBUTE = IconLoader.loadIcon("tree-private-attribute.png");
   private static final ImageIcon OPERATION = IconLoader.loadIcon("tree-public-operation.png");
   private static final ImageIcon COMPOSITION_ICON = IconLoader.loadIcon("composition.png");
 
@@ -65,7 +64,6 @@ public final class ClassifierNodeGem implements Gem
 	private NamedElement subject;
 	
 	private Color fillColor;
-  private Color initialFillColor;
 	private Color lineColor = Color.BLACK;
 	
   /** are we acting as a part? */
@@ -790,13 +788,7 @@ public final class ClassifierNodeGem implements Gem
 		
 		public ZNode formView()
 		{
-			//  new Color(165, 178, 86)  green
-			// Color.LIGHT_GRAY          gray
-			// new Color(205, 126, 208)  magenta
-			// 
-			
-      Color line = !showAsState ? lineColor : new Color(200, 160, 160);
-      Color fill = !showAsState ? fillColor : new Color(240, 200, 200);
+      Color line = !showAsState ? lineColor : fillColor.darker();
       
 			ClassifierSizeInfo info = makeCurrentInfo();
 			ClassifierSizes sizes = info.makeActualSizes();
@@ -824,11 +816,11 @@ public final class ClassifierNodeGem implements Gem
       ZGroup rect = new ZGroup();
       if (showAsState)
       {
-      	rect.addChild(new FancyRectangleMaker(sizes.getOuter(), 25, fill, !isPart, 2.5).make());
+      	rect.addChild(new FancyRectangleMaker(sizes.getOuter(), 25, fillColor, !isPart, 2.5).make());
       }
       else
       {
-      	rect.addChild(new FancyRectangleMaker(sizes.getOuter(), 6, fill, !isPart, 2.5).make());
+      	rect.addChild(new FancyRectangleMaker(sizes.getOuter(), 6, fillColor, !isPart, 2.5).make());
       }
 			
 			// draw a line under the title
@@ -2111,7 +2103,7 @@ public final class ClassifierNodeGem implements Gem
 			properties.add(new PersistentProperty("showVis", showOwningPackage, false));
       properties.add(new PersistentProperty("showStereo", showStereotype, true));
 			properties.add(new PersistentProperty("suppVis", forceSuppressOwningPackage, false));
-      properties.add(new PersistentProperty("fill", fillColor, initialFillColor));
+      properties.add(new PersistentProperty("fill", fillColor, null));
       properties.add(new PersistentProperty("addedUuids", deletedUuids));
       properties.add(new PersistentProperty("deletedUuids", deletedUuids));
       properties.add(new PersistentProperty("locked", locked, false));
@@ -2645,13 +2637,13 @@ public final class ClassifierNodeGem implements Gem
 	
 	public ClassifierNodeGem(
 		DiagramFacet diagram,
-		Color initialFillColor,
+		Color fillColor,
 		PersistentFigure pfig,
 		boolean isPart)
 	{
     this.isPart = isPart;
     this.figureName = isPart ? "part" : "classifier";
-    this.initialFillColor = initialFillColor;
+    this.fillColor = fillColor;
     String figureId = pfig.getId();
     interpretPersistentFigure(pfig);
     
@@ -2719,7 +2711,7 @@ public final class ClassifierNodeGem implements Gem
     showStereotype = properties.retrieve("showStereo", true).asBoolean();
     forceSuppressOwningPackage = properties.retrieve("suppVis", false).asBoolean();
 
-    fillColor = properties.retrieve("fill", initialFillColor).asColor();
+    fillColor = properties.retrieve("fill", COLOR_PREFERENCE).asColor();
     addedUuids = new HashSet<String>(properties.retrieve("addedUuids", "").asStringCollection());
     deletedUuids = new HashSet<String>(properties.retrieve("deletedUuids", "").asStringCollection());
     locked = properties.retrieve("locked", false).asBoolean();
@@ -2742,11 +2734,11 @@ public final class ClassifierNodeGem implements Gem
   	return ClassifierConstituentHelper.getVisuallySuppressed(perspective, comp, type);
 	}
 
-  public ClassifierNodeGem(Color initialFillColor, boolean isPart, PersistentFigure pfig)
+  public ClassifierNodeGem(Color fillColor, boolean isPart, PersistentFigure pfig)
 	{
     this.isPart = isPart;
     this.figureName = isPart ? "part" : "classifier";
-    this.initialFillColor = initialFillColor;    
+    this.fillColor = fillColor;    
     interpretPersistentFigure(pfig);
   }
   

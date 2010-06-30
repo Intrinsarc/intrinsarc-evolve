@@ -9,10 +9,12 @@ import org.eclipse.uml2.Package;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
+import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.repositorybase.*;
 
 public final class ClassCreatorGem implements Gem
@@ -31,8 +33,7 @@ public final class ClassCreatorGem implements Gem
 	private String stereotype;
   private String stereotype2;
   private String resemblanceUUID;
-	private static final Color INITIAL_FILL_COLOR = new Color(165, 178, 86);
-  private Color fillColor = INITIAL_FILL_COLOR;
+  private Preference fillColorPreference;
 	
 	public ClassCreatorGem()
 	{
@@ -129,7 +130,7 @@ public final class ClassCreatorGem implements Gem
 			ClassifierNodeGem classifierGem =
 				new ClassifierNodeGem(
             diagram,
-            INITIAL_FILL_COLOR,
+            getFillColor(),
       			new PersistentFigure(figureId, null, subject, actualProperties),
             false);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
@@ -159,7 +160,7 @@ public final class ClassCreatorGem implements Gem
 		{
 			BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
 			ClassifierNodeGem classifierGem =
-				new ClassifierNodeGem(INITIAL_FILL_COLOR, false, figure);
+				new ClassifierNodeGem(getFillColor(), false, figure);
 			basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
 			basicGem.connectBasicNodeContainerFacet(classifierGem.getBasicNodeContainerFacet());
 			ClassifierClipboardActionsGem clip = new ClassifierClipboardActionsGem(false, false);
@@ -182,7 +183,7 @@ public final class ClassCreatorGem implements Gem
 			properties.addIfNotThere(new PersistentProperty("supO", suppressOperations, false));
 			properties.addIfNotThere(new PersistentProperty("auto", autoSized, true));
 			properties.addIfNotThere(new PersistentProperty("icon", displayOnlyIcon, false));
-      properties.addIfNotThere(new PersistentProperty("fill", fillColor, INITIAL_FILL_COLOR));
+      properties.addIfNotThere(new PersistentProperty("fill", getFillColor(), Color.WHITE));
       properties.addIfNotThere(new PersistentProperty("showStereo", showStereotype, true));
       properties.addIfNotThere(new PersistentProperty(">stereotype", stereotype));
       properties.addIfNotThere(new PersistentProperty(">stereotype2", stereotype2));
@@ -223,9 +224,9 @@ public final class ClassCreatorGem implements Gem
 		this.stereotype = stereotypeName;
 	}
   
-  public void setFillColor(Color fillColor)
+  public void setFillColorPrefence(Preference pref)
   {
-    this.fillColor = fillColor;
+    this.fillColorPreference = pref;
   }
 
   public void setStereotype2(String stereotype2)
@@ -256,5 +257,12 @@ public final class ClassCreatorGem implements Gem
 	public void setResemblance(String uuid)
 	{
 		this.resemblanceUUID = uuid;
+	}
+	
+	private Color getFillColor()
+	{
+		if (fillColorPreference == null)
+			return BaseColors.getColorPreference(BaseColors.COMPONENT_COLOR);
+		return BaseColors.getColorPreference(fillColorPreference);
 	}
 }

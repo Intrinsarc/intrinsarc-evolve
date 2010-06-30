@@ -26,6 +26,7 @@ import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.idraw.nodefacilities.resizebase.*;
 import com.hopstepjump.idraw.utility.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.repositorybase.*;
 import com.l2fprod.common.swing.*;
 
@@ -41,7 +42,7 @@ public final class NoteNodeGem implements Gem
   private Font font;
   private String text = "";
   private boolean hideNote;
-  private Color fillColor = new Color(255, 255, 174);
+  private Color fillColor = BaseColors.getColorPreference(BaseColors.NOTE_COLOR);
   private Color lineColor = fillColor.darker();
 
   private final static int dogEarOffset = 15;

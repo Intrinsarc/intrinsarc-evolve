@@ -7,18 +7,20 @@ import org.eclipse.uml2.Package;
 
 import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
+import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.creationbase.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.repositorybase.*;
 
 
 public final class PackageCreatorGem implements Gem
 {
 	public static final String NAME = "Package";
-	private Color fillColor =  new Color(193, 206, 236);
+	private Preference fillColorPreference;
 	private static final String FIGURE_NAME = "package";
 	private NodeCreateFacet nodeCreateFacet = new NodeCreateFacetImpl();
 	private boolean autoSized;
@@ -144,7 +146,7 @@ public final class PackageCreatorGem implements Gem
 		{
       properties.addIfNotThere(new PersistentProperty(">stereotype", stereotype));
       properties.addIfNotThere(new PersistentProperty(">displayOnlyIcon", displayOnlyIcon, false));
-      properties.addIfNotThere(new PersistentProperty(">fillColor", fillColor, fillColor));
+      properties.addIfNotThere(new PersistentProperty(">fillColor", getFillColor(), null));
       properties.addIfNotThere(new PersistentProperty(">relaxed", relaxed, false));
       properties.addIfNotThere(new PersistentProperty(">autoSized", autoSized, false));
 		}
@@ -155,9 +157,9 @@ public final class PackageCreatorGem implements Gem
     this.stereotype = stereotypeName;
   }
 
-  public void setFillColor(Color fillColor)
+  public void setFillColorPreference(Preference pref)
   {
-    this.fillColor = fillColor;
+    this.fillColorPreference = pref;
   }
 
   public void setRelaxed(boolean relaxed)
@@ -169,4 +171,11 @@ public final class PackageCreatorGem implements Gem
   {
     this.displayOnlyIcon = displayOnlyIcon;
   }
+  	
+	private Color getFillColor()
+	{
+		if (fillColorPreference == null)
+			return BaseColors.getColorPreference(BaseColors.PACKAGE_COLOR);
+		return BaseColors.getColorPreference(fillColorPreference);
+	}
 }

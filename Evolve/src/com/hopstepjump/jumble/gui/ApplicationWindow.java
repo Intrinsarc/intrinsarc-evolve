@@ -32,6 +32,7 @@ import com.hopstepjump.jumble.importexport.*;
 import com.hopstepjump.jumble.packageview.actions.*;
 import com.hopstepjump.jumble.packageview.base.*;
 import com.hopstepjump.jumble.repositorybrowser.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.repository.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
@@ -1568,6 +1569,7 @@ public class ApplicationWindow extends SmartJFrame
 			dialog.setVisible(true);
 
 			// resync all diagrams just in case a change was made to something visual
+			BaseColors.clearCachedColors();
 			GlobalDiagramRegistry.resyncViews();
 		}
 	}
