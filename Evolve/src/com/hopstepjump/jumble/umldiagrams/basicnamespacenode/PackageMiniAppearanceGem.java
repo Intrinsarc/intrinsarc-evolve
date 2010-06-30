@@ -20,6 +20,7 @@ import com.hopstepjump.gem.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
+import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
@@ -120,8 +121,7 @@ public class PackageMiniAppearanceGem implements Gem
       if (isHTMLTop())
       {
         // make a small H in a circle
-        ZRectangle ell = new ZRectangle(bounds);
-        ell.setFillPaint(Color.ORANGE);
+        ZGroup ell = new FancyRectangleMaker(bounds, 4, Color.ORANGE, true, 3).make();
         UDimension offset = bounds.getDimension().multiply(0.3);
         UBounds inside = bounds.addToPoint(offset).addToExtent(offset.multiply(2).negative());
         ZPolyline line = new ZPolyline(inside.getTopLeftPoint());
@@ -131,9 +131,10 @@ public class PackageMiniAppearanceGem implements Gem
         line.add(inside.getTopRightPoint());
         line.add(inside.getBottomRightPoint());
         line.setPenPaint(Color.WHITE);
+        line.setPenWidth(3);
         
         ZGroup group = new ZGroup();
-        group.addChild(new ZVisualLeaf(ell));
+        group.addChild(ell);
         group.addChild(new ZVisualLeaf(line));
         return group;
       }
@@ -141,19 +142,20 @@ public class PackageMiniAppearanceGem implements Gem
       if (isHTMLIncluded())
       {
         // make a small H in a circle
-        ZRectangle ell = new ZRectangle(bounds);
-        ell.setFillPaint(Color.ORANGE);
+        ZGroup ell = new FancyRectangleMaker(bounds, 4, Color.ORANGE, true, 3).make();
         UDimension offset = bounds.getDimension().multiply(0.3);
         UBounds inside = bounds.addToPoint(offset).addToExtent(offset.multiply(2).negative());
         ZPolyline line = new ZPolyline(inside.getX(), inside.getCenterY());
         line.add(inside.getX() + inside.getWidth(), inside.getCenterY());
         line.setPenPaint(Color.WHITE);
+        line.setPenWidth(3);
         ZPolyline line2 = new ZPolyline(inside.getCenterX(), inside.getY());
         line2.add(inside.getCenterX(), inside.getY() + inside.getHeight());
         line2.setPenPaint(Color.WHITE);
+        line2.setPenWidth(3);
         
         ZGroup group = new ZGroup();
-        group.addChild(new ZVisualLeaf(ell));
+        group.addChild(ell);
         group.addChild(new ZVisualLeaf(line));
         group.addChild(new ZVisualLeaf(line2));
         return group;

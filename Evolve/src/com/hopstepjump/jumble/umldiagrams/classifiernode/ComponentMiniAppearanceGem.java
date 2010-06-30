@@ -76,9 +76,10 @@ public class ComponentMiniAppearanceGem implements Gem
 		private ZNode drawFactory(UBounds bounds, ElementProperties properties)
 		{
 			// draw this as either a filled or unfilled wheel with 8 spokes
+			bounds = bounds.addToPoint(new UDimension(3, 2)).addToExtent(new UDimension(-4, -4));
 			ZGroup group = new ZGroup();
 			ZRectangle ell = new ZRectangle(bounds.getRectangle2D());
-			ell.setAbsPenWidth(bounds.getWidth() / 4);
+    	ell.setStroke(new BasicStroke((int) bounds.getWidth() / 4, BasicStroke.CAP_ROUND, 1));
 			ell.setPenPaint(Color.BLACK);
 			ell.setFillPaint(Color.WHITE);
 			group.addChild(new ZVisualLeaf(ell));
@@ -116,10 +117,10 @@ public class ComponentMiniAppearanceGem implements Gem
 			{
 				Color col = new Color(175, 139, 120);
 				double w = bounds.width;
-				double ellWidth = w / 3;
-				double ellHeight = w / 3.5;
-				ZEllipse ell1 = new ZEllipse(bounds.x, bounds.y + ellWidth, ellWidth + 1, ellHeight);
-				ZEllipse ell2 = new ZEllipse(bounds.x + bounds.width - ellWidth, bounds.y + ellWidth, ellWidth, ellHeight);
+				int ellWidth = (int) (w / 2);
+				int ellHeight = (int) (w / 2);
+				ZShape ell1 = new ZRoundedRectangle((int) bounds.x, (int) bounds.y + ellWidth, ellWidth, ellHeight, 4, 4);
+				ZShape ell2 = new ZRoundedRectangle((int) (bounds.x + bounds.width - ellWidth + 2), (int) (bounds.y + ellWidth), ellWidth, ellHeight, 4, 4);
 				ZLine line = new ZLine(new UBounds(ell1.getBounds()).getMiddlePoint(), new UBounds(ell2.getBounds()).getMiddlePoint());
 				ell1.setPenPaint(col);
 				ell2.setPenPaint(col);

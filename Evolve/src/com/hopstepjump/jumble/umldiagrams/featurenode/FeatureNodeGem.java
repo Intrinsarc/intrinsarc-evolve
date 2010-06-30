@@ -20,6 +20,7 @@ import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
+import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
@@ -38,11 +39,9 @@ public final class FeatureNodeGem implements Gem
   private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
   private static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
 
-	private static final UDimension ICON_OFFSET = new UDimension(1, 1);
 	private static final Color RED = new Color(255, 160, 160);
 	private static final Color GREEN = new Color(160, 255, 160);
 	private static final Color ORANGE = Color.ORANGE;
-	private static final boolean USE_ELLIPSE_FOR_ALL_ICONS = false;
 
 	private Color fillColor = Color.white;
 	private Font font = ScreenProperties.getPrimaryFont();
@@ -698,37 +697,15 @@ public final class FeatureNodeGem implements Gem
 	public static ZNode makeIcon(VisibilityKind accessType, boolean paintBackground, UPoint point, double textHeight,
       Color reverseColor, int featureType, boolean isEnvironment)
   {
-		// handle slot icons differently
-		if (featureType == 2)
-			return makeSlotIcon(point, textHeight, reverseColor, isEnvironment);
-		
-    double scaler = 0.8;
-    double fullSize = ((int) (textHeight * scaler / 2)) * 2;
-    ZGroup group = new ZGroup();
-
-    // make up the access icon
-    UDimension iconExtent = new UDimension(fullSize, fullSize);
-    UBounds ellBounds = new UBounds(point.add(new UDimension(0, (textHeight - iconExtent.getHeight()) / 2)), iconExtent);
-    ellBounds = ellBounds.addToPoint(ICON_OFFSET);
-    ZShape ell;
-    if (featureType == 1 || USE_ELLIPSE_FOR_ALL_ICONS)
-      ell = new ZEllipse(ellBounds.getPoint().getX(), ellBounds.getPoint().getY(), ellBounds.getWidth(), ellBounds
-          .getHeight());
-    else
-      ell = new ZRectangle(ellBounds);
-
-    group.addChild(new ZVisualLeaf(ell));
-
-    // draw some nice lines indicating that this is a ray traced ball :-)
-    double size = (int) (fullSize * 0.2); // important to round to integer, or
-                                          // lines look asymmetrical
-    if (reverseColor != null)
-      size++;
-
     // determine the fill paint and the pen paint
     Color fillPaint = Color.white;
-    Color paint = Color.black;
-    if (paintBackground)
+    if (featureType == 2)
+    {
+    	if (!isEnvironment)
+    		fillPaint = Color.CYAN; 
+    }
+    else
+    if (paintBackground && featureType != 2)
     {
       if (accessType.equals(VisibilityKind.PUBLIC_LITERAL))
         fillPaint = GREEN;
@@ -742,115 +719,10 @@ public final class FeatureNodeGem implements Gem
       if (accessType.equals(VisibilityKind.PRIVATE_LITERAL))
         fillPaint = RED;
     }
-
     if (reverseColor != null)
-    {
-      paint = Color.black;
-      fillPaint = reverseColor;
-    }
-    ell.setFillPaint(fillPaint);
-
-    // draw public icon
-    UPoint middle = ellBounds.getMiddlePoint();
-    if (accessType.equals(VisibilityKind.PUBLIC_LITERAL))
-    {
-      ZLine line1 = new ZLine(middle.subtract(new UDimension(0, size)), middle.add(new UDimension(0, size)));
-      line1.setPenPaint(paint);
-      ZLine line2 = new ZLine(middle.subtract(new UDimension(size, 0)), middle.add(new UDimension(size, 0)));
-      line2.setPenPaint(paint);
-      group.addChild(new ZVisualLeaf(line1));
-      group.addChild(new ZVisualLeaf(line2));
-    }
-    else
-    if (accessType.equals(VisibilityKind.PROTECTED_LITERAL))
-    {
-      double offset = (int) (fullSize * 0.1);
-      ZLine linev1 = new ZLine(middle.subtract(new UDimension(offset, size)), middle
-          .add(new UDimension(-offset, size)));
-      linev1.setPenPaint(paint);
-      ZLine linev2 = new ZLine(middle.subtract(new UDimension(-offset, size)), middle
-          .add(new UDimension(offset, size)));
-      linev2.setPenPaint(paint);
-      ZLine lineh1 = new ZLine(middle.subtract(new UDimension(size, offset)), middle
-          .add(new UDimension(size, -offset)));
-      lineh1.setPenPaint(paint);
-      ZLine lineh2 = new ZLine(middle.subtract(new UDimension(size, -offset)), middle
-          .add(new UDimension(size, offset)));
-      lineh2.setPenPaint(paint);
-      group.addChild(new ZVisualLeaf(linev1));
-      group.addChild(new ZVisualLeaf(linev2));
-      group.addChild(new ZVisualLeaf(lineh1));
-      group.addChild(new ZVisualLeaf(lineh2));
-    }
-    else
-    if (accessType.equals(VisibilityKind.PACKAGE_LITERAL))
-    {
-      double offset = (int) (fullSize * 0.1);
-      ZPolyline line = new ZPolyline();
-      line.add(middle.add(new UDimension(-offset * 3, offset)));
-      line.add(middle.add(new UDimension(-offset, -offset)));
-      line.add(middle.add(new UDimension(offset, offset)));
-      line.add(middle.add(new UDimension(offset * 3, -offset)));
-      line.setPenPaint(paint);
-      group.addChild(new ZVisualLeaf(line));
-    }
-    else
-    if (accessType.equals(VisibilityKind.PRIVATE_LITERAL))
-    {
-      ZLine line = new ZLine(middle.subtract(new UDimension(size, 0)), middle.add(new UDimension(size, 0)));
-      line.setPenPaint(paint);
-      group.addChild(new ZVisualLeaf(line));
-    }
-
-    double rayOffset = (int) (fullSize * 0.4);
-    ZLine rayLine = new ZLine(middle.subtract(new UDimension(rayOffset, 0)), middle.subtract(new UDimension(0,
-        rayOffset)));
-    rayLine.setPenPaint(Color.white);
-    group.addChild(new ZVisualLeaf(rayLine));
-
-    return group;
-  }
-  
-	public static ZNode makeSlotIcon(UPoint point, double textHeight, Color reverseColor, boolean isEnvironment)
-  {
-	  // get the middle point, and move out from there
-	  UBounds bounds = new UBounds(point.add(new UDimension(0, 2)), new UDimension(textHeight, textHeight));
-	  UPoint middle = bounds.getMiddlePoint();
-	  UDimension offset = new UDimension(2, 2);
-	  if (reverseColor != null)
-	    offset = new UDimension(4, 4);
-    if (isEnvironment)
-      offset = new UDimension(5, 5);
-	  UBounds smallSquare = new UBounds(middle.subtract(offset), offset.multiply(2)).addToPoint(new UDimension(-1, -1));
-
-	  ZShape shape =
-	    new ZRectangle(
-          smallSquare.getTopLeftPoint().getX(),
-          smallSquare.getTopLeftPoint().getY(),
-          smallSquare.getWidth(),
-          smallSquare.getHeight());
-    if (isEnvironment)
-      shape.setFillPaint(Color.WHITE);
-    else
-      shape.setFillPaint(Color.GRAY);
+    	fillPaint = reverseColor;
     
-    if (reverseColor != null)
-      shape.setFillPaint(reverseColor);
-    
-    ZGroup group = new ZGroup(new ZVisualLeaf(shape));
-    
-    // place a transparent cover over
-    ZShape cover =
-      new ZRectangle(
-          bounds.getTopLeftPoint().getX(),
-          bounds.getTopLeftPoint().getY(),
-          bounds.getWidth(),
-          bounds.getHeight());
-    cover.setFillPaint(ScreenProperties.getTransparentColor());
-    cover.setPenPaint(null);
-    group.addChild(new ZVisualLeaf(cover));
-
-    return group;
+    return new FancyRectangleMaker(new UBounds(point.add(new UDimension(0, 4)), new UDimension(textHeight-4, textHeight-5)), 2, fillPaint.darker().darker(), true, 2).make();
   }
 
 	private Feature getSubjectAsFeature()

@@ -12,6 +12,7 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
+import org.freehep.graphicsio.emf.gdi.*;
 
 import com.hopstepjump.backbone.generator.*;
 import com.hopstepjump.backbone.printers.*;
@@ -58,8 +59,6 @@ public final class ClassifierNodeGem implements Gem
   private static final ImageIcon OPERATION = IconLoader.loadIcon("tree-public-operation.png");
   private static final ImageIcon COMPOSITION_ICON = IconLoader.loadIcon("composition.png");
 
-	private static final int QUICK_ICON_SIZE = 14;
-	
 	private Font font = ScreenProperties.getTitleFont();
 	private Font packageFont = ScreenProperties.getSecondaryFont();
 	
@@ -784,60 +783,6 @@ public final class ClassifierNodeGem implements Gem
 								figureFacet.getFullBounds(),
 								resizeVetterFacet,
 								firstSelected).getManipulatorFacet());
-			if (favoured)
-			{
-				// add the manipulator for suppressing or showing operations
-				ClassifierSizeInfo info = makeCurrentInfo();
-				ClassifierSizes sizes = info.makeActualSizes();
-				
-				UBounds attributes = sizes.getFull();
-				UPoint attributePoint = attributes.getPoint().subtract(new UDimension(QUICK_ICON_SIZE - 8, -2));
-
-				FeatureSuppressToggleManipulator sa = new FeatureSuppressToggleManipulator(
-														 figureFacet.getFigureReference(),
-														 figureFacet.getFigureName(),
-														 attributePoint,
-														 QUICK_ICON_SIZE,
-														 AttributeCreatorGem.FEATURE_TYPE,
-														 isPart ? "slots" : "attributes", suppressAttributesOrSlots);
-				manipulators.addOther(sa);
-				sa.setAppListener(new ManipulatorListenerFacet()
-				{
-					public void haveFinished()
-					{
-						if (isPart)
-							coordinator.startTransaction(
-									suppressAttributesOrSlots ? "unsuppressed slots" : "suppressed slots",
-									suppressAttributesOrSlots ? "suppressed slots" : "unsuppressed slots");
-						else
-							coordinator.startTransaction(
-									suppressAttributesOrSlots ? "unsuppressed attributes" : "suppressed attributes",
-									suppressAttributesOrSlots ? "suppressed attributes" : "unsuppressed attributes");
-						suppressFeatures(AttributeCreatorGem.FEATURE_TYPE, !suppressAttributesOrSlots);
-						coordinator.commitTransaction();													
-					}
-				});
-				
-				FeatureSuppressToggleManipulator ops = new FeatureSuppressToggleManipulator(
-														 figureFacet.getFigureReference(),
-														 figureFacet.getFigureName(),
-														 attributePoint.add(new UDimension(-10, 0)),
-														 QUICK_ICON_SIZE,
-														 OperationCreatorGem.FEATURE_TYPE,
-														 "operations", suppressOperations);
-				manipulators.addOther(ops);
-				ops.setAppListener(new ManipulatorListenerFacet()
-				{
-					public void haveFinished()
-					{
-						coordinator.startTransaction(
-								suppressOperations ? "unsuppressed operations" : "suppressed operations",
-								suppressOperations ? "suppressed operations" : "unsuppressed operations");
-						suppressFeatures(OperationCreatorGem.FEATURE_TYPE, !suppressOperations);
-						coordinator.commitTransaction();													
-					}
-				});
-			}
 			
 			// return the manipulators
 			return manipulators;
@@ -845,8 +790,13 @@ public final class ClassifierNodeGem implements Gem
 		
 		public ZNode formView()
 		{
+			//  new Color(165, 178, 86)  green
+			// Color.LIGHT_GRAY          gray
+			// new Color(205, 126, 208)  magenta
+			// 
+			
       Color line = !showAsState ? lineColor : new Color(200, 160, 160);
-      Color fill = !showAsState ? fillColor : new Color(240, 200, 200, 80);
+      Color fill = !showAsState ? fillColor : new Color(240, 200, 200);
       
 			ClassifierSizeInfo info = makeCurrentInfo();
 			ClassifierSizes sizes = info.makeActualSizes();
@@ -871,26 +821,14 @@ public final class ClassifierNodeGem implements Gem
 			
 			// draw the rectangle
 			UBounds entireBounds = sizes.getOuter();
-      ZShape rect;
+      ZGroup rect = new ZGroup();
       if (showAsState)
       {
-        RoundRectangle2D.Double rounded =
-          new RoundRectangle2D.Double(
-              entireBounds.getX(),
-              entireBounds.getY(),
-              entireBounds.getWidth(),
-              entireBounds.getHeight(),
-              25,
-              25);
-        rect = new ZRoundedRectangle(rounded);
-        rect.setFillPaint(fill);
-        rect.setPenPaint(line);
+      	rect.addChild(new FancyRectangleMaker(sizes.getOuter(), 25, fill, !isPart, 2.5).make());
       }
       else
       {
-        rect = new ZRectangle(entireBounds);
-        rect.setFillPaint(fill);
-        rect.setPenPaint(line);
+      	rect.addChild(new FancyRectangleMaker(sizes.getOuter(), 6, fill, !isPart, 2.5).make());
       }
 			
 			// draw a line under the title
@@ -916,7 +854,7 @@ public final class ClassifierNodeGem implements Gem
 			ZGroup group = new ZGroup();
 			if (!displayOnlyIcon)
 			{        
-			  group.addChild(new ZVisualLeaf(rect));
+			  group.addChild(rect);
 				
 				if (isActive)
 				{
@@ -942,6 +880,7 @@ public final class ClassifierNodeGem implements Gem
           }
 				}				
 			}
+			
 			if (name.length() > 0 || isPart)
 				group.addChild(new ZVisualLeaf(zName));
 			if (zOwner != null)
@@ -965,47 +904,7 @@ public final class ClassifierNodeGem implements Gem
         partLine.setPenPaint(line);
         group.addChild(new ZVisualLeaf(partLine));
       }
-      
-      if (!displayOnlyIcon && !showAsState)
-      {
-        {          
-          ZPolyline poly = new ZPolyline();
-          poly.add(entireBounds.getBottomLeftPoint());
-          poly.add(entireBounds.getTopLeftPoint());
-          poly.add(entireBounds.getTopRightPoint());
-          Color newFill = fillColor.equals(Color.WHITE) ? Color.BLACK : fillColor;
-          poly.setPenPaint(newFill);
-          group.addChild(new ZVisualLeaf(poly));
-        }
-        {
-          ZPolyline poly = new ZPolyline();
-          poly.add(entireBounds.getBottomLeftPoint().add(new UDimension(1,-1)));
-          poly.add(entireBounds.getTopLeftPoint().add(new UDimension(1,1)));
-          poly.add(entireBounds.getTopRightPoint().add(new UDimension(-1,1)));
-          poly.setPenPaint(Color.WHITE);
-          group.addChild(new ZVisualLeaf(poly));
-        }
-        {
-          Color newFill = fillColor.equals(Color.WHITE) ? Color.BLACK : fillColor.darker();
-          {
-            ZPolyline poly = new ZPolyline();
-            poly.add(entireBounds.getTopRightPoint().add(new UDimension(-1,0)));
-            poly.add(entireBounds.getBottomRightPoint().add(new UDimension(-1,-1)));
-            poly.add(entireBounds.getBottomLeftPoint().add(new UDimension(1,-1)));
-            group.addChild(new ZVisualLeaf(poly));
-            poly.setPenPaint(newFill);
-          }
-          {
-            ZPolyline poly = new ZPolyline();
-            poly.add(entireBounds.getTopRightPoint());
-            poly.add(entireBounds.getBottomRightPoint());
-            poly.add(entireBounds.getBottomLeftPoint());
-            poly.setPenPaint(newFill);
-            group.addChild(new ZVisualLeaf(poly));
-          }
-        }
-      }
-      
+  
       // possibly add an error mark
       if (StereotypeUtilities.isStereotypeApplied(subject, "error"))
       {

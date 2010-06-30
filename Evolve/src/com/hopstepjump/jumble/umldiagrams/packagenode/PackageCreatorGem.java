@@ -18,7 +18,7 @@ import com.hopstepjump.repositorybase.*;
 public final class PackageCreatorGem implements Gem
 {
 	public static final String NAME = "Package";
-	private Color fillColor =  new Color(240, 250, 255);
+	private Color fillColor =  new Color(193, 206, 236);
 	private static final String FIGURE_NAME = "package";
 	private NodeCreateFacet nodeCreateFacet = new NodeCreateFacetImpl();
 	private boolean autoSized;

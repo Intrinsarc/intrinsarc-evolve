@@ -64,6 +64,13 @@ public class PackageAppearanceGem implements Gem
 			}
 			else
 			{
+				{
+					UBounds t = sizes.getTab().addToExtent(new UDimension(0, 10));
+					UBounds b = sizes.getBody();
+					group.addChild(new FancyRectangleMaker(t, 6, fillColor, true, 3).make());
+					group.addChild(new FancyRectangleMaker(b, 6, fillColor, true, 3).make());
+				}
+				
 		    // add a tab
 		    ZRectangle tab = new ZRectangle(sizes.getTab());
 		    tab.setFillPaint(fillColor);
@@ -91,8 +98,8 @@ public class PackageAppearanceGem implements Gem
 		    }
 		
 		    // group them
-		    group.addChild(new ZVisualLeaf(tab));
-		    group.addChild(new ZVisualLeaf(body));
+//		    group.addChild(new ZVisualLeaf(tab));
+	//	    group.addChild(new ZVisualLeaf(body));
 		    group.addChild(sizes.getZName());
 		    if (sizes.getZOwningName() != null)
 			    group.addChild(sizes.getZOwningName());

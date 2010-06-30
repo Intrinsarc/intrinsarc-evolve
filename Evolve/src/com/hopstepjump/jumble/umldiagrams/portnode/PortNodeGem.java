@@ -334,6 +334,7 @@ public final class PortNodeGem implements Gem
 		public ZNode formView()
 		{
 			UBounds bounds = figureFacet.getFullBounds();
+			
       ZGroup group = new ZGroup();
 
 			// should we display the inferred interfaces?
@@ -376,19 +377,9 @@ public final class PortNodeGem implements Gem
 			
       if (displayType != PortDisplayEnum.ELIDED_TYPE)
       {
-        ZRectangle rect = new ZRectangle(bounds);
-        rect.setPenPaint(lineColor);
-				rect.setFillPaint(FILL_COLOR);
-        // a possible shortcut?
-        if (displayType == PortDisplayEnum.SHORTCUT_TYPE)
-        {
-          rect.setPenPaint(new Color(210, 210, 210));
-          rect.setFillPaint(new Color(250, 250, 250));
-          rect.setStroke(new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 0, new float[]{3,5}, 0));
-        }
-        rect.setPenWidth(1);
-        // place some text indicating the dimensions
-        group.addChild(new ZVisualLeaf(rect));     
+  			ZGroup rect =
+  				new FancyRectangleMaker(bounds, 4, Color.LIGHT_GRAY, true, 2.5).make();
+        group.addChild(rect);     
       }
       else
       {
@@ -408,11 +399,11 @@ public final class PortNodeGem implements Gem
       PortKind kind = subject.getKind();
       if (kind.equals(PortKind.CREATE_LITERAL))
       {
-      	int offset = 5;
+      	int offset = 4;
       	UPoint middle = bounds.getMiddlePoint().subtract(new UDimension(offset, offset));
       	ZRectangle ell = new ZRectangle(middle.getX(), middle.getY(), offset * 2, offset * 2);
-      	ell.setPenWidth(3);
       	ell.setFillPaint(null);
+      	ell.setStroke(new BasicStroke(2, BasicStroke.CAP_ROUND, 1));
       	group.addChild(new ZVisualLeaf(ell));
       }
       else
@@ -440,12 +431,13 @@ public final class PortNodeGem implements Gem
 	      	}
       	}
 	
+      	UBounds in = bounds.addToPoint(new UDimension(4, 4)).addToExtent(new UDimension(-8, -8));
       	if (!joined && kind.equals(PortKind.HYPERPORT_START_LITERAL))
 	  		{
 	      	ZPolygon poly = new ZPolygon();
-	      	poly.add(bounds.getTopLeftPoint());
-	      	poly.add(bounds.getBottomLeftPoint());
-	      	poly.add(bounds.getBottomRightPoint());
+	      	poly.add(in.getTopLeftPoint());
+	      	poly.add(in.getBottomLeftPoint());
+	      	poly.add(in.getBottomRightPoint());
 	      	poly.setFillPaint(Color.BLACK);      	
 	      	group.addChild(new ZVisualLeaf(poly));
 	  		}
@@ -453,9 +445,9 @@ public final class PortNodeGem implements Gem
 	      if (!joined && kind.equals(PortKind.HYPERPORT_END_LITERAL))
 	      {
 	      	ZPolygon poly = new ZPolygon();
-	      	poly.add(bounds.getTopLeftPoint());
-	      	poly.add(bounds.getTopRightPoint());
-	      	poly.add(bounds.getBottomRightPoint());
+	      	poly.add(in.getTopLeftPoint());
+	      	poly.add(in.getTopRightPoint());
+	      	poly.add(in.getBottomRightPoint());
 	      	poly.setFillPaint(Color.BLACK);
 	      	group.addChild(new ZVisualLeaf(poly));
 	      }

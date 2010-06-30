@@ -24,7 +24,7 @@ public final class RequirementsFeatureCreatorGem implements Gem
 	private String stereotype;
   private String stereotype2;
   private String resemblanceUUID;
-	private static final Color INITIAL_FILL_COLOR = Color.WHITE;
+	private static final Color INITIAL_FILL_COLOR = Color.LIGHT_GRAY;
   private Color fillColor = INITIAL_FILL_COLOR;
 	
 	public RequirementsFeatureCreatorGem()

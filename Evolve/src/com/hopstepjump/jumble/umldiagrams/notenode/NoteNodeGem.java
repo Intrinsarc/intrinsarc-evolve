@@ -41,8 +41,8 @@ public final class NoteNodeGem implements Gem
   private Font font;
   private String text = "";
   private boolean hideNote;
-  private Color lineColor = Color.black;
-  private Color fillColor = new Color(255, 255, 204);
+  private Color fillColor = new Color(255, 255, 174);
+  private Color lineColor = fillColor.darker();
 
   private final static int dogEarOffset = 15;
   private final static int offset = 3; // on all sides, x & y excepting x dog
@@ -383,6 +383,7 @@ public final class NoteNodeGem implements Gem
         dogEar.add(boxBounds.getTopRightPoint().add(new UDimension(0, getDogEarOffset())));
         dogEar.setClosed(true);
         dogEar.setFillPaint(fillColor);
+        dogEar.setPenPaint(lineColor);
         group.addChild(new ZVisualLeaf(dogEar));
       }
       group.addChild(transform);

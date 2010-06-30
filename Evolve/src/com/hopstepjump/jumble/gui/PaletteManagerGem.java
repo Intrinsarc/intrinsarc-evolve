@@ -652,7 +652,6 @@ public class PaletteManagerGem
 		{
 		  PackageCreatorGem creator = new PackageCreatorGem(false);
 		  creator.setStereotype(CommonRepositoryFunctions.STRATUM);
-		  creator.setFillColor(new Color(193, 206, 236));
 		  return creator.getNodeCreateFacet();
 		}
 	}
@@ -662,7 +661,6 @@ public class PaletteManagerGem
 		{
 		  PackageCreatorGem creator = new PackageCreatorGem(false);
 		  creator.setStereotype(CommonRepositoryFunctions.STRATUM);
-		  creator.setFillColor(new Color(193, 206, 236));
 		  creator.setRelaxed(true);
 		  return creator.getNodeCreateFacet();
 		}

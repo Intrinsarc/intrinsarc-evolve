@@ -61,7 +61,7 @@ public class InterfaceMiniAppearanceGem implements Gem
 			double width = bounds.getWidth();
 			double height = bounds.getHeight();
 			ZEllipse ellipse = new ZEllipse(x, y, width, height);
-
+			
 			// draw a circle if there are no links, or not all the links want an
 			// invisible anchor
 			boolean drawCircle = !displayAsIcon || isCircleVisible();

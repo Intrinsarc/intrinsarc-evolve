@@ -15,7 +15,7 @@ import com.hopstepjump.repositorybase.*;
 
 public class PartCreatorGem
 {
-  public static final Color INITIAL_FILL_COLOR = new Color(240, 240, 224);
+  public static final Color INITIAL_FILL_COLOR = new Color(185, 198, 106);
   public static final String NAME = "Part";
   private NodeCreateFacet nodeCreateFacet = new NodeCreateFacetImpl();
   private boolean suppressAttributes = false;

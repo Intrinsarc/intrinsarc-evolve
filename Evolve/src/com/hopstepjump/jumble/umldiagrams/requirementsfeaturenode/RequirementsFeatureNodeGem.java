@@ -44,20 +44,7 @@ import com.hopstepjump.swing.enhanced.*;
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
 
-
-// TODO:
-// (done) 1. prevent retargeting of non-replaced link
-// (done) 3. delta view for reqfeatures + links
-// (done) 1b. fix retargeting of start 
-// (done) 1a. fix ellipsis
-// (done) 2. cleanuuids in reqfeaturenode?
-// (done) 4. expand mechanism for full subfeatures (+ others?)
-// (done) 1c. fix subject deletion of link when type is deleted + immutable trace flag + traces on classifier
-// (done) 5. traces (from classifier + ellipsis)
-// (done) 6. requirements composition explorer
-// 7. rules (no link to replacements, no self-composition)
-
-public final class RequirementsFeatureNodeGem implements Gem
+public class RequirementsFeatureNodeGem implements Gem
 {
   private static final ImageIcon COMPOSITION_ICON = IconLoader.loadIcon("composition.png");
 
@@ -583,33 +570,16 @@ public final class RequirementsFeatureNodeGem implements Gem
 			if (sizes.getIcon() != null)
 				miniAppearance = miniAppearanceFacet.formView(displayOnlyIcon, sizes.getIcon());
 			
-			// draw the rectangle
-			UBounds entireBounds = sizes.getOuter();
-      ZShape rect = new ZRoundedRectangle(
-      		entireBounds.getX(), entireBounds.getY(),
-      		entireBounds.getWidth(), entireBounds.getHeight(),
-      		10, 10);
-      rect.setFillPaint(fillColor);
-      rect.setPenPaint(lineColor);
-			
-			
 			// group them
 			ZGroup group = new ZGroup();
 
       if (!displayOnlyIcon)
       {
-        ZShape shadow = new ZRoundedRectangle(
-        		entireBounds.getX() + 3, entireBounds.getY() + 3,
-        		entireBounds.getWidth(), entireBounds.getHeight(),
-        		10, 10);
-        shadow.setFillPaint(Color.LIGHT_GRAY);
-        shadow.setPenPaint(null);
-        group.addChild(new ZVisualLeaf(shadow));
+  			// draw the rectangle
+  			UBounds bounds = sizes.getOuter();
+  			group.addChild(new FancyRectangleMaker(bounds, 10, fillColor, true, 3).make());
       }
       			
-			if (!displayOnlyIcon)
-			  group.addChild(new ZVisualLeaf(rect));
-			
 			if (name.length() > 0)
 				group.addChild(new ZVisualLeaf(zName));
 			if (zOwner != null)

@@ -31,7 +31,7 @@ public final class ClassCreatorGem implements Gem
 	private String stereotype;
   private String stereotype2;
   private String resemblanceUUID;
-	private static final Color INITIAL_FILL_COLOR = new Color(220, 220, 220);
+	private static final Color INITIAL_FILL_COLOR = new Color(165, 178, 86);
   private Color fillColor = INITIAL_FILL_COLOR;
 	
 	public ClassCreatorGem()
