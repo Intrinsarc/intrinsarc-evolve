@@ -94,7 +94,7 @@ public class ComponentMiniAppearanceGem implements Gem
 			{
 				int offset = 2;
 				double w = bounds.width;
-				ZEllipse ell = new ZEllipse(bounds.x + offset, bounds.y + offset - 1, w - offset * 2, w - offset * 2 + 1);
+				ZRoundedRectangle ell = new ZRoundedRectangle(bounds.x + offset, bounds.y + offset - 1, w - offset * 2, w - offset * 2 + 1, 10, 10);
 				ell.setFillPaint(Color.BLACK);
 				group.addChild(new ZVisualLeaf(ell));
 			}
@@ -103,11 +103,11 @@ public class ComponentMiniAppearanceGem implements Gem
 			{
 				int offset = 0;
 				double w = bounds.width;
-				ZEllipse ell = new ZEllipse(bounds.x + offset, bounds.y + offset - 1, w - offset * 2, w - offset * 2 + 1);
+				ZRoundedRectangle ell = new ZRoundedRectangle(bounds.x + offset, bounds.y + offset - 1, w - offset * 2, w - offset * 2 + 1, 10, 10);
 				ell.setPenPaint(Color.BLACK);
 				ell.setPenWidth(1);
 				offset = 3;
-				ZEllipse ell2 = new ZEllipse(bounds.x + offset, bounds.y + offset - 1, w - offset * 2, w - offset * 2 + 1);
+				ZRoundedRectangle ell2 = new ZRoundedRectangle(bounds.x + offset, bounds.y + offset - 1, w - offset * 2, w - offset * 2 + 1, 8, 8);
 				ell2.setFillPaint(Color.BLACK);
 				group.addChild(new ZVisualLeaf(ell));
 				group.addChild(new ZVisualLeaf(ell2));

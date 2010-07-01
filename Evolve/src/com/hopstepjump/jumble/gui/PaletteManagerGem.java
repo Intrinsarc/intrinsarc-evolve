@@ -493,7 +493,8 @@ public class PaletteManagerGem
         compositeStateCreator.setResemblance(CommonRepositoryFunctions.COMPOSITE_STATE_CLASS);
         palette.addEntry(makeEntry(true, "composite-state.png", "Composite state",  makeNodeCreateTool(compositeStateCreator.getNodeCreateFacet()), "top"));
 
-        PartCreatorGem statePartCreator = new PartCreatorGem();
+        PartCreatorGem statePartCreator = new PartCreatorGem(true);
+        statePartCreator.setFillColorPreference(BaseColors.STATE_PART_COLOR);
         palette.addEntry(makeEntry(true, "state.png", "State part",  makeNodeCreateTool(statePartCreator.getNodeCreateFacet()), "class"));
         
         ConnectorCreatorGem transitionCreator = new ConnectorCreatorGem();
@@ -539,7 +540,8 @@ public class PaletteManagerGem
       
       {
         RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Part", new String[]{COMPONENT_FOCUS, STATE_FOCUS});
-        PartCreatorGem partCreator = new PartCreatorGem();
+        PartCreatorGem partCreator = new PartCreatorGem(false);
+        partCreator.setFillColorPreference(BaseColors.STATE_PART_COLOR);
         partCreator.setFillColorPreference(BaseColors.PART_COLOR);        
 	      palette.addEntry(makeEntry(true,  "part.png",         "Part",                 makeNodeCreateTool(partCreator.getNodeCreateFacet()), "class", "part"));
 	      palette.addEntry(makeEntry(false, "portlink.png",     "Port link",            new ArcCreateToolGem(portLinkCreator.getArcCreateFacet()).getToolFacet(), "port"));

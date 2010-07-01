@@ -67,8 +67,8 @@ public class PackageAppearanceGem implements Gem
 				{
 					UBounds t = sizes.getTab().addToExtent(new UDimension(0, 10));
 					UBounds b = sizes.getBody();
-					group.addChild(new FancyRectangleMaker(t, 6, fillColor, true, 3).make());
-					group.addChild(new FancyRectangleMaker(b, 6, fillColor, true, 3).make());
+					group.addChild(new FancyRectangleMaker(t, 6, fillColor, true, 3, 1).make());
+					group.addChild(new FancyRectangleMaker(b, 6, fillColor, true, 3, 1).make());
 				}
 				
 		    // add a tab

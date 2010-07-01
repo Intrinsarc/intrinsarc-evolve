@@ -97,6 +97,7 @@ public class CommonRepositoryFunctions
 	// visual stereotypes
 	public static final String VISUAL_EFFECT = "visual-effect";
   public static final String VISUALLY_SUPPRESS = "hide";
+	public static final String STATE_PART = "state-part";
 	
 	
   private boolean isTypeOrSubtypeOf(Element owner, EClass[] classes)
@@ -325,13 +326,17 @@ public class CommonRepositoryFunctions
     // create a set of stereotypes that won't get pushed over to backbone
     Stereotype visual = createStereotype(uuids, profile, VISUAL_EFFECT, "", "The superstereotype of visual stereotypes.  Not transferred to Backbone.");
     Stereotype suppress = createStereotype(uuids, profile, VISUALLY_SUPPRESS, "'Port', 'Property'", "Indicates that a port or attribute will be visually suppressed.");
-    createResemblance(uuids, visual, suppress).setDocumentation("Supression of a port or attribute is a visual effect");
+    createResemblance(uuids, visual, suppress).setDocumentation("Supression of a port or attribute is a visual effect.");
     
     createStereotype(uuids, profile, DELTA, "'Class', 'Property', 'Interface'", "Indication that the item is a delta from the resembled definition.");
 
     Stereotype slot = createStereotype(uuids, profile, OVERRIDDEN_SLOT, "'Slot'", "The overide data for a slot so we can show alloy errors.");
     addAttribute(uuids, slot, OVERRIDDEN_SLOT_TEXT, stringType, "An override so we can control how the slot string displays.");
     addAttribute(uuids, slot, OVERRIDDEN_SLOT_ALIAS, booleanType, "An override so we can make the slot look aliased.");
+    
+    // state parts need to be explicitly indicated, so we can draw them differently
+    Stereotype statePart = createStereotype(uuids, profile, STATE_PART, "'Property'", "Indicates that a property is a part of a composite state machine.");
+    createResemblance(uuids, visual, statePart).setDocumentation("Showing a state part differently is a visual effect.");
     
     // assign type names to the primitive types
     // NOTE: don't assign string implementation type as it interferes with bootstrapping
@@ -468,8 +473,8 @@ public class CommonRepositoryFunctions
     Class cState = addLeaf(uuids, impls, stateStereo, COMPOSITE_STATE_CLASS, implClass, "");
     createResemblance(uuids, state, cState);
     cState.setIsAbstract(true);
-    addPart(uuids, cState, "start", start);
-    addPart(uuids, cState, "end", end);
+    addPart(uuids, cState, "start", "", start, statePart);
+    addPart(uuids, cState, "end", "", end, statePart);
     replacePort(uuids, cState, out, "out", null, transition, 0, 1);
     // create the dispatcher
     Class stateDispatcher = addLeaf(uuids, impls, component, "StateDispatcher", implClass, "com.hopstepjump.backbone.runtime.implementation.StateDispatcher");
@@ -483,15 +488,17 @@ public class CommonRepositoryFunctions
     return topLevel;
   }
   
-  private Property addPart(Set<String> uuids, Class cls, String name, Class type)
+  private Property addPart(Set<String> uuids, Class cls, String uuid, String name, Class type, Class stereo)
 	{
     Property part = cls.createOwnedAttribute();
-    setUuid(uuids, part, name);
+    setUuid(uuids, part, uuid);
     InstanceValue instanceValue = (InstanceValue) part.createDefaultValue(UML2Package.eINSTANCE.getInstanceValue());
     InstanceSpecification instanceSpecification = instanceValue.createOwnedAnonymousInstanceValue();
     instanceValue.setInstance(instanceSpecification);
     part.setName(name);
     part.setType(type);
+    if (stereo != null)
+    	part.settable_getAppliedBasicStereotypes().add(stereo);
     // parts have composite aggregation kind
     part.setAggregation(AggregationKind.COMPOSITE_LITERAL);
     return part;

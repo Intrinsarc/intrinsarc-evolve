@@ -26,6 +26,7 @@ import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.jumble.umldiagrams.associationarc.*;
 import com.hopstepjump.jumble.umldiagrams.baseline.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.jumble.umldiagrams.connectorarc.*;
 import com.hopstepjump.jumble.umldiagrams.containmentarc.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
@@ -662,7 +663,8 @@ public final class ToolCoordinatorGem implements Gem
 		registerRecreator(new ClassCreatorGem().getNodeCreateFacet());
 		registerRecreator(new ProfileCreatorGem(false).getNodeCreateFacet());
 		registerRecreator(new StereotypeCreatorGem().getNodeCreateFacet());
-    registerRecreator(new PartCreatorGem().getNodeCreateFacet());
+    registerRecreator(new PartCreatorGem(false).getNodeCreateFacet());
+    registerRecreator(new PartCreatorGem(true).getNodeCreateFacet());
     registerRecreator(new ConnectorCreatorGem().getArcCreateFacet());
 		registerRecreator(new AssociationCreatorGem().getArcCreateFacet());;
 		registerRecreator(new PortCreatorGem().getNodeCreateFacet());

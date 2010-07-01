@@ -61,6 +61,7 @@ public final class NoteNodeGem implements Gem
   private NoteNodeFacet noteNodeFacet = new NoteNodeFacetImpl();
   private boolean useHTML;
   private boolean wordWrap = true;
+  private int hash;
 
 
   public BasicNodeContainerFacet getBasicNodeContainerFacet()
@@ -558,6 +559,7 @@ public final class NoteNodeGem implements Gem
       properties.add(new PersistentProperty("useHTML", useHTML, false));
       properties.add(new PersistentProperty("wordWrap", wordWrap, true));
       properties.add(new PersistentProperty("font", font, ScreenProperties.getPrimaryFont()));
+      properties.add(new PersistentProperty("hash", text.hashCode()));
     }
 
     /**
@@ -573,6 +575,7 @@ public final class NoteNodeGem implements Gem
         return;
 
       text = subject.getBody();
+      hash = text.hashCode();
       UBounds bounds = textableFacet.vetTextResizedExtent(text);
       figureFacet.performResizingTransaction(bounds);
     }
@@ -666,6 +669,7 @@ public final class NoteNodeGem implements Gem
     useHTML = properties.retrieve("useHTML", false).asBoolean();
     wordWrap = properties.retrieve("wordWrap", true).asBoolean();
     font = properties.retrieve("font", ScreenProperties.getPrimaryFont()).asFont();
+    hash = properties.retrieve("hash", text.hashCode()).asInteger();
 	}
 
 	public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()

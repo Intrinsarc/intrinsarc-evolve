@@ -15,14 +15,21 @@ public class FancyRectangleMaker
 	private Color primary;
 	private boolean gradient;
 	private double offset;
+	private double width;
 
 	public FancyRectangleMaker(UBounds bounds, double roundedRadius, Color primary, boolean gradient, double offset)
+	{
+		this(bounds, roundedRadius, primary, gradient, offset, 1.5);
+	}
+	
+	public FancyRectangleMaker(UBounds bounds, double roundedRadius, Color primary, boolean gradient, double offset, double width)
 	{
 		this.bounds = bounds;
 		this.roundedRadius = roundedRadius;
 		this.primary = primary;
 		this.gradient = gradient;
 		this.offset = offset;
+		this.width = width;
 	}
 	
 	public ZGroup make()
@@ -54,7 +61,7 @@ public class FancyRectangleMaker
       ZRoundedRectangle rc = new ZRoundedRectangle(r);
       rc.setFillPaint(null);
       rc.setPenPaint(primary.darker());
-      rc.setPenWidth(1.5);
+      rc.setPenWidth(width);
       rect.addChild(new ZVisualLeaf(rc));
   	}
 

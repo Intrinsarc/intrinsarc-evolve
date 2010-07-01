@@ -262,7 +262,8 @@ public final class ClassifierNodeGem implements Gem
     	"(" + (retired ? "retires " : "replaces ") + props.getSubstitutesForName() + ")" :
     	"(from " + GlobalSubjectRepository.repository.getFullStratumNames((Element) props.getHomePackage().getRepositoryObject()) + ")";
     owner = newOwner;
-    showAsState = StereotypeUtilities.isStereotypeApplied(subject, "state");
+    showAsState =
+    	StereotypeUtilities.isStereotypeApplied(subject, "state");
     
     // resize, using a text utility
     DisplayAsIconTransaction.display(figureFacet, shouldDisplayOnlyIcon());
@@ -288,8 +289,8 @@ public final class ClassifierNodeGem implements Gem
     name = newName;
     isAbstract = subjectAbstract;
     isActive = subjectActive;
-    if (type != null)
-    	showAsState = StereotypeUtilities.isStereotypeApplied(type, "state");
+  	showAsState =
+  		StereotypeUtilities.isStereotypeApplied(subject, "state-part");
     
     // resize, using a text utility
     stereotypeHashcode = actualStereotypeHashcode;
@@ -2142,9 +2143,6 @@ public final class ClassifierNodeGem implements Gem
       // on the middle pass, add or delete any constituents
       if (pass == ViewUpdatePassEnum.MIDDLE)
       {
-        // take the lock value from the enclosing classifier
-      	FigureFacet classifier = figureFacet.getContainedFacet().getContainer().getContainedFacet().getContainer().getFigureFacet();
-        
         // find any attributes to add or delete
         PartSlotHelper slotHelper =
           new PartSlotHelper(
@@ -2175,7 +2173,7 @@ public final class ClassifierNodeGem implements Gem
 			Classifier type = (Classifier) part.undeleted_getType();
 			
       int actualStereotypeHashcode = calculateStereotypeHashcode();
-      boolean shouldBeState = type == null ? showAsState : StereotypeUtilities.isStereotypeApplied(type, "state");
+      boolean shouldBeState = type == null ? showAsState : StereotypeUtilities.isStereotypeApplied(subject, "state-part");
       
 			// is this active, or abstract
 			boolean subjectActive = type == null || !(type instanceof Class) ? false : ((Class) type).isActive();			

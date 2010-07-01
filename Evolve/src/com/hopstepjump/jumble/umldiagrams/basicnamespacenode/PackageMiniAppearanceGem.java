@@ -121,7 +121,7 @@ public class PackageMiniAppearanceGem implements Gem
       if (isHTMLTop())
       {
         // make a small H in a circle
-        ZGroup ell = new FancyRectangleMaker(bounds, 4, Color.ORANGE, true, 3).make();
+        ZGroup ell = new FancyRectangleMaker(bounds, 4, Color.ORANGE, true, 3, 1).make();
         UDimension offset = bounds.getDimension().multiply(0.3);
         UBounds inside = bounds.addToPoint(offset).addToExtent(offset.multiply(2).negative());
         ZPolyline line = new ZPolyline(inside.getTopLeftPoint());
@@ -142,7 +142,7 @@ public class PackageMiniAppearanceGem implements Gem
       if (isHTMLIncluded())
       {
         // make a small H in a circle
-        ZGroup ell = new FancyRectangleMaker(bounds, 4, Color.ORANGE, true, 3).make();
+        ZGroup ell = new FancyRectangleMaker(bounds, 4, Color.ORANGE, true, 3, 1).make();
         UDimension offset = bounds.getDimension().multiply(0.3);
         UBounds inside = bounds.addToPoint(offset).addToExtent(offset.multiply(2).negative());
         ZPolyline line = new ZPolyline(inside.getX(), inside.getCenterY());

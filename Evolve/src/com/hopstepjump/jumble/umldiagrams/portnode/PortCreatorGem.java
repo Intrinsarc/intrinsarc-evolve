@@ -39,7 +39,7 @@ public final class PortCreatorGem implements Gem
 	 
 	  public void createFigure(Object subject, DiagramFacet diagram, String figureId, UPoint location, PersistentProperties properties)
 	  {
-	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, false, true);
+	  	BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, false, false);
 	  	PortNodeGem portNodeGem =
 	  		new PortNodeGem(
 	  				diagram,

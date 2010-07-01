@@ -17,15 +17,27 @@ import com.hopstepjump.repositorybase.*;
 
 public class PartCreatorGem
 {
-  public static final String NAME = "Part";
+  public String name;
   private NodeCreateFacet nodeCreateFacet = new NodeCreateFacetImpl();
   private boolean suppressAttributes = false;
   private boolean suppressOperations = true;
   private boolean displayOnlyIcon = false;
   private Preference fillColorPreference;
+  private boolean statePart;
   
-	public PartCreatorGem()
+	public PartCreatorGem(boolean statePart)
   {
+		this.statePart = statePart;
+		if (statePart)
+		{
+			this.fillColorPreference = BaseColors.STATE_PART_COLOR;
+			name = "State part";
+		}
+		else
+		{
+			this.fillColorPreference = BaseColors.PART_COLOR;
+			name = "Part";
+		}
   }
 
   public NodeCreateFacet getNodeCreateFacet()
@@ -82,7 +94,7 @@ public class PartCreatorGem
      */
     public String getRecreatorName()
     {
-      return NAME;
+      return name;
     }
 
     public FigureFacet createFigure(DiagramFacet diagram, PersistentFigure figure)
@@ -152,6 +164,16 @@ public class PartCreatorGem
       // parts have composite aggregation kind
       part.setAggregation(AggregationKind.COMPOSITE_LITERAL);
       
+    	// should we set a stereotype?
+    	String stereoName = properties.retrieve(">stereotype", (String) null).asString();
+    	if (stereoName != null)
+      {
+        Stereotype stereo = GlobalSubjectRepository.repository.findStereotype(
+            UML2Package.eINSTANCE.getProperty(), stereoName);
+        if (stereo != null)
+          part.getAppliedBasicStereotypes().add(stereo);
+      }
+      
       return part;
     }
     
@@ -162,6 +184,8 @@ public class PartCreatorGem
       properties.addIfNotThere(new PersistentProperty("icon", displayOnlyIcon, false));
 			properties.addIfNotThere(new PersistentProperty("auto", false, true));
       properties.addIfNotThere(new PersistentProperty("fill", getFillColor(), Color.WHITE));
+      if (statePart)
+        properties.addIfNotThere(new PersistentProperty(">stereotype", "state-part"));
 		}		
   }
   
