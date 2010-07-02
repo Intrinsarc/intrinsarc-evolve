@@ -309,12 +309,10 @@ public class PaletteManagerGem
     {
       public void addToContextMenu(JPopupMenu popupMenu, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator, FigureFacet figure)
       {
-        if (!figure.isSubjectReadOnlyInDiagramContext(false))
-        {
-          Object subject = figure.getSubject();
-          if (subject instanceof Element)
-            new StereotypeChanger().createMenu(popupMenu, coordinator, (Element) subject);
-        }
+        boolean readonly = GlobalSubjectRepository.repository.isReadOnly((Element) figure.getSubject());
+        Object subject = figure.getSubject();
+        if (subject instanceof Element)
+          new StereotypeChanger().createMenu(popupMenu, coordinator, (Element) subject, readonly);
       }       
     };
 
@@ -534,7 +532,7 @@ public class PaletteManagerGem
       {
         RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Profile", new String[]{PROFILE_FOCUS});
         palette.addEntry(makeEntry(true, "profile.png",     "Profile",          makeNodeCreateTool(retrieveNodeRecreator(ProfileCreatorGem.NAME)), "top", null));
-        palette.addEntry(makeEntry(true, "stereotype.gif",  "Stereotype",       makeNodeCreateTool(retrieveNodeRecreator(StereotypeCreatorGem.NAME)), "top", null));
+        palette.addEntry(makeEntry(true, "stereotype.png",  "Stereotype",       makeNodeCreateTool(retrieveNodeRecreator(StereotypeCreatorGem.NAME)), "top", null));
         tools.addCategory(palette);
       }
       

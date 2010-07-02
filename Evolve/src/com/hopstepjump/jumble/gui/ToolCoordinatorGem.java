@@ -517,12 +517,15 @@ public final class ToolCoordinatorGem implements Gem
 			WaitCursorDisplayer waiter = new WaitCursorDisplayer(this, 400 /* msecs */);
 			waiter.displayWaitCursorAfterDelay();
 
+//			long start = System.currentTimeMillis();
 			clearDeltaEngine();
 			final DiagramFacet main = getCurrentDiagramView().getDiagram();
 			updateDiagramAfterSubjectChanges(main,
 					!fullyCommitCurrentDiagramInForeground);
 			main.checkpointCommitTransaction();
 			repository.commitTransaction();
+//			long end = System.currentTimeMillis();
+//			System.out.println("$$ took " + (end - start) + "ms");
 
 			// possibly update in the background
 			inBackground(new Runnable()

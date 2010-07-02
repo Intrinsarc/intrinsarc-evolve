@@ -25,7 +25,9 @@ public class BBSimpleConnector extends BBSimpleObject
   private PortFieldMap provPortFields[] = new PortFieldMap[]{new PortFieldMap(), new PortFieldMap()};
   private PortFieldMap reqPortFields[] = new PortFieldMap[]{new PortFieldMap(), new PortFieldMap()};
   private boolean hyperConnector;
+  private DEConnector complex;
 
+  public DEConnector getComplex() { return complex; }
 	public BBSimpleConnector(
 			BBSimpleElementRegistry registry,
 			DEComponent component,
@@ -34,6 +36,7 @@ public class BBSimpleConnector extends BBSimpleObject
 			List<BBSimplePort> simplePorts,
 			BBSimpleComponent owner)
 	{
+		this.complex = complex;
 		rawName = complex.getName();
 		name = registry.makeName(rawName);
 		if (complex.isDelegate())
@@ -163,6 +166,7 @@ public class BBSimpleConnector extends BBSimpleObject
 	private void copyFromOther(BBSimpleConnector original)
 	{
 		// copy from the original connector
+		complex = original.complex;
 		takeNext = original.takeNext;
 		originalIndex = original.originalIndex;
 		index = original.index;

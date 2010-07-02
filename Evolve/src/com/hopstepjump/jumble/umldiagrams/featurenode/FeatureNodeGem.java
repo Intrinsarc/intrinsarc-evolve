@@ -326,27 +326,27 @@ public final class FeatureNodeGem implements Gem
 		        getSubjectAsFeature(),
 		        ClassifierImpl.class); 
 		      
-		  if (visual != real &&
-		      !figureFacet.getContainedFacet().getContainer().getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
-		  {
-		    JMenuItem replaceItem = featureTypeFacet.getReplaceItem(diagramView, coordinator);
-		    if (replaceItem != null)
-		      popup.add(replaceItem);
-		  }
+		  boolean enabled =
+		  	visual != real &&
+		    !figureFacet.getContainedFacet().getContainer().getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
+	    JMenuItem replaceItem = featureTypeFacet.getReplaceItem(diagramView, coordinator);
+	    if (replaceItem != null)
+	    {
+	    	replaceItem.setEnabled(enabled);
+	      popup.add(replaceItem);
+	    }
 		  
-      if (!figureFacet.isSubjectReadOnlyInDiagramContext(false))
-      {
-        Utilities.addSeparator(popup);
-  			JMenu visibility = new JMenu("Visibility");
-  			visibility.add(getAccessItem(coordinator, VisibilityKind.PUBLIC_LITERAL,      "Public"));
-  			visibility.add(getAccessItem(coordinator, VisibilityKind.PROTECTED_LITERAL,   "Protected"));
-  			visibility.add(getAccessItem(coordinator, VisibilityKind.PACKAGE_LITERAL,     "Package"));
-  			visibility.add(getAccessItem(coordinator, VisibilityKind.PRIVATE_LITERAL,     "Private"));
-        visibility.add(getAccessItem(coordinator, VisibilityKind.PUBLIC_LITERAL,      "Environment"));
-  			popup.add(visibility);
-        Utilities.addSeparator(popup);
-  		  popup.add(getClassifierScopeItem(coordinator));
-			}
+      Utilities.addSeparator(popup);
+			JMenu visibility = new JMenu("Visibility");
+			visibility.setEnabled(!figureFacet.isSubjectReadOnlyInDiagramContext(false));
+			visibility.add(getAccessItem(coordinator, VisibilityKind.PUBLIC_LITERAL,      "Public"));
+			visibility.add(getAccessItem(coordinator, VisibilityKind.PROTECTED_LITERAL,   "Protected"));
+			visibility.add(getAccessItem(coordinator, VisibilityKind.PACKAGE_LITERAL,     "Package"));
+			visibility.add(getAccessItem(coordinator, VisibilityKind.PRIVATE_LITERAL,     "Private"));
+      visibility.add(getAccessItem(coordinator, VisibilityKind.PUBLIC_LITERAL,      "Environment"));
+			popup.add(visibility);
+      Utilities.addSeparator(popup);
+		  popup.add(getClassifierScopeItem(coordinator));
 	
 			return popup;
 		}

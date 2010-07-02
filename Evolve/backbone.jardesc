@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
     <jar path="Academic Work/latest-evolve-distribution/common/backbone.jar"/>
     <options buildIfNeeded="true" compress="true" descriptionLocation="/Evolve/backbone.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
@@ -11,18 +11,7 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.nodes.simple.internal"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.readers"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.nodes.insides"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.exceptions"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.expanders"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.printer"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.nodes"/>
         <javaElement handleIdentifier="=DeltaEngine/src"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.runtime.implementation"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.nodes.simple"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.nodes.converters"/>
+        <javaElement handleIdentifier="=BackboneInterpreter/src"/>
     </selectedElements>
-    <fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
 </jardesc>

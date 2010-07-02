@@ -14,6 +14,18 @@ public class UMLNodeText
 {
   public static String getNodeText(Element element)
   {
+  	if (element instanceof LiteralBoolean)
+  		return ((LiteralBoolean) element).booleanValue() ? "true" : "false";
+  	
+  	if (element instanceof AppliedBasicStereotypeValue)
+  	{
+  		AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) element;
+			Property prop = value.getProperty();
+			if (prop == null)
+				return "";
+			return ((NamedElement) getPossibleDeltaSubject(prop).getOwner()).getName() + "::" + prop.getName();
+  	}
+  	
   	// is this a part?
   	InstanceSpecification instance = UMLTypes.extractInstanceOfPart(element);
   	if (instance != null)

@@ -111,17 +111,15 @@ public class UMLTreeMediator
             tree.setSelectionPath(path);
             UMLTreeUserObject user = (UMLTreeUserObject) node.getUserObject();
             
-            if (!repository.isReadOnly(user.getElement()))
-            {
-              popup = new UMLTreeMenuCreator().createMenu(
-              		coordinator,
-              		node);
-              
-              new StereotypeChanger().createMenu(
-              		popup,
-              		coordinator, 
-              		user.getElement());
-            }
+            popup = new UMLTreeMenuCreator().createMenu(
+            		coordinator,
+            		node);
+            
+            new StereotypeChanger().createMenu(
+            		popup,
+            		coordinator, 
+            		user.getElement(),
+            		repository.isReadOnly(user.getElement()));
   
             // add the extra items
             Utilities.addSeparator(popup);
@@ -263,8 +261,15 @@ public class UMLTreeMediator
     if (elementNode == null)
     {
     	elementNode = new DefaultMutableTreeNode(
-    			new UMLTreeUserObject(element, shortCut, feature, UMLNodeText.getNodeText(element), false, 0, stereoHash),
-    			true);
+    			new UMLTreeUserObject(
+    					element,
+    					shortCut,
+    					feature,
+    					UMLNodeText.getNodeText(element),
+    					false,
+    					0,
+    					stereoHash),
+    					true);
     	if (parent != null)
     		model.insertNodeInto(elementNode, parent, parent.getChildCount());
     }

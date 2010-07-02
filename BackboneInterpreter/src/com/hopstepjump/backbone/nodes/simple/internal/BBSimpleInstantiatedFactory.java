@@ -134,8 +134,7 @@ public class BBSimpleInstantiatedFactory
 
 	public void destroy() throws BBRuntimeException
 	{
-		// delete anything with a lifecycle
-		// inform any lifecycle parts that we have initialized
+		// inform any lifecycle parts that we are about to delete them
 		for (BBSimplePart p : iparts.keySet())
 			if (p.getType().hasLifecycleCallbacks())
 				((ILifecycle) iparts.get(p)).beforeDelete();		

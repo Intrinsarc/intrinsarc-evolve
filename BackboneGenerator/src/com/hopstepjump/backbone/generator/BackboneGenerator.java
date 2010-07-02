@@ -73,11 +73,16 @@ public class BackboneGenerator
   	boolean directClasspath[] = new boolean[1];
   	String classpath = WriterHelper.extractFolder(prefs, stratum, stratum, 2, directClasspath, true);					
 		String expanded = WriterHelper.expandVariables(prefs, null, classpath);
-		expanded = expanded.replace(';', ':');
-		StringTokenizer tok = new StringTokenizer(expanded, ":");
+		expanded = WriterHelper.replaceSeparators(expanded);
+		StringTokenizer tok = new StringTokenizer(expanded, File.pathSeparator);
 		List<String> paths = new ArrayList<String>();
 		while (tok.hasMoreTokens())
-			paths.add(tok.nextToken());
+		{
+			String cp = tok.nextToken();
+			if (cp.startsWith("\"") && cp.endsWith("\"") && cp.length() >= 2)
+				cp = cp.substring(1, cp.length() - 1);
+			paths.add(cp);
+		}
 		return paths;
 	}	
 }

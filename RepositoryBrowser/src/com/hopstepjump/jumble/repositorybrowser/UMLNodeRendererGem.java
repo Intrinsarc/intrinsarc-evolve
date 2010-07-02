@@ -66,6 +66,7 @@ public class UMLNodeRendererGem implements Gem
   private void setUpIcons()
   {
     // order is very important here so we must declare the more specific items first
+    addIcon(AppliedBasicStereotypeValueImpl.class, null, null, null, "tree-stereotype.png", null);
     addIcon(PackageImpl.class, null, null, ShortCutType.UP, "tree-upshortcut.gif", null);
     addIcon(ModelImpl.class, null, null, ShortCutType.UP, "tree-upshortcut.gif", null);
     addIcon(ProfileImpl.class, null, null, ShortCutType.UP, "tree-upshortcut.gif", null);
@@ -86,7 +87,7 @@ public class UMLNodeRendererGem implements Gem
     addIcon(ModelImpl.class, null, null, null, "model.png", null);
     addIcon(ProfileImpl.class, null, null, ShortCutType.NORMAL, "profile.png", null);
     addIcon(ProfileImpl.class, null, null, null, "profile.png", null);
-    addIcon(StereotypeImpl.class, null, null, null, "tree-stereotype.gif", null);
+    addIcon(StereotypeImpl.class, null, null, null, "tree-stereotype.png", null);
     
     // possible components
     addIcon(ClassImpl.class, null, null, null, "factory.png",
@@ -257,7 +258,7 @@ public class UMLNodeRendererGem implements Gem
     // extras for the flattened backbone view
     addIcon(null, "SimpleFactory,", null, ShortCutType.NONE, "factory.png", null);
     // extras for the non-flattened backbone view
-    addIcon(null, "AppliedStereotype", null, ShortCutType.NONE, "tree-stereotype.gif", null);
+    addIcon(null, "AppliedStereotype", null, ShortCutType.NONE, "tree-stereotype.png", null);
 
     // icons for requirements features
     addIcon(RequirementsFeatureImpl.class, null, null, null, "feature.png", null);
@@ -439,8 +440,7 @@ public class UMLNodeRendererGem implements Gem
       if (object.getShortCutType() != ShortCutType.UP)
       {
         String elementName = object.getText();
-        name = elementName
-            + (defaultIcon ? ((elementName.length() != 0 ? " " : "") + "(" + element.eClass().getName() + ")") : "");
+        name = elementName;
       }
 
       // get the label so we can set the tooltip

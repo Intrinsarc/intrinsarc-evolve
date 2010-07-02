@@ -305,4 +305,20 @@ public final class UBounds extends ZBounds implements Serializable
     return addToPoint(middlePoint.subtract(getMiddlePoint()));
   }
 
+	public UPoint forceInside(UPoint pt)
+	{
+		return new UPoint(
+				force(pt.getX(), getPoint().getX(), getTopRightPoint().getX()),
+				force(pt.getY(), getPoint().getY(), getBottomRightPoint().getY()));
+ 	}
+
+	private double force(double val, double min, double max)
+	{
+		if (val < min)
+			val = min;
+		if (val > max)
+			val = max;
+		return val;
+	}
+
 }

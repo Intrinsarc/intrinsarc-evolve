@@ -77,43 +77,44 @@ public class HardcodedFactoryWriter
 		c.newLine();
 
 		// write out any attributes with default values and setters and getters
-		for (BBSimpleAttribute attr : factory.getAttributes())
-		{
-			if (!isFactoryNumber(attr))
+		if (factory.getAttributes() != null)
+			for (BBSimpleAttribute attr : factory.getAttributes())
 			{
-				String attrName = namer.getUniqueName(attr);
-				String impl = attr.getType().getImplementationClassName();
-				String translatedImpl = PrimitiveHelper.translateLongToShortPrimitive(impl);
-				c.write("  private Attribute<" + PrimitiveHelper.stripJavaLang(impl) + "> " + attrName);
-				List<BBSimpleParameter> def = attr.getDefaultValue();
-				if (factoryNumber == 0 && attr.getDefaultValue() != null)
-					def = attr.getDefaultValue();
-				if (def == null)
-					c.write(";");
-				else
+				if (!isFactoryNumber(attr))
 				{
-					c.write(" = ");
-					writeInitializer(namer, c, impl, def);
-
-					// possibly make a setter or getter function
-					if (attr.getPosition() == PositionEnum.TOP)
+					String attrName = namer.getUniqueName(attr);
+					String impl = attr.getType().getImplementationClassName();
+					String translatedImpl = PrimitiveHelper.translateLongToShortPrimitive(impl);
+					c.write("  private Attribute<" + PrimitiveHelper.stripJavaLang(impl) + "> " + attrName);
+					List<BBSimpleParameter> def = attr.getDefaultValue();
+					if (factoryNumber == 0 && attr.getDefaultValue() != null)
+						def = attr.getDefaultValue();
+					if (def == null)
+						c.write(";");
+					else
 					{
-						if (!attr.isReadOnly())
+						c.write(" = ");
+						writeInitializer(namer, c, impl, def);
+	
+						// possibly make a setter or getter function
+						if (attr.getPosition() == PositionEnum.TOP)
 						{
-							c.newLine();
-							c.write("  public void set" + upper(attrName) + "(" + translatedImpl + " " + attrName + ") { this."
-									+ attrName + ".set(" + attrName + "); }");
-						}
-						if (!attr.isWriteOnly())
-						{
-							c.newLine();
-							c.write("  public " + translatedImpl + " get" + upper(attrName) + "() { return " + attrName + ".get(); }");
+							if (!attr.isReadOnly())
+							{
+								c.newLine();
+								c.write("  public void set" + upper(attrName) + "(" + translatedImpl + " " + attrName + ") { this."
+										+ attrName + ".set(" + attrName + "); }");
+							}
+							if (!attr.isWriteOnly())
+							{
+								c.newLine();
+								c.write("  public " + translatedImpl + " get" + upper(attrName) + "() { return " + attrName + ".get(); }");
+							}
 						}
 					}
 				}
+				c.newLine();
 			}
-			c.newLine();
-		}
 
 		// handle the parts
 		c.newLine();
@@ -151,7 +152,8 @@ public class HardcodedFactoryWriter
 				c.newLine();
 				c.write("  };");
 				c.newLine();
-			} else
+			}
+			else
 			{
 				String implClass = part.getType().getImplementationClassName();
 				String expanded = expander.formConstructionAndRemember(part, partName);
@@ -179,19 +181,20 @@ public class HardcodedFactoryWriter
 		c.newLine();
 
 		// handle overriding the defaults using the hashmap
-		for (BBSimpleAttribute attr : factory.getAttributes())
-		{
-			if (!isFactoryNumber(attr) && attr.getPosition() == PositionEnum.TOP)
+		if (factory.getAttributes() != null)
+			for (BBSimpleAttribute attr : factory.getAttributes())
 			{
-				String attrName = namer.getUniqueName(attr);
-				String rawName = attr.getRawName();
-				String impl = attr.getType().getImplementationClassName();
-				String translated = PrimitiveHelper.stripJavaLang(impl);
-				c.write("    if (values != null && values.containsKey(\"" + rawName + "\")) " + attrName + " = new Attribute<" + translated + ">((" + translated
-						+ ") values.get(\"" + rawName + "\"));");
-				c.newLine();
+				if (!isFactoryNumber(attr) && attr.getPosition() == PositionEnum.TOP)
+				{
+					String attrName = namer.getUniqueName(attr);
+					String rawName = attr.getRawName();
+					String impl = attr.getType().getImplementationClassName();
+					String translated = PrimitiveHelper.stripJavaLang(impl);
+					c.write("    if (values != null && values.containsKey(\"" + rawName + "\")) " + attrName + " = new Attribute<" + translated + ">((" + translated
+							+ ") values.get(\"" + rawName + "\"));");
+					c.newLine();
+				}
 			}
-		}
 
 		// handle the slots
 		for (BBSimplePart part : factory.getParts())
@@ -292,7 +295,13 @@ public class HardcodedFactoryWriter
 					String cast = originalImpl.equals(impl) ? "" : ("(" + impl + ") ");
 					c.write("    " + impl + " " + vname + " = " + cast + partName + "." + methodName + "(" + impl + ".class");
 					if (end.getIndex() != null)
-						c.write(", " + end.getIndex());
+					{
+							c.write(", " + end.getIndex());
+					}
+					else
+					if (end.getPort().isIndexed() && end.isTakeNext())
+						c.write(", -1");							
+
 					c.write(");");
 					c.newLine();
 				}

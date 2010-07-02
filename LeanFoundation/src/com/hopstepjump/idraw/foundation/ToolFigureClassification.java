@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.swing.*;
 
+import com.hopstepjump.geometry.*;
+
 public class ToolFigureClassification
 {
 	private List<String> elements;

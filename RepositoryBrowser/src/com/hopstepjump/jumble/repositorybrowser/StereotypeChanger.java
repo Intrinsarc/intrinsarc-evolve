@@ -19,7 +19,7 @@ public class StereotypeChanger
 	{
 	}
 	
-	public void createMenu(JPopupMenu menu, final ToolCoordinatorFacet coordinator, final Element element)
+	public void createMenu(JPopupMenu menu, final ToolCoordinatorFacet coordinator, final Element element, boolean readonly)
 	{
     Utilities.addSeparator(menu);
 
@@ -51,6 +51,8 @@ public class StereotypeChanger
   		MenuAccordion.makeMultiColumn(addMenu, null, true);
   		addMenu.setEnabled(addEnabled);
 		}
+		if (readonly)
+			addMenu.setEnabled(false);
 
 		// populate the replace menu
     JMenu replaceMenu = new JMenu("Replace with \u00AB\u00BB");
@@ -74,6 +76,8 @@ public class StereotypeChanger
       }
       replaceMenu.setEnabled(replaceEnabled);
     }
+    if (readonly)
+    	replaceMenu.setEnabled(false);
 		
 		// populate the delete menu
 		JMenu deleteMenu = new JMenu("Remove \u00AB\u00BB");
@@ -97,6 +101,8 @@ public class StereotypeChanger
   		}
       deleteMenu.setEnabled(deleteEnabled);
 		}
+    if (readonly)
+    	deleteMenu.setEnabled(false);
 	}
 
 	

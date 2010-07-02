@@ -399,9 +399,9 @@ public class ComponentMiniAppearanceGem implements Gem
 			boolean havePorts,
 			UPoint point)
 	{
-		UDimension pOffset = new UDimension(4, 4);
+		UDimension pOffset = new UDimension(8, 8);
 		if (havePorts)
-			pOffset = new UDimension(4, 4);
+			pOffset = new UDimension(16, 16);
 		if (!displayOnlyIcon &&
 				!sizes.getFull().addToPoint(pOffset).addToExtent(pOffset.multiply(2).negative()).contains(point))
 			return new ToolFigureClassification(type, "port");

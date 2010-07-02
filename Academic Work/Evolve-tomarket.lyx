@@ -50,34 +50,10 @@ Evolve: 11/12/2008, 30/1/2009
 
 \begin_layout Standard
 To do before selling
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
 
-\series bold
-Defects:
-\end_layout
-
-\begin_layout Enumerate
-
-\color green
-undo not fully working after class tabbing 
-\end_layout
-
-\begin_layout Enumerate
-attribute issues (aliasing, defaults, 
-\color green
-replace of attr with default
-\color inherit
-)
-\end_layout
-
-\begin_layout Enumerate
-undo after ageX replace – error adorner holds onto old state?
-\end_layout
-
-\begin_layout Enumerate
-classpath separator to use space and quotes
 \end_layout
 
 \begin_layout Standard
@@ -87,6 +63,8 @@ Features
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 better looking component diagrams (a la yworks example)
 \begin_inset Newline newline
 \end_inset
@@ -111,11 +89,21 @@ fix component destruction
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 better “port location” when pressing spacebar on class
 \begin_inset Newline newline
 \end_inset
 
 (0.5 days)
+\end_layout
+
+\begin_layout Enumerate
+visual resemblance from parts
+\begin_inset Newline newline
+\end_inset
+
+(2 days)
 \end_layout
 
 \begin_layout Enumerate
@@ -127,6 +115,8 @@ more rules implemented including composition and stereo visibility...
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 simplify attr + operation options + menu items disabled rather than removed
 \begin_inset Newline newline
 \end_inset
@@ -158,6 +148,57 @@ do website, go into beta
 \begin_layout Standard
 
 \series bold
+Defects:
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+undo not fully working after class tabbing 
+\end_layout
+
+\begin_layout Enumerate
+attribute issues (aliasing, defaults, 
+\color green
+replace of attr with default
+\color inherit
+)
+\end_layout
+
+\begin_layout Enumerate
+undo after ageX replace – error adorner holds onto old state?
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+classpath separator to use space and quotes
+\end_layout
+
+\begin_layout Enumerate
+visual lock problems (possibly move to deleteduuids?) + concurrency issues
+ when cmd takes a long time
+\end_layout
+
+\begin_layout Enumerate
+replacing part causes element to disappear when visually locked
+\end_layout
+
+\begin_layout Enumerate
+slightly slow diagrams in complex situations
+\end_layout
+
+\begin_layout Enumerate
+undo/redo problem after import
+\end_layout
+
+\begin_layout Enumerate
+remove class, documentation, misc, behaviour menus/focus
+\end_layout
+
+\begin_layout Standard
+
+\series bold
 Next up:
 \end_layout
 
@@ -167,14 +208,6 @@ jar deployment + editing off deployed jars
 \end_inset
 
 (5 days)
-\end_layout
-
-\begin_layout Enumerate
-visual resemblance
-\begin_inset Newline newline
-\end_inset
-
-(2 days)
 \end_layout
 
 \begin_layout Enumerate

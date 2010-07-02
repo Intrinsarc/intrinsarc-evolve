@@ -201,31 +201,29 @@ public class PackageMiniAppearanceGem implements Gem
       
       // use the repository for the parent, as it may be null, or not a package
       boolean parentReadOnly = GlobalSubjectRepository.repository.isReadOnly(pkg.getOwner());
-      if (!parentReadOnly)
-      {
-        JCheckBoxMenuItem read = new JCheckBoxMenuItem("Read only");
-        read.setSelected(pkg.isReadOnly());
+      JCheckBoxMenuItem read = new JCheckBoxMenuItem("Read only");
+      read.setEnabled(!parentReadOnly);
+      read.setSelected(pkg.isReadOnly());
 
-        Utilities.addSeparator(menu);
-        menu.add(read);
-        
-        read.addActionListener(new ActionListener()
+      Utilities.addSeparator(menu);
+      menu.add(read);
+      
+      read.addActionListener(new ActionListener()
+      {
+        public void actionPerformed(ActionEvent e)
         {
-          public void actionPerformed(ActionEvent e)
-          {
-            // toggle the readonly flag
-            coordinator.startTransaction("toggled readOnly", "set readOnly back");
-            pkg.setReadOnly(!pkg.isReadOnly());
-            coordinator.commitTransaction();
-          }
-        });
-      }
+          // toggle the readonly flag
+          coordinator.startTransaction("toggled readOnly", "set readOnly back");
+          pkg.setReadOnly(!pkg.isReadOnly());
+          coordinator.commitTransaction();
+        }
+      });
       
       DEStratum me = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asStratum();
       menu.add(PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, me, me, BackbonePrinterMode.REAL_NAMES));
 
-      boolean readOnly = repository.isContainerContextReadOnly(figureFacet);
-      if (!readOnly && isStratum())
+      boolean readOnly = figureFacet.isSubjectReadOnlyInDiagramContext(false);
+      if (isStratum())
       {
         Utilities.addSeparator(menu);
 
@@ -243,6 +241,7 @@ public class PackageMiniAppearanceGem implements Gem
             }
           });
         relaxed.setSelected(isRelaxed);
+        relaxed.setEnabled(!readOnly);
         menu.add(relaxed);
         
         final boolean isDestructive = getDEPackage().isDestructive();
@@ -259,6 +258,7 @@ public class PackageMiniAppearanceGem implements Gem
             }
           });
         destructive.setSelected(isDestructive);
+        destructive.setEnabled(!readOnly);
         menu.add(destructive);
       }
       

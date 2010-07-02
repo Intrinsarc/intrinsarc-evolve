@@ -568,13 +568,14 @@ public class ConnectorArcAppearanceGem implements Gem
             getSubjectAsElement(),
             ClassifierImpl.class); 
           
-      if (visual != real &&
-          !clsFigure.isSubjectReadOnlyInDiagramContext(false))
-      {
-        JMenuItem replaceItem = getReplaceItem(diagramView, coordinator);
-        menu.add(replaceItem);
-        Utilities.addSeparator(menu);
-      }
+      boolean enable =
+      	visual != real &&
+        !clsFigure.isSubjectReadOnlyInDiagramContext(false);
+
+      JMenuItem replaceItem = getReplaceItem(diagramView, coordinator);
+      menu.add(replaceItem);
+      replaceItem.setEnabled(enable);
+      Utilities.addSeparator(menu);
       
       menu.add(linkedTextFacet.getViewLabelMenuItem(coordinator, "connector"));      
       menu.add(startLinkedTextFacet.getViewLabelMenuItem(coordinator, "start multiplicity"));  

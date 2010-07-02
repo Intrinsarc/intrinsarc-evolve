@@ -236,7 +236,6 @@ public final class NodeCreateToolGem implements Gem
     
     // draw the crosshairs, preview for created node, and container info on screen
     drawCrossHairsAndPossibleContainerInformation(e);
-
   }
 
   private void drawCrossHairsAndPossibleContainerInformation(ZMouseEvent e)
@@ -332,7 +331,7 @@ public final class NodeCreateToolGem implements Gem
     
     ContainerFacet mouseContainer = null;
     ContainerFacet possible = figure.getContainerFacet();
-    if (possible != null && possible.insideContainer(point))
+    if (possible != null)
       mouseContainer = possible;
 
     // if we cannot find a figure under the mouse, or the item we are creating cannot

@@ -451,6 +451,8 @@ public final class SelectionToolGem implements Gem
 	      				}
 	      			}
 	      			final JMenuItem item = new JMenuItem((contextReadOnly ? "<html><body text='gray'>" : "") + rich.getName(), rich.getIcon());
+	      			
+							// possibly adjust the point to the bounding box of the figure classification
 	      			menu.add(item);
 	      			item.setEnabled(!contextReadOnly);
 	      			item.addActionListener(new ActionListener()
@@ -474,7 +476,6 @@ public final class SelectionToolGem implements Gem
 							    if (tool.isNode())
 							    {
 								    sendMouseEvent(adjusted, MouseEvent.MOUSE_RELEASED, buttonMask);
-								    sendMouseEvent(adjusted, MouseEvent.MOUSE_CLICKED, buttonMask);
 							    }
 								}
 	      			});

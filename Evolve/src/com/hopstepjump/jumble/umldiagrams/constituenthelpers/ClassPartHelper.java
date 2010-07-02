@@ -21,7 +21,8 @@ import com.hopstepjump.repositorybase.*;
 
 public class ClassPartHelper extends ClassifierConstituentHelper
 {
-  private NodeCreateFacet objectCreator;
+  private NodeCreateFacet partCreator;
+  private NodeCreateFacet statePartCreator;
 
   public ClassPartHelper(ToolCoordinatorFacet coordinator, BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted)
   {
@@ -32,7 +33,8 @@ public class ClassPartHelper extends ClassifierConstituentHelper
         findParts(container.getContainerFacet()).iterator(),
         ConstituentTypeEnum.DELTA_PART,
         deleted);
-    this.objectCreator = new PartCreatorGem(true).getNodeCreateFacet();
+    this.partCreator = new PartCreatorGem(false).getNodeCreateFacet();
+    this.statePartCreator = new PartCreatorGem(true).getNodeCreateFacet();
   }
 
   @Override
@@ -124,7 +126,7 @@ public class ClassPartHelper extends ClassifierConstituentHelper
         subject,
         partRef,
         owner.getFigureReference(),
-        objectCreator,
+        StereotypeUtilities.isRawStereotypeApplied(subject, "state-part") ? statePartCreator : partCreator,
         top,
         new PersistentProperties(),
         null);

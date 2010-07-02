@@ -2,6 +2,7 @@ package com.hopstepjump.backbone.generator.hardcoded.common;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 
 import org.eclipse.uml2.*;
 
@@ -61,11 +62,41 @@ public class WriterHelper
 		return b.toString();
 	}
 	
+	/**
+	 * replace any spaced between entities with the file separate character for the platform
+	 * 
+	 * @param path
+	 * @return
+	 */
 	public static String replaceSeparators(String path)
 	{
-		if (path != null)
-			return path.replace(':', File.pathSeparatorChar).replace(';', File.pathSeparatorChar);
-		return null;
+		if (path == null)
+			return null;
+		boolean inQuotes = false;
+		boolean justSeparated = true;
+
+		StringBuffer out = new StringBuffer();
+		for (char ch : path.toCharArray())
+		{
+			if (ch == '"')
+			{
+				inQuotes = !inQuotes;
+				justSeparated = false;
+			}
+			
+			if (!inQuotes && ch == ' ')
+			{
+				justSeparated = true;
+				out.append(File.pathSeparatorChar);
+			}
+			if (ch != ' ' || !justSeparated)
+			{
+				out.append(ch);
+				justSeparated = false;
+			}
+		}
+		
+		return out.toString();
 	}
 
 	public static void write(File directory, String fileName, String str) throws BackboneGenerationException

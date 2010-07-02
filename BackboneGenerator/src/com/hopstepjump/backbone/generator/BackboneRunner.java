@@ -32,13 +32,11 @@ public class BackboneRunner
   private JTextArea output = new JTextArea();
   private JTextArea error = new JTextArea();
   private Process proc;
-  private IEasyDock desktop;
   private IEasyDockable frame;
   private JPanel insetPanel;
   private boolean errorsShown = false;
   private JButton regenerate;
   private JButton rerun;
-  private JButton dismiss;
   private JButton kill;
   private JButton locateInBrowser;
   private JButton locateInDiagram;
@@ -57,7 +55,6 @@ public class BackboneRunner
 
   public void setDockable(IEasyDock desktop, IEasyDockable frame)
   {
-  	this.desktop = desktop;
   	this.frame = frame;
   }
   
@@ -303,12 +300,13 @@ public class BackboneRunner
     else
     	frame.setTitleText(name + ": " + niceTarget);
     String cmd =
-      javaCmd + " -classpath \"" + classpath + "\" " +
+      javaCmd + " -classpath " + classpath + " " +
       (analyseProtocol ? "-DanalyseProtocol " : "") +
       BACKBONE_INTERPRETER + " -nocheck " + translatedLoadList + " " + target;
     exec.add(javaCmd);
     exec.add("-classpath");
-    exec.add(classpath);
+    String rclasspath = classpath.replace("\"", "");
+    exec.add(rclasspath);
     if (analyseProtocol)
     	exec.add("-DanalyseProtocol");
     exec.add(BACKBONE_INTERPRETER);
@@ -328,6 +326,7 @@ public class BackboneRunner
       if (writer != null)
         writer.close();
     }
+
     return exec;
   }
 

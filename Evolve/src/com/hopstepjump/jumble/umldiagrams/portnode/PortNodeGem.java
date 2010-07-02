@@ -48,8 +48,6 @@ public final class PortNodeGem implements Gem
 
 	private static final UDimension CREATION_EXTENT = new UDimension(16, 16);
 
-  private Color FILL_COLOR = new Color(240, 240, 240);
-	private Color lineColor = Color.black;
 	public static final String FIGURE_NAME = "port";
 	private BasicNodeAppearanceFacet appearanceFacet = new BasicNodeAppearanceFacetImpl();
 	private ResizeVetterFacet resizeVetterFacet = new ResizeVetterFacetImpl();
@@ -788,15 +786,15 @@ public final class PortNodeGem implements Gem
             getSubjectAsPort(),
             ClassifierImpl.class); 
           
-      if (!portInstance && visual != real &&
-          !figureFacet.getContainedFacet().getContainer().getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
+      boolean enable =
+      	!portInstance && visual != real &&
+        !figureFacet.getContainedFacet().getContainer().getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
+      Utilities.addSeparator(popup);			
+      JMenuItem replaceItem = getReplaceItem(diagramView, coordinator);
+      if (replaceItem != null)
       {
-        Utilities.addSeparator(popup);			
-        JMenuItem replaceItem = getReplaceItem(diagramView, coordinator);
-        if (replaceItem != null)
-        {
-          popup.add(replaceItem);
-        }
+      	replaceItem.setEnabled(enable);
+        popup.add(replaceItem);
       }
       
       if (!diagramReadOnly)

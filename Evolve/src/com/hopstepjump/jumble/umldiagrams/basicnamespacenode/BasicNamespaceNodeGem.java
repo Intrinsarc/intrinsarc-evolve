@@ -769,7 +769,10 @@ public final class BasicNamespaceNodeGem implements Gem
 
     public boolean isSubjectReadOnlyInDiagramContext(boolean kill)
     {
-      return GlobalSubjectRepository.repository.isContainerContextReadOnly(figureFacet) || !locatedInCorrectView();
+      return
+      	(subject instanceof Package && ((Package) subject).isReadOnly()) ||
+      	GlobalSubjectRepository.repository.isContainerContextReadOnly(figureFacet) ||
+      	!locatedInCorrectView();
     }
 
     public Set<String> getDisplayStyles(boolean anchorIsTarget)
