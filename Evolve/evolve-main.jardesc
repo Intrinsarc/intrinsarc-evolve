@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
     <jar path="Academic Work/latest-evolve-distribution/gui/evolve-main.jar"/>
     <options buildIfNeeded="true" compress="true" descriptionLocation="/Evolve/evolve-main.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
@@ -17,18 +17,15 @@
         <javaElement handleIdentifier="=LeanFoundation/src"/>
         <folder path="/DocumentationGenerator/html_generation/hopstepjump_theme"/>
         <javaElement handleIdentifier="=RichPalette/src"/>
-        <javaElement handleIdentifier="=WMFWriter/src&lt;com.hopstepjump.wmf.records"/>
         <javaElement handleIdentifier="=BeanImporter/src"/>
         <javaElement handleIdentifier="=Geometry/src"/>
         <javaElement handleIdentifier="=UML2Repository/src"/>
         <javaElement handleIdentifier="=UML2RepositoryBase/src"/>
         <javaElement handleIdentifier="=DocumentationGenerator/src"/>
-        <javaElement handleIdentifier="=WMFWriter/src&lt;com.hopstepjump.wmf"/>
         <javaElement handleIdentifier="=Utilities/src"/>
-        <javaElement handleIdentifier="=WMFWriter/src&lt;com.hopstepjump.wmf.utility"/>
+        <javaElement handleIdentifier="=VectorGraphicsFixes/src"/>
         <file path="/DocumentationGenerator/html_generation/banner.svg"/>
         <javaElement handleIdentifier="=IDraw/src"/>
         <javaElement handleIdentifier="=DeltaEngine-UML2/src"/>
     </selectedElements>
-    <fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
 </jardesc>

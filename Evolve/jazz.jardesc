@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
     <jar path="Academic Work/latest-evolve-distribution/gui/jazz.jar"/>
     <options buildIfNeeded="true" compress="true" descriptionLocation="/Evolve/jazz.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
@@ -13,10 +13,9 @@
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <javaElement handleIdentifier="=Jazz-1.3/&lt;edu.umd.cs.jazz.util"/>
         <javaElement handleIdentifier="=Jazz-1.3/&lt;edu.umd.cs.jazz"/>
-        <javaElement handleIdentifier="=Jazz-1.3/&lt;edu.umd.cs.jazz.animation"/>
         <javaElement handleIdentifier="=Jazz-1.3/&lt;edu.umd.cs.jazz.event"/>
+        <javaElement handleIdentifier="=Jazz-1.3/&lt;edu.umd.cs.jazz.animation"/>
         <javaElement handleIdentifier="=Jazz-1.3/&lt;edu.umd.cs.jazz.component"/>
         <javaElement handleIdentifier="=Jazz-1.3/&lt;edu.umd.cs.jazz.io"/>
     </selectedElements>
-    <fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
 </jardesc>

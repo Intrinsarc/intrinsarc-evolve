@@ -11,22 +11,26 @@ Class-path: extended-emf/uml2-pojo-odb-latest.jar
   emf/org.eclipse.emf.ecore_2.1.0.jar
   emf/org.eclipse.emf.edit_2.1.0.jar
   emf/org.eclipse.osgi_3.1.1.jar
-  gui/dockingFramesCommon-1.0.7.jar
-  gui/dockingFramesCore-1.0.7.jar
   gui/ekit.jar
   gui/jazz.jar
   gui/jh.jar
   gui/JTattoo.jar
   gui/l2fprod-common-fontchooser.jar
-  gui/vectorgraphics.jar
   gui/resources.jar
   gui/evolve-main.jar
   gui/protocoltofsp.jar
+  gui/freehep-graphics2d-2.1.1.jar
+  gui/freehep-graphicsio-2.1.1.jar
+  gui/freehep-graphicsio-emf-2.1.1.jar
+  gui/freehep-graphicsio-ps-2.1.1.jar
+  gui/freehep-io-2.0.2.jar
+  gui/freehep-swing-2.0.3.jar
+  gui/freehep-util-2.0.2  
+  gui/dockingFramesCommon-1.0.7.jar
+  gui/dockingFramesCore-1.0.7.jar
   common/backbone.jar
   common/backbone-gwt-base.jar 
   common/JSyntaxPane.jar
-  common/xstream-1.3.jar
-  common/xpp3-1.1.4.jar
   common/asm-3.1.jar
   common/asm-tree-3.1.jar
 Main-class: com.hopstepjump.jumble.gui.Evolve
