@@ -75,13 +75,20 @@ public class HardcodedFactoryWriter
 		c.newLine();
 		c.write("{");
 		c.newLine();
-		c.write("  private IHardcodedFactory parent;");
-		c.newLine();
+		if (factoryNumber != 0)
+		{
+			c.write("  private IHardcodedFactory parent;");
+			c.newLine();
+		}
 		c.write("  private java.util.List<IHardcodedFactory> children;");
 		c.newLine();
 
 		// write out any attributes with default values and setters and getters
-		if (factory.getAttributes() != null)
+		if (factory.getAttributes() != null && !factory.getAttributes().isEmpty())
+		{
+			c.newLine();
+			c.write("  // attributes");
+			c.newLine();
 			for (BBSimpleAttribute attr : factory.getAttributes())
 			{
 				if (!isFactoryNumber(attr))
@@ -94,33 +101,42 @@ public class HardcodedFactoryWriter
 					if (factoryNumber == 0 && attr.getDefaultValue() != null)
 						def = attr.getDefaultValue();
 					if (def == null)
+					{
 						c.write(";");
+						c.newLine();
+					}
 					else
 					{
 						c.write(" = ");
 						writeInitializer(namer, c, impl, def);
+						c.newLine();
 	
 						// possibly make a setter or getter function
 						if (attr.getPosition() == PositionEnum.TOP)
 						{
 							if (!attr.isReadOnly())
 							{
-								c.newLine();
 								c.write("  public void set" + upper(attrName) + "(" + translatedImpl + " " + attrName + ") { this."
 										+ attrName + ".set(" + attrName + "); }");
+								c.newLine();
 							}
 							if (!attr.isWriteOnly())
 							{
-								c.newLine();
 								c.write("  public " + translatedImpl + " get" + upper(attrName) + "() { return " + attrName + ".get(); }");
+								c.newLine();
 							}
 						}
 					}
 				}
-				c.newLine();
 			}
+		}
+
+		// write out connection variables
+		writeConnectors(registry, namer, factory, c, null, true);
 
 		// handle the parts
+		c.newLine();
+		c.write(" // parts");
 		c.newLine();
 		Map<Integer, String> factoryClassNames = new HashMap<Integer, String>();
 		for (BBSimplePart part : factory.getParts())
@@ -147,7 +163,10 @@ public class HardcodedFactoryWriter
 				// itself
 				c.write("      f.initialize(" + className + ".this, values);");
 				c.newLine();
-				c.write("      if (children != null) children = new java.util.ArrayList<IHardcodedFactory>();");
+				c.write("      if (children == null)");
+				c.newLine();
+				c.write("        children = new java.util.ArrayList<IHardcodedFactory>();");
+				c.newLine();
 				c.write("      children.add(f);");
 				c.newLine();
 				c.newLine();
@@ -178,7 +197,7 @@ public class HardcodedFactoryWriter
 		// make the name more "robust"
 		if (factoryNumber == 0)
 			writeVisiblePorts(namer, factory, comp, c, true);
-
+		
 		c.newLine();
 		c.write("  public " + className + "() {}");
 		c.newLine();
@@ -187,8 +206,11 @@ public class HardcodedFactoryWriter
 		c.newLine();
 		c.write("  {");
 		c.newLine();
-		c.write("    this.parent = parent;");
-		c.newLine();
+		if (factoryNumber != 0)
+		{
+			c.write("    this.parent = parent;");
+			c.newLine();
+		}
 
 		// handle overriding the defaults using the hashmap
 		if (factory.getAttributes() != null)
@@ -231,7 +253,9 @@ public class HardcodedFactoryWriter
 		}
 
 		// write the connectors
-		writeConnectors(registry, namer, factory, c);
+		StringWriter deletedConnectors = new StringWriter();
+		BufferedWriter deleted = new BufferedWriter(deletedConnectors);
+		writeConnectors(registry, namer, factory, c, deleted, false);
 
 		// inform any lifecycle parts that we have initialized
 		for (BBSimplePart part : factory.getParts())
@@ -246,15 +270,6 @@ public class HardcodedFactoryWriter
 		c.write("  }");
 		c.newLine();
 
-		// write any referenced factories
-		for (Integer f : referencedFactories)
-		{
-			BBSimpleFactory nextFactory = simple.getFactory(f);
-			BBSimpleComponent nextComp = nextFactory.getComponent();
-			String nextClassName = factoryClassNames.get(f);
-			writeSingleFactory(registry, c, nextClassName, simple, f, namer, expander);
-		}
-
 		// write the destroy methods
 		c.write("  public void childDestroyed(IHardcodedFactory child) { children.remove(child); }");
 		c.newLine();
@@ -264,53 +279,66 @@ public class HardcodedFactoryWriter
 		c.newLine();
 		c.write("  {");
 		c.newLine();
-		// tell the parent
-		c.write("    if (parent != null) parent.childDestroyed(this);");
-		c.newLine();
+		if (factoryNumber != 0)
+		{
+			// tell the parent
+			c.write("    destroyChildren(parent, this, children);");
+			c.newLine();
+	
+			// tell any parts we are about to delete them
+			for (BBSimplePart part : factory.getParts())
+				if (part.getType().hasLifecycleCallbacks())
+				{
+					String partName = namer.getUniqueName(part);
+					c.write("    " + partName + ".beforeDelete();");
+					c.newLine();
+				}
+	
+			// remove any connectors
+			deleted.flush();
+			c.write(deletedConnectors.toString());
+		}
+
+		// finish the destroy method
 		c.write("  }");
 		c.newLine();
-		// tell any children to destroy themselves
-		c.write("    if (children != null) {");
 		c.newLine();
-		c.write("      java.util.List<IHardcodedFactory> copy = new java.util.ArrayList<HardcodedFactory>(children);"); c.newLine();
-		c.write("      java.util.Collections.reverse(copy);"); c.newLine();
-		c.write("      for (IHardcodedFactory f : copy) f.destroy();"); c.newLine();
-		c.write("    }");
-		c.newLine();
-		
-		// tell any parts we are about to delete them
-		for (BBSimplePart part : factory.getParts())
-			if (part.getType().hasLifecycleCallbacks())
-			{
-				String partName = namer.getUniqueName(part);
-				c.write("    " + partName + ".beforeDelete();");
-				c.newLine();
-			}
-		// clear out any connectors to detach this from the rest of the network and effectively destroy it
-		// set the required for each port
-		
-		/*
-		Set<BBSimplePort> ports = new HashSet<BBSimplePort>();
-		for (BBSimpleConnector c : factory.getConnectors())
-			for (int lp = 0; lp < 2; lp++)
-				ports.add(c.makeSimpleConnectorEnd(lp).getPort());
 
-		for (int pass = 0; pass < 2; pass++)
-			for (BBSimplePort port : ports)
-				for (int side = 0; side < 2; side++)
-				{
-					for (BBSimpleConnector conn : factory.getConnectors())
-					{
-						if (!conn.isRunConnector())
-						{
-							BBSimpleConnectorEnd end = conn.makeSimpleConnectorEnd(side);
-							Map<BBSimpleInterface, Object> cache = cachedProvides.get(new CachedConnectorEnd(end.getConnector(), 1 - end.getSide()));
-							if (end.getPort() == port && (pass == 0 && !end.isTakeNext() || pass == 1 && end.isTakeNext()))
-								end.getConnector().clearRequires(this, cache, end.getSide());
-						}
-					}
-				}
-*/
+		// a utility method
+		if (factoryNumber == 0)
+		{
+			c.write("  static void destroyChildren(IHardcodedFactory parent, IHardcodedFactory me, java.util.List<IHardcodedFactory> children)");
+			c.newLine();
+			c.write("  {");
+			c.newLine();
+			// tell the parent
+			c.write("    parent.childDestroyed(me);");
+			c.newLine();
+			// tell any children to destroy themselves
+			c.write("    if (children != null) {");
+			c.newLine();
+			c.write("      java.util.List<IHardcodedFactory> copy = new java.util.ArrayList<IHardcodedFactory>(children);"); c.newLine();
+			c.write("      java.util.Collections.reverse(copy);"); c.newLine();
+			c.write("      for (IHardcodedFactory f : copy)"); c.newLine();
+			c.write("        f.destroy();"); c.newLine();
+			c.write("    }");
+			c.newLine();		
+			c.write("  }");
+			c.newLine();
+		}
+
+		// write any referenced factories
+		if (!referencedFactories.isEmpty())
+		{
+			c.newLine();
+			c.write("// flattened factories");
+			c.newLine();
+			for (Integer f : referencedFactories)
+			{
+				String nextClassName = factoryClassNames.get(f);
+				writeSingleFactory(registry, c, nextClassName, simple, f, namer, expander);
+			}
+		}
 		
 		// finish off the class
 		c.write("}");
@@ -330,12 +358,26 @@ public class HardcodedFactoryWriter
 		return implClass.equals(Creator.class.getName());
 	}
 
-	private void writeConnectors(BBSimpleElementRegistry registry, UniqueNamer namer, BBSimpleFactory factory,
-			BufferedWriter c) throws IOException
+	private void writeConnectors(
+			BBSimpleElementRegistry registry,
+			UniqueNamer namer,
+			BBSimpleFactory factory,
+			BufferedWriter c,
+			BufferedWriter d,
+			boolean declarations) throws IOException
 	{
 		// handle the connectors
 		// cache the provided for each port
 		List<BBSimpleConnectorEnd> ends = factory.getInternalSortedConnectorEnds();
+		if (ends.isEmpty())
+			return;
+		
+		if (declarations)
+		{
+			c.newLine();
+			c.write("  // connectors");
+			c.newLine();
+		}
 		for (BBSimpleConnectorEnd end : ends)
 		{
 			boolean bean = end.getPart().getType().isBean();
@@ -353,27 +395,46 @@ public class HardcodedFactoryWriter
 
 				if (bean || isFactoryPart(end.getPart()))
 				{
-					c.write("    " + impl + " " + vname + " = " + partName + ";");
-					c.newLine();
+					if (declarations)
+					{
+						c.write("  private " + impl + " " + vname + ";");
+						c.newLine();						
+					}
+					else
+					{
+						c.write("    " + vname + " = " + partName + ";");
+						c.newLine();
+					}
 				}
 				else
 				{
 					String methodName = "get" + name + "_" + shortOriginalImpl;
 					String cast = originalImpl.equals(impl) ? "" : ("(" + impl + ") ");
-					c.write("    " + impl + " " + vname + " = " + cast + partName + "." + methodName + "(" + impl + ".class");
-					if (end.getIndex() != null)
+					if (declarations)
 					{
-							c.write(", " + end.getIndex());
+						c.write("  private " + impl + " " + vname + ";");
+						c.newLine();
 					}
 					else
-					if (end.getPort().isIndexed() && end.isTakeNext())
-						c.write(", -1");							
+					{
+						c.write("    " + vname + " = " + cast + partName + "." + methodName + "(" + impl + ".class");
+						if (end.getIndex() != null)
+						{
+								c.write(", " + end.getIndex());
+						}
+						else
+							if (end.getPort().isIndexed() && end.isTakeNext())
+								c.write(", -1");							
 
-					c.write(");");
-					c.newLine();
+						c.write(");");
+						c.newLine();
+					}
 				}
 			}
 		}
+		
+		if (declarations)
+			return;
 
 		for (BBSimpleConnectorEnd end : ends)
 		{
@@ -407,22 +468,45 @@ public class HardcodedFactoryWriter
 				if (bean)
 				{
 					if (port.getComplexPort().isBeanNoName())
+					{
 						c.write("    " + partName + ".add(" + vname + ");");
+						d.write("    " + partName + ".remove(" + vname + ");");
+					}
 					else if (port.isIndexed())
+					{
 						c.write("    " + partName + ".add" + makeSingular(name) + "(" + vname + ");");
+						d.write("    " + partName + ".remove" + makeSingular(name) + "(" + vname + ");");
+					}
 					else
+					{
 						c.write("    " + partName + ".set" + name + "(" + vname + ");");
+						d.write("    " + partName + ".set" + name + "(null);");
+					}
 					c.newLine();
-				} else
+					d.newLine();
+				}
+				else
 				{
 					String methodName = "set" + name + "_" + shortImpl;
 					c.write("    " + partName + "." + methodName + "(" + vname);
 					if (end.getIndex() != null)
+					{
 						c.write(", " + end.getIndex());
-					else if (port.isIndexed())
+						d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
+					}
+					else
+					if (port.isIndexed())
+					{
 						c.write(", -1");
+						d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
+					}
+					else
+					{
+						d.write("    " + partName + ".set" + name + "_" + shortImpl + "(null);");						
+					}
 					c.write(");");
 					c.newLine();
+					d.newLine();
 				}
 			}
 		}

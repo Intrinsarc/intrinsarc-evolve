@@ -16,6 +16,7 @@ public class NameList
 // end generated code
 	private java.util.List<actions.INameListener> listeners_INameListenerRequired = new java.util.ArrayList<actions.INameListener>();
 	public void setListeners_INameListener(actions.INameListener listeners_INameListenerRequired, int index) { PortHelper.fill(this.listeners_INameListenerRequired, listeners_INameListenerRequired, index); }
+	public void removeListeners_INameListener(actions.INameListener listeners_INameListenerRequired) { this.listeners_INameListenerRequired.remove(listeners_INameListenerRequired); }
 	public actions.INameList getListeners_INameList(Class<?> required, int index) { return names_INameListProvided; }
 
 	private Map<String, Boolean> items = new HashMap<String, Boolean>();
