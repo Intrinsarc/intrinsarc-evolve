@@ -4,6 +4,6 @@ public class LTSARunner
 {
 	public static void main(String args[])
 	{
-		new LTSAFactory().initialize(null).getRun().run(args);
+		new LTSAFactory().initialize(null, null).getRun().run(args);
 	}
 }

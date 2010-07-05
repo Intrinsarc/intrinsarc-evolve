@@ -16,11 +16,26 @@ public class BBSimpleInstantiatedFactory
 	private Map<BBSimpleAttribute, Attribute<? extends Object>> iattributes = new HashMap<BBSimpleAttribute, Attribute<? extends Object>>();
 	private Map<BBSimplePart, Object> iparts = new HashMap<BBSimplePart, Object>();
 	private Map<CachedConnectorEnd, Map<BBSimpleInterface, Object>> cachedProvides = new HashMap<CachedConnectorEnd, Map<BBSimpleInterface,Object>>();
+	private ArrayList<BBSimpleInstantiatedFactory> children;
 	
 	public BBSimpleInstantiatedFactory(BBSimpleInstantiatedFactory parent, BBSimpleFactory factory)
 	{
 		this.parent = parent;
+		if (parent != null)
+			parent.addChild(this);
 		this.factory = factory;
+	}
+	
+	private void addChild(BBSimpleInstantiatedFactory child)
+	{
+		if (children == null)
+			children = new ArrayList<BBSimpleInstantiatedFactory>();
+		children.add(child);
+	}
+	
+	private void childDestroyed(BBSimpleInstantiatedFactory child)
+	{
+		children.remove(child);
 	}
 	
 	public void instantiate(Map<String, Object> values) throws BBRuntimeException
@@ -134,6 +149,19 @@ public class BBSimpleInstantiatedFactory
 
 	public void destroy() throws BBRuntimeException
 	{
+		// tell the parent
+		if (parent != null)
+			parent.childDestroyed(this);
+		
+		// clear any children in reverse order
+		if (children != null)
+		{
+			int size = children.size();
+			List<BBSimpleInstantiatedFactory> copy = new ArrayList<BBSimpleInstantiatedFactory>(children);
+			for (int lp = size - 1; lp >= 0; lp--)
+				copy.get(0).destroy();
+		}
+		
 		// inform any lifecycle parts that we are about to delete them
 		for (BBSimplePart p : iparts.keySet())
 			if (p.getType().hasLifecycleCallbacks())

@@ -12,7 +12,7 @@ public class BaseColors
   public static final Preference PART_COLOR = new Preference("Colors", "Default part color", new PersistentProperty(new Color(185, 198, 106)));
   public static final Preference PRIMITIVE_COLOR = new Preference("Colors", "Default primitive color", new PersistentProperty(new Color(180, 180, 255)));
   public static final Preference CLASS_COLOR = new Preference("Colors", "Default class color", new PersistentProperty(Color.LIGHT_GRAY));
-  public static final Preference FACTORY_COLOR = new Preference("Colors", "Default factory color", new PersistentProperty(Color.LIGHT_GRAY));
+  public static final Preference FACTORY_COLOR = new Preference("Colors", "Default factory color", new PersistentProperty(Color.WHITE));
   public static final Preference PLACEHOLDER_COLOR = new Preference("Colors", "Default placeholder color", new PersistentProperty(Color.LIGHT_GRAY));
   public static final Preference STATE_COLOR = new Preference("Colors", "Default state color", new PersistentProperty(new Color(240, 200, 200)));
   public static final Preference STATE_PART_COLOR = new Preference("Colors", "Default state part color", new PersistentProperty(new Color(240, 200, 200)));

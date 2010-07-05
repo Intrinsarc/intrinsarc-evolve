@@ -1,4 +1,4 @@
-#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -193,7 +193,12 @@ undo/redo problem after import
 \end_layout
 
 \begin_layout Enumerate
-remove class, documentation, misc, behaviour menus/focus
+remove class, documentation, misc, behaviour menus/focus, alloy import,
+ doc gen
+\end_layout
+
+\begin_layout Enumerate
+help links to docs, support group, newsgroup + fix up credit text
 \end_layout
 
 \begin_layout Standard

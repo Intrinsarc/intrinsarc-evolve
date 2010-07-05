@@ -69,11 +69,15 @@ public class HardcodedFactoryWriter
 		BBSimpleComponent comp = factory.getComponent();
 
 		if (factoryNumber == 0)
-			c.write("public class " + className);
+			c.write("public class " + className + " implements IHardcodedFactory");
 		else
-			c.write("class " + className);
+			c.write("class " + className + " implements IHardcodedFactory");
 		c.newLine();
 		c.write("{");
+		c.newLine();
+		c.write("  private IHardcodedFactory parent;");
+		c.newLine();
+		c.write("  private java.util.List<IHardcodedFactory> children;");
 		c.newLine();
 
 		// write out any attributes with default values and setters and getters
@@ -141,14 +145,18 @@ public class HardcodedFactoryWriter
 				c.newLine();
 				// NOTE: no need to set any slots -- they are catered for in the factory
 				// itself
-				c.write("      f.initialize(values);");
+				c.write("      f.initialize(" + className + ".this, values);");
+				c.newLine();
+				c.write("      if (children != null) children = new java.util.ArrayList<IHardcodedFactory>();");
+				c.write("      children.add(f);");
+				c.newLine();
 				c.newLine();
 				c.write("      return f;");
 				c.newLine();
 				c.write("    }");
 				c.newLine();
 				// need to finish...
-				c.write("    public void destroy(Object memento) {}");
+				c.write("    public void destroy(Object memento) { ((IHardcodedFactory) memento).destroy(); }");
 				c.newLine();
 				c.write("  };");
 				c.newLine();
@@ -175,9 +183,11 @@ public class HardcodedFactoryWriter
 		c.write("  public " + className + "() {}");
 		c.newLine();
 		c.newLine();
-		c.write("  public " + className + " initialize(java.util.Map<String, Object> values)");
+		c.write("  public " + className + " initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)");
 		c.newLine();
 		c.write("  {");
+		c.newLine();
+		c.write("    this.parent = parent;");
 		c.newLine();
 
 		// handle overriding the defaults using the hashmap
@@ -245,6 +255,63 @@ public class HardcodedFactoryWriter
 			writeSingleFactory(registry, c, nextClassName, simple, f, namer, expander);
 		}
 
+		// write the destroy methods
+		c.write("  public void childDestroyed(IHardcodedFactory child) { children.remove(child); }");
+		c.newLine();
+		c.newLine();
+		
+		c.write("  public void destroy()");
+		c.newLine();
+		c.write("  {");
+		c.newLine();
+		// tell the parent
+		c.write("    if (parent != null) parent.childDestroyed(this);");
+		c.newLine();
+		c.write("  }");
+		c.newLine();
+		// tell any children to destroy themselves
+		c.write("    if (children != null) {");
+		c.newLine();
+		c.write("      java.util.List<IHardcodedFactory> copy = new java.util.ArrayList<HardcodedFactory>(children);"); c.newLine();
+		c.write("      java.util.Collections.reverse(copy);"); c.newLine();
+		c.write("      for (IHardcodedFactory f : copy) f.destroy();"); c.newLine();
+		c.write("    }");
+		c.newLine();
+		
+		// tell any parts we are about to delete them
+		for (BBSimplePart part : factory.getParts())
+			if (part.getType().hasLifecycleCallbacks())
+			{
+				String partName = namer.getUniqueName(part);
+				c.write("    " + partName + ".beforeDelete();");
+				c.newLine();
+			}
+		// clear out any connectors to detach this from the rest of the network and effectively destroy it
+		// set the required for each port
+		
+		/*
+		Set<BBSimplePort> ports = new HashSet<BBSimplePort>();
+		for (BBSimpleConnector c : factory.getConnectors())
+			for (int lp = 0; lp < 2; lp++)
+				ports.add(c.makeSimpleConnectorEnd(lp).getPort());
+
+		for (int pass = 0; pass < 2; pass++)
+			for (BBSimplePort port : ports)
+				for (int side = 0; side < 2; side++)
+				{
+					for (BBSimpleConnector conn : factory.getConnectors())
+					{
+						if (!conn.isRunConnector())
+						{
+							BBSimpleConnectorEnd end = conn.makeSimpleConnectorEnd(side);
+							Map<BBSimpleInterface, Object> cache = cachedProvides.get(new CachedConnectorEnd(end.getConnector(), 1 - end.getSide()));
+							if (end.getPort() == port && (pass == 0 && !end.isTakeNext() || pass == 1 && end.isTakeNext()))
+								end.getConnector().clearRequires(this, cache, end.getSide());
+						}
+					}
+				}
+*/
+		
 		// finish off the class
 		c.write("}");
 		c.newLine();

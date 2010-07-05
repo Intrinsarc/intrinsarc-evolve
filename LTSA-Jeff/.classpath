@@ -10,6 +10,6 @@
 	<classpathentry kind="lib" path="libs/xml.jar"/>
 	<classpathentry kind="lib" path="libs/JTattoo.jar"/>
 	<classpathentry kind="lib" path="resources"/>
-	<classpathentry kind="lib" path="/Academic Work/latest-evolve-distribution/common/backbone-base.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BackboneInterpreter"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
