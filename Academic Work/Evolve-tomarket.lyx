@@ -81,6 +81,8 @@ allow refresh of leaves upon reimport
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 fix component destruction
 \begin_inset Newline newline
 \end_inset
@@ -111,7 +113,7 @@ more rules implemented including composition and stereo visibility...
 \begin_inset Newline newline
 \end_inset
 
-(3 days)
+(2 days)
 \end_layout
 
 \begin_layout Enumerate
@@ -125,7 +127,7 @@ simplify attr + operation options + menu items disabled rather than removed
 \end_layout
 
 \begin_layout Enumerate
-full example with complex scenario for documentation
+full example with complex scenario for documentation + importing beans
 \begin_inset Newline newline
 \end_inset
 
@@ -133,7 +135,7 @@ full example with complex scenario for documentation
 \end_layout
 
 \begin_layout Enumerate
-documentation + web site
+documentation
 \begin_inset Newline newline
 \end_inset
 
@@ -185,14 +187,12 @@ replacing part causes element to disappear when visually locked
 \end_layout
 
 \begin_layout Enumerate
-slightly slow diagrams in complex situations
-\end_layout
-
-\begin_layout Enumerate
 undo/redo problem after import
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 remove class, documentation, misc, behaviour menus/focus, alloy import,
  doc gen
 \end_layout
@@ -230,6 +230,10 @@ concurrency via actors and possibly concurrent state machines + expanded
 \end_inset
 
 (??)
+\end_layout
+
+\begin_layout Enumerate
+slightly slow diagrams in complex situations
 \end_layout
 
 \end_body

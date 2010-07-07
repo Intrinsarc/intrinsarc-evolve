@@ -1,7 +1,6 @@
 package com.hopstepjump.jumble.gui;
 
 import java.io.*;
-import java.text.*;
 import java.util.*;
 
 import javax.swing.*;
@@ -32,6 +31,7 @@ public class Evolve
   public static final String LEAST_VERSION = "1.5";
   public static final String BEST_VERSION = "1.6";
 	public static final int MAX_UNMODIFIED_UNVIEWED_DIAGRAMS = 5;
+	public static final boolean ADVANCED = System.getProperty("Advanced") != null;
 
 	private ToolCoordinatorGem toolManager;
 	/** the application window coordinator manages a number of windows */

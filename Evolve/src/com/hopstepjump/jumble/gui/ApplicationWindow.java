@@ -41,6 +41,8 @@ import com.hopstepjump.swing.smartmenus.*;
 
 public class ApplicationWindow extends SmartJFrame
 {
+	public static String URL_BASE = "http://www.intrinsarc.com";
+
 	/** the docking framework */
 	private IEasyDock desktop;
 
@@ -71,6 +73,9 @@ public class ApplicationWindow extends SmartJFrame
 	private IEasyDockable paletteTitle;
 
 	// icons
+	public static final ImageIcon WWW_ICON = IconLoader.loadIcon("world_go.png");
+	public static final ImageIcon NEWS_ICON = IconLoader.loadIcon("newspaper.png");
+	public static final ImageIcon HELP_ICON = IconLoader.loadIcon("book_open.png");
 	public static final ImageIcon FULLSCREEN_ICON = IconLoader.loadIcon("fullscreen.png");
 	public static final ImageIcon GARBAGE_ICON = IconLoader.loadIcon("garbage.png");
 	public static final ImageIcon APPLICATION_ICON = IconLoader.loadIcon("brick.png");
@@ -88,7 +93,6 @@ public class ApplicationWindow extends SmartJFrame
 	public static final ImageIcon REMOTEDB_ICON = IconLoader.loadIcon("database_connect.png");
 	public static final ImageIcon BROWSER_REUSABLE_ICON = IconLoader.loadIcon("browser.png");
 	public static final ImageIcon BROWSER_NON_REUSABLE_ICON = IconLoader.loadIcon("browser-nonreusable.png");
-	public static final ImageIcon HELP_ICON = IconLoader.loadIcon("help.png");
 	public static final ImageIcon WARNING_ICON = IconLoader.loadIcon("warning.png");
 	public static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
 	public static final ImageIcon BLANK_ICON = IconLoader.loadIcon("blank.png");
@@ -1798,10 +1802,13 @@ public class ApplicationWindow extends SmartJFrame
 			entries.add(new SmartMenuItemImpl("Edit", "UndoRedo", redo));
 
 			// html
-			JMenuItem htmlItem = new JMenuItem(new GenerateHTMLAction());
-			htmlItem.setIcon(WORLD_ICON);
-			GlobalPreferences.registerKeyAction("Tools", htmlItem, "ctrl H", "Generate HTML from the model");
-			entries.add(new SmartMenuItemImpl("Tools", "HTML", htmlItem));
+			if (Evolve.ADVANCED)
+			{
+				JMenuItem htmlItem = new JMenuItem(new GenerateHTMLAction());
+				htmlItem.setIcon(WORLD_ICON);
+				GlobalPreferences.registerKeyAction("Tools", htmlItem, "ctrl H", "Generate HTML from the model");
+				entries.add(new SmartMenuItemImpl("Tools", "HTML", htmlItem));
+			}
 
 			// add the backbone tagger
 			JMenuItem tagItem = new JMenuItem(new TagBackboneAction());
@@ -1831,9 +1838,12 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("Tools",beanImport, null, "Analyse and import JavaBeans from the classpath of the selected stratum");
 
 			// add the protocol analyser
-			JMenuItem protocolItem = new JMenuItem(new AnalyseProtocolAction());
-			GlobalPreferences.registerKeyAction("Tools",protocolItem, "control P", "Analyse the LTSA protocol of the tagged element");
-			entries.add(new SmartMenuItemImpl("Tools", "Backbone", protocolItem));
+			if (Evolve.ADVANCED)
+			{
+				JMenuItem protocolItem = new JMenuItem(new AnalyseProtocolAction());
+				GlobalPreferences.registerKeyAction("Tools",protocolItem, "control P", "Analyse the LTSA protocol of the tagged element");
+				entries.add(new SmartMenuItemImpl("Tools", "Backbone", protocolItem));
+			}
 
 			// order the menus
 			smartMenuBar.addSectionOrderingHint("File", "Create", "a");
@@ -1846,18 +1856,32 @@ public class ApplicationWindow extends SmartJFrame
 			smartMenuBar.addSectionOrderingHint("Edit", "UndoRedo", "a");
 
 			// add the help entries
-			smartMenuBar.addSectionOrderingHint(">Help", "Contents", "a");
-			smartMenuBar.addSectionOrderingHint(">Help", "About", "b");
-			
 			JMenuItem aboutItem = new JMenuItem(new HelpAboutAction(coordinator, popup));			
-			entries.add(new SmartMenuItemImpl(">Help", "About", aboutItem));
+			entries.add(new SmartMenuItemImpl("Help", "About", aboutItem));
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
 
-			JMenuItem contentsItem = new JMenuItem(
-					new HelpContentsAction(coordinator));
-			contentsItem.setIcon(HELP_ICON);
-			entries.add(new SmartMenuItemImpl(">Help", "Contents", contentsItem));
-			GlobalPreferences.registerKeyAction("Help", contentsItem, null, "Display the help documentation");
+			JMenuItem mainItem = new JMenuItem(
+					new URLAction("Intrinsarc website", URL_BASE));
+			mainItem.setIcon(WWW_ICON);
+			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));
+			GlobalPreferences.registerKeyAction("Help", mainItem, null, "Visit main site");
+
+			JMenuItem newsItem = new JMenuItem(
+					new URLAction("News and Announcements", URL_BASE + "/news"));
+			newsItem.setIcon(NEWS_ICON);
+			entries.add(new SmartMenuItemImpl("Help", "Support", newsItem));
+			GlobalPreferences.registerKeyAction("Help", newsItem, null, "News and Announcements");
+
+			JMenuItem docItem = new JMenuItem(
+					new URLAction("Documentation", URL_BASE + "/documentation"));
+			docItem.setIcon(HELP_ICON);
+			entries.add(new SmartMenuItemImpl("Help", "Support", docItem));
+			GlobalPreferences.registerKeyAction("Help", docItem, null, "Documentation");
+
+			JMenuItem supportItem = new JMenuItem(
+					new URLAction("Support forum", URL_BASE + "/support"));
+			entries.add(new SmartMenuItemImpl("Help", "Support", supportItem));
+			GlobalPreferences.registerKeyAction("Help", supportItem, null, "Support forum");
 
 			// add the error checking items
 			JMenuItem clearErrorsItem = new JMenuItem(new HideErrorsAction());
@@ -1907,11 +1931,14 @@ public class ApplicationWindow extends SmartJFrame
 			makeFocusItem(entries, PaletteManagerGem.FEATURE_FOCUS, "shift ctrl F");
 			makeFocusItem(entries, PaletteManagerGem.COMPONENT_FOCUS, "shift ctrl C");
 			makeFocusItem(entries, PaletteManagerGem.STATE_FOCUS, "shift ctrl S");
-			makeFocusItem(entries, PaletteManagerGem.BEHAVIOUR_FOCUS, "shift ctrl B");
 			makeFocusItem(entries, PaletteManagerGem.PROFILE_FOCUS, "shift ctrl P");
-			makeFocusItem(entries, PaletteManagerGem.DOCUMENTATION_FOCUS, "shift ctrl D");
-			makeFocusItem(entries, PaletteManagerGem.CLASS_FOCUS, "shift ctrl L");
-			makeFocusItem(entries, PaletteManagerGem.MISCELLANEOUS_FOCUS, "shift ctrl M");
+			if (Evolve.ADVANCED)
+			{
+				makeFocusItem(entries, PaletteManagerGem.BEHAVIOUR_FOCUS, "shift ctrl B");
+				makeFocusItem(entries, PaletteManagerGem.DOCUMENTATION_FOCUS, "shift ctrl D");
+				makeFocusItem(entries, PaletteManagerGem.CLASS_FOCUS, "shift ctrl L");
+				makeFocusItem(entries, PaletteManagerGem.MISCELLANEOUS_FOCUS, "shift ctrl M");
+			}
 			smartMenuBar.addMenuOrderingHint("Focus", "ab");
 			
 			// register some nice icons for the preference tabs

@@ -359,6 +359,7 @@ public class PaletteManagerGem
       tools.addCategory(palette);
     }
     
+    if (Evolve.ADVANCED)
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Documentation", new String[]{DOCUMENTATION_FOCUS});
 
@@ -549,6 +550,7 @@ public class PaletteManagerGem
       }
     }
 
+    if (Evolve.ADVANCED)
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Class", new String[]{CLASS_FOCUS});
       ClassCreatorGem classCreator = new ClassCreatorGem();
@@ -565,6 +567,7 @@ public class PaletteManagerGem
       tools.addCategory(palette);
     }
     
+    if (Evolve.ADVANCED)
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Sequence", new String[]{BEHAVIOUR_FOCUS});
       palette.addEntry(makeEntry(false, "call.gif",     "Call (synchronous)",  new ArcCreateToolGem(new MessageCreatorGem(MessageArcAppearanceGem.CALL_TYPE).getArcCreateFacet()).getToolFacet()));
@@ -577,6 +580,7 @@ public class PaletteManagerGem
       tools.addCategory(palette);
     }
 
+    if (Evolve.ADVANCED)
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Deployment", new String[]{MISCELLANEOUS_FOCUS});
       palette.addEntry(makeEntry(true, "model.png",       "Model",                makeNodeCreateTool(retrieveNodeRecreator(ModelCreatorGem.NAME)), "top"));
