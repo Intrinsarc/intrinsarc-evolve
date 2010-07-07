@@ -72,7 +72,7 @@ public class BeanAnalyzer
 		try
 		{
 			// possibly update the monitor
-			if (count[0]++ % 1000 == 0)
+			if (count[0]++ % 100 == 0)
 				monitor.displayInterimPopup(BEAN_ADD_ICON, "Analyzing...", "Examined " + (count[0] - 1) + " elements", null, -1);
 			
 			ClassReader reader = new ClassReader(input);

@@ -24,6 +24,7 @@ public class BeanClass
 	private String originalName;
 	private List<String> interfaces;
 	private String superClass;
+	private Set<BeanClass> wantsThis;
 
 	public BeanClass(ClassNode node)
 	{
@@ -460,9 +461,12 @@ public class BeanClass
 		{
 			for (BeanField field : fields.values())
 			{
-				for (String str : field.getTypesNeeded())
-					if (finder.refersToPossibleImportBean(str))
-						leaves.add(str);
+				if (!field.isIgnore())
+				{
+					for (String str : field.getTypesNeeded())
+						if (finder.refersToPossibleImportBean(str))
+							leaves.add(str);
+				}
 			}
 		}
 		
@@ -665,5 +669,25 @@ public class BeanClass
 	public String toString()
 	{
 		return "BeanClass(" + name + ")";
+	}
+
+	public void addWantsThis(BeanClass bean)
+	{
+		// no synthetic interfaces
+		if (bean.isInterfaceForBean() || bean == this)
+			return;
+		if (wantsThis == null)
+			wantsThis = new HashSet<BeanClass>();
+		wantsThis.add(bean);
+	}
+	
+	public Set<BeanClass> getWantsThis()
+	{
+		return wantsThis;
+	}
+
+	public void clearWantsThis()
+	{
+		wantsThis = null;
 	}
 }

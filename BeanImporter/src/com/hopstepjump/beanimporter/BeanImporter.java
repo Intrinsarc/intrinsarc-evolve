@@ -606,17 +606,36 @@ public class BeanImporter
 						break;
 				}
 				
-				// possibly add an error
+				// possibly add an error as a tooltip
+				String msg = "";
+				
+				if (obj.getBeanClass() != null)
+				{
+					BeanClass bc = obj.getBeanClass();
+					if (bc.isSynthetic())
+					{
+						if (bc.getWantsThis() == null)
+							msg = "Required by none";  // should never happen
+						else
+						{
+							msg = "Required by";
+							for (BeanClass w : bc.getWantsThis())
+								msg += " " + w.getName();
+						}
+					}
+				}
+				
+				
 				if (obj.getBeanClass() != null && obj.getBeanClass().isInError(finder) && tree == leafTree)
 				{
 					icon = new DecoratedIcon(icon, ERROR_ICON, DecoratedIcon.LEFT, DecoratedIcon.BOTTOM);
-					setToolTipText(obj.getBeanClass().getError(finder));
+					msg = obj.getBeanClass().getError(finder);
 				}
 				else
 				if (obj.getBeanField() != null && obj.getBeanField().isInError() && tree == featureTree)
 				{
 					icon = new DecoratedIcon(icon, ERROR_ICON, DecoratedIcon.LEFT, DecoratedIcon.BOTTOM);
-					setToolTipText(obj.getBeanField().getError());
+					msg = obj.getBeanField().getError();
 				}
 				else
 				if (obj.getBeanField() != null && obj.getBeanField().isIgnore() && tree == featureTree)
@@ -625,6 +644,9 @@ public class BeanImporter
 					strikethrough.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
 					setFont(getFont().deriveFont(strikethrough));
 				}
+				
+				if (msg.length() != 0)
+					setToolTipText(msg);
 				else
 					setToolTipText(null);
 				
@@ -892,6 +914,11 @@ public class BeanImporter
   	do
   	{
   		oldSize = all.size();
+  		
+  		// clear out all "wanted"
+	  	for (BeanClass one : new HashSet<BeanClass>(all))
+	  		one.clearWantsThis();
+  		
 	  	for (BeanClass one : new HashSet<BeanClass>(all))
 	  	{
 	  		// get any dependents for the bean

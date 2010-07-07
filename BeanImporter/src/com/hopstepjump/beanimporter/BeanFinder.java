@@ -151,6 +151,7 @@ public class BeanFinder
 				if (a.getType() == BeanTypeEnum.INTERFACE && a.getNode().name.equals(iface))
 				{
 					found = true;
+					a.addWantsThis(bean);
 					break;
 				}
 			}
@@ -167,6 +168,7 @@ public class BeanFinder
 			{
 				all.add(imp);
 				imp.setSynthetic(true);
+				imp.addWantsThis(bean);
 			}
 			else
 			{
@@ -177,6 +179,7 @@ public class BeanFinder
 				imp.setError("Interface " + iface + " cannot be found.  First required by " + bean.getNode().name);
 				all.add(imp);
 				imp.setSynthetic(true);
+				imp.addWantsThis(bean);
 			}
 		}
 	}
@@ -194,6 +197,7 @@ public class BeanFinder
 				if ((a.getType() == BeanTypeEnum.PRIMITIVE || a.isBean()) && a.getNode().name.equals(prim))
 				{
 					found = true;
+					a.addWantsThis(bean);
 					break;
 				}
 			}
@@ -206,6 +210,7 @@ public class BeanFinder
 				if (a.getNode().name.equals(prim))
 				{
 					found = true;
+					a.addWantsThis(bean);
 					break;
 				}
 			}
@@ -226,6 +231,7 @@ public class BeanFinder
 			{
 				all.add(imp);
 				imp.setSynthetic(true);
+				imp.addWantsThis(bean);
 			}
 			else
 			{
@@ -236,6 +242,7 @@ public class BeanFinder
 				imp.setError("Primitive " + prim + " cannot be found.  First required by " + bean.getNode().name);
 				all.add(imp);
 				imp.setSynthetic(true);
+				imp.addWantsThis(bean);
 			}
 		}
 	}
@@ -253,6 +260,8 @@ public class BeanFinder
 				if (a.getType() != BeanTypeEnum.INTERFACE && a.getNode().name.equals(beanClass))
 				{
 					found = true;
+					// add this bean to the wants list
+					a.addWantsThis(bean);
 					break;
 				}
 			}
@@ -269,6 +278,7 @@ public class BeanFinder
 			{
 				all.add(imp);
 				imp.setSynthetic(true);
+				imp.addWantsThis(bean);				
 			}
 			else
 			{
@@ -279,6 +289,7 @@ public class BeanFinder
 				imp.setError("Bean " + beanClass + " cannot be found.  First required by " + bean.getNode().name);
 				all.add(imp);
 				imp.setSynthetic(true);
+				imp.addWantsThis(bean);
 			}
 		}
 	}
