@@ -16,7 +16,7 @@ import com.hopstepjump.swing.*;
 
 public class HelpAboutAction extends AbstractAction
 {
-  private static final String TANARC_URL = "http://www.intrinsys.com";
+  private static final String TANARC_URL = "http://www.intrinsarc.com";
 	public static final ImageIcon WORLD_ICON = IconLoader.loadIcon("world.png");
   private ToolCoordinatorFacet coordinator;
   private PopupMakerFacet popup;
@@ -36,38 +36,38 @@ public class HelpAboutAction extends AbstractAction
     tabs.add(logo);
     Dimension preferred = logo.getPreferredSize();
     
-//    String red = "<span style=\"color: red\">";
-//    String redOff = "</span>";
     String evolve = "Evolve";
     
     tabs.add(
         makeTextPanel(
           preferred,
           "Description", 
-          evolve + " is programmed by Andrew McVeigh.<br>" +
-          "&copy; A. McVeigh 2003-2010<br><br><a href='" + TANARC_URL + "'>Intrinsic Systems</a><br><br>" +
-          evolve + " is an environment for modeling, maintaining and extending systems built from components.<br><br>" +
-          "The work is the culmination of research I started in 2002/2003 to make naturally extensible applications"));
+          evolve + " is a highly principled, component-oriented approach to system construction and evolution. "
+          + "It is heavily based on the PhD and research work of Andrew McVeigh and others.<br><br>" +
+          "&copy; A. McVeigh 2003-2010<br><br>On license to <a href='" + TANARC_URL + "'>Intrinsarc Lrd</a>" +
+          "<br><br>This product is the culmination of work started in 2003 to make naturally extensible applications."));
 
     tabs.add(
         makeTextPanel(
             preferred,
           "Libraries", 
-          "eclipse UML2 -> EPL<br>Objectdb1.04 -> Commercial<br>JTattoo -> Commercial<br>Xoetrope color wheel -> free" +
-          "<br>L2fprod common components -> free<br>FreeHep (for SVG, EPS, WMF) -> free<br>JDO 1.01 -> free spec" +
-          "<br>  JSyntaxPane ->free<br>JICon, Created by Claude Duguay, Copyright (c) 2002"));
-
-    tabs.add(
-        makeTextPanel(
-            preferred,
-          "Icons and Images", 
-          "FamFam icons -> free"));
+          "eclipse UML2, licensed under EPL, (url)" +
+//          "<br>Objectdb1.04 -> Commercial" +
+          "<br>JTattoo, commercial license, (url)" +
+          "<br>Xoetrope color wheel, licensed under XXX, (url)" +
+          "<br>L2fProd common components, licensed under XXX, (url)" +
+          "<br>FreeHep (for SVG, EPS, WMF), licensed under XXX, (url)" +
+          "<br>JSyntaxPane Created by Claude Duguay, licensed under XXX, (url)" +
+          "<br>FamFamFam Silk Icons url, licensed under XXX, (url)"));
 
     tabs.add(
         makeTextPanel(
             preferred,
           "Credits", 
-          "family, esp Tess<br><br>Professors<br>"));
+          "This work is dedicated to our families for putting up with the long years of work and the late nights." +
+          "<br><br>We would like to express our deep gratitude to Professors Jeff Magee and Jeff Kramer from Imperial College.  Without their pioneering work on " +
+          "Darwin and hierarchical components, formal semantics of system flattening and isomorphic factories this work would not be possible" +
+          "<br><br>We would also like to acknowledge the amazing work and technical vision of ObjecTime and Bran Selic.  Twenty years later the system is still impressive."));
 
     tabs.add(
         makeTextPanel(
