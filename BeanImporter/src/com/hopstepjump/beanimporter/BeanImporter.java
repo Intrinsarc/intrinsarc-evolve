@@ -565,6 +565,7 @@ public class BeanImporter
 				// otherwise, this is a complex node
 				Icon icon = null;
 				String name = obj.getName();
+				String refresh = " (refresh)";
 				switch (obj.getType())
 				{
 					case PACKAGE:
@@ -577,14 +578,23 @@ public class BeanImporter
 							icon = LEAF_ICON;
 						if (obj.getBeanClass().isAbstract())
 							setFont(getFont().deriveFont(Font.ITALIC));
+						// is this a refresh?
+						if (finder.isRefreshedClass(obj.getBeanClass()))
+							name += refresh;
 						break;
 					case INTERFACE:
 						icon = INTERACE_ICON;
 						if (tree == beanTree)
 							name = obj.getBeanClass().getOriginalName();
+						// is this a refresh?
+						if (finder.isRefreshedInterface(obj.getBeanClass()))
+							name += refresh;
 						break;
 					case PRIMITIVE:
 						icon = PRIMITIVE_ICON;
+						// is this a refresh?
+						if (finder.isRefreshedClass(obj.getBeanClass()))
+							name += refresh;
 						break;
 					case ATTRIBUTE:
 						{

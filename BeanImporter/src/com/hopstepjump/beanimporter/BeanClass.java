@@ -123,7 +123,7 @@ public class BeanClass
 				continue;
 			
 			String mName = m.name;
-			if (mName.length() > 4)
+			if (mName.length() >= 4)
 				handleGetOrSet(m, mName);
 			if (mName.length() >= 3)
 				handleAdd(m, mName);
@@ -300,7 +300,8 @@ public class BeanClass
 	{
 		if (cls.equals("java.lang.Object") ||
 				cls.equals("java.io.Serializable") ||
-				cls.equals("java.lang.Cloneable"))
+				cls.equals("java.lang.Cloneable") ||
+				cls.equals("java.lang.Comparable"))
 			return true;
 		return false;
 	}

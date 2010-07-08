@@ -23,6 +23,8 @@ public class BeanFinder
 	// all Strings are dotted names
 	Map<String, Interface> ifaces = new HashMap<String, Interface>();
 	Map<String, Class> classes = new HashMap<String, Class>();
+	Map<String, Interface> cifaces = new HashMap<String, Interface>();
+	Map<String, Class> cclasses = new HashMap<String, Class>();
 	Map<String, BeanClass> ifacesP = new HashMap<String, BeanClass>();
 	Map<String, BeanClass> classesP = new HashMap<String, BeanClass>();
 
@@ -62,7 +64,28 @@ public class BeanFinder
 			if (count++ % 50 == 0)
 				monitor.displayInterimPopup(BEAN_ADD_ICON,
 						"Analyzing Existing Repository...", "Examined " + (count - 1)
-								+ " existing packages", null, -1);
+								+ " existing packages", null, -1);			
+		}
+		
+		for (DEElement elem : stratum.getChildElements())
+		{
+			if (elem.asComponent() != null && !elem.isSubstitution())
+			{
+				String impl = elem.getImplementationClass(stratum);
+				if (impl != null && impl.length() > 0)
+				{
+					cclasses.put(impl, (Class) elem.getRepositoryObject());
+				}
+			}
+
+			if (elem.asInterface() != null && !elem.isSubstitution())
+			{
+				String impl = elem.getImplementationClass(stratum);
+				if (impl != null && impl.length() > 0)
+				{
+					cifaces.put(impl, (Interface) elem.getRepositoryObject());
+				}
+			}
 		}
 	}
 
@@ -401,9 +424,29 @@ public class BeanFinder
 	public Class findClass(Map<String, Class> cls, String name)
 	{
 		String className = PrimitiveHelper.translateShortToLongPrimitive(name);
-		Class iface = classes.get(className);
-		if (iface == null && cls != null)
-			iface = cls.get(className);
-		return iface;
+		Class c = classes.get(className);
+		if (c == null && cls != null)
+			c = cls.get(className);
+		return c;
+	}
+
+	public boolean isRefreshedClass(BeanClass bc)
+	{
+		return cclasses.containsKey(bc.getNode().name);
+	}
+
+	public boolean isRefreshedInterface(BeanClass bc)
+	{
+		return cifaces.containsKey(bc.getNode().name);
+	}
+	
+	public Class getRefreshedClass(BeanClass bc)
+	{
+		return cclasses.get(bc.getNode().name);
+	}
+
+	public Interface getRefreshedInterface(BeanClass bc)
+	{
+		return cifaces.get(bc.getNode().name);
 	}
 }

@@ -351,8 +351,12 @@ public class BeanSubjectCreator
 	private void createInterface(Map<String, Interface> interfaces, BeanClass cls)
 	{
 		String name = cls.getName();
-		Interface iface = (Interface) in.createOwnedMember(UML2Package.eINSTANCE.getInterface());
+		Interface iface = finder.getRefreshedInterface(cls);
+		if (iface == null)
+			iface = (Interface) in.createOwnedMember(UML2Package.eINSTANCE.getInterface());
 		iface.setName(name);
+		iface.settable_getAppliedBasicStereotypes().clear();
+		iface.settable_getAppliedBasicStereotypeValues().clear();
 		iface.settable_getAppliedBasicStereotypes().add(interfaceStereo);
 		setImplementation(iface, cls.getNode().name);
 		setBooleanProperty(iface, CommonRepositoryFunctions.BEAN);
@@ -361,8 +365,12 @@ public class BeanSubjectCreator
 
 	private void createLeaf(Map<String, Class> classes, BeanClass cls)
 	{
-		Class cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
+		Class cl = finder.getRefreshedClass(cls);
+		if (cl == null)
+			cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
 		cl.setComponentKind(ComponentKind.NORMAL_LITERAL);
+		cl.settable_getAppliedBasicStereotypes().clear();
+		cl.settable_getAppliedBasicStereotypeValues().clear();
 		cl.settable_getAppliedBasicStereotypes().add(componentStereo);
 		setImplementation(cl, cls.getNode().name);
 		setBooleanProperty(cl, CommonRepositoryFunctions.BEAN);
@@ -371,8 +379,12 @@ public class BeanSubjectCreator
 
 	private void createPrimitive(Map<String, Class> classes, BeanClass cls)
 	{
-		Class cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
+		Class cl = finder.getRefreshedClass(cls);
+		if (finder == null)
+			cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
 		cl.setComponentKind(ComponentKind.PRIMITIVE_LITERAL);
+		cl.settable_getAppliedBasicStereotypes().clear();
+		cl.settable_getAppliedBasicStereotypeValues().clear();
 		cl.settable_getAppliedBasicStereotypes().add(primitiveStereo);
 		setImplementation(cl, cls.getNode().name);
 		classes.put(cls.getNode().name, cl);
