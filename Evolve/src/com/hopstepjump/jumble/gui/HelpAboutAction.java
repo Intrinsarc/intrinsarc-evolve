@@ -36,46 +36,36 @@ public class HelpAboutAction extends AbstractAction
     tabs.add(logo);
     Dimension preferred = logo.getPreferredSize();
     
-    String evolve = "Evolve";
-    
     tabs.add(
-        makeTextPanel(
+    		makeTextPanelFromHTMLDocument(
           preferred,
           "Description", 
-          evolve + " is a highly principled, component-oriented approach to system construction and evolution. "
-          + "It is heavily based on the PhD and research work of Andrew McVeigh and others.<br><br>" +
-          "&copy; A. McVeigh 2003-2010<br><br>On license to <a href='" + TANARC_URL + "'>Intrinsarc Lrd</a>" +
-          "<br><br>This product is the culmination of work started in 2003 to make naturally extensible applications."));
+          "evolve-description.html"));
 
     tabs.add(
-        makeTextPanel(
-            preferred,
+    		makeTextPanelFromHTMLDocument(
+          preferred,
           "Libraries", 
-          "eclipse UML2, licensed under EPL, (url)" +
-//          "<br>Objectdb1.04 -> Commercial" +
-          "<br>JTattoo, commercial license, (url)" +
-          "<br>Xoetrope color wheel, licensed under XXX, (url)" +
-          "<br>L2fProd common components, licensed under XXX, (url)" +
-          "<br>FreeHep (for SVG, EPS, WMF), licensed under XXX, (url)" +
-          "<br>JSyntaxPane Created by Claude Duguay, licensed under XXX, (url)" +
-          "<br>FamFamFam Silk Icons url, licensed under XXX, (url)"));
-
+          "evolve-libraries.html"));
+    
     tabs.add(
-        makeTextPanel(
-            preferred,
+    		makeTextPanelFromHTMLDocument(
+          preferred,
           "Credits", 
-          "This work is dedicated to our families for putting up with the long years of work and the late nights." +
-          "<br><br>We would like to express our deep gratitude to Professors Jeff Magee and Jeff Kramer from Imperial College.  Without their pioneering work on " +
-          "Darwin and hierarchical components, formal semantics of system flattening and isomorphic factories this work would not be possible" +
-          "<br><br>We would also like to acknowledge the amazing work and technical vision of ObjecTime and Bran Selic.  Twenty years later the system is still impressive."));
-
+          "evolve-credits.html"));
+    
     tabs.add(
-        makeTextPanel(
-            preferred,
-          "Legal", 
-          "Commercial license text"));
+    		makeTextPanelFromHTMLDocument(
+          preferred,
+          "License", 
+          "evolve-license.html"));
 
     coordinator.invokeAsDialog(null, "About", tabs, null, null);
+  }
+  
+  private JComponent makeTextPanelFromHTMLDocument(Dimension preferred, String name, String documentName)
+  {
+  	return makeTextPanel(preferred, name, FileLoader.loadFile(documentName));
   }
   
   private JComponent makeTextPanel(Dimension preferred, String name, String contents)
@@ -85,8 +75,9 @@ public class HelpAboutAction extends AbstractAction
 
     text.setText(contents);
     text.setEditable(false);
+    text.moveCaretPosition(0);
     
-    JScrollPane scroller = new JScrollPane(text);
+    final JScrollPane scroller = new JScrollPane(text);
     scroller.setName(name);
     scroller.setPreferredSize(preferred);
     
@@ -98,7 +89,7 @@ public class HelpAboutAction extends AbstractAction
           openBrowser(e.getURL());
       }
     });
-
+    
     return scroller;
   }
 
@@ -126,7 +117,7 @@ public class HelpAboutAction extends AbstractAction
     };
     panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
     panel.setPreferredSize(new Dimension(600, 400));
-    panel.setName("Logo");
+    panel.setName("Evolve");
     
     panel.addMouseListener(new MouseAdapter()
     {

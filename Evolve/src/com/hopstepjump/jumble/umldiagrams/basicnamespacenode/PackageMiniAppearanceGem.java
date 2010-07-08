@@ -539,6 +539,7 @@ public class PackageMiniAppearanceGem implements Gem
     		new StratumPrinter(perspective, object.asStratum(), mode).makePrintString("") :
     			new ElementPrinter(perspective, object.asElement(), mode).makePrintString("");
     editor.setText(backbone);
+    editor.moveCaretPosition(0);
     
 		pane.revalidate();
 		return pane;
