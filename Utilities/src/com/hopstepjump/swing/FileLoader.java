@@ -23,7 +23,7 @@ public class FileLoader
 		}
 	  catch (IOException e)
 	  {
-	  	return "<html>Problem loading document " + fileName + "</html>"; 
+	  	return null; 
 	  }
 
 		return b.toString();

@@ -16,6 +16,6 @@
 	<classpathentry kind="lib" path="/CommonResources/JSyntaxPane.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BeanImporter"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/VectorGraphicsFixes"/>
-	<classpathentry kind="lib" path="help-documents"/>
+	<classpathentry kind="lib" path="resources"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -80,7 +80,7 @@ public class InspectAndImportStrataAction extends AbstractAction
     XMLSubjectRepositoryGem repositoryGem;
 		try
 		{
-			repositoryGem = XMLSubjectRepositoryGem.openFile(fileName, false);
+			repositoryGem = XMLSubjectRepositoryGem.openFile(fileName, false, true);
 		}
 		catch (RepositoryOpeningException ex)
 		{

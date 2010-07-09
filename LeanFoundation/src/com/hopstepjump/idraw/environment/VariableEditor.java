@@ -132,8 +132,7 @@ public class VariableEditor
     panel.revalidate();
   }
 	
-  
-	private boolean isVariable(String key)
+	public static boolean isVariable(String key)
 	{
 		return key.startsWith(VARIABLES + "/");
 	}

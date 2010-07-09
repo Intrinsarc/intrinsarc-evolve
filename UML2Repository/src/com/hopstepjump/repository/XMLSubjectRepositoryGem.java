@@ -507,10 +507,10 @@ public class XMLSubjectRepositoryGem implements Gem
 		}
   }
   
-  public static XMLSubjectRepositoryGem openFile(String fileName, boolean initialiseWithFoundation) throws RepositoryOpeningException
+  public static XMLSubjectRepositoryGem openFile(String fileName, boolean initialiseWithFoundation, boolean rememberFileName) throws RepositoryOpeningException
   {
     XMLSubjectRepositoryGem repository = new XMLSubjectRepositoryGem(fileName);
-    repository.openFile(initialiseWithFoundation);
+    repository.openFile(initialiseWithFoundation, rememberFileName);
     return repository;
   }
 
@@ -522,7 +522,7 @@ public class XMLSubjectRepositoryGem implements Gem
   }
   
   
-  private void openFile(boolean initialiseWithFoundation) throws RepositoryOpeningException
+  private void openFile(boolean initialiseWithFoundation, boolean rememberFileName) throws RepositoryOpeningException
   {
     setUpEditingDomain();
     if (fileName == null)
@@ -556,6 +556,9 @@ public class XMLSubjectRepositoryGem implements Gem
     // if we have just opened a new repository, there will be no changes
     modified = false;
     GlobalNotifier.getSingleton().addObserver(adapter);
+    
+    if (!rememberFileName)
+    	fileName = null;
   }
   
   private Collection<NamedElement> queryObjectsByName(java.lang.Class<?> elementClass, String name, boolean includeSubclasses, boolean startsWith)

@@ -113,14 +113,23 @@ public class BeanSubjectCreator
 			if (cls.getType() == BeanTypeEnum.INTERFACE)
 			{
 				Interface me = interfaces.get(cls.getNode().name);
+				
+				List<Dependency> existing = me.undeleted_getOwnedAnonymousDependencies();
 				for (String i : cls.getInterfaces())
 				{
-		      Interface other = finder.findInterface(interfaces, i); 
-					Dependency res = me.createOwnedAnonymousDependencies();
-					res.setResemblance(true);
-		      res.settable_getClients().add(me);
-					res.setDependencyTarget(other);
+		      Interface other = finder.findInterface(interfaces, i);
+		      Dependency exist = extractDependency(existing, other);
+		      if (exist != null)
+		      	existing.remove(exist);
+		      else
+		      {
+						Dependency res = me.createOwnedAnonymousDependencies();
+						res.setResemblance(true);
+			      res.settable_getClients().add(me);
+						res.setDependencyTarget(other);
+		      }
 				}
+				me.settable_getOwnedAnonymousDependencies().removeAll(existing);
 			}
 			if (cls.getType() == BeanTypeEnum.BEAN)
 			{
@@ -128,16 +137,25 @@ public class BeanSubjectCreator
 
 				// handle any super-beans
 				String sup = cls.getSuperClass();
+				List<Dependency> existing = me.undeleted_getOwnedAnonymousDependencies();				
 				if (sup != null)
 				{
 					Class other = finder.findClass(classes, sup);
-					Dependency res = me.createOwnedAnonymousDependencies();
-					res.setResemblance(true);
-		      res.settable_getClients().add(me);
-					res.setDependencyTarget(other);
+		      Dependency exist = extractDependency(existing, other);
+		      if (exist != null)
+		      	existing.remove(exist);
+		      else
+		      {
+		      	Dependency res = me.createOwnedAnonymousDependencies();
+		      	res.setResemblance(true);
+		      	res.settable_getClients().add(me);
+		      	res.setDependencyTarget(other);
+		      }
 				}
+				me.settable_getOwnedAnonymousDependencies().removeAll(existing);
 				
 				// handle any attributes
+				List<Property> existingAttrs = me.undeleted_getOwnedAttributes(); 
 				for (BeanField field : cls.getAttributes())
 				{
 					String className = field.getTypes().get(0).getClassName();
@@ -145,7 +163,11 @@ public class BeanSubjectCreator
 					if (elem == null)
 						elem = finder.findInterface(interfaces, className);
 					
-					Property attr = me.createOwnedAttribute();
+					Property attr = extractAttribute(existingAttrs, field.getName());
+					if (attr != null)
+						existingAttrs.remove(attr);
+					else
+						attr = me.createOwnedAttribute();
 					attr.setName(field.getName());
 					attr.setType(elem);
 					if (field.isWriteOnly())
@@ -154,20 +176,66 @@ public class BeanSubjectCreator
 						attr.setReadWrite(PropertyAccessKind.READ_ONLY_LITERAL);
 					possiblyVisuallySuppress(field, attr);
 				}
+				me.settable_getOwnedAttributes().removeAll(existingAttrs);
 				
 				// handle any ports
+				List<Port> existingPorts = me.undeleted_getOwnedPorts(); 
 				for (BeanField field : cls.getPorts())
 				{
+					Port port= extractPort(existingPorts, field.getName());
+					if (port != null)
+						existingPorts.remove(port);
+
 					// handle replacing main ports differently
 					if (field.isMain() && cls.getSuperClass() != null)
 						continue;
 					
-					Port port = me.createOwnedPort();
+					if (port == null)
+						port = me.createOwnedPort();
 					setUpPort(interfaces, field, port);
 				}
 			}
 		}		
 	}
+
+	/**
+	 * functions to find existing ports, attributes and resemblances
+	 */
+	private Port extractPort(List<Port> existing, String name)
+	{
+		for (Port p : existing)
+			if (p.getName().equals(name))				
+				return p;
+		return null;
+	}
+
+	private Property extractAttribute(List<Property> existing, String name)
+	{
+		for (Property a : existing)
+			if (a.getName().equals(name))
+			{
+				System.out.println("$$ found existing attribute " + a);
+				return a;				
+			}
+		return null;
+	}
+
+	private Dependency extractDependency(List<Dependency> existing, Element other)
+	{
+		for (Dependency d : existing)
+			if (d.getDependencyTarget() == other)
+				return d;
+		return null;
+	}
+
+	private Implementation extractImplementation(List<Implementation> existing, Element other)
+	{
+		for (Implementation i : existing)
+			if (i.getContract() == other)
+				return i;
+		return null;
+	}
+	/////////////////////////////////////////////
 
 	private void createInternals2(Map<String, Class> classes, Map<String, Interface> interfaces)
 	{
@@ -252,12 +320,16 @@ public class BeanSubjectCreator
 			port.setUuid(MAIN_PORT);
 		possiblyVisuallySuppress(field, port);
 		port.setName(field.getName());
-		Class type = (Class) port.createOwnedAnonymousType(UML2Package.eINSTANCE.getClass_());
+		Class type = (Class) port.getOwnedAnonymousType();
+		if (type == null)
+			type = (Class) port.createOwnedAnonymousType(UML2Package.eINSTANCE.getClass_());
 		type.setName("(port type)");
 		port.setType(type);
 		
 		// if this is many, set the lower and upper bounds
 		// and if it is required (i.e. writable) then set it at [0..1]
+		port.setLowerValue(null);
+		port.setUpperValue(null);
 		if (field.isMany())
 		{
 			port.setLowerBound(0);
@@ -270,6 +342,8 @@ public class BeanSubjectCreator
 			port.setUpperBound(1);
 		}
 		
+		List<Dependency> existingDeps = port.undeleted_getOwnedAnonymousDependencies();
+		List<Implementation> existingImpls = type.undeleted_getImplementations();
 		for (Type fieldType : field.getTypes())
 		{
 			String className = fieldType.getClassName();
@@ -278,17 +352,28 @@ public class BeanSubjectCreator
 			// add the readonly interfaces as provided
 		  if (field.isReadOnly())
 		  {
-		  	Implementation implementation = type.createImplementation();
+		  	Implementation implementation = extractImplementation(existingImpls, type);
+		  	if (implementation != null)
+		  		existingImpls.remove(implementation);
+		  	else
+		  		implementation = type.createImplementation();
 		  	implementation.setRealizingClassifier(type);
 		  	implementation.setContract(elem);
 		  }
 		  else
 		  {
-		  	Dependency dep = type.createOwnedAnonymousDependencies();
+		  	Dependency dep = extractDependency(existingDeps, elem); 
+		  	if (dep != null)
+		  		existingDeps.remove(dep);
+		  	else
+		  		dep = type.createOwnedAnonymousDependencies();
+		    dep.settable_getClients().clear();
 		    dep.settable_getClients().add(type);
 		    dep.setDependencyTarget(elem);
 		  }
 		}
+		type.settable_getImplementations().removeAll(existingImpls);
+		port.settable_getOwnedAnonymousDependencies().removeAll(existingDeps);
 		
 		// add any needed stereotype properties
 		setUpBeanPortStereotype(field, port);

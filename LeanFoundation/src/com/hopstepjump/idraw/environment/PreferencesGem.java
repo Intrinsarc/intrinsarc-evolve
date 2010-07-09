@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
+import java.util.List;
 import java.util.prefs.*;
 
 import javax.swing.*;
@@ -376,5 +377,38 @@ public class PreferencesGem implements Gem
 				// nothing to do...
 			}
 		}
-  }
+		
+		public void addPossibleVariableValue(String name, String value)
+		{
+	  	PreferenceTypeVariable variableType = new PreferenceTypeVariable()
+	  	{
+				@Override
+				public void haveDeleted(Preference preference)
+				{
+				}
+	  	};
+	  	
+	  	Preference pref = new Preference(VariableEditor.VARIABLES, name);
+			PreferenceSlot slot = new PreferenceSlot(
+				pref,
+				variableType,
+				"Environment variable");
+	  	
+			try
+			{
+		  	List<String> keys = new ArrayList<String>(Arrays.asList(registry.keys()));
+				for (String check : keys)
+				{
+					if (VariableEditor.isVariable(check) && check.equals(pref.getRegistryName()))
+						return;
+				}
+			}
+			catch (BackingStoreException ex)
+			{
+			}
+			
+			// not found, so add in
+			slot.setStringValue(registry, value);
+		}
+  }  
 }

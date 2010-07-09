@@ -26,6 +26,7 @@
         <javaElement handleIdentifier="=VectorGraphicsFixes/src"/>
         <file path="/DocumentationGenerator/html_generation/banner.svg"/>
         <javaElement handleIdentifier="=IDraw/src"/>
+        <javaElement handleIdentifier="=Evolve/resources"/>
         <javaElement handleIdentifier="=DeltaEngine-UML2/src"/>
     </selectedElements>
 </jardesc>

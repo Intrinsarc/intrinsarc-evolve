@@ -2,6 +2,7 @@ package com.hopstepjump.jumble.gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import java.net.*;
 
 import javax.swing.*;
@@ -40,25 +41,25 @@ public class HelpAboutAction extends AbstractAction
     		makeTextPanelFromHTMLDocument(
           preferred,
           "Description", 
-          "evolve-description.html"));
+          "help-documents/evolve-description.html"));
 
     tabs.add(
     		makeTextPanelFromHTMLDocument(
           preferred,
           "Libraries", 
-          "evolve-libraries.html"));
+          "help-documents/evolve-libraries.html"));
     
     tabs.add(
     		makeTextPanelFromHTMLDocument(
           preferred,
           "Credits", 
-          "evolve-credits.html"));
+          "help-documents/evolve-credits.html"));
     
     tabs.add(
     		makeTextPanelFromHTMLDocument(
           preferred,
           "License", 
-          "evolve-license.html"));
+          "help-documents/evolve-license.html"));
 
     coordinator.invokeAsDialog(null, "About", tabs, null, null);
   }
@@ -86,7 +87,7 @@ public class HelpAboutAction extends AbstractAction
       public void hyperlinkUpdate(HyperlinkEvent e)
       {
         if (e.getEventType() == EventType.ACTIVATED)
-          openBrowser(e.getURL());
+	        openBrowser(e.getURL());
       }
     });
     

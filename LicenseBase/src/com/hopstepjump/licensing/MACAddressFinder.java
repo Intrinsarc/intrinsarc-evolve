@@ -142,8 +142,6 @@ public class MACAddressFinder
 					{ // solaris omits first 0 (untested)
 						address = "0" + address;
 					}
-					if (!address.equals("00-00-00-00-00-00"))
-						macs.add(address.replaceAll("-", ":").toUpperCase());
 				}
 				line = reader.readLine();
 			} while (line != null);

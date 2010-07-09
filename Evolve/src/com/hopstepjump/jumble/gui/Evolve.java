@@ -1,8 +1,11 @@
 package com.hopstepjump.jumble.gui;
 
 import java.io.*;
+import java.net.*;
 import java.util.*;
 
+import javax.jdo.identity.*;
+import javax.print.attribute.standard.*;
 import javax.swing.*;
 
 import org.eclipse.emf.common.util.*;
@@ -37,11 +40,32 @@ public class Evolve
 	/** the application window coordinator manages a number of windows */
 	private ApplicationWindowCoordinatorGem windowCoordinator;
 	private ErrorRegister errors = new ErrorRegister();
-	private static Preference OPEN_DIAGRAMS = new Preference("Advanced", "Maximum unmodified or unviewed diagrams",
+	private static Preference OPEN_DIAGRAMS = new Preference(
+			"Advanced",
+			"Maximum unmodified or unviewed diagrams",
 			new PersistentProperty(5));
+	public static Preference EVOLVE = new Preference(
+			"Variables",
+			"EVOLVE",
+			new PersistentProperty(""));
 
+	private static String getHomeDirectory()
+	{
+		// relies on the fact that this jar will be deployed one level below the root level
+		File start = new File(Evolve.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+		if (start.getPath().endsWith(".jar"))
+			start = start.getParentFile().getParentFile();
+		return URLDecoder.decode(start.getPath());
+	}
+	
 	public static void main(String args[])
   {
+		// find evolve home
+		String home = getHomeDirectory();
+		GlobalPreferences.preferences.addPossibleVariableValue("EVOLVE", home);
+		// get it back again
+		home = GlobalPreferences.preferences.getRawPreference(EVOLVE).asString();
+		
     registerPreferenceSlots();
     // handle any preferences
     RegisteredGraphicalThemes themes = RegisteredGraphicalThemes.getInstance(); 
@@ -103,12 +127,9 @@ public class Evolve
     
     setUpUUIDGenerator();
     Evolve application = new Evolve();
-    application.setUpServices();
+    application.setUpServices(home);
     application.setUpGUI();
     application.showGUI();
-    
-    // register some mbeans
-//    new GUIManager().register();
     
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;    
   }
@@ -155,7 +176,7 @@ public class Evolve
 		windowCoordinator.getApplicationWindowCoordinatorFacet().openNewApplicationWindow();
 	}
 
-	private void setUpServices()
+	private void setUpServices(String home)
 	{
 		// make the diagram registry
 		int max = GlobalPreferences.preferences.getRawPreference(OPEN_DIAGRAMS).asInteger();
@@ -165,24 +186,55 @@ public class Evolve
 		GlobalDiagramRegistry.registry = registryGem.getDiagramRegistryFacet();
 
 		// start with an empty XML repository
+		String initialXMLRepository = GlobalPreferences.preferences.getRawPreference(
+				new Preference("Locations", "Initial XML repository")).asString();
+		
 		try
-		{
-			String initialXMLRepository = GlobalPreferences.preferences.getRawPreference(
-					new Preference("Locations", "Initial XML repository")).asString();
+		{			
+			boolean useBase = false;
+			if (initialXMLRepository == null || !new File(initialXMLRepository).exists())
+			{
+				initialXMLRepository = home + "/models/base.uml2";
+				useBase = true;
+			}
+			
 			// we need the delta engine for setting up the model
 			ToolCoordinatorGem.clearDeltaEngine();
-			RepositoryUtility.useXMLRepository((initialXMLRepository != null && new File(initialXMLRepository)
-					.exists()) ? initialXMLRepository : null);
-			// the delta engine needs to be cleared, as it gets into an odd state
-			// during CommonRepositoryFunctions.initializeModel()
-			ToolCoordinatorGem.clearDeltaEngine();
+			
+			if (!new File(initialXMLRepository).exists())
+			{
+				defaultToBasicRepository(initialXMLRepository);
+			}
+			else
+			{
+				RepositoryUtility.useXMLRepository(initialXMLRepository, !useBase);
+				// the delta engine needs to be cleared, as it gets into an odd state
+				// during CommonRepositoryFunctions.initializeModel()
+				ToolCoordinatorGem.clearDeltaEngine();
+			}				
 		}
 		catch (RepositoryOpeningException e)
 		{
-			// will never happen with a new XML repository
+			defaultToBasicRepository(initialXMLRepository);
 		}
 
 		// make the tool manager and connect it up
 		toolManager = new ToolCoordinatorGem();
+	}
+	
+	private void defaultToBasicRepository(String failedRepository)
+	{
+		JOptionPane.showOptionDialog(
+				null, "Cannot open repository: " + failedRepository + ", defaulting to empty model",
+				"Repository loading error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+		try
+		{
+			RepositoryUtility.useXMLRepository(null, false);
+		}
+		catch (RepositoryOpeningException ex)
+		{
+			// can't happen with null repository
+		}
+		ToolCoordinatorGem.clearDeltaEngine();
 	}
 }

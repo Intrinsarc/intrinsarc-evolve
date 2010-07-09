@@ -1088,15 +1088,31 @@ public class ApplicationWindow extends SmartJFrame
 			int chosen = askAboutSave("Create new XML repository...", false);
 			if (chosen == JOptionPane.CANCEL_OPTION)
 				return;
+			String repos = "" +
+				GlobalPreferences.preferences.getRawPreference(Evolve.EVOLVE).asString() +
+				"/models/base.uml2";
+			
 			try
 			{
-				RepositoryUtility.useXMLRepository(null);
-				applicationWindowCoordinator.switchRepository();
+				// look for the base repository
+				RepositoryUtility.useXMLRepository(repos, false);
 			}
 			catch (RepositoryOpeningException ex)
 			{
-				// will never happen with an empty standard XML repository
+				coordinator.invokeAsDialog(
+						ERROR_ICON,
+						"Error opening base model",
+						new JLabel("<html>Cannot open base repository:<br>&nbsp;&nbsp;&nbsp;&nbsp;" + repos + "<br>Defaulting to empty model"), null, null);
+				try
+				{
+					RepositoryUtility.useXMLRepository(null, false);
+				}
+				catch (RepositoryOpeningException roe)
+				{
+					// won't happen with base model
+				}
 			}
+			applicationWindowCoordinator.switchRepository();
 		}
 	};
 
@@ -1130,7 +1146,7 @@ public class ApplicationWindow extends SmartJFrame
 			Cursor old = coordinator.displayWaitCursor();
 			try
 			{
-				RepositoryUtility.useXMLRepository(fileName);
+				RepositoryUtility.useXMLRepository(fileName, true);
 				applicationWindowCoordinator.switchRepository();
 				recent.addFile(fileName);
 			} catch (RepositoryOpeningException ex)
@@ -2105,7 +2121,7 @@ public class ApplicationWindow extends SmartJFrame
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading XML repository", name, null, -1);
 						long st = System.currentTimeMillis();
-						RepositoryUtility.useXMLRepository(name);
+						RepositoryUtility.useXMLRepository(name, true);
 						applicationWindowCoordinator.switchRepository();
 					}
 					else if (name.contains(":") && name.endsWith(".odb"))

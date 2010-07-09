@@ -33,11 +33,11 @@ public class RepositoryUtility
 	  GlobalSubjectRepository.repository = repos;
 	}
 	
-	public static void useXMLRepository(String fileName) throws RepositoryOpeningException
+	public static void useXMLRepository(String fileName, boolean rememberFileName) throws RepositoryOpeningException
 	{
 	  closeExisting();
 	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
-	  XMLSubjectRepositoryGem repositoryGem = XMLSubjectRepositoryGem.openFile(fileName, true);
+	  XMLSubjectRepositoryGem repositoryGem = XMLSubjectRepositoryGem.openFile(fileName, true, rememberFileName);
 	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;

@@ -427,7 +427,7 @@ public class ModelMover
 		    XMLSubjectRepositoryGem repositoryGem;
 		    try
 		    {
-		      repositoryGem = XMLSubjectRepositoryGem.openFile(null, false);
+		      repositoryGem = XMLSubjectRepositoryGem.openFile(null, false, false);
 		    }
 		    catch (RepositoryOpeningException e)
 		    {

@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.swing.*;
 
+import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.deltaengine.errorchecking.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.jumble.deltaview.*;
@@ -111,6 +112,7 @@ public class ApplicationWindowCoordinatorGem
     {
       // handle all the global components here...
       GlobalDiagramRegistry.registry.reset();
+      ToolCoordinatorGem.clearDeltaEngine();
       
       // handle any window specific component here
       for (ApplicationWindow window : windows)
