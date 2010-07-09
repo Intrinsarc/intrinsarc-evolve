@@ -33,6 +33,8 @@ public class UML2Component extends DEComponent
   public static List<DEAppliedStereotype> extractStereotypes(Element element)
 	{
   	List<DEAppliedStereotype> applied = new ArrayList<DEAppliedStereotype>();
+  	if (element.isThisDeleted())
+  		return applied;
   	for (Object obj : element.undeleted_getAppliedBasicStereotypes())
   		applied.add(new UML2AppliedStereotype((Stereotype) obj, element));
   	return applied;

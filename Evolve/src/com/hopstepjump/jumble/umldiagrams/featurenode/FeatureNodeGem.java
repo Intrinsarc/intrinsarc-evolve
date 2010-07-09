@@ -520,6 +520,8 @@ public final class FeatureNodeGem implements Gem
 		 */
 		public boolean hasSubjectBeenDeleted()
 		{
+			if (subject == null)
+				return true;
 			return subject.isThisDeleted();
 		}
 

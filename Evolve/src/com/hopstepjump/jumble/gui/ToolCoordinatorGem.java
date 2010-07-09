@@ -596,8 +596,13 @@ public final class ToolCoordinatorGem implements Gem
 		public void clearTransactionHistory()
 		{
 			for (DiagramFacet d : GlobalDiagramRegistry.registry.getDiagrams())
+			{
+		    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
+		    	d.formViewUpdate(pass, true);
 				d.clearTransactionHistory();
+			}
 			GlobalSubjectRepository.repository.clearTransactionHistory();
+			clearDeltaEngine();
 		}
 
 		public void enforceTransactionDepth(int desiredDepth)

@@ -18,6 +18,7 @@ import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.guibase.*;
 import com.hopstepjump.jumble.packageview.base.*;
+import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
 import com.hopstepjump.swing.enhanced.*;
 
@@ -103,9 +104,9 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 					{
 						// create (import) the beans in the package
 						BeanSubjectCreator creator = new BeanSubjectCreator(importer.getImportList(), pkg, finder, monitor);
-						BeanCreatedSubjects created = creator.createSubjects();						
-						
-						coordinator.clearTransactionHistory();
+						GlobalSubjectRepository.ignoreUpdates = true;
+						BeanCreatedSubjects created = creator.createSubjects();
+
 						popupMaker.displayPopup(BEAN_ADD_ICON, "Bean Import...",
 								"Imported " + created.getTotalMade() + " elements; cleared command history",
 								ScreenProperties.getUndoPopupColor(), Color.black, 3000, true,
@@ -119,6 +120,13 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 				catch (VariableNotFoundException ex)
 				{
 					coordinator.invokeErrorDialog("Environment variable not found", ex.getMessage());
+				}
+				finally
+				{
+					coordinator.startTransaction("", "");
+					coordinator.commitTransaction();
+					coordinator.clearTransactionHistory();
+					GlobalSubjectRepository.ignoreUpdates = false;					
 				}
 			}
 		});

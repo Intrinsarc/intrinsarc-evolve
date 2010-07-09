@@ -381,6 +381,11 @@ public class BeanImporter
       {
         Point pt = e.getPoint();
         final TreePath path = featureTree.getPathForLocation(pt.x, pt.y);
+        featureTree.setSelectionPath(path);
+        Object node = path.getLastPathComponent();
+        if (((DefaultMutableTreeNode) node).getUserObject() instanceof String)
+        	return;
+        
         if (path != null)
 	        if (e.getButton() == MouseEvent.BUTTON3 && path.getParentPath() != null)
 	        {

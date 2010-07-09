@@ -60,49 +60,12 @@ public class BeanSubjectCreator
 			createInternals(classes, interfaces);
 			// handle any replaced ports
 			createInternals2(classes, interfaces);
-			// remove any duplicates
-			removeDuplicates(classes);
 			
 			return created;
 		}
 		finally
 		{
 			GlobalSubjectRepository.repository.commitTransaction();
-		}
-	}
-
-	private void removeDuplicates(Map<String, Class> classes)
-	{
-		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(in).asStratum();
-		
-		for (BeanClass cls : toCreate)
-		{
-			if (cls.getType() == BeanTypeEnum.BEAN)
-			{
-				Class me = classes.get(cls.getNode().name);
-				DEComponent comp = GlobalDeltaEngine.engine.locateObject(me).asComponent();
-				
-				removeDuplicateConstituents(perspective, comp, ConstituentTypeEnum.DELTA_ATTRIBUTE);
-				removeDuplicateConstituents(perspective, comp, ConstituentTypeEnum.DELTA_PORT);
-			}
-		}
-	}
-
-	private void removeDuplicateConstituents(DEStratum perspective, DEComponent comp, ConstituentTypeEnum type)
-	{
-		// get the names that existed before this
-		Set<String> existingNames = new HashSet<String>();
-		for (DeltaPair pair : comp.getDeltas(type).getConstituents(perspective))
-		{
-			if (pair.getConstituent().getParent() != comp)
-				existingNames.add(pair.getConstituent().getName());
-		}
-		
-		// if we have these now, then remove
-		for (DeltaPair add : comp.getDeltas(type).getAddObjects())
-		{
-			if (existingNames.contains(add.getConstituent().getName()))
-				GlobalSubjectRepository.repository.incrementPersistentDelete((Element) add.getConstituent().getRepositoryObject());
 		}
 	}
 
@@ -129,7 +92,7 @@ public class BeanSubjectCreator
 						res.setDependencyTarget(other);
 		      }
 				}
-				me.settable_getOwnedAnonymousDependencies().removeAll(existing);
+				delete(existing);
 			}
 			if (cls.getType() == BeanTypeEnum.BEAN)
 			{
@@ -152,7 +115,7 @@ public class BeanSubjectCreator
 		      	res.setDependencyTarget(other);
 		      }
 				}
-				me.settable_getOwnedAnonymousDependencies().removeAll(existing);
+				delete(existing);
 				
 				// handle any attributes
 				List<Property> existingAttrs = me.undeleted_getOwnedAttributes(); 
@@ -176,10 +139,11 @@ public class BeanSubjectCreator
 						attr.setReadWrite(PropertyAccessKind.READ_ONLY_LITERAL);
 					possiblyVisuallySuppress(field, attr);
 				}
-				me.settable_getOwnedAttributes().removeAll(existingAttrs);
+				delete(existingAttrs);
 				
 				// handle any ports
-				List<Port> existingPorts = me.undeleted_getOwnedPorts(); 
+				List<Port> existingPorts = me.undeleted_getOwnedPorts();
+				boolean madeMain = true;
 				for (BeanField field : cls.getPorts())
 				{
 					Port port= extractPort(existingPorts, field.getName());
@@ -188,14 +152,27 @@ public class BeanSubjectCreator
 
 					// handle replacing main ports differently
 					if (field.isMain() && cls.getSuperClass() != null)
+					{
+						madeMain = false;
 						continue;
+					}
 					
 					if (port == null)
 						port = me.createOwnedPort();
 					setUpPort(interfaces, field, port);
 				}
+				delete(existingPorts);
+				// remove the deltas if we have made a main
+				if (madeMain)
+					delete(me.settable_getDeltaReplacedPorts());
 			}
 		}		
+	}
+
+	private void delete(List<? extends Element> existing)
+	{
+		for (Element exist : existing)
+			GlobalSubjectRepository.repository.incrementPersistentDelete(exist);
 	}
 
 	/**
@@ -213,10 +190,7 @@ public class BeanSubjectCreator
 	{
 		for (Property a : existing)
 			if (a.getName().equals(name))
-			{
-				System.out.println("$$ found existing attribute " + a);
 				return a;				
-			}
 		return null;
 	}
 
@@ -273,8 +247,12 @@ public class BeanSubjectCreator
 						Port p = (Port) obj;
 						if (p.getUuid().equals(MAIN_PORT))
 						{
-							DeltaReplacedPort replace = me.createDeltaReplacedPorts();
-							Port port = (Port) replace.createReplacement(UML2Package.eINSTANCE.getPort());
+							DeltaReplacedPort replace = findDeltaReplacedPort(me);
+							if (replace == null)
+								replace = me.createDeltaReplacedPorts();
+							Port port = (Port) replace.getReplacement();
+							if (port == null)
+								port = (Port) replace.createReplacement(UML2Package.eINSTANCE.getPort());
 							replace.setReplaced(p);
 							setUpPort(interfaces, field, port);
 							found = true;
@@ -288,7 +266,9 @@ public class BeanSubjectCreator
 							DeltaReplacedPort repl = (DeltaReplacedPort) obj;
 							if (repl.getReplaced().getUuid().equals(MAIN_PORT))
 							{
-								DeltaReplacedPort replace = me.createDeltaReplacedPorts();
+								DeltaReplacedPort replace = findDeltaReplacedPort(me);
+								if (replace == null)
+									replace = me.createDeltaReplacedPorts();
 								Port port = (Port) replace.createReplacement(UML2Package.eINSTANCE.getPort());
 								replace.setReplaced(repl.getReplaced());
 								setUpPort(interfaces, field, port);
@@ -308,10 +288,22 @@ public class BeanSubjectCreator
 		}
 	}
 
+	private DeltaReplacedPort findDeltaReplacedPort(Class me)
+	{
+		for (Object p : me.undeleted_getDeltaReplacedPorts())
+			return (DeltaReplacedPort) p;
+		return null;
+	}
+
 	private void possiblyVisuallySuppress(BeanField field, Element element)
 	{
+		// remove anything visual and possibly add it back
+		element.settable_getAppliedBasicStereotypes().remove(suppressStereo);
+		
 		if (field.isVisuallySuppress())
+		{
 			element.settable_getAppliedBasicStereotypes().add(suppressStereo);
+		}
 	}
 	
 	private void setUpPort(Map<String, Interface> interfaces, BeanField field, Port port)
@@ -342,7 +334,7 @@ public class BeanSubjectCreator
 			port.setUpperBound(1);
 		}
 		
-		List<Dependency> existingDeps = port.undeleted_getOwnedAnonymousDependencies();
+		List<Dependency> existingDeps = type.undeleted_getOwnedAnonymousDependencies();
 		List<Implementation> existingImpls = type.undeleted_getImplementations();
 		for (Type fieldType : field.getTypes())
 		{
@@ -372,8 +364,8 @@ public class BeanSubjectCreator
 		    dep.setDependencyTarget(elem);
 		  }
 		}
-		type.settable_getImplementations().removeAll(existingImpls);
-		port.settable_getOwnedAnonymousDependencies().removeAll(existingDeps);
+		delete(existingImpls);
+		delete(existingDeps);
 		
 		// add any needed stereotype properties
 		setUpBeanPortStereotype(field, port);
@@ -441,7 +433,7 @@ public class BeanSubjectCreator
 			iface = (Interface) in.createOwnedMember(UML2Package.eINSTANCE.getInterface());
 		iface.setName(name);
 		iface.settable_getAppliedBasicStereotypes().clear();
-		iface.settable_getAppliedBasicStereotypeValues().clear();
+		delete(iface.settable_getAppliedBasicStereotypeValues());
 		iface.settable_getAppliedBasicStereotypes().add(interfaceStereo);
 		setImplementation(iface, cls.getNode().name);
 		setBooleanProperty(iface, CommonRepositoryFunctions.BEAN);
@@ -455,7 +447,7 @@ public class BeanSubjectCreator
 			cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
 		cl.setComponentKind(ComponentKind.NORMAL_LITERAL);
 		cl.settable_getAppliedBasicStereotypes().clear();
-		cl.settable_getAppliedBasicStereotypeValues().clear();
+		delete(cl.settable_getAppliedBasicStereotypeValues());
 		cl.settable_getAppliedBasicStereotypes().add(componentStereo);
 		setImplementation(cl, cls.getNode().name);
 		setBooleanProperty(cl, CommonRepositoryFunctions.BEAN);
@@ -469,7 +461,7 @@ public class BeanSubjectCreator
 			cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
 		cl.setComponentKind(ComponentKind.PRIMITIVE_LITERAL);
 		cl.settable_getAppliedBasicStereotypes().clear();
-		cl.settable_getAppliedBasicStereotypeValues().clear();
+		delete(cl.settable_getAppliedBasicStereotypeValues());
 		cl.settable_getAppliedBasicStereotypes().add(primitiveStereo);
 		setImplementation(cl, cls.getNode().name);
 		classes.put(cls.getNode().name, cl);
@@ -479,7 +471,9 @@ public class BeanSubjectCreator
 	{
 		if (!field.isNoName() && !field.isMain())
 			return;
+		port.settable_getAppliedBasicStereotypes().clear();
 		port.settable_getAppliedBasicStereotypes().add(portStereo);
+		delete(port.settable_getAppliedBasicStereotypeValues());
 		if (field.isMain())
 			setBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_MAIN);
 		if (field.isNoName())

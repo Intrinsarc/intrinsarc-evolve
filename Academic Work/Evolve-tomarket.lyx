@@ -1,4 +1,4 @@
-#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -69,15 +69,17 @@ better looking component diagrams (a la yworks example)
 \begin_inset Newline newline
 \end_inset
 
-(2 days)
+(2 days, done)
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 allow refresh of leaves upon reimport
 \begin_inset Newline newline
 \end_inset
 
-(3 days)
+(3 days, done)
 \end_layout
 
 \begin_layout Enumerate
@@ -87,7 +89,7 @@ fix component destruction
 \begin_inset Newline newline
 \end_inset
 
-(1 day)
+(1 day, done)
 \end_layout
 
 \begin_layout Enumerate
@@ -97,7 +99,17 @@ better “port location” when pressing spacebar on class
 \begin_inset Newline newline
 \end_inset
 
-(0.5 days)
+(0.5 days, done)
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+simplify attr + operation options + menu items disabled rather than removed
+\begin_inset Newline newline
+\end_inset
+
+(0.5 days, done)
 \end_layout
 
 \begin_layout Enumerate
@@ -105,7 +117,7 @@ visual resemblance from parts
 \begin_inset Newline newline
 \end_inset
 
-(2 days)
+(2 days, 1 day left)
 \end_layout
 
 \begin_layout Enumerate
@@ -117,21 +129,15 @@ more rules implemented including composition and stereo visibility...
 \end_layout
 
 \begin_layout Enumerate
-
-\color green
-simplify attr + operation options + menu items disabled rather than removed
-\begin_inset Newline newline
-\end_inset
-
-(0.5 days)
-\end_layout
-
-\begin_layout Enumerate
 full example with complex scenario for documentation + importing beans
 \begin_inset Newline newline
 \end_inset
 
-(2 days + 1 day fixing)
+(multi-layer, start very small, GWT, hibernate, bean import)
+\begin_inset Newline newline
+\end_inset
+
+(3 days + 1 day fixing)
 \end_layout
 
 \begin_layout Enumerate
@@ -145,6 +151,21 @@ documentation
 
 \begin_layout Enumerate
 do website, go into beta
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Days left = 3 dev, 4 example, 10 docs.
+ Website start ETA = 14th August.
+ If website takes 3 days, full beta = 21st August
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -199,6 +220,14 @@ remove class, documentation, misc, behaviour menus/focus, alloy import,
 
 \begin_layout Enumerate
 help links to docs, support group, newsgroup + fix up credit text
+\end_layout
+
+\begin_layout Enumerate
+selectively bringing back hidden attributes in imported bean
+\end_layout
+
+\begin_layout Enumerate
+exception catcher?
 \end_layout
 
 \begin_layout Standard
