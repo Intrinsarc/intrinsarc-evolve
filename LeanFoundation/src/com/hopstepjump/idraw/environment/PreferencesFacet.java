@@ -20,7 +20,7 @@ public interface PreferencesFacet extends Facet
   public PreferenceSlot getSlot(Preference pref, boolean reportIfMissing);
   public PersistentProperty getPreference(Preference pref) throws PreferenceNotFoundException;
   public PersistentProperty getRawPreference(Preference pref);
-  public void addPossibleVariableValue(String varName, String value);
+  public void setVariableValue(String varName, String value);
 
 
 	public String expandVariables(String text) throws VariableNotFoundException;

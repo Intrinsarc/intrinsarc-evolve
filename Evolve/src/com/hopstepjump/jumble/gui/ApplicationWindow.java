@@ -73,9 +73,7 @@ public class ApplicationWindow extends SmartJFrame
 	private IEasyDockable paletteTitle;
 
 	// icons
-	public static final ImageIcon WWW_ICON = IconLoader.loadIcon("world_go.png");
-	public static final ImageIcon NEWS_ICON = IconLoader.loadIcon("newspaper.png");
-	public static final ImageIcon HELP_ICON = IconLoader.loadIcon("book_open.png");
+	public static final ImageIcon HELP_ICON = IconLoader.loadIcon("help.png");
 	public static final ImageIcon FULLSCREEN_ICON = IconLoader.loadIcon("fullscreen.png");
 	public static final ImageIcon GARBAGE_ICON = IconLoader.loadIcon("garbage.png");
 	public static final ImageIcon APPLICATION_ICON = IconLoader.loadIcon("brick.png");
@@ -1878,13 +1876,12 @@ public class ApplicationWindow extends SmartJFrame
 
 			JMenuItem mainItem = new JMenuItem(
 					new URLAction("Intrinsarc website", URL_BASE));
-			mainItem.setIcon(WWW_ICON);
+			mainItem.setIcon(MAIN_FRAME_ICON);
 			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));
 			GlobalPreferences.registerKeyAction("Help", mainItem, null, "Visit main site");
 
 			JMenuItem newsItem = new JMenuItem(
 					new URLAction("News and Announcements", URL_BASE + "/news"));
-			newsItem.setIcon(NEWS_ICON);
 			entries.add(new SmartMenuItemImpl("Help", "Support", newsItem));
 			GlobalPreferences.registerKeyAction("Help", newsItem, null, "News and Announcements");
 
@@ -1898,6 +1895,11 @@ public class ApplicationWindow extends SmartJFrame
 					new URLAction("Support forum", URL_BASE + "/support"));
 			entries.add(new SmartMenuItemImpl("Help", "Support", supportItem));
 			GlobalPreferences.registerKeyAction("Help", supportItem, null, "Support forum");
+
+			JMenuItem versionItem = new JMenuItem(
+					new URLAction("<html><b>Version:</b> " + Evolve.EVOLVE_VERSION, URL_BASE + "/version_history"));
+			entries.add(new SmartMenuItemImpl("Help", "Version", versionItem));
+			GlobalPreferences.registerKeyAction("Help", versionItem, null, "Version");
 
 			// add the error checking items
 			JMenuItem clearErrorsItem = new JMenuItem(new HideErrorsAction());

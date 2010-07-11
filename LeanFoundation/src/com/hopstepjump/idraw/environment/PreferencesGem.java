@@ -378,7 +378,7 @@ public class PreferencesGem implements Gem
 			}
 		}
 		
-		public void addPossibleVariableValue(String name, String value)
+		public void setVariableValue(String name, String value)
 		{
 	  	PreferenceTypeVariable variableType = new PreferenceTypeVariable()
 	  	{
@@ -393,21 +393,7 @@ public class PreferencesGem implements Gem
 				pref,
 				variableType,
 				"Environment variable");
-	  	
-			try
-			{
-		  	List<String> keys = new ArrayList<String>(Arrays.asList(registry.keys()));
-				for (String check : keys)
-				{
-					if (VariableEditor.isVariable(check) && check.equals(pref.getRegistryName()))
-						return;
-				}
-			}
-			catch (BackingStoreException ex)
-			{
-			}
-			
-			// not found, so add in
+
 			slot.setStringValue(registry, value);
 		}
   }  

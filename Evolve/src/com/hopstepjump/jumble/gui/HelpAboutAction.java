@@ -2,12 +2,11 @@ package com.hopstepjump.jumble.gui;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 import java.net.*;
 
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.event.HyperlinkEvent.*;
+import javax.swing.event.HyperlinkEvent.EventType;
 
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.environment.*;

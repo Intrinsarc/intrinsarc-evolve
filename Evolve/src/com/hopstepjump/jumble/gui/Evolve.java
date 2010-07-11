@@ -31,6 +31,7 @@ import com.hopstepjump.repositorybase.*;
  */
 public class Evolve
 {
+	public static final String EVOLVE_VERSION = "v1.0, 11th July 2010";
   public static final String LEAST_VERSION = "1.5";
   public static final String BEST_VERSION = "1.6";
 	public static final int MAX_UNMODIFIED_UNVIEWED_DIAGRAMS = 5;
@@ -49,22 +50,19 @@ public class Evolve
 			"EVOLVE",
 			new PersistentProperty(""));
 
-	private static String getHomeDirectory()
-	{
-		// relies on the fact that this jar will be deployed one level below the root level
-		File start = new File(Evolve.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-		if (start.getPath().endsWith(".jar"))
-			start = start.getParentFile().getParentFile();
-		return URLDecoder.decode(start.getPath());
-	}
-	
 	public static void main(String args[])
   {
-		// find evolve home
-		String home = getHomeDirectory();
-		GlobalPreferences.preferences.addPossibleVariableValue("EVOLVE", home);
-		// get it back again
-		home = GlobalPreferences.preferences.getRawPreference(EVOLVE).asString();
+		// must have at least one arg
+		if (args.length == 0)
+		{
+			System.err.println("Usage: evolve home_directory");
+			System.exit(-1);
+		}
+		String home = args[0];
+		System.out.println("Evolve home directory is: " + home);
+		
+		// set the evolve home directory as the EVOLVE variable
+		GlobalPreferences.preferences.setVariableValue("EVOLVE", home);
 		
     registerPreferenceSlots();
     // handle any preferences
