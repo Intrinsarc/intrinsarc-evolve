@@ -71,13 +71,15 @@ public class ApplicationWindow extends SmartJFrame
 	private ErrorRegister errors;
 	private JMenuBar menuBar;
 	private IEasyDockable paletteTitle;
+	private ConsoleLogger logger;
 
 	// icons
 	public static final ImageIcon HELP_ICON = IconLoader.loadIcon("help.png");
 	public static final ImageIcon FULLSCREEN_ICON = IconLoader.loadIcon("fullscreen.png");
 	public static final ImageIcon GARBAGE_ICON = IconLoader.loadIcon("garbage.png");
 	public static final ImageIcon APPLICATION_ICON = IconLoader.loadIcon("brick.png");
-	public static final ImageIcon MAIN_FRAME_ICON = IconLoader.loadIcon("monkey-icon.png");
+	public static final ImageIcon MONKEY_ICON = IconLoader.loadIcon("monkey-icon.png");
+	public static final ImageIcon SCARY_MONKEY_ICON = IconLoader.loadIcon("scary-monkey-icon.png");
 	public static final ImageIcon UNDO_ICON = IconLoader.loadIcon("arrow_undo.png");
 	public static final ImageIcon REDO_ICON = IconLoader.loadIcon("arrow_redo.png");
 	public static final ImageIcon SAVE_ICON = IconLoader.loadIcon("disk.png");
@@ -108,11 +110,12 @@ public class ApplicationWindow extends SmartJFrame
 	public static final ImageIcon VARIABLES_ICON = IconLoader.loadIcon("variables.png");
 	public static final ImageIcon TICK_ICON = IconLoader.loadIcon("tick.png");
 
-	public ApplicationWindow(String title, ErrorRegister errors)
+	public ApplicationWindow(String title, ErrorRegister errors, ConsoleLogger logger)
 	{
 		super(title);
 		this.title = title;
 		this.errors = errors;
+		this.logger = logger;
 
 		// instantiate the docking framework
 		desktop = new DockingFramesDock(this, true);
@@ -205,7 +208,7 @@ public class ApplicationWindow extends SmartJFrame
 		int height = prefs.getRawPreference(RegisteredGraphicalThemes.INITIAL_HEIGHT).asInteger();
 		setBounds(x, y, width, height);
 		setResizable(true);
-		setIconImage(MAIN_FRAME_ICON.getImage());
+		setIconImage(logger != null && logger.isModified() ? SCARY_MONKEY_ICON.getImage() : MONKEY_ICON.getImage());
 
 		// a panel to hold the desktop and palette
 		JPanel panel = new JPanel();
@@ -688,7 +691,7 @@ public class ApplicationWindow extends SmartJFrame
 				{
 					try
 					{
-						generator.generateHTML(popup, MAIN_FRAME_ICON);
+						generator.generateHTML(popup, MONKEY_ICON);
 					} catch (HTMLGenerationException ex)
 					{
 						monitor.stopActivityAndDisplayDialog(
@@ -1876,7 +1879,7 @@ public class ApplicationWindow extends SmartJFrame
 
 			JMenuItem mainItem = new JMenuItem(
 					new URLAction("Intrinsarc website", URL_BASE));
-			mainItem.setIcon(MAIN_FRAME_ICON);
+			mainItem.setIcon(MONKEY_ICON);
 			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));
 			GlobalPreferences.registerKeyAction("Help", mainItem, null, "Visit main site");
 
@@ -1900,6 +1903,13 @@ public class ApplicationWindow extends SmartJFrame
 					new URLAction("<html><b>Version:</b> " + Evolve.EVOLVE_VERSION, URL_BASE + "/version_history"));
 			entries.add(new SmartMenuItemImpl("Help", "Version", versionItem));
 			GlobalPreferences.registerKeyAction("Help", versionItem, null, "Version");
+
+			// possibly open up a logger menu entry
+			if (logger != null)
+			{
+				JMenuItem loggerItem = logger.getDialogMenuItem(coordinator);
+				entries.add(new SmartMenuItemImpl("Help", "Version", loggerItem));
+			}
 
 			// add the error checking items
 			JMenuItem clearErrorsItem = new JMenuItem(new HideErrorsAction());
@@ -2198,5 +2208,11 @@ public class ApplicationWindow extends SmartJFrame
 				}
 			}
 		});
+	}
+
+	public void notifyLoggerModified()
+	{
+		// set the scary monkey icon
+		setIconImage(SCARY_MONKEY_ICON.getImage());
 	}
 }

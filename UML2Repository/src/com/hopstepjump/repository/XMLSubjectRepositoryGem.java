@@ -26,6 +26,7 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.notifications.*;
 import com.hopstepjump.repository.garbagecollector.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 public class XMLSubjectRepositoryGem implements Gem
 {
@@ -642,7 +643,7 @@ public class XMLSubjectRepositoryGem implements Gem
       if (fileName.endsWith(UML2Z_SUFFIX))
       {
       	temp = File.createTempFile("uml2", null);
-      	CommonRepositoryFunctions.copyFile(file, temp, true);
+      	FileUtilities.copyFile(file, temp, true);
       	fileURI = URI.createFileURI(temp.getAbsolutePath());
       }
       

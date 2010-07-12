@@ -219,14 +219,18 @@ remove class, documentation, misc, behaviour menus/focus, alloy import,
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 help links to docs, support group, newsgroup + fix up credit text
 \end_layout
 
 \begin_layout Enumerate
-selectively bringing back hidden attributes in imported bean
+selectively showing hidden attributes in imported bean
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 exception catcher?
 \end_layout
 

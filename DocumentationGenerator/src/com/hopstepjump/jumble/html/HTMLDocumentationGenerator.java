@@ -13,6 +13,7 @@ import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 public class HTMLDocumentationGenerator
 {
@@ -118,24 +119,24 @@ public class HTMLDocumentationGenerator
       final String htmlTemplateContents;
       try
       {
-        htmlTemplateContents = common.loadFileIntoString(new File(htmlResources, "template.html"));
+        htmlTemplateContents = FileUtilities.loadFileContents(new File(htmlResources, "template.html"));
 
         // remove the generated directory
-        common.deleteDir(htmlGenerateTo);
+        FileUtilities.deleteDir(htmlGenerateTo);
         htmlGenerateTo.mkdirs();
 
         // copy over the css file
-        common.copyFile(
+        FileUtilities.copyFile(
             new File(htmlResources, "site.css"),
             new File(htmlGenerateTo, "site.css"), false);
 
         // remove the entire generation directory, and copy over the images
-        common.copyDirectory(
+        FileUtilities.copyDirectory(
             new File(htmlResources, "images"),
             new File(htmlGenerateTo, "images"));
         
         // copy over other resources up to the top level
-        common.copyDirectory(
+        FileUtilities.copyDirectory(
             new File(htmlResources, "resources"),
             htmlGenerateTo);      
 

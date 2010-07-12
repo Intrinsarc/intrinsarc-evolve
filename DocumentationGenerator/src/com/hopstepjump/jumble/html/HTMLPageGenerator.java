@@ -13,6 +13,7 @@ import org.eclipse.uml2.Package;
 
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 import edu.umd.cs.jazz.component.*;
 
@@ -201,7 +202,7 @@ public class HTMLPageGenerator
 		}
 
 		// write out the file to the images directory
-		new CommonRepositoryFunctions().writeFileAsBinary(new File(htmlGenerateTo, "images/" + filename), comment.getBinaryData());
+		FileUtilities.writeFileAsBinary(new File(htmlGenerateTo, "images/" + filename), comment.getBinaryData());
 
 		body.append("<div style=\"text-align:center\">\n");
 		body.append("<img style=\"padding:10px\" alt=\"\" style=\"\" width=\"" + (int) figure.getFullBounds().getWidth()

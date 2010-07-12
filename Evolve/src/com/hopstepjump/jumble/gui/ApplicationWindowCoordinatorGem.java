@@ -27,7 +27,7 @@ public class ApplicationWindowCoordinatorGem
 	private String title;
   private ErrorRegister errors;
   private DeltaAdornerFacet deltaAdorner;
-
+  private ConsoleLogger logger;
 	
   public ApplicationWindowCoordinatorGem(String title)
 	{
@@ -35,14 +35,28 @@ public class ApplicationWindowCoordinatorGem
 	}
 	
   public void setUp(
-      ToolCoordinatorGem toolCoordinator, ErrorRegister errors)
+      ToolCoordinatorGem toolCoordinator, ErrorRegister errors, String logFile)
   {
   	this.toolCoordinator = toolCoordinator;
     this.errors = errors;   
   	this.errorAdorner =
   	  new ErrorAdornerGem(toolCoordinator.getToolCoordinatorFacet(), errors).getExtendedAdornerFacet();
   	this.deltaAdorner =
-  	  new DeltaAdornerGem(toolCoordinator.getToolCoordinatorFacet()).getDeltaAdornerFacet();  	
+  	  new DeltaAdornerGem(toolCoordinator.getToolCoordinatorFacet()).getDeltaAdornerFacet();
+  	
+  	if (logFile != null)
+  	{
+	  	logger = new ConsoleLogger(logFile, Evolve.EVOLVE_VERSION,
+	  			new Runnable()
+			  	{
+	  				public void run()
+	  				{
+	  					for (ApplicationWindow window : windows)
+	  						window.notifyLoggerModified();
+	  				}
+			  	});
+	  	logger.redirectOutputsToLog();
+  	}
   }
   
   public ApplicationWindowCoordinatorFacet getApplicationWindowCoordinatorFacet()
@@ -68,7 +82,7 @@ public class ApplicationWindowCoordinatorGem
 		 */
 		public void openNewApplicationWindow()
 		{
-			final ApplicationWindow window = new ApplicationWindow(getWindowTitle(), errors);
+			final ApplicationWindow window = new ApplicationWindow(getWindowTitle(), errors, logger);
 			windows.add(window);
 			
 			List<DiagramFigureAdornerFacet> adorners = new ArrayList<DiagramFigureAdornerFacet>();

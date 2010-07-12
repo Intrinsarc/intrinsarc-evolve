@@ -13,6 +13,7 @@ import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 /**
  * write out the backbone for the strata
@@ -22,7 +23,7 @@ import com.hopstepjump.repositorybase.*;
 public class BackboneWriter
 {
   public static final Preference GENERATION_DIR_PREF = new Preference("Backbone", "Base backbone source folder", new PersistentProperty("$BB/base"));
-  public static final Preference BB_CLASS_PATH_PREF = new Preference("Backbone", "Base backbone classpath", new PersistentProperty("$EVOLVE/runtime.jar"));
+  public static final Preference BB_CLASS_PATH_PREF = new Preference("Backbone", "Base backbone classpath", new PersistentProperty("$EVOLVE/common/backbone.jar"));
   public static final Preference BB_JAVA_CMD_PREF = new Preference("Backbone", "Java command", new PersistentProperty("java"));
   public static final Preference BB_WRITE_BASE_PREF = new Preference("Backbone", "Generate Backbone base", new PersistentProperty(true));
 	
@@ -81,7 +82,7 @@ public class BackboneWriter
 	        String name = extractFolder(prefs, stratum, stratum, 0, direct, false);
         	String expanded = expandVariables(prefs, referenced, name); 
       		// delete the directory
-      		new CommonRepositoryFunctions().deleteDir(new File(expanded));
+      		FileUtilities.deleteDir(new File(expanded));
       	}
     		
       }
@@ -95,7 +96,7 @@ public class BackboneWriter
       			name += "/" + stratum.getName();
       		String expanded = expandVariables(prefs, referenced, name);
         	File bbBase = new File(expanded);
-	        new CommonRepositoryFunctions().deleteDir(bbBase);
+	        FileUtilities.deleteDir(bbBase);
         }
 			}
     }

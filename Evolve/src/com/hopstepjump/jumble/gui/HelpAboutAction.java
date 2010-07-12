@@ -65,7 +65,7 @@ public class HelpAboutAction extends AbstractAction
   
   private JComponent makeTextPanelFromHTMLDocument(Dimension preferred, String name, String documentName)
   {
-  	return makeTextPanel(preferred, name, FileLoader.loadFile(documentName));
+  	return makeTextPanel(preferred, name, FileUtilities.loadFileContentsFromResource(documentName));
   }
   
   private JComponent makeTextPanel(Dimension preferred, String name, String contents)

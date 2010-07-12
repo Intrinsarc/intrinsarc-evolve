@@ -22,6 +22,7 @@ import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.idraw.nodefacilities.resizebase.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -257,7 +258,7 @@ public final class ImageNodeGem implements Gem
             PreferenceTypeDirectory.recent.setLastVisitedDirectory(selected);
             
             String selectedName = selected.getAbsolutePath();
-            byte[] bytes = new CommonRepositoryFunctions().loadFileAsBinary(selected);
+            byte[] bytes = FileUtilities.loadFileAsBinary(selected);
             String suffix = "gif";
             int suffixIndex = selectedName.lastIndexOf('.'); 
             if (suffixIndex != -1 && selectedName.length() > suffixIndex)

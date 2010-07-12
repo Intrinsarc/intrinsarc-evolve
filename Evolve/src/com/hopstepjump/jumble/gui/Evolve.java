@@ -60,7 +60,7 @@ public class Evolve
 		System.out.println("Evolve home directory is: " + home);
 		
     String version = System.getProperty("java.specification.version");
-    System.out.println("Evolve running");
+    System.out.println("Evolve " + EVOLVE_VERSION);
     System.out.println("Detected JRE " + (version == null ? "(unknown)" : version));
 		
     // make sure we have the correct version of java
@@ -107,26 +107,6 @@ public class Evolve
 	  		System.exit(0);
     }
     
-		// redirect further output to a log file
-    if (args.length > 1)
-    {
-    	final String logFile = args[1];
-			ConsoleLogger logger = new ConsoleLogger(logFile,
-					new Runnable()
-					{
-						public void run()
-						{
-						}
-					});
-			logger.redirectOutputsToLog();
-			
-			System.out.println("$$ hello log file!");
-			System.err.println("$$ hello log file!");
-			System.err.println("$$ hello log file!");
-			System.err.println("$$ hello log file!");
-			System.err.println("$$ hello log file!");
-    }
-		
 		// set the evolve home directory as the EVOLVE variable
 		GlobalPreferences.preferences.setVariableValue("EVOLVE", home);
 		
@@ -144,7 +124,7 @@ public class Evolve
     setUpUUIDGenerator();
     Evolve application = new Evolve();
     application.setUpServices(home);
-    application.setUpGUI();
+    application.setUpGUI(args.length > 1 ? args[1] : null);
     application.showGUI();
     
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;    
@@ -182,9 +162,9 @@ public class Evolve
 		windowCoordinator = new ApplicationWindowCoordinatorGem("Evolve");
 	}
 
-	private void setUpGUI()
+	private void setUpGUI(String loggerFile)
 	{
-		windowCoordinator.setUp(toolManager, errors);
+		windowCoordinator.setUp(toolManager, errors, loggerFile);
 	}
 
 	private void showGUI()
