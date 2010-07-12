@@ -1,14 +1,12 @@
 package com.hopstepjump.jumble.gui;
 
 import java.io.*;
-import java.net.*;
 import java.util.*;
 
-import javax.jdo.identity.*;
-import javax.print.attribute.standard.*;
 import javax.swing.*;
 
 import org.eclipse.emf.common.util.*;
+import org.freehep.graphicsio.emf.gdi.*;
 
 import com.hopstepjump.backbone.generator.*;
 import com.hopstepjump.deltaengine.errorchecking.*;
@@ -61,24 +59,10 @@ public class Evolve
 		String home = args[0];
 		System.out.println("Evolve home directory is: " + home);
 		
-		// set the evolve home directory as the EVOLVE variable
-		GlobalPreferences.preferences.setVariableValue("EVOLVE", home);
-		
-    registerPreferenceSlots();
-    // handle any preferences
-    RegisteredGraphicalThemes themes = RegisteredGraphicalThemes.getInstance(); 
-    themes.registerPreferenceSlots();
-    themes.interpretPreferences();
-    BaseColors.registerPreferenceSlots();
-    BackboneWriter.registerPreferenceSlots();
-    HTMLDocumentationGenerator.registerPreferenceSlots();
-    PreferenceTypeDirectory.registerPreferenceSlots();
-    
     String version = System.getProperty("java.specification.version");
     System.out.println("Evolve running");
     System.out.println("Detected JRE " + (version == null ? "(unknown)" : version));
-    RegisteredGraphicalThemes.getInstance().setLookAndFeel();
-
+		
     // make sure we have the correct version of java
     if (version == null || version.compareTo(LEAST_VERSION) < 0)
     {
@@ -122,6 +106,40 @@ public class Evolve
 	  	if (n == 1)
 	  		System.exit(0);
     }
+    
+		// redirect further output to a log file
+    if (args.length > 1)
+    {
+    	final String logFile = args[1];
+			ConsoleLogger logger = new ConsoleLogger(logFile,
+					new Runnable()
+					{
+						public void run()
+						{
+						}
+					});
+			logger.redirectOutputsToLog();
+			
+			System.out.println("$$ hello log file!");
+			System.err.println("$$ hello log file!");
+			System.err.println("$$ hello log file!");
+			System.err.println("$$ hello log file!");
+			System.err.println("$$ hello log file!");
+    }
+		
+		// set the evolve home directory as the EVOLVE variable
+		GlobalPreferences.preferences.setVariableValue("EVOLVE", home);
+		
+    registerPreferenceSlots();
+    // handle any preferences
+    RegisteredGraphicalThemes themes = RegisteredGraphicalThemes.getInstance(); 
+    themes.registerPreferenceSlots();
+    themes.interpretPreferences();
+    BaseColors.registerPreferenceSlots();
+    BackboneWriter.registerPreferenceSlots();
+    HTMLDocumentationGenerator.registerPreferenceSlots();
+    PreferenceTypeDirectory.registerPreferenceSlots();
+    RegisteredGraphicalThemes.getInstance().setLookAndFeel();
     
     setUpUUIDGenerator();
     Evolve application = new Evolve();

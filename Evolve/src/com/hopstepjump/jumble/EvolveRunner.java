@@ -2,6 +2,7 @@ package com.hopstepjump.jumble;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 import com.hopstepjump.jumble.gui.*;
 
@@ -15,10 +16,14 @@ public class EvolveRunner
 	public static void main(String args[])
 	{
 		// if no arguments, pass in the actual home directory
+		String home;
 		if (args.length == 0)
-			Evolve.main(new String[]{getHomeDirectory()});
+			home = getHomeDirectory();
 		else
-			Evolve.main(args);
+			home = args[0];
+		
+		String date = new Date().toString().replace(":", "-");
+		Evolve.main(new String[]{home, home + "/logs/" + date + ".log"});
 	}
 	
 	private static String getHomeDirectory()
