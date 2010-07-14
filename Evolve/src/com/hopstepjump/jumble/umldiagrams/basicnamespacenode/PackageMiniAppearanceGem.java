@@ -202,6 +202,8 @@ public class PackageMiniAppearanceGem implements Gem
       // use the repository for the parent, as it may be null, or not a package
       boolean parentReadOnly = GlobalSubjectRepository.repository.isReadOnly(pkg.getOwner());
       JCheckBoxMenuItem read = new JCheckBoxMenuItem("Read only");
+      // important to use the parent here, as we want to be able to toggle readonly
+      // on "readonly" packages if the parent is writeable
       read.setEnabled(!parentReadOnly);
       read.setSelected(pkg.isReadOnly());
 

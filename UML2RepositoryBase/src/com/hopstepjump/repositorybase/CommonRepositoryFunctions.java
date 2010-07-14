@@ -814,9 +814,9 @@ public class CommonRepositoryFunctions
       figure = container.getFigureFacet();
     }
     
-    // if we have no subject to check, we must be ok
+    // if we have no subject to check, use the diagram
     if (firstSubject == null)
-      return false;
+      firstSubject = (Package) figure.getDiagram().getLinkedObject();
     
     // otherwise, check the package hierarchy    
     Element element = (Element) firstSubject;
@@ -832,7 +832,7 @@ public class CommonRepositoryFunctions
         return true;
       element = element.getOwner();
     }
-    
+
     return false;
   }
 

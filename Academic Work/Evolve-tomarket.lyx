@@ -1,4 +1,4 @@
-#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -181,34 +181,15 @@ undo not fully working after class tabbing
 \end_layout
 
 \begin_layout Enumerate
-attribute issues (aliasing, defaults, 
-\color green
-replace of attr with default
-\color inherit
-)
-\end_layout
 
-\begin_layout Enumerate
-undo after ageX replace – error adorner holds onto old state?
+\color green
+exception catcher?
 \end_layout
 
 \begin_layout Enumerate
 
 \color green
 classpath separator to use space and quotes
-\end_layout
-
-\begin_layout Enumerate
-visual lock problems (possibly move to deleteduuids?) + concurrency issues
- when cmd takes a long time
-\end_layout
-
-\begin_layout Enumerate
-replacing part causes element to disappear when visually locked
-\end_layout
-
-\begin_layout Enumerate
-undo/redo problem after import
 \end_layout
 
 \begin_layout Enumerate
@@ -225,13 +206,36 @@ help links to docs, support group, newsgroup + fix up credit text
 \end_layout
 
 \begin_layout Enumerate
+attribute issues (aliasing, defaults, 
+\color green
+replace of attr with default
+\color inherit
+)
+\end_layout
+
+\begin_layout Enumerate
+undo after ageX replace – error adorner holds onto old state?
+\end_layout
+
+\begin_layout Enumerate
+undo/redo problem after import
+\end_layout
+
+\begin_layout Enumerate
 selectively showing hidden attributes in imported bean
 \end_layout
 
 \begin_layout Enumerate
+visual lock problems (possibly move to deleteduuids?) + concurrency issues
+ when cmd takes a long time
+\end_layout
 
-\color green
-exception catcher?
+\begin_layout Enumerate
+replacing part causes element to disappear when visually locked
+\end_layout
+
+\begin_layout Enumerate
+making nice for MacOS?
 \end_layout
 
 \begin_layout Standard
@@ -241,7 +245,8 @@ Next up:
 \end_layout
 
 \begin_layout Enumerate
-jar deployment + editing off deployed jars
+jar deployment + editing off deployed jars.
+ also allowing modelling changes using jars for model.
 \begin_inset Newline newline
 \end_inset
 
@@ -253,7 +258,7 @@ fix editing + positioning of connector ends
 \begin_inset Newline newline
 \end_inset
 
-(3 days)
+(2 days)
 \end_layout
 
 \begin_layout Enumerate
@@ -266,7 +271,7 @@ concurrency via actors and possibly concurrent state machines + expanded
 \end_layout
 
 \begin_layout Enumerate
-slightly slow diagrams in complex situations
+slightly slow diagrams in complex situations == profile using jprofiler
 \end_layout
 
 \end_body

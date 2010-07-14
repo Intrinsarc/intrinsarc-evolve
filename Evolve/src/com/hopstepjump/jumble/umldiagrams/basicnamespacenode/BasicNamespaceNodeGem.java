@@ -459,72 +459,68 @@ public final class BasicNamespaceNodeGem implements Gem
 		public JPopupMenu makeContextMenu(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
 		{
 			JPopupMenu popup = new JPopupMenu();
-			boolean readOnly = diagramView.getDiagram().isReadOnly();
-			if (!readOnly)
-			{
-  			popup.add(figureFacet.getBasicNodeAutoSizedFacet().getAutoSizedMenuItem(coordinator));
-  			popup.add(getSuppressContentsItem(diagramView.getDiagram(), coordinator));
-  
-  			if (miniAppearanceFacet != null && miniAppearanceFacet.haveMiniAppearance())
-  			{
-  				popup.add(getDisplayAsIconItem(diagramView, coordinator));
-  			}
-  			popup.add(getSuppressOwnerItem(diagramView, coordinator));
-        popup.add(getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
-        		new SetFillCallback()
-						{							
-							public void setFill(Color fill)
-							{
-								fillColor = fill;
-							}
-						}));
-        
-				// add expansions
-				popup.addSeparator();
-				JMenu expand = new JMenu("Expand");
-				expand.setIcon(Expander.EXPAND_ICON);
-				JMenuItem deps = new JMenuItem("dependencies");
-				expand.add(deps);
-				deps.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						UBounds bounds = figureFacet.getFullBounds();
-						final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
-						ITargetResolver resolver = new ITargetResolver()
-						{
-							public List<Element> resolveTargets(Element relationship)
-							{
-								return ((Dependency) relationship).getTargets();
-							}
-							
-							public UPoint determineTargetLocation(Element target, int index)
-							{
-								return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
-							}
+			popup.add(figureFacet.getBasicNodeAutoSizedFacet().getAutoSizedMenuItem(coordinator));
+			popup.add(getSuppressContentsItem(diagramView.getDiagram(), coordinator));
 
-							public NodeCreateFacet getNodeCreator(Element target)
-							{
-								if (!(target instanceof Package))
-										return null;
-								if (UML2DeltaEngine.isRawPackage(target))
-									return  (NodeCreateFacet) PersistentFigureRecreatorRegistry.registry.retrieveRecreator(PackageCreatorGem.NAME);
-								if (target instanceof Model)
-									return  (NodeCreateFacet) PersistentFigureRecreatorRegistry.registry.retrieveRecreator(ModelCreatorGem.NAME);
-								return PaletteManagerGem.makeStrictStratumCreator();
-							}
-						};
-						
-						new Expander(
-								coordinator,
-								figureFacet,
-								subject.undeleted_getOwnedAnonymousDependencies(),
-								resolver,
-								new DependencyCreatorGem().getArcCreateFacet()).expand();
-					}
-				});
-				popup.add(expand);
+			if (miniAppearanceFacet != null && miniAppearanceFacet.haveMiniAppearance())
+			{
+				popup.add(getDisplayAsIconItem(diagramView, coordinator));
 			}
+			popup.add(getSuppressOwnerItem(diagramView, coordinator));
+      popup.add(getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
+      		new SetFillCallback()
+					{							
+						public void setFill(Color fill)
+						{
+							fillColor = fill;
+						}
+					}));
+      
+			// add expansions
+			popup.addSeparator();
+			JMenu expand = new JMenu("Expand");
+			expand.setIcon(Expander.EXPAND_ICON);
+			JMenuItem deps = new JMenuItem("dependencies");
+			expand.add(deps);
+			deps.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					UBounds bounds = figureFacet.getFullBounds();
+					final UPoint loc = new UPoint(bounds.getPoint().getX(), bounds.getBottomRightPoint().getY());
+					ITargetResolver resolver = new ITargetResolver()
+					{
+						public List<Element> resolveTargets(Element relationship)
+						{
+							return ((Dependency) relationship).getTargets();
+						}
+						
+						public UPoint determineTargetLocation(Element target, int index)
+						{
+							return loc.add(new UDimension(-50 + 40 * index, 100 + index * 40));
+						}
+
+						public NodeCreateFacet getNodeCreator(Element target)
+						{
+							if (!(target instanceof Package))
+									return null;
+							if (UML2DeltaEngine.isRawPackage(target))
+								return  (NodeCreateFacet) PersistentFigureRecreatorRegistry.registry.retrieveRecreator(PackageCreatorGem.NAME);
+							if (target instanceof Model)
+								return  (NodeCreateFacet) PersistentFigureRecreatorRegistry.registry.retrieveRecreator(ModelCreatorGem.NAME);
+							return PaletteManagerGem.makeStrictStratumCreator();
+						}
+					};
+					
+					new Expander(
+							coordinator,
+							figureFacet,
+							subject.undeleted_getOwnedAnonymousDependencies(),
+							resolver,
+							new DependencyCreatorGem().getArcCreateFacet()).expand();
+				}
+			});
+			popup.add(expand);
 			
       // if we have a mini-appearance, it may want to contribute
       if (miniAppearanceFacet != null)
