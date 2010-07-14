@@ -270,7 +270,7 @@ public class DeltaAdornerGem
             if (figure.hasDynamicFacet(DelegatedDeltaAdornerFacet.class))
             {
               DelegatedDeltaAdornerFacet delegated =
-                (DelegatedDeltaAdornerFacet) figure.getDynamicFacet(DelegatedDeltaAdornerFacet.class);
+                figure.getDynamicFacet(DelegatedDeltaAdornerFacet.class);
               displays.putAll(delegated.getDeltaDisplaysAtHome());
             }
           }
@@ -288,7 +288,7 @@ public class DeltaAdornerGem
             if (figure.hasDynamicFacet(DelegatedDeltaAdornerFacet.class))
             {
               DelegatedDeltaAdornerFacet delegated =
-                (DelegatedDeltaAdornerFacet) figure.getDynamicFacet(DelegatedDeltaAdornerFacet.class);
+                figure.getDynamicFacet(DelegatedDeltaAdornerFacet.class);
               displays.putAll(delegated.getDeltaDisplaysAtHome());              
             }
           }

@@ -44,7 +44,9 @@ public class PortInstanceCreatorGem implements Gem
       		location,
       		false,
       		new PersistentFigure(figureId, null, subject, actualProperties),
-      		true);
+      		true,
+      		false,
+      		UDimension.ZERO);
 			basicGem.connectBasicNodeAppearanceFacet(portNodeGem.getBasicNodeAppearanceFacet());
 			portNodeGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());
 	    portNodeGem.connectBasicNodeFigureFacet(basicGem.getBasicNodeFigureFacet());

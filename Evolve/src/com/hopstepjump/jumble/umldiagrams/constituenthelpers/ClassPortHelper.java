@@ -3,12 +3,14 @@ package com.hopstepjump.jumble.umldiagrams.constituenthelpers;
 import java.util.*;
 
 import org.eclipse.uml2.*;
+import org.eclipse.uml2.Class;
 
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.diagramsupport.moveandresize.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
+import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
@@ -16,101 +18,89 @@ import com.hopstepjump.jumble.umldiagrams.portnode.*;
 
 public class ClassPortHelper extends ClassifierConstituentHelper
 {
+	private boolean suppressUnlessElsewhere;
+	
 	public ClassPortHelper(BasicNodeFigureFacet classifierFigure,
-			FigureFacet container, SimpleDeletedUuidsFacet deleted)
+			FigureFacet container, SimpleDeletedUuidsFacet deleted, boolean suppressUnlessElsewhere)
 	{
-		super(classifierFigure, container, container.isShowing(), container
-				.getContainerFacet().getContents(), ConstituentTypeEnum.DELTA_PORT,
+		super(
+				classifierFigure,
+				container,
+				container.isShowing(),
+				container.getContainerFacet().getContents(),
+				ConstituentTypeEnum.DELTA_PORT,
 				deleted);
+		this.suppressUnlessElsewhere = suppressUnlessElsewhere;
 	}
-
+	
 	@Override
-	public void makeAddTransaction(DEStratum perspective,
+	public void makeAddTransaction(
+			DEStratum perspective,
 			Set<FigureFacet> currentInContainerIgnoringDeletes,
-			final BasicNodeFigureFacet classifierFigure, FigureFacet container,
+			final BasicNodeFigureFacet classifierFigure,
+			FigureFacet container,
 			DeltaPair addOrReplace)
 	{
-		// get the current sizes
-		FigureFacet existing = null;
-		UBounds full = classifierFigure.getFullBounds();
-		UPoint topLeft = full.getTopLeftPoint();
-
-		// look to see if there was something there with that id, first
-		for (FigureFacet f : currentInContainerIgnoringDeletes)
+		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
+		FigureFacet[] figures = findClassAndConstituentFigure(perspective, component, addOrReplace);
+		if (figures == null)
 		{
-			// don't delete if this is deleted -- this is covered elsewhere
-			if (f.getSubject() == null)
-				continue;
-			Element originalSubject = getOriginalSubject(f.getSubject());
-
-			if (addOrReplace.getUuid().equals(originalSubject.getUuid()))
+			if (suppressUnlessElsewhere)
 			{
-				existing = f;
-				break;
+				addDeletedUuid(addOrReplace.getUuid());
+				return;
 			}
+			figures = new FigureFacet[]{classifierFigure, null};
 		}
-
-		// find the location, relative to the parent classifier by looking in this
-		// diagram,
-		// and in the home package diagram
-		if (existing == null)
-			existing = findExisting(classifierFigure.getDiagram(), addOrReplace
-					.getUuid());
-
-		if (existing == null)
-		{
-			// look in the home diagram
-			Classifier cls = (Classifier) ((Port) getOriginalSubject(addOrReplace
-					.getConstituent().getRepositoryObject())).getOwner();
-
-			DiagramFacet homeDiagram = GlobalDiagramRegistry.registry
-					.retrieveOrMakeDiagram(new DiagramReference(cls.getOwner().getUuid()));
-
-			if (homeDiagram != null)
-				existing = findExisting(homeDiagram, addOrReplace.getUuid());
-		}
-
-		// don't try too much harder if we haven't found it
-		UDimension portOffset = new UDimension(10, 10);
-		UDimension newOffset = full.getDimension();
-		UDimension portSize = null;
-
-		// if we have found a port to use, use the max of each dimension
-		if (existing != null)
-		{
-			newOffset = newOffset.maxOfEach(getTopContainerBounds(existing).getDimension());
-			portOffset = getOffsetFromClassifier(existing);
-			portSize = existing.getFullBounds().getDimension();
-		}
-
-		UBounds newBounds = new UBounds(topLeft, newOffset).centreToPoint(full.getMiddlePoint());
-
-		// make a composite to hold all the changes
+		
+		// we now have the appropriate class figure and constituent figure to take sizing etc from
+		UBounds oldFull = classifierFigure.getFullBounds();
+		UBounds existFull = figures[0].getFullBounds();
+		UDimension newSize = oldFull.getDimension().
+			maxOfEach(figures[0].getFullBounds().getDimension());
+		
+		// resize the class
+		UBounds newBounds = new UBounds(new UPoint(0, 0), newSize).centreToPoint(oldFull.getMiddlePoint());
 		NodeAutoSizeTransaction.autoSize(classifierFigure, false);
-
-		// resize to fit the offset at least
 		makeResizingTransaction(classifierFigure, newBounds);
+		
+		// find the offset from the original
+		FigureFacet existing = figures[1];
+		UDimension offset = existing == null ? UDimension.ZERO : existing.getFullBounds().getPoint().subtract(existFull.getPoint());
+		UDimension size = existing == null ? UDimension.ZERO : existing.getFullBounds().getDimension();
 
 		// now add the port
-		final UPoint portTop = newBounds.getTopLeftPoint().add(portOffset);
+		UPoint portTop = newBounds.getPoint().add(offset);
 		final FigureReference portReference = classifierFigure.getDiagram().makeNewFigureReference();
+
+		// work out the linked text details
+		PersistentProperties props = new PersistentProperties();
+		if (existing != null)
+		{
+			PortNodeFacet node = existing.getDynamicFacet(PortNodeFacet.class);
+			props.add(new PersistentProperty(">suppressLinkedText", node.isLinkedTextSuppressed(), false));
+			props.add(new PersistentProperty(">linkedTextOffset", node.getLinkedTextOffset(), null));			
+		}
 
 		AddPortTransaction.add(
 				container,
 				portReference,
 				new PortCreatorGem().getNodeCreateFacet(),
-				null,
+				props,
 				addOrReplace.getConstituent().getRepositoryObject(),
 				null,
 				portTop);
 
 		// resize to match the other port
-		if (portSize != null)
+		if (size != null)
 		{
 			FigureFacet port = container.getDiagram().retrieveFigure(portReference.getId());
-			makeResizingTransaction(port, new UBounds(portTop, portSize));
+			makeResizingTransaction(port, new UBounds(portTop, size));
 		}
 	}
+	
+	////////////////////////////////////////////////////////////////////////////
+	//// get rid of...
 
 	public static FigureFacet findExisting(DiagramFacet diagram, String uuid)
 	{
@@ -135,20 +125,6 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 		return null;
 	}
 
-	public static UDimension getOffsetFromClassifier(FigureFacet figure)
-	{
-		// if figure is null, give a standard response
-		if (figure == null)
-			return new UDimension(10, 10);
-
-		// yuck -- maybe make an element navigation language? AMcV 9/11/07
-		FigureFacet classifier = figure.getContainedFacet().getContainer()
-				.getContainedFacet().getContainer().getFigureFacet();
-
-		return figure.getFullBounds().getTopLeftPoint().subtract(
-				classifier.getFullBounds().getTopLeftPoint());
-	}
-
 	public static UBounds getTopContainerBounds(FigureFacet figure)
 	{
 		// if figure is null, give a standard response
@@ -163,16 +139,6 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 
 	public static Classifier extractVisualClassifier(FigureFacet figureFacet)
 	{
-		return ClassifierConstituentHelper
-				.extractVisualClassifierFromConstituent(figureFacet);
-	}
-
-	public static void makeResizingTransaction(FigureFacet figure, UBounds newBounds)
-	{
-			ResizingFiguresGem gem = new ResizingFiguresGem(null, figure.getDiagram());
-			ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
-			facet.markForResizing(figure);
-			facet.setFocusBounds(newBounds);
-			facet.end();
+		return ClassifierConstituentHelper.extractVisualClassifierFromConstituent(figureFacet);
 	}
 }

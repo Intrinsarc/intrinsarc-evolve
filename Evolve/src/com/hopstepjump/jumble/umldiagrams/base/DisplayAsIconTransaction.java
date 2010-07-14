@@ -11,7 +11,7 @@ public final class DisplayAsIconTransaction implements TransactionFacet
 {
   public static void display(FigureFacet iconifiable, boolean displayAsIcon)
   {
-  	DisplayAsIconFacet display = (DisplayAsIconFacet) iconifiable.getDynamicFacet(DisplayAsIconFacet.class);
+  	DisplayAsIconFacet display = iconifiable.getDynamicFacet(DisplayAsIconFacet.class);
     display.displayAsIcon(displayAsIcon);
   }
 }

@@ -119,7 +119,7 @@ public class PortCompartmentGem implements Gem
           figureFacet.getFigureReference(),
           factory,
           new UPoint(0,0),
-          null,
+          properties,
           relatedSubject);
       
       // get hold of the figure
@@ -239,8 +239,7 @@ public class PortCompartmentGem implements Gem
           return null;
         }
 
-        PortNodeFacet typeFacet = (PortNodeFacet) containables[lp].getFigureFacet()
-            .getDynamicFacet(PortNodeFacet.class);
+        PortNodeFacet typeFacet = containables[lp].getFigureFacet().getDynamicFacet(PortNodeFacet.class);
         if (typeFacet.isClassScope() != classScope)
         {
           return null;

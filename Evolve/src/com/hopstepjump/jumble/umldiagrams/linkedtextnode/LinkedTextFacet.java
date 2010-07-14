@@ -2,6 +2,7 @@ package com.hopstepjump.jumble.umldiagrams.linkedtextnode;
 
 import javax.swing.*;
 
+import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
 

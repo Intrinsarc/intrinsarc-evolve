@@ -121,7 +121,7 @@ public class PortCompartmentPreviewGem implements Gem
     {
       // get the port preview facet
       PortNodePreviewFacet portPreviewFacet =
-        (PortNodePreviewFacet) portPreview.getDynamicFacet(PortNodePreviewFacet.class);
+        portPreview.getDynamicFacet(PortNodePreviewFacet.class);
       
       // get the original closest line
       ClosestLine originalClosest = portPreviewFacet.getOriginalClosestLine();

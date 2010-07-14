@@ -1585,10 +1585,36 @@ public class ApplicationWindow extends SmartJFrame
 			dialog.setLocation(frame.getLocationOnScreen().x + frame.getWidth() / 2
 					- size.width / 2, frame.getLocationOnScreen().y + frame.getHeight()
 					/ 2 - size.height / 2);
-			dialog.add(GlobalPreferences.preferences.getVisualComponent(dialog, true));
+			VisualPreferences prefs = GlobalPreferences.preferences.getVisualComponent(dialog, true);
+			final IVisualPreferences iprefs = prefs.visualPreferences;
+			dialog.add(prefs.visualComponent);
 			dialog.pack();
-			dialog.setVisible(true);
+			
+			dialog.addWindowListener(new WindowAdapter()
+			{
+				public void windowClosing(WindowEvent e)
+				{
+					if (iprefs.hasUnappliedChanges())
+					{
+						int choice = JOptionPane.showOptionDialog(
+								dialog,
+								"There are unapplied changes.  Do you want to apply these now?",
+								"Unapplied changes",
+								JOptionPane.YES_NO_OPTION,
+								JOptionPane.INFORMATION_MESSAGE,
+								null,
+								null,
+								null);
+						if (choice == 0)
+							iprefs.applyChanges();
+						else
+							iprefs.discardChanges();
+					}
+					dialog.dispose();
+				}
+			});
 
+			dialog.setVisible(true);
 			// resync all diagrams just in case a change was made to something visual
 			BaseColors.clearCachedColors();
 			GlobalDiagramRegistry.resyncViews();

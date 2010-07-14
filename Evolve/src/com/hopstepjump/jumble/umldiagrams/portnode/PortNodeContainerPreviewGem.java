@@ -132,7 +132,7 @@ public class PortNodeContainerPreviewGem
     public boolean isPrivate()
     {
       PortNodeFacet portNodeFacet =
-        (PortNodeFacet) previewFacet.isPreviewFor().getDynamicFacet(PortNodeFacet.class);
+        previewFacet.isPreviewFor().getDynamicFacet(PortNodeFacet.class);
       return portNodeFacet.isPrivate(); 
     }
 

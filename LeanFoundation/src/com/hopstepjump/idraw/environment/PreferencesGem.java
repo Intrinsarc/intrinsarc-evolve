@@ -45,15 +45,14 @@ public class PreferencesGem implements Gem
   
   private class EnvironmentPreferencesFacetImpl implements PreferencesFacet
   {
-		public JComponent getVisualComponent(final JDialog dialog, boolean addButtons)
+		public VisualPreferences getVisualComponent(final JDialog dialog, boolean addButtons)
     {
       JPanel outer = new JPanel(new BorderLayout());
       JTabbedPane pane = new JTabbedPane();
       
+      final Map<Preference, String> unappliedValues = new HashMap<Preference, String>();
       UnappliedPreferencesFacet unapplied = new UnappliedPreferencesFacet()
       {
-        private Map<Preference, String> unappliedValues = new HashMap<Preference, String>();
-        
         public String getUnappliedPreference(Preference pref)
         {
           if (!unappliedValues.containsKey(pref))
@@ -68,7 +67,7 @@ public class PreferencesGem implements Gem
       };
       
       // make the tabs
-      JButton apply = new JButton("OK");
+      final JButton apply = new JButton("OK");
       apply.setIcon(OK_ICON);
       apply.addActionListener(new ActionListener()
       {
@@ -78,7 +77,7 @@ public class PreferencesGem implements Gem
         }
       });
       
-      JButton cancel = new JButton("Cancel");
+      final JButton cancel = new JButton("Cancel");
       cancel.setIcon(CANCEL_ICON);
       cancel.addActionListener(new ActionListener()
           {
@@ -111,7 +110,26 @@ public class PreferencesGem implements Gem
       // clear the cache, as values may be changed
       clearCache();
       
-      return outer;
+      VisualPreferences prefs = new VisualPreferences();
+      prefs.visualComponent = outer;
+      prefs.visualPreferences = new IVisualPreferences()
+			{
+				public boolean hasUnappliedChanges()
+				{
+					return !unappliedValues.isEmpty();
+				}
+				
+				public void discardChanges()
+				{
+					cancel.doClick();
+				}
+				
+				public void applyChanges()
+				{
+					apply.doClick();
+				}
+			};
+      return prefs;
     }
 
 		protected void createVariableEditor(JTabbedPane pane, UnappliedPreferencesFacet unapplied, JButton apply, Map<String, ImageIcon> tabIcons)

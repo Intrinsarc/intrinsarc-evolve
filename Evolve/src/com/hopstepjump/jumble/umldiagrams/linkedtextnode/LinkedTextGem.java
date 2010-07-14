@@ -445,8 +445,7 @@ public class LinkedTextGem implements Gem
   private LinkedTextOriginFacet extractOriginFacet()
   {
     FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
-    LinkedTextOriginFacet originFacet =
-      (LinkedTextOriginFacet) parent.getDynamicFacet(LinkedTextOriginFacet.class);
+    LinkedTextOriginFacet originFacet = parent.getDynamicFacet(LinkedTextOriginFacet.class);
     return originFacet;
   }
   

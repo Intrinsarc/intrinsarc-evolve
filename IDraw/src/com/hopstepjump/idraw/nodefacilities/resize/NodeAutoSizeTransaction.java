@@ -8,7 +8,7 @@ public final class NodeAutoSizeTransaction implements TransactionFacet
 {
   public static void autoSize(FigureFacet resizeable, boolean autoSized)
   {
-    AutoSizedFacet auto = (AutoSizedFacet) resizeable.getDynamicFacet(AutoSizedFacet.class);
+    AutoSizedFacet auto = resizeable.getDynamicFacet(AutoSizedFacet.class);
     auto.autoSize(autoSized);
   }
 }

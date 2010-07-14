@@ -24,7 +24,7 @@ public final class AddFeatureTransaction implements TransactionFacet
 			Object relatedSubject,
 			UPoint location)
 	{
-		((FeatureAddFacet) addable.getDynamicFacet(FeatureAddFacet.class)).addFeature(
+		addable.getDynamicFacet(FeatureAddFacet.class).addFeature(
 				featureReference,
 		    factory,
 		    properties,

@@ -16,7 +16,7 @@ public final class SetLocationTransaction implements TransactionFacet
 
   private static LocationFacet getLocatable(FigureFacet figure)
   {
-    return (LocationFacet) figure.getDynamicFacet(LocationFacet.class);
+    return figure.getDynamicFacet(LocationFacet.class);
   }
 }
 

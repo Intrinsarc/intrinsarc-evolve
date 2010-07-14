@@ -8,6 +8,6 @@ public final class SetTextTransaction implements TransactionFacet
 {
   public static void set(FigureFacet textable, String text, Object listSelection, boolean unsuppress)
   {
-  	((TextableFacet) textable.getDynamicFacet(TextableFacet.class)).setText(text, listSelection, unsuppress);
+  	textable.getDynamicFacet(TextableFacet.class).setText(text, listSelection, unsuppress);
   }
 }

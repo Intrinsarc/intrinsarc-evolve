@@ -201,7 +201,7 @@ public class DependencyArcGem implements Gem
 				// make the attribute compartment
 				text = contained;
 				text.getContainedFacet().persistence_setContainer(this);
-				linkedTextFacet = (LinkedTextFacet) contained.getDynamicFacet(LinkedTextFacet.class);
+				linkedTextFacet = contained.getDynamicFacet(LinkedTextFacet.class);
       }
 		}
 		

@@ -130,7 +130,7 @@ public final class FeatureCompartmentGem implements Gem
 					{
   					PreviewFacet previewOp = previews.getCachedPreview(sortedOp);
   					FeaturePreviewComparableFacet comparableFacet =
-  					  (FeaturePreviewComparableFacet) previewOp.getDynamicFacet(FeaturePreviewComparableFacet.class);
+  					  previewOp.getDynamicFacet(FeaturePreviewComparableFacet.class);
   					
 						double sortedY = sortedOp.getFullBounds().getMiddlePoint().getY();
 						if (movePoint.getY() < sortedY)
@@ -156,7 +156,7 @@ public final class FeatureCompartmentGem implements Gem
 				while (sortedAdds.hasNext())
 				{
 					PreviewFacet addPreview = (PreviewFacet) sortedAdds.next();
-					FeaturePreviewComparableFacet addOpComparable = (FeaturePreviewComparableFacet) addPreview.getDynamicFacet(FeaturePreviewComparableFacet.class);
+					FeaturePreviewComparableFacet addOpComparable = addPreview.getDynamicFacet(FeaturePreviewComparableFacet.class);
 					addOpComparable.setSortPosition(primitiveAddSortPosition);
 					primitiveAddSortPosition += 0.00001;
 				}
@@ -321,7 +321,7 @@ public final class FeatureCompartmentGem implements Gem
 				if (!containables[lp].getFigureFacet().hasDynamicFacet(FeatureTypeFacet.class))
 					return null;
 					
-				FeatureTypeFacet typeFacet = (FeatureTypeFacet) containables[lp].getFigureFacet().getDynamicFacet(FeatureTypeFacet.class);
+				FeatureTypeFacet typeFacet = containables[lp].getFigureFacet().getDynamicFacet(FeatureTypeFacet.class);
 				if (typeFacet.getFeatureType() != containsFeatureType)
 					return null;
 			}
@@ -406,7 +406,7 @@ public final class FeatureCompartmentGem implements Gem
 	      {
 	        FigureFacet contained = (FigureFacet) iter.next();
 	        PreviewFacet preview = previewCache.getCachedPreviewOrMakeOne(contained);
-	        ((FeaturePreviewComparableFacet) preview.getDynamicFacet(FeaturePreviewComparableFacet.class)).setOriginalSortPosition(sortPosition++);
+	        preview.getDynamicFacet(FeaturePreviewComparableFacet.class).setOriginalSortPosition(sortPosition++);
 	      }
 	    }
 		}
@@ -688,8 +688,8 @@ public final class FeatureCompartmentGem implements Gem
   	{
   		public int compare(FigureFacet f1, FigureFacet f2)
   		{
-  			FeatureComparableFacet fc1 = (FeatureComparableFacet) f1.getDynamicFacet(FeatureComparableFacet.class);
-  			FeatureComparableFacet fc2 = (FeatureComparableFacet) f2.getDynamicFacet(FeatureComparableFacet.class);
+  			FeatureComparableFacet fc1 = f1.getDynamicFacet(FeatureComparableFacet.class);
+  			FeatureComparableFacet fc2 = f2.getDynamicFacet(FeatureComparableFacet.class);
   			return fc1.compareTo(fc2);
   		}
   		
@@ -712,8 +712,8 @@ public final class FeatureCompartmentGem implements Gem
   	{
   		public int compare(PreviewFacet f1, PreviewFacet f2)
   		{
-  			FeaturePreviewComparableFacet fc1 = (FeaturePreviewComparableFacet) f1.getDynamicFacet(FeaturePreviewComparableFacet.class);
-  			FeaturePreviewComparableFacet fc2 = (FeaturePreviewComparableFacet) f2.getDynamicFacet(FeaturePreviewComparableFacet.class);
+  			FeaturePreviewComparableFacet fc1 = f1.getDynamicFacet(FeaturePreviewComparableFacet.class);
+  			FeaturePreviewComparableFacet fc2 = f2.getDynamicFacet(FeaturePreviewComparableFacet.class);
   			return fc1.compareTo(fc2);
   		}
   		

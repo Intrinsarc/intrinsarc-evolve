@@ -9,6 +9,6 @@ public final class MoveNodeFigureTransaction implements TransactionFacet
 {
   public static void move(FigureFacet figure, UDimension offset)
   {
-  	((MoveFacet) figure.getDynamicFacet(MoveFacet.class)).move(offset);
+  	figure.getDynamicFacet(MoveFacet.class).move(offset);
   }
 }

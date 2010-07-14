@@ -76,7 +76,8 @@ public final class NoteNodeGem implements Gem
      */
     public UBounds getBoundsAfterExistingContainablesAlter(PreviewCacheFacet previews)
     {
-      SimpleContainerPreviewFacet contentsPreviewFacet = (SimpleContainerPreviewFacet) previews.getCachedPreview(
+      SimpleContainerPreviewFacet contentsPreviewFacet = 
+      	previews.getCachedPreview(
           contents.getFigureFacet()).getDynamicFacet(SimpleContainerPreviewFacet.class);
       // we should always find this
       assert contentsPreviewFacet != null;
@@ -169,7 +170,7 @@ public final class NoteNodeGem implements Gem
     public void persistence_addContained(FigureFacet contained)
     {
       // we should only get one of these
-      contents = (SimpleContainerFacet) contained.getDynamicFacet(SimpleContainerFacet.class);
+      contents = contained.getDynamicFacet(SimpleContainerFacet.class);
       primitiveContents = contained;
       contained.getContainedFacet().persistence_setContainer(this);
     }

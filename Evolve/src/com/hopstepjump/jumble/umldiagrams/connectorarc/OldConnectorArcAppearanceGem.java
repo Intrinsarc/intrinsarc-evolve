@@ -226,21 +226,21 @@ public class OldConnectorArcAppearanceGem implements Gem
 				// make the attribute compartment
 				text = contained;
 				text.getContainedFacet().persistence_setContainer(this);
-				linkedTextFacet = (LinkedTextFacet) contained.getDynamicFacet(LinkedTextFacet.class);
+				linkedTextFacet = contained.getDynamicFacet(LinkedTextFacet.class);
       }
       if (containedName.equals("startText"))
       {
         // make the attribute compartment
         startText = contained;
         startText.getContainedFacet().persistence_setContainer(this);
-        startLinkedTextFacet = (LinkedTextFacet) contained.getDynamicFacet(LinkedTextFacet.class);
+        startLinkedTextFacet = contained.getDynamicFacet(LinkedTextFacet.class);
       }
       if (containedName.equals("endText"))
       {
         // make the attribute compartment
         endText = contained;
         endText.getContainedFacet().persistence_setContainer(this);
-        endLinkedTextFacet = (LinkedTextFacet) contained.getDynamicFacet(LinkedTextFacet.class);
+        endLinkedTextFacet = contained.getDynamicFacet(LinkedTextFacet.class);
       }
 		}
 		

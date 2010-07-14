@@ -6,6 +6,8 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
 
 import com.hopstepjump.deltaengine.base.*;
+import com.hopstepjump.geometry.*;
+import com.hopstepjump.idraw.diagramsupport.moveandresize.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
@@ -243,6 +245,11 @@ public abstract class ClassifierConstituentHelper
     return false;
   }
   
+  public void addDeletedUuid(String uuid)
+  {
+  	deleted.addDeleted(uuid);
+  }
+  
   public void cleanUuids()
   {
   	deleted.clean(getVisuallySuppressed(getPerspective(), GlobalDeltaEngine.engine.locateObject(figure.getSubject()).asElement(), type), getConstituentUuids());
@@ -402,5 +409,86 @@ public abstract class ClassifierConstituentHelper
   			return figure;
   	return null;
   }
+  
+	////////////////////////////////////////////////////
+	
+	private static FigureFacet extractClassFigureFromConstituent(FigureFacet constituent)
+	{
+		// will be a port, attribute, part or connector
+		if (constituent.getContainedFacet() != null)
+		{
+			ContainerFacet container = constituent.getContainedFacet().getContainer();
+			if (container.getContainedFacet() != null)
+			{
+				FigureFacet figure = container.getContainedFacet().getContainer().getFigureFacet();
+				if (figure.getSubject() instanceof Class)
+					return figure;
+			}
+		}
+		return null;
+	}
+	
+	private static FigureFacet[] findFigures(DEComponent component, DeltaPair pair)
+	{
+		// open or retrieve the home diagram		
+    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(component.getHomeStratum().getUuid()));
+
+		// look through all the diagram figures for the port in its home classifier
+    String constituentUUID = pair.getConstituent().getUuid();
+    String originalUUID = pair.getOriginal().getUuid();
+		for (FigureFacet figure : diagram.getFigures())
+		{
+			Object subject = figure.getSubject();
+
+			if (subject instanceof Element)
+			{
+				Element element = (Element) subject;
+		    String elementUUID = element.getUuid();
+
+				if (constituentUUID.equals(elementUUID) || originalUUID.equals(elementUUID))
+				{
+					// is this in the correct class?
+					FigureFacet cls = extractClassFigureFromConstituent(figure);
+					if (cls != null && cls.getSubject() == component.getRepositoryObject())
+						return new FigureFacet[]{cls, figure};
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static FigureFacet[] findClassAndConstituentFigure(
+			DEStratum perspective,
+			DEComponent component,
+			DeltaPair addOrReplace)
+	{
+		FigureFacet[] figures = findFigures(component, addOrReplace);
+		if (figures != null)
+			return figures;
+		
+		// if that fails, try the supercomponents
+		for (DEElement superc: component.getFilteredResembles_e(perspective, false))
+		{
+			if (superc.asComponent() != null)
+			{
+				FigureFacet[] next = findFigures(superc.asComponent(), addOrReplace);
+				if (next != null)
+					return next;
+			}
+		}
+		return null;
+	}
+	
+	public static void makeResizingTransaction(FigureFacet figure, UBounds newBounds)
+	{
+			ResizingFiguresGem gem = new ResizingFiguresGem(null, figure.getDiagram());
+			ResizingFiguresFacet facet = gem.getResizingFiguresFacet();
+			facet.markForResizing(figure);
+			facet.setFocusBounds(newBounds);
+			facet.end();
+	}
+	
+	/////////////////////////////////////////////////
+
 
 }

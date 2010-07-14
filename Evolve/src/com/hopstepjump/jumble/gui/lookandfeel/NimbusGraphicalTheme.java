@@ -11,8 +11,6 @@ public class NimbusGraphicalTheme implements GraphicalTheme
   public void change(String subtheme) throws Exception
   {
     // select the Look and Feel
-    JFrame.setDefaultLookAndFeelDecorated(true);
-    JDialog.setDefaultLookAndFeelDecorated(true);
     UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
   }
 

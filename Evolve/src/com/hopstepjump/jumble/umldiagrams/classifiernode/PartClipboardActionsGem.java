@@ -62,8 +62,7 @@ public class PartClipboardActionsGem
     private SimpleContainerFacet getSimpleContainerCompartment()
     {
       FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
-      return (SimpleContainerFacet)
-        parent.getDynamicFacet(SimpleContainerFacet.class);
+      return parent.getDynamicFacet(SimpleContainerFacet.class);
     }
 
     public boolean hasSpecificKillAction()

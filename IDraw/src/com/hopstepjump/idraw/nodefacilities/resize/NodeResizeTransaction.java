@@ -9,6 +9,6 @@ public final class NodeResizeTransaction implements TransactionFacet
 {
   public static void resize(FigureFacet figure, UBounds resizedBounds)
   {
-  	((ResizeFacet) figure.getDynamicFacet(ResizeFacet.class)).resize(resizedBounds);
+  	figure.getDynamicFacet(ResizeFacet.class).resize(resizedBounds);
   }
 }

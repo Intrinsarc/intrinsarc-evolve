@@ -108,8 +108,7 @@ public class ConnectorArcAppearanceGem implements Gem
 	  {
 	    // follow one anchor up until we find the classifier, and then look for the simple deleted uuids facet 
 	    FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConnector(figureFacet);
-	    return (SimpleDeletedUuidsFacet)
-	      clsFigure.getDynamicFacet(SimpleDeletedUuidsFacet.class);
+	    return clsFigure.getDynamicFacet(SimpleDeletedUuidsFacet.class);
 	  }
 
     public boolean hasSpecificKillAction()
@@ -401,21 +400,21 @@ public class ConnectorArcAppearanceGem implements Gem
 				// make the middle text
 				text = contained;
 				text.getContainedFacet().persistence_setContainer(this);
-				linkedTextFacet = (LinkedTextFacet) contained.getDynamicFacet(LinkedTextFacet.class);
+				linkedTextFacet = contained.getDynamicFacet(LinkedTextFacet.class);
       }
       if (containedName.equals("startText"))
       {
         // make the start text
         startText = contained;
         startText.getContainedFacet().persistence_setContainer(this);
-        startLinkedTextFacet = (LinkedTextFacet) contained.getDynamicFacet(LinkedTextFacet.class);
+        startLinkedTextFacet = contained.getDynamicFacet(LinkedTextFacet.class);
       }
       if (containedName.equals("endText"))
       {
         // make the end text
         endText = contained;
         endText.getContainedFacet().persistence_setContainer(this);
-        endLinkedTextFacet = (LinkedTextFacet) contained.getDynamicFacet(LinkedTextFacet.class);
+        endLinkedTextFacet = contained.getDynamicFacet(LinkedTextFacet.class);
       }
 		}
 		

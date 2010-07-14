@@ -218,9 +218,9 @@ public final class BasicNodePreviewGem implements Gem
 		/**
 		 * @see com.hopstepjump.jumble.foundation.MainFacet#getDynamicFacet(Class)
 		 */
-		public Facet getDynamicFacet(Class facetClass)
+		public <T extends Facet> T getDynamicFacet(Class<T> facetClass)
 		{
-			Facet facet = dynamicFacets.get(facetClass);
+			T facet = (T) dynamicFacets.get(facetClass);
 			if (facet == null)
 				throw new FacetNotFoundException("Cannot find dynamic preview facet corresponding to " + facetClass + " in " + appearanceFacet);
 			return facet;

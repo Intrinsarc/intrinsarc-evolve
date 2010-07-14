@@ -58,11 +58,14 @@ public class PreferenceTypeEnumeration implements PreferenceType
         {
           public void actionPerformed(ActionEvent e)
           {
-            newValue = (String) combo.getSelectedItem();
-            unapplied.storeUnappliedPreference(slot.getPreference(), newValue);
-            // this is called even if we set the model directly, rather than through user interaction
-            if (allowRefresh)
+        		// this is called even if we set the model directly, rather than through user interaction
+          	// so we need to suppress it
+          	if (allowRefresh)
+          	{
+          		newValue = (String) combo.getSelectedItem();
+          		unapplied.storeUnappliedPreference(slot.getPreference(), newValue);
               preferences.refresh();
+          	}
           }
         });
         left.gridwidth = 2;
@@ -96,7 +99,7 @@ public class PreferenceTypeEnumeration implements PreferenceType
         return newValue;
       }
 
-			public Class getType()
+			public Class<?> getType()
 			{
 				return PreferenceTypeEnumeration.class;
 			}      

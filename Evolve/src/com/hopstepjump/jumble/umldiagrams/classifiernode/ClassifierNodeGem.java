@@ -378,11 +378,9 @@ public final class ClassifierNodeGem implements Gem
 			PreviewFacet contentsPreview = previews.getCachedPreview(contents.getFigureFacet());
 			PreviewFacet portPreview = previews.getCachedPreview(ports.getFigureFacet());
 
-			FeatureCompartmentPreviewFacet attributeFacet = (FeatureCompartmentPreviewFacet) attributeOrSlotPreview
-					.getDynamicFacet(FeatureCompartmentPreviewFacet.class);
+			FeatureCompartmentPreviewFacet attributeFacet = attributeOrSlotPreview.getDynamicFacet(FeatureCompartmentPreviewFacet.class);
 			attributeFacet.adjustPreviewPoint(previews, sizes.getAttributes().getPoint());
-			FeatureCompartmentPreviewFacet operationsFacet = (FeatureCompartmentPreviewFacet) operationsPreview
-					.getDynamicFacet(FeatureCompartmentPreviewFacet.class);
+			FeatureCompartmentPreviewFacet operationsFacet = operationsPreview.getDynamicFacet(FeatureCompartmentPreviewFacet.class);
 			operationsFacet.adjustPreviewPoint(previews, sizes.getOperations().getPoint());
 			contentsPreview.setFullBounds(sizes.getContents(), true);
 
@@ -1446,7 +1444,7 @@ public final class ClassifierNodeGem implements Gem
 		{
 			JMenuItem showAllItem = new JMenuItem("Attributes");
 			final ClassifierAttributeHelper attributeHelper = new ClassifierAttributeHelper(figureFacet,
-					primitiveAttributesOrSlots, attributesOrSlots);
+					primitiveAttributesOrSlots, attributesOrSlots, false);
 			showAllItem.setEnabled(!attributeHelper.isShowingAllConstituents() && primitiveAttributesOrSlots.isShowing());
 
 			showAllItem.addActionListener(new ActionListener()
@@ -1455,8 +1453,7 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all attributes", "un-showed all attributes");
-					FeatureCompartmentFacet del = (FeatureCompartmentFacet) attributesOrSlots.getFigureFacet().getDynamicFacet(
-							FeatureCompartmentFacet.class);
+					FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_ATTRIBUTE));
 					attributeHelper.makeUpdateCommand(false);
 					coordinator.commitTransaction();
@@ -1469,7 +1466,7 @@ public final class ClassifierNodeGem implements Gem
 		{
 			JMenu showItem = new JMenu("Show specific attributes...");
 			final ClassifierAttributeHelper attributeHelper = new ClassifierAttributeHelper(figureFacet,
-					primitiveAttributesOrSlots, attributesOrSlots);
+					primitiveAttributesOrSlots, attributesOrSlots, false);
 			Map<String, String> hidden = attributeHelper.getHiddenConstituents();
 			showItem.setEnabled(!hidden.isEmpty());
 
@@ -1484,8 +1481,7 @@ public final class ClassifierNodeGem implements Gem
 					{
 						// toggle the autosized flag (as a command)
 						coordinator.startTransaction("showed attribute", "un-showed attribute");
-						FeatureCompartmentFacet del = (FeatureCompartmentFacet) attributesOrSlots.getFigureFacet().getDynamicFacet(
-								FeatureCompartmentFacet.class);
+						FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
 						del.addDeleted(uuid);
 						coordinator.commitTransaction();
 					}
@@ -1498,7 +1494,7 @@ public final class ClassifierNodeGem implements Gem
 		public JMenuItem getShowSpecificPortsMenuItem(final ToolCoordinatorFacet coordinator)
 		{
 			JMenu showItem = new JMenu("Show specific ports...");
-			final ClassPortHelper portHelper = new ClassPortHelper(figureFacet, primitivePorts, ports);
+			final ClassPortHelper portHelper = new ClassPortHelper(figureFacet, primitivePorts, ports, false);
 			Map<String, String> hidden = portHelper.getHiddenConstituents();
 			showItem.setEnabled(!hidden.isEmpty());
 
@@ -1513,8 +1509,7 @@ public final class ClassifierNodeGem implements Gem
 					{
 						// toggle the autosized flag (as a command)
 						coordinator.startTransaction("showed port", "un-showed port");
-						SimpleDeletedUuidsFacet del = (SimpleDeletedUuidsFacet) ports.getFigureFacet().getDynamicFacet(
-								SimpleDeletedUuidsFacet.class);
+						SimpleDeletedUuidsFacet del = ports.getFigureFacet().getDynamicFacet(SimpleDeletedUuidsFacet.class);
 						del.removeDeleted(uuid);
 						coordinator.commitTransaction();
 					}
@@ -1542,8 +1537,7 @@ public final class ClassifierNodeGem implements Gem
 					{
 						// toggle the autosized flag (as a command)
 						coordinator.startTransaction("showed port instance", "un-showed port instance");
-						SimpleDeletedUuidsFacet del = (SimpleDeletedUuidsFacet) ports.getFigureFacet().getDynamicFacet(
-								SimpleDeletedUuidsFacet.class);
+						SimpleDeletedUuidsFacet del = ports.getFigureFacet().getDynamicFacet(SimpleDeletedUuidsFacet.class);
 						del.removeDeleted(uuid);
 						portHelper.makeUpdateTransaction(ports, false);
 						coordinator.commitTransaction();
@@ -1572,8 +1566,7 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all " + name, "un-showed all " + name);
-					SimpleDeletedUuidsFacet del = (SimpleDeletedUuidsFacet) figureFacet
-							.getDynamicFacet(SimpleDeletedUuidsFacet.class);
+					SimpleDeletedUuidsFacet del = figureFacet.getDynamicFacet(SimpleDeletedUuidsFacet.class);
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PART));
 					connectorHelper.makeUpdateCommand(false);
 					coordinator.commitTransaction();
@@ -1594,8 +1587,7 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all attributes", "un-showed all attributes");
-					FeatureCompartmentFacet del = (FeatureCompartmentFacet) attributesOrSlots.getFigureFacet().getDynamicFacet(
-							FeatureCompartmentFacet.class);
+					FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_ATTRIBUTE));
 					slotHelper.makeUpdateTransaction(attributesOrSlots, false);
 					coordinator.commitTransaction();
@@ -1615,8 +1607,7 @@ public final class ClassifierNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the autosized flag (as a command)
-					PortCompartmentFacet p = (PortCompartmentFacet) ports.getFigureFacet().getDynamicFacet(
-							PortCompartmentFacet.class);
+					PortCompartmentFacet p = ports.getFigureFacet().getDynamicFacet(PortCompartmentFacet.class);
 					coordinator.startTransaction("showed all port instances", "un-showed all port instances");
 					p.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT));
 					portInstanceHelper.makeUpdateTransaction(ports, false);
@@ -1637,8 +1628,7 @@ public final class ClassifierNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the autosized flag (as a command)
-					SimpleContainerFacet del = (SimpleContainerFacet) contents.getFigureFacet().getDynamicFacet(
-							SimpleContainerFacet.class);
+					SimpleContainerFacet del = contents.getFigureFacet().getDynamicFacet(SimpleContainerFacet.class);
 					coordinator.startTransaction("show all parts", "undo show all parts");
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PART));
 					partHelper.makeUpdateCommand(false);
@@ -1652,7 +1642,7 @@ public final class ClassifierNodeGem implements Gem
 		{
 			// for autosizing
 			JMenuItem showAllItem = new JMenuItem("Ports");
-			final ClassPortHelper portHelper = new ClassPortHelper(figureFacet, primitivePorts, ports);
+			final ClassPortHelper portHelper = new ClassPortHelper(figureFacet, primitivePorts, ports, false);
 			showAllItem.setEnabled(!portHelper.isShowingAllConstituents() && primitivePorts.isShowing());
 
 			showAllItem.addActionListener(new ActionListener()
@@ -1661,8 +1651,7 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all ports", "un-showed all ports");
-					PortCompartmentFacet del = (PortCompartmentFacet) ports.getFigureFacet().getDynamicFacet(
-							PortCompartmentFacet.class);
+					PortCompartmentFacet del = ports.getFigureFacet().getDynamicFacet(PortCompartmentFacet.class);
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT));
 					portHelper.makeUpdateCommand(false);
 					coordinator.commitTransaction();
@@ -1685,8 +1674,7 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all operations", "un-showed all operations");
-					FeatureCompartmentFacet ops = (FeatureCompartmentFacet) operations.getFigureFacet().getDynamicFacet(
-							FeatureCompartmentFacet.class);
+					FeatureCompartmentFacet ops = operations.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
 					ops.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_OPERATION));
 					operationHelper.makeUpdateCommand(false);
 					coordinator.commitTransaction();
@@ -2000,7 +1988,7 @@ public final class ClassifierNodeGem implements Gem
 			{
 				// find any attributes to add or delete
 				ClassifierAttributeHelper attributeHelper = new ClassifierAttributeHelper(figureFacet,
-						primitiveAttributesOrSlots, attributesOrSlots);
+						primitiveAttributesOrSlots, attributesOrSlots, true);
 				attributeHelper.cleanUuids();
 
 				// find any operations to add or delete
@@ -2009,7 +1997,7 @@ public final class ClassifierNodeGem implements Gem
 				operationHelper.cleanUuids();
 
 				// find any ports to add or delete
-				ClassPortHelper portHelper = new ClassPortHelper(figureFacet, primitivePorts, ports);
+				ClassPortHelper portHelper = new ClassPortHelper(figureFacet, primitivePorts, ports, true);
 				portHelper.cleanUuids();
 
 				// find any parts to add or delete
@@ -2337,7 +2325,7 @@ public final class ClassifierNodeGem implements Gem
 			if (containedName.equals("attrs"))
 			{
 				// make the attribute compartment
-				attributesOrSlots = (FeatureCompartmentFacet) contained.getDynamicFacet(FeatureCompartmentFacet.class);
+				attributesOrSlots = contained.getDynamicFacet(FeatureCompartmentFacet.class);
 				primitiveAttributesOrSlots = contained;
 				contained.getContainedFacet().persistence_setContainer(this);
 			}
@@ -2345,7 +2333,7 @@ public final class ClassifierNodeGem implements Gem
 			if (containedName.equals("ops"))
 			{
 				// make the operation compartment
-				operations = (FeatureCompartmentFacet) contained.getDynamicFacet(FeatureCompartmentFacet.class);
+				operations = contained.getDynamicFacet(FeatureCompartmentFacet.class);
 				primitiveOperations = contained;
 				contained.getContainedFacet().persistence_setContainer(this);
 			}
@@ -2353,7 +2341,7 @@ public final class ClassifierNodeGem implements Gem
 			if (containedName.equals("contents"))
 			{
 				// make the operation compartment
-				contents = (SimpleContainerFacet) contained.getDynamicFacet(SimpleContainerFacet.class);
+				contents = contained.getDynamicFacet(SimpleContainerFacet.class);
 				primitiveContents = contained;
 				contained.getContainedFacet().persistence_setContainer(this);
 			}
@@ -2362,7 +2350,7 @@ public final class ClassifierNodeGem implements Gem
 			{
 				// make the ports
 				primitivePorts = contained;
-				ports = (PortCompartmentFacet) primitivePorts.getDynamicFacet(PortCompartmentFacet.class);
+				ports = primitivePorts.getDynamicFacet(PortCompartmentFacet.class);
 				contained.getContainedFacet().persistence_setContainer(this);
 			}
 
@@ -2564,13 +2552,13 @@ public final class ClassifierNodeGem implements Gem
 		boolean connectorsEllipsis = false;
 		if (!isPart && subject != null)
 		{
-			attributeEllipsis = !new ClassifierAttributeHelper(figureFacet, primitiveAttributesOrSlots, attributesOrSlots)
+			attributeEllipsis = !new ClassifierAttributeHelper(figureFacet, primitiveAttributesOrSlots, attributesOrSlots, false)
 					.isShowingAllConstituents();
 			operationEllipsis = !new ClassifierOperationHelper(figureFacet, primitiveOperations, operations)
 					.isShowingAllConstituents();
 			if (!displayOnlyIcon && !autoSized)
 			{
-				portsEllipsis = !new ClassPortHelper(figureFacet, primitivePorts, ports).isShowingAllConstituents();
+				portsEllipsis = !new ClassPortHelper(figureFacet, primitivePorts, ports, false).isShowingAllConstituents();
 				partsEllipsis = !new ClassPartHelper(null, figureFacet, primitiveContents, contents).isShowingAllConstituents();
 				connectorsEllipsis = !new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents, false,
 						deletedConnectorUuidsFacet).isShowingAllConstituents()
@@ -2609,15 +2597,13 @@ public final class ClassifierNodeGem implements Gem
 			info.setMinAttributeDimensions(attributePreview.getFullBounds().getDimension());
 			info.setMinOperationDimensions(operationsPreview.getFullBounds().getDimension());
 
-			SimpleContainerPreviewFacet contentsPreviewFacet = (SimpleContainerPreviewFacet) contentsPreview
-					.getDynamicFacet(SimpleContainerPreviewFacet.class);
+			SimpleContainerPreviewFacet contentsPreviewFacet = contentsPreview.getDynamicFacet(SimpleContainerPreviewFacet.class);
 			UBounds minContentsBounds = contentsPreviewFacet.getMinimumBoundsFromPreviews(previews);
 			info.setMinContentBounds(minContentsBounds);
 			info.setContentsEmpty(contentsPreviewFacet.isEmpty());
 
 			// do we have any ports?
-			PortCompartmentPreviewFacet portContainerPreviewFacet = (PortCompartmentPreviewFacet) portsPreview
-					.getDynamicFacet(PortCompartmentPreviewFacet.class);
+			PortCompartmentPreviewFacet portContainerPreviewFacet = portsPreview.getDynamicFacet(PortCompartmentPreviewFacet.class);
 			info.setHasPorts(portContainerPreviewFacet.hasPorts());
 
 			return info;

@@ -244,7 +244,7 @@ public class GrouperNodeGem
 		public void persistence_addContained(FigureFacet contained)
 		{
 			// we should only get one of these
-			contents = (SimpleContainerFacet) contained.getDynamicFacet(SimpleContainerFacet.class);
+			contents = contained.getDynamicFacet(SimpleContainerFacet.class);
 			contained.getContainedFacet().persistence_setContainer(this);
 		}
 

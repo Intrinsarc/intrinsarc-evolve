@@ -14,7 +14,9 @@ import com.hopstepjump.jumble.umldiagrams.featurenode.*;
 
 public class ClassifierAttributeHelper extends ClassifierConstituentHelper
 {
-  public ClassifierAttributeHelper(BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted)
+	private boolean suppressUnlessElsewhere;
+	
+  public ClassifierAttributeHelper(BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted, boolean suppressUnlessElsewhere)
   {
     super(
         classifierFigure,
@@ -23,6 +25,7 @@ public class ClassifierAttributeHelper extends ClassifierConstituentHelper
         container.getContainerFacet().getContents(),
         ConstituentTypeEnum.DELTA_ATTRIBUTE,
         deleted);
+    this.suppressUnlessElsewhere = suppressUnlessElsewhere;
   }
 
   @Override
@@ -33,20 +36,20 @@ public class ClassifierAttributeHelper extends ClassifierConstituentHelper
       FigureFacet container,
       DeltaPair addOrReplace)
   {
+		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
+		FigureFacet[] figures = findClassAndConstituentFigure(perspective, component, addOrReplace);
+		if (figures == null)
+		{
+			if (suppressUnlessElsewhere)
+			{
+				addDeletedUuid(addOrReplace.getUuid());
+				return;
+			}
+			figures = new FigureFacet[]{classifierFigure, null};
+		}
+		
     // look for the location amongst existing elements which this might be replacing
-    UPoint location = null;
-    
-    for (FigureFacet f : currentInContainerIgnoringDeletes)
-    {
-      // don't delete if this is deleted -- this is covered elsewhere
-      Element originalSubject = getOriginalSubject(f.getSubject());
-      
-      if (addOrReplace.getUuid().equals(originalSubject.getUuid()))
-      {
-        location = f.getFullBounds().getTopLeftPoint().subtract(new UDimension(0, 1));
-        break;
-      }
-    }
+    UPoint location = figures[1] == null ? classifierFigure.getFullBounds().getBottomRightPoint() : figures[1].getFullBounds().getTopLeftPoint().subtract(new UDimension(0, 1));
     
     AddFeatureTransaction.add(
         container,

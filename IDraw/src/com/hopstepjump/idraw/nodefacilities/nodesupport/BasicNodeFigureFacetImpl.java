@@ -225,9 +225,9 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	/**
 	 * @see com.hopstepjump.jumble.foundation.FigureFacet#getDynamicFacet(Class)
 	 */
-	public Facet getDynamicFacet(Class facetClass)
+	public <T extends Facet> T getDynamicFacet(Class<T> facetClass)
 	{
-		Facet facet = dynamicFacets.get(facetClass);
+		T facet = (T) dynamicFacets.get(facetClass);
 		if (facet == null)
 			throw new FacetNotFoundException("Cannot find facet corresponding to " + facetClass + " in " + state.appearanceFacet);
 		return facet;

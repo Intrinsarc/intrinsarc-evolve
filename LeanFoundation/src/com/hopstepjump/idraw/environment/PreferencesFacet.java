@@ -13,7 +13,7 @@ public interface PreferencesFacet extends Facet
 {
 	/** the prefix for this preferences */
   public String getPrefix();
-  public JComponent getVisualComponent(JDialog dialog, boolean showButtons);
+  public VisualPreferences getVisualComponent(JDialog dialog, boolean showButtons);
 
   public PreferenceSlot addPreferenceSlot(Preference pref, PreferenceType type, String description);
   /** the default values only get used if the slot is not set, and does not have a default value set */

@@ -46,7 +46,7 @@ public final class PortNodeGem implements Gem
   private static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error.png");
   private static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
 
-	private static final UDimension CREATION_EXTENT = new UDimension(16, 16);
+	public static final UDimension CREATION_EXTENT = new UDimension(16, 16);
 
 	public static final String FIGURE_NAME = "port";
 	private BasicNodeAppearanceFacet appearanceFacet = new BasicNodeAppearanceFacetImpl();
@@ -70,7 +70,7 @@ public final class PortNodeGem implements Gem
   private Set<String> inferredProvNames = new HashSet<String>();
   private boolean someHidden;
   
-	public PortNodeGem(DiagramFacet diagram, UPoint location, boolean isForClasses, PersistentFigure pfig, boolean instance)
+	public PortNodeGem(DiagramFacet diagram, UPoint location, boolean isForClasses, PersistentFigure pfig, boolean instance, boolean suppressLinkedText, UDimension linkedTextOffset)
   {
 		this.subject = (Port) pfig.getSubject();
 		String figureId = pfig.getId();
@@ -78,7 +78,7 @@ public final class PortNodeGem implements Gem
   	    LinkedTextCreatorGem.RECREATOR_NAME,
   	    diagram,
   	    figureId + "_T",
-  	    location.subtract(new UDimension(0, CREATION_EXTENT.getHeight())),
+  	    location.add(linkedTextOffset),
   	    true,
   	    "text",
   	    true);
@@ -92,7 +92,7 @@ public final class PortNodeGem implements Gem
   	}
     properties.addIfNotThere(new PersistentProperty("classScope", isForClasses, true));
     String name = subject == null ? "" : subject.getName();
-    LinkedTextGem linkedTextGem = new LinkedTextGem(name, false, CalculatedArcPoints.MAJOR_POINT_MIDDLE);
+    LinkedTextGem linkedTextGem = new LinkedTextGem(name, suppressLinkedText, CalculatedArcPoints.MAJOR_POINT_MIDDLE);
 		basicLinkedTextGem.connectBasicNodeAppearanceFacet(linkedTextGem.getBasicNodeAppearanceFacet());
 		linkedTextGem.connectBasicNodeFigureFacet(basicLinkedTextGem.getBasicNodeFigureFacet());
     
@@ -139,8 +139,7 @@ public final class PortNodeGem implements Gem
     private PortCompartmentFacet getPortCompartment()
     {
       FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
-      return (PortCompartmentFacet)
-        parent.getDynamicFacet(PortCompartmentFacet.class);
+      return parent.getDynamicFacet(PortCompartmentFacet.class);
     }
 
     public boolean hasSpecificKillAction()
@@ -286,6 +285,16 @@ public final class PortNodeGem implements Gem
     {
       return accessType.equals(VisibilityKind.PRIVATE_LITERAL);
     }
+
+		public boolean isLinkedTextSuppressed()
+		{
+			return linkedTextFacet.isHidden();
+		}
+
+		public UDimension getLinkedTextOffset()
+		{
+			return text.getFullBounds().getPoint().subtract(figureFacet.getFullBounds().getPoint());
+		}
   }
   
 	private class ResizeVetterFacetImpl implements ResizeVetterFacet
@@ -1233,7 +1242,7 @@ public final class PortNodeGem implements Gem
 				// make the attribute compartment
 				text = contained;
 				text.getContainedFacet().persistence_setContainer(this);
-				linkedTextFacet = (LinkedTextFacet) contained.getDynamicFacet(LinkedTextFacet.class);
+				linkedTextFacet = contained.getDynamicFacet(LinkedTextFacet.class);
 			}
 		}
 		

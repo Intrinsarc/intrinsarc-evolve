@@ -20,6 +20,6 @@ public class AddPortTransaction implements TransactionFacet
 
   private static PortAddFacet getAddable(FigureFacet addable)
   {
-    return (PortAddFacet) addable.getDynamicFacet(PortAddFacet.class);
+    return addable.getDynamicFacet(PortAddFacet.class);
   }
 }

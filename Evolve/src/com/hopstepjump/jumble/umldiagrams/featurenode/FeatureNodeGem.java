@@ -86,8 +86,7 @@ public final class FeatureNodeGem implements Gem
     private FeatureCompartmentFacet getFeatureCompartment()
     {
       FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
-      return (FeatureCompartmentFacet)
-        parent.getDynamicFacet(FeatureCompartmentFacet.class);
+      return parent.getDynamicFacet(FeatureCompartmentFacet.class);
     }
     
     public boolean hasSpecificKillAction()
@@ -423,7 +422,7 @@ public final class FeatureNodeGem implements Gem
 	  	if (!container.getFigureFacet().hasDynamicFacet(FeatureAcceptorFacet.class))
 	  		return false;
 
-			FeatureAcceptorFacet acceptor = (FeatureAcceptorFacet) container.getFigureFacet().getDynamicFacet(FeatureAcceptorFacet.class);	  		
+			FeatureAcceptorFacet acceptor = container.getFigureFacet().getDynamicFacet(FeatureAcceptorFacet.class);	  		
 	  	return acceptor.acceptsFeatureType(featureTypeFacet.getFeatureType());
 		}
 		

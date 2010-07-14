@@ -72,15 +72,14 @@ public class ClassPartHelper extends ClassifierConstituentHelper
       // look in the home diagram
       Classifier cls = (Classifier) (getPossibleDeltaSubject(addOrReplace.getConstituent().getRepositoryObject())).getOwner();
       
-      DiagramFacet homeDiagram =
-        GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(cls.getOwner().getUuid()));
+      DiagramFacet homeDiagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(cls.getOwner().getUuid()));
       if (homeDiagram != null)
         existing = ClassPortHelper.findExisting(homeDiagram, addOrReplace.getUuid());
     }
     
     // don't try too much harder if we haven't found it
-    UDimension simpleOffset = container.getFullBounds().getPoint().subtract(topLeft);
     UDimension partOffset = new UDimension(20, 8);
+    UDimension simpleOffset = container.getFullBounds().getPoint().subtract(topLeft);
     UDimension newOffset = full.getDimension();
     UDimension partSize = null;
     // if we have found a part to use, use the max of each dimension
@@ -96,7 +95,7 @@ public class ClassPartHelper extends ClassifierConstituentHelper
     NodeAutoSizeTransaction.autoSize(classifierFigure, false);
     
     // resize to fit the offset at least
-    ClassPortHelper.makeResizingTransaction(classifierFigure, newBounds);
+//    ClassPortHelper.makeResizingTransaction(classifierFigure, newBounds);
     
     // now add the part
     final UPoint partTop = newBounds.getTopLeftPoint().add(simpleOffset).add(partOffset);

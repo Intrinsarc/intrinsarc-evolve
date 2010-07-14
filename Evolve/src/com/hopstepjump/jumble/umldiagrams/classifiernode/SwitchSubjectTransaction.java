@@ -11,6 +11,6 @@ public class SwitchSubjectTransaction implements TransactionFacet
 
   private static SwitchSubjectFacet getSwitchable(FigureFacet switchable)
   {
-    return (SwitchSubjectFacet) switchable.getDynamicFacet(SwitchSubjectFacet.class);
+    return switchable.getDynamicFacet(SwitchSubjectFacet.class);
   }
 }

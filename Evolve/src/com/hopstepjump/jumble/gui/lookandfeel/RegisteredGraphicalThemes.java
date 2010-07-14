@@ -143,7 +143,7 @@ public class RegisteredGraphicalThemes
         String newTheme = unapplied.getUnappliedPreference(LNF_PREFERENCE);
         if (newTheme.equals(cachedTheme))
           return null;  // no change needed
-        cachedTheme = newTheme;
+        cachedTheme = newTheme;        
         return getTheme(newTheme).getSubthemes();
       }
     };

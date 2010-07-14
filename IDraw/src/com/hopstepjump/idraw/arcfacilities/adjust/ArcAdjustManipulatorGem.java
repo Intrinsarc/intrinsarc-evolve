@@ -402,7 +402,7 @@ public final class ArcAdjustManipulatorGem implements Gem
     PreviewFacet preview = resizings.getCachedPreviewOrMakeOne(toAdjust.getFigureFacet());
     
     // get the BasicArcPreviewFacet dynamic preview
-    BasicArcPreviewFacet basicPreviewFacet = (BasicArcPreviewFacet) preview.getDynamicFacet(BasicArcPreviewFacet.class);
+    BasicArcPreviewFacet basicPreviewFacet = preview.getDynamicFacet(BasicArcPreviewFacet.class);
     basicPreviewFacet.setActualPoints(actualPoints);
   }
 
