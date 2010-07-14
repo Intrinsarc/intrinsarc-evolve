@@ -458,27 +458,30 @@ public final class BasicNamespaceNodeGem implements Gem
 		 */
 		public JPopupMenu makeContextMenu(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
 		{
+			boolean readonly = GlobalSubjectRepository.repository.isContainerContextReadOnly(figureFacet);
+			
 			JPopupMenu popup = new JPopupMenu();
-			popup.add(figureFacet.getBasicNodeAutoSizedFacet().getAutoSizedMenuItem(coordinator));
-			popup.add(getSuppressContentsItem(diagramView.getDiagram(), coordinator));
+			popup.add(notReadonly(figureFacet.getBasicNodeAutoSizedFacet().getAutoSizedMenuItem(coordinator)));
+			popup.add(notReadonly(getSuppressContentsItem(diagramView.getDiagram(), coordinator)));
 
 			if (miniAppearanceFacet != null && miniAppearanceFacet.haveMiniAppearance())
 			{
-				popup.add(getDisplayAsIconItem(diagramView, coordinator));
+				popup.add(notReadonly(getDisplayAsIconItem(diagramView, coordinator)));
 			}
-			popup.add(getSuppressOwnerItem(diagramView, coordinator));
-      popup.add(getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
+			popup.add(notReadonly(getSuppressOwnerItem(diagramView, coordinator)));
+      popup.add(notReadonly(getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
       		new SetFillCallback()
 					{							
 						public void setFill(Color fill)
 						{
 							fillColor = fill;
 						}
-					}));
+					})));
       
 			// add expansions
 			popup.addSeparator();
 			JMenu expand = new JMenu("Expand");
+			expand.setEnabled(!readonly);
 			expand.setIcon(Expander.EXPAND_ICON);
 			JMenuItem deps = new JMenuItem("dependencies");
 			expand.add(deps);
@@ -529,7 +532,14 @@ public final class BasicNamespaceNodeGem implements Gem
 			return popup;
 		}
 		
-    private JMenuItem getSuppressOwnerItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
+    private JMenuItem notReadonly(JMenuItem menuItem)
+		{
+    	boolean parentReadonly = GlobalSubjectRepository.repository.isContainerContextReadOnly(figureFacet);
+    	menuItem.setEnabled(!parentReadonly);
+    	return menuItem;
+		}
+
+		private JMenuItem getSuppressOwnerItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
 		{
 			// for adding operations
 			JCheckBoxMenuItem showVisibilityItem = new JCheckBoxMenuItem("Suppress owner");
