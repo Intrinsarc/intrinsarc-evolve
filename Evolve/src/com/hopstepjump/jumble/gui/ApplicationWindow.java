@@ -161,7 +161,7 @@ public class ApplicationWindow extends SmartJFrame
 		GlobalPackageViewRegistry.activeBrowserRegistry = browserRegistry;
 
 		// set the default close operation to do nothing
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setupMenus();
 
 		// set up the palette manager

@@ -35,7 +35,7 @@ public class ApplicationWindowCoordinatorGem
 	}
 	
   public void setUp(
-      ToolCoordinatorGem toolCoordinator, ErrorRegister errors, String logFile)
+      ToolCoordinatorGem toolCoordinator, ErrorRegister errors, boolean logToFile)
   {
   	this.toolCoordinator = toolCoordinator;
     this.errors = errors;   
@@ -44,9 +44,9 @@ public class ApplicationWindowCoordinatorGem
   	this.deltaAdorner =
   	  new DeltaAdornerGem(toolCoordinator.getToolCoordinatorFacet()).getDeltaAdornerFacet();
   	
-  	if (logFile != null)
+  	if (logToFile)
   	{
-	  	logger = new ConsoleLogger(logFile, Evolve.EVOLVE_VERSION,
+	  	logger = new ConsoleLogger(Evolve.EVOLVE_VERSION,
 	  			new Runnable()
 			  	{
 	  				public void run()
@@ -119,6 +119,8 @@ public class ApplicationWindowCoordinatorGem
 		{
 			for (ApplicationWindow window : new HashSet<ApplicationWindow>(windows))
 				window.close();
+			if (logger != null)
+				logger.close();
 			System.exit(0);
 		}
 

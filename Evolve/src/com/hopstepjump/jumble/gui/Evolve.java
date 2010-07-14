@@ -53,7 +53,7 @@ public class Evolve
 		// must have at least one arg
 		if (args.length == 0)
 		{
-			System.err.println("Usage: evolve home_directory");
+			System.err.println("Usage: evolve home_directory {logToFile}");
 			System.exit(-1);
 		}
 		String home = args[0];
@@ -124,7 +124,7 @@ public class Evolve
     setUpUUIDGenerator();
     Evolve application = new Evolve();
     application.setUpServices(home);
-    application.setUpGUI(args.length > 1 ? args[1] : null);
+    application.setUpGUI(args.length > 1 && args[1] != null);
     application.showGUI();
     
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;    
@@ -162,9 +162,9 @@ public class Evolve
 		windowCoordinator = new ApplicationWindowCoordinatorGem("Evolve");
 	}
 
-	private void setUpGUI(String loggerFile)
+	private void setUpGUI(boolean logToFile)
 	{
-		windowCoordinator.setUp(toolManager, errors, loggerFile);
+		windowCoordinator.setUp(toolManager, errors, logToFile);
 	}
 
 	private void showGUI()

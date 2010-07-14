@@ -3,6 +3,7 @@ package com.hopstepjump.jumble.gui;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.*;
 
 import javax.swing.*;
 
@@ -13,15 +14,14 @@ import com.hopstepjump.swing.enhanced.*;
 public class ConsoleLogger
 {
 	private OutputStream writer;
-	private String logFile;
 	private String version;
 	private boolean modified;
 	private Runnable modificationListener;
 	private Logger logger = new Logger();
+	private File logFile;
 	
-	public ConsoleLogger(String logFile, String version, Runnable modificationListener)
+	public ConsoleLogger(String version, Runnable modificationListener)
 	{
-		this.logFile = logFile;
 		this.version = version;
 		this.modificationListener = modificationListener;
 	}
@@ -41,6 +41,13 @@ public class ConsoleLogger
 			checkWriter();
 			writer.write(b);
 		}
+		
+		@Override
+		public void close() throws IOException
+		{
+			writer.close();
+			super.close();
+		}
 	}
 
 	private void checkWriter() throws IOException
@@ -49,15 +56,17 @@ public class ConsoleLogger
 		{
 			 try
 			 {
-				 File log = new File(logFile);
-				 log.getParentFile().mkdirs();
-				 writer = new FileOutputStream(log);
+				 logFile = File.createTempFile("evolve-log-", ".log");
+				 logFile.deleteOnExit();
+				 writer = new FileOutputStream(logFile);
 				 modified = true;				 
 				 modificationListener.run();
 				 
 				 // write the version number out
 				 String eol = System.getProperty("line.separator");
-				 writer.write((version + eol + eol).getBytes());
+				 writer.write((version + eol).getBytes());
+				 writer.write(("Log file: " + logFile + eol).getBytes());
+				 writer.write(("Time: " + new Date() + eol + eol).getBytes());
 			 }
 			 catch (Exception ex)
 			 {
@@ -86,7 +95,7 @@ public class ConsoleLogger
 				JTextArea pane = new JTextArea();
 				try
 				{
-					pane.setText(FileUtilities.loadFileContents(new File(logFile)));
+					pane.setText(FileUtilities.loadFileContents(logFile));
 				}
 				catch (Exception ex)
 				{
@@ -99,5 +108,19 @@ public class ConsoleLogger
 			}
 		});
 		return item;
+	}
+	
+	public void close()
+	{
+		if (logger != null)
+			try
+			{
+				logger.close();
+			}
+			catch (IOException e)
+			{
+			}
+		if (logFile != null)
+			logFile.delete();
 	}
 }
