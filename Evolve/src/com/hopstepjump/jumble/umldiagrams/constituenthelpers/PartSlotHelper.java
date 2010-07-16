@@ -136,7 +136,7 @@ public class PartSlotHelper
 		// see if we can find the original part first
 		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
 		String partUuid = ((Element) partFigure.getSubject()).getUuid();
-		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(perspective, component, partUuid, null, true, false);
+		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(classifierFigure, perspective, component, partUuid, null, false);
 		if (figures == null)
 			return;
 		

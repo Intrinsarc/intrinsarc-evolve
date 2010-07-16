@@ -433,7 +433,7 @@ public abstract class ClassifierConstituentHelper
 		return null;
 	}
 	
-	private static FigureFacet[] findFigures(DEComponent component, String uuid1, String uuid2)
+	private static FigureFacet[] findFigures(FigureFacet avoid, DEComponent component, String uuid1, String uuid2)
 	{
 		// open or retrieve the home diagram		
     DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(component.getHomeStratum().getUuid()));
@@ -452,7 +452,7 @@ public abstract class ClassifierConstituentHelper
 				{
 					// is this in the correct class?
 					FigureFacet cls = extractClassFigureFromConstituent(figure);
-					if (cls != null && cls.getSubject() == component.getRepositoryObject())
+					if (cls != null && cls.getSubject() == component.getRepositoryObject() && cls != avoid)
 						return new FigureFacet[]{cls, figure};
 				}
 				
@@ -470,10 +470,8 @@ public abstract class ClassifierConstituentHelper
 							{
 								// is this in the correct class?
 								FigureFacet cls = extractClassFigureFromConstituent(figure);
-								System.out.println("$$ link class = " + cls + ", figure = " + figure);
-								if (cls != null && cls.getSubject() == component.getRepositoryObject())
+								if (cls != null && cls.getSubject() == component.getRepositoryObject() && cls != avoid)
 								{
-									System.out.println("$$ matched link");
 									return new FigureFacet[]{cls, link.getFigureFacet()};
 								}
 							}
@@ -486,52 +484,62 @@ public abstract class ClassifierConstituentHelper
 	}
 	
 	public static FigureFacet[] findClassAndConstituentFigure(
+			FigureFacet avoid,
 			DEStratum perspective,
 			DEComponent component,
 			DeltaPair addOrReplace,
 			boolean shallowOnly)
 	{
-		return findClassAndConstituentFigure(perspective, component, addOrReplace.getOriginal().getUuid(), addOrReplace.getConstituent().getUuid(), false, shallowOnly);
+		return findClassAndConstituentFigure(avoid, perspective, component, addOrReplace.getOriginal().getUuid(), addOrReplace.getConstituent().getUuid(), shallowOnly);
 	}
 
 	public static FigureFacet[] findClassAndConstituentFigure(
+			FigureFacet avoid,
 			DEStratum perspective,
 			DEComponent component,
 			String uuid1,
 			String uuid2,
-			boolean ignoreCurrent,
 			boolean shallowOnly)
 	{
-		FigureFacet[] figures = null;
-		if (!ignoreCurrent)
-		{
-			figures = findFigures(component, uuid1, uuid2);
-			if (figures != null)
-				return figures;
-		}
+		int depth = shallowOnly ? 2 : -1;
 		
-		// if that fails, try the supercomponents
-		for (DEElement superc: component.getFilteredResembles_e(perspective, false))
+		List<DEElement> tops = component.getTopmost(perspective);
+		for (DEElement top : tops)
 		{
-			if (superc.asComponent() != null)
+			if (top.asComponent() != null)
 			{
-				if (shallowOnly)
-				{
-					figures = findFigures(superc.asComponent(), uuid1, uuid2);
-					if (figures != null)
-						return figures;					
-				}
-				else
-				{
-					figures = findClassAndConstituentFigure(perspective, superc.asComponent(), uuid1, uuid2, false, false);
-					if (figures != null)
-						return figures;
-				}
+				FigureFacet[] figures = findClassFigures(avoid, perspective, top.asComponent(), uuid1, uuid2, depth);
+				if (figures != null)
+					return figures;
 			}
 		}
 		return null;
 	}
 	
+		
+	private static FigureFacet[] findClassFigures(FigureFacet avoid, DEStratum perspective, DEComponent top, String uuid1, String uuid2, int depth)
+	{
+		// only go so far
+		if (depth == 0)
+			return null;
+		
+		FigureFacet[] figures = findFigures(avoid, top, uuid1, uuid2);
+		if (figures != null)
+			return figures;
+		
+		// otherwise, look at the supercomponents
+		for (DEElement elem : top.getFilteredResembles_e(perspective, false))
+		{
+			if (elem.asComponent() != null)
+			{
+				FigureFacet[] next = findClassFigures(avoid, perspective, elem.asComponent(), uuid1, uuid2, depth - 1);
+				if (next != null)
+					return next;
+			}
+		}
+		return null;
+	}
+
 	public static void makeResizingTransaction(FigureFacet figure, UBounds newBounds)
 	{
 			ResizingFiguresGem gem = new ResizingFiguresGem(null, figure.getDiagram());

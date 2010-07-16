@@ -49,7 +49,7 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
   	// find the slot
 		// see if we can find the original part first
 		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
-		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(perspective, component, addOrReplace, suppressUnlessElsewhere);
+		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(classifierFigure, perspective, component, addOrReplace, suppressUnlessElsewhere);
 		if (figures == null)
 		{
 			if (suppressUnlessElsewhere)

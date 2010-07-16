@@ -44,7 +44,7 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 			DeltaPair addOrReplace)
 	{
 		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
-		FigureFacet[] figures = findClassAndConstituentFigure(perspective, component, addOrReplace, suppressUnlessElsewhere);
+		FigureFacet[] figures = findClassAndConstituentFigure(classifierFigure, perspective, component, addOrReplace, suppressUnlessElsewhere);
 		if (figures == null)
 		{
 			if (suppressUnlessElsewhere)

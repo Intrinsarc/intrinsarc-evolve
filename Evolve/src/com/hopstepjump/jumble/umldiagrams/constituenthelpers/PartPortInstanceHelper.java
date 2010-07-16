@@ -124,7 +124,7 @@ public class PartPortInstanceHelper
 		// see if we can find the original part first
 		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
 		String partUuid = ((Element) partFigure.getSubject()).getUuid();
-		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(perspective, component, partUuid, null, true, suppressUnlessElsewhere);
+		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(classifierFigure, perspective, component, partUuid, null, suppressUnlessElsewhere);
 		if (figures == null)
 		{
 			// if we haven't found the port, default to the class
@@ -182,7 +182,7 @@ public class PartPortInstanceHelper
 	{
   	Type type = ((Property) partFigure.getSubject()).getType();
 		DEComponent component = GlobalDeltaEngine.engine.locateObject(type).asComponent();
-		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(perspective, component, port.getUuid(), null, false, suppressUnlessElsewhere);
+		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(classifierFigure, perspective, component, port.getUuid(), null, suppressUnlessElsewhere);
 		if (figures == null)
 		{
 			if (suppressUnlessElsewhere)
