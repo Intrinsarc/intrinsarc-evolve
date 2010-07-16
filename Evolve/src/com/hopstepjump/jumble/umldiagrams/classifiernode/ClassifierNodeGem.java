@@ -1522,7 +1522,7 @@ public final class ClassifierNodeGem implements Gem
 		public JMenuItem getShowSpecificPortInstancesMenuItem(final ToolCoordinatorFacet coordinator)
 		{
 			JMenu showItem = new JMenu("Show specific ports instances...");
-			final PartPortInstanceHelper portHelper = new PartPortInstanceHelper(figureFacet, primitivePorts);
+			final PartPortInstanceHelper portHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, false);
 			Map<String, String> hidden = portHelper.getHiddenConstituents();
 			showItem.setEnabled(!hidden.isEmpty());
 
@@ -1553,9 +1553,9 @@ public final class ClassifierNodeGem implements Gem
 			final String name = "Connectors and port links";
 			JMenuItem showAllItem = new JMenuItem(name);
 			final ClassConnectorHelper connectorHelper = new ClassConnectorHelper(figureFacet, primitivePorts,
-					primitiveContents, false, deletedConnectorUuidsFacet);
+					primitiveContents, false, deletedConnectorUuidsFacet, false);
 			final ClassConnectorHelper portLinkHelper = new ClassConnectorHelper(figureFacet, primitivePorts,
-					primitiveContents, true, deletedConnectorUuidsFacet);
+					primitiveContents, true, deletedConnectorUuidsFacet, false);
 			showAllItem
 					.setEnabled((!connectorHelper.isShowingAllConstituents() || !portLinkHelper.isShowingAllConstituents())
 							&& primitiveContents.isShowing());
@@ -1599,7 +1599,7 @@ public final class ClassifierNodeGem implements Gem
 		public JMenuItem getShowAllPortInstancesMenuItem(final ToolCoordinatorFacet coordinator)
 		{
 			JMenuItem showAllItem = new JMenuItem("Port instances");
-			final PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts);
+			final PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, false);
 			showAllItem.setEnabled(!portInstanceHelper.isShowingAllConstituents() && primitivePorts.isShowing());
 
 			showAllItem.addActionListener(new ActionListener()
@@ -1620,7 +1620,7 @@ public final class ClassifierNodeGem implements Gem
 		public JMenuItem getShowAllPartsMenuItem(final ToolCoordinatorFacet coordinator)
 		{
 			JMenuItem showAllItem = new JMenuItem("Parts");
-			final ClassPartHelper partHelper = new ClassPartHelper(coordinator, figureFacet, primitiveContents, contents);
+			final ClassPartHelper partHelper = new ClassPartHelper(coordinator, figureFacet, primitiveContents, contents, false);
 			showAllItem.setEnabled(!partHelper.isShowingAllConstituents() && primitiveContents.isShowing());
 
 			showAllItem.addActionListener(new ActionListener()
@@ -1925,7 +1925,7 @@ public final class ClassifierNodeGem implements Gem
 						slotHelper.getConstituentUuids());
 
 				// find any attributes to add or delete
-				PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts);
+				PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, true);
 				ports.clean(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
 						portInstanceHelper.getConstituentUuids());
 
@@ -2001,7 +2001,7 @@ public final class ClassifierNodeGem implements Gem
 				portHelper.cleanUuids();
 
 				// find any parts to add or delete
-				ClassPartHelper partHelper = new ClassPartHelper(null, figureFacet, primitiveContents, contents);
+				ClassPartHelper partHelper = new ClassPartHelper(null, figureFacet, primitiveContents, contents, true);
 				partHelper.cleanUuids();
 
 				if (!suppressAttributesOrSlots)
@@ -2018,14 +2018,14 @@ public final class ClassifierNodeGem implements Gem
 			{
 				// find any connectors to possibly add or delete
 				ClassConnectorHelper connectorHelper = new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents,
-						false, deletedConnectorUuidsFacet);
+						false, deletedConnectorUuidsFacet, true);
 
 				// get the composite command for fixing up the connectors
 				connectorHelper.makeUpdateCommand(locked);
 
 				// find any connectors or port links to possibly add or delete
 				ClassConnectorHelper portLinkHelper = new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents,
-						true, deletedConnectorUuidsFacet);
+						true, deletedConnectorUuidsFacet, true);
 				// get the composite command for fixing up the port links
 				portLinkHelper.makeUpdateCommand(locked);
 				portLinkHelper.cleanUuids(ConstituentTypeEnum.DELTA_CONNECTOR);
@@ -2559,17 +2559,17 @@ public final class ClassifierNodeGem implements Gem
 			if (!displayOnlyIcon && !autoSized)
 			{
 				portsEllipsis = !new ClassPortHelper(figureFacet, primitivePorts, ports, false).isShowingAllConstituents();
-				partsEllipsis = !new ClassPartHelper(null, figureFacet, primitiveContents, contents).isShowingAllConstituents();
+				partsEllipsis = !new ClassPartHelper(null, figureFacet, primitiveContents, contents, false).isShowingAllConstituents();
 				connectorsEllipsis = !new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents, false,
-						deletedConnectorUuidsFacet).isShowingAllConstituents()
+						deletedConnectorUuidsFacet, false).isShowingAllConstituents()
 						|| !new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents, true,
-								deletedConnectorUuidsFacet).isShowingAllConstituents();
+								deletedConnectorUuidsFacet, false).isShowingAllConstituents();
 			}
 		}
 		if (isPart && subject != null)
 		{
 			attributeEllipsis = !new PartSlotHelper(figureFacet, primitiveAttributesOrSlots).isShowingAllConstituents();
-			portsEllipsis = !new PartPortInstanceHelper(figureFacet, primitivePorts).isShowingAllConstituents();
+			portsEllipsis = !new PartPortInstanceHelper(figureFacet, primitivePorts, ports, false).isShowingAllConstituents();
 		}
 
 		info = new ClassifierSizeInfo(topLeft, extent, autoSized, isPart && name.length() == 0 ? " : " : name, font,

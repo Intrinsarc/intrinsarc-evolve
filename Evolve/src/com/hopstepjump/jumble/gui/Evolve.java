@@ -29,7 +29,7 @@ import com.hopstepjump.repositorybase.*;
  */
 public class Evolve
 {
-	public static final String EVOLVE_VERSION = "v1.0, 11th July 2010";
+	public static final String EVOLVE_VERSION = "v1.0, released 11th July 2010";
   public static final String LEAST_VERSION = "1.5";
   public static final String BEST_VERSION = "1.6";
 	public static final int MAX_UNMODIFIED_UNVIEWED_DIAGRAMS = 5;
@@ -57,10 +57,10 @@ public class Evolve
 			System.exit(-1);
 		}
 		String home = args[0];
-		System.out.println("Evolve home directory is: " + home);
 		
     String version = System.getProperty("java.specification.version");
     System.out.println("Evolve " + EVOLVE_VERSION);
+		System.out.println("Evolve home: " + home);
     System.out.println("Detected JRE " + (version == null ? "(unknown)" : version));
 		
     // make sure we have the correct version of java

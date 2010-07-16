@@ -17,14 +17,16 @@ import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
 import com.hopstepjump.jumble.umldiagrams.colors.*;
+import com.hopstepjump.jumble.umldiagrams.portnode.*;
 import com.hopstepjump.repositorybase.*;
 
 public class ClassPartHelper extends ClassifierConstituentHelper
 {
   private NodeCreateFacet partCreator;
   private NodeCreateFacet statePartCreator;
+  private boolean suppressUnlessElsewhere;
 
-  public ClassPartHelper(ToolCoordinatorFacet coordinator, BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted)
+  public ClassPartHelper(ToolCoordinatorFacet coordinator, BasicNodeFigureFacet classifierFigure, FigureFacet container, SimpleDeletedUuidsFacet deleted, boolean suppressUnlessElsewhere)
   {
     super(
         classifierFigure,
@@ -35,6 +37,7 @@ public class ClassPartHelper extends ClassifierConstituentHelper
         deleted);
     this.partCreator = new PartCreatorGem(false).getNodeCreateFacet();
     this.statePartCreator = new PartCreatorGem(true).getNodeCreateFacet();
+    this.suppressUnlessElsewhere = suppressUnlessElsewhere;
   }
 
   @Override
@@ -45,75 +48,51 @@ public class ClassPartHelper extends ClassifierConstituentHelper
       FigureFacet container,
       DeltaPair addOrReplace)
   {
-    // get the current sizes
-    FigureFacet existing = null;
-    UBounds full = classifierFigure.getFullBounds();
-    UPoint topLeft = full.getTopLeftPoint();
+		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
+		FigureFacet[] figures = findClassAndConstituentFigure(perspective, component, addOrReplace, suppressUnlessElsewhere);
+		if (figures == null)
+		{
+			if (suppressUnlessElsewhere)
+			{
+				addDeletedUuid(addOrReplace.getUuid());
+				return;
+			}
+			figures = new FigureFacet[]{classifierFigure, null};
+		}
+		
+		// we now have the appropriate class figure and constituent figure to take sizing etc from
+		UBounds oldFull = classifierFigure.getFullBounds();
+		UBounds existFull = figures[0].getFullBounds();
+		UDimension newSize = oldFull.getDimension().
+			maxOfEach(figures[0].getFullBounds().getDimension());
+		
+		// resize the class
+		UBounds newBounds = new UBounds(new UPoint(0, 0), newSize).centreToPoint(oldFull.getMiddlePoint());
+		NodeAutoSizeTransaction.autoSize(classifierFigure, false);
+		makeResizingTransaction(classifierFigure, newBounds);
+		
+		// find the offset from the original
+		FigureFacet existing = figures[1];
+		UDimension half = oldFull.getDimension().multiply(0.5);
+		UDimension offset = existing == null ? half : existing.getFullBounds().getPoint().subtract(existFull.getPoint());
+		UDimension size = existing == null ? UDimension.ZERO : existing.getFullBounds().getDimension();
 
-    // look to see if there was something there with that id, first
-    for (FigureFacet f : currentInContainerIgnoringDeletes)
-    {
-      // don't delete if this is deleted -- this is covered elsewhere
-      Element originalSubject = getOriginalSubject(f.getSubject());
-      
-      if (addOrReplace.getUuid().equals(originalSubject.getUuid()))
-      {
-        existing = f;
-        break;
-      }
-    }
-    
-    // find the location, relative to the parent classifier by looking in this diagram,
-    // and in the home package diagram
-    if (existing == null)
-      existing = ClassPortHelper.findExisting(classifierFigure.getDiagram(), addOrReplace.getUuid());
-    if (existing == null)
-    {
-      // look in the home diagram
-      Classifier cls = (Classifier) (getPossibleDeltaSubject(addOrReplace.getConstituent().getRepositoryObject())).getOwner();
-      
-      DiagramFacet homeDiagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(cls.getOwner().getUuid()));
-      if (homeDiagram != null)
-        existing = ClassPortHelper.findExisting(homeDiagram, addOrReplace.getUuid());
-    }
-    
-    // don't try too much harder if we haven't found it
-    UDimension partOffset = new UDimension(20, 8);
-    UDimension simpleOffset = container.getFullBounds().getPoint().subtract(topLeft);
-    UDimension newOffset = full.getDimension();
-    UDimension partSize = null;
-    // if we have found a part to use, use the max of each dimension
-    if (existing != null)
-    {
-      newOffset = newOffset.maxOfEach(ClassPortHelper.getTopContainerBounds(existing).getDimension());
-      partOffset = getOffsetFromSimple(existing);
-      partSize = existing.getFullBounds().getDimension();
-    }
-    final UBounds newBounds = new UBounds(topLeft, newOffset).centreToPoint(full.getMiddlePoint());
-    
-    // make a composite to hold all the changes
-    NodeAutoSizeTransaction.autoSize(classifierFigure, false);
-    
-    // resize to fit the offset at least
-//    ClassPortHelper.makeResizingTransaction(classifierFigure, newBounds);
-    
-    // now add the part
-    final UPoint partTop = newBounds.getTopLeftPoint().add(simpleOffset).add(partOffset);
-    final FigureReference partReference = classifierFigure.getDiagram().makeNewFigureReference();
+		// now add the part
+		UPoint partTop = newBounds.getPoint().add(offset);
+		final FigureReference partReference = classifierFigure.getDiagram().makeNewFigureReference();
     final Element subject = (Element) addOrReplace.getConstituent().getRepositoryObject();
 
     createPart(classifierFigure, subject, partReference, partTop);
-    
-    // resize to match the other part
-    final UDimension finalPartSize = partSize;
-    if (partSize != null)
-    {
-      FigureFacet part = GlobalDiagramRegistry.registry.retrieveFigure(partReference);
-      ClassPortHelper.makeResizingTransaction(part, new UBounds(partTop, finalPartSize));
-    }
+
+		// resize to match the other part
+		if (size != null)
+		{
+			FigureFacet port = container.getDiagram().retrieveFigure(partReference.getId());
+			makeResizingTransaction(port, new UBounds(partTop, size));
+		}  	
   }
   
-  protected void createPart(
+    protected void createPart(
       FigureFacet owner,
       Element subject,
       FigureReference partRef,
@@ -156,20 +135,6 @@ public class ClassPartHelper extends ClassifierConstituentHelper
     ContainerAddTransaction.add(
     		accepting,
         new ContainedFacet[]{contained.getContainedFacet()});
-  }
-  
-  private UDimension getOffsetFromSimple(FigureFacet figure)
-  {
-    // if figure is null, give a standard response
-    if (figure == null)
-      return new UDimension(10, 10);
-    
-    // yuck -- maybe make an element navigation language? AMcV 9/11/07
-    FigureFacet simple =
-      figure.getContainedFacet().getContainer().getFigureFacet();
-    return
-      figure.getFullBounds().getTopLeftPoint().subtract(
-        simple.getFullBounds().getTopLeftPoint());
   }
   
   public static Set<FigureFacet> findParts(ContainerFacet container)

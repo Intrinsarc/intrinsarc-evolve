@@ -3,29 +3,31 @@ package com.hopstepjump.jumble.umldiagrams.constituenthelpers;
 import java.util.*;
 
 import org.eclipse.uml2.*;
-import org.eclipse.uml2.Package;
-import org.eclipse.uml2.impl.*;
 
 import com.hopstepjump.deltaengine.base.*;
-import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.portnode.*;
-import com.hopstepjump.repositorybase.*;
 
 public class PartPortInstanceHelper
 {
   private BasicNodeFigureFacet partFigure;
   private FigureFacet container;
+	private SimpleDeletedUuidsFacet deleted;
+	private boolean suppressUnlessElsewhere;
 
   public PartPortInstanceHelper(
       BasicNodeFigureFacet partFigure,
-      FigureFacet container)
+      FigureFacet container,
+      SimpleDeletedUuidsFacet deleted,
+      boolean suppressUnlessElsewhere)
   {
     this.partFigure = partFigure;
     this.container = container;
+    this.deleted = deleted;
+    this.suppressUnlessElsewhere = suppressUnlessElsewhere;
   }
   
   public boolean isShowingAllConstituents()
@@ -116,21 +118,91 @@ public class PartPortInstanceHelper
       FigureFacet container,
       Port port)
   {
-    // now add the port
-    Port originalSubject = (Port) ClassifierConstituentHelper.getOriginalSubject(port);
-    UPoint portTop = translateLocation(currentInContainerIgnoringDeletes, port, originalSubject);
-    FigureReference portReference = partFigure.getDiagram().makeNewFigureReference(); 
-    AddPortTransaction.add(
-      container,
-      portReference,
-      new PortInstanceCreatorGem().getNodeCreateFacet(),
-      null,
-      port,
-      null,
-      portTop);
+		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(partFigure.getDiagram().getLinkedObject()).asStratum();
+		FigureFacet classifierFigure = partFigure.getContainedFacet().getContainer().getContainedFacet().getContainer().getFigureFacet();
+		
+		// see if we can find the original part first
+		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
+		String partUuid = ((Element) partFigure.getSubject()).getUuid();
+		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(perspective, component, partUuid, null, true, suppressUnlessElsewhere);
+		if (figures == null)
+		{
+			// if we haven't found the port, default to the class
+			useClassInsteadOfPart(
+					perspective,
+					classifierFigure,
+					currentInContainerIgnoringDeletes,
+		      partFigure,
+		      container,
+		      port);
+			return;
+		}
+		
+		// now find the port on the part instance
+		FigureFacet fpart = figures[1];
+		FigureFacet fport = ClassifierConstituentHelper.findSubfigure(figures[1], port);
+
+		if (fport == null)
+		{
+			if (suppressUnlessElsewhere)
+			{
+				deleted.addDeleted(partUuid);
+				return;
+			}
+
+			// default again to the class
+			useClassInsteadOfPart(
+					perspective,
+					classifierFigure,
+					currentInContainerIgnoringDeletes,
+		      partFigure,
+		      container,
+		      port);
+			return;
+		}
+		else
+		{
+			ClassPortHelper.placePort(
+					partFigure,
+					container,
+					fpart,
+					fport,
+					port,
+					new PortInstanceCreatorGem().getNodeCreateFacet());
+		}
   }
 
-  private Set<FigureFacet> getCurrentlyDisplayed()
+  private void useClassInsteadOfPart(
+  		DEStratum perspective,
+  		FigureFacet classifierFigure,
+  		Set<FigureFacet> currentInContainerIgnoringDeletes,
+			BasicNodeFigureFacet partFigure,
+			FigureFacet container,
+			Port port)
+	{
+  	Type type = ((Property) partFigure.getSubject()).getType();
+		DEComponent component = GlobalDeltaEngine.engine.locateObject(type).asComponent();
+		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(perspective, component, port.getUuid(), null, false, suppressUnlessElsewhere);
+		if (figures == null)
+		{
+			if (suppressUnlessElsewhere)
+			{
+				deleted.addDeleted(port.getUuid());
+				return;
+			}
+			return;
+		}
+
+		ClassPortHelper.placePort(
+				partFigure,
+				container,
+				figures[0],
+				figures[1],
+				port,
+				new PortInstanceCreatorGem().getNodeCreateFacet());
+	}
+
+	private Set<FigureFacet> getCurrentlyDisplayed()
   {
     Set<FigureFacet> current = new HashSet<FigureFacet>();
     for (Iterator<FigureFacet> iter = container.getContainerFacet().getContents(); iter.hasNext();)
@@ -168,54 +240,7 @@ public class PartPortInstanceHelper
   private DEStratum getVisualPerspective()
   {
   	return PerspectiveHelper.extractDEStratum(partFigure.getDiagram(), partFigure.getContainedFacet().getContainer());
-  }
-  
-  private UPoint translateLocation(Set<FigureFacet> currentInContainerIgnoringDeletes, Port subject, Port originalSubject)
-  {
-    // get the current sizes
-    FigureFacet existing = null;
-
-    // look to see if there was something there with that id, first
-    for (FigureFacet f : currentInContainerIgnoringDeletes)
-    {
-      if (ClassifierConstituentHelper.getOriginalSubject(f.getSubject()) == originalSubject)
-      {
-        existing = f;
-        break;
-      }
-    }
-
-    // look in the current diagram
-    if (existing == null)
-      existing = ClassPortHelper.findExisting(partFigure.getDiagram(), subject.getUuid());
-    if (existing == null)
-    {
-      // look in the home diagram
-      Classifier type = (Classifier) ClassifierConstituentHelper.getPossibleDeltaSubject(subject).getOwner();
-      
-      Package owner = (Package) GlobalSubjectRepository.repository.findOwningElement(type, PackageImpl.class);
-      DiagramFacet homeDiagram =
-        GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(owner.getUuid()));
-      if (homeDiagram != null)
-        existing = ClassPortHelper.findExisting(homeDiagram, subject.getUuid());
-    }
-    
-    // if no existing is found, just place it somewhere relatively safe
-    if (existing == null)
-      return container.getFullBounds().getTopLeftPoint();
-    
-    // translate the location into a pro-rate location of the current container
-    UPoint existingTop = existing.getFullBounds().getTopLeftPoint();
-    UBounds containerBounds = existing.getContainedFacet().getContainer().getFigureFacet().getFullBounds();
-    double xRatio = (existingTop.getX() - containerBounds.getX()) / (containerBounds.getWidth()); 
-    double yRatio = (existingTop.getY() - containerBounds.getY()) / (containerBounds.getHeight());
-    
-    UBounds oldBounds = container.getFullBounds();
-    UDimension size = oldBounds.getDimension();
-    UPoint top = oldBounds.getTopLeftPoint();
-    return new UPoint(
-        top.getX() + xRatio * size.getWidth(), top.getY() + yRatio * size.getHeight());
-  }
+  }  
 
 	public Map<String, String> getHiddenConstituents()
 	{

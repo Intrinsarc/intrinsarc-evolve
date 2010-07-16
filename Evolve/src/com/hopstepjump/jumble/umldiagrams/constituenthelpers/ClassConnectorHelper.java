@@ -18,8 +18,15 @@ import com.hopstepjump.jumble.umldiagrams.connectorarc.*;
 
 public class ClassConnectorHelper extends ClassifierConstituentHelper
 {
+	private boolean suppressUnlessElsewhere;
 
-  public ClassConnectorHelper(BasicNodeFigureFacet classifierFigure, FigureFacet portsContainer, FigureFacet partsContainer, boolean portLinks, SimpleDeletedUuidsFacet deleted)
+  public ClassConnectorHelper(
+  		BasicNodeFigureFacet classifierFigure,
+  		FigureFacet portsContainer,
+  		FigureFacet partsContainer,
+  		boolean portLinks,
+  		SimpleDeletedUuidsFacet deleted,
+			boolean suppressUnlessElsewhere)
   {
     super(
         classifierFigure,
@@ -28,6 +35,7 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
         findConnectors(portsContainer, partsContainer, portLinks).iterator(),
         portLinks ? ConstituentTypeEnum.DELTA_PORT_LINK : ConstituentTypeEnum.DELTA_CONNECTOR,
         deleted);
+    this.suppressUnlessElsewhere = suppressUnlessElsewhere;
   }
 
   @Override
@@ -38,41 +46,24 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
       FigureFacet container,
       DeltaPair addOrReplace)
   {
-    // get the current sizes
-    FigureFacet existing = null;
+  	// find the slot
+		// see if we can find the original part first
+		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
+		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(perspective, component, addOrReplace, suppressUnlessElsewhere);
+		if (figures == null)
+		{
+			if (suppressUnlessElsewhere)
+			{
+				addDeletedUuid(addOrReplace.getUuid());
+				return;
+			}
+			System.out.println("$$ no figures, suppressed = " + suppressUnlessElsewhere);
+			return;
+		}
 
-    // look to see if there was something there with that id, first
-    for (FigureFacet f : currentInContainerIgnoringDeletes)
-    {
-      // don't delete if this is deleted -- this is covered elsewhere
-      Element originalSubject = getOriginalSubject(f.getSubject());
-      
-      if (addOrReplace.getUuid().equals(originalSubject.getUuid()))
-      {
-        existing = f;
-        break;
-      }
-    }
-    
-    // find the location, relative to the parent classifier by looking in this diagram,
-    // and in the home package diagram
-    if (existing == null)
-      existing = findExisting(classifierFigure.getDiagram(), addOrReplace.getUuid());
-    if (existing == null)
-    {
-      // look in the home diagram
-      Classifier cls = (Classifier) (getPossibleDeltaSubject(addOrReplace.getConstituent().getRepositoryObject())).getOwner();
-      
-      DiagramFacet homeDiagram =
-        GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(cls.getOwner().getUuid()));
-      if (homeDiagram != null)
-        existing = findExisting(homeDiagram, addOrReplace.getUuid());
-    }
-    
-    // create the connector arc, using the existing subject
-    
-    // find the 2 ports inside this classifier
-    DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
+		FigureFacet existing = figures[1];
+
+		// find the 2 ports inside this classifier
     DEConnector connector = addOrReplace.getConstituent().asConnector(); 
     DEPort port1 = connector.getPort(perspective, component, 0);
     DEPart part1 = connector.getPart(perspective, component, 0);
@@ -145,26 +136,6 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     return ClassifierConstituentHelper.lookForFigure(container, containingSubject, port, false);
   }
   
-  private FigureFacet findExisting(DiagramFacet diagram, String uuid)
-  {
-    // look through all the diagram figures for the port in its home classifier
-    for (FigureFacet figure : diagram.getFigures())
-    {
-      Object subject = figure.getSubject();
-      if (subject instanceof Element)
-      {
-        Element element = (Element) subject;
-        if (uuid.equals(element.getUuid()))
-        {
-          // is this in its home classifier
-          if (getPossibleDeltaSubject(element).getOwner() == extractVisualClassifierFromConnector(figure))
-            return figure;
-        }
-      }
-    }
-    return null;
-  }
-
   public static void collectAtDepth(Set<FigureFacet> figures, FigureFacet figure, int depth)
   {
     // recurse down to the desired depth

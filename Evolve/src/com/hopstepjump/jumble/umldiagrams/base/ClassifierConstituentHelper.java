@@ -415,27 +415,30 @@ public abstract class ClassifierConstituentHelper
 	private static FigureFacet extractClassFigureFromConstituent(FigureFacet constituent)
 	{
 		// will be a port, attribute, part or connector
-		if (constituent.getContainedFacet() != null)
+		while (constituent != null)
 		{
-			ContainerFacet container = constituent.getContainedFacet().getContainer();
-			if (container.getContainedFacet() != null)
+			if (constituent.getContainedFacet() != null)
 			{
-				FigureFacet figure = container.getContainedFacet().getContainer().getFigureFacet();
-				if (figure.getSubject() instanceof Class)
-					return figure;
+				ContainerFacet container = constituent.getContainedFacet().getContainer();
+				if (container.getContainedFacet() != null)
+				{
+					constituent = container.getContainedFacet().getContainer().getFigureFacet();
+					if (constituent.getSubject() instanceof Class)
+						return constituent;
+				}
 			}
+			else
+				return null;
 		}
 		return null;
 	}
 	
-	private static FigureFacet[] findFigures(DEComponent component, DeltaPair pair)
+	private static FigureFacet[] findFigures(DEComponent component, String uuid1, String uuid2)
 	{
 		// open or retrieve the home diagram		
     DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(component.getHomeStratum().getUuid()));
 
 		// look through all the diagram figures for the port in its home classifier
-    String constituentUUID = pair.getConstituent().getUuid();
-    String originalUUID = pair.getOriginal().getUuid();
 		for (FigureFacet figure : diagram.getFigures())
 		{
 			Object subject = figure.getSubject();
@@ -445,12 +448,37 @@ public abstract class ClassifierConstituentHelper
 				Element element = (Element) subject;
 		    String elementUUID = element.getUuid();
 
-				if (constituentUUID.equals(elementUUID) || originalUUID.equals(elementUUID))
+				if (elementUUID.equals(uuid1) || elementUUID.equals(uuid2))
 				{
 					// is this in the correct class?
 					FigureFacet cls = extractClassFigureFromConstituent(figure);
 					if (cls != null && cls.getSubject() == component.getRepositoryObject())
 						return new FigureFacet[]{cls, figure};
+				}
+				
+				// consider connectors
+				if (subject instanceof Port)
+				{
+					for (Iterator<LinkingFacet> iter = figure.getAnchorFacet().getLinks(); iter.hasNext();)
+					{
+						LinkingFacet link = iter.next();
+						Object lsubj = link.getFigureFacet().getSubject();
+						if (lsubj != null)
+						{
+							String luuid = ((Element) lsubj).getUuid();
+							if (luuid.equals(uuid1) || luuid.equals(uuid2))
+							{
+								// is this in the correct class?
+								FigureFacet cls = extractClassFigureFromConstituent(figure);
+								System.out.println("$$ link class = " + cls + ", figure = " + figure);
+								if (cls != null && cls.getSubject() == component.getRepositoryObject())
+								{
+									System.out.println("$$ matched link");
+									return new FigureFacet[]{cls, link.getFigureFacet()};
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -460,20 +488,45 @@ public abstract class ClassifierConstituentHelper
 	public static FigureFacet[] findClassAndConstituentFigure(
 			DEStratum perspective,
 			DEComponent component,
-			DeltaPair addOrReplace)
+			DeltaPair addOrReplace,
+			boolean shallowOnly)
 	{
-		FigureFacet[] figures = findFigures(component, addOrReplace);
-		if (figures != null)
-			return figures;
+		return findClassAndConstituentFigure(perspective, component, addOrReplace.getOriginal().getUuid(), addOrReplace.getConstituent().getUuid(), false, shallowOnly);
+	}
+
+	public static FigureFacet[] findClassAndConstituentFigure(
+			DEStratum perspective,
+			DEComponent component,
+			String uuid1,
+			String uuid2,
+			boolean ignoreCurrent,
+			boolean shallowOnly)
+	{
+		FigureFacet[] figures = null;
+		if (!ignoreCurrent)
+		{
+			figures = findFigures(component, uuid1, uuid2);
+			if (figures != null)
+				return figures;
+		}
 		
 		// if that fails, try the supercomponents
 		for (DEElement superc: component.getFilteredResembles_e(perspective, false))
 		{
 			if (superc.asComponent() != null)
 			{
-				FigureFacet[] next = findFigures(superc.asComponent(), addOrReplace);
-				if (next != null)
-					return next;
+				if (shallowOnly)
+				{
+					figures = findFigures(superc.asComponent(), uuid1, uuid2);
+					if (figures != null)
+						return figures;					
+				}
+				else
+				{
+					figures = findClassAndConstituentFigure(perspective, superc.asComponent(), uuid1, uuid2, false, false);
+					if (figures != null)
+						return figures;
+				}
 			}
 		}
 		return null;

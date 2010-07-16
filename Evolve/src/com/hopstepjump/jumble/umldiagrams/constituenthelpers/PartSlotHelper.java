@@ -79,8 +79,6 @@ public class PartSlotHelper
     Set<FigureFacet> current = getCurrentlyDisplayed();
     Set<Property> possibleAttributes = resolvePossibleAttributes();
     
-    // work out what we need to delete
-    
     // delete if this shouldn't be here
     for (FigureFacet f : current)
     {
@@ -131,20 +129,24 @@ public class PartSlotHelper
       FigureFacet container,
       Slot slot)
   {
+  	// find the slot
+		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(partFigure.getDiagram().getLinkedObject()).asStratum();
+		FigureFacet classifierFigure = partFigure.getContainedFacet().getContainer().getContainedFacet().getContainer().getFigureFacet();
+		
+		// see if we can find the original part first
+		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
+		String partUuid = ((Element) partFigure.getSubject()).getUuid();
+		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(perspective, component, partUuid, null, true, false);
+		if (figures == null)
+			return;
+		
+		// now look for the slot
+		FigureFacet slotFigure = ClassifierConstituentHelper.findSubfigure(figures[1], slot);
+		if (slotFigure == null)
+			return;
+			
     // look for the location amongst existing elements which this might be replacing
-    UPoint location = null;
-    
-    for (FigureFacet f : currentInContainerIgnoringDeletes)
-    {
-      // don't delete if this is deleted -- this is covered elsewhere
-      Element originalSubject = (Element) f.getSubject();
-      
-      if (slot.getUuid().equals(originalSubject.getUuid()))
-      {
-        location = f.getFullBounds().getTopLeftPoint().subtract(new UDimension(0, 1));
-        break;
-      }
-    }
+    UPoint location = slotFigure.getFullBounds().getTopLeftPoint().subtract(new UDimension(0, 1));
     
     AddFeatureTransaction.add(
         container,
