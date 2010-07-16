@@ -74,10 +74,6 @@ public class ClassPartHelper extends ClassifierConstituentHelper
 		
 		// find the offset from the original
 		FigureFacet existing = figures[1];
-		if (existing != null)
-			System.out.println("$$ cls = " + figures[0].getSubject() + ", existing = " + existing.getSubject());
-		else
-			System.out.println("$$ existing == null");
 		UDimension half = oldFull.getDimension().multiply(0.5);
 		UDimension offset = existing == null ? half : existing.getFullBounds().getPoint().subtract(existFull.getPoint());
 		UDimension size = existing == null ? new UDimension(10, 10) : existing.getFullBounds().getDimension();
@@ -92,7 +88,6 @@ public class ClassPartHelper extends ClassifierConstituentHelper
 		// resize to match the other part
 		if (size != null)
 		{
-			System.out.println("$$ making resizing transaction: size = " + size);
 			FigureFacet part = container.getDiagram().retrieveFigure(partReference.getId());
 			makeResizingTransaction(part, new UBounds(partTop, size));
 		}  	
