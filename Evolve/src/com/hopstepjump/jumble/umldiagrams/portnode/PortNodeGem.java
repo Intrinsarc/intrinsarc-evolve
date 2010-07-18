@@ -701,8 +701,11 @@ public final class PortNodeGem implements Gem
 						engine.locateObject(
 								GlobalSubjectRepository.repository.findVisuallyOwningStratum(
 										diagramView.getDiagram(), figureFacet.getContainerFacet())).asStratum();
-					DEComponent owner = engine.locateObject(ClassifierConstituentHelper.getPossibleDeltaSubject(subject).getOwner()).asComponent();
-					
+					DEComponent owner =
+						engine.locateObject(
+								GlobalSubjectRepository.repository.findVisuallyOwningNamespace(
+										diagramView.getDiagram(), figureFacet.getContainerFacet())).asComponent();
+						
 					System.out.println("$$ ----------- Interfaces for " + owner + " from perspective " + perspective);
 					Set<? extends DEInterface> provides = owner.getProvidedInterfaces(perspective, port);
 					for (DEInterface iface : provides)

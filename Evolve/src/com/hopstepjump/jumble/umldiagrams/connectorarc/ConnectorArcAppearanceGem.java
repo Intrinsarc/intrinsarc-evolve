@@ -206,7 +206,9 @@ public class ConnectorArcAppearanceGem implements Gem
 			case CalculatedArcPoints.MAJOR_POINT_MIDDLE:
 				// if the text has changed, possibly look at changing the model
 				String stripped = newText.trim();
-				subject.setName(stripped);
+				// causes outside of transaction error if we don't suppress when equal
+				if (!stripped.equals(subject.getName()))
+					subject.setName(stripped);
 				return stripped;
 				
 			case CalculatedArcPoints.MAJOR_POINT_START:
