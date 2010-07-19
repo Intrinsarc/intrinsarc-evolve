@@ -1156,6 +1156,7 @@ public final class ClassifierNodeGem implements Gem
 			{
 				popup.add(diagramWritable(getShowSpecificAttributesMenuItem(coordinator)));
 				popup.add(diagramWritable(getShowSpecificPortsMenuItem(coordinator)));
+				popup.add(diagramWritable(getShowSpecificPartsMenuItem(coordinator)));
 			}
 			else
 				popup.add(diagramWritable(getShowSpecificPortInstancesMenuItem(coordinator)));
@@ -1482,12 +1483,55 @@ public final class ClassifierNodeGem implements Gem
 						// toggle the autosized flag (as a command)
 						coordinator.startTransaction("showed attribute", "un-showed attribute");
 						FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
-						del.addDeleted(uuid);
+						del.removeDeleted(uuid);
 						coordinator.commitTransaction();
 					}
 				});
 			}
 			MenuAccordion.makeMultiColumn(showItem, null, true);
+			return showItem;
+		}
+
+		public JMenuItem getShowSpecificPartsMenuItem(final ToolCoordinatorFacet coordinator)
+		{
+			JMenu showItem = new JMenu("Show specific parts...");
+			final ClassPartHelper partHelper = new ClassPartHelper(
+					coordinator,
+					figureFacet,
+					primitiveContents,
+					contents,
+					false);
+			Map<String, String> hidden = partHelper.getHiddenConstituents(
+					new IConstituentPrinter()
+					{
+						public String asString(DEConstituent constituent)
+						{
+			      	DEPart part = constituent.asPart();
+			      	return
+			      		part.getName() +
+			      		(part.getType() != null ? ":" + part.getType().getName() : "");
+						}
+					});
+
+			for (final String uuid : hidden.keySet())
+			{
+				String name = hidden.get(uuid);
+				JMenuItem selective = new JMenuItem(name);
+				showItem.add(selective);
+				selective.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						// toggle the autosized flag (as a command)
+						coordinator.startTransaction("showed part", "un-showed part");
+						SimpleContainerFacet del = contents.getFigureFacet().getDynamicFacet(SimpleContainerFacet.class);
+						del.removeDeleted(uuid);
+						coordinator.commitTransaction();
+					}
+				});
+			}
+			MenuAccordion.makeMultiColumn(showItem, null, true);
+			showItem.setEnabled(!hidden.isEmpty());
 			return showItem;
 		}
 

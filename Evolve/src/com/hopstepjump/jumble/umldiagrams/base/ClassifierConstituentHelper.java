@@ -73,6 +73,11 @@ public abstract class ClassifierConstituentHelper
   
   public Map<String, String> getHiddenConstituents()
   {
+  	return getHiddenConstituents(null);
+  }
+  
+  public Map<String, String> getHiddenConstituents(IConstituentPrinter printer)
+  {
   	Map<String /* UUID */, String /* name */> hidden = new LinkedHashMap<String, String>();
   	
     Set<DeltaPair> constituents = getConstituents(getPerspective(), type);
@@ -80,7 +85,9 @@ public abstract class ClassifierConstituentHelper
     for (DeltaPair pair : constituents)
     {
       if (!containedWithin(currentlyDisplayed, pair))
-      	hidden.put(pair.getConstituent().getUuid(), pair.getConstituent().getName());
+      	hidden.put(
+      			pair.getConstituent().getUuid(),
+      			printer == null ? pair.getConstituent().getName() : printer.asString(pair.getConstituent()));
     }
     return hidden;
   }
