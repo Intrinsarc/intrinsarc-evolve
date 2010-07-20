@@ -1031,13 +1031,13 @@ public final class ClassifierNodeGem implements Gem
 		
 		private JMenuItem diagramWritable(JMenuItem item)
 		{
-			item.setEnabled(!figureFacet.getDiagram().isReadOnly());
+			item.setEnabled(!figureFacet.getDiagram().isReadOnly() && item.isEnabled());
 			return item;
 		}
 
 		private JMenuItem subjectWritable(JMenuItem item)
 		{
-			item.setEnabled(!figureFacet.isSubjectReadOnlyInDiagramContext(false));
+			item.setEnabled(!figureFacet.isSubjectReadOnlyInDiagramContext(false) && item.isEnabled());
 			return item;
 		}
 		
@@ -1465,9 +1465,12 @@ public final class ClassifierNodeGem implements Gem
 
 		public JMenuItem getShowSpecificAttributesMenuItem(final ToolCoordinatorFacet coordinator)
 		{
-			JMenu showItem = new JMenu("Show specific attributes...");
-			final ClassifierAttributeHelper attributeHelper = new ClassifierAttributeHelper(figureFacet,
-					primitiveAttributesOrSlots, attributesOrSlots, false);
+			JMenu showItem = new JMenu("Show specific attributes");
+			final ClassifierAttributeHelper attributeHelper = new ClassifierAttributeHelper(
+					figureFacet,
+					primitiveAttributesOrSlots,
+					attributesOrSlots,
+					false);
 			Map<String, String> hidden = attributeHelper.getHiddenConstituents();
 			showItem.setEnabled(!hidden.isEmpty());
 
@@ -1484,6 +1487,7 @@ public final class ClassifierNodeGem implements Gem
 						coordinator.startTransaction("showed attribute", "un-showed attribute");
 						FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
 						del.removeDeleted(uuid);
+						attributeHelper.makeUpdateCommand(false);
 						coordinator.commitTransaction();
 					}
 				});
@@ -1494,7 +1498,7 @@ public final class ClassifierNodeGem implements Gem
 
 		public JMenuItem getShowSpecificPartsMenuItem(final ToolCoordinatorFacet coordinator)
 		{
-			JMenu showItem = new JMenu("Show specific parts...");
+			JMenu showItem = new JMenu("Show specific parts");
 			final ClassPartHelper partHelper = new ClassPartHelper(
 					coordinator,
 					figureFacet,
@@ -1512,6 +1516,7 @@ public final class ClassifierNodeGem implements Gem
 			      		(part.getType() != null ? ":" + part.getType().getName() : "");
 						}
 					});
+			showItem.setEnabled(!hidden.isEmpty());
 
 			for (final String uuid : hidden.keySet())
 			{
@@ -1526,18 +1531,18 @@ public final class ClassifierNodeGem implements Gem
 						coordinator.startTransaction("showed part", "un-showed part");
 						SimpleContainerFacet del = contents.getFigureFacet().getDynamicFacet(SimpleContainerFacet.class);
 						del.removeDeleted(uuid);
+						partHelper.makeUpdateCommand(false);
 						coordinator.commitTransaction();
 					}
 				});
 			}
 			MenuAccordion.makeMultiColumn(showItem, null, true);
-			showItem.setEnabled(!hidden.isEmpty());
 			return showItem;
 		}
 
 		public JMenuItem getShowSpecificPortsMenuItem(final ToolCoordinatorFacet coordinator)
 		{
-			JMenu showItem = new JMenu("Show specific ports...");
+			JMenu showItem = new JMenu("Show specific ports");
 			final ClassPortHelper portHelper = new ClassPortHelper(figureFacet, primitivePorts, ports, false);
 			Map<String, String> hidden = portHelper.getHiddenConstituents();
 			showItem.setEnabled(!hidden.isEmpty());
@@ -1555,6 +1560,7 @@ public final class ClassifierNodeGem implements Gem
 						coordinator.startTransaction("showed port", "un-showed port");
 						SimpleDeletedUuidsFacet del = ports.getFigureFacet().getDynamicFacet(SimpleDeletedUuidsFacet.class);
 						del.removeDeleted(uuid);
+						portHelper.makeUpdateCommand(false);
 						coordinator.commitTransaction();
 					}
 				});
@@ -1565,7 +1571,7 @@ public final class ClassifierNodeGem implements Gem
 
 		public JMenuItem getShowSpecificPortInstancesMenuItem(final ToolCoordinatorFacet coordinator)
 		{
-			JMenu showItem = new JMenu("Show specific ports instances...");
+			JMenu showItem = new JMenu("Show specific ports instances");
 			final PartPortInstanceHelper portHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, false);
 			Map<String, String> hidden = portHelper.getHiddenConstituents();
 			showItem.setEnabled(!hidden.isEmpty());
@@ -1924,7 +1930,7 @@ public final class ClassifierNodeGem implements Gem
 			properties.add(new PersistentProperty("showVis", showOwningPackage, false));
 			properties.add(new PersistentProperty("suppVis", forceSuppressOwningPackage, false));
 			properties.add(new PersistentProperty("fill", fillColor, null));
-			properties.add(new PersistentProperty("addedUuids", deletedUuids));
+			properties.add(new PersistentProperty("addedUuids", addedUuids));
 			properties.add(new PersistentProperty("deletedUuids", deletedUuids));
 			properties.add(new PersistentProperty("locked", locked, false));
 			properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
@@ -2791,23 +2797,29 @@ public final class ClassifierNodeGem implements Gem
 				coordinator.startTransaction("replaced part", "removed replaced part");
 
 				// now form the port remap based on locations of ports
-				final List<PortRemap> remaps = fancyReplace == null ? null : new PortRemapper(figureFacet, other, figureFacet)
-						.remapPortsBasedOnProximity();
+				final List<PortRemap> remaps = fancyReplace == null ? null :
+					new PortRemapper(
+							figureFacet,
+							other,
+							figureFacet).remapPortsBasedOnProximity();
 
 				// if we are doing a fancy replace, move the other part into place
 				if (fancyReplace != null)
 				{
 					MovingFiguresGem movingGem = new MovingFiguresGem(diagramView.getDiagram(), other.getFullBounds().getPoint());
 					MovingFiguresFacet movingFacet = movingGem.getMovingFiguresFacet();
-					movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]
-					{ other }));
+					movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]{ other }));
 					movingFacet.start(other);
 					movingFacet.move(figureFacet.getFullBounds().getPoint());
 					movingFacet.end();
 				}
 
-				final DeltaReplacedAttribute replacement = fancyReplace == null ? createDeltaReplacedPart(cls, replaced,
-						original) : createFancyDeltaReplacedPart(cls, other, original);
+				final DeltaReplacedAttribute replacement = fancyReplace == null ?
+						createDeltaReplacedPart(
+								cls,
+								replaced,
+								original) :
+						createFancyDeltaReplacedPart(cls, other, original);
 				if (remaps != null)
 					for (PortRemap remap : remaps)
 						GlobalSubjectRepository.repository.decrementPersistentDelete(remap);
@@ -2815,17 +2827,18 @@ public final class ClassifierNodeGem implements Gem
 				// move fancy replace over
 				if (fancyReplace != null)
 					replacement.setReplacement(fancyReplace);
+				else
+				{
+					// change this figure to be the delta subject
+					PersistentFigure pfig = figureFacet.makePersistentFigure();
+					pfig.setSubject(replacement.getReplacement());
+					figureFacet.acceptPersistentFigure(pfig);
+				}								
 				coordinator.commitTransaction();
-
-				/*
-				 * diagramView.runWhenModificationsHaveBeenProcessed(new Runnable() {
-				 * public void run() { FigureFacet createdFeature =
-				 * ClassifierConstituentHelper.findSubfigure(clsFigure,
-				 * replacement.getReplacement());
-				 * diagramView.getSelection().clearAllSelection();
-				 * diagramView.getSelection().addToSelection(createdFeature, true); }
-				 * });
-				 */}
+				
+				diagramView.getSelection().clearAllSelection();
+				diagramView.addFigureToSelectionViaId(figureFacet.getId());
+			}
 		});
 
 		return replacePartItem;
@@ -2872,6 +2885,13 @@ public final class ClassifierNodeGem implements Gem
 						expression.setBody(((Expression) value).getBody());
 					}
 				}
+			}			
+			
+			// copy over any applied stereotypes
+			for (Object st : replaced.undeleted_getAppliedBasicStereotypes())
+			{
+				Stereotype stereo = (Stereotype) st;
+				next.settable_getAppliedBasicStereotypes().add(stereo);
 			}
 
 			// copy over any remaps also

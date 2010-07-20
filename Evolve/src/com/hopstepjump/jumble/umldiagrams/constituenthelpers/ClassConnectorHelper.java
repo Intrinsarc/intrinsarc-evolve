@@ -57,7 +57,6 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
 				addDeletedUuid(addOrReplace.getUuid());
 				return;
 			}
-			System.out.println("$$ no figures, suppressed = " + suppressUnlessElsewhere);
 			return;
 		}
 

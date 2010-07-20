@@ -2,8 +2,6 @@ package com.hopstepjump.jumble.umldiagrams.constituenthelpers;
 
 import java.util.*;
 
-import org.eclipse.uml2.*;
-
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;

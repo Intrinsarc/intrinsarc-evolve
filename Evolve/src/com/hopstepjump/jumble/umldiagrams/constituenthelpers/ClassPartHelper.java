@@ -16,8 +16,6 @@ import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
-import com.hopstepjump.jumble.umldiagrams.colors.*;
-import com.hopstepjump.jumble.umldiagrams.portnode.*;
 import com.hopstepjump.repositorybase.*;
 
 public class ClassPartHelper extends ClassifierConstituentHelper

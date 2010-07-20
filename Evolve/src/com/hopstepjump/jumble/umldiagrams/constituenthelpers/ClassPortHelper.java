@@ -61,10 +61,11 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 				figures[0],
 				figures[1],
 				(Port) addOrReplace.getConstituent().getRepositoryObject(),
-				new PortCreatorGem().getNodeCreateFacet());
+				new PortCreatorGem().getNodeCreateFacet(),
+				true);
 	}
 	
-	public static void placePort(FigureFacet visualOwner, FigureFacet container, FigureFacet fpart, FigureFacet fport, Port port, NodeCreateFacet factory)
+	public static void placePort(FigureFacet visualOwner, FigureFacet container, FigureFacet fpart, FigureFacet fport, Port port, NodeCreateFacet factory, boolean resizeClassifier)
 	{
 		// place the port instance
 		// we now have the appropriate class figure and constituent figure to take sizing etc from
@@ -75,8 +76,11 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 		
 		// resize the class
 		UBounds newBounds = new UBounds(new UPoint(0, 0), newSize).centreToPoint(oldFull.getMiddlePoint());
-		NodeAutoSizeTransaction.autoSize(visualOwner, false);
-		ClassifierConstituentHelper.makeResizingTransaction(visualOwner, newBounds);
+		if (resizeClassifier)
+		{
+			NodeAutoSizeTransaction.autoSize(visualOwner, false);
+			ClassifierConstituentHelper.makeResizingTransaction(visualOwner, newBounds);
+		}
 		
 		// find the offset from the original
 		FigureFacet existing = fport;

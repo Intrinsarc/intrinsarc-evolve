@@ -168,7 +168,8 @@ public class PartPortInstanceHelper
 					fpart,
 					fport,
 					port,
-					new PortInstanceCreatorGem().getNodeCreateFacet());
+					new PortInstanceCreatorGem().getNodeCreateFacet(),
+					false);
 		}
   }
 
@@ -199,7 +200,8 @@ public class PartPortInstanceHelper
 				figures[0],
 				figures[1],
 				port,
-				new PortInstanceCreatorGem().getNodeCreateFacet());
+				new PortInstanceCreatorGem().getNodeCreateFacet(),
+				false);
 	}
 
 	private Set<FigureFacet> getCurrentlyDisplayed()
