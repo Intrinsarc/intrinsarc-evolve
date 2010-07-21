@@ -1976,7 +1976,8 @@ public final class ClassifierNodeGem implements Gem
 
 				// find any attributes to add or delete
 				PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, true);
-				ports.clean(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
+				ports.clean(
+						getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
 						portInstanceHelper.getConstituentUuids());
 
 				if (!suppressAttributesOrSlots)
@@ -2478,8 +2479,7 @@ public final class ClassifierNodeGem implements Gem
 	// work out what we is suppressed by virtue of a stereotype
 	private Set<String> getVisuallySuppressedUUIDs(ConstituentTypeEnum type)
 	{
-		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(figureFacet.getDiagram().getLinkedObject())
-				.asStratum();
+		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(figureFacet.getDiagram().getLinkedObject()).asStratum();
 		DEObject obj = GlobalDeltaEngine.engine.locateObject(subject);
 		DEComponent comp = isPart ? obj.asConstituent().asPart().getType() : obj.asComponent();
 		if (comp == null)
@@ -2832,9 +2832,11 @@ public final class ClassifierNodeGem implements Gem
 					// change this figure to be the delta subject
 					PersistentFigure pfig = figureFacet.makePersistentFigure();
 					pfig.setSubject(replacement.getReplacement());
+					System.out.println("$$ before: deleted uuids of port compartment = " + primitivePorts.makePersistentFigure().getProperties().retrieve("deletedUuids").asString());
 					figureFacet.acceptPersistentFigure(pfig);
 				}								
-				coordinator.commitTransaction();
+				coordinator.commitTransaction(true);
+				System.out.println("$$ after: deleted uuids of port compartment = " + primitivePorts.makePersistentFigure().getProperties().retrieve("deletedUuids").asString());
 				
 				diagramView.getSelection().clearAllSelection();
 				diagramView.addFigureToSelectionViaId(figureFacet.getId());
