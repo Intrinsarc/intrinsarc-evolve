@@ -1404,10 +1404,11 @@ public final class ClassifierNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress attributes flag
-					coordinator.startTransaction(locked ? "Unlocked visuals" : "Locked visuals", locked ? "Locked visuals"
-							: "Unlocked visuals");
+					coordinator.startTransaction(
+							locked ? "Unlocked visuals" : "Locked visuals",
+							locked ? "Locked visuals" : "Unlocked visuals");
 					locked = !locked;
-					coordinator.commitTransaction();
+					coordinator.commitTransaction(true);
 				}
 			});
 			return lockItem;

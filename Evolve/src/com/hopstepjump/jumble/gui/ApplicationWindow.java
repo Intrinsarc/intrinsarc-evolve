@@ -78,8 +78,8 @@ public class ApplicationWindow extends SmartJFrame
 	public static final ImageIcon FULLSCREEN_ICON = IconLoader.loadIcon("fullscreen.png");
 	public static final ImageIcon GARBAGE_ICON = IconLoader.loadIcon("garbage.png");
 	public static final ImageIcon APPLICATION_ICON = IconLoader.loadIcon("brick.png");
-	public static final ImageIcon MONKEY_ICON = IconLoader.loadIcon("monkey-icon.png");
-	public static final ImageIcon SCARY_MONKEY_ICON = IconLoader.loadIcon("scary-monkey-icon.png");
+	public static final ImageIcon EVOLVE_LOGO_ICON = IconLoader.loadIcon("evolve-icon.png");
+	public static final ImageIcon EVOLVE_LOGO_RED_ICON = IconLoader.loadIcon("evolve-icon-red.png");
 	public static final ImageIcon UNDO_ICON = IconLoader.loadIcon("arrow_undo.png");
 	public static final ImageIcon REDO_ICON = IconLoader.loadIcon("arrow_redo.png");
 	public static final ImageIcon SAVE_ICON = IconLoader.loadIcon("disk.png");
@@ -100,7 +100,7 @@ public class ApplicationWindow extends SmartJFrame
 	public static final ImageIcon CHECK_ALL_ICON = IconLoader.loadIcon("check-all.png");
 	public static final ImageIcon INFO_ICON = IconLoader.loadIcon("information.png");
 	public static final ImageIcon DELTA_ICON = IconLoader.loadIcon("delta.png");
-	public static final ImageIcon PALETTE_ICON = IconLoader.loadIcon("palette.png");
+	public static final ImageIcon PALETTE_ICON = IconLoader.loadIcon("crosshairs-up.png");
 	public static final ImageIcon IMPORT_ICON = IconLoader.loadIcon("import.png");
 	public static final ImageIcon EXPORT_ICON = IconLoader.loadIcon("export.png");	
 	public static final ImageIcon FOLDER_ICON = IconLoader.loadIcon("folder.png");
@@ -108,7 +108,7 @@ public class ApplicationWindow extends SmartJFrame
 	public static final ImageIcon KEYBOARD_ICON = IconLoader.loadIcon("keyboard.png");
 	public static final ImageIcon COG_ICON = IconLoader.loadIcon("cog.png");
 	public static final ImageIcon VARIABLES_ICON = IconLoader.loadIcon("variables.png");
-	public static final ImageIcon TICK_ICON = IconLoader.loadIcon("tick.png");
+	public static final ImageIcon TICK_ICON = IconLoader.loadIcon("crosshairs.png");
 
 	public ApplicationWindow(String title, ErrorRegister errors, ConsoleLogger logger)
 	{
@@ -208,7 +208,7 @@ public class ApplicationWindow extends SmartJFrame
 		int height = prefs.getRawPreference(RegisteredGraphicalThemes.INITIAL_HEIGHT).asInteger();
 		setBounds(x, y, width, height);
 		setResizable(true);
-		setIconImage(logger != null && logger.isModified() ? SCARY_MONKEY_ICON.getImage() : MONKEY_ICON.getImage());
+		setIconImage(logger != null && logger.isModified() ? EVOLVE_LOGO_RED_ICON.getImage() : EVOLVE_LOGO_ICON.getImage());
 
 		// a panel to hold the desktop and palette
 		JPanel panel = new JPanel();
@@ -482,16 +482,24 @@ public class ApplicationWindow extends SmartJFrame
 		public void actionPerformed(ActionEvent e)
 		{
 			// save the project, and then refresh all diagrams in the repository
-			if (askAboutSave("Save before collection...", false) != JOptionPane.OK_OPTION)
+			if (!displayFinalMessage)
 			{
-				popup.displayPopup(
-						GARBAGE_ICON,
-						"Garbage collection not attempted",
-						"Model must be saved before collection",
-						ScreenProperties.getUndoPopupColor(),
-						Color.black,
-						3000);
-				return;
+				// just save: note -- must have saved before to have a file name
+				GlobalSubjectRepository.repository.save(frame, false, null);
+			}
+			else
+			{
+				if (askAboutSave("Save before collection...", false) != JOptionPane.OK_OPTION)
+				{
+					popup.displayPopup(
+							GARBAGE_ICON,
+							"Garbage collection not attempted",
+							"Model must be saved before collection",
+							ScreenProperties.getUndoPopupColor(),
+							Color.black,
+							3000);
+					return;
+				}
 			}
 
 			applicationWindowCoordinator.switchRepository();
@@ -691,7 +699,7 @@ public class ApplicationWindow extends SmartJFrame
 				{
 					try
 					{
-						generator.generateHTML(popup, MONKEY_ICON);
+						generator.generateHTML(popup, EVOLVE_LOGO_ICON);
 					} catch (HTMLGenerationException ex)
 					{
 						monitor.stopActivityAndDisplayDialog(
@@ -1900,12 +1908,12 @@ public class ApplicationWindow extends SmartJFrame
 
 			// add the help entries
 			JMenuItem aboutItem = new JMenuItem(new HelpAboutAction(coordinator, popup));			
+			aboutItem.setIcon(EVOLVE_LOGO_ICON);
 			entries.add(new SmartMenuItemImpl("Help", "About", aboutItem));
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
 
 			JMenuItem mainItem = new JMenuItem(
 					new URLAction("Intrinsarc website", URL_BASE));
-			mainItem.setIcon(MONKEY_ICON);
 			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));
 			GlobalPreferences.registerKeyAction("Help", mainItem, null, "Visit main site");
 
@@ -2239,6 +2247,6 @@ public class ApplicationWindow extends SmartJFrame
 	public void notifyLoggerModified()
 	{
 		// set the scary monkey icon
-		setIconImage(SCARY_MONKEY_ICON.getImage());
+		setIconImage(EVOLVE_LOGO_RED_ICON.getImage());
 	}
 }

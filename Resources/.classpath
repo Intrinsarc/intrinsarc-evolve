@@ -7,7 +7,6 @@
 	<classpathentry kind="lib" path="tree-icons"/>
 	<classpathentry kind="lib" path="uml-palette-icons"/>
 	<classpathentry kind="lib" path="window-icons"/>
-	<classpathentry kind="lib" path="help"/>
 	<classpathentry kind="lib" path="tree-delta-icons"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

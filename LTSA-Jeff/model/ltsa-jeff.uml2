@@ -180,15 +180,6 @@
     <appliedBasicStereotypeValues uuid="b6554d1c-5914-4680-8fd2-02e960715e29" property="//@childPackages.5/@childPackages.0/@ownedMember.20/@ownedAttribute.1">
       <value xsi:type="uml:LiteralBoolean" uuid="63ad87fb-a62d-44f8-8135-11d098b8256c" value="true"/>
     </appliedBasicStereotypeValues>
-    <appliedBasicStereotypeValues j_deleted="1" uuid="85ca16ed-eae6-433e-bb3c-ef39339ad9c0">
-      <value xsi:type="uml:Expression" uuid="1097396d-fcc5-491f-9bb1-5202e9006fee" body="$LTSA/src"/>
-    </appliedBasicStereotypeValues>
-    <appliedBasicStereotypeValues j_deleted="1" uuid="2d2f8edf-e32a-45e4-bd0e-b3b44984a764">
-      <value xsi:type="uml:Expression" uuid="2657933c-a0bb-4f43-a305-daab06bcaa30" body="$BB/ltsa"/>
-    </appliedBasicStereotypeValues>
-    <appliedBasicStereotypeValues j_deleted="1" uuid="7aec1243-5030-4cae-b09d-a15ce5520c82">
-      <value xsi:type="uml:Expression" uuid="1ac2197d-2dc2-476e-8798-5791fa318aea" body="$LTSA/bin:$LTSA/../CommonResources/JTattoo.jar:$LTSA/resources"/>
-    </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="ede6ff18-9857-4bfc-a8e7-684037aff61d" property="//@childPackages.5/@childPackages.0/@ownedMember.20/@ownedAttribute.0">
       <value xsi:type="uml:LiteralBoolean" uuid="0c2ab62d-4a23-4d27-9141-816b2efe80e7"/>
     </appliedBasicStereotypeValues>
@@ -11008,18 +10999,6 @@
   <childPackages appliedBasicStereotypes="//@childPackages.5/@childPackages.0/@ownedMember.20" uuid="f84dd1cb-2595-42ce-8ab9-382a00f48402" name="swing" clientDependency="//@childPackages.2/@ownedAnonymousDependencies.0">
     <appliedBasicStereotypeValues uuid="c5f6be93-185c-4f81-830c-d746d5dce5c3" property="//@childPackages.5/@childPackages.0/@ownedMember.20/@ownedAttribute.1">
       <value xsi:type="uml:LiteralBoolean" uuid="39b95c99-8290-4319-bcfb-db8a305c800f" value="true"/>
-    </appliedBasicStereotypeValues>
-    <appliedBasicStereotypeValues j_deleted="1" uuid="745550e1-78e1-4b82-84f0-7ab62f3b3349">
-      <value xsi:type="uml:Expression" uuid="4d3562d2-b63b-472e-adcd-c30ce806c3da"/>
-    </appliedBasicStereotypeValues>
-    <appliedBasicStereotypeValues j_deleted="1" uuid="f52249b5-5707-4392-8399-94c645222ced">
-      <value xsi:type="uml:LiteralBoolean" uuid="b62118e2-ea38-4077-9765-82169982176d" value="true"/>
-    </appliedBasicStereotypeValues>
-    <appliedBasicStereotypeValues j_deleted="1" uuid="738d81fa-aabd-4a90-963d-a9478f83b5e3">
-      <value xsi:type="uml:Expression" uuid="7f809b33-1266-482b-b11f-9812285c0007" body="/home/andrew/installed/jdk1.6.0_12/jre/lib/rt.jar"/>
-    </appliedBasicStereotypeValues>
-    <appliedBasicStereotypeValues j_deleted="1" uuid="b39f4944-c924-4b86-9d1d-f4ee13127c39">
-      <value xsi:type="uml:Expression" uuid="352c22b2-57a6-4722-abab-acfd2c368938" body="$BB/ltsa"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="5c2dfdeb-e69a-4d74-b367-3e47849b8fee" property="//@childPackages.5/@childPackages.0/@ownedMember.20/@ownedAttribute.2">
       <value xsi:type="uml:LiteralBoolean" uuid="a75298d0-a25b-4d75-8a20-ce70f2170cef" value="true"/>

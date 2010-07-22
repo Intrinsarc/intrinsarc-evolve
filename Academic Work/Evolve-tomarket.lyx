@@ -206,6 +206,44 @@ help links to docs, support group, newsgroup + fix up credit text
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
+selectively showing hidden attributes/ports in imported bean
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+replace of state makes it green
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+add 
+\begin_inset Quotes eld
+\end_inset
+
+show selected parts
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+long running transaction flag
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+undo/redo problem after import
+\end_layout
+
+\begin_layout Enumerate
 attribute issues (aliasing, defaults, 
 \color green
 replace of attr with default
@@ -218,24 +256,41 @@ undo after ageX replace – error adorner holds onto old state?
 \end_layout
 
 \begin_layout Enumerate
-undo/redo problem after import
+---------------
 \end_layout
 
 \begin_layout Enumerate
-selectively showing hidden attributes in imported bean
+visual inheritance of connector ends, curve, transition arrow
 \end_layout
 
 \begin_layout Enumerate
-visual lock problems (possibly move to deleteduuids?) + concurrency issues
- when cmd takes a long time
+parts defer to class if no instance present, faulty even if no class present
+\end_layout
+
+\begin_layout Enumerate
+handle parts, ports, connectors, attrs even if no class is present
+\end_layout
+
+\begin_layout Enumerate
+slots disappear/reappear if supercomponent goes
+\end_layout
+
+\begin_layout Enumerate
+disappearing interfaces on redefs/factories
+\end_layout
+
+\begin_layout Enumerate
+-----------------
+\end_layout
+
+\begin_layout Enumerate
+visual lock problems (possibly move to deleteduuids?)
+\color green
+ + concurrency issues when cmd takes a long time
 \end_layout
 
 \begin_layout Enumerate
 replacing part causes element to disappear when visually locked
-\end_layout
-
-\begin_layout Enumerate
-making nice for MacOS?
 \end_layout
 
 \begin_layout Standard
@@ -251,6 +306,10 @@ jar deployment + editing off deployed jars.
 \end_inset
 
 (5 days)
+\end_layout
+
+\begin_layout Enumerate
+online update + web machinery?
 \end_layout
 
 \begin_layout Enumerate
@@ -279,7 +338,7 @@ jump to source integration with eclipse, intellij
 \end_layout
 
 \begin_layout Enumerate
-webviewer for team edition?
+making nice for MacOS?
 \end_layout
 
 \end_body

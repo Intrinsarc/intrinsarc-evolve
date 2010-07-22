@@ -29,7 +29,7 @@ public class UndoRedoStackManager
 			return;
 
 		if (!inTransaction)
-			throw new IllegalStateException("Have a repository event outside of undo/redo or a transaction");
+			throw new IllegalStateException("Have a repository event outside of undo/redo or a transaction: " + this);
 		
 		ensureCurrent();
 		stack.get(current).addNotification(n);
@@ -162,6 +162,8 @@ public class UndoRedoStackManager
   	for (int lp = 0; lp < count; lp++)
   		stack.remove(current);
   	inTransaction = true;
+  	
+  	System.out.println("$$ start transaction: " + this);
   }
 	
 	public void commitTransaction()
@@ -169,6 +171,8 @@ public class UndoRedoStackManager
 		ensureCurrent();
 		current++;
   	inTransaction = false;
+  	
+  	System.out.println("$$ commit transaction:" + this);
 	}
 	
 	public int getCurrent()

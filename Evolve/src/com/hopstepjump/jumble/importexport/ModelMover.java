@@ -94,13 +94,14 @@ public class ModelMover
   	  	// get the current linked package
   			try
   			{
+	  	    SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
+	        repository.startTransaction("", "");
 	  	  	final Package importInto = (Package) diagramView.getDiagram().getLinkedObject();
 	  	  	
 	  	    // clear some variables
 	  	    savedReferences = new ArrayList<TransientSavedReference>();
 	  	    translate = new HashMap<String, Element>();
 	  	    
-	  	    SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 	  	    monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Opened file " + toImport.getFileName(), null, -1);
 	  	    Model importTop = toImport.getTopLevelModel();
 	  	    Model currentTop = repository.getTopLevelModel();
@@ -143,6 +144,7 @@ public class ModelMover
 	  	          UML2Package.eINSTANCE.getPackage_ChildPackages(),
 	  	          false);
 	  	      importInto.getChildPackages().add(element);
+
 	  	      // the replaced package can now be deleted
 	  	      if (existing != null)
 	  	      {
@@ -172,7 +174,6 @@ public class ModelMover
 
 	        // commit
 	        repository.commitTransaction();
-	        repository.startTransaction("", "");
   			}
   			catch (RuntimeException t)
   			{
@@ -436,47 +437,54 @@ public class ModelMover
 		    }
 		    SubjectRepositoryFacet to = repositoryGem.getSubjectRepositoryFacet();
 		    
-		    // copy each top level element to the model in the new repository
-		    Set<Package> selected = getSelectedTopLevelPackages();
-		    Model top = to.getTopLevelModel();
-		    
-		    // set some info
 		    try
-				{
-					top.setDocumentation("Exported from " + InetAddress.getLocalHost().getHostName() + " on " + new Date());
-				}
-		    catch (UnknownHostException e)
-				{
-					top.setDocumentation("Exported on " + new Date());
-				}
-		    
-		    for (Package pkg : selected)
 		    {
-		      monitor.displayInterimPopup(EXPORT_ICON, "Exporting...", "Exporting package " + pkg.getName(), null, -1);
-		      Package newPkg = (Package) copyElementAndContained(
-		      		pkg,
-		          top,
-		          UML2Package.eINSTANCE.getPackage_ChildPackages(),
-		          true);
-		      // make this read-only
-		      newPkg.setReadOnly(true);
-		      lazyOn();
-		      top.getChildPackages().add(newPkg);		      
-		      lazyOff();
+			    // copy each top level element to the model in the new repository
+			    Set<Package> selected = getSelectedTopLevelPackages();
+			    Model top = to.getTopLevelModel();
+			    
+			    // set some info
+			    try
+					{
+						top.setDocumentation("Exported from " + InetAddress.getLocalHost().getHostName() + " on " + new Date());
+					}
+			    catch (UnknownHostException e)
+					{
+						top.setDocumentation("Exported on " + new Date());
+					}
+			    
+			    for (Package pkg : selected)
+			    {
+			      monitor.displayInterimPopup(EXPORT_ICON, "Exporting...", "Exporting package " + pkg.getName(), null, -1);
+			      Package newPkg = (Package) copyElementAndContained(
+			      		pkg,
+			          top,
+			          UML2Package.eINSTANCE.getPackage_ChildPackages(),
+			          true);
+			      // make this read-only
+			      newPkg.setReadOnly(true);
+			      lazyOn();
+			      top.getChildPackages().add(newPkg);		      
+			      lazyOff();
+			    }
+			
+			    // fix up the references and save
+			    lazyOn();
+		      monitor.displayInterimPopup(EXPORT_ICON, "Exporting...", "Reestablishing references", null, -1);
+			    for (TransientSavedReference ref : reestablishReferences())
+			    	createSavedReference(top, ref);
+		      monitor.displayInterimPopup(null, "", "", null, 0);
+			    String fileName = to.saveTo(
+			    		frame,
+			    		UML2_EXPORT_FILES, UML2_EXPORT,
+			    		PreferenceTypeDirectory.recent.getLastVisitedDirectory());
+			    lazyOff();
+			    savedName[0] = fileName;
 		    }
-		
-		    // fix up the references and save
-		    lazyOn();
-	      monitor.displayInterimPopup(EXPORT_ICON, "Exporting...", "Reestablishing references", null, -1);
-		    for (TransientSavedReference ref : reestablishReferences())
-		    	createSavedReference(top, ref);
-	      monitor.displayInterimPopup(null, "", "", null, 0);
-		    String fileName = to.saveTo(
-		    		frame,
-		    		UML2_EXPORT_FILES, UML2_EXPORT,
-		    		PreferenceTypeDirectory.recent.getLastVisitedDirectory());
-		    lazyOff();
-		    savedName[0] = fileName;		    
+		    finally
+		    {
+		    	to.close();
+		    }
 			}
 		});
 		

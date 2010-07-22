@@ -26,7 +26,7 @@ import edu.umd.cs.jazz.component.*;
 
 public class ComponentMiniAppearanceGem implements Gem
 {
-	public static final ImageIcon EVOLVE_ICON = IconLoader.loadIcon("monkey-icon.png");
+	public static final ImageIcon EVOLVE_ICON = IconLoader.loadIcon("evolution.png");
 	private static final ImageIcon FLAT_ICON = IconLoader.loadIcon("flat.png");
 	private ClassifierMiniAppearanceFacet miniAppearanceFacet = new ClassifierMiniAppearanceFacetImpl();
 	private FigureFacet figureFacet;
@@ -328,8 +328,11 @@ public class ComponentMiniAppearanceGem implements Gem
 		}
 	}
 
-	public static Object setElementText(FigureFacet figure,
-			TextableFacet textable, String text, Object listSelection,
+	public static Object setElementText(
+			FigureFacet figure,
+			TextableFacet textable,
+			String text,
+			Object listSelection,
 			boolean unsuppress)
 	{
 		NamedElement subject = (NamedElement) figure.getSubject();
@@ -350,6 +353,7 @@ public class ComponentMiniAppearanceGem implements Gem
 		}
 
 		ElementSelection sel = (ElementSelection) listSelection;
+		GlobalSubjectRepository.repository.markLongRunningTransaction();
 		if (oldText.length() == 0)
 		{
 			// delete the previous subject

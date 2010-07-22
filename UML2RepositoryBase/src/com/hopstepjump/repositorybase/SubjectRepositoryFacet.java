@@ -19,6 +19,14 @@ import com.hopstepjump.idraw.foundation.persistence.*;
  */
 public interface SubjectRepositoryFacet extends TransactionManagerFacet
 {	
+	/**
+	 * extra transaction handling methods
+	 * anyone can set this to indicate that the current transaction may take longer
+	 * than a tenth of a second or so
+	 */
+	public void markLongRunningTransaction();	
+	public boolean isLongRunningTransaction();
+	
   /**
    * delete undelete and refresh
    */

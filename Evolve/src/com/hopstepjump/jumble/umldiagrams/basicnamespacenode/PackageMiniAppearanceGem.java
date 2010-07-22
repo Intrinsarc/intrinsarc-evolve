@@ -245,7 +245,7 @@ public class PackageMiniAppearanceGem implements Gem
         relaxed.setSelected(isRelaxed);
         relaxed.setEnabled(!readOnly);
         menu.add(relaxed);
-        
+
         final boolean isDestructive = getDEPackage().isDestructive();
         JCheckBoxMenuItem destructive = new JCheckBoxMenuItem(
           new AbstractAction("Destructive")

@@ -59,6 +59,8 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   
   private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
+  	private boolean longRunningTransaction;
+  	
 		public String getRedoTransactionDescription()
 		{
 			return undoredo.getRedoDescription();
@@ -207,15 +209,18 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     {
       start();
       pm.evictAll();
-      undoredo.startTransaction(redoName, undoName);
+      if (!GlobalSubjectRepository.ignoreUpdates)
+      	undoredo.startTransaction(redoName, undoName);
     }
 
     public void commitTransaction()
     {
       end();
-      undoredo.commitTransaction();
+      if (!GlobalSubjectRepository.ignoreUpdates)
+      	undoredo.commitTransaction();
       for (SubjectRepositoryListenerFacet listener : listeners)
         listener.sendChanges();
+      longRunningTransaction = false;
     }
 
     public void incrementPersistentDelete(Element element)
@@ -407,6 +412,16 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 		public void resetModified()
 		{
 			// no need as changes are committed as they occur
+		}
+
+		public void markLongRunningTransaction()
+		{
+			longRunningTransaction = true;
+		}
+		
+		public boolean isLongRunningTransaction()
+		{
+			return longRunningTransaction;
 		}
   }
   

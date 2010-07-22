@@ -506,7 +506,7 @@ public final class ToolCoordinatorGem implements Gem
 
 		public void commitTransaction()
 		{
-			commitTransaction(false);
+			commitTransaction(GlobalSubjectRepository.repository.isLongRunningTransaction());
 		}
 
 		public void commitTransaction(final boolean fullyCommitCurrentDiagramInForeground)

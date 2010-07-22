@@ -403,19 +403,17 @@ public class PaletteManagerGem
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Package", null);
       
-		  palette.addEntry(makeEntry(true, "relaxed-stratum.png", "Relaxed stratum", makeNodeCreateTool(makeRelaxedStratumCreator()), "top", null));
-		  palette.addEntry(makeEntry(true, "strict-stratum.png", "Strict stratum",   makeNodeCreateTool(makeStrictStratumCreator()), "top", null));
-      
-      palette.addEntry(makeEntry(false, "dependency.png", "Dependency",           new ArcCreateToolGem(retrieveArcRecreator(DependencyCreatorGem.NAME)).getToolFacet(), "namespace,element"));
+		  palette.addEntry(makeEntry(true, "relaxed-stratum.png", "Stratum", makeNodeCreateTool(makeRelaxedStratumCreator()), "top", null));      
       palette.addEntry(makeEntry(true, "package.png",     "Package",              makeNodeCreateTool(retrieveNodeRecreator(PackageCreatorGem.NAME)), "top"));
+      palette.addEntry(makeEntry(false, "dependency.png", "Dependency",           new ArcCreateToolGem(retrieveArcRecreator(DependencyCreatorGem.NAME)).getToolFacet(), "namespace,element"));
       tools.addCategory(palette);
     }
     
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Evolution", new String[]{COMPONENT_FOCUS, FEATURE_FOCUS, STATE_FOCUS, PROFILE_FOCUS});
-      palette.addEntry(makeEntry(false, "resemblance.png",  "Resemblance",         new ArcCreateToolGem(SubstitutionUtilities.makeResemblanceCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
-      palette.addEntry(makeEntry(false, "replacement.png",  "Replacement",         new ArcCreateToolGem(SubstitutionUtilities.makeReplacementCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
-      palette.addEntry(makeEntry(false, "evolution.png",  "Evolution",             new ArcCreateToolGem(SubstitutionUtilities.makeEvolutionCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
+      palette.addEntry(makeEntry(false, "resemblance.png",  "Resemble",         new ArcCreateToolGem(SubstitutionUtilities.makeResemblanceCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
+      palette.addEntry(makeEntry(false, "replacement.png",  "Replace",         new ArcCreateToolGem(SubstitutionUtilities.makeReplacementCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
+      palette.addEntry(makeEntry(false, "evolution.png",  "Evolve",             new ArcCreateToolGem(SubstitutionUtilities.makeEvolutionCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
       tools.addCategory(palette);
     }
 

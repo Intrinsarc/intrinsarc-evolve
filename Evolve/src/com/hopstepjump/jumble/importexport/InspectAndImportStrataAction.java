@@ -94,82 +94,89 @@ public class InspectAndImportStrataAction extends AbstractAction
 		
 		// start up a read-only browser with this repository
 		SubjectRepositoryFacet export = repositoryGem.getSubjectRepositoryFacet();
-		Model exportTop = export.getTopLevelModel();
-		repositoryGem.getSubjectRepositoryFacet().getTopLevelModel().setReadOnly(true);
-		
-		UMLTreeMediator tree = new UMLTreeMediator(export, coordinator, true, false, exportTop, null, new JMenuItem[0], null, null, new HashSet<String>());
-		final JSplitPane panel = new JSplitPane();
-		panel.setPreferredSize(new Dimension(600, 400));
-		final JTree t = tree.getJTree();
-		addExpandAndCollapseMenuItems(t);
-		panel.setLeftComponent(new JScrollPane(t));
-		final JTree contents = new JTree();
-		addExpandAndCollapseMenuItems(contents);
-		panel.setRightComponent(new JScrollPane(contents));
-		
-		// listen to mouse events and show the contents
-    tree.addListener(new UMLTreeMediatorListener()
-    {
-      public void selectionChanged(TreeSelectionEvent event)
-      {
-        // remake the inline tree, using the selected item from the top tree
-        DefaultMutableTreeNode selected = RepositoryBrowserGem.findSingleSelectedNode(t);
-  			final DefaultMutableTreeNode root = new DefaultMutableTreeNode();
-  			contents.setModel(new DefaultTreeModel(root));
-        // add all containments
-        if (selected != null)
-        {
-        	Element top = ((UMLTreeUserObject) selected.getUserObject()).getElement();
-        	addAllContained(top, top, root);
-        }
-        contents.setRootVisible(true);
-        contents.expandRow(0);
-        contents.expandRow(1);
-        contents.setRootVisible(false);
-      }
-
-			private void addAllContained(Element top, Element element, DefaultMutableTreeNode node)
-			{
-				if (element instanceof Package && element != top)
-					return;
-				DefaultMutableTreeNode next = new DefaultMutableTreeNode(ModelMover.getSensibleDetail(element)); 
-				node.add(next);
-		    // handle any containments
-		    for (Object containedObject : element.eClass().getEAllContainments())
-		    {
-		      EReference contained = (EReference) containedObject;
-		      if (ModelMover.containmentCanBeSet(contained))
-		      {
-		      	if (element.eGet(contained) != null)
-		      	{
-			        if (contained.isMany())
-		        		for (Element e : (List<Element>) element.eGet(contained))
-		        			addAllContained(top, e, next);
-			        else
-			        	addAllContained(top, (Element) element.eGet(contained), next);
-		      	}
-		      }
-		    }    
-			}
-    });
-    
-    // open the window
-    JButton imp = new JButton("Import all into model", IMPORT_ICON);
-    JButton cancel = new JButton("Cancel", CANCEL_ICON);
-    JButton buttons[] = new JButton[]{imp, cancel};
-    BeanImporter.conformSize(buttons);
-    panel.setDividerLocation(180);
-		int chosen = coordinator.invokeAsDialog(IMPORT_ICON, "Exported file: " + fileName, panel, buttons,
-			new Runnable()
-			{
-				public void run()
+		try
+		{
+			Model exportTop = export.getTopLevelModel();
+			repositoryGem.getSubjectRepositoryFacet().getTopLevelModel().setReadOnly(true);
+			
+			UMLTreeMediator tree = new UMLTreeMediator(export, coordinator, true, false, exportTop, null, new JMenuItem[0], null, null, new HashSet<String>());
+			final JSplitPane panel = new JSplitPane();
+			panel.setPreferredSize(new Dimension(600, 400));
+			final JTree t = tree.getJTree();
+			addExpandAndCollapseMenuItems(t);
+			panel.setLeftComponent(new JScrollPane(t));
+			final JTree contents = new JTree();
+			addExpandAndCollapseMenuItems(contents);
+			panel.setRightComponent(new JScrollPane(contents));
+			
+			// listen to mouse events and show the contents
+	    tree.addListener(new UMLTreeMediatorListener()
+	    {
+	      public void selectionChanged(TreeSelectionEvent event)
+	      {
+	        // remake the inline tree, using the selected item from the top tree
+	        DefaultMutableTreeNode selected = RepositoryBrowserGem.findSingleSelectedNode(t);
+	  			final DefaultMutableTreeNode root = new DefaultMutableTreeNode();
+	  			contents.setModel(new DefaultTreeModel(root));
+	        // add all containments
+	        if (selected != null)
+	        {
+	        	Element top = ((UMLTreeUserObject) selected.getUserObject()).getElement();
+	        	addAllContained(top, top, root);
+	        }
+	        contents.setRootVisible(true);
+	        contents.expandRow(0);
+	        contents.expandRow(1);
+	        contents.setRootVisible(false);
+	      }
+	
+				private void addAllContained(Element top, Element element, DefaultMutableTreeNode node)
 				{
-					t.setSelectionRow(0);
+					if (element instanceof Package && element != top)
+						return;
+					DefaultMutableTreeNode next = new DefaultMutableTreeNode(ModelMover.getSensibleDetail(element)); 
+					node.add(next);
+			    // handle any containments
+			    for (Object containedObject : element.eClass().getEAllContainments())
+			    {
+			      EReference contained = (EReference) containedObject;
+			      if (ModelMover.containmentCanBeSet(contained))
+			      {
+			      	if (element.eGet(contained) != null)
+			      	{
+				        if (contained.isMany())
+			        		for (Element e : (List<Element>) element.eGet(contained))
+			        			addAllContained(top, e, next);
+				        else
+				        	addAllContained(top, (Element) element.eGet(contained), next);
+			      	}
+			      }
+			    }    
 				}
-			});
-				
-		if (chosen == 0)
-			importPackages(export);
+	    });
+	    
+	    // open the window
+	    JButton imp = new JButton("Import all into model", IMPORT_ICON);
+	    JButton cancel = new JButton("Cancel", CANCEL_ICON);
+	    JButton buttons[] = new JButton[]{imp, cancel};
+	    BeanImporter.conformSize(buttons);
+	    panel.setDividerLocation(180);
+			int chosen = coordinator.invokeAsDialog(IMPORT_ICON, "Exported file: " + fileName, panel, buttons,
+				new Runnable()
+				{
+					public void run()
+					{
+						t.setSelectionRow(0);
+					}
+				});
+					
+			if (chosen == 0)
+				importPackages(export);
+		}
+		finally
+		{
+			export.close();
+		}
 	}		
 
 	private void importPackages(SubjectRepositoryFacet toImport)
@@ -194,6 +201,7 @@ public class InspectAndImportStrataAction extends AbstractAction
 		try
 		{
 			final ImportResults results = importer.importPackages(monitor, toImport);
+
 			boolean noBadReferences = results.getLeftOverOutsideReferences().isEmpty();
 			boolean noRemovals = results.getSafelyRemoved().isEmpty() && results.getUnsafelyRemoved().isEmpty();
 			boolean noBad = noBadReferences && noRemovals;

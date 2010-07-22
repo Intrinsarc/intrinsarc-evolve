@@ -72,6 +72,8 @@ public class XMLSubjectRepositoryGem implements Gem
   
 	private class SubjectRepositoryFacetImpl implements SubjectRepositoryFacet
   {
+		private boolean longRunningTransaction;
+		
 		public String getRedoTransactionDescription()
 		{
 			return undoredo.getRedoDescription();
@@ -265,15 +267,18 @@ public class XMLSubjectRepositoryGem implements Gem
     public void startTransaction(String redoName, String undoName)
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
-      undoredo.startTransaction(redoName, undoName);
+      if (!GlobalSubjectRepository.ignoreUpdates)
+      	undoredo.startTransaction(redoName, undoName);
     }
 
     public void commitTransaction()
     {
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
-      undoredo.commitTransaction();
+      if (!GlobalSubjectRepository.ignoreUpdates)
+      	undoredo.commitTransaction();
       for (SubjectRepositoryListenerFacet listener : listeners)
         listener.sendChanges();
+      longRunningTransaction = false;
     }
 
     public void incrementPersistentDelete(Element element)
@@ -505,6 +510,16 @@ public class XMLSubjectRepositoryGem implements Gem
 		public void resetModified()
 		{
 			modified = false;
+		}
+
+		public void markLongRunningTransaction()
+		{
+			longRunningTransaction = true;
+		}		
+		
+		public boolean isLongRunningTransaction()
+		{
+			return longRunningTransaction;
 		}
   }
   

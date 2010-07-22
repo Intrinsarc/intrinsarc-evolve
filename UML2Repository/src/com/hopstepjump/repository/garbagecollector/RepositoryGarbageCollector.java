@@ -105,7 +105,7 @@ public class RepositoryGarbageCollector
       for (RemovalEntry entry : referencesToRemove)
       {
       	if (lp % 10 == 0)
-      		updater.update("Removed " + lp + " redundant references");
+      		updater.update("Removing " + lp + " redundant references");
       	lp++;
         Element owner = entry.getOwner();
         EReference ref = entry.getReference();
@@ -122,7 +122,7 @@ public class RepositoryGarbageCollector
       lp = 0;
       for (RemovalEntry entry : containmentsToRemove)
       {
-    		updater.update("Removed " + lp + " redundant containments (may take a while...)");
+    		updater.update("Removing " + lp + " redundant containments (may take a while...)");
       	lp++;
         Element owner = entry.getOwner();
         EReference ref = entry.getReference();
