@@ -261,33 +261,11 @@ public final class FeatureCompartmentGem implements Gem
 				deletedUuids.retainAll(uuids);
 			}
 
-			public Set<String>[] getAddedAndDeleted()
-			{
-				return (Set<String>[]) new Set[]{new HashSet<String>(addedUuids), new HashSet<String>(deletedUuids)};
-			}
-
 			public boolean isDeleted(Set<String> visuallySuppressedUuids, String uuid)
 			{
 				if (addedUuids.contains(uuid))
 					return false;
 				return visuallySuppressedUuids.contains(uuid) || deletedUuids.contains(uuid);
-			}
-
-			public void resetToDefaults()
-			{
-				addedUuids.clear();
-				deletedUuids.clear();
-			}
-
-			public void setAddedAndDeleted(Set<String>[] addedAndDeletedUuids)
-			{
-				if (addedAndDeletedUuids == null)
-					resetToDefaults();
-				else
-				{
-					addedUuids = addedAndDeletedUuids[0];
-					deletedUuids = addedAndDeletedUuids[1];
-				}
 			}
 
 			public void setToShowAll(Set<String> visuallySuppressedUuids)

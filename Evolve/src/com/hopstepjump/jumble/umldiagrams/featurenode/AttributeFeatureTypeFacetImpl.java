@@ -14,6 +14,7 @@ import org.eclipse.uml2.impl.*;
 
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
+import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.repository.*;
@@ -311,10 +312,14 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
         
         coordinator.startTransaction("replaced attribute", "removed replaced attribute");
         final DeltaReplacedAttribute replacement = createDeltaReplacedAttribute(cls, replaced, original);
+        
+        PersistentFigure pfig = figureFacet.makePersistentFigure();
+        pfig.setSubject(replacement.getReplacement());
+        figureFacet.acceptPersistentFigure(pfig);
+        
         coordinator.commitTransaction(true);
-        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
         diagramView.getSelection().clearAllSelection();
-        diagramView.getSelection().addToSelection(createdFeature, true);
+        diagramView.getSelection().addToSelection(figureFacet, true);
       }
     });
 

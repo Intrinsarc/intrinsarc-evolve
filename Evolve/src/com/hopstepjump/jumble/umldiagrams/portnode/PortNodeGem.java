@@ -1362,11 +1362,15 @@ public final class PortNodeGem implements Gem
         
         coordinator.startTransaction("replaced port", "removed replaced port");
         final DeltaReplacedPort replacement = createDeltaReplacedPort(cls, replaced, original);
+
+        PersistentFigure pfig = figureFacet.makePersistentFigure();
+        pfig.setSubject(replacement.getReplacement());
+        figureFacet.acceptPersistentFigure(pfig);
+
         coordinator.commitTransaction(true);
         
-        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
         diagramView.getSelection().clearAllSelection();
-        diagramView.getSelection().addToSelection(createdFeature, true);
+        diagramView.getSelection().addToSelection(figureFacet, true);
       }
     });
 

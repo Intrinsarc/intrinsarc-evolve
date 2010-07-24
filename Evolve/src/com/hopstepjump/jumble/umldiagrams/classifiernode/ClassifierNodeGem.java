@@ -147,34 +147,11 @@ public final class ClassifierNodeGem implements Gem
 			deletedUuids.retainAll(uuids);
 		}
 
-		public Set<String>[] getAddedAndDeleted()
-		{
-			return (Set<String>[]) new Set[]
-			{ new HashSet<String>(addedUuids), new HashSet<String>(deletedUuids) };
-		}
-
 		public boolean isDeleted(Set<String> visuallySuppressedUuids, String uuid)
 		{
 			if (addedUuids.contains(uuid))
 				return false;
 			return visuallySuppressedUuids.contains(uuid) || deletedUuids.contains(uuid);
-		}
-
-		public void resetToDefaults()
-		{
-			addedUuids.clear();
-			deletedUuids.clear();
-		}
-
-		public void setAddedAndDeleted(Set<String>[] addedAndDeletedUuids)
-		{
-			if (addedAndDeletedUuids == null)
-				resetToDefaults();
-			else
-			{
-				addedUuids = addedAndDeletedUuids[0];
-				deletedUuids = addedAndDeletedUuids[1];
-			}
 		}
 
 		public void setToShowAll(Set<String> visuallySuppressedUuids)
@@ -1984,7 +1961,12 @@ public final class ClassifierNodeGem implements Gem
 				if (!suppressAttributesOrSlots)
 					slotHelper.makeUpdateTransaction(attributesOrSlots, locked);
 				if (!displayOnlyIcon)
+				{
+					System.out.println("$$------------: ports = " + ports.hashCode() + ", locked = " + locked + ", part figure id = " + figureFacet.getId() + ", part subj = " + figureFacet.getSubject() + ", diagram = " + figureFacet.getDiagram().getDiagramReference());
+					System.out.println("$$ vis supp = " + getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT).size());
+
 					portInstanceHelper.makeUpdateTransaction(ports, locked);
+				}
 				return;
 			}
 
@@ -2792,8 +2774,7 @@ public final class ClassifierNodeGem implements Gem
 			{
 				final Property replaced = (Property) figureFacet.getSubject();
 				final Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
-				final FigureFacet clsFigure = ClassifierConstituentHelper
-						.extractVisualClassifierFigureFromConstituent(figureFacet);
+				final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
 				final Class cls = (Class) clsFigure.getSubject();
 				coordinator.startTransaction("replaced part", "removed replaced part");
 
@@ -2814,6 +2795,8 @@ public final class ClassifierNodeGem implements Gem
 					movingFacet.move(figureFacet.getFullBounds().getPoint());
 					movingFacet.end();
 				}
+				
+				System.out.println("$$ deleted uuids = " + primitivePorts.makePersistentFigure().getProperties().retrieve("deletedUuids").asString() + ", figure id = " + primitivePorts.getId());
 
 				final DeltaReplacedAttribute replacement = fancyReplace == null ?
 						createDeltaReplacedPart(
@@ -2833,11 +2816,9 @@ public final class ClassifierNodeGem implements Gem
 					// change this figure to be the delta subject
 					PersistentFigure pfig = figureFacet.makePersistentFigure();
 					pfig.setSubject(replacement.getReplacement());
-					System.out.println("$$ before: deleted uuids of port compartment = " + primitivePorts.makePersistentFigure().getProperties().retrieve("deletedUuids").asString());
 					figureFacet.acceptPersistentFigure(pfig);
 				}								
 				coordinator.commitTransaction(true);
-				System.out.println("$$ after: deleted uuids of port compartment = " + primitivePorts.makePersistentFigure().getProperties().retrieve("deletedUuids").asString());
 				
 				diagramView.getSelection().clearAllSelection();
 				diagramView.addFigureToSelectionViaId(figureFacet.getId());

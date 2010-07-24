@@ -602,7 +602,7 @@ public final class BasicArcFigureGem implements Gem
 	    UPoint virtualPoint = properties.retrieve("vtl").asUPoint();
 
 	    UPoint[] allPoints = properties.retrieve("pts").asUPointArray();
-	    state.calculatedPoints = new CalculatedArcPoints(null, null, virtualPoint, Arrays.asList(allPoints));
+	    state.calculatedPoints = new CalculatedArcPoints(state.linkingFacet.getAnchor1(), state.linkingFacet.getAnchor2(), virtualPoint, Arrays.asList(allPoints));
 	    state.appearanceFacet.acceptPersistentProperties(pfig);
 		}
   }

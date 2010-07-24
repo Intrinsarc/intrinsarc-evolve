@@ -13,6 +13,7 @@ import org.eclipse.uml2.impl.*;
 
 import com.hopstepjump.idraw.figurefacilities.textmanipulationbase.*;
 import com.hopstepjump.idraw.foundation.*;
+import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.repository.*;
@@ -231,11 +232,15 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
       	if (replacement[0] == null)
       		replacement[0] = createDeltaReplacedOperation(cls, replaced, original);
         GlobalSubjectRepository.repository.decrementPersistentDelete(replacement[0]);
+        
+        PersistentFigure pfig = figureFacet.makePersistentFigure();
+        pfig.setSubject(replacement[0].getReplacement());
+        figureFacet.acceptPersistentFigure(pfig);
+
         coordinator.commitTransaction();
         
-        FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement[0].getReplacement());
         diagramView.getSelection().clearAllSelection();
-        diagramView.getSelection().addToSelection(createdFeature, true);
+        diagramView.getSelection().addToSelection(figureFacet, true);
       }
     });
 

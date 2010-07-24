@@ -603,11 +603,16 @@ public class ConnectorArcAppearanceGem implements Gem
           
           coordinator.startTransaction("replaced connector", "removed replaced connector");
           final DeltaReplacedConnector replacement = createDeltaReplacedConnector(cls, replaced, original);
+          
+          PersistentFigure pfig = figureFacet.makePersistentFigure();
+          pfig.setSubject(replacement.getReplacement());
+          figureFacet.acceptPersistentFigure(pfig);
+          
+
           coordinator.commitTransaction(true);
           
-          FigureFacet createdFeature = ClassifierConstituentHelper.findSubfigure(clsFigure, replacement.getReplacement());
           diagramView.getSelection().clearAllSelection();
-          diagramView.getSelection().addToSelection(createdFeature, true);
+          diagramView.getSelection().addToSelection(figureFacet, true);
         }
       });
 

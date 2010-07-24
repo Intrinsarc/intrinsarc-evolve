@@ -492,7 +492,7 @@ public class PaletteManagerGem
 
         PartCreatorGem statePartCreator = new PartCreatorGem(true);
         statePartCreator.setFillColorPreference(BaseColors.STATE_PART_COLOR);
-        palette.addEntry(makeEntry(true, "state.png", "State part",  makeNodeCreateTool(statePartCreator.getNodeCreateFacet()), "class"));
+        palette.addEntry(makeEntry(true, "state-part.png", "State part",  makeNodeCreateTool(statePartCreator.getNodeCreateFacet()), "class"));
         
         ConnectorCreatorGem transitionCreator = new ConnectorCreatorGem();
         transitionCreator.setDirected(true);
@@ -505,7 +505,7 @@ public class PaletteManagerGem
 	      {
 	      	PortCreatorGem creator = new PortCreatorGem();
 	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
-	      	palette.addEntry(makeEntry(true, "port.png",         "Port",                 makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));
+	      	palette.addEntry(makeEntry(true, "port.png",       "Port",                 makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));
 	      }
 
 	      {

@@ -56,6 +56,7 @@ public class PartPortInstanceHelper
   
   public void makeUpdateTransaction(SimpleDeletedUuidsFacet deleted, boolean locked)
   {
+  	System.out.println("$$ making update transaction for " + ((Element) partFigure.getSubject()).getUuid() + ": deleted = " + deleted.toString());
     // if the container isn't visible, don't bother
     if (!container.isShowing())
       return;
@@ -68,7 +69,6 @@ public class PartPortInstanceHelper
       uuids.add(pair.getConstituent().getUuid());
     
     // work out what we need to delete
-
     // delete if this shouldn't be here
     for (FigureFacet f : current)
     {
