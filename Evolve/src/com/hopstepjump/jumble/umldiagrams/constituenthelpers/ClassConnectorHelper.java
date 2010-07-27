@@ -57,10 +57,9 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
 				addDeletedUuid(addOrReplace.getUuid());
 				return;
 			}
-			return;
 		}
 
-		FigureFacet existing = figures[1];
+		FigureFacet existing = figures == null ? null : figures[1];
 
 		// find the 2 ports inside this classifier
     DEConnector connector = addOrReplace.getConstituent().asConnector(); 

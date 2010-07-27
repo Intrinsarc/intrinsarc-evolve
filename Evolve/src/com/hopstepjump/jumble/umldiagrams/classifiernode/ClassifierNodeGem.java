@@ -1962,9 +1962,6 @@ public final class ClassifierNodeGem implements Gem
 					slotHelper.makeUpdateTransaction(attributesOrSlots, locked);
 				if (!displayOnlyIcon)
 				{
-					System.out.println("$$------------: ports = " + ports.hashCode() + ", locked = " + locked + ", part figure id = " + figureFacet.getId() + ", part subj = " + figureFacet.getSubject() + ", diagram = " + figureFacet.getDiagram().getDiagramReference());
-					System.out.println("$$ vis supp = " + getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT).size());
-
 					portInstanceHelper.makeUpdateTransaction(ports, locked);
 				}
 				return;
@@ -2796,8 +2793,6 @@ public final class ClassifierNodeGem implements Gem
 					movingFacet.end();
 				}
 				
-				System.out.println("$$ deleted uuids = " + primitivePorts.makePersistentFigure().getProperties().retrieve("deletedUuids").asString() + ", figure id = " + primitivePorts.getId());
-
 				final DeltaReplacedAttribute replacement = fancyReplace == null ?
 						createDeltaReplacedPart(
 								cls,

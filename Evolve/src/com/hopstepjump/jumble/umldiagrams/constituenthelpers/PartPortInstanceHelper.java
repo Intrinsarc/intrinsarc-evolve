@@ -56,7 +56,6 @@ public class PartPortInstanceHelper
   
   public void makeUpdateTransaction(SimpleDeletedUuidsFacet deleted, boolean locked)
   {
-  	System.out.println("$$ making update transaction for " + ((Element) partFigure.getSubject()).getUuid() + ": deleted = " + deleted.toString());
     // if the container isn't visible, don't bother
     if (!container.isShowing())
       return;
@@ -191,14 +190,13 @@ public class PartPortInstanceHelper
 				deleted.addDeleted(port.getUuid());
 				return;
 			}
-			return;
 		}
 
 		ClassPortHelper.placePort(
 				partFigure,
 				container,
-				figures[0],
-				figures[1],
+				figures == null ? container : figures[0],
+				figures == null ? null : figures[1],
 				port,
 				new PortInstanceCreatorGem().getNodeCreateFacet(),
 				false);

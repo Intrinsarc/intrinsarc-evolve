@@ -137,14 +137,17 @@ public class PartSlotHelper
 		DEComponent component = GlobalDeltaEngine.engine.locateObject(classifierFigure.getSubject()).asComponent();
 		String partUuid = ((Element) partFigure.getSubject()).getUuid();
 		FigureFacet[] figures = ClassifierConstituentHelper.findClassAndConstituentFigure(classifierFigure, perspective, component, partUuid, null, false);
-		if (figures == null)
-			return;
 		
-		// now look for the slot
-		FigureFacet slotFigure = ClassifierConstituentHelper.findSubfigure(figures[1], slot);
-		if (slotFigure == null)
-			return;
-			
+		// if we don't have anything, try to find sensible defaults
+		FigureFacet slotFigure = classifierFigure;
+		if (figures != null)
+		{
+			// now look for the slot
+			FigureFacet possibleSlot = ClassifierConstituentHelper.findSubfigure(figures[1], slot);
+			if (possibleSlot != null)
+				slotFigure = possibleSlot;			
+		}
+		
     // look for the location amongst existing elements which this might be replacing
     UPoint location = slotFigure.getFullBounds().getTopLeftPoint().subtract(new UDimension(0, 1));
     
