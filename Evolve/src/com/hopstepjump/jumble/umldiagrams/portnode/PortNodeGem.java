@@ -25,10 +25,13 @@ import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.idraw.nodefacilities.previewsupport.*;
 import com.hopstepjump.idraw.nodefacilities.resize.*;
 import com.hopstepjump.idraw.nodefacilities.resizebase.*;
+import com.hopstepjump.idraw.nodefacilities.style.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.jumble.expander.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
+import com.hopstepjump.jumble.umldiagrams.basicnamespacenode.*;
 import com.hopstepjump.jumble.umldiagrams.classifiernode.*;
+import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.jumble.umldiagrams.dependencyarc.*;
 import com.hopstepjump.jumble.umldiagrams.implementationarc.*;
 import com.hopstepjump.jumble.umldiagrams.linkedtextnode.*;
@@ -69,6 +72,7 @@ public final class PortNodeGem implements Gem
   private Set<String> inferredReqNames = new HashSet<String>();
   private Set<String> inferredProvNames = new HashSet<String>();
   private boolean someHidden;
+	private Color fillColor;
   
 	public PortNodeGem(DiagramFacet diagram, UPoint location, boolean isForClasses, PersistentFigure pfig, boolean instance, boolean suppressLinkedText, UDimension linkedTextOffset)
   {
@@ -238,6 +242,7 @@ public final class PortNodeGem implements Gem
     drawInferred = properties.retrieve("drawInferred", false).asBoolean();
     someHidden = properties.retrieve("someHidden", false).asBoolean();
     accessType = VisibilityKind.get(pfig.getProperties().retrieve("access", 0).asInteger());
+		fillColor = properties.retrieve("fill", BaseColors.getColorPreference(BaseColors.PORT_COLOR)).asColor();
   }
   
   public BasicNodeAppearanceFacet getBasicNodeAppearanceFacet()
@@ -385,7 +390,7 @@ public final class PortNodeGem implements Gem
       if (displayType != PortDisplayEnum.ELIDED_TYPE)
       {
   			ZGroup rect =
-  				new FancyRectangleMaker(bounds, 4, Color.LIGHT_GRAY, true, 2.5).make();
+  				new FancyRectangleMaker(bounds, 4, fillColor, true, 2.5).make();
         group.addChild(rect);     
       }
       else
@@ -836,6 +841,16 @@ public final class PortNodeGem implements Gem
         displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayEnum.ELIDED_TYPE, "elided"));
         displayType.add(getPortDisplayTypeMenuItem(coordinator, PortDisplayEnum.SHORTCUT_TYPE, "shortcut"));
         popup.add(displayType);
+
+        popup.add(
+      			BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
+      					new SetFillCallback()
+							{
+      					public void setFill(Color fill)
+      					{
+									fillColor = fill;
+								}
+							}));
       }
       
 			return popup;
@@ -985,6 +1000,7 @@ public final class PortNodeGem implements Gem
       properties.add(new PersistentProperty("drawInferred", drawInferred, false));
       properties.add(new PersistentProperty("someHidden", someHidden, false));
       properties.add(new PersistentProperty("access", accessType.getValue(), 0));
+			properties.add(new PersistentProperty("fill", fillColor, null));
 		}
 
 		/**

@@ -97,7 +97,8 @@ public class PartPortInstanceHelper
               current,
               partFigure,
               container,
-              port);
+              port,
+              pair.getUuid());
 	      }
 	    }
     }
@@ -115,7 +116,8 @@ public class PartPortInstanceHelper
       Set<FigureFacet> currentInContainerIgnoringDeletes,
       BasicNodeFigureFacet partFigure,
       FigureFacet container,
-      Port port)
+      Port port,
+      String uuid)
   {
 		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(partFigure.getDiagram().getLinkedObject()).asStratum();
 		FigureFacet classifierFigure = partFigure.getContainedFacet().getContainer().getContainedFacet().getContainer().getFigureFacet();
@@ -145,7 +147,7 @@ public class PartPortInstanceHelper
 		{
 			if (suppressUnlessElsewhere)
 			{
-				deleted.addDeleted(partUuid);
+				deleted.addDeleted(uuid);
 				return;
 			}
 

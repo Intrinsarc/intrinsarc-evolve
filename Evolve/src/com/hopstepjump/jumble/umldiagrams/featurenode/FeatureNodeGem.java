@@ -337,7 +337,8 @@ public final class FeatureNodeGem implements Gem
 		  
       Utilities.addSeparator(popup);
 			JMenu visibility = new JMenu("Visibility");
-			visibility.setEnabled(!figureFacet.isSubjectReadOnlyInDiagramContext(false));
+			boolean readonly = figureFacet.isSubjectReadOnlyInDiagramContext(false);
+			visibility.setEnabled(!readonly);
 			visibility.add(getAccessItem(coordinator, VisibilityKind.PUBLIC_LITERAL,      "Public"));
 			visibility.add(getAccessItem(coordinator, VisibilityKind.PROTECTED_LITERAL,   "Protected"));
 			visibility.add(getAccessItem(coordinator, VisibilityKind.PACKAGE_LITERAL,     "Package"));
@@ -345,7 +346,9 @@ public final class FeatureNodeGem implements Gem
       visibility.add(getAccessItem(coordinator, VisibilityKind.PUBLIC_LITERAL,      "Environment"));
 			popup.add(visibility);
       Utilities.addSeparator(popup);
-		  popup.add(getClassifierScopeItem(coordinator));
+      JMenuItem scope = getClassifierScopeItem(coordinator);
+      scope.setEnabled(!readonly);
+		  popup.add(scope);
 	
 			return popup;
 		}

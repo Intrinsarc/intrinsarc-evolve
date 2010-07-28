@@ -8,8 +8,8 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 
 public class BaseColors
 {
-  public static final Preference COMPONENT_COLOR = new Preference("Colors", "Default component color", new PersistentProperty(new Color(165, 178, 86)));
-  public static final Preference PART_COLOR = new Preference("Colors", "Default part color", new PersistentProperty(new Color(185, 198, 106)));
+  public static final Preference COMPONENT_COLOR = new Preference("Colors", "Default component color", new PersistentProperty(new Color(208, 215, 225)));
+  public static final Preference PART_COLOR = new Preference("Colors", "Default part color", new PersistentProperty(new Color(208, 215, 225)));
   public static final Preference PRIMITIVE_COLOR = new Preference("Colors", "Default primitive color", new PersistentProperty(new Color(180, 180, 255)));
   public static final Preference CLASS_COLOR = new Preference("Colors", "Default class color", new PersistentProperty(Color.LIGHT_GRAY));
   public static final Preference FACTORY_COLOR = new Preference("Colors", "Default factory color", new PersistentProperty(Color.WHITE));
@@ -17,14 +17,15 @@ public class BaseColors
   public static final Preference STATE_COLOR = new Preference("Colors", "Default state color", new PersistentProperty(new Color(240, 200, 200)));
   public static final Preference STATE_PART_COLOR = new Preference("Colors", "Default state part color", new PersistentProperty(new Color(240, 200, 200)));
   public static final Preference REQUIREMENTS_FEATURE_COLOR = new Preference("Colors", "Default requirements feature color", new PersistentProperty(Color.LIGHT_GRAY));
-  public static final Preference PACKAGE_COLOR = new Preference("Colors", "Default package color", new PersistentProperty(new Color(193, 206, 236)));
-  public static final Preference STRATUM_COLOR = new Preference("Colors", "Default stratum color", new PersistentProperty(new Color(193, 206, 236)));
-  public static final Preference MODEL_COLOR = new Preference("Colors", "Default model color", new PersistentProperty(new Color(255, 213, 255)));
+  public static final Preference PACKAGE_COLOR = new Preference("Colors", "Default package color", new PersistentProperty(new Color(213, 190, 150)));
+  public static final Preference STRATUM_COLOR = new Preference("Colors", "Default stratum color", new PersistentProperty(new Color(213, 190, 150)));
+  public static final Preference MODEL_COLOR = new Preference("Colors", "Default model color", new PersistentProperty(new Color(255, 217, 102)));
   public static final Preference NOTE_COLOR = new Preference("Colors", "Default note color", new PersistentProperty(new Color(255, 255, 174)));
+  public static final Preference PORT_COLOR = new Preference("Colors", "Default port color", new PersistentProperty(Color.LIGHT_GRAY));
   public static final Preference DEFAULT_COLOR = new Preference("Colors", "Default color", new PersistentProperty(Color.LIGHT_GRAY));
 
   private static Map<Preference, Color> cached = new HashMap<Preference, Color>();
-  
+   
   public static void clearCachedColors()
   {
   	cached.clear();
@@ -72,6 +73,8 @@ public class BaseColors
     	"The default color for state parts.");
 	  GlobalPreferences.preferences.addPreferenceSlot(NOTE_COLOR, colorType,
     	"The default color for notes.");
+	  GlobalPreferences.preferences.addPreferenceSlot(PORT_COLOR, colorType,
+	  	"The default color for ports.");
 	  GlobalPreferences.preferences.addPreferenceSlot(DEFAULT_COLOR, colorType,
   		"The default color if persistent color information is found.");
 	}

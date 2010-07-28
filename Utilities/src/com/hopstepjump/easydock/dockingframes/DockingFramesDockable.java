@@ -15,6 +15,7 @@ public class DockingFramesDockable implements IEasyDockable
 	private DefaultSingleCDockable dockable;
 	private Set<IEasyDockableListener> listeners;
 	private DockingFramesDock owner;
+	private boolean closed;
 
 	public DockingFramesDockable(DockingFramesDock dockingFramesEasyDock, DefaultSingleCDockable dockable)
 	{
@@ -49,7 +50,10 @@ public class DockingFramesDockable implements IEasyDockable
 					if (!dockable.isVisible())
 					{
 						for (IEasyDockableListener l : listeners)
+						{
 							l.hasClosed();
+							close();
+						}
 					}
 				}
 			});
@@ -69,12 +73,21 @@ public class DockingFramesDockable implements IEasyDockable
 
 	public void close()
 	{
-		dockable.getControl().createCloseAction(dockable).trigger(dockable.intern());
-		owner.removeMe(this);
+		if (!closed)
+		{
+			closed = true;
+			dockable.getControl().createCloseAction(dockable).trigger(dockable.intern());
+			owner.removeMe(this);
+		}
 	}
 
 	public void restore()
 	{
 		dockable.toFront();
+	}
+	
+	public DefaultSingleCDockable getDockable()
+	{
+		return dockable;
 	}
 }

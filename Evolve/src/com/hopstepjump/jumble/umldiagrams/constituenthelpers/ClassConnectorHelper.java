@@ -88,6 +88,8 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     // work out the actual arc points, by possibly using the existing figure
     UDimension offset = new UDimension(0, 0);
     ActualArcPoints newActuals = new ActualArcPoints(diagram, anchor1.getAnchorFacet(), anchor2.getAnchorFacet(), start);
+    boolean curved = false;
+    
     if (existing != null)
     {
       CalculatedArcPoints calculated = new CalculatedArcPoints(
@@ -115,13 +117,16 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     preview.formBetterVirtualPoint(preview.getActualPoints().getVirtualPoint().subtract(offset));
     ReferenceCalculatedArcPoints calculated = gem.getBasicArcPreviewFacet().getCalculatedPoints().getReferenceCalculatedArcPoints(diagram);
 
+    PersistentProperties props = new PersistentProperties();
+//    props.add(new PersistentProperty("directed", true, false));
+    
     ArcCreateFigureTransaction.create(
     		diagram,
         addOrReplace.getConstituent().getRepositoryObject(),
         reference,
         factory,
         calculated,
-        new PersistentProperties());
+        props);
   }
 
   private FigureFacet findPortFigure(FigureFacet container, Object clsRepositoryObject, DEPort port, DEPart part)

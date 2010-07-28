@@ -61,11 +61,48 @@ public class BeanSubjectCreator
 			// handle any replaced ports
 			createInternals2(classes, interfaces);
 			
+			// remove any duplicates
+			removeDuplicates(classes);
 			return created;
 		}
 		finally
 		{
 			GlobalSubjectRepository.repository.commitTransaction();
+		}
+	}
+	
+	private void removeDuplicates(Map<String, Class> classes)
+	{
+		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(in).asStratum();
+		
+		for (BeanClass cls : toCreate)
+		{
+			if (cls.getType() == BeanTypeEnum.BEAN)
+			{
+				Class me = classes.get(cls.getNode().name);
+				DEComponent comp = GlobalDeltaEngine.engine.locateObject(me).asComponent();
+				
+				removeDuplicateConstituents(perspective, comp, ConstituentTypeEnum.DELTA_ATTRIBUTE);
+				removeDuplicateConstituents(perspective, comp, ConstituentTypeEnum.DELTA_PORT);
+			}
+		}
+	}
+
+	private void removeDuplicateConstituents(DEStratum perspective, DEComponent comp, ConstituentTypeEnum type)
+	{
+		// get the names that existed before this
+		Set<String> existingNames = new HashSet<String>();
+		for (DeltaPair pair : comp.getDeltas(type).getConstituents(perspective))
+		{
+			if (pair.getConstituent().getParent() != comp)
+				existingNames.add(pair.getConstituent().getName());
+		}
+		
+		// if we have these now, then remove
+		for (DeltaPair add : comp.getDeltas(type).getAddObjects())
+		{
+			if (existingNames.contains(add.getConstituent().getName()))
+				GlobalSubjectRepository.repository.incrementPersistentDelete((Element) add.getConstituent().getRepositoryObject());
 		}
 	}
 
@@ -137,7 +174,6 @@ public class BeanSubjectCreator
 						attr.setReadWrite(PropertyAccessKind.WRITE_ONLY_LITERAL);
 					if (field.isReadOnly())
 						attr.setReadWrite(PropertyAccessKind.READ_ONLY_LITERAL);
-					possiblyVisuallySuppress(field, attr);
 				}
 				delete(existingAttrs);
 				
@@ -295,22 +331,10 @@ public class BeanSubjectCreator
 		return null;
 	}
 
-	private void possiblyVisuallySuppress(BeanField field, Element element)
-	{
-		// remove anything visual and possibly add it back
-		element.settable_getAppliedBasicStereotypes().remove(suppressStereo);
-		
-		if (field.isVisuallySuppress())
-		{
-			element.settable_getAppliedBasicStereotypes().add(suppressStereo);
-		}
-	}
-	
 	private void setUpPort(Map<String, Interface> interfaces, BeanField field, Port port)
 	{
 		if (field.isMain())
 			port.setUuid(MAIN_PORT);
-		possiblyVisuallySuppress(field, port);
 		port.setName(field.getName());
 		Class type = (Class) port.getOwnedAnonymousType();
 		if (type == null)
@@ -457,7 +481,7 @@ public class BeanSubjectCreator
 	private void createPrimitive(Map<String, Class> classes, BeanClass cls)
 	{
 		Class cl = finder.getRefreshedClass(cls);
-		if (finder == null)
+		if (cl == null)
 			cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
 		cl.setComponentKind(ComponentKind.PRIMITIVE_LITERAL);
 		cl.settable_getAppliedBasicStereotypes().clear();

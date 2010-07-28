@@ -275,8 +275,10 @@ public class StereotypeUtilities
   {
     IDeltaEngine engine = GlobalDeltaEngine.engine;
     Package pkg = GlobalSubjectRepository.repository.findOwningPackage(element);
-    DEStratum perspective = engine.locateObject(pkg).asStratum();
     Map<String, DeltaPair> properties = new HashMap<String, DeltaPair>();
+    if (pkg == null)
+    	return properties;
+    DEStratum perspective = engine.locateObject(pkg).asStratum();
 
     if (element instanceof Classifier && GlobalDeltaEngine.engine.locateObject(element) != null)
     {

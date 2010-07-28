@@ -187,7 +187,6 @@ public final class ToolCoordinatorGem implements Gem
     		panel.add(b);
     		b.addActionListener(new ActionListener()
     		{
-
 					public void actionPerformed(ActionEvent e)
 					{
 						chosen[0] = count;
@@ -195,6 +194,9 @@ public final class ToolCoordinatorGem implements Gem
 					}
     		});
     	}
+    	// must have this otherwise we leak a huge amount of memory
+    	dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	
     	dialog.setTitle(title);
     	dialog.add(panel, BorderLayout.SOUTH);
     	dialog.setModal(true);
@@ -346,7 +348,13 @@ public final class ToolCoordinatorGem implements Gem
 
             // remove any previous popup -- do this after the new one is visible to avoid flicker
             if (old != null)
-            	old.setVisible(false);
+	            SwingUtilities.invokeLater(new Runnable()
+	            {
+	            	public void run()
+	            	{
+	              	old.setVisible(false);            		
+	            	}
+	            });
     
             if (msecsToDisplayFor >= 0)
             {

@@ -75,20 +75,24 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 			maxOfEach(fpart.getFullBounds().getDimension());
 		
 		// resize the class
-		UBounds newBounds = new UBounds(new UPoint(0, 0), newSize).centreToPoint(oldFull.getMiddlePoint());
 		if (resizeClassifier)
 		{
 			NodeAutoSizeTransaction.autoSize(visualOwner, false);
+			UBounds newBounds = new UBounds(new UPoint(0, 0), newSize).centreToPoint(oldFull.getMiddlePoint());
 			ClassifierConstituentHelper.makeResizingTransaction(visualOwner, newBounds);
+			oldFull = newBounds;
 		}
 		
 		// find the offset from the original
 		FigureFacet existing = fport;
-		UDimension offset = existing == null ? UDimension.ZERO : existing.getFullBounds().getPoint().subtract(existFull.getPoint());
-		UDimension size = existing == null ? UDimension.ZERO : existing.getFullBounds().getDimension();
+		UDimension offset = existing == null ? UDimension.ZERO : existing.getFullBounds().getMiddlePoint().subtract(existFull.getPoint());
+		UDimension size = existing == null ? UDimension.ZERO : scale(oldFull, existFull, existing.getFullBounds().getDimension());
 
+		// scale the offset
+		offset = scale(oldFull, existFull, offset).subtract(size.multiply(0.5)).add(new UDimension(-1, 1)); 
+		
 		// now add the port
-		UPoint portTop = newBounds.getPoint().add(offset);
+		UPoint portTop = oldFull.getPoint().add(offset);
 		final FigureReference portReference = visualOwner.getDiagram().makeNewFigureReference();
 
 		// work out the linked text details
@@ -115,5 +119,17 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 			FigureFacet portN = container.getDiagram().retrieveFigure(portReference.getId());
 			ClassifierConstituentHelper.makeResizingTransaction(portN, new UBounds(portTop, size));
 		}
+	}
+	
+	private static UDimension scale(UBounds actual, UBounds original, UDimension size)
+	{
+		if (actual == null || original == null)
+			return size;
+		
+		UDimension actualB = actual.getDimension();
+		UDimension originalB = original.getDimension();
+		return new UDimension(
+				size.getWidth() * actualB.getWidth() / originalB.getWidth(),
+				size.getHeight() * actualB.getHeight() / originalB.getHeight());
 	}
 }

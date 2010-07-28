@@ -3,8 +3,10 @@ package com.hopstepjump.jumble.gui;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.*;
+import java.util.*;
 
 import javax.swing.*;
+import javax.swing.border.*;
 import javax.swing.event.*;
 import javax.swing.event.HyperlinkEvent.EventType;
 
@@ -13,6 +15,8 @@ import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.swing.*;
+
+import de.huxhorn.sulky.memorystatus.*;
 
 public class HelpAboutAction extends AbstractAction
 {
@@ -59,11 +63,49 @@ public class HelpAboutAction extends AbstractAction
           preferred,
           "License", 
           "help-documents/evolve-license.html"));
+    
+    tabs.add(makeSystemStatusPanel());
 
     coordinator.invokeAsDialog(null, "About", tabs, null, null);
   }
   
-  private JComponent makeTextPanelFromHTMLDocument(Dimension preferred, String name, String documentName)
+  private Component makeSystemStatusPanel()
+	{
+  	JPanel panel = new JPanel(new BorderLayout());
+  	JPanel mem = new JPanel(new BorderLayout());
+  	mem.setBackground(Color.WHITE);
+  	CompoundBorder compound = new CompoundBorder(new EmptyBorder(10, 10, 10, 10), BorderFactory.createEtchedBorder());
+  	mem.setBorder(compound);
+  	mem.add(new MemoryStatus(), BorderLayout.SOUTH);
+  	panel.add(mem, BorderLayout.NORTH);
+  	
+  	Properties props = System.getProperties();
+  	
+  	String data[][] = new String[props.size()][2];
+  	int lp = 0;
+  	for (Enumeration obj = props.propertyNames(); obj.hasMoreElements();)
+  	{
+  		String name = (String) obj.nextElement();
+  		data[lp][0] = name;
+  		data[lp++][1] = props.getProperty(name);
+  	}
+  		
+  	JTable table = new JTable(data, new String[] {"Name", "Property"});
+  	table.setShowVerticalLines(false);
+  	table.setShowHorizontalLines(false);
+  	JPanel tpanel = new JPanel(new BorderLayout());
+  	tpanel.add(table, BorderLayout.CENTER);
+  	tpanel.setBackground(Color.WHITE);
+  	tpanel.setBorder(new CompoundBorder(new EmptyBorder(10, 10, 10, 10), BorderFactory.createLineBorder(Color.LIGHT_GRAY)));
+  	panel.add(tpanel, BorderLayout.CENTER);
+  	
+  	JScrollPane scroll = new JScrollPane(panel);
+  	scroll.setName("System details");  
+  	scroll.setPreferredSize(new Dimension(100, 100));
+  	return scroll;
+	}
+
+	private JComponent makeTextPanelFromHTMLDocument(Dimension preferred, String name, String documentName)
   {
   	return makeTextPanel(preferred, name, FileUtilities.loadFileContentsFromResource(documentName));
   }
@@ -135,6 +177,7 @@ public class HelpAboutAction extends AbstractAction
       }
       
     });
+    
     return panel;
   }
 

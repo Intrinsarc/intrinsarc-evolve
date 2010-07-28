@@ -16,7 +16,6 @@ public class BeanField
 	private int upperBound = 1;
 	private boolean valid = true;
 	private boolean many;
-	private boolean visuallySuppress = true;
 	private boolean main;
 	private boolean noName;
 	private String error;
@@ -133,25 +132,9 @@ public class BeanField
 		return many;
 	}
 
-	public boolean isVisuallySuppress()
-	{
-		return visuallySuppress;
-	}
-	
-	public void toggleVisuallySuppress()
-	{
-		visuallySuppress = !visuallySuppress;
-	}
-
-	public void setVisuallySuppress(boolean visuallySuppress)
-	{
-		this.visuallySuppress = visuallySuppress;
-	}
-
 	public void setMain(boolean main)
 	{
 		this.main = main;
-		this.visuallySuppress = false;
 	}
 	
 	public boolean isMain()

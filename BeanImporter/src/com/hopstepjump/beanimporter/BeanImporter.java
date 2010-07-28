@@ -38,9 +38,7 @@ public class BeanImporter
 	public static final ImageIcon PRIMITIVE_ICON = IconLoader.loadIcon("class.png");
 	public static final ImageIcon INTERACE_ICON = IconLoader.loadIcon("interface.png");
 	public static final ImageIcon ATTRIBUTE_ICON = IconLoader.loadIcon("tree-public-attribute.png");
-	public static final ImageIcon SUPPRESSED_ATTRIBUTE_ICON = IconLoader.loadIcon("tree-public-suppressed-attribute.png");
 	public static final ImageIcon PORT_ICON = IconLoader.loadIcon("tree-port.png");
-	public static final ImageIcon SUPPRESSED_PORT_ICON = IconLoader.loadIcon("tree-port-suppressed.png");
 	public static final ImageIcon PROVIDED_ICON = IconLoader.loadIcon("provided.png");
 	public static final ImageIcon REQUIRED_ICON = IconLoader.loadIcon("required.png");
 	public static final ImageIcon BOX_ATTRIBUTE_ICON = IconLoader.loadIcon("box-attribute.png");
@@ -391,17 +389,6 @@ public class BeanImporter
 	        {
 	          JPopupMenu popup = new JPopupMenu();
 	
-	          // allow it to be suppressed
-	          JMenuItem suppress = new JMenuItem("Toggle visual suppression");
-	          suppress.addActionListener(new ActionListener()
-	          {
-							public void actionPerformed(ActionEvent e)
-							{
-								handleFeatures(path, false, 
-										new BeanFieldListener(){ public void action(BeanField field) { field.toggleVisuallySuppress(); }});
-							}
-	          });
-	          popup.add(suppress);
 	          JMenuItem prim = new JMenuItem("Toggle bean / primitive of field types");
 	          for (BeanField field : saveSelectedBeanFields())
 	          	if (!field.canToggleBeanOrPrimitiveOfTypes(finder))
@@ -605,8 +592,6 @@ public class BeanImporter
 						{
 							BeanField field = obj.getBeanField();
 							icon = ATTRIBUTE_ICON;
-							if (field.isVisuallySuppress())
-								icon = SUPPRESSED_ATTRIBUTE_ICON;
 							name = expandName(name)  + " : " + field.getTypesString(finder) + (field.isMany() ? " [0..*]" : "");
 						}
 						break;
@@ -614,8 +599,6 @@ public class BeanImporter
 						{
 							BeanField field = obj.getBeanField();
 							icon = PORT_ICON;
-							if (field.isVisuallySuppress())
-								icon = SUPPRESSED_PORT_ICON;
 							name = expandName(name)  + " : " + field.getTypesString(finder) + (field.isMany() ? " [0..*]" : "");
 						}
 						break;

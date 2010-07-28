@@ -19,7 +19,6 @@ import bibliothek.gui.dock.event.*;
 import bibliothek.gui.dock.title.*;
 
 import com.hopstepjump.easydock.*;
-import com.hopstepjump.swing.*;
 
 
 public class DockingFramesDock implements IEasyDock
@@ -145,7 +144,8 @@ public class DockingFramesDock implements IEasyDock
 
 	void removeMe(DockingFramesDockable dockable)
 	{
-		remembered.remove(dockable);
+		remembered.remove(dockable);		
+		control.remove(dockable.getDockable());
 	}
 
 	public IEasyDockable createEmbeddedPaletteDockable(

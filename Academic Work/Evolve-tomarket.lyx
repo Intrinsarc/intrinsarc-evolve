@@ -244,6 +244,24 @@ undo/redo problem after import
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
+parts defer to class if no instance present, faulty even if no class present
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+handle parts, ports, connectors, attrs even if no class is present
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+slots disappear/reappear if supercomponent goes
+\end_layout
+
+\begin_layout Enumerate
 attribute issues (aliasing, defaults, 
 \color green
 replace of attr with default
@@ -260,19 +278,13 @@ undo after ageX replace – error adorner holds onto old state?
 \end_layout
 
 \begin_layout Enumerate
-visual inheritance of connector ends, curve, transition arrow
+visual inheritance of connector ends, curve, 
+\color green
+transition arrow
 \end_layout
 
 \begin_layout Enumerate
-parts defer to class if no instance present, faulty even if no class present
-\end_layout
-
-\begin_layout Enumerate
-handle parts, ports, connectors, attrs even if no class is present
-\end_layout
-
-\begin_layout Enumerate
-slots disappear/reappear if supercomponent goes
+replace of part picks up old and new slots
 \end_layout
 
 \begin_layout Enumerate
@@ -291,6 +303,10 @@ visual lock problems (possibly move to deleteduuids?)
 
 \begin_layout Enumerate
 replacing part causes element to disappear when visually locked
+\end_layout
+
+\begin_layout Enumerate
+fix performance issues + memory leaks in import using jprofiler
 \end_layout
 
 \begin_layout Standard

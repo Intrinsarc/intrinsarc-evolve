@@ -63,7 +63,6 @@ public final class ClassifierNodeGem implements Gem
 	private NamedElement subject;
 
 	private Color fillColor;
-	private Color lineColor = Color.BLACK;
 
 	/** are we acting as a part? */
 	private final boolean isPart;
@@ -166,8 +165,7 @@ public final class ClassifierNodeGem implements Gem
 		// add ellipsis if the full set of links are not expanded
 		IDeltaEngine engine = GlobalDeltaEngine.engine;
 		DEElement dereq = engine.locateObject(subject).asElement();
-		Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(
-				figureFacet.getDiagram(),
+		Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(),
 				figureFacet.getContainerFacet());
 		Set<String> uuids = new HashSet<String>();
 		for (DeltaPair pair : dereq.getDeltas(ConstituentTypeEnum.DELTA_TRACE).getConstituents(
@@ -261,8 +259,7 @@ public final class ClassifierNodeGem implements Gem
 		final String newName;
 		if (subject.getName().length() == 0 && typeName.length() == 0)
 			newName = "";
-		else
-			newName = subject.getName() + " : " + typeName;
+		else newName = subject.getName() + " : " + typeName;
 
 		// set the variables
 		name = newName;
@@ -329,13 +326,11 @@ public final class ClassifierNodeGem implements Gem
 
 			if (currentOwner instanceof Class)
 				((Class) currentOwner).getNestedClassifiers().remove(subject);
-			else
-				((Package) currentOwner).getOwnedMembers().remove(subject);
+			else ((Package) currentOwner).getOwnedMembers().remove(subject);
 
 			if (newOwner instanceof Class)
 				((Class) newOwner).getNestedClassifiers().add(subject);
-			else
-				((Package) newOwner).getOwnedMembers().add(subject);
+			else ((Package) newOwner).getOwnedMembers().add(subject);
 		}
 	}
 
@@ -355,9 +350,11 @@ public final class ClassifierNodeGem implements Gem
 			PreviewFacet contentsPreview = previews.getCachedPreview(contents.getFigureFacet());
 			PreviewFacet portPreview = previews.getCachedPreview(ports.getFigureFacet());
 
-			FeatureCompartmentPreviewFacet attributeFacet = attributeOrSlotPreview.getDynamicFacet(FeatureCompartmentPreviewFacet.class);
+			FeatureCompartmentPreviewFacet attributeFacet = attributeOrSlotPreview
+					.getDynamicFacet(FeatureCompartmentPreviewFacet.class);
 			attributeFacet.adjustPreviewPoint(previews, sizes.getAttributes().getPoint());
-			FeatureCompartmentPreviewFacet operationsFacet = operationsPreview.getDynamicFacet(FeatureCompartmentPreviewFacet.class);
+			FeatureCompartmentPreviewFacet operationsFacet = operationsPreview
+					.getDynamicFacet(FeatureCompartmentPreviewFacet.class);
 			operationsFacet.adjustPreviewPoint(previews, sizes.getOperations().getPoint());
 			contentsPreview.setFullBounds(sizes.getContents(), true);
 
@@ -396,8 +393,7 @@ public final class ClassifierNodeGem implements Gem
 			ClassifierSizeInfo info;
 			if (previews == null)
 				info = makeCurrentInfo();
-			else
-				info = makeCurrentInfoFromPreviews(previews);
+			else info = makeCurrentInfoFromPreviews(previews);
 			ClassifierSizes sizes = info.makeActualSizes();
 			return sizes.getContents().getTopLeftPoint().subtract(sizes.getOuter().getPoint()).getHeight();
 		}
@@ -436,24 +432,21 @@ public final class ClassifierNodeGem implements Gem
 					{
 						if (bodyBounds == null)
 							bodyBounds = sizes.getOwner();
-						else
-							bodyBounds = bodyBounds.union(sizes.getOwner());
+						else bodyBounds = bodyBounds.union(sizes.getOwner());
 					}
 
 					if (!suppressAttributesOrSlots && !attributesOrSlots.isEmpty())
 					{
 						if (bodyBounds == null)
 							bodyBounds = sizes.getAttributes();
-						else
-							bodyBounds = bodyBounds.union(sizes.getAttributes());
+						else bodyBounds = bodyBounds.union(sizes.getAttributes());
 					}
 
 					if (!suppressOperations && !operations.isEmpty())
 					{
 						if (bodyBounds == null)
 							bodyBounds = sizes.getOperations();
-						else
-							bodyBounds = bodyBounds.union(sizes.getOperations());
+						else bodyBounds = bodyBounds.union(sizes.getOperations());
 					}
 
 					// if the body bounds are not null, make sure they extend to the
@@ -471,7 +464,8 @@ public final class ClassifierNodeGem implements Gem
 					area.add(new Area(new ZRectangle(bodyBounds).getShape()));
 
 				return area;
-			} else
+			}
+			else
 			{
 				return new ZRectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight()).getShape();
 			}
@@ -496,7 +490,8 @@ public final class ClassifierNodeGem implements Gem
 			if (miniAppearanceFacet != null && displayOnlyIcon)
 			{
 				return sizes.getIcon().getMiddlePoint();
-			} else
+			}
+			else
 			{
 				return sizes.getOuter().getMiddlePoint();
 			}
@@ -589,7 +584,8 @@ public final class ClassifierNodeGem implements Gem
 			suppressAttributesOrSlots = suppress;
 			attributesOrSlots.getFigureFacet().setShowing(!suppress);
 			resizings.setFocusBounds(getAttributeSuppressedBounds(suppressAttributesOrSlots));
-		} else if (featureType == OperationCreatorGem.FEATURE_TYPE)
+		}
+		else if (featureType == OperationCreatorGem.FEATURE_TYPE)
 		{
 			suppressOperations = suppress;
 			operations.getFigureFacet().setShowing(!suppress);
@@ -631,8 +627,8 @@ public final class ClassifierNodeGem implements Gem
 				ClassifierSizes sizes = info.makeActualSizes();
 
 				return sizes.getOuter().getDimension().maxOfEach(extent);
-			} else
-				return extent;
+			}
+			else return extent;
 		}
 
 		public UBounds vetResizedBounds(DiagramViewFacet view, int corner, UBounds bounds, boolean fromCentre)
@@ -753,6 +749,7 @@ public final class ClassifierNodeGem implements Gem
 
 		public ZNode formView()
 		{
+			Color lineColor = fillColor.darker();
 			Color line = !showAsState ? lineColor : fillColor.darker();
 
 			ClassifierSizeInfo info = makeCurrentInfo();
@@ -761,7 +758,7 @@ public final class ClassifierNodeGem implements Gem
 			ZText zName = sizes.getZtext();
 			if (!displayOnlyIcon)
 				zName.setBackgroundColor(null);
-			zName.setPenColor(lineColor);
+			zName.setPenColor(Color.BLACK);
 
 			ZText zOwner = sizes.getZOwningText();
 			if (zOwner != null)
@@ -782,7 +779,8 @@ public final class ClassifierNodeGem implements Gem
 			if (showAsState)
 			{
 				rect.addChild(new FancyRectangleMaker(sizes.getOuter(), 25, fillColor, !isPart, 2.5).make());
-			} else
+			}
+			else
 			{
 				rect.addChild(new FancyRectangleMaker(sizes.getOuter(), 6, fillColor, !isPart, 2.5).make());
 			}
@@ -816,7 +814,8 @@ public final class ClassifierNodeGem implements Gem
 						active.setPenPaint(lineColor);
 						active.setFillPaint(null);
 						group.addChild(new ZVisualLeaf(active));
-					} else
+					}
+					else
 					{
 						// add possible active lines
 						UBounds outer = sizes.getOuter().addToPoint(new UDimension(4, 0)).addToExtent(new UDimension(-8, 0));
@@ -1005,7 +1004,7 @@ public final class ClassifierNodeGem implements Gem
 		{
 			return figureFacet;
 		}
-		
+
 		private JMenuItem diagramWritable(JMenuItem item)
 		{
 			item.setEnabled(!figureFacet.getDiagram().isReadOnly() && item.isEnabled());
@@ -1017,7 +1016,7 @@ public final class ClassifierNodeGem implements Gem
 			item.setEnabled(!figureFacet.isSubjectReadOnlyInDiagramContext(false) && item.isEnabled());
 			return item;
 		}
-		
+
 		/**
 		 * @see com.giroway.jumble.foundation.interfaces.SelectableFigure#getContextMenu()
 		 */
@@ -1038,9 +1037,9 @@ public final class ClassifierNodeGem implements Gem
 				Namespace real = (Namespace) GlobalSubjectRepository.repository.findOwningElement(
 						(Element) figureFacet.getSubject(), ClassifierImpl.class);
 
-				boolean enableReplace =
-					visual != real
-							&& !figureFacet.getContainedFacet().getContainer().getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
+				boolean enableReplace = visual != real
+						&& !figureFacet.getContainedFacet().getContainer().getFigureFacet()
+								.isSubjectReadOnlyInDiagramContext(false);
 
 				JMenuItem replaceItem = getPartReplaceItem(diagramView, coordinator);
 				if (replaceItem != null)
@@ -1098,7 +1097,8 @@ public final class ClassifierNodeGem implements Gem
 											coordinator.commitTransaction();
 										}
 									});
-								} else
+								}
+								else
 								{
 									final DeltaDeletedConnector del = ((Class) subject).createDeltaDeletedConnectors();
 									del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
@@ -1135,8 +1135,7 @@ public final class ClassifierNodeGem implements Gem
 				popup.add(diagramWritable(getShowSpecificPortsMenuItem(coordinator)));
 				popup.add(diagramWritable(getShowSpecificPartsMenuItem(coordinator)));
 			}
-			else
-				popup.add(diagramWritable(getShowSpecificPortInstancesMenuItem(coordinator)));
+			else popup.add(diagramWritable(getShowSpecificPortInstancesMenuItem(coordinator)));
 			popup.addSeparator();
 
 			JMenu show = new JMenu("Show hidden");
@@ -1146,7 +1145,8 @@ public final class ClassifierNodeGem implements Gem
 			{
 				show.add(getShowAllSlotsMenuItem(coordinator));
 				show.add(getShowAllPortInstancesMenuItem(coordinator));
-			} else
+			}
+			else
 			{
 				show.add(getShowAllAttributesMenuItem(coordinator));
 				show.add(getShowAllOperationsMenuItem(coordinator));
@@ -1187,8 +1187,7 @@ public final class ClassifierNodeGem implements Gem
 					List<Element> links = new ArrayList<Element>();
 					IDeltaEngine engine = GlobalDeltaEngine.engine;
 					DEElement decomp = engine.locateObject(subject).asElement();
-					Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(
-							figureFacet.getDiagram(),
+					Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(),
 							figureFacet.getContainerFacet());
 					for (DeltaPair pair : decomp.getDeltas(ConstituentTypeEnum.DELTA_TRACE).getConstituents(
 							engine.locateObject(visualHome).asStratum()))
@@ -1245,15 +1244,14 @@ public final class ClassifierNodeGem implements Gem
 				popup.add(diagramWritable(getDisplayAsIconItem(diagramView, coordinator)));
 			if (!isPart)
 				popup.add(diagramWritable(getVisualLockItem(diagramView, coordinator)));
-			popup.add(diagramWritable(
-					BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet, fillColor,
-						new SetFillCallback()
+			popup.add(diagramWritable(BasicNamespaceNodeGem.getChangeColorItem(diagramView, coordinator, figureFacet,
+					fillColor, new SetFillCallback()
+					{
+						public void setFill(Color fill)
 						{
-							public void setFill(Color fill)
-							{
-								fillColor = fill;
-							}
-						})));
+							fillColor = fill;
+						}
+					})));
 
 			return popup;
 		}
@@ -1358,7 +1356,8 @@ public final class ClassifierNodeGem implements Gem
 						coordinator.startTransaction(suppressAttributesOrSlots ? "showed slots" : "hid slots",
 								suppressAttributesOrSlots ? "hid slots" : "showed slots");
 						suppressFeatures(SlotCreatorGem.FEATURE_TYPE, !suppressAttributesOrSlots);
-					} else
+					}
+					else
 					{
 						coordinator.startTransaction(suppressAttributesOrSlots ? "showed attributes" : "hid attributes",
 								suppressAttributesOrSlots ? "hid attributes" : "showed attributes");
@@ -1381,9 +1380,8 @@ public final class ClassifierNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress attributes flag
-					coordinator.startTransaction(
-							locked ? "Unlocked visuals" : "Locked visuals",
-							locked ? "Locked visuals" : "Unlocked visuals");
+					coordinator.startTransaction(locked ? "Unlocked visuals" : "Locked visuals", locked ? "Locked visuals"
+							: "Unlocked visuals");
 					locked = !locked;
 					coordinator.commitTransaction(true);
 				}
@@ -1432,7 +1430,8 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all attributes", "un-showed all attributes");
-					FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
+					FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(
+							FeatureCompartmentFacet.class);
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_ATTRIBUTE));
 					attributeHelper.makeUpdateCommand(false);
 					coordinator.commitTransaction();
@@ -1444,11 +1443,8 @@ public final class ClassifierNodeGem implements Gem
 		public JMenuItem getShowSpecificAttributesMenuItem(final ToolCoordinatorFacet coordinator)
 		{
 			JMenu showItem = new JMenu("Show specific attributes");
-			final ClassifierAttributeHelper attributeHelper = new ClassifierAttributeHelper(
-					figureFacet,
-					primitiveAttributesOrSlots,
-					attributesOrSlots,
-					false);
+			final ClassifierAttributeHelper attributeHelper = new ClassifierAttributeHelper(figureFacet,
+					primitiveAttributesOrSlots, attributesOrSlots, false);
 			Map<String, String> hidden = attributeHelper.getHiddenConstituents();
 			showItem.setEnabled(!hidden.isEmpty());
 
@@ -1463,7 +1459,8 @@ public final class ClassifierNodeGem implements Gem
 					{
 						// toggle the autosized flag (as a command)
 						coordinator.startTransaction("showed attribute", "un-showed attribute");
-						FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
+						FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(
+								FeatureCompartmentFacet.class);
 						del.removeDeleted(uuid);
 						attributeHelper.makeUpdateCommand(false);
 						coordinator.commitTransaction();
@@ -1477,23 +1474,16 @@ public final class ClassifierNodeGem implements Gem
 		public JMenuItem getShowSpecificPartsMenuItem(final ToolCoordinatorFacet coordinator)
 		{
 			JMenu showItem = new JMenu("Show specific parts");
-			final ClassPartHelper partHelper = new ClassPartHelper(
-					coordinator,
-					figureFacet,
-					primitiveContents,
-					contents,
+			final ClassPartHelper partHelper = new ClassPartHelper(coordinator, figureFacet, primitiveContents, contents,
 					false);
-			Map<String, String> hidden = partHelper.getHiddenConstituents(
-					new IConstituentPrinter()
-					{
-						public String asString(DEConstituent constituent)
-						{
-			      	DEPart part = constituent.asPart();
-			      	return
-			      		part.getName() +
-			      		(part.getType() != null ? ":" + part.getType().getName() : "");
-						}
-					});
+			Map<String, String> hidden = partHelper.getHiddenConstituents(new IConstituentPrinter()
+			{
+				public String asString(DEConstituent constituent)
+				{
+					DEPart part = constituent.asPart();
+					return part.getName() + (part.getType() != null ? ":" + part.getType().getName() : "");
+				}
+			});
 			showItem.setEnabled(!hidden.isEmpty());
 
 			for (final String uuid : hidden.keySet())
@@ -1615,7 +1605,8 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all attributes", "un-showed all attributes");
-					FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
+					FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(
+							FeatureCompartmentFacet.class);
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_ATTRIBUTE));
 					slotHelper.makeUpdateTransaction(attributesOrSlots, false);
 					coordinator.commitTransaction();
@@ -1627,7 +1618,8 @@ public final class ClassifierNodeGem implements Gem
 		public JMenuItem getShowAllPortInstancesMenuItem(final ToolCoordinatorFacet coordinator)
 		{
 			JMenuItem showAllItem = new JMenuItem("Port instances");
-			final PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, false);
+			final PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports,
+					false);
 			showAllItem.setEnabled(!portInstanceHelper.isShowingAllConstituents() && primitivePorts.isShowing());
 
 			showAllItem.addActionListener(new ActionListener()
@@ -1648,7 +1640,8 @@ public final class ClassifierNodeGem implements Gem
 		public JMenuItem getShowAllPartsMenuItem(final ToolCoordinatorFacet coordinator)
 		{
 			JMenuItem showAllItem = new JMenuItem("Parts");
-			final ClassPartHelper partHelper = new ClassPartHelper(coordinator, figureFacet, primitiveContents, contents, false);
+			final ClassPartHelper partHelper = new ClassPartHelper(coordinator, figureFacet, primitiveContents, contents,
+					false);
 			showAllItem.setEnabled(!partHelper.isShowingAllConstituents() && primitiveContents.isShowing());
 
 			showAllItem.addActionListener(new ActionListener()
@@ -1928,8 +1921,8 @@ public final class ClassifierNodeGem implements Gem
 				// handle the part
 				formViewUpdateCommandAfterPartChanged(pass);
 			else
-				// handle the classifier
-				formViewUpdateCommandAfterClassifierChanged(pass);
+			// handle the classifier
+			formViewUpdateCommandAfterClassifierChanged(pass);
 		}
 
 		/**
@@ -1954,10 +1947,11 @@ public final class ClassifierNodeGem implements Gem
 
 				// find any attributes to add or delete
 				PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, true);
-				ports.clean(
-						getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
-						portInstanceHelper.getConstituentUuids());
-
+				/*
+				 * ports.clean(
+				 * getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
+				 * portInstanceHelper.getConstituentUuids());
+				 */
 				if (!suppressAttributesOrSlots)
 					slotHelper.makeUpdateTransaction(attributesOrSlots, locked);
 				if (!displayOnlyIcon)
@@ -1987,8 +1981,7 @@ public final class ClassifierNodeGem implements Gem
 			String typeName = new ElementProperties(figureFacet, subject).getPerspectiveName();
 			if (subject.getName().length() == 0 && typeName.length() == 0)
 				newName = "";
-			else
-				newName = subject.getName() + " : " + typeName;
+			else newName = subject.getName() + " : " + typeName;
 			// if neither the name or the namespace has changed, or the in-placeness,
 			// suppress any command
 			if (newName.equals(name) && subjectAbstract == isAbstract && subjectActive == isActive
@@ -2192,7 +2185,8 @@ public final class ClassifierNodeGem implements Gem
 
 				// only writeable if the class is located correctly
 				return GlobalSubjectRepository.repository.isContainerContextReadOnly(figureFacet);
-			} else
+			}
+			else
 			{
 				SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 				Package visualStratum = repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet
@@ -2223,7 +2217,8 @@ public final class ClassifierNodeGem implements Gem
 			if (isPart)
 			{
 				tool.addMenuItem(getAddSlotItem(diagramView, coordinator));
-			} else
+			}
+			else
 			{
 				if (!suppressAttributesOrSlots)
 				{
@@ -2459,7 +2454,8 @@ public final class ClassifierNodeGem implements Gem
 	// work out what we is suppressed by virtue of a stereotype
 	private Set<String> getVisuallySuppressedUUIDs(ConstituentTypeEnum type)
 	{
-		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(figureFacet.getDiagram().getLinkedObject()).asStratum();
+		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(figureFacet.getDiagram().getLinkedObject())
+				.asStratum();
 		DEObject obj = GlobalDeltaEngine.engine.locateObject(subject);
 		DEComponent comp = isPart ? obj.asConstituent().asPart().getType() : obj.asComponent();
 		if (comp == null)
@@ -2487,7 +2483,8 @@ public final class ClassifierNodeGem implements Gem
 
 			return StereotypeUtilities.calculateStereotypeHash(figureFacet, subject)
 					+ StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, type);
-		} else
+		}
+		else
 		{
 			return StereotypeUtilities.calculateStereotypeHashAndComponentHash(figureFacet, subject);
 		}
@@ -2582,14 +2579,15 @@ public final class ClassifierNodeGem implements Gem
 		boolean connectorsEllipsis = false;
 		if (!isPart && subject != null)
 		{
-			attributeEllipsis = !new ClassifierAttributeHelper(figureFacet, primitiveAttributesOrSlots, attributesOrSlots, false)
-					.isShowingAllConstituents();
+			attributeEllipsis = !new ClassifierAttributeHelper(figureFacet, primitiveAttributesOrSlots, attributesOrSlots,
+					false).isShowingAllConstituents();
 			operationEllipsis = !new ClassifierOperationHelper(figureFacet, primitiveOperations, operations)
 					.isShowingAllConstituents();
 			if (!displayOnlyIcon && !autoSized)
 			{
 				portsEllipsis = !new ClassPortHelper(figureFacet, primitivePorts, ports, false).isShowingAllConstituents();
-				partsEllipsis = !new ClassPartHelper(null, figureFacet, primitiveContents, contents, false).isShowingAllConstituents();
+				partsEllipsis = !new ClassPartHelper(null, figureFacet, primitiveContents, contents, false)
+						.isShowingAllConstituents();
 				connectorsEllipsis = !new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents, false,
 						deletedConnectorUuidsFacet, false).isShowingAllConstituents()
 						|| !new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents, true,
@@ -2621,24 +2619,29 @@ public final class ClassifierNodeGem implements Gem
 		PreviewFacet contentsPreview = previews.getCachedPreview(contents.getFigureFacet());
 		PreviewFacet portsPreview = previews.getCachedPreview(ports.getFigureFacet());
 
-		if (attributePreview != null && operationsPreview != null && contentsPreview != null) // should always be ok
+		if (attributePreview != null && operationsPreview != null && contentsPreview != null) // should
+																																													// always
+																																													// be
+																																													// ok
 		{
 			ClassifierSizeInfo info = makeCurrentInfo();
 			info.setMinAttributeDimensions(attributePreview.getFullBounds().getDimension());
 			info.setMinOperationDimensions(operationsPreview.getFullBounds().getDimension());
 
-			SimpleContainerPreviewFacet contentsPreviewFacet = contentsPreview.getDynamicFacet(SimpleContainerPreviewFacet.class);
+			SimpleContainerPreviewFacet contentsPreviewFacet = contentsPreview
+					.getDynamicFacet(SimpleContainerPreviewFacet.class);
 			UBounds minContentsBounds = contentsPreviewFacet.getMinimumBoundsFromPreviews(previews);
 			info.setMinContentBounds(minContentsBounds);
 			info.setContentsEmpty(contentsPreviewFacet.isEmpty());
 
 			// do we have any ports?
-			PortCompartmentPreviewFacet portContainerPreviewFacet = portsPreview.getDynamicFacet(PortCompartmentPreviewFacet.class);
+			PortCompartmentPreviewFacet portContainerPreviewFacet = portsPreview
+					.getDynamicFacet(PortCompartmentPreviewFacet.class);
 			info.setHasPorts(portContainerPreviewFacet.hasPorts());
 
 			return info;
-		} else
-			return null;
+		}
+		else return null;
 	}
 
 	private ClassifierSizes formCentredBounds(ClassifierSizeInfo info, UBounds contentBoundsToPreserve)
@@ -2702,7 +2705,8 @@ public final class ClassifierNodeGem implements Gem
 			{
 				rememberedTLOffset = new UDimension(0, 0);
 				rememberedBROffset = new UDimension(0, 0);
-			} else
+			}
+			else
 			{
 				UBounds fullContents = info.makeActualSizes().getContents();
 				UBounds minContents = info.getMinContentBounds();
@@ -2771,34 +2775,29 @@ public final class ClassifierNodeGem implements Gem
 			{
 				final Property replaced = (Property) figureFacet.getSubject();
 				final Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
-				final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
+				final FigureFacet clsFigure = ClassifierConstituentHelper
+						.extractVisualClassifierFigureFromConstituent(figureFacet);
 				final Class cls = (Class) clsFigure.getSubject();
 				coordinator.startTransaction("replaced part", "removed replaced part");
 
 				// now form the port remap based on locations of ports
-				final List<PortRemap> remaps = fancyReplace == null ? null :
-					new PortRemapper(
-							figureFacet,
-							other,
-							figureFacet).remapPortsBasedOnProximity();
+				final List<PortRemap> remaps = fancyReplace == null ? null : new PortRemapper(figureFacet, other, figureFacet)
+						.remapPortsBasedOnProximity();
 
 				// if we are doing a fancy replace, move the other part into place
 				if (fancyReplace != null)
 				{
 					MovingFiguresGem movingGem = new MovingFiguresGem(diagramView.getDiagram(), other.getFullBounds().getPoint());
 					MovingFiguresFacet movingFacet = movingGem.getMovingFiguresFacet();
-					movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]{ other }));
+					movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]
+					{ other }));
 					movingFacet.start(other);
 					movingFacet.move(figureFacet.getFullBounds().getPoint());
 					movingFacet.end();
 				}
-				
-				final DeltaReplacedAttribute replacement = fancyReplace == null ?
-						createDeltaReplacedPart(
-								cls,
-								replaced,
-								original) :
-						createFancyDeltaReplacedPart(cls, other, original);
+
+				final DeltaReplacedAttribute replacement = fancyReplace == null ? createDeltaReplacedPart(cls, replaced,
+						original) : createFancyDeltaReplacedPart(cls, other, original);
 				if (remaps != null)
 					for (PortRemap remap : remaps)
 						GlobalSubjectRepository.repository.decrementPersistentDelete(remap);
@@ -2812,9 +2811,9 @@ public final class ClassifierNodeGem implements Gem
 					PersistentFigure pfig = figureFacet.makePersistentFigure();
 					pfig.setSubject(replacement.getReplacement());
 					figureFacet.acceptPersistentFigure(pfig);
-				}								
+				}
 				coordinator.commitTransaction(true);
-				
+
 				diagramView.getSelection().clearAllSelection();
 				diagramView.addFigureToSelectionViaId(figureFacet.getId());
 			}
@@ -2858,14 +2857,15 @@ public final class ClassifierNodeGem implements Gem
 								.getPropertyValueSpecification());
 						spec.setProperty(((PropertyValueSpecification) value).getProperty());
 						spec.setAliased(((PropertyValueSpecification) value).isAliased());
-					} else
+					}
+					else
 					{
 						Expression expression = (Expression) newSlot.createValue(UML2Package.eINSTANCE.getExpression());
 						expression.setBody(((Expression) value).getBody());
 					}
 				}
-			}			
-			
+			}
+
 			// copy over any applied stereotypes
 			for (Object st : replaced.undeleted_getAppliedBasicStereotypes())
 			{
