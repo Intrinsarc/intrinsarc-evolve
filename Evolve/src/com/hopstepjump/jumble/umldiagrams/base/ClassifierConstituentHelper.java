@@ -10,6 +10,7 @@ import com.hopstepjump.geometry.*;
 import com.hopstepjump.idraw.diagramsupport.moveandresize.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
+import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.constituenthelpers.*;
 import com.hopstepjump.repositorybase.*;
@@ -135,21 +136,32 @@ public abstract class ClassifierConstituentHelper
     // delete if this shouldn't be here
     Set<String> suppressed = getVisuallySuppressed(perspective, GlobalDeltaEngine.engine.locateObject(figure.getSubject()).asElement(), type);
     Set<DEObject> visualProblems = new HashSet<DEObject>();
+
     // work out what we need to add
-    if (!locked)
-	    for (DeltaPair pair : constituents)
-	    {
-	      if ((visualProblems.contains(pair.getConstituent()) ||
-	      		 !containedWithin(currentlyDisplayed, pair)) && !deleted.isDeleted(suppressed, pair.getConstituent().getUuid()))
-	      {
+    for (DeltaPair pair : constituents)
+    {
+      if ((visualProblems.contains(pair.getConstituent()) || !containedWithin(currentlyDisplayed, pair))
+      		&& !deleted.isDeleted(suppressed, pair.getConstituent().getUuid()))
+      {
+      	FigureFacet toReplace = willReplaceCurrentlyDisplayed(currentlyDisplayed, pair);
+      	if (toReplace != null)
+      	{
+      		// replace in-situ even if locked -- we are already displaying it after all...
+					PersistentFigure pfig = toReplace.makePersistentFigure();
+					pfig.setSubject(pair.getConstituent().getRepositoryObject());
+					toReplace.acceptPersistentFigure(pfig);
+          toReplace.getDiagram().forceAdjust(toReplace);
+      	}
+      	else
+      	if (!locked)
           makeAddTransaction(
               perspective,
               currentlyDisplayed,
               figure,
               container,
               pair);
-	      }
-	    }
+      }
+    }
 
     for (FigureFacet f : currentlyDisplayed)
     {
@@ -175,7 +187,31 @@ public abstract class ClassifierConstituentHelper
     }
   }
   
-  protected boolean hasVisualProblem(BasicNodeFigureFacet container, FigureFacet sub, DEConstituent constituent)
+	/**
+	 * find something in the currently displayed set that will be replaced by the pair
+	 * prevents visual locked things from disappearing when another view has replaced a displayed constituent 
+	 */
+  public static FigureFacet willReplaceCurrentlyDisplayed(Set<FigureFacet> currentlyDisplayed, DeltaPair pair)
+	{
+  	// NOTE: doesn't always find the thing to replace.  e.g. if we are displaying a replacement and we
+  	// delete the replacement, it will not have a chance to revert the current port/port instance etc back
+  	// to the original, as the replacement deletion will force the deletion of the figure first...
+  	// AMcVeigh, 29th July 2010
+		String originalUuid = pair.getOriginal().getUuid();
+  	for (FigureFacet f : currentlyDisplayed)
+  	{
+  		Element subject = (Element) f.getSubject();
+  		String uuid = subject.getUuid();
+  		if (subject.getOwner() instanceof DeltaReplacedConstituent)
+  			uuid = ((DeltaReplacedConstituent) subject.getOwner()).getReplaced().getUuid();
+  		
+  		if (uuid.equals(originalUuid))
+  			return f;
+  	}
+  	return null;
+	}
+
+	protected boolean hasVisualProblem(BasicNodeFigureFacet container, FigureFacet sub, DEConstituent constituent)
 	{
 		return false;
 	}
@@ -572,6 +608,36 @@ public abstract class ClassifierConstituentHelper
 			facet.markForResizing(figure);
 			facet.setFocusBounds(newBounds);
 			facet.end();
+	}
+
+	public static void copyStereotypesAndValues(Element replaced, Element next)
+	{
+		// copy over any applied stereotypes
+		for (Object st : replaced.undeleted_getAppliedBasicStereotypes())
+		{
+			Stereotype stereo = (Stereotype) st;
+			next.settable_getAppliedBasicStereotypes().add(stereo);
+		}
+		// and applied values
+		for (Object st : replaced.undeleted_getAppliedBasicStereotypeValues())
+		{
+			AppliedBasicStereotypeValue val = (AppliedBasicStereotypeValue) st;
+			if (val.getValue() instanceof LiteralBoolean)
+			{
+				AppliedBasicStereotypeValue nval = next.createAppliedBasicStereotypeValues();			
+				nval.setProperty(val.getProperty());
+				nval.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
+				((LiteralBoolean) nval.getValue()).setValue(val.getValue().booleanValue());
+			}
+			else
+			if (val.getValue() instanceof Expression)
+			{
+				AppliedBasicStereotypeValue nval = next.createAppliedBasicStereotypeValues();			
+				nval.setProperty(val.getProperty());
+				nval.createValue(UML2Package.eINSTANCE.getExpression());
+				((Expression) nval.getValue()).setBody(val.getValue().stringValue());
+			}				
+		}		
 	}
 	
 	/////////////////////////////////////////////////

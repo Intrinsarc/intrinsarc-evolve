@@ -7,6 +7,7 @@ import org.eclipse.uml2.*;
 import com.hopstepjump.deltaengine.base.*;
 import com.hopstepjump.idraw.figures.simplecontainernode.*;
 import com.hopstepjump.idraw.foundation.*;
+import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.portnode.*;
@@ -67,6 +68,39 @@ public class PartPortInstanceHelper
     for (DeltaPair pair : possiblePorts)
       uuids.add(pair.getConstituent().getUuid());
     
+    // find out what is visually suppressed
+    Set<String> suppressed = ClassifierConstituentHelper.getVisuallySuppressed(
+    		getVisualPerspective(),
+    		getComponentType(),
+    		ConstituentTypeEnum.DELTA_PORT);
+    
+    // work out what we need to add
+    for (DeltaPair pair : possiblePorts)
+    {
+      Port port = (Port) pair.getConstituent().getRepositoryObject();
+      
+      if (!containedWithin(current, port) && !deleted.isDeleted(suppressed, pair.getUuid()))
+      {
+      	FigureFacet toReplace = ClassifierConstituentHelper.willReplaceCurrentlyDisplayed(current, pair);
+      	if (toReplace != null)
+      	{
+      		// replace in-situ even if locked -- we are already displaying it after all...
+					PersistentFigure pfig = toReplace.makePersistentFigure();
+					pfig.setSubject(pair.getConstituent().getRepositoryObject());
+					toReplace.acceptPersistentFigure(pfig);
+          toReplace.getDiagram().forceAdjust(toReplace);
+      	}
+      	else
+      	if (!locked)
+          makeAddTransaction(
+              current,
+              partFigure,
+              container,
+              port,
+              pair.getUuid());
+      }
+    }
+
     // work out what we need to delete
     // delete if this shouldn't be here
     for (FigureFacet f : current)
@@ -74,33 +108,8 @@ public class PartPortInstanceHelper
       // don't delete if this is deleted -- this is covered elsewhere
       Element subject = (Element) f.getSubject();
       
-      if (subject != null && !subject.isThisDeleted() &&
-          !uuids.contains(subject.getUuid()))
-          f.formDeleteTransaction();
-    }
-    
-    if (!locked)
-    {
-	    // find out what is visually suppressed
-	    Set<String> suppressed = ClassifierConstituentHelper.getVisuallySuppressed(
-	    		getVisualPerspective(),
-	    		getComponentType(),
-	    		ConstituentTypeEnum.DELTA_PORT);
-	    
-	    // work out what we need to add
-	    for (DeltaPair pair : possiblePorts)
-	    {
-	      Port port = (Port) pair.getConstituent().getRepositoryObject();
-	      if (!containedWithin(current, port) && !deleted.isDeleted(suppressed, pair.getUuid()))
-	      {
-          makeAddTransaction(
-              current,
-              partFigure,
-              container,
-              port,
-              pair.getUuid());
-	      }
-	    }
+      if (subject != null && !subject.isThisDeleted() && !uuids.contains(subject.getUuid()))
+        f.formDeleteTransaction();
     }
   }
 

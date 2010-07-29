@@ -11,7 +11,6 @@ import bibliothek.extension.gui.dock.theme.*;
 import bibliothek.gui.*;
 import bibliothek.gui.dock.*;
 import bibliothek.gui.dock.common.*;
-import bibliothek.gui.dock.common.action.*;
 import bibliothek.gui.dock.common.action.predefined.*;
 import bibliothek.gui.dock.common.intern.*;
 import bibliothek.gui.dock.control.*;
@@ -52,6 +51,7 @@ public class DockingFramesDock implements IEasyDock
 	{
 		for (IEasyDockable dockable : new ArrayList<IEasyDockable>(remembered))
 			dockable.close();
+		firstWorkspaceDockable = null;
 	}
 	
 	/** finishSetup() must be called after the frame has been made visible */
@@ -69,7 +69,7 @@ public class DockingFramesDock implements IEasyDock
 			{
 				try
 				{
-					Thread.sleep(300);
+					Thread.sleep(400);
 					frame.repaint();
 				}
 				catch (Exception e1)
@@ -85,7 +85,7 @@ public class DockingFramesDock implements IEasyDock
 		removeDefaultDockableActions(dockable);
 		component.setMinimumSize(new Dimension(100, 100));
 		
-		DockingFramesDockable wrapper = new DockingFramesDockable(this, dockable);
+		DockingFramesDockable wrapper = new DockingFramesDockable(this, dockable, component);
 		
 		// do we want to remember this for closing later?
 		if (remember)
@@ -105,6 +105,15 @@ public class DockingFramesDock implements IEasyDock
 			firstWorkspaceDockable = dockable;
 		
 		return wrapper;
+	}
+	
+	void removeMe(DockingFramesDockable wrapper)
+	{
+		remembered.remove(wrapper);
+		DefaultSingleCDockable dockable = wrapper.getDockable();
+		control.remove(dockable);
+		JComponent component = wrapper.getComponent();
+		dockable.remove(component);
 	}
 
 	///////////////////////////////////////////////////////////////////////
@@ -128,24 +137,6 @@ public class DockingFramesDock implements IEasyDock
 		dockable.putAction(CDockable.ACTION_KEY_MAXIMIZE, CBlank.BLANK);
 		dockable.putAction(CDockable.ACTION_KEY_NORMALIZE, CBlank.BLANK);
 		dockable.putAction(CDockable.ACTION_KEY_EXTERNALIZE, CBlank.BLANK);
-	}
-
-	private CAction makeButton(String name)
-	{
-		return
-		new CButton(name, null)
-		{
-			@Override
-			protected void action()
-			{
-			}
-		};
-	}
-
-	void removeMe(DockingFramesDockable dockable)
-	{
-		remembered.remove(dockable);		
-		control.remove(dockable.getDockable());
 	}
 
 	public IEasyDockable createEmbeddedPaletteDockable(
@@ -195,7 +186,7 @@ public class DockingFramesDock implements IEasyDock
 		component.setMinimumSize(new Dimension(100, 100));
 		
 		// do we want to remember this for closing later?
-		DockingFramesDockable wrapper = new DockingFramesDockable(this, dockable);
+		DockingFramesDockable wrapper = new DockingFramesDockable(this, dockable, component);
 		if (remember)
 			remembered.add(wrapper);			
 

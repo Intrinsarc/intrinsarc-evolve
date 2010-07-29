@@ -607,6 +607,7 @@ public class ConnectorArcAppearanceGem implements Gem
           PersistentFigure pfig = figureFacet.makePersistentFigure();
           pfig.setSubject(replacement.getReplacement());
           figureFacet.acceptPersistentFigure(pfig);
+          diagramView.getDiagram().forceAdjust(figureFacet);
 
           coordinator.commitTransaction(true);
           
@@ -866,25 +867,7 @@ public class ConnectorArcAppearanceGem implements Gem
       cloneUpperValue(nextEnd, connEnd);
     }
     
-		// copy over any applied stereotypes
-		for (Object st : replaced.undeleted_getAppliedBasicStereotypes())
-		{
-			Stereotype stereo = (Stereotype) st;
-			next.settable_getAppliedBasicStereotypes().add(stereo);
-		}
-		// and applied values
-		for (Object st : replaced.undeleted_getAppliedBasicStereotypeValues())
-		{
-			AppliedBasicStereotypeValue val = (AppliedBasicStereotypeValue) st;
-			if (val.getValue() instanceof LiteralBoolean)
-			{
-				AppliedBasicStereotypeValue nval = next.createAppliedBasicStereotypeValues();			
-				nval.setProperty(val.getProperty());
-				nval.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
-				((LiteralBoolean) nval.getValue()).setValue(val.getValue().booleanValue());
-			}
-		}
-		
+    ClassifierConstituentHelper.copyStereotypesAndValues(replaced, next);
 		
     return replacement;
   }

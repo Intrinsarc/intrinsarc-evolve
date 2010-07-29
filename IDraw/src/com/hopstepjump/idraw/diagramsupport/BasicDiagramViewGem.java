@@ -293,7 +293,7 @@ public final class BasicDiagramViewGem implements Gem
           nextAdorned = adorner.determineAdornments(diagramFacet, new HashSet<FigureFacet>(figures.values()));
           
           Set<FigureFacet> intersection = new HashSet<FigureFacet>(nextAdorned.keySet());
-          intersection.retainAll(previouslyAdorned);
+          intersection.retainAll(previouslyAdorned.get(lp).keySet());
           modifiedAdorned.putAll(nextAdorned);
           if (previouslyAdorned.get(lp) != null)
             modifiedAdorned.putAll(previouslyAdorned.get(lp));

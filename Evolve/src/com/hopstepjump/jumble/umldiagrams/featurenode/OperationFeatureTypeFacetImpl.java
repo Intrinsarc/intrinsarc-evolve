@@ -236,6 +236,7 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
         PersistentFigure pfig = figureFacet.makePersistentFigure();
         pfig.setSubject(replacement[0].getReplacement());
         figureFacet.acceptPersistentFigure(pfig);
+        diagramView.getDiagram().forceAdjust(figureFacet);
 
         coordinator.commitTransaction();
         
@@ -282,15 +283,13 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
       param.setDirection(oldParam.getDirection());
     }
     
+		// copy over any applied stereotypes
+    ClassifierConstituentHelper.copyStereotypesAndValues(replaced, oper);
+    
     // delete it so we can bring it back as part of the redo command
     GlobalSubjectRepository.repository.incrementPersistentDelete(replacement);
     
     return replacement;
-  }
-  
-  private Type getSubjectType(Operation subject)
-  {
-    return subject.undeleted_getType();
   }
   
   private Type findOrCreateType(String name)

@@ -316,10 +316,11 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
         PersistentFigure pfig = figureFacet.makePersistentFigure();
         pfig.setSubject(replacement.getReplacement());
         figureFacet.acceptPersistentFigure(pfig);
+        diagramView.getDiagram().forceAdjust(figureFacet);
         
         coordinator.commitTransaction(true);
         diagramView.getSelection().clearAllSelection();
-        diagramView.getSelection().addToSelection(figureFacet, true);
+        diagramView.getSelection().addToSelection(figureFacet, false);
       }
     });
 
@@ -392,6 +393,9 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
 				attr.settable_getDefaultValues().add(v);
     	}
     }
+  	
+		// copy over any applied stereotypes
+    ClassifierConstituentHelper.copyStereotypesAndValues(replaced, attr);
     
     return replacement;
   }

@@ -15,12 +15,16 @@ public class DockingFramesDockable implements IEasyDockable
 	private DefaultSingleCDockable dockable;
 	private Set<IEasyDockableListener> listeners;
 	private DockingFramesDock owner;
+	private JComponent component;
 	private boolean closed;
+	private CDockableAdapter stateListener;
+	private CFocusListener focusListener;
 
-	public DockingFramesDockable(DockingFramesDock dockingFramesEasyDock, DefaultSingleCDockable dockable)
+	public DockingFramesDockable(DockingFramesDock dockingFramesEasyDock, DefaultSingleCDockable dockable, JComponent component)
 	{
 		this.owner = dockingFramesEasyDock;
 		this.dockable = dockable;
+		this.component = component;
 	}
 
 	public void addListener(IEasyDockableListener listener)
@@ -29,7 +33,7 @@ public class DockingFramesDockable implements IEasyDockable
 		{
 			listeners = new HashSet<IEasyDockableListener>();
 
-			dockable.addFocusListener(new CFocusListener()
+			dockable.addFocusListener(focusListener = new CFocusListener()
 			{
 				public void focusGained(CDockable arg0)
 				{
@@ -42,7 +46,7 @@ public class DockingFramesDockable implements IEasyDockable
 				}
 			});
 
-			dockable.addCDockableStateListener(new CDockableAdapter()
+			dockable.addCDockableStateListener(stateListener = new CDockableAdapter()
 			{
 				@Override
 				public void visibilityChanged(CDockable dockable)
@@ -77,6 +81,10 @@ public class DockingFramesDockable implements IEasyDockable
 		{
 			closed = true;
 			dockable.getControl().createCloseAction(dockable).trigger(dockable.intern());
+			if (focusListener != null)
+				dockable.removeFocusListener(focusListener);
+			if (stateListener != null)
+				dockable.removeCDockableStateListener(stateListener);
 			owner.removeMe(this);
 		}
 	}
@@ -89,5 +97,10 @@ public class DockingFramesDockable implements IEasyDockable
 	public DefaultSingleCDockable getDockable()
 	{
 		return dockable;
+	}
+
+	public JComponent getComponent()
+	{
+		return component;
 	}
 }

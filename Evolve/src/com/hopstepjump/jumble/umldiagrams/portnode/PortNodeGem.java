@@ -1382,6 +1382,7 @@ public final class PortNodeGem implements Gem
         PersistentFigure pfig = figureFacet.makePersistentFigure();
         pfig.setSubject(replacement.getReplacement());
         figureFacet.acceptPersistentFigure(pfig);
+        diagramView.getDiagram().forceAdjust(figureFacet);
 
         coordinator.commitTransaction(true);
         
@@ -1415,6 +1416,9 @@ public final class PortNodeGem implements Gem
       port.setUpperBound(new Integer(replaced.getUpper()));
     if (replaced.getLowerValue() != null)
       port.setLowerBound(new Integer(replaced.getLower()));
+    
+		// copy over any applied stereotypes
+    ClassifierConstituentHelper.copyStereotypesAndValues(replaced, port);
     
     return replacement;
   }

@@ -1380,8 +1380,8 @@ public final class ClassifierNodeGem implements Gem
 				public void actionPerformed(ActionEvent e)
 				{
 					// toggle the suppress attributes flag
-					coordinator.startTransaction(locked ? "Unlocked visuals" : "Locked visuals", locked ? "Locked visuals"
-							: "Unlocked visuals");
+					coordinator.startTransaction(
+							locked ? "Unlocked visuals" : "Locked visuals", locked ? "Locked visuals" : "Unlocked visuals");
 					locked = !locked;
 					coordinator.commitTransaction(true);
 				}
@@ -2811,6 +2811,7 @@ public final class ClassifierNodeGem implements Gem
 					PersistentFigure pfig = figureFacet.makePersistentFigure();
 					pfig.setSubject(replacement.getReplacement());
 					figureFacet.acceptPersistentFigure(pfig);
+          diagramView.getDiagram().forceAdjust(figureFacet);
 				}
 				coordinator.commitTransaction(true);
 
@@ -2867,11 +2868,7 @@ public final class ClassifierNodeGem implements Gem
 			}
 
 			// copy over any applied stereotypes
-			for (Object st : replaced.undeleted_getAppliedBasicStereotypes())
-			{
-				Stereotype stereo = (Stereotype) st;
-				next.settable_getAppliedBasicStereotypes().add(stereo);
-			}
+	    ClassifierConstituentHelper.copyStereotypesAndValues(replaced, next);
 
 			// copy over any remaps also
 			for (Object obj : oldSpec.undeleted_getPortRemaps())

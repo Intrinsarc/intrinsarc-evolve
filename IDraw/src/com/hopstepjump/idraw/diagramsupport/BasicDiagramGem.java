@@ -172,7 +172,6 @@ public final class BasicDiagramGem implements Gem
 			};
 			deletionFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(figuresWithDeletedSubjects, chosenFigures, false);
 			
-
 			// 3) remove the views with deleted subjects
 			DeleteFromDiagramTransaction.delete(diagramFacet, deletionFigureIds, false);
     }

@@ -39,17 +39,22 @@ public class PartSlotHelper
       {
         Slot slot = (Slot) obj;        
         // now look to see that it is displayed
-        if (isOwned(possibleAttributes, slot) && !containedWithin(current, slot))
+        if (isOwned(possibleAttributes, null, slot) && !containedWithin(current, slot))
           return false;
       }
     return true;
   }
   
-  private boolean isOwned(Set<Property> possibleAttributes, Slot slot)
+  private boolean isOwned(Set<Property> possibleAttributes, Set<Slot> possibleSlots, Slot slot)
   {
-    // should this even be here?
+  	// is this one of the slots?
+  	if (possibleSlots != null && !possibleSlots.contains(slot))
+  		return false;
+  	
+    // possibly the attribute is not correct?
+  	String slotUuid = slot.undeleted_getDefiningFeature().getUuid(); 
     for (Property attr : possibleAttributes)
-      if (slot.undeleted_getDefiningFeature().getUuid().equals(attr.getUuid()))
+      if (slotUuid.equals(attr.getUuid()))
         return true;
     return false;
   }
@@ -78,6 +83,7 @@ public class PartSlotHelper
     // get the full set of attributes
     Set<FigureFacet> current = getCurrentlyDisplayed();
     Set<Property> possibleAttributes = resolvePossibleAttributes();
+    Set<Slot> possibleSlots = resolvePossibleSlots();
     
     // delete if this shouldn't be here
     for (FigureFacet f : current)
@@ -87,7 +93,7 @@ public class PartSlotHelper
       
       if (!subject.isThisDeleted())
       {
-        if (!isOwned(possibleAttributes, (Slot) subject))
+        if (!isOwned(possibleAttributes, possibleSlots, (Slot) subject))
           f.formDeleteTransaction();
       }
     }
@@ -110,7 +116,7 @@ public class PartSlotHelper
 	      {
 	        Slot slot = (Slot) obj;
 	        String uuid = slot.getUuid();
-	        if (isOwned(possibleAttributes, slot) && !deleted.isDeleted(suppressed, uuid) && !containedWithin(current, slot))
+	        if (isOwned(possibleAttributes, null, slot) && !deleted.isDeleted(suppressed, uuid) && !containedWithin(current, slot))
 	        {
             makeAddTransaction(
                 current,
@@ -123,7 +129,7 @@ public class PartSlotHelper
     }
   }
 
-  public void makeAddTransaction(
+	public void makeAddTransaction(
       Set<FigureFacet> currentInContainerIgnoringDeletes,
       BasicNodeFigureFacet partFigure,
       FigureFacet container,
@@ -177,6 +183,19 @@ public class PartSlotHelper
     return false;
   }
   
+  private Set<Slot> resolvePossibleSlots()
+	{
+    Property property = (Property) partFigure.getSubject();
+    Set<Slot> slots = new HashSet<Slot>();
+
+    // locate the component
+    DEPart part = GlobalDeltaEngine.engine.locateObject(property).asConstituent().asPart();
+    for (DESlot slot : part.getSlots())
+    	slots.add((Slot) slot.getRepositoryObject());
+    return slots;
+	}
+
+
   private Set<Property> resolvePossibleAttributes()
   {
     // get the part type
@@ -192,7 +211,7 @@ public class PartSlotHelper
     Set<DeltaPair> pairs = deltas.getConstituents(getVisualPerspective(), true);
     Set<Property> properties = new HashSet<Property>();
     for (DeltaPair pair : pairs)
-      properties.add((Property) pair.getOriginal().getRepositoryObject());
+      properties.add((Property) pair.getConstituent().getRepositoryObject());
     return properties;
   }
 

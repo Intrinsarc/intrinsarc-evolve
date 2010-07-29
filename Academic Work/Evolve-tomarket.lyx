@@ -113,11 +113,13 @@ simplify attr + operation options + menu items disabled rather than removed
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 visual resemblance from parts
 \begin_inset Newline newline
 \end_inset
 
-(2 days, 1 day left)
+(2 days, done)
 \end_layout
 
 \begin_layout Enumerate
@@ -262,15 +264,30 @@ slots disappear/reappear if supercomponent goes
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
+undo after ageX replace – error adorner holds onto old state?
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+replacing part causes element to disappear when visually locked -- an original
+ id issue?
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+replace of part picks up old and new slots
+\end_layout
+
+\begin_layout Enumerate
 attribute issues (aliasing, defaults, 
 \color green
 replace of attr with default
 \color inherit
 )
-\end_layout
-
-\begin_layout Enumerate
-undo after ageX replace – error adorner holds onto old state?
 \end_layout
 
 \begin_layout Enumerate
@@ -284,29 +301,20 @@ transition arrow
 \end_layout
 
 \begin_layout Enumerate
-replace of part picks up old and new slots
-\end_layout
-
-\begin_layout Enumerate
 disappearing interfaces on redefs/factories
 \end_layout
 
 \begin_layout Enumerate
------------------
+lower priority ------------------
 \end_layout
 
 \begin_layout Enumerate
-visual lock problems (possibly move to deleteduuids?)
-\color green
- + concurrency issues when cmd takes a long time
+visual lock problems (possibly move to deleteduuids)
 \end_layout
 
 \begin_layout Enumerate
-replacing part causes element to disappear when visually locked
-\end_layout
-
-\begin_layout Enumerate
-fix performance issues + memory leaks in import using jprofiler
+fix performance issues + memory leaks when loading a new project in import
+ using jprofiler
 \end_layout
 
 \begin_layout Standard
