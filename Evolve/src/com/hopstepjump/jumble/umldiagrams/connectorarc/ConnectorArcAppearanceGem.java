@@ -66,7 +66,8 @@ public class ConnectorArcAppearanceGem implements Gem
   boolean delegate;
   boolean directed;
   boolean portLink;
-  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();  
+  private ClipboardActionsFacet clipboardCommandsFacet = new ClipboardActionsFacetImpl();
+  private ConnectorStyleFacet styleFacet = new ConnectorStyleFacetImpl();
   
   public ConnectorArcAppearanceGem(PersistentFigure pfig)
   {
@@ -86,6 +87,40 @@ public class ConnectorArcAppearanceGem implements Gem
     return clipboardCommandsFacet;
   }
   
+	private class ConnectorStyleFacetImpl implements ConnectorStyleFacet
+	{
+		public UDimension getLinkedTextOffset(int point)
+		{
+			switch (point)
+			{
+				case CalculatedArcPoints.MAJOR_POINT_START:
+					return startText.getFullBounds().getPoint().subtract(linkedTextOriginFacet.getMajorPoint(point));
+				case CalculatedArcPoints.MAJOR_POINT_END:
+					return endText.getFullBounds().getPoint().subtract(linkedTextOriginFacet.getMajorPoint(point));
+				default:
+					return text.getFullBounds().getPoint().subtract(linkedTextOriginFacet.getMajorPoint(point));
+			}
+		}
+
+		public boolean isLinkedTextSuppressed(int point)
+		{
+			switch (point)
+			{
+				case CalculatedArcPoints.MAJOR_POINT_START:
+					return !startText.isShowing();
+				case CalculatedArcPoints.MAJOR_POINT_END:
+					return !endText.isShowing();
+				default:
+					return !text.isShowing();
+			}
+		}
+
+		public boolean isCurved()
+		{
+			return figureFacet.makePersistentFigure().getProperties().retrieve("curved", false).asBoolean();
+		}
+	}
+	
   private class ClipboardActionsFacetImpl implements ClipboardActionsFacet
   {
     public boolean hasSpecificDeleteAction()
@@ -745,28 +780,39 @@ public class ConnectorArcAppearanceGem implements Gem
     return appearanceFacet;
   }
   
-  public void connectFigureFacet(FigureFacet figureFacet)
+  public void connectFigureFacet(FigureFacet figureFacet, PersistentProperties properties)
   {
     this.figureFacet = figureFacet;
     figureFacet.registerDynamicFacet(linkedTextOriginFacet, LinkedTextOriginFacet.class);
-    createLinkedText();
+    figureFacet.registerDynamicFacet(styleFacet, ConnectorStyleFacet.class);
+    createLinkedText(properties);
   }
   
   /**
    * 
    */
   private static final UDimension LINKED_TEXT_OFFSET = new UDimension(-16, -16);
-  private void createLinkedText()
+  private void createLinkedText(PersistentProperties properties)
   {
     DiagramFacet diagram = figureFacet.getDiagram();
     
     // make the text
-    makeStartText(diagram);
-    makeMiddleText(diagram);
-    makeEndText(diagram);
+    makeStartText(diagram, getTextOffset(properties, ">startTextOffset"), isTextSuppressed(properties, ">suppressStartText"));
+    makeMiddleText(diagram, getTextOffset(properties, ">middleTextOffset"), isTextSuppressed(properties, ">suppressMiddleText"));
+    makeEndText(diagram, getTextOffset(properties, ">endTextOffset"), isTextSuppressed(properties, ">suppressEndText"));
   }
 
-  private void makeEndText(DiagramFacet diagram)
+  private boolean isTextSuppressed(PersistentProperties properties, String property)
+	{
+		return properties.retrieve(property, false).asBoolean();
+	}
+
+	private UDimension getTextOffset(PersistentProperties properties, String property)
+	{
+		return properties.retrieve(property, LINKED_TEXT_OFFSET).asUDimension();
+	}
+
+	private void makeEndText(DiagramFacet diagram, UDimension offset, boolean suppress)
   {
     String reference = figureFacet.getFigureReference().getId();
     // make the end text
@@ -776,11 +822,11 @@ public class ConnectorArcAppearanceGem implements Gem
           LinkedTextCreatorGem.RECREATOR_NAME,
           diagram,
           reference + "E",
-          Grid.roundToGrid(location.add(LINKED_TEXT_OFFSET)),
+          Grid.roundToGrid(location.add(offset)),
           true,
           "endText",
           true);
-      LinkedTextGem linkedTextGem = new LinkedTextGem("", false, CalculatedArcPoints.MAJOR_POINT_END);
+      LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_END);
       basicLinkedTextGem.connectBasicNodeAppearanceFacet(linkedTextGem.getBasicNodeAppearanceFacet());
       linkedTextGem.connectBasicNodeFigureFacet(basicLinkedTextGem.getBasicNodeFigureFacet());
       
@@ -793,7 +839,7 @@ public class ConnectorArcAppearanceGem implements Gem
     }
   }
 
-  private void makeStartText(DiagramFacet diagram)
+  private void makeStartText(DiagramFacet diagram, UDimension offset, boolean suppress)
   {
     String reference = figureFacet.getFigureReference().getId();
     // make the start text
@@ -803,11 +849,11 @@ public class ConnectorArcAppearanceGem implements Gem
           LinkedTextCreatorGem.RECREATOR_NAME,
           diagram,
           reference + "S",
-          Grid.roundToGrid(location.add(LINKED_TEXT_OFFSET)),
+          Grid.roundToGrid(location.add(offset)),
           true,
           "startText",
           true);
-      LinkedTextGem linkedTextGem = new LinkedTextGem("", false, CalculatedArcPoints.MAJOR_POINT_START);
+      LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_START);
       basicLinkedTextGem.connectBasicNodeAppearanceFacet(linkedTextGem.getBasicNodeAppearanceFacet());
       linkedTextGem.connectBasicNodeFigureFacet(basicLinkedTextGem.getBasicNodeFigureFacet());
       
@@ -820,7 +866,7 @@ public class ConnectorArcAppearanceGem implements Gem
     }
   }
 
-  private void makeMiddleText(DiagramFacet diagram)
+  private void makeMiddleText(DiagramFacet diagram, UDimension offset, boolean suppress)
   {
     String reference = figureFacet.getFigureReference().getId();
 
@@ -830,11 +876,11 @@ public class ConnectorArcAppearanceGem implements Gem
           LinkedTextCreatorGem.RECREATOR_NAME,
           diagram,
           reference + "_M",
-          Grid.roundToGrid(location.add(LINKED_TEXT_OFFSET)),
+          Grid.roundToGrid(location.add(offset)),
           true,
           "text",
           true);
-    	LinkedTextGem linkedTextGem = new LinkedTextGem("", false, CalculatedArcPoints.MAJOR_POINT_MIDDLE);
+    	LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_MIDDLE);
   		basicLinkedTextGem.connectBasicNodeAppearanceFacet(linkedTextGem.getBasicNodeAppearanceFacet());
   		linkedTextGem.connectBasicNodeFigureFacet(basicLinkedTextGem.getBasicNodeFigureFacet());
       

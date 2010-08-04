@@ -94,7 +94,7 @@ public class ComponentErrorChecker
     	
     	// test the interface visibility -- only do this at home...
     	if (atHome)
-    		testPortInterfaceVisibility(port);
+    		testPortInterfaceVisibility(port);    	
     }
     
     // common section for all components
@@ -270,9 +270,29 @@ public class ComponentErrorChecker
       	{
       		// if this is a delegate, it cannot have any indices
       		if (conn.getIndex(0) != null || conn.getIndex(1) != null)
-      			errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.DELEGATE_CONNECTORS_CANNOT_HAVE_INDICES);      		
-      	}
+      			errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.DELEGATE_CONNECTORS_CANNOT_HAVE_INDICES);
+      		
+      		// port instance must have more optionality than port
+      		if (part1 == null)
+      		{
+      			if  (port1.getLowerBound() > port2.getLowerBound())
+      				errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.PORT_HAS_TOO_MUCH_OPTIONALITY_FOR_DELEGATION);
+      			if (port1.getUpperBound() > port2.getUpperBound())
+        			errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.PORT_UPPER_TOO_HIGH_FOR_DELEGATION);
+      		}
+      		if (part2 == null)
+      		{
+      			if (port2.getLowerBound() > port1.getLowerBound())
+      				errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.PORT_HAS_TOO_MUCH_OPTIONALITY_FOR_DELEGATION);
+      			if (port2.getUpperBound() > port1.getUpperBound())
+        			errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.PORT_UPPER_TOO_HIGH_FOR_DELEGATION);
+      		}
+      	}      	
       }
+      
+      // a composite cannot directly or indirectly include itself or anything that would prevent
+      // the composition hierarchy from terminating in leaf instances
+    	noSelfComposition();
     }
     
     // make sure that the attributes can be topologically sorted using their default values
@@ -318,8 +338,10 @@ public class ComponentErrorChecker
 		
 		// a slot must have a value of some sort
 		if (slot.getValue() == null && slot.getEnvironmentAlias() == null)
+		{
 			errors.addError(
           new ErrorLocation(perspective, component, part), ErrorCatalog.SLOT_MUST_HAVE_VALUE);
+		}
 		
 		Set<DEAttribute> readOnly = new HashSet<DEAttribute>();
 		Set<DEAttribute> writeOnly = new HashSet<DEAttribute>();
@@ -348,6 +370,15 @@ public class ComponentErrorChecker
 		if (readOnly.contains(slot.getAttribute(perspective, component)))
 			errors.addError(
           new ErrorLocation(perspective, component, part), ErrorCatalog.CANNOT_SET_READONLY_ATTRIBUTE);
+		
+		// if this is an alias, ensure it is the same type
+		DEAttribute alias = slot.getEnvironmentAlias(perspective, component);
+		if (alias != null)
+		{
+			if (slot.getAttribute().getType() != alias.getType())
+				errors.addError(
+	          new ErrorLocation(perspective, component, part), ErrorCatalog.SLOT_ALIAS_INCOMPATIBLE_TYPE);						
+		}
 	}
 
 	private void checkAttributes(DeltaPair pair)
@@ -411,14 +442,21 @@ public class ComponentErrorChecker
 	
 	private void testPortInterfaceVisibility(DEPort port)
 	{
-		for (DEInterface prov : component.getProvidedInterfaces(perspective, port))
+		Set<? extends DEInterface> provided = component.getProvidedInterfaces(perspective, port);
+		Set<? extends DEInterface> required = component.getRequiredInterfaces(perspective, port);
+
+		for (DEInterface prov : provided)
 			if (!perspective.getCanSeePlusMe().contains(prov.getHomeStratum()))
 		  	errors.addError(
 		  			new ErrorLocation(component, port), ErrorCatalog.CANNOT_SEE_INTERFACE);
-		for (DEInterface req : component.getRequiredInterfaces(perspective, port))
+		for (DEInterface req : required)
 			if (!perspective.getCanSeePlusMe().contains(req.getHomeStratum()))
 		  	errors.addError(
 		  			new ErrorLocation(component, port), ErrorCatalog.CANNOT_SEE_INTERFACE);
+		
+		if (provided.size() + required.size() == 0)
+	  	errors.addError(
+	  			new ErrorLocation(component, port), ErrorCatalog.PORT_MUST_PROVIDE_OR_REQUIRE);
 	}
 	
 	private void testPartTypeVisibility(DeltaPair pair)
@@ -501,6 +539,9 @@ public class ComponentErrorChecker
 		  		errors.addError(
 		  				new ErrorLocation(component, pair.getConstituent()), ErrorCatalog.ATTRIBUTE_COMPONENT_TYPES_MUST_BE_PRIMITIVE);
 		}
+		else
+			errors.addError(
+					new ErrorLocation(component, pair.getConstituent()), ErrorCatalog.ATTRIBUTE_MUST_HAVE_TYPE);
 	}
 
 	private boolean overlappingInterfaces(Set<? extends DEInterface> ifaces)
@@ -518,6 +559,54 @@ public class ComponentErrorChecker
 						return true;
 				}
 			}
+		}
+		return false;
+	}
+	
+	/**
+	 * self-composition check.
+	 * this is a test to see if we are composed of ourselves at any level.  basically,
+	 * we just keep expanding out, keeping track of what we've found, and ensure we don't come across
+	 * a type as a part type in the hierarchy.  AMcV 4/8/2010
+	 */
+	private void noSelfComposition()
+	{
+		Set<DEComponent> above = new HashSet<DEComponent>();
+		above.add(component);
+		for (DeltaPair pair : component.getDeltas(ConstituentTypeEnum.DELTA_PART).getConstituents(perspective))
+		{
+			DEPart part = pair.getConstituent().asPart();
+			if (part.getType() != null)
+			{
+				if (isSelfComposed(perspective, above, part.getType()))
+				{
+		  		errors.addError(
+		  				new ErrorLocation(perspective, component, part), ErrorCatalog.SELF_COMPOSITION);						
+				}
+			}
+		}
+	}
+
+	/**
+	 * returns true if self composition
+	 * @param types
+	 * @param current
+	 * @return
+	 */
+	public static boolean isSelfComposed(DEStratum perspective, Set<DEComponent> above, DEComponent current)
+	{
+		if (above.contains(current))
+			return true;
+		
+		// create a new "above"
+		Set<DEComponent> newAbove = new HashSet<DEComponent>(above);
+		newAbove.add(current);
+		for (DeltaPair pair : current.getDeltas(ConstituentTypeEnum.DELTA_PART).getConstituents(perspective))
+		{
+			DEPart part = pair.getConstituent().asPart();
+			if (part.getType() != null)
+				if (isSelfComposed(perspective, newAbove, part.getType()))
+					return true;
 		}
 		return false;
 	}

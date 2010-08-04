@@ -108,7 +108,7 @@ public class ErrorAdornerGem
 		{
 			// if the mode is suppressed, then don't bother
 			ErrorRegister current = getCurrentRegister();
-			Map<FigureFacet, Integer> adorned = new HashMap<FigureFacet, Integer>();
+			Map<FigureFacet, Integer> adorned = new LinkedHashMap<FigureFacet, Integer>();
 			if (current == null || suppressed)
 				return adorned;
 
@@ -212,7 +212,7 @@ public class ErrorAdornerGem
 						Set<ErrorDescription> errs = found.get(loc);
 						if (errs == null)
 						{
-							errs = new HashSet<ErrorDescription>();
+							errs = new LinkedHashSet<ErrorDescription>();
 							found.put(loc, errs);
 						}
 						errs.addAll(fixedErrors.get(fl));

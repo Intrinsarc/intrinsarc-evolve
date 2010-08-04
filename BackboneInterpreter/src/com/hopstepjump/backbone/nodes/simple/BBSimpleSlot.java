@@ -12,9 +12,9 @@ public class BBSimpleSlot extends BBSimpleObject
 	private BBSimpleAttribute attribute;
 	private BBSimpleAttribute environmentAlias;
 	private List<BBSimpleParameter> value;
-	private transient Object valueObject;
-	private transient boolean resolved;
-	private transient ReflectiveAttribute reflectiveField;
+	private Object valueObject;
+	private boolean resolved;
+	private ReflectiveAttribute reflectiveField;
 	
 	public BBSimpleSlot(BBSimpleElementRegistry registry, BBSimpleComponent component, DEComponent partType, DESlot complex)
 	{

@@ -316,7 +316,7 @@ public class UMLDetailMediator
   private static Set<ErrorDescription> filterDirectErrors(
       Map<ErrorLocation, Set<ErrorDescription>> all, DEObject element)
   {
-    Set<ErrorDescription> descriptions = new HashSet<ErrorDescription>();
+    Set<ErrorDescription> descriptions = new LinkedHashSet<ErrorDescription>();
     for (Entry<ErrorLocation, Set<ErrorDescription>> entry : all.entrySet())
     {
       if (entry.getKey().matchesFirst(element))

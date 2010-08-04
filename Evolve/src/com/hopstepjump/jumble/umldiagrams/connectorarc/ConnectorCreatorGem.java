@@ -43,13 +43,13 @@ public class ConnectorCreatorGem implements Gem
 	  public void create(Object subject, DiagramFacet diagram, String figureId, ReferenceCalculatedArcPoints referencePoints, PersistentProperties properties)
 	  {
 	  	// instantiate to use conventional facets
-	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints));
+	  	BasicArcGem gem = new BasicArcGem(this, diagram, figureId, new CalculatedArcPoints(referencePoints), properties.retrieve(">curved", false).asBoolean());
 	  	ConnectorArcAppearanceGem connectorGem = new ConnectorArcAppearanceGem(
 	  			new PersistentFigure(figureId, null, subject, properties));
 	    gem.connectBasicArcAppearanceFacet(connectorGem.getBasicArcAppearanceFacet());
 	    gem.connectContainerFacet(connectorGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
-	    connectorGem.connectFigureFacet(gem.getFigureFacet());
+	    connectorGem.connectFigureFacet(gem.getFigureFacet(), properties);
 	    gem.connectClipboardActionsFacet(connectorGem.getClipboardCommandsFacet());
 	    																					 
 	    diagram.add(gem.getFigureFacet());
@@ -74,7 +74,7 @@ public class ConnectorCreatorGem implements Gem
 	    gem.connectBasicArcAppearanceFacet(connectorGem.getBasicArcAppearanceFacet());
 	    gem.connectContainerFacet(connectorGem.getContainerFacet());
 	    gem.connectAdvancedArcFacet(connectorGem.getAdvancedArcFacet());
-      connectorGem.connectFigureFacet(gem.getFigureFacet());
+      connectorGem.connectFigureFacet(gem.getFigureFacet(), figure.getProperties());
       gem.connectClipboardActionsFacet(connectorGem.getClipboardCommandsFacet());
 	  	
 	  	return gem.getFigureFacet();

@@ -27,7 +27,7 @@ public class ElementErrorChecker
   	// if this is replacing, and we are not at home, don't bother
   	if (element.isSubstitution() && perspective != myHome)
   		return;
-    
+  	
     // element must be visible
     if (diagramCheck && !perspective.getCanSeePlusMe().contains(myHome))
       errors.addError(
@@ -162,6 +162,41 @@ public class ElementErrorChecker
     					new ErrorLocation(element), ErrorCatalog.CANNOT_REPLACE_ELEMENT_IN_CHECK_ONCE_STRATUM);
     	}
     }
+    
+  	// any stereotype must be visible
+		for (DEAppliedStereotype stereos : element.getRawAppliedStereotypes())
+		{
+			if (!perspective.getCanSeePlusMe().contains(stereos.getStereotype().getHomeStratum()))
+	      errors.addError(
+	          new ErrorLocation(perspective, element), ErrorCatalog.STEREOTYPE_NOT_VISIBLE);  				
+		}
+		
+		// stereotype of any added or replaced constituents must be visible
+		for (ConstituentTypeEnum type : ConstituentTypeEnum.values())
+		{
+			for (DeltaPair pair : element.getDeltas(type).getAddObjects())
+			{
+				if (pair.getConstituent().getAppliedStereotypes() != null)
+					for (DEAppliedStereotype stereos : pair.getConstituent().getAppliedStereotypes())
+					{
+						if (!perspective.getCanSeePlusMe().contains(stereos.getStereotype().getHomeStratum()))
+						{
+				      errors.addError(
+				          new ErrorLocation(element, pair.getConstituent()), ErrorCatalog.STEREOTYPE_NOT_VISIBLE);
+						}
+					}				
+			}
+			for (DeltaPair pair : element.getDeltas(type).getReplaceObjects())
+			{
+				if (pair.getConstituent().getAppliedStereotypes() != null)
+					for (DEAppliedStereotype stereos : pair.getConstituent().getAppliedStereotypes())
+					{
+						if (!perspective.getCanSeePlusMe().contains(stereos.getStereotype().getHomeStratum()))
+				      errors.addError(
+				          new ErrorLocation(element, pair.getConstituent()), ErrorCatalog.STEREOTYPE_NOT_VISIBLE);  				
+					}				
+			}
+		}
   }
 
   private void checkReferenceToSubstitution(DEElement referenced, DEObject element)

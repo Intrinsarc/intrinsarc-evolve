@@ -57,7 +57,7 @@ public class ErrorRegister
   	
   	if (descriptions != null)
   	{
-	  	Set<ErrorDescription> filtered = new HashSet<ErrorDescription>();
+	  	Set<ErrorDescription> filtered = new LinkedHashSet<ErrorDescription>();
 	  	for (ErrorDescription description : descriptions)
 	  		if (!description.isDiagramOnly() || !omitDiagramErrors)
 	  			filtered.add(description);
@@ -81,7 +81,7 @@ public class ErrorRegister
         Set<ErrorDescription> existing = errors.get(loc);
         if (existing == null)
         {
-          existing = new HashSet<ErrorDescription>();
+          existing = new LinkedHashSet<ErrorDescription>();
           errors.put(loc, existing);
         }
         existing.addAll(errs);

@@ -43,7 +43,9 @@ public class ErrorCatalog
 	public static final ErrorDescription CANNOT_HAVE_PARTS = new ErrorDescription("No parts allowed in this type of component");
 	public static final ErrorDescription COMPOSITE_CANNOT_HAVE_PORT_LINKS = new ErrorDescription("No port links allowed in composites");
 	public static final ErrorDescription NO_DIRECT_PORT_CONNECTIONS_ALLOWED = new ErrorDescription("No port to port connections allowed");
-// currently disabled -- seems like an unnecessarily harsh restriction AMcV 24/6/2010
+	public static final ErrorDescription STEREOTYPE_NOT_VISIBLE = new ErrorDescription("Stereotype not visible");
+
+	// currently disabled -- seems like an unnecessarily harsh restriction AMcV 24/6/2010
 //	public static final ErrorDescription NO_CONNECTOR_LOOPBACKS = new ErrorDescription("Connector loopbacks are not allowed");
 	public static final ErrorDescription PARENT_OF_DESTRUCTIVE_STRATUM_MUST_BE_DESTRUCTIVE_ALSO = new ErrorDescription("A destructive stratum must have a destructive parent stratum");
 	public static final ErrorDescription HOME_OF_DESTRUCTIVE_ELEMENT_MUST_BE_DESTRUCTIVE_ALSO = new ErrorDescription("A destructive element must have a destructive home stratum");
@@ -54,6 +56,12 @@ public class ErrorCatalog
 	public static final ErrorDescription NO_IMPLEMENTATION = new ErrorDescription("A single implementation class must be specified");
 	public static final ErrorDescription NO_IMPLEMENTATION_ALLOWED = new ErrorDescription("No implementation can be specified for this component");
 	public static final ErrorDescription NO_FULL_CLASS_ALLOWED = new ErrorDescription("No composite full class can be specified for a leaf");
+	public static final ErrorDescription ATTRIBUTE_MUST_HAVE_TYPE = new ErrorDescription("An attribute must have a type");
+	public static final ErrorDescription PORT_MUST_PROVIDE_OR_REQUIRE = new ErrorDescription("A port must provide or require at least one interface");
+	public static final ErrorDescription SLOT_ALIAS_INCOMPATIBLE_TYPE = new ErrorDescription("A slot is aliased to an attribute with a different type");
+	public static final ErrorDescription PORT_HAS_TOO_MUCH_OPTIONALITY_FOR_DELEGATION = new ErrorDescription("Port has too much optionality for delegation");
+	public static final ErrorDescription PORT_UPPER_TOO_HIGH_FOR_DELEGATION = new ErrorDescription("Port upper bounds is too high for port instance");
+	public static final ErrorDescription SELF_COMPOSITION = new ErrorDescription("Inclusion of part causes self-composition");
 
 	// the diagram errors
   public static final ErrorDescription DIAGRAM_ELEMENT_NOT_VISIBLE = new ErrorDescription("This element is not visible from this diagram", true);

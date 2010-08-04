@@ -9,7 +9,7 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 public class BaseColors
 {
   public static final Preference COMPONENT_COLOR = new Preference("Colors", "Default component color", new PersistentProperty(new Color(190, 190, 255)));
-  public static final Preference PART_COLOR = new Preference("Colors", "Default part color", new PersistentProperty(new Color(190, 190, 255)));
+  public static final Preference PART_COLOR = new Preference("Colors", "Default part color", new PersistentProperty(new Color(200, 200, 255)));
   public static final Preference PRIMITIVE_COLOR = new Preference("Colors", "Default primitive color", new PersistentProperty(new Color(180, 180, 255)));
   public static final Preference CLASS_COLOR = new Preference("Colors", "Default class color", new PersistentProperty(Color.LIGHT_GRAY));
   public static final Preference FACTORY_COLOR = new Preference("Colors", "Default factory color", new PersistentProperty(Color.WHITE));

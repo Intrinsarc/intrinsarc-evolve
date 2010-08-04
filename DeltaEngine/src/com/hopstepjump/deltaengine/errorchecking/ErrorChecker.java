@@ -19,15 +19,15 @@ public class ErrorChecker
         @Override
         public void visitInterface(DEInterface iface)
         {
-      		new ElementErrorChecker(perspective, iface, errors).performCheck(diagramCheck);
       		new InterfaceErrorChecker(perspective, iface, errors).performCheck(diagramCheck);
+      		new ElementErrorChecker(perspective, iface, errors).performCheck(diagramCheck);
         }
 
         @Override
         public void visitComponent(DEComponent component)
         {
-          new ElementErrorChecker(perspective, component, errors).performCheck(diagramCheck);
           new ComponentErrorChecker(perspective, component, errors).performCheck(diagramCheck);
+          new ElementErrorChecker(perspective, component, errors).performCheck(diagramCheck);
         }
 
         @Override

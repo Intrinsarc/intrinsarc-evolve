@@ -15,6 +15,7 @@ import com.hopstepjump.idraw.foundation.persistence.*;
 import com.hopstepjump.idraw.nodefacilities.nodesupport.*;
 import com.hopstepjump.jumble.umldiagrams.base.*;
 import com.hopstepjump.jumble.umldiagrams.connectorarc.*;
+import com.hopstepjump.jumble.umldiagrams.portnode.*;
 
 public class ClassConnectorHelper extends ClassifierConstituentHelper
 {
@@ -117,9 +118,19 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     preview.formBetterVirtualPoint(preview.getActualPoints().getVirtualPoint().subtract(offset));
     ReferenceCalculatedArcPoints calculated = gem.getBasicArcPreviewFacet().getCalculatedPoints().getReferenceCalculatedArcPoints(diagram);
 
-    PersistentProperties props = new PersistentProperties();
-//    props.add(new PersistentProperty("directed", true, false));
-    
+		PersistentProperties props = new PersistentProperties();
+		if (existing != null)
+		{
+			ConnectorStyleFacet styled = existing.getDynamicFacet(ConnectorStyleFacet.class);
+			props.add(new PersistentProperty(">suppressStartText", styled.isLinkedTextSuppressed(CalculatedArcPoints.MAJOR_POINT_START), false));
+			props.add(new PersistentProperty(">startTextOffset", styled.getLinkedTextOffset(CalculatedArcPoints.MAJOR_POINT_START), null));			
+			props.add(new PersistentProperty(">suppressEndText", styled.isLinkedTextSuppressed(CalculatedArcPoints.MAJOR_POINT_END), false));
+			props.add(new PersistentProperty(">endTextOffset", styled.getLinkedTextOffset(CalculatedArcPoints.MAJOR_POINT_END), null));			
+			props.add(new PersistentProperty(">suppressMiddleText", styled.isLinkedTextSuppressed(CalculatedArcPoints.MAJOR_POINT_MIDDLE), false));
+			props.add(new PersistentProperty(">middleTextOffset", styled.getLinkedTextOffset(CalculatedArcPoints.MAJOR_POINT_MIDDLE), null));			
+			props.add(new PersistentProperty(">curved", styled.isCurved(), false));			
+		}
+
     ArcCreateFigureTransaction.create(
     		diagram,
         addOrReplace.getConstituent().getRepositoryObject(),

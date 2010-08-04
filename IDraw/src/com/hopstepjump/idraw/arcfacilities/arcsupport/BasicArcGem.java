@@ -25,6 +25,21 @@ public final class BasicArcGem implements Gem
   	useDefaultFacets();
   }
   
+  public BasicArcGem(PersistentFigureRecreatorFacet recreatorFacet, DiagramFacet diagram, String figureId, CalculatedArcPoints calculatedPoints, boolean curved)
+  {
+    String id = figureId;
+  	state = new BasicArcState();
+  	state.recreatorFacet = recreatorFacet;
+  	state.showing = true;
+  	state.calculatedPoints = calculatedPoints;
+  	state.diagram = diagram;
+  	state.diagramReference = diagram.getDiagramReference();
+  	state.id = id;
+  	state.linked = new HashSet<LinkingFacet>();
+  	state.curved = curved;
+  	useDefaultFacets();
+  }
+  
   public BasicArcGem(PersistentFigureRecreatorFacet recreatorFacet, DiagramFacet diagram, String figureId, BasicArcState state, CalculatedArcPoints calculatedPoints)
   {
   	this.state = state;

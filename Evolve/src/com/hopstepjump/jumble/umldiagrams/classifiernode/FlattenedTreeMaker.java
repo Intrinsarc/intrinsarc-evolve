@@ -1,7 +1,6 @@
 package com.hopstepjump.jumble.umldiagrams.classifiernode;
 
 import java.awt.*;
-import java.awt.List;
 import java.awt.event.*;
 import java.util.*;
 
@@ -12,12 +11,14 @@ import org.eclipse.uml2.*;
 
 import com.hopstepjump.backbone.nodes.simple.*;
 import com.hopstepjump.deltaengine.base.*;
+import com.hopstepjump.deltaengine.errorchecking.*;
 import com.hopstepjump.easydock.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.jumble.gui.lookandfeel.*;
 import com.hopstepjump.jumble.repositorybrowser.*;
 import com.hopstepjump.repositorybase.*;
 import com.hopstepjump.swing.*;
+import com.sun.org.apache.xpath.internal.axes.*;
 
 public class FlattenedTreeMaker
 {
@@ -38,6 +39,19 @@ public class FlattenedTreeMaker
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				DEStratum perspective = GlobalDeltaEngine.engine.locateObject(
+						GlobalSubjectRepository.repository.findVisuallyOwningStratum(
+								figureFacet.getDiagram(), figureFacet.getContainerFacet())).asStratum();
+				DEComponent flat = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asComponent();
+				Set<DEComponent> above = new HashSet<DEComponent>();
+				if (ComponentErrorChecker.isSelfComposed(perspective, above, flat))
+				{
+					coordinator.invokeErrorDialog(
+							"Problem flattening component...",
+							"Component directly or indirectly contains itself.  Run a full error check to diagnose");
+					return;
+				}
+				
 				final JPanel pane = new JPanel();
 				pane.setLayout(new BorderLayout());
 				pane.setPreferredSize(new Dimension(600, 600));
