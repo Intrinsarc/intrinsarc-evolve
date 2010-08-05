@@ -123,6 +123,8 @@ visual resemblance from parts
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 more rules implemented including composition and stereo visibility...
 \begin_inset Newline newline
 \end_inset
@@ -283,6 +285,12 @@ replace of part picks up old and new slots
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
+visual inheritance of connector ends, curve, transition arrow
+\end_layout
+
+\begin_layout Enumerate
 attribute issues (aliasing, defaults, 
 \color green
 replace of attr with default
@@ -291,21 +299,11 @@ replace of attr with default
 \end_layout
 
 \begin_layout Enumerate
----------------
-\end_layout
-
-\begin_layout Enumerate
-visual inheritance of connector ends, curve, 
-\color green
-transition arrow
-\end_layout
-
-\begin_layout Enumerate
 disappearing interfaces on redefs/factories
 \end_layout
 
 \begin_layout Enumerate
-lower priority ------------------
+-------------- lower priority ------------------
 \end_layout
 
 \begin_layout Enumerate
@@ -323,7 +321,7 @@ fix performance issues + memory leaks when loading a new project in import
 Next up:
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 jar deployment + editing off deployed jars.
  also allowing modelling changes using jars for model.
 \begin_inset Newline newline
@@ -332,11 +330,11 @@ jar deployment + editing off deployed jars.
 (5 days)
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 online update + web machinery?
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 fix editing + positioning of connector ends
 \begin_inset Newline newline
 \end_inset
@@ -344,7 +342,7 @@ fix editing + positioning of connector ends
 (2 days)
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 concurrency via actors and possibly concurrent state machines + expanded
  state mechanisms such as history
 \begin_inset Newline newline
@@ -353,16 +351,53 @@ concurrency via actors and possibly concurrent state machines + expanded
 (??)
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 slightly slow diagrams in complex situations == profile using jprofiler
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 jump to source integration with eclipse, intellij
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 making nice for MacOS?
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Documentation:
+\end_layout
+
+\begin_layout Enumerate
+blog from Javalobby, part of a series
+\end_layout
+
+\begin_layout Enumerate
+performance tip: readonly for check once
+\end_layout
+
+\begin_layout Enumerate
+F8 versus shift-F8
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Ideas for revenue:
+\end_layout
+
+\begin_layout Itemize
+training -- $650 per person per day, min of 3 people
+\end_layout
+
+\begin_layout Itemize
+support: $500 per CPU gold, $250 per CPU: differentiators = SLA times
+\end_layout
+
+\begin_layout Itemize
+integration modules: GWT, Swing, JPA (all included), others such as SWT,
+ web services
 \end_layout
 
 \end_body
