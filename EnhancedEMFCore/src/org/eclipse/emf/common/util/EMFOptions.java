@@ -1,10 +1,19 @@
 package org.eclipse.emf.common.util;
 
-import java.util.*;
+import java.util.Set;
 
-import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.EModelElement;
 
-import com.hopstepjump.deltaengine.base.*;
+import com.hopstepjump.deltaengine.base.ConstituentTypeEnum;
+import com.hopstepjump.deltaengine.base.DEComponent;
+import com.hopstepjump.deltaengine.base.DEElement;
+import com.hopstepjump.deltaengine.base.DEObject;
+import com.hopstepjump.deltaengine.base.DEStratum;
+import com.hopstepjump.deltaengine.base.DeltaPair;
+import com.hopstepjump.deltaengine.base.DeltaPairTypeEnum;
+import com.hopstepjump.deltaengine.base.GlobalDeltaEngine;
+import com.hopstepjump.deltaengine.base.IDeltaEngine;
+import com.hopstepjump.deltaengine.base.IDeltas;
 
 public class EMFOptions
 {
@@ -45,10 +54,13 @@ public class EMFOptions
     // look for the add here, otherwise use the filtered resembles_e to move down the resemblance graph
     for (DEElement check : element.getFilteredResemblance_eClosure(perspective))
     {
-      Set<DeltaPair> pairs = check.getDeltas(type).getPairs(perspective, DeltaPairTypeEnum.ADD_OBJECTS);
-      for (DeltaPair pair : pairs)
-        if (pair.getUuid().equals(uuidToFind))
-          return true;
+    	if (check != element)
+    	{
+    		Set<DeltaPair> pairs = check.getDeltas(type).getAddObjects();
+    		for (DeltaPair pair : pairs)
+    			if (pair.getUuid().equals(uuidToFind))
+    				return true;
+    	}
     }
     return false;
   }
