@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry path="" kind="src"/>
 	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
-	<classpathentry path="uml2-odb-latest.jar" exported="true" kind="lib"/>
+	<classpathentry path="uml2-pojo-odb-latest.jar" kind="lib"/>
 	<classpathentry path="" kind="output"/>
 </classpath>
