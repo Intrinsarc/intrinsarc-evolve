@@ -163,7 +163,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 				BBSimpleAttribute simple = p.getAttribute();
 				if (simple != null)
 				{
-					newValues.add(new BBSimpleParameter(copied == null ? simple : copied.get(simple)));
+					newValues.add(new BBSimpleParameter(copied == null || copied.get(simple) == null ? simple : copied.get(simple)));
 				}
 			}
 			else

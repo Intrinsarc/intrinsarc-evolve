@@ -37,7 +37,7 @@ public class PartSlotHelper
     if (instance != null)
       for (Object obj : instance.undeleted_getSlots())
       {
-        Slot slot = (Slot) obj;        
+        Slot slot = (Slot) obj;
         // now look to see that it is displayed
         if (isOwned(possibleAttributes, null, slot) && !containedWithin(current, slot))
           return false;
@@ -50,13 +50,7 @@ public class PartSlotHelper
   	// is this one of the slots?
   	if (possibleSlots != null && !possibleSlots.contains(slot))
   		return false;
-  	
-    // possibly the attribute is not correct?
-  	String slotUuid = slot.undeleted_getDefiningFeature().getUuid(); 
-    for (Property attr : possibleAttributes)
-      if (slotUuid.equals(attr.getUuid()))
-        return true;
-    return false;
+    return true;
   }
 
   private Property getPart()

@@ -547,8 +547,7 @@ public class BBSimpleComponent extends BBSimpleElement
 			if (isRedundant(attr))
 			{
 				iter.remove();
-				if (attr.getAlias() != attr)
-					redundant.put(attr, attr.getAlias());
+				redundant.put(attr, attr.getAlias());
 			}
 		}
 		
@@ -607,7 +606,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	// an attribute is redundant if it is aliased, but it isn't at the top...
 	private boolean isRedundant(BBSimpleAttribute attr)
 	{
-		return attr.getPosition() != PositionEnum.TOP && attr.getAlias() != null;
+		return attr.getAlias() != null;
 	}
 
 	private BBSimpleFactory getMap(int factory)
