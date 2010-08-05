@@ -291,15 +291,17 @@ visual inheritance of connector ends, curve, transition arrow
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
+disappearing interfaces on redefs/factories
+\end_layout
+
+\begin_layout Enumerate
 attribute issues (aliasing, defaults, 
 \color green
 replace of attr with default
 \color inherit
 )
-\end_layout
-
-\begin_layout Enumerate
-disappearing interfaces on redefs/factories
 \end_layout
 
 \begin_layout Enumerate
