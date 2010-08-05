@@ -145,7 +145,7 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 		return enabled;
 	}
 	
-	private Package getPossibleSingleSelectedPackage()
+	public static Package getPossibleSingleSelectedPackage()
 	{
 		// get a possible single selected package
 		ReusableDiagramViewFacet reusable = GlobalPackageViewRegistry.activeRegistry.getFocussedView();
@@ -162,7 +162,7 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 		return null;
 	}
 	
-	private Package getPossibleCurrentPackage()
+	public static Package getPossibleCurrentPackage()
 	{
 		ReusableDiagramViewFacet reusable = GlobalPackageViewRegistry.activeRegistry.getFocussedView();
 		if (reusable != null)

@@ -162,9 +162,9 @@ do website, go into beta
 status open
 
 \begin_layout Plain Layout
-Days left = 3 dev, 4 example, 10 docs.
- Website start ETA = 14th August.
- If website takes 3 days, full beta = 21st August
+Days left = 0 dev, 4 example, 10 docs.
+ Website start ETA ~ 31st August.
+ If website takes 3 days, full beta = ??
 \end_layout
 
 \end_inset
@@ -297,9 +297,9 @@ disappearing interfaces on redefs/factories
 \end_layout
 
 \begin_layout Enumerate
-attribute issues (aliasing, defaults, 
+
 \color green
-replace of attr with default
+attribute issues (aliasing, defaults, replace of attr with default
 \color inherit
 )
 \end_layout
@@ -399,7 +399,7 @@ support: $500 per CPU gold, $250 per CPU: differentiators = SLA times
 
 \begin_layout Itemize
 integration modules: GWT, Swing, JPA (all included), others such as SWT,
- web services
+ web services, S3 + Amazon, Google app engine, cloud?
 \end_layout
 
 \end_body

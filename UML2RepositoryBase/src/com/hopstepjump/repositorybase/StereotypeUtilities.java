@@ -69,7 +69,7 @@ public class StereotypeUtilities
       for (Object obj : element.undeleted_getAppliedBasicStereotypeValues())
       {
         AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) obj;
-        if (value != null && !value.isThisDeleted() && !value.getProperty().isThisDeleted())
+        if (value != null && !value.isThisDeleted() && value.getProperty() != null && !value.getProperty().isThisDeleted())
           if (value.getProperty().getUuid().equals(attributeUUID)
               && value.getValue() instanceof Expression)
           {

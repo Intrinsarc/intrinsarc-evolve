@@ -546,7 +546,8 @@ public class BBSimpleComponent extends BBSimpleElement
 			BBSimpleAttribute attr = iter.next();
 			if (isRedundant(attr))
 			{
-				iter.remove();
+				if (attr.getPosition() != PositionEnum.TOP)
+					iter.remove();
 				redundant.put(attr, attr.getAlias());
 			}
 		}
