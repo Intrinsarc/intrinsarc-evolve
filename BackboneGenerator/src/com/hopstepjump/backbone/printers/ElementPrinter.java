@@ -280,7 +280,7 @@ public class ElementPrinter
 		for (DEAppliedStereotype applied : obj.getAppliedStereotypes())
 			if (showStereotype(applied))
 				str += makeAppliedStereotypeString(applied);
-		return str + " ";
+		return str + (str.length() > 0 ? " " : "");
 	}
 	
 	private String makeAppliedStereotypeString(DEAppliedStereotype appl)

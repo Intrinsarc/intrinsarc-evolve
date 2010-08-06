@@ -874,7 +874,7 @@ public class ApplicationWindow extends SmartJFrame
 		int height = GlobalPreferences.preferences.getRawPreference(RegisteredGraphicalThemes.INITIAL_RUNNER_HEIGHT).asInteger();
 
 		IEasyDockable dockable = desktop.createExternalPaletteDockable(
-				"Backbone runner", APPLICATION_ICON, new Point(x, y), new Dimension(width, height), true,
+				"Backbone runner", RUN_ICON, new Point(x, y), new Dimension(width, height), true,
 				true, internalComponent);
 		runner.setDockable(desktop, dockable);
 

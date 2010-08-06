@@ -267,7 +267,13 @@ public class BBSimpleAttribute extends BBSimpleObject
     }
 
     // if we got here, no valid constructor could be found
-    throw new BBImplementationInstantiationException("Problem with attribute " + attr + " finding valid constructor for " + cls + " from parameters (" + makeClassString(attr) + ")", owner);
+    String valueClasses = "[";
+    for (BBSimpleParameter p : values)
+    {
+    	valueClasses += p.getValueClass().getName() + " ";
+    }
+    valueClasses += "]";
+    throw new BBImplementationInstantiationException("Problem with attribute " + attr + " finding valid constructor for " + cls + " from parameters (" + makeClassString(attr) + "), values are " + valueClasses, owner);
 	}
 	
 	private String makeClassString(BBSimpleAttribute attr)

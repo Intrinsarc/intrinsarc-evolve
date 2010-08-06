@@ -431,7 +431,7 @@ public class CommonRepositoryFunctions
     // make a creator: uuid must be the same as the uuid the factory expander looks for
     Class creator = addLeaf(uuids, impls, component, "Creator", implClass, "com.hopstepjump.backbone.runtime.implementation.Creator");
     addAttribute(uuids, creator, "factoryNumber", intType, "The factory number for this factory");
-    addPort(uuids, creator, "create", iCreate, null, null, null);
+    addPort(uuids, creator, "create", "create", iCreate, null, null, null);
 
     // create the state stereotype
     Stereotype stateStereo = createStereotype(uuids, profile, STATE, "'Class'", "Indicates a component is a state.");
@@ -444,26 +444,26 @@ public class CommonRepositoryFunctions
     // create the base factory
     Class baseFactory = addLeaf(uuids, impls, component, FACTORY_BASE, factory, true);
     baseFactory.setIsAbstract(true);
-    Port create = addPort(uuids, baseFactory, "creator", iCreate, null, null, null);
+    Port create = addPort(uuids, baseFactory, "creator", "creator", iCreate, null, null, null);
     create.setKind(PortKind.CREATE_LITERAL);
     
     // create the state classes
     Class state = addLeaf(uuids, impls, stateStereo, STATE_CLASS, implClass, "com.hopstepjump.backbone.runtime.implementation.State");
     state.setIsAbstract(true);
-    Port in = addPort(uuids, state, "in", transition, null, null, null);
-    Port out = addPort(uuids, state, "out", null, transition, null, null);
-    Port events = addPort(uuids, state, "events", event, null, null, null);
+    Port in = addPort(uuids, state, "in", "in", transition, null, null, null);
+    Port out = addPort(uuids, state, "out", "out", null, transition, null, null);
+    Port events = addPort(uuids, state, "events", "events", event, null, null, null);
     // create the start and end terminals
     Class start = addLeaf(uuids, impls, stateStereo, START_STATE_CLASS, implClass, "com.hopstepjump.backbone.runtime.implementation.Terminal");
     createResemblance(uuids, state, start);
-    addPort(uuids, start, "start-terminal", terminal, null, null, null);
+    addPort(uuids, start, "startTerminal", "startTerminal", terminal, null, null, null);
     Port startIn = replacePort(uuids, start, in, "in", transition, null, null, null);
     setUseMethods(uuids, stereoPort, suppressMethodGeneration, startIn);
     createPortLink(uuids, start, in, out);
     deltaDeletePort(uuids, start, events);
     Class end = addLeaf(uuids, impls, stateStereo, END_STATE_CLASS, implClass, "com.hopstepjump.backbone.runtime.implementation.Terminal");
     createResemblance(uuids, state, end);
-    addPort(uuids, end, "end-terminal", terminal, null, null, null);
+    addPort(uuids, end, "endTerminal", "endTerminal", terminal, null, null, null);
     Port endIn = replacePort(uuids, end, in, "in", transition, null, null, null);
     setUseMethods(uuids, stereoPort, suppressMethodGeneration, endIn);
     createPortLink(uuids, end, in, out);
@@ -478,12 +478,12 @@ public class CommonRepositoryFunctions
     replacePort(uuids, cState, out, "out", null, transition, 0, 1);
     // create the dispatcher
     Class stateDispatcher = addLeaf(uuids, impls, component, "StateDispatcher", implClass, "com.hopstepjump.backbone.runtime.implementation.StateDispatcher");
-    Port dEvents = addPort(uuids, stateDispatcher, "dEvents", event, null, null, null);
+    Port dEvents = addPort(uuids, stateDispatcher, "dEvents", "dEvents", event, null, null, null);
     setUseMethods(uuids, stereoPort, suppressMethodGeneration, dEvents);
-    Port dDispatch = addPort(uuids, stateDispatcher, "dDispatch", null, event, 0, -1);
+    Port dDispatch = addPort(uuids, stateDispatcher, "dDispatch", "dDispatch", null, event, 0, -1);
     createPortLink(uuids, stateDispatcher, dEvents, dDispatch);
-    addPort(uuids, stateDispatcher, "dStart", null, terminal, null, null);
-    addPort(uuids, stateDispatcher, "dEnd", null, terminal, 0, -1);
+    addPort(uuids, stateDispatcher, "dStart", "dStart", null, terminal, null, null);
+    addPort(uuids, stateDispatcher, "dEnd", "dEnd", null, terminal, 0, -1);
     
     return topLevel;
   }
@@ -552,11 +552,11 @@ public class CommonRepositoryFunctions
     return port;
   }
 
-	private Port addPort(Set<String> uuids, Class cls, String portName, Interface provided, Interface required, Integer lower, Integer upper)
+	private Port addPort(Set<String> uuids, Class cls, String portName, String portUuid, Interface provided, Interface required, Integer lower, Integer upper)
   {
     Port port = cls.createOwnedPort();
     port.setName(portName);
-    setUuid(uuids, port, portName);
+    setUuid(uuids, port, portUuid);
     Class type = (Class) port.createOwnedAnonymousType(UML2Package.eINSTANCE.getClass_());
     type.setName("(port type)");
     port.setType(type);

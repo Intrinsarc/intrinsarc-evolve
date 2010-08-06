@@ -324,6 +324,10 @@ Next up:
 \end_layout
 
 \begin_layout Itemize
+part aliasing in factories! -- for many to many relationships
+\end_layout
+
+\begin_layout Itemize
 jar deployment + editing off deployed jars.
  also allowing modelling changes using jars for model.
 \begin_inset Newline newline
@@ -383,6 +387,12 @@ performance tip: readonly for check once
 F8 versus shift-F8
 \end_layout
 
+\begin_layout Enumerate
+front part of manual simple tutorial, no more than 20 pages.
+ last parts are reference, user guide referring to phd doc.
+ 150 pages total.
+\end_layout
+
 \begin_layout Standard
 
 \series bold
@@ -400,6 +410,83 @@ support: $500 per CPU gold, $250 per CPU: differentiators = SLA times
 \begin_layout Itemize
 integration modules: GWT, Swing, JPA (all included), others such as SWT,
  web services, S3 + Amazon, Google app engine, cloud?
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example application for documentation:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Requirements
+\end_layout
+
+\begin_layout Enumerate
+strong focus on services
+\end_layout
+
+\begin_layout Enumerate
+a small data model without many to many
+\end_layout
+
+\begin_layout Enumerate
+a state chart that may be persisted, with normal parts in also
+\end_layout
+
+\begin_layout Enumerate
+GWT front end, hibernate back end
+\end_layout
+
+\begin_layout Enumerate
+using a factory
+\end_layout
+
+\begin_layout Enumerate
+use of replace, resemblance
+\end_layout
+
+\begin_layout Enumerate
+lifecycle
+\end_layout
+
+\begin_layout Enumerate
+hardcoded generation
+\end_layout
+
+\begin_layout Standard
+Application: Car rental?
+\end_layout
+
+\begin_layout Enumerate
+car has details and a lifecycle
+\end_layout
+
+\begin_layout Enumerate
+extensions could add fields etc
+\end_layout
+
+\begin_layout Enumerate
+has a lifecycle state: available -> rented -> retired.
+ Extension could add -> accident repair ->.
+ Event buttons on gui!
+\end_layout
+
+\begin_layout Enumerate
+states could use external services to determine which way to fork on event
+\end_layout
+
+\begin_layout Enumerate
+CarManager could be decomposed into several internal services
+\end_layout
+
+\begin_layout Enumerate
+each stratum should be runnable in its own right.
+ Start should be very simple.
 \end_layout
 
 \end_body

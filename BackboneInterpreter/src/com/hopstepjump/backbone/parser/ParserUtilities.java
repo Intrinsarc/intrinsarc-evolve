@@ -43,7 +43,7 @@ public class ParserUtilities
 	
 	public static List<BBAppliedStereotype> parseAppliedStereotype(final Expect ex)
 	{
-		List<BBAppliedStereotype> stereos = new ArrayList<BBAppliedStereotype>();
+		final List<BBAppliedStereotype> stereos = new ArrayList<BBAppliedStereotype>();
 		ex.guard("\u00ab",
 			new IAction()
 			{
@@ -56,8 +56,12 @@ public class ParserUtilities
 									{
 										public void act()
 										{
-											BBAppliedStereotype applied = new BBAppliedStereotype();
+											final BBAppliedStereotype applied = new BBAppliedStereotype();
 											ex.uuid(stereo);
+											
+											// resolve the stereotype
+											applied.setStereotype(stereo);
+
 											ex.
 												guard(":",
 													new IAction()
@@ -70,11 +74,13 @@ public class ParserUtilities
 																			{
 																				public void act()
 																				{
-																					parseAppliedValue(ex);
+																					parseAppliedValue(applied, ex);
 																				}
 																			}));
 														}
 													});
+											
+											stereos.add(applied);
 										}
 									}));
 					ex.literal("\u00bb");
@@ -84,9 +90,12 @@ public class ParserUtilities
 	}
 	
 
-	private static void parseAppliedValue(final Expect ex)
+	private static void parseAppliedValue(BBAppliedStereotype applied, final Expect ex)
 	{
 		UuidReference attr = new UuidReference();
+		
+		LazyObject<DEAttribute> lattr = new LazyObject<DEAttribute>(DEAttribute.class, attr);
+		final String value[] = {"true"};
 		ex.
 			uuid(attr).
 			guard("=",
@@ -94,8 +103,9 @@ public class ParserUtilities
 				{
 					public void act()
 					{
-						ex.parameter();
+						value[0] = ex.parameter().getText();
 					}
-				});					
+				});
+		applied.settable_getLazyProperties().put(lattr, value[0]);
 	}
 }

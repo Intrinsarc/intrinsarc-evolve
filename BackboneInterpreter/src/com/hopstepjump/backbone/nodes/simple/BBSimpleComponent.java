@@ -730,9 +730,10 @@ public class BBSimpleComponent extends BBSimpleElement
 	private List<BBSimpleConnector> findConnectors(List<BBSimpleConnector> connectors, BBSimplePart part, BBSimplePort port)
 	{
 		List<BBSimpleConnector> filtered = new ArrayList<BBSimpleConnector>();
-		for (BBSimpleConnector conn : connectors)
-			if (conn.getEndNumber(part, port) != -1)
-				filtered.add(conn);
+		if (connectors != null)
+			for (BBSimpleConnector conn : connectors)
+				if (conn.getEndNumber(part, port) != -1)
+					filtered.add(conn);
 		return filtered;
 	}
 

@@ -14,8 +14,15 @@ public class Terminal implements IStateTerminalComponent
 	public ITerminal getTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }
 // end generated code
 	
+	// the below is to work around a limitation with the backbone parser where both start and end
+	// terminals expect to refer to the same port by different uuids.
+	// alternative would be to make a separate Start and End class.
+	private ITerminal startTerminal_ITerminalProvided = new ITerminalImpl();
+	public ITerminal getStartTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }
+	private ITerminal endTerminal_ITerminalProvided = new ITerminalImpl();
+	public ITerminal getEndTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }
+	
 	private boolean current;
-	private boolean fired;
 	private Method savedMethod;
 	private Object[] savedArgs;
 

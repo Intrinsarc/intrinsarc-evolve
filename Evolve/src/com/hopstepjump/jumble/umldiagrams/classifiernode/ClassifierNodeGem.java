@@ -1071,7 +1071,7 @@ public final class ClassifierNodeGem implements Gem
 					Set<DeltaPair> pairs = conns.getConstituents(perspective, true);
 					boolean someFixes = false;
 
-					for (DeltaPair pair : pairs)
+					for (final DeltaPair pair : pairs)
 					{
 						DEConnector conn = pair.getConstituent().asConnector();
 						for (int lp = 0; lp < 2; lp++)
@@ -1100,15 +1100,15 @@ public final class ClassifierNodeGem implements Gem
 								}
 								else
 								{
-									final DeltaDeletedConnector del = ((Class) subject).createDeltaDeletedConnectors();
-									del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
-									GlobalSubjectRepository.repository.incrementPersistentDelete(del);
-
 									delete.addActionListener(new ActionListener()
 									{
 										public void actionPerformed(ActionEvent e)
 										{
 											coordinator.startTransaction("fixed bad connector", "unfixed bad connector");
+											final DeltaDeletedConnector del = ((Class) subject).createDeltaDeletedConnectors();
+											del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
+											GlobalSubjectRepository.repository.incrementPersistentDelete(del);
+
 											GlobalSubjectRepository.repository.decrementPersistentDelete(del);
 											coordinator.commitTransaction();
 										}

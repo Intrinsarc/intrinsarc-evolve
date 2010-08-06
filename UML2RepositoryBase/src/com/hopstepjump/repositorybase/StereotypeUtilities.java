@@ -291,8 +291,8 @@ public class StereotypeUtilities
       for (Object obj : element.undeleted_getAppliedBasicStereotypes())
       {
         Stereotype st = (Stereotype) obj;
-        if (st == stereo)
-          addPropertiesForAllHierarchy(properties, perspective, engine.locateObject(st).asComponent());        
+        if (st.equals(stereo.getRepositoryObject()))
+          addPropertiesForAllHierarchy(properties, perspective, stereo);        
       }
     }
 
