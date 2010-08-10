@@ -638,8 +638,27 @@ public final class PortNodeGem implements Gem
 		{
 			JPopupMenu popup = new JPopupMenu();
 			
+	     // only add a replace if this is not visually at home
+      SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
+      Namespace visual = repository.findVisuallyOwningNamespace(diagramView.getDiagram(), figureFacet.getContainedFacet().getContainer());
+      Namespace real = (Namespace)
+        GlobalSubjectRepository.repository.findOwningElement(
+            getSubjectAsPort(),
+            ClassifierImpl.class); 
+          
 			final Object ppart = figureFacet.getContainedFacet().getContainer().getContainedFacet().getContainer().getFigureFacet().getSubject();
 			boolean portInstance = ppart instanceof Property;
+      boolean enable =
+      	!portInstance && visual != real &&
+        !figureFacet.getContainedFacet().getContainer().getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
+      JMenuItem replaceItem = getReplaceItem(diagramView, coordinator);
+      if (replaceItem != null)
+      {
+      	replaceItem.setEnabled(enable);
+        popup.add(replaceItem);
+        Utilities.addSeparator(popup);			
+      }      			
+			
 			if (portInstance)
 			{
 				final Class cls = (Class) GlobalSubjectRepository.repository.findVisuallyOwningNamespace(
@@ -795,25 +814,6 @@ public final class PortNodeGem implements Gem
 				popup.add(expand);
 			}
 			
-	     // only add a replace if this is not visually at home
-      SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-      Namespace visual = repository.findVisuallyOwningNamespace(diagramView.getDiagram(), figureFacet.getContainedFacet().getContainer());
-      Namespace real = (Namespace)
-        GlobalSubjectRepository.repository.findOwningElement(
-            getSubjectAsPort(),
-            ClassifierImpl.class); 
-          
-      boolean enable =
-      	!portInstance && visual != real &&
-        !figureFacet.getContainedFacet().getContainer().getFigureFacet().isSubjectReadOnlyInDiagramContext(false);
-      Utilities.addSeparator(popup);			
-      JMenuItem replaceItem = getReplaceItem(diagramView, coordinator);
-      if (replaceItem != null)
-      {
-      	replaceItem.setEnabled(enable);
-        popup.add(replaceItem);
-      }
-      
       if (!diagramReadOnly)
       {
         Utilities.addSeparator(popup);

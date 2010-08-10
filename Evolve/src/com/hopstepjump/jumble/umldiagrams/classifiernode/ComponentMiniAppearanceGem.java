@@ -246,39 +246,25 @@ public class ComponentMiniAppearanceGem implements Gem
 			double y = bounds.getY();
 			double width = bounds.getWidth();
 			double height = bounds.getHeight();
-			return new ZRectangle(x - 0.5, y - 0.5, width + 0.9, height + 0.9)
-					.getShape();
+			return new ZRectangle(x - 0.5, y - 0.5, width + 0.9, height + 0.9).getShape();
 		}
 
 		public void addToContextMenu(JPopupMenu menu,
 				final DiagramViewFacet diagramView,
 				final ToolCoordinatorFacet coordinator)
 		{
+			// add an evolution command to the menu
+			JMenuItem evolve = makeEvolveCommand(coordinator, figureFacet, false, false); 
+			menu.add(evolve);
+			Utilities.addSeparator(menu);
+			
 			// allow viewing of the flattened structure
 			JMenuItem code = new JMenuItem("Show flattened structure");
 			code.setIcon(FLAT_ICON);
 			menu.add(code);
 			code.addActionListener(new FlattenedTreeMaker(coordinator, figureFacet).makeTree());
+
 			Utilities.addSeparator(menu);
-			menu.add(new AbstractAction("Determine implementation class")
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-					Namespace visual = repository.findVisuallyOwningNamespace(diagramView
-							.getDiagram(), figureFacet.getContainedFacet().getContainer());
-					String impl = GlobalDeltaEngine.engine.locateObject(
-							figureFacet.getSubject()).asElement().getImplementationClass(
-									GlobalDeltaEngine.engine.locateObject(visual).asStratum());
-					coordinator.invokeErrorDialog(
-							"Component implementation",
-							impl == null ? "No implementation set" : "Implementation details:\n    " + impl + "\n");
-				}
-			});
-			
-			// add an evolution command to the menu
-			JMenuItem evolve = makeEvolveCommand(coordinator, figureFacet, false, false); 
-			menu.add(evolve);
 		}
 
 		public Set<String> getDisplayStyles(boolean displayingOnlyAsIcon,

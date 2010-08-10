@@ -17,5 +17,8 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/BeanImporter"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/VectorGraphicsFixes"/>
 	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/CommonResources/quaqua/quaqua.jar"/>
+	<classpathentry kind="lib" path="/CommonResources/quaqua/libquaqua.jnilib"/>
+	<classpathentry kind="lib" path="/CommonResources/quaqua/libquaqua64.jnilib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

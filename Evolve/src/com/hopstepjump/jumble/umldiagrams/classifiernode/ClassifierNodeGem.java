@@ -1028,6 +1028,9 @@ public final class ClassifierNodeGem implements Gem
 			boolean isInterface = subject instanceof Interface;
 			boolean isPrimitive = subject instanceof PrimitiveType;
 
+			if (miniAppearanceFacet != null)
+				miniAppearanceFacet.addToContextMenu(popup, diagramView, coordinator);
+
 			if (isPart)
 			{
 				// only add a replace if this is not visually at home
@@ -1123,9 +1126,6 @@ public final class ClassifierNodeGem implements Gem
 					fix.setEnabled(someFixes);
 				}
 			}
-
-			if (miniAppearanceFacet != null)
-				miniAppearanceFacet.addToContextMenu(popup, diagramView, coordinator);
 
 			Utilities.addSeparator(popup);
 

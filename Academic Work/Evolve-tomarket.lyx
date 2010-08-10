@@ -305,6 +305,18 @@ attribute issues (aliasing, defaults, replace of attr with default
 \end_layout
 
 \begin_layout Enumerate
+hanging on load (!), key strokes not registering
+\end_layout
+
+\begin_layout Enumerate
+remap of remap, remap in general
+\end_layout
+
+\begin_layout Enumerate
+provided interface problem when require + provide not in immediate hierarchy
+\end_layout
+
+\begin_layout Enumerate
 -------------- lower priority ------------------
 \end_layout
 
@@ -354,10 +366,6 @@ concurrency via actors and possibly concurrent state machines + expanded
 \begin_inset Newline newline
 \end_inset
 
-(??)
-\end_layout
-
-\begin_layout Itemize
 slightly slow diagrams in complex situations == profile using jprofiler
 \end_layout
 
@@ -366,7 +374,7 @@ jump to source integration with eclipse, intellij
 \end_layout
 
 \begin_layout Itemize
-making nice for MacOS?
+making nice for MacOS
 \end_layout
 
 \begin_layout Standard
@@ -380,7 +388,7 @@ blog from Javalobby, part of a series
 \end_layout
 
 \begin_layout Enumerate
-performance tip: readonly for check once, full screen hide palette
+performance tips: readonly for check once, full screen hide palette
 \end_layout
 
 \begin_layout Enumerate
@@ -391,6 +399,10 @@ F8 versus shift-F8
 front part of manual simple tutorial, no more than 20 pages.
  last parts are reference, user guide referring to phd doc.
  150 pages total.
+\end_layout
+
+\begin_layout Enumerate
+navigation basics: difference between diagram and model
 \end_layout
 
 \begin_layout Standard
@@ -404,7 +416,16 @@ training -- $650 per person per day, min of 3 people
 \end_layout
 
 \begin_layout Itemize
-support: $500 per CPU gold, $250 per CPU: differentiators = SLA times
+support: $500 per CPU gold, $250 per CPU silver: differentiators = SLA times,
+ support channels
+\end_layout
+
+\begin_layout Itemize
+discounts for large number of licenses
+\end_layout
+
+\begin_layout Itemize
+updates: free upgrades for a year, 50% upgrade to get another year
 \end_layout
 
 \begin_layout Itemize

@@ -1442,8 +1442,8 @@ public class ApplicationWindow extends SmartJFrame
 			boolean showing = deltaAdorner.isEnabled();
 			popup.displayPopup(null, null, showing ? new JLabel(
 					"Show delta view", DELTA_ICON, JLabel.LEADING) : new JLabel(
-					"Hide delta view", BLANK_ICON, JLabel.LEADING), ScreenProperties
-					.getUndoPopupColor(), Color.black, 1000);
+					"Hide delta view", BLANK_ICON, JLabel.LEADING),
+					ScreenProperties.getUndoPopupColor(), Color.black, 1000);
 
 			// resync just in case a change was made
 			resyncDiagramsAndBrowser();

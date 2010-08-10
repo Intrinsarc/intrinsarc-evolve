@@ -37,6 +37,7 @@ public final class BasicDiagramViewGem implements Gem
 	private ZGroup objectLayer; // contains the linkingLayer and layer
 	private ZGroup layer; // layer to add figures to
 	private ZGroup globalLayer; // linking elements alway go here
+	private ZGroup adornerLayer; // adornments always go here
 	private ZGroup debugLayer;
 	private ZTransformGroup backdropLayer;
 	// a layer for displaying elements for debug purposes
@@ -55,6 +56,7 @@ public final class BasicDiagramViewGem implements Gem
 	private BasicDiagramScrollerFacet scrollerFacet;
 
 	private Map<FigureFacet, ZNode> views = new HashMap<FigureFacet, ZNode>();
+	private Map<FigureFacet, ZNode> adorns = new HashMap<FigureFacet, ZNode>();
 	private List<Map<FigureFacet, Integer>> previouslyAdorned = new ArrayList<Map<FigureFacet, Integer>>();
 	private Map<String, FigureFacet> figures = new HashMap<String, FigureFacet>(); 		 /* id -> figure (doesn't include hidden figures) */
 	private HashMap<FigureFacet, ContainerFacet> containers = new HashMap<FigureFacet, ContainerFacet>();
@@ -196,8 +198,10 @@ public final class BasicDiagramViewGem implements Gem
     objectLayer = new ZGroup();
 		layer = new ZGroup();
 		globalLayer = new ZGroup();
+		adornerLayer = new ZGroup();
 		objectLayer.addChild(layer);
 		objectLayer.addChild(globalLayer); // links need to be above nodes etc
+		objectLayer.addChild(adornerLayer); // adorners need to be above all
 		pickLayer.addChild(objectLayer);
 		objectLayer.lower();
 		
@@ -212,11 +216,13 @@ public final class BasicDiagramViewGem implements Gem
 		// clear out any graphical views, and any maps etc
 		layer.removeAllChildren();
 		globalLayer.removeAllChildren();
+		adornerLayer.removeAllChildren();
 		debugLayer.removeAllChildren();
 		selection.clearAllSelection();
 		selection.turnSelectionLayerOff();
 		selection.turnSweepLayerOff();
 		views = new HashMap<FigureFacet, ZNode>();
+		adorns = new HashMap<FigureFacet, ZNode>();
 		figures = new HashMap<String, FigureFacet>();
 		containers = new HashMap<FigureFacet, ContainerFacet>();
     
@@ -837,7 +843,8 @@ public final class BasicDiagramViewGem implements Gem
 		{
 			ZGroup containerGroup = new ZGroup();
 			
-			containerGroup.addChild(adorn(figure));
+			containerGroup.addChild(figure.formView());
+			
 			// no need to lower as it must be empty
 			views.put(figure, containerGroup);
 			figures.put(figure.getId(), figure);
@@ -847,7 +854,7 @@ public final class BasicDiagramViewGem implements Gem
 		}
 		else
 		{
-			ZNode view = adorn(figure);
+			ZNode view = figure.formView();
 			views.put(figure, view);
 			figures.put(figure.getId(), figure);
 			ZGroup layer = getLayerFor(figure, container);
@@ -855,16 +862,16 @@ public final class BasicDiagramViewGem implements Gem
 			if (layer != null)
 				getLayerFor(figure, container).addChild(view);
 		}
+		
+		// possibly adorn
+		adorn(figure);
 	}
 
-	private ZNode adorn(FigureFacet figure)
+	private ZNode makeAdornments(FigureFacet figure)
   {
-	  // ask each adorner in turn
-	  ZNode view = figure.formView();
-
 	  // clipboard and others have no adorners
 	  if (adorners == null)
-      return view;
+      return null;
     
 	  int lp = 0;
 	  boolean someAdorned = false;
@@ -883,12 +890,8 @@ public final class BasicDiagramViewGem implements Gem
 	  }
 	  
 	  if (someAdorned)
-	  {
-	    group.addChild(view);
-	    view.lower();
 	    return group;
-	  }
-	  return view;
+	  return null;
   }
 
   private void removeFigureFromDiagram(FigureFacet figure, boolean leaveInCache)
@@ -900,6 +903,7 @@ public final class BasicDiagramViewGem implements Gem
 		ZGroup layer = getLayerFor(figure, container);
 		if (layer != null)
 			layer.removeChild(view);
+		unadorn(figure);
 		
 		selection.removeFromSelection(figure);
 		containers.remove(figure);
@@ -914,6 +918,9 @@ public final class BasicDiagramViewGem implements Gem
 		
 		// (2) figure was adjusted somehow
 		ZNode oldView = views.get(figure);
+		
+		// possibly remove the adorner
+		unadorn(figure);
 
 		// if the figure is hidden, it will be in the diagram, but not in the view
 		// don't bother adjusting in this case
@@ -931,7 +938,7 @@ public final class BasicDiagramViewGem implements Gem
 			return;
 		}
 
-		ZNode newView = adorn(figure);
+		ZNode newView = figure.formView();
 
 		// handle a container by removing the 1st view from the group and adding back again
 		if (figure.getContainerFacet() != null)
@@ -944,7 +951,10 @@ public final class BasicDiagramViewGem implements Gem
 			newView = oldView;
 			// reuse so we don't have to regenerate all the children, which may be ok...
 		}
-
+		
+		// adorn?
+		adorn(figure);
+		
 		// get the old container, and the new one
 		ContainerFacet oldContainer = containers.get(figure);
 		ContainerFacet newContainer = null;
@@ -969,6 +979,26 @@ public final class BasicDiagramViewGem implements Gem
 
 		// handle the selection
 		selection.adjusted(figure);
+	}
+
+	private void adorn(FigureFacet figure)
+	{
+		ZNode adorner = makeAdornments(figure);
+		if (adorner != null)
+		{
+			adornerLayer.addChild(adorner);
+			adorns.put(figure, adorner);
+		}
+	}
+	
+	private void unadorn(FigureFacet figure)
+	{
+		ZNode adorner = adorns.get(figure);
+		if (adorner != null)
+		{
+			adornerLayer.removeChild(adorner);
+			adorns.remove(figure);
+		}
 	}
 
 	private void showFigureInView(FigureFacet figure)
