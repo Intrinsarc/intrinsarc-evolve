@@ -54,7 +54,7 @@ public class DeltaAdornerGem
       return getNode(figure, display);
     }
     
-    ZNode getNode(final FigureFacet figure, final DeltaTypeEnum deltaType)
+    private ZNode getNode(final FigureFacet figure, final DeltaTypeEnum deltaType)
     {
       ZTransformGroup group = new ZTransformGroup();
       

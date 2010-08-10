@@ -148,7 +148,7 @@ public class BackboneRunner
       	error.setText("GENERATION | " + ex.getMessage() + " at " + uuid + " | ");
       }
       else
-      	error.setText(getStackTrace(ex));
+      	error.setText(ex.getMessage());
       showErrors(true);
     }
     catch (IOException ex)
