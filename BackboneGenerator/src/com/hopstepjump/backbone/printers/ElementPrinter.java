@@ -428,15 +428,9 @@ public class ElementPrinter
 		Set<DeltaPair> remaps = part.getPortRemaps();
 		if (!remaps.isEmpty())
 		{
-			b.append(indent + "\t\t\t\tport-remaps:\n");
-			int count = remaps.size();
-			int lp = 0;
+			b.append("\n" + indent + "\t\t\t\tport-remaps:\n");
 			for (DeltaPair remap : remaps)
-			{
-				b.append(indent + "\t\t\t\t\t" + ref.reference(remap.getConstituent()) + " maps-onto " + remap.getUuid() + "\n");
-				if (++lp != count)
-					b.append("\n");
-			}
+				b.append(indent + "\t\t\t\t\t" + ref.reference(remap.getConstituent()) + " maps-onto " + remap.getUuid());
 		}
 		b.append(last ? ";\n" : ",\n");
 	}
