@@ -380,7 +380,10 @@ public class BeanImporter
       {
         Point pt = e.getPoint();
         final TreePath path = featureTree.getPathForLocation(pt.x, pt.y);
+        if (path == null)
+        	return;
         featureTree.setSelectionPath(path);
+        
         Object node = path.getLastPathComponent();
         if (((DefaultMutableTreeNode) node).getUserObject() instanceof String)
         	return;

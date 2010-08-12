@@ -3,8 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BackboneInterpreter"/>
-	<classpathentry exported="true" kind="var" path="GWT/gwt-user.jar"/>
-	<classpathentry kind="var" path="GWT/gwt-dev.jar"/>
-	<classpathentry kind="var" path="GWT"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

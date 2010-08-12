@@ -85,7 +85,7 @@ public class ClassPortHelper extends ClassifierConstituentHelper
 		
 		// find the offset from the original
 		FigureFacet existing = fport;
-		UBounds existingF = fport.getFullBounds();
+		UBounds existingF = existing == null ? UBounds.ZERO : fport.getFullBounds();
 		UDimension offset = existing == null ? UDimension.ZERO : existingF.getMiddlePoint().subtract(existFull.getPoint());
 		UDimension size = existing == null ? UDimension.ZERO : scale(oldFull, existFull, existingF.getDimension());
 
