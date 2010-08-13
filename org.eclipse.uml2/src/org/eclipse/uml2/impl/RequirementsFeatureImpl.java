@@ -96,9 +96,9 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (RequirementsFeatureImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -120,10 +120,10 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 		if (subfeatures == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		subfeatures = new com.hopstepjump.emflist.PersistentEList(RequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES);
+			 		subfeatures = new com.intrinsarc.emflist.PersistentEList(RequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES);
 			 		return subfeatures;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(RequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(RequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES);
 		}      
 		return subfeatures;
 	}
@@ -137,7 +137,7 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 */
 	public EList settable_getSubfeatures() {
 		if (subfeatures == null) {
-			subfeatures = new com.hopstepjump.emflist.PersistentEList(RequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES);
+			subfeatures = new com.intrinsarc.emflist.PersistentEList(RequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES);
 		}
 		return subfeatures;
 	}
@@ -201,10 +201,10 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 		if (deltaReplacedSubfeatures == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaReplacedSubfeatures = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
+			 		deltaReplacedSubfeatures = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
 			 		return deltaReplacedSubfeatures;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaReplacedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
 		}      
 		return deltaReplacedSubfeatures;
 	}
@@ -218,7 +218,7 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 */
 	public EList settable_getDeltaReplacedSubfeatures() {
 		if (deltaReplacedSubfeatures == null) {
-			deltaReplacedSubfeatures = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
+			deltaReplacedSubfeatures = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
 		}
 		return deltaReplacedSubfeatures;
 	}
@@ -282,10 +282,10 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 		if (deltaDeletedSubfeatures == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaDeletedSubfeatures = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
+			 		deltaDeletedSubfeatures = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
 			 		return deltaDeletedSubfeatures;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaDeletedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
 		}      
 		return deltaDeletedSubfeatures;
 	}
@@ -299,7 +299,7 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 */
 	public EList settable_getDeltaDeletedSubfeatures() {
 		if (deltaDeletedSubfeatures == null) {
-			deltaDeletedSubfeatures = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
+			deltaDeletedSubfeatures = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
 		}
 		return deltaDeletedSubfeatures;
 	}

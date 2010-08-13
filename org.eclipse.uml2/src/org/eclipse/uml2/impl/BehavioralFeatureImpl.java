@@ -215,9 +215,9 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (BehavioralFeatureImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -536,10 +536,10 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 		if (formalParameter == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		formalParameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__FORMAL_PARAMETER);
+			 		formalParameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__FORMAL_PARAMETER);
 			 		return formalParameter;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__FORMAL_PARAMETER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__FORMAL_PARAMETER);
 		}      
 		return formalParameter;
 	}
@@ -553,7 +553,7 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 */
   public EList settable_getFormalParameters() {
 		if (formalParameter == null) {
-			formalParameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__FORMAL_PARAMETER);
+			formalParameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__FORMAL_PARAMETER);
 		}
 		return formalParameter;
 	}
@@ -633,10 +633,10 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 		if (returnResult == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		returnResult = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__RETURN_RESULT);
+			 		returnResult = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__RETURN_RESULT);
 			 		return returnResult;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__RETURN_RESULT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__RETURN_RESULT);
 		}      
 		return returnResult;
 	}
@@ -650,7 +650,7 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 */
   public EList settable_getReturnResults() {
 		if (returnResult == null) {
-			returnResult = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__RETURN_RESULT);
+			returnResult = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIORAL_FEATURE__RETURN_RESULT);
 		}
 		return returnResult;
 	}
@@ -730,10 +730,10 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 		if (raisedException == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		raisedException = new com.hopstepjump.emflist.PersistentEList(Type.class, this, UML2Package.BEHAVIORAL_FEATURE__RAISED_EXCEPTION);
+			 		raisedException = new com.intrinsarc.emflist.PersistentEList(Type.class, this, UML2Package.BEHAVIORAL_FEATURE__RAISED_EXCEPTION);
 			 		return raisedException;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Type.class, this, UML2Package.BEHAVIORAL_FEATURE__RAISED_EXCEPTION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Type.class, this, UML2Package.BEHAVIORAL_FEATURE__RAISED_EXCEPTION);
 		}      
 		return raisedException;
 	}
@@ -747,7 +747,7 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 */
   public EList settable_getRaisedExceptions() {
 		if (raisedException == null) {
-			raisedException = new com.hopstepjump.emflist.PersistentEList(Type.class, this, UML2Package.BEHAVIORAL_FEATURE__RAISED_EXCEPTION);
+			raisedException = new com.intrinsarc.emflist.PersistentEList(Type.class, this, UML2Package.BEHAVIORAL_FEATURE__RAISED_EXCEPTION);
 		}
 		return raisedException;
 	}
@@ -798,10 +798,10 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 		if (method == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		method = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIORAL_FEATURE__METHOD, UML2Package.BEHAVIOR__SPECIFICATION);
+			 		method = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIORAL_FEATURE__METHOD, UML2Package.BEHAVIOR__SPECIFICATION);
 			 		return method;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Behavior.class, this, UML2Package.BEHAVIORAL_FEATURE__METHOD, UML2Package.BEHAVIOR__SPECIFICATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Behavior.class, this, UML2Package.BEHAVIORAL_FEATURE__METHOD, UML2Package.BEHAVIOR__SPECIFICATION);
 		}      
 		return method;
 	}
@@ -815,7 +815,7 @@ public abstract class BehavioralFeatureImpl extends NamespaceImpl implements Beh
 	 */
   public EList settable_getMethods() {
 		if (method == null) {
-			method = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIORAL_FEATURE__METHOD, UML2Package.BEHAVIOR__SPECIFICATION);
+			method = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIORAL_FEATURE__METHOD, UML2Package.BEHAVIOR__SPECIFICATION);
 		}
 		return method;
 	}

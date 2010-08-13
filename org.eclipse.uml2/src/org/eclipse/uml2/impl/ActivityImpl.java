@@ -214,9 +214,9 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ActivityImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -356,10 +356,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 		if (edge == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		edge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY__EDGE, UML2Package.ACTIVITY_EDGE__ACTIVITY);
+			 		edge = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY__EDGE, UML2Package.ACTIVITY_EDGE__ACTIVITY);
 			 		return edge;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY__EDGE, UML2Package.ACTIVITY_EDGE__ACTIVITY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY__EDGE, UML2Package.ACTIVITY_EDGE__ACTIVITY);
 		}      
 		return edge;
 	}
@@ -373,7 +373,7 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 */
   public EList settable_getEdges() {
 		if (edge == null) {
-			edge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY__EDGE, UML2Package.ACTIVITY_EDGE__ACTIVITY);
+			edge = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY__EDGE, UML2Package.ACTIVITY_EDGE__ACTIVITY);
 		}
 		return edge;
 	}
@@ -448,7 +448,7 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 */
   public EList settable_getGroups() {
 		if (group == null) {
-			group = new com.hopstepjump.emflist.PersistentEList(ActivityGroup.class, this, UML2Package.ACTIVITY__GROUP, UML2Package.ACTIVITY_GROUP__ACTIVITY_GROUP_ACTIVITY);
+			group = new com.intrinsarc.emflist.PersistentEList(ActivityGroup.class, this, UML2Package.ACTIVITY__GROUP, UML2Package.ACTIVITY_GROUP__ACTIVITY_GROUP_ACTIVITY);
 		}
 		return group;
 	}
@@ -498,10 +498,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 		if (node == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		node = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY__NODE, new int[] {UML2Package.ACTIVITY__ACTION}, UML2Package.ACTIVITY_NODE__ACTIVITY);
+			 		node = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY__NODE, new int[] {UML2Package.ACTIVITY__ACTION}, UML2Package.ACTIVITY_NODE__ACTIVITY);
 			 		return node;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.ACTIVITY__NODE, new int[] {UML2Package.ACTIVITY__ACTION}, UML2Package.ACTIVITY_NODE__ACTIVITY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.ACTIVITY__NODE, new int[] {UML2Package.ACTIVITY__ACTION}, UML2Package.ACTIVITY_NODE__ACTIVITY);
 		}      
 		return node;
 	}
@@ -515,7 +515,7 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 */
   public EList settable_getNodes() {
 		if (node == null) {
-			node = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY__NODE, new int[] {UML2Package.ACTIVITY__ACTION}, UML2Package.ACTIVITY_NODE__ACTIVITY);
+			node = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY__NODE, new int[] {UML2Package.ACTIVITY__ACTION}, UML2Package.ACTIVITY_NODE__ACTIVITY);
 		}
 		return node;
 	}
@@ -580,10 +580,10 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 		if (action == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		action = new com.hopstepjump.emflist.PersistentEList(Action.class, this, UML2Package.ACTIVITY__ACTION, new int[] {UML2Package.ACTIVITY__NODE});
+			 		action = new com.intrinsarc.emflist.PersistentEList(Action.class, this, UML2Package.ACTIVITY__ACTION, new int[] {UML2Package.ACTIVITY__NODE});
 			 		return action;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Action.class, this, UML2Package.ACTIVITY__ACTION, new int[] {UML2Package.ACTIVITY__NODE});
+			return new com.intrinsarc.emflist.UnmodifiableEList(Action.class, this, UML2Package.ACTIVITY__ACTION, new int[] {UML2Package.ACTIVITY__NODE});
 		}      
 		return action;
 	}
@@ -597,7 +597,7 @@ public class ActivityImpl extends BehaviorImpl implements Activity {
 	 */
   public EList settable_getActions() {
 		if (action == null) {
-			action = new com.hopstepjump.emflist.PersistentEList(Action.class, this, UML2Package.ACTIVITY__ACTION, new int[] {UML2Package.ACTIVITY__NODE});
+			action = new com.intrinsarc.emflist.PersistentEList(Action.class, this, UML2Package.ACTIVITY__ACTION, new int[] {UML2Package.ACTIVITY__NODE});
 		}
 		return action;
 	}

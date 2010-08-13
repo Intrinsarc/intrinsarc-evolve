@@ -97,9 +97,9 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (DurationImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 		eFlags |= FIRST_TIME_EFLAG;
 	}
@@ -151,10 +151,10 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 		if (event == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		event = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.DURATION__EVENT);
+			 		event = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.DURATION__EVENT);
 			 		return event;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.DURATION__EVENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.DURATION__EVENT);
 		}      
 		return event;
 	}
@@ -168,7 +168,7 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 */
   public EList settable_getEvents() {
 		if (event == null) {
-			event = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.DURATION__EVENT);
+			event = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.DURATION__EVENT);
 		}
 		return event;
 	}

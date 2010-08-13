@@ -4,16 +4,15 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EModelElement;
 
-import com.hopstepjump.deltaengine.base.ConstituentTypeEnum;
-import com.hopstepjump.deltaengine.base.DEComponent;
-import com.hopstepjump.deltaengine.base.DEElement;
-import com.hopstepjump.deltaengine.base.DEObject;
-import com.hopstepjump.deltaengine.base.DEStratum;
-import com.hopstepjump.deltaengine.base.DeltaPair;
-import com.hopstepjump.deltaengine.base.DeltaPairTypeEnum;
-import com.hopstepjump.deltaengine.base.GlobalDeltaEngine;
-import com.hopstepjump.deltaengine.base.IDeltaEngine;
-import com.hopstepjump.deltaengine.base.IDeltas;
+import com.intrinsarc.deltaengine.base.ConstituentTypeEnum;
+import com.intrinsarc.deltaengine.base.DEComponent;
+import com.intrinsarc.deltaengine.base.DEElement;
+import com.intrinsarc.deltaengine.base.DEObject;
+import com.intrinsarc.deltaengine.base.DEStratum;
+import com.intrinsarc.deltaengine.base.DeltaPair;
+import com.intrinsarc.deltaengine.base.GlobalDeltaEngine;
+import com.intrinsarc.deltaengine.base.IDeltaEngine;
+import com.intrinsarc.deltaengine.base.IDeltas;
 
 public class EMFOptions
 {

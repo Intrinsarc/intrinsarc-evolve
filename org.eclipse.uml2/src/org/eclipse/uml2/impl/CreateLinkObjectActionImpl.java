@@ -83,9 +83,9 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (CreateLinkObjectActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -205,7 +205,7 @@ public class CreateLinkObjectActionImpl extends CreateLinkActionImpl implements 
 	 */
   public EList settable_getEndData() {
 		if (endData == null) {
-			endData = new com.hopstepjump.emflist.PersistentEList(LinkEndCreationData.class, this, UML2Package.CREATE_LINK_OBJECT_ACTION__END_DATA);
+			endData = new com.intrinsarc.emflist.PersistentEList(LinkEndCreationData.class, this, UML2Package.CREATE_LINK_OBJECT_ACTION__END_DATA);
 		}
 		return endData;
 	}

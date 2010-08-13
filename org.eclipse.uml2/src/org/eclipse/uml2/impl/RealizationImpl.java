@@ -90,9 +90,9 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (RealizationImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -255,10 +255,10 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 		if (client == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__CLIENT, new int[] {UML2Package.REALIZATION__ABSTRACTION}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
+			 		client = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__CLIENT, new int[] {UML2Package.REALIZATION__ABSTRACTION}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 			 		return client;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.REALIZATION__CLIENT, new int[] {UML2Package.REALIZATION__ABSTRACTION}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.REALIZATION__CLIENT, new int[] {UML2Package.REALIZATION__ABSTRACTION}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}      
 		return client;
 	}
@@ -272,7 +272,7 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 */
   public EList settable_getClients() {
 		if (client == null) {
-			client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__CLIENT, new int[] {UML2Package.REALIZATION__ABSTRACTION}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
+			client = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__CLIENT, new int[] {UML2Package.REALIZATION__ABSTRACTION}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}
 		return client;
 	}
@@ -308,10 +308,10 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 		if (supplier == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__SUPPLIER, new int[] {UML2Package.REALIZATION__REALIZING_CLASSIFIER});
+			 		supplier = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__SUPPLIER, new int[] {UML2Package.REALIZATION__REALIZING_CLASSIFIER});
 			 		return supplier;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.REALIZATION__SUPPLIER, new int[] {UML2Package.REALIZATION__REALIZING_CLASSIFIER});
+			return new com.intrinsarc.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.REALIZATION__SUPPLIER, new int[] {UML2Package.REALIZATION__REALIZING_CLASSIFIER});
 		}      
 		return supplier;
 	}
@@ -325,7 +325,7 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 */
   public EList settable_getSuppliers() {
 		if (supplier == null) {
-			supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__SUPPLIER, new int[] {UML2Package.REALIZATION__REALIZING_CLASSIFIER});
+			supplier = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__SUPPLIER, new int[] {UML2Package.REALIZATION__REALIZING_CLASSIFIER});
 		}
 		return supplier;
 	}

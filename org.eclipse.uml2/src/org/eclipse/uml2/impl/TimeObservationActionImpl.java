@@ -82,9 +82,9 @@ public class TimeObservationActionImpl extends WriteStructuralFeatureActionImpl 
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (TimeObservationActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -106,10 +106,10 @@ public class TimeObservationActionImpl extends WriteStructuralFeatureActionImpl 
 		if (now == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		now = new com.hopstepjump.emflist.PersistentEList(TimeExpression.class, this, UML2Package.TIME_OBSERVATION_ACTION__NOW);
+			 		now = new com.intrinsarc.emflist.PersistentEList(TimeExpression.class, this, UML2Package.TIME_OBSERVATION_ACTION__NOW);
 			 		return now;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(TimeExpression.class, this, UML2Package.TIME_OBSERVATION_ACTION__NOW);
+			return new com.intrinsarc.emflist.UnmodifiableEList(TimeExpression.class, this, UML2Package.TIME_OBSERVATION_ACTION__NOW);
 		}      
 		return now;
 	}
@@ -123,7 +123,7 @@ public class TimeObservationActionImpl extends WriteStructuralFeatureActionImpl 
 	 */
   public EList settable_getNows() {
 		if (now == null) {
-			now = new com.hopstepjump.emflist.PersistentEList(TimeExpression.class, this, UML2Package.TIME_OBSERVATION_ACTION__NOW);
+			now = new com.intrinsarc.emflist.PersistentEList(TimeExpression.class, this, UML2Package.TIME_OBSERVATION_ACTION__NOW);
 		}
 		return now;
 	}

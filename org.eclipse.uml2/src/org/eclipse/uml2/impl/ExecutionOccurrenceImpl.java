@@ -100,9 +100,9 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ExecutionOccurrenceImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -284,10 +284,10 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 		if (behavior == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		behavior = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.EXECUTION_OCCURRENCE__BEHAVIOR);
+			 		behavior = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.EXECUTION_OCCURRENCE__BEHAVIOR);
 			 		return behavior;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Behavior.class, this, UML2Package.EXECUTION_OCCURRENCE__BEHAVIOR);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Behavior.class, this, UML2Package.EXECUTION_OCCURRENCE__BEHAVIOR);
 		}      
 		return behavior;
 	}
@@ -301,7 +301,7 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 */
   public EList settable_getBehaviors() {
 		if (behavior == null) {
-			behavior = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.EXECUTION_OCCURRENCE__BEHAVIOR);
+			behavior = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.EXECUTION_OCCURRENCE__BEHAVIOR);
 		}
 		return behavior;
 	}

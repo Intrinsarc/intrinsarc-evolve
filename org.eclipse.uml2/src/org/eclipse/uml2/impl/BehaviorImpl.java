@@ -176,9 +176,9 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (BehaviorImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -279,10 +279,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 		if (redefinedBehavior == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		redefinedBehavior = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIOR__REDEFINED_BEHAVIOR);
+			 		redefinedBehavior = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIOR__REDEFINED_BEHAVIOR);
 			 		return redefinedBehavior;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Behavior.class, this, UML2Package.BEHAVIOR__REDEFINED_BEHAVIOR);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Behavior.class, this, UML2Package.BEHAVIOR__REDEFINED_BEHAVIOR);
 		}      
 		return redefinedBehavior;
 	}
@@ -296,7 +296,7 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 */
   public EList settable_getRedefinedBehaviors() {
 		if (redefinedBehavior == null) {
-			redefinedBehavior = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIOR__REDEFINED_BEHAVIOR);
+			redefinedBehavior = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIOR__REDEFINED_BEHAVIOR);
 		}
 		return redefinedBehavior;
 	}
@@ -427,10 +427,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 		if (parameter == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		parameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIOR__PARAMETER);
+			 		parameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIOR__PARAMETER);
 			 		return parameter;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Parameter.class, this, UML2Package.BEHAVIOR__PARAMETER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Parameter.class, this, UML2Package.BEHAVIOR__PARAMETER);
 		}      
 		return parameter;
 	}
@@ -444,7 +444,7 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 */
   public EList settable_getParameters() {
 		if (parameter == null) {
-			parameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIOR__PARAMETER);
+			parameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIOR__PARAMETER);
 		}
 		return parameter;
 	}
@@ -615,10 +615,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 		if (precondition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		precondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__PRECONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
+			 		precondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__PRECONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 			 		return precondition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.BEHAVIOR__PRECONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.BEHAVIOR__PRECONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 		}      
 		return precondition;
 	}
@@ -632,7 +632,7 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 */
   public EList settable_getPreconditions() {
 		if (precondition == null) {
-			precondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__PRECONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
+			precondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__PRECONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 		}
 		return precondition;
 	}
@@ -683,10 +683,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 		if (postcondition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		postcondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__POSTCONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
+			 		postcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__POSTCONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 			 		return postcondition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.BEHAVIOR__POSTCONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.BEHAVIOR__POSTCONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 		}      
 		return postcondition;
 	}
@@ -700,7 +700,7 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 */
   public EList settable_getPostconditions() {
 		if (postcondition == null) {
-			postcondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__POSTCONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
+			postcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__POSTCONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 		}
 		return postcondition;
 	}
@@ -751,10 +751,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 		if (ownedParameterSet == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedParameterSet = new com.hopstepjump.emflist.PersistentEList(ParameterSet.class, this, UML2Package.BEHAVIOR__OWNED_PARAMETER_SET);
+			 		ownedParameterSet = new com.intrinsarc.emflist.PersistentEList(ParameterSet.class, this, UML2Package.BEHAVIOR__OWNED_PARAMETER_SET);
 			 		return ownedParameterSet;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ParameterSet.class, this, UML2Package.BEHAVIOR__OWNED_PARAMETER_SET);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ParameterSet.class, this, UML2Package.BEHAVIOR__OWNED_PARAMETER_SET);
 		}      
 		return ownedParameterSet;
 	}
@@ -768,7 +768,7 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 */
   public EList settable_getOwnedParameterSets() {
 		if (ownedParameterSet == null) {
-			ownedParameterSet = new com.hopstepjump.emflist.PersistentEList(ParameterSet.class, this, UML2Package.BEHAVIOR__OWNED_PARAMETER_SET);
+			ownedParameterSet = new com.intrinsarc.emflist.PersistentEList(ParameterSet.class, this, UML2Package.BEHAVIOR__OWNED_PARAMETER_SET);
 		}
 		return ownedParameterSet;
 	}
@@ -848,10 +848,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 		if (ownedRule == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedRule = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__OWNED_RULE, new int[] {UML2Package.BEHAVIOR__PRECONDITION, UML2Package.BEHAVIOR__POSTCONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
+			 		ownedRule = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__OWNED_RULE, new int[] {UML2Package.BEHAVIOR__PRECONDITION, UML2Package.BEHAVIOR__POSTCONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
 			 		return ownedRule;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.BEHAVIOR__OWNED_RULE, new int[] {UML2Package.BEHAVIOR__PRECONDITION, UML2Package.BEHAVIOR__POSTCONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.BEHAVIOR__OWNED_RULE, new int[] {UML2Package.BEHAVIOR__PRECONDITION, UML2Package.BEHAVIOR__POSTCONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
 		}      
 		return ownedRule;
 	}
@@ -865,7 +865,7 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 */
   public EList settable_getOwnedRules() {
 		if (ownedRule == null) {
-			ownedRule = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__OWNED_RULE, new int[] {UML2Package.BEHAVIOR__PRECONDITION, UML2Package.BEHAVIOR__POSTCONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
+			ownedRule = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__OWNED_RULE, new int[] {UML2Package.BEHAVIOR__PRECONDITION, UML2Package.BEHAVIOR__POSTCONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
 		}
 		return ownedRule;
 	}

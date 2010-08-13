@@ -297,9 +297,9 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ParameterImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 		eFlags |= IS_UNIQUE_EFLAG;
 	}
@@ -861,10 +861,10 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 		if (parameterSet == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		parameterSet = new com.hopstepjump.emflist.PersistentEList(ParameterSet.class, this, UML2Package.PARAMETER__PARAMETER_SET, UML2Package.PARAMETER_SET__PARAMETER);
+			 		parameterSet = new com.intrinsarc.emflist.PersistentEList(ParameterSet.class, this, UML2Package.PARAMETER__PARAMETER_SET, UML2Package.PARAMETER_SET__PARAMETER);
 			 		return parameterSet;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ParameterSet.class, this, UML2Package.PARAMETER__PARAMETER_SET, UML2Package.PARAMETER_SET__PARAMETER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ParameterSet.class, this, UML2Package.PARAMETER__PARAMETER_SET, UML2Package.PARAMETER_SET__PARAMETER);
 		}      
 		return parameterSet;
 	}
@@ -878,7 +878,7 @@ public class ParameterImpl extends ConnectableElementImpl implements Parameter {
 	 */
   public EList settable_getParameterSets() {
 		if (parameterSet == null) {
-			parameterSet = new com.hopstepjump.emflist.PersistentEList(ParameterSet.class, this, UML2Package.PARAMETER__PARAMETER_SET, UML2Package.PARAMETER_SET__PARAMETER);
+			parameterSet = new com.intrinsarc.emflist.PersistentEList(ParameterSet.class, this, UML2Package.PARAMETER__PARAMETER_SET, UML2Package.PARAMETER_SET__PARAMETER);
 		}
 		return parameterSet;
 	}

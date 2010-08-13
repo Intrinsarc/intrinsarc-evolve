@@ -89,9 +89,9 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (SubstitutionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -226,10 +226,10 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 		if (supplier == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__SUPPLIER, new int[] {UML2Package.SUBSTITUTION__REALIZING_CLASSIFIER, UML2Package.SUBSTITUTION__CONTRACT});
+			 		supplier = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__SUPPLIER, new int[] {UML2Package.SUBSTITUTION__REALIZING_CLASSIFIER, UML2Package.SUBSTITUTION__CONTRACT});
 			 		return supplier;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.SUBSTITUTION__SUPPLIER, new int[] {UML2Package.SUBSTITUTION__REALIZING_CLASSIFIER, UML2Package.SUBSTITUTION__CONTRACT});
+			return new com.intrinsarc.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.SUBSTITUTION__SUPPLIER, new int[] {UML2Package.SUBSTITUTION__REALIZING_CLASSIFIER, UML2Package.SUBSTITUTION__CONTRACT});
 		}      
 		return supplier;
 	}
@@ -243,7 +243,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 */
   public EList settable_getSuppliers() {
 		if (supplier == null) {
-			supplier = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__SUPPLIER, new int[] {UML2Package.SUBSTITUTION__REALIZING_CLASSIFIER, UML2Package.SUBSTITUTION__CONTRACT});
+			supplier = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__SUPPLIER, new int[] {UML2Package.SUBSTITUTION__REALIZING_CLASSIFIER, UML2Package.SUBSTITUTION__CONTRACT});
 		}
 		return supplier;
 	}
@@ -279,10 +279,10 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 		if (client == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__CLIENT, new int[] {UML2Package.SUBSTITUTION__ABSTRACTION, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
+			 		client = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__CLIENT, new int[] {UML2Package.SUBSTITUTION__ABSTRACTION, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 			 		return client;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.SUBSTITUTION__CLIENT, new int[] {UML2Package.SUBSTITUTION__ABSTRACTION, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(NamedElement.class, this, UML2Package.SUBSTITUTION__CLIENT, new int[] {UML2Package.SUBSTITUTION__ABSTRACTION, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}      
 		return client;
 	}
@@ -296,7 +296,7 @@ public class SubstitutionImpl extends RealizationImpl implements Substitution {
 	 */
   public EList settable_getClients() {
 		if (client == null) {
-			client = new com.hopstepjump.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__CLIENT, new int[] {UML2Package.SUBSTITUTION__ABSTRACTION, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
+			client = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.SUBSTITUTION__CLIENT, new int[] {UML2Package.SUBSTITUTION__ABSTRACTION, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}
 		return client;
 	}

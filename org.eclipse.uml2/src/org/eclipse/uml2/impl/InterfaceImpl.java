@@ -193,9 +193,9 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (InterfaceImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -217,10 +217,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (ownedAttribute == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.INTERFACE__OWNED_ATTRIBUTE);
+			 		ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.INTERFACE__OWNED_ATTRIBUTE);
 			 		return ownedAttribute;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Property.class, this, UML2Package.INTERFACE__OWNED_ATTRIBUTE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Property.class, this, UML2Package.INTERFACE__OWNED_ATTRIBUTE);
 		}      
 		return ownedAttribute;
 	}
@@ -234,7 +234,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
   public EList settable_getOwnedAttributes() {
 		if (ownedAttribute == null) {
-			ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.INTERFACE__OWNED_ATTRIBUTE);
+			ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.INTERFACE__OWNED_ATTRIBUTE);
 		}
 		return ownedAttribute;
 	}
@@ -313,10 +313,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (ownedOperation == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedOperation = new com.hopstepjump.emflist.PersistentEList(Operation.class, this, UML2Package.INTERFACE__OWNED_OPERATION);
+			 		ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.INTERFACE__OWNED_OPERATION);
 			 		return ownedOperation;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Operation.class, this, UML2Package.INTERFACE__OWNED_OPERATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Operation.class, this, UML2Package.INTERFACE__OWNED_OPERATION);
 		}      
 		return ownedOperation;
 	}
@@ -330,7 +330,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
   public EList settable_getOwnedOperations() {
 		if (ownedOperation == null) {
-			ownedOperation = new com.hopstepjump.emflist.PersistentEList(Operation.class, this, UML2Package.INTERFACE__OWNED_OPERATION);
+			ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.INTERFACE__OWNED_OPERATION);
 		}
 		return ownedOperation;
 	}
@@ -410,10 +410,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (redefinedInterface == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		redefinedInterface = new com.hopstepjump.emflist.PersistentEList(Interface.class, this, UML2Package.INTERFACE__REDEFINED_INTERFACE);
+			 		redefinedInterface = new com.intrinsarc.emflist.PersistentEList(Interface.class, this, UML2Package.INTERFACE__REDEFINED_INTERFACE);
 			 		return redefinedInterface;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Interface.class, this, UML2Package.INTERFACE__REDEFINED_INTERFACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Interface.class, this, UML2Package.INTERFACE__REDEFINED_INTERFACE);
 		}      
 		return redefinedInterface;
 	}
@@ -427,7 +427,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
   public EList settable_getRedefinedInterfaces() {
 		if (redefinedInterface == null) {
-			redefinedInterface = new com.hopstepjump.emflist.PersistentEList(Interface.class, this, UML2Package.INTERFACE__REDEFINED_INTERFACE);
+			redefinedInterface = new com.intrinsarc.emflist.PersistentEList(Interface.class, this, UML2Package.INTERFACE__REDEFINED_INTERFACE);
 		}
 		return redefinedInterface;
 	}
@@ -478,10 +478,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (nestedClassifier == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		nestedClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INTERFACE__NESTED_CLASSIFIER);
+			 		nestedClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INTERFACE__NESTED_CLASSIFIER);
 			 		return nestedClassifier;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.INTERFACE__NESTED_CLASSIFIER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.INTERFACE__NESTED_CLASSIFIER);
 		}      
 		return nestedClassifier;
 	}
@@ -495,7 +495,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
   public EList settable_getNestedClassifiers() {
 		if (nestedClassifier == null) {
-			nestedClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INTERFACE__NESTED_CLASSIFIER);
+			nestedClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INTERFACE__NESTED_CLASSIFIER);
 		}
 		return nestedClassifier;
 	}
@@ -560,10 +560,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (ownedReception == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedReception = new com.hopstepjump.emflist.PersistentEList(Reception.class, this, UML2Package.INTERFACE__OWNED_RECEPTION);
+			 		ownedReception = new com.intrinsarc.emflist.PersistentEList(Reception.class, this, UML2Package.INTERFACE__OWNED_RECEPTION);
 			 		return ownedReception;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Reception.class, this, UML2Package.INTERFACE__OWNED_RECEPTION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Reception.class, this, UML2Package.INTERFACE__OWNED_RECEPTION);
 		}      
 		return ownedReception;
 	}
@@ -577,7 +577,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
   public EList settable_getOwnedReceptions() {
 		if (ownedReception == null) {
-			ownedReception = new com.hopstepjump.emflist.PersistentEList(Reception.class, this, UML2Package.INTERFACE__OWNED_RECEPTION);
+			ownedReception = new com.intrinsarc.emflist.PersistentEList(Reception.class, this, UML2Package.INTERFACE__OWNED_RECEPTION);
 		}
 		return ownedReception;
 	}
@@ -749,10 +749,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (deltaDeletedOperations == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaDeletedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS);
+			 		deltaDeletedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS);
 			 		return deltaDeletedOperations;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedOperation.class, this, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaDeletedOperation.class, this, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS);
 		}      
 		return deltaDeletedOperations;
 	}
@@ -766,7 +766,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
 	public EList settable_getDeltaDeletedOperations() {
 		if (deltaDeletedOperations == null) {
-			deltaDeletedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS);
+			deltaDeletedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS);
 		}
 		return deltaDeletedOperations;
 	}
@@ -830,10 +830,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (deltaReplacedOperations == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaReplacedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS);
+			 		deltaReplacedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS);
 			 		return deltaReplacedOperations;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedOperation.class, this, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaReplacedOperation.class, this, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS);
 		}      
 		return deltaReplacedOperations;
 	}
@@ -847,7 +847,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
 	public EList settable_getDeltaReplacedOperations() {
 		if (deltaReplacedOperations == null) {
-			deltaReplacedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS);
+			deltaReplacedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS);
 		}
 		return deltaReplacedOperations;
 	}
@@ -911,10 +911,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (deltaDeletedAttributes == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaDeletedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES);
+			 		deltaDeletedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES);
 			 		return deltaDeletedAttributes;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedAttribute.class, this, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaDeletedAttribute.class, this, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES);
 		}      
 		return deltaDeletedAttributes;
 	}
@@ -928,7 +928,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
 	public EList settable_getDeltaDeletedAttributes() {
 		if (deltaDeletedAttributes == null) {
-			deltaDeletedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES);
+			deltaDeletedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES);
 		}
 		return deltaDeletedAttributes;
 	}
@@ -992,10 +992,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 		if (deltaReplacedAttributes == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaReplacedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES);
+			 		deltaReplacedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES);
 			 		return deltaReplacedAttributes;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedAttribute.class, this, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaReplacedAttribute.class, this, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES);
 		}      
 		return deltaReplacedAttributes;
 	}
@@ -1009,7 +1009,7 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 */
 	public EList settable_getDeltaReplacedAttributes() {
 		if (deltaReplacedAttributes == null) {
-			deltaReplacedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES);
+			deltaReplacedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES);
 		}
 		return deltaReplacedAttributes;
 	}

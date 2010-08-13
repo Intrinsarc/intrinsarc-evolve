@@ -120,9 +120,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (StateMachineImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -144,10 +144,10 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 		if (region == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		region = new com.hopstepjump.emflist.PersistentEList(Region.class, this, UML2Package.STATE_MACHINE__REGION, UML2Package.REGION__STATE_MACHINE);
+			 		region = new com.intrinsarc.emflist.PersistentEList(Region.class, this, UML2Package.STATE_MACHINE__REGION, UML2Package.REGION__STATE_MACHINE);
 			 		return region;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Region.class, this, UML2Package.STATE_MACHINE__REGION, UML2Package.REGION__STATE_MACHINE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Region.class, this, UML2Package.STATE_MACHINE__REGION, UML2Package.REGION__STATE_MACHINE);
 		}      
 		return region;
 	}
@@ -161,7 +161,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 */
   public EList settable_getRegions() {
 		if (region == null) {
-			region = new com.hopstepjump.emflist.PersistentEList(Region.class, this, UML2Package.STATE_MACHINE__REGION, UML2Package.REGION__STATE_MACHINE);
+			region = new com.intrinsarc.emflist.PersistentEList(Region.class, this, UML2Package.STATE_MACHINE__REGION, UML2Package.REGION__STATE_MACHINE);
 		}
 		return region;
 	}
@@ -241,10 +241,10 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 		if (connectionPoint == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		connectionPoint = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.STATE_MACHINE__CONNECTION_POINT);
+			 		connectionPoint = new com.intrinsarc.emflist.PersistentEList(Pseudostate.class, this, UML2Package.STATE_MACHINE__CONNECTION_POINT);
 			 		return connectionPoint;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Pseudostate.class, this, UML2Package.STATE_MACHINE__CONNECTION_POINT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Pseudostate.class, this, UML2Package.STATE_MACHINE__CONNECTION_POINT);
 		}      
 		return connectionPoint;
 	}
@@ -258,7 +258,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine {
 	 */
   public EList settable_getConnectionPoints() {
 		if (connectionPoint == null) {
-			connectionPoint = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.STATE_MACHINE__CONNECTION_POINT);
+			connectionPoint = new com.intrinsarc.emflist.PersistentEList(Pseudostate.class, this, UML2Package.STATE_MACHINE__CONNECTION_POINT);
 		}
 		return connectionPoint;
 	}

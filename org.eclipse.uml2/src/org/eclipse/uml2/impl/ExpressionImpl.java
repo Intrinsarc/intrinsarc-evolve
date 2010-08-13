@@ -103,9 +103,9 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ExpressionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -157,10 +157,10 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 		if (operand == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		operand = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.EXPRESSION__OPERAND);
+			 		operand = new com.intrinsarc.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.EXPRESSION__OPERAND);
 			 		return operand;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ValueSpecification.class, this, UML2Package.EXPRESSION__OPERAND);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ValueSpecification.class, this, UML2Package.EXPRESSION__OPERAND);
 		}      
 		return operand;
 	}
@@ -174,7 +174,7 @@ public class ExpressionImpl extends OpaqueExpressionImpl implements Expression {
 	 */
   public EList settable_getOperands() {
 		if (operand == null) {
-			operand = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.EXPRESSION__OPERAND);
+			operand = new com.intrinsarc.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.EXPRESSION__OPERAND);
 		}
 		return operand;
 	}

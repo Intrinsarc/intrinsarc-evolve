@@ -81,9 +81,9 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (EncapsulatedClassifierImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -105,10 +105,10 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 		if (ownedPort == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedPort = new com.hopstepjump.emflist.PersistentEList(Port.class, this, UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
+			 		ownedPort = new com.intrinsarc.emflist.PersistentEList(Port.class, this, UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			 		return ownedPort;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Port.class, this, UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Port.class, this, UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 		}      
 		return ownedPort;
 	}
@@ -122,7 +122,7 @@ public abstract class EncapsulatedClassifierImpl extends StructuredClassifierImp
 	 */
   public EList settable_getOwnedPorts() {
 		if (ownedPort == null) {
-			ownedPort = new com.hopstepjump.emflist.PersistentEList(Port.class, this, UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
+			ownedPort = new com.intrinsarc.emflist.PersistentEList(Port.class, this, UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 		}
 		return ownedPort;
 	}

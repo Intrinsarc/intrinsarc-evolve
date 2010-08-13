@@ -96,9 +96,9 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ConstraintImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -285,10 +285,10 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 		if (constrainedElement == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		constrainedElement = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.CONSTRAINT__CONSTRAINED_ELEMENT);
+			 		constrainedElement = new com.intrinsarc.emflist.PersistentEList(Element.class, this, UML2Package.CONSTRAINT__CONSTRAINED_ELEMENT);
 			 		return constrainedElement;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Element.class, this, UML2Package.CONSTRAINT__CONSTRAINED_ELEMENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Element.class, this, UML2Package.CONSTRAINT__CONSTRAINED_ELEMENT);
 		}      
 		return constrainedElement;
 	}
@@ -302,7 +302,7 @@ public class ConstraintImpl extends PackageableElementImpl implements Constraint
 	 */
   public EList settable_getConstrainedElements() {
 		if (constrainedElement == null) {
-			constrainedElement = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.CONSTRAINT__CONSTRAINED_ELEMENT);
+			constrainedElement = new com.intrinsarc.emflist.PersistentEList(Element.class, this, UML2Package.CONSTRAINT__CONSTRAINED_ELEMENT);
 		}
 		return constrainedElement;
 	}

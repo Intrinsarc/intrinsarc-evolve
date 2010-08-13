@@ -82,9 +82,9 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (DurationObservationActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -106,10 +106,10 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 		if (duration == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		duration = new com.hopstepjump.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_OBSERVATION_ACTION__DURATION);
+			 		duration = new com.intrinsarc.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_OBSERVATION_ACTION__DURATION);
 			 		return duration;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Duration.class, this, UML2Package.DURATION_OBSERVATION_ACTION__DURATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Duration.class, this, UML2Package.DURATION_OBSERVATION_ACTION__DURATION);
 		}      
 		return duration;
 	}
@@ -123,7 +123,7 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 */
   public EList settable_getDurations() {
 		if (duration == null) {
-			duration = new com.hopstepjump.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_OBSERVATION_ACTION__DURATION);
+			duration = new com.intrinsarc.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_OBSERVATION_ACTION__DURATION);
 		}
 		return duration;
 	}

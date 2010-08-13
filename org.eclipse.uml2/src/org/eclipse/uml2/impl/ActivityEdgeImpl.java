@@ -160,9 +160,9 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ActivityEdgeImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -508,10 +508,10 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 		if (redefinedElement == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		redefinedElement = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_EDGE__REDEFINED_ELEMENT);
+			 		redefinedElement = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_EDGE__REDEFINED_ELEMENT);
 			 		return redefinedElement;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY_EDGE__REDEFINED_ELEMENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY_EDGE__REDEFINED_ELEMENT);
 		}      
 		return redefinedElement;
 	}
@@ -525,7 +525,7 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 */
   public EList settable_getRedefinedElements() {
 		if (redefinedElement == null) {
-			redefinedElement = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_EDGE__REDEFINED_ELEMENT);
+			redefinedElement = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_EDGE__REDEFINED_ELEMENT);
 		}
 		return redefinedElement;
 	}
@@ -626,10 +626,10 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 		if (inPartition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		inPartition = new com.hopstepjump.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_EDGE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE);
+			 		inPartition = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_EDGE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE);
 			 		return inPartition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityPartition.class, this, UML2Package.ACTIVITY_EDGE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityPartition.class, this, UML2Package.ACTIVITY_EDGE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE);
 		}      
 		return inPartition;
 	}
@@ -643,7 +643,7 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 */
   public EList settable_getInPartitions() {
 		if (inPartition == null) {
-			inPartition = new com.hopstepjump.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_EDGE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE);
+			inPartition = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_EDGE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE);
 		}
 		return inPartition;
 	}

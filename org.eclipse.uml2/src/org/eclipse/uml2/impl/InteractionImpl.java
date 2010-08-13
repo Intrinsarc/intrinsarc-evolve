@@ -151,9 +151,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (InteractionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -175,10 +175,10 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 		if (covered == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__COVERED, UML2Package.LIFELINE__COVERED_BY);
+			 		covered = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__COVERED, UML2Package.LIFELINE__COVERED_BY);
 			 		return covered;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Lifeline.class, this, UML2Package.INTERACTION__COVERED, UML2Package.LIFELINE__COVERED_BY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Lifeline.class, this, UML2Package.INTERACTION__COVERED, UML2Package.LIFELINE__COVERED_BY);
 		}      
 		return covered;
 	}
@@ -192,7 +192,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 */
   public EList settable_getCovereds() {
 		if (covered == null) {
-			covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__COVERED, UML2Package.LIFELINE__COVERED_BY);
+			covered = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__COVERED, UML2Package.LIFELINE__COVERED_BY);
 		}
 		return covered;
 	}
@@ -243,10 +243,10 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 		if (generalOrdering == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		generalOrdering = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION__GENERAL_ORDERING);
+			 		generalOrdering = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION__GENERAL_ORDERING);
 			 		return generalOrdering;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(GeneralOrdering.class, this, UML2Package.INTERACTION__GENERAL_ORDERING);
+			return new com.intrinsarc.emflist.UnmodifiableEList(GeneralOrdering.class, this, UML2Package.INTERACTION__GENERAL_ORDERING);
 		}      
 		return generalOrdering;
 	}
@@ -260,7 +260,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 */
   public EList settable_getGeneralOrderings() {
 		if (generalOrdering == null) {
-			generalOrdering = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION__GENERAL_ORDERING);
+			generalOrdering = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION__GENERAL_ORDERING);
 		}
 		return generalOrdering;
 	}
@@ -440,10 +440,10 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 		if (lifeline == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		lifeline = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__LIFELINE, UML2Package.LIFELINE__INTERACTION);
+			 		lifeline = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__LIFELINE, UML2Package.LIFELINE__INTERACTION);
 			 		return lifeline;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Lifeline.class, this, UML2Package.INTERACTION__LIFELINE, UML2Package.LIFELINE__INTERACTION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Lifeline.class, this, UML2Package.INTERACTION__LIFELINE, UML2Package.LIFELINE__INTERACTION);
 		}      
 		return lifeline;
 	}
@@ -457,7 +457,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 */
   public EList settable_getLifelines() {
 		if (lifeline == null) {
-			lifeline = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__LIFELINE, UML2Package.LIFELINE__INTERACTION);
+			lifeline = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__LIFELINE, UML2Package.LIFELINE__INTERACTION);
 		}
 		return lifeline;
 	}
@@ -537,10 +537,10 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 		if (message == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		message = new com.hopstepjump.emflist.PersistentEList(Message.class, this, UML2Package.INTERACTION__MESSAGE, UML2Package.MESSAGE__INTERACTION);
+			 		message = new com.intrinsarc.emflist.PersistentEList(Message.class, this, UML2Package.INTERACTION__MESSAGE, UML2Package.MESSAGE__INTERACTION);
 			 		return message;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Message.class, this, UML2Package.INTERACTION__MESSAGE, UML2Package.MESSAGE__INTERACTION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Message.class, this, UML2Package.INTERACTION__MESSAGE, UML2Package.MESSAGE__INTERACTION);
 		}      
 		return message;
 	}
@@ -554,7 +554,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 */
   public EList settable_getMessages() {
 		if (message == null) {
-			message = new com.hopstepjump.emflist.PersistentEList(Message.class, this, UML2Package.INTERACTION__MESSAGE, UML2Package.MESSAGE__INTERACTION);
+			message = new com.intrinsarc.emflist.PersistentEList(Message.class, this, UML2Package.INTERACTION__MESSAGE, UML2Package.MESSAGE__INTERACTION);
 		}
 		return message;
 	}
@@ -634,10 +634,10 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 		if (fragment == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		fragment = new com.hopstepjump.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION);
+			 		fragment = new com.intrinsarc.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION);
 			 		return fragment;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(InteractionFragment.class, this, UML2Package.INTERACTION__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(InteractionFragment.class, this, UML2Package.INTERACTION__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION);
 		}      
 		return fragment;
 	}
@@ -651,7 +651,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 */
   public EList settable_getFragments() {
 		if (fragment == null) {
-			fragment = new com.hopstepjump.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION);
+			fragment = new com.intrinsarc.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION);
 		}
 		return fragment;
 	}
@@ -716,10 +716,10 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 		if (formalGate == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		formalGate = new com.hopstepjump.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION__FORMAL_GATE);
+			 		formalGate = new com.intrinsarc.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION__FORMAL_GATE);
 			 		return formalGate;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Gate.class, this, UML2Package.INTERACTION__FORMAL_GATE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Gate.class, this, UML2Package.INTERACTION__FORMAL_GATE);
 		}      
 		return formalGate;
 	}
@@ -733,7 +733,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 */
   public EList settable_getFormalGates() {
 		if (formalGate == null) {
-			formalGate = new com.hopstepjump.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION__FORMAL_GATE);
+			formalGate = new com.intrinsarc.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION__FORMAL_GATE);
 		}
 		return formalGate;
 	}

@@ -183,9 +183,9 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (LoopNodeImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -236,10 +236,10 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 		if (bodyPart == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		bodyPart = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__BODY_PART);
+			 		bodyPart = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__BODY_PART);
 			 		return bodyPart;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.LOOP_NODE__BODY_PART);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.LOOP_NODE__BODY_PART);
 		}      
 		return bodyPart;
 	}
@@ -253,7 +253,7 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 	 */
   public EList settable_getBodyParts() {
 		if (bodyPart == null) {
-			bodyPart = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__BODY_PART);
+			bodyPart = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__BODY_PART);
 		}
 		return bodyPart;
 	}
@@ -304,10 +304,10 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 		if (setupPart == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		setupPart = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__SETUP_PART);
+			 		setupPart = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__SETUP_PART);
 			 		return setupPart;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.LOOP_NODE__SETUP_PART);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.LOOP_NODE__SETUP_PART);
 		}      
 		return setupPart;
 	}
@@ -321,7 +321,7 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 	 */
   public EList settable_getSetupParts() {
 		if (setupPart == null) {
-			setupPart = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__SETUP_PART);
+			setupPart = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__SETUP_PART);
 		}
 		return setupPart;
 	}
@@ -429,10 +429,10 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 		if (test == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		test = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__TEST);
+			 		test = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__TEST);
 			 		return test;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.LOOP_NODE__TEST);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.LOOP_NODE__TEST);
 		}      
 		return test;
 	}
@@ -446,7 +446,7 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 	 */
   public EList settable_getTests() {
 		if (test == null) {
-			test = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__TEST);
+			test = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.LOOP_NODE__TEST);
 		}
 		return test;
 	}
@@ -497,10 +497,10 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 		if (result == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__RESULT);
+			 		result = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__RESULT);
 			 		return result;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.LOOP_NODE__RESULT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.LOOP_NODE__RESULT);
 		}      
 		return result;
 	}
@@ -514,7 +514,7 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 	 */
   public EList settable_getResults() {
 		if (result == null) {
-			result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__RESULT);
+			result = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__RESULT);
 		}
 		return result;
 	}
@@ -594,10 +594,10 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 		if (loopVariable == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		loopVariable = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE);
+			 		loopVariable = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE);
 			 		return loopVariable;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE);
 		}      
 		return loopVariable;
 	}
@@ -611,7 +611,7 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 	 */
   public EList settable_getLoopVariables() {
 		if (loopVariable == null) {
-			loopVariable = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE);
+			loopVariable = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE);
 		}
 		return loopVariable;
 	}
@@ -691,10 +691,10 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 		if (bodyOutput == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		bodyOutput = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__BODY_OUTPUT);
+			 		bodyOutput = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__BODY_OUTPUT);
 			 		return bodyOutput;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.LOOP_NODE__BODY_OUTPUT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.LOOP_NODE__BODY_OUTPUT);
 		}      
 		return bodyOutput;
 	}
@@ -708,7 +708,7 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 	 */
   public EList settable_getBodyOutputs() {
 		if (bodyOutput == null) {
-			bodyOutput = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__BODY_OUTPUT);
+			bodyOutput = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.LOOP_NODE__BODY_OUTPUT);
 		}
 		return bodyOutput;
 	}
@@ -759,10 +759,10 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 		if (loopVariableInput == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		loopVariableInput = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE_INPUT);
+			 		loopVariableInput = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE_INPUT);
 			 		return loopVariableInput;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(InputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE_INPUT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(InputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE_INPUT);
 		}      
 		return loopVariableInput;
 	}
@@ -776,7 +776,7 @@ public class LoopNodeImpl extends StructuredActivityNodeImpl implements LoopNode
 	 */
   public EList settable_getLoopVariableInputs() {
 		if (loopVariableInput == null) {
-			loopVariableInput = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE_INPUT);
+			loopVariableInput = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.LOOP_NODE__LOOP_VARIABLE_INPUT);
 		}
 		return loopVariableInput;
 	}

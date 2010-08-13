@@ -75,9 +75,9 @@ public abstract class LinkActionImpl extends ActionImpl implements LinkAction {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (LinkActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -99,10 +99,10 @@ public abstract class LinkActionImpl extends ActionImpl implements LinkAction {
 		if (endData == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		endData = new com.hopstepjump.emflist.PersistentEList(LinkEndData.class, this, UML2Package.LINK_ACTION__END_DATA);
+			 		endData = new com.intrinsarc.emflist.PersistentEList(LinkEndData.class, this, UML2Package.LINK_ACTION__END_DATA);
 			 		return endData;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(LinkEndData.class, this, UML2Package.LINK_ACTION__END_DATA);
+			return new com.intrinsarc.emflist.UnmodifiableEList(LinkEndData.class, this, UML2Package.LINK_ACTION__END_DATA);
 		}      
 		return endData;
 	}
@@ -116,7 +116,7 @@ public abstract class LinkActionImpl extends ActionImpl implements LinkAction {
 	 */
   public EList settable_getEndData() {
 		if (endData == null) {
-			endData = new com.hopstepjump.emflist.PersistentEList(LinkEndData.class, this, UML2Package.LINK_ACTION__END_DATA);
+			endData = new com.intrinsarc.emflist.PersistentEList(LinkEndData.class, this, UML2Package.LINK_ACTION__END_DATA);
 		}
 		return endData;
 	}

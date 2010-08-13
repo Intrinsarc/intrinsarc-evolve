@@ -81,9 +81,9 @@ public class SignalImpl extends ClassifierImpl implements Signal {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (SignalImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -105,10 +105,10 @@ public class SignalImpl extends ClassifierImpl implements Signal {
 		if (ownedAttribute == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.SIGNAL__OWNED_ATTRIBUTE);
+			 		ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.SIGNAL__OWNED_ATTRIBUTE);
 			 		return ownedAttribute;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Property.class, this, UML2Package.SIGNAL__OWNED_ATTRIBUTE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Property.class, this, UML2Package.SIGNAL__OWNED_ATTRIBUTE);
 		}      
 		return ownedAttribute;
 	}
@@ -122,7 +122,7 @@ public class SignalImpl extends ClassifierImpl implements Signal {
 	 */
   public EList settable_getOwnedAttributes() {
 		if (ownedAttribute == null) {
-			ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.SIGNAL__OWNED_ATTRIBUTE);
+			ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.SIGNAL__OWNED_ATTRIBUTE);
 		}
 		return ownedAttribute;
 	}

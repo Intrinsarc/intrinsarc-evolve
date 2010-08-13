@@ -128,9 +128,9 @@ public class ClauseImpl extends ElementImpl implements Clause {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ClauseImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -152,10 +152,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 		if (test == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		test = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__TEST);
+			 		test = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__TEST);
 			 		return test;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.CLAUSE__TEST);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.CLAUSE__TEST);
 		}      
 		return test;
 	}
@@ -169,7 +169,7 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 */
   public EList settable_getTests() {
 		if (test == null) {
-			test = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__TEST);
+			test = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__TEST);
 		}
 		return test;
 	}
@@ -220,10 +220,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 		if (body == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		body = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__BODY);
+			 		body = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__BODY);
 			 		return body;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.CLAUSE__BODY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.CLAUSE__BODY);
 		}      
 		return body;
 	}
@@ -237,7 +237,7 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 */
   public EList settable_getBodies() {
 		if (body == null) {
-			body = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__BODY);
+			body = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__BODY);
 		}
 		return body;
 	}
@@ -288,10 +288,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 		if (predecessorClause == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		predecessorClause = new com.hopstepjump.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__PREDECESSOR_CLAUSE, UML2Package.CLAUSE__SUCCESSOR_CLAUSE);
+			 		predecessorClause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__PREDECESSOR_CLAUSE, UML2Package.CLAUSE__SUCCESSOR_CLAUSE);
 			 		return predecessorClause;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Clause.class, this, UML2Package.CLAUSE__PREDECESSOR_CLAUSE, UML2Package.CLAUSE__SUCCESSOR_CLAUSE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Clause.class, this, UML2Package.CLAUSE__PREDECESSOR_CLAUSE, UML2Package.CLAUSE__SUCCESSOR_CLAUSE);
 		}      
 		return predecessorClause;
 	}
@@ -305,7 +305,7 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 */
   public EList settable_getPredecessorClauses() {
 		if (predecessorClause == null) {
-			predecessorClause = new com.hopstepjump.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__PREDECESSOR_CLAUSE, UML2Package.CLAUSE__SUCCESSOR_CLAUSE);
+			predecessorClause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__PREDECESSOR_CLAUSE, UML2Package.CLAUSE__SUCCESSOR_CLAUSE);
 		}
 		return predecessorClause;
 	}
@@ -341,10 +341,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 		if (successorClause == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		successorClause = new com.hopstepjump.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__SUCCESSOR_CLAUSE, UML2Package.CLAUSE__PREDECESSOR_CLAUSE);
+			 		successorClause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__SUCCESSOR_CLAUSE, UML2Package.CLAUSE__PREDECESSOR_CLAUSE);
 			 		return successorClause;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Clause.class, this, UML2Package.CLAUSE__SUCCESSOR_CLAUSE, UML2Package.CLAUSE__PREDECESSOR_CLAUSE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Clause.class, this, UML2Package.CLAUSE__SUCCESSOR_CLAUSE, UML2Package.CLAUSE__PREDECESSOR_CLAUSE);
 		}      
 		return successorClause;
 	}
@@ -358,7 +358,7 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 */
   public EList settable_getSuccessorClauses() {
 		if (successorClause == null) {
-			successorClause = new com.hopstepjump.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__SUCCESSOR_CLAUSE, UML2Package.CLAUSE__PREDECESSOR_CLAUSE);
+			successorClause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__SUCCESSOR_CLAUSE, UML2Package.CLAUSE__PREDECESSOR_CLAUSE);
 		}
 		return successorClause;
 	}
@@ -451,10 +451,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 		if (bodyOutput == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		bodyOutput = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.CLAUSE__BODY_OUTPUT);
+			 		bodyOutput = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.CLAUSE__BODY_OUTPUT);
 			 		return bodyOutput;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.CLAUSE__BODY_OUTPUT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.CLAUSE__BODY_OUTPUT);
 		}      
 		return bodyOutput;
 	}
@@ -468,7 +468,7 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 */
   public EList settable_getBodyOutputs() {
 		if (bodyOutput == null) {
-			bodyOutput = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.CLAUSE__BODY_OUTPUT);
+			bodyOutput = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.CLAUSE__BODY_OUTPUT);
 		}
 		return bodyOutput;
 	}

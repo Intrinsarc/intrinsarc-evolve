@@ -75,9 +75,9 @@ public class InformationItemImpl extends ClassifierImpl implements InformationIt
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (InformationItemImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -99,10 +99,10 @@ public class InformationItemImpl extends ClassifierImpl implements InformationIt
 		if (represented == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		represented = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_ITEM__REPRESENTED);
+			 		represented = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_ITEM__REPRESENTED);
 			 		return represented;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.INFORMATION_ITEM__REPRESENTED);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.INFORMATION_ITEM__REPRESENTED);
 		}      
 		return represented;
 	}
@@ -116,7 +116,7 @@ public class InformationItemImpl extends ClassifierImpl implements InformationIt
 	 */
   public EList settable_getRepresenteds() {
 		if (represented == null) {
-			represented = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_ITEM__REPRESENTED);
+			represented = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_ITEM__REPRESENTED);
 		}
 		return represented;
 	}

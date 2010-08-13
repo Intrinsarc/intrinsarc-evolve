@@ -133,9 +133,9 @@ public class ComponentImpl extends ClassImpl implements Component {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ComponentImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -272,10 +272,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 		if (realization == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		realization = new com.hopstepjump.emflist.PersistentEList(Realization.class, this, UML2Package.COMPONENT__REALIZATION, new int[] {UML2Package.COMPONENT__CLIENT_DEPENDENCY}, UML2Package.REALIZATION__ABSTRACTION);
+			 		realization = new com.intrinsarc.emflist.PersistentEList(Realization.class, this, UML2Package.COMPONENT__REALIZATION, new int[] {UML2Package.COMPONENT__CLIENT_DEPENDENCY}, UML2Package.REALIZATION__ABSTRACTION);
 			 		return realization;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Realization.class, this, UML2Package.COMPONENT__REALIZATION, new int[] {UML2Package.COMPONENT__CLIENT_DEPENDENCY}, UML2Package.REALIZATION__ABSTRACTION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Realization.class, this, UML2Package.COMPONENT__REALIZATION, new int[] {UML2Package.COMPONENT__CLIENT_DEPENDENCY}, UML2Package.REALIZATION__ABSTRACTION);
 		}      
 		return realization;
 	}
@@ -289,7 +289,7 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 */
   public EList settable_getRealizations() {
 		if (realization == null) {
-			realization = new com.hopstepjump.emflist.PersistentEList(Realization.class, this, UML2Package.COMPONENT__REALIZATION, new int[] {UML2Package.COMPONENT__CLIENT_DEPENDENCY}, UML2Package.REALIZATION__ABSTRACTION);
+			realization = new com.intrinsarc.emflist.PersistentEList(Realization.class, this, UML2Package.COMPONENT__REALIZATION, new int[] {UML2Package.COMPONENT__CLIENT_DEPENDENCY}, UML2Package.REALIZATION__ABSTRACTION);
 		}
 		return realization;
 	}
@@ -368,10 +368,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 		if (ownedMember == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.COMPONENT__OWNED_MEMBER);
+			 		ownedMember = new com.intrinsarc.emflist.PersistentEList(PackageableElement.class, this, UML2Package.COMPONENT__OWNED_MEMBER);
 			 		return ownedMember;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageableElement.class, this, UML2Package.COMPONENT__OWNED_MEMBER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageableElement.class, this, UML2Package.COMPONENT__OWNED_MEMBER);
 		}      
 		return ownedMember;
 	}
@@ -385,7 +385,7 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 */
   public EList settable_getOwnedMembers() {
 		if (ownedMember == null) {
-			ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.COMPONENT__OWNED_MEMBER);
+			ownedMember = new com.intrinsarc.emflist.PersistentEList(PackageableElement.class, this, UML2Package.COMPONENT__OWNED_MEMBER);
 		}
 		return ownedMember;
 	}
@@ -450,10 +450,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 		if (clientDependency == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.COMPONENT__CLIENT_DEPENDENCY, new int[] {UML2Package.COMPONENT__SUBSTITUTION, UML2Package.COMPONENT__IMPLEMENTATION, UML2Package.COMPONENT__REALIZATION}, UML2Package.DEPENDENCY__CLIENT);
+			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.COMPONENT__CLIENT_DEPENDENCY, new int[] {UML2Package.COMPONENT__SUBSTITUTION, UML2Package.COMPONENT__IMPLEMENTATION, UML2Package.COMPONENT__REALIZATION}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.COMPONENT__CLIENT_DEPENDENCY, new int[] {UML2Package.COMPONENT__SUBSTITUTION, UML2Package.COMPONENT__IMPLEMENTATION, UML2Package.COMPONENT__REALIZATION}, UML2Package.DEPENDENCY__CLIENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.COMPONENT__CLIENT_DEPENDENCY, new int[] {UML2Package.COMPONENT__SUBSTITUTION, UML2Package.COMPONENT__IMPLEMENTATION, UML2Package.COMPONENT__REALIZATION}, UML2Package.DEPENDENCY__CLIENT);
 		}      
 		return clientDependency;
 	}
@@ -467,7 +467,7 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 */
   public EList settable_getClientDependencies() {
 		if (clientDependency == null) {
-			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.COMPONENT__CLIENT_DEPENDENCY, new int[] {UML2Package.COMPONENT__SUBSTITUTION, UML2Package.COMPONENT__IMPLEMENTATION, UML2Package.COMPONENT__REALIZATION}, UML2Package.DEPENDENCY__CLIENT);
+			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.COMPONENT__CLIENT_DEPENDENCY, new int[] {UML2Package.COMPONENT__SUBSTITUTION, UML2Package.COMPONENT__IMPLEMENTATION, UML2Package.COMPONENT__REALIZATION}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
 	}

@@ -60,7 +60,8 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.common.util.*;
 import org.eclipse.uml2.internal.operation.*;
 
-import com.hopstepjump.emflist.*;
+import com.intrinsarc.emflist.*;
+
 import java.lang.Class;
 
 /**
@@ -147,9 +148,9 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (BehavioredClassifierImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -287,10 +288,10 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 		if (implementation == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		implementation = new com.hopstepjump.emflist.PersistentEList(Implementation.class, this, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER);
+			 		implementation = new com.intrinsarc.emflist.PersistentEList(Implementation.class, this, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER);
 			 		return implementation;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Implementation.class, this, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Implementation.class, this, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER);
 		}      
 		return implementation;
 	}
@@ -304,7 +305,7 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 */
   public EList settable_getImplementations() {
 		if (implementation == null) {
-			implementation = new com.hopstepjump.emflist.PersistentEList(Implementation.class, this, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER);
+			implementation = new com.intrinsarc.emflist.PersistentEList(Implementation.class, this, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.IMPLEMENTATION__IMPLEMENTING_CLASSIFIER);
 		}
 		return implementation;
 	}
@@ -384,10 +385,10 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 		if (ownedTrigger == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedTrigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_TRIGGER);
+			 		ownedTrigger = new com.intrinsarc.emflist.PersistentEList(Trigger.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_TRIGGER);
 			 		return ownedTrigger;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Trigger.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_TRIGGER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Trigger.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_TRIGGER);
 		}      
 		return ownedTrigger;
 	}
@@ -401,7 +402,7 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 */
   public EList settable_getOwnedTriggers() {
 		if (ownedTrigger == null) {
-			ownedTrigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_TRIGGER);
+			ownedTrigger = new com.intrinsarc.emflist.PersistentEList(Trigger.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_TRIGGER);
 		}
 		return ownedTrigger;
 	}
@@ -482,7 +483,7 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 */
   public EList settable_getOwnedStateMachines() {
 		if (ownedStateMachine == null) {
-			ownedStateMachine = new com.hopstepjump.emflist.PersistentEList(StateMachine.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_STATE_MACHINE, UML2Package.STATE_MACHINE__STATE_MACHINE_REDEFINITION_CONTEXT);
+			ownedStateMachine = new com.intrinsarc.emflist.PersistentEList(StateMachine.class, this, UML2Package.BEHAVIORED_CLASSIFIER__OWNED_STATE_MACHINE, UML2Package.STATE_MACHINE__STATE_MACHINE_REDEFINITION_CONTEXT);
 		}
 		return ownedStateMachine;
 	}
@@ -675,10 +676,10 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 		if (clientDependency == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__SUBSTITUTION, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION}, UML2Package.DEPENDENCY__CLIENT);
+			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__SUBSTITUTION, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__SUBSTITUTION, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION}, UML2Package.DEPENDENCY__CLIENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__SUBSTITUTION, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION}, UML2Package.DEPENDENCY__CLIENT);
 		}      
 		return clientDependency;
 	}
@@ -692,7 +693,7 @@ public abstract class BehavioredClassifierImpl extends ClassifierImpl implements
 	 */
   public EList settable_getClientDependencies() {
 		if (clientDependency == null) {
-			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__SUBSTITUTION, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION}, UML2Package.DEPENDENCY__CLIENT);
+			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.BEHAVIORED_CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.BEHAVIORED_CLASSIFIER__SUBSTITUTION, UML2Package.BEHAVIORED_CLASSIFIER__IMPLEMENTATION}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
 	}

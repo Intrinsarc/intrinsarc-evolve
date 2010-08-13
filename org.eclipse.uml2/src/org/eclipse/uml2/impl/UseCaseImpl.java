@@ -119,9 +119,9 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (UseCaseImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -143,10 +143,10 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 		if (include == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		include = new com.hopstepjump.emflist.PersistentEList(Include.class, this, UML2Package.USE_CASE__INCLUDE, UML2Package.INCLUDE__INCLUDING_CASE);
+			 		include = new com.intrinsarc.emflist.PersistentEList(Include.class, this, UML2Package.USE_CASE__INCLUDE, UML2Package.INCLUDE__INCLUDING_CASE);
 			 		return include;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Include.class, this, UML2Package.USE_CASE__INCLUDE, UML2Package.INCLUDE__INCLUDING_CASE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Include.class, this, UML2Package.USE_CASE__INCLUDE, UML2Package.INCLUDE__INCLUDING_CASE);
 		}      
 		return include;
 	}
@@ -160,7 +160,7 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 */
   public EList settable_getIncludes() {
 		if (include == null) {
-			include = new com.hopstepjump.emflist.PersistentEList(Include.class, this, UML2Package.USE_CASE__INCLUDE, UML2Package.INCLUDE__INCLUDING_CASE);
+			include = new com.intrinsarc.emflist.PersistentEList(Include.class, this, UML2Package.USE_CASE__INCLUDE, UML2Package.INCLUDE__INCLUDING_CASE);
 		}
 		return include;
 	}
@@ -240,10 +240,10 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 		if (extend == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		extend = new com.hopstepjump.emflist.PersistentEList(Extend.class, this, UML2Package.USE_CASE__EXTEND, UML2Package.EXTEND__EXTENSION);
+			 		extend = new com.intrinsarc.emflist.PersistentEList(Extend.class, this, UML2Package.USE_CASE__EXTEND, UML2Package.EXTEND__EXTENSION);
 			 		return extend;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Extend.class, this, UML2Package.USE_CASE__EXTEND, UML2Package.EXTEND__EXTENSION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Extend.class, this, UML2Package.USE_CASE__EXTEND, UML2Package.EXTEND__EXTENSION);
 		}      
 		return extend;
 	}
@@ -257,7 +257,7 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 */
   public EList settable_getExtends() {
 		if (extend == null) {
-			extend = new com.hopstepjump.emflist.PersistentEList(Extend.class, this, UML2Package.USE_CASE__EXTEND, UML2Package.EXTEND__EXTENSION);
+			extend = new com.intrinsarc.emflist.PersistentEList(Extend.class, this, UML2Package.USE_CASE__EXTEND, UML2Package.EXTEND__EXTENSION);
 		}
 		return extend;
 	}
@@ -337,10 +337,10 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 		if (extensionPoint == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		extensionPoint = new com.hopstepjump.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.USE_CASE__EXTENSION_POINT, UML2Package.EXTENSION_POINT__USE_CASE);
+			 		extensionPoint = new com.intrinsarc.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.USE_CASE__EXTENSION_POINT, UML2Package.EXTENSION_POINT__USE_CASE);
 			 		return extensionPoint;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ExtensionPoint.class, this, UML2Package.USE_CASE__EXTENSION_POINT, UML2Package.EXTENSION_POINT__USE_CASE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ExtensionPoint.class, this, UML2Package.USE_CASE__EXTENSION_POINT, UML2Package.EXTENSION_POINT__USE_CASE);
 		}      
 		return extensionPoint;
 	}
@@ -354,7 +354,7 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 */
   public EList settable_getExtensionPoints() {
 		if (extensionPoint == null) {
-			extensionPoint = new com.hopstepjump.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.USE_CASE__EXTENSION_POINT, UML2Package.EXTENSION_POINT__USE_CASE);
+			extensionPoint = new com.intrinsarc.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.USE_CASE__EXTENSION_POINT, UML2Package.EXTENSION_POINT__USE_CASE);
 		}
 		return extensionPoint;
 	}
@@ -434,10 +434,10 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 		if (subject == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		subject = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.USE_CASE__SUBJECT, UML2Package.CLASSIFIER__USE_CASE);
+			 		subject = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.USE_CASE__SUBJECT, UML2Package.CLASSIFIER__USE_CASE);
 			 		return subject;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.USE_CASE__SUBJECT, UML2Package.CLASSIFIER__USE_CASE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.USE_CASE__SUBJECT, UML2Package.CLASSIFIER__USE_CASE);
 		}      
 		return subject;
 	}
@@ -451,7 +451,7 @@ public class UseCaseImpl extends BehavioredClassifierImpl implements UseCase {
 	 */
   public EList settable_getSubjects() {
 		if (subject == null) {
-			subject = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.USE_CASE__SUBJECT, UML2Package.CLASSIFIER__USE_CASE);
+			subject = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.USE_CASE__SUBJECT, UML2Package.CLASSIFIER__USE_CASE);
 		}
 		return subject;
 	}

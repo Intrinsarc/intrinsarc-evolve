@@ -64,7 +64,7 @@ import org.eclipse.uml2.common.util.SupersetEObjectContainmentWithInverseEList;
 import org.eclipse.uml2.internal.operation.MultiplicityElementOperations;
 import org.eclipse.uml2.internal.operation.OperationOperations;
 
-import com.hopstepjump.emflist.*;
+import com.intrinsarc.emflist.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -244,9 +244,9 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (OperationImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -778,10 +778,10 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 		if (precondition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		precondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__PRECONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
+			 		precondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__PRECONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
 			 		return precondition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.OPERATION__PRECONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.OPERATION__PRECONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
 		}      
 		return precondition;
 	}
@@ -795,7 +795,7 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 	 */
   public EList settable_getPreconditions() {
 		if (precondition == null) {
-			precondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__PRECONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
+			precondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__PRECONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
 		}
 		return precondition;
 	}
@@ -846,10 +846,10 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 		if (postcondition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		postcondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__POSTCONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
+			 		postcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__POSTCONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
 			 		return postcondition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.OPERATION__POSTCONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.OPERATION__POSTCONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
 		}      
 		return postcondition;
 	}
@@ -863,7 +863,7 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 	 */
   public EList settable_getPostconditions() {
 		if (postcondition == null) {
-			postcondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__POSTCONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
+			postcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__POSTCONDITION, new int[] {UML2Package.OPERATION__OWNED_RULE});
 		}
 		return postcondition;
 	}
@@ -914,10 +914,10 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 		if (redefinedOperation == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		redefinedOperation = new com.hopstepjump.emflist.PersistentEList(Operation.class, this, UML2Package.OPERATION__REDEFINED_OPERATION);
+			 		redefinedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.OPERATION__REDEFINED_OPERATION);
 			 		return redefinedOperation;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Operation.class, this, UML2Package.OPERATION__REDEFINED_OPERATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Operation.class, this, UML2Package.OPERATION__REDEFINED_OPERATION);
 		}      
 		return redefinedOperation;
 	}
@@ -931,7 +931,7 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 	 */
   public EList settable_getRedefinedOperations() {
 		if (redefinedOperation == null) {
-			redefinedOperation = new com.hopstepjump.emflist.PersistentEList(Operation.class, this, UML2Package.OPERATION__REDEFINED_OPERATION);
+			redefinedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.OPERATION__REDEFINED_OPERATION);
 		}
 		return redefinedOperation;
 	}
@@ -1272,7 +1272,7 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 	 */
   public EList settable_getRaisedExceptions() {
 		if (raisedException == null) {
-			raisedException = new com.hopstepjump.emflist.PersistentEList(Type.class, this, UML2Package.OPERATION__RAISED_EXCEPTION);
+			raisedException = new com.intrinsarc.emflist.PersistentEList(Type.class, this, UML2Package.OPERATION__RAISED_EXCEPTION);
 		}
 		return raisedException;
 	}
@@ -1330,7 +1330,7 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 	 */
   public EList settable_getFormalParameters() {
 		if (formalParameter == null) {
-			formalParameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.OPERATION__FORMAL_PARAMETER);
+			formalParameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.OPERATION__FORMAL_PARAMETER);
 		}
 		return formalParameter;
 	}
@@ -1518,10 +1518,10 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 		if (ownedRule == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedRule = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__OWNED_RULE, new int[] {UML2Package.OPERATION__PRECONDITION, UML2Package.OPERATION__POSTCONDITION, UML2Package.OPERATION__BODY_CONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
+			 		ownedRule = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__OWNED_RULE, new int[] {UML2Package.OPERATION__PRECONDITION, UML2Package.OPERATION__POSTCONDITION, UML2Package.OPERATION__BODY_CONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
 			 		return ownedRule;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.OPERATION__OWNED_RULE, new int[] {UML2Package.OPERATION__PRECONDITION, UML2Package.OPERATION__POSTCONDITION, UML2Package.OPERATION__BODY_CONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.OPERATION__OWNED_RULE, new int[] {UML2Package.OPERATION__PRECONDITION, UML2Package.OPERATION__POSTCONDITION, UML2Package.OPERATION__BODY_CONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
 		}      
 		return ownedRule;
 	}
@@ -1535,7 +1535,7 @@ public class OperationImpl extends BehavioralFeatureImpl implements Operation {
 	 */
   public EList settable_getOwnedRules() {
 		if (ownedRule == null) {
-			ownedRule = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__OWNED_RULE, new int[] {UML2Package.OPERATION__PRECONDITION, UML2Package.OPERATION__POSTCONDITION, UML2Package.OPERATION__BODY_CONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
+			ownedRule = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.OPERATION__OWNED_RULE, new int[] {UML2Package.OPERATION__PRECONDITION, UML2Package.OPERATION__POSTCONDITION, UML2Package.OPERATION__BODY_CONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
 		}
 		return ownedRule;
 	}

@@ -94,9 +94,9 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (InformationFlowImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -196,10 +196,10 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 		if (realization == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		realization = new com.hopstepjump.emflist.PersistentEList(Relationship.class, this, UML2Package.INFORMATION_FLOW__REALIZATION);
+			 		realization = new com.intrinsarc.emflist.PersistentEList(Relationship.class, this, UML2Package.INFORMATION_FLOW__REALIZATION);
 			 		return realization;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Relationship.class, this, UML2Package.INFORMATION_FLOW__REALIZATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Relationship.class, this, UML2Package.INFORMATION_FLOW__REALIZATION);
 		}      
 		return realization;
 	}
@@ -213,7 +213,7 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 */
   public EList settable_getRealizations() {
 		if (realization == null) {
-			realization = new com.hopstepjump.emflist.PersistentEList(Relationship.class, this, UML2Package.INFORMATION_FLOW__REALIZATION);
+			realization = new com.intrinsarc.emflist.PersistentEList(Relationship.class, this, UML2Package.INFORMATION_FLOW__REALIZATION);
 		}
 		return realization;
 	}
@@ -249,10 +249,10 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 		if (conveyed == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		conveyed = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_FLOW__CONVEYED);
+			 		conveyed = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_FLOW__CONVEYED);
 			 		return conveyed;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.INFORMATION_FLOW__CONVEYED);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.INFORMATION_FLOW__CONVEYED);
 		}      
 		return conveyed;
 	}
@@ -266,7 +266,7 @@ public class InformationFlowImpl extends PackageableElementImpl implements Infor
 	 */
   public EList settable_getConveyeds() {
 		if (conveyed == null) {
-			conveyed = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_FLOW__CONVEYED);
+			conveyed = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INFORMATION_FLOW__CONVEYED);
 		}
 		return conveyed;
 	}

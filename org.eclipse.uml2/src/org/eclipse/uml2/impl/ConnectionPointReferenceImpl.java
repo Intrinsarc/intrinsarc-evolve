@@ -84,9 +84,9 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ConnectionPointReferenceImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -108,10 +108,10 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 		if (entry == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		entry = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__ENTRY);
+			 		entry = new com.intrinsarc.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__ENTRY);
 			 		return entry;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__ENTRY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__ENTRY);
 		}      
 		return entry;
 	}
@@ -125,7 +125,7 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 */
   public EList settable_getEntries() {
 		if (entry == null) {
-			entry = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__ENTRY);
+			entry = new com.intrinsarc.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__ENTRY);
 		}
 		return entry;
 	}
@@ -176,10 +176,10 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 		if (exit == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		exit = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__EXIT);
+			 		exit = new com.intrinsarc.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__EXIT);
 			 		return exit;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__EXIT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__EXIT);
 		}      
 		return exit;
 	}
@@ -193,7 +193,7 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 */
   public EList settable_getExits() {
 		if (exit == null) {
-			exit = new com.hopstepjump.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__EXIT);
+			exit = new com.intrinsarc.emflist.PersistentEList(Pseudostate.class, this, UML2Package.CONNECTION_POINT_REFERENCE__EXIT);
 		}
 		return exit;
 	}

@@ -159,9 +159,9 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ActivityPartitionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -297,10 +297,10 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 		if (containedEdge == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		containedEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_PARTITION);
+			 		containedEdge = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_PARTITION);
 			 		return containedEdge;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_PARTITION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_PARTITION);
 		}      
 		return containedEdge;
 	}
@@ -314,7 +314,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 */
   public EList settable_getContainedEdges() {
 		if (containedEdge == null) {
-			containedEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_PARTITION);
+			containedEdge = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE, UML2Package.ACTIVITY_EDGE__IN_PARTITION);
 		}
 		return containedEdge;
 	}
@@ -365,10 +365,10 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 		if (containedNode == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_PARTITION);
+			 		containedNode = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_PARTITION);
 			 		return containedNode;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_PARTITION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_PARTITION);
 		}      
 		return containedNode;
 	}
@@ -382,7 +382,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 */
   public EList settable_getContainedNodes() {
 		if (containedNode == null) {
-			containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_PARTITION);
+			containedNode = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_PARTITION);
 		}
 		return containedNode;
 	}
@@ -433,10 +433,10 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 		if (subgroup == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		subgroup = new com.hopstepjump.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_PARTITION__SUBGROUP, UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION);
+			 		subgroup = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_PARTITION__SUBGROUP, UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION);
 			 		return subgroup;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityPartition.class, this, UML2Package.ACTIVITY_PARTITION__SUBGROUP, UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityPartition.class, this, UML2Package.ACTIVITY_PARTITION__SUBGROUP, UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION);
 		}      
 		return subgroup;
 	}
@@ -450,7 +450,7 @@ public class ActivityPartitionImpl extends NamedElementImpl implements ActivityP
 	 */
   public EList settable_getSubgroups() {
 		if (subgroup == null) {
-			subgroup = new com.hopstepjump.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_PARTITION__SUBGROUP, UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION);
+			subgroup = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_PARTITION__SUBGROUP, UML2Package.ACTIVITY_PARTITION__SUPER_PARTITION);
 		}
 		return subgroup;
 	}

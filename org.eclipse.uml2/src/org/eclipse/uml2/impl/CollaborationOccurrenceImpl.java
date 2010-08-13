@@ -93,9 +93,9 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (CollaborationOccurrenceImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -174,10 +174,10 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 		if (roleBinding == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		roleBinding = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING);
+			 		roleBinding = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING);
 			 		return roleBinding;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING);
 		}      
 		return roleBinding;
 	}
@@ -191,7 +191,7 @@ public class CollaborationOccurrenceImpl extends NamedElementImpl implements Col
 	 */
   public EList settable_getRoleBindings() {
 		if (roleBinding == null) {
-			roleBinding = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING);
+			roleBinding = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING);
 		}
 		return roleBinding;
 	}

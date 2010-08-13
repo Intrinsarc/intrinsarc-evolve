@@ -98,7 +98,7 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 		componentKind = ComponentKind.STEREOTYPE_LITERAL;
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		
 	}
 

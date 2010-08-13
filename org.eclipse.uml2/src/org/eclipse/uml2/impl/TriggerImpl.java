@@ -73,9 +73,9 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (TriggerImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -97,10 +97,10 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 		if (port == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		port = new com.hopstepjump.emflist.PersistentEList(Port.class, this, UML2Package.TRIGGER__PORT);
+			 		port = new com.intrinsarc.emflist.PersistentEList(Port.class, this, UML2Package.TRIGGER__PORT);
 			 		return port;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Port.class, this, UML2Package.TRIGGER__PORT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Port.class, this, UML2Package.TRIGGER__PORT);
 		}      
 		return port;
 	}
@@ -114,7 +114,7 @@ public abstract class TriggerImpl extends NamedElementImpl implements Trigger {
 	 */
   public EList settable_getPorts() {
 		if (port == null) {
-			port = new com.hopstepjump.emflist.PersistentEList(Port.class, this, UML2Package.TRIGGER__PORT);
+			port = new com.intrinsarc.emflist.PersistentEList(Port.class, this, UML2Package.TRIGGER__PORT);
 		}
 		return port;
 	}

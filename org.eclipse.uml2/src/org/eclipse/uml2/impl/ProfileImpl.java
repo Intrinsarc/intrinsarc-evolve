@@ -111,9 +111,9 @@ public class ProfileImpl extends PackageImpl implements Profile {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ProfileImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -135,10 +135,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 		if (ownedMember == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PROFILE__OWNED_MEMBER);
+			 		ownedMember = new com.intrinsarc.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PROFILE__OWNED_MEMBER);
 			 		return ownedMember;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageableElement.class, this, UML2Package.PROFILE__OWNED_MEMBER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageableElement.class, this, UML2Package.PROFILE__OWNED_MEMBER);
 		}      
 		return ownedMember;
 	}
@@ -152,7 +152,7 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 */
   public EList settable_getOwnedMembers() {
 		if (ownedMember == null) {
-			ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PROFILE__OWNED_MEMBER);
+			ownedMember = new com.intrinsarc.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PROFILE__OWNED_MEMBER);
 		}
 		return ownedMember;
 	}
@@ -234,10 +234,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 		if (metaclassReference == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		metaclassReference = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__METACLASS_REFERENCE, new int[] {UML2Package.PROFILE__ELEMENT_IMPORT});
+			 		metaclassReference = new com.intrinsarc.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__METACLASS_REFERENCE, new int[] {UML2Package.PROFILE__ELEMENT_IMPORT});
 			 		return metaclassReference;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ElementImport.class, this, UML2Package.PROFILE__METACLASS_REFERENCE, new int[] {UML2Package.PROFILE__ELEMENT_IMPORT});
+			return new com.intrinsarc.emflist.UnmodifiableEList(ElementImport.class, this, UML2Package.PROFILE__METACLASS_REFERENCE, new int[] {UML2Package.PROFILE__ELEMENT_IMPORT});
 		}      
 		return metaclassReference;
 	}
@@ -251,7 +251,7 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 */
   public EList settable_getMetaclassReferences() {
 		if (metaclassReference == null) {
-			metaclassReference = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__METACLASS_REFERENCE, new int[] {UML2Package.PROFILE__ELEMENT_IMPORT});
+			metaclassReference = new com.intrinsarc.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__METACLASS_REFERENCE, new int[] {UML2Package.PROFILE__ELEMENT_IMPORT});
 		}
 		return metaclassReference;
 	}
@@ -287,10 +287,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 		if (metamodelReference == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		metamodelReference = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__METAMODEL_REFERENCE, new int[] {UML2Package.PROFILE__PACKAGE_IMPORT});
+			 		metamodelReference = new com.intrinsarc.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__METAMODEL_REFERENCE, new int[] {UML2Package.PROFILE__PACKAGE_IMPORT});
 			 		return metamodelReference;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageImport.class, this, UML2Package.PROFILE__METAMODEL_REFERENCE, new int[] {UML2Package.PROFILE__PACKAGE_IMPORT});
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageImport.class, this, UML2Package.PROFILE__METAMODEL_REFERENCE, new int[] {UML2Package.PROFILE__PACKAGE_IMPORT});
 		}      
 		return metamodelReference;
 	}
@@ -304,7 +304,7 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 */
   public EList settable_getMetamodelReferences() {
 		if (metamodelReference == null) {
-			metamodelReference = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__METAMODEL_REFERENCE, new int[] {UML2Package.PROFILE__PACKAGE_IMPORT});
+			metamodelReference = new com.intrinsarc.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__METAMODEL_REFERENCE, new int[] {UML2Package.PROFILE__PACKAGE_IMPORT});
 		}
 		return metamodelReference;
 	}
@@ -340,10 +340,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 		if (elementImport == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		elementImport = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__ELEMENT_IMPORT, new int[] {UML2Package.PROFILE__METACLASS_REFERENCE}, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
+			 		elementImport = new com.intrinsarc.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__ELEMENT_IMPORT, new int[] {UML2Package.PROFILE__METACLASS_REFERENCE}, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 			 		return elementImport;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ElementImport.class, this, UML2Package.PROFILE__ELEMENT_IMPORT, new int[] {UML2Package.PROFILE__METACLASS_REFERENCE}, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ElementImport.class, this, UML2Package.PROFILE__ELEMENT_IMPORT, new int[] {UML2Package.PROFILE__METACLASS_REFERENCE}, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 		}      
 		return elementImport;
 	}
@@ -357,7 +357,7 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 */
   public EList settable_getElementImports() {
 		if (elementImport == null) {
-			elementImport = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__ELEMENT_IMPORT, new int[] {UML2Package.PROFILE__METACLASS_REFERENCE}, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
+			elementImport = new com.intrinsarc.emflist.PersistentEList(ElementImport.class, this, UML2Package.PROFILE__ELEMENT_IMPORT, new int[] {UML2Package.PROFILE__METACLASS_REFERENCE}, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return elementImport;
 	}
@@ -393,10 +393,10 @@ public class ProfileImpl extends PackageImpl implements Profile {
 		if (packageImport == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__PACKAGE_IMPORT, new int[] {UML2Package.PROFILE__APPLIED_PROFILE, UML2Package.PROFILE__METAMODEL_REFERENCE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			 		packageImport = new com.intrinsarc.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__PACKAGE_IMPORT, new int[] {UML2Package.PROFILE__APPLIED_PROFILE, UML2Package.PROFILE__METAMODEL_REFERENCE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 			 		return packageImport;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageImport.class, this, UML2Package.PROFILE__PACKAGE_IMPORT, new int[] {UML2Package.PROFILE__APPLIED_PROFILE, UML2Package.PROFILE__METAMODEL_REFERENCE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageImport.class, this, UML2Package.PROFILE__PACKAGE_IMPORT, new int[] {UML2Package.PROFILE__APPLIED_PROFILE, UML2Package.PROFILE__METAMODEL_REFERENCE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}      
 		return packageImport;
 	}
@@ -410,7 +410,7 @@ public class ProfileImpl extends PackageImpl implements Profile {
 	 */
   public EList settable_getPackageImports() {
 		if (packageImport == null) {
-			packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__PACKAGE_IMPORT, new int[] {UML2Package.PROFILE__APPLIED_PROFILE, UML2Package.PROFILE__METAMODEL_REFERENCE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			packageImport = new com.intrinsarc.emflist.PersistentEList(PackageImport.class, this, UML2Package.PROFILE__PACKAGE_IMPORT, new int[] {UML2Package.PROFILE__APPLIED_PROFILE, UML2Package.PROFILE__METAMODEL_REFERENCE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return packageImport;
 	}

@@ -140,9 +140,9 @@ public class RegionImpl extends NamespaceImpl implements Region {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (RegionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -208,10 +208,10 @@ public class RegionImpl extends NamespaceImpl implements Region {
 		if (subvertex == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		subvertex = new com.hopstepjump.emflist.PersistentEList(Vertex.class, this, UML2Package.REGION__SUBVERTEX, UML2Package.VERTEX__CONTAINER);
+			 		subvertex = new com.intrinsarc.emflist.PersistentEList(Vertex.class, this, UML2Package.REGION__SUBVERTEX, UML2Package.VERTEX__CONTAINER);
 			 		return subvertex;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Vertex.class, this, UML2Package.REGION__SUBVERTEX, UML2Package.VERTEX__CONTAINER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Vertex.class, this, UML2Package.REGION__SUBVERTEX, UML2Package.VERTEX__CONTAINER);
 		}      
 		return subvertex;
 	}
@@ -225,7 +225,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 */
   public EList settable_getSubvertices() {
 		if (subvertex == null) {
-			subvertex = new com.hopstepjump.emflist.PersistentEList(Vertex.class, this, UML2Package.REGION__SUBVERTEX, UML2Package.VERTEX__CONTAINER);
+			subvertex = new com.intrinsarc.emflist.PersistentEList(Vertex.class, this, UML2Package.REGION__SUBVERTEX, UML2Package.VERTEX__CONTAINER);
 		}
 		return subvertex;
 	}
@@ -290,10 +290,10 @@ public class RegionImpl extends NamespaceImpl implements Region {
 		if (transition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		transition = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.REGION__TRANSITION, UML2Package.TRANSITION__CONTAINER);
+			 		transition = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.REGION__TRANSITION, UML2Package.TRANSITION__CONTAINER);
 			 		return transition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Transition.class, this, UML2Package.REGION__TRANSITION, UML2Package.TRANSITION__CONTAINER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Transition.class, this, UML2Package.REGION__TRANSITION, UML2Package.TRANSITION__CONTAINER);
 		}      
 		return transition;
 	}
@@ -307,7 +307,7 @@ public class RegionImpl extends NamespaceImpl implements Region {
 	 */
   public EList settable_getTransitions() {
 		if (transition == null) {
-			transition = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.REGION__TRANSITION, UML2Package.TRANSITION__CONTAINER);
+			transition = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.REGION__TRANSITION, UML2Package.TRANSITION__CONTAINER);
 		}
 		return transition;
 	}

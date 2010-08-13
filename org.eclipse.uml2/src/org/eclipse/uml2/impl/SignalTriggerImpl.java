@@ -73,9 +73,9 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (SignalTriggerImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -97,10 +97,10 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 		if (signal == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		signal = new com.hopstepjump.emflist.PersistentEList(Signal.class, this, UML2Package.SIGNAL_TRIGGER__SIGNAL);
+			 		signal = new com.intrinsarc.emflist.PersistentEList(Signal.class, this, UML2Package.SIGNAL_TRIGGER__SIGNAL);
 			 		return signal;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Signal.class, this, UML2Package.SIGNAL_TRIGGER__SIGNAL);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Signal.class, this, UML2Package.SIGNAL_TRIGGER__SIGNAL);
 		}      
 		return signal;
 	}
@@ -114,7 +114,7 @@ public class SignalTriggerImpl extends MessageTriggerImpl implements SignalTrigg
 	 */
   public EList settable_getSignals() {
 		if (signal == null) {
-			signal = new com.hopstepjump.emflist.PersistentEList(Signal.class, this, UML2Package.SIGNAL_TRIGGER__SIGNAL);
+			signal = new com.intrinsarc.emflist.PersistentEList(Signal.class, this, UML2Package.SIGNAL_TRIGGER__SIGNAL);
 		}
 		return signal;
 	}

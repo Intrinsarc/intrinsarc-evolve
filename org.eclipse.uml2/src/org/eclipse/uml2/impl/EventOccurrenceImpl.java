@@ -142,9 +142,9 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (EventOccurrenceImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -326,10 +326,10 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 		if (startExec == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		startExec = new com.hopstepjump.emflist.PersistentEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__START_EXEC, UML2Package.EXECUTION_OCCURRENCE__START);
+			 		startExec = new com.intrinsarc.emflist.PersistentEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__START_EXEC, UML2Package.EXECUTION_OCCURRENCE__START);
 			 		return startExec;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__START_EXEC, UML2Package.EXECUTION_OCCURRENCE__START);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__START_EXEC, UML2Package.EXECUTION_OCCURRENCE__START);
 		}      
 		return startExec;
 	}
@@ -343,7 +343,7 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 	 */
   public EList settable_getStartExecs() {
 		if (startExec == null) {
-			startExec = new com.hopstepjump.emflist.PersistentEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__START_EXEC, UML2Package.EXECUTION_OCCURRENCE__START);
+			startExec = new com.intrinsarc.emflist.PersistentEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__START_EXEC, UML2Package.EXECUTION_OCCURRENCE__START);
 		}
 		return startExec;
 	}
@@ -394,10 +394,10 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 		if (finishExec == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		finishExec = new com.hopstepjump.emflist.PersistentEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__FINISH_EXEC, UML2Package.EXECUTION_OCCURRENCE__FINISH);
+			 		finishExec = new com.intrinsarc.emflist.PersistentEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__FINISH_EXEC, UML2Package.EXECUTION_OCCURRENCE__FINISH);
 			 		return finishExec;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__FINISH_EXEC, UML2Package.EXECUTION_OCCURRENCE__FINISH);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__FINISH_EXEC, UML2Package.EXECUTION_OCCURRENCE__FINISH);
 		}      
 		return finishExec;
 	}
@@ -411,7 +411,7 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 	 */
   public EList settable_getFinishExecs() {
 		if (finishExec == null) {
-			finishExec = new com.hopstepjump.emflist.PersistentEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__FINISH_EXEC, UML2Package.EXECUTION_OCCURRENCE__FINISH);
+			finishExec = new com.intrinsarc.emflist.PersistentEList(ExecutionOccurrence.class, this, UML2Package.EVENT_OCCURRENCE__FINISH_EXEC, UML2Package.EXECUTION_OCCURRENCE__FINISH);
 		}
 		return finishExec;
 	}
@@ -462,10 +462,10 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 		if (toAfter == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		toAfter = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_AFTER, UML2Package.GENERAL_ORDERING__BEFORE);
+			 		toAfter = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_AFTER, UML2Package.GENERAL_ORDERING__BEFORE);
 			 		return toAfter;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_AFTER, UML2Package.GENERAL_ORDERING__BEFORE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_AFTER, UML2Package.GENERAL_ORDERING__BEFORE);
 		}      
 		return toAfter;
 	}
@@ -479,7 +479,7 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 	 */
   public EList settable_getToAfters() {
 		if (toAfter == null) {
-			toAfter = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_AFTER, UML2Package.GENERAL_ORDERING__BEFORE);
+			toAfter = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_AFTER, UML2Package.GENERAL_ORDERING__BEFORE);
 		}
 		return toAfter;
 	}
@@ -530,10 +530,10 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 		if (toBefore == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		toBefore = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_BEFORE, UML2Package.GENERAL_ORDERING__AFTER);
+			 		toBefore = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_BEFORE, UML2Package.GENERAL_ORDERING__AFTER);
 			 		return toBefore;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_BEFORE, UML2Package.GENERAL_ORDERING__AFTER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_BEFORE, UML2Package.GENERAL_ORDERING__AFTER);
 		}      
 		return toBefore;
 	}
@@ -547,7 +547,7 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 	 */
   public EList settable_getToBefores() {
 		if (toBefore == null) {
-			toBefore = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_BEFORE, UML2Package.GENERAL_ORDERING__AFTER);
+			toBefore = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.EVENT_OCCURRENCE__TO_BEFORE, UML2Package.GENERAL_ORDERING__AFTER);
 		}
 		return toBefore;
 	}
@@ -609,7 +609,7 @@ public class EventOccurrenceImpl extends InteractionFragmentImpl implements Even
 	 */
   public EList settable_getCovereds() {
 		if (covered == null) {
-			covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.EVENT_OCCURRENCE__COVERED);
+			covered = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.EVENT_OCCURRENCE__COVERED);
 		}
 		return covered;
 	}

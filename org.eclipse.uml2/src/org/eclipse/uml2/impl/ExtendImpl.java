@@ -113,9 +113,9 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ExtendImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -368,10 +368,10 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 		if (extensionLocation == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		extensionLocation = new com.hopstepjump.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.EXTEND__EXTENSION_LOCATION);
+			 		extensionLocation = new com.intrinsarc.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.EXTEND__EXTENSION_LOCATION);
 			 		return extensionLocation;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ExtensionPoint.class, this, UML2Package.EXTEND__EXTENSION_LOCATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ExtensionPoint.class, this, UML2Package.EXTEND__EXTENSION_LOCATION);
 		}      
 		return extensionLocation;
 	}
@@ -385,7 +385,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 */
   public EList settable_getExtensionLocations() {
 		if (extensionLocation == null) {
-			extensionLocation = new com.hopstepjump.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.EXTEND__EXTENSION_LOCATION);
+			extensionLocation = new com.intrinsarc.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.EXTEND__EXTENSION_LOCATION);
 		}
 		return extensionLocation;
 	}

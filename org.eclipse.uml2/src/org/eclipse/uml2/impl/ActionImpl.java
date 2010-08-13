@@ -120,9 +120,9 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -309,10 +309,10 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 		if (localPrecondition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		localPrecondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_PRECONDITION);
+			 		localPrecondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_PRECONDITION);
 			 		return localPrecondition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.ACTION__LOCAL_PRECONDITION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.ACTION__LOCAL_PRECONDITION);
 		}      
 		return localPrecondition;
 	}
@@ -326,7 +326,7 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 */
   public EList settable_getLocalPreconditions() {
 		if (localPrecondition == null) {
-			localPrecondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_PRECONDITION);
+			localPrecondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_PRECONDITION);
 		}
 		return localPrecondition;
 	}
@@ -405,10 +405,10 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 		if (localPostcondition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		localPostcondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_POSTCONDITION);
+			 		localPostcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_POSTCONDITION);
 			 		return localPostcondition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.ACTION__LOCAL_POSTCONDITION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.ACTION__LOCAL_POSTCONDITION);
 		}      
 		return localPostcondition;
 	}
@@ -422,7 +422,7 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 */
   public EList settable_getLocalPostconditions() {
 		if (localPostcondition == null) {
-			localPostcondition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_POSTCONDITION);
+			localPostcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_POSTCONDITION);
 		}
 		return localPostcondition;
 	}

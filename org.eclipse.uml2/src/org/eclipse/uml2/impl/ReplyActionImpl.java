@@ -103,9 +103,9 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ReplyActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -184,10 +184,10 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 		if (replyValue == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		replyValue = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.REPLY_ACTION__REPLY_VALUE);
+			 		replyValue = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.REPLY_ACTION__REPLY_VALUE);
 			 		return replyValue;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(InputPin.class, this, UML2Package.REPLY_ACTION__REPLY_VALUE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(InputPin.class, this, UML2Package.REPLY_ACTION__REPLY_VALUE);
 		}      
 		return replyValue;
 	}
@@ -201,7 +201,7 @@ public class ReplyActionImpl extends ActionImpl implements ReplyAction {
 	 */
   public EList settable_getReplyValues() {
 		if (replyValue == null) {
-			replyValue = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.REPLY_ACTION__REPLY_VALUE);
+			replyValue = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.REPLY_ACTION__REPLY_VALUE);
 		}
 		return replyValue;
 	}

@@ -285,9 +285,9 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ClassifierImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -776,10 +776,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (generalization == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		generalization = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.CLASSIFIER__GENERALIZATION, UML2Package.GENERALIZATION__SPECIFIC);
+			 		generalization = new com.intrinsarc.emflist.PersistentEList(Generalization.class, this, UML2Package.CLASSIFIER__GENERALIZATION, UML2Package.GENERALIZATION__SPECIFIC);
 			 		return generalization;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Generalization.class, this, UML2Package.CLASSIFIER__GENERALIZATION, UML2Package.GENERALIZATION__SPECIFIC);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Generalization.class, this, UML2Package.CLASSIFIER__GENERALIZATION, UML2Package.GENERALIZATION__SPECIFIC);
 		}      
 		return generalization;
 	}
@@ -793,7 +793,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
   public EList settable_getGeneralizations() {
 		if (generalization == null) {
-			generalization = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.CLASSIFIER__GENERALIZATION, UML2Package.GENERALIZATION__SPECIFIC);
+			generalization = new com.intrinsarc.emflist.PersistentEList(Generalization.class, this, UML2Package.CLASSIFIER__GENERALIZATION, UML2Package.GENERALIZATION__SPECIFIC);
 		}
 		return generalization;
 	}
@@ -907,10 +907,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (redefinedClassifier == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		redefinedClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.CLASSIFIER__REDEFINED_CLASSIFIER);
+			 		redefinedClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.CLASSIFIER__REDEFINED_CLASSIFIER);
 			 		return redefinedClassifier;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.CLASSIFIER__REDEFINED_CLASSIFIER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.CLASSIFIER__REDEFINED_CLASSIFIER);
 		}      
 		return redefinedClassifier;
 	}
@@ -924,7 +924,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
   public EList settable_getRedefinedClassifiers() {
 		if (redefinedClassifier == null) {
-			redefinedClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.CLASSIFIER__REDEFINED_CLASSIFIER);
+			redefinedClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.CLASSIFIER__REDEFINED_CLASSIFIER);
 		}
 		return redefinedClassifier;
 	}
@@ -975,10 +975,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (substitution == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		substitution = new com.hopstepjump.emflist.PersistentEList(Substitution.class, this, UML2Package.CLASSIFIER__SUBSTITUTION, new int[] {UML2Package.CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER);
+			 		substitution = new com.intrinsarc.emflist.PersistentEList(Substitution.class, this, UML2Package.CLASSIFIER__SUBSTITUTION, new int[] {UML2Package.CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER);
 			 		return substitution;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Substitution.class, this, UML2Package.CLASSIFIER__SUBSTITUTION, new int[] {UML2Package.CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Substitution.class, this, UML2Package.CLASSIFIER__SUBSTITUTION, new int[] {UML2Package.CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER);
 		}      
 		return substitution;
 	}
@@ -992,7 +992,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
   public EList settable_getSubstitutions() {
 		if (substitution == null) {
-			substitution = new com.hopstepjump.emflist.PersistentEList(Substitution.class, this, UML2Package.CLASSIFIER__SUBSTITUTION, new int[] {UML2Package.CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER);
+			substitution = new com.intrinsarc.emflist.PersistentEList(Substitution.class, this, UML2Package.CLASSIFIER__SUBSTITUTION, new int[] {UML2Package.CLASSIFIER__CLIENT_DEPENDENCY}, UML2Package.SUBSTITUTION__SUBSTITUTING_CLASSIFIER);
 		}
 		return substitution;
 	}
@@ -1072,10 +1072,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (powertypeExtent == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		powertypeExtent = new com.hopstepjump.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, UML2Package.GENERALIZATION_SET__POWERTYPE);
+			 		powertypeExtent = new com.intrinsarc.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, UML2Package.GENERALIZATION_SET__POWERTYPE);
 			 		return powertypeExtent;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(GeneralizationSet.class, this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, UML2Package.GENERALIZATION_SET__POWERTYPE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(GeneralizationSet.class, this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, UML2Package.GENERALIZATION_SET__POWERTYPE);
 		}      
 		return powertypeExtent;
 	}
@@ -1089,7 +1089,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
   public EList settable_getPowertypeExtents() {
 		if (powertypeExtent == null) {
-			powertypeExtent = new com.hopstepjump.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, UML2Package.GENERALIZATION_SET__POWERTYPE);
+			powertypeExtent = new com.intrinsarc.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.CLASSIFIER__POWERTYPE_EXTENT, UML2Package.GENERALIZATION_SET__POWERTYPE);
 		}
 		return powertypeExtent;
 	}
@@ -1140,10 +1140,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (ownedUseCase == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedUseCase = new com.hopstepjump.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__OWNED_USE_CASE);
+			 		ownedUseCase = new com.intrinsarc.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__OWNED_USE_CASE);
 			 		return ownedUseCase;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(UseCase.class, this, UML2Package.CLASSIFIER__OWNED_USE_CASE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(UseCase.class, this, UML2Package.CLASSIFIER__OWNED_USE_CASE);
 		}      
 		return ownedUseCase;
 	}
@@ -1157,7 +1157,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
   public EList settable_getOwnedUseCases() {
 		if (ownedUseCase == null) {
-			ownedUseCase = new com.hopstepjump.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__OWNED_USE_CASE);
+			ownedUseCase = new com.intrinsarc.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__OWNED_USE_CASE);
 		}
 		return ownedUseCase;
 	}
@@ -1237,10 +1237,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (useCase == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		useCase = new com.hopstepjump.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__USE_CASE, UML2Package.USE_CASE__SUBJECT);
+			 		useCase = new com.intrinsarc.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__USE_CASE, UML2Package.USE_CASE__SUBJECT);
 			 		return useCase;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(UseCase.class, this, UML2Package.CLASSIFIER__USE_CASE, UML2Package.USE_CASE__SUBJECT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(UseCase.class, this, UML2Package.CLASSIFIER__USE_CASE, UML2Package.USE_CASE__SUBJECT);
 		}      
 		return useCase;
 	}
@@ -1254,7 +1254,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
   public EList settable_getUseCases() {
 		if (useCase == null) {
-			useCase = new com.hopstepjump.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__USE_CASE, UML2Package.USE_CASE__SUBJECT);
+			useCase = new com.intrinsarc.emflist.PersistentEList(UseCase.class, this, UML2Package.CLASSIFIER__USE_CASE, UML2Package.USE_CASE__SUBJECT);
 		}
 		return useCase;
 	}
@@ -1377,10 +1377,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (occurrence == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		occurrence = new com.hopstepjump.emflist.PersistentEList(CollaborationOccurrence.class, this, UML2Package.CLASSIFIER__OCCURRENCE, new int[] {UML2Package.CLASSIFIER__REPRESENTATION});
+			 		occurrence = new com.intrinsarc.emflist.PersistentEList(CollaborationOccurrence.class, this, UML2Package.CLASSIFIER__OCCURRENCE, new int[] {UML2Package.CLASSIFIER__REPRESENTATION});
 			 		return occurrence;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(CollaborationOccurrence.class, this, UML2Package.CLASSIFIER__OCCURRENCE, new int[] {UML2Package.CLASSIFIER__REPRESENTATION});
+			return new com.intrinsarc.emflist.UnmodifiableEList(CollaborationOccurrence.class, this, UML2Package.CLASSIFIER__OCCURRENCE, new int[] {UML2Package.CLASSIFIER__REPRESENTATION});
 		}      
 		return occurrence;
 	}
@@ -1394,7 +1394,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
   public EList settable_getOccurrences() {
 		if (occurrence == null) {
-			occurrence = new com.hopstepjump.emflist.PersistentEList(CollaborationOccurrence.class, this, UML2Package.CLASSIFIER__OCCURRENCE, new int[] {UML2Package.CLASSIFIER__REPRESENTATION});
+			occurrence = new com.intrinsarc.emflist.PersistentEList(CollaborationOccurrence.class, this, UML2Package.CLASSIFIER__OCCURRENCE, new int[] {UML2Package.CLASSIFIER__REPRESENTATION});
 		}
 		return occurrence;
 	}
@@ -1799,10 +1799,10 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		if (clientDependency == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.CLASSIFIER__SUBSTITUTION}, UML2Package.DEPENDENCY__CLIENT);
+			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.CLASSIFIER__SUBSTITUTION}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.CLASSIFIER__SUBSTITUTION}, UML2Package.DEPENDENCY__CLIENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.CLASSIFIER__SUBSTITUTION}, UML2Package.DEPENDENCY__CLIENT);
 		}      
 		return clientDependency;
 	}
@@ -1816,7 +1816,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
   public EList settable_getClientDependencies() {
 		if (clientDependency == null) {
-			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.CLASSIFIER__SUBSTITUTION}, UML2Package.DEPENDENCY__CLIENT);
+			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.CLASSIFIER__CLIENT_DEPENDENCY, new int[] {UML2Package.CLASSIFIER__SUBSTITUTION}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
 	}

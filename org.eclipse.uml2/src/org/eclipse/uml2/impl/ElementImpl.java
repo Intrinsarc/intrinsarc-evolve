@@ -61,7 +61,7 @@ import org.eclipse.uml2.Stereotype;
 import org.eclipse.uml2.internal.operation.ElementOperations;
 import org.eclipse.uml2.internal.operation.StereotypeOperations;
 
-import com.hopstepjump.notifications.*;
+import com.intrinsarc.notifications.*;
 
 import java.lang.Class;
 import java.util.Iterator;
@@ -257,10 +257,10 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 		if (ownedComment == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedComment = new com.hopstepjump.emflist.PersistentEList(Comment.class, this, UML2Package.ELEMENT__OWNED_COMMENT);
+			 		ownedComment = new com.intrinsarc.emflist.PersistentEList(Comment.class, this, UML2Package.ELEMENT__OWNED_COMMENT);
 			 		return ownedComment;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Comment.class, this, UML2Package.ELEMENT__OWNED_COMMENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Comment.class, this, UML2Package.ELEMENT__OWNED_COMMENT);
 		}      
 		return ownedComment;
 	}
@@ -274,7 +274,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 */
   public EList settable_getOwnedComments() {
 		if (ownedComment == null) {
-			ownedComment = new com.hopstepjump.emflist.PersistentEList(Comment.class, this, UML2Package.ELEMENT__OWNED_COMMENT);
+			ownedComment = new com.intrinsarc.emflist.PersistentEList(Comment.class, this, UML2Package.ELEMENT__OWNED_COMMENT);
 		}
 		return ownedComment;
 	}
@@ -460,10 +460,10 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 		if (appliedBasicStereotypes == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		appliedBasicStereotypes = new com.hopstepjump.emflist.PersistentEList(Stereotype.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPES);
+			 		appliedBasicStereotypes = new com.intrinsarc.emflist.PersistentEList(Stereotype.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPES);
 			 		return appliedBasicStereotypes;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Stereotype.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Stereotype.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPES);
 		}      
 		return appliedBasicStereotypes;
 	}
@@ -477,7 +477,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 */
 	public EList settable_getAppliedBasicStereotypes() {
 		if (appliedBasicStereotypes == null) {
-			appliedBasicStereotypes = new com.hopstepjump.emflist.PersistentEList(Stereotype.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPES);
+			appliedBasicStereotypes = new com.intrinsarc.emflist.PersistentEList(Stereotype.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPES);
 		}
 		return appliedBasicStereotypes;
 	}
@@ -528,10 +528,10 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 		if (appliedBasicStereotypeValues == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		appliedBasicStereotypeValues = new com.hopstepjump.emflist.PersistentEList(AppliedBasicStereotypeValue.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES);
+			 		appliedBasicStereotypeValues = new com.intrinsarc.emflist.PersistentEList(AppliedBasicStereotypeValue.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES);
 			 		return appliedBasicStereotypeValues;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(AppliedBasicStereotypeValue.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(AppliedBasicStereotypeValue.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES);
 		}      
 		return appliedBasicStereotypeValues;
 	}
@@ -545,7 +545,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 */
 	public EList settable_getAppliedBasicStereotypeValues() {
 		if (appliedBasicStereotypeValues == null) {
-			appliedBasicStereotypeValues = new com.hopstepjump.emflist.PersistentEList(AppliedBasicStereotypeValue.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES);
+			appliedBasicStereotypeValues = new com.intrinsarc.emflist.PersistentEList(AppliedBasicStereotypeValue.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES);
 		}
 		return appliedBasicStereotypeValues;
 	}

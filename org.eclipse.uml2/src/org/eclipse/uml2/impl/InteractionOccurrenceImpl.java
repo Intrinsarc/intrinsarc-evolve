@@ -104,9 +104,9 @@ public class InteractionOccurrenceImpl extends InteractionFragmentImpl implement
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (InteractionOccurrenceImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -185,10 +185,10 @@ public class InteractionOccurrenceImpl extends InteractionFragmentImpl implement
 		if (actualGate == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		actualGate = new com.hopstepjump.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION_OCCURRENCE__ACTUAL_GATE);
+			 		actualGate = new com.intrinsarc.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION_OCCURRENCE__ACTUAL_GATE);
 			 		return actualGate;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Gate.class, this, UML2Package.INTERACTION_OCCURRENCE__ACTUAL_GATE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Gate.class, this, UML2Package.INTERACTION_OCCURRENCE__ACTUAL_GATE);
 		}      
 		return actualGate;
 	}
@@ -202,7 +202,7 @@ public class InteractionOccurrenceImpl extends InteractionFragmentImpl implement
 	 */
   public EList settable_getActualGates() {
 		if (actualGate == null) {
-			actualGate = new com.hopstepjump.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION_OCCURRENCE__ACTUAL_GATE);
+			actualGate = new com.intrinsarc.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION_OCCURRENCE__ACTUAL_GATE);
 		}
 		return actualGate;
 	}
@@ -282,10 +282,10 @@ public class InteractionOccurrenceImpl extends InteractionFragmentImpl implement
 		if (argument == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		argument = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.INTERACTION_OCCURRENCE__ARGUMENT);
+			 		argument = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.INTERACTION_OCCURRENCE__ARGUMENT);
 			 		return argument;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(InputPin.class, this, UML2Package.INTERACTION_OCCURRENCE__ARGUMENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(InputPin.class, this, UML2Package.INTERACTION_OCCURRENCE__ARGUMENT);
 		}      
 		return argument;
 	}
@@ -299,7 +299,7 @@ public class InteractionOccurrenceImpl extends InteractionFragmentImpl implement
 	 */
   public EList settable_getArguments() {
 		if (argument == null) {
-			argument = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.INTERACTION_OCCURRENCE__ARGUMENT);
+			argument = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.INTERACTION_OCCURRENCE__ARGUMENT);
 		}
 		return argument;
 	}

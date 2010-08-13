@@ -85,9 +85,9 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (StateInvariantImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -213,7 +213,7 @@ public class StateInvariantImpl extends InteractionFragmentImpl implements State
 	 */
   public EList settable_getCovereds() {
 		if (covered == null) {
-			covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.STATE_INVARIANT__COVERED);
+			covered = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.STATE_INVARIANT__COVERED);
 		}
 		return covered;
 	}

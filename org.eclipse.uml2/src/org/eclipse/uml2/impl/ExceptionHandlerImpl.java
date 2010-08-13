@@ -103,9 +103,9 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ExceptionHandlerImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -291,10 +291,10 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 		if (exceptionType == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		exceptionType = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.EXCEPTION_HANDLER__EXCEPTION_TYPE);
+			 		exceptionType = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.EXCEPTION_HANDLER__EXCEPTION_TYPE);
 			 		return exceptionType;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.EXCEPTION_HANDLER__EXCEPTION_TYPE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.EXCEPTION_HANDLER__EXCEPTION_TYPE);
 		}      
 		return exceptionType;
 	}
@@ -308,7 +308,7 @@ public class ExceptionHandlerImpl extends ElementImpl implements ExceptionHandle
 	 */
   public EList settable_getExceptionTypes() {
 		if (exceptionType == null) {
-			exceptionType = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.EXCEPTION_HANDLER__EXCEPTION_TYPE);
+			exceptionType = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.EXCEPTION_HANDLER__EXCEPTION_TYPE);
 		}
 		return exceptionType;
 	}

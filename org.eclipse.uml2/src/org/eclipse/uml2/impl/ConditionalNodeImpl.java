@@ -136,9 +136,9 @@ public class ConditionalNodeImpl extends StructuredActivityNodeImpl implements C
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ConditionalNodeImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -218,10 +218,10 @@ public class ConditionalNodeImpl extends StructuredActivityNodeImpl implements C
 		if (clause == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clause = new com.hopstepjump.emflist.PersistentEList(Clause.class, this, UML2Package.CONDITIONAL_NODE__CLAUSE);
+			 		clause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CONDITIONAL_NODE__CLAUSE);
 			 		return clause;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Clause.class, this, UML2Package.CONDITIONAL_NODE__CLAUSE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Clause.class, this, UML2Package.CONDITIONAL_NODE__CLAUSE);
 		}      
 		return clause;
 	}
@@ -235,7 +235,7 @@ public class ConditionalNodeImpl extends StructuredActivityNodeImpl implements C
 	 */
   public EList settable_getClauses() {
 		if (clause == null) {
-			clause = new com.hopstepjump.emflist.PersistentEList(Clause.class, this, UML2Package.CONDITIONAL_NODE__CLAUSE);
+			clause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CONDITIONAL_NODE__CLAUSE);
 		}
 		return clause;
 	}
@@ -300,10 +300,10 @@ public class ConditionalNodeImpl extends StructuredActivityNodeImpl implements C
 		if (result == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.CONDITIONAL_NODE__RESULT);
+			 		result = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.CONDITIONAL_NODE__RESULT);
 			 		return result;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.CONDITIONAL_NODE__RESULT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.CONDITIONAL_NODE__RESULT);
 		}      
 		return result;
 	}
@@ -317,7 +317,7 @@ public class ConditionalNodeImpl extends StructuredActivityNodeImpl implements C
 	 */
   public EList settable_getResults() {
 		if (result == null) {
-			result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.CONDITIONAL_NODE__RESULT);
+			result = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.CONDITIONAL_NODE__RESULT);
 		}
 		return result;
 	}

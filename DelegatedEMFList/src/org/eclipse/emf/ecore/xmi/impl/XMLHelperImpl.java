@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.xmi.*;
 import org.eclipse.emf.ecore.xml.type.*;
 import org.eclipse.emf.ecore.xml.type.internal.*;
 
-import com.hopstepjump.emflist.*;
+import com.intrinsarc.emflist.*;
 
 
 /**

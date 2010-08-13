@@ -118,9 +118,9 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (RedefinableTemplateSignatureImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -142,10 +142,10 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 		if (parameter == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		parameter = new com.hopstepjump.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER});
+			 		parameter = new com.intrinsarc.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER});
 			 		return parameter;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER});
+			return new com.intrinsarc.emflist.UnmodifiableEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER});
 		}      
 		return parameter;
 	}
@@ -159,7 +159,7 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 */
   public EList settable_getParameters() {
 		if (parameter == null) {
-			parameter = new com.hopstepjump.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER});
+			parameter = new com.intrinsarc.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER});
 		}
 		return parameter;
 	}
@@ -195,10 +195,10 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 		if (ownedParameter == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedParameter = new com.hopstepjump.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER}, UML2Package.TEMPLATE_PARAMETER__SIGNATURE);
+			 		ownedParameter = new com.intrinsarc.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER}, UML2Package.TEMPLATE_PARAMETER__SIGNATURE);
 			 		return ownedParameter;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER}, UML2Package.TEMPLATE_PARAMETER__SIGNATURE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER}, UML2Package.TEMPLATE_PARAMETER__SIGNATURE);
 		}      
 		return ownedParameter;
 	}
@@ -212,7 +212,7 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 */
   public EList settable_getOwnedParameters() {
 		if (ownedParameter == null) {
-			ownedParameter = new com.hopstepjump.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER}, UML2Package.TEMPLATE_PARAMETER__SIGNATURE);
+			ownedParameter = new com.intrinsarc.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER}, UML2Package.TEMPLATE_PARAMETER__SIGNATURE);
 		}
 		return ownedParameter;
 	}
@@ -276,10 +276,10 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 		if (nestedSignature == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		nestedSignature = new com.hopstepjump.emflist.PersistentEList(TemplateSignature.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE, UML2Package.TEMPLATE_SIGNATURE__NESTING_SIGNATURE);
+			 		nestedSignature = new com.intrinsarc.emflist.PersistentEList(TemplateSignature.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE, UML2Package.TEMPLATE_SIGNATURE__NESTING_SIGNATURE);
 			 		return nestedSignature;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(TemplateSignature.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE, UML2Package.TEMPLATE_SIGNATURE__NESTING_SIGNATURE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(TemplateSignature.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE, UML2Package.TEMPLATE_SIGNATURE__NESTING_SIGNATURE);
 		}      
 		return nestedSignature;
 	}
@@ -293,7 +293,7 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 */
   public EList settable_getNestedSignatures() {
 		if (nestedSignature == null) {
-			nestedSignature = new com.hopstepjump.emflist.PersistentEList(TemplateSignature.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE, UML2Package.TEMPLATE_SIGNATURE__NESTING_SIGNATURE);
+			nestedSignature = new com.intrinsarc.emflist.PersistentEList(TemplateSignature.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE, UML2Package.TEMPLATE_SIGNATURE__NESTING_SIGNATURE);
 		}
 		return nestedSignature;
 	}

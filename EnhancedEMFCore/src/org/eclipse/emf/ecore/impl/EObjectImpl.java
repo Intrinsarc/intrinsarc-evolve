@@ -20,7 +20,7 @@ package org.eclipse.emf.ecore.impl;
 import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
 
-import com.hopstepjump.notifications.*;
+import com.intrinsarc.notifications.*;
 
 
 /**

@@ -173,9 +173,9 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (TransitionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -493,10 +493,10 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 		if (trigger == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		trigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.TRANSITION__TRIGGER);
+			 		trigger = new com.intrinsarc.emflist.PersistentEList(Trigger.class, this, UML2Package.TRANSITION__TRIGGER);
 			 		return trigger;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Trigger.class, this, UML2Package.TRANSITION__TRIGGER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Trigger.class, this, UML2Package.TRANSITION__TRIGGER);
 		}      
 		return trigger;
 	}
@@ -510,7 +510,7 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 */
   public EList settable_getTriggers() {
 		if (trigger == null) {
-			trigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.TRANSITION__TRIGGER);
+			trigger = new com.intrinsarc.emflist.PersistentEList(Trigger.class, this, UML2Package.TRANSITION__TRIGGER);
 		}
 		return trigger;
 	}

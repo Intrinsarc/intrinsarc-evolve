@@ -89,9 +89,9 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (VertexImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -163,10 +163,10 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 		if (outgoing == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		outgoing = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__OUTGOING, UML2Package.TRANSITION__SOURCE);
+			 		outgoing = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__OUTGOING, UML2Package.TRANSITION__SOURCE);
 			 		return outgoing;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Transition.class, this, UML2Package.VERTEX__OUTGOING, UML2Package.TRANSITION__SOURCE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Transition.class, this, UML2Package.VERTEX__OUTGOING, UML2Package.TRANSITION__SOURCE);
 		}      
 		return outgoing;
 	}
@@ -180,7 +180,7 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 */
   public EList settable_getOutgoings() {
 		if (outgoing == null) {
-			outgoing = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__OUTGOING, UML2Package.TRANSITION__SOURCE);
+			outgoing = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__OUTGOING, UML2Package.TRANSITION__SOURCE);
 		}
 		return outgoing;
 	}
@@ -231,10 +231,10 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 		if (incoming == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		incoming = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__INCOMING, UML2Package.TRANSITION__TARGET);
+			 		incoming = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__INCOMING, UML2Package.TRANSITION__TARGET);
 			 		return incoming;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Transition.class, this, UML2Package.VERTEX__INCOMING, UML2Package.TRANSITION__TARGET);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Transition.class, this, UML2Package.VERTEX__INCOMING, UML2Package.TRANSITION__TARGET);
 		}      
 		return incoming;
 	}
@@ -248,7 +248,7 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 */
   public EList settable_getIncomings() {
 		if (incoming == null) {
-			incoming = new com.hopstepjump.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__INCOMING, UML2Package.TRANSITION__TARGET);
+			incoming = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__INCOMING, UML2Package.TRANSITION__TARGET);
 		}
 		return incoming;
 	}

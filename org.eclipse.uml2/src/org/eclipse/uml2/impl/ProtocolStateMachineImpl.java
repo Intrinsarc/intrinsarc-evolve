@@ -85,9 +85,9 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ProtocolStateMachineImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -109,10 +109,10 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 		if (conformance == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		conformance = new com.hopstepjump.emflist.PersistentEList(ProtocolConformance.class, this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE);
+			 		conformance = new com.intrinsarc.emflist.PersistentEList(ProtocolConformance.class, this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE);
 			 		return conformance;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ProtocolConformance.class, this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ProtocolConformance.class, this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE);
 		}      
 		return conformance;
 	}
@@ -126,7 +126,7 @@ public class ProtocolStateMachineImpl extends StateMachineImpl implements Protoc
 	 */
   public EList settable_getConformances() {
 		if (conformance == null) {
-			conformance = new com.hopstepjump.emflist.PersistentEList(ProtocolConformance.class, this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE);
+			conformance = new com.intrinsarc.emflist.PersistentEList(ProtocolConformance.class, this, UML2Package.PROTOCOL_STATE_MACHINE__CONFORMANCE, UML2Package.PROTOCOL_CONFORMANCE__SPECIFIC_MACHINE);
 		}
 		return conformance;
 	}

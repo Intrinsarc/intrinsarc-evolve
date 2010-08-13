@@ -85,9 +85,9 @@ public class SlotImpl extends ElementImpl implements Slot {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (SlotImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -190,10 +190,10 @@ public class SlotImpl extends ElementImpl implements Slot {
 		if (value == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		value = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.SLOT__VALUE);
+			 		value = new com.intrinsarc.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.SLOT__VALUE);
 			 		return value;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ValueSpecification.class, this, UML2Package.SLOT__VALUE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ValueSpecification.class, this, UML2Package.SLOT__VALUE);
 		}      
 		return value;
 	}
@@ -207,7 +207,7 @@ public class SlotImpl extends ElementImpl implements Slot {
 	 */
   public EList settable_getValues() {
 		if (value == null) {
-			value = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.SLOT__VALUE);
+			value = new com.intrinsarc.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.SLOT__VALUE);
 		}
 		return value;
 	}

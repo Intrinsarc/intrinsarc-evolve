@@ -144,9 +144,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (InstanceSpecificationImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -168,10 +168,10 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		if (deployment == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deployment = new com.hopstepjump.emflist.PersistentEList(Deployment.class, this, UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT, new int[] {UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			 		deployment = new com.intrinsarc.emflist.PersistentEList(Deployment.class, this, UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT, new int[] {UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 			 		return deployment;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Deployment.class, this, UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT, new int[] {UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Deployment.class, this, UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT, new int[] {UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 		}      
 		return deployment;
 	}
@@ -185,7 +185,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 */
   public EList settable_getDeployments() {
 		if (deployment == null) {
-			deployment = new com.hopstepjump.emflist.PersistentEList(Deployment.class, this, UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT, new int[] {UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			deployment = new com.intrinsarc.emflist.PersistentEList(Deployment.class, this, UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT, new int[] {UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 		}
 		return deployment;
 	}
@@ -313,10 +313,10 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		if (slot == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		slot = new com.hopstepjump.emflist.PersistentEList(Slot.class, this, UML2Package.INSTANCE_SPECIFICATION__SLOT, UML2Package.SLOT__OWNING_INSTANCE);
+			 		slot = new com.intrinsarc.emflist.PersistentEList(Slot.class, this, UML2Package.INSTANCE_SPECIFICATION__SLOT, UML2Package.SLOT__OWNING_INSTANCE);
 			 		return slot;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Slot.class, this, UML2Package.INSTANCE_SPECIFICATION__SLOT, UML2Package.SLOT__OWNING_INSTANCE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Slot.class, this, UML2Package.INSTANCE_SPECIFICATION__SLOT, UML2Package.SLOT__OWNING_INSTANCE);
 		}      
 		return slot;
 	}
@@ -330,7 +330,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 */
   public EList settable_getSlots() {
 		if (slot == null) {
-			slot = new com.hopstepjump.emflist.PersistentEList(Slot.class, this, UML2Package.INSTANCE_SPECIFICATION__SLOT, UML2Package.SLOT__OWNING_INSTANCE);
+			slot = new com.intrinsarc.emflist.PersistentEList(Slot.class, this, UML2Package.INSTANCE_SPECIFICATION__SLOT, UML2Package.SLOT__OWNING_INSTANCE);
 		}
 		return slot;
 	}
@@ -395,10 +395,10 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		if (classifier == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		classifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INSTANCE_SPECIFICATION__CLASSIFIER);
+			 		classifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INSTANCE_SPECIFICATION__CLASSIFIER);
 			 		return classifier;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.INSTANCE_SPECIFICATION__CLASSIFIER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.INSTANCE_SPECIFICATION__CLASSIFIER);
 		}      
 		return classifier;
 	}
@@ -412,7 +412,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 */
   public EList settable_getClassifiers() {
 		if (classifier == null) {
-			classifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.INSTANCE_SPECIFICATION__CLASSIFIER);
+			classifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INSTANCE_SPECIFICATION__CLASSIFIER);
 		}
 		return classifier;
 	}
@@ -540,10 +540,10 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		if (portRemap == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		portRemap = new com.hopstepjump.emflist.PersistentEList(PortRemap.class, this, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP);
+			 		portRemap = new com.intrinsarc.emflist.PersistentEList(PortRemap.class, this, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP);
 			 		return portRemap;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PortRemap.class, this, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PortRemap.class, this, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP);
 		}      
 		return portRemap;
 	}
@@ -557,7 +557,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 */
   public EList settable_getPortRemaps() {
 		if (portRemap == null) {
-			portRemap = new com.hopstepjump.emflist.PersistentEList(PortRemap.class, this, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP);
+			portRemap = new com.intrinsarc.emflist.PersistentEList(PortRemap.class, this, UML2Package.INSTANCE_SPECIFICATION__PORT_REMAP);
 		}
 		return portRemap;
 	}
@@ -639,10 +639,10 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		if (clientDependency == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY, new int[] {UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY, new int[] {UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY, new int[] {UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY, new int[] {UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 		}      
 		return clientDependency;
 	}
@@ -656,7 +656,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 */
   public EList settable_getClientDependencies() {
 		if (clientDependency == null) {
-			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY, new int[] {UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.INSTANCE_SPECIFICATION__CLIENT_DEPENDENCY, new int[] {UML2Package.INSTANCE_SPECIFICATION__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
 	}

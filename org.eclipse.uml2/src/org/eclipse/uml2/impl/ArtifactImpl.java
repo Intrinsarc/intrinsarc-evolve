@@ -143,9 +143,9 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ArtifactImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -197,10 +197,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 		if (nestedArtifact == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		nestedArtifact = new com.hopstepjump.emflist.PersistentEList(Artifact.class, this, UML2Package.ARTIFACT__NESTED_ARTIFACT);
+			 		nestedArtifact = new com.intrinsarc.emflist.PersistentEList(Artifact.class, this, UML2Package.ARTIFACT__NESTED_ARTIFACT);
 			 		return nestedArtifact;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Artifact.class, this, UML2Package.ARTIFACT__NESTED_ARTIFACT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Artifact.class, this, UML2Package.ARTIFACT__NESTED_ARTIFACT);
 		}      
 		return nestedArtifact;
 	}
@@ -214,7 +214,7 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 */
   public EList settable_getNestedArtifacts() {
 		if (nestedArtifact == null) {
-			nestedArtifact = new com.hopstepjump.emflist.PersistentEList(Artifact.class, this, UML2Package.ARTIFACT__NESTED_ARTIFACT);
+			nestedArtifact = new com.intrinsarc.emflist.PersistentEList(Artifact.class, this, UML2Package.ARTIFACT__NESTED_ARTIFACT);
 		}
 		return nestedArtifact;
 	}
@@ -293,10 +293,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 		if (manifestation == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		manifestation = new com.hopstepjump.emflist.PersistentEList(Manifestation.class, this, UML2Package.ARTIFACT__MANIFESTATION, new int[] {UML2Package.ARTIFACT__CLIENT_DEPENDENCY});
+			 		manifestation = new com.intrinsarc.emflist.PersistentEList(Manifestation.class, this, UML2Package.ARTIFACT__MANIFESTATION, new int[] {UML2Package.ARTIFACT__CLIENT_DEPENDENCY});
 			 		return manifestation;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Manifestation.class, this, UML2Package.ARTIFACT__MANIFESTATION, new int[] {UML2Package.ARTIFACT__CLIENT_DEPENDENCY});
+			return new com.intrinsarc.emflist.UnmodifiableEList(Manifestation.class, this, UML2Package.ARTIFACT__MANIFESTATION, new int[] {UML2Package.ARTIFACT__CLIENT_DEPENDENCY});
 		}      
 		return manifestation;
 	}
@@ -310,7 +310,7 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 */
   public EList settable_getManifestations() {
 		if (manifestation == null) {
-			manifestation = new com.hopstepjump.emflist.PersistentEList(Manifestation.class, this, UML2Package.ARTIFACT__MANIFESTATION, new int[] {UML2Package.ARTIFACT__CLIENT_DEPENDENCY});
+			manifestation = new com.intrinsarc.emflist.PersistentEList(Manifestation.class, this, UML2Package.ARTIFACT__MANIFESTATION, new int[] {UML2Package.ARTIFACT__CLIENT_DEPENDENCY});
 		}
 		return manifestation;
 	}
@@ -390,10 +390,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 		if (ownedOperation == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedOperation = new com.hopstepjump.emflist.PersistentEList(Operation.class, this, UML2Package.ARTIFACT__OWNED_OPERATION);
+			 		ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.ARTIFACT__OWNED_OPERATION);
 			 		return ownedOperation;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Operation.class, this, UML2Package.ARTIFACT__OWNED_OPERATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Operation.class, this, UML2Package.ARTIFACT__OWNED_OPERATION);
 		}      
 		return ownedOperation;
 	}
@@ -407,7 +407,7 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 */
   public EList settable_getOwnedOperations() {
 		if (ownedOperation == null) {
-			ownedOperation = new com.hopstepjump.emflist.PersistentEList(Operation.class, this, UML2Package.ARTIFACT__OWNED_OPERATION);
+			ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.ARTIFACT__OWNED_OPERATION);
 		}
 		return ownedOperation;
 	}
@@ -487,10 +487,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 		if (ownedAttribute == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.ARTIFACT__OWNED_ATTRIBUTE);
+			 		ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.ARTIFACT__OWNED_ATTRIBUTE);
 			 		return ownedAttribute;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Property.class, this, UML2Package.ARTIFACT__OWNED_ATTRIBUTE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Property.class, this, UML2Package.ARTIFACT__OWNED_ATTRIBUTE);
 		}      
 		return ownedAttribute;
 	}
@@ -504,7 +504,7 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 */
   public EList settable_getOwnedAttributes() {
 		if (ownedAttribute == null) {
-			ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.ARTIFACT__OWNED_ATTRIBUTE);
+			ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.ARTIFACT__OWNED_ATTRIBUTE);
 		}
 		return ownedAttribute;
 	}
@@ -583,10 +583,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 		if (clientDependency == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.ARTIFACT__CLIENT_DEPENDENCY, new int[] {UML2Package.ARTIFACT__SUBSTITUTION, UML2Package.ARTIFACT__MANIFESTATION}, UML2Package.DEPENDENCY__CLIENT);
+			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.ARTIFACT__CLIENT_DEPENDENCY, new int[] {UML2Package.ARTIFACT__SUBSTITUTION, UML2Package.ARTIFACT__MANIFESTATION}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.ARTIFACT__CLIENT_DEPENDENCY, new int[] {UML2Package.ARTIFACT__SUBSTITUTION, UML2Package.ARTIFACT__MANIFESTATION}, UML2Package.DEPENDENCY__CLIENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.ARTIFACT__CLIENT_DEPENDENCY, new int[] {UML2Package.ARTIFACT__SUBSTITUTION, UML2Package.ARTIFACT__MANIFESTATION}, UML2Package.DEPENDENCY__CLIENT);
 		}      
 		return clientDependency;
 	}
@@ -600,7 +600,7 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 */
   public EList settable_getClientDependencies() {
 		if (clientDependency == null) {
-			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.ARTIFACT__CLIENT_DEPENDENCY, new int[] {UML2Package.ARTIFACT__SUBSTITUTION, UML2Package.ARTIFACT__MANIFESTATION}, UML2Package.DEPENDENCY__CLIENT);
+			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.ARTIFACT__CLIENT_DEPENDENCY, new int[] {UML2Package.ARTIFACT__SUBSTITUTION, UML2Package.ARTIFACT__MANIFESTATION}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
 	}

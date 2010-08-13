@@ -87,9 +87,9 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (AcceptEventActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -111,10 +111,10 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 		if (trigger == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		trigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.ACCEPT_EVENT_ACTION__TRIGGER);
+			 		trigger = new com.intrinsarc.emflist.PersistentEList(Trigger.class, this, UML2Package.ACCEPT_EVENT_ACTION__TRIGGER);
 			 		return trigger;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Trigger.class, this, UML2Package.ACCEPT_EVENT_ACTION__TRIGGER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Trigger.class, this, UML2Package.ACCEPT_EVENT_ACTION__TRIGGER);
 		}      
 		return trigger;
 	}
@@ -128,7 +128,7 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 */
   public EList settable_getTriggers() {
 		if (trigger == null) {
-			trigger = new com.hopstepjump.emflist.PersistentEList(Trigger.class, this, UML2Package.ACCEPT_EVENT_ACTION__TRIGGER);
+			trigger = new com.intrinsarc.emflist.PersistentEList(Trigger.class, this, UML2Package.ACCEPT_EVENT_ACTION__TRIGGER);
 		}
 		return trigger;
 	}
@@ -179,10 +179,10 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 		if (result == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.ACCEPT_EVENT_ACTION__RESULT);
+			 		result = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.ACCEPT_EVENT_ACTION__RESULT);
 			 		return result;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.ACCEPT_EVENT_ACTION__RESULT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.ACCEPT_EVENT_ACTION__RESULT);
 		}      
 		return result;
 	}
@@ -196,7 +196,7 @@ public class AcceptEventActionImpl extends ActionImpl implements AcceptEventActi
 	 */
   public EList settable_getResults() {
 		if (result == null) {
-			result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.ACCEPT_EVENT_ACTION__RESULT);
+			result = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.ACCEPT_EVENT_ACTION__RESULT);
 		}
 		return result;
 	}

@@ -66,9 +66,9 @@ public class DurationIntervalImpl extends IntervalImpl implements DurationInterv
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (DurationIntervalImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -90,10 +90,10 @@ public class DurationIntervalImpl extends IntervalImpl implements DurationInterv
 		if (min == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		min = new com.hopstepjump.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MIN);
+			 		min = new com.intrinsarc.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MIN);
 			 		return min;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MIN);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MIN);
 		}      
 		return min;
 	}
@@ -107,7 +107,7 @@ public class DurationIntervalImpl extends IntervalImpl implements DurationInterv
 	 */
   public EList settable_getMins() {
 		if (min == null) {
-			min = new com.hopstepjump.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MIN);
+			min = new com.intrinsarc.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MIN);
 		}
 		return min;
 	}
@@ -158,10 +158,10 @@ public class DurationIntervalImpl extends IntervalImpl implements DurationInterv
 		if (max == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		max = new com.hopstepjump.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MAX);
+			 		max = new com.intrinsarc.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MAX);
 			 		return max;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MAX);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MAX);
 		}      
 		return max;
 	}
@@ -175,7 +175,7 @@ public class DurationIntervalImpl extends IntervalImpl implements DurationInterv
 	 */
   public EList settable_getMaxes() {
 		if (max == null) {
-			max = new com.hopstepjump.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MAX);
+			max = new com.intrinsarc.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_INTERVAL__MAX);
 		}
 		return max;
 	}

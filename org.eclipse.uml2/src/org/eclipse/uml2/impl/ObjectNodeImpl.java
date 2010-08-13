@@ -140,9 +140,9 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ObjectNodeImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -327,10 +327,10 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 		if (inState == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		inState = new com.hopstepjump.emflist.PersistentEList(State.class, this, UML2Package.OBJECT_NODE__IN_STATE);
+			 		inState = new com.intrinsarc.emflist.PersistentEList(State.class, this, UML2Package.OBJECT_NODE__IN_STATE);
 			 		return inState;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(State.class, this, UML2Package.OBJECT_NODE__IN_STATE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(State.class, this, UML2Package.OBJECT_NODE__IN_STATE);
 		}      
 		return inState;
 	}
@@ -344,7 +344,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 */
   public EList settable_getInStates() {
 		if (inState == null) {
-			inState = new com.hopstepjump.emflist.PersistentEList(State.class, this, UML2Package.OBJECT_NODE__IN_STATE);
+			inState = new com.intrinsarc.emflist.PersistentEList(State.class, this, UML2Package.OBJECT_NODE__IN_STATE);
 		}
 		return inState;
 	}

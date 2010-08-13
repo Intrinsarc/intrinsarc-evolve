@@ -114,9 +114,9 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (CombinedFragmentImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -167,10 +167,10 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 		if (operand == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		operand = new com.hopstepjump.emflist.PersistentEList(InteractionOperand.class, this, UML2Package.COMBINED_FRAGMENT__OPERAND);
+			 		operand = new com.intrinsarc.emflist.PersistentEList(InteractionOperand.class, this, UML2Package.COMBINED_FRAGMENT__OPERAND);
 			 		return operand;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(InteractionOperand.class, this, UML2Package.COMBINED_FRAGMENT__OPERAND);
+			return new com.intrinsarc.emflist.UnmodifiableEList(InteractionOperand.class, this, UML2Package.COMBINED_FRAGMENT__OPERAND);
 		}      
 		return operand;
 	}
@@ -184,7 +184,7 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 */
   public EList settable_getOperands() {
 		if (operand == null) {
-			operand = new com.hopstepjump.emflist.PersistentEList(InteractionOperand.class, this, UML2Package.COMBINED_FRAGMENT__OPERAND);
+			operand = new com.intrinsarc.emflist.PersistentEList(InteractionOperand.class, this, UML2Package.COMBINED_FRAGMENT__OPERAND);
 		}
 		return operand;
 	}
@@ -264,10 +264,10 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 		if (cfragmentGate == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		cfragmentGate = new com.hopstepjump.emflist.PersistentEList(Gate.class, this, UML2Package.COMBINED_FRAGMENT__CFRAGMENT_GATE);
+			 		cfragmentGate = new com.intrinsarc.emflist.PersistentEList(Gate.class, this, UML2Package.COMBINED_FRAGMENT__CFRAGMENT_GATE);
 			 		return cfragmentGate;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Gate.class, this, UML2Package.COMBINED_FRAGMENT__CFRAGMENT_GATE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Gate.class, this, UML2Package.COMBINED_FRAGMENT__CFRAGMENT_GATE);
 		}      
 		return cfragmentGate;
 	}
@@ -281,7 +281,7 @@ public class CombinedFragmentImpl extends InteractionFragmentImpl implements Com
 	 */
   public EList settable_getCfragmentGates() {
 		if (cfragmentGate == null) {
-			cfragmentGate = new com.hopstepjump.emflist.PersistentEList(Gate.class, this, UML2Package.COMBINED_FRAGMENT__CFRAGMENT_GATE);
+			cfragmentGate = new com.intrinsarc.emflist.PersistentEList(Gate.class, this, UML2Package.COMBINED_FRAGMENT__CFRAGMENT_GATE);
 		}
 		return cfragmentGate;
 	}

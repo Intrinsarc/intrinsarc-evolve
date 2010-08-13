@@ -85,9 +85,9 @@ public class ExtensionImpl extends AssociationImpl implements Extension {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ExtensionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -164,7 +164,7 @@ public class ExtensionImpl extends AssociationImpl implements Extension {
 	 */
   public EList settable_getOwnedEnds() {
 		if (ownedEnd == null) {
-			ownedEnd = new com.hopstepjump.emflist.PersistentEList(ExtensionEnd.class, this, UML2Package.EXTENSION__OWNED_END);
+			ownedEnd = new com.intrinsarc.emflist.PersistentEList(ExtensionEnd.class, this, UML2Package.EXTENSION__OWNED_END);
 		}
 		return ownedEnd;
 	}

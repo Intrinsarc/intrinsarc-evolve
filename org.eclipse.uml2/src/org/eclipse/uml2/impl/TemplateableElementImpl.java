@@ -91,9 +91,9 @@ public abstract class TemplateableElementImpl extends ElementImpl implements Tem
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (TemplateableElementImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -115,10 +115,10 @@ public abstract class TemplateableElementImpl extends ElementImpl implements Tem
 		if (templateBinding == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		templateBinding = new com.hopstepjump.emflist.PersistentEList(TemplateBinding.class, this, UML2Package.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT);
+			 		templateBinding = new com.intrinsarc.emflist.PersistentEList(TemplateBinding.class, this, UML2Package.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT);
 			 		return templateBinding;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(TemplateBinding.class, this, UML2Package.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(TemplateBinding.class, this, UML2Package.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT);
 		}      
 		return templateBinding;
 	}
@@ -132,7 +132,7 @@ public abstract class TemplateableElementImpl extends ElementImpl implements Tem
 	 */
   public EList settable_getTemplateBindings() {
 		if (templateBinding == null) {
-			templateBinding = new com.hopstepjump.emflist.PersistentEList(TemplateBinding.class, this, UML2Package.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT);
+			templateBinding = new com.intrinsarc.emflist.PersistentEList(TemplateBinding.class, this, UML2Package.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT);
 		}
 		return templateBinding;
 	}

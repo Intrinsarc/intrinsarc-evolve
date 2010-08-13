@@ -91,9 +91,9 @@ public abstract class ConnectableElementImpl extends NamedElementImpl implements
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ConnectableElementImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -252,10 +252,10 @@ public abstract class ConnectableElementImpl extends NamedElementImpl implements
 		if (end == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		end = new com.hopstepjump.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTABLE_ELEMENT__END, UML2Package.CONNECTOR_END__ROLE);
+			 		end = new com.intrinsarc.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTABLE_ELEMENT__END, UML2Package.CONNECTOR_END__ROLE);
 			 		return end;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ConnectorEnd.class, this, UML2Package.CONNECTABLE_ELEMENT__END, UML2Package.CONNECTOR_END__ROLE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ConnectorEnd.class, this, UML2Package.CONNECTABLE_ELEMENT__END, UML2Package.CONNECTOR_END__ROLE);
 		}      
 		return end;
 	}
@@ -269,7 +269,7 @@ public abstract class ConnectableElementImpl extends NamedElementImpl implements
 	 */
   public EList settable_getEnds() {
 		if (end == null) {
-			end = new com.hopstepjump.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTABLE_ELEMENT__END, UML2Package.CONNECTOR_END__ROLE);
+			end = new com.intrinsarc.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTABLE_ELEMENT__END, UML2Package.CONNECTOR_END__ROLE);
 		}
 		return end;
 	}

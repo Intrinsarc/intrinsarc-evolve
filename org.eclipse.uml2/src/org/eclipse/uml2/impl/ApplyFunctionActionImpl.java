@@ -106,9 +106,9 @@ public class ApplyFunctionActionImpl extends ActionImpl implements ApplyFunction
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ApplyFunctionActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -187,10 +187,10 @@ public class ApplyFunctionActionImpl extends ActionImpl implements ApplyFunction
 		if (argument == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		argument = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__ARGUMENT);
+			 		argument = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__ARGUMENT);
 			 		return argument;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(InputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__ARGUMENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(InputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__ARGUMENT);
 		}      
 		return argument;
 	}
@@ -204,7 +204,7 @@ public class ApplyFunctionActionImpl extends ActionImpl implements ApplyFunction
 	 */
   public EList settable_getArguments() {
 		if (argument == null) {
-			argument = new com.hopstepjump.emflist.PersistentEList(InputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__ARGUMENT);
+			argument = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__ARGUMENT);
 		}
 		return argument;
 	}
@@ -283,10 +283,10 @@ public class ApplyFunctionActionImpl extends ActionImpl implements ApplyFunction
 		if (result == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__RESULT);
+			 		result = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__RESULT);
 			 		return result;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__RESULT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(OutputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__RESULT);
 		}      
 		return result;
 	}
@@ -300,7 +300,7 @@ public class ApplyFunctionActionImpl extends ActionImpl implements ApplyFunction
 	 */
   public EList settable_getResults() {
 		if (result == null) {
-			result = new com.hopstepjump.emflist.PersistentEList(OutputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__RESULT);
+			result = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.APPLY_FUNCTION_ACTION__RESULT);
 		}
 		return result;
 	}

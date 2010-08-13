@@ -228,9 +228,9 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (PackageImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -526,10 +526,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		if (ownedMember == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PACKAGE__OWNED_MEMBER);
+			 		ownedMember = new com.intrinsarc.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PACKAGE__OWNED_MEMBER);
 			 		return ownedMember;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageableElement.class, this, UML2Package.PACKAGE__OWNED_MEMBER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageableElement.class, this, UML2Package.PACKAGE__OWNED_MEMBER);
 		}      
 		return ownedMember;
 	}
@@ -543,7 +543,7 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 */
   public EList settable_getOwnedMembers() {
 		if (ownedMember == null) {
-			ownedMember = new com.hopstepjump.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PACKAGE__OWNED_MEMBER);
+			ownedMember = new com.intrinsarc.emflist.PersistentEList(PackageableElement.class, this, UML2Package.PACKAGE__OWNED_MEMBER);
 		}
 		return ownedMember;
 	}
@@ -608,10 +608,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		if (packageMerge == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		packageMerge = new com.hopstepjump.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_MERGE, UML2Package.PACKAGE_MERGE__MERGING_PACKAGE);
+			 		packageMerge = new com.intrinsarc.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_MERGE, UML2Package.PACKAGE_MERGE__MERGING_PACKAGE);
 			 		return packageMerge;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_MERGE, UML2Package.PACKAGE_MERGE__MERGING_PACKAGE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_MERGE, UML2Package.PACKAGE_MERGE__MERGING_PACKAGE);
 		}      
 		return packageMerge;
 	}
@@ -625,7 +625,7 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 */
   public EList settable_getPackageMerges() {
 		if (packageMerge == null) {
-			packageMerge = new com.hopstepjump.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_MERGE, UML2Package.PACKAGE_MERGE__MERGING_PACKAGE);
+			packageMerge = new com.intrinsarc.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_MERGE, UML2Package.PACKAGE_MERGE__MERGING_PACKAGE);
 		}
 		return packageMerge;
 	}
@@ -690,10 +690,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		if (appliedProfile == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		appliedProfile = new com.hopstepjump.emflist.PersistentEList(ProfileApplication.class, this, UML2Package.PACKAGE__APPLIED_PROFILE, new int[] {UML2Package.PACKAGE__PACKAGE_IMPORT});
+			 		appliedProfile = new com.intrinsarc.emflist.PersistentEList(ProfileApplication.class, this, UML2Package.PACKAGE__APPLIED_PROFILE, new int[] {UML2Package.PACKAGE__PACKAGE_IMPORT});
 			 		return appliedProfile;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ProfileApplication.class, this, UML2Package.PACKAGE__APPLIED_PROFILE, new int[] {UML2Package.PACKAGE__PACKAGE_IMPORT});
+			return new com.intrinsarc.emflist.UnmodifiableEList(ProfileApplication.class, this, UML2Package.PACKAGE__APPLIED_PROFILE, new int[] {UML2Package.PACKAGE__PACKAGE_IMPORT});
 		}      
 		return appliedProfile;
 	}
@@ -707,7 +707,7 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 */
   public EList settable_getAppliedProfiles() {
 		if (appliedProfile == null) {
-			appliedProfile = new com.hopstepjump.emflist.PersistentEList(ProfileApplication.class, this, UML2Package.PACKAGE__APPLIED_PROFILE, new int[] {UML2Package.PACKAGE__PACKAGE_IMPORT});
+			appliedProfile = new com.intrinsarc.emflist.PersistentEList(ProfileApplication.class, this, UML2Package.PACKAGE__APPLIED_PROFILE, new int[] {UML2Package.PACKAGE__PACKAGE_IMPORT});
 		}
 		return appliedProfile;
 	}
@@ -743,10 +743,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		if (packageExtension == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		packageExtension = new com.hopstepjump.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_EXTENSION);
+			 		packageExtension = new com.intrinsarc.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_EXTENSION);
 			 		return packageExtension;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_EXTENSION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_EXTENSION);
 		}      
 		return packageExtension;
 	}
@@ -760,7 +760,7 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 */
   public EList settable_getPackageExtensions() {
 		if (packageExtension == null) {
-			packageExtension = new com.hopstepjump.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_EXTENSION);
+			packageExtension = new com.intrinsarc.emflist.PersistentEList(PackageMerge.class, this, UML2Package.PACKAGE__PACKAGE_EXTENSION);
 		}
 		return packageExtension;
 	}
@@ -916,10 +916,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		if (childPackages == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		childPackages = new com.hopstepjump.emflist.PersistentEList(org.eclipse.uml2.Package.class, this, UML2Package.PACKAGE__CHILD_PACKAGES, UML2Package.PACKAGE__PARENT_PACKAGE);
+			 		childPackages = new com.intrinsarc.emflist.PersistentEList(org.eclipse.uml2.Package.class, this, UML2Package.PACKAGE__CHILD_PACKAGES, UML2Package.PACKAGE__PARENT_PACKAGE);
 			 		return childPackages;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(org.eclipse.uml2.Package.class, this, UML2Package.PACKAGE__CHILD_PACKAGES, UML2Package.PACKAGE__PARENT_PACKAGE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(org.eclipse.uml2.Package.class, this, UML2Package.PACKAGE__CHILD_PACKAGES, UML2Package.PACKAGE__PARENT_PACKAGE);
 		}      
 		return childPackages;
 	}
@@ -933,7 +933,7 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 */
   public EList settable_getChildPackages() {
 		if (childPackages == null) {
-			childPackages = new com.hopstepjump.emflist.PersistentEList(org.eclipse.uml2.Package.class, this, UML2Package.PACKAGE__CHILD_PACKAGES, UML2Package.PACKAGE__PARENT_PACKAGE);
+			childPackages = new com.intrinsarc.emflist.PersistentEList(org.eclipse.uml2.Package.class, this, UML2Package.PACKAGE__CHILD_PACKAGES, UML2Package.PACKAGE__PARENT_PACKAGE);
 		}
 		return childPackages;
 	}
@@ -1091,10 +1091,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		if (anonymousDeletedImportPlaceholders == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		anonymousDeletedImportPlaceholders = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.PACKAGE__ANONYMOUS_DELETED_IMPORT_PLACEHOLDERS);
+			 		anonymousDeletedImportPlaceholders = new com.intrinsarc.emflist.PersistentEList(Element.class, this, UML2Package.PACKAGE__ANONYMOUS_DELETED_IMPORT_PLACEHOLDERS);
 			 		return anonymousDeletedImportPlaceholders;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Element.class, this, UML2Package.PACKAGE__ANONYMOUS_DELETED_IMPORT_PLACEHOLDERS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Element.class, this, UML2Package.PACKAGE__ANONYMOUS_DELETED_IMPORT_PLACEHOLDERS);
 		}      
 		return anonymousDeletedImportPlaceholders;
 	}
@@ -1108,7 +1108,7 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 */
 	public EList settable_getAnonymousDeletedImportPlaceholders() {
 		if (anonymousDeletedImportPlaceholders == null) {
-			anonymousDeletedImportPlaceholders = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.PACKAGE__ANONYMOUS_DELETED_IMPORT_PLACEHOLDERS);
+			anonymousDeletedImportPlaceholders = new com.intrinsarc.emflist.PersistentEList(Element.class, this, UML2Package.PACKAGE__ANONYMOUS_DELETED_IMPORT_PLACEHOLDERS);
 		}
 		return anonymousDeletedImportPlaceholders;
 	}
@@ -1271,10 +1271,10 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 		if (packageImport == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PACKAGE__PACKAGE_IMPORT, new int[] {UML2Package.PACKAGE__APPLIED_PROFILE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			 		packageImport = new com.intrinsarc.emflist.PersistentEList(PackageImport.class, this, UML2Package.PACKAGE__PACKAGE_IMPORT, new int[] {UML2Package.PACKAGE__APPLIED_PROFILE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 			 		return packageImport;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageImport.class, this, UML2Package.PACKAGE__PACKAGE_IMPORT, new int[] {UML2Package.PACKAGE__APPLIED_PROFILE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageImport.class, this, UML2Package.PACKAGE__PACKAGE_IMPORT, new int[] {UML2Package.PACKAGE__APPLIED_PROFILE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}      
 		return packageImport;
 	}
@@ -1288,7 +1288,7 @@ public class PackageImpl extends NamespaceImpl implements org.eclipse.uml2.Packa
 	 */
   public EList settable_getPackageImports() {
 		if (packageImport == null) {
-			packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.PACKAGE__PACKAGE_IMPORT, new int[] {UML2Package.PACKAGE__APPLIED_PROFILE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			packageImport = new com.intrinsarc.emflist.PersistentEList(PackageImport.class, this, UML2Package.PACKAGE__PACKAGE_IMPORT, new int[] {UML2Package.PACKAGE__APPLIED_PROFILE}, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return packageImport;
 	}

@@ -82,9 +82,9 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (InterruptibleActivityRegionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -121,10 +121,10 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 		if (interruptingEdge == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		interruptingEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, UML2Package.ACTIVITY_EDGE__INTERRUPTS);
+			 		interruptingEdge = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, UML2Package.ACTIVITY_EDGE__INTERRUPTS);
 			 		return interruptingEdge;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, UML2Package.ACTIVITY_EDGE__INTERRUPTS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, UML2Package.ACTIVITY_EDGE__INTERRUPTS);
 		}      
 		return interruptingEdge;
 	}
@@ -138,7 +138,7 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 */
   public EList settable_getInterruptingEdges() {
 		if (interruptingEdge == null) {
-			interruptingEdge = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, UML2Package.ACTIVITY_EDGE__INTERRUPTS);
+			interruptingEdge = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, UML2Package.ACTIVITY_EDGE__INTERRUPTS);
 		}
 		return interruptingEdge;
 	}
@@ -189,10 +189,10 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 		if (containedNode == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
+			 		containedNode = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
 			 		return containedNode;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
 		}      
 		return containedNode;
 	}
@@ -206,7 +206,7 @@ public class InterruptibleActivityRegionImpl extends ActivityGroupImpl implement
 	 */
   public EList settable_getContainedNodes() {
 		if (containedNode == null) {
-			containedNode = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
+			containedNode = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
 		}
 		return containedNode;
 	}

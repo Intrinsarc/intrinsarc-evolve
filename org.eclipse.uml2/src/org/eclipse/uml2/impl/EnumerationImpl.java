@@ -83,9 +83,9 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (EnumerationImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -107,10 +107,10 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 		if (ownedLiteral == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedLiteral = new com.hopstepjump.emflist.PersistentEList(EnumerationLiteral.class, this, UML2Package.ENUMERATION__OWNED_LITERAL, UML2Package.ENUMERATION_LITERAL__ENUMERATION);
+			 		ownedLiteral = new com.intrinsarc.emflist.PersistentEList(EnumerationLiteral.class, this, UML2Package.ENUMERATION__OWNED_LITERAL, UML2Package.ENUMERATION_LITERAL__ENUMERATION);
 			 		return ownedLiteral;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(EnumerationLiteral.class, this, UML2Package.ENUMERATION__OWNED_LITERAL, UML2Package.ENUMERATION_LITERAL__ENUMERATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(EnumerationLiteral.class, this, UML2Package.ENUMERATION__OWNED_LITERAL, UML2Package.ENUMERATION_LITERAL__ENUMERATION);
 		}      
 		return ownedLiteral;
 	}
@@ -124,7 +124,7 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 */
   public EList settable_getOwnedLiterals() {
 		if (ownedLiteral == null) {
-			ownedLiteral = new com.hopstepjump.emflist.PersistentEList(EnumerationLiteral.class, this, UML2Package.ENUMERATION__OWNED_LITERAL, UML2Package.ENUMERATION_LITERAL__ENUMERATION);
+			ownedLiteral = new com.intrinsarc.emflist.PersistentEList(EnumerationLiteral.class, this, UML2Package.ENUMERATION__OWNED_LITERAL, UML2Package.ENUMERATION_LITERAL__ENUMERATION);
 		}
 		return ownedLiteral;
 	}

@@ -78,9 +78,9 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (StringExpressionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -102,10 +102,10 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 		if (subExpression == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		subExpression = new com.hopstepjump.emflist.PersistentEList(StringExpression.class, this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION);
+			 		subExpression = new com.intrinsarc.emflist.PersistentEList(StringExpression.class, this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION);
 			 		return subExpression;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(StringExpression.class, this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(StringExpression.class, this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION);
 		}      
 		return subExpression;
 	}
@@ -119,7 +119,7 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 */
   public EList settable_getSubExpressions() {
 		if (subExpression == null) {
-			subExpression = new com.hopstepjump.emflist.PersistentEList(StringExpression.class, this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION);
+			subExpression = new com.intrinsarc.emflist.PersistentEList(StringExpression.class, this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION);
 		}
 		return subExpression;
 	}

@@ -105,9 +105,9 @@ public class NodeImpl extends ClassImpl implements Node {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (NodeImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -129,10 +129,10 @@ public class NodeImpl extends ClassImpl implements Node {
 		if (deployment == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deployment = new com.hopstepjump.emflist.PersistentEList(Deployment.class, this, UML2Package.NODE__DEPLOYMENT, new int[] {UML2Package.NODE__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			 		deployment = new com.intrinsarc.emflist.PersistentEList(Deployment.class, this, UML2Package.NODE__DEPLOYMENT, new int[] {UML2Package.NODE__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 			 		return deployment;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Deployment.class, this, UML2Package.NODE__DEPLOYMENT, new int[] {UML2Package.NODE__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Deployment.class, this, UML2Package.NODE__DEPLOYMENT, new int[] {UML2Package.NODE__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 		}      
 		return deployment;
 	}
@@ -146,7 +146,7 @@ public class NodeImpl extends ClassImpl implements Node {
 	 */
   public EList settable_getDeployments() {
 		if (deployment == null) {
-			deployment = new com.hopstepjump.emflist.PersistentEList(Deployment.class, this, UML2Package.NODE__DEPLOYMENT, new int[] {UML2Package.NODE__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			deployment = new com.intrinsarc.emflist.PersistentEList(Deployment.class, this, UML2Package.NODE__DEPLOYMENT, new int[] {UML2Package.NODE__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 		}
 		return deployment;
 	}
@@ -274,10 +274,10 @@ public class NodeImpl extends ClassImpl implements Node {
 		if (nestedNode == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		nestedNode = new com.hopstepjump.emflist.PersistentEList(Node.class, this, UML2Package.NODE__NESTED_NODE);
+			 		nestedNode = new com.intrinsarc.emflist.PersistentEList(Node.class, this, UML2Package.NODE__NESTED_NODE);
 			 		return nestedNode;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Node.class, this, UML2Package.NODE__NESTED_NODE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Node.class, this, UML2Package.NODE__NESTED_NODE);
 		}      
 		return nestedNode;
 	}
@@ -291,7 +291,7 @@ public class NodeImpl extends ClassImpl implements Node {
 	 */
   public EList settable_getNestedNodes() {
 		if (nestedNode == null) {
-			nestedNode = new com.hopstepjump.emflist.PersistentEList(Node.class, this, UML2Package.NODE__NESTED_NODE);
+			nestedNode = new com.intrinsarc.emflist.PersistentEList(Node.class, this, UML2Package.NODE__NESTED_NODE);
 		}
 		return nestedNode;
 	}
@@ -370,10 +370,10 @@ public class NodeImpl extends ClassImpl implements Node {
 		if (clientDependency == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NODE__CLIENT_DEPENDENCY, new int[] {UML2Package.NODE__SUBSTITUTION, UML2Package.NODE__IMPLEMENTATION, UML2Package.NODE__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.NODE__CLIENT_DEPENDENCY, new int[] {UML2Package.NODE__SUBSTITUTION, UML2Package.NODE__IMPLEMENTATION, UML2Package.NODE__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.NODE__CLIENT_DEPENDENCY, new int[] {UML2Package.NODE__SUBSTITUTION, UML2Package.NODE__IMPLEMENTATION, UML2Package.NODE__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.NODE__CLIENT_DEPENDENCY, new int[] {UML2Package.NODE__SUBSTITUTION, UML2Package.NODE__IMPLEMENTATION, UML2Package.NODE__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 		}      
 		return clientDependency;
 	}
@@ -387,7 +387,7 @@ public class NodeImpl extends ClassImpl implements Node {
 	 */
   public EList settable_getClientDependencies() {
 		if (clientDependency == null) {
-			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NODE__CLIENT_DEPENDENCY, new int[] {UML2Package.NODE__SUBSTITUTION, UML2Package.NODE__IMPLEMENTATION, UML2Package.NODE__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.NODE__CLIENT_DEPENDENCY, new int[] {UML2Package.NODE__SUBSTITUTION, UML2Package.NODE__IMPLEMENTATION, UML2Package.NODE__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
 	}

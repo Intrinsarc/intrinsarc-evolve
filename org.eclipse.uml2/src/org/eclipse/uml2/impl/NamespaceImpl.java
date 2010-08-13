@@ -117,9 +117,9 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (NamespaceImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -188,10 +188,10 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 		if (ownedRule == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedRule = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.NAMESPACE__OWNED_RULE, UML2Package.CONSTRAINT__NAMESPACE);
+			 		ownedRule = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.NAMESPACE__OWNED_RULE, UML2Package.CONSTRAINT__NAMESPACE);
 			 		return ownedRule;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.NAMESPACE__OWNED_RULE, UML2Package.CONSTRAINT__NAMESPACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.NAMESPACE__OWNED_RULE, UML2Package.CONSTRAINT__NAMESPACE);
 		}      
 		return ownedRule;
 	}
@@ -205,7 +205,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	 */
   public EList settable_getOwnedRules() {
 		if (ownedRule == null) {
-			ownedRule = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.NAMESPACE__OWNED_RULE, UML2Package.CONSTRAINT__NAMESPACE);
+			ownedRule = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.NAMESPACE__OWNED_RULE, UML2Package.CONSTRAINT__NAMESPACE);
 		}
 		return ownedRule;
 	}
@@ -329,10 +329,10 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 		if (elementImport == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		elementImport = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.NAMESPACE__ELEMENT_IMPORT, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
+			 		elementImport = new com.intrinsarc.emflist.PersistentEList(ElementImport.class, this, UML2Package.NAMESPACE__ELEMENT_IMPORT, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 			 		return elementImport;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ElementImport.class, this, UML2Package.NAMESPACE__ELEMENT_IMPORT, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ElementImport.class, this, UML2Package.NAMESPACE__ELEMENT_IMPORT, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 		}      
 		return elementImport;
 	}
@@ -346,7 +346,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	 */
   public EList settable_getElementImports() {
 		if (elementImport == null) {
-			elementImport = new com.hopstepjump.emflist.PersistentEList(ElementImport.class, this, UML2Package.NAMESPACE__ELEMENT_IMPORT, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
+			elementImport = new com.intrinsarc.emflist.PersistentEList(ElementImport.class, this, UML2Package.NAMESPACE__ELEMENT_IMPORT, UML2Package.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return elementImport;
 	}
@@ -411,10 +411,10 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 		if (packageImport == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.NAMESPACE__PACKAGE_IMPORT, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			 		packageImport = new com.intrinsarc.emflist.PersistentEList(PackageImport.class, this, UML2Package.NAMESPACE__PACKAGE_IMPORT, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 			 		return packageImport;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(PackageImport.class, this, UML2Package.NAMESPACE__PACKAGE_IMPORT, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(PackageImport.class, this, UML2Package.NAMESPACE__PACKAGE_IMPORT, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}      
 		return packageImport;
 	}
@@ -428,7 +428,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	 */
   public EList settable_getPackageImports() {
 		if (packageImport == null) {
-			packageImport = new com.hopstepjump.emflist.PersistentEList(PackageImport.class, this, UML2Package.NAMESPACE__PACKAGE_IMPORT, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
+			packageImport = new com.intrinsarc.emflist.PersistentEList(PackageImport.class, this, UML2Package.NAMESPACE__PACKAGE_IMPORT, UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return packageImport;
 	}

@@ -138,9 +138,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ConnectorImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -257,10 +257,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		if (redefinedConnector == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		redefinedConnector = new com.hopstepjump.emflist.PersistentEList(Connector.class, this, UML2Package.CONNECTOR__REDEFINED_CONNECTOR);
+			 		redefinedConnector = new com.intrinsarc.emflist.PersistentEList(Connector.class, this, UML2Package.CONNECTOR__REDEFINED_CONNECTOR);
 			 		return redefinedConnector;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Connector.class, this, UML2Package.CONNECTOR__REDEFINED_CONNECTOR);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Connector.class, this, UML2Package.CONNECTOR__REDEFINED_CONNECTOR);
 		}      
 		return redefinedConnector;
 	}
@@ -274,7 +274,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
   public EList settable_getRedefinedConnectors() {
 		if (redefinedConnector == null) {
-			redefinedConnector = new com.hopstepjump.emflist.PersistentEList(Connector.class, this, UML2Package.CONNECTOR__REDEFINED_CONNECTOR);
+			redefinedConnector = new com.intrinsarc.emflist.PersistentEList(Connector.class, this, UML2Package.CONNECTOR__REDEFINED_CONNECTOR);
 		}
 		return redefinedConnector;
 	}
@@ -325,10 +325,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		if (end == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		end = new com.hopstepjump.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTOR__END);
+			 		end = new com.intrinsarc.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTOR__END);
 			 		return end;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ConnectorEnd.class, this, UML2Package.CONNECTOR__END);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ConnectorEnd.class, this, UML2Package.CONNECTOR__END);
 		}      
 		return end;
 	}
@@ -342,7 +342,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
   public EList settable_getEnds() {
 		if (end == null) {
-			end = new com.hopstepjump.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTOR__END);
+			end = new com.intrinsarc.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTOR__END);
 		}
 		return end;
 	}
@@ -407,10 +407,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		if (contract == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		contract = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.CONNECTOR__CONTRACT);
+			 		contract = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.CONNECTOR__CONTRACT);
 			 		return contract;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Behavior.class, this, UML2Package.CONNECTOR__CONTRACT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Behavior.class, this, UML2Package.CONNECTOR__CONTRACT);
 		}      
 		return contract;
 	}
@@ -424,7 +424,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
   public EList settable_getContracts() {
 		if (contract == null) {
-			contract = new com.hopstepjump.emflist.PersistentEList(Behavior.class, this, UML2Package.CONNECTOR__CONTRACT);
+			contract = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.CONNECTOR__CONTRACT);
 		}
 		return contract;
 	}

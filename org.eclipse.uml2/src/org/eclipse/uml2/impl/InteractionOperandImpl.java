@@ -122,9 +122,9 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (InteractionOperandImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -146,10 +146,10 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 		if (covered == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION_OPERAND__COVERED, UML2Package.LIFELINE__COVERED_BY);
+			 		covered = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION_OPERAND__COVERED, UML2Package.LIFELINE__COVERED_BY);
 			 		return covered;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Lifeline.class, this, UML2Package.INTERACTION_OPERAND__COVERED, UML2Package.LIFELINE__COVERED_BY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Lifeline.class, this, UML2Package.INTERACTION_OPERAND__COVERED, UML2Package.LIFELINE__COVERED_BY);
 		}      
 		return covered;
 	}
@@ -163,7 +163,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 */
   public EList settable_getCovereds() {
 		if (covered == null) {
-			covered = new com.hopstepjump.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION_OPERAND__COVERED, UML2Package.LIFELINE__COVERED_BY);
+			covered = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION_OPERAND__COVERED, UML2Package.LIFELINE__COVERED_BY);
 		}
 		return covered;
 	}
@@ -214,10 +214,10 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 		if (generalOrdering == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		generalOrdering = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING);
+			 		generalOrdering = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING);
 			 		return generalOrdering;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(GeneralOrdering.class, this, UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING);
+			return new com.intrinsarc.emflist.UnmodifiableEList(GeneralOrdering.class, this, UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING);
 		}      
 		return generalOrdering;
 	}
@@ -231,7 +231,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 */
   public EList settable_getGeneralOrderings() {
 		if (generalOrdering == null) {
-			generalOrdering = new com.hopstepjump.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING);
+			generalOrdering = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION_OPERAND__GENERAL_ORDERING);
 		}
 		return generalOrdering;
 	}
@@ -503,10 +503,10 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 		if (fragment == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		fragment = new com.hopstepjump.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION_OPERAND__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_OPERAND);
+			 		fragment = new com.intrinsarc.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION_OPERAND__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_OPERAND);
 			 		return fragment;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(InteractionFragment.class, this, UML2Package.INTERACTION_OPERAND__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_OPERAND);
+			return new com.intrinsarc.emflist.UnmodifiableEList(InteractionFragment.class, this, UML2Package.INTERACTION_OPERAND__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_OPERAND);
 		}      
 		return fragment;
 	}
@@ -520,7 +520,7 @@ public class InteractionOperandImpl extends NamespaceImpl implements Interaction
 	 */
   public EList settable_getFragments() {
 		if (fragment == null) {
-			fragment = new com.hopstepjump.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION_OPERAND__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_OPERAND);
+			fragment = new com.intrinsarc.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION_OPERAND__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_OPERAND);
 		}
 		return fragment;
 	}

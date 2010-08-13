@@ -97,9 +97,9 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (DataTypeImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -121,10 +121,10 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 		if (ownedAttribute == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.DATA_TYPE__OWNED_ATTRIBUTE, UML2Package.PROPERTY__DATATYPE);
+			 		ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.DATA_TYPE__OWNED_ATTRIBUTE, UML2Package.PROPERTY__DATATYPE);
 			 		return ownedAttribute;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Property.class, this, UML2Package.DATA_TYPE__OWNED_ATTRIBUTE, UML2Package.PROPERTY__DATATYPE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Property.class, this, UML2Package.DATA_TYPE__OWNED_ATTRIBUTE, UML2Package.PROPERTY__DATATYPE);
 		}      
 		return ownedAttribute;
 	}
@@ -138,7 +138,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	 */
   public EList settable_getOwnedAttributes() {
 		if (ownedAttribute == null) {
-			ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.DATA_TYPE__OWNED_ATTRIBUTE, UML2Package.PROPERTY__DATATYPE);
+			ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.DATA_TYPE__OWNED_ATTRIBUTE, UML2Package.PROPERTY__DATATYPE);
 		}
 		return ownedAttribute;
 	}
@@ -217,10 +217,10 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 		if (ownedOperation == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedOperation = new com.hopstepjump.emflist.PersistentEList(Operation.class, this, UML2Package.DATA_TYPE__OWNED_OPERATION, UML2Package.OPERATION__DATATYPE);
+			 		ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.DATA_TYPE__OWNED_OPERATION, UML2Package.OPERATION__DATATYPE);
 			 		return ownedOperation;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Operation.class, this, UML2Package.DATA_TYPE__OWNED_OPERATION, UML2Package.OPERATION__DATATYPE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Operation.class, this, UML2Package.DATA_TYPE__OWNED_OPERATION, UML2Package.OPERATION__DATATYPE);
 		}      
 		return ownedOperation;
 	}
@@ -234,7 +234,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	 */
   public EList settable_getOwnedOperations() {
 		if (ownedOperation == null) {
-			ownedOperation = new com.hopstepjump.emflist.PersistentEList(Operation.class, this, UML2Package.DATA_TYPE__OWNED_OPERATION, UML2Package.OPERATION__DATATYPE);
+			ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.DATA_TYPE__OWNED_OPERATION, UML2Package.OPERATION__DATATYPE);
 		}
 		return ownedOperation;
 	}

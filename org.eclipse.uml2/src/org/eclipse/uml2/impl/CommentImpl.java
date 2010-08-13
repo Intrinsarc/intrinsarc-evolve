@@ -173,9 +173,9 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (CommentImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -227,10 +227,10 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 		if (annotatedElement == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		annotatedElement = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.COMMENT__ANNOTATED_ELEMENT);
+			 		annotatedElement = new com.intrinsarc.emflist.PersistentEList(Element.class, this, UML2Package.COMMENT__ANNOTATED_ELEMENT);
 			 		return annotatedElement;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Element.class, this, UML2Package.COMMENT__ANNOTATED_ELEMENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Element.class, this, UML2Package.COMMENT__ANNOTATED_ELEMENT);
 		}      
 		return annotatedElement;
 	}
@@ -244,7 +244,7 @@ public class CommentImpl extends TemplateableElementImpl implements Comment {
 	 */
   public EList settable_getAnnotatedElements() {
 		if (annotatedElement == null) {
-			annotatedElement = new com.hopstepjump.emflist.PersistentEList(Element.class, this, UML2Package.COMMENT__ANNOTATED_ELEMENT);
+			annotatedElement = new com.intrinsarc.emflist.PersistentEList(Element.class, this, UML2Package.COMMENT__ANNOTATED_ELEMENT);
 		}
 		return annotatedElement;
 	}

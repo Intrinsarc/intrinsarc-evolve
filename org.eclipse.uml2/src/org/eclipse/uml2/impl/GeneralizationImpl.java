@@ -113,9 +113,9 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (GeneralizationImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -278,10 +278,10 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 		if (generalizationSet == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		generalizationSet = new com.hopstepjump.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.GENERALIZATION__GENERALIZATION_SET, UML2Package.GENERALIZATION_SET__GENERALIZATION);
+			 		generalizationSet = new com.intrinsarc.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.GENERALIZATION__GENERALIZATION_SET, UML2Package.GENERALIZATION_SET__GENERALIZATION);
 			 		return generalizationSet;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(GeneralizationSet.class, this, UML2Package.GENERALIZATION__GENERALIZATION_SET, UML2Package.GENERALIZATION_SET__GENERALIZATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(GeneralizationSet.class, this, UML2Package.GENERALIZATION__GENERALIZATION_SET, UML2Package.GENERALIZATION_SET__GENERALIZATION);
 		}      
 		return generalizationSet;
 	}
@@ -295,7 +295,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 */
   public EList settable_getGeneralizationSets() {
 		if (generalizationSet == null) {
-			generalizationSet = new com.hopstepjump.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.GENERALIZATION__GENERALIZATION_SET, UML2Package.GENERALIZATION_SET__GENERALIZATION);
+			generalizationSet = new com.intrinsarc.emflist.PersistentEList(GeneralizationSet.class, this, UML2Package.GENERALIZATION__GENERALIZATION_SET, UML2Package.GENERALIZATION_SET__GENERALIZATION);
 		}
 		return generalizationSet;
 	}

@@ -51,7 +51,7 @@ import org.eclipse.uml2.common.util.CacheAdapter;
 
 import org.eclipse.uml2.internal.operation.NamedElementOperations;
 
-import com.hopstepjump.notifications.*;
+import com.intrinsarc.notifications.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -190,9 +190,9 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (NamedElementImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -296,10 +296,10 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 		if (clientDependency == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY, UML2Package.DEPENDENCY__CLIENT);
+			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY, UML2Package.DEPENDENCY__CLIENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY, UML2Package.DEPENDENCY__CLIENT);
 		}      
 		return clientDependency;
 	}
@@ -313,7 +313,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 */
   public EList settable_getClientDependencies() {
 		if (clientDependency == null) {
-			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY, UML2Package.DEPENDENCY__CLIENT);
+			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
 	}
@@ -456,10 +456,10 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 		if (ownedAnonymousDependencies == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedAnonymousDependencies = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES);
+			 		ownedAnonymousDependencies = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES);
 			 		return ownedAnonymousDependencies;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES);
 		}      
 		return ownedAnonymousDependencies;
 	}
@@ -473,7 +473,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 */
 	public EList settable_getOwnedAnonymousDependencies() {
 		if (ownedAnonymousDependencies == null) {
-			ownedAnonymousDependencies = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES);
+			ownedAnonymousDependencies = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__OWNED_ANONYMOUS_DEPENDENCIES);
 		}
 		return ownedAnonymousDependencies;
 	}
@@ -552,10 +552,10 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 		if (reverseDependencies == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		reverseDependencies = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__REVERSE_DEPENDENCIES);
+			 		reverseDependencies = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__REVERSE_DEPENDENCIES);
 			 		return reverseDependencies;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__REVERSE_DEPENDENCIES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__REVERSE_DEPENDENCIES);
 		}      
 		return reverseDependencies;
 	}
@@ -569,7 +569,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 */
 	public EList settable_getReverseDependencies() {
 		if (reverseDependencies == null) {
-			reverseDependencies = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__REVERSE_DEPENDENCIES);
+			reverseDependencies = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.NAMED_ELEMENT__REVERSE_DEPENDENCIES);
 		}
 		return reverseDependencies;
 	}
@@ -620,10 +620,10 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 		if (reverseGeneralizations == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		reverseGeneralizations = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.NAMED_ELEMENT__REVERSE_GENERALIZATIONS);
+			 		reverseGeneralizations = new com.intrinsarc.emflist.PersistentEList(Generalization.class, this, UML2Package.NAMED_ELEMENT__REVERSE_GENERALIZATIONS);
 			 		return reverseGeneralizations;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Generalization.class, this, UML2Package.NAMED_ELEMENT__REVERSE_GENERALIZATIONS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Generalization.class, this, UML2Package.NAMED_ELEMENT__REVERSE_GENERALIZATIONS);
 		}      
 		return reverseGeneralizations;
 	}
@@ -637,7 +637,7 @@ public abstract class NamedElementImpl extends TemplateableElementImpl implement
 	 */
 	public EList settable_getReverseGeneralizations() {
 		if (reverseGeneralizations == null) {
-			reverseGeneralizations = new com.hopstepjump.emflist.PersistentEList(Generalization.class, this, UML2Package.NAMED_ELEMENT__REVERSE_GENERALIZATIONS);
+			reverseGeneralizations = new com.intrinsarc.emflist.PersistentEList(Generalization.class, this, UML2Package.NAMED_ELEMENT__REVERSE_GENERALIZATIONS);
 		}
 		return reverseGeneralizations;
 	}

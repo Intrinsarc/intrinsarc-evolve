@@ -110,9 +110,9 @@ public class ExpansionRegionImpl extends StructuredActivityNodeImpl implements E
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ExpansionRegionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -163,10 +163,10 @@ public class ExpansionRegionImpl extends StructuredActivityNodeImpl implements E
 		if (outputElement == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		outputElement = new com.hopstepjump.emflist.PersistentEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__OUTPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_OUTPUT);
+			 		outputElement = new com.intrinsarc.emflist.PersistentEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__OUTPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_OUTPUT);
 			 		return outputElement;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__OUTPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_OUTPUT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__OUTPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_OUTPUT);
 		}      
 		return outputElement;
 	}
@@ -180,7 +180,7 @@ public class ExpansionRegionImpl extends StructuredActivityNodeImpl implements E
 	 */
   public EList settable_getOutputElements() {
 		if (outputElement == null) {
-			outputElement = new com.hopstepjump.emflist.PersistentEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__OUTPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_OUTPUT);
+			outputElement = new com.intrinsarc.emflist.PersistentEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__OUTPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_OUTPUT);
 		}
 		return outputElement;
 	}
@@ -231,10 +231,10 @@ public class ExpansionRegionImpl extends StructuredActivityNodeImpl implements E
 		if (inputElement == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		inputElement = new com.hopstepjump.emflist.PersistentEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__INPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_INPUT);
+			 		inputElement = new com.intrinsarc.emflist.PersistentEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__INPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_INPUT);
 			 		return inputElement;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__INPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_INPUT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__INPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_INPUT);
 		}      
 		return inputElement;
 	}
@@ -248,7 +248,7 @@ public class ExpansionRegionImpl extends StructuredActivityNodeImpl implements E
 	 */
   public EList settable_getInputElements() {
 		if (inputElement == null) {
-			inputElement = new com.hopstepjump.emflist.PersistentEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__INPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_INPUT);
+			inputElement = new com.intrinsarc.emflist.PersistentEList(ExpansionNode.class, this, UML2Package.EXPANSION_REGION__INPUT_ELEMENT, UML2Package.EXPANSION_NODE__REGION_AS_INPUT);
 		}
 		return inputElement;
 	}

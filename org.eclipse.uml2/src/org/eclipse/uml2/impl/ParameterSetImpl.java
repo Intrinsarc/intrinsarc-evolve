@@ -91,9 +91,9 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ParameterSetImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -115,10 +115,10 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 		if (parameter == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		parameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.PARAMETER_SET__PARAMETER, UML2Package.PARAMETER__PARAMETER_SET);
+			 		parameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.PARAMETER_SET__PARAMETER, UML2Package.PARAMETER__PARAMETER_SET);
 			 		return parameter;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Parameter.class, this, UML2Package.PARAMETER_SET__PARAMETER, UML2Package.PARAMETER__PARAMETER_SET);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Parameter.class, this, UML2Package.PARAMETER_SET__PARAMETER, UML2Package.PARAMETER__PARAMETER_SET);
 		}      
 		return parameter;
 	}
@@ -132,7 +132,7 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 */
   public EList settable_getParameters() {
 		if (parameter == null) {
-			parameter = new com.hopstepjump.emflist.PersistentEList(Parameter.class, this, UML2Package.PARAMETER_SET__PARAMETER, UML2Package.PARAMETER__PARAMETER_SET);
+			parameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.PARAMETER_SET__PARAMETER, UML2Package.PARAMETER__PARAMETER_SET);
 		}
 		return parameter;
 	}
@@ -183,10 +183,10 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 		if (condition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		condition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.PARAMETER_SET__CONDITION);
+			 		condition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.PARAMETER_SET__CONDITION);
 			 		return condition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.PARAMETER_SET__CONDITION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Constraint.class, this, UML2Package.PARAMETER_SET__CONDITION);
 		}      
 		return condition;
 	}
@@ -200,7 +200,7 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 */
   public EList settable_getConditions() {
 		if (condition == null) {
-			condition = new com.hopstepjump.emflist.PersistentEList(Constraint.class, this, UML2Package.PARAMETER_SET__CONDITION);
+			condition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.PARAMETER_SET__CONDITION);
 		}
 		return condition;
 	}

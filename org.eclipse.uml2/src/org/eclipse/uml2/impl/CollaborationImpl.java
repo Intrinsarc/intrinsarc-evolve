@@ -238,9 +238,9 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (CollaborationImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -262,10 +262,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (ownedAttribute == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.COLLABORATION__OWNED_ATTRIBUTE);
+			 		ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.COLLABORATION__OWNED_ATTRIBUTE);
 			 		return ownedAttribute;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Property.class, this, UML2Package.COLLABORATION__OWNED_ATTRIBUTE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Property.class, this, UML2Package.COLLABORATION__OWNED_ATTRIBUTE);
 		}      
 		return ownedAttribute;
 	}
@@ -279,7 +279,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
   public EList settable_getOwnedAttributes() {
 		if (ownedAttribute == null) {
-			ownedAttribute = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.COLLABORATION__OWNED_ATTRIBUTE);
+			ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.COLLABORATION__OWNED_ATTRIBUTE);
 		}
 		return ownedAttribute;
 	}
@@ -479,10 +479,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (ownedConnector == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		ownedConnector = new com.hopstepjump.emflist.PersistentEList(Connector.class, this, UML2Package.COLLABORATION__OWNED_CONNECTOR);
+			 		ownedConnector = new com.intrinsarc.emflist.PersistentEList(Connector.class, this, UML2Package.COLLABORATION__OWNED_CONNECTOR);
 			 		return ownedConnector;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Connector.class, this, UML2Package.COLLABORATION__OWNED_CONNECTOR);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Connector.class, this, UML2Package.COLLABORATION__OWNED_CONNECTOR);
 		}      
 		return ownedConnector;
 	}
@@ -496,7 +496,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
   public EList settable_getOwnedConnectors() {
 		if (ownedConnector == null) {
-			ownedConnector = new com.hopstepjump.emflist.PersistentEList(Connector.class, this, UML2Package.COLLABORATION__OWNED_CONNECTOR);
+			ownedConnector = new com.intrinsarc.emflist.PersistentEList(Connector.class, this, UML2Package.COLLABORATION__OWNED_CONNECTOR);
 		}
 		return ownedConnector;
 	}
@@ -547,10 +547,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaDeletedAttributes == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaDeletedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES);
+			 		deltaDeletedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES);
 			 		return deltaDeletedAttributes;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedAttribute.class, this, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaDeletedAttribute.class, this, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES);
 		}      
 		return deltaDeletedAttributes;
 	}
@@ -564,7 +564,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaDeletedAttributes() {
 		if (deltaDeletedAttributes == null) {
-			deltaDeletedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES);
+			deltaDeletedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES);
 		}
 		return deltaDeletedAttributes;
 	}
@@ -628,10 +628,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaReplacedAttributes == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaReplacedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES);
+			 		deltaReplacedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES);
 			 		return deltaReplacedAttributes;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedAttribute.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaReplacedAttribute.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES);
 		}      
 		return deltaReplacedAttributes;
 	}
@@ -645,7 +645,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaReplacedAttributes() {
 		if (deltaReplacedAttributes == null) {
-			deltaReplacedAttributes = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES);
+			deltaReplacedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_ATTRIBUTES);
 		}
 		return deltaReplacedAttributes;
 	}
@@ -709,10 +709,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaDeletedPorts == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaDeletedPorts = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedPort.class, this, UML2Package.COLLABORATION__DELTA_DELETED_PORTS);
+			 		deltaDeletedPorts = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedPort.class, this, UML2Package.COLLABORATION__DELTA_DELETED_PORTS);
 			 		return deltaDeletedPorts;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedPort.class, this, UML2Package.COLLABORATION__DELTA_DELETED_PORTS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaDeletedPort.class, this, UML2Package.COLLABORATION__DELTA_DELETED_PORTS);
 		}      
 		return deltaDeletedPorts;
 	}
@@ -726,7 +726,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaDeletedPorts() {
 		if (deltaDeletedPorts == null) {
-			deltaDeletedPorts = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedPort.class, this, UML2Package.COLLABORATION__DELTA_DELETED_PORTS);
+			deltaDeletedPorts = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedPort.class, this, UML2Package.COLLABORATION__DELTA_DELETED_PORTS);
 		}
 		return deltaDeletedPorts;
 	}
@@ -790,10 +790,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaReplacedPorts == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaReplacedPorts = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedPort.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS);
+			 		deltaReplacedPorts = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedPort.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS);
 			 		return deltaReplacedPorts;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedPort.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaReplacedPort.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS);
 		}      
 		return deltaReplacedPorts;
 	}
@@ -807,7 +807,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaReplacedPorts() {
 		if (deltaReplacedPorts == null) {
-			deltaReplacedPorts = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedPort.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS);
+			deltaReplacedPorts = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedPort.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_PORTS);
 		}
 		return deltaReplacedPorts;
 	}
@@ -871,10 +871,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaDeletedConnectors == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaDeletedConnectors = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedConnector.class, this, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS);
+			 		deltaDeletedConnectors = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedConnector.class, this, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS);
 			 		return deltaDeletedConnectors;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedConnector.class, this, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaDeletedConnector.class, this, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS);
 		}      
 		return deltaDeletedConnectors;
 	}
@@ -888,7 +888,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaDeletedConnectors() {
 		if (deltaDeletedConnectors == null) {
-			deltaDeletedConnectors = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedConnector.class, this, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS);
+			deltaDeletedConnectors = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedConnector.class, this, UML2Package.COLLABORATION__DELTA_DELETED_CONNECTORS);
 		}
 		return deltaDeletedConnectors;
 	}
@@ -952,10 +952,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaReplacedConnectors == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaReplacedConnectors = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedConnector.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS);
+			 		deltaReplacedConnectors = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedConnector.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS);
 			 		return deltaReplacedConnectors;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedConnector.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaReplacedConnector.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS);
 		}      
 		return deltaReplacedConnectors;
 	}
@@ -969,7 +969,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaReplacedConnectors() {
 		if (deltaReplacedConnectors == null) {
-			deltaReplacedConnectors = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedConnector.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS);
+			deltaReplacedConnectors = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedConnector.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_CONNECTORS);
 		}
 		return deltaReplacedConnectors;
 	}
@@ -1033,10 +1033,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaDeletedOperations == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaDeletedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS);
+			 		deltaDeletedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS);
 			 		return deltaDeletedOperations;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedOperation.class, this, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaDeletedOperation.class, this, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS);
 		}      
 		return deltaDeletedOperations;
 	}
@@ -1050,7 +1050,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaDeletedOperations() {
 		if (deltaDeletedOperations == null) {
-			deltaDeletedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS);
+			deltaDeletedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.COLLABORATION__DELTA_DELETED_OPERATIONS);
 		}
 		return deltaDeletedOperations;
 	}
@@ -1114,10 +1114,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaReplacedOperations == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaReplacedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS);
+			 		deltaReplacedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS);
 			 		return deltaReplacedOperations;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedOperation.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaReplacedOperation.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS);
 		}      
 		return deltaReplacedOperations;
 	}
@@ -1131,7 +1131,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaReplacedOperations() {
 		if (deltaReplacedOperations == null) {
-			deltaReplacedOperations = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS);
+			deltaReplacedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_OPERATIONS);
 		}
 		return deltaReplacedOperations;
 	}
@@ -1195,10 +1195,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaDeletedTraces == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaDeletedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
+			 		deltaDeletedTraces = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
 			 		return deltaDeletedTraces;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
 		}      
 		return deltaDeletedTraces;
 	}
@@ -1212,7 +1212,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaDeletedTraces() {
 		if (deltaDeletedTraces == null) {
-			deltaDeletedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
+			deltaDeletedTraces = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.COLLABORATION__DELTA_DELETED_TRACES);
 		}
 		return deltaDeletedTraces;
 	}
@@ -1276,10 +1276,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (deltaReplacedTraces == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deltaReplacedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
+			 		deltaReplacedTraces = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
 			 		return deltaReplacedTraces;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
 		}      
 		return deltaReplacedTraces;
 	}
@@ -1293,7 +1293,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
 	public EList settable_getDeltaReplacedTraces() {
 		if (deltaReplacedTraces == null) {
-			deltaReplacedTraces = new com.hopstepjump.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
+			deltaReplacedTraces = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.COLLABORATION__DELTA_REPLACED_TRACES);
 		}
 		return deltaReplacedTraces;
 	}
@@ -1386,10 +1386,10 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 		if (collaborationRole == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		collaborationRole = new com.hopstepjump.emflist.PersistentEList(ConnectableElement.class, this, UML2Package.COLLABORATION__COLLABORATION_ROLE);
+			 		collaborationRole = new com.intrinsarc.emflist.PersistentEList(ConnectableElement.class, this, UML2Package.COLLABORATION__COLLABORATION_ROLE);
 			 		return collaborationRole;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ConnectableElement.class, this, UML2Package.COLLABORATION__COLLABORATION_ROLE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ConnectableElement.class, this, UML2Package.COLLABORATION__COLLABORATION_ROLE);
 		}      
 		return collaborationRole;
 	}
@@ -1403,7 +1403,7 @@ public class CollaborationImpl extends BehavioredClassifierImpl implements Colla
 	 */
   public EList settable_getCollaborationRoles() {
 		if (collaborationRole == null) {
-			collaborationRole = new com.hopstepjump.emflist.PersistentEList(ConnectableElement.class, this, UML2Package.COLLABORATION__COLLABORATION_ROLE);
+			collaborationRole = new com.intrinsarc.emflist.PersistentEList(ConnectableElement.class, this, UML2Package.COLLABORATION__COLLABORATION_ROLE);
 		}
 		return collaborationRole;
 	}

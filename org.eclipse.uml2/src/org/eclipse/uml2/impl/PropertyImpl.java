@@ -322,9 +322,9 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (PropertyImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -483,10 +483,10 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 		if (end == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		end = new com.hopstepjump.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.PROPERTY__END, UML2Package.CONNECTOR_END__ROLE);
+			 		end = new com.intrinsarc.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.PROPERTY__END, UML2Package.CONNECTOR_END__ROLE);
 			 		return end;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ConnectorEnd.class, this, UML2Package.PROPERTY__END, UML2Package.CONNECTOR_END__ROLE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ConnectorEnd.class, this, UML2Package.PROPERTY__END, UML2Package.CONNECTOR_END__ROLE);
 		}      
 		return end;
 	}
@@ -500,7 +500,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 	 */
   public EList settable_getEnds() {
 		if (end == null) {
-			end = new com.hopstepjump.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.PROPERTY__END, UML2Package.CONNECTOR_END__ROLE);
+			end = new com.intrinsarc.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.PROPERTY__END, UML2Package.CONNECTOR_END__ROLE);
 		}
 		return end;
 	}
@@ -536,10 +536,10 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 		if (deployment == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		deployment = new com.hopstepjump.emflist.PersistentEList(Deployment.class, this, UML2Package.PROPERTY__DEPLOYMENT, new int[] {UML2Package.PROPERTY__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			 		deployment = new com.intrinsarc.emflist.PersistentEList(Deployment.class, this, UML2Package.PROPERTY__DEPLOYMENT, new int[] {UML2Package.PROPERTY__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 			 		return deployment;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Deployment.class, this, UML2Package.PROPERTY__DEPLOYMENT, new int[] {UML2Package.PROPERTY__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Deployment.class, this, UML2Package.PROPERTY__DEPLOYMENT, new int[] {UML2Package.PROPERTY__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 		}      
 		return deployment;
 	}
@@ -553,7 +553,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 	 */
   public EList settable_getDeployments() {
 		if (deployment == null) {
-			deployment = new com.hopstepjump.emflist.PersistentEList(Deployment.class, this, UML2Package.PROPERTY__DEPLOYMENT, new int[] {UML2Package.PROPERTY__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
+			deployment = new com.intrinsarc.emflist.PersistentEList(Deployment.class, this, UML2Package.PROPERTY__DEPLOYMENT, new int[] {UML2Package.PROPERTY__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 		}
 		return deployment;
 	}
@@ -849,10 +849,10 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 		if (defaultValues == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		defaultValues = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.PROPERTY__DEFAULT_VALUES);
+			 		defaultValues = new com.intrinsarc.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.PROPERTY__DEFAULT_VALUES);
 			 		return defaultValues;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ValueSpecification.class, this, UML2Package.PROPERTY__DEFAULT_VALUES);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ValueSpecification.class, this, UML2Package.PROPERTY__DEFAULT_VALUES);
 		}      
 		return defaultValues;
 	}
@@ -866,7 +866,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 	 */
 	public EList settable_getDefaultValues() {
 		if (defaultValues == null) {
-			defaultValues = new com.hopstepjump.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.PROPERTY__DEFAULT_VALUES);
+			defaultValues = new com.intrinsarc.emflist.PersistentEList(ValueSpecification.class, this, UML2Package.PROPERTY__DEFAULT_VALUES);
 		}
 		return defaultValues;
 	}
@@ -1075,10 +1075,10 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 		if (redefinedProperty == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		redefinedProperty = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__REDEFINED_PROPERTY);
+			 		redefinedProperty = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__REDEFINED_PROPERTY);
 			 		return redefinedProperty;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Property.class, this, UML2Package.PROPERTY__REDEFINED_PROPERTY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Property.class, this, UML2Package.PROPERTY__REDEFINED_PROPERTY);
 		}      
 		return redefinedProperty;
 	}
@@ -1092,7 +1092,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 	 */
   public EList settable_getRedefinedProperties() {
 		if (redefinedProperty == null) {
-			redefinedProperty = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__REDEFINED_PROPERTY);
+			redefinedProperty = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__REDEFINED_PROPERTY);
 		}
 		return redefinedProperty;
 	}
@@ -1143,10 +1143,10 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 		if (subsettedProperty == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		subsettedProperty = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__SUBSETTED_PROPERTY);
+			 		subsettedProperty = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__SUBSETTED_PROPERTY);
 			 		return subsettedProperty;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Property.class, this, UML2Package.PROPERTY__SUBSETTED_PROPERTY);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Property.class, this, UML2Package.PROPERTY__SUBSETTED_PROPERTY);
 		}      
 		return subsettedProperty;
 	}
@@ -1160,7 +1160,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 	 */
   public EList settable_getSubsettedProperties() {
 		if (subsettedProperty == null) {
-			subsettedProperty = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__SUBSETTED_PROPERTY);
+			subsettedProperty = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__SUBSETTED_PROPERTY);
 		}
 		return subsettedProperty;
 	}
@@ -1358,10 +1358,10 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 		if (qualifier == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		qualifier = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__QUALIFIER, UML2Package.PROPERTY__ASSOCIATION_END);
+			 		qualifier = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__QUALIFIER, UML2Package.PROPERTY__ASSOCIATION_END);
 			 		return qualifier;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Property.class, this, UML2Package.PROPERTY__QUALIFIER, UML2Package.PROPERTY__ASSOCIATION_END);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Property.class, this, UML2Package.PROPERTY__QUALIFIER, UML2Package.PROPERTY__ASSOCIATION_END);
 		}      
 		return qualifier;
 	}
@@ -1375,7 +1375,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 	 */
   public EList settable_getQualifiers() {
 		if (qualifier == null) {
-			qualifier = new com.hopstepjump.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__QUALIFIER, UML2Package.PROPERTY__ASSOCIATION_END);
+			qualifier = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.PROPERTY__QUALIFIER, UML2Package.PROPERTY__ASSOCIATION_END);
 		}
 		return qualifier;
 	}
@@ -1581,10 +1581,10 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 		if (clientDependency == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.PROPERTY__CLIENT_DEPENDENCY, new int[] {UML2Package.PROPERTY__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.PROPERTY__CLIENT_DEPENDENCY, new int[] {UML2Package.PROPERTY__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.PROPERTY__CLIENT_DEPENDENCY, new int[] {UML2Package.PROPERTY__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Dependency.class, this, UML2Package.PROPERTY__CLIENT_DEPENDENCY, new int[] {UML2Package.PROPERTY__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 		}      
 		return clientDependency;
 	}
@@ -1598,7 +1598,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property {
 	 */
   public EList settable_getClientDependencies() {
 		if (clientDependency == null) {
-			clientDependency = new com.hopstepjump.emflist.PersistentEList(Dependency.class, this, UML2Package.PROPERTY__CLIENT_DEPENDENCY, new int[] {UML2Package.PROPERTY__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
+			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.PROPERTY__CLIENT_DEPENDENCY, new int[] {UML2Package.PROPERTY__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
 	}

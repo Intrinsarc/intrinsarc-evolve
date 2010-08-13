@@ -126,9 +126,9 @@ public class ReclassifyObjectActionImpl extends ActionImpl implements Reclassify
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ReclassifyObjectActionImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -179,10 +179,10 @@ public class ReclassifyObjectActionImpl extends ActionImpl implements Reclassify
 		if (oldClassifier == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		oldClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__OLD_CLASSIFIER);
+			 		oldClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__OLD_CLASSIFIER);
 			 		return oldClassifier;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__OLD_CLASSIFIER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__OLD_CLASSIFIER);
 		}      
 		return oldClassifier;
 	}
@@ -196,7 +196,7 @@ public class ReclassifyObjectActionImpl extends ActionImpl implements Reclassify
 	 */
   public EList settable_getOldClassifiers() {
 		if (oldClassifier == null) {
-			oldClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__OLD_CLASSIFIER);
+			oldClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__OLD_CLASSIFIER);
 		}
 		return oldClassifier;
 	}
@@ -247,10 +247,10 @@ public class ReclassifyObjectActionImpl extends ActionImpl implements Reclassify
 		if (newClassifier == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		newClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__NEW_CLASSIFIER);
+			 		newClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__NEW_CLASSIFIER);
 			 		return newClassifier;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__NEW_CLASSIFIER);
+			return new com.intrinsarc.emflist.UnmodifiableEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__NEW_CLASSIFIER);
 		}      
 		return newClassifier;
 	}
@@ -264,7 +264,7 @@ public class ReclassifyObjectActionImpl extends ActionImpl implements Reclassify
 	 */
   public EList settable_getNewClassifiers() {
 		if (newClassifier == null) {
-			newClassifier = new com.hopstepjump.emflist.PersistentEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__NEW_CLASSIFIER);
+			newClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.RECLASSIFY_OBJECT_ACTION__NEW_CLASSIFIER);
 		}
 		return newClassifier;
 	}

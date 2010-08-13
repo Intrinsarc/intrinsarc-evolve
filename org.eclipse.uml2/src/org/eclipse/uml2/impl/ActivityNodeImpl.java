@@ -136,9 +136,9 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ActivityNodeImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -160,10 +160,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 		if (outgoing == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		outgoing = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__OUTGOING, UML2Package.ACTIVITY_EDGE__SOURCE);
+			 		outgoing = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__OUTGOING, UML2Package.ACTIVITY_EDGE__SOURCE);
 			 		return outgoing;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__OUTGOING, UML2Package.ACTIVITY_EDGE__SOURCE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__OUTGOING, UML2Package.ACTIVITY_EDGE__SOURCE);
 		}      
 		return outgoing;
 	}
@@ -177,7 +177,7 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 */
   public EList settable_getOutgoings() {
 		if (outgoing == null) {
-			outgoing = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__OUTGOING, UML2Package.ACTIVITY_EDGE__SOURCE);
+			outgoing = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__OUTGOING, UML2Package.ACTIVITY_EDGE__SOURCE);
 		}
 		return outgoing;
 	}
@@ -228,10 +228,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 		if (incoming == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		incoming = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__INCOMING, UML2Package.ACTIVITY_EDGE__TARGET);
+			 		incoming = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__INCOMING, UML2Package.ACTIVITY_EDGE__TARGET);
 			 		return incoming;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__INCOMING, UML2Package.ACTIVITY_EDGE__TARGET);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__INCOMING, UML2Package.ACTIVITY_EDGE__TARGET);
 		}      
 		return incoming;
 	}
@@ -245,7 +245,7 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 */
   public EList settable_getIncomings() {
 		if (incoming == null) {
-			incoming = new com.hopstepjump.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__INCOMING, UML2Package.ACTIVITY_EDGE__TARGET);
+			incoming = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__INCOMING, UML2Package.ACTIVITY_EDGE__TARGET);
 		}
 		return incoming;
 	}
@@ -366,10 +366,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 		if (redefinedElement == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		redefinedElement = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_NODE__REDEFINED_ELEMENT);
+			 		redefinedElement = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_NODE__REDEFINED_ELEMENT);
 			 		return redefinedElement;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.ACTIVITY_NODE__REDEFINED_ELEMENT);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityNode.class, this, UML2Package.ACTIVITY_NODE__REDEFINED_ELEMENT);
 		}      
 		return redefinedElement;
 	}
@@ -383,7 +383,7 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 */
   public EList settable_getRedefinedElements() {
 		if (redefinedElement == null) {
-			redefinedElement = new com.hopstepjump.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_NODE__REDEFINED_ELEMENT);
+			redefinedElement = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_NODE__REDEFINED_ELEMENT);
 		}
 		return redefinedElement;
 	}
@@ -484,10 +484,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 		if (inPartition == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		inPartition = new com.hopstepjump.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_NODE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE);
+			 		inPartition = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_NODE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE);
 			 		return inPartition;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ActivityPartition.class, this, UML2Package.ACTIVITY_NODE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ActivityPartition.class, this, UML2Package.ACTIVITY_NODE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE);
 		}      
 		return inPartition;
 	}
@@ -501,7 +501,7 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 */
   public EList settable_getInPartitions() {
 		if (inPartition == null) {
-			inPartition = new com.hopstepjump.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_NODE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE);
+			inPartition = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_NODE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE);
 		}
 		return inPartition;
 	}
@@ -552,10 +552,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 		if (inInterruptibleRegion == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		inInterruptibleRegion = new com.hopstepjump.emflist.PersistentEList(InterruptibleActivityRegion.class, this, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE);
+			 		inInterruptibleRegion = new com.intrinsarc.emflist.PersistentEList(InterruptibleActivityRegion.class, this, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE);
 			 		return inInterruptibleRegion;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(InterruptibleActivityRegion.class, this, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(InterruptibleActivityRegion.class, this, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE);
 		}      
 		return inInterruptibleRegion;
 	}
@@ -569,7 +569,7 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 */
   public EList settable_getInInterruptibleRegions() {
 		if (inInterruptibleRegion == null) {
-			inInterruptibleRegion = new com.hopstepjump.emflist.PersistentEList(InterruptibleActivityRegion.class, this, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE);
+			inInterruptibleRegion = new com.intrinsarc.emflist.PersistentEList(InterruptibleActivityRegion.class, this, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE);
 		}
 		return inInterruptibleRegion;
 	}

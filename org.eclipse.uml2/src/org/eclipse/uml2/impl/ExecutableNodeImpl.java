@@ -78,9 +78,9 @@ public abstract class ExecutableNodeImpl extends ActivityNodeImpl implements Exe
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (ExecutableNodeImpl.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
 
@@ -102,10 +102,10 @@ public abstract class ExecutableNodeImpl extends ActivityNodeImpl implements Exe
 		if (handler == null) {
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
-			 		handler = new com.hopstepjump.emflist.PersistentEList(ExceptionHandler.class, this, UML2Package.EXECUTABLE_NODE__HANDLER, UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE);
+			 		handler = new com.intrinsarc.emflist.PersistentEList(ExceptionHandler.class, this, UML2Package.EXECUTABLE_NODE__HANDLER, UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE);
 			 		return handler;
 			 }
-			return new com.hopstepjump.emflist.UnmodifiableEList(ExceptionHandler.class, this, UML2Package.EXECUTABLE_NODE__HANDLER, UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE);
+			return new com.intrinsarc.emflist.UnmodifiableEList(ExceptionHandler.class, this, UML2Package.EXECUTABLE_NODE__HANDLER, UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE);
 		}      
 		return handler;
 	}
@@ -119,7 +119,7 @@ public abstract class ExecutableNodeImpl extends ActivityNodeImpl implements Exe
 	 */
   public EList settable_getHandlers() {
 		if (handler == null) {
-			handler = new com.hopstepjump.emflist.PersistentEList(ExceptionHandler.class, this, UML2Package.EXECUTABLE_NODE__HANDLER, UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE);
+			handler = new com.intrinsarc.emflist.PersistentEList(ExceptionHandler.class, this, UML2Package.EXECUTABLE_NODE__HANDLER, UML2Package.EXCEPTION_HANDLER__PROTECTED_NODE);
 		}
 		return handler;
 	}
