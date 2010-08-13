@@ -32,6 +32,8 @@ public class UML2Port extends DEPort
     // if this is a replacement, go a bit higher to get the owner
     if (subject.getOwner() instanceof DeltaReplacedConstituent)
       return getEngine().locateObject(subject.getOwner().getOwner());
+    if (subject.getOwner() == null)
+    	return null;
     return getEngine().locateObject(subject.getOwner());
   }
 

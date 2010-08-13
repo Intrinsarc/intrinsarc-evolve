@@ -22,6 +22,11 @@ public class CheckOnceStrata
 		return false;
 	}
 	
+	public static void isNowWriteable(Package pkg)
+	{
+		checkedOk.remove(pkg);
+	}
+	
 	public static void possiblySetOmitCheck(DEStratum s)
 	{
 		if (isCheckOkStratum(s))

@@ -381,6 +381,10 @@ jump to source integration with eclipse, intellij
 making nice for MacOS
 \end_layout
 
+\begin_layout Itemize
+allow an external port to be a hyperconnector start
+\end_layout
+
 \begin_layout Standard
 
 \series bold

@@ -555,8 +555,8 @@ public class HardcodedFactoryWriter
 		// handle visible ports
 		for (BBSimplePort port : comp.getPorts())
 		{
-			BBSimpleConnector matchingConn = null;
-			int matchingEnd = 0;
+			List<BBSimpleConnector> matchingConn = new ArrayList<BBSimpleConnector>();
+			List<Integer> matchingEnd = new ArrayList<Integer>();
 
 			// get the (hopefully) single connector for this
 			for (BBSimpleConnector conn : factory.getConnectors())
@@ -565,31 +565,33 @@ public class HardcodedFactoryWriter
 				if (end != -1)
 				{
 					// if we already have a match, we have a problem
-					if (matchingConn != null)
-						throw new BackboneGenerationException("Must have a single connector for external port " + port.getName(),
+					if (!port.getProvides().isEmpty()&& !matchingConn.isEmpty())
+						throw new BackboneGenerationException(
+								"Must have a single connector for external provided port: " + port.getName(),
 								comp);
 
-					matchingConn = conn;
-					matchingEnd = end;
+					matchingConn.add(conn);
+					matchingEnd.add(end);
 				}
 			}
-
 			// if we don't have a connector, this is bad
-			if (matchingConn == null)
-				throw new BackboneGenerationException("Cannot find single connector for external port " + port.getName(), comp);
-
-			// the ports must be non-indexed
-			BBSimpleConnectorEnd end = matchingConn.makeSimpleConnectorEnd(1 - matchingEnd);
-			if (port.isIndexed() || end.getPort().isIndexed())
-				throw new BackboneGenerationException("External port cannot be indexed " + port.getName(), comp);
-
-			// write out the port getter or setter
+			if (matchingConn.isEmpty())
+				throw new BackboneGenerationException("Cannot find connector(s) for external port " + port.getName(), comp);
+			
 			String name = upper(port.getRawName());
-			boolean bean = end.getPart().getType().isBean();
-			String partName = namer.getUniqueName(end.getPart());
 
 			for (BBSimpleInterface p : port.getProvides())
 			{
+				// the ports must be non-indexed
+				BBSimpleConnectorEnd end = matchingConn.get(0).makeSimpleConnectorEnd(1 - matchingEnd.get(0));
+				if (port.isIndexed() || end.getPort().isIndexed())
+					throw new BackboneGenerationException("External port cannot be indexed " + port.getName(), comp);
+
+				// write out the port getter or setter
+				boolean bean = end.getPart().getType().isBean();
+				String partName = namer.getUniqueName(end.getPart());
+
+				
 				String fullName = partName + "_" + getAfterLastDot(p.getImplementationClassName());
 				String desiredName = fullName;
 				if (suppressInterfaceOnMethod)
@@ -612,21 +614,42 @@ public class HardcodedFactoryWriter
 			for (BBSimpleInterface r : port.getRequires())
 			{
 				String desiredName = "set" + name;
-				String fullName = partName + "_" + getAfterLastDot(r.getImplementationClassName());
+				String fullName = namer.getUniqueName(
+						matchingConn.get(0).makeSimpleConnectorEnd(0).getPart()) + 
+						"_" +
+						getAfterLastDot(r.getImplementationClassName());
+				
 				String methodName = namer.getUniqueName(fullName, desiredName);
 				c.write("  public void " + methodName + "(" + r.getImplementationClassName() + " val)");
-				if (bean)
-				{
-					// beans only provide themselves...
-					c.write(" { partName" + ".set" + name + "(val); }");
-				}
-				else
-				{
-					String originalImpl = r.getImplementationClassName();
-					String shortOriginalImpl = getAfterLastDot(originalImpl);
-					c.write(" { partName" + "." + methodName + "_" + shortOriginalImpl + "(val); }");
-				}
+				c.write("  { ");
 
+				int lp = 0;
+				for (BBSimpleConnector matchingC : matchingConn)
+				{
+					int matchingE = matchingEnd.get(lp++);
+					
+					// the ports must be non-indexed
+					BBSimpleConnectorEnd end = matchingC.makeSimpleConnectorEnd(1 - matchingE);
+					if (port.isIndexed() || end.getPort().isIndexed())
+						throw new BackboneGenerationException("External port cannot be indexed " + port.getName(), comp);
+	
+					// write out the port getter or setter
+					boolean bean = end.getPart().getType().isBean();
+					String partName = namer.getUniqueName(end.getPart());
+						
+					if (bean)
+					{
+						// beans only provide themselves...
+						c.write(partName + ".set" + name + "(val); ");
+					}
+					else
+					{
+						String originalImpl = r.getImplementationClassName();
+						String shortOriginalImpl = getAfterLastDot(originalImpl);
+						c.write(partName + "." + methodName + "_" + shortOriginalImpl + "(val); ");
+					}
+				}
+				c.write("};");
 				c.newLine();
 			}
 		}
