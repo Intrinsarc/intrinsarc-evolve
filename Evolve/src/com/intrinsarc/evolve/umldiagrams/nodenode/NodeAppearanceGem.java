@@ -187,7 +187,7 @@ public class NodeAppearanceGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.packagenode.PackageAppearanceFacet#setUpSizeInfo(PackageSizeInfo)
+		 * @see com.intrinsarc.jumble.umldiagrams.packagenode.PackageAppearanceFacet#setUpSizeInfo(PackageSizeInfo)
 		 */
 		public BasicNamespaceSizes makeActualSizes(BasicNamespaceSizeInfo info, boolean moveTopLeftIn)
 		{
@@ -297,7 +297,7 @@ public class NodeAppearanceGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.packagenode.PackageAppearanceFacet#getInsideBoxForBoundaryCalculation(UBounds)
+		 * @see com.intrinsarc.jumble.umldiagrams.packagenode.PackageAppearanceFacet#getInsideBoxForBoundaryCalculation(UBounds)
 		 */
 		public UBounds getInsideBoxForBoundaryCalculation(UBounds bounds, double insideTabHeight)
 		{
@@ -305,7 +305,7 @@ public class NodeAppearanceGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.packagenode.PackageAppearanceFacet#formShapeForPreview(UBounds, boolean, UBounds)
+		 * @see com.intrinsarc.jumble.umldiagrams.packagenode.PackageAppearanceFacet#formShapeForPreview(UBounds, boolean, UBounds)
 		 */
 		public Shape formShapeForPreview(UBounds bounds, BasicNamespaceSizes sizes)
 		{

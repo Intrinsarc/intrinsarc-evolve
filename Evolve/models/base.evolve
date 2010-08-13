@@ -1355,32 +1355,32 @@
       <ownedAnonymousDependencies uuid="api-backbone-profile" client="//@childPackages.0/@childPackages.3" dependencyTarget="//@childPackages.0/@childPackages.0"/>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.17" uuid="IRun" name="IRun">
         <appliedBasicStereotypeValues uuid="75ac8385-27ba-40b3-8674-55e3f84c8faf" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="369a3372-0c46-467f-bb33-a219eb290057" body="com.hopstepjump.backbone.runtime.api.IRun"/>
+          <value xsi:type="uml:Expression" uuid="369a3372-0c46-467f-bb33-a219eb290057" body="com.intrinsarc.backbone.runtime.api.IRun"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.17" uuid="ICreate" name="ICreate">
         <appliedBasicStereotypeValues uuid="bfec0f89-9c6e-4854-b77f-ccd12334cac5" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="773bd4a8-c988-4577-b4d8-2e2ef146ef49" body="com.hopstepjump.backbone.runtime.api.ICreate"/>
+          <value xsi:type="uml:Expression" uuid="773bd4a8-c988-4577-b4d8-2e2ef146ef49" body="com.intrinsarc.backbone.runtime.api.ICreate"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.17" uuid="ILifecycle" name="ILifecycle">
         <appliedBasicStereotypeValues uuid="b1794be9-fd72-4c7c-a672-ed4f79cbcfdb" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="6ad1be65-1b75-4b5a-aeaa-74b66fb3c4b2" body="com.hopstepjump.backbone.runtime.api.ILifecycle"/>
+          <value xsi:type="uml:Expression" uuid="6ad1be65-1b75-4b5a-aeaa-74b66fb3c4b2" body="com.intrinsarc.backbone.runtime.api.ILifecycle"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.17" uuid="ITransition" name="ITransition">
         <appliedBasicStereotypeValues uuid="0e062803-5f78-4a80-8172-2e9e0fda1cf2" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="da961582-3761-47df-a1f6-7cca52ca73ee" body="com.hopstepjump.backbone.runtime.api.ITransition"/>
+          <value xsi:type="uml:Expression" uuid="da961582-3761-47df-a1f6-7cca52ca73ee" body="com.intrinsarc.backbone.runtime.api.ITransition"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.17" uuid="ITerminal" name="ITerminal">
         <appliedBasicStereotypeValues uuid="6f30d73f-dd50-4c09-bc36-69e2e6e45ad4" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="4f399a65-ea05-4850-b31d-5320113a85bf" body="com.hopstepjump.backbone.runtime.api.ITerminal"/>
+          <value xsi:type="uml:Expression" uuid="4f399a65-ea05-4850-b31d-5320113a85bf" body="com.intrinsarc.backbone.runtime.api.ITerminal"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.17" uuid="IEvent" name="IEvent">
         <appliedBasicStereotypeValues uuid="7f081018-ba8b-45a7-9fa3-31febe3f7f59" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="dc8a0050-62f0-4d61-89bf-3706541fa4d4" body="com.hopstepjump.backbone.runtime.api.IEvent"/>
+          <value xsi:type="uml:Expression" uuid="dc8a0050-62f0-4d61-89bf-3706541fa4d4" body="com.intrinsarc.backbone.runtime.api.IEvent"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <j_diagramHolder uuid="bb13265a-3f94-475f-962e-031d7cd5d8a9" saveTime="Fri Jul 9, 2010 at 01:33:24 BST" savedBy="Andrew">
@@ -1575,7 +1575,7 @@
       <ownedAnonymousDependencies uuid="implementation-api" client="//@childPackages.0/@childPackages.4" dependencyTarget="//@childPackages.0/@childPackages.3"/>
       <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.18" uuid="Creator" name="Creator" componentKind="normal">
         <appliedBasicStereotypeValues uuid="1318e15e-efd1-463c-92ae-30700823295b" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="7df07ac6-0dbd-4ab1-bb9f-e28e72424c56" body="com.hopstepjump.backbone.runtime.implementation.Creator"/>
+          <value xsi:type="uml:Expression" uuid="7df07ac6-0dbd-4ab1-bb9f-e28e72424c56" body="com.intrinsarc.backbone.runtime.implementation.Creator"/>
         </appliedBasicStereotypeValues>
         <ownedAttribute documentation="The factory number for this factory" uuid="factoryNumber" name="factoryNumber" type="//@childPackages.0/@childPackages.0/@ownedMember.3"/>
         <ownedPort uuid="create" name="create" type="//@childPackages.0/@childPackages.4/@ownedMember.0/@ownedPort.0/@ownedAnonymousType">
@@ -1596,7 +1596,7 @@
       </ownedMember>
       <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.31" uuid="State" name="State" isAbstract="true" componentKind="normal">
         <appliedBasicStereotypeValues uuid="d1420a1f-29d0-481a-b42f-44a3de618deb" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="eb0bc430-cf55-45c6-9f42-6a327f5ccab2" body="com.hopstepjump.backbone.runtime.implementation.State"/>
+          <value xsi:type="uml:Expression" uuid="eb0bc430-cf55-45c6-9f42-6a327f5ccab2" body="com.intrinsarc.backbone.runtime.implementation.State"/>
         </appliedBasicStereotypeValues>
         <ownedPort uuid="in" name="in" type="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.0/@ownedAnonymousType" end="//@childPackages.0/@childPackages.4/@ownedMember.3/@ownedConnector.0/@end.0 //@childPackages.0/@childPackages.4/@ownedMember.4/@ownedConnector.0/@end.0">
           <ownedAnonymousType xsi:type="uml:Class" uuid="d6a8e26d-7ec0-41c2-a819-1d0e20c09dd8" name="(port type)">
@@ -1616,7 +1616,7 @@
       </ownedMember>
       <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.31" uuid="Start" name="Start" clientDependency="//@childPackages.0/@childPackages.4/@ownedMember.3/@ownedAnonymousDependencies.0" componentKind="normal">
         <appliedBasicStereotypeValues uuid="55fa2451-3643-4ca1-a944-d795c4f12e14" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="9febbe30-b6ad-4538-a577-5be7ee1b3f29" body="com.hopstepjump.backbone.runtime.implementation.Terminal"/>
+          <value xsi:type="uml:Expression" uuid="9febbe30-b6ad-4538-a577-5be7ee1b3f29" body="com.intrinsarc.backbone.runtime.implementation.Terminal"/>
         </appliedBasicStereotypeValues>
         <ownedAnonymousDependencies uuid="State-Start" client="//@childPackages.0/@childPackages.4/@ownedMember.3" dependencyTarget="//@childPackages.0/@childPackages.4/@ownedMember.2" resemblance="true"/>
         <ownedConnector uuid="in-out" kind="port_link">
@@ -1642,7 +1642,7 @@
       </ownedMember>
       <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.31" uuid="End" name="End" clientDependency="//@childPackages.0/@childPackages.4/@ownedMember.4/@ownedAnonymousDependencies.0" componentKind="normal">
         <appliedBasicStereotypeValues uuid="add3c9b5-31a3-4d0b-8d62-cebe5b5d8790" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="088a8d78-3520-47c7-96c9-9b038a569bac" body="com.hopstepjump.backbone.runtime.implementation.Terminal"/>
+          <value xsi:type="uml:Expression" uuid="088a8d78-3520-47c7-96c9-9b038a569bac" body="com.intrinsarc.backbone.runtime.implementation.Terminal"/>
         </appliedBasicStereotypeValues>
         <ownedAnonymousDependencies uuid="State-End" client="//@childPackages.0/@childPackages.4/@ownedMember.4" dependencyTarget="//@childPackages.0/@childPackages.4/@ownedMember.2" resemblance="true"/>
         <ownedConnector uuid="in-outa" kind="port_link">
@@ -1702,7 +1702,7 @@
       </ownedMember>
       <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.18" uuid="StateDispatcher" name="StateDispatcher" componentKind="normal">
         <appliedBasicStereotypeValues uuid="a3ecec49-44fe-4b8f-96f4-a16b369b74a8" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="9974860b-4311-4995-8f7e-27061934fa46" body="com.hopstepjump.backbone.runtime.implementation.StateDispatcher"/>
+          <value xsi:type="uml:Expression" uuid="9974860b-4311-4995-8f7e-27061934fa46" body="com.intrinsarc.backbone.runtime.implementation.StateDispatcher"/>
         </appliedBasicStereotypeValues>
         <ownedConnector uuid="dEvents-dDispatch" kind="port_link">
           <end uuid="08786228-574f-4e91-9509-bf566b88ec35" role="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.0"/>

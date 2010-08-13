@@ -12,7 +12,7 @@ public class ExpandedTypeGWTDispatcher implements ExpandedTypeGenerator
 	
 	public String constructClasses()
 	{
-		return ExpandedTypeGWTTerminal.constructClasses(types, "StateDispatcher", "com.hopstepjump.backbone.runtime.api.StateDispatcherMarker");
+		return ExpandedTypeGWTTerminal.constructClasses(types, "StateDispatcher", "com.intrinsarc.backbone.runtime.api.StateDispatcherMarker");
 	}
 
 	public String formConstructionAndRemember(BBSimpleElementRegistry registry, BBSimplePart part, String partName, List<String> profile)
@@ -24,7 +24,7 @@ public class ExpandedTypeGWTDispatcher implements ExpandedTypeGenerator
 				partName,
 				profile,
 				types,
-				"com.hopstepjump.backbone.runtime.api.IStateDispatcher",
+				"com.intrinsarc.backbone.runtime.api.IStateDispatcher",
 				"IEvent",
 				"StateDispatcher");
 	}

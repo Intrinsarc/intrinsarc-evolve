@@ -20,10 +20,10 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
-import com.hopstepjump.notifications.*;
 import com.intrinsarc.gem.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
+import com.intrinsarc.notifications.*;
 import com.intrinsarc.repository.garbagecollector.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;

@@ -3,7 +3,7 @@ stratum implementation
     
     depends-on backbone-profile, api
 {
-    component Creator implementation-class com.hopstepjump.backbone.runtime.implementation.Creator
+    component Creator implementation-class com.intrinsarc.backbone.runtime.implementation.Creator
     {
         attributes:
             factoryNumber: int;
@@ -17,7 +17,7 @@ stratum implementation
             creator is-create-port provides ICreate;
     }
 
-    component State implementation-class com.hopstepjump.backbone.runtime.implementation.State
+    component State implementation-class com.intrinsarc.backbone.runtime.implementation.State
     {
         «state» 
         ports:
@@ -26,7 +26,7 @@ stratum implementation
             events provides IEvent;
     }
 
-    component Start is-normal implementation-class com.hopstepjump.backbone.runtime.implementation.Terminal
+    component Start is-normal implementation-class com.intrinsarc.backbone.runtime.implementation.Terminal
          resembles State
     {
         «state» 
@@ -40,7 +40,7 @@ stratum implementation
             in-out joins in to out;
     }
 
-    component End is-normal implementation-class com.hopstepjump.backbone.runtime.implementation.Terminal
+    component End is-normal implementation-class com.intrinsarc.backbone.runtime.implementation.Terminal
          resembles State
     {
         «state» 
@@ -66,7 +66,7 @@ stratum implementation
             end: End;
     }
 
-    component StateDispatcher implementation-class com.hopstepjump.backbone.runtime.implementation.StateDispatcher
+    component StateDispatcher implementation-class com.intrinsarc.backbone.runtime.implementation.StateDispatcher
     {
         ports:
             dEvents provides IEvent,

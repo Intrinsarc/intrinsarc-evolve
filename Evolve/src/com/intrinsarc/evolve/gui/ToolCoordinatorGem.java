@@ -150,7 +150,7 @@ public final class ToolCoordinatorGem implements Gem
 		}
 		
     /* (non-Javadoc)
-     * @see com.hopstepjump.idraw.foundation.ToolCoordinatorFacet#getMouseMenuLocation()
+     * @see com.intrinsarc.idraw.foundation.ToolCoordinatorFacet#getMouseMenuLocation()
      */
     public UPoint getLastMouseLocation()
     {

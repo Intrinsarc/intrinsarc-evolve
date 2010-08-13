@@ -85,7 +85,7 @@ public class VerticalLayout implements LayoutPolicy
 
 	/**
 	 *@param boxes
-	 *@return @see com.hopstepjump.layout.LayoutPolicy#computeMinimumDimensions(List)
+	 *@return @see com.intrinsarc.layout.LayoutPolicy#computeMinimumDimensions(List)
 	 */
 	public UDimension computeMinimumDimensions(List boxes)
 	{

@@ -172,7 +172,7 @@ public class GrouperSizeInfo implements ContainerSizeInfo
 	}
 
 	/*
-	 * @see com.hopstepjump.idraw.figures.simplecontainernode.ContainerSizeInfo#getMinContentBounds()
+	 * @see com.intrinsarc.idraw.figures.simplecontainernode.ContainerSizeInfo#getMinContentBounds()
 	 */
 	public UBounds getMinContentBounds()
 	{
@@ -180,7 +180,7 @@ public class GrouperSizeInfo implements ContainerSizeInfo
 	}
 
 	/*
-	 * @see com.hopstepjump.idraw.figures.simplecontainernode.ContainerSizeInfo#makeSizes(boolean)
+	 * @see com.intrinsarc.idraw.figures.simplecontainernode.ContainerSizeInfo#makeSizes(boolean)
 	 */
 	public ContainerCalculatedSizes makeSizes(boolean moveTopLeftIn)
 	{

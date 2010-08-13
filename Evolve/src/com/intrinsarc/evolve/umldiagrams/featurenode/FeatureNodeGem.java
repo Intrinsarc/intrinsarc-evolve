@@ -174,7 +174,7 @@ public final class FeatureNodeGem implements Gem
 	  }
 	  
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.featurenode.FeatureComparableFacet#getY()
+		 * @see com.intrinsarc.jumble.umldiagrams.classdiagram.featurenode.FeatureComparableFacet#getY()
 		 */
 		public double getY()
 		{
@@ -412,7 +412,7 @@ public final class FeatureNodeGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
 		 */
 		public boolean acceptsContainer(ContainerFacet container)
 		{

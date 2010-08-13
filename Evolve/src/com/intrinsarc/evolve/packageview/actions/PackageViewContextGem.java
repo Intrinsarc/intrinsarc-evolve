@@ -67,7 +67,7 @@ public class PackageViewContextGem
 	private class SmartMenuContributorFacetImpl implements SmartMenuContributorFacet
 	{
 		/*
-		 * @see com.hopstepjump.swing.smartmenus.SmartMenuContributorFacet#getSmartMenuItems(com.hopstepjump.swing.smartmenus.SmartMenuBarFacet)
+		 * @see com.intrinsarc.swing.smartmenus.SmartMenuContributorFacet#getSmartMenuItems(com.intrinsarc.swing.smartmenus.SmartMenuBarFacet)
 		 */
 		public List<SmartMenuItem> getSmartMenuItems(SmartMenuBarFacet smartMenuBar)
 		{
@@ -177,7 +177,7 @@ public class PackageViewContextGem
     }    	
 		
 		/**
-		 * @see com.hopstepjump.jumble.packageview.ReusableDiagramViewContextFacet#middleButtonPressed(DiagramFacet)
+		 * @see com.intrinsarc.jumble.packageview.ReusableDiagramViewContextFacet#middleButtonPressed(DiagramFacet)
 		 */
 		public void middleButtonPressed(DiagramFacet diagram)
 		{
@@ -188,7 +188,7 @@ public class PackageViewContextGem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.packageview.ReusableDiagramViewContextFacet#addToContextMenu(JPopupMenu)
+		 * @see com.intrinsarc.jumble.packageview.ReusableDiagramViewContextFacet#addToContextMenu(JPopupMenu)
 		 */
 		public void addToContextMenu(JPopupMenu popup, final DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{

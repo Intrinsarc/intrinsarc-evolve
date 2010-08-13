@@ -1,7 +1,7 @@
 load-list
 {
     variables:
-        "BB" = "./tests/com/hopstepjump/backbonetests/loader/backbone-files";
+        "BB" = "./tests/com/intrinsarc/backbonetests/loader/backbone-files";
     directories:
         "test" = "$BB/src/test",
         "backbone" = "$BB/base/backbone",

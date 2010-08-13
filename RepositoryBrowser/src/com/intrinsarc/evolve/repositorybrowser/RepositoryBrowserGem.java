@@ -264,7 +264,7 @@ public class RepositoryBrowserGem implements Gem
     }
 
     /*
-     * @see com.hopstepjump.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#setDetailDivider(double)
+     * @see com.intrinsarc.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#setDetailDivider(double)
      */
     public void setDetailDivider(int size)
     {
@@ -272,7 +272,7 @@ public class RepositoryBrowserGem implements Gem
     }
 
     /*
-     * @see com.hopstepjump.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#setTreeDivider(double)
+     * @see com.intrinsarc.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#setTreeDivider(double)
      */
     public void setTreeDivider(int size)
     {
@@ -280,7 +280,7 @@ public class RepositoryBrowserGem implements Gem
     }
 
     /*
-     * @see com.hopstepjump.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#haveClosed()
+     * @see com.intrinsarc.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#haveClosed()
      */
     public void haveClosed()
     {
@@ -288,7 +288,7 @@ public class RepositoryBrowserGem implements Gem
     }
 
     /*
-     * @see com.hopstepjump.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#haveAlteredAttributes()
+     * @see com.intrinsarc.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#haveAlteredAttributes()
      */
     public void haveAlteredAttributes()
     {
@@ -297,7 +297,7 @@ public class RepositoryBrowserGem implements Gem
     }
 
     /*
-     * @see com.hopstepjump.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#havePristineAttributes()
+     * @see com.intrinsarc.jumble.umltreebrowsers.SubjectRepositoryBrowserFacet#havePristineAttributes()
      */
     public void havePristineAttributes()
     {

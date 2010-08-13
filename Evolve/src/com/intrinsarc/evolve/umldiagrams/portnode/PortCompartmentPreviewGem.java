@@ -260,7 +260,7 @@ public class PortCompartmentPreviewGem implements Gem
 	  }
 	  
 		/**
-		 * @see com.hopstepjump.jumble.foundation.ContainerPreviewFacet#boundsHaveBeenSet(PreviewCacheFacet)
+		 * @see com.intrinsarc.jumble.foundation.ContainerPreviewFacet#boundsHaveBeenSet(PreviewCacheFacet)
 		 */
 		public void boundsHaveBeenSet(UBounds oldBounds, UBounds newBounds, boolean resizedNotMoved)
 		{

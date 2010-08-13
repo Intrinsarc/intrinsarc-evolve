@@ -167,7 +167,7 @@ public class SmartMenuBarGem
 	private class SmartMenuBarFacetImpl implements SmartMenuBarFacet
 	{
 			/*
-		 * @see com.hopstepjump.menubuilder.SmartMenuBarFacet#addSmartMenuContributorFacet(java.lang.String, com.hopstepjump.menubuilder.SmartMenuContributorFacet)
+		 * @see com.intrinsarc.menubuilder.SmartMenuBarFacet#addSmartMenuContributorFacet(java.lang.String, com.intrinsarc.menubuilder.SmartMenuContributorFacet)
 		 */
 		public void addSmartMenuContributorFacet(String name, SmartMenuContributorFacet contributor)
 		{
@@ -176,7 +176,7 @@ public class SmartMenuBarGem
 		}
 
 		/*
-		 * @see com.hopstepjump.menubuilder.SmartMenuBarFacet#removeSmartMenuContributorFacet(java.lang.String)
+		 * @see com.intrinsarc.menubuilder.SmartMenuBarFacet#removeSmartMenuContributorFacet(java.lang.String)
 		 */
 		public void removeSmartMenuContributorFacet(String name)
 		{
@@ -194,7 +194,7 @@ public class SmartMenuBarGem
 		}
 
 		/*
-		 * @see com.hopstepjump.menubuilder.SmartMenuBarFacet#rebuild(javax.swing.JMenuBar)
+		 * @see com.intrinsarc.menubuilder.SmartMenuBarFacet#rebuild(javax.swing.JMenuBar)
 		 */
 		public void rebuild()
 		{

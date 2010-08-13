@@ -23,7 +23,7 @@ import com.intrinsarc.repositorybase.*;
 
 public class BackboneRunner
 {
-  private static final String BACKBONE_INTERPRETER = "com.hopstepjump.backbone.BackboneInterpreter";
+  private static final String BACKBONE_INTERPRETER = "com.intrinsarc.backbone.BackboneInterpreter";
 
   /** to match against any errors */
   private static final Pattern ERROR_PATTERN = Pattern.compile("(.*)\\|(.*) at (.*)\\|.*", Pattern.DOTALL);

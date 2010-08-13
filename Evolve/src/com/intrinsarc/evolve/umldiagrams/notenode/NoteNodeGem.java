@@ -72,7 +72,7 @@ public final class NoteNodeGem implements Gem
   private class NoteNodeFacetImpl implements NoteNodeFacet
   {
     /*
-     * @see com.hopstepjump.jumble.umldiagrams.notenode.NoteNodeFacet#getBoundsAfterExistingContainablesAlter(com.hopstepjump.idraw.foundation.PreviewCacheFacet)
+     * @see com.intrinsarc.jumble.umldiagrams.notenode.NoteNodeFacet#getBoundsAfterExistingContainablesAlter(com.intrinsarc.idraw.foundation.PreviewCacheFacet)
      */
     public UBounds getBoundsAfterExistingContainablesAlter(PreviewCacheFacet previews)
     {
@@ -151,7 +151,7 @@ public final class NoteNodeGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
+     * @see com.intrinsarc.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
      */
     public void addChildPreviewsToCache(PreviewCacheFacet previewCache)
     {
@@ -522,7 +522,7 @@ public final class NoteNodeGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
+     * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
      */
     public FigureFacet getActualFigureForSelection()
     {
@@ -530,7 +530,7 @@ public final class NoteNodeGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
+     * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
      */
     public boolean acceptsContainer(ContainerFacet container)
     {

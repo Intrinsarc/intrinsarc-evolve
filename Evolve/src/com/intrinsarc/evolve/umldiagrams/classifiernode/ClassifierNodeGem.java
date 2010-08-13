@@ -989,7 +989,7 @@ public final class ClassifierNodeGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
 		 */
 		public UDimension getCreationExtent()
 		{
@@ -998,7 +998,7 @@ public final class ClassifierNodeGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
 		 */
 		public FigureFacet getActualFigureForSelection()
 		{
@@ -1836,7 +1836,7 @@ public final class ClassifierNodeGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
 		 */
 		public boolean acceptsContainer(ContainerFacet container)
 		{
@@ -2318,7 +2318,7 @@ public final class ClassifierNodeGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
+		 * @see com.intrinsarc.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
 		 */
 		public void addChildPreviewsToCache(PreviewCacheFacet previewCache)
 		{
@@ -2914,7 +2914,7 @@ public final class ClassifierNodeGem implements Gem
 	}
 
 	/**
-	 * @see com.hopstepjump.jumble.foundation.IFigure#getContainerablePort()
+	 * @see com.intrinsarc.jumble.foundation.IFigure#getContainerablePort()
 	 */
 	public BasicNodeContainerFacet getBasicNodeContainerFacet()
 	{

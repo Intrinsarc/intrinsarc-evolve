@@ -66,7 +66,7 @@ public class PackageViewRegistryGem implements Gem
 
 
 		/**
-		 * @see com.hopstepjump.jumble.packageview.PackageDiagramViewRegistryFacet#openClipboard(String, boolean, boolean)
+		 * @see com.intrinsarc.jumble.packageview.PackageDiagramViewRegistryFacet#openClipboard(String, boolean, boolean)
 		 */
 		public void openClipboard(String name, boolean explicitlyMaximize, boolean closeable, List<DiagramFigureAdornerFacet> adorners, Package possibleFixedPerspective)
 		{
@@ -148,7 +148,7 @@ public class PackageViewRegistryGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.packageview.PackageDiagramViewRegistryFacet#isDiagramEmpty(String)
+		 * @see com.intrinsarc.jumble.packageview.PackageDiagramViewRegistryFacet#isDiagramEmpty(String)
 		 */
 		public boolean isDiagramEmpty(Package pkg)
 		{
@@ -157,7 +157,7 @@ public class PackageViewRegistryGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.packageview.PackageDiagramViewRegistryFacet#getClipboardKeyInterpreter()
+		 * @see com.intrinsarc.jumble.packageview.PackageDiagramViewRegistryFacet#getClipboardKeyInterpreter()
 		 */
 		public KeyInterpreterFacet getClipboardKeyInterpreter()
 		{
@@ -165,7 +165,7 @@ public class PackageViewRegistryGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.packageview.PackageDiagramViewRegistryFacet#getDiagramKeyInterpreter()
+		 * @see com.intrinsarc.jumble.packageview.PackageDiagramViewRegistryFacet#getDiagramKeyInterpreter()
 		 */
 		public KeyInterpreterFacet getDiagramKeyInterpreter()
 		{
@@ -173,7 +173,7 @@ public class PackageViewRegistryGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.packageview.PackageDiagramViewRegistryFacet#getClipboardDiagram(String)
+		 * @see com.intrinsarc.jumble.packageview.PackageDiagramViewRegistryFacet#getClipboardDiagram(String)
 		 */
 		public DiagramFacet getClipboardDiagram(String name)
 		{

@@ -71,7 +71,7 @@ public final class BasicNodeAutoSizedFacetImpl implements BasicNodeAutoSizedFace
 	}
 	
 	/**
-	 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAutoSizedFacet#isAutoSized()
+	 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAutoSizedFacet#isAutoSized()
 	 */
 	public boolean isAutoSized()
 	{

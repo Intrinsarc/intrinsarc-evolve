@@ -15,7 +15,7 @@ public class LoadListParserTests
 	@Test
 	public void TestSimple() throws FileNotFoundException
 	{
-		String file = "tests/com/hopstepjump/backbonetests/parser/simple.loadlist";
+		String file = "tests/com/instrinsarc/backbonetests/parser/simple.loadlist";
 		final Expect ex =
 			new Expect(
 					new Tokenizer(

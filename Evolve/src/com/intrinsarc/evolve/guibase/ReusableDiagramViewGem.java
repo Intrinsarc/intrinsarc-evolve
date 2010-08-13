@@ -363,7 +363,7 @@ public class ReusableDiagramViewGem implements Gem
 		}
 
 		/*
-		 * @see com.hopstepjump.jumble.guibase.ReusableDiagramViewFacet#getCurrentDiagramView()
+		 * @see com.intrinsarc.jumble.guibase.ReusableDiagramViewFacet#getCurrentDiagramView()
 		 */
 		public DiagramViewFacet getCurrentDiagramView()
 		{

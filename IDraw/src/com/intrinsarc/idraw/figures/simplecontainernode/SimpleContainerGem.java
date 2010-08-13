@@ -99,7 +99,7 @@ public final class SimpleContainerGem implements Gem
 	  }
 
 		/**
-		 * @see com.hopstepjump.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
+		 * @see com.intrinsarc.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
 		 */
 		public void addChildPreviewsToCache(PreviewCacheFacet previewCache)
 		{						
@@ -171,7 +171,7 @@ public final class SimpleContainerGem implements Gem
 	  }
 	  
 		/**
-		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
+		 * @see com.intrinsarc.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
 		 */
 		public FigureFacet getActualFigureForSelection()
 		{
@@ -180,7 +180,7 @@ public final class SimpleContainerGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getContextMenu(DiagramView, ToolCoordinator)
+		 * @see com.intrinsarc.jumble.foundation.interfaces.SelectableFigure#getContextMenu(DiagramView, ToolCoordinator)
 		 */
 		public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
@@ -188,7 +188,7 @@ public final class SimpleContainerGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.foundation.interfaces.Figure#getFigureName()
+		 * @see com.intrinsarc.jumble.foundation.interfaces.Figure#getFigureName()
 		 */
 		public String getFigureName()
 		{
@@ -213,7 +213,7 @@ public final class SimpleContainerGem implements Gem
 	  }
 	  
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getAutoSizedBounds(IDiagram)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getAutoSizedBounds(IDiagram)
 		 */
 		public UBounds getAutoSizedBounds(boolean autoSized)
 		{
@@ -221,7 +221,7 @@ public final class SimpleContainerGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
 		 */
 		public UDimension getCreationExtent()
 		{
@@ -229,7 +229,7 @@ public final class SimpleContainerGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
 		 */
 		public boolean acceptsContainer(ContainerFacet container)
 		{
@@ -489,7 +489,7 @@ public final class SimpleContainerGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.simplecontainernode.SimpleContainerFacet#getFigureFacet()
+		 * @see com.intrinsarc.jumble.umldiagrams.classdiagram.simplecontainernode.SimpleContainerFacet#getFigureFacet()
 		 */
 		public FigureFacet getFigureFacet()
 		{
@@ -497,7 +497,7 @@ public final class SimpleContainerGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.classdiagram.simplecontainernode.SimpleContainerFacet#makeCurrentSizeInfo(UBounds)
+		 * @see com.intrinsarc.jumble.umldiagrams.classdiagram.simplecontainernode.SimpleContainerFacet#makeCurrentSizeInfo(UBounds)
 		 */
 		public SimpleContainerSizeInfo makeCurrentSizeInfo(UBounds minContentsBoundsFromPreviews)
 		{
@@ -603,7 +603,7 @@ public final class SimpleContainerGem implements Gem
 	}
 
 	/**
-	 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#setBasicNodeFigureFacet(BasicNodeFigureFacet)
+	 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#setBasicNodeFigureFacet(BasicNodeFigureFacet)
 	 */
   public void connectBasicNodeFigureFacet(BasicNodeFigureFacet figureFacet)
   {

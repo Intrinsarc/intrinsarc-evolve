@@ -50,7 +50,7 @@ public class PackageAppearanceGem implements Gem
 	private class PackageAppearanceFacetImpl implements BasicNamespaceAppearanceFacet
 	{
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.packagenode.PackageAppearanceFacet#formView(PackageSizes, boolean, Color, Color, ClassifierMiniAppearanceFacet, boolean)
+		 * @see com.intrinsarc.jumble.umldiagrams.packagenode.PackageAppearanceFacet#formView(PackageSizes, boolean, Color, Color, ClassifierMiniAppearanceFacet, boolean)
 		 */
 		public ZGroup formView(BasicNamespaceSizes sizes, boolean displayOnlyIcon, Color fillColor, Color lineColor, BasicNamespaceMiniAppearanceFacet miniAppearanceFacet)
 		{
@@ -201,7 +201,7 @@ public class PackageAppearanceGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.packagenode.PackageAppearanceFacet#setUpSizeInfo(PackageSizeInfo)
+		 * @see com.intrinsarc.jumble.umldiagrams.packagenode.PackageAppearanceFacet#setUpSizeInfo(PackageSizeInfo)
 		 */
 		public BasicNamespaceSizes makeActualSizes(BasicNamespaceSizeInfo info, boolean moveTopLeftIn)
 		{
@@ -366,7 +366,7 @@ public class PackageAppearanceGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.packagenode.PackageAppearanceFacet#getInsideBoxForBoundaryCalculation(UBounds)
+		 * @see com.intrinsarc.jumble.umldiagrams.packagenode.PackageAppearanceFacet#getInsideBoxForBoundaryCalculation(UBounds)
 		 */
 		public UBounds getInsideBoxForBoundaryCalculation(UBounds bounds, double insideTabHeight)
 		{
@@ -374,7 +374,7 @@ public class PackageAppearanceGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.umldiagrams.packagenode.PackageAppearanceFacet#formShapeForPreview(UBounds, boolean, UBounds)
+		 * @see com.intrinsarc.jumble.umldiagrams.packagenode.PackageAppearanceFacet#formShapeForPreview(UBounds, boolean, UBounds)
 		 */
 		public Shape formShapeForPreview(UBounds bounds, BasicNamespaceSizes sizes)
 		{

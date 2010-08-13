@@ -44,8 +44,8 @@ public class StateDispatcherGenerator extends Generator
 		if (printWriter == null)
 			return null;
 		ClassSourceFileComposerFactory composerFactory = new ClassSourceFileComposerFactory(packageName, className);
-		composerFactory.addImplementedInterface("com.hopstepjump.backbone.runtime.api.IStateDispatcher");
-		composerFactory.addImport("com.hopstepjump.backbone.runtime.api.*");
+		composerFactory.addImplementedInterface("com.intrinsarc.backbone.runtime.api.IStateDispatcher");
+		composerFactory.addImport("com.intrinsarc.backbone.runtime.api.*");
 		return composerFactory.createSourceWriter(context, printWriter);
 	}
 

@@ -68,7 +68,7 @@ public final class SequenceSectionGem implements Gem
 	private class TextableFacetImpl implements TextableFacet
 	{
 		/**
-		 * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextResizeVetter#getTextBounds(String)
+		 * @see com.intrinsarc.jumble.figurefacilities.textmanipulationbase.TextResizeVetter#getTextBounds(String)
 		 */
 		public UBounds getTextBounds(String text)
 		{
@@ -82,7 +82,7 @@ public final class SequenceSectionGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextResizeVetter#vetTextResizedExtent(String)
+		 * @see com.intrinsarc.jumble.figurefacilities.textmanipulationbase.TextResizeVetter#vetTextResizedExtent(String)
 		 */
 		public UBounds vetTextResizedExtent(String text)
 		{
@@ -98,7 +98,7 @@ public final class SequenceSectionGem implements Gem
 	  }
 	
 		/**
-		 * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
+		 * @see com.intrinsarc.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
 		 */
 		public FigureFacet getFigureFacet()
 		{
@@ -115,14 +115,14 @@ public final class SequenceSectionGem implements Gem
 	private class ResizeVetterFacetImpl implements ResizeVetterFacet
 	{
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#startResizeVet()
+		 * @see com.intrinsarc.jumble.nodefacilities.resizebase.ResizeVetter#startResizeVet()
 		 */
 		public void startResizeVet()
 		{
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#vetResizedBounds(DiagramView, int, UBounds, boolean)
+		 * @see com.intrinsarc.jumble.nodefacilities.resizebase.ResizeVetter#vetResizedBounds(DiagramView, int, UBounds, boolean)
 		 */
 		public UBounds vetResizedBounds(DiagramViewFacet view, int corner, UBounds bounds, boolean fromCentre)
 		{
@@ -130,7 +130,7 @@ public final class SequenceSectionGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.resizebase.ResizeVetter#vetResizedExtent(UBounds)
+		 * @see com.intrinsarc.jumble.nodefacilities.resizebase.ResizeVetter#vetResizedExtent(UBounds)
 		 */
 		public UDimension vetResizedExtent(UBounds bounds)
 		{
@@ -141,7 +141,7 @@ public final class SequenceSectionGem implements Gem
   private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet
   {	
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BaseNodeFigure#getAutoSizedBounds()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BaseNodeFigure#getAutoSizedBounds()
 		 */
 		public UBounds getAutoSizedBounds(boolean autoSized)
 		{
@@ -154,7 +154,7 @@ public final class SequenceSectionGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.foundation.interfaces.Figure#formView()
+		 * @see com.intrinsarc.jumble.foundation.interfaces.Figure#formView()
 		 */
 		public ZNode formView()
 		{
@@ -203,7 +203,7 @@ public final class SequenceSectionGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.foundation.interfaces.Figure#getFigureName()
+		 * @see com.intrinsarc.jumble.foundation.interfaces.Figure#getFigureName()
 		 */
 		public String getFigureName()
 		{
@@ -211,7 +211,7 @@ public final class SequenceSectionGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
+		 * @see com.intrinsarc.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
 		 */
 		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
@@ -241,7 +241,7 @@ public final class SequenceSectionGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
 		 */
 		public FigureFacet getActualFigureForSelection()
 		{
@@ -249,7 +249,7 @@ public final class SequenceSectionGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getContextMenu(IDiagramView, IToolCoordinator)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getContextMenu(IDiagramView, IToolCoordinator)
 		 */
 		public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{
@@ -257,7 +257,7 @@ public final class SequenceSectionGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
 		 */
 		public UDimension getCreationExtent()
 		{
@@ -265,7 +265,7 @@ public final class SequenceSectionGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#makeNodePreviewFigure(PreviewCacheFacet, IDiagram, UPoint, boolean)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#makeNodePreviewFigure(PreviewCacheFacet, IDiagram, UPoint, boolean)
 		 */
 		public PreviewFacet makeNodePreviewFigure(PreviewCacheFacet previews, DiagramFacet diagram, UPoint start, boolean isFocus)
 		{
@@ -276,7 +276,7 @@ public final class SequenceSectionGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
 		 */
 		public boolean acceptsContainer(ContainerFacet container)
 		{

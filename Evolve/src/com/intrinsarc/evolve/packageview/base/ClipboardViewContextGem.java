@@ -50,7 +50,7 @@ public class ClipboardViewContextGem
 	private class ReusableDiagramViewContextFacetImpl implements ReusableDiagramViewContextFacet
 	{
 		/**
-		 * @see com.hopstepjump.jumble.packageview.ReusableDiagramViewContextFacet#getFrameTitle(DiagramFacet)
+		 * @see com.intrinsarc.jumble.packageview.ReusableDiagramViewContextFacet#getFrameTitle(DiagramFacet)
 		 */
 		public String getFrameTitle(DiagramFacet diagram)
 		{
@@ -58,14 +58,14 @@ public class ClipboardViewContextGem
 		}
 				
 		/**
-		 * @see com.hopstepjump.jumble.packageview.ReusableDiagramViewContextFacet#middleButtonPressed(DiagramFacet)
+		 * @see com.intrinsarc.jumble.packageview.ReusableDiagramViewContextFacet#middleButtonPressed(DiagramFacet)
 		 */
 		public void middleButtonPressed(DiagramFacet diagram)
 		{
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.packageview.ReusableDiagramViewContextFacet#addToContextMenu(JPopupMenu)
+		 * @see com.intrinsarc.jumble.packageview.ReusableDiagramViewContextFacet#addToContextMenu(JPopupMenu)
 		 */
 		public void addToContextMenu(JPopupMenu popup, DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
 		{

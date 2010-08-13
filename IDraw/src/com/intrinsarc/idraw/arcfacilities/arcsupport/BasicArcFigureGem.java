@@ -401,7 +401,7 @@ public final class BasicArcFigureGem implements Gem
     }
     
   	/**
-  	 * @see com.hopstepjump.jumble.foundation.FigureFacet#cleanUp()
+  	 * @see com.intrinsarc.jumble.foundation.FigureFacet#cleanUp()
   	 */
   	public void cleanUp()
   	{
@@ -409,7 +409,7 @@ public final class BasicArcFigureGem implements Gem
   	}
   
   	/**
-  	 * @see com.hopstepjump.jumble.foundation.FigureFacet#getDynamicFacet(Class)
+  	 * @see com.intrinsarc.jumble.foundation.FigureFacet#getDynamicFacet(Class)
   	 */
   	public <T extends Facet> T getDynamicFacet(Class<T> facetClass)
   	{
@@ -420,7 +420,7 @@ public final class BasicArcFigureGem implements Gem
   	}
   	
   	/**
-  	 * @see com.hopstepjump.jumble.foundation.FigureFacet#getDiagram()
+  	 * @see com.intrinsarc.jumble.foundation.FigureFacet#getDiagram()
   	 */
   	public DiagramFacet getDiagram()
   	{
@@ -433,7 +433,7 @@ public final class BasicArcFigureGem implements Gem
   	}
   	
   	/**
-  	 * @see com.hopstepjump.jumble.foundation.FigureFacet#hasDynamicFacet(Class)
+  	 * @see com.intrinsarc.jumble.foundation.FigureFacet#hasDynamicFacet(Class)
   	 */
   	public boolean hasDynamicFacet(Class facetClass)
   	{

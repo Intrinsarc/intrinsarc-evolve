@@ -117,7 +117,7 @@ public final class PackageCreatorGem implements Gem
 	  }
     
 		/**
-		 * @see com.hopstepjump.idraw.foundation.PersistentFigureRecreator#getFullName()
+		 * @see com.intrinsarc.idraw.foundation.PersistentFigureRecreator#getFullName()
 		 */
 		public String getRecreatorName()
 		{

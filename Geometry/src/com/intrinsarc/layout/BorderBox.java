@@ -26,7 +26,7 @@ public class BorderBox extends ContainerBox
 	}
 
 	/**
-	 * @see com.hopstepjump.layout.Box#toString(int)
+	 * @see com.intrinsarc.layout.Box#toString(int)
 	 */
 	protected String getType()
 	{

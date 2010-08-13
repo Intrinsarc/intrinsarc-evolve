@@ -400,7 +400,7 @@ final class BasicSelectionFacetImpl implements SelectionFacet
 	}
 
 	/**
-	 * @see com.hopstepjump.idraw.foundation.FigureChosenFacet#isChosen(FigureFacet)
+	 * @see com.intrinsarc.idraw.foundation.FigureChosenFacet#isChosen(FigureFacet)
 	 */
 	public boolean isChosen(FigureFacet figure)
 	{

@@ -154,7 +154,7 @@ public final class BasicDiagramRegistryGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.repository.LRUDiagramCacheFacet#enforceMaxUnmodifiedUnviewedDiagramsLimit()
+     * @see com.intrinsarc.jumble.repository.LRUDiagramCacheFacet#enforceMaxUnmodifiedUnviewedDiagramsLimit()
      */
     public void enforceMaxUnmodifiedUnviewedDiagramsLimit()
     {

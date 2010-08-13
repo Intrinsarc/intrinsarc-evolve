@@ -331,7 +331,7 @@ public final class BasicNamespaceNodeGem implements Gem
 	  }
 	  
 		/**
-		 * @see com.hopstepjump.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
+		 * @see com.intrinsarc.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
 		 */
 		public void addChildPreviewsToCache(PreviewCacheFacet previewCache)
 		{
@@ -624,7 +624,7 @@ public final class BasicNamespaceNodeGem implements Gem
 		}
 	
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
 		 */
 		public UDimension getCreationExtent()
 		{
@@ -632,7 +632,7 @@ public final class BasicNamespaceNodeGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
 		 */
 		public FigureFacet getActualFigureForSelection()
 		{
@@ -640,7 +640,7 @@ public final class BasicNamespaceNodeGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
 		 */
 		public boolean acceptsContainer(ContainerFacet container)
 		{
@@ -840,7 +840,7 @@ public final class BasicNamespaceNodeGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
+		 * @see com.intrinsarc.jumble.figurefacilities.textmanipulationbase.TextableFacet#getFigureFacet()
 		 */
 		public FigureFacet getFigureFacet()
 		{

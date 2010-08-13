@@ -207,22 +207,22 @@
       <ownedAnonymousDependencies uuid="mitchell-6549c56e-5836-4dae-b5d5-7c413355ce56" client="//@childPackages.0/@childPackages.3" dependencyTarget="//@childPackages.0/@childPackages.0"/>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.18" uuid="IRun" name="IRun">
         <appliedBasicStereotypeValues uuid="mitchell-03b5e6a0-90cb-406c-9a8e-dbeaf00684e2" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="mitchell-c6cc5a9e-7fcf-47c0-8fb2-7f9fa9608518" body="com.hopstepjump.backbone.api.IRun"/>
+          <value xsi:type="uml:Expression" uuid="mitchell-c6cc5a9e-7fcf-47c0-8fb2-7f9fa9608518" body="com.intrinsarc.backbone.api.IRun"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.18" uuid="ICreate" name="ICreate">
         <appliedBasicStereotypeValues uuid="mitchell-60198db3-5b50-455d-a187-f62e875c61c3" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="mitchell-348549db-98f0-44cc-8b7c-9afb0e7da692" body="com.hopstepjump.backbone.api.ICreate"/>
+          <value xsi:type="uml:Expression" uuid="mitchell-348549db-98f0-44cc-8b7c-9afb0e7da692" body="com.intrinsarc.backbone.api.ICreate"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <ownedMember xsi:type="uml:Interface" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.18" uuid="ILifecycle" name="ILifecycle">
         <appliedBasicStereotypeValues uuid="mitchell-8f16e03a-9a6e-4aac-a267-ee2d27e85c68" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="mitchell-25ac2564-8a11-4d63-a7b8-ffe64fc3e4e9" body="com.hopstepjump.backbone.api.ILifecycle"/>
+          <value xsi:type="uml:Expression" uuid="mitchell-25ac2564-8a11-4d63-a7b8-ffe64fc3e4e9" body="com.intrinsarc.backbone.api.ILifecycle"/>
         </appliedBasicStereotypeValues>
       </ownedMember>
       <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.19" uuid="Creator" name="Creator" componentKind="normal">
         <appliedBasicStereotypeValues uuid="mitchell-e007d826-54a6-458e-b562-5d2a64418475" property="//@childPackages.0/@childPackages.0/@ownedMember.16/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="mitchell-6954d51b-da16-4e9c-aa69-68d293e84d1b" body="com.hopstepjump.backbone.api.Creator"/>
+          <value xsi:type="uml:Expression" uuid="mitchell-6954d51b-da16-4e9c-aa69-68d293e84d1b" body="com.intrinsarc.backbone.api.Creator"/>
         </appliedBasicStereotypeValues>
         <ownedAttribute documentation="The factory number for this factory" uuid="factory" name="factory" type="//@childPackages.0/@childPackages.0/@ownedMember.3"/>
         <ownedPort uuid="createPort" name="create" type="//@childPackages.0/@childPackages.3/@ownedMember.3/@ownedPort.0/@ownedAnonymousType">

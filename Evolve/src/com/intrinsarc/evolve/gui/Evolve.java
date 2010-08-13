@@ -6,9 +6,7 @@ import java.util.*;
 import javax.swing.*;
 
 import org.eclipse.emf.common.util.*;
-import org.freehep.graphicsio.emf.gdi.*;
 
-import com.hopstepjump.notifications.*;
 import com.intrinsarc.backbone.generator.*;
 import com.intrinsarc.deltaengine.errorchecking.*;
 import com.intrinsarc.evolve.gui.lookandfeel.*;
@@ -19,6 +17,7 @@ import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
+import com.intrinsarc.notifications.*;
 import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;

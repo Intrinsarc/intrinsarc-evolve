@@ -18,7 +18,7 @@ public class SimpleLoaderTests
 	public void loadSimple() throws Exception
 	{
 		// load in a simple program consisting of 2 strata
-		List<BBStratum> strata = BackboneInterpreter.loadSystem(new File("./tests/com/hopstepjump/backbonetests/loader/backbone-files/system.loadlist"), ">>");
+		List<BBStratum> strata = BackboneInterpreter.loadSystem(new File("./tests/com/intrinsarc/backbonetests/loader/backbone-files/system.loadlist"), ">>");
 		
 		// the top strata should be test
 		BBStratum test = strata.get(strata.size() - 1);

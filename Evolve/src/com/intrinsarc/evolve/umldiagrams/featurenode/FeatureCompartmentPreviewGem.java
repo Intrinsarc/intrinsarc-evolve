@@ -103,7 +103,7 @@ public final class FeatureCompartmentPreviewGem implements Gem
 	  }
 
 		/**
-		 * @see com.hopstepjump.jumble.foundation.ContainerPreviewFacet#getPreviewFacet()
+		 * @see com.intrinsarc.jumble.foundation.ContainerPreviewFacet#getPreviewFacet()
 		 */
 		public PreviewFacet getPreviewFacet()
 		{

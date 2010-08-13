@@ -83,7 +83,7 @@ public final class BasicNamespacePreviewGem implements Gem
 	  	return previewFacet;
 	  }
 		/**
-		 * @see com.hopstepjump.jumble.foundation.ContainerPreviewFacet#boundsHaveBeenSet()
+		 * @see com.intrinsarc.jumble.foundation.ContainerPreviewFacet#boundsHaveBeenSet()
 		 */
 		public void boundsHaveBeenSet(UBounds oldBounds, UBounds newBounds, boolean resizedNotMoved)
 		{

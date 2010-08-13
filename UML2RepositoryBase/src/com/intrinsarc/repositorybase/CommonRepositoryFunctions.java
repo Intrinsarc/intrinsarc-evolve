@@ -411,9 +411,9 @@ public class CommonRepositoryFunctions
     api.setReadOnly(true);
     createDependency(uuids, api, profile);
 
-    addInterface(uuids, api, iface, "IRun", implClass, "com.hopstepjump.backbone.runtime.api.IRun");
-    Interface iCreate = addInterface(uuids, api, iface, "ICreate", implClass, "com.hopstepjump.backbone.runtime.api.ICreate");
-    addInterface(uuids, api, iface, "ILifecycle", implClass, "com.hopstepjump.backbone.runtime.api.ILifecycle");
+    addInterface(uuids, api, iface, "IRun", implClass, "com.intrinsarc.backbone.runtime.api.IRun");
+    Interface iCreate = addInterface(uuids, api, iface, "ICreate", implClass, "com.intrinsarc.backbone.runtime.api.ICreate");
+    addInterface(uuids, api, iface, "ILifecycle", implClass, "com.intrinsarc.backbone.runtime.api.ILifecycle");
     
     // implementation for the state pattern and other implementations
     Package impls = backbone.createChildPackages();
@@ -429,7 +429,7 @@ public class CommonRepositoryFunctions
     	createDependency(uuids, backbone, (Package) o);
     
     // make a creator: uuid must be the same as the uuid the factory expander looks for
-    Class creator = addLeaf(uuids, impls, component, "Creator", implClass, "com.hopstepjump.backbone.runtime.implementation.Creator");
+    Class creator = addLeaf(uuids, impls, component, "Creator", implClass, "com.intrinsarc.backbone.runtime.implementation.Creator");
     addAttribute(uuids, creator, "factoryNumber", intType, "The factory number for this factory");
     addPort(uuids, creator, "create", "create", iCreate, null, null, null);
 
@@ -437,9 +437,9 @@ public class CommonRepositoryFunctions
     Stereotype stateStereo = createStereotype(uuids, profile, STATE, "'Class'", "Indicates a component is a state.");
     createResemblance(uuids, component, stateStereo).setDocumentation("A state is a type of component.");
     // create some interfaces
-    Interface transition = addInterface(uuids, api, iface, "ITransition", implClass, "com.hopstepjump.backbone.runtime.api.ITransition");
-    Interface terminal = addInterface(uuids, api, iface, "ITerminal", implClass, "com.hopstepjump.backbone.runtime.api.ITerminal");
-    Interface event = addInterface(uuids, api, iface, "IEvent", implClass, "com.hopstepjump.backbone.runtime.api.IEvent");
+    Interface transition = addInterface(uuids, api, iface, "ITransition", implClass, "com.intrinsarc.backbone.runtime.api.ITransition");
+    Interface terminal = addInterface(uuids, api, iface, "ITerminal", implClass, "com.intrinsarc.backbone.runtime.api.ITerminal");
+    Interface event = addInterface(uuids, api, iface, "IEvent", implClass, "com.intrinsarc.backbone.runtime.api.IEvent");
 
     // create the base factory
     Class baseFactory = addLeaf(uuids, impls, component, FACTORY_BASE, factory, true);
@@ -448,20 +448,20 @@ public class CommonRepositoryFunctions
     create.setKind(PortKind.CREATE_LITERAL);
     
     // create the state classes
-    Class state = addLeaf(uuids, impls, stateStereo, STATE_CLASS, implClass, "com.hopstepjump.backbone.runtime.implementation.State");
+    Class state = addLeaf(uuids, impls, stateStereo, STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.State");
     state.setIsAbstract(true);
     Port in = addPort(uuids, state, "in", "in", transition, null, null, null);
     Port out = addPort(uuids, state, "out", "out", null, transition, null, null);
     Port events = addPort(uuids, state, "events", "events", event, null, null, null);
     // create the start and end terminals
-    Class start = addLeaf(uuids, impls, stateStereo, START_STATE_CLASS, implClass, "com.hopstepjump.backbone.runtime.implementation.Terminal");
+    Class start = addLeaf(uuids, impls, stateStereo, START_STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.Terminal");
     createResemblance(uuids, state, start);
     addPort(uuids, start, "startTerminal", "startTerminal", terminal, null, null, null);
     Port startIn = replacePort(uuids, start, in, "in", transition, null, null, null);
     setUseMethods(uuids, stereoPort, suppressMethodGeneration, startIn);
     createPortLink(uuids, start, in, out);
     deltaDeletePort(uuids, start, events);
-    Class end = addLeaf(uuids, impls, stateStereo, END_STATE_CLASS, implClass, "com.hopstepjump.backbone.runtime.implementation.Terminal");
+    Class end = addLeaf(uuids, impls, stateStereo, END_STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.Terminal");
     createResemblance(uuids, state, end);
     addPort(uuids, end, "endTerminal", "endTerminal", terminal, null, null, null);
     Port endIn = replacePort(uuids, end, in, "in", transition, null, null, null);
@@ -477,7 +477,7 @@ public class CommonRepositoryFunctions
     addPart(uuids, cState, "end", "", end, statePart);
     replacePort(uuids, cState, out, "out", null, transition, 0, 1);
     // create the dispatcher
-    Class stateDispatcher = addLeaf(uuids, impls, component, "StateDispatcher", implClass, "com.hopstepjump.backbone.runtime.implementation.StateDispatcher");
+    Class stateDispatcher = addLeaf(uuids, impls, component, "StateDispatcher", implClass, "com.intrinsarc.backbone.runtime.implementation.StateDispatcher");
     Port dEvents = addPort(uuids, stateDispatcher, "dEvents", "dEvents", event, null, null, null);
     setUseMethods(uuids, stereoPort, suppressMethodGeneration, dEvents);
     Port dDispatch = addPort(uuids, stateDispatcher, "dDispatch", "dDispatch", null, event, 0, -1);

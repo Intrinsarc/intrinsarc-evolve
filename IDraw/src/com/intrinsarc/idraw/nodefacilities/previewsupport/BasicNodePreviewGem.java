@@ -216,7 +216,7 @@ public final class BasicNodePreviewGem implements Gem
 	  }
 
 		/**
-		 * @see com.hopstepjump.jumble.foundation.MainFacet#getDynamicFacet(Class)
+		 * @see com.intrinsarc.jumble.foundation.MainFacet#getDynamicFacet(Class)
 		 */
 		public <T extends Facet> T getDynamicFacet(Class<T> facetClass)
 		{
@@ -228,7 +228,7 @@ public final class BasicNodePreviewGem implements Gem
 
 	
 		/**
-		 * @see com.hopstepjump.jumble.foundation.MainFacet#hasDynamicFacet(Class)
+		 * @see com.intrinsarc.jumble.foundation.MainFacet#hasDynamicFacet(Class)
 		 */
 		public boolean hasDynamicFacet(Class facetClass)
 		{
@@ -236,7 +236,7 @@ public final class BasicNodePreviewGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.previewsupport.PreviewFacet#registerDynamicFacet(Facet, Class)
+		 * @see com.intrinsarc.jumble.nodefacilities.previewsupport.PreviewFacet#registerDynamicFacet(Facet, Class)
 		 */
 		public void registerDynamicFacet(Facet facet, Class facetInterface)
 		{
@@ -257,7 +257,7 @@ public final class BasicNodePreviewGem implements Gem
   private class ContainedPreviewFacetImpl implements ContainedPreviewFacet
   {
 	  /**
-		 * @see com.hopstepjump.jumble.foundation.ContainedPreviewFacet#getPreviewFacet()
+		 * @see com.intrinsarc.jumble.foundation.ContainedPreviewFacet#getPreviewFacet()
 		 */
 		public PreviewFacet getPreviewFacet()
 		{

@@ -254,7 +254,7 @@ public class PortCompartmentGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
+     * @see com.intrinsarc.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
      */
     public void addChildPreviewsToCache(PreviewCacheFacet previewCache)
     {
@@ -317,7 +317,7 @@ public class PortCompartmentGem implements Gem
 		}
 
     /**
-     * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
+     * @see com.intrinsarc.jumble.foundation.interfaces.SelectableFigure#getActualFigureForSelection()
      */
     public FigureFacet getActualFigureForSelection()
     {
@@ -326,7 +326,7 @@ public class PortCompartmentGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.foundation.interfaces.SelectableFigure#getContextMenu(DiagramView,
+     * @see com.intrinsarc.jumble.foundation.interfaces.SelectableFigure#getContextMenu(DiagramView,
      *      ToolCoordinator)
      */
     public JPopupMenu makeContextMenu(DiagramViewFacet diagramView, ToolCoordinatorFacet coordinator)
@@ -335,7 +335,7 @@ public class PortCompartmentGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.foundation.interfaces.Figure#getFigureName()
+     * @see com.intrinsarc.jumble.foundation.interfaces.Figure#getFigureName()
      */
     public String getFigureName()
     {
@@ -358,7 +358,7 @@ public class PortCompartmentGem implements Gem
 
 			return basicGem.getPreviewFacet();
 	  }    /**
-           * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getAutoSizedBounds(IDiagram)
+           * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getAutoSizedBounds(IDiagram)
            */
     public UBounds getAutoSizedBounds(boolean autoSized)
     {
@@ -366,7 +366,7 @@ public class PortCompartmentGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
+     * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
      */
     public UDimension getCreationExtent()
     {
@@ -374,7 +374,7 @@ public class PortCompartmentGem implements Gem
     }
 
     /**
-     * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
+     * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
      */
     public boolean acceptsContainer(ContainerFacet container)
     {
@@ -525,7 +525,7 @@ public class PortCompartmentGem implements Gem
   }
 
   /**
-   * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#setBasicNodeFigureFacet(BasicNodeFigureFacet)
+   * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#setBasicNodeFigureFacet(BasicNodeFigureFacet)
    */
   public void connectBasicNodeFigureFacet(BasicNodeFigureFacet figureFacet)
   {

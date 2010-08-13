@@ -207,7 +207,7 @@ public class OldConnectorArcAppearanceGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
+		 * @see com.intrinsarc.jumble.foundation.ContainerFacet#addChildPreviewsToCache(PreviewCacheFacet)
 		 */
 		public void addChildPreviewsToCache(PreviewCacheFacet previewCache)
 		{
@@ -280,7 +280,7 @@ public class OldConnectorArcAppearanceGem implements Gem
     }
     
   	/**
-  	 * @see com.hopstepjump.jumble.arcfacilities.arcsupport.BasicArcAppearanceFacet#getFigureName()
+  	 * @see com.intrinsarc.jumble.arcfacilities.arcsupport.BasicArcAppearanceFacet#getFigureName()
   	 */
   	public String getFigureName()
   	{

@@ -620,7 +620,7 @@ public class RequirementsFeatureNodeGem implements Gem
 		}
 		
     /**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getCreationExtent()
 		 */
 		public UDimension getCreationExtent()
 		{
@@ -628,7 +628,7 @@ public class RequirementsFeatureNodeGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#getActualFigureForSelection()
 		 */
 		public FigureFacet getActualFigureForSelection()
 		{
@@ -797,7 +797,7 @@ public class RequirementsFeatureNodeGem implements Gem
 		}
 		
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
+		 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeAppearanceFacet#acceptsContainer(ContainerFacet)
 		 */
 		public boolean acceptsContainer(ContainerFacet container)
 		{
@@ -1301,7 +1301,7 @@ public class RequirementsFeatureNodeGem implements Gem
 	}
 
 	/**
-	 * @see com.hopstepjump.jumble.foundation.IFigure#getContainerablePort()
+	 * @see com.intrinsarc.jumble.foundation.IFigure#getContainerablePort()
 	 */
 	public BasicNodeContainerFacet getBasicNodeContainerFacet()
 	{

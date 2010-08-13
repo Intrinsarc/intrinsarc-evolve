@@ -13,7 +13,7 @@ public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 	
 	public String constructClasses()
 	{
-		return constructClasses(types, "Terminal", "com.hopstepjump.backbone.runtime.api.TerminalMarker");
+		return constructClasses(types, "Terminal", "com.intrinsarc.backbone.runtime.api.TerminalMarker");
 	}
 
 	public static String constructClasses(Set<String> types, String suffix, String markerInterface)
@@ -33,7 +33,7 @@ public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 
 	public String formConstructionAndRemember(BBSimpleElementRegistry registry, BBSimplePart part, String partName, List<String> profile)
 	{
-		return formConstruction(registry, Terminal.class.getName(), part, partName, profile, types, "com.hopstepjump.backbone.runtime.api.IStateTerminalComponent", "ITransition", "Terminal");
+		return formConstruction(registry, Terminal.class.getName(), part, partName, profile, types, "com.intrinsarc.backbone.runtime.api.IStateTerminalComponent", "ITransition", "Terminal");
 	}
 	
 	public static String formConstruction(

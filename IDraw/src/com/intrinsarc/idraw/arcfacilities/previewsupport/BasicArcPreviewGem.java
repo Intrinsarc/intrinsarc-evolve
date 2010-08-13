@@ -94,7 +94,7 @@ public final class BasicArcPreviewGem implements Gem
 	  }
 	  
 		/**
-		 * @see com.hopstepjump.jumble.arcfacilities.moving.BasicArcPreviewFacet#getPreviewFacet()
+		 * @see com.intrinsarc.jumble.arcfacilities.moving.BasicArcPreviewFacet#getPreviewFacet()
 		 */
 		public PreviewFacet getPreviewFacet()
 		{

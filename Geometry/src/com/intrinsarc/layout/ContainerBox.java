@@ -94,7 +94,7 @@ public class ContainerBox implements LayoutBox
 	
 	/**
 	 *@param fullSpace
-	 *@see com.hopstepjump.layout.Box#computeLayoutBounds(UBounds)
+	 *@see com.intrinsarc.layout.Box#computeLayoutBounds(UBounds)
 	 */
 	public void computeLayoutBounds(UBounds fullSpace) throws LayoutException
 	{
@@ -106,7 +106,7 @@ public class ContainerBox implements LayoutBox
 	}
 
 	/**
-	 *@return @see com.hopstepjump.layout.Box#getMinimumDimensions()
+	 *@return @see com.intrinsarc.layout.Box#getMinimumDimensions()
 	 */
 	public UDimension getMinimumDimensions()
 	{
@@ -114,7 +114,7 @@ public class ContainerBox implements LayoutBox
 	}
 
 	/**
-	 *@return @see com.hopstepjump.layout.Box#isXExpandable()
+	 *@return @see com.intrinsarc.layout.Box#isXExpandable()
 	 */
 	public boolean isXExpandable()
 	{
@@ -133,7 +133,7 @@ public class ContainerBox implements LayoutBox
 	}
 
 	/**
-	 *@return @see com.hopstepjump.layout.Box#isYExpandable()
+	 *@return @see com.intrinsarc.layout.Box#isYExpandable()
 	 */
 	public boolean isYExpandable()
 	{
@@ -153,7 +153,7 @@ public class ContainerBox implements LayoutBox
 
 	/**
 	 *@param setter
-	 *@see com.hopstepjump.layout.Box#setBoundsInBean(BeanBoundsSetter)
+	 *@see com.intrinsarc.layout.Box#setBoundsInBean(BeanBoundsSetter)
 	 */
 	public void setBoundsInBean(BeanBoundsSetter setter) throws LayoutException
 	{
@@ -194,7 +194,7 @@ public class ContainerBox implements LayoutBox
 	}
 
 	/**
-	 * @see com.hopstepjump.layout.Box#getImmovableBox()
+	 * @see com.intrinsarc.layout.Box#getImmovableBox()
 	 */
 	public LayoutBox getImmovableBox() throws LayoutException
 	{
@@ -218,7 +218,7 @@ public class ContainerBox implements LayoutBox
 	}
 
 	/**
-	 * @see com.hopstepjump.layout.Box#getLayoutBounds()
+	 * @see com.intrinsarc.layout.Box#getLayoutBounds()
 	 */
 	public UBounds getLayoutBounds()
 	{
@@ -226,7 +226,7 @@ public class ContainerBox implements LayoutBox
 	}
 
 	/**
-	 * @see com.hopstepjump.layout.Box#getLayoutBounds(String)
+	 * @see com.intrinsarc.layout.Box#getLayoutBounds(String)
 	 */
 	public UBounds getLayoutBounds(String name)
 	{
@@ -254,7 +254,7 @@ public class ContainerBox implements LayoutBox
 	}
 
 	/**
-	 * @see com.hopstepjump.layout.Box#getName()
+	 * @see com.intrinsarc.layout.Box#getName()
 	 */
 	public String getName()
 	{
@@ -262,7 +262,7 @@ public class ContainerBox implements LayoutBox
 	}
 
 	/**
-	 * @see com.hopstepjump.layout.Box#toString(int)
+	 * @see com.intrinsarc.layout.Box#toString(int)
 	 */
 	public String toString(int level)
 	{

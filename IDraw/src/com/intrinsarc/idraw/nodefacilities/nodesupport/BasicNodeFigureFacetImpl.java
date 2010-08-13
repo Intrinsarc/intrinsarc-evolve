@@ -223,7 +223,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
   }
 
 	/**
-	 * @see com.hopstepjump.jumble.foundation.FigureFacet#getDynamicFacet(Class)
+	 * @see com.intrinsarc.jumble.foundation.FigureFacet#getDynamicFacet(Class)
 	 */
 	public <T extends Facet> T getDynamicFacet(Class<T> facetClass)
 	{
@@ -234,7 +234,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	}
 
 	/**
-	 * @see com.hopstepjump.jumble.foundation.FigureFacet#getDiagram()
+	 * @see com.intrinsarc.jumble.foundation.FigureFacet#getDiagram()
 	 */
 	public DiagramFacet getDiagram()
 	{
@@ -257,7 +257,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	}
 
 	/**
-	 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeFigureFacet#registerFacet(Facet, Class)
+	 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeFigureFacet#registerFacet(Facet, Class)
 	 */
 	public void registerDynamicFacet(Facet facet, Class facetInterface)
 	{
@@ -265,7 +265,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	}
 
 	/**
-	 * @see com.hopstepjump.jumble.foundation.FigureFacet#hasDynamicFacet(Class)
+	 * @see com.intrinsarc.jumble.foundation.FigureFacet#hasDynamicFacet(Class)
 	 */
 	public boolean hasDynamicFacet(Class facetClass)
 	{
@@ -273,7 +273,7 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
 	}
 		
 	/**
-	 * @see com.hopstepjump.jumble.nodefacilities.nodesupport.BasicNodeFigureFacet#getBasicNodeAutoSizedFacet()
+	 * @see com.intrinsarc.jumble.nodefacilities.nodesupport.BasicNodeFigureFacet#getBasicNodeAutoSizedFacet()
 	 */
 	public BasicNodeAutoSizedFacet getBasicNodeAutoSizedFacet()
 	{

@@ -10,7 +10,7 @@ import com.intrinsarc.backbone.parserbase.*;
 
 public class TokenizerTests
 {
-	public static String BASE_DIR = "./tests/com/hopstepjump/backbonetests/parser";
+	public static String BASE_DIR = "./tests/com/intrinsarc/backbonetests/parser";
 	
 	@Test
 	public void testExpectString() throws IOException

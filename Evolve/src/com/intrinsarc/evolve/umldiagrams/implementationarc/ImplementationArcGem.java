@@ -64,7 +64,7 @@ public class ImplementationArcGem implements Gem
 	  }
 	  
 		/**
-		 * @see com.hopstepjump.jumble.arcfacilities.arcsupport.BasicArcAppearanceFacet#getFigureName()
+		 * @see com.intrinsarc.jumble.arcfacilities.arcsupport.BasicArcAppearanceFacet#getFigureName()
 		 */
 		public String getFigureName()
 		{

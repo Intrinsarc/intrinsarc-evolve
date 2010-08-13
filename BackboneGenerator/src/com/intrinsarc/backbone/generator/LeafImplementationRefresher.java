@@ -213,7 +213,7 @@ public class LeafImplementationRefresher
 		}
 
 		// write some import statements
-		writer.write("import com.hopstepjump.backbone.runtime.api.*;");
+		writer.write("import com.intrinsarc.backbone.runtime.api.*;");
 		writer.newLine();
 		writer.newLine();
 		
@@ -412,8 +412,7 @@ public class LeafImplementationRefresher
 		return null;
 	}
 	
-	private static final String JAVA_LANG = "java.lang.";
-	private static final String BB_API = "com.hopstepjump.backbone.runtime.api.";
+	private static final String BB_API = "com.intrinsarc.backbone.runtime.api.";
 	public static String removeRedundantPrefixes(String impl)
 	{    
     if (impl.startsWith(BB_API))

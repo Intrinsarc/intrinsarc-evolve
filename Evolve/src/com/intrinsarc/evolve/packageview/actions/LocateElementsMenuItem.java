@@ -26,7 +26,7 @@ public class LocateElementsMenuItem extends UpdatingJMenuItem
 	}
 
 	/*
-	 * @see com.hopstepjump.swing.enhanced.UpdatingJMenuItem#update(boolean)
+	 * @see com.intrinsarc.swing.enhanced.UpdatingJMenuItem#update(boolean)
 	 */
 	public boolean update()
 	{

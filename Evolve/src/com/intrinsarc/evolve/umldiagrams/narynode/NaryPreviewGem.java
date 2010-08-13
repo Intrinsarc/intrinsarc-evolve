@@ -22,7 +22,7 @@ public final class NaryPreviewGem implements Gem
 	private class BasicNodePreviewAppearanceFacetImpl implements BasicNodePreviewAppearanceFacet
 	{
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.previewsupport.BasicNodePreviewAppearanceFacet#calculateBoundaryPoint(OrientedPoint, boolean, UPoint, UPoint)
+		 * @see com.intrinsarc.jumble.nodefacilities.previewsupport.BasicNodePreviewAppearanceFacet#calculateBoundaryPoint(OrientedPoint, boolean, UPoint, UPoint)
 		 */
 		public UPoint calculateBoundaryPoint(PreviewCacheFacet previews, OrientedPoint oriented, boolean linkFromContained, UPoint boxPoint, UPoint insidePoint, boolean linkStart)
 		{
@@ -31,7 +31,7 @@ public final class NaryPreviewGem implements Gem
 		}
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.previewsupport.BasicNodePreviewAppearanceFacet#formAnchorHighlight(boolean)
+		 * @see com.intrinsarc.jumble.nodefacilities.previewsupport.BasicNodePreviewAppearanceFacet#formAnchorHighlight(boolean)
 		 */
 		public ZNode formAnchorHighlight(boolean showOk)
 		{
@@ -68,7 +68,7 @@ public final class NaryPreviewGem implements Gem
 	  }
 
 		/**
-		 * @see com.hopstepjump.jumble.nodefacilities.previewsupport.BasicNodePreviewAppearanceFacet#formView()
+		 * @see com.intrinsarc.jumble.nodefacilities.previewsupport.BasicNodePreviewAppearanceFacet#formView()
 		 */
 		public ZNode formView(boolean debugOnly)
 		{
