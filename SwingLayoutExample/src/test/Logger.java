@@ -1,6 +1,6 @@
 package test;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 
 public class Logger

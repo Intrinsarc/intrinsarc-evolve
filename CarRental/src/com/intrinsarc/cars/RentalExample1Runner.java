@@ -1,6 +1,6 @@
 package com.intrinsarc.cars;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class RentalExample1Runner
 {
@@ -16,7 +16,7 @@ public class RentalExample1Runner
 	public void removeCars_IRentalCarDetails(com.intrinsarc.cars.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
 	public void setRenters_IRenterDetails(com.intrinsarc.cars.IRenterDetails renters, int index) { PortHelper.fill(this.renters, renters, index); }
 	public void removeRenters_IRenterDetails(com.intrinsarc.cars.IRenterDetails renters) { PortHelper.remove(this.renters, renters); }
-	public com.hopstepjump.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
+	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
 // end generated code
 
 

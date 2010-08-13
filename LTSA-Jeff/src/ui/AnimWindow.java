@@ -7,7 +7,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 import lts.*;
 

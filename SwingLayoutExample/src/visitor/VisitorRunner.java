@@ -2,19 +2,19 @@ package visitor;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class VisitorRunner
 {
 // start generated code
-	private com.hopstepjump.backbone.runtime.api.IRun run_IRunProvided = new IRunRunImpl();
-	public com.hopstepjump.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
+	private com.intrinsarc.backbone.runtime.api.IRun run_IRunProvided = new IRunRunImpl();
+	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
 
 	private visitor.INode node_INodeRequired;
 	public void setNode_INode(visitor.INode node_INodeRequired) { this.node_INodeRequired = node_INodeRequired; }
 
-	private com.hopstepjump.backbone.runtime.api.ICreate create_ICreateRequired;
-	public void setCreate_ICreate(com.hopstepjump.backbone.runtime.api.ICreate create_ICreateRequired) { this.create_ICreateRequired = create_ICreateRequired; }
+	private com.intrinsarc.backbone.runtime.api.ICreate create_ICreateRequired;
+	public void setCreate_ICreate(com.intrinsarc.backbone.runtime.api.ICreate create_ICreateRequired) { this.create_ICreateRequired = create_ICreateRequired; }
 // end generated code
 
 

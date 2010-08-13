@@ -2,20 +2,20 @@ package com.intrinsarc.states;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class Available
 {
 // start generated code
 // attributes
 // required ports
-	private com.hopstepjump.backbone.runtime.api.ITransition out;
+	private com.intrinsarc.backbone.runtime.api.ITransition out;
 // provided ports
 	private ITransitionInImpl in_ITransitionProvided = new ITransitionInImpl();
 	private IRentalEventEventsImpl events_IRentalEventProvided = new IRentalEventEventsImpl();
 // setters and getters
-	public void setOut_ITransition(com.hopstepjump.backbone.runtime.api.ITransition out) { this.out = out; }
-	public com.hopstepjump.backbone.runtime.api.ITransition getIn_ITransition(Class<?> required) { return in_ITransitionProvided; }
+	public void setOut_ITransition(com.intrinsarc.backbone.runtime.api.ITransition out) { this.out = out; }
+	public com.intrinsarc.backbone.runtime.api.ITransition getIn_ITransition(Class<?> required) { return in_ITransitionProvided; }
 	public com.intrinsarc.states.IRentalEvent getEvents_IRentalEvent(Class<?> required) { return events_IRentalEventProvided; }
 // end generated code
 

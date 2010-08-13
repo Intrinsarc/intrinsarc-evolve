@@ -2,13 +2,13 @@ package statetest;
 
 import javax.swing.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class TrafficRunner
 {
 // start generated code
-	private com.hopstepjump.backbone.runtime.api.IRun run_IRunProvided = new IRunRunImpl();
-	public com.hopstepjump.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
+	private com.intrinsarc.backbone.runtime.api.IRun run_IRunProvided = new IRunRunImpl();
+	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
 
 	private javax.swing.JPanel panel_JPanelRequired;
 	public void setPanel_JPanel(javax.swing.JPanel panel_JPanelRequired) { this.panel_JPanelRequired = panel_JPanelRequired; }

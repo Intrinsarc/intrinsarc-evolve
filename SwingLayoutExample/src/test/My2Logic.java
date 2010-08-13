@@ -1,7 +1,8 @@
 package test;
 
 import java.awt.event.*;
-import com.hopstepjump.backbone.runtime.api.*;
+
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class My2Logic
 {

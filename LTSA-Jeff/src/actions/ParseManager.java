@@ -5,7 +5,7 @@ import java.util.*;
 import lts.*;
 import lts.ltl.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class ParseManager
 {
@@ -17,7 +17,7 @@ public class ParseManager
 // required ports
 	private actions.ICoordinator coordinator;
 	private lts.LTSCompiler compiler;
-	private com.hopstepjump.backbone.runtime.api.ICreate compilerCreator;
+	private com.intrinsarc.backbone.runtime.api.ICreate compilerCreator;
 	private actions.INameList target;
 	private actions.INameList check;
 	private actions.INameList liveness;
@@ -35,7 +35,7 @@ public class ParseManager
 	public void setRawIcon(java.lang.String icon) { this.icon.set(icon);}
 	public void setCoordinator_ICoordinator(actions.ICoordinator coordinator) { this.coordinator = coordinator; }
 	public void setCompiler_LTSCompiler(lts.LTSCompiler compiler) { this.compiler = compiler; }
-	public void setCompilerCreator_ICreate(com.hopstepjump.backbone.runtime.api.ICreate compilerCreator) { this.compilerCreator = compilerCreator; }
+	public void setCompilerCreator_ICreate(com.intrinsarc.backbone.runtime.api.ICreate compilerCreator) { this.compilerCreator = compilerCreator; }
 	public void setTarget_INameList(actions.INameList target) { this.target = target; }
 	public void setCheck_INameList(actions.INameList check) { this.check = check; }
 	public void setLiveness_INameList(actions.INameList liveness) { this.liveness = liveness; }

@@ -4,7 +4,7 @@ import java.util.*;
 
 import lts.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 /**
  * represents an Analyser that has been evolved via source control...

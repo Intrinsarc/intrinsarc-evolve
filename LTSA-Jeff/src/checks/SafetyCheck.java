@@ -1,6 +1,6 @@
 package checks;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class SafetyCheck
 {
@@ -15,7 +15,7 @@ public class SafetyCheck
 	private lts.LTSOutput inout_LTSOutputRequired;
 	private actions.ICoordinator coordinator;
 	private actions.IAction compiler;
-	private com.hopstepjump.backbone.runtime.api.ICreate analyserCreator;
+	private com.intrinsarc.backbone.runtime.api.ICreate analyserCreator;
 	private lts.IAnalyser analyser;
 // provided ports
 	private IActionActionImpl action_IActionProvided = new IActionActionImpl();
@@ -34,7 +34,7 @@ public class SafetyCheck
 	public void setInout_LTSOutput(lts.LTSOutput inout_LTSOutputRequired) { this.inout_LTSOutputRequired = inout_LTSOutputRequired; }
 	public void setCoordinator_ICoordinator(actions.ICoordinator coordinator) { this.coordinator = coordinator; }
 	public void setCompiler_IAction(actions.IAction compiler) { this.compiler = compiler; }
-	public void setAnalyserCreator_ICreate(com.hopstepjump.backbone.runtime.api.ICreate analyserCreator) { this.analyserCreator = analyserCreator; }
+	public void setAnalyserCreator_ICreate(com.intrinsarc.backbone.runtime.api.ICreate analyserCreator) { this.analyserCreator = analyserCreator; }
 	public void setAnalyser_IAnalyser(lts.IAnalyser analyser) { this.analyser = analyser; }
 	public actions.IAction getAction_IAction(Class<?> required) { return action_IActionProvided; }
 // end generated code

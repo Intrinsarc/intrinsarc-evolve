@@ -2,7 +2,7 @@ package statetest;
 
 import java.awt.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 
 public class SignalController implements ILifecycle
@@ -17,8 +17,8 @@ public class SignalController implements ILifecycle
 	private statetest.ITrafficSignal signal_ITrafficSignalProvided = new ITrafficSignalSignalImpl();
 	public statetest.ITrafficSignal getSignal_ITrafficSignal(Class<?> required) { return signal_ITrafficSignalProvided; }
 
-	private com.hopstepjump.backbone.runtime.api.ITransition in_ITransitionRequired;
-	public void setIn_ITransition(com.hopstepjump.backbone.runtime.api.ITransition in_ITransitionRequired) { this.in_ITransitionRequired = in_ITransitionRequired; }
+	private com.intrinsarc.backbone.runtime.api.ITransition in_ITransitionRequired;
+	public void setIn_ITransition(com.intrinsarc.backbone.runtime.api.ITransition in_ITransitionRequired) { this.in_ITransitionRequired = in_ITransitionRequired; }
 // end generated code
 
 

@@ -1,6 +1,6 @@
 package statetest;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public interface ITrafficEvent extends IEvent
 {

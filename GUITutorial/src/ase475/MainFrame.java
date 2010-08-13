@@ -4,7 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class MainFrame
 {
@@ -24,7 +24,7 @@ public class MainFrame
 	public void setHeight(Attribute<Integer> height) { this.height = height;}
 	public void setRawTitle(java.lang.String title) { this.title.set(title);}
 	public void setPanel_JPanel(javax.swing.JPanel panel) { this.panel = panel; }
-	public com.hopstepjump.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
+	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
 //end generated code
 
 

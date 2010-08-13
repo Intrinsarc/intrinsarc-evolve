@@ -2,7 +2,7 @@ package com.intrinsarc.factory;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 import com.intrinsarc.cars.*;
 
 public class RentalExample3Runner
@@ -12,15 +12,15 @@ public class RentalExample3Runner
 // required ports
 	private java.util.List<com.intrinsarc.cars.IRentalCarDetails> cars = new java.util.ArrayList<com.intrinsarc.cars.IRentalCarDetails>();
 	private com.intrinsarc.states.IRentalEvent renter;
-	private com.hopstepjump.backbone.runtime.api.ICreate creator;
+	private com.intrinsarc.backbone.runtime.api.ICreate creator;
 // provided ports
 	private IRunRunImpl run_IRunProvided = new IRunRunImpl();
 // setters and getters
 	public void setCars_IRentalCarDetails(com.intrinsarc.cars.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
 	public void removeCars_IRentalCarDetails(com.intrinsarc.cars.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
 	public void setRenter_IRentalEvent(com.intrinsarc.states.IRentalEvent renter) { this.renter = renter; }
-	public void setCreator_ICreate(com.hopstepjump.backbone.runtime.api.ICreate creator) { this.creator = creator; }
-	public com.hopstepjump.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
+	public void setCreator_ICreate(com.intrinsarc.backbone.runtime.api.ICreate creator) { this.creator = creator; }
+	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
 // end generated code
 
 

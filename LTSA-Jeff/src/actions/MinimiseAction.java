@@ -2,7 +2,7 @@ package actions;
 
 import lts.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 
 public class MinimiseAction

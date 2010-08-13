@@ -5,7 +5,7 @@ import java.util.*;
 
 import lts.ltl.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class LTSCompiler implements ILifecycle
 {

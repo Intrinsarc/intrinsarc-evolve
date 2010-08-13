@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import lts.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class WindowManager
 {
@@ -13,7 +13,7 @@ public class WindowManager
 	private Attribute<java.lang.String> name;
 // required ports
 	private ui.IWindow window;
-	private com.hopstepjump.backbone.runtime.api.ICreate create;
+	private com.intrinsarc.backbone.runtime.api.ICreate create;
 // provided ports
 	private IWindowProxyImpl proxy_IWindowProvided = new IWindowProxyImpl();
 // setters and getters
@@ -21,7 +21,7 @@ public class WindowManager
 	public void setName(Attribute<java.lang.String> name) { this.name = name;}
 	public void setRawName(java.lang.String name) { this.name.set(name);}
 	public void setWindow_IWindow(ui.IWindow window) { this.window = window; }
-	public void setCreate_ICreate(com.hopstepjump.backbone.runtime.api.ICreate create) { this.create = create; }
+	public void setCreate_ICreate(com.intrinsarc.backbone.runtime.api.ICreate create) { this.create = create; }
 	public ui.IWindow getProxy_IWindow(Class<?> required) { return proxy_IWindowProvided; }
 // end generated code
 	private Object createHandle;

@@ -2,7 +2,7 @@ package com.intrinsarc.states;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 import com.intrinsarc.cars.*;
 
 public class RentalExample2Runner
@@ -19,7 +19,7 @@ public class RentalExample2Runner
 	public void removeCars_IRentalCarDetails(com.intrinsarc.cars.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
 	public void setRentalStates_IRentalEvent(com.intrinsarc.states.IRentalEvent rentalStates, int index) { PortHelper.fill(this.rentalStates, rentalStates, index); }
 	public void removeRentalStates_IRentalEvent(com.intrinsarc.states.IRentalEvent rentalStates) { PortHelper.remove(this.rentalStates, rentalStates); }
-	public com.hopstepjump.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
+	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
 // end generated code
 
 

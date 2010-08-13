@@ -2,7 +2,7 @@ package actions;
 
 import lts.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class CompileManager
 {
@@ -17,7 +17,7 @@ public class CompileManager
 	private actions.INameList target;
 	private actions.IAction parser;
 	private lts.LTSCompiler compiler;
-	private com.hopstepjump.backbone.runtime.api.ICreate createCompiler;
+	private com.intrinsarc.backbone.runtime.api.ICreate createCompiler;
 // provided ports
 	private IActionActionImpl action_IActionProvided = new IActionActionImpl();
 // setters and getters
@@ -35,7 +35,7 @@ public class CompileManager
 	public void setTarget_INameList(actions.INameList target) { this.target = target; }
 	public void setParser_IAction(actions.IAction parser) { this.parser = parser; }
 	public void setCompiler_LTSCompiler(lts.LTSCompiler compiler) { this.compiler = compiler; }
-	public void setCreateCompiler_ICreate(com.hopstepjump.backbone.runtime.api.ICreate createCompiler) { this.createCompiler = createCompiler; }
+	public void setCreateCompiler_ICreate(com.intrinsarc.backbone.runtime.api.ICreate createCompiler) { this.createCompiler = createCompiler; }
 	public actions.IAction getAction_IAction(Class<?> required) { return action_IActionProvided; }
 // end generated code
 

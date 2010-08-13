@@ -8,7 +8,7 @@ import javax.swing.*;
 
 import lts.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 import custom.*;
 
@@ -28,7 +28,7 @@ public class ExecuteCheck
 	private actions.IAction compiler;
 	private lts.IAnalyser analyser;
 	private ui.IAnimWindow animator;
-	private com.hopstepjump.backbone.runtime.api.ICreate animatorCreator;
+	private com.intrinsarc.backbone.runtime.api.ICreate animatorCreator;
 	private javax.swing.JCheckBoxMenuItem autorunOption;
 // provided ports
 	private IActionActionImpl action_IActionProvided = new IActionActionImpl();
@@ -54,7 +54,7 @@ public class ExecuteCheck
 	public void setCompiler_IAction(actions.IAction compiler) { this.compiler = compiler; }
 	public void setAnalyser_IAnalyser(lts.IAnalyser analyser) { this.analyser = analyser; }
 	public void setAnimator_IAnimWindow(ui.IAnimWindow animator) { this.animator = animator; }
-	public void setAnimatorCreator_ICreate(com.hopstepjump.backbone.runtime.api.ICreate animatorCreator) { this.animatorCreator = animatorCreator; }
+	public void setAnimatorCreator_ICreate(com.intrinsarc.backbone.runtime.api.ICreate animatorCreator) { this.animatorCreator = animatorCreator; }
 	public void setAutorunOption_JCheckBoxMenuItem(javax.swing.JCheckBoxMenuItem autorunOption) { this.autorunOption = autorunOption; }
 	public actions.IAction getAction_IAction(Class<?> required) { return action_IActionProvided; }
 	public java.awt.event.ActionListener getAutorunOption_ActionListener(Class<?> required) { return autorunOption_ActionListenerProvided; }

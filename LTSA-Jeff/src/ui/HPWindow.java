@@ -18,7 +18,7 @@ import lts.*;
 import lts.ltl.*;
 import actions.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 import com.jtattoo.plaf.*;
 import com.jtattoo.plaf.smart.*;
 
@@ -69,7 +69,7 @@ public class HPWindow {
 	public void setParser_IAction(actions.IAction parser) { this.parser = parser; }
 	public void setChecks_IAction(actions.IAction checks, int index) { PortHelper.fill(this.checks, checks, index); }
 	public void removeChecks_IAction(actions.IAction checks) { PortHelper.remove(this.checks, checks); }
-	public com.hopstepjump.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
+	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
 	public java.awt.event.ActionListener getOptions_ActionListener(Class<?> required, int index) { int ind = PortHelper.fill(options_ActionListenerProvided, null, index); if (options_ActionListenerProvided.get(ind) == null) options_ActionListenerProvided.add(ind, new ActionListenerOptionsImpl()); return options_ActionListenerProvided.get(ind); }
 	public java.awt.event.ActionListener getBigFont_ActionListener(Class<?> required) { return bigFont_ActionListenerProvided; }
 	public lts.LTSOutput getInout_LTSOutput(Class<?> required) { return inout_LTSOutputProvided; }

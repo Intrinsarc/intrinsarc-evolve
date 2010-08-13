@@ -2,7 +2,7 @@ package test;
 
 import javax.swing.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class Gui1Runner
 {
@@ -13,8 +13,8 @@ public class Gui1Runner
 
 	private javax.swing.JComponent component_JComponentRequired;
 	public void setComponent_JComponent(javax.swing.JComponent component_JComponentRequired) { this.component_JComponentRequired = component_JComponentRequired; }
-	private com.hopstepjump.backbone.runtime.api.IRun run_IRunProvided = new IRunRunImpl();
-	public com.hopstepjump.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
+	private com.intrinsarc.backbone.runtime.api.IRun run_IRunProvided = new IRunRunImpl();
+	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
 // end generated code
 
 

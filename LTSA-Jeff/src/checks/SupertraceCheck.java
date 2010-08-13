@@ -2,7 +2,7 @@ package checks;
 
 import lts.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class SupertraceCheck
 {
@@ -16,7 +16,7 @@ public class SupertraceCheck
 	private lts.LTSInput inout;
 	private lts.LTSOutput inout_LTSOutputRequired;
 	private actions.ICoordinator coordinator;
-	private com.hopstepjump.backbone.runtime.api.ICreate analyserCreator;
+	private com.intrinsarc.backbone.runtime.api.ICreate analyserCreator;
 	private lts.IAnalyser analyser;
 	private actions.IAction compiler;
 // provided ports
@@ -35,7 +35,7 @@ public class SupertraceCheck
 	public void setInout_LTSInput(lts.LTSInput inout) { this.inout = inout; }
 	public void setInout_LTSOutput(lts.LTSOutput inout_LTSOutputRequired) { this.inout_LTSOutputRequired = inout_LTSOutputRequired; }
 	public void setCoordinator_ICoordinator(actions.ICoordinator coordinator) { this.coordinator = coordinator; }
-	public void setAnalyserCreator_ICreate(com.hopstepjump.backbone.runtime.api.ICreate analyserCreator) { this.analyserCreator = analyserCreator; }
+	public void setAnalyserCreator_ICreate(com.intrinsarc.backbone.runtime.api.ICreate analyserCreator) { this.analyserCreator = analyserCreator; }
 	public void setAnalyser_IAnalyser(lts.IAnalyser analyser) { this.analyser = analyser; }
 	public void setCompiler_IAction(actions.IAction compiler) { this.compiler = compiler; }
 	public actions.IAction getAction_IAction(Class<?> required) { return action_IActionProvided; }

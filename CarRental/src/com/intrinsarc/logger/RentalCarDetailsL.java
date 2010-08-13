@@ -2,7 +2,7 @@ package com.intrinsarc.logger;
 
 import java.util.*;
 
-import com.hopstepjump.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class RentalCarDetailsL
 {
