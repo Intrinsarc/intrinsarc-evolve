@@ -21,7 +21,7 @@ public class UML2Enhancer
         "EListClone"
     };    
     for (String className : classNames)
-      Enhancer.enhance("com.hopstepjump.emflist.Persistent" + className);
+      Enhancer.enhance("com.intrinsarc.emflist.Persistent" + className);
     
     
     // enhance the UML2 enumeration classes

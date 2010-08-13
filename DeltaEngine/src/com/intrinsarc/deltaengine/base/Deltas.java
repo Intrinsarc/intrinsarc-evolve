@@ -42,7 +42,7 @@ public class Deltas implements IDeltas
   }
   
   /* (non-Javadoc)
-	 * @see com.hopstepjump.deltaengine.base.IDeltas#isWellFormed(com.hopstepjump.deltaengine.base.DEPackage)
+	 * @see com.intrinsarc.deltaengine.base.IDeltas#isWellFormed(com.intrinsarc.deltaengine.base.DEPackage)
 	 */
   public Set<ErrorDescription> isWellFormed(DEStratum perspective)
   {
@@ -71,7 +71,7 @@ public class Deltas implements IDeltas
   }
   
   /* (non-Javadoc)
-	 * @see com.hopstepjump.deltaengine.base.IDeltas#getConstituents(com.hopstepjump.deltaengine.base.DEPackage)
+	 * @see com.intrinsarc.deltaengine.base.IDeltas#getConstituents(com.intrinsarc.deltaengine.base.DEPackage)
 	 */
   public Set<DeltaPair> getConstituents(DEStratum perspective)
   {
@@ -79,7 +79,7 @@ public class Deltas implements IDeltas
   }
 
 	/* (non-Javadoc)
-	 * @see com.hopstepjump.deltaengine.base.IDeltas#getConstituents(com.hopstepjump.deltaengine.base.DEPackage, boolean)
+	 * @see com.intrinsarc.deltaengine.base.IDeltas#getConstituents(com.intrinsarc.deltaengine.base.DEPackage, boolean)
 	 */
 	public Set<DeltaPair> getConstituents(DEStratum perspective, boolean omitSynthetics)
   {
@@ -144,7 +144,7 @@ public class Deltas implements IDeltas
   }
   
   /* (non-Javadoc)
-	 * @see com.hopstepjump.deltaengine.base.IDeltas#getPairs(com.hopstepjump.deltaengine.base.DEPackage, com.hopstepjump.deltaengine.base.DeltaPairTypeEnum)
+	 * @see com.intrinsarc.deltaengine.base.IDeltas#getPairs(com.intrinsarc.deltaengine.base.DEPackage, com.intrinsarc.deltaengine.base.DeltaPairTypeEnum)
 	 */
   public Set<DeltaPair> getPairs(DEStratum perspective, DeltaPairTypeEnum toGet)
   {
@@ -403,7 +403,7 @@ public class Deltas implements IDeltas
   }
 
 	/* (non-Javadoc)
-	 * @see com.hopstepjump.deltaengine.base.IDeltas#getAddObjects()
+	 * @see com.intrinsarc.deltaengine.base.IDeltas#getAddObjects()
 	 */
 	public Set<DeltaPair> getAddObjects()
 	{
@@ -411,7 +411,7 @@ public class Deltas implements IDeltas
 	}
 
 	/* (non-Javadoc)
-	 * @see com.hopstepjump.deltaengine.base.IDeltas#getDeleteObjects()
+	 * @see com.intrinsarc.deltaengine.base.IDeltas#getDeleteObjects()
 	 */
 	public Set<String> getDeleteObjects()
 	{
@@ -419,7 +419,7 @@ public class Deltas implements IDeltas
 	}
 
 	/* (non-Javadoc)
-	 * @see com.hopstepjump.deltaengine.base.IDeltas#getReplaceObjects()
+	 * @see com.intrinsarc.deltaengine.base.IDeltas#getReplaceObjects()
 	 */
 	public Set<DeltaPair> getReplaceObjects()
 	{
