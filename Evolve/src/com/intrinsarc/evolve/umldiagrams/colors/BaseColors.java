@@ -8,14 +8,12 @@ import com.intrinsarc.idraw.foundation.persistence.*;
 
 public class BaseColors
 {
-  public static final Preference COMPONENT_COLOR = new Preference("Colors", "Default component color", new PersistentProperty(new Color(210, 210, 235)));
-  public static final Preference PART_COLOR = new Preference("Colors", "Default part color", new PersistentProperty(new Color(200, 200, 227)));
+  public static final Preference COMPONENT_COLOR = new Preference("Colors", "Default component/part color", new PersistentProperty(new Color(210, 210, 235)));
   public static final Preference PRIMITIVE_COLOR = new Preference("Colors", "Default primitive color", new PersistentProperty(new Color(180, 180, 255)));
   public static final Preference CLASS_COLOR = new Preference("Colors", "Default class color", new PersistentProperty(Color.LIGHT_GRAY));
   public static final Preference FACTORY_COLOR = new Preference("Colors", "Default factory color", new PersistentProperty(Color.WHITE));
   public static final Preference PLACEHOLDER_COLOR = new Preference("Colors", "Default placeholder color", new PersistentProperty(Color.LIGHT_GRAY));
-  public static final Preference STATE_COLOR = new Preference("Colors", "Default state color", new PersistentProperty(new Color(240, 200, 200)));
-  public static final Preference STATE_PART_COLOR = new Preference("Colors", "Default state part color", new PersistentProperty(new Color(240, 200, 200)));
+  public static final Preference STATE_COLOR = new Preference("Colors", "Default state/state part color", new PersistentProperty(new Color(240, 200, 200)));
   public static final Preference REQUIREMENTS_FEATURE_COLOR = new Preference("Colors", "Default requirements feature color", new PersistentProperty(Color.LIGHT_GRAY));
   public static final Preference PACKAGE_COLOR = new Preference("Colors", "Default package color", new PersistentProperty(new Color(224, 224, 210)));
   public static final Preference STRATUM_COLOR = new Preference("Colors", "Default stratum color", new PersistentProperty(new Color(224, 207, 207)));
@@ -48,9 +46,7 @@ public class BaseColors
 	{
 		PreferenceType colorType = new PreferenceTypeColor();
 	  GlobalPreferences.preferences.addPreferenceSlot(COMPONENT_COLOR, colorType,
-	    "The default color for components.");
-	  GlobalPreferences.preferences.addPreferenceSlot(PART_COLOR, colorType,
-    	"The default color for parts.");
+	    "The default color for components and parts.");
 	  GlobalPreferences.preferences.addPreferenceSlot(CLASS_COLOR, colorType,
   	"The default color for classes.");
 	  GlobalPreferences.preferences.addPreferenceSlot(REQUIREMENTS_FEATURE_COLOR, colorType,
@@ -68,9 +64,7 @@ public class BaseColors
 	  GlobalPreferences.preferences.addPreferenceSlot(MODEL_COLOR, colorType,
 	  	"The default color for models.");
 	  GlobalPreferences.preferences.addPreferenceSlot(STATE_COLOR, colorType,
-    	"The default color for states.");
-	  GlobalPreferences.preferences.addPreferenceSlot(STATE_PART_COLOR, colorType,
-    	"The default color for state parts.");
+    	"The default color for states and state parts.");
 	  GlobalPreferences.preferences.addPreferenceSlot(NOTE_COLOR, colorType,
     	"The default color for notes.");
 	  GlobalPreferences.preferences.addPreferenceSlot(PORT_COLOR, colorType,

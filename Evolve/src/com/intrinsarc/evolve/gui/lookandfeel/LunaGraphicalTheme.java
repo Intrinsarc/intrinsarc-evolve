@@ -16,7 +16,6 @@ public class LunaGraphicalTheme implements GraphicalTheme
   {
     // setup the look and feel properties    
     Properties props = SmartGraphicalTheme.setOptions(subtheme);
-    changeWindowIcons();
 
     // set the theme properties
     LunaLookAndFeel.setTheme(subtheme);
@@ -25,15 +24,6 @@ public class LunaGraphicalTheme implements GraphicalTheme
     // select the Look and Feel
     UIManager.setLookAndFeel(LunaLookAndFeel.class.getName());
   }
-
-  public static void changeWindowIcons()
-  {
-    UIManager.put("InternalFrame.iconifyIcon", loadIcon("jt-minimize.png"));
-    UIManager.put("InternalFrame.maximizeIcon", loadIcon("jt-maximize.png"));
-    UIManager.put("InternalFrame.minimizeIcon", loadIcon("jt-restore.png"));
-    UIManager.put("InternalFrame.closeIcon", loadIcon("jt-close.png"));
-  }
-
 
   private static ImageIcon loadIcon(String iconName)
   {

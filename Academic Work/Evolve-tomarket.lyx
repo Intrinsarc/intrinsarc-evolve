@@ -1,4 +1,4 @@
-#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -305,15 +305,46 @@ attribute issues (aliasing, defaults, replace of attr with default
 \end_layout
 
 \begin_layout Enumerate
-hanging on load (!), key strokes not registering
-\end_layout
 
-\begin_layout Enumerate
+\color green
 remap of remap, remap in general
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 provided interface problem when require + provide not in immediate hierarchy
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+no need for index coming from factory even into ordered ports
+\end_layout
+
+\begin_layout Enumerate
+deleting indexed provided ports: hardcoded + reflection
+\end_layout
+
+\begin_layout Enumerate
+no hyperport ends needed! still use hyperport start though - important to
+ make this a bit difficult
+\end_layout
+
+\begin_layout Enumerate
+= for slots in hardcoded version just takes default
+\end_layout
+
+\begin_layout Enumerate
+---
+\end_layout
+
+\begin_layout Enumerate
+problem with error adorner and undo
+\end_layout
+
+\begin_layout Enumerate
+hanging on load (!), key strokes not registering
 \end_layout
 
 \begin_layout Enumerate
@@ -324,15 +355,15 @@ provided interface problem when require + provide not in immediate hierarchy
 visual lock problems (possibly move to deleteduuids)
 \end_layout
 
-\begin_layout Enumerate
-fix performance issues + memory leaks when loading a new project in import
- using jprofiler
-\end_layout
-
 \begin_layout Standard
 
 \series bold
 Next up:
+\end_layout
+
+\begin_layout Itemize
+fix editing + positioning of connector ends -- tie into visual display on
+ actual line?
 \end_layout
 
 \begin_layout Itemize
@@ -344,33 +375,29 @@ persistent factory state for deletion after persisting
 \end_layout
 
 \begin_layout Itemize
-jar deployment + editing off deployed jars.
- also allowing modelling changes using jars for model.
-\begin_inset Newline newline
-\end_inset
+quick color palette for changing colors of component + changing whole component
+ at a time (of same part type)
+\end_layout
 
-(5 days)
+\begin_layout Itemize
+
+\series bold
+concurrency via actors and possibly concurrent state machines + expanded
+ state mechanisms such as history
+\end_layout
+
+\begin_layout Itemize
+jar deployment + editing off deployed jars.
+ also allowing modelling changes using jars for model
+\end_layout
+
+\begin_layout Itemize
+slightly slow diagrams in complex situations == profile using jprofiler
+ + fix mem problems when loading new model
 \end_layout
 
 \begin_layout Itemize
 online update + web machinery?
-\end_layout
-
-\begin_layout Itemize
-fix editing + positioning of connector ends
-\begin_inset Newline newline
-\end_inset
-
-(2 days)
-\end_layout
-
-\begin_layout Itemize
-concurrency via actors and possibly concurrent state machines + expanded
- state mechanisms such as history
-\begin_inset Newline newline
-\end_inset
-
-slightly slow diagrams in complex situations == profile using jprofiler
 \end_layout
 
 \begin_layout Itemize
@@ -379,10 +406,6 @@ jump to source integration with eclipse, intellij
 
 \begin_layout Itemize
 making nice for MacOS
-\end_layout
-
-\begin_layout Itemize
-allow an external port to be a hyperconnector start
 \end_layout
 
 \begin_layout Standard

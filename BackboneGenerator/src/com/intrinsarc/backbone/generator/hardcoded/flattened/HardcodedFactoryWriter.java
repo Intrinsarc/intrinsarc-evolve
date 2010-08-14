@@ -15,7 +15,6 @@ import com.intrinsarc.deltaengine.base.*;
 
 public class HardcodedFactoryWriter
 {
-
 	public void writeHardcodedFactory(BBSimpleElementRegistry registry, File write, String className, String pkgName,
 			BBSimpleComponent simple, int factoryNumber, UniqueNamer namer, ExpandedTypeManager expander)
 			throws BackboneGenerationException
@@ -444,7 +443,8 @@ public class HardcodedFactoryWriter
 			// look to the other side for the variable name
 			BBSimpleConnectorEnd otherEnd = end.getConnector().makeSimpleConnectorEnd(1 - end.getSide());
 			BBSimplePort otherPort = otherEnd.getPort();
-			String otherPartName = namer.getUniqueName(otherEnd.getPart());
+			BBSimplePart otherPart = otherEnd.getPart();
+			String otherPartName = namer.getUniqueName(otherPart);
 
 			for (BBSimpleInterface p : port.getRequires())
 			{
@@ -471,16 +471,19 @@ public class HardcodedFactoryWriter
 					{
 						c.write("    " + partName + ".add(" + vname + ");");
 						d.write("    " + partName + ".remove(" + vname + ");");
+						possiblyRemove(namer, d, otherEnd, vname, p);
 					}
 					else if (port.isIndexed())
 					{
 						c.write("    " + partName + ".add" + makeSingular(name) + "(" + vname + ");");
 						d.write("    " + partName + ".remove" + makeSingular(name) + "(" + vname + ");");
+						possiblyRemove(namer, d, otherEnd, vname, p);
 					}
 					else
 					{
 						c.write("    " + partName + ".set" + name + "(" + vname + ");");
 						d.write("    " + partName + ".set" + name + "(null);");
+						possiblyRemove(namer, d, otherEnd, vname, p);
 					}
 					c.newLine();
 					d.newLine();
@@ -493,21 +496,65 @@ public class HardcodedFactoryWriter
 					{
 						c.write(", " + end.getIndex());
 						d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
+						possiblyRemove(namer, d, otherEnd, vname, p);
 					}
 					else
 					if (port.isIndexed())
 					{
 						c.write(", -1");
 						d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
+						possiblyRemove(namer, d, otherEnd, vname, p);
 					}
 					else
 					{
 						d.write("    " + partName + ".set" + name + "_" + shortImpl + "(null);");						
+						possiblyRemove(namer, d, otherEnd, vname, p);
 					}
 					c.write(");");
 					c.newLine();
 					d.newLine();
 				}
+			}
+		}
+	}
+
+	private void possiblyRemove(UniqueNamer namer, BufferedWriter d, BBSimpleConnectorEnd end, String vname, BBSimpleInterface provides)
+		throws IOException
+	{
+		BBSimplePort port = end.getPort();
+		BBSimplePart part = end.getPart();
+		String partName = namer.getUniqueName(part);
+		String impl = provides.getImplementationClassName();
+		String shortImpl = getAfterLastDot(impl);
+
+		boolean bean = part.getType().isBean();
+		String name = upper(port.getRawName());
+
+		if (bean)
+		{
+			if (port.getComplexPort().isBeanNoName())
+			{
+				d.newLine();
+				d.write("    " + partName + ".remove(" + vname + ");");
+			}
+			else if (port.isIndexed())
+			{
+				d.newLine();
+				d.write("    " + partName + ".remove" + makeSingular(name) + "(" + vname + ");");
+			}
+		}
+		else
+		{
+			if (end.getIndex() != null)
+			{
+				d.newLine();
+				d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
+			}
+			else
+			if (port.isIndexed())
+			{
+				d.newLine();
+				d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
 			}
 		}
 	}
@@ -653,24 +700,5 @@ public class HardcodedFactoryWriter
 				c.newLine();
 			}
 		}
-	}
-
-	private int getForeignEnd(BBSimpleFactory factory, BBSimpleConnector conn)
-	{
-		for (int lp = 0; lp < 2; lp++)
-		{
-			BBSimpleConnectorEnd end = conn.makeSimpleConnectorEnd(lp);
-			if (end == null || isForeignPart(factory, end.getPart()))
-				return lp;
-		}
-		return -1;
-	}
-
-	private boolean isForeignPart(BBSimpleFactory factory, BBSimplePart possible)
-	{
-		for (BBSimplePart part : factory.getParts())
-			if (part == possible)
-				return false;
-		return true;
 	}
 }

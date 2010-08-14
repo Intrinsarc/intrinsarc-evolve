@@ -34,5 +34,5 @@ Class-path: extended-emf/objectdb.jar
   common/JSyntaxPane.jar
   common/asm-3.1.jar
   common/asm-tree-3.1.jar
-Main-class: com.hopstepjump.jumble.EvolveRunner
+Main-class: com.intrinsarc.evolve.EvolveRunner
 

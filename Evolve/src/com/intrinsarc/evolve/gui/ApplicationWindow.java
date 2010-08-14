@@ -1914,10 +1914,9 @@ public class ApplicationWindow extends SmartJFrame
 			entries.add(new SmartMenuItemImpl("Backbone", "Backbone", rerunItem));
 			
       // add the bean importer
-///			xxx
       JMenuItem beanImport = new BeanImportMenuItem(coordinator, popup, monitor); 
-      entries.add(new SmartMenuItemImpl("File", "ImportExport", beanImport));      		
-			GlobalPreferences.registerKeyAction("File", beanImport, null, "Analyse and import JavaBeans from the classpath of the selected stratum");
+      entries.add(new SmartMenuItemImpl("Backbone", "Import", beanImport));      		
+			GlobalPreferences.registerKeyAction("Backbone", beanImport, null, "Analyse and import JavaBeans from the classpath of the selected stratum");
 
 			// add the protocol analyser
 			if (Evolve.ADVANCED)

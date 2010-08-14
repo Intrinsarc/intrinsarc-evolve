@@ -12,45 +12,47 @@
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <javaElement handleIdentifier="=Evolve/src"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.nodefacilities.style"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.nodefacilities.resizebase"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.utility"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.diagramsupport"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.style"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.arcfacilities.adjust"/>
         <javaElement handleIdentifier="=RepositoryBrowser/src"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.figurefacilities.textmanipulation"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.arcfacilities.previewsupport"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.figurefacilities.textmanipulationbase"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.arcfacilities.adjust"/>
+        <file path="/IDraw/.classpath"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.previewsupport"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.swing.smartmenus"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.textmanipulation"/>
         <folder path="/DocumentationGenerator/html_generation/hopstepjump_theme"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.utility"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.swing.smartmenus"/>
         <javaElement handleIdentifier="=UML2Repository/src"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.swing.translucent"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.diagramsupport"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.diagramsupport.moveandresize"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.arcfacilities.creationbase"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.nodefacilities.creationbase"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.figures.simplecontainernode"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.containment"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.swing.enhanced"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.resize"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.selectionbase"/>
+        <file path="/IDraw/.project"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.creationbase"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.arcfacilities.arcsupport"/>
         <javaElement handleIdentifier="=DeltaEngine-UML2/src"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.arcfacilities.creation"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.nodefacilities.creation"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.swing.enhanced"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.nodefacilities.linking"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.arcfacilities.arcsupport"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.arcfacilities.previewsupport"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figures.simplecontainernode"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.selection"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.diagramsupport.moveandresize"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.creation"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.swing.translucent"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.arcfacilities.creationbase"/>
         <javaElement handleIdentifier="=BackboneGenerator/src"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.nodefacilities.previewsupport"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.figurefacilities.selectionbase"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.nodefacilities.nodesupport"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.nodesupport"/>
         <javaElement handleIdentifier="=LeanFoundation/src"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.figurefacilities.containment"/>
         <javaElement handleIdentifier="=RichPalette/src"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.nodefacilities.resize"/>
         <javaElement handleIdentifier="=BeanImporter/src"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.resizebase"/>
         <javaElement handleIdentifier="=Geometry/src"/>
-        <javaElement handleIdentifier="=IDraw/src&lt;com.hopstepjump.idraw.figurefacilities.selection"/>
         <javaElement handleIdentifier="=UML2RepositoryBase/src"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.arcfacilities.creation"/>
         <javaElement handleIdentifier="=DocumentationGenerator/src"/>
         <javaElement handleIdentifier="=Utilities/src"/>
         <javaElement handleIdentifier="=VectorGraphicsFixes/src"/>
         <file path="/DocumentationGenerator/html_generation/banner.svg"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.textmanipulationbase"/>
         <javaElement handleIdentifier="=Evolve/resources"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.linking"/>
     </selectedElements>
 </jardesc>

@@ -30,12 +30,12 @@ public class PartCreatorGem
 		this.statePart = statePart;
 		if (statePart)
 		{
-			this.fillColorPreference = BaseColors.STATE_PART_COLOR;
+			this.fillColorPreference = BaseColors.STATE_COLOR;
 			name = "State part";
 		}
 		else
 		{
-			this.fillColorPreference = BaseColors.PART_COLOR;
+			this.fillColorPreference = BaseColors.COMPONENT_COLOR;
 			name = "Part";
 		}
   }
@@ -197,7 +197,7 @@ public class PartCreatorGem
 	private Color getFillColor()
 	{
 		if (fillColorPreference == null)
-			return BaseColors.getColorPreference(BaseColors.PART_COLOR);
+			return BaseColors.getColorPreference(BaseColors.COMPONENT_COLOR);
 		return BaseColors.getColorPreference(fillColorPreference);
 	}
 }

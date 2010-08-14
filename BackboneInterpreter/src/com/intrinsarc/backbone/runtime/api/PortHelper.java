@@ -31,7 +31,7 @@ public class PortHelper
 		}
 	}
 	
-	public static <T> void remove(List<T> list, T provided)
+	public static void remove(List<?> list, Object provided)
 	{
 		list.remove(provided);
 	}

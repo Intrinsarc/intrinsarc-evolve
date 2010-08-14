@@ -24,8 +24,10 @@ public class GUILogic implements ILifecycle
 	public void setText_TextBox(com.google.gwt.user.client.ui.TextBox text) { this.text = text; }
 	public void setPanel_Panel(com.google.gwt.user.client.ui.Panel panel) { this.panel = panel; }
 	public com.google.gwt.event.dom.client.ChangeHandler getChange_ChangeHandler(Class<?> required) { return change_ChangeHandlerProvided; }
-	public com.google.gwt.user.client.ui.ClickListener getRent_ClickListener(Class<?> required, int index) { int ind = PortHelper.fill(rent_ClickListenerProvided, null, index); if (rent_ClickListenerProvided.get(ind) == null) rent_ClickListenerProvided.add(ind, new ClickListenerRentImpl()); return rent_ClickListenerProvided.get(ind); }
-	public com.google.gwt.user.client.ui.ClickListener getReturn_ClickListener(Class<?> required, int index) { int ind = PortHelper.fill(return_ClickListenerProvided, null, index); if (return_ClickListenerProvided.get(ind) == null) return_ClickListenerProvided.add(ind, new ClickListenerReturnImpl()); return return_ClickListenerProvided.get(ind); }
+	public com.google.gwt.user.client.ui.ClickListener getRent_ClickListener(Class<?> provided, int index) { return PortHelper.fill(rent_ClickListenerProvided, new ClickListenerRentImpl(), index); }
+	public void removeRent_ClickListener(com.google.gwt.user.client.ui.ClickListener  provided) { PortHelper.remove(rent_ClickListenerProvided, provided); }
+	public com.google.gwt.user.client.ui.ClickListener getReturn_ClickListener(Class<?> provided, int index) { return PortHelper.fill(return_ClickListenerProvided, new ClickListenerReturnImpl(), index); }
+	public void removeReturn_ClickListener(com.google.gwt.user.client.ui.ClickListener  provided) { PortHelper.remove(return_ClickListenerProvided, provided); }
 // end generated code
 
 	private IRentalServiceAsync service;
@@ -36,7 +38,6 @@ public class GUILogic implements ILifecycle
 	{
 		public void onClick(Widget sender)
 		{
-			System.out.println("$$ index = " + rent_ClickListenerProvided.indexOf(this));
 			service.rent(rent_ClickListenerProvided.indexOf(this), new AsyncCallback<Void>()
 			{
 				public void onSuccess(Void v)
@@ -88,7 +89,6 @@ public class GUILogic implements ILifecycle
 				for (Object m : mementos)
 					create.destroy(m);
 				mementos.clear();
-				System.out.println("$$ size of rent_ClickListenerProvided = " + rent_ClickListenerProvided.size());
 				
 				for (String car : cars)
 				{

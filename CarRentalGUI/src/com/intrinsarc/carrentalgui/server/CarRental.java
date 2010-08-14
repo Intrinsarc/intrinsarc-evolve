@@ -35,7 +35,10 @@ public class CarRental
 
 		public String[] getCars()
 		{
-			return cars;
+			String[] newCars = new String[3];
+			for (int lp = 0; lp < 3; lp++)
+				newCars[lp] = (rented[lp]? ">" : "") + cars[lp];
+			return newCars;
 		}
 	}
 

@@ -456,18 +456,11 @@ public class PaletteManagerGem
 	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
 	      	palette.addEntry(makeEntry(true, "port.png",         "Port",                 makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));
 	      }
-
 	      {
 	      	PortCreatorGem creator = new PortCreatorGem();
 	      	creator.setPortKind(PortKind.HYPERPORT_START_LITERAL);
 	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
-		      palette.addEntry(makeEntry(true, "hyperport-start.png", "Start hyperport", makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
-	      }
-	      {
-	      	PortCreatorGem creator = new PortCreatorGem();
-	      	creator.setPortKind(PortKind.HYPERPORT_END_LITERAL);
-	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
-		      palette.addEntry(makeEntry(true, "hyperport-end.png",   "End hyperport",   makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
+		      palette.addEntry(makeEntry(true, "hyperport.png", "Hyper port", makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
 	      }
 	      {
 	      	PortCreatorGem creator = new PortCreatorGem();
@@ -492,7 +485,7 @@ public class PaletteManagerGem
         palette.addEntry(makeEntry(true, "composite-state.png", "Composite state",  makeNodeCreateTool(compositeStateCreator.getNodeCreateFacet()), "top"));
 
         PartCreatorGem statePartCreator = new PartCreatorGem(true);
-        statePartCreator.setFillColorPreference(BaseColors.STATE_PART_COLOR);
+        statePartCreator.setFillColorPreference(BaseColors.STATE_COLOR);
         palette.addEntry(makeEntry(true, "state-part.png", "State part",  makeNodeCreateTool(statePartCreator.getNodeCreateFacet()), "class"));
         
         ConnectorCreatorGem transitionCreator = new ConnectorCreatorGem();
@@ -513,13 +506,7 @@ public class PaletteManagerGem
 	      	PortCreatorGem creator = new PortCreatorGem();
 	      	creator.setPortKind(PortKind.HYPERPORT_START_LITERAL);
 	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
-		      palette.addEntry(makeEntry(true, "hyperport-start.png", "Start hyperport", makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
-	      }
-	      {
-	      	PortCreatorGem creator = new PortCreatorGem();
-	      	creator.setPortKind(PortKind.HYPERPORT_END_LITERAL);
-	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
-		      palette.addEntry(makeEntry(true, "hyperport-end.png",   "End hyperport",   makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
+		      palette.addEntry(makeEntry(true, "hyperport.png", "Start hyperport", makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
 	      }
 	      {
 	      	PortCreatorGem creator = new PortCreatorGem();
@@ -539,8 +526,7 @@ public class PaletteManagerGem
       {
         RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Part", new String[]{COMPONENT_FOCUS, STATE_FOCUS});
         PartCreatorGem partCreator = new PartCreatorGem(false);
-        partCreator.setFillColorPreference(BaseColors.STATE_PART_COLOR);
-        partCreator.setFillColorPreference(BaseColors.PART_COLOR);        
+        partCreator.setFillColorPreference(BaseColors.COMPONENT_COLOR);        
 	      palette.addEntry(makeEntry(true,  "part.png",         "Part",                 makeNodeCreateTool(partCreator.getNodeCreateFacet()), "class", "part"));
 	      palette.addEntry(makeEntry(false, "portlink.png",     "Port link",            new ArcCreateToolGem(portLinkCreator.getArcCreateFacet()).getToolFacet(), "port"));
 	      palette.addEntry(makeEntry(false, "connector.png",    "Connector",            new ArcCreateToolGem(retrieveArcRecreator(ConnectorCreatorGem.NAME)).getToolFacet(), "port", null));

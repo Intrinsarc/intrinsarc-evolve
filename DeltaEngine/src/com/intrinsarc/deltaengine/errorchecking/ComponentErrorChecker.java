@@ -245,7 +245,8 @@ public class ComponentErrorChecker
 	      	{
 	      		DEPort port = conn.getPort(perspective, component, lp);
 	      		String index = conn.getIndex(lp);
-	      		if (index == null && port != null && port.isOrdered())
+	      		DEPart otherPart = conn.getPart(perspective, component, 1-lp);
+	      		if (index == null && port != null && port.isOrdered() && (otherPart == null || !otherPart.getType().isFactory(perspective)))
 	      			errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.CONNECTOR_TO_ORDERED_PORT_MUST_BE_INDEXED);
 	      		
 	      		// if this has an index, place it in the unique map -- if already there, this is an error

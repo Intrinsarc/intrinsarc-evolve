@@ -332,6 +332,7 @@ public class LeafImplementationRefresher
 						String pname = port.getName();
 						String vname = pname + "_" + tname + "Provided";
 						String mname = "get" + upper(pname) + "_" + tname;
+						String rmname = "remove" + upper(pname) + "_" + tname;
 						String newTypeName = tname + upper(pname) + "Impl";
 						newTypes.put(newTypeName, iname);
 						
@@ -339,7 +340,9 @@ public class LeafImplementationRefresher
 						{
 							writer.write("\tprivate java.util.List<" + newTypeName + "> " + " " + vname + " = new java.util.ArrayList<" + newTypeName + ">();");
 							writer.newLine();
-							complexWriter.write("\tpublic " + iname + " " + mname + "(Class<?> required, int index) { int ind = PortHelper.fill(" + vname + ", null, index); if (" + vname + ".get(ind) == null) " + vname + ".add(ind, new " + newTypeName + "()); return " + vname + ".get(ind); }");
+							complexWriter.write("\tpublic " + iname + " " + mname + "(Class<?> provided, int index) { return PortHelper.fill(" + vname + ", new " + newTypeName + "(), index); }");
+							complexWriter.newLine();
+							complexWriter.write("\tpublic void " + rmname + "(" + iname + "  provided) { PortHelper.remove(" + vname + ", provided); }");
 						}
 						else
 						{
