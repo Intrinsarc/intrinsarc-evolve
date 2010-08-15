@@ -836,7 +836,7 @@ public class ApplicationWindow extends SmartJFrame
 			// complain if nothing has been tagged
 			if (choice == null)
 			{
-				toolFacet.invokeErrorDialog("Backbone running problem...", "No elements have been tagged");
+				toolFacet.invokeErrorDialog("Backbone running problem...", "No stratum is tagged");
 				return;
 			}
 
@@ -909,7 +909,7 @@ public class ApplicationWindow extends SmartJFrame
 		// complain if nothing has been tagged
 		if (choice == null)
 		{
-			monitor.stopActivityAndDisplayDialog("Generation problem...", "No elements have been tagged", true);
+			monitor.stopActivityAndDisplayDialog("Generation problem...", "No stratum is tagged", true);
 			return false;
 		}
 

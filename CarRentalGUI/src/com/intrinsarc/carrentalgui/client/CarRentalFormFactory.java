@@ -8,12 +8,12 @@ public class CarRentalFormFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private Attribute<Integer> spacing = new Attribute<Integer>(10);
-  private Attribute<Integer> spacing1 = new Attribute<Integer>(10);
-  private Attribute<Integer> spacing2 = new Attribute<Integer>(10);
-  private Attribute<Integer> spacing3 = new Attribute<Integer>(10);
-  private Attribute<String> width = new Attribute<String>("300px");
-  private Attribute<String> text = new Attribute<String>("Add new car:");
+  private Attribute<Integer> spacing;
+  private Attribute<Integer> spacing1;
+  private Attribute<Integer> spacing2;
+  private Attribute<String> width;
+  private Attribute<Integer> spacing3;
+  private Attribute<String> text;
 
   // connectors
   private com.intrinsarc.backbone.runtime.api.ICreate c;
@@ -57,11 +57,17 @@ public class CarRentalFormFactory implements IHardcodedFactory
 
   public CarRentalFormFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
+    spacing = new Attribute<Integer>(10);
+    spacing1 = new Attribute<Integer>(10);
+    spacing2 = new Attribute<Integer>(10);
+    width = new Attribute<String>("300px");
+    spacing3 = new Attribute<Integer>(10);
+    text = new Attribute<String>("Add new car:");
     x1.setSpacing(spacing.get());
     x2.setSpacing(spacing1.get());
     x12.setSpacing(spacing2.get());
-    x.setSpacing(spacing3.get());
     x.setWidth(width.get());
+    x.setSpacing(spacing3.get());
     x7.setText(text.get());
     c = factory;
     c1 = x5;
@@ -115,17 +121,18 @@ class CarWidgetFactory implements IHardcodedFactory
   private Attribute<Boolean> rentEnabled = new Attribute<Boolean>(true);
   public void setRentEnabled(boolean rentEnabled) { this.rentEnabled.set(rentEnabled); }
   public boolean getRentEnabled() { return rentEnabled.get(); }
-  private Attribute<String> model = new Attribute<String>(null);
-  public void setModel(String model) { this.model.set(model); }
-  public String getModel() { return model.get(); }
   private Attribute<Boolean> returnEnabled = new Attribute<Boolean>(true);
   public void setReturnEnabled(boolean returnEnabled) { this.returnEnabled.set(returnEnabled); }
   public boolean getReturnEnabled() { return returnEnabled.get(); }
-  private Attribute<Integer> spacing4 = new Attribute<Integer>(10);
-  private Attribute<String> width1 = new Attribute<String>("300px");
-  private Attribute<String> width2 = new Attribute<String>("100px");
-  private Attribute<String> text1 = new Attribute<String>("rent");
-  private Attribute<String> text2 = new Attribute<String>("return");
+  private Attribute<String> model = new Attribute<String>("foo");
+  public void setModel(String model) { this.model.set(model); }
+  public String getModel() { return model.get(); }
+  private Attribute<String> model1;
+  private Attribute<String> width1;
+  private Attribute<Integer> spacing4;
+  private Attribute<String> width2;
+  private Attribute<String> text1;
+  private Attribute<String> text2;
 
   // connectors
   private com.google.gwt.user.client.ui.Button c11;
@@ -147,12 +154,18 @@ class CarWidgetFactory implements IHardcodedFactory
   {
     this.parent = parent;
     if (values != null && values.containsKey("rentEnabled")) rentEnabled = new Attribute<Boolean>((Boolean) values.get("rentEnabled"));
-    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
     if (values != null && values.containsKey("returnEnabled")) returnEnabled = new Attribute<Boolean>((Boolean) values.get("returnEnabled"));
-    x20.setSpacing(spacing4.get());
+    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
+    model1 = new Attribute<String>(model.get());
+    width1 = new Attribute<String>("300px");
+    spacing4 = new Attribute<Integer>(10);
+    width2 = new Attribute<String>("100px");
+    text1 = new Attribute<String>("rent");
+    text2 = new Attribute<String>("return");
     x20.setWidth(width1.get());
-    x25.setText(model.get());
+    x20.setSpacing(spacing4.get());
     x25.setWidth(width2.get());
+    x25.setText(model1.get());
     x23.setEnabled(rentEnabled.get());
     x23.setText(text1.get());
     x21.setEnabled(returnEnabled.get());

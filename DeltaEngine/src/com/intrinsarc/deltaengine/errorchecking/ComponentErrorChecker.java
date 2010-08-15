@@ -2,6 +2,8 @@ package com.intrinsarc.deltaengine.errorchecking;
 
 import java.util.*;
 
+import javax.swing.plaf.basic.*;
+
 import com.intrinsarc.deltaengine.base.*;
 
 public class ComponentErrorChecker
@@ -310,6 +312,7 @@ public class ComponentErrorChecker
     {
 	    for (DeltaPair pair : component.getDeltas(ConstituentTypeEnum.DELTA_PART).getConstituents(perspective))
 	    {
+	    	ensureRequiredConnected(pair);
 	    	testPartTypeExists(pair);
 	    	// only test visibility at home
 	    	if (atHome)
@@ -321,6 +324,30 @@ public class ComponentErrorChecker
 	    }
     }
   }
+
+	private void ensureRequiredConnected(DeltaPair partPair)
+	{
+		// if any port is not optional and has required, then it must have at least 1 connector
+		DEPart part = partPair.getConstituent().asPart();
+		DEComponent partType = part.getType();
+		if (partType != null)
+		{
+			DELinks links = component.getCompositeConnectorsAsLinks(perspective);
+			for (DeltaPair pair : partType.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
+			{
+				DEPort port = pair.getConstituent().asPort();
+				if (!partType.getRequiredInterfaces(perspective, port).isEmpty() && port.getLowerBound() > 0)
+				{
+					DELinkEnd end = new DELinkEnd(port, part);
+					if (links.getEnds(end).isEmpty())
+					{
+						errors.addError(
+				  			new ErrorLocation(perspective, component, part), ErrorCatalog.REQUIRED_PORT_NOT_CONNECTED);
+					}
+				}
+			}
+		}
+	}
 
 	private void checkSlot(DEPart part, DESlot slot)
 	{

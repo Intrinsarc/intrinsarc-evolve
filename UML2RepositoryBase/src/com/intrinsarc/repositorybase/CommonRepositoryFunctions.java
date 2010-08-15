@@ -451,7 +451,7 @@ public class CommonRepositoryFunctions
     Class state = addLeaf(uuids, impls, stateStereo, STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.State");
     state.setIsAbstract(true);
     Port in = addPort(uuids, state, "in", "in", transition, null, null, null);
-    Port out = addPort(uuids, state, "out", "out", null, transition, null, null);
+    Port out = addPort(uuids, state, "out", "out", null, transition, 0, 1);
     Port events = addPort(uuids, state, "events", "events", event, null, null, null);
     // create the start and end terminals
     Class start = addLeaf(uuids, impls, stateStereo, START_STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.Terminal");
@@ -468,14 +468,12 @@ public class CommonRepositoryFunctions
     setUseMethods(uuids, stereoPort, suppressMethodGeneration, endIn);
     createPortLink(uuids, end, in, out);
     deltaDeletePort(uuids, end, events);
-    replacePort(uuids, end, out, "out", null, transition, 0, 1);
     // create the composite state base class
     Class cState = addLeaf(uuids, impls, stateStereo, COMPOSITE_STATE_CLASS, implClass, "");
     createResemblance(uuids, state, cState);
     cState.setIsAbstract(true);
     addPart(uuids, cState, "start", "", start, statePart);
     addPart(uuids, cState, "end", "", end, statePart);
-    replacePort(uuids, cState, out, "out", null, transition, 0, 1);
     // create the dispatcher
     Class stateDispatcher = addLeaf(uuids, impls, component, "StateDispatcher", implClass, "com.intrinsarc.backbone.runtime.implementation.StateDispatcher");
     Port dEvents = addPort(uuids, stateDispatcher, "dEvents", "dEvents", event, null, null, null);

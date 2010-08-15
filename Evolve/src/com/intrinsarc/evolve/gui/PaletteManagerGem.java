@@ -458,7 +458,7 @@ public class PaletteManagerGem
 	      }
 	      {
 	      	PortCreatorGem creator = new PortCreatorGem();
-	      	creator.setPortKind(PortKind.HYPERPORT_START_LITERAL);
+	      	creator.setPortKind(PortKind.HYPERPORT_LITERAL);
 	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
 		      palette.addEntry(makeEntry(true, "hyperport.png", "Hyper port", makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
 	      }
@@ -504,7 +504,7 @@ public class PaletteManagerGem
 
 	      {
 	      	PortCreatorGem creator = new PortCreatorGem();
-	      	creator.setPortKind(PortKind.HYPERPORT_START_LITERAL);
+	      	creator.setPortKind(PortKind.HYPERPORT_LITERAL);
 	      	creator.setStereotype(CommonRepositoryFunctions.PORT);
 		      palette.addEntry(makeEntry(true, "hyperport.png", "Start hyperport", makeNodeCreateTool(creator.getNodeCreateFacet()), "class", "port"));	      	
 	      }

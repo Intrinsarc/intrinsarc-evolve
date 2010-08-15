@@ -444,7 +444,7 @@ public final class PortNodeGem implements Gem
       	}
 	
       	UBounds in = bounds.addToPoint(new UDimension(4, 4)).addToExtent(new UDimension(-8, -8));
-      	if (!joined && kind.equals(PortKind.HYPERPORT_START_LITERAL))
+      	if (!joined && kind.equals(PortKind.HYPERPORT_LITERAL))
 	  		{
 	      	ZPolygon poly = new ZPolygon();
 	      	poly.add(in.getTopLeftPoint());
@@ -453,16 +453,6 @@ public final class PortNodeGem implements Gem
 	      	poly.setFillPaint(Color.BLACK);      	
 	      	group.addChild(new ZVisualLeaf(poly));
 	  		}
-	      else
-	      if (!joined && kind.equals(PortKind.HYPERPORT_END_LITERAL))
-	      {
-	      	ZPolygon poly = new ZPolygon();
-	      	poly.add(in.getTopLeftPoint());
-	      	poly.add(in.getTopRightPoint());
-	      	poly.add(in.getBottomRightPoint());
-	      	poly.setFillPaint(Color.BLACK);
-	      	group.addChild(new ZVisualLeaf(poly));
-	      }
 	      else
 	      if (!isPart && kind.equals(PortKind.AUTOCONNECT_LITERAL))
 	      {

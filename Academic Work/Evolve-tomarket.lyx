@@ -336,6 +336,8 @@ no hyperport ends needed! still use hyperport start though - important to
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 = for slots in hardcoded version just takes default
 \end_layout
 
@@ -344,11 +346,24 @@ replacing stereo in browser should make it writeable
 \end_layout
 
 \begin_layout Enumerate
----
+make textboxes tabbable + returnable?
+\end_layout
+
+\begin_layout Enumerate
+why does portlink between replaced and original port die when deleting the
+ replaced to leave the original?
+\end_layout
+
+\begin_layout Enumerate
+parts are larger with slots, even if all showing are removed
 \end_layout
 
 \begin_layout Enumerate
 problem with error adorner and undo
+\end_layout
+
+\begin_layout Enumerate
+---
 \end_layout
 
 \begin_layout Enumerate
@@ -384,12 +399,12 @@ part aliasing in factories! -- for many to many relationships
 \end_layout
 
 \begin_layout Itemize
-persistent factory state for deletion after persisting
+quick color palette for changing colors of component + changing whole component
+ at a time (of same part type)
 \end_layout
 
 \begin_layout Itemize
-quick color palette for changing colors of component + changing whole component
- at a time (of same part type)
+composite hardcoding writer? - more scalable than 1 single large class
 \end_layout
 
 \begin_layout Itemize
@@ -401,6 +416,10 @@ better unit testing + coverage of Backbone
 \series bold
 concurrency via actors and possibly concurrent state machines + expanded
  state mechanisms such as history
+\end_layout
+
+\begin_layout Itemize
+persistent factory state for deletion after persisting
 \end_layout
 
 \begin_layout Itemize

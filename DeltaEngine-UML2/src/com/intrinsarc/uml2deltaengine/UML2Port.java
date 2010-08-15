@@ -149,7 +149,7 @@ public class UML2Port extends DEPort
 			return PortKindEnum.NORMAL;
 		if (kind.equals(PortKind.CREATE_LITERAL))
 			return PortKindEnum.CREATE;
-		if (kind.equals(PortKind.HYPERPORT_START_LITERAL))
+		if (kind.equals(PortKind.HYPERPORT_LITERAL))
 			return PortKindEnum.HYPERPORT;
 		return PortKindEnum.AUTOCONNECT;
 	}

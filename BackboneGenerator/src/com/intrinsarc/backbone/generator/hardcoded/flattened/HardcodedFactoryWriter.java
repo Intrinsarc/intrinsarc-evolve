@@ -88,46 +88,7 @@ public class HardcodedFactoryWriter
 			c.newLine();
 			c.write("  // attributes");
 			c.newLine();
-			for (BBSimpleAttribute attr : factory.getAttributes())
-			{
-				if (!isFactoryNumber(attr))
-				{
-					String attrName = namer.getUniqueName(attr);
-					String impl = attr.getType().getImplementationClassName();
-					String translatedImpl = PrimitiveHelper.translateLongToShortPrimitive(impl);
-					c.write("  private Attribute<" + PrimitiveHelper.stripJavaLang(impl) + "> " + attrName);
-					List<BBSimpleParameter> def = attr.getDefaultValue();
-					if (factoryNumber == 0 && attr.getDefaultValue() != null)
-						def = attr.getDefaultValue();
-					if (def == null)
-					{
-						c.write(";");
-						c.newLine();
-					}
-					else
-					{
-						c.write(" = ");
-						writeInitializer(namer, c, impl, def);
-						c.newLine();
-	
-						// possibly make a setter or getter function
-						if (attr.getPosition() == PositionEnum.TOP)
-						{
-							if (!attr.isReadOnly())
-							{
-								c.write("  public void set" + upper(attrName) + "(" + translatedImpl + " " + attrName + ") { this."
-										+ attrName + ".set(" + attrName + "); }");
-								c.newLine();
-							}
-							if (!attr.isWriteOnly())
-							{
-								c.write("  public " + translatedImpl + " get" + upper(attrName) + "() { return " + attrName + ".get(); }");
-								c.newLine();
-							}
-						}
-					}
-				}
-			}
+			writeAttributes(c, factoryNumber, namer, factory, true);
 		}
 
 		// write out connection variables
@@ -226,7 +187,10 @@ public class HardcodedFactoryWriter
 					c.newLine();
 				}
 			}
-
+		
+		// handle initialization of non-top attributes
+		writeAttributes(c, factoryNumber, namer, factory, false);
+		
 		// handle the slots
 		for (BBSimplePart part : factory.getParts())
 		{
@@ -342,6 +306,60 @@ public class HardcodedFactoryWriter
 		// finish off the class
 		c.write("}");
 		c.newLine();
+	}
+
+	private void writeAttributes(
+			BufferedWriter c,
+			int factoryNumber,
+			UniqueNamer namer,
+			BBSimpleFactory factory,
+			boolean top) throws IOException
+	{
+		for (BBSimpleAttribute attr : factory.getAttributes())
+		{
+			PositionEnum position = attr.getPosition();
+			if (!isFactoryNumber(attr) && (position != PositionEnum.TOP || top))
+			{
+				String attrName = namer.getUniqueName(attr);
+				String impl = attr.getType().getImplementationClassName();
+				String translatedImpl = PrimitiveHelper.translateLongToShortPrimitive(impl);
+				if (top)
+					c.write("  private Attribute<" + PrimitiveHelper.stripJavaLang(impl) + "> ");
+				else
+					c.write("    ");
+				c.write(attrName);
+				List<BBSimpleParameter> def = attr.getDefaultValue();
+				if (factoryNumber == 0 && attr.getDefaultValue() != null)
+					def = attr.getDefaultValue();
+				if (def == null || position != PositionEnum.TOP && top)
+				{
+					c.write(";");
+					c.newLine();
+				}
+				else
+				{
+					c.write(" = ");
+					writeInitializer(namer, c, impl, def);
+					c.newLine();
+
+					if (top)
+					{
+						// make a setter or getter function for top attributes
+						if (!attr.isReadOnly())
+						{
+							c.write("  public void set" + upper(attrName) + "(" + translatedImpl + " " + attrName + ") { this."
+									+ attrName + ".set(" + attrName + "); }");
+							c.newLine();
+						}
+						if (!attr.isWriteOnly())
+						{
+							c.write("  public " + translatedImpl + " get" + upper(attrName) + "() { return " + attrName + ".get(); }");
+							c.newLine();
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/** do this in a better way */
