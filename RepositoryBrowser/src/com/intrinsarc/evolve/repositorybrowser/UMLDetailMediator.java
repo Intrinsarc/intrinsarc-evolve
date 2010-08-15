@@ -110,13 +110,15 @@ public class UMLDetailMediator
   
   public JComponent makeVisualComponent(int selectedTabIndex)
   {
+    JButton okButton = makeButton("OK", OK_ICON); 
+
     tabs = new JTabbedPane();
-    tabs.addTab("Attributes", makeDetailsVisualComponent(true, false));
-    tabs.addTab("References", makeDetailsVisualComponent(false, false));
+    tabs.addTab("Attributes", makeDetailsVisualComponent(true, false, okButton));
+    tabs.addTab("References", makeDetailsVisualComponent(false, false, okButton));
     stereotypeEditor = new StereotypeEditor(element, coordinator, listener);
     tabs.addTab("Stereotypes", stereotypeEditor.makeVisualComponent());
     tabs.addTab("Model", makeMetamodelVisualComponent());
-    tabs.addTab("Doc", makeDetailsVisualComponent(true, true));
+    tabs.addTab("Doc", makeDetailsVisualComponent(true, true, okButton));
     tabs.addTab("Errors", makeErrorsVisualComponent());
     
     JPanel panel = new JPanel();
@@ -129,7 +131,6 @@ public class UMLDetailMediator
     panel.add(tabs);
     
     buttonPanel = new JPanel();
-    JButton okButton = makeButton("OK", OK_ICON); 
     buttonPanel.add(okButton);
     okButton.addActionListener(new ActionListener()
         {
@@ -325,7 +326,7 @@ public class UMLDetailMediator
     return descriptions;
   }
 
-  private JComponent makeDetailsVisualComponent(boolean attributes, boolean documentationOnly)
+  private JComponent makeDetailsVisualComponent(boolean attributes, boolean documentationOnly, JButton okButton)
   {
     JPanel mainPanel = new JPanel(new BorderLayout());
     JPanel propertyPanel = new JPanel(new BorderLayout());
@@ -345,7 +346,7 @@ public class UMLDetailMediator
     }
     else
       viewer = new UMLElementViewer(element, null, insetPanel);
-    viewer.installAttributeEditors(gbcLeft, gbcRight, listener, readonly, attributes, documentationOnly);
+    viewer.installAttributeEditors(gbcLeft, gbcRight, listener, readonly, attributes, documentationOnly, okButton);
 
     propertyPanel.add(insetPanel, BorderLayout.NORTH);
     mainPanel.add(scrollPane, BorderLayout.CENTER);

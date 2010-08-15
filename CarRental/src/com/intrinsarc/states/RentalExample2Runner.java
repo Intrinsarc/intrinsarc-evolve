@@ -40,7 +40,7 @@ public class RentalExample2Runner
 			System.out.println("  : " + state + "\n");
 			
 			System.out.println("--> Sending event: setRenter");
-			state.setRenter("Andrew", new Date(111, 10, 10));
+			state.setRenter("Andrew");
 			print(car);
 			System.out.println("  : " + state + "\n");
 			

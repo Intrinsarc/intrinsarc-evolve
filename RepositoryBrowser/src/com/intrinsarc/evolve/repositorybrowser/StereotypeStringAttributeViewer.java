@@ -7,12 +7,10 @@ import javax.swing.*;
 
 import org.eclipse.uml2.*;
 
-import com.intrinsarc.swing.lookandfeel.*;
-
 
 public class StereotypeStringAttributeViewer extends StereotypeAttributeViewerBase
 {
-  private JTextArea text;
+  private JTextField text;
 
   public StereotypeStringAttributeViewer(Element element, Property original, Property constituent, UMLAttributeModificationListener listener)
   {
@@ -20,34 +18,25 @@ public class StereotypeStringAttributeViewer extends StereotypeAttributeViewerBa
   }
 
   @Override
-  protected JComponent installAttributeEditor(final JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight)
+  protected JComponent installAttributeEditor(final JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, JButton okButton)
   {
     if (text == null)
-    {
-      text = new JTextArea(getModelValue());
-      text.setWrapStyleWord(true);
-      text.setLineWrap(true);
-    }
+      text = new JTextField(getModelValue());
         
-    // use a scroll pane to add a border around the text area if the look and feel requires it
-    // -- it's not pretty code, but it works well visually
-    final JScrollPane border = 
-    	RegisteredGraphicalThemes.getInstance().getStartupTheme().drawsBoxAroundTextArea() ?
-    		null : new JScrollPane(text);
-    
     text.addKeyListener(new KeyAdapter()
-        {
-          public void keyTyped(KeyEvent e)
-          {
-            insetPanel.revalidate();            
-          }
-          public void keyReleased(KeyEvent e)
-          {
-            listener.attributeModified();
-            colourLine();
-          }
-        });
-    insetPanel.add(border != null ? border : text, gbcRight);
+    {
+      public void keyTyped(KeyEvent e)
+      {
+        insetPanel.revalidate();            
+      }
+      public void keyReleased(KeyEvent e)
+      {
+        listener.attributeModified();
+        colourLine();
+      }
+    });
+    insetPanel.add(text, gbcRight);
+    
     gbcLeft.gridy++;
     gbcRight.gridy++;
     return text;

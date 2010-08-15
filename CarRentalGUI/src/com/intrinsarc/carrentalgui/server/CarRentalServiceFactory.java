@@ -7,14 +7,31 @@ public class CarRentalServiceFactory implements IHardcodedFactory
 {
   private java.util.List<IHardcodedFactory> children;
 
+  // connectors
+  private com.intrinsarc.backbone.runtime.api.ICreate c;
+
  // parts
-  private com.intrinsarc.carrentalgui.server.CarRental x = new com.intrinsarc.carrentalgui.server.CarRental();
-  public com.intrinsarc.carrentalgui.client.IRentalService getService() { return x.getService_IRentalService(null); }
+  private com.intrinsarc.carrentalgui.server.CarRental x1 = new com.intrinsarc.carrentalgui.server.CarRental();
+  private ICreate factory = new ICreate() {
+    public Object create(java.util.Map<String, Object> values) {
+      RentalStateFactory f = new RentalStateFactory();
+      f.initialize(CarRentalServiceFactory.this, values);
+      if (children == null)
+        children = new java.util.ArrayList<IHardcodedFactory>();
+      children.add(f);
+
+      return f;
+    }
+    public void destroy(Object memento) { ((IHardcodedFactory) memento).destroy(); }
+  };
+  public com.intrinsarc.carrentalgui.client.IRentalService getService() { return x1.getService_IRentalService(null); }
 
   public CarRentalServiceFactory() {}
 
   public CarRentalServiceFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
+    c = factory;
+    x1.setCreate_ICreate(c);
     return this;
   }
   public void childDestroyed(IHardcodedFactory child) { children.remove(child); }
@@ -33,4 +50,89 @@ public class CarRentalServiceFactory implements IHardcodedFactory
         f.destroy();
     }
   }
+
+// flattened factories
+class RentalStateFactory implements IHardcodedFactory
+{
+  private IHardcodedFactory parent;
+  // attributes
+  private Attribute<String> renterName;
+
+  private java.util.List<IHardcodedFactory> children;
+
+  // attributes
+  private Attribute<String> model = new Attribute<String>("");
+  public void setModel(String model) { this.model.set(model); }
+  public String getModel() { return model.get(); }
+  private Attribute<java.util.Date> purchased = new Attribute<java.util.Date>(new java.util.Date());
+  public void setPurchased(java.util.Date purchased) { this.purchased.set(purchased); }
+  public java.util.Date getPurchased() { return purchased.get(); }
+
+  // connectors
+  private com.intrinsarc.states.IRentalEvent c1;
+  private com.intrinsarc.states.IRentalEvent c2;
+  private com.intrinsarc.backbone.runtime.api.ITerminal c3;
+  private com.intrinsarc.backbone.runtime.api.ITransition c4;
+  private com.intrinsarc.backbone.runtime.api.ITransition c5;
+  private com.intrinsarc.backbone.runtime.api.ITransition c6;
+  private com.intrinsarc.states.IRentalEvent c7;
+  private com.intrinsarc.states.IRentalEvent c8;
+  private com.intrinsarc.cars.IRentalCarDetails c9;
+
+ // parts
+  private com.intrinsarc.cars.RentalCarDetails x9 = new com.intrinsarc.cars.RentalCarDetails();
+  private com.intrinsarc.backbone.runtime.implementation.Terminal x4 = new com.intrinsarc.backbone.runtime.implementation.Terminal();
+  private com.intrinsarc.states.Rented r = new com.intrinsarc.states.Rented();
+  private com.intrinsarc.states.Available a = new com.intrinsarc.states.Available();
+  private com.intrinsarc.backbone.runtime.implementation.StateDispatcher dispatcher = new com.intrinsarc.backbone.runtime.implementation.StateDispatcher();
+
+  public RentalStateFactory() {}
+
+  public RentalStateFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
+  {
+    renterName = new Attribute<String>("");
+
+    this.parent = parent;
+    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
+    if (values != null && values.containsKey("purchased")) purchased = new Attribute<java.util.Date>((java.util.Date) values.get("purchased"));
+    x9.setModel(model);
+    x9.setPurchased(purchased);
+    r.setRenterName(renterName);
+    c1 = a.getEvents_IRentalEvent(com.intrinsarc.states.IRentalEvent.class);
+    c2 = r.getEvents_IRentalEvent(com.intrinsarc.states.IRentalEvent.class);
+    c3 = x4.getStartTerminal_ITerminal(com.intrinsarc.backbone.runtime.api.ITerminal.class);
+    c4 = a.getIn_ITransition(com.intrinsarc.backbone.runtime.api.ITransition.class);
+    c5 = r.getIn_ITransition(com.intrinsarc.backbone.runtime.api.ITransition.class);
+    c6 = a.getIn_ITransition(com.intrinsarc.backbone.runtime.api.ITransition.class);
+    c7 = (com.intrinsarc.states.IRentalEvent) dispatcher.getDEvents_IEvent(com.intrinsarc.states.IRentalEvent.class);
+    c8 = (com.intrinsarc.states.IRentalEvent) dispatcher.getDEvents_IEvent(com.intrinsarc.states.IRentalEvent.class);
+    c9 = x9.getDetails_IRentalCarDetails(com.intrinsarc.cars.IRentalCarDetails.class);
+    dispatcher.setDDispatch_IEvent(c1, -1);
+    dispatcher.setDDispatch_IEvent(c2, -1);
+    dispatcher.setDStart_ITerminal(c3);
+    x4.setOut_ITransition(c4);
+    a.setOut_ITransition(c5);
+    r.setOut_ITransition(c6);
+    x9.setRenter_IRenterDetails(c7);
+    x1.setRenters_IRentalEvent(c8, -1);
+    x1.setCars_IRentalCarDetails(c9, -1);
+    return this;
+  }
+  public void childDestroyed(IHardcodedFactory child) { children.remove(child); }
+
+  public void destroy()
+  {
+    destroyChildren(parent, this, children);
+    dispatcher.removeDDispatch_IEvent(c1);
+    dispatcher.removeDDispatch_IEvent(c2);
+    dispatcher.setDStart_ITerminal(null);
+    x4.setOut_ITransition(null);
+    a.setOut_ITransition(null);
+    r.setOut_ITransition(null);
+    x9.setRenter_IRenterDetails(null);
+    x1.removeRenters_IRentalEvent(c8);
+    x1.removeCars_IRentalCarDetails(c9);
+  }
+
+}
 }

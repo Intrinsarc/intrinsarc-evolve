@@ -607,9 +607,7 @@ public abstract class DEComponent extends DEElement
 		{
 			if (req == prov)
 				return req;
-			if (prov.getSuperElementClosure(perspective, true).contains(req))
-				return req;
-			if (req.getSuperElementClosure(perspective, true).contains(prov))
+			if (prov.getInheritanceTree(perspective).contains(req))
 				return req;
 		}
 

@@ -348,7 +348,15 @@ replacing stereo in browser should make it writeable
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 make textboxes tabbable + returnable?
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+double doc field in repository browser
 \end_layout
 
 \begin_layout Enumerate
@@ -371,10 +379,6 @@ problem with error adorner and undo
 \begin_layout Enumerate
 get rid of dark mark in upper corner of packages/factories when copying
  to word
-\end_layout
-
-\begin_layout Enumerate
-double doc field in repository browser
 \end_layout
 
 \begin_layout Enumerate
@@ -459,6 +463,7 @@ Documentation:
 \begin_layout Enumerate
 preface: how i stumbled on components, background to COM, missing link to
  theory missing from much software work...
+ talk about extensibility origins
 \end_layout
 
 \begin_layout Enumerate

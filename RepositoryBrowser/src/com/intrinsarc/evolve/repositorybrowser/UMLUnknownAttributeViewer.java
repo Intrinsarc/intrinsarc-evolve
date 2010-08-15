@@ -32,7 +32,7 @@ public class UMLUnknownAttributeViewer implements UMLAttributeViewer
     setField();
   }
 
-  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel)
+  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel, JButton okButton)
   {
     label = new JLabel("    " + attribute.getName());
     label.setToolTipText(category);

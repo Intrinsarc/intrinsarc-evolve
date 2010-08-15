@@ -20,6 +20,11 @@ public class RentalServiceImpl extends RemoteServiceServlet implements IRentalSe
 	{
 		service.rent(car);
 	}
+	
+	public void setRenter(int car, String renter)
+	{
+		service.setRenter(car, renter);
+	}
 
 	public void returnRental(int car)
 	{

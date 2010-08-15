@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 
 import com.intrinsarc.idraw.environment.*;
-import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.repository.*;
 import com.intrinsarc.swing.enhanced.*;
 
@@ -30,14 +29,14 @@ public class UMLElementViewer
     this.insetPanel = insetPanel;
   }
 
-  public void installAttributeEditors(GridBagConstraints gbcLeft, GridBagConstraints gbcRight, UMLAttributeModificationListener listener, boolean readonly, boolean attributes, boolean documentationOnly)
+  public void installAttributeEditors(GridBagConstraints gbcLeft, GridBagConstraints gbcRight, UMLAttributeModificationListener listener, boolean readonly, boolean attributes, boolean documentationOnly, JButton okButton)
   {
-    installAttributeEditors(element, gbcLeft, gbcRight, listener, readonly, attributes, documentationOnly);
-    if (subsidiary != null)
-      installAttributeEditors(subsidiary, gbcLeft, gbcRight, listener, true, attributes, documentationOnly);
+    installAttributeEditors(element, gbcLeft, gbcRight, listener, readonly, attributes, documentationOnly, okButton);
+    if (subsidiary != null && !documentationOnly)
+      installAttributeEditors(subsidiary, gbcLeft, gbcRight, listener, true, attributes, false, okButton);
   }
 
-  private void installAttributeEditors(Element element, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, UMLAttributeModificationListener listener, boolean readonly, boolean attributes, boolean documentationOnly)
+  private void installAttributeEditors(Element element, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, UMLAttributeModificationListener listener, boolean readonly, boolean attributes, boolean documentationOnly, JButton okButton)
   {
     // look at each item in the inheritance hierarchy, looking for attributes
     for (EClass cls : new UMLHierarchyFinder(element).findSortedHierarchy())
@@ -91,17 +90,17 @@ public class UMLElementViewer
           
         for (EAttribute attr : attrs)
         {
-          UMLAttributeViewer viewer = makeAttributeViewer(element, attr, listener);
+          UMLAttributeViewer viewer = makeAttributeViewer(element, attr, listener, documentationOnly, okButton);
           viewers.add(viewer);
-          viewer.installAttributeEditor("from " + cls.getName(), insetPanel, gbcLeft, gbcRight, !documentationOnly);
+          viewer.installAttributeEditor("from " + cls.getName(), insetPanel, gbcLeft, gbcRight, !documentationOnly, okButton);
           if (readonly)
             viewer.getEditor().setEnabled(false);
         }
         for (EReference ref : refs)
         {
-          UMLAttributeViewer viewer = makeAttributeViewer(element, ref, listener);
+          UMLAttributeViewer viewer = makeAttributeViewer(element, ref, listener, documentationOnly, okButton);
           viewers.add(viewer);
-          viewer.installAttributeEditor("from " + cls.getName(), insetPanel, gbcLeft, gbcRight, !documentationOnly);
+          viewer.installAttributeEditor("from " + cls.getName(), insetPanel, gbcLeft, gbcRight, !documentationOnly, okButton);
           if (readonly)
             viewer.getEditor().setEnabled(false);
         }
@@ -109,7 +108,7 @@ public class UMLElementViewer
     }
   }
 
-  private UMLAttributeViewer makeAttributeViewer(Element element, EStructuralFeature feature, UMLAttributeModificationListener listener)
+  private UMLAttributeViewer makeAttributeViewer(Element element, EStructuralFeature feature, UMLAttributeModificationListener listener, boolean documentation, JButton okButton)
   {
     EClassifier cls = feature.getEType();
     
@@ -123,7 +122,10 @@ public class UMLElementViewer
       	boolean readOnly = false;
       	if (fName.equals("uuid") && !GlobalPreferences.preferences.getRawPreference(RepositoryBrowserGem.EDITABLE_UUIDS).asBoolean())
       		readOnly = true;
-      	return new UMLStringAttributeViewer(element, feature, listener, readOnly);
+      	if (documentation)
+      		return new UMLDocStringAttributeViewer(element, feature, listener, readOnly);
+      	else
+      		return new UMLStringAttributeViewer(element, feature, listener, readOnly);
       }
       if (name.equals("Boolean"))
         return new UMLBooleanAttributeViewer(element, feature, listener, fName.equals("resemblance") || fName.equals("replacement") || fName.equals("trace"));

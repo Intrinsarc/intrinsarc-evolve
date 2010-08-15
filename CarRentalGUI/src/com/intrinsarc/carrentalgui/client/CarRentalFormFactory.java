@@ -16,28 +16,29 @@ public class CarRentalFormFactory implements IHardcodedFactory
   private Attribute<String> text;
 
   // connectors
-  private com.intrinsarc.backbone.runtime.api.ICreate c;
-  private com.google.gwt.user.client.ui.TextBox c1;
-  private com.google.gwt.user.client.ui.Label c2;
-  private com.google.gwt.user.client.ui.TextBox c3;
-  private com.google.gwt.event.dom.client.ChangeHandler c4;
-  private com.google.gwt.user.client.ui.HorizontalPanel c5;
-  private com.google.gwt.user.client.ui.VerticalPanel c6;
+  private com.intrinsarc.carrentalgui.client.IRentalServiceAsync c;
+  private com.intrinsarc.backbone.runtime.api.ICreate c1;
+  private com.google.gwt.user.client.ui.TextBox c2;
+  private com.google.gwt.user.client.ui.Label c3;
+  private com.google.gwt.user.client.ui.TextBox c4;
+  private com.google.gwt.event.dom.client.ChangeHandler c5;
+  private com.google.gwt.user.client.ui.HorizontalPanel c6;
   private com.google.gwt.user.client.ui.VerticalPanel c7;
   private com.google.gwt.user.client.ui.VerticalPanel c8;
   private com.google.gwt.user.client.ui.DecoratorPanel c9;
   private com.google.gwt.user.client.ui.DecoratorPanel c10;
 
  // parts
-  private com.google.gwt.user.client.ui.DecoratorPanel x16 = new com.google.gwt.user.client.ui.DecoratorPanel();
+  private com.google.gwt.user.client.ui.DecoratorPanel x17 = new com.google.gwt.user.client.ui.DecoratorPanel();
   private com.google.gwt.user.client.ui.VerticalPanel x1 = new com.google.gwt.user.client.ui.VerticalPanel();
   private com.google.gwt.user.client.ui.VerticalPanel x2 = new com.google.gwt.user.client.ui.VerticalPanel();
-  private com.google.gwt.user.client.ui.DecoratorPanel x15 = new com.google.gwt.user.client.ui.DecoratorPanel();
-  private com.google.gwt.user.client.ui.VerticalPanel x12 = new com.google.gwt.user.client.ui.VerticalPanel();
-  private com.intrinsarc.carrentalgui.client.GUILogic x3 = new com.intrinsarc.carrentalgui.client.GUILogic();
+  private com.google.gwt.user.client.ui.DecoratorPanel x16 = new com.google.gwt.user.client.ui.DecoratorPanel();
+  private com.google.gwt.user.client.ui.VerticalPanel x14 = new com.google.gwt.user.client.ui.VerticalPanel();
+  private com.intrinsarc.carrentalgui.client.GUILogic x5 = new com.intrinsarc.carrentalgui.client.GUILogic();
+  private com.intrinsarc.carrentalgui.client.RentalService x3 = new com.intrinsarc.carrentalgui.client.RentalService();
   private com.google.gwt.user.client.ui.HorizontalPanel x = new com.google.gwt.user.client.ui.HorizontalPanel();
-  private com.google.gwt.user.client.ui.Label x7 = new com.google.gwt.user.client.ui.Label();
-  private com.google.gwt.user.client.ui.TextBox x5 = new com.google.gwt.user.client.ui.TextBox();
+  private com.google.gwt.user.client.ui.Label x9 = new com.google.gwt.user.client.ui.Label();
+  private com.google.gwt.user.client.ui.TextBox x7 = new com.google.gwt.user.client.ui.TextBox();
   private ICreate factory = new ICreate() {
     public Object create(java.util.Map<String, Object> values) {
       CarWidgetFactory f = new CarWidgetFactory();
@@ -51,7 +52,6 @@ public class CarRentalFormFactory implements IHardcodedFactory
     public void destroy(Object memento) { ((IHardcodedFactory) memento).destroy(); }
   };
   public com.google.gwt.user.client.ui.VerticalPanel getPanel() { return x2; }
-  public void setService(com.intrinsarc.carrentalgui.client.IRentalServiceAsync val)  { x3.setService_IRentalServiceAsync(val); };
 
   public CarRentalFormFactory() {}
 
@@ -60,38 +60,38 @@ public class CarRentalFormFactory implements IHardcodedFactory
     spacing = new Attribute<Integer>(10);
     spacing1 = new Attribute<Integer>(10);
     spacing2 = new Attribute<Integer>(10);
-    width = new Attribute<String>("300px");
+    width = new Attribute<String>("400px");
     spacing3 = new Attribute<Integer>(10);
     text = new Attribute<String>("Add new car:");
     x1.setSpacing(spacing.get());
     x2.setSpacing(spacing1.get());
-    x12.setSpacing(spacing2.get());
+    x14.setSpacing(spacing2.get());
     x.setWidth(width.get());
     x.setSpacing(spacing3.get());
-    x7.setText(text.get());
-    c = factory;
-    c1 = x5;
+    x9.setText(text.get());
+    c = x3.getService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync.class);
+    c1 = factory;
     c2 = x7;
-    c3 = x5;
-    c4 = x3.getChange_ChangeHandler(com.google.gwt.event.dom.client.ChangeHandler.class);
-    c5 = x;
-    c6 = x12;
-    c7 = x12;
+    c3 = x9;
+    c4 = x7;
+    c5 = x5.getChange_ChangeHandler(com.google.gwt.event.dom.client.ChangeHandler.class);
+    c6 = x;
+    c7 = x14;
     c8 = x1;
-    c9 = x15;
-    c10 = x16;
-    x.add(c2);
-    x1.add(c5);
+    c9 = x16;
+    c10 = x17;
+    x.add(c3);
+    x1.add(c6);
     x2.add(c10);
-    x.add(c1);
+    x.add(c2);
     x2.add(c9);
-    x3.setCreate_ICreate(c);
-    x3.setText_TextBox(c3);
-    x5.addChangeHandler(c4);
-    x3.setPanel_Panel(c6);
-    x15.setWidget(c7);
-    x16.setWidget(c8);
-    x3.afterInit();
+    x5.setService_IRentalServiceAsync(c);
+    x5.setCreate_ICreate(c1);
+    x5.setText_TextBox(c4);
+    x7.addChangeHandler(c5);
+    x16.setWidget(c7);
+    x17.setWidget(c8);
+    x5.afterInit();
     return this;
   }
   public void childDestroyed(IHardcodedFactory child) { children.remove(child); }
@@ -118,70 +118,104 @@ class CarWidgetFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
+  private Attribute<Integer> carNo = new Attribute<Integer>(0);
+  public void setCarNo(int carNo) { this.carNo.set(carNo); }
+  public int getCarNo() { return carNo.get(); }
+  private Attribute<String> renter = new Attribute<String>("");
+  public void setRenter(String renter) { this.renter.set(renter); }
+  public String getRenter() { return renter.get(); }
   private Attribute<Boolean> rentEnabled = new Attribute<Boolean>(true);
   public void setRentEnabled(boolean rentEnabled) { this.rentEnabled.set(rentEnabled); }
   public boolean getRentEnabled() { return rentEnabled.get(); }
+  private Attribute<String> model = new Attribute<String>("");
+  public void setModel(String model) { this.model.set(model); }
+  public String getModel() { return model.get(); }
   private Attribute<Boolean> returnEnabled = new Attribute<Boolean>(true);
   public void setReturnEnabled(boolean returnEnabled) { this.returnEnabled.set(returnEnabled); }
   public boolean getReturnEnabled() { return returnEnabled.get(); }
-  private Attribute<String> model = new Attribute<String>("foo");
-  public void setModel(String model) { this.model.set(model); }
-  public String getModel() { return model.get(); }
+  private Attribute<String> renter1;
   private Attribute<String> model1;
   private Attribute<String> width1;
   private Attribute<Integer> spacing4;
   private Attribute<String> width2;
   private Attribute<String> text1;
   private Attribute<String> text2;
+  private Attribute<String> text3;
+  private Attribute<Integer> carNo1;
 
   // connectors
-  private com.google.gwt.user.client.ui.Button c11;
-  private com.google.gwt.user.client.ui.Button c12;
-  private com.google.gwt.user.client.ui.Label c13;
-  private com.google.gwt.user.client.ui.ClickListener c14;
+  private com.intrinsarc.carrentalgui.client.IRentalServiceAsync c11;
+  private com.google.gwt.user.client.ui.ChangeListener c12;
+  private com.google.gwt.user.client.ui.ClickListener c13;
+  private com.google.gwt.user.client.ui.TextBox c14;
   private com.google.gwt.user.client.ui.ClickListener c15;
-  private com.google.gwt.user.client.ui.HorizontalPanel c16;
+  private com.google.gwt.user.client.ui.TextBox c16;
+  private com.google.gwt.user.client.ui.Button c17;
+  private com.google.gwt.user.client.ui.Button c18;
+  private com.google.gwt.user.client.ui.Label c19;
+  private com.google.gwt.event.dom.client.ChangeHandler c20;
+  private com.google.gwt.user.client.ui.HorizontalPanel c21;
 
  // parts
-  private com.google.gwt.user.client.ui.HorizontalPanel x20 = new com.google.gwt.user.client.ui.HorizontalPanel();
-  private com.google.gwt.user.client.ui.Label x25 = new com.google.gwt.user.client.ui.Label();
-  private com.google.gwt.user.client.ui.Button x23 = new com.google.gwt.user.client.ui.Button();
-  private com.google.gwt.user.client.ui.Button x21 = new com.google.gwt.user.client.ui.Button();
+  private com.google.gwt.user.client.ui.HorizontalPanel x21 = new com.google.gwt.user.client.ui.HorizontalPanel();
+  private com.google.gwt.user.client.ui.Label x34 = new com.google.gwt.user.client.ui.Label();
+  private com.google.gwt.user.client.ui.Button x30 = new com.google.gwt.user.client.ui.Button();
+  private com.google.gwt.user.client.ui.Button x27 = new com.google.gwt.user.client.ui.Button();
+  private com.google.gwt.user.client.ui.TextBox x24 = new com.google.gwt.user.client.ui.TextBox();
+  private com.intrinsarc.carrentalgui.client.RentalLogic x23 = new com.intrinsarc.carrentalgui.client.RentalLogic();
 
   public CarWidgetFactory() {}
 
   public CarWidgetFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
     this.parent = parent;
+    if (values != null && values.containsKey("carNo")) carNo = new Attribute<Integer>((Integer) values.get("carNo"));
+    if (values != null && values.containsKey("renter")) renter = new Attribute<String>((String) values.get("renter"));
     if (values != null && values.containsKey("rentEnabled")) rentEnabled = new Attribute<Boolean>((Boolean) values.get("rentEnabled"));
-    if (values != null && values.containsKey("returnEnabled")) returnEnabled = new Attribute<Boolean>((Boolean) values.get("returnEnabled"));
     if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
+    if (values != null && values.containsKey("returnEnabled")) returnEnabled = new Attribute<Boolean>((Boolean) values.get("returnEnabled"));
+    renter1 = new Attribute<String>(renter.get());
     model1 = new Attribute<String>(model.get());
-    width1 = new Attribute<String>("300px");
+    width1 = new Attribute<String>("400px");
     spacing4 = new Attribute<Integer>(10);
     width2 = new Attribute<String>("100px");
     text1 = new Attribute<String>("rent");
     text2 = new Attribute<String>("return");
-    x20.setWidth(width1.get());
-    x20.setSpacing(spacing4.get());
-    x25.setWidth(width2.get());
-    x25.setText(model1.get());
-    x23.setEnabled(rentEnabled.get());
-    x23.setText(text1.get());
-    x21.setEnabled(returnEnabled.get());
-    x21.setText(text2.get());
-    c11 = x21;
-    c12 = x23;
-    c13 = x25;
-    c14 = x3.getReturn_ClickListener(com.google.gwt.user.client.ui.ClickListener.class, -1);
-    c15 = x3.getRent_ClickListener(com.google.gwt.user.client.ui.ClickListener.class, -1);
-    c16 = x20;
-    x20.add(c13);
-    x20.add(c12);
-    x20.add(c11);
-    x21.addClickListener(c14);
-    x23.addClickListener(c15);
-    x12.add(c16);
+    text3 = new Attribute<String>(renter1.get());
+    carNo1 = new Attribute<Integer>(carNo.get());
+    x21.setWidth(width1.get());
+    x21.setSpacing(spacing4.get());
+    x34.setWidth(width2.get());
+    x34.setText(model1.get());
+    x30.setText(text1.get());
+    x30.setEnabled(rentEnabled.get());
+    x27.setText(text2.get());
+    x27.setEnabled(returnEnabled.get());
+    x24.setEnabled(returnEnabled.get());
+    x24.setText(text3.get());
+    x23.setCarNo(carNo1);
+    c11 = x3.getService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync.class);
+    c12 = x23.getRenterSet_ChangeListener(com.google.gwt.user.client.ui.ChangeListener.class);
+    c13 = x23.getReturn_ClickListener(com.google.gwt.user.client.ui.ClickListener.class);
+    c14 = x24;
+    c15 = x23.getRent_ClickListener(com.google.gwt.user.client.ui.ClickListener.class);
+    c16 = x24;
+    c17 = x27;
+    c18 = x30;
+    c19 = x34;
+    c20 = x5.getChange_ChangeHandler(com.google.gwt.event.dom.client.ChangeHandler.class);
+    c21 = x21;
+    x21.add(c19);
+    x21.add(c18);
+    x21.add(c16);
+    x21.add(c17);
+    x23.setService_IRentalServiceAsync(c11);
+    x24.addChangeListener(c12);
+    x27.addClickListener(c13);
+    x23.setRenter_TextBox(c14);
+    x30.addClickListener(c15);
+    x23.setRefresh_ChangeHandler(c20);
+    x14.add(c21);
     return this;
   }
   public void childDestroyed(IHardcodedFactory child) { children.remove(child); }
@@ -189,14 +223,17 @@ class CarWidgetFactory implements IHardcodedFactory
   public void destroy()
   {
     destroyChildren(parent, this, children);
-    x20.remove(c13);
-    x20.remove(c12);
-    x20.remove(c11);
-    x21.removeClickListener(c14);
-    x3.removeReturn_ClickListener(c14);
-    x23.removeClickListener(c15);
-    x3.removeRent_ClickListener(c15);
-    x12.remove(c16);
+    x21.remove(c19);
+    x21.remove(c18);
+    x21.remove(c16);
+    x21.remove(c17);
+    x23.setService_IRentalServiceAsync(null);
+    x24.removeChangeListener(c12);
+    x27.removeClickListener(c13);
+    x23.setRenter_TextBox(null);
+    x30.removeClickListener(c15);
+    x23.setRefresh_ChangeHandler(null);
+    x14.remove(c21);
   }
 
 }

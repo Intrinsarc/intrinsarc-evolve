@@ -1,6 +1,7 @@
 package com.intrinsarc.evolve.repositorybrowser;
 
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 
@@ -41,7 +42,7 @@ public abstract class UMLAttributeViewerBase implements UMLAttributeViewer
     colourLine();
   }
 
-  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel)
+  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel, final JButton okButton)
   {
       String name = attribute.getName();
       label = new JLabel("    " + name);
@@ -50,6 +51,15 @@ public abstract class UMLAttributeViewerBase implements UMLAttributeViewer
         insetPanel.add(label, gbcLeft);
 
     editor = installAttributeEditor(insetPanel, gbcLeft, gbcRight);
+    if (!acceptsEnter())
+	    editor.addKeyListener(new KeyAdapter()
+	    {
+				public void keyPressed(KeyEvent e)
+				{
+	        if (e.getKeyCode() == KeyEvent.VK_ENTER)
+	        	okButton.doClick();
+				}
+	    });
   }
   
   protected void colourLine()
@@ -103,4 +113,5 @@ public abstract class UMLAttributeViewerBase implements UMLAttributeViewer
   protected abstract JComponent installAttributeEditor(JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight);
   protected abstract Object getCurrentValue();
   protected abstract void trackLatestValue(Object newValue);
+  protected boolean acceptsEnter() { return false; }
 }

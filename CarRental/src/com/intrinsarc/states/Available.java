@@ -1,7 +1,5 @@
 package com.intrinsarc.states;
 
-import java.util.*;
-
 import com.intrinsarc.backbone.runtime.api.*;
 
 public class Available
@@ -28,11 +26,6 @@ public class Available
 			return current;
 		}
 
-		public String getRenterName()
-		{
-			return null;
-		}
-
 		public boolean isRented()
 		{
 			return false;
@@ -48,7 +41,7 @@ public class Available
 			// does nothing in this state
 		}
 
-		public void setRenter(String name, Date whenTo)
+		public void setRenter(String name)
 		{
 			throw new IllegalStateException("Cannot set renter as car is currently available");
 		}
@@ -56,6 +49,11 @@ public class Available
 		public String toString()
 		{
 			return "available";
+		}
+
+		public String getRenter()
+		{
+			return "";
 		}
 	}
 

@@ -3,6 +3,6 @@ package com.intrinsarc.cars;
 
 public interface IRenterDetails
 {
-	String getRenterName();
+	String getRenter();
 	boolean isRented();
 }

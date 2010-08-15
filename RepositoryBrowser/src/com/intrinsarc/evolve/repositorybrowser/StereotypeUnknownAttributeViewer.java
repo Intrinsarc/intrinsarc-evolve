@@ -28,7 +28,7 @@ public class StereotypeUnknownAttributeViewer implements UMLAttributeViewer
   {
   }
 
-  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel)
+  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel, JButton okButton)
   {
     String name = attribute.getName();
     label = new JLabel(name.length() == 0 ? "(unnamed)" : name);

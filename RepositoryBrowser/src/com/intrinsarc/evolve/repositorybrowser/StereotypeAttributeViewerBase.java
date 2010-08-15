@@ -44,7 +44,7 @@ public abstract class StereotypeAttributeViewerBase implements UMLAttributeViewe
     colourLine();
   }
 
-  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel)
+  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel, JButton okButton)
   {
       String name = constituent.getName();
       label = new JLabel(name.length() == 0 ? "(unnamed)" : name);
@@ -52,7 +52,7 @@ public abstract class StereotypeAttributeViewerBase implements UMLAttributeViewe
       if (includeLabel)
         insetPanel.add(label, gbcLeft);
 
-      editor = installAttributeEditor(insetPanel, gbcLeft, gbcRight);
+      editor = installAttributeEditor(insetPanel, gbcLeft, gbcRight, okButton);
       colourLine();
   }
   
@@ -152,7 +152,7 @@ public abstract class StereotypeAttributeViewerBase implements UMLAttributeViewe
     }
   }
   
-  protected abstract JComponent installAttributeEditor(JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight);
+  protected abstract JComponent installAttributeEditor(JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, JButton okButton);
   protected abstract Object getCurrentValue();
   protected abstract void trackLatestValue(Object newValue);
   protected abstract void setValue(Object newValue);

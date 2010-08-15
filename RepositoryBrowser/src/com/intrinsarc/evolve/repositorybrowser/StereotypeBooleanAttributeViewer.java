@@ -18,7 +18,7 @@ public class StereotypeBooleanAttributeViewer extends StereotypeAttributeViewerB
   }
 
   @Override
-  protected JComponent installAttributeEditor(final JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight)
+  protected JComponent installAttributeEditor(final JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, JButton okButton)
   {
     check = new JCheckBox();
     check.setSelected(getModelValue());

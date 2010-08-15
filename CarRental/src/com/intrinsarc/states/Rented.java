@@ -8,7 +8,6 @@ public class Rented
 {
 // start generated code
 // attributes
-	private Attribute<java.util.Date> whenTo = new Attribute<java.util.Date>(null);
 	private Attribute<java.lang.String> renterName = new Attribute<java.lang.String>(null);
 // required ports
 	private com.intrinsarc.backbone.runtime.api.ITransition out;
@@ -16,9 +15,6 @@ public class Rented
 	private ITransitionInImpl in_ITransitionProvided = new ITransitionInImpl();
 	private IRentalEventEventsImpl events_IRentalEventProvided = new IRentalEventEventsImpl();
 // setters and getters
-	public Attribute<java.util.Date> getWhenTo() { return whenTo; }
-	public void setWhenTo(Attribute<java.util.Date> whenTo) { this.whenTo = whenTo;}
-	public void setRawWhenTo(java.util.Date whenTo) { this.whenTo.set(whenTo);}
 	public Attribute<java.lang.String> getRenterName() { return renterName; }
 	public void setRenterName(Attribute<java.lang.String> renterName) { this.renterName = renterName;}
 	public void setRawRenterName(java.lang.String renterName) { this.renterName.set(renterName);}
@@ -36,14 +32,15 @@ public class Rented
 			return current;
 		}
 
-		public String getRenterName()
+		public String getRenter()
 		{
+			System.out.println("$$ renterName = " + renterName);
 			return renterName.get();
 		}
 
 		public boolean isRented()
 		{
-			return renterName.get().length() > 0;
+			return true;
 		}
 
 		public void rent()
@@ -51,10 +48,9 @@ public class Rented
 			throw new IllegalStateException("Already rented!");
 		}
 		
-		public void setRenter(String newRenterName, Date newWhenTo)
+		public void setRenter(String newRenterName)
 		{
 			renterName.set(newRenterName);
-			whenTo.set(newWhenTo);
 		}
 
 		@Override

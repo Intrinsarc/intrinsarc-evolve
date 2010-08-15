@@ -181,7 +181,7 @@ public class StereotypeEditor
         viewer = makeViewer(type);
       newViewers.put(type, viewer);
       
-      viewer.installAttributeEditor(type.getConstituentProperty().getDocumentation(), insetPanel, gbcLeft, gbcRight, true);
+      viewer.installAttributeEditor(type.getConstituentProperty().getDocumentation(), insetPanel, gbcLeft, gbcRight, true, null);
       viewer.getEditor().setEnabled(!readOnly);
     }
     
