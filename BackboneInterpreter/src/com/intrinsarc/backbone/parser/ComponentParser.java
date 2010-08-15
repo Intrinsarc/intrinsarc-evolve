@@ -473,8 +473,7 @@ public class ComponentParser
 	{
 		UuidReference reference = new UuidReference();
 		boolean create[] = {false};
-		boolean hyperStart[] = {false};
-		boolean hyperEnd[] = {false};
+		boolean hyper[] = {false};
 		boolean autoConnect[] = {false};
 		boolean ordered[] = {false};
 		boolean beanMain[] = {false};
@@ -517,8 +516,7 @@ public class ComponentParser
 					}
 				}).
 			optionalLiteral("is-create-port", create).
-			optionalLiteral("is-hyperport-start", hyperStart).
-			optionalLiteral("is-hyperport-end", hyperEnd).
+			optionalLiteral("is-hyperport", hyper).
 			optionalLiteral("is-autoconnect", autoConnect).
 			optionalLiteral("is-ordered", ordered).
 			optionalLiteral("is-bean-main", beanMain).
@@ -527,10 +525,8 @@ public class ComponentParser
 
 		if (create[0])
 			port.setPortKind(PortKindEnum.CREATE);
-		if (hyperStart[0])
-			port.setPortKind(PortKindEnum.HYPERPORT_START);
-		if (hyperEnd[0])
-			port.setPortKind(PortKindEnum.HYPERPORT_END);
+		if (hyper[0])
+			port.setPortKind(PortKindEnum.HYPERPORT);
 		if (autoConnect[0])
 			port.setPortKind(PortKindEnum.AUTOCONNECT);
 		if (ordered[0])

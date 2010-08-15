@@ -328,7 +328,7 @@ public class BBSimpleComponent extends BBSimpleElement
 		if (part.getType().getPorts() != null)
 			for (BBSimplePort port : part.getType().getPorts())
 			{
-				if (port.isHyperportEnd() && !connected(part, port))
+				if (!connected(part, port))
 				{
 					// now look through all the factories to find a suitable match
 					BBSimplePart matchedPart[] = new BBSimplePart[1];
@@ -376,7 +376,7 @@ public class BBSimpleComponent extends BBSimpleElement
 			if (part != originalPart && part.getType().getPorts() != null)
 				for (BBSimplePort port : part.getType().getPorts())
 				{
-					if (port.isHyperportStart() && !connected(part, port))
+					if (port.isHyperport() && !connected(part, port))
 					{
 						if (DEComponent.oneToOneMappingExists(
 									perspective,

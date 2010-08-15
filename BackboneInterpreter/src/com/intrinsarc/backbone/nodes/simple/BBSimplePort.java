@@ -111,16 +111,11 @@ public class BBSimplePort extends BBSimpleObject
 		return false;
 	}
 
-	public boolean isHyperportStart()
+	public boolean isHyperport()
 	{
-		return complex.getPortKind() == PortKindEnum.HYPERPORT_START;
+		return complex.getPortKind() == PortKindEnum.HYPERPORT;
 	}
 
-	public boolean isHyperportEnd()
-	{
-		return complex.getPortKind() == PortKindEnum.HYPERPORT_END;
-	}
-	
 	@Override
 	public Map<String, List<? extends BBSimpleObject>> getChildren(boolean top)
 	{

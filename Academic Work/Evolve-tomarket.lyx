@@ -323,10 +323,14 @@ no need for index coming from factory even into ordered ports
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 deleting indexed provided ports: hardcoded + reflection
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 no hyperport ends needed! still use hyperport start though - important to
  make this a bit difficult
 \end_layout
@@ -345,6 +349,11 @@ replacing stereo in browser should make it writeable
 
 \begin_layout Enumerate
 problem with error adorner and undo
+\end_layout
+
+\begin_layout Enumerate
+get rid of dark mark in upper corner of packages/factories when copying
+ to word
 \end_layout
 
 \begin_layout Enumerate

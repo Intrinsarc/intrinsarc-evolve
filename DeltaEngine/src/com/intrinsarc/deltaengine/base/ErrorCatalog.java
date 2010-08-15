@@ -72,8 +72,7 @@ public class ErrorCatalog
 	public static final ErrorDescription CANNOT_REFER_TO_WRITEONLY_ATTRIBUTE = new ErrorDescription("A slot cannot refer to a write-only attribute");
 	public static final ErrorDescription CANNOT_SET_READONLY_ATTRIBUTE = new ErrorDescription("A slot cannot set a value for a read-only attribute");
 	public static final ErrorDescription MUST_HAVE_SLOT_FOR_ATTRIBUTES_WITHOUT_DEFAULT = new ErrorDescription("Slots must exist for all attributes without default values");
-	public static final ErrorDescription HYPERSTART_MUST_ALLOW_MULTIPLE = new ErrorDescription("A start hyperport must allow many connectors");
-	public static final ErrorDescription HYPEREND_MUST_BE_OPTIONAL = new ErrorDescription("An end hyperport must be optional");
+	public static final ErrorDescription HYPERPORT_MUST_ALLOW_MULTIPLE = new ErrorDescription("A hyperport must allow many connectors");
 	public static final ErrorDescription CANNOT_RESEMBLE_REDEF_RETIRED_ELEMENT = new ErrorDescription("Cannot resemble or redefine a retired element");
 	public static final ErrorDescription RETIRE_MUST_EVOLVE_ONLY = new ErrorDescription("A retirement must only resemble and redefine the element it retires");
 	public static final ErrorDescription DIAGRAM_ELEMENT_REFERS_TO_RETIRED = new ErrorDescription("Cannot show retired element here");

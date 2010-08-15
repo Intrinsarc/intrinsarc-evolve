@@ -60,26 +60,16 @@ public class ComponentErrorChecker
     	DEPort port = pair.getConstituent().asPort();
 
     	// if the port is a hyper-start, make sure many things can connect to it
-    	if (port.getPortKind() == PortKindEnum.HYPERPORT_START)
+    	if (port.getPortKind() == PortKindEnum.HYPERPORT)
     	{
     		// if we have some required interfaces and no unbounded multiplicity, complain
     		if (!component.getRequiredInterfaces(perspective, port).isEmpty() && port.getUpperBound() != -1)
           errors.addError(
-              new ErrorLocation(perspective, component, port), ErrorCatalog.HYPERSTART_MUST_ALLOW_MULTIPLE);      			
-    	}
-    	
-    	// if the port is a hyper-end, then make sure it is optional
-    	if (port.getPortKind() == PortKindEnum.HYPERPORT_END)
-    	{
-    		// if we have some required interfaces and no unbounded multiplicity, complain
-    		if (!component.getRequiredInterfaces(perspective, port).isEmpty() && port.getLowerBound() != 0 && port.getUpperBound() <= 1)
-          errors.addError(
-              new ErrorLocation(perspective, component, port), ErrorCatalog.HYPEREND_MUST_BE_OPTIONAL);      			
+              new ErrorLocation(perspective, component, port), ErrorCatalog.HYPERPORT_MUST_ALLOW_MULTIPLE);      			
     	}
     	
     	// a hyper port cannot be ordered
-    	if ((port.getPortKind() == PortKindEnum.HYPERPORT_START || port.getPortKind() == PortKindEnum.HYPERPORT_END) &&
-    			port.isOrdered())
+    	if (port.getPortKind() == PortKindEnum.HYPERPORT && port.isOrdered())
     		errors.addError(new ErrorLocation(perspective, component, port), ErrorCatalog.HYPERPORTS_CANNOT_BE_ORDERED);
     	
     	// ports may not refer to retired interfaces

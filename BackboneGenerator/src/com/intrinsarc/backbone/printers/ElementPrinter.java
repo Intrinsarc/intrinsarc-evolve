@@ -443,10 +443,8 @@ public class ElementPrinter
 			b.append("[" + port.getLowerBound() + " upto " + (port.getUpperBound() == -1 ? "*" : port.getUpperBound()) + "]");
 		if (port.getPortKind() == PortKindEnum.CREATE)
 			b.append(" is-create-port");
-		if (port.getPortKind() == PortKindEnum.HYPERPORT_START)
-			b.append(" is-hyperport-start");
-		if (port.getPortKind() == PortKindEnum.HYPERPORT_END)
-			b.append(" is-hyperport-end");
+		if (port.getPortKind() == PortKindEnum.HYPERPORT)
+			b.append(" is-hyperport");
 		if (port.getPortKind() == PortKindEnum.AUTOCONNECT)
 			b.append(" is-autoconnect");
 		if (port.isOrdered())
