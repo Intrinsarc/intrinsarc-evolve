@@ -58,7 +58,6 @@ public class Rented
 		{
 			current = !out.enter();
 			renterName.set(null);
-			whenTo.set(null);
 		}
 		
 		public String toString()
