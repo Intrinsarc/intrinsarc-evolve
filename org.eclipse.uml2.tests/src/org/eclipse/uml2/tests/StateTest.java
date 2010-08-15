@@ -49,7 +49,8 @@ public class StateTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(StateTest.class);
 	}
 
@@ -59,7 +60,8 @@ public class StateTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateTest(String name) {
+	public StateTest(String name)
+	{
 		super(name);
 	}
 
@@ -69,7 +71,8 @@ public class StateTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private State getFixture() {
+	private State getFixture()
+	{
 		return (State)fixture;
 	}
 
@@ -79,7 +82,8 @@ public class StateTest extends NamespaceTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createState());
 	}
 
@@ -89,7 +93,8 @@ public class StateTest extends NamespaceTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -100,7 +105,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.State#getRedefinitionContexts()
 	 * @generated
 	 */
-	public void testGetRedefinitionContexts() {
+	public void testGetRedefinitionContexts()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -112,7 +118,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.State#isComposite()
 	 * @generated
 	 */
-	public void testIsComposite() {
+	public void testIsComposite()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -124,7 +131,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.State#isOrthogonal()
 	 * @generated
 	 */
-	public void testIsOrthogonal() {
+	public void testIsOrthogonal()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -136,7 +144,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.State#isSimple()
 	 * @generated
 	 */
-	public void testIsSimple() {
+	public void testIsSimple()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -148,7 +157,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.State#isSubmachineState()
 	 * @generated
 	 */
-	public void testIsSubmachineState() {
+	public void testIsSubmachineState()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -160,7 +170,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#validateRedefinitionContextValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateRedefinitionContextValid__DiagnosticChain_Map() {
+	public void testValidateRedefinitionContextValid__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -172,7 +183,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#validateRedefinitionConsistent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateRedefinitionConsistent__DiagnosticChain_Map() {
+	public void testValidateRedefinitionConsistent__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -184,7 +196,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#isConsistentWith(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsConsistentWith__RedefinableElement() {
+	public void testIsConsistentWith__RedefinableElement()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -196,7 +209,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#isRedefinitionContextValid(org.eclipse.uml2.RedefinableElement)
 	 * @generated
 	 */
-	public void testIsRedefinitionContextValid__RedefinableElement() {
+	public void testIsRedefinitionContextValid__RedefinableElement()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -210,7 +224,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -222,7 +237,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers() {
+	public void testGetOwnedMembers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -234,7 +250,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements() {
+	public void testGetRedefinedElements()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -246,7 +263,8 @@ public class StateTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

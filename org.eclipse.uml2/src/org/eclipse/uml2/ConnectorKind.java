@@ -119,7 +119,8 @@ public final class ConnectorKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final ConnectorKind[] VALUES_ARRAY =
-		new ConnectorKind[] {
+		new ConnectorKind[]
+		{
 			ASSEMBLY_LITERAL,
 			DELEGATION_LITERAL,
 			PORT_LINK_LITERAL,
@@ -139,10 +140,13 @@ public final class ConnectorKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ConnectorKind get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static ConnectorKind get(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ConnectorKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(name))
+			{
 				return result;
 			}
 		}
@@ -155,8 +159,10 @@ public final class ConnectorKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ConnectorKind get(int value) {
-		switch (value) {
+	public static ConnectorKind get(int value)
+	{
+		switch (value)
+		{
 			case ASSEMBLY: return ASSEMBLY_LITERAL;
 			case DELEGATION: return DELEGATION_LITERAL;
 			case PORT_LINK: return PORT_LINK_LITERAL;
@@ -170,7 +176,8 @@ public final class ConnectorKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ConnectorKind(int value, String name) {
+	private ConnectorKind(int value, String name)
+	{
 		super(value, name);
 	}
 

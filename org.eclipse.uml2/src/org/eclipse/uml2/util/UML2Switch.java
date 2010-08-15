@@ -310,8 +310,10 @@ public class UML2Switch {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2Switch() {
-		if (modelPackage == null) {
+	public UML2Switch()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = UML2Package.eINSTANCE;
 		}
 	}
@@ -323,7 +325,8 @@ public class UML2Switch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject) {
+	public Object doSwitch(EObject theEObject)
+	{
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -334,11 +337,14 @@ public class UML2Switch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+	protected Object doSwitch(EClass theEClass, EObject theEObject)
+	{
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else {
+		else
+		{
 			List eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -354,16 +360,20 @@ public class UML2Switch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case UML2Package.ELEMENT: {
+	protected Object doSwitch(int classifierID, EObject theEObject)
+	{
+		switch (classifierID)
+		{
+			case UML2Package.ELEMENT:
+			{
 				Element element = (Element)theEObject;
 				Object result = caseElement(element);
 				if (result == null) result = caseEModelElement(element);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.MULTIPLICITY_ELEMENT: {
+			case UML2Package.MULTIPLICITY_ELEMENT:
+			{
 				MultiplicityElement multiplicityElement = (MultiplicityElement)theEObject;
 				Object result = caseMultiplicityElement(multiplicityElement);
 				if (result == null) result = caseUML2_Element(multiplicityElement);
@@ -371,7 +381,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.NAMED_ELEMENT: {
+			case UML2Package.NAMED_ELEMENT:
+			{
 				NamedElement namedElement = (NamedElement)theEObject;
 				Object result = caseNamedElement(namedElement);
 				if (result == null) result = caseUML2_TemplateableElement(namedElement);
@@ -380,7 +391,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.NAMESPACE: {
+			case UML2Package.NAMESPACE:
+			{
 				Namespace namespace = (Namespace)theEObject;
 				Object result = caseNamespace(namespace);
 				if (result == null) result = caseUML2_NamedElement(namespace);
@@ -390,7 +402,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.OPAQUE_EXPRESSION: {
+			case UML2Package.OPAQUE_EXPRESSION:
+			{
 				OpaqueExpression opaqueExpression = (OpaqueExpression)theEObject;
 				Object result = caseOpaqueExpression(opaqueExpression);
 				if (result == null) result = caseUML2_ValueSpecification(opaqueExpression);
@@ -403,7 +416,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.VALUE_SPECIFICATION: {
+			case UML2Package.VALUE_SPECIFICATION:
+			{
 				ValueSpecification valueSpecification = (ValueSpecification)theEObject;
 				Object result = caseValueSpecification(valueSpecification);
 				if (result == null) result = caseUML2_TypedElement(valueSpecification);
@@ -415,7 +429,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXPRESSION: {
+			case UML2Package.EXPRESSION:
+			{
 				Expression expression = (Expression)theEObject;
 				Object result = caseExpression(expression);
 				if (result == null) result = caseUML2_OpaqueExpression(expression);
@@ -429,7 +444,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.COMMENT: {
+			case UML2Package.COMMENT:
+			{
 				Comment comment = (Comment)theEObject;
 				Object result = caseComment(comment);
 				if (result == null) result = caseUML2_TemplateableElement(comment);
@@ -438,7 +454,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DIRECTED_RELATIONSHIP: {
+			case UML2Package.DIRECTED_RELATIONSHIP:
+			{
 				DirectedRelationship directedRelationship = (DirectedRelationship)theEObject;
 				Object result = caseDirectedRelationship(directedRelationship);
 				if (result == null) result = caseUML2_Relationship(directedRelationship);
@@ -447,7 +464,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.RELATIONSHIP: {
+			case UML2Package.RELATIONSHIP:
+			{
 				Relationship relationship = (Relationship)theEObject;
 				Object result = caseRelationship(relationship);
 				if (result == null) result = caseUML2_Element(relationship);
@@ -455,7 +473,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CLASS: {
+			case UML2Package.CLASS:
+			{
 				org.eclipse.uml2.Class class_ = (org.eclipse.uml2.Class)theEObject;
 				Object result = caseClass(class_);
 				if (result == null) result = caseUML2_BehavioredClassifier(class_);
@@ -474,7 +493,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TYPE: {
+			case UML2Package.TYPE:
+			{
 				Type type = (Type)theEObject;
 				Object result = caseType(type);
 				if (result == null) result = caseUML2_PackageableElement(type);
@@ -486,7 +506,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PROPERTY: {
+			case UML2Package.PROPERTY:
+			{
 				Property property = (Property)theEObject;
 				Object result = caseProperty(property);
 				if (result == null) result = caseUML2_StructuralFeature(property);
@@ -504,7 +525,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.OPERATION: {
+			case UML2Package.OPERATION:
+			{
 				Operation operation = (Operation)theEObject;
 				Object result = caseOperation(operation);
 				if (result == null) result = caseUML2_BehavioralFeature(operation);
@@ -521,7 +543,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TYPED_ELEMENT: {
+			case UML2Package.TYPED_ELEMENT:
+			{
 				TypedElement typedElement = (TypedElement)theEObject;
 				Object result = caseTypedElement(typedElement);
 				if (result == null) result = caseUML2_NamedElement(typedElement);
@@ -531,7 +554,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PARAMETER: {
+			case UML2Package.PARAMETER:
+			{
 				Parameter parameter = (Parameter)theEObject;
 				Object result = caseParameter(parameter);
 				if (result == null) result = caseUML2_ConnectableElement(parameter);
@@ -545,7 +569,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PACKAGE: {
+			case UML2Package.PACKAGE:
+			{
 				org.eclipse.uml2.Package package_ = (org.eclipse.uml2.Package)theEObject;
 				Object result = casePackage(package_);
 				if (result == null) result = caseUML2_Namespace(package_);
@@ -558,7 +583,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ENUMERATION: {
+			case UML2Package.ENUMERATION:
+			{
 				Enumeration enumeration = (Enumeration)theEObject;
 				Object result = caseEnumeration(enumeration);
 				if (result == null) result = caseUML2_DataType(enumeration);
@@ -575,7 +601,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DATA_TYPE: {
+			case UML2Package.DATA_TYPE:
+			{
 				DataType dataType = (DataType)theEObject;
 				Object result = caseDataType(dataType);
 				if (result == null) result = caseUML2_Classifier(dataType);
@@ -591,7 +618,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ENUMERATION_LITERAL: {
+			case UML2Package.ENUMERATION_LITERAL:
+			{
 				EnumerationLiteral enumerationLiteral = (EnumerationLiteral)theEObject;
 				Object result = caseEnumerationLiteral(enumerationLiteral);
 				if (result == null) result = caseUML2_InstanceSpecification(enumerationLiteral);
@@ -606,7 +634,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PRIMITIVE_TYPE: {
+			case UML2Package.PRIMITIVE_TYPE:
+			{
 				PrimitiveType primitiveType = (PrimitiveType)theEObject;
 				Object result = casePrimitiveType(primitiveType);
 				if (result == null) result = caseUML2_DataType(primitiveType);
@@ -623,7 +652,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CLASSIFIER: {
+			case UML2Package.CLASSIFIER:
+			{
 				Classifier classifier = (Classifier)theEObject;
 				Object result = caseClassifier(classifier);
 				if (result == null) result = caseUML2_Namespace(classifier);
@@ -638,7 +668,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.FEATURE: {
+			case UML2Package.FEATURE:
+			{
 				Feature feature = (Feature)theEObject;
 				Object result = caseFeature(feature);
 				if (result == null) result = caseUML2_RedefinableElement(feature);
@@ -649,7 +680,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONSTRAINT: {
+			case UML2Package.CONSTRAINT:
+			{
 				Constraint constraint = (Constraint)theEObject;
 				Object result = caseConstraint(constraint);
 				if (result == null) result = caseUML2_PackageableElement(constraint);
@@ -661,7 +693,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LITERAL_BOOLEAN: {
+			case UML2Package.LITERAL_BOOLEAN:
+			{
 				LiteralBoolean literalBoolean = (LiteralBoolean)theEObject;
 				Object result = caseLiteralBoolean(literalBoolean);
 				if (result == null) result = caseUML2_LiteralSpecification(literalBoolean);
@@ -675,7 +708,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LITERAL_SPECIFICATION: {
+			case UML2Package.LITERAL_SPECIFICATION:
+			{
 				LiteralSpecification literalSpecification = (LiteralSpecification)theEObject;
 				Object result = caseLiteralSpecification(literalSpecification);
 				if (result == null) result = caseUML2_ValueSpecification(literalSpecification);
@@ -688,7 +722,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LITERAL_STRING: {
+			case UML2Package.LITERAL_STRING:
+			{
 				LiteralString literalString = (LiteralString)theEObject;
 				Object result = caseLiteralString(literalString);
 				if (result == null) result = caseUML2_LiteralSpecification(literalString);
@@ -702,7 +737,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LITERAL_NULL: {
+			case UML2Package.LITERAL_NULL:
+			{
 				LiteralNull literalNull = (LiteralNull)theEObject;
 				Object result = caseLiteralNull(literalNull);
 				if (result == null) result = caseUML2_LiteralSpecification(literalNull);
@@ -716,7 +752,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LITERAL_INTEGER: {
+			case UML2Package.LITERAL_INTEGER:
+			{
 				LiteralInteger literalInteger = (LiteralInteger)theEObject;
 				Object result = caseLiteralInteger(literalInteger);
 				if (result == null) result = caseUML2_LiteralSpecification(literalInteger);
@@ -730,7 +767,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LITERAL_UNLIMITED_NATURAL: {
+			case UML2Package.LITERAL_UNLIMITED_NATURAL:
+			{
 				LiteralUnlimitedNatural literalUnlimitedNatural = (LiteralUnlimitedNatural)theEObject;
 				Object result = caseLiteralUnlimitedNatural(literalUnlimitedNatural);
 				if (result == null) result = caseUML2_LiteralSpecification(literalUnlimitedNatural);
@@ -744,7 +782,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.BEHAVIORAL_FEATURE: {
+			case UML2Package.BEHAVIORAL_FEATURE:
+			{
 				BehavioralFeature behavioralFeature = (BehavioralFeature)theEObject;
 				Object result = caseBehavioralFeature(behavioralFeature);
 				if (result == null) result = caseUML2_Namespace(behavioralFeature);
@@ -757,7 +796,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STRUCTURAL_FEATURE: {
+			case UML2Package.STRUCTURAL_FEATURE:
+			{
 				StructuralFeature structuralFeature = (StructuralFeature)theEObject;
 				Object result = caseStructuralFeature(structuralFeature);
 				if (result == null) result = caseUML2_Feature(structuralFeature);
@@ -771,7 +811,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INSTANCE_SPECIFICATION: {
+			case UML2Package.INSTANCE_SPECIFICATION:
+			{
 				InstanceSpecification instanceSpecification = (InstanceSpecification)theEObject;
 				Object result = caseInstanceSpecification(instanceSpecification);
 				if (result == null) result = caseUML2_PackageableElement(instanceSpecification);
@@ -785,7 +826,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.SLOT: {
+			case UML2Package.SLOT:
+			{
 				Slot slot = (Slot)theEObject;
 				Object result = caseSlot(slot);
 				if (result == null) result = caseUML2_Element(slot);
@@ -793,7 +835,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INSTANCE_VALUE: {
+			case UML2Package.INSTANCE_VALUE:
+			{
 				InstanceValue instanceValue = (InstanceValue)theEObject;
 				Object result = caseInstanceValue(instanceValue);
 				if (result == null) result = caseUML2_ValueSpecification(instanceValue);
@@ -806,7 +849,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REDEFINABLE_ELEMENT: {
+			case UML2Package.REDEFINABLE_ELEMENT:
+			{
 				RedefinableElement redefinableElement = (RedefinableElement)theEObject;
 				Object result = caseRedefinableElement(redefinableElement);
 				if (result == null) result = caseUML2_NamedElement(redefinableElement);
@@ -816,7 +860,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.GENERALIZATION: {
+			case UML2Package.GENERALIZATION:
+			{
 				Generalization generalization = (Generalization)theEObject;
 				Object result = caseGeneralization(generalization);
 				if (result == null) result = caseUML2_DirectedRelationship(generalization);
@@ -826,7 +871,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PACKAGEABLE_ELEMENT: {
+			case UML2Package.PACKAGEABLE_ELEMENT:
+			{
 				PackageableElement packageableElement = (PackageableElement)theEObject;
 				Object result = casePackageableElement(packageableElement);
 				if (result == null) result = caseUML2_NamedElement(packageableElement);
@@ -837,7 +883,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ELEMENT_IMPORT: {
+			case UML2Package.ELEMENT_IMPORT:
+			{
 				ElementImport elementImport = (ElementImport)theEObject;
 				Object result = caseElementImport(elementImport);
 				if (result == null) result = caseUML2_DirectedRelationship(elementImport);
@@ -847,7 +894,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PACKAGE_IMPORT: {
+			case UML2Package.PACKAGE_IMPORT:
+			{
 				PackageImport packageImport = (PackageImport)theEObject;
 				Object result = casePackageImport(packageImport);
 				if (result == null) result = caseUML2_DirectedRelationship(packageImport);
@@ -857,7 +905,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ASSOCIATION: {
+			case UML2Package.ASSOCIATION:
+			{
 				Association association = (Association)theEObject;
 				Object result = caseAssociation(association);
 				if (result == null) result = caseUML2_Classifier(association);
@@ -874,7 +923,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PACKAGE_MERGE: {
+			case UML2Package.PACKAGE_MERGE:
+			{
 				PackageMerge packageMerge = (PackageMerge)theEObject;
 				Object result = casePackageMerge(packageMerge);
 				if (result == null) result = caseUML2_DirectedRelationship(packageMerge);
@@ -884,7 +934,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STEREOTYPE: {
+			case UML2Package.STEREOTYPE:
+			{
 				Stereotype stereotype = (Stereotype)theEObject;
 				Object result = caseStereotype(stereotype);
 				if (result == null) result = caseUML2_Class(stereotype);
@@ -904,7 +955,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PROFILE: {
+			case UML2Package.PROFILE:
+			{
 				Profile profile = (Profile)theEObject;
 				Object result = caseProfile(profile);
 				if (result == null) result = caseUML2_Package(profile);
@@ -918,7 +970,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PROFILE_APPLICATION: {
+			case UML2Package.PROFILE_APPLICATION:
+			{
 				ProfileApplication profileApplication = (ProfileApplication)theEObject;
 				Object result = caseProfileApplication(profileApplication);
 				if (result == null) result = caseUML2_PackageImport(profileApplication);
@@ -929,7 +982,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXTENSION: {
+			case UML2Package.EXTENSION:
+			{
 				Extension extension = (Extension)theEObject;
 				Object result = caseExtension(extension);
 				if (result == null) result = caseUML2_Association(extension);
@@ -947,7 +1001,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXTENSION_END: {
+			case UML2Package.EXTENSION_END:
+			{
 				ExtensionEnd extensionEnd = (ExtensionEnd)theEObject;
 				Object result = caseExtensionEnd(extensionEnd);
 				if (result == null) result = caseUML2_Property(extensionEnd);
@@ -966,7 +1021,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.BEHAVIOR: {
+			case UML2Package.BEHAVIOR:
+			{
 				Behavior behavior = (Behavior)theEObject;
 				Object result = caseBehavior(behavior);
 				if (result == null) result = caseUML2_Class(behavior);
@@ -986,7 +1042,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.BEHAVIORED_CLASSIFIER: {
+			case UML2Package.BEHAVIORED_CLASSIFIER:
+			{
 				BehavioredClassifier behavioredClassifier = (BehavioredClassifier)theEObject;
 				Object result = caseBehavioredClassifier(behavioredClassifier);
 				if (result == null) result = caseUML2_Classifier(behavioredClassifier);
@@ -1002,7 +1059,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTIVITY: {
+			case UML2Package.ACTIVITY:
+			{
 				Activity activity = (Activity)theEObject;
 				Object result = caseActivity(activity);
 				if (result == null) result = caseUML2_Behavior(activity);
@@ -1023,7 +1081,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PERMISSION: {
+			case UML2Package.PERMISSION:
+			{
 				Permission permission = (Permission)theEObject;
 				Object result = casePermission(permission);
 				if (result == null) result = caseUML2_Dependency(permission);
@@ -1038,7 +1097,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DEPENDENCY: {
+			case UML2Package.DEPENDENCY:
+			{
 				Dependency dependency = (Dependency)theEObject;
 				Object result = caseDependency(dependency);
 				if (result == null) result = caseUML2_PackageableElement(dependency);
@@ -1052,7 +1112,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.USAGE: {
+			case UML2Package.USAGE:
+			{
 				Usage usage = (Usage)theEObject;
 				Object result = caseUsage(usage);
 				if (result == null) result = caseUML2_Dependency(usage);
@@ -1067,7 +1128,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ABSTRACTION: {
+			case UML2Package.ABSTRACTION:
+			{
 				Abstraction abstraction = (Abstraction)theEObject;
 				Object result = caseAbstraction(abstraction);
 				if (result == null) result = caseUML2_Dependency(abstraction);
@@ -1082,7 +1144,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REALIZATION: {
+			case UML2Package.REALIZATION:
+			{
 				Realization realization = (Realization)theEObject;
 				Object result = caseRealization(realization);
 				if (result == null) result = caseUML2_Abstraction(realization);
@@ -1098,7 +1161,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.SUBSTITUTION: {
+			case UML2Package.SUBSTITUTION:
+			{
 				Substitution substitution = (Substitution)theEObject;
 				Object result = caseSubstitution(substitution);
 				if (result == null) result = caseUML2_Realization(substitution);
@@ -1115,7 +1179,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.GENERALIZATION_SET: {
+			case UML2Package.GENERALIZATION_SET:
+			{
 				GeneralizationSet generalizationSet = (GeneralizationSet)theEObject;
 				Object result = caseGeneralizationSet(generalizationSet);
 				if (result == null) result = caseUML2_PackageableElement(generalizationSet);
@@ -1127,7 +1192,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ASSOCIATION_CLASS: {
+			case UML2Package.ASSOCIATION_CLASS:
+			{
 				AssociationClass associationClass = (AssociationClass)theEObject;
 				Object result = caseAssociationClass(associationClass);
 				if (result == null) result = caseUML2_Class(associationClass);
@@ -1149,7 +1215,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INFORMATION_ITEM: {
+			case UML2Package.INFORMATION_ITEM:
+			{
 				InformationItem informationItem = (InformationItem)theEObject;
 				Object result = caseInformationItem(informationItem);
 				if (result == null) result = caseUML2_Classifier(informationItem);
@@ -1165,7 +1232,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INFORMATION_FLOW: {
+			case UML2Package.INFORMATION_FLOW:
+			{
 				InformationFlow informationFlow = (InformationFlow)theEObject;
 				Object result = caseInformationFlow(informationFlow);
 				if (result == null) result = caseUML2_PackageableElement(informationFlow);
@@ -1179,7 +1247,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.MODEL: {
+			case UML2Package.MODEL:
+			{
 				Model model = (Model)theEObject;
 				Object result = caseModel(model);
 				if (result == null) result = caseUML2_Package(model);
@@ -1193,7 +1262,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONNECTOR_END: {
+			case UML2Package.CONNECTOR_END:
+			{
 				ConnectorEnd connectorEnd = (ConnectorEnd)theEObject;
 				Object result = caseConnectorEnd(connectorEnd);
 				if (result == null) result = caseUML2_MultiplicityElement(connectorEnd);
@@ -1202,7 +1272,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONNECTABLE_ELEMENT: {
+			case UML2Package.CONNECTABLE_ELEMENT:
+			{
 				ConnectableElement connectableElement = (ConnectableElement)theEObject;
 				Object result = caseConnectableElement(connectableElement);
 				if (result == null) result = caseUML2_NamedElement(connectableElement);
@@ -1213,7 +1284,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONNECTOR: {
+			case UML2Package.CONNECTOR:
+			{
 				Connector connector = (Connector)theEObject;
 				Object result = caseConnector(connector);
 				if (result == null) result = caseUML2_Feature(connector);
@@ -1225,7 +1297,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STRUCTURED_CLASSIFIER: {
+			case UML2Package.STRUCTURED_CLASSIFIER:
+			{
 				StructuredClassifier structuredClassifier = (StructuredClassifier)theEObject;
 				Object result = caseStructuredClassifier(structuredClassifier);
 				if (result == null) result = caseUML2_Classifier(structuredClassifier);
@@ -1241,7 +1314,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTIVITY_EDGE: {
+			case UML2Package.ACTIVITY_EDGE:
+			{
 				ActivityEdge activityEdge = (ActivityEdge)theEObject;
 				Object result = caseActivityEdge(activityEdge);
 				if (result == null) result = caseUML2_RedefinableElement(activityEdge);
@@ -1252,7 +1326,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTIVITY_GROUP: {
+			case UML2Package.ACTIVITY_GROUP:
+			{
 				ActivityGroup activityGroup = (ActivityGroup)theEObject;
 				Object result = caseActivityGroup(activityGroup);
 				if (result == null) result = caseUML2_Element(activityGroup);
@@ -1260,7 +1335,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTIVITY_NODE: {
+			case UML2Package.ACTIVITY_NODE:
+			{
 				ActivityNode activityNode = (ActivityNode)theEObject;
 				Object result = caseActivityNode(activityNode);
 				if (result == null) result = caseUML2_RedefinableElement(activityNode);
@@ -1271,7 +1347,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTION: {
+			case UML2Package.ACTION:
+			{
 				Action action = (Action)theEObject;
 				Object result = caseAction(action);
 				if (result == null) result = caseUML2_ExecutableNode(action);
@@ -1284,7 +1361,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.OBJECT_NODE: {
+			case UML2Package.OBJECT_NODE:
+			{
 				ObjectNode objectNode = (ObjectNode)theEObject;
 				Object result = caseObjectNode(objectNode);
 				if (result == null) result = caseUML2_ActivityNode(objectNode);
@@ -1297,7 +1375,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONTROL_NODE: {
+			case UML2Package.CONTROL_NODE:
+			{
 				ControlNode controlNode = (ControlNode)theEObject;
 				Object result = caseControlNode(controlNode);
 				if (result == null) result = caseUML2_ActivityNode(controlNode);
@@ -1309,7 +1388,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONTROL_FLOW: {
+			case UML2Package.CONTROL_FLOW:
+			{
 				ControlFlow controlFlow = (ControlFlow)theEObject;
 				Object result = caseControlFlow(controlFlow);
 				if (result == null) result = caseUML2_ActivityEdge(controlFlow);
@@ -1321,7 +1401,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.OBJECT_FLOW: {
+			case UML2Package.OBJECT_FLOW:
+			{
 				ObjectFlow objectFlow = (ObjectFlow)theEObject;
 				Object result = caseObjectFlow(objectFlow);
 				if (result == null) result = caseUML2_ActivityEdge(objectFlow);
@@ -1333,7 +1414,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INITIAL_NODE: {
+			case UML2Package.INITIAL_NODE:
+			{
 				InitialNode initialNode = (InitialNode)theEObject;
 				Object result = caseInitialNode(initialNode);
 				if (result == null) result = caseUML2_ControlNode(initialNode);
@@ -1346,7 +1428,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.FINAL_NODE: {
+			case UML2Package.FINAL_NODE:
+			{
 				FinalNode finalNode = (FinalNode)theEObject;
 				Object result = caseFinalNode(finalNode);
 				if (result == null) result = caseUML2_ControlNode(finalNode);
@@ -1359,7 +1442,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTIVITY_FINAL_NODE: {
+			case UML2Package.ACTIVITY_FINAL_NODE:
+			{
 				ActivityFinalNode activityFinalNode = (ActivityFinalNode)theEObject;
 				Object result = caseActivityFinalNode(activityFinalNode);
 				if (result == null) result = caseUML2_FinalNode(activityFinalNode);
@@ -1373,7 +1457,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DECISION_NODE: {
+			case UML2Package.DECISION_NODE:
+			{
 				DecisionNode decisionNode = (DecisionNode)theEObject;
 				Object result = caseDecisionNode(decisionNode);
 				if (result == null) result = caseUML2_ControlNode(decisionNode);
@@ -1386,7 +1471,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.MERGE_NODE: {
+			case UML2Package.MERGE_NODE:
+			{
 				MergeNode mergeNode = (MergeNode)theEObject;
 				Object result = caseMergeNode(mergeNode);
 				if (result == null) result = caseUML2_ControlNode(mergeNode);
@@ -1399,7 +1485,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXECUTABLE_NODE: {
+			case UML2Package.EXECUTABLE_NODE:
+			{
 				ExecutableNode executableNode = (ExecutableNode)theEObject;
 				Object result = caseExecutableNode(executableNode);
 				if (result == null) result = caseUML2_ActivityNode(executableNode);
@@ -1411,7 +1498,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.OUTPUT_PIN: {
+			case UML2Package.OUTPUT_PIN:
+			{
 				OutputPin outputPin = (OutputPin)theEObject;
 				Object result = caseOutputPin(outputPin);
 				if (result == null) result = caseUML2_Pin(outputPin);
@@ -1427,7 +1515,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INPUT_PIN: {
+			case UML2Package.INPUT_PIN:
+			{
 				InputPin inputPin = (InputPin)theEObject;
 				Object result = caseInputPin(inputPin);
 				if (result == null) result = caseUML2_Pin(inputPin);
@@ -1443,7 +1532,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PIN: {
+			case UML2Package.PIN:
+			{
 				Pin pin = (Pin)theEObject;
 				Object result = casePin(pin);
 				if (result == null) result = caseUML2_ObjectNode(pin);
@@ -1458,7 +1548,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTIVITY_PARAMETER_NODE: {
+			case UML2Package.ACTIVITY_PARAMETER_NODE:
+			{
 				ActivityParameterNode activityParameterNode = (ActivityParameterNode)theEObject;
 				Object result = caseActivityParameterNode(activityParameterNode);
 				if (result == null) result = caseUML2_ObjectNode(activityParameterNode);
@@ -1472,7 +1563,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.VALUE_PIN: {
+			case UML2Package.VALUE_PIN:
+			{
 				ValuePin valuePin = (ValuePin)theEObject;
 				Object result = caseValuePin(valuePin);
 				if (result == null) result = caseUML2_InputPin(valuePin);
@@ -1489,7 +1581,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERFACE: {
+			case UML2Package.INTERFACE:
+			{
 				Interface interface_ = (Interface)theEObject;
 				Object result = caseInterface(interface_);
 				if (result == null) result = caseUML2_Classifier(interface_);
@@ -1505,7 +1598,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.IMPLEMENTATION: {
+			case UML2Package.IMPLEMENTATION:
+			{
 				Implementation implementation = (Implementation)theEObject;
 				Object result = caseImplementation(implementation);
 				if (result == null) result = caseUML2_Realization(implementation);
@@ -1522,7 +1616,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ARTIFACT: {
+			case UML2Package.ARTIFACT:
+			{
 				Artifact artifact = (Artifact)theEObject;
 				Object result = caseArtifact(artifact);
 				if (result == null) result = caseUML2_Classifier(artifact);
@@ -1539,7 +1634,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.MANIFESTATION: {
+			case UML2Package.MANIFESTATION:
+			{
 				Manifestation manifestation = (Manifestation)theEObject;
 				Object result = caseManifestation(manifestation);
 				if (result == null) result = caseUML2_Abstraction(manifestation);
@@ -1555,7 +1651,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTOR: {
+			case UML2Package.ACTOR:
+			{
 				Actor actor = (Actor)theEObject;
 				Object result = caseActor(actor);
 				if (result == null) result = caseUML2_Classifier(actor);
@@ -1571,7 +1668,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXTEND: {
+			case UML2Package.EXTEND:
+			{
 				Extend extend = (Extend)theEObject;
 				Object result = caseExtend(extend);
 				if (result == null) result = caseUML2_NamedElement(extend);
@@ -1583,7 +1681,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.USE_CASE: {
+			case UML2Package.USE_CASE:
+			{
 				UseCase useCase = (UseCase)theEObject;
 				Object result = caseUseCase(useCase);
 				if (result == null) result = caseUML2_BehavioredClassifier(useCase);
@@ -1600,7 +1699,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXTENSION_POINT: {
+			case UML2Package.EXTENSION_POINT:
+			{
 				ExtensionPoint extensionPoint = (ExtensionPoint)theEObject;
 				Object result = caseExtensionPoint(extensionPoint);
 				if (result == null) result = caseUML2_RedefinableElement(extensionPoint);
@@ -1611,7 +1711,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INCLUDE: {
+			case UML2Package.INCLUDE:
+			{
 				Include include = (Include)theEObject;
 				Object result = caseInclude(include);
 				if (result == null) result = caseUML2_NamedElement(include);
@@ -1623,7 +1724,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.COLLABORATION_OCCURRENCE: {
+			case UML2Package.COLLABORATION_OCCURRENCE:
+			{
 				CollaborationOccurrence collaborationOccurrence = (CollaborationOccurrence)theEObject;
 				Object result = caseCollaborationOccurrence(collaborationOccurrence);
 				if (result == null) result = caseUML2_NamedElement(collaborationOccurrence);
@@ -1633,7 +1735,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.COLLABORATION: {
+			case UML2Package.COLLABORATION:
+			{
 				Collaboration collaboration = (Collaboration)theEObject;
 				Object result = caseCollaboration(collaboration);
 				if (result == null) result = caseUML2_BehavioredClassifier(collaboration);
@@ -1651,7 +1754,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PORT: {
+			case UML2Package.PORT:
+			{
 				Port port = (Port)theEObject;
 				Object result = casePort(port);
 				if (result == null) result = caseUML2_Property(port);
@@ -1670,7 +1774,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ENCAPSULATED_CLASSIFIER: {
+			case UML2Package.ENCAPSULATED_CLASSIFIER:
+			{
 				EncapsulatedClassifier encapsulatedClassifier = (EncapsulatedClassifier)theEObject;
 				Object result = caseEncapsulatedClassifier(encapsulatedClassifier);
 				if (result == null) result = caseUML2_StructuredClassifier(encapsulatedClassifier);
@@ -1687,7 +1792,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CALL_TRIGGER: {
+			case UML2Package.CALL_TRIGGER:
+			{
 				CallTrigger callTrigger = (CallTrigger)theEObject;
 				Object result = caseCallTrigger(callTrigger);
 				if (result == null) result = caseUML2_MessageTrigger(callTrigger);
@@ -1699,7 +1805,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.MESSAGE_TRIGGER: {
+			case UML2Package.MESSAGE_TRIGGER:
+			{
 				MessageTrigger messageTrigger = (MessageTrigger)theEObject;
 				Object result = caseMessageTrigger(messageTrigger);
 				if (result == null) result = caseUML2_Trigger(messageTrigger);
@@ -1710,7 +1817,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CHANGE_TRIGGER: {
+			case UML2Package.CHANGE_TRIGGER:
+			{
 				ChangeTrigger changeTrigger = (ChangeTrigger)theEObject;
 				Object result = caseChangeTrigger(changeTrigger);
 				if (result == null) result = caseUML2_Trigger(changeTrigger);
@@ -1721,7 +1829,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TRIGGER: {
+			case UML2Package.TRIGGER:
+			{
 				Trigger trigger = (Trigger)theEObject;
 				Object result = caseTrigger(trigger);
 				if (result == null) result = caseUML2_NamedElement(trigger);
@@ -1731,7 +1840,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.RECEPTION: {
+			case UML2Package.RECEPTION:
+			{
 				Reception reception = (Reception)theEObject;
 				Object result = caseReception(reception);
 				if (result == null) result = caseUML2_BehavioralFeature(reception);
@@ -1745,7 +1855,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.SIGNAL: {
+			case UML2Package.SIGNAL:
+			{
 				Signal signal = (Signal)theEObject;
 				Object result = caseSignal(signal);
 				if (result == null) result = caseUML2_Classifier(signal);
@@ -1761,7 +1872,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.SIGNAL_TRIGGER: {
+			case UML2Package.SIGNAL_TRIGGER:
+			{
 				SignalTrigger signalTrigger = (SignalTrigger)theEObject;
 				Object result = caseSignalTrigger(signalTrigger);
 				if (result == null) result = caseUML2_MessageTrigger(signalTrigger);
@@ -1773,7 +1885,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TIME_TRIGGER: {
+			case UML2Package.TIME_TRIGGER:
+			{
 				TimeTrigger timeTrigger = (TimeTrigger)theEObject;
 				Object result = caseTimeTrigger(timeTrigger);
 				if (result == null) result = caseUML2_Trigger(timeTrigger);
@@ -1784,7 +1897,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ANY_TRIGGER: {
+			case UML2Package.ANY_TRIGGER:
+			{
 				AnyTrigger anyTrigger = (AnyTrigger)theEObject;
 				Object result = caseAnyTrigger(anyTrigger);
 				if (result == null) result = caseUML2_MessageTrigger(anyTrigger);
@@ -1796,7 +1910,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.VARIABLE: {
+			case UML2Package.VARIABLE:
+			{
 				Variable variable = (Variable)theEObject;
 				Object result = caseVariable(variable);
 				if (result == null) result = caseUML2_ConnectableElement(variable);
@@ -1810,7 +1925,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STRUCTURED_ACTIVITY_NODE: {
+			case UML2Package.STRUCTURED_ACTIVITY_NODE:
+			{
 				StructuredActivityNode structuredActivityNode = (StructuredActivityNode)theEObject;
 				Object result = caseStructuredActivityNode(structuredActivityNode);
 				if (result == null) result = caseUML2_Action(structuredActivityNode);
@@ -1826,7 +1942,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONDITIONAL_NODE: {
+			case UML2Package.CONDITIONAL_NODE:
+			{
 				ConditionalNode conditionalNode = (ConditionalNode)theEObject;
 				Object result = caseConditionalNode(conditionalNode);
 				if (result == null) result = caseUML2_StructuredActivityNode(conditionalNode);
@@ -1843,7 +1960,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CLAUSE: {
+			case UML2Package.CLAUSE:
+			{
 				Clause clause = (Clause)theEObject;
 				Object result = caseClause(clause);
 				if (result == null) result = caseUML2_Element(clause);
@@ -1851,7 +1969,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LOOP_NODE: {
+			case UML2Package.LOOP_NODE:
+			{
 				LoopNode loopNode = (LoopNode)theEObject;
 				Object result = caseLoopNode(loopNode);
 				if (result == null) result = caseUML2_StructuredActivityNode(loopNode);
@@ -1868,7 +1987,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERACTION: {
+			case UML2Package.INTERACTION:
+			{
 				Interaction interaction = (Interaction)theEObject;
 				Object result = caseInteraction(interaction);
 				if (result == null) result = caseUML2_Behavior(interaction);
@@ -1890,7 +2010,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERACTION_FRAGMENT: {
+			case UML2Package.INTERACTION_FRAGMENT:
+			{
 				InteractionFragment interactionFragment = (InteractionFragment)theEObject;
 				Object result = caseInteractionFragment(interactionFragment);
 				if (result == null) result = caseUML2_NamedElement(interactionFragment);
@@ -1900,7 +2021,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LIFELINE: {
+			case UML2Package.LIFELINE:
+			{
 				Lifeline lifeline = (Lifeline)theEObject;
 				Object result = caseLifeline(lifeline);
 				if (result == null) result = caseUML2_NamedElement(lifeline);
@@ -1910,7 +2032,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.MESSAGE: {
+			case UML2Package.MESSAGE:
+			{
 				Message message = (Message)theEObject;
 				Object result = caseMessage(message);
 				if (result == null) result = caseUML2_NamedElement(message);
@@ -1920,7 +2043,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.GENERAL_ORDERING: {
+			case UML2Package.GENERAL_ORDERING:
+			{
 				GeneralOrdering generalOrdering = (GeneralOrdering)theEObject;
 				Object result = caseGeneralOrdering(generalOrdering);
 				if (result == null) result = caseUML2_NamedElement(generalOrdering);
@@ -1930,7 +2054,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.MESSAGE_END: {
+			case UML2Package.MESSAGE_END:
+			{
 				MessageEnd messageEnd = (MessageEnd)theEObject;
 				Object result = caseMessageEnd(messageEnd);
 				if (result == null) result = caseUML2_NamedElement(messageEnd);
@@ -1940,7 +2065,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EVENT_OCCURRENCE: {
+			case UML2Package.EVENT_OCCURRENCE:
+			{
 				EventOccurrence eventOccurrence = (EventOccurrence)theEObject;
 				Object result = caseEventOccurrence(eventOccurrence);
 				if (result == null) result = caseUML2_InteractionFragment(eventOccurrence);
@@ -1952,7 +2078,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXECUTION_OCCURRENCE: {
+			case UML2Package.EXECUTION_OCCURRENCE:
+			{
 				ExecutionOccurrence executionOccurrence = (ExecutionOccurrence)theEObject;
 				Object result = caseExecutionOccurrence(executionOccurrence);
 				if (result == null) result = caseUML2_InteractionFragment(executionOccurrence);
@@ -1963,7 +2090,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STATE_INVARIANT: {
+			case UML2Package.STATE_INVARIANT:
+			{
 				StateInvariant stateInvariant = (StateInvariant)theEObject;
 				Object result = caseStateInvariant(stateInvariant);
 				if (result == null) result = caseUML2_InteractionFragment(stateInvariant);
@@ -1974,7 +2102,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STOP: {
+			case UML2Package.STOP:
+			{
 				Stop stop = (Stop)theEObject;
 				Object result = caseStop(stop);
 				if (result == null) result = caseUML2_EventOccurrence(stop);
@@ -1987,7 +2116,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TEMPLATE_SIGNATURE: {
+			case UML2Package.TEMPLATE_SIGNATURE:
+			{
 				TemplateSignature templateSignature = (TemplateSignature)theEObject;
 				Object result = caseTemplateSignature(templateSignature);
 				if (result == null) result = caseUML2_Element(templateSignature);
@@ -1995,7 +2125,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TEMPLATE_PARAMETER: {
+			case UML2Package.TEMPLATE_PARAMETER:
+			{
 				TemplateParameter templateParameter = (TemplateParameter)theEObject;
 				Object result = caseTemplateParameter(templateParameter);
 				if (result == null) result = caseUML2_Element(templateParameter);
@@ -2003,7 +2134,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TEMPLATEABLE_ELEMENT: {
+			case UML2Package.TEMPLATEABLE_ELEMENT:
+			{
 				TemplateableElement templateableElement = (TemplateableElement)theEObject;
 				Object result = caseTemplateableElement(templateableElement);
 				if (result == null) result = caseUML2_Element(templateableElement);
@@ -2011,7 +2143,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STRING_EXPRESSION: {
+			case UML2Package.STRING_EXPRESSION:
+			{
 				StringExpression stringExpression = (StringExpression)theEObject;
 				Object result = caseStringExpression(stringExpression);
 				if (result == null) result = caseUML2_TemplateableElement(stringExpression);
@@ -2020,7 +2153,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PARAMETERABLE_ELEMENT: {
+			case UML2Package.PARAMETERABLE_ELEMENT:
+			{
 				ParameterableElement parameterableElement = (ParameterableElement)theEObject;
 				Object result = caseParameterableElement(parameterableElement);
 				if (result == null) result = caseUML2_Element(parameterableElement);
@@ -2028,7 +2162,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TEMPLATE_BINDING: {
+			case UML2Package.TEMPLATE_BINDING:
+			{
 				TemplateBinding templateBinding = (TemplateBinding)theEObject;
 				Object result = caseTemplateBinding(templateBinding);
 				if (result == null) result = caseUML2_DirectedRelationship(templateBinding);
@@ -2038,7 +2173,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION: {
+			case UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION:
+			{
 				TemplateParameterSubstitution templateParameterSubstitution = (TemplateParameterSubstitution)theEObject;
 				Object result = caseTemplateParameterSubstitution(templateParameterSubstitution);
 				if (result == null) result = caseUML2_Element(templateParameterSubstitution);
@@ -2046,7 +2182,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.OPERATION_TEMPLATE_PARAMETER: {
+			case UML2Package.OPERATION_TEMPLATE_PARAMETER:
+			{
 				OperationTemplateParameter operationTemplateParameter = (OperationTemplateParameter)theEObject;
 				Object result = caseOperationTemplateParameter(operationTemplateParameter);
 				if (result == null) result = caseUML2_TemplateParameter(operationTemplateParameter);
@@ -2055,7 +2192,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CLASSIFIER_TEMPLATE_PARAMETER: {
+			case UML2Package.CLASSIFIER_TEMPLATE_PARAMETER:
+			{
 				ClassifierTemplateParameter classifierTemplateParameter = (ClassifierTemplateParameter)theEObject;
 				Object result = caseClassifierTemplateParameter(classifierTemplateParameter);
 				if (result == null) result = caseUML2_TemplateParameter(classifierTemplateParameter);
@@ -2064,7 +2202,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PARAMETERABLE_CLASSIFIER: {
+			case UML2Package.PARAMETERABLE_CLASSIFIER:
+			{
 				ParameterableClassifier parameterableClassifier = (ParameterableClassifier)theEObject;
 				Object result = caseParameterableClassifier(parameterableClassifier);
 				if (result == null) result = caseUML2_Classifier(parameterableClassifier);
@@ -2080,7 +2219,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE: {
+			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE:
+			{
 				RedefinableTemplateSignature redefinableTemplateSignature = (RedefinableTemplateSignature)theEObject;
 				Object result = caseRedefinableTemplateSignature(redefinableTemplateSignature);
 				if (result == null) result = caseUML2_RedefinableElement(redefinableTemplateSignature);
@@ -2092,7 +2232,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TEMPLATEABLE_CLASSIFIER: {
+			case UML2Package.TEMPLATEABLE_CLASSIFIER:
+			{
 				TemplateableClassifier templateableClassifier = (TemplateableClassifier)theEObject;
 				Object result = caseTemplateableClassifier(templateableClassifier);
 				if (result == null) result = caseUML2_Classifier(templateableClassifier);
@@ -2108,7 +2249,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONNECTABLE_ELEMENT_TEMPLATE_PARAMETER: {
+			case UML2Package.CONNECTABLE_ELEMENT_TEMPLATE_PARAMETER:
+			{
 				ConnectableElementTemplateParameter connectableElementTemplateParameter = (ConnectableElementTemplateParameter)theEObject;
 				Object result = caseConnectableElementTemplateParameter(connectableElementTemplateParameter);
 				if (result == null) result = caseUML2_TemplateParameter(connectableElementTemplateParameter);
@@ -2117,7 +2259,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.FORK_NODE: {
+			case UML2Package.FORK_NODE:
+			{
 				ForkNode forkNode = (ForkNode)theEObject;
 				Object result = caseForkNode(forkNode);
 				if (result == null) result = caseUML2_ControlNode(forkNode);
@@ -2130,7 +2273,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.JOIN_NODE: {
+			case UML2Package.JOIN_NODE:
+			{
 				JoinNode joinNode = (JoinNode)theEObject;
 				Object result = caseJoinNode(joinNode);
 				if (result == null) result = caseUML2_ControlNode(joinNode);
@@ -2143,7 +2287,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.FLOW_FINAL_NODE: {
+			case UML2Package.FLOW_FINAL_NODE:
+			{
 				FlowFinalNode flowFinalNode = (FlowFinalNode)theEObject;
 				Object result = caseFlowFinalNode(flowFinalNode);
 				if (result == null) result = caseUML2_FinalNode(flowFinalNode);
@@ -2157,7 +2302,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CENTRAL_BUFFER_NODE: {
+			case UML2Package.CENTRAL_BUFFER_NODE:
+			{
 				CentralBufferNode centralBufferNode = (CentralBufferNode)theEObject;
 				Object result = caseCentralBufferNode(centralBufferNode);
 				if (result == null) result = caseUML2_ObjectNode(centralBufferNode);
@@ -2171,7 +2317,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACTIVITY_PARTITION: {
+			case UML2Package.ACTIVITY_PARTITION:
+			{
 				ActivityPartition activityPartition = (ActivityPartition)theEObject;
 				Object result = caseActivityPartition(activityPartition);
 				if (result == null) result = caseUML2_NamedElement(activityPartition);
@@ -2182,7 +2329,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXPANSION_NODE: {
+			case UML2Package.EXPANSION_NODE:
+			{
 				ExpansionNode expansionNode = (ExpansionNode)theEObject;
 				Object result = caseExpansionNode(expansionNode);
 				if (result == null) result = caseUML2_ObjectNode(expansionNode);
@@ -2196,7 +2344,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXPANSION_REGION: {
+			case UML2Package.EXPANSION_REGION:
+			{
 				ExpansionRegion expansionRegion = (ExpansionRegion)theEObject;
 				Object result = caseExpansionRegion(expansionRegion);
 				if (result == null) result = caseUML2_StructuredActivityNode(expansionRegion);
@@ -2213,7 +2362,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXCEPTION_HANDLER: {
+			case UML2Package.EXCEPTION_HANDLER:
+			{
 				ExceptionHandler exceptionHandler = (ExceptionHandler)theEObject;
 				Object result = caseExceptionHandler(exceptionHandler);
 				if (result == null) result = caseUML2_Element(exceptionHandler);
@@ -2221,7 +2371,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERACTION_OCCURRENCE: {
+			case UML2Package.INTERACTION_OCCURRENCE:
+			{
 				InteractionOccurrence interactionOccurrence = (InteractionOccurrence)theEObject;
 				Object result = caseInteractionOccurrence(interactionOccurrence);
 				if (result == null) result = caseUML2_InteractionFragment(interactionOccurrence);
@@ -2232,7 +2383,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.GATE: {
+			case UML2Package.GATE:
+			{
 				Gate gate = (Gate)theEObject;
 				Object result = caseGate(gate);
 				if (result == null) result = caseUML2_MessageEnd(gate);
@@ -2243,7 +2395,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PART_DECOMPOSITION: {
+			case UML2Package.PART_DECOMPOSITION:
+			{
 				PartDecomposition partDecomposition = (PartDecomposition)theEObject;
 				Object result = casePartDecomposition(partDecomposition);
 				if (result == null) result = caseUML2_InteractionOccurrence(partDecomposition);
@@ -2255,7 +2408,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERACTION_OPERAND: {
+			case UML2Package.INTERACTION_OPERAND:
+			{
 				InteractionOperand interactionOperand = (InteractionOperand)theEObject;
 				Object result = caseInteractionOperand(interactionOperand);
 				if (result == null) result = caseUML2_Namespace(interactionOperand);
@@ -2267,7 +2421,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERACTION_CONSTRAINT: {
+			case UML2Package.INTERACTION_CONSTRAINT:
+			{
 				InteractionConstraint interactionConstraint = (InteractionConstraint)theEObject;
 				Object result = caseInteractionConstraint(interactionConstraint);
 				if (result == null) result = caseUML2_Constraint(interactionConstraint);
@@ -2280,7 +2435,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.COMBINED_FRAGMENT: {
+			case UML2Package.COMBINED_FRAGMENT:
+			{
 				CombinedFragment combinedFragment = (CombinedFragment)theEObject;
 				Object result = caseCombinedFragment(combinedFragment);
 				if (result == null) result = caseUML2_InteractionFragment(combinedFragment);
@@ -2291,7 +2447,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONTINUATION: {
+			case UML2Package.CONTINUATION:
+			{
 				Continuation continuation = (Continuation)theEObject;
 				Object result = caseContinuation(continuation);
 				if (result == null) result = caseUML2_InteractionFragment(continuation);
@@ -2302,7 +2459,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STATE_MACHINE: {
+			case UML2Package.STATE_MACHINE:
+			{
 				StateMachine stateMachine = (StateMachine)theEObject;
 				Object result = caseStateMachine(stateMachine);
 				if (result == null) result = caseUML2_Behavior(stateMachine);
@@ -2323,7 +2481,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REGION: {
+			case UML2Package.REGION:
+			{
 				Region region = (Region)theEObject;
 				Object result = caseRegion(region);
 				if (result == null) result = caseUML2_Namespace(region);
@@ -2335,7 +2494,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PSEUDOSTATE: {
+			case UML2Package.PSEUDOSTATE:
+			{
 				Pseudostate pseudostate = (Pseudostate)theEObject;
 				Object result = casePseudostate(pseudostate);
 				if (result == null) result = caseUML2_Vertex(pseudostate);
@@ -2346,7 +2506,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STATE: {
+			case UML2Package.STATE:
+			{
 				State state = (State)theEObject;
 				Object result = caseState(state);
 				if (result == null) result = caseUML2_Namespace(state);
@@ -2359,7 +2520,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.VERTEX: {
+			case UML2Package.VERTEX:
+			{
 				Vertex vertex = (Vertex)theEObject;
 				Object result = caseVertex(vertex);
 				if (result == null) result = caseUML2_NamedElement(vertex);
@@ -2369,7 +2531,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CONNECTION_POINT_REFERENCE: {
+			case UML2Package.CONNECTION_POINT_REFERENCE:
+			{
 				ConnectionPointReference connectionPointReference = (ConnectionPointReference)theEObject;
 				Object result = caseConnectionPointReference(connectionPointReference);
 				if (result == null) result = caseUML2_Vertex(connectionPointReference);
@@ -2380,7 +2543,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TRANSITION: {
+			case UML2Package.TRANSITION:
+			{
 				Transition transition = (Transition)theEObject;
 				Object result = caseTransition(transition);
 				if (result == null) result = caseUML2_RedefinableElement(transition);
@@ -2391,7 +2555,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.FINAL_STATE: {
+			case UML2Package.FINAL_STATE:
+			{
 				FinalState finalState = (FinalState)theEObject;
 				Object result = caseFinalState(finalState);
 				if (result == null) result = caseUML2_State(finalState);
@@ -2405,7 +2570,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CREATE_OBJECT_ACTION: {
+			case UML2Package.CREATE_OBJECT_ACTION:
+			{
 				CreateObjectAction createObjectAction = (CreateObjectAction)theEObject;
 				Object result = caseCreateObjectAction(createObjectAction);
 				if (result == null) result = caseUML2_Action(createObjectAction);
@@ -2419,7 +2585,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DESTROY_OBJECT_ACTION: {
+			case UML2Package.DESTROY_OBJECT_ACTION:
+			{
 				DestroyObjectAction destroyObjectAction = (DestroyObjectAction)theEObject;
 				Object result = caseDestroyObjectAction(destroyObjectAction);
 				if (result == null) result = caseUML2_Action(destroyObjectAction);
@@ -2433,7 +2600,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TEST_IDENTITY_ACTION: {
+			case UML2Package.TEST_IDENTITY_ACTION:
+			{
 				TestIdentityAction testIdentityAction = (TestIdentityAction)theEObject;
 				Object result = caseTestIdentityAction(testIdentityAction);
 				if (result == null) result = caseUML2_Action(testIdentityAction);
@@ -2447,7 +2615,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.READ_SELF_ACTION: {
+			case UML2Package.READ_SELF_ACTION:
+			{
 				ReadSelfAction readSelfAction = (ReadSelfAction)theEObject;
 				Object result = caseReadSelfAction(readSelfAction);
 				if (result == null) result = caseUML2_Action(readSelfAction);
@@ -2461,7 +2630,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.STRUCTURAL_FEATURE_ACTION: {
+			case UML2Package.STRUCTURAL_FEATURE_ACTION:
+			{
 				StructuralFeatureAction structuralFeatureAction = (StructuralFeatureAction)theEObject;
 				Object result = caseStructuralFeatureAction(structuralFeatureAction);
 				if (result == null) result = caseUML2_Action(structuralFeatureAction);
@@ -2475,7 +2645,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.READ_STRUCTURAL_FEATURE_ACTION: {
+			case UML2Package.READ_STRUCTURAL_FEATURE_ACTION:
+			{
 				ReadStructuralFeatureAction readStructuralFeatureAction = (ReadStructuralFeatureAction)theEObject;
 				Object result = caseReadStructuralFeatureAction(readStructuralFeatureAction);
 				if (result == null) result = caseUML2_StructuralFeatureAction(readStructuralFeatureAction);
@@ -2490,7 +2661,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION: {
+			case UML2Package.WRITE_STRUCTURAL_FEATURE_ACTION:
+			{
 				WriteStructuralFeatureAction writeStructuralFeatureAction = (WriteStructuralFeatureAction)theEObject;
 				Object result = caseWriteStructuralFeatureAction(writeStructuralFeatureAction);
 				if (result == null) result = caseUML2_StructuralFeatureAction(writeStructuralFeatureAction);
@@ -2505,7 +2677,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CLEAR_STRUCTURAL_FEATURE_ACTION: {
+			case UML2Package.CLEAR_STRUCTURAL_FEATURE_ACTION:
+			{
 				ClearStructuralFeatureAction clearStructuralFeatureAction = (ClearStructuralFeatureAction)theEObject;
 				Object result = caseClearStructuralFeatureAction(clearStructuralFeatureAction);
 				if (result == null) result = caseUML2_StructuralFeatureAction(clearStructuralFeatureAction);
@@ -2520,7 +2693,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REMOVE_STRUCTURAL_FEATURE_VALUE_ACTION: {
+			case UML2Package.REMOVE_STRUCTURAL_FEATURE_VALUE_ACTION:
+			{
 				RemoveStructuralFeatureValueAction removeStructuralFeatureValueAction = (RemoveStructuralFeatureValueAction)theEObject;
 				Object result = caseRemoveStructuralFeatureValueAction(removeStructuralFeatureValueAction);
 				if (result == null) result = caseUML2_WriteStructuralFeatureAction(removeStructuralFeatureValueAction);
@@ -2536,7 +2710,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION: {
+			case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION:
+			{
 				AddStructuralFeatureValueAction addStructuralFeatureValueAction = (AddStructuralFeatureValueAction)theEObject;
 				Object result = caseAddStructuralFeatureValueAction(addStructuralFeatureValueAction);
 				if (result == null) result = caseUML2_WriteStructuralFeatureAction(addStructuralFeatureValueAction);
@@ -2552,7 +2727,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LINK_ACTION: {
+			case UML2Package.LINK_ACTION:
+			{
 				LinkAction linkAction = (LinkAction)theEObject;
 				Object result = caseLinkAction(linkAction);
 				if (result == null) result = caseUML2_Action(linkAction);
@@ -2566,7 +2742,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LINK_END_DATA: {
+			case UML2Package.LINK_END_DATA:
+			{
 				LinkEndData linkEndData = (LinkEndData)theEObject;
 				Object result = caseLinkEndData(linkEndData);
 				if (result == null) result = caseUML2_Element(linkEndData);
@@ -2574,7 +2751,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.READ_LINK_ACTION: {
+			case UML2Package.READ_LINK_ACTION:
+			{
 				ReadLinkAction readLinkAction = (ReadLinkAction)theEObject;
 				Object result = caseReadLinkAction(readLinkAction);
 				if (result == null) result = caseUML2_LinkAction(readLinkAction);
@@ -2589,7 +2767,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.LINK_END_CREATION_DATA: {
+			case UML2Package.LINK_END_CREATION_DATA:
+			{
 				LinkEndCreationData linkEndCreationData = (LinkEndCreationData)theEObject;
 				Object result = caseLinkEndCreationData(linkEndCreationData);
 				if (result == null) result = caseUML2_LinkEndData(linkEndCreationData);
@@ -2598,7 +2777,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CREATE_LINK_ACTION: {
+			case UML2Package.CREATE_LINK_ACTION:
+			{
 				CreateLinkAction createLinkAction = (CreateLinkAction)theEObject;
 				Object result = caseCreateLinkAction(createLinkAction);
 				if (result == null) result = caseUML2_WriteLinkAction(createLinkAction);
@@ -2614,7 +2794,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.WRITE_LINK_ACTION: {
+			case UML2Package.WRITE_LINK_ACTION:
+			{
 				WriteLinkAction writeLinkAction = (WriteLinkAction)theEObject;
 				Object result = caseWriteLinkAction(writeLinkAction);
 				if (result == null) result = caseUML2_LinkAction(writeLinkAction);
@@ -2629,7 +2810,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DESTROY_LINK_ACTION: {
+			case UML2Package.DESTROY_LINK_ACTION:
+			{
 				DestroyLinkAction destroyLinkAction = (DestroyLinkAction)theEObject;
 				Object result = caseDestroyLinkAction(destroyLinkAction);
 				if (result == null) result = caseUML2_WriteLinkAction(destroyLinkAction);
@@ -2645,7 +2827,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CLEAR_ASSOCIATION_ACTION: {
+			case UML2Package.CLEAR_ASSOCIATION_ACTION:
+			{
 				ClearAssociationAction clearAssociationAction = (ClearAssociationAction)theEObject;
 				Object result = caseClearAssociationAction(clearAssociationAction);
 				if (result == null) result = caseUML2_Action(clearAssociationAction);
@@ -2659,7 +2842,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.VARIABLE_ACTION: {
+			case UML2Package.VARIABLE_ACTION:
+			{
 				VariableAction variableAction = (VariableAction)theEObject;
 				Object result = caseVariableAction(variableAction);
 				if (result == null) result = caseUML2_Action(variableAction);
@@ -2673,7 +2857,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.READ_VARIABLE_ACTION: {
+			case UML2Package.READ_VARIABLE_ACTION:
+			{
 				ReadVariableAction readVariableAction = (ReadVariableAction)theEObject;
 				Object result = caseReadVariableAction(readVariableAction);
 				if (result == null) result = caseUML2_VariableAction(readVariableAction);
@@ -2688,7 +2873,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.WRITE_VARIABLE_ACTION: {
+			case UML2Package.WRITE_VARIABLE_ACTION:
+			{
 				WriteVariableAction writeVariableAction = (WriteVariableAction)theEObject;
 				Object result = caseWriteVariableAction(writeVariableAction);
 				if (result == null) result = caseUML2_VariableAction(writeVariableAction);
@@ -2703,7 +2889,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CLEAR_VARIABLE_ACTION: {
+			case UML2Package.CLEAR_VARIABLE_ACTION:
+			{
 				ClearVariableAction clearVariableAction = (ClearVariableAction)theEObject;
 				Object result = caseClearVariableAction(clearVariableAction);
 				if (result == null) result = caseUML2_VariableAction(clearVariableAction);
@@ -2718,7 +2905,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ADD_VARIABLE_VALUE_ACTION: {
+			case UML2Package.ADD_VARIABLE_VALUE_ACTION:
+			{
 				AddVariableValueAction addVariableValueAction = (AddVariableValueAction)theEObject;
 				Object result = caseAddVariableValueAction(addVariableValueAction);
 				if (result == null) result = caseUML2_WriteVariableAction(addVariableValueAction);
@@ -2734,7 +2922,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REMOVE_VARIABLE_VALUE_ACTION: {
+			case UML2Package.REMOVE_VARIABLE_VALUE_ACTION:
+			{
 				RemoveVariableValueAction removeVariableValueAction = (RemoveVariableValueAction)theEObject;
 				Object result = caseRemoveVariableValueAction(removeVariableValueAction);
 				if (result == null) result = caseUML2_WriteVariableAction(removeVariableValueAction);
@@ -2750,7 +2939,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.APPLY_FUNCTION_ACTION: {
+			case UML2Package.APPLY_FUNCTION_ACTION:
+			{
 				ApplyFunctionAction applyFunctionAction = (ApplyFunctionAction)theEObject;
 				Object result = caseApplyFunctionAction(applyFunctionAction);
 				if (result == null) result = caseUML2_Action(applyFunctionAction);
@@ -2764,7 +2954,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PRIMITIVE_FUNCTION: {
+			case UML2Package.PRIMITIVE_FUNCTION:
+			{
 				PrimitiveFunction primitiveFunction = (PrimitiveFunction)theEObject;
 				Object result = casePrimitiveFunction(primitiveFunction);
 				if (result == null) result = caseUML2_PackageableElement(primitiveFunction);
@@ -2776,7 +2967,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CALL_ACTION: {
+			case UML2Package.CALL_ACTION:
+			{
 				CallAction callAction = (CallAction)theEObject;
 				Object result = caseCallAction(callAction);
 				if (result == null) result = caseUML2_InvocationAction(callAction);
@@ -2791,7 +2983,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INVOCATION_ACTION: {
+			case UML2Package.INVOCATION_ACTION:
+			{
 				InvocationAction invocationAction = (InvocationAction)theEObject;
 				Object result = caseInvocationAction(invocationAction);
 				if (result == null) result = caseUML2_Action(invocationAction);
@@ -2805,7 +2998,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.SEND_SIGNAL_ACTION: {
+			case UML2Package.SEND_SIGNAL_ACTION:
+			{
 				SendSignalAction sendSignalAction = (SendSignalAction)theEObject;
 				Object result = caseSendSignalAction(sendSignalAction);
 				if (result == null) result = caseUML2_InvocationAction(sendSignalAction);
@@ -2820,7 +3014,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.BROADCAST_SIGNAL_ACTION: {
+			case UML2Package.BROADCAST_SIGNAL_ACTION:
+			{
 				BroadcastSignalAction broadcastSignalAction = (BroadcastSignalAction)theEObject;
 				Object result = caseBroadcastSignalAction(broadcastSignalAction);
 				if (result == null) result = caseUML2_InvocationAction(broadcastSignalAction);
@@ -2835,7 +3030,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.SEND_OBJECT_ACTION: {
+			case UML2Package.SEND_OBJECT_ACTION:
+			{
 				SendObjectAction sendObjectAction = (SendObjectAction)theEObject;
 				Object result = caseSendObjectAction(sendObjectAction);
 				if (result == null) result = caseUML2_InvocationAction(sendObjectAction);
@@ -2850,7 +3046,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CALL_OPERATION_ACTION: {
+			case UML2Package.CALL_OPERATION_ACTION:
+			{
 				CallOperationAction callOperationAction = (CallOperationAction)theEObject;
 				Object result = caseCallOperationAction(callOperationAction);
 				if (result == null) result = caseUML2_CallAction(callOperationAction);
@@ -2866,7 +3063,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CALL_BEHAVIOR_ACTION: {
+			case UML2Package.CALL_BEHAVIOR_ACTION:
+			{
 				CallBehaviorAction callBehaviorAction = (CallBehaviorAction)theEObject;
 				Object result = caseCallBehaviorAction(callBehaviorAction);
 				if (result == null) result = caseUML2_CallAction(callBehaviorAction);
@@ -2882,7 +3080,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TIME_EXPRESSION: {
+			case UML2Package.TIME_EXPRESSION:
+			{
 				TimeExpression timeExpression = (TimeExpression)theEObject;
 				Object result = caseTimeExpression(timeExpression);
 				if (result == null) result = caseUML2_ValueSpecification(timeExpression);
@@ -2895,7 +3094,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DURATION: {
+			case UML2Package.DURATION:
+			{
 				Duration duration = (Duration)theEObject;
 				Object result = caseDuration(duration);
 				if (result == null) result = caseUML2_ValueSpecification(duration);
@@ -2908,7 +3108,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TIME_OBSERVATION_ACTION: {
+			case UML2Package.TIME_OBSERVATION_ACTION:
+			{
 				TimeObservationAction timeObservationAction = (TimeObservationAction)theEObject;
 				Object result = caseTimeObservationAction(timeObservationAction);
 				if (result == null) result = caseUML2_WriteStructuralFeatureAction(timeObservationAction);
@@ -2924,7 +3125,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DURATION_INTERVAL: {
+			case UML2Package.DURATION_INTERVAL:
+			{
 				DurationInterval durationInterval = (DurationInterval)theEObject;
 				Object result = caseDurationInterval(durationInterval);
 				if (result == null) result = caseUML2_Interval(durationInterval);
@@ -2938,7 +3140,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERVAL: {
+			case UML2Package.INTERVAL:
+			{
 				Interval interval = (Interval)theEObject;
 				Object result = caseInterval(interval);
 				if (result == null) result = caseUML2_ValueSpecification(interval);
@@ -2951,7 +3154,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TIME_CONSTRAINT: {
+			case UML2Package.TIME_CONSTRAINT:
+			{
 				TimeConstraint timeConstraint = (TimeConstraint)theEObject;
 				Object result = caseTimeConstraint(timeConstraint);
 				if (result == null) result = caseUML2_IntervalConstraint(timeConstraint);
@@ -2965,7 +3169,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERVAL_CONSTRAINT: {
+			case UML2Package.INTERVAL_CONSTRAINT:
+			{
 				IntervalConstraint intervalConstraint = (IntervalConstraint)theEObject;
 				Object result = caseIntervalConstraint(intervalConstraint);
 				if (result == null) result = caseUML2_Constraint(intervalConstraint);
@@ -2978,7 +3183,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.TIME_INTERVAL: {
+			case UML2Package.TIME_INTERVAL:
+			{
 				TimeInterval timeInterval = (TimeInterval)theEObject;
 				Object result = caseTimeInterval(timeInterval);
 				if (result == null) result = caseUML2_Interval(timeInterval);
@@ -2992,7 +3198,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DURATION_OBSERVATION_ACTION: {
+			case UML2Package.DURATION_OBSERVATION_ACTION:
+			{
 				DurationObservationAction durationObservationAction = (DurationObservationAction)theEObject;
 				Object result = caseDurationObservationAction(durationObservationAction);
 				if (result == null) result = caseUML2_WriteStructuralFeatureAction(durationObservationAction);
@@ -3008,7 +3215,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DURATION_CONSTRAINT: {
+			case UML2Package.DURATION_CONSTRAINT:
+			{
 				DurationConstraint durationConstraint = (DurationConstraint)theEObject;
 				Object result = caseDurationConstraint(durationConstraint);
 				if (result == null) result = caseUML2_IntervalConstraint(durationConstraint);
@@ -3022,7 +3230,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DATA_STORE_NODE: {
+			case UML2Package.DATA_STORE_NODE:
+			{
 				DataStoreNode dataStoreNode = (DataStoreNode)theEObject;
 				Object result = caseDataStoreNode(dataStoreNode);
 				if (result == null) result = caseUML2_CentralBufferNode(dataStoreNode);
@@ -3037,7 +3246,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION: {
+			case UML2Package.INTERRUPTIBLE_ACTIVITY_REGION:
+			{
 				InterruptibleActivityRegion interruptibleActivityRegion = (InterruptibleActivityRegion)theEObject;
 				Object result = caseInterruptibleActivityRegion(interruptibleActivityRegion);
 				if (result == null) result = caseUML2_ActivityGroup(interruptibleActivityRegion);
@@ -3046,7 +3256,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PARAMETER_SET: {
+			case UML2Package.PARAMETER_SET:
+			{
 				ParameterSet parameterSet = (ParameterSet)theEObject;
 				Object result = caseParameterSet(parameterSet);
 				if (result == null) result = caseUML2_NamedElement(parameterSet);
@@ -3056,7 +3267,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.COMPONENT: {
+			case UML2Package.COMPONENT:
+			{
 				Component component = (Component)theEObject;
 				Object result = caseComponent(component);
 				if (result == null) result = caseUML2_Class(component);
@@ -3076,7 +3288,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DEPLOYMENT: {
+			case UML2Package.DEPLOYMENT:
+			{
 				Deployment deployment = (Deployment)theEObject;
 				Object result = caseDeployment(deployment);
 				if (result == null) result = caseUML2_Dependency(deployment);
@@ -3091,7 +3304,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DEPLOYED_ARTIFACT: {
+			case UML2Package.DEPLOYED_ARTIFACT:
+			{
 				DeployedArtifact deployedArtifact = (DeployedArtifact)theEObject;
 				Object result = caseDeployedArtifact(deployedArtifact);
 				if (result == null) result = caseUML2_NamedElement(deployedArtifact);
@@ -3101,7 +3315,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DEPLOYMENT_TARGET: {
+			case UML2Package.DEPLOYMENT_TARGET:
+			{
 				DeploymentTarget deploymentTarget = (DeploymentTarget)theEObject;
 				Object result = caseDeploymentTarget(deploymentTarget);
 				if (result == null) result = caseUML2_NamedElement(deploymentTarget);
@@ -3111,7 +3326,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.NODE: {
+			case UML2Package.NODE:
+			{
 				Node node = (Node)theEObject;
 				Object result = caseNode(node);
 				if (result == null) result = caseUML2_Class(node);
@@ -3132,7 +3348,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DEVICE: {
+			case UML2Package.DEVICE:
+			{
 				Device device = (Device)theEObject;
 				Object result = caseDevice(device);
 				if (result == null) result = caseUML2_Node(device);
@@ -3154,7 +3371,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.EXECUTION_ENVIRONMENT: {
+			case UML2Package.EXECUTION_ENVIRONMENT:
+			{
 				ExecutionEnvironment executionEnvironment = (ExecutionEnvironment)theEObject;
 				Object result = caseExecutionEnvironment(executionEnvironment);
 				if (result == null) result = caseUML2_Node(executionEnvironment);
@@ -3176,7 +3394,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.COMMUNICATION_PATH: {
+			case UML2Package.COMMUNICATION_PATH:
+			{
 				CommunicationPath communicationPath = (CommunicationPath)theEObject;
 				Object result = caseCommunicationPath(communicationPath);
 				if (result == null) result = caseUML2_Association(communicationPath);
@@ -3194,7 +3413,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PROTOCOL_CONFORMANCE: {
+			case UML2Package.PROTOCOL_CONFORMANCE:
+			{
 				ProtocolConformance protocolConformance = (ProtocolConformance)theEObject;
 				Object result = caseProtocolConformance(protocolConformance);
 				if (result == null) result = caseUML2_DirectedRelationship(protocolConformance);
@@ -3204,7 +3424,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PROTOCOL_STATE_MACHINE: {
+			case UML2Package.PROTOCOL_STATE_MACHINE:
+			{
 				ProtocolStateMachine protocolStateMachine = (ProtocolStateMachine)theEObject;
 				Object result = caseProtocolStateMachine(protocolStateMachine);
 				if (result == null) result = caseUML2_StateMachine(protocolStateMachine);
@@ -3226,7 +3447,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PROTOCOL_TRANSITION: {
+			case UML2Package.PROTOCOL_TRANSITION:
+			{
 				ProtocolTransition protocolTransition = (ProtocolTransition)theEObject;
 				Object result = caseProtocolTransition(protocolTransition);
 				if (result == null) result = caseUML2_Transition(protocolTransition);
@@ -3238,7 +3460,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.READ_EXTENT_ACTION: {
+			case UML2Package.READ_EXTENT_ACTION:
+			{
 				ReadExtentAction readExtentAction = (ReadExtentAction)theEObject;
 				Object result = caseReadExtentAction(readExtentAction);
 				if (result == null) result = caseUML2_Action(readExtentAction);
@@ -3252,7 +3475,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.RECLASSIFY_OBJECT_ACTION: {
+			case UML2Package.RECLASSIFY_OBJECT_ACTION:
+			{
 				ReclassifyObjectAction reclassifyObjectAction = (ReclassifyObjectAction)theEObject;
 				Object result = caseReclassifyObjectAction(reclassifyObjectAction);
 				if (result == null) result = caseUML2_Action(reclassifyObjectAction);
@@ -3266,7 +3490,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION: {
+			case UML2Package.READ_IS_CLASSIFIED_OBJECT_ACTION:
+			{
 				ReadIsClassifiedObjectAction readIsClassifiedObjectAction = (ReadIsClassifiedObjectAction)theEObject;
 				Object result = caseReadIsClassifiedObjectAction(readIsClassifiedObjectAction);
 				if (result == null) result = caseUML2_Action(readIsClassifiedObjectAction);
@@ -3280,7 +3505,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.START_OWNED_BEHAVIOR_ACTION: {
+			case UML2Package.START_OWNED_BEHAVIOR_ACTION:
+			{
 				StartOwnedBehaviorAction startOwnedBehaviorAction = (StartOwnedBehaviorAction)theEObject;
 				Object result = caseStartOwnedBehaviorAction(startOwnedBehaviorAction);
 				if (result == null) result = caseUML2_Action(startOwnedBehaviorAction);
@@ -3294,7 +3520,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.QUALIFIER_VALUE: {
+			case UML2Package.QUALIFIER_VALUE:
+			{
 				QualifierValue qualifierValue = (QualifierValue)theEObject;
 				Object result = caseQualifierValue(qualifierValue);
 				if (result == null) result = caseUML2_Element(qualifierValue);
@@ -3302,7 +3529,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.READ_LINK_OBJECT_END_ACTION: {
+			case UML2Package.READ_LINK_OBJECT_END_ACTION:
+			{
 				ReadLinkObjectEndAction readLinkObjectEndAction = (ReadLinkObjectEndAction)theEObject;
 				Object result = caseReadLinkObjectEndAction(readLinkObjectEndAction);
 				if (result == null) result = caseUML2_Action(readLinkObjectEndAction);
@@ -3316,7 +3544,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.READ_LINK_OBJECT_END_QUALIFIER_ACTION: {
+			case UML2Package.READ_LINK_OBJECT_END_QUALIFIER_ACTION:
+			{
 				ReadLinkObjectEndQualifierAction readLinkObjectEndQualifierAction = (ReadLinkObjectEndQualifierAction)theEObject;
 				Object result = caseReadLinkObjectEndQualifierAction(readLinkObjectEndQualifierAction);
 				if (result == null) result = caseUML2_Action(readLinkObjectEndQualifierAction);
@@ -3330,7 +3559,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.CREATE_LINK_OBJECT_ACTION: {
+			case UML2Package.CREATE_LINK_OBJECT_ACTION:
+			{
 				CreateLinkObjectAction createLinkObjectAction = (CreateLinkObjectAction)theEObject;
 				Object result = caseCreateLinkObjectAction(createLinkObjectAction);
 				if (result == null) result = caseUML2_CreateLinkAction(createLinkObjectAction);
@@ -3347,7 +3577,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACCEPT_EVENT_ACTION: {
+			case UML2Package.ACCEPT_EVENT_ACTION:
+			{
 				AcceptEventAction acceptEventAction = (AcceptEventAction)theEObject;
 				Object result = caseAcceptEventAction(acceptEventAction);
 				if (result == null) result = caseUML2_Action(acceptEventAction);
@@ -3361,7 +3592,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.ACCEPT_CALL_ACTION: {
+			case UML2Package.ACCEPT_CALL_ACTION:
+			{
 				AcceptCallAction acceptCallAction = (AcceptCallAction)theEObject;
 				Object result = caseAcceptCallAction(acceptCallAction);
 				if (result == null) result = caseUML2_AcceptEventAction(acceptCallAction);
@@ -3376,7 +3608,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REPLY_ACTION: {
+			case UML2Package.REPLY_ACTION:
+			{
 				ReplyAction replyAction = (ReplyAction)theEObject;
 				Object result = caseReplyAction(replyAction);
 				if (result == null) result = caseUML2_Action(replyAction);
@@ -3390,7 +3623,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.RAISE_EXCEPTION_ACTION: {
+			case UML2Package.RAISE_EXCEPTION_ACTION:
+			{
 				RaiseExceptionAction raiseExceptionAction = (RaiseExceptionAction)theEObject;
 				Object result = caseRaiseExceptionAction(raiseExceptionAction);
 				if (result == null) result = caseUML2_Action(raiseExceptionAction);
@@ -3404,7 +3638,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DEPLOYMENT_SPECIFICATION: {
+			case UML2Package.DEPLOYMENT_SPECIFICATION:
+			{
 				DeploymentSpecification deploymentSpecification = (DeploymentSpecification)theEObject;
 				Object result = caseDeploymentSpecification(deploymentSpecification);
 				if (result == null) result = caseUML2_Artifact(deploymentSpecification);
@@ -3422,7 +3657,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.JFIGURE_CONTAINER: {
+			case UML2Package.JFIGURE_CONTAINER:
+			{
 				J_FigureContainer j_FigureContainer = (J_FigureContainer)theEObject;
 				Object result = caseJ_FigureContainer(j_FigureContainer);
 				if (result == null) result = caseUML2_Element(j_FigureContainer);
@@ -3430,7 +3666,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.JFIGURE: {
+			case UML2Package.JFIGURE:
+			{
 				J_Figure j_Figure = (J_Figure)theEObject;
 				Object result = caseJ_Figure(j_Figure);
 				if (result == null) result = caseUML2_J_FigureContainer(j_Figure);
@@ -3439,7 +3676,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.JPROPERTY: {
+			case UML2Package.JPROPERTY:
+			{
 				J_Property j_Property = (J_Property)theEObject;
 				Object result = caseJ_Property(j_Property);
 				if (result == null) result = caseUML2_Element(j_Property);
@@ -3447,7 +3685,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.JDIAGRAM: {
+			case UML2Package.JDIAGRAM:
+			{
 				J_Diagram j_Diagram = (J_Diagram)theEObject;
 				Object result = caseJ_Diagram(j_Diagram);
 				if (result == null) result = caseUML2_J_FigureContainer(j_Diagram);
@@ -3456,7 +3695,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.JDIAGRAM_HOLDER: {
+			case UML2Package.JDIAGRAM_HOLDER:
+			{
 				J_DiagramHolder j_DiagramHolder = (J_DiagramHolder)theEObject;
 				Object result = caseJ_DiagramHolder(j_DiagramHolder);
 				if (result == null) result = caseUML2_Element(j_DiagramHolder);
@@ -3464,7 +3704,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.APPLIED_BASIC_STEREOTYPE_VALUE: {
+			case UML2Package.APPLIED_BASIC_STEREOTYPE_VALUE:
+			{
 				AppliedBasicStereotypeValue appliedBasicStereotypeValue = (AppliedBasicStereotypeValue)theEObject;
 				Object result = caseAppliedBasicStereotypeValue(appliedBasicStereotypeValue);
 				if (result == null) result = caseUML2_Element(appliedBasicStereotypeValue);
@@ -3472,7 +3713,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PROPERTY_VALUE_SPECIFICATION: {
+			case UML2Package.PROPERTY_VALUE_SPECIFICATION:
+			{
 				PropertyValueSpecification propertyValueSpecification = (PropertyValueSpecification)theEObject;
 				Object result = casePropertyValueSpecification(propertyValueSpecification);
 				if (result == null) result = caseUML2_ValueSpecification(propertyValueSpecification);
@@ -3485,7 +3727,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_REPLACED_CONSTITUENT: {
+			case UML2Package.DELTA_REPLACED_CONSTITUENT:
+			{
 				DeltaReplacedConstituent deltaReplacedConstituent = (DeltaReplacedConstituent)theEObject;
 				Object result = caseDeltaReplacedConstituent(deltaReplacedConstituent);
 				if (result == null) result = caseUML2_Element(deltaReplacedConstituent);
@@ -3493,7 +3736,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_DELETED_CONSTITUENT: {
+			case UML2Package.DELTA_DELETED_CONSTITUENT:
+			{
 				DeltaDeletedConstituent deltaDeletedConstituent = (DeltaDeletedConstituent)theEObject;
 				Object result = caseDeltaDeletedConstituent(deltaDeletedConstituent);
 				if (result == null) result = caseUML2_Element(deltaDeletedConstituent);
@@ -3501,7 +3745,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_REPLACED_ATTRIBUTE: {
+			case UML2Package.DELTA_REPLACED_ATTRIBUTE:
+			{
 				DeltaReplacedAttribute deltaReplacedAttribute = (DeltaReplacedAttribute)theEObject;
 				Object result = caseDeltaReplacedAttribute(deltaReplacedAttribute);
 				if (result == null) result = caseUML2_DeltaReplacedConstituent(deltaReplacedAttribute);
@@ -3510,7 +3755,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_DELETED_ATTRIBUTE: {
+			case UML2Package.DELTA_DELETED_ATTRIBUTE:
+			{
 				DeltaDeletedAttribute deltaDeletedAttribute = (DeltaDeletedAttribute)theEObject;
 				Object result = caseDeltaDeletedAttribute(deltaDeletedAttribute);
 				if (result == null) result = caseUML2_DeltaDeletedConstituent(deltaDeletedAttribute);
@@ -3519,7 +3765,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_REPLACED_PORT: {
+			case UML2Package.DELTA_REPLACED_PORT:
+			{
 				DeltaReplacedPort deltaReplacedPort = (DeltaReplacedPort)theEObject;
 				Object result = caseDeltaReplacedPort(deltaReplacedPort);
 				if (result == null) result = caseUML2_DeltaReplacedConstituent(deltaReplacedPort);
@@ -3528,7 +3775,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_DELETED_PORT: {
+			case UML2Package.DELTA_DELETED_PORT:
+			{
 				DeltaDeletedPort deltaDeletedPort = (DeltaDeletedPort)theEObject;
 				Object result = caseDeltaDeletedPort(deltaDeletedPort);
 				if (result == null) result = caseUML2_DeltaDeletedConstituent(deltaDeletedPort);
@@ -3537,7 +3785,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_REPLACED_CONNECTOR: {
+			case UML2Package.DELTA_REPLACED_CONNECTOR:
+			{
 				DeltaReplacedConnector deltaReplacedConnector = (DeltaReplacedConnector)theEObject;
 				Object result = caseDeltaReplacedConnector(deltaReplacedConnector);
 				if (result == null) result = caseUML2_DeltaReplacedConstituent(deltaReplacedConnector);
@@ -3546,7 +3795,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_DELETED_CONNECTOR: {
+			case UML2Package.DELTA_DELETED_CONNECTOR:
+			{
 				DeltaDeletedConnector deltaDeletedConnector = (DeltaDeletedConnector)theEObject;
 				Object result = caseDeltaDeletedConnector(deltaDeletedConnector);
 				if (result == null) result = caseUML2_DeltaDeletedConstituent(deltaDeletedConnector);
@@ -3555,7 +3805,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_REPLACED_OPERATION: {
+			case UML2Package.DELTA_REPLACED_OPERATION:
+			{
 				DeltaReplacedOperation deltaReplacedOperation = (DeltaReplacedOperation)theEObject;
 				Object result = caseDeltaReplacedOperation(deltaReplacedOperation);
 				if (result == null) result = caseUML2_DeltaReplacedConstituent(deltaReplacedOperation);
@@ -3564,7 +3815,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_DELETED_OPERATION: {
+			case UML2Package.DELTA_DELETED_OPERATION:
+			{
 				DeltaDeletedOperation deltaDeletedOperation = (DeltaDeletedOperation)theEObject;
 				Object result = caseDeltaDeletedOperation(deltaDeletedOperation);
 				if (result == null) result = caseUML2_DeltaDeletedConstituent(deltaDeletedOperation);
@@ -3573,7 +3825,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.PORT_REMAP: {
+			case UML2Package.PORT_REMAP:
+			{
 				PortRemap portRemap = (PortRemap)theEObject;
 				Object result = casePortRemap(portRemap);
 				if (result == null) result = caseUML2_Element(portRemap);
@@ -3581,7 +3834,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.SAVED_REFERENCE: {
+			case UML2Package.SAVED_REFERENCE:
+			{
 				SavedReference savedReference = (SavedReference)theEObject;
 				Object result = caseSavedReference(savedReference);
 				if (result == null) result = caseUML2_PackageableElement(savedReference);
@@ -3593,7 +3847,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REQUIREMENTS_FEATURE: {
+			case UML2Package.REQUIREMENTS_FEATURE:
+			{
 				RequirementsFeature requirementsFeature = (RequirementsFeature)theEObject;
 				Object result = caseRequirementsFeature(requirementsFeature);
 				if (result == null) result = caseUML2_Type(requirementsFeature);
@@ -3606,7 +3861,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.REQUIREMENTS_FEATURE_LINK: {
+			case UML2Package.REQUIREMENTS_FEATURE_LINK:
+			{
 				RequirementsFeatureLink requirementsFeatureLink = (RequirementsFeatureLink)theEObject;
 				Object result = caseRequirementsFeatureLink(requirementsFeatureLink);
 				if (result == null) result = caseUML2_Element(requirementsFeatureLink);
@@ -3614,7 +3870,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK: {
+			case UML2Package.DELTA_REPLACED_REQUIREMENTS_FEATURE_LINK:
+			{
 				DeltaReplacedRequirementsFeatureLink deltaReplacedRequirementsFeatureLink = (DeltaReplacedRequirementsFeatureLink)theEObject;
 				Object result = caseDeltaReplacedRequirementsFeatureLink(deltaReplacedRequirementsFeatureLink);
 				if (result == null) result = caseUML2_DeltaReplacedConstituent(deltaReplacedRequirementsFeatureLink);
@@ -3623,7 +3880,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_DELETED_REQUIREMENTS_FEATURE_LINK: {
+			case UML2Package.DELTA_DELETED_REQUIREMENTS_FEATURE_LINK:
+			{
 				DeltaDeletedRequirementsFeatureLink deltaDeletedRequirementsFeatureLink = (DeltaDeletedRequirementsFeatureLink)theEObject;
 				Object result = caseDeltaDeletedRequirementsFeatureLink(deltaDeletedRequirementsFeatureLink);
 				if (result == null) result = caseUML2_DeltaDeletedConstituent(deltaDeletedRequirementsFeatureLink);
@@ -3632,7 +3890,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_DELETED_TRACE: {
+			case UML2Package.DELTA_DELETED_TRACE:
+			{
 				DeltaDeletedTrace deltaDeletedTrace = (DeltaDeletedTrace)theEObject;
 				Object result = caseDeltaDeletedTrace(deltaDeletedTrace);
 				if (result == null) result = caseUML2_DeltaDeletedConstituent(deltaDeletedTrace);
@@ -3641,7 +3900,8 @@ public class UML2Switch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UML2Package.DELTA_REPLACED_TRACE: {
+			case UML2Package.DELTA_REPLACED_TRACE:
+			{
 				DeltaReplacedTrace deltaReplacedTrace = (DeltaReplacedTrace)theEObject;
 				Object result = caseDeltaReplacedTrace(deltaReplacedTrace);
 				if (result == null) result = caseUML2_DeltaReplacedConstituent(deltaReplacedTrace);
@@ -3665,7 +3925,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseElement(Element object) {
+	public Object caseElement(Element object)
+	{
 		return null;
 	}
 
@@ -3680,7 +3941,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMultiplicityElement(MultiplicityElement object) {
+	public Object caseMultiplicityElement(MultiplicityElement object)
+	{
 		return null;
 	}
 
@@ -3695,7 +3957,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDirectedRelationship(DirectedRelationship object) {
+	public Object caseDirectedRelationship(DirectedRelationship object)
+	{
 		return null;
 	}
 
@@ -3710,7 +3973,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRelationship(Relationship object) {
+	public Object caseRelationship(Relationship object)
+	{
 		return null;
 	}
 
@@ -3725,7 +3989,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseNamedElement(NamedElement object) {
+	public Object caseNamedElement(NamedElement object)
+	{
 		return null;
 	}
 
@@ -3740,7 +4005,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseNamespace(Namespace object) {
+	public Object caseNamespace(Namespace object)
+	{
 		return null;
 	}
 
@@ -3755,7 +4021,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseOpaqueExpression(OpaqueExpression object) {
+	public Object caseOpaqueExpression(OpaqueExpression object)
+	{
 		return null;
 	}
 
@@ -3770,7 +4037,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueSpecification(ValueSpecification object) {
+	public Object caseValueSpecification(ValueSpecification object)
+	{
 		return null;
 	}
 
@@ -3785,7 +4053,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExpression(Expression object) {
+	public Object caseExpression(Expression object)
+	{
 		return null;
 	}
 
@@ -3800,7 +4069,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseComment(Comment object) {
+	public Object caseComment(Comment object)
+	{
 		return null;
 	}
 
@@ -3815,7 +4085,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseClass(org.eclipse.uml2.Class object) {
+	public Object caseClass(org.eclipse.uml2.Class object)
+	{
 		return null;
 	}
 
@@ -3830,7 +4101,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseType(Type object) {
+	public Object caseType(Type object)
+	{
 		return null;
 	}
 
@@ -3845,7 +4117,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProperty(Property object) {
+	public Object caseProperty(Property object)
+	{
 		return null;
 	}
 
@@ -3860,7 +4133,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseOperation(Operation object) {
+	public Object caseOperation(Operation object)
+	{
 		return null;
 	}
 
@@ -3875,7 +4149,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTypedElement(TypedElement object) {
+	public Object caseTypedElement(TypedElement object)
+	{
 		return null;
 	}
 
@@ -3890,7 +4165,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseParameter(Parameter object) {
+	public Object caseParameter(Parameter object)
+	{
 		return null;
 	}
 
@@ -3905,7 +4181,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePackage(org.eclipse.uml2.Package object) {
+	public Object casePackage(org.eclipse.uml2.Package object)
+	{
 		return null;
 	}
 
@@ -3920,7 +4197,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseEnumeration(Enumeration object) {
+	public Object caseEnumeration(Enumeration object)
+	{
 		return null;
 	}
 
@@ -3935,7 +4213,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDataType(DataType object) {
+	public Object caseDataType(DataType object)
+	{
 		return null;
 	}
 
@@ -3950,7 +4229,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseEnumerationLiteral(EnumerationLiteral object) {
+	public Object caseEnumerationLiteral(EnumerationLiteral object)
+	{
 		return null;
 	}
 
@@ -3965,7 +4245,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePrimitiveType(PrimitiveType object) {
+	public Object casePrimitiveType(PrimitiveType object)
+	{
 		return null;
 	}
 
@@ -3980,7 +4261,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLiteralBoolean(LiteralBoolean object) {
+	public Object caseLiteralBoolean(LiteralBoolean object)
+	{
 		return null;
 	}
 
@@ -3995,7 +4277,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLiteralSpecification(LiteralSpecification object) {
+	public Object caseLiteralSpecification(LiteralSpecification object)
+	{
 		return null;
 	}
 
@@ -4010,7 +4293,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLiteralString(LiteralString object) {
+	public Object caseLiteralString(LiteralString object)
+	{
 		return null;
 	}
 
@@ -4025,7 +4309,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLiteralNull(LiteralNull object) {
+	public Object caseLiteralNull(LiteralNull object)
+	{
 		return null;
 	}
 
@@ -4040,7 +4325,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLiteralInteger(LiteralInteger object) {
+	public Object caseLiteralInteger(LiteralInteger object)
+	{
 		return null;
 	}
 
@@ -4055,7 +4341,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLiteralUnlimitedNatural(LiteralUnlimitedNatural object) {
+	public Object caseLiteralUnlimitedNatural(LiteralUnlimitedNatural object)
+	{
 		return null;
 	}
 
@@ -4070,7 +4357,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConstraint(Constraint object) {
+	public Object caseConstraint(Constraint object)
+	{
 		return null;
 	}
 
@@ -4085,7 +4373,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseClassifier(Classifier object) {
+	public Object caseClassifier(Classifier object)
+	{
 		return null;
 	}
 
@@ -4100,7 +4389,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseFeature(Feature object) {
+	public Object caseFeature(Feature object)
+	{
 		return null;
 	}
 
@@ -4115,7 +4405,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseBehavioralFeature(BehavioralFeature object) {
+	public Object caseBehavioralFeature(BehavioralFeature object)
+	{
 		return null;
 	}
 
@@ -4130,7 +4421,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStructuralFeature(StructuralFeature object) {
+	public Object caseStructuralFeature(StructuralFeature object)
+	{
 		return null;
 	}
 
@@ -4145,7 +4437,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRedefinableElement(RedefinableElement object) {
+	public Object caseRedefinableElement(RedefinableElement object)
+	{
 		return null;
 	}
 
@@ -4160,7 +4453,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInstanceSpecification(InstanceSpecification object) {
+	public Object caseInstanceSpecification(InstanceSpecification object)
+	{
 		return null;
 	}
 
@@ -4175,7 +4469,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSlot(Slot object) {
+	public Object caseSlot(Slot object)
+	{
 		return null;
 	}
 
@@ -4190,7 +4485,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInstanceValue(InstanceValue object) {
+	public Object caseInstanceValue(InstanceValue object)
+	{
 		return null;
 	}
 
@@ -4205,7 +4501,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGeneralization(Generalization object) {
+	public Object caseGeneralization(Generalization object)
+	{
 		return null;
 	}
 
@@ -4220,7 +4517,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePackageableElement(PackageableElement object) {
+	public Object casePackageableElement(PackageableElement object)
+	{
 		return null;
 	}
 
@@ -4235,7 +4533,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseElementImport(ElementImport object) {
+	public Object caseElementImport(ElementImport object)
+	{
 		return null;
 	}
 
@@ -4250,7 +4549,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePackageImport(PackageImport object) {
+	public Object casePackageImport(PackageImport object)
+	{
 		return null;
 	}
 
@@ -4265,7 +4565,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAssociation(Association object) {
+	public Object caseAssociation(Association object)
+	{
 		return null;
 	}
 
@@ -4280,7 +4581,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePackageMerge(PackageMerge object) {
+	public Object casePackageMerge(PackageMerge object)
+	{
 		return null;
 	}
 
@@ -4295,7 +4597,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStereotype(Stereotype object) {
+	public Object caseStereotype(Stereotype object)
+	{
 		return null;
 	}
 
@@ -4310,7 +4613,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProfile(Profile object) {
+	public Object caseProfile(Profile object)
+	{
 		return null;
 	}
 
@@ -4325,7 +4629,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProfileApplication(ProfileApplication object) {
+	public Object caseProfileApplication(ProfileApplication object)
+	{
 		return null;
 	}
 
@@ -4340,7 +4645,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExtension(Extension object) {
+	public Object caseExtension(Extension object)
+	{
 		return null;
 	}
 
@@ -4355,7 +4661,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExtensionEnd(ExtensionEnd object) {
+	public Object caseExtensionEnd(ExtensionEnd object)
+	{
 		return null;
 	}
 
@@ -4370,7 +4677,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseModel(Model object) {
+	public Object caseModel(Model object)
+	{
 		return null;
 	}
 
@@ -4385,7 +4693,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInformationItem(InformationItem object) {
+	public Object caseInformationItem(InformationItem object)
+	{
 		return null;
 	}
 
@@ -4400,7 +4709,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInformationFlow(InformationFlow object) {
+	public Object caseInformationFlow(InformationFlow object)
+	{
 		return null;
 	}
 
@@ -4415,7 +4725,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAssociationClass(AssociationClass object) {
+	public Object caseAssociationClass(AssociationClass object)
+	{
 		return null;
 	}
 
@@ -4430,7 +4741,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePermission(Permission object) {
+	public Object casePermission(Permission object)
+	{
 		return null;
 	}
 
@@ -4445,7 +4757,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDependency(Dependency object) {
+	public Object caseDependency(Dependency object)
+	{
 		return null;
 	}
 
@@ -4460,7 +4773,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUsage(Usage object) {
+	public Object caseUsage(Usage object)
+	{
 		return null;
 	}
 
@@ -4475,7 +4789,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAbstraction(Abstraction object) {
+	public Object caseAbstraction(Abstraction object)
+	{
 		return null;
 	}
 
@@ -4490,7 +4805,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRealization(Realization object) {
+	public Object caseRealization(Realization object)
+	{
 		return null;
 	}
 
@@ -4505,7 +4821,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSubstitution(Substitution object) {
+	public Object caseSubstitution(Substitution object)
+	{
 		return null;
 	}
 
@@ -4520,7 +4837,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseBehavior(Behavior object) {
+	public Object caseBehavior(Behavior object)
+	{
 		return null;
 	}
 
@@ -4535,7 +4853,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseBehavioredClassifier(BehavioredClassifier object) {
+	public Object caseBehavioredClassifier(BehavioredClassifier object)
+	{
 		return null;
 	}
 
@@ -4550,7 +4869,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseActivity(Activity object) {
+	public Object caseActivity(Activity object)
+	{
 		return null;
 	}
 
@@ -4565,7 +4885,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGeneralizationSet(GeneralizationSet object) {
+	public Object caseGeneralizationSet(GeneralizationSet object)
+	{
 		return null;
 	}
 
@@ -4580,7 +4901,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseArtifact(Artifact object) {
+	public Object caseArtifact(Artifact object)
+	{
 		return null;
 	}
 
@@ -4595,7 +4917,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseManifestation(Manifestation object) {
+	public Object caseManifestation(Manifestation object)
+	{
 		return null;
 	}
 
@@ -4610,7 +4933,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseActivityEdge(ActivityEdge object) {
+	public Object caseActivityEdge(ActivityEdge object)
+	{
 		return null;
 	}
 
@@ -4625,7 +4949,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseActivityGroup(ActivityGroup object) {
+	public Object caseActivityGroup(ActivityGroup object)
+	{
 		return null;
 	}
 
@@ -4640,7 +4965,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseActivityNode(ActivityNode object) {
+	public Object caseActivityNode(ActivityNode object)
+	{
 		return null;
 	}
 
@@ -4655,7 +4981,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAction(Action object) {
+	public Object caseAction(Action object)
+	{
 		return null;
 	}
 
@@ -4670,7 +4997,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseObjectNode(ObjectNode object) {
+	public Object caseObjectNode(ObjectNode object)
+	{
 		return null;
 	}
 
@@ -4685,7 +5013,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseControlNode(ControlNode object) {
+	public Object caseControlNode(ControlNode object)
+	{
 		return null;
 	}
 
@@ -4700,7 +5029,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseControlFlow(ControlFlow object) {
+	public Object caseControlFlow(ControlFlow object)
+	{
 		return null;
 	}
 
@@ -4715,7 +5045,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseObjectFlow(ObjectFlow object) {
+	public Object caseObjectFlow(ObjectFlow object)
+	{
 		return null;
 	}
 
@@ -4730,7 +5061,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInitialNode(InitialNode object) {
+	public Object caseInitialNode(InitialNode object)
+	{
 		return null;
 	}
 
@@ -4745,7 +5077,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseFinalNode(FinalNode object) {
+	public Object caseFinalNode(FinalNode object)
+	{
 		return null;
 	}
 
@@ -4760,7 +5093,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseActivityFinalNode(ActivityFinalNode object) {
+	public Object caseActivityFinalNode(ActivityFinalNode object)
+	{
 		return null;
 	}
 
@@ -4775,7 +5109,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDecisionNode(DecisionNode object) {
+	public Object caseDecisionNode(DecisionNode object)
+	{
 		return null;
 	}
 
@@ -4790,7 +5125,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMergeNode(MergeNode object) {
+	public Object caseMergeNode(MergeNode object)
+	{
 		return null;
 	}
 
@@ -4805,7 +5141,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExecutableNode(ExecutableNode object) {
+	public Object caseExecutableNode(ExecutableNode object)
+	{
 		return null;
 	}
 
@@ -4820,7 +5157,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseOutputPin(OutputPin object) {
+	public Object caseOutputPin(OutputPin object)
+	{
 		return null;
 	}
 
@@ -4835,7 +5173,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInputPin(InputPin object) {
+	public Object caseInputPin(InputPin object)
+	{
 		return null;
 	}
 
@@ -4850,7 +5189,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePin(Pin object) {
+	public Object casePin(Pin object)
+	{
 		return null;
 	}
 
@@ -4865,7 +5205,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseActivityParameterNode(ActivityParameterNode object) {
+	public Object caseActivityParameterNode(ActivityParameterNode object)
+	{
 		return null;
 	}
 
@@ -4880,7 +5221,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValuePin(ValuePin object) {
+	public Object caseValuePin(ValuePin object)
+	{
 		return null;
 	}
 
@@ -4895,7 +5237,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInterface(Interface object) {
+	public Object caseInterface(Interface object)
+	{
 		return null;
 	}
 
@@ -4910,7 +5253,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseImplementation(Implementation object) {
+	public Object caseImplementation(Implementation object)
+	{
 		return null;
 	}
 
@@ -4925,7 +5269,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseActor(Actor object) {
+	public Object caseActor(Actor object)
+	{
 		return null;
 	}
 
@@ -4940,7 +5285,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExtend(Extend object) {
+	public Object caseExtend(Extend object)
+	{
 		return null;
 	}
 
@@ -4955,7 +5301,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUseCase(UseCase object) {
+	public Object caseUseCase(UseCase object)
+	{
 		return null;
 	}
 
@@ -4970,7 +5317,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExtensionPoint(ExtensionPoint object) {
+	public Object caseExtensionPoint(ExtensionPoint object)
+	{
 		return null;
 	}
 
@@ -4985,7 +5333,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInclude(Include object) {
+	public Object caseInclude(Include object)
+	{
 		return null;
 	}
 
@@ -5000,7 +5349,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCallTrigger(CallTrigger object) {
+	public Object caseCallTrigger(CallTrigger object)
+	{
 		return null;
 	}
 
@@ -5015,7 +5365,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMessageTrigger(MessageTrigger object) {
+	public Object caseMessageTrigger(MessageTrigger object)
+	{
 		return null;
 	}
 
@@ -5030,7 +5381,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseChangeTrigger(ChangeTrigger object) {
+	public Object caseChangeTrigger(ChangeTrigger object)
+	{
 		return null;
 	}
 
@@ -5045,7 +5397,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTrigger(Trigger object) {
+	public Object caseTrigger(Trigger object)
+	{
 		return null;
 	}
 
@@ -5060,7 +5413,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReception(Reception object) {
+	public Object caseReception(Reception object)
+	{
 		return null;
 	}
 
@@ -5075,7 +5429,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSignal(Signal object) {
+	public Object caseSignal(Signal object)
+	{
 		return null;
 	}
 
@@ -5090,7 +5445,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSignalTrigger(SignalTrigger object) {
+	public Object caseSignalTrigger(SignalTrigger object)
+	{
 		return null;
 	}
 
@@ -5105,7 +5461,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTimeTrigger(TimeTrigger object) {
+	public Object caseTimeTrigger(TimeTrigger object)
+	{
 		return null;
 	}
 
@@ -5120,7 +5477,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAnyTrigger(AnyTrigger object) {
+	public Object caseAnyTrigger(AnyTrigger object)
+	{
 		return null;
 	}
 
@@ -5135,7 +5493,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConnectorEnd(ConnectorEnd object) {
+	public Object caseConnectorEnd(ConnectorEnd object)
+	{
 		return null;
 	}
 
@@ -5150,7 +5509,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConnectableElement(ConnectableElement object) {
+	public Object caseConnectableElement(ConnectableElement object)
+	{
 		return null;
 	}
 
@@ -5165,7 +5525,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConnector(Connector object) {
+	public Object caseConnector(Connector object)
+	{
 		return null;
 	}
 
@@ -5180,7 +5541,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStructuredClassifier(StructuredClassifier object) {
+	public Object caseStructuredClassifier(StructuredClassifier object)
+	{
 		return null;
 	}
 
@@ -5195,7 +5557,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseVariable(Variable object) {
+	public Object caseVariable(Variable object)
+	{
 		return null;
 	}
 
@@ -5210,7 +5573,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStructuredActivityNode(StructuredActivityNode object) {
+	public Object caseStructuredActivityNode(StructuredActivityNode object)
+	{
 		return null;
 	}
 
@@ -5225,7 +5589,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConditionalNode(ConditionalNode object) {
+	public Object caseConditionalNode(ConditionalNode object)
+	{
 		return null;
 	}
 
@@ -5240,7 +5605,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseClause(Clause object) {
+	public Object caseClause(Clause object)
+	{
 		return null;
 	}
 
@@ -5255,7 +5621,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLoopNode(LoopNode object) {
+	public Object caseLoopNode(LoopNode object)
+	{
 		return null;
 	}
 
@@ -5270,7 +5637,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStateMachine(StateMachine object) {
+	public Object caseStateMachine(StateMachine object)
+	{
 		return null;
 	}
 
@@ -5285,7 +5653,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRegion(Region object) {
+	public Object caseRegion(Region object)
+	{
 		return null;
 	}
 
@@ -5300,7 +5669,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePseudostate(Pseudostate object) {
+	public Object casePseudostate(Pseudostate object)
+	{
 		return null;
 	}
 
@@ -5315,7 +5685,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseState(State object) {
+	public Object caseState(State object)
+	{
 		return null;
 	}
 
@@ -5330,7 +5701,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseVertex(Vertex object) {
+	public Object caseVertex(Vertex object)
+	{
 		return null;
 	}
 
@@ -5345,7 +5717,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConnectionPointReference(ConnectionPointReference object) {
+	public Object caseConnectionPointReference(ConnectionPointReference object)
+	{
 		return null;
 	}
 
@@ -5360,7 +5733,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTransition(Transition object) {
+	public Object caseTransition(Transition object)
+	{
 		return null;
 	}
 
@@ -5375,7 +5749,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseFinalState(FinalState object) {
+	public Object caseFinalState(FinalState object)
+	{
 		return null;
 	}
 
@@ -5390,7 +5765,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExpansionNode(ExpansionNode object) {
+	public Object caseExpansionNode(ExpansionNode object)
+	{
 		return null;
 	}
 
@@ -5405,7 +5781,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExpansionRegion(ExpansionRegion object) {
+	public Object caseExpansionRegion(ExpansionRegion object)
+	{
 		return null;
 	}
 
@@ -5420,7 +5797,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExceptionHandler(ExceptionHandler object) {
+	public Object caseExceptionHandler(ExceptionHandler object)
+	{
 		return null;
 	}
 
@@ -5435,7 +5813,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePort(Port object) {
+	public Object casePort(Port object)
+	{
 		return null;
 	}
 
@@ -5450,7 +5829,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseEncapsulatedClassifier(EncapsulatedClassifier object) {
+	public Object caseEncapsulatedClassifier(EncapsulatedClassifier object)
+	{
 		return null;
 	}
 
@@ -5465,7 +5845,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCreateObjectAction(CreateObjectAction object) {
+	public Object caseCreateObjectAction(CreateObjectAction object)
+	{
 		return null;
 	}
 
@@ -5480,7 +5861,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDestroyObjectAction(DestroyObjectAction object) {
+	public Object caseDestroyObjectAction(DestroyObjectAction object)
+	{
 		return null;
 	}
 
@@ -5495,7 +5877,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTestIdentityAction(TestIdentityAction object) {
+	public Object caseTestIdentityAction(TestIdentityAction object)
+	{
 		return null;
 	}
 
@@ -5510,7 +5893,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReadSelfAction(ReadSelfAction object) {
+	public Object caseReadSelfAction(ReadSelfAction object)
+	{
 		return null;
 	}
 
@@ -5525,7 +5909,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStructuralFeatureAction(StructuralFeatureAction object) {
+	public Object caseStructuralFeatureAction(StructuralFeatureAction object)
+	{
 		return null;
 	}
 
@@ -5540,7 +5925,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReadStructuralFeatureAction(ReadStructuralFeatureAction object) {
+	public Object caseReadStructuralFeatureAction(ReadStructuralFeatureAction object)
+	{
 		return null;
 	}
 
@@ -5555,7 +5941,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseWriteStructuralFeatureAction(WriteStructuralFeatureAction object) {
+	public Object caseWriteStructuralFeatureAction(WriteStructuralFeatureAction object)
+	{
 		return null;
 	}
 
@@ -5570,7 +5957,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseClearStructuralFeatureAction(ClearStructuralFeatureAction object) {
+	public Object caseClearStructuralFeatureAction(ClearStructuralFeatureAction object)
+	{
 		return null;
 	}
 
@@ -5585,7 +5973,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRemoveStructuralFeatureValueAction(RemoveStructuralFeatureValueAction object) {
+	public Object caseRemoveStructuralFeatureValueAction(RemoveStructuralFeatureValueAction object)
+	{
 		return null;
 	}
 
@@ -5600,7 +5989,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAddStructuralFeatureValueAction(AddStructuralFeatureValueAction object) {
+	public Object caseAddStructuralFeatureValueAction(AddStructuralFeatureValueAction object)
+	{
 		return null;
 	}
 
@@ -5615,7 +6005,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLinkAction(LinkAction object) {
+	public Object caseLinkAction(LinkAction object)
+	{
 		return null;
 	}
 
@@ -5630,7 +6021,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLinkEndData(LinkEndData object) {
+	public Object caseLinkEndData(LinkEndData object)
+	{
 		return null;
 	}
 
@@ -5645,7 +6037,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReadLinkAction(ReadLinkAction object) {
+	public Object caseReadLinkAction(ReadLinkAction object)
+	{
 		return null;
 	}
 
@@ -5660,7 +6053,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLinkEndCreationData(LinkEndCreationData object) {
+	public Object caseLinkEndCreationData(LinkEndCreationData object)
+	{
 		return null;
 	}
 
@@ -5675,7 +6069,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCreateLinkAction(CreateLinkAction object) {
+	public Object caseCreateLinkAction(CreateLinkAction object)
+	{
 		return null;
 	}
 
@@ -5690,7 +6085,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseWriteLinkAction(WriteLinkAction object) {
+	public Object caseWriteLinkAction(WriteLinkAction object)
+	{
 		return null;
 	}
 
@@ -5705,7 +6101,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDestroyLinkAction(DestroyLinkAction object) {
+	public Object caseDestroyLinkAction(DestroyLinkAction object)
+	{
 		return null;
 	}
 
@@ -5720,7 +6117,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseClearAssociationAction(ClearAssociationAction object) {
+	public Object caseClearAssociationAction(ClearAssociationAction object)
+	{
 		return null;
 	}
 
@@ -5735,7 +6133,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseVariableAction(VariableAction object) {
+	public Object caseVariableAction(VariableAction object)
+	{
 		return null;
 	}
 
@@ -5750,7 +6149,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReadVariableAction(ReadVariableAction object) {
+	public Object caseReadVariableAction(ReadVariableAction object)
+	{
 		return null;
 	}
 
@@ -5765,7 +6165,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseWriteVariableAction(WriteVariableAction object) {
+	public Object caseWriteVariableAction(WriteVariableAction object)
+	{
 		return null;
 	}
 
@@ -5780,7 +6181,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseClearVariableAction(ClearVariableAction object) {
+	public Object caseClearVariableAction(ClearVariableAction object)
+	{
 		return null;
 	}
 
@@ -5795,7 +6197,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAddVariableValueAction(AddVariableValueAction object) {
+	public Object caseAddVariableValueAction(AddVariableValueAction object)
+	{
 		return null;
 	}
 
@@ -5810,7 +6213,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRemoveVariableValueAction(RemoveVariableValueAction object) {
+	public Object caseRemoveVariableValueAction(RemoveVariableValueAction object)
+	{
 		return null;
 	}
 
@@ -5825,7 +6229,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseApplyFunctionAction(ApplyFunctionAction object) {
+	public Object caseApplyFunctionAction(ApplyFunctionAction object)
+	{
 		return null;
 	}
 
@@ -5840,7 +6245,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePrimitiveFunction(PrimitiveFunction object) {
+	public Object casePrimitiveFunction(PrimitiveFunction object)
+	{
 		return null;
 	}
 
@@ -5855,7 +6261,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCallAction(CallAction object) {
+	public Object caseCallAction(CallAction object)
+	{
 		return null;
 	}
 
@@ -5870,7 +6277,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInvocationAction(InvocationAction object) {
+	public Object caseInvocationAction(InvocationAction object)
+	{
 		return null;
 	}
 
@@ -5885,7 +6293,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSendSignalAction(SendSignalAction object) {
+	public Object caseSendSignalAction(SendSignalAction object)
+	{
 		return null;
 	}
 
@@ -5900,7 +6309,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseBroadcastSignalAction(BroadcastSignalAction object) {
+	public Object caseBroadcastSignalAction(BroadcastSignalAction object)
+	{
 		return null;
 	}
 
@@ -5915,7 +6325,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSendObjectAction(SendObjectAction object) {
+	public Object caseSendObjectAction(SendObjectAction object)
+	{
 		return null;
 	}
 
@@ -5930,7 +6341,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCallOperationAction(CallOperationAction object) {
+	public Object caseCallOperationAction(CallOperationAction object)
+	{
 		return null;
 	}
 
@@ -5945,7 +6357,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCallBehaviorAction(CallBehaviorAction object) {
+	public Object caseCallBehaviorAction(CallBehaviorAction object)
+	{
 		return null;
 	}
 
@@ -5960,7 +6373,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseForkNode(ForkNode object) {
+	public Object caseForkNode(ForkNode object)
+	{
 		return null;
 	}
 
@@ -5975,7 +6389,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJoinNode(JoinNode object) {
+	public Object caseJoinNode(JoinNode object)
+	{
 		return null;
 	}
 
@@ -5990,7 +6405,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseFlowFinalNode(FlowFinalNode object) {
+	public Object caseFlowFinalNode(FlowFinalNode object)
+	{
 		return null;
 	}
 
@@ -6005,7 +6421,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCentralBufferNode(CentralBufferNode object) {
+	public Object caseCentralBufferNode(CentralBufferNode object)
+	{
 		return null;
 	}
 
@@ -6020,7 +6437,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseActivityPartition(ActivityPartition object) {
+	public Object caseActivityPartition(ActivityPartition object)
+	{
 		return null;
 	}
 
@@ -6035,7 +6453,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTemplateSignature(TemplateSignature object) {
+	public Object caseTemplateSignature(TemplateSignature object)
+	{
 		return null;
 	}
 
@@ -6050,7 +6469,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTemplateParameter(TemplateParameter object) {
+	public Object caseTemplateParameter(TemplateParameter object)
+	{
 		return null;
 	}
 
@@ -6065,7 +6485,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTemplateableElement(TemplateableElement object) {
+	public Object caseTemplateableElement(TemplateableElement object)
+	{
 		return null;
 	}
 
@@ -6080,7 +6501,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStringExpression(StringExpression object) {
+	public Object caseStringExpression(StringExpression object)
+	{
 		return null;
 	}
 
@@ -6095,7 +6517,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseParameterableElement(ParameterableElement object) {
+	public Object caseParameterableElement(ParameterableElement object)
+	{
 		return null;
 	}
 
@@ -6110,7 +6533,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTemplateBinding(TemplateBinding object) {
+	public Object caseTemplateBinding(TemplateBinding object)
+	{
 		return null;
 	}
 
@@ -6125,7 +6549,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTemplateParameterSubstitution(TemplateParameterSubstitution object) {
+	public Object caseTemplateParameterSubstitution(TemplateParameterSubstitution object)
+	{
 		return null;
 	}
 
@@ -6140,7 +6565,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCollaboration(Collaboration object) {
+	public Object caseCollaboration(Collaboration object)
+	{
 		return null;
 	}
 
@@ -6155,7 +6581,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseOperationTemplateParameter(OperationTemplateParameter object) {
+	public Object caseOperationTemplateParameter(OperationTemplateParameter object)
+	{
 		return null;
 	}
 
@@ -6170,7 +6597,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseClassifierTemplateParameter(ClassifierTemplateParameter object) {
+	public Object caseClassifierTemplateParameter(ClassifierTemplateParameter object)
+	{
 		return null;
 	}
 
@@ -6185,7 +6613,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseParameterableClassifier(ParameterableClassifier object) {
+	public Object caseParameterableClassifier(ParameterableClassifier object)
+	{
 		return null;
 	}
 
@@ -6200,7 +6629,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRedefinableTemplateSignature(RedefinableTemplateSignature object) {
+	public Object caseRedefinableTemplateSignature(RedefinableTemplateSignature object)
+	{
 		return null;
 	}
 
@@ -6215,7 +6645,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTemplateableClassifier(TemplateableClassifier object) {
+	public Object caseTemplateableClassifier(TemplateableClassifier object)
+	{
 		return null;
 	}
 
@@ -6230,7 +6661,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConnectableElementTemplateParameter(ConnectableElementTemplateParameter object) {
+	public Object caseConnectableElementTemplateParameter(ConnectableElementTemplateParameter object)
+	{
 		return null;
 	}
 
@@ -6245,7 +6677,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInteraction(Interaction object) {
+	public Object caseInteraction(Interaction object)
+	{
 		return null;
 	}
 
@@ -6260,7 +6693,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInteractionFragment(InteractionFragment object) {
+	public Object caseInteractionFragment(InteractionFragment object)
+	{
 		return null;
 	}
 
@@ -6275,7 +6709,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLifeline(Lifeline object) {
+	public Object caseLifeline(Lifeline object)
+	{
 		return null;
 	}
 
@@ -6290,7 +6725,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMessage(Message object) {
+	public Object caseMessage(Message object)
+	{
 		return null;
 	}
 
@@ -6305,7 +6741,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGeneralOrdering(GeneralOrdering object) {
+	public Object caseGeneralOrdering(GeneralOrdering object)
+	{
 		return null;
 	}
 
@@ -6320,7 +6757,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMessageEnd(MessageEnd object) {
+	public Object caseMessageEnd(MessageEnd object)
+	{
 		return null;
 	}
 
@@ -6335,7 +6773,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseEventOccurrence(EventOccurrence object) {
+	public Object caseEventOccurrence(EventOccurrence object)
+	{
 		return null;
 	}
 
@@ -6350,7 +6789,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExecutionOccurrence(ExecutionOccurrence object) {
+	public Object caseExecutionOccurrence(ExecutionOccurrence object)
+	{
 		return null;
 	}
 
@@ -6365,7 +6805,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStateInvariant(StateInvariant object) {
+	public Object caseStateInvariant(StateInvariant object)
+	{
 		return null;
 	}
 
@@ -6380,7 +6821,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStop(Stop object) {
+	public Object caseStop(Stop object)
+	{
 		return null;
 	}
 
@@ -6395,7 +6837,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCollaborationOccurrence(CollaborationOccurrence object) {
+	public Object caseCollaborationOccurrence(CollaborationOccurrence object)
+	{
 		return null;
 	}
 
@@ -6410,7 +6853,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDataStoreNode(DataStoreNode object) {
+	public Object caseDataStoreNode(DataStoreNode object)
+	{
 		return null;
 	}
 
@@ -6425,7 +6869,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInterruptibleActivityRegion(InterruptibleActivityRegion object) {
+	public Object caseInterruptibleActivityRegion(InterruptibleActivityRegion object)
+	{
 		return null;
 	}
 
@@ -6440,7 +6885,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseParameterSet(ParameterSet object) {
+	public Object caseParameterSet(ParameterSet object)
+	{
 		return null;
 	}
 
@@ -6455,7 +6901,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReadExtentAction(ReadExtentAction object) {
+	public Object caseReadExtentAction(ReadExtentAction object)
+	{
 		return null;
 	}
 
@@ -6470,7 +6917,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReclassifyObjectAction(ReclassifyObjectAction object) {
+	public Object caseReclassifyObjectAction(ReclassifyObjectAction object)
+	{
 		return null;
 	}
 
@@ -6485,7 +6933,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReadIsClassifiedObjectAction(ReadIsClassifiedObjectAction object) {
+	public Object caseReadIsClassifiedObjectAction(ReadIsClassifiedObjectAction object)
+	{
 		return null;
 	}
 
@@ -6500,7 +6949,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseStartOwnedBehaviorAction(StartOwnedBehaviorAction object) {
+	public Object caseStartOwnedBehaviorAction(StartOwnedBehaviorAction object)
+	{
 		return null;
 	}
 
@@ -6515,7 +6965,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQualifierValue(QualifierValue object) {
+	public Object caseQualifierValue(QualifierValue object)
+	{
 		return null;
 	}
 
@@ -6530,7 +6981,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReadLinkObjectEndAction(ReadLinkObjectEndAction object) {
+	public Object caseReadLinkObjectEndAction(ReadLinkObjectEndAction object)
+	{
 		return null;
 	}
 
@@ -6545,7 +6997,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReadLinkObjectEndQualifierAction(ReadLinkObjectEndQualifierAction object) {
+	public Object caseReadLinkObjectEndQualifierAction(ReadLinkObjectEndQualifierAction object)
+	{
 		return null;
 	}
 
@@ -6560,7 +7013,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCreateLinkObjectAction(CreateLinkObjectAction object) {
+	public Object caseCreateLinkObjectAction(CreateLinkObjectAction object)
+	{
 		return null;
 	}
 
@@ -6575,7 +7029,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAcceptEventAction(AcceptEventAction object) {
+	public Object caseAcceptEventAction(AcceptEventAction object)
+	{
 		return null;
 	}
 
@@ -6590,7 +7045,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAcceptCallAction(AcceptCallAction object) {
+	public Object caseAcceptCallAction(AcceptCallAction object)
+	{
 		return null;
 	}
 
@@ -6605,7 +7061,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReplyAction(ReplyAction object) {
+	public Object caseReplyAction(ReplyAction object)
+	{
 		return null;
 	}
 
@@ -6620,7 +7077,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRaiseExceptionAction(RaiseExceptionAction object) {
+	public Object caseRaiseExceptionAction(RaiseExceptionAction object)
+	{
 		return null;
 	}
 
@@ -6635,7 +7093,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTimeExpression(TimeExpression object) {
+	public Object caseTimeExpression(TimeExpression object)
+	{
 		return null;
 	}
 
@@ -6650,7 +7109,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDuration(Duration object) {
+	public Object caseDuration(Duration object)
+	{
 		return null;
 	}
 
@@ -6665,7 +7125,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTimeObservationAction(TimeObservationAction object) {
+	public Object caseTimeObservationAction(TimeObservationAction object)
+	{
 		return null;
 	}
 
@@ -6680,7 +7141,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDurationInterval(DurationInterval object) {
+	public Object caseDurationInterval(DurationInterval object)
+	{
 		return null;
 	}
 
@@ -6695,7 +7157,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInterval(Interval object) {
+	public Object caseInterval(Interval object)
+	{
 		return null;
 	}
 
@@ -6710,7 +7173,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTimeConstraint(TimeConstraint object) {
+	public Object caseTimeConstraint(TimeConstraint object)
+	{
 		return null;
 	}
 
@@ -6725,7 +7189,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseIntervalConstraint(IntervalConstraint object) {
+	public Object caseIntervalConstraint(IntervalConstraint object)
+	{
 		return null;
 	}
 
@@ -6740,7 +7205,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTimeInterval(TimeInterval object) {
+	public Object caseTimeInterval(TimeInterval object)
+	{
 		return null;
 	}
 
@@ -6755,7 +7221,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDurationObservationAction(DurationObservationAction object) {
+	public Object caseDurationObservationAction(DurationObservationAction object)
+	{
 		return null;
 	}
 
@@ -6770,7 +7237,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDurationConstraint(DurationConstraint object) {
+	public Object caseDurationConstraint(DurationConstraint object)
+	{
 		return null;
 	}
 
@@ -6785,7 +7253,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProtocolConformance(ProtocolConformance object) {
+	public Object caseProtocolConformance(ProtocolConformance object)
+	{
 		return null;
 	}
 
@@ -6800,7 +7269,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProtocolStateMachine(ProtocolStateMachine object) {
+	public Object caseProtocolStateMachine(ProtocolStateMachine object)
+	{
 		return null;
 	}
 
@@ -6815,7 +7285,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProtocolTransition(ProtocolTransition object) {
+	public Object caseProtocolTransition(ProtocolTransition object)
+	{
 		return null;
 	}
 
@@ -6830,7 +7301,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInteractionOccurrence(InteractionOccurrence object) {
+	public Object caseInteractionOccurrence(InteractionOccurrence object)
+	{
 		return null;
 	}
 
@@ -6845,7 +7317,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGate(Gate object) {
+	public Object caseGate(Gate object)
+	{
 		return null;
 	}
 
@@ -6860,7 +7333,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePartDecomposition(PartDecomposition object) {
+	public Object casePartDecomposition(PartDecomposition object)
+	{
 		return null;
 	}
 
@@ -6875,7 +7349,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInteractionOperand(InteractionOperand object) {
+	public Object caseInteractionOperand(InteractionOperand object)
+	{
 		return null;
 	}
 
@@ -6890,7 +7365,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInteractionConstraint(InteractionConstraint object) {
+	public Object caseInteractionConstraint(InteractionConstraint object)
+	{
 		return null;
 	}
 
@@ -6905,7 +7381,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCombinedFragment(CombinedFragment object) {
+	public Object caseCombinedFragment(CombinedFragment object)
+	{
 		return null;
 	}
 
@@ -6920,7 +7397,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseContinuation(Continuation object) {
+	public Object caseContinuation(Continuation object)
+	{
 		return null;
 	}
 
@@ -6935,7 +7413,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseComponent(Component object) {
+	public Object caseComponent(Component object)
+	{
 		return null;
 	}
 
@@ -6950,7 +7429,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeployment(Deployment object) {
+	public Object caseDeployment(Deployment object)
+	{
 		return null;
 	}
 
@@ -6965,7 +7445,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeployedArtifact(DeployedArtifact object) {
+	public Object caseDeployedArtifact(DeployedArtifact object)
+	{
 		return null;
 	}
 
@@ -6980,7 +7461,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeploymentTarget(DeploymentTarget object) {
+	public Object caseDeploymentTarget(DeploymentTarget object)
+	{
 		return null;
 	}
 
@@ -6995,7 +7477,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseNode(Node object) {
+	public Object caseNode(Node object)
+	{
 		return null;
 	}
 
@@ -7010,7 +7493,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDevice(Device object) {
+	public Object caseDevice(Device object)
+	{
 		return null;
 	}
 
@@ -7025,7 +7509,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExecutionEnvironment(ExecutionEnvironment object) {
+	public Object caseExecutionEnvironment(ExecutionEnvironment object)
+	{
 		return null;
 	}
 
@@ -7040,7 +7525,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCommunicationPath(CommunicationPath object) {
+	public Object caseCommunicationPath(CommunicationPath object)
+	{
 		return null;
 	}
 
@@ -7055,7 +7541,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeploymentSpecification(DeploymentSpecification object) {
+	public Object caseDeploymentSpecification(DeploymentSpecification object)
+	{
 		return null;
 	}
 
@@ -7070,7 +7557,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-  public Object caseJ_FigureContainer(J_FigureContainer object) {
+  public Object caseJ_FigureContainer(J_FigureContainer object)
+	{
 		return null;
 	}
 
@@ -7085,7 +7573,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJ_Figure(J_Figure object) {
+	public Object caseJ_Figure(J_Figure object)
+	{
 		return null;
 	}
 
@@ -7100,7 +7589,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJ_Property(J_Property object) {
+	public Object caseJ_Property(J_Property object)
+	{
 		return null;
 	}
 
@@ -7115,7 +7605,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJ_Diagram(J_Diagram object) {
+	public Object caseJ_Diagram(J_Diagram object)
+	{
 		return null;
 	}
 
@@ -7130,7 +7621,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJ_DiagramHolder(J_DiagramHolder object) {
+	public Object caseJ_DiagramHolder(J_DiagramHolder object)
+	{
 		return null;
 	}
 
@@ -7145,7 +7637,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAppliedBasicStereotypeValue(AppliedBasicStereotypeValue object) {
+	public Object caseAppliedBasicStereotypeValue(AppliedBasicStereotypeValue object)
+	{
 		return null;
 	}
 
@@ -7160,7 +7653,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePropertyValueSpecification(PropertyValueSpecification object) {
+	public Object casePropertyValueSpecification(PropertyValueSpecification object)
+	{
 		return null;
 	}
 
@@ -7175,7 +7669,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaReplacedConstituent(DeltaReplacedConstituent object) {
+	public Object caseDeltaReplacedConstituent(DeltaReplacedConstituent object)
+	{
 		return null;
 	}
 
@@ -7190,7 +7685,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaDeletedConstituent(DeltaDeletedConstituent object) {
+	public Object caseDeltaDeletedConstituent(DeltaDeletedConstituent object)
+	{
 		return null;
 	}
 
@@ -7205,7 +7701,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaReplacedAttribute(DeltaReplacedAttribute object) {
+	public Object caseDeltaReplacedAttribute(DeltaReplacedAttribute object)
+	{
 		return null;
 	}
 
@@ -7220,7 +7717,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaDeletedAttribute(DeltaDeletedAttribute object) {
+	public Object caseDeltaDeletedAttribute(DeltaDeletedAttribute object)
+	{
 		return null;
 	}
 
@@ -7235,7 +7733,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaReplacedPort(DeltaReplacedPort object) {
+	public Object caseDeltaReplacedPort(DeltaReplacedPort object)
+	{
 		return null;
 	}
 
@@ -7250,7 +7749,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaDeletedPort(DeltaDeletedPort object) {
+	public Object caseDeltaDeletedPort(DeltaDeletedPort object)
+	{
 		return null;
 	}
 
@@ -7265,7 +7765,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaReplacedConnector(DeltaReplacedConnector object) {
+	public Object caseDeltaReplacedConnector(DeltaReplacedConnector object)
+	{
 		return null;
 	}
 
@@ -7280,7 +7781,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaDeletedConnector(DeltaDeletedConnector object) {
+	public Object caseDeltaDeletedConnector(DeltaDeletedConnector object)
+	{
 		return null;
 	}
 
@@ -7295,7 +7797,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaReplacedOperation(DeltaReplacedOperation object) {
+	public Object caseDeltaReplacedOperation(DeltaReplacedOperation object)
+	{
 		return null;
 	}
 
@@ -7310,7 +7813,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaDeletedOperation(DeltaDeletedOperation object) {
+	public Object caseDeltaDeletedOperation(DeltaDeletedOperation object)
+	{
 		return null;
 	}
 
@@ -7325,7 +7829,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-  public Object casePortRemap(PortRemap object) {
+  public Object casePortRemap(PortRemap object)
+	{
 		return null;
 	}
 
@@ -7340,7 +7845,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSavedReference(SavedReference object) {
+	public Object caseSavedReference(SavedReference object)
+	{
 		return null;
 	}
 
@@ -7355,7 +7861,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRequirementsFeature(RequirementsFeature object) {
+	public Object caseRequirementsFeature(RequirementsFeature object)
+	{
 		return null;
 	}
 
@@ -7370,7 +7877,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRequirementsFeatureLink(RequirementsFeatureLink object) {
+	public Object caseRequirementsFeatureLink(RequirementsFeatureLink object)
+	{
 		return null;
 	}
 
@@ -7385,7 +7893,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaReplacedRequirementsFeatureLink(DeltaReplacedRequirementsFeatureLink object) {
+	public Object caseDeltaReplacedRequirementsFeatureLink(DeltaReplacedRequirementsFeatureLink object)
+	{
 		return null;
 	}
 
@@ -7400,7 +7909,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaDeletedRequirementsFeatureLink(DeltaDeletedRequirementsFeatureLink object) {
+	public Object caseDeltaDeletedRequirementsFeatureLink(DeltaDeletedRequirementsFeatureLink object)
+	{
 		return null;
 	}
 
@@ -7415,7 +7925,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaDeletedTrace(DeltaDeletedTrace object) {
+	public Object caseDeltaDeletedTrace(DeltaDeletedTrace object)
+	{
 		return null;
 	}
 
@@ -7430,7 +7941,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDeltaReplacedTrace(DeltaReplacedTrace object) {
+	public Object caseDeltaReplacedTrace(DeltaReplacedTrace object)
+	{
 		return null;
 	}
 
@@ -7445,7 +7957,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseEModelElement(EModelElement object) {
+	public Object caseEModelElement(EModelElement object)
+	{
 		return null;
 	}
 
@@ -7460,7 +7973,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Element(Element object) {
+	public Object caseUML2_Element(Element object)
+	{
 		return null;
 	}
 
@@ -7475,7 +7989,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_TemplateableElement(TemplateableElement object) {
+	public Object caseUML2_TemplateableElement(TemplateableElement object)
+	{
 		return null;
 	}
 
@@ -7490,7 +8005,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_NamedElement(NamedElement object) {
+	public Object caseUML2_NamedElement(NamedElement object)
+	{
 		return null;
 	}
 
@@ -7505,7 +8021,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_TypedElement(TypedElement object) {
+	public Object caseUML2_TypedElement(TypedElement object)
+	{
 		return null;
 	}
 
@@ -7520,7 +8037,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ParameterableElement(ParameterableElement object) {
+	public Object caseUML2_ParameterableElement(ParameterableElement object)
+	{
 		return null;
 	}
 
@@ -7535,7 +8053,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ValueSpecification(ValueSpecification object) {
+	public Object caseUML2_ValueSpecification(ValueSpecification object)
+	{
 		return null;
 	}
 
@@ -7550,7 +8069,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_OpaqueExpression(OpaqueExpression object) {
+	public Object caseUML2_OpaqueExpression(OpaqueExpression object)
+	{
 		return null;
 	}
 
@@ -7565,7 +8085,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Relationship(Relationship object) {
+	public Object caseUML2_Relationship(Relationship object)
+	{
 		return null;
 	}
 
@@ -7580,7 +8101,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Namespace(Namespace object) {
+	public Object caseUML2_Namespace(Namespace object)
+	{
 		return null;
 	}
 
@@ -7595,7 +8117,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_PackageableElement(PackageableElement object) {
+	public Object caseUML2_PackageableElement(PackageableElement object)
+	{
 		return null;
 	}
 
@@ -7610,7 +8133,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Type(Type object) {
+	public Object caseUML2_Type(Type object)
+	{
 		return null;
 	}
 
@@ -7625,7 +8149,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_RedefinableElement(RedefinableElement object) {
+	public Object caseUML2_RedefinableElement(RedefinableElement object)
+	{
 		return null;
 	}
 
@@ -7640,7 +8165,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Classifier(Classifier object) {
+	public Object caseUML2_Classifier(Classifier object)
+	{
 		return null;
 	}
 
@@ -7655,7 +8181,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_BehavioredClassifier(BehavioredClassifier object) {
+	public Object caseUML2_BehavioredClassifier(BehavioredClassifier object)
+	{
 		return null;
 	}
 
@@ -7670,7 +8197,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_StructuredClassifier(StructuredClassifier object) {
+	public Object caseUML2_StructuredClassifier(StructuredClassifier object)
+	{
 		return null;
 	}
 
@@ -7685,7 +8213,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_EncapsulatedClassifier(EncapsulatedClassifier object) {
+	public Object caseUML2_EncapsulatedClassifier(EncapsulatedClassifier object)
+	{
 		return null;
 	}
 
@@ -7700,7 +8229,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Feature(Feature object) {
+	public Object caseUML2_Feature(Feature object)
+	{
 		return null;
 	}
 
@@ -7715,7 +8245,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_MultiplicityElement(MultiplicityElement object) {
+	public Object caseUML2_MultiplicityElement(MultiplicityElement object)
+	{
 		return null;
 	}
 
@@ -7730,7 +8261,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_StructuralFeature(StructuralFeature object) {
+	public Object caseUML2_StructuralFeature(StructuralFeature object)
+	{
 		return null;
 	}
 
@@ -7745,7 +8277,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ConnectableElement(ConnectableElement object) {
+	public Object caseUML2_ConnectableElement(ConnectableElement object)
+	{
 		return null;
 	}
 
@@ -7760,7 +8293,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_DeploymentTarget(DeploymentTarget object) {
+	public Object caseUML2_DeploymentTarget(DeploymentTarget object)
+	{
 		return null;
 	}
 
@@ -7775,7 +8309,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_BehavioralFeature(BehavioralFeature object) {
+	public Object caseUML2_BehavioralFeature(BehavioralFeature object)
+	{
 		return null;
 	}
 
@@ -7790,7 +8325,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_DataType(DataType object) {
+	public Object caseUML2_DataType(DataType object)
+	{
 		return null;
 	}
 
@@ -7805,7 +8341,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_DeployedArtifact(DeployedArtifact object) {
+	public Object caseUML2_DeployedArtifact(DeployedArtifact object)
+	{
 		return null;
 	}
 
@@ -7820,7 +8357,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_InstanceSpecification(InstanceSpecification object) {
+	public Object caseUML2_InstanceSpecification(InstanceSpecification object)
+	{
 		return null;
 	}
 
@@ -7835,7 +8373,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_LiteralSpecification(LiteralSpecification object) {
+	public Object caseUML2_LiteralSpecification(LiteralSpecification object)
+	{
 		return null;
 	}
 
@@ -7850,7 +8389,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_DirectedRelationship(DirectedRelationship object) {
+	public Object caseUML2_DirectedRelationship(DirectedRelationship object)
+	{
 		return null;
 	}
 
@@ -7865,7 +8405,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Class(org.eclipse.uml2.Class object) {
+	public Object caseUML2_Class(org.eclipse.uml2.Class object)
+	{
 		return null;
 	}
 
@@ -7880,7 +8421,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Package(org.eclipse.uml2.Package object) {
+	public Object caseUML2_Package(org.eclipse.uml2.Package object)
+	{
 		return null;
 	}
 
@@ -7895,7 +8437,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_PackageImport(PackageImport object) {
+	public Object caseUML2_PackageImport(PackageImport object)
+	{
 		return null;
 	}
 
@@ -7910,7 +8453,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Association(Association object) {
+	public Object caseUML2_Association(Association object)
+	{
 		return null;
 	}
 
@@ -7925,7 +8469,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Property(Property object) {
+	public Object caseUML2_Property(Property object)
+	{
 		return null;
 	}
 
@@ -7940,7 +8485,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Behavior(Behavior object) {
+	public Object caseUML2_Behavior(Behavior object)
+	{
 		return null;
 	}
 
@@ -7955,7 +8501,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Dependency(Dependency object) {
+	public Object caseUML2_Dependency(Dependency object)
+	{
 		return null;
 	}
 
@@ -7970,7 +8517,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Abstraction(Abstraction object) {
+	public Object caseUML2_Abstraction(Abstraction object)
+	{
 		return null;
 	}
 
@@ -7985,7 +8533,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Realization(Realization object) {
+	public Object caseUML2_Realization(Realization object)
+	{
 		return null;
 	}
 
@@ -8000,7 +8549,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ActivityNode(ActivityNode object) {
+	public Object caseUML2_ActivityNode(ActivityNode object)
+	{
 		return null;
 	}
 
@@ -8015,7 +8565,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ExecutableNode(ExecutableNode object) {
+	public Object caseUML2_ExecutableNode(ExecutableNode object)
+	{
 		return null;
 	}
 
@@ -8030,7 +8581,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ActivityEdge(ActivityEdge object) {
+	public Object caseUML2_ActivityEdge(ActivityEdge object)
+	{
 		return null;
 	}
 
@@ -8045,7 +8597,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ControlNode(ControlNode object) {
+	public Object caseUML2_ControlNode(ControlNode object)
+	{
 		return null;
 	}
 
@@ -8060,7 +8613,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_FinalNode(FinalNode object) {
+	public Object caseUML2_FinalNode(FinalNode object)
+	{
 		return null;
 	}
 
@@ -8075,7 +8629,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ObjectNode(ObjectNode object) {
+	public Object caseUML2_ObjectNode(ObjectNode object)
+	{
 		return null;
 	}
 
@@ -8090,7 +8645,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Pin(Pin object) {
+	public Object caseUML2_Pin(Pin object)
+	{
 		return null;
 	}
 
@@ -8105,7 +8661,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_InputPin(InputPin object) {
+	public Object caseUML2_InputPin(InputPin object)
+	{
 		return null;
 	}
 
@@ -8120,7 +8677,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Trigger(Trigger object) {
+	public Object caseUML2_Trigger(Trigger object)
+	{
 		return null;
 	}
 
@@ -8135,7 +8693,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_MessageTrigger(MessageTrigger object) {
+	public Object caseUML2_MessageTrigger(MessageTrigger object)
+	{
 		return null;
 	}
 
@@ -8150,7 +8709,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Action(Action object) {
+	public Object caseUML2_Action(Action object)
+	{
 		return null;
 	}
 
@@ -8165,7 +8725,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_ActivityGroup(ActivityGroup object) {
+	public Object caseUML2_ActivityGroup(ActivityGroup object)
+	{
 		return null;
 	}
 
@@ -8180,7 +8741,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_StructuredActivityNode(StructuredActivityNode object) {
+	public Object caseUML2_StructuredActivityNode(StructuredActivityNode object)
+	{
 		return null;
 	}
 
@@ -8195,7 +8757,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_InteractionFragment(InteractionFragment object) {
+	public Object caseUML2_InteractionFragment(InteractionFragment object)
+	{
 		return null;
 	}
 
@@ -8210,7 +8773,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_MessageEnd(MessageEnd object) {
+	public Object caseUML2_MessageEnd(MessageEnd object)
+	{
 		return null;
 	}
 
@@ -8225,7 +8789,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_EventOccurrence(EventOccurrence object) {
+	public Object caseUML2_EventOccurrence(EventOccurrence object)
+	{
 		return null;
 	}
 
@@ -8240,7 +8805,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_TemplateParameter(TemplateParameter object) {
+	public Object caseUML2_TemplateParameter(TemplateParameter object)
+	{
 		return null;
 	}
 
@@ -8255,7 +8821,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_TemplateSignature(TemplateSignature object) {
+	public Object caseUML2_TemplateSignature(TemplateSignature object)
+	{
 		return null;
 	}
 
@@ -8270,7 +8837,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_InteractionOccurrence(InteractionOccurrence object) {
+	public Object caseUML2_InteractionOccurrence(InteractionOccurrence object)
+	{
 		return null;
 	}
 
@@ -8285,7 +8853,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Constraint(Constraint object) {
+	public Object caseUML2_Constraint(Constraint object)
+	{
 		return null;
 	}
 
@@ -8300,7 +8869,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Vertex(Vertex object) {
+	public Object caseUML2_Vertex(Vertex object)
+	{
 		return null;
 	}
 
@@ -8315,7 +8885,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_State(State object) {
+	public Object caseUML2_State(State object)
+	{
 		return null;
 	}
 
@@ -8330,7 +8901,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_StructuralFeatureAction(StructuralFeatureAction object) {
+	public Object caseUML2_StructuralFeatureAction(StructuralFeatureAction object)
+	{
 		return null;
 	}
 
@@ -8345,7 +8917,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_WriteStructuralFeatureAction(WriteStructuralFeatureAction object) {
+	public Object caseUML2_WriteStructuralFeatureAction(WriteStructuralFeatureAction object)
+	{
 		return null;
 	}
 
@@ -8360,7 +8933,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_LinkAction(LinkAction object) {
+	public Object caseUML2_LinkAction(LinkAction object)
+	{
 		return null;
 	}
 
@@ -8375,7 +8949,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_LinkEndData(LinkEndData object) {
+	public Object caseUML2_LinkEndData(LinkEndData object)
+	{
 		return null;
 	}
 
@@ -8390,7 +8965,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_WriteLinkAction(WriteLinkAction object) {
+	public Object caseUML2_WriteLinkAction(WriteLinkAction object)
+	{
 		return null;
 	}
 
@@ -8405,7 +8981,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_VariableAction(VariableAction object) {
+	public Object caseUML2_VariableAction(VariableAction object)
+	{
 		return null;
 	}
 
@@ -8420,7 +8997,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_WriteVariableAction(WriteVariableAction object) {
+	public Object caseUML2_WriteVariableAction(WriteVariableAction object)
+	{
 		return null;
 	}
 
@@ -8435,7 +9013,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_InvocationAction(InvocationAction object) {
+	public Object caseUML2_InvocationAction(InvocationAction object)
+	{
 		return null;
 	}
 
@@ -8450,7 +9029,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_CallAction(CallAction object) {
+	public Object caseUML2_CallAction(CallAction object)
+	{
 		return null;
 	}
 
@@ -8465,7 +9045,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Interval(Interval object) {
+	public Object caseUML2_Interval(Interval object)
+	{
 		return null;
 	}
 
@@ -8480,7 +9061,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_IntervalConstraint(IntervalConstraint object) {
+	public Object caseUML2_IntervalConstraint(IntervalConstraint object)
+	{
 		return null;
 	}
 
@@ -8495,7 +9077,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_CentralBufferNode(CentralBufferNode object) {
+	public Object caseUML2_CentralBufferNode(CentralBufferNode object)
+	{
 		return null;
 	}
 
@@ -8510,7 +9093,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Node(Node object) {
+	public Object caseUML2_Node(Node object)
+	{
 		return null;
 	}
 
@@ -8525,7 +9109,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_StateMachine(StateMachine object) {
+	public Object caseUML2_StateMachine(StateMachine object)
+	{
 		return null;
 	}
 
@@ -8540,7 +9125,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Transition(Transition object) {
+	public Object caseUML2_Transition(Transition object)
+	{
 		return null;
 	}
 
@@ -8555,7 +9141,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_CreateLinkAction(CreateLinkAction object) {
+	public Object caseUML2_CreateLinkAction(CreateLinkAction object)
+	{
 		return null;
 	}
 
@@ -8570,7 +9157,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_AcceptEventAction(AcceptEventAction object) {
+	public Object caseUML2_AcceptEventAction(AcceptEventAction object)
+	{
 		return null;
 	}
 
@@ -8585,7 +9173,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_Artifact(Artifact object) {
+	public Object caseUML2_Artifact(Artifact object)
+	{
 		return null;
 	}
 
@@ -8600,7 +9189,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_J_FigureContainer(J_FigureContainer object) {
+	public Object caseUML2_J_FigureContainer(J_FigureContainer object)
+	{
 		return null;
 	}
 
@@ -8615,7 +9205,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_DeltaReplacedConstituent(DeltaReplacedConstituent object) {
+	public Object caseUML2_DeltaReplacedConstituent(DeltaReplacedConstituent object)
+	{
 		return null;
 	}
 
@@ -8630,7 +9221,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2_DeltaDeletedConstituent(DeltaDeletedConstituent object) {
+	public Object caseUML2_DeltaDeletedConstituent(DeltaDeletedConstituent object)
+	{
 		return null;
 	}
 
@@ -8645,7 +9237,8 @@ public class UML2Switch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object) {
+	public Object defaultCase(EObject object)
+	{
 		return null;
 	}
 

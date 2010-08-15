@@ -187,9 +187,9 @@ public<%if (genClass.isAbstract()) {%> abstract<%}%> class <%=genClass.getClassN
 		super();
 		
 		if (eAdapters().size() == 0)
-			eAdapters().add(com.hopstepjump.notifications.GlobalNotifier.getSingleton());
+			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
 		if (<%=genClass.getClassName()%>.class.equals(getClass()))
-			com.hopstepjump.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
+			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
   <%for (Iterator i=genClass.getFlagGenFeatures("true").iterator(); i.hasNext();) { GenFeature genFeature = (GenFeature)i.next();%>
 		<%=genClass.getFlagsField(genFeature)%> |= <%=genFeature.getUpperName()%>_EFLAG;

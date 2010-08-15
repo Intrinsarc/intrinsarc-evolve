@@ -88,7 +88,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TemplateBindingImpl() {
+	protected TemplateBindingImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -103,7 +104,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getTemplateBinding();
 	}
 
@@ -112,7 +114,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElement getBoundElement() {
+	public TemplateableElement getBoundElement()
+	{
 		if (eContainerFeatureID != UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT) return null;
 		return (TemplateableElement)eContainer;
 	}
@@ -127,7 +130,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateableElement undeleted_getBoundElement() {
+  public TemplateableElement undeleted_getBoundElement()
+	{
 		TemplateableElement temp = getBoundElement();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -139,8 +143,11 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBoundElement(TemplateableElement newBoundElement) {
-		if (newBoundElement != eContainer || (eContainerFeatureID != UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT && newBoundElement != null)) {
+	public void setBoundElement(TemplateableElement newBoundElement)
+	{
+
+		if (newBoundElement != eContainer || (eContainerFeatureID != UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT && newBoundElement != null))
+		{
 			if (EcoreUtil.isAncestor(this, newBoundElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -162,11 +169,14 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature getSignature() {
-		if (signature != null && signature.eIsProxy()) {
+	public TemplateSignature getSignature()
+	{
+		if (signature != null && signature.eIsProxy())
+		{
 			TemplateSignature oldSignature = signature;
 			signature = (TemplateSignature)eResolveProxy((InternalEObject)signature);
-			if (signature != oldSignature) {
+			if (signature != oldSignature)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.TEMPLATE_BINDING__SIGNATURE, oldSignature, signature));
 			}
@@ -184,7 +194,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature undeleted_getSignature() {
+  public TemplateSignature undeleted_getSignature()
+	{
 		TemplateSignature temp = getSignature();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -196,7 +207,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature basicGetSignature() {
+	public TemplateSignature basicGetSignature()
+	{
 		return signature;
 	}
 
@@ -205,7 +217,9 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSignature(TemplateSignature newSignature) {
+	public void setSignature(TemplateSignature newSignature)
+	{
+
 		TemplateSignature oldSignature = signature;
 		signature = newSignature;
 		if (eNotificationRequired())
@@ -219,9 +233,13 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getParameterSubstitutions() {
-		if (parameterSubstitution == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getParameterSubstitutions()
+	{
+		if (parameterSubstitution == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		parameterSubstitution = new com.intrinsarc.emflist.PersistentEList(TemplateParameterSubstitution.class, this, UML2Package.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING);
 			 		return parameterSubstitution;
@@ -238,8 +256,12 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getParameterSubstitutions() {
-		if (parameterSubstitution == null) {
+  public EList settable_getParameterSubstitutions()
+	{
+		if (parameterSubstitution == null)
+		{
+			
+		
 			parameterSubstitution = new com.intrinsarc.emflist.PersistentEList(TemplateParameterSubstitution.class, this, UML2Package.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, UML2Package.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING);
 		}
 		return parameterSubstitution;
@@ -250,11 +272,14 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getParameterSubstitutions() {
+  public java.util.ArrayList undeleted_getParameterSubstitutions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (parameterSubstitution != null) {
-			for (Object object : parameterSubstitution) {
+		if (parameterSubstitution != null)
+		{
+			for (Object object : parameterSubstitution)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -301,7 +326,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		TemplateableElement boundElement = getBoundElement();			
 		if (boundElement != null) {
 			return boundElement;
@@ -315,7 +341,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source) {
+	protected EList getSourcesHelper(EList source)
+	{
 		super.getSourcesHelper(source);
 		TemplateableElement boundElement = getBoundElement();
 		if (boundElement != null) {
@@ -330,7 +357,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target) {
+	protected EList getTargetsHelper(EList target)
+	{
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getTemplateBinding_Signature())) {
 			target.add(getSignature());
@@ -344,7 +372,8 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getTemplateBinding_ParameterSubstitution())) {
 			ownedElement.addAll(getParameterSubstitutions());
@@ -358,9 +387,12 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.TEMPLATE_BINDING__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT:
@@ -383,9 +415,12 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.TEMPLATE_BINDING__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.TEMPLATE_BINDING__OWNED_COMMENT:
@@ -408,9 +443,12 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.TEMPLATE_BINDING__BOUND_ELEMENT:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, TemplateableElement.class, msgs);
 				default:
@@ -425,8 +463,10 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TEMPLATE_BINDING__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.TEMPLATE_BINDING__OWNED_ELEMENT:
@@ -468,8 +508,10 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TEMPLATE_BINDING__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -514,8 +556,10 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TEMPLATE_BINDING__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -555,8 +599,10 @@ public class TemplateBindingImpl extends DirectedRelationshipImpl implements Tem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TEMPLATE_BINDING__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.TEMPLATE_BINDING__OWNED_ELEMENT:

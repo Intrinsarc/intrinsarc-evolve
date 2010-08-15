@@ -30,7 +30,8 @@ public class UML2AllTests extends TestSuite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(suite());
 	}
 
@@ -39,8 +40,10 @@ public class UML2AllTests extends TestSuite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static Test suite() {
+	public static Test suite()
+	{
 		TestSuite suite = new UML2AllTests("UML2 Tests"); //$NON-NLS-1$
+		suite.addTest(UML2Tests.suite());
 		suite.addTest(UML2Tests.suite());
 		return suite;
 	}
@@ -50,7 +53,8 @@ public class UML2AllTests extends TestSuite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2AllTests(String name) {
+	public UML2AllTests(String name)
+	{
 		super(name);
 	}
 

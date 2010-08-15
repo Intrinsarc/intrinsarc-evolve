@@ -3,6 +3,5 @@
 	<classpathentry path="src" kind="src"/>
 	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
 	<classpathentry path="org.eclipse.pde.core.requiredPlugins" kind="con"/>
-	<classpathentry path="/EnhancedEMFCore" combineaccessrules="false" kind="src"/>
 	<classpathentry path="bin" kind="output"/>
 </classpath>

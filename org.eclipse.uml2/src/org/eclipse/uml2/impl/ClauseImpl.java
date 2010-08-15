@@ -124,7 +124,8 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClauseImpl() {
+	protected ClauseImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -139,7 +140,8 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getClause();
 	}
 
@@ -148,9 +150,13 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTests() {
-		if (test == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getTests()
+	{
+		if (test == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		test = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__TEST);
 			 		return test;
@@ -167,8 +173,12 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getTests() {
-		if (test == null) {
+  public EList settable_getTests()
+	{
+		if (test == null)
+		{
+			
+		
 			test = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__TEST);
 		}
 		return test;
@@ -179,11 +189,14 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getTests() {
+  public java.util.ArrayList undeleted_getTests()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (test != null) {
-			for (Object object : test) {
+		if (test != null)
+		{
+			for (Object object : test)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -216,9 +229,13 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getBodies() {
-		if (body == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getBodies()
+	{
+		if (body == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		body = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__BODY);
 			 		return body;
@@ -235,8 +252,12 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getBodies() {
-		if (body == null) {
+  public EList settable_getBodies()
+	{
+		if (body == null)
+		{
+			
+		
 			body = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.CLAUSE__BODY);
 		}
 		return body;
@@ -247,11 +268,14 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getBodies() {
+  public java.util.ArrayList undeleted_getBodies()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (body != null) {
-			for (Object object : body) {
+		if (body != null)
+		{
+			for (Object object : body)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -284,9 +308,13 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPredecessorClauses() {
-		if (predecessorClause == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getPredecessorClauses()
+	{
+		if (predecessorClause == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		predecessorClause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__PREDECESSOR_CLAUSE, UML2Package.CLAUSE__SUCCESSOR_CLAUSE);
 			 		return predecessorClause;
@@ -303,8 +331,12 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPredecessorClauses() {
-		if (predecessorClause == null) {
+  public EList settable_getPredecessorClauses()
+	{
+		if (predecessorClause == null)
+		{
+			
+		
 			predecessorClause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__PREDECESSOR_CLAUSE, UML2Package.CLAUSE__SUCCESSOR_CLAUSE);
 		}
 		return predecessorClause;
@@ -315,11 +347,14 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPredecessorClauses() {
+  public java.util.ArrayList undeleted_getPredecessorClauses()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (predecessorClause != null) {
-			for (Object object : predecessorClause) {
+		if (predecessorClause != null)
+		{
+			for (Object object : predecessorClause)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -337,9 +372,13 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSuccessorClauses() {
-		if (successorClause == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getSuccessorClauses()
+	{
+		if (successorClause == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		successorClause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__SUCCESSOR_CLAUSE, UML2Package.CLAUSE__PREDECESSOR_CLAUSE);
 			 		return successorClause;
@@ -356,8 +395,12 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSuccessorClauses() {
-		if (successorClause == null) {
+  public EList settable_getSuccessorClauses()
+	{
+		if (successorClause == null)
+		{
+			
+		
 			successorClause = new com.intrinsarc.emflist.PersistentEList(Clause.class, this, UML2Package.CLAUSE__SUCCESSOR_CLAUSE, UML2Package.CLAUSE__PREDECESSOR_CLAUSE);
 		}
 		return successorClause;
@@ -368,11 +411,14 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSuccessorClauses() {
+  public java.util.ArrayList undeleted_getSuccessorClauses()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (successorClause != null) {
-			for (Object object : successorClause) {
+		if (successorClause != null)
+		{
+			for (Object object : successorClause)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -390,11 +436,14 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OutputPin getDecider() {
-		if (decider != null && decider.eIsProxy()) {
+	public OutputPin getDecider()
+	{
+		if (decider != null && decider.eIsProxy())
+		{
 			OutputPin oldDecider = decider;
 			decider = (OutputPin)eResolveProxy((InternalEObject)decider);
-			if (decider != oldDecider) {
+			if (decider != oldDecider)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.CLAUSE__DECIDER, oldDecider, decider));
 			}
@@ -412,7 +461,8 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public OutputPin undeleted_getDecider() {
+  public OutputPin undeleted_getDecider()
+	{
 		OutputPin temp = getDecider();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -424,7 +474,8 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OutputPin basicGetDecider() {
+	public OutputPin basicGetDecider()
+	{
 		return decider;
 	}
 
@@ -433,7 +484,9 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDecider(OutputPin newDecider) {
+	public void setDecider(OutputPin newDecider)
+	{
+
 		OutputPin oldDecider = decider;
 		decider = newDecider;
 		if (eNotificationRequired())
@@ -447,9 +500,13 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getBodyOutputs() {
-		if (bodyOutput == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getBodyOutputs()
+	{
+		if (bodyOutput == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		bodyOutput = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.CLAUSE__BODY_OUTPUT);
 			 		return bodyOutput;
@@ -466,8 +523,12 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getBodyOutputs() {
-		if (bodyOutput == null) {
+  public EList settable_getBodyOutputs()
+	{
+		if (bodyOutput == null)
+		{
+			
+		
 			bodyOutput = new com.intrinsarc.emflist.PersistentEList(OutputPin.class, this, UML2Package.CLAUSE__BODY_OUTPUT);
 		}
 		return bodyOutput;
@@ -478,11 +539,14 @@ public class ClauseImpl extends ElementImpl implements Clause {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getBodyOutputs() {
+  public java.util.ArrayList undeleted_getBodyOutputs()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (bodyOutput != null) {
-			for (Object object : bodyOutput) {
+		if (bodyOutput != null)
+		{
+			for (Object object : bodyOutput)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -515,9 +579,12 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.CLAUSE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CLAUSE__PREDECESSOR_CLAUSE:
@@ -538,9 +605,12 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.CLAUSE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CLAUSE__OWNED_COMMENT:
@@ -563,8 +633,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CLAUSE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CLAUSE__OWNED_ELEMENT:
@@ -606,8 +678,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CLAUSE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -665,8 +739,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CLAUSE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -715,8 +791,10 @@ public class ClauseImpl extends ElementImpl implements Clause {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CLAUSE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CLAUSE__OWNED_ELEMENT:

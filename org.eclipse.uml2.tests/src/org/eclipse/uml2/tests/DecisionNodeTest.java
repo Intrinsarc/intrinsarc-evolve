@@ -30,7 +30,8 @@ public class DecisionNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(DecisionNodeTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class DecisionNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DecisionNodeTest(String name) {
+	public DecisionNodeTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class DecisionNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DecisionNode getFixture() {
+	private DecisionNode getFixture()
+	{
 		return (DecisionNode)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class DecisionNodeTest extends ControlNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createDecisionNode());
 	}
 
@@ -70,7 +74,8 @@ public class DecisionNodeTest extends ControlNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

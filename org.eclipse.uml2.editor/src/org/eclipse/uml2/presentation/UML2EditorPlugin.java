@@ -53,9 +53,11 @@ public final class UML2EditorPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2EditorPlugin() {
+	public UML2EditorPlugin()
+	{
 		super
-		  (new ResourceLocator [] {
+		  (new ResourceLocator [] 
+		   {
 		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
@@ -67,7 +69,8 @@ public final class UML2EditorPlugin extends EMFPlugin {
 	 * @return the singleton instance.
 	 * @generated
 	 */
-	public ResourceLocator getPluginResourceLocator() {
+	public ResourceLocator getPluginResourceLocator()
+	{
 		return plugin;
 	}
 
@@ -78,7 +81,8 @@ public final class UML2EditorPlugin extends EMFPlugin {
 	 * @return the singleton instance.
 	 * @generated
 	 */
-	public static Implementation getPlugin() {
+	public static Implementation getPlugin()
+	{
 		return plugin;
 	}
 
@@ -95,7 +99,8 @@ public final class UML2EditorPlugin extends EMFPlugin {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public Implementation() {
+		public Implementation()
+		{
 			super();
 
 			// Remember the static instance.

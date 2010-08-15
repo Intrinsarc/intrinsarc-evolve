@@ -74,7 +74,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyItemProvider(AdapterFactory adapterFactory) {
+	public PropertyItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -84,8 +85,10 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTemplateParameterPropertyDescriptor(object);
@@ -118,7 +121,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTemplateParameterPropertyDescriptor(Object object) {
+	protected void addTemplateParameterPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -138,7 +142,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwningParameterPropertyDescriptor(Object object) {
+	protected void addOwningParameterPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -160,7 +165,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEndPropertyDescriptor(Object object) {
+	protected void addEndPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -180,7 +186,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDeploymentPropertyDescriptor(Object object) {
+	protected void addDeploymentPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -202,7 +209,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDeployedElementPropertyDescriptor(Object object) {
+	protected void addDeployedElementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -224,7 +232,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDefaultPropertyDescriptor(Object object) {
+	protected void addDefaultPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -246,7 +255,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsCompositePropertyDescriptor(Object object) {
+	protected void addIsCompositePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -268,7 +278,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsDerivedPropertyDescriptor(Object object) {
+	protected void addIsDerivedPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -288,7 +299,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsDerivedUnionPropertyDescriptor(Object object) {
+	protected void addIsDerivedUnionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -308,7 +320,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwningAssociationPropertyDescriptor(Object object) {
+	protected void addOwningAssociationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -330,7 +343,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAggregationPropertyDescriptor(Object object) {
+	protected void addAggregationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -350,7 +364,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDefaultValuePropertyDescriptor(Object object) {
+	protected void addDefaultValuePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -372,7 +387,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addQualifierPropertyDescriptor(Object object) {
+	protected void addQualifierPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -394,7 +410,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAssociationEndPropertyDescriptor(Object object) {
+	protected void addAssociationEndPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -418,8 +435,10 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getDeploymentTarget_Deployment());
 			childrenFeatures.add(UML2Package.eINSTANCE.getProperty_DefaultValue());
@@ -435,7 +454,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -448,7 +468,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addClass_PropertyDescriptor(Object object) {
+	protected void addClass_PropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -468,7 +489,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOppositePropertyDescriptor(Object object) {
+	protected void addOppositePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -490,7 +512,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinedPropertyPropertyDescriptor(Object object) {
+	protected void addRedefinedPropertyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -510,7 +533,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSubsettedPropertyPropertyDescriptor(Object object) {
+	protected void addSubsettedPropertyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -530,7 +554,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDatatypePropertyDescriptor(Object object) {
+	protected void addDatatypePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -552,7 +577,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAssociationPropertyDescriptor(Object object) {
+	protected void addAssociationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -572,7 +598,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Property"); //$NON-NLS-1$
 	}
 
@@ -582,7 +609,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Property)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Property_type") : //$NON-NLS-1$
@@ -596,10 +624,12 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Property.class)) {
+		switch (notification.getFeatureID(Property.class))
+		{
 			case UML2Package.PROPERTY__DEFAULT:
 			case UML2Package.PROPERTY__IS_COMPOSITE:
 			case UML2Package.PROPERTY__IS_DERIVED:
@@ -625,7 +655,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -1215,7 +1246,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -1227,7 +1259,8 @@ public class PropertyItemProvider
 			childFeature == UML2Package.eINSTANCE.getProperty_DefaultValue() ||
 			childFeature == UML2Package.eINSTANCE.getProperty_DefaultValues();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -1241,7 +1274,8 @@ public class PropertyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

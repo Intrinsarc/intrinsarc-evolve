@@ -90,7 +90,8 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SendSignalActionImpl() {
+	protected SendSignalActionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -105,7 +106,8 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getSendSignalAction();
 	}
 
@@ -114,7 +116,8 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getTarget() {
+	public InputPin getTarget()
+	{
 		return target;
 	}
 
@@ -128,7 +131,8 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getTarget() {
+  public InputPin undeleted_getTarget()
+	{
 		InputPin temp = getTarget();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -140,10 +144,13 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(InputPin newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(InputPin newTarget, NotificationChain msgs)
+	{
+
 		InputPin oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.SEND_SIGNAL_ACTION__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -156,8 +163,11 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(InputPin newTarget) {
-		if (newTarget != target) {
+	public void setTarget(InputPin newTarget)
+	{
+
+		if (newTarget != target)
+		{
 			NotificationChain msgs = null;
 			if (target != null)
 				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.SEND_SIGNAL_ACTION__TARGET, null, msgs);
@@ -205,11 +215,14 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signal getSignal() {
-		if (signal != null && signal.eIsProxy()) {
+	public Signal getSignal()
+	{
+		if (signal != null && signal.eIsProxy())
+		{
 			Signal oldSignal = signal;
 			signal = (Signal)eResolveProxy((InternalEObject)signal);
-			if (signal != oldSignal) {
+			if (signal != oldSignal)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.SEND_SIGNAL_ACTION__SIGNAL, oldSignal, signal));
 			}
@@ -227,7 +240,8 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Signal undeleted_getSignal() {
+  public Signal undeleted_getSignal()
+	{
 		Signal temp = getSignal();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -239,7 +253,8 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signal basicGetSignal() {
+	public Signal basicGetSignal()
+	{
 		return signal;
 	}
 
@@ -248,7 +263,9 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSignal(Signal newSignal) {
+	public void setSignal(Signal newSignal)
+	{
+
 		Signal oldSignal = signal;
 		signal = newSignal;
 		if (eNotificationRequired())
@@ -262,9 +279,12 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SEND_SIGNAL_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.SEND_SIGNAL_ACTION__TEMPLATE_BINDING:
@@ -307,9 +327,12 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SEND_SIGNAL_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.SEND_SIGNAL_ACTION__OWNED_COMMENT:
@@ -360,9 +383,12 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.SEND_SIGNAL_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.SEND_SIGNAL_ACTION__IN_STRUCTURED_NODE:
@@ -379,8 +405,10 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SEND_SIGNAL_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.SEND_SIGNAL_ACTION__OWNED_ELEMENT:
@@ -474,8 +502,10 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SEND_SIGNAL_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -599,8 +629,10 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SEND_SIGNAL_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -706,8 +738,10 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SEND_SIGNAL_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.SEND_SIGNAL_ACTION__OWNED_ELEMENT:
@@ -798,7 +832,8 @@ public class SendSignalActionImpl extends InvocationActionImpl implements SendSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input) {
+	protected EList getInputsHelper(EList input)
+	{
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getSendSignalAction_Target())) {
 			input.add(getTarget());

@@ -132,7 +132,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActivityNodeImpl() {
+	protected ActivityNodeImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -147,7 +148,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getActivityNode();
 	}
 
@@ -156,9 +158,13 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOutgoings() {
-		if (outgoing == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOutgoings()
+	{
+		if (outgoing == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		outgoing = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__OUTGOING, UML2Package.ACTIVITY_EDGE__SOURCE);
 			 		return outgoing;
@@ -175,8 +181,12 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOutgoings() {
-		if (outgoing == null) {
+  public EList settable_getOutgoings()
+	{
+		if (outgoing == null)
+		{
+			
+		
 			outgoing = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__OUTGOING, UML2Package.ACTIVITY_EDGE__SOURCE);
 		}
 		return outgoing;
@@ -187,11 +197,14 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOutgoings() {
+  public java.util.ArrayList undeleted_getOutgoings()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (outgoing != null) {
-			for (Object object : outgoing) {
+		if (outgoing != null)
+		{
+			for (Object object : outgoing)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -224,9 +237,13 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getIncomings() {
-		if (incoming == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getIncomings()
+	{
+		if (incoming == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		incoming = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__INCOMING, UML2Package.ACTIVITY_EDGE__TARGET);
 			 		return incoming;
@@ -243,8 +260,12 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getIncomings() {
-		if (incoming == null) {
+  public EList settable_getIncomings()
+	{
+		if (incoming == null)
+		{
+			
+		
 			incoming = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_NODE__INCOMING, UML2Package.ACTIVITY_EDGE__TARGET);
 		}
 		return incoming;
@@ -255,11 +276,14 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getIncomings() {
+  public java.util.ArrayList undeleted_getIncomings()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (incoming != null) {
-			for (Object object : incoming) {
+		if (incoming != null)
+		{
+			for (Object object : incoming)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -292,7 +316,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInGroups() {
+	public EList getInGroups()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList inGroup = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getActivityNode_InGroup());
@@ -312,7 +337,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getActivity() {
+	public Activity getActivity()
+	{
 		if (eContainerFeatureID != UML2Package.ACTIVITY_NODE__ACTIVITY) return null;
 		return (Activity)eContainer;
 	}
@@ -327,7 +353,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity undeleted_getActivity() {
+  public Activity undeleted_getActivity()
+	{
 		Activity temp = getActivity();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -339,8 +366,11 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActivity(Activity newActivity) {
-		if (newActivity != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_NODE__ACTIVITY && newActivity != null)) {
+	public void setActivity(Activity newActivity)
+	{
+
+		if (newActivity != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_NODE__ACTIVITY && newActivity != null))
+		{
 			if (EcoreUtil.isAncestor(this, newActivity))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -362,9 +392,13 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements() {
-		if (redefinedElement == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRedefinedElements()
+	{
+		if (redefinedElement == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		redefinedElement = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_NODE__REDEFINED_ELEMENT);
 			 		return redefinedElement;
@@ -381,8 +415,12 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRedefinedElements() {
-		if (redefinedElement == null) {
+  public EList settable_getRedefinedElements()
+	{
+		if (redefinedElement == null)
+		{
+			
+		
 			redefinedElement = new com.intrinsarc.emflist.PersistentEList(ActivityNode.class, this, UML2Package.ACTIVITY_NODE__REDEFINED_ELEMENT);
 		}
 		return redefinedElement;
@@ -393,11 +431,14 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRedefinedElements() {
+  public java.util.ArrayList undeleted_getRedefinedElements()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (redefinedElement != null) {
-			for (Object object : redefinedElement) {
+		if (redefinedElement != null)
+		{
+			for (Object object : redefinedElement)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -430,7 +471,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuredActivityNode getInStructuredNode() {
+	public StructuredActivityNode getInStructuredNode()
+	{
 		if (eContainerFeatureID != UML2Package.ACTIVITY_NODE__IN_STRUCTURED_NODE) return null;
 		return (StructuredActivityNode)eContainer;
 	}
@@ -445,7 +487,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StructuredActivityNode undeleted_getInStructuredNode() {
+  public StructuredActivityNode undeleted_getInStructuredNode()
+	{
 		StructuredActivityNode temp = getInStructuredNode();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -457,8 +500,11 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInStructuredNode(StructuredActivityNode newInStructuredNode) {
-		if (newInStructuredNode != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_NODE__IN_STRUCTURED_NODE && newInStructuredNode != null)) {
+	public void setInStructuredNode(StructuredActivityNode newInStructuredNode)
+	{
+
+		if (newInStructuredNode != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_NODE__IN_STRUCTURED_NODE && newInStructuredNode != null))
+		{
 			if (EcoreUtil.isAncestor(this, newInStructuredNode))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -480,9 +526,13 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInPartitions() {
-		if (inPartition == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getInPartitions()
+	{
+		if (inPartition == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		inPartition = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_NODE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE);
 			 		return inPartition;
@@ -499,8 +549,12 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getInPartitions() {
-		if (inPartition == null) {
+  public EList settable_getInPartitions()
+	{
+		if (inPartition == null)
+		{
+			
+		
 			inPartition = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_NODE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_NODE);
 		}
 		return inPartition;
@@ -511,11 +565,14 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getInPartitions() {
+  public java.util.ArrayList undeleted_getInPartitions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (inPartition != null) {
-			for (Object object : inPartition) {
+		if (inPartition != null)
+		{
+			for (Object object : inPartition)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -548,9 +605,13 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInInterruptibleRegions() {
-		if (inInterruptibleRegion == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getInInterruptibleRegions()
+	{
+		if (inInterruptibleRegion == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		inInterruptibleRegion = new com.intrinsarc.emflist.PersistentEList(InterruptibleActivityRegion.class, this, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE);
 			 		return inInterruptibleRegion;
@@ -567,8 +628,12 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getInInterruptibleRegions() {
-		if (inInterruptibleRegion == null) {
+  public EList settable_getInInterruptibleRegions()
+	{
+		if (inInterruptibleRegion == null)
+		{
+			
+		
 			inInterruptibleRegion = new com.intrinsarc.emflist.PersistentEList(InterruptibleActivityRegion.class, this, UML2Package.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__CONTAINED_NODE);
 		}
 		return inInterruptibleRegion;
@@ -579,11 +644,14 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getInInterruptibleRegions() {
+  public java.util.ArrayList undeleted_getInInterruptibleRegions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (inInterruptibleRegion != null) {
-			for (Object object : inInterruptibleRegion) {
+		if (inInterruptibleRegion != null)
+		{
+			for (Object object : inInterruptibleRegion)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -601,7 +669,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		Activity activity = getActivity();			
 		if (activity != null) {
 			return activity;
@@ -615,9 +684,12 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ACTIVITY_NODE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ACTIVITY_NODE__TEMPLATE_BINDING:
@@ -658,9 +730,12 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ACTIVITY_NODE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTIVITY_NODE__OWNED_COMMENT:
@@ -701,9 +776,12 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.ACTIVITY_NODE__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.ACTIVITY_NODE__IN_STRUCTURED_NODE:
@@ -720,8 +798,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY_NODE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ACTIVITY_NODE__OWNED_ELEMENT:
@@ -790,8 +870,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY_NODE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -887,8 +969,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY_NODE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -970,8 +1054,10 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY_NODE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ACTIVITY_NODE__OWNED_ELEMENT:
@@ -1040,7 +1126,8 @@ public abstract class ActivityNodeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInGroupsHelper(EList inGroup) {
+	protected EList getInGroupsHelper(EList inGroup)
+	{
 		StructuredActivityNode inStructuredNode = getInStructuredNode();
 		if (inStructuredNode != null) {
 			inGroup.add(inStructuredNode);

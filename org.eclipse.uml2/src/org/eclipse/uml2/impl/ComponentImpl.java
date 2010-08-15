@@ -129,7 +129,8 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComponentImpl() {
+	protected ComponentImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -144,7 +145,8 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getComponent();
 	}
 
@@ -153,7 +155,8 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIndirectlyInstantiated() {
+	public boolean isIndirectlyInstantiated()
+	{
 		return (eFlags & IS_INDIRECTLY_INSTANTIATED_EFLAG) != 0;
 	}
 
@@ -168,7 +171,9 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsIndirectlyInstantiated(boolean newIsIndirectlyInstantiated) {
+	public void setIsIndirectlyInstantiated(boolean newIsIndirectlyInstantiated)
+	{
+
 		boolean oldIsIndirectlyInstantiated = (eFlags & IS_INDIRECTLY_INSTANTIATED_EFLAG) != 0;
 		if (newIsIndirectlyInstantiated) eFlags |= IS_INDIRECTLY_INSTANTIATED_EFLAG; else eFlags &= ~IS_INDIRECTLY_INSTANTIATED_EFLAG;
 		if (eNotificationRequired())
@@ -268,9 +273,13 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRealizations() {
-		if (realization == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRealizations()
+	{
+		if (realization == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		realization = new com.intrinsarc.emflist.PersistentEList(Realization.class, this, UML2Package.COMPONENT__REALIZATION, new int[] {UML2Package.COMPONENT__CLIENT_DEPENDENCY}, UML2Package.REALIZATION__ABSTRACTION);
 			 		return realization;
@@ -287,8 +296,12 @@ public class ComponentImpl extends ClassImpl implements Component {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRealizations() {
-		if (realization == null) {
+  public EList settable_getRealizations()
+	{
+		if (realization == null)
+		{
+			
+		
 			realization = new com.intrinsarc.emflist.PersistentEList(Realization.class, this, UML2Package.COMPONENT__REALIZATION, new int[] {UML2Package.COMPONENT__CLIENT_DEPENDENCY}, UML2Package.REALIZATION__ABSTRACTION);
 		}
 		return realization;
@@ -299,11 +312,14 @@ public class ComponentImpl extends ClassImpl implements Component {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRealizations() {
+  public java.util.ArrayList undeleted_getRealizations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (realization != null) {
-			for (Object object : realization) {
+		if (realization != null)
+		{
+			for (Object object : realization)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -364,9 +380,13 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedMembers() {
-		if (ownedMember == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedMembers()
+	{
+		if (ownedMember == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedMember = new com.intrinsarc.emflist.PersistentEList(PackageableElement.class, this, UML2Package.COMPONENT__OWNED_MEMBER);
 			 		return ownedMember;
@@ -383,8 +403,12 @@ public class ComponentImpl extends ClassImpl implements Component {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedMembers() {
-		if (ownedMember == null) {
+  public EList settable_getOwnedMembers()
+	{
+		if (ownedMember == null)
+		{
+			
+		
 			ownedMember = new com.intrinsarc.emflist.PersistentEList(PackageableElement.class, this, UML2Package.COMPONENT__OWNED_MEMBER);
 		}
 		return ownedMember;
@@ -395,11 +419,14 @@ public class ComponentImpl extends ClassImpl implements Component {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedMembers() {
+  public java.util.ArrayList undeleted_getOwnedMembers()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedMember != null) {
-			for (Object object : ownedMember) {
+		if (ownedMember != null)
+		{
+			for (Object object : ownedMember)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -446,9 +473,13 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClientDependencies() {
-		if (clientDependency == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getClientDependencies()
+	{
+		if (clientDependency == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.COMPONENT__CLIENT_DEPENDENCY, new int[] {UML2Package.COMPONENT__SUBSTITUTION, UML2Package.COMPONENT__IMPLEMENTATION, UML2Package.COMPONENT__REALIZATION}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
@@ -465,8 +496,12 @@ public class ComponentImpl extends ClassImpl implements Component {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClientDependencies() {
-		if (clientDependency == null) {
+  public EList settable_getClientDependencies()
+	{
+		if (clientDependency == null)
+		{
+			
+		
 			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.COMPONENT__CLIENT_DEPENDENCY, new int[] {UML2Package.COMPONENT__SUBSTITUTION, UML2Package.COMPONENT__IMPLEMENTATION, UML2Package.COMPONENT__REALIZATION}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
@@ -477,11 +512,14 @@ public class ComponentImpl extends ClassImpl implements Component {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClientDependencies() {
+  public java.util.ArrayList undeleted_getClientDependencies()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (clientDependency != null) {
-			for (Object object : clientDependency) {
+		if (clientDependency != null)
+		{
+			for (Object object : clientDependency)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -499,9 +537,12 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.COMPONENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.COMPONENT__TEMPLATE_BINDING:
@@ -565,9 +606,12 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.COMPONENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.COMPONENT__OWNED_COMMENT:
@@ -662,9 +706,12 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.COMPONENT__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -679,8 +726,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COMPONENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.COMPONENT__OWNED_ELEMENT:
@@ -845,8 +894,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COMPONENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1074,8 +1125,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COMPONENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1262,8 +1315,10 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.COMPONENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.COMPONENT__OWNED_ELEMENT:
@@ -1441,7 +1496,8 @@ public class ComponentImpl extends ClassImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

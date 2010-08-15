@@ -36,7 +36,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ActionTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionTest(String name) {
+	public ActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Action getFixture() {
+	private Action getFixture()
+	{
 		return (Action)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createAction());
 	}
 
@@ -76,7 +80,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * @see org.eclipse.uml2.Action#getContext()
 	 * @generated
 	 */
-	public void testGetContext() {
+	public void testGetContext()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * @see org.eclipse.uml2.Action#getOutputs()
 	 * @generated
 	 */
-	public void testGetOutputs() {
+	public void testGetOutputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,7 +133,8 @@ public class ActionTest extends ExecutableNodeTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs() {
+	public void testGetInputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

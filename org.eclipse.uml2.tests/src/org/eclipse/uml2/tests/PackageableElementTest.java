@@ -34,7 +34,8 @@ public abstract class PackageableElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageableElementTest(String name) {
+	public PackageableElementTest(String name)
+	{
 		super(name);
 	}
 
@@ -44,7 +45,8 @@ public abstract class PackageableElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PackageableElement getFixture() {
+	private PackageableElement getFixture()
+	{
 		return (PackageableElement)fixture;
 	}
 
@@ -55,7 +57,8 @@ public abstract class PackageableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.PackageableElement#getPackageableElement_visibility()
 	 * @generated
 	 */
-	public void testGetPackageableElement_visibility() {
+	public void testGetPackageableElement_visibility()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -67,7 +70,8 @@ public abstract class PackageableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.PackageableElement#setPackageableElement_visibility(org.eclipse.uml2.VisibilityKind)
 	 * @generated
 	 */
-	public void testSetPackageableElement_visibility() {
+	public void testSetPackageableElement_visibility()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -81,7 +85,8 @@ public abstract class PackageableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -93,7 +98,8 @@ public abstract class PackageableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.NamedElement#getVisibility()
 	 * @generated
 	 */
-	public void testGetVisibility() {
+	public void testGetVisibility()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -105,7 +111,8 @@ public abstract class PackageableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.NamedElement#setVisibility(org.eclipse.uml2.VisibilityKind)
 	 * @generated
 	 */
-	public void testSetVisibility() {
+	public void testSetVisibility()
+	{
 		// TODO: implement this redefined feature setter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

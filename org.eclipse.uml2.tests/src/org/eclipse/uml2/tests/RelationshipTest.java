@@ -28,7 +28,8 @@ public abstract class RelationshipTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RelationshipTest(String name) {
+	public RelationshipTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class RelationshipTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Relationship getFixture() {
+	private Relationship getFixture()
+	{
 		return (Relationship)fixture;
 	}
 
@@ -51,7 +53,8 @@ public abstract class RelationshipTest extends ElementTest {
 	 * @see org.eclipse.uml2.Relationship#getRelatedElements()
 	 * @generated
 	 */
-	public void testGetRelatedElements() {
+	public void testGetRelatedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -59,7 +59,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CollaborationItemProvider(AdapterFactory adapterFactory) {
+	public CollaborationItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -69,8 +70,10 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addOwnedAttributePropertyDescriptor(object);
@@ -88,7 +91,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedAttributePropertyDescriptor(Object object) {
+	protected void addOwnedAttributePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,7 +114,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPartPropertyDescriptor(Object object) {
+	protected void addPartPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -132,7 +137,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRolePropertyDescriptor(Object object) {
+	protected void addRolePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -154,7 +160,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedConnectorPropertyDescriptor(Object object) {
+	protected void addOwnedConnectorPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -176,7 +183,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCollaborationRolePropertyDescriptor(Object object) {
+	protected void addCollaborationRolePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -198,8 +206,10 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute());
 			childrenFeatures.add(UML2Package.eINSTANCE.getStructuredClassifier_OwnedConnector());
@@ -222,7 +232,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -235,7 +246,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/Collaboration"); //$NON-NLS-1$
 	}
 
@@ -245,7 +257,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Collaboration)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Collaboration_type") : //$NON-NLS-1$
@@ -259,10 +272,12 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Collaboration.class)) {
+		switch (notification.getFeatureID(Collaboration.class))
+		{
 			case UML2Package.COLLABORATION__OWNED_ATTRIBUTE:
 			case UML2Package.COLLABORATION__OWNED_CONNECTOR:
 			case UML2Package.COLLABORATION__DELTA_DELETED_ATTRIBUTES:
@@ -288,7 +303,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -438,7 +454,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -449,7 +466,8 @@ public class CollaborationItemProvider
 			childFeature == UML2Package.eINSTANCE.getBehavioredClassifier_OwnedBehavior() ||
 			childFeature == UML2Package.eINSTANCE.getBehavioredClassifier_OwnedStateMachine();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -463,7 +481,8 @@ public class CollaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

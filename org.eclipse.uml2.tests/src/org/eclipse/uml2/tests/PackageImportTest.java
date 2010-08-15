@@ -36,7 +36,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(PackageImportTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageImportTest(String name) {
+	public PackageImportTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PackageImport getFixture() {
+	private PackageImport getFixture()
+	{
 		return (PackageImport)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createPackageImport());
 	}
 
@@ -76,7 +80,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.PackageImport#validatePublicOrPrivate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidatePublicOrPrivate__DiagnosticChain_Map() {
+	public void testValidatePublicOrPrivate__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getTargets()
 	 * @generated
 	 */
-	public void testGetTargets() {
+	public void testGetTargets()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getSources()
 	 * @generated
 	 */
-	public void testGetSources() {
+	public void testGetSources()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,7 +133,8 @@ public class PackageImportTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

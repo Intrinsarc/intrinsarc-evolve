@@ -101,7 +101,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProtocolTransitionImpl() {
+	protected ProtocolTransitionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -116,7 +117,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getProtocolTransition();
 	}
 
@@ -125,7 +127,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint getGuard() {
+	public Constraint getGuard()
+	{
 		return guard;
 	}
 
@@ -139,7 +142,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Constraint undeleted_getGuard() {
+  public Constraint undeleted_getGuard()
+	{
 		Constraint temp = getGuard();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -151,7 +155,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint getPostCondition() {
+	public Constraint getPostCondition()
+	{
 		return postCondition;
 	}
 
@@ -165,7 +170,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Constraint undeleted_getPostCondition() {
+  public Constraint undeleted_getPostCondition()
+	{
 		Constraint temp = getPostCondition();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -177,10 +183,13 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPostCondition(Constraint newPostCondition, NotificationChain msgs) {
+	public NotificationChain basicSetPostCondition(Constraint newPostCondition, NotificationChain msgs)
+	{
+
 		Constraint oldPostCondition = postCondition;
 		postCondition = newPostCondition;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.PROTOCOL_TRANSITION__POST_CONDITION, oldPostCondition, newPostCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -193,8 +202,11 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPostCondition(Constraint newPostCondition) {
-		if (newPostCondition != postCondition) {
+	public void setPostCondition(Constraint newPostCondition)
+	{
+
+		if (newPostCondition != postCondition)
+		{
 			NotificationChain msgs = null;
 			if (postCondition != null)
 				msgs = ((InternalEObject)postCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.PROTOCOL_TRANSITION__POST_CONDITION, null, msgs);
@@ -288,7 +300,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint getPreCondition() {
+	public Constraint getPreCondition()
+	{
 		return preCondition;
 	}
 
@@ -302,7 +315,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Constraint undeleted_getPreCondition() {
+  public Constraint undeleted_getPreCondition()
+	{
 		Constraint temp = getPreCondition();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -314,7 +328,9 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPreCondition(Constraint newPreCondition) {
+	public void setPreCondition(Constraint newPreCondition)
+	{
+
 		Constraint oldPreCondition = preCondition;
 		preCondition = newPreCondition;
 		if (eNotificationRequired())
@@ -331,10 +347,13 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGuard(Constraint newGuard, NotificationChain msgs) {
+	public NotificationChain basicSetGuard(Constraint newGuard, NotificationChain msgs)
+	{
+
 		Constraint oldGuard = guard;
 		guard = newGuard;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.PROTOCOL_TRANSITION__GUARD, oldGuard, newGuard);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -350,8 +369,11 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGuard(Constraint newGuard) {
-		if (newGuard != guard) {
+	public void setGuard(Constraint newGuard)
+	{
+
+		if (newGuard != guard)
+		{
 			NotificationChain msgs = null;
 			if (guard != null)
 				msgs = ((InternalEObject)guard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.PROTOCOL_TRANSITION__GUARD, null, msgs);
@@ -371,9 +393,12 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PROTOCOL_TRANSITION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PROTOCOL_TRANSITION__TEMPLATE_BINDING:
@@ -410,9 +435,12 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.PROTOCOL_TRANSITION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PROTOCOL_TRANSITION__OWNED_COMMENT:
@@ -453,9 +481,12 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.PROTOCOL_TRANSITION__CONTAINER:
 					return eContainer.eInverseRemove(this, UML2Package.REGION__TRANSITION, Region.class, msgs);
 				default:
@@ -470,8 +501,10 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROTOCOL_TRANSITION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PROTOCOL_TRANSITION__OWNED_ELEMENT:
@@ -549,8 +582,10 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROTOCOL_TRANSITION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -651,8 +686,10 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROTOCOL_TRANSITION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -743,8 +780,10 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.PROTOCOL_TRANSITION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PROTOCOL_TRANSITION__OWNED_ELEMENT:
@@ -819,7 +858,8 @@ public class ProtocolTransitionImpl extends TransitionImpl implements ProtocolTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getProtocolTransition_PostCondition())) {
 			ownedElement.add(getPostCondition());

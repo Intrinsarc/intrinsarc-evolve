@@ -92,7 +92,8 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RequirementsFeatureLinkImpl() {
+	protected RequirementsFeatureLinkImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -107,7 +108,8 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getRequirementsFeatureLink();
 	}
 
@@ -116,7 +118,8 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsLinkKind getKind() {
+	public RequirementsLinkKind getKind()
+	{
 		return kind;
 	}
 
@@ -131,7 +134,9 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKind(RequirementsLinkKind newKind) {
+	public void setKind(RequirementsLinkKind newKind)
+	{
+
 		RequirementsLinkKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
@@ -145,11 +150,14 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsFeature getType() {
-		if (type != null && type.eIsProxy()) {
+	public RequirementsFeature getType()
+	{
+		if (type != null && type.eIsProxy())
+		{
 			RequirementsFeature oldType = type;
 			type = (RequirementsFeature)eResolveProxy((InternalEObject)type);
-			if (type != oldType) {
+			if (type != oldType)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.REQUIREMENTS_FEATURE_LINK__TYPE, oldType, type));
 			}
@@ -167,7 +175,8 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsFeature undeleted_getType() {
+	public RequirementsFeature undeleted_getType()
+	{
 		RequirementsFeature temp = getType();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -179,7 +188,8 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsFeature basicGetType() {
+	public RequirementsFeature basicGetType()
+	{
 		return type;
 	}
 
@@ -188,7 +198,9 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(RequirementsFeature newType) {
+	public void setType(RequirementsFeature newType)
+	{
+
 		RequirementsFeature oldType = type;
 		type = newType;
 		if (eNotificationRequired())
@@ -202,9 +214,12 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.REQUIREMENTS_FEATURE_LINK__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -221,9 +236,12 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.REQUIREMENTS_FEATURE_LINK__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.REQUIREMENTS_FEATURE_LINK__OWNED_COMMENT:
@@ -242,8 +260,10 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REQUIREMENTS_FEATURE_LINK__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.REQUIREMENTS_FEATURE_LINK__OWNED_ELEMENT:
@@ -277,8 +297,10 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REQUIREMENTS_FEATURE_LINK__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -319,8 +341,10 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REQUIREMENTS_FEATURE_LINK__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -357,8 +381,10 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REQUIREMENTS_FEATURE_LINK__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.REQUIREMENTS_FEATURE_LINK__OWNED_ELEMENT:
@@ -390,7 +416,8 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -400,7 +427,6 @@ public class RequirementsFeatureLinkImpl extends ElementImpl implements Requirem
 		return result.toString();
 	}
 
-	
 
 	/**
 	 * handle deletion of type

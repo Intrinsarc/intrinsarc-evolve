@@ -37,7 +37,8 @@ public class PortTest extends PropertyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(PortTest.class);
 	}
 
@@ -47,7 +48,8 @@ public class PortTest extends PropertyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PortTest(String name) {
+	public PortTest(String name)
+	{
 		super(name);
 	}
 
@@ -57,7 +59,8 @@ public class PortTest extends PropertyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Port getFixture() {
+	private Port getFixture()
+	{
 		return (Port)fixture;
 	}
 
@@ -67,7 +70,8 @@ public class PortTest extends PropertyTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createPort());
 	}
 
@@ -77,7 +81,8 @@ public class PortTest extends PropertyTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -88,7 +93,8 @@ public class PortTest extends PropertyTest {
 	 * @see org.eclipse.uml2.Port#getRequireds()
 	 * @generated
 	 */
-	public void testGetRequireds() {
+	public void testGetRequireds()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -100,7 +106,8 @@ public class PortTest extends PropertyTest {
 	 * @see org.eclipse.uml2.Port#getProvideds()
 	 * @generated
 	 */
-	public void testGetProvideds() {
+	public void testGetProvideds()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,7 +121,8 @@ public class PortTest extends PropertyTest {
 	 * @see org.eclipse.uml2.RedefinableElement#getRedefinedElements()
 	 * @generated
 	 */
-	public void testGetRedefinedElements() {
+	public void testGetRedefinedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

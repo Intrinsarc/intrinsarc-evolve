@@ -96,7 +96,8 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExecutionOccurrenceImpl() {
+	protected ExecutionOccurrenceImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -111,7 +112,8 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getExecutionOccurrence();
 	}
 
@@ -120,11 +122,14 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence getStart() {
-		if (start != null && start.eIsProxy()) {
+	public EventOccurrence getStart()
+	{
+		if (start != null && start.eIsProxy())
+		{
 			EventOccurrence oldStart = start;
 			start = (EventOccurrence)eResolveProxy((InternalEObject)start);
-			if (start != oldStart) {
+			if (start != oldStart)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.EXECUTION_OCCURRENCE__START, oldStart, start));
 			}
@@ -142,7 +147,8 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EventOccurrence undeleted_getStart() {
+  public EventOccurrence undeleted_getStart()
+	{
 		EventOccurrence temp = getStart();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -154,7 +160,8 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence basicGetStart() {
+	public EventOccurrence basicGetStart()
+	{
 		return start;
 	}
 
@@ -163,10 +170,13 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStart(EventOccurrence newStart, NotificationChain msgs) {
+	public NotificationChain basicSetStart(EventOccurrence newStart, NotificationChain msgs)
+	{
+
 		EventOccurrence oldStart = start;
 		start = newStart;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.EXECUTION_OCCURRENCE__START, oldStart, newStart);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -179,8 +189,11 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStart(EventOccurrence newStart) {
-		if (newStart != start) {
+	public void setStart(EventOccurrence newStart)
+	{
+
+		if (newStart != start)
+		{
 			NotificationChain msgs = null;
 			if (start != null)
 				msgs = ((InternalEObject)start).eInverseRemove(this, UML2Package.EVENT_OCCURRENCE__START_EXEC, EventOccurrence.class, msgs);
@@ -200,11 +213,14 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence getFinish() {
-		if (finish != null && finish.eIsProxy()) {
+	public EventOccurrence getFinish()
+	{
+		if (finish != null && finish.eIsProxy())
+		{
 			EventOccurrence oldFinish = finish;
 			finish = (EventOccurrence)eResolveProxy((InternalEObject)finish);
-			if (finish != oldFinish) {
+			if (finish != oldFinish)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.EXECUTION_OCCURRENCE__FINISH, oldFinish, finish));
 			}
@@ -222,7 +238,8 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EventOccurrence undeleted_getFinish() {
+  public EventOccurrence undeleted_getFinish()
+	{
 		EventOccurrence temp = getFinish();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -234,7 +251,8 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence basicGetFinish() {
+	public EventOccurrence basicGetFinish()
+	{
 		return finish;
 	}
 
@@ -243,10 +261,13 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFinish(EventOccurrence newFinish, NotificationChain msgs) {
+	public NotificationChain basicSetFinish(EventOccurrence newFinish, NotificationChain msgs)
+	{
+
 		EventOccurrence oldFinish = finish;
 		finish = newFinish;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.EXECUTION_OCCURRENCE__FINISH, oldFinish, newFinish);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -259,8 +280,11 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFinish(EventOccurrence newFinish) {
-		if (newFinish != finish) {
+	public void setFinish(EventOccurrence newFinish)
+	{
+
+		if (newFinish != finish)
+		{
 			NotificationChain msgs = null;
 			if (finish != null)
 				msgs = ((InternalEObject)finish).eInverseRemove(this, UML2Package.EVENT_OCCURRENCE__FINISH_EXEC, EventOccurrence.class, msgs);
@@ -280,9 +304,13 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getBehaviors() {
-		if (behavior == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getBehaviors()
+	{
+		if (behavior == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		behavior = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.EXECUTION_OCCURRENCE__BEHAVIOR);
 			 		return behavior;
@@ -299,8 +327,12 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getBehaviors() {
-		if (behavior == null) {
+  public EList settable_getBehaviors()
+	{
+		if (behavior == null)
+		{
+			
+		
 			behavior = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.EXECUTION_OCCURRENCE__BEHAVIOR);
 		}
 		return behavior;
@@ -311,11 +343,14 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getBehaviors() {
+  public java.util.ArrayList undeleted_getBehaviors()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (behavior != null) {
-			for (Object object : behavior) {
+		if (behavior != null)
+		{
+			for (Object object : behavior)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -348,9 +383,12 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.EXECUTION_OCCURRENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.EXECUTION_OCCURRENCE__TEMPLATE_BINDING:
@@ -393,9 +431,12 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.EXECUTION_OCCURRENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.EXECUTION_OCCURRENCE__OWNED_COMMENT:
@@ -436,9 +477,12 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.EXECUTION_OCCURRENCE__ENCLOSING_INTERACTION:
 					return eContainer.eInverseRemove(this, UML2Package.INTERACTION__FRAGMENT, Interaction.class, msgs);
 				case UML2Package.EXECUTION_OCCURRENCE__ENCLOSING_OPERAND:
@@ -455,8 +499,10 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.EXECUTION_OCCURRENCE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.EXECUTION_OCCURRENCE__OWNED_ELEMENT:
@@ -521,8 +567,10 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.EXECUTION_OCCURRENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -613,8 +661,10 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.EXECUTION_OCCURRENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -693,8 +743,10 @@ public class ExecutionOccurrenceImpl extends InteractionFragmentImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.EXECUTION_OCCURRENCE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.EXECUTION_OCCURRENCE__OWNED_ELEMENT:

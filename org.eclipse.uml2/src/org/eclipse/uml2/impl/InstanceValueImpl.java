@@ -83,7 +83,8 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceValueImpl() {
+	protected InstanceValueImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -98,7 +99,8 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getInstanceValue();
 	}
 
@@ -107,11 +109,14 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSpecification getInstance() {
-		if (instance != null && instance.eIsProxy()) {
+	public InstanceSpecification getInstance()
+	{
+		if (instance != null && instance.eIsProxy())
+		{
 			InstanceSpecification oldInstance = instance;
 			instance = (InstanceSpecification)eResolveProxy((InternalEObject)instance);
-			if (instance != oldInstance) {
+			if (instance != oldInstance)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.INSTANCE_VALUE__INSTANCE, oldInstance, instance));
 			}
@@ -129,7 +134,8 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InstanceSpecification undeleted_getInstance() {
+  public InstanceSpecification undeleted_getInstance()
+	{
 		InstanceSpecification temp = getInstance();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -141,7 +147,8 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSpecification basicGetInstance() {
+	public InstanceSpecification basicGetInstance()
+	{
 		return instance;
 	}
 
@@ -150,7 +157,9 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInstance(InstanceSpecification newInstance) {
+	public void setInstance(InstanceSpecification newInstance)
+	{
+
 		InstanceSpecification oldInstance = instance;
 		instance = newInstance;
 		if (eNotificationRequired())
@@ -164,7 +173,8 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSpecification getOwnedAnonymousInstanceValue() {
+	public InstanceSpecification getOwnedAnonymousInstanceValue()
+	{
 		return ownedAnonymousInstanceValue;
 	}
 
@@ -178,7 +188,8 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSpecification undeleted_getOwnedAnonymousInstanceValue() {
+	public InstanceSpecification undeleted_getOwnedAnonymousInstanceValue()
+	{
 		InstanceSpecification temp = getOwnedAnonymousInstanceValue();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -190,10 +201,13 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedAnonymousInstanceValue(InstanceSpecification newOwnedAnonymousInstanceValue, NotificationChain msgs) {
+	public NotificationChain basicSetOwnedAnonymousInstanceValue(InstanceSpecification newOwnedAnonymousInstanceValue, NotificationChain msgs)
+	{
+
 		InstanceSpecification oldOwnedAnonymousInstanceValue = ownedAnonymousInstanceValue;
 		ownedAnonymousInstanceValue = newOwnedAnonymousInstanceValue;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.INSTANCE_VALUE__OWNED_ANONYMOUS_INSTANCE_VALUE, oldOwnedAnonymousInstanceValue, newOwnedAnonymousInstanceValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -206,8 +220,11 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedAnonymousInstanceValue(InstanceSpecification newOwnedAnonymousInstanceValue) {
-		if (newOwnedAnonymousInstanceValue != ownedAnonymousInstanceValue) {
+	public void setOwnedAnonymousInstanceValue(InstanceSpecification newOwnedAnonymousInstanceValue)
+	{
+
+		if (newOwnedAnonymousInstanceValue != ownedAnonymousInstanceValue)
+		{
 			NotificationChain msgs = null;
 			if (ownedAnonymousInstanceValue != null)
 				msgs = ((InternalEObject)ownedAnonymousInstanceValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.INSTANCE_VALUE__OWNED_ANONYMOUS_INSTANCE_VALUE, null, msgs);
@@ -255,9 +272,12 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.INSTANCE_VALUE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INSTANCE_VALUE__TEMPLATE_BINDING:
@@ -290,9 +310,12 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.INSTANCE_VALUE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INSTANCE_VALUE__OWNED_COMMENT:
@@ -327,9 +350,12 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.INSTANCE_VALUE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -344,8 +370,10 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INSTANCE_VALUE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INSTANCE_VALUE__OWNED_ELEMENT:
@@ -407,8 +435,10 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INSTANCE_VALUE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -490,8 +520,10 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INSTANCE_VALUE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -564,8 +596,10 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INSTANCE_VALUE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INSTANCE_VALUE__OWNED_ELEMENT:

@@ -34,7 +34,8 @@ public abstract class BehavioredClassifierTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehavioredClassifierTest(String name) {
+	public BehavioredClassifierTest(String name)
+	{
 		super(name);
 	}
 
@@ -44,7 +45,8 @@ public abstract class BehavioredClassifierTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private BehavioredClassifier getFixture() {
+	private BehavioredClassifier getFixture()
+	{
 		return (BehavioredClassifier)fixture;
 	}
 
@@ -55,7 +57,8 @@ public abstract class BehavioredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.BehavioredClassifier#getOwnedStateMachines()
 	 * @generated
 	 */
-	public void testGetOwnedStateMachines() {
+	public void testGetOwnedStateMachines()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -69,7 +72,8 @@ public abstract class BehavioredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers() {
+	public void testGetOwnedMembers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -81,7 +85,8 @@ public abstract class BehavioredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -93,7 +98,8 @@ public abstract class BehavioredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.BehavioredClassifier#getOwnedBehaviors()
 	 * @generated
 	 */
-	public void testGetOwnedBehaviors() {
+	public void testGetOwnedBehaviors()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

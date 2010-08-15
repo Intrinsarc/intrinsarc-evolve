@@ -36,7 +36,8 @@ public class AssociationClassTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(AssociationClassTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class AssociationClassTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationClassTest(String name) {
+	public AssociationClassTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class AssociationClassTest extends ClassTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AssociationClass getFixture() {
+	private AssociationClass getFixture()
+	{
 		return (AssociationClass)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class AssociationClassTest extends ClassTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createAssociationClass());
 	}
 
@@ -76,7 +80,8 @@ public class AssociationClassTest extends ClassTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class AssociationClassTest extends ClassTest {
 	 * @see org.eclipse.uml2.Association#getEndTypes()
 	 * @generated
 	 */
-	public void testGetEndTypes() {
+	public void testGetEndTypes()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class AssociationClassTest extends ClassTest {
 	 * @see org.eclipse.uml2.Relationship#getRelatedElements()
 	 * @generated
 	 */
-	public void testGetRelatedElements() {
+	public void testGetRelatedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class AssociationClassTest extends ClassTest {
 	 * @see org.eclipse.uml2.Classifier#getFeatures()
 	 * @generated
 	 */
-	public void testGetFeatures() {
+	public void testGetFeatures()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,7 +133,8 @@ public class AssociationClassTest extends ClassTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers() {
+	public void testGetOwnedMembers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -137,7 +146,8 @@ public class AssociationClassTest extends ClassTest {
 	 * @see org.eclipse.uml2.Namespace#getMembers()
 	 * @generated
 	 */
-	public void testGetMembers() {
+	public void testGetMembers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

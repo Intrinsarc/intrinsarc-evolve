@@ -172,7 +172,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BehaviorImpl() {
+	protected BehaviorImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -187,7 +188,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getBehavior();
 	}
 
@@ -196,7 +198,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReentrant() {
+	public boolean isReentrant()
+	{
 		return (eFlags & IS_REENTRANT_EFLAG) != 0;
 	}
 
@@ -211,7 +214,9 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsReentrant(boolean newIsReentrant) {
+	public void setIsReentrant(boolean newIsReentrant)
+	{
+
 		boolean oldIsReentrant = (eFlags & IS_REENTRANT_EFLAG) != 0;
 		if (newIsReentrant) eFlags |= IS_REENTRANT_EFLAG; else eFlags &= ~IS_REENTRANT_EFLAG;
 		if (eNotificationRequired())
@@ -225,7 +230,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehavioredClassifier getContext() {
+	public BehavioredClassifier getContext()
+	{
 		if (eContainerFeatureID != UML2Package.BEHAVIOR__CONTEXT) return null;
 		return (BehavioredClassifier)eContainer;
 	}
@@ -240,7 +246,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BehavioredClassifier undeleted_getContext() {
+  public BehavioredClassifier undeleted_getContext()
+	{
 		BehavioredClassifier temp = getContext();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -252,8 +259,11 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContext(BehavioredClassifier newContext) {
-		if (newContext != eContainer || (eContainerFeatureID != UML2Package.BEHAVIOR__CONTEXT && newContext != null)) {
+	public void setContext(BehavioredClassifier newContext)
+	{
+
+		if (newContext != eContainer || (eContainerFeatureID != UML2Package.BEHAVIOR__CONTEXT && newContext != null))
+		{
 			if (EcoreUtil.isAncestor(this, newContext))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -275,9 +285,13 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedBehaviors() {
-		if (redefinedBehavior == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRedefinedBehaviors()
+	{
+		if (redefinedBehavior == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		redefinedBehavior = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIOR__REDEFINED_BEHAVIOR);
 			 		return redefinedBehavior;
@@ -294,8 +308,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRedefinedBehaviors() {
-		if (redefinedBehavior == null) {
+  public EList settable_getRedefinedBehaviors()
+	{
+		if (redefinedBehavior == null)
+		{
+			
+		
 			redefinedBehavior = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.BEHAVIOR__REDEFINED_BEHAVIOR);
 		}
 		return redefinedBehavior;
@@ -306,11 +324,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRedefinedBehaviors() {
+  public java.util.ArrayList undeleted_getRedefinedBehaviors()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (redefinedBehavior != null) {
-			for (Object object : redefinedBehavior) {
+		if (redefinedBehavior != null)
+		{
+			for (Object object : redefinedBehavior)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -343,11 +364,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehavioralFeature getSpecification() {
-		if (specification != null && specification.eIsProxy()) {
+	public BehavioralFeature getSpecification()
+	{
+		if (specification != null && specification.eIsProxy())
+		{
 			BehavioralFeature oldSpecification = specification;
 			specification = (BehavioralFeature)eResolveProxy((InternalEObject)specification);
-			if (specification != oldSpecification) {
+			if (specification != oldSpecification)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.BEHAVIOR__SPECIFICATION, oldSpecification, specification));
 			}
@@ -365,7 +389,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public BehavioralFeature undeleted_getSpecification() {
+  public BehavioralFeature undeleted_getSpecification()
+	{
 		BehavioralFeature temp = getSpecification();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -377,7 +402,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehavioralFeature basicGetSpecification() {
+	public BehavioralFeature basicGetSpecification()
+	{
 		return specification;
 	}
 
@@ -386,10 +412,13 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecification(BehavioralFeature newSpecification, NotificationChain msgs) {
+	public NotificationChain basicSetSpecification(BehavioralFeature newSpecification, NotificationChain msgs)
+	{
+
 		BehavioralFeature oldSpecification = specification;
 		specification = newSpecification;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.BEHAVIOR__SPECIFICATION, oldSpecification, newSpecification);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -402,8 +431,11 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecification(BehavioralFeature newSpecification) {
-		if (newSpecification != specification) {
+	public void setSpecification(BehavioralFeature newSpecification)
+	{
+
+		if (newSpecification != specification)
+		{
 			NotificationChain msgs = null;
 			if (specification != null)
 				msgs = ((InternalEObject)specification).eInverseRemove(this, UML2Package.BEHAVIORAL_FEATURE__METHOD, BehavioralFeature.class, msgs);
@@ -423,9 +455,13 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getParameters() {
-		if (parameter == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getParameters()
+	{
+		if (parameter == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		parameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIOR__PARAMETER);
 			 		return parameter;
@@ -442,8 +478,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getParameters() {
-		if (parameter == null) {
+  public EList settable_getParameters()
+	{
+		if (parameter == null)
+		{
+			
+		
 			parameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.BEHAVIOR__PARAMETER);
 		}
 		return parameter;
@@ -454,11 +494,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getParameters() {
+  public java.util.ArrayList undeleted_getParameters()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (parameter != null) {
-			for (Object object : parameter) {
+		if (parameter != null)
+		{
+			for (Object object : parameter)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -611,9 +654,13 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPreconditions() {
-		if (precondition == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getPreconditions()
+	{
+		if (precondition == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		precondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__PRECONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 			 		return precondition;
@@ -630,8 +677,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPreconditions() {
-		if (precondition == null) {
+  public EList settable_getPreconditions()
+	{
+		if (precondition == null)
+		{
+			
+		
 			precondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__PRECONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 		}
 		return precondition;
@@ -642,11 +693,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPreconditions() {
+  public java.util.ArrayList undeleted_getPreconditions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (precondition != null) {
-			for (Object object : precondition) {
+		if (precondition != null)
+		{
+			for (Object object : precondition)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -679,9 +733,13 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getPostconditions() {
-		if (postcondition == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getPostconditions()
+	{
+		if (postcondition == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		postcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__POSTCONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 			 		return postcondition;
@@ -698,8 +756,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getPostconditions() {
-		if (postcondition == null) {
+  public EList settable_getPostconditions()
+	{
+		if (postcondition == null)
+		{
+			
+		
 			postcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__POSTCONDITION, new int[] {UML2Package.BEHAVIOR__OWNED_RULE});
 		}
 		return postcondition;
@@ -710,11 +772,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getPostconditions() {
+  public java.util.ArrayList undeleted_getPostconditions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (postcondition != null) {
-			for (Object object : postcondition) {
+		if (postcondition != null)
+		{
+			for (Object object : postcondition)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -747,9 +812,13 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedParameterSets() {
-		if (ownedParameterSet == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedParameterSets()
+	{
+		if (ownedParameterSet == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedParameterSet = new com.intrinsarc.emflist.PersistentEList(ParameterSet.class, this, UML2Package.BEHAVIOR__OWNED_PARAMETER_SET);
 			 		return ownedParameterSet;
@@ -766,8 +835,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedParameterSets() {
-		if (ownedParameterSet == null) {
+  public EList settable_getOwnedParameterSets()
+	{
+		if (ownedParameterSet == null)
+		{
+			
+		
 			ownedParameterSet = new com.intrinsarc.emflist.PersistentEList(ParameterSet.class, this, UML2Package.BEHAVIOR__OWNED_PARAMETER_SET);
 		}
 		return ownedParameterSet;
@@ -778,11 +851,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedParameterSets() {
+  public java.util.ArrayList undeleted_getOwnedParameterSets()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedParameterSet != null) {
-			for (Object object : ownedParameterSet) {
+		if (ownedParameterSet != null)
+		{
+			for (Object object : ownedParameterSet)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -844,9 +920,13 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedRules() {
-		if (ownedRule == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedRules()
+	{
+		if (ownedRule == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedRule = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__OWNED_RULE, new int[] {UML2Package.BEHAVIOR__PRECONDITION, UML2Package.BEHAVIOR__POSTCONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
 			 		return ownedRule;
@@ -863,8 +943,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedRules() {
-		if (ownedRule == null) {
+  public EList settable_getOwnedRules()
+	{
+		if (ownedRule == null)
+		{
+			
+		
 			ownedRule = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.BEHAVIOR__OWNED_RULE, new int[] {UML2Package.BEHAVIOR__PRECONDITION, UML2Package.BEHAVIOR__POSTCONDITION}, UML2Package.CONSTRAINT__NAMESPACE);
 		}
 		return ownedRule;
@@ -875,11 +959,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedRules() {
+  public java.util.ArrayList undeleted_getOwnedRules()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedRule != null) {
-			for (Object object : ownedRule) {
+		if (ownedRule != null)
+		{
+			for (Object object : ownedRule)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -897,9 +984,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.BEHAVIOR__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.BEHAVIOR__TEMPLATE_BINDING:
@@ -969,9 +1059,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.BEHAVIOR__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.BEHAVIOR__OWNED_COMMENT:
@@ -1070,9 +1163,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.BEHAVIOR__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.BEHAVIOR__CONTEXT:
@@ -1089,8 +1185,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIOR__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.BEHAVIOR__OWNED_ELEMENT:
@@ -1266,8 +1364,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIOR__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1513,8 +1613,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIOR__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1716,8 +1818,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.BEHAVIOR__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.BEHAVIOR__OWNED_ELEMENT:
@@ -1905,7 +2009,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1921,7 +2026,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRedefinedElementsHelper(EList redefinedElement) {
+	protected EList getRedefinedElementsHelper(EList redefinedElement)
+	{
 		super.getRedefinedElementsHelper(redefinedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getBehavior_RedefinedBehavior())) {
 			for (Iterator i = ((InternalEList) getRedefinedBehaviors()).basicIterator(); i.hasNext(); ) {
@@ -1937,7 +2043,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getBehavior_Parameter())) {
 			ownedMember.addAll(getParameters());

@@ -139,7 +139,8 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ArtifactImpl() {
+	protected ArtifactImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -154,7 +155,8 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getArtifact();
 	}
 
@@ -163,7 +165,8 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFileName() {
+	public String getFileName()
+	{
 		return fileName;
 	}
 
@@ -178,7 +181,9 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFileName(String newFileName) {
+	public void setFileName(String newFileName)
+	{
+
 		newFileName = newFileName == null ? FILE_NAME_EDEFAULT : newFileName;
 		String oldFileName = fileName;
 		fileName = newFileName;
@@ -193,9 +198,13 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getNestedArtifacts() {
-		if (nestedArtifact == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getNestedArtifacts()
+	{
+		if (nestedArtifact == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		nestedArtifact = new com.intrinsarc.emflist.PersistentEList(Artifact.class, this, UML2Package.ARTIFACT__NESTED_ARTIFACT);
 			 		return nestedArtifact;
@@ -212,8 +221,12 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getNestedArtifacts() {
-		if (nestedArtifact == null) {
+  public EList settable_getNestedArtifacts()
+	{
+		if (nestedArtifact == null)
+		{
+			
+		
 			nestedArtifact = new com.intrinsarc.emflist.PersistentEList(Artifact.class, this, UML2Package.ARTIFACT__NESTED_ARTIFACT);
 		}
 		return nestedArtifact;
@@ -224,11 +237,14 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getNestedArtifacts() {
+  public java.util.ArrayList undeleted_getNestedArtifacts()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (nestedArtifact != null) {
-			for (Object object : nestedArtifact) {
+		if (nestedArtifact != null)
+		{
+			for (Object object : nestedArtifact)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -289,9 +305,13 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getManifestations() {
-		if (manifestation == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getManifestations()
+	{
+		if (manifestation == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		manifestation = new com.intrinsarc.emflist.PersistentEList(Manifestation.class, this, UML2Package.ARTIFACT__MANIFESTATION, new int[] {UML2Package.ARTIFACT__CLIENT_DEPENDENCY});
 			 		return manifestation;
@@ -308,8 +328,12 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getManifestations() {
-		if (manifestation == null) {
+  public EList settable_getManifestations()
+	{
+		if (manifestation == null)
+		{
+			
+		
 			manifestation = new com.intrinsarc.emflist.PersistentEList(Manifestation.class, this, UML2Package.ARTIFACT__MANIFESTATION, new int[] {UML2Package.ARTIFACT__CLIENT_DEPENDENCY});
 		}
 		return manifestation;
@@ -320,11 +344,14 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getManifestations() {
+  public java.util.ArrayList undeleted_getManifestations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (manifestation != null) {
-			for (Object object : manifestation) {
+		if (manifestation != null)
+		{
+			for (Object object : manifestation)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -386,9 +413,13 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedOperations() {
-		if (ownedOperation == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedOperations()
+	{
+		if (ownedOperation == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.ARTIFACT__OWNED_OPERATION);
 			 		return ownedOperation;
@@ -405,8 +436,12 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedOperations() {
-		if (ownedOperation == null) {
+  public EList settable_getOwnedOperations()
+	{
+		if (ownedOperation == null)
+		{
+			
+		
 			ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.ARTIFACT__OWNED_OPERATION);
 		}
 		return ownedOperation;
@@ -417,11 +452,14 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedOperations() {
+  public java.util.ArrayList undeleted_getOwnedOperations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedOperation != null) {
-			for (Object object : ownedOperation) {
+		if (ownedOperation != null)
+		{
+			for (Object object : ownedOperation)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -483,9 +521,13 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedAttributes() {
-		if (ownedAttribute == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedAttributes()
+	{
+		if (ownedAttribute == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.ARTIFACT__OWNED_ATTRIBUTE);
 			 		return ownedAttribute;
@@ -502,8 +544,12 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedAttributes() {
-		if (ownedAttribute == null) {
+  public EList settable_getOwnedAttributes()
+	{
+		if (ownedAttribute == null)
+		{
+			
+		
 			ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.ARTIFACT__OWNED_ATTRIBUTE);
 		}
 		return ownedAttribute;
@@ -514,11 +560,14 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedAttributes() {
+  public java.util.ArrayList undeleted_getOwnedAttributes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedAttribute != null) {
-			for (Object object : ownedAttribute) {
+		if (ownedAttribute != null)
+		{
+			for (Object object : ownedAttribute)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -579,9 +628,13 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClientDependencies() {
-		if (clientDependency == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getClientDependencies()
+	{
+		if (clientDependency == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.ARTIFACT__CLIENT_DEPENDENCY, new int[] {UML2Package.ARTIFACT__SUBSTITUTION, UML2Package.ARTIFACT__MANIFESTATION}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
@@ -598,8 +651,12 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClientDependencies() {
-		if (clientDependency == null) {
+  public EList settable_getClientDependencies()
+	{
+		if (clientDependency == null)
+		{
+			
+		
 			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.ARTIFACT__CLIENT_DEPENDENCY, new int[] {UML2Package.ARTIFACT__SUBSTITUTION, UML2Package.ARTIFACT__MANIFESTATION}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
@@ -610,11 +667,14 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClientDependencies() {
+  public java.util.ArrayList undeleted_getClientDependencies()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (clientDependency != null) {
-			for (Object object : clientDependency) {
+		if (clientDependency != null)
+		{
+			for (Object object : clientDependency)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -632,9 +692,12 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ARTIFACT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ARTIFACT__TEMPLATE_BINDING:
@@ -681,9 +744,12 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ARTIFACT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ARTIFACT__OWNED_COMMENT:
@@ -742,9 +808,12 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.ARTIFACT__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -759,8 +828,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ARTIFACT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ARTIFACT__OWNED_ELEMENT:
@@ -871,8 +942,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ARTIFACT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1019,8 +1092,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ARTIFACT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1144,8 +1219,10 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ARTIFACT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ARTIFACT__OWNED_ELEMENT:
@@ -1263,7 +1340,8 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1279,7 +1357,8 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getArtifact_Manifestation())) {
 			ownedElement.addAll(getManifestations());
@@ -1293,7 +1372,8 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getFeaturesHelper(EList feature) {
+	protected EList getFeaturesHelper(EList feature)
+	{
 		super.getFeaturesHelper(feature);
 		if (eIsSet(UML2Package.eINSTANCE.getArtifact_OwnedOperation())) {
 			feature.addAll(getOwnedOperations());
@@ -1307,7 +1387,8 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getArtifact_OwnedOperation())) {
 			ownedMember.addAll(getOwnedOperations());
@@ -1324,7 +1405,8 @@ public class ArtifactImpl extends ClassifierImpl implements Artifact {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getAttributesHelper(EList attribute) {
+	protected EList getAttributesHelper(EList attribute)
+	{
 		super.getAttributesHelper(attribute);
 		if (eIsSet(UML2Package.eINSTANCE.getArtifact_OwnedAttribute())) {
 			attribute.addAll(getOwnedAttributes());

@@ -30,7 +30,8 @@ public class ProfileApplicationTest extends PackageImportTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ProfileApplicationTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ProfileApplicationTest extends PackageImportTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProfileApplicationTest(String name) {
+	public ProfileApplicationTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ProfileApplicationTest extends PackageImportTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ProfileApplication getFixture() {
+	private ProfileApplication getFixture()
+	{
 		return (ProfileApplication)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ProfileApplicationTest extends PackageImportTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createProfileApplication());
 	}
 
@@ -70,7 +74,8 @@ public class ProfileApplicationTest extends PackageImportTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

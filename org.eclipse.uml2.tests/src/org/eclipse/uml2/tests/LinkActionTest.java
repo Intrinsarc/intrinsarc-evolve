@@ -28,7 +28,8 @@ public abstract class LinkActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkActionTest(String name) {
+	public LinkActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class LinkActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LinkAction getFixture() {
+	private LinkAction getFixture()
+	{
 		return (LinkAction)fixture;
 	}
 

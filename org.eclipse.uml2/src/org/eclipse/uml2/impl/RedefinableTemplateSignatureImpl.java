@@ -114,7 +114,8 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RedefinableTemplateSignatureImpl() {
+	protected RedefinableTemplateSignatureImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -129,7 +130,8 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getRedefinableTemplateSignature();
 	}
 
@@ -138,9 +140,13 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getParameters() {
-		if (parameter == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getParameters()
+	{
+		if (parameter == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		parameter = new com.intrinsarc.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER});
 			 		return parameter;
@@ -157,8 +163,12 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getParameters() {
-		if (parameter == null) {
+  public EList settable_getParameters()
+	{
+		if (parameter == null)
+		{
+			
+		
 			parameter = new com.intrinsarc.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER});
 		}
 		return parameter;
@@ -169,11 +179,14 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getParameters() {
+  public java.util.ArrayList undeleted_getParameters()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (parameter != null) {
-			for (Object object : parameter) {
+		if (parameter != null)
+		{
+			for (Object object : parameter)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -191,9 +204,13 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedParameters() {
-		if (ownedParameter == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedParameters()
+	{
+		if (ownedParameter == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedParameter = new com.intrinsarc.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER}, UML2Package.TEMPLATE_PARAMETER__SIGNATURE);
 			 		return ownedParameter;
@@ -210,8 +227,12 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedParameters() {
-		if (ownedParameter == null) {
+  public EList settable_getOwnedParameters()
+	{
+		if (ownedParameter == null)
+		{
+			
+		
 			ownedParameter = new com.intrinsarc.emflist.PersistentEList(TemplateParameter.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER, new int[] {UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER}, UML2Package.TEMPLATE_PARAMETER__SIGNATURE);
 		}
 		return ownedParameter;
@@ -222,11 +243,14 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedParameters() {
+  public java.util.ArrayList undeleted_getOwnedParameters()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedParameter != null) {
-			for (Object object : ownedParameter) {
+		if (ownedParameter != null)
+		{
+			for (Object object : ownedParameter)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -272,9 +296,13 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getNestedSignatures() {
-		if (nestedSignature == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getNestedSignatures()
+	{
+		if (nestedSignature == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		nestedSignature = new com.intrinsarc.emflist.PersistentEList(TemplateSignature.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE, UML2Package.TEMPLATE_SIGNATURE__NESTING_SIGNATURE);
 			 		return nestedSignature;
@@ -291,8 +319,12 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getNestedSignatures() {
-		if (nestedSignature == null) {
+  public EList settable_getNestedSignatures()
+	{
+		if (nestedSignature == null)
+		{
+			
+		
 			nestedSignature = new com.intrinsarc.emflist.PersistentEList(TemplateSignature.class, this, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE, UML2Package.TEMPLATE_SIGNATURE__NESTING_SIGNATURE);
 		}
 		return nestedSignature;
@@ -303,11 +335,14 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getNestedSignatures() {
+  public java.util.ArrayList undeleted_getNestedSignatures()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (nestedSignature != null) {
-			for (Object object : nestedSignature) {
+		if (nestedSignature != null)
+		{
+			for (Object object : nestedSignature)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -325,11 +360,14 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature getNestingSignature() {
-		if (nestingSignature != null && nestingSignature.eIsProxy()) {
+	public TemplateSignature getNestingSignature()
+	{
+		if (nestingSignature != null && nestingSignature.eIsProxy())
+		{
 			TemplateSignature oldNestingSignature = nestingSignature;
 			nestingSignature = (TemplateSignature)eResolveProxy((InternalEObject)nestingSignature);
-			if (nestingSignature != oldNestingSignature) {
+			if (nestingSignature != oldNestingSignature)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTING_SIGNATURE, oldNestingSignature, nestingSignature));
 			}
@@ -347,7 +385,8 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateSignature undeleted_getNestingSignature() {
+  public TemplateSignature undeleted_getNestingSignature()
+	{
 		TemplateSignature temp = getNestingSignature();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -359,7 +398,8 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature basicGetNestingSignature() {
+	public TemplateSignature basicGetNestingSignature()
+	{
 		return nestingSignature;
 	}
 
@@ -368,10 +408,13 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetNestingSignature(TemplateSignature newNestingSignature, NotificationChain msgs) {
+	public NotificationChain basicSetNestingSignature(TemplateSignature newNestingSignature, NotificationChain msgs)
+	{
+
 		TemplateSignature oldNestingSignature = nestingSignature;
 		nestingSignature = newNestingSignature;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTING_SIGNATURE, oldNestingSignature, newNestingSignature);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -384,8 +427,11 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNestingSignature(TemplateSignature newNestingSignature) {
-		if (newNestingSignature != nestingSignature) {
+	public void setNestingSignature(TemplateSignature newNestingSignature)
+	{
+
+		if (newNestingSignature != nestingSignature)
+		{
 			NotificationChain msgs = null;
 			if (nestingSignature != null)
 				msgs = ((InternalEObject)nestingSignature).eInverseRemove(this, UML2Package.TEMPLATE_SIGNATURE__NESTED_SIGNATURE, TemplateSignature.class, msgs);
@@ -405,7 +451,8 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElement getTemplate() {
+	public TemplateableElement getTemplate()
+	{
 		if (eContainerFeatureID != UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__TEMPLATE) return null;
 		return (TemplateableElement)eContainer;
 	}
@@ -420,7 +467,8 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateableElement undeleted_getTemplate() {
+  public TemplateableElement undeleted_getTemplate()
+	{
 		TemplateableElement temp = getTemplate();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -432,8 +480,11 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemplate(TemplateableElement newTemplate) {
-		if (newTemplate != eContainer || (eContainerFeatureID != UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__TEMPLATE && newTemplate != null)) {
+	public void setTemplate(TemplateableElement newTemplate)
+	{
+
+		if (newTemplate != eContainer || (eContainerFeatureID != UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__TEMPLATE && newTemplate != null))
+		{
 			if (EcoreUtil.isAncestor(this, newTemplate))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -455,7 +506,8 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		TemplateableElement template = getTemplate();			
 		if (template != null) {
 			return template;
@@ -469,9 +521,12 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__TEMPLATE_BINDING:
@@ -508,9 +563,12 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_COMMENT:
@@ -547,9 +605,12 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__TEMPLATE:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, TemplateableElement.class, msgs);
 				default:
@@ -564,8 +625,10 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_ELEMENT:
@@ -629,8 +692,10 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -718,8 +783,10 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -795,8 +862,10 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_ELEMENT:
@@ -858,9 +927,12 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == TemplateSignature.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == TemplateSignature.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER: return UML2Package.TEMPLATE_SIGNATURE__PARAMETER;
 				case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER: return UML2Package.TEMPLATE_SIGNATURE__OWNED_PARAMETER;
 				case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE: return UML2Package.TEMPLATE_SIGNATURE__NESTED_SIGNATURE;
@@ -877,9 +949,12 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == TemplateSignature.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == TemplateSignature.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.TEMPLATE_SIGNATURE__PARAMETER: return UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__PARAMETER;
 				case UML2Package.TEMPLATE_SIGNATURE__OWNED_PARAMETER: return UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER;
 				case UML2Package.TEMPLATE_SIGNATURE__NESTED_SIGNATURE: return UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__NESTED_SIGNATURE;
@@ -897,7 +972,8 @@ public class RedefinableTemplateSignatureImpl extends RedefinableElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getTemplateSignature_OwnedParameter())) {
 			ownedElement.addAll(getOwnedParameters());

@@ -30,7 +30,8 @@ public class QualifierValueTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(QualifierValueTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class QualifierValueTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QualifierValueTest(String name) {
+	public QualifierValueTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class QualifierValueTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private QualifierValue getFixture() {
+	private QualifierValue getFixture()
+	{
 		return (QualifierValue)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class QualifierValueTest extends ElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createQualifierValue());
 	}
 
@@ -70,7 +74,8 @@ public class QualifierValueTest extends ElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

@@ -2,7 +2,7 @@
 <!DOCTYPE jdo SYSTEM "http://java.sun.com/dtd/jdo_1_0.dtd">
 
 <jdo>
-    <package name="com.hopstepjump.emflist">
+    <package name="com.intrinsarc.emflist">
 
         <class name="PersistentEListClone" persistence-modifier="persistence-capable" >
         </class>

@@ -86,7 +86,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RealizationImpl() {
+	protected RealizationImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -101,7 +102,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getRealization();
 	}
 
@@ -110,7 +112,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Component getAbstraction() {
+	public Component getAbstraction()
+	{
 		if (eContainerFeatureID != UML2Package.REALIZATION__ABSTRACTION) return null;
 		return (Component)eContainer;
 	}
@@ -125,7 +128,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Component undeleted_getAbstraction() {
+  public Component undeleted_getAbstraction()
+	{
 		Component temp = getAbstraction();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -137,11 +141,14 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAbstraction(Component newAbstraction) {
+	public void setAbstraction(Component newAbstraction)
+	{
+
 		if (newAbstraction != null && !getClients().contains(newAbstraction)) {
 			getClients().add(newAbstraction);
 		}
-		if (newAbstraction != eContainer || (eContainerFeatureID != UML2Package.REALIZATION__ABSTRACTION && newAbstraction != null)) {
+		if (newAbstraction != eContainer || (eContainerFeatureID != UML2Package.REALIZATION__ABSTRACTION && newAbstraction != null))
+		{
 			if (EcoreUtil.isAncestor(this, newAbstraction))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -163,11 +170,14 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getRealizingClassifier() {
-		if (realizingClassifier != null && realizingClassifier.eIsProxy()) {
+	public Classifier getRealizingClassifier()
+	{
+		if (realizingClassifier != null && realizingClassifier.eIsProxy())
+		{
 			Classifier oldRealizingClassifier = realizingClassifier;
 			realizingClassifier = (Classifier)eResolveProxy((InternalEObject)realizingClassifier);
-			if (realizingClassifier != oldRealizingClassifier) {
+			if (realizingClassifier != oldRealizingClassifier)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.REALIZATION__REALIZING_CLASSIFIER, oldRealizingClassifier, realizingClassifier));
 			}
@@ -185,7 +195,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Classifier undeleted_getRealizingClassifier() {
+  public Classifier undeleted_getRealizingClassifier()
+	{
 		Classifier temp = getRealizingClassifier();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -197,7 +208,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier basicGetRealizingClassifier() {
+	public Classifier basicGetRealizingClassifier()
+	{
 		return realizingClassifier;
 	}
 
@@ -206,7 +218,9 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRealizingClassifier(Classifier newRealizingClassifier) {
+	public void setRealizingClassifier(Classifier newRealizingClassifier)
+	{
+
 		if (newRealizingClassifier != null && !getSuppliers().contains(newRealizingClassifier)) {
 			getSuppliers().add(newRealizingClassifier);
 		}
@@ -223,7 +237,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		Component abstraction = getAbstraction();			
 		if (abstraction != null) {
 			return abstraction;
@@ -237,7 +252,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target) {
+	protected EList getTargetsHelper(EList target)
+	{
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getRealization_RealizingClassifier())) {
 			target.add(getRealizingClassifier());
@@ -251,9 +267,13 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClients() {
-		if (client == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getClients()
+	{
+		if (client == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		client = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__CLIENT, new int[] {UML2Package.REALIZATION__ABSTRACTION}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 			 		return client;
@@ -270,8 +290,12 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClients() {
-		if (client == null) {
+  public EList settable_getClients()
+	{
+		if (client == null)
+		{
+			
+		
 			client = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__CLIENT, new int[] {UML2Package.REALIZATION__ABSTRACTION}, UML2Package.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}
 		return client;
@@ -282,11 +306,14 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClients() {
+  public java.util.ArrayList undeleted_getClients()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (client != null) {
-			for (Object object : client) {
+		if (client != null)
+		{
+			for (Object object : client)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -304,9 +331,13 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSuppliers() {
-		if (supplier == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getSuppliers()
+	{
+		if (supplier == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		supplier = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__SUPPLIER, new int[] {UML2Package.REALIZATION__REALIZING_CLASSIFIER});
 			 		return supplier;
@@ -323,8 +354,12 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSuppliers() {
-		if (supplier == null) {
+  public EList settable_getSuppliers()
+	{
+		if (supplier == null)
+		{
+			
+		
 			supplier = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.REALIZATION__SUPPLIER, new int[] {UML2Package.REALIZATION__REALIZING_CLASSIFIER});
 		}
 		return supplier;
@@ -335,11 +370,14 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSuppliers() {
+  public java.util.ArrayList undeleted_getSuppliers()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (supplier != null) {
-			for (Object object : supplier) {
+		if (supplier != null)
+		{
+			for (Object object : supplier)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -357,9 +395,12 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.REALIZATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.REALIZATION__TEMPLATE_BINDING:
@@ -398,9 +439,12 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.REALIZATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.REALIZATION__OWNED_COMMENT:
@@ -439,9 +483,12 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.REALIZATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.REALIZATION__ABSTRACTION:
@@ -458,8 +505,10 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REALIZATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.REALIZATION__OWNED_ELEMENT:
@@ -541,8 +590,10 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REALIZATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -647,8 +698,10 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REALIZATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -742,8 +795,10 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.REALIZATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.REALIZATION__OWNED_ELEMENT:
@@ -832,7 +887,8 @@ public class RealizationImpl extends AbstractionImpl implements Realization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source) {
+	protected EList getSourcesHelper(EList source)
+	{
 		super.getSourcesHelper(source);
 		Component abstraction = getAbstraction();
 		if (abstraction != null) {

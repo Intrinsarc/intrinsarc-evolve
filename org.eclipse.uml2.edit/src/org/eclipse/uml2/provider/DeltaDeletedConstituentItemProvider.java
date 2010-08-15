@@ -54,7 +54,8 @@ public class DeltaDeletedConstituentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedConstituentItemProvider(AdapterFactory adapterFactory) {
+	public DeltaDeletedConstituentItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -64,8 +65,10 @@ public class DeltaDeletedConstituentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addDeletedPropertyDescriptor(object);
@@ -79,7 +82,8 @@ public class DeltaDeletedConstituentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDeletedPropertyDescriptor(Object object) {
+	protected void addDeletedPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -99,7 +103,8 @@ public class DeltaDeletedConstituentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/DeltaDeletedConstituent"); //$NON-NLS-1$
 	}
 
@@ -109,7 +114,8 @@ public class DeltaDeletedConstituentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		DeltaDeletedConstituent deltaDeletedConstituent = (DeltaDeletedConstituent)object;
 		return getString("_UI_DeltaDeletedConstituent_type") + " " + deltaDeletedConstituent.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -121,7 +127,8 @@ public class DeltaDeletedConstituentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -133,7 +140,8 @@ public class DeltaDeletedConstituentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -143,7 +151,8 @@ public class DeltaDeletedConstituentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

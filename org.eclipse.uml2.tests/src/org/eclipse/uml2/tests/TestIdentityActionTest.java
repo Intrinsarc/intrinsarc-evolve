@@ -30,7 +30,8 @@ public class TestIdentityActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(TestIdentityActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class TestIdentityActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestIdentityActionTest(String name) {
+	public TestIdentityActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class TestIdentityActionTest extends ActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TestIdentityAction getFixture() {
+	private TestIdentityAction getFixture()
+	{
 		return (TestIdentityAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class TestIdentityActionTest extends ActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createTestIdentityAction());
 	}
 
@@ -70,7 +74,8 @@ public class TestIdentityActionTest extends ActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -83,7 +88,8 @@ public class TestIdentityActionTest extends ActionTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs() {
+	public void testGetInputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -95,7 +101,8 @@ public class TestIdentityActionTest extends ActionTest {
 	 * @see org.eclipse.uml2.Action#getOutputs()
 	 * @generated
 	 */
-	public void testGetOutputs() {
+	public void testGetOutputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -46,7 +46,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElementTest(String name) {
+	public NamedElementTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +57,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private NamedElement getFixture() {
+	private NamedElement getFixture()
+	{
 		return (NamedElement)fixture;
 	}
 
@@ -67,7 +69,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#getQualifiedName()
 	 * @generated
 	 */
-	public void testGetQualifiedName() {
+	public void testGetQualifiedName()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -79,7 +82,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#validateNoName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateNoName__DiagnosticChain_Map() {
+	public void testValidateNoName__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -91,7 +95,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#validateQualifiedName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateQualifiedName__DiagnosticChain_Map() {
+	public void testValidateQualifiedName__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -103,7 +108,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#allNamespaces()
 	 * @generated
 	 */
-	public void testAllNamespaces() {
+	public void testAllNamespaces()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -115,7 +121,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#isDistinguishableFrom(org.eclipse.uml2.NamedElement, org.eclipse.uml2.Namespace)
 	 * @generated
 	 */
-	public void testIsDistinguishableFrom__NamedElement_Namespace() {
+	public void testIsDistinguishableFrom__NamedElement_Namespace()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -127,7 +134,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#separator()
 	 * @generated
 	 */
-	public void testSeparator() {
+	public void testSeparator()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -139,7 +147,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#qualifiedName()
 	 * @generated
 	 */
-	public void testQualifiedName() {
+	public void testQualifiedName()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -151,7 +160,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#validateVisibilityNeedsOwnership(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateVisibilityNeedsOwnership__DiagnosticChain_Map() {
+	public void testValidateVisibilityNeedsOwnership__DiagnosticChain_Map()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -165,7 +175,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -177,7 +188,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace() {
+	public void testGetNamespace()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -189,7 +201,8 @@ public abstract class NamedElementTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner() {
+	public void testGetOwner()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -93,7 +93,8 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DurationImpl() {
+	protected DurationImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -109,7 +110,8 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getDuration();
 	}
 
@@ -118,7 +120,8 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isFirstTime() {
+	public boolean isFirstTime()
+	{
 		return (eFlags & FIRST_TIME_EFLAG) != 0;
 	}
 
@@ -133,7 +136,9 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFirstTime(boolean newFirstTime) {
+	public void setFirstTime(boolean newFirstTime)
+	{
+
 		boolean oldFirstTime = (eFlags & FIRST_TIME_EFLAG) != 0;
 		if (newFirstTime) eFlags |= FIRST_TIME_EFLAG; else eFlags &= ~FIRST_TIME_EFLAG;
 		if (eNotificationRequired())
@@ -147,9 +152,13 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getEvents() {
-		if (event == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getEvents()
+	{
+		if (event == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		event = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.DURATION__EVENT);
 			 		return event;
@@ -166,8 +175,12 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getEvents() {
-		if (event == null) {
+  public EList settable_getEvents()
+	{
+		if (event == null)
+		{
+			
+		
 			event = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.DURATION__EVENT);
 		}
 		return event;
@@ -178,11 +191,14 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getEvents() {
+  public java.util.ArrayList undeleted_getEvents()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (event != null) {
-			for (Object object : event) {
+		if (event != null)
+		{
+			for (Object object : event)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -215,9 +231,12 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.DURATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.DURATION__TEMPLATE_BINDING:
@@ -250,9 +269,12 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.DURATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DURATION__OWNED_COMMENT:
@@ -285,9 +307,12 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.DURATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -302,8 +327,10 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DURATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DURATION__OWNED_ELEMENT:
@@ -364,8 +391,10 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DURATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -448,8 +477,10 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DURATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -522,8 +553,10 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.DURATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DURATION__OWNED_ELEMENT:
@@ -581,7 +614,8 @@ public class DurationImpl extends ValueSpecificationImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

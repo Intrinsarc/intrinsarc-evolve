@@ -57,7 +57,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OpaqueExpressionItemProvider(AdapterFactory adapterFactory) {
+	public OpaqueExpressionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addBodyPropertyDescriptor(object);
@@ -85,7 +88,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyPropertyDescriptor(Object object) {
+	protected void addBodyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -105,7 +109,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLanguagePropertyDescriptor(Object object) {
+	protected void addLanguagePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -125,7 +130,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResultPropertyDescriptor(Object object) {
+	protected void addResultPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -147,7 +153,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBehaviorPropertyDescriptor(Object object) {
+	protected void addBehaviorPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -167,7 +174,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/OpaqueExpression"); //$NON-NLS-1$
 	}
 
@@ -177,7 +185,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((OpaqueExpression)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_OpaqueExpression_type") : //$NON-NLS-1$
@@ -191,10 +200,12 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(OpaqueExpression.class)) {
+		switch (notification.getFeatureID(OpaqueExpression.class))
+		{
 			case UML2Package.OPAQUE_EXPRESSION__BODY:
 			case UML2Package.OPAQUE_EXPRESSION__LANGUAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -210,7 +221,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -220,7 +232,8 @@ public class OpaqueExpressionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

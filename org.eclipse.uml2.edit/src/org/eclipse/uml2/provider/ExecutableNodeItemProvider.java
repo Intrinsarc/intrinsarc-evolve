@@ -57,7 +57,8 @@ public class ExecutableNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutableNodeItemProvider(AdapterFactory adapterFactory) {
+	public ExecutableNodeItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class ExecutableNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addHandlerPropertyDescriptor(object);
@@ -82,7 +85,8 @@ public class ExecutableNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addHandlerPropertyDescriptor(Object object) {
+	protected void addHandlerPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,8 +110,10 @@ public class ExecutableNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getExecutableNode_Handler());
 		}
@@ -120,7 +126,8 @@ public class ExecutableNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ExecutableNode)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ExecutableNode_type") : //$NON-NLS-1$
@@ -134,10 +141,12 @@ public class ExecutableNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ExecutableNode.class)) {
+		switch (notification.getFeatureID(ExecutableNode.class))
+		{
 			case UML2Package.EXECUTABLE_NODE__HANDLER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -152,7 +161,8 @@ public class ExecutableNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -172,7 +182,8 @@ public class ExecutableNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

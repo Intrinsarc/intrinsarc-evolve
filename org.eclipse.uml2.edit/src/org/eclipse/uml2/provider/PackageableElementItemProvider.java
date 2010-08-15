@@ -69,7 +69,8 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageableElementItemProvider(AdapterFactory adapterFactory) {
+	public PackageableElementItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -79,8 +80,10 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTemplateParameterPropertyDescriptor(object);
@@ -96,7 +99,8 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTemplateParameterPropertyDescriptor(Object object) {
+	protected void addTemplateParameterPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -116,7 +120,8 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwningParameterPropertyDescriptor(Object object) {
+	protected void addOwningParameterPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -138,7 +143,8 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPackageableElement_visibilityPropertyDescriptor(Object object) {
+	protected void addPackageableElement_visibilityPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -158,7 +164,8 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((PackageableElement)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PackageableElement_type") : //$NON-NLS-1$
@@ -172,10 +179,12 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PackageableElement.class)) {
+		switch (notification.getFeatureID(PackageableElement.class))
+		{
 			case UML2Package.PACKAGEABLE_ELEMENT__PACKAGEABLE_ELEMENT_VISIBILITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -190,7 +199,8 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -200,7 +210,8 @@ public class PackageableElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

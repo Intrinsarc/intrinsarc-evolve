@@ -36,7 +36,8 @@ public class ProfileTest extends PackageTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ProfileTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class ProfileTest extends PackageTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProfileTest(String name) {
+	public ProfileTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class ProfileTest extends PackageTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Profile getFixture() {
+	private Profile getFixture()
+	{
 		return (Profile)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class ProfileTest extends PackageTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createProfile());
 	}
 
@@ -76,7 +80,8 @@ public class ProfileTest extends PackageTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class ProfileTest extends PackageTest {
 	 * @see org.eclipse.uml2.Profile#getOwnedStereotypes()
 	 * @generated
 	 */
-	public void testGetOwnedStereotypes() {
+	public void testGetOwnedStereotypes()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

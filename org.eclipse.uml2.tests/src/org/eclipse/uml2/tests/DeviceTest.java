@@ -30,7 +30,8 @@ public class DeviceTest extends NodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(DeviceTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class DeviceTest extends NodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeviceTest(String name) {
+	public DeviceTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class DeviceTest extends NodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Device getFixture() {
+	private Device getFixture()
+	{
 		return (Device)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class DeviceTest extends NodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createDevice());
 	}
 
@@ -70,7 +74,8 @@ public class DeviceTest extends NodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

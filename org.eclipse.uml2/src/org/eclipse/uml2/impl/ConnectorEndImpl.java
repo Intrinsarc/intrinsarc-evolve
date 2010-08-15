@@ -82,7 +82,8 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConnectorEndImpl() {
+	protected ConnectorEndImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -97,7 +98,8 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getConnectorEnd();
 	}
 
@@ -106,7 +108,8 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getDefiningEnd() {
+	public Property getDefiningEnd()
+	{
 		Property definingEnd = basicGetDefiningEnd();
 		return definingEnd == null ? null : (Property)eResolveProxy((InternalEObject)definingEnd);
 	}
@@ -146,11 +149,14 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectableElement getRole() {
-		if (role != null && role.eIsProxy()) {
+	public ConnectableElement getRole()
+	{
+		if (role != null && role.eIsProxy())
+		{
 			ConnectableElement oldRole = role;
 			role = (ConnectableElement)eResolveProxy((InternalEObject)role);
-			if (role != oldRole) {
+			if (role != oldRole)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.CONNECTOR_END__ROLE, oldRole, role));
 			}
@@ -168,7 +174,8 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ConnectableElement undeleted_getRole() {
+  public ConnectableElement undeleted_getRole()
+	{
 		ConnectableElement temp = getRole();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -180,7 +187,8 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectableElement basicGetRole() {
+	public ConnectableElement basicGetRole()
+	{
 		return role;
 	}
 
@@ -189,10 +197,13 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRole(ConnectableElement newRole, NotificationChain msgs) {
+	public NotificationChain basicSetRole(ConnectableElement newRole, NotificationChain msgs)
+	{
+
 		ConnectableElement oldRole = role;
 		role = newRole;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.CONNECTOR_END__ROLE, oldRole, newRole);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -205,8 +216,11 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRole(ConnectableElement newRole) {
-		if (newRole != role) {
+	public void setRole(ConnectableElement newRole)
+	{
+
+		if (newRole != role)
+		{
 			NotificationChain msgs = null;
 			if (role != null)
 				msgs = ((InternalEObject)role).eInverseRemove(this, UML2Package.CONNECTABLE_ELEMENT__END, ConnectableElement.class, msgs);
@@ -226,11 +240,14 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getPartWithPort() {
-		if (partWithPort != null && partWithPort.eIsProxy()) {
+	public Property getPartWithPort()
+	{
+		if (partWithPort != null && partWithPort.eIsProxy())
+		{
 			Property oldPartWithPort = partWithPort;
 			partWithPort = (Property)eResolveProxy((InternalEObject)partWithPort);
-			if (partWithPort != oldPartWithPort) {
+			if (partWithPort != oldPartWithPort)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.CONNECTOR_END__PART_WITH_PORT, oldPartWithPort, partWithPort));
 			}
@@ -248,7 +265,8 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property undeleted_getPartWithPort() {
+  public Property undeleted_getPartWithPort()
+	{
 		Property temp = getPartWithPort();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -260,7 +278,8 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetPartWithPort() {
+	public Property basicGetPartWithPort()
+	{
 		return partWithPort;
 	}
 
@@ -269,7 +288,9 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPartWithPort(Property newPartWithPort) {
+	public void setPartWithPort(Property newPartWithPort)
+	{
+
 		Property oldPartWithPort = partWithPort;
 		partWithPort = newPartWithPort;
 		if (eNotificationRequired())
@@ -283,9 +304,12 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.CONNECTOR_END__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CONNECTOR_END__ROLE:
@@ -306,9 +330,12 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.CONNECTOR_END__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CONNECTOR_END__OWNED_COMMENT:
@@ -333,8 +360,10 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CONNECTOR_END__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CONNECTOR_END__OWNED_ELEMENT:
@@ -384,8 +413,10 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CONNECTOR_END__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -438,8 +469,10 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CONNECTOR_END__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -488,8 +521,10 @@ public class ConnectorEndImpl extends MultiplicityElementImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CONNECTOR_END__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CONNECTOR_END__OWNED_ELEMENT:

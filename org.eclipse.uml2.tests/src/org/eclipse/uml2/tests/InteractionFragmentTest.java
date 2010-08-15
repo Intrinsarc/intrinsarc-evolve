@@ -28,7 +28,8 @@ public abstract class InteractionFragmentTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionFragmentTest(String name) {
+	public InteractionFragmentTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class InteractionFragmentTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private InteractionFragment getFixture() {
+	private InteractionFragment getFixture()
+	{
 		return (InteractionFragment)fixture;
 	}
 
@@ -51,7 +53,8 @@ public abstract class InteractionFragmentTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -63,7 +66,8 @@ public abstract class InteractionFragmentTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace() {
+	public void testGetNamespace()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

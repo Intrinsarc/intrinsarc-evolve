@@ -30,7 +30,8 @@ public class AcceptCallActionTest extends AcceptEventActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(AcceptCallActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class AcceptCallActionTest extends AcceptEventActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AcceptCallActionTest(String name) {
+	public AcceptCallActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class AcceptCallActionTest extends AcceptEventActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AcceptCallAction getFixture() {
+	private AcceptCallAction getFixture()
+	{
 		return (AcceptCallAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class AcceptCallActionTest extends AcceptEventActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createAcceptCallAction());
 	}
 
@@ -70,7 +74,8 @@ public class AcceptCallActionTest extends AcceptEventActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -83,7 +88,8 @@ public class AcceptCallActionTest extends AcceptEventActionTest {
 	 * @see org.eclipse.uml2.Action#getOutputs()
 	 * @generated
 	 */
-	public void testGetOutputs() {
+	public void testGetOutputs()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

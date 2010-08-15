@@ -76,7 +76,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ValueSpecificationImpl() {
+	protected ValueSpecificationImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -91,7 +92,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getValueSpecification();
 	}
 
@@ -100,11 +102,14 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter getTemplateParameter() {
-		if (templateParameter != null && templateParameter.eIsProxy()) {
+	public TemplateParameter getTemplateParameter()
+	{
+		if (templateParameter != null && templateParameter.eIsProxy())
+		{
 			TemplateParameter oldTemplateParameter = templateParameter;
 			templateParameter = (TemplateParameter)eResolveProxy((InternalEObject)templateParameter);
-			if (templateParameter != oldTemplateParameter) {
+			if (templateParameter != oldTemplateParameter)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.VALUE_SPECIFICATION__TEMPLATE_PARAMETER, oldTemplateParameter, templateParameter));
 			}
@@ -122,7 +127,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter undeleted_getTemplateParameter() {
+  public TemplateParameter undeleted_getTemplateParameter()
+	{
 		TemplateParameter temp = getTemplateParameter();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -134,7 +140,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter basicGetTemplateParameter() {
+	public TemplateParameter basicGetTemplateParameter()
+	{
 		return templateParameter;
 	}
 
@@ -143,10 +150,13 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTemplateParameter(TemplateParameter newTemplateParameter, NotificationChain msgs) {
+	public NotificationChain basicSetTemplateParameter(TemplateParameter newTemplateParameter, NotificationChain msgs)
+	{
+
 		TemplateParameter oldTemplateParameter = templateParameter;
 		templateParameter = newTemplateParameter;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.VALUE_SPECIFICATION__TEMPLATE_PARAMETER, oldTemplateParameter, newTemplateParameter);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -162,8 +172,11 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemplateParameter(TemplateParameter newTemplateParameter) {
-		if (newTemplateParameter != templateParameter) {
+	public void setTemplateParameter(TemplateParameter newTemplateParameter)
+	{
+
+		if (newTemplateParameter != templateParameter)
+		{
 			NotificationChain msgs = null;
 			if (templateParameter != null)
 				msgs = ((InternalEObject)templateParameter).eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
@@ -183,7 +196,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter getOwningParameter() {
+	public TemplateParameter getOwningParameter()
+	{
 		if (eContainerFeatureID != UML2Package.VALUE_SPECIFICATION__OWNING_PARAMETER) return null;
 		return (TemplateParameter)eContainer;
 	}
@@ -198,7 +212,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TemplateParameter undeleted_getOwningParameter() {
+  public TemplateParameter undeleted_getOwningParameter()
+	{
 		TemplateParameter temp = getOwningParameter();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -210,9 +225,12 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningParameter(TemplateParameter newOwningParameter) {
+	public void setOwningParameter(TemplateParameter newOwningParameter)
+	{
+
 		EObject oldOwningParameter = eContainer;
-		if (newOwningParameter != eContainer || (eContainerFeatureID != UML2Package.VALUE_SPECIFICATION__OWNING_PARAMETER && newOwningParameter != null)) {
+		if (newOwningParameter != eContainer || (eContainerFeatureID != UML2Package.VALUE_SPECIFICATION__OWNING_PARAMETER && newOwningParameter != null))
+		{
 			if (EcoreUtil.isAncestor(this, newOwningParameter))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -237,7 +255,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		TemplateParameter owningParameter = getOwningParameter();			
 		if (owningParameter != null) {
 			return owningParameter;
@@ -251,7 +270,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isComputable() {
+	public boolean isComputable()
+	{
 		return ValueSpecificationOperations.isComputable(this);
 	}
 
@@ -260,7 +280,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int integerValue() {
+	public int integerValue()
+	{
 		return ValueSpecificationOperations.integerValue(this);
 	}
 
@@ -269,7 +290,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean booleanValue() {
+	public boolean booleanValue()
+	{
 		return ValueSpecificationOperations.booleanValue(this);
 	}
 
@@ -278,7 +300,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String stringValue() {
+	public String stringValue()
+	{
 		return ValueSpecificationOperations.stringValue(this);
 	}
 
@@ -287,7 +310,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int unlimitedValue() {
+	public int unlimitedValue()
+	{
 		return ValueSpecificationOperations.unlimitedValue(this);
 	}
 
@@ -296,7 +320,8 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isNull() {
+	public boolean isNull()
+	{
 		return ValueSpecificationOperations.isNull(this);
 	}
 
@@ -305,9 +330,12 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.VALUE_SPECIFICATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.VALUE_SPECIFICATION__TEMPLATE_BINDING:
@@ -340,9 +368,12 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.VALUE_SPECIFICATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.VALUE_SPECIFICATION__OWNED_COMMENT:
@@ -375,9 +406,12 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.VALUE_SPECIFICATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -392,8 +426,10 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.VALUE_SPECIFICATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.VALUE_SPECIFICATION__OWNED_ELEMENT:
@@ -450,8 +486,10 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.VALUE_SPECIFICATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -527,8 +565,10 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.VALUE_SPECIFICATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -595,8 +635,10 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.VALUE_SPECIFICATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.VALUE_SPECIFICATION__OWNED_ELEMENT:
@@ -650,9 +692,12 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == ParameterableElement.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == ParameterableElement.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.VALUE_SPECIFICATION__TEMPLATE_PARAMETER: return UML2Package.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER;
 				case UML2Package.VALUE_SPECIFICATION__OWNING_PARAMETER: return UML2Package.PARAMETERABLE_ELEMENT__OWNING_PARAMETER;
 				default: return -1;
@@ -666,9 +711,12 @@ public abstract class ValueSpecificationImpl extends TypedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == ParameterableElement.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == ParameterableElement.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER: return UML2Package.VALUE_SPECIFICATION__TEMPLATE_PARAMETER;
 				case UML2Package.PARAMETERABLE_ELEMENT__OWNING_PARAMETER: return UML2Package.VALUE_SPECIFICATION__OWNING_PARAMETER;
 				default: return -1;

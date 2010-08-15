@@ -116,7 +116,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActionImpl() {
+	protected ActionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -131,7 +132,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getAction();
 	}
 
@@ -140,7 +142,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getEffect() {
+	public String getEffect()
+	{
 		return effect;
 	}
 
@@ -155,7 +158,9 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEffect(String newEffect) {
+	public void setEffect(String newEffect)
+	{
+
 		newEffect = newEffect == null ? EFFECT_EDEFAULT : newEffect;
 		String oldEffect = effect;
 		effect = newEffect;
@@ -170,7 +175,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOutputs() {
+	public EList getOutputs()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList output = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getAction_Output());
@@ -205,7 +211,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input) {
+	protected EList getInputsHelper(EList input)
+	{
 		return input;
 	}
 
@@ -214,7 +221,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInputs() {
+	public EList getInputs()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList input = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getAction_Input());
@@ -249,7 +257,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		EList output = getOutputs();
 		if (!output.isEmpty()) {
@@ -278,7 +287,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getContext() {
+	public Classifier getContext()
+	{
 		Classifier context = basicGetContext();
 		return context == null ? null : (Classifier)eResolveProxy((InternalEObject)context);
 	}
@@ -305,9 +315,13 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getLocalPreconditions() {
-		if (localPrecondition == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getLocalPreconditions()
+	{
+		if (localPrecondition == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		localPrecondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_PRECONDITION);
 			 		return localPrecondition;
@@ -324,8 +338,12 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getLocalPreconditions() {
-		if (localPrecondition == null) {
+  public EList settable_getLocalPreconditions()
+	{
+		if (localPrecondition == null)
+		{
+			
+		
 			localPrecondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_PRECONDITION);
 		}
 		return localPrecondition;
@@ -336,11 +354,14 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getLocalPreconditions() {
+  public java.util.ArrayList undeleted_getLocalPreconditions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (localPrecondition != null) {
-			for (Object object : localPrecondition) {
+		if (localPrecondition != null)
+		{
+			for (Object object : localPrecondition)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -401,9 +422,13 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getLocalPostconditions() {
-		if (localPostcondition == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getLocalPostconditions()
+	{
+		if (localPostcondition == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		localPostcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_POSTCONDITION);
 			 		return localPostcondition;
@@ -420,8 +445,12 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getLocalPostconditions() {
-		if (localPostcondition == null) {
+  public EList settable_getLocalPostconditions()
+	{
+		if (localPostcondition == null)
+		{
+			
+		
 			localPostcondition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.ACTION__LOCAL_POSTCONDITION);
 		}
 		return localPostcondition;
@@ -432,11 +461,14 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getLocalPostconditions() {
+  public java.util.ArrayList undeleted_getLocalPostconditions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (localPostcondition != null) {
-			for (Object object : localPostcondition) {
+		if (localPostcondition != null)
+		{
+			for (Object object : localPostcondition)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -497,9 +529,12 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ACTION__TEMPLATE_BINDING:
@@ -542,9 +577,12 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTION__OWNED_COMMENT:
@@ -591,9 +629,12 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.ACTION__IN_STRUCTURED_NODE:
@@ -610,8 +651,10 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ACTION__OWNED_ELEMENT:
@@ -695,8 +738,10 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -807,8 +852,10 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -902,8 +949,10 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ACTION__OWNED_ELEMENT:
@@ -985,7 +1034,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1001,7 +1051,8 @@ public class ActionImpl extends ExecutableNodeImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOutputsHelper(EList output) {
+	protected EList getOutputsHelper(EList output)
+	{
 		return output;
 	}
 

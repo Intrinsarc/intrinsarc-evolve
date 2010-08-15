@@ -82,7 +82,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IncludeImpl() {
+	protected IncludeImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -97,7 +98,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getInclude();
 	}
 
@@ -106,7 +108,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRelatedElements() {
+	public EList getRelatedElements()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList relatedElement = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getRelationship_RelatedElement());
@@ -126,7 +129,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source) {
+	protected EList getSourcesHelper(EList source)
+	{
 		UseCase includingCase = getIncludingCase();
 		if (includingCase != null) {
 			source.add(includingCase);
@@ -139,7 +143,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseCase getIncludingCase() {
+	public UseCase getIncludingCase()
+	{
 		if (eContainerFeatureID != UML2Package.INCLUDE__INCLUDING_CASE) return null;
 		return (UseCase)eContainer;
 	}
@@ -154,7 +159,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public UseCase undeleted_getIncludingCase() {
+  public UseCase undeleted_getIncludingCase()
+	{
 		UseCase temp = getIncludingCase();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -166,8 +172,11 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIncludingCase(UseCase newIncludingCase) {
-		if (newIncludingCase != eContainer || (eContainerFeatureID != UML2Package.INCLUDE__INCLUDING_CASE && newIncludingCase != null)) {
+	public void setIncludingCase(UseCase newIncludingCase)
+	{
+
+		if (newIncludingCase != eContainer || (eContainerFeatureID != UML2Package.INCLUDE__INCLUDING_CASE && newIncludingCase != null))
+		{
 			if (EcoreUtil.isAncestor(this, newIncludingCase))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -189,11 +198,14 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseCase getAddition() {
-		if (addition != null && addition.eIsProxy()) {
+	public UseCase getAddition()
+	{
+		if (addition != null && addition.eIsProxy())
+		{
 			UseCase oldAddition = addition;
 			addition = (UseCase)eResolveProxy((InternalEObject)addition);
-			if (addition != oldAddition) {
+			if (addition != oldAddition)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.INCLUDE__ADDITION, oldAddition, addition));
 			}
@@ -211,7 +223,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public UseCase undeleted_getAddition() {
+  public UseCase undeleted_getAddition()
+	{
 		UseCase temp = getAddition();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -223,7 +236,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseCase basicGetAddition() {
+	public UseCase basicGetAddition()
+	{
 		return addition;
 	}
 
@@ -232,7 +246,9 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAddition(UseCase newAddition) {
+	public void setAddition(UseCase newAddition)
+	{
+
 		UseCase oldAddition = addition;
 		addition = newAddition;
 		if (eNotificationRequired())
@@ -246,7 +262,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSources() {
+	public EList getSources()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList source = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Source());
@@ -266,7 +283,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target) {
+	protected EList getTargetsHelper(EList target)
+	{
 		if (eIsSet(UML2Package.eINSTANCE.getInclude_Addition())) {
 			target.add(getAddition());
 		}
@@ -278,7 +296,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTargets() {
+	public EList getTargets()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList target = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Target());
@@ -298,9 +317,12 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.INCLUDE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INCLUDE__TEMPLATE_BINDING:
@@ -329,9 +351,12 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.INCLUDE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INCLUDE__OWNED_COMMENT:
@@ -362,9 +387,12 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.INCLUDE__INCLUDING_CASE:
 					return eContainer.eInverseRemove(this, UML2Package.USE_CASE__INCLUDE, UseCase.class, msgs);
 				default:
@@ -379,8 +407,10 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INCLUDE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INCLUDE__OWNED_ELEMENT:
@@ -440,8 +470,10 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INCLUDE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -514,8 +546,10 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INCLUDE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -579,8 +613,10 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INCLUDE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INCLUDE__OWNED_ELEMENT:
@@ -638,15 +674,20 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == Relationship.class) {
-			switch (derivedFeatureID) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+	{
+		if (baseClass == Relationship.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.INCLUDE__RELATED_ELEMENT: return UML2Package.RELATIONSHIP__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == DirectedRelationship.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case UML2Package.INCLUDE__SOURCE: return UML2Package.DIRECTED_RELATIONSHIP__SOURCE;
 				case UML2Package.INCLUDE__TARGET: return UML2Package.DIRECTED_RELATIONSHIP__TARGET;
 				default: return -1;
@@ -660,15 +701,20 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == Relationship.class) {
-			switch (baseFeatureID) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+	{
+		if (baseClass == Relationship.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.RELATIONSHIP__RELATED_ELEMENT: return UML2Package.INCLUDE__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class) {
-			switch (baseFeatureID) {
+		if (baseClass == DirectedRelationship.class)
+		{
+			switch (baseFeatureID)
+			{
 				case UML2Package.DIRECTED_RELATIONSHIP__SOURCE: return UML2Package.INCLUDE__SOURCE;
 				case UML2Package.DIRECTED_RELATIONSHIP__TARGET: return UML2Package.INCLUDE__TARGET;
 				default: return -1;
@@ -683,7 +729,8 @@ public class IncludeImpl extends NamedElementImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRelatedElementsHelper(EList relatedElement) {
+	protected EList getRelatedElementsHelper(EList relatedElement)
+	{
 		EList source = getSources();
 		if (!source.isEmpty()) {
 			for (Iterator i = ((InternalEList) source).basicIterator(); i.hasNext(); ) {

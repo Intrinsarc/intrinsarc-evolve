@@ -120,7 +120,8 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SavedReferenceImpl() {
+	protected SavedReferenceImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -135,7 +136,8 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getSavedReference();
 	}
 
@@ -144,7 +146,8 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFrom() {
+	public String getFrom()
+	{
 		return from;
 	}
 
@@ -159,7 +162,9 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFrom(String newFrom) {
+	public void setFrom(String newFrom)
+	{
+
 		newFrom = newFrom == null ? FROM_EDEFAULT : newFrom;
 		String oldFrom = from;
 		from = newFrom;
@@ -174,11 +179,14 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getToEClass() {
-		if (toEClass != null && toEClass.eIsProxy()) {
+	public EClass getToEClass()
+	{
+		if (toEClass != null && toEClass.eIsProxy())
+		{
 			EClass oldToEClass = toEClass;
 			toEClass = (EClass)eResolveProxy((InternalEObject)toEClass);
-			if (toEClass != oldToEClass) {
+			if (toEClass != oldToEClass)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.SAVED_REFERENCE__TO_ECLASS, oldToEClass, toEClass));
 			}
@@ -205,7 +213,8 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass basicGetToEClass() {
+	public EClass basicGetToEClass()
+	{
 		return toEClass;
 	}
 
@@ -214,7 +223,9 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setToEClass(EClass newToEClass) {
+	public void setToEClass(EClass newToEClass)
+	{
+
 		EClass oldToEClass = toEClass;
 		toEClass = newToEClass;
 		if (eNotificationRequired())
@@ -228,11 +239,14 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeature() {
-		if (feature != null && feature.eIsProxy()) {
+	public EReference getFeature()
+	{
+		if (feature != null && feature.eIsProxy())
+		{
 			EReference oldFeature = feature;
 			feature = (EReference)eResolveProxy((InternalEObject)feature);
-			if (feature != oldFeature) {
+			if (feature != oldFeature)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.SAVED_REFERENCE__FEATURE, oldFeature, feature));
 			}
@@ -259,7 +273,8 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference basicGetFeature() {
+	public EReference basicGetFeature()
+	{
 		return feature;
 	}
 
@@ -268,7 +283,9 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFeature(EReference newFeature) {
+	public void setFeature(EReference newFeature)
+	{
+
 		EReference oldFeature = feature;
 		feature = newFeature;
 		if (eNotificationRequired())
@@ -282,7 +299,8 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTo() {
+	public String getTo()
+	{
 		return to;
 	}
 
@@ -297,7 +315,9 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTo(String newTo) {
+	public void setTo(String newTo)
+	{
+
 		newTo = newTo == null ? TO_EDEFAULT : newTo;
 		String oldTo = to;
 		to = newTo;
@@ -312,9 +332,12 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SAVED_REFERENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.SAVED_REFERENCE__TEMPLATE_BINDING:
@@ -347,9 +370,12 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.SAVED_REFERENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.SAVED_REFERENCE__OWNED_COMMENT:
@@ -382,9 +408,12 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.SAVED_REFERENCE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -399,8 +428,10 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SAVED_REFERENCE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.SAVED_REFERENCE__OWNED_ELEMENT:
@@ -466,8 +497,10 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SAVED_REFERENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -555,8 +588,10 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SAVED_REFERENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -635,8 +670,10 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.SAVED_REFERENCE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.SAVED_REFERENCE__OWNED_ELEMENT:
@@ -698,7 +735,8 @@ public class SavedReferenceImpl extends PackageableElementImpl implements SavedR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

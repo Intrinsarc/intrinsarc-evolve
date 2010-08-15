@@ -30,7 +30,8 @@ public class TimeObservationActionTest extends WriteStructuralFeatureActionTest 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(TimeObservationActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class TimeObservationActionTest extends WriteStructuralFeatureActionTest 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeObservationActionTest(String name) {
+	public TimeObservationActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class TimeObservationActionTest extends WriteStructuralFeatureActionTest 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TimeObservationAction getFixture() {
+	private TimeObservationAction getFixture()
+	{
 		return (TimeObservationAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class TimeObservationActionTest extends WriteStructuralFeatureActionTest 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createTimeObservationAction());
 	}
 
@@ -70,7 +74,8 @@ public class TimeObservationActionTest extends WriteStructuralFeatureActionTest 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -83,7 +88,8 @@ public class TimeObservationActionTest extends WriteStructuralFeatureActionTest 
 	 * @see org.eclipse.uml2.WriteStructuralFeatureAction#getValue()
 	 * @generated
 	 */
-	public void testGetValue() {
+	public void testGetValue()
+	{
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -95,7 +101,8 @@ public class TimeObservationActionTest extends WriteStructuralFeatureActionTest 
 	 * @see org.eclipse.uml2.WriteStructuralFeatureAction#setValue(org.eclipse.uml2.InputPin)
 	 * @generated
 	 */
-	public void testSetValue() {
+	public void testSetValue()
+	{
 		// TODO: implement this redefined feature setter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

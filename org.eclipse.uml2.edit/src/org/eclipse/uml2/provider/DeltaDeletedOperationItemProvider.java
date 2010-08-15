@@ -52,7 +52,8 @@ public class DeltaDeletedOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedOperationItemProvider(AdapterFactory adapterFactory) {
+	public DeltaDeletedOperationItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -62,8 +63,10 @@ public class DeltaDeletedOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -76,7 +79,8 @@ public class DeltaDeletedOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/DeltaDeletedOperation"); //$NON-NLS-1$
 	}
 
@@ -86,7 +90,8 @@ public class DeltaDeletedOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		DeltaDeletedOperation deltaDeletedOperation = (DeltaDeletedOperation)object;
 		return getString("_UI_DeltaDeletedOperation_type") + " " + deltaDeletedOperation.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -98,7 +103,8 @@ public class DeltaDeletedOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -110,7 +116,8 @@ public class DeltaDeletedOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -120,7 +127,8 @@ public class DeltaDeletedOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

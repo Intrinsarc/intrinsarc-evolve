@@ -134,7 +134,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConnectorImpl() {
+	protected ConnectorImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -149,7 +150,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getConnector();
 	}
 
@@ -158,7 +160,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectorKind getKind() {
+	public ConnectorKind getKind()
+	{
 		return kind;
 	}
 
@@ -196,11 +199,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Association getType() {
-		if (type != null && type.eIsProxy()) {
+	public Association getType()
+	{
+		if (type != null && type.eIsProxy())
+		{
 			Association oldType = type;
 			type = (Association)eResolveProxy((InternalEObject)type);
-			if (type != oldType) {
+			if (type != oldType)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.CONNECTOR__TYPE, oldType, type));
 			}
@@ -218,7 +224,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Association undeleted_getType() {
+  public Association undeleted_getType()
+	{
 		Association temp = getType();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -230,7 +237,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Association basicGetType() {
+	public Association basicGetType()
+	{
 		return type;
 	}
 
@@ -239,7 +247,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(Association newType) {
+	public void setType(Association newType)
+	{
+
 		Association oldType = type;
 		type = newType;
 		if (eNotificationRequired())
@@ -253,9 +263,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedConnectors() {
-		if (redefinedConnector == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRedefinedConnectors()
+	{
+		if (redefinedConnector == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		redefinedConnector = new com.intrinsarc.emflist.PersistentEList(Connector.class, this, UML2Package.CONNECTOR__REDEFINED_CONNECTOR);
 			 		return redefinedConnector;
@@ -272,8 +286,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRedefinedConnectors() {
-		if (redefinedConnector == null) {
+  public EList settable_getRedefinedConnectors()
+	{
+		if (redefinedConnector == null)
+		{
+			
+		
 			redefinedConnector = new com.intrinsarc.emflist.PersistentEList(Connector.class, this, UML2Package.CONNECTOR__REDEFINED_CONNECTOR);
 		}
 		return redefinedConnector;
@@ -284,11 +302,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRedefinedConnectors() {
+  public java.util.ArrayList undeleted_getRedefinedConnectors()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (redefinedConnector != null) {
-			for (Object object : redefinedConnector) {
+		if (redefinedConnector != null)
+		{
+			for (Object object : redefinedConnector)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -321,9 +342,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getEnds() {
-		if (end == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getEnds()
+	{
+		if (end == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		end = new com.intrinsarc.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTOR__END);
 			 		return end;
@@ -340,8 +365,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getEnds() {
-		if (end == null) {
+  public EList settable_getEnds()
+	{
+		if (end == null)
+		{
+			
+		
 			end = new com.intrinsarc.emflist.PersistentEList(ConnectorEnd.class, this, UML2Package.CONNECTOR__END);
 		}
 		return end;
@@ -352,11 +381,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getEnds() {
+  public java.util.ArrayList undeleted_getEnds()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (end != null) {
-			for (Object object : end) {
+		if (end != null)
+		{
+			for (Object object : end)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -403,9 +435,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getContracts() {
-		if (contract == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getContracts()
+	{
+		if (contract == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		contract = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.CONNECTOR__CONTRACT);
 			 		return contract;
@@ -422,8 +458,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getContracts() {
-		if (contract == null) {
+  public EList settable_getContracts()
+	{
+		if (contract == null)
+		{
+			
+		
 			contract = new com.intrinsarc.emflist.PersistentEList(Behavior.class, this, UML2Package.CONNECTOR__CONTRACT);
 		}
 		return contract;
@@ -434,11 +474,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getContracts() {
+  public java.util.ArrayList undeleted_getContracts()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (contract != null) {
-			for (Object object : contract) {
+		if (contract != null)
+		{
+			for (Object object : contract)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -471,9 +514,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.CONNECTOR__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CONNECTOR__TEMPLATE_BINDING:
@@ -498,9 +544,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.CONNECTOR__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CONNECTOR__OWNED_COMMENT:
@@ -531,8 +580,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CONNECTOR__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CONNECTOR__OWNED_ELEMENT:
@@ -600,8 +651,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CONNECTOR__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -692,8 +745,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CONNECTOR__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -772,8 +827,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.CONNECTOR__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CONNECTOR__OWNED_ELEMENT:
@@ -839,7 +896,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -855,7 +913,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRedefinedElementsHelper(EList redefinedElement) {
+	protected EList getRedefinedElementsHelper(EList redefinedElement)
+	{
 		super.getRedefinedElementsHelper(redefinedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getConnector_RedefinedConnector())) {
 			for (Iterator i = ((InternalEList) getRedefinedConnectors()).basicIterator(); i.hasNext(); ) {
@@ -871,7 +930,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getConnector_End())) {
 			ownedElement.addAll(getEnds());

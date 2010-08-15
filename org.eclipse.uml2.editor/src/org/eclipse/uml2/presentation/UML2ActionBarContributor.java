@@ -88,11 +88,14 @@ public class UML2ActionBarContributor
 	protected IAction showPropertiesViewAction =
 		new Action(UML2EditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) //$NON-NLS-1$
 		{
-			public void run() {
-				try {
+			public void run()
+			{
+				try
+				{
 					getPage().showView("org.eclipse.ui.views.PropertySheet"); //$NON-NLS-1$
 				}
-				catch (PartInitException exception) {
+				catch (PartInitException exception)
+				{
 					UML2EditorPlugin.INSTANCE.log(exception);
 				}
 			}
@@ -108,14 +111,18 @@ public class UML2ActionBarContributor
 	protected IAction refreshViewerAction =
 		new Action(UML2EditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) //$NON-NLS-1$
 		{
-			public boolean isEnabled() {
+			public boolean isEnabled()
+			{
 				return activeEditorPart instanceof IViewerProvider;
 			}
 
-			public void run() {
-				if (activeEditorPart instanceof IViewerProvider) {
+			public void run()
+			{
+				if (activeEditorPart instanceof IViewerProvider)
+				{
 					Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
-					if (viewer != null) {
+					if (viewer != null)
+					{
 						viewer.refresh();
 					}
 				}
@@ -162,7 +169,8 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2ActionBarContributor() {
+	public UML2ActionBarContributor()
+	{
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
 	}
@@ -173,7 +181,8 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void contributeToToolBar(IToolBarManager toolBarManager) {
+	public void contributeToToolBar(IToolBarManager toolBarManager)
+	{
 		toolBarManager.add(new Separator("uml2-settings")); //$NON-NLS-1$
 		toolBarManager.add(new Separator("uml2-additions")); //$NON-NLS-1$
 	}
@@ -185,7 +194,8 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void contributeToMenu(IMenuManager menuManager) {
+	public void contributeToMenu(IMenuManager menuManager)
+	{
 		super.contributeToMenu(menuManager);
 
 		IMenuManager submenuManager = new MenuManager(UML2EditorPlugin.INSTANCE.getString("_UI_UML2Editor_menu"), "org.eclipse.uml2MenuID"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -208,8 +218,10 @@ public class UML2ActionBarContributor
 		// Force an update because Eclipse hides empty menus now.
 		//
 		submenuManager.addMenuListener
-			(new IMenuListener() {
-				 public void menuAboutToShow(IMenuManager menuManager) {
+			(new IMenuListener()
+			 {
+				 public void menuAboutToShow(IMenuManager menuManager)
+				 {
 					 menuManager.updateAll(true);
 				 }
 			 });
@@ -223,25 +235,30 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActiveEditor(IEditorPart part) {
+	public void setActiveEditor(IEditorPart part)
+	{
 		super.setActiveEditor(part);
 		activeEditorPart = part;
 
 		// Switch to the new selection provider.
 		//
-		if (selectionProvider != null) {
+		if (selectionProvider != null)
+		{
 			selectionProvider.removeSelectionChangedListener(this);
 		}
-		if (part == null) {
+		if (part == null)
+		{
 			selectionProvider = null;
 		}
-		else {
+		else
+		{
 			selectionProvider = part.getSite().getSelectionProvider();
 			selectionProvider.addSelectionChangedListener(this);
 
 			// Fake a selection changed event to update the menus.
 			//
-			if (selectionProvider.getSelection() != null) {
+			if (selectionProvider.getSelection() != null)
+			{
 				selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection()));
 			}
 		}
@@ -255,13 +272,16 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void selectionChanged(SelectionChangedEvent event) {
+	public void selectionChanged(SelectionChangedEvent event)
+	{
 		// Remove any menu items for old selection.
 		//
-		if (createChildMenuManager != null) {
+		if (createChildMenuManager != null)
+		{
 			depopulateManager(createChildMenuManager, createChildActions);
 		}
-		if (createSiblingMenuManager != null) {
+		if (createSiblingMenuManager != null)
+		{
 			depopulateManager(createSiblingMenuManager, createSiblingActions);
 		}
 
@@ -271,7 +291,8 @@ public class UML2ActionBarContributor
 		Collection newSiblingDescriptors = null;
 
 		ISelection selection = event.getSelection();
-		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
+		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1)
+		{
 			Object object = ((IStructuredSelection)selection).getFirstElement();
 
 			EditingDomain domain = ((IEditingDomainProvider)activeEditorPart).getEditingDomain();
@@ -285,11 +306,13 @@ public class UML2ActionBarContributor
 		createChildActions = generateCreateChildActions(newChildDescriptors, selection);
 		createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
 
-		if (createChildMenuManager != null) {
+		if (createChildMenuManager != null)
+		{
 			populateManager(createChildMenuManager, createChildActions, null);
 			createChildMenuManager.update(true);
 		}
-		if (createSiblingMenuManager != null) {
+		if (createSiblingMenuManager != null)
+		{
 			populateManager(createSiblingMenuManager, createSiblingActions, null);
 			createSiblingMenuManager.update(true);
 		}
@@ -302,10 +325,13 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection generateCreateChildActionsGen(Collection descriptors, ISelection selection) {
+	protected Collection generateCreateChildActionsGen(Collection descriptors, ISelection selection)
+	{
 		Collection actions = new ArrayList();
-		if (descriptors != null) {
-			for (Iterator i = descriptors.iterator(); i.hasNext(); ) {
+		if (descriptors != null)
+		{
+			for (Iterator i = descriptors.iterator(); i.hasNext(); )
+			{
 				actions.add(new CreateChildAction(activeEditorPart, selection, i.next()));
 			}
 		}
@@ -331,10 +357,13 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection generateCreateSiblingActionsGen(Collection descriptors, ISelection selection) {
+	protected Collection generateCreateSiblingActionsGen(Collection descriptors, ISelection selection)
+	{
 		Collection actions = new ArrayList();
-		if (descriptors != null) {
-			for (Iterator i = descriptors.iterator(); i.hasNext(); ) {
+		if (descriptors != null)
+		{
+			for (Iterator i = descriptors.iterator(); i.hasNext(); )
+			{
 				actions.add(new CreateSiblingAction(activeEditorPart, selection, i.next()));
 			}
 		}
@@ -362,14 +391,19 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection actions, String contributionID) {
-		if (actions != null) {
-			for (Iterator i = actions.iterator(); i.hasNext(); ) {
+	protected void populateManager(IContributionManager manager, Collection actions, String contributionID)
+	{
+		if (actions != null)
+		{
+			for (Iterator i = actions.iterator(); i.hasNext(); )
+			{
 				IAction action = (IAction)i.next();
-				if (contributionID != null) {
+				if (contributionID != null)
+				{
 					manager.insertBefore(contributionID, action);
 				}
-				else {
+				else
+				{
 					manager.add(action);
 				}
 			}
@@ -383,22 +417,28 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void depopulateManager(IContributionManager manager, Collection actions) {
-		if (actions != null) {
+	protected void depopulateManager(IContributionManager manager, Collection actions)
+	{
+		if (actions != null)
+		{
 			IContributionItem[] items = manager.getItems();
-			for (int i = 0; i < items.length; i++) {
+			for (int i = 0; i < items.length; i++)
+			{
 				// Look into SubContributionItems
 				//
 				IContributionItem contributionItem = items[i];
-				while (contributionItem instanceof SubContributionItem) {
+				while (contributionItem instanceof SubContributionItem)
+				{
 					contributionItem = ((SubContributionItem)contributionItem).getInnerItem();
 				}
 
 				// Delete the ActionContributionItems with matching action.
 				//
-				if (contributionItem instanceof ActionContributionItem) {
+				if (contributionItem instanceof ActionContributionItem)
+				{
 					IAction action = ((ActionContributionItem)contributionItem).getAction();
-					if (actions.contains(action)) {
+					if (actions.contains(action))
+					{
 						manager.remove(contributionItem);
 					}
 				}
@@ -412,7 +452,8 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void menuAboutToShow(IMenuManager menuManager) {
+	public void menuAboutToShow(IMenuManager menuManager)
+	{
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
@@ -431,7 +472,8 @@ public class UML2ActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGlobalActions(IMenuManager menuManager) {
+	protected void addGlobalActions(IMenuManager menuManager)
+	{
 		menuManager.insertAfter("additions-end", new Separator("ui-actions")); //$NON-NLS-1$ //$NON-NLS-2$
 		menuManager.insertAfter("ui-actions", showPropertiesViewAction); //$NON-NLS-1$
 

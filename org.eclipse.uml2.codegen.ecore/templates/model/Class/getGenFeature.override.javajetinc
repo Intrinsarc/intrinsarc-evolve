@@ -15,8 +15,8 @@
 			<%
 				String oldCons = genClass.getListConstructor(genFeature);
 				int index = oldCons.indexOf("(");
-				String newCons = "com.hopstepjump.emflist.UnmodifiableEList" + oldCons.substring(index);
-				String newCons2 = "com.hopstepjump.emflist.PersistentEList" + oldCons.substring(index);
+				String newCons = "com.intrinsarc.emflist.UnmodifiableEList" + oldCons.substring(index);
+				String newCons2 = "com.intrinsarc.emflist.PersistentEList" + oldCons.substring(index);
 			 %>
 			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			 {
@@ -99,7 +99,7 @@
 			<%
 				String oldCons = genClass.getListConstructor(genFeature);
 				int index = oldCons.indexOf("(");
-				String newCons = "com.hopstepjump.emflist.PersistentEList" + oldCons.substring(index);
+				String newCons = "com.intrinsarc.emflist.PersistentEList" + oldCons.substring(index);
 			 %>
 		
 			<%=genFeature.getSafeName()%> = new <%=newCons%>;

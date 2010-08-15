@@ -30,7 +30,8 @@ public class GeneralOrderingTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(GeneralOrderingTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class GeneralOrderingTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeneralOrderingTest(String name) {
+	public GeneralOrderingTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class GeneralOrderingTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private GeneralOrdering getFixture() {
+	private GeneralOrdering getFixture()
+	{
 		return (GeneralOrdering)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class GeneralOrderingTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createGeneralOrdering());
 	}
 
@@ -70,7 +74,8 @@ public class GeneralOrderingTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

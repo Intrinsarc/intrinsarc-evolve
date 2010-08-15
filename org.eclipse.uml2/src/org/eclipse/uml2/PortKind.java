@@ -60,36 +60,6 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	public static final int CREATE = 1;
 
 	/**
-	 * The '<em><b>Hyperport start</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HYPERPORT START</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HYPERPORT_START_LITERAL
-	 * @model name="hyperport_start"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HYPERPORT_START = 2;
-
-	/**
-	 * The '<em><b>Hyperport end</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HYPERPORT END</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HYPERPORT_END_LITERAL
-	 * @model name="hyperport_end"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HYPERPORT_END = 3;
-
-	/**
 	 * The '<em><b>Autoconnect</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -102,7 +72,22 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUTOCONNECT = 4;
+	public static final int AUTOCONNECT = 3;
+
+	/**
+	 * The '<em><b>Hyperport</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Hyperport</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HYPERPORT_LITERAL
+	 * @model name="hyperport"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HYPERPORT = 2;
 
 	/**
 	 * The '<em><b>Normal</b></em>' literal object.
@@ -125,26 +110,6 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	public static final PortKind CREATE_LITERAL = new PortKind(CREATE, "create"); //$NON-NLS-1$
 
 	/**
-	 * The '<em><b>Hyperport start</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HYPERPORT_START
-	 * @generated
-	 * @ordered
-	 */
-	public static final PortKind HYPERPORT_START_LITERAL = new PortKind(HYPERPORT_START, "hyperport_start"); //$NON-NLS-1$
-
-	/**
-	 * The '<em><b>Hyperport end</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HYPERPORT_END
-	 * @generated
-	 * @ordered
-	 */
-	public static final PortKind HYPERPORT_END_LITERAL = new PortKind(HYPERPORT_END, "hyperport_end"); //$NON-NLS-1$
-
-	/**
 	 * The '<em><b>Autoconnect</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,18 +120,28 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	public static final PortKind AUTOCONNECT_LITERAL = new PortKind(AUTOCONNECT, "autoconnect"); //$NON-NLS-1$
 
 	/**
+	 * The '<em><b>Hyperport</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #HYPERPORT
+	 * @generated
+	 * @ordered
+	 */
+	public static final PortKind HYPERPORT_LITERAL = new PortKind(HYPERPORT, "hyperport"); //$NON-NLS-1$
+
+	/**
 	 * An array of all the '<em><b>Port Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final PortKind[] VALUES_ARRAY =
-		new PortKind[] {
+		new PortKind[]
+		{
 			NORMAL_LITERAL,
 			CREATE_LITERAL,
-			HYPERPORT_START_LITERAL,
-			HYPERPORT_END_LITERAL,
 			AUTOCONNECT_LITERAL,
+			HYPERPORT_LITERAL,
 		};
 
 	/**
@@ -183,10 +158,13 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PortKind get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static PortKind get(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			PortKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(name))
+			{
 				return result;
 			}
 		}
@@ -199,13 +177,14 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PortKind get(int value) {
-		switch (value) {
+	public static PortKind get(int value)
+	{
+		switch (value)
+		{
 			case NORMAL: return NORMAL_LITERAL;
 			case CREATE: return CREATE_LITERAL;
-			case HYPERPORT_START: return HYPERPORT_START_LITERAL;
-			case HYPERPORT_END: return HYPERPORT_END_LITERAL;
 			case AUTOCONNECT: return AUTOCONNECT_LITERAL;
+			case HYPERPORT: return HYPERPORT_LITERAL;
 		}
 		return null;	
 	}
@@ -216,7 +195,8 @@ public final class PortKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PortKind(int value, String name) {
+	private PortKind(int value, String name)
+	{
 		super(value, name);
 	}
 

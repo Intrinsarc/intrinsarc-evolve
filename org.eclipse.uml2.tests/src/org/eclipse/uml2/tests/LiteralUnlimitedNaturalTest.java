@@ -37,7 +37,8 @@ public class LiteralUnlimitedNaturalTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(LiteralUnlimitedNaturalTest.class);
 	}
 
@@ -47,7 +48,8 @@ public class LiteralUnlimitedNaturalTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralUnlimitedNaturalTest(String name) {
+	public LiteralUnlimitedNaturalTest(String name)
+	{
 		super(name);
 	}
 
@@ -57,7 +59,8 @@ public class LiteralUnlimitedNaturalTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LiteralUnlimitedNatural getFixture() {
+	private LiteralUnlimitedNatural getFixture()
+	{
 		return (LiteralUnlimitedNatural)fixture;
 	}
 
@@ -67,7 +70,8 @@ public class LiteralUnlimitedNaturalTest extends LiteralSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createLiteralUnlimitedNatural());
 	}
 
@@ -77,7 +81,8 @@ public class LiteralUnlimitedNaturalTest extends LiteralSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -88,7 +93,8 @@ public class LiteralUnlimitedNaturalTest extends LiteralSpecificationTest {
 	 * @see org.eclipse.uml2.LiteralUnlimitedNatural#unlimitedValue()
 	 * @generated
 	 */
-	public void testUnlimitedValue() {
+	public void testUnlimitedValue()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -100,7 +106,8 @@ public class LiteralUnlimitedNaturalTest extends LiteralSpecificationTest {
 	 * @see org.eclipse.uml2.LiteralUnlimitedNatural#isComputable()
 	 * @generated
 	 */
-	public void testIsComputable() {
+	public void testIsComputable()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

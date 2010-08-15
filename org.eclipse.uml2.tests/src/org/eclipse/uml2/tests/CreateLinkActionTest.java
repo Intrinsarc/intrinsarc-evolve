@@ -30,7 +30,8 @@ public class CreateLinkActionTest extends WriteLinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(CreateLinkActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class CreateLinkActionTest extends WriteLinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CreateLinkActionTest(String name) {
+	public CreateLinkActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class CreateLinkActionTest extends WriteLinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CreateLinkAction getFixture() {
+	private CreateLinkAction getFixture()
+	{
 		return (CreateLinkAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class CreateLinkActionTest extends WriteLinkActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createCreateLinkAction());
 	}
 
@@ -70,7 +74,8 @@ public class CreateLinkActionTest extends WriteLinkActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

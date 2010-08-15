@@ -156,7 +156,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActivityEdgeImpl() {
+	protected ActivityEdgeImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -171,7 +172,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getActivityEdge();
 	}
 
@@ -180,7 +182,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getActivity() {
+	public Activity getActivity()
+	{
 		if (eContainerFeatureID != UML2Package.ACTIVITY_EDGE__ACTIVITY) return null;
 		return (Activity)eContainer;
 	}
@@ -195,7 +198,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity undeleted_getActivity() {
+  public Activity undeleted_getActivity()
+	{
 		Activity temp = getActivity();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -207,8 +211,11 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActivity(Activity newActivity) {
-		if (newActivity != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_EDGE__ACTIVITY && newActivity != null)) {
+	public void setActivity(Activity newActivity)
+	{
+
+		if (newActivity != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_EDGE__ACTIVITY && newActivity != null))
+		{
 			if (EcoreUtil.isAncestor(this, newActivity))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -230,11 +237,14 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityNode getSource() {
-		if (source != null && source.eIsProxy()) {
+	public ActivityNode getSource()
+	{
+		if (source != null && source.eIsProxy())
+		{
 			ActivityNode oldSource = source;
 			source = (ActivityNode)eResolveProxy((InternalEObject)source);
-			if (source != oldSource) {
+			if (source != oldSource)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.ACTIVITY_EDGE__SOURCE, oldSource, source));
 			}
@@ -252,7 +262,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ActivityNode undeleted_getSource() {
+  public ActivityNode undeleted_getSource()
+	{
 		ActivityNode temp = getSource();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -264,7 +275,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityNode basicGetSource() {
+	public ActivityNode basicGetSource()
+	{
 		return source;
 	}
 
@@ -273,10 +285,13 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(ActivityNode newSource, NotificationChain msgs) {
+	public NotificationChain basicSetSource(ActivityNode newSource, NotificationChain msgs)
+	{
+
 		ActivityNode oldSource = source;
 		source = newSource;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.ACTIVITY_EDGE__SOURCE, oldSource, newSource);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -289,8 +304,11 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(ActivityNode newSource) {
-		if (newSource != source) {
+	public void setSource(ActivityNode newSource)
+	{
+
+		if (newSource != source)
+		{
 			NotificationChain msgs = null;
 			if (source != null)
 				msgs = ((InternalEObject)source).eInverseRemove(this, UML2Package.ACTIVITY_NODE__OUTGOING, ActivityNode.class, msgs);
@@ -310,11 +328,14 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityNode getTarget() {
-		if (target != null && target.eIsProxy()) {
+	public ActivityNode getTarget()
+	{
+		if (target != null && target.eIsProxy())
+		{
 			ActivityNode oldTarget = target;
 			target = (ActivityNode)eResolveProxy((InternalEObject)target);
-			if (target != oldTarget) {
+			if (target != oldTarget)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.ACTIVITY_EDGE__TARGET, oldTarget, target));
 			}
@@ -332,7 +353,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ActivityNode undeleted_getTarget() {
+  public ActivityNode undeleted_getTarget()
+	{
 		ActivityNode temp = getTarget();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -344,7 +366,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityNode basicGetTarget() {
+	public ActivityNode basicGetTarget()
+	{
 		return target;
 	}
 
@@ -353,10 +376,13 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(ActivityNode newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(ActivityNode newTarget, NotificationChain msgs)
+	{
+
 		ActivityNode oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.ACTIVITY_EDGE__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -369,8 +395,11 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(ActivityNode newTarget) {
-		if (newTarget != target) {
+	public void setTarget(ActivityNode newTarget)
+	{
+
+		if (newTarget != target)
+		{
 			NotificationChain msgs = null;
 			if (target != null)
 				msgs = ((InternalEObject)target).eInverseRemove(this, UML2Package.ACTIVITY_NODE__INCOMING, ActivityNode.class, msgs);
@@ -390,7 +419,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInGroups() {
+	public EList getInGroups()
+	{
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList inGroup = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getActivityEdge_InGroup());
@@ -410,7 +440,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getActivityEdge_Guard())) {
 			ownedElement.add(getGuard());
@@ -427,7 +458,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getGuard() {
+	public ValueSpecification getGuard()
+	{
 		return guard;
 	}
 
@@ -441,7 +473,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getGuard() {
+  public ValueSpecification undeleted_getGuard()
+	{
 		ValueSpecification temp = getGuard();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -453,10 +486,13 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGuard(ValueSpecification newGuard, NotificationChain msgs) {
+	public NotificationChain basicSetGuard(ValueSpecification newGuard, NotificationChain msgs)
+	{
+
 		ValueSpecification oldGuard = guard;
 		guard = newGuard;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.ACTIVITY_EDGE__GUARD, oldGuard, newGuard);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -469,8 +505,11 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGuard(ValueSpecification newGuard) {
-		if (newGuard != guard) {
+	public void setGuard(ValueSpecification newGuard)
+	{
+
+		if (newGuard != guard)
+		{
 			NotificationChain msgs = null;
 			if (guard != null)
 				msgs = ((InternalEObject)guard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.ACTIVITY_EDGE__GUARD, null, msgs);
@@ -504,9 +543,13 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements() {
-		if (redefinedElement == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRedefinedElements()
+	{
+		if (redefinedElement == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		redefinedElement = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_EDGE__REDEFINED_ELEMENT);
 			 		return redefinedElement;
@@ -523,8 +566,12 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRedefinedElements() {
-		if (redefinedElement == null) {
+  public EList settable_getRedefinedElements()
+	{
+		if (redefinedElement == null)
+		{
+			
+		
 			redefinedElement = new com.intrinsarc.emflist.PersistentEList(ActivityEdge.class, this, UML2Package.ACTIVITY_EDGE__REDEFINED_ELEMENT);
 		}
 		return redefinedElement;
@@ -535,11 +582,14 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRedefinedElements() {
+  public java.util.ArrayList undeleted_getRedefinedElements()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (redefinedElement != null) {
-			for (Object object : redefinedElement) {
+		if (redefinedElement != null)
+		{
+			for (Object object : redefinedElement)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -572,7 +622,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuredActivityNode getInStructuredNode() {
+	public StructuredActivityNode getInStructuredNode()
+	{
 		if (eContainerFeatureID != UML2Package.ACTIVITY_EDGE__IN_STRUCTURED_NODE) return null;
 		return (StructuredActivityNode)eContainer;
 	}
@@ -587,7 +638,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StructuredActivityNode undeleted_getInStructuredNode() {
+  public StructuredActivityNode undeleted_getInStructuredNode()
+	{
 		StructuredActivityNode temp = getInStructuredNode();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -599,8 +651,11 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInStructuredNode(StructuredActivityNode newInStructuredNode) {
-		if (newInStructuredNode != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_EDGE__IN_STRUCTURED_NODE && newInStructuredNode != null)) {
+	public void setInStructuredNode(StructuredActivityNode newInStructuredNode)
+	{
+
+		if (newInStructuredNode != eContainer || (eContainerFeatureID != UML2Package.ACTIVITY_EDGE__IN_STRUCTURED_NODE && newInStructuredNode != null))
+		{
 			if (EcoreUtil.isAncestor(this, newInStructuredNode))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -622,9 +677,13 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInPartitions() {
-		if (inPartition == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getInPartitions()
+	{
+		if (inPartition == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		inPartition = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_EDGE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE);
 			 		return inPartition;
@@ -641,8 +700,12 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getInPartitions() {
-		if (inPartition == null) {
+  public EList settable_getInPartitions()
+	{
+		if (inPartition == null)
+		{
+			
+		
 			inPartition = new com.intrinsarc.emflist.PersistentEList(ActivityPartition.class, this, UML2Package.ACTIVITY_EDGE__IN_PARTITION, UML2Package.ACTIVITY_PARTITION__CONTAINED_EDGE);
 		}
 		return inPartition;
@@ -653,11 +716,14 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getInPartitions() {
+  public java.util.ArrayList undeleted_getInPartitions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (inPartition != null) {
-			for (Object object : inPartition) {
+		if (inPartition != null)
+		{
+			for (Object object : inPartition)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -690,7 +756,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getWeight() {
+	public ValueSpecification getWeight()
+	{
 		return weight;
 	}
 
@@ -704,7 +771,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getWeight() {
+  public ValueSpecification undeleted_getWeight()
+	{
 		ValueSpecification temp = getWeight();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -716,10 +784,13 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetWeight(ValueSpecification newWeight, NotificationChain msgs) {
+	public NotificationChain basicSetWeight(ValueSpecification newWeight, NotificationChain msgs)
+	{
+
 		ValueSpecification oldWeight = weight;
 		weight = newWeight;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.ACTIVITY_EDGE__WEIGHT, oldWeight, newWeight);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -732,8 +803,11 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWeight(ValueSpecification newWeight) {
-		if (newWeight != weight) {
+	public void setWeight(ValueSpecification newWeight)
+	{
+
+		if (newWeight != weight)
+		{
 			NotificationChain msgs = null;
 			if (weight != null)
 				msgs = ((InternalEObject)weight).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.ACTIVITY_EDGE__WEIGHT, null, msgs);
@@ -767,11 +841,14 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterruptibleActivityRegion getInterrupts() {
-		if (interrupts != null && interrupts.eIsProxy()) {
+	public InterruptibleActivityRegion getInterrupts()
+	{
+		if (interrupts != null && interrupts.eIsProxy())
+		{
 			InterruptibleActivityRegion oldInterrupts = interrupts;
 			interrupts = (InterruptibleActivityRegion)eResolveProxy((InternalEObject)interrupts);
-			if (interrupts != oldInterrupts) {
+			if (interrupts != oldInterrupts)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.ACTIVITY_EDGE__INTERRUPTS, oldInterrupts, interrupts));
 			}
@@ -789,7 +866,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InterruptibleActivityRegion undeleted_getInterrupts() {
+  public InterruptibleActivityRegion undeleted_getInterrupts()
+	{
 		InterruptibleActivityRegion temp = getInterrupts();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -801,7 +879,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterruptibleActivityRegion basicGetInterrupts() {
+	public InterruptibleActivityRegion basicGetInterrupts()
+	{
 		return interrupts;
 	}
 
@@ -810,10 +889,13 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInterrupts(InterruptibleActivityRegion newInterrupts, NotificationChain msgs) {
+	public NotificationChain basicSetInterrupts(InterruptibleActivityRegion newInterrupts, NotificationChain msgs)
+	{
+
 		InterruptibleActivityRegion oldInterrupts = interrupts;
 		interrupts = newInterrupts;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.ACTIVITY_EDGE__INTERRUPTS, oldInterrupts, newInterrupts);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -826,8 +908,11 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInterrupts(InterruptibleActivityRegion newInterrupts) {
-		if (newInterrupts != interrupts) {
+	public void setInterrupts(InterruptibleActivityRegion newInterrupts)
+	{
+
+		if (newInterrupts != interrupts)
+		{
 			NotificationChain msgs = null;
 			if (interrupts != null)
 				msgs = ((InternalEObject)interrupts).eInverseRemove(this, UML2Package.INTERRUPTIBLE_ACTIVITY_REGION__INTERRUPTING_EDGE, InterruptibleActivityRegion.class, msgs);
@@ -847,7 +932,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		Activity activity = getActivity();			
 		if (activity != null) {
 			return activity;
@@ -861,7 +947,8 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInGroupsHelper(EList inGroup) {
+	protected EList getInGroupsHelper(EList inGroup)
+	{
 		StructuredActivityNode inStructuredNode = getInStructuredNode();
 		if (inStructuredNode != null) {
 			inGroup.add(inStructuredNode);
@@ -879,9 +966,12 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ACTIVITY_EDGE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ACTIVITY_EDGE__TEMPLATE_BINDING:
@@ -928,9 +1018,12 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ACTIVITY_EDGE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ACTIVITY_EDGE__OWNED_COMMENT:
@@ -975,9 +1068,12 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.ACTIVITY_EDGE__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__EDGE, Activity.class, msgs);
 				case UML2Package.ACTIVITY_EDGE__IN_STRUCTURED_NODE:
@@ -994,8 +1090,10 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY_EDGE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ACTIVITY_EDGE__OWNED_ELEMENT:
@@ -1071,8 +1169,10 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY_EDGE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1171,8 +1271,10 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY_EDGE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1260,8 +1362,10 @@ public abstract class ActivityEdgeImpl extends RedefinableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ACTIVITY_EDGE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ACTIVITY_EDGE__OWNED_ELEMENT:

@@ -169,7 +169,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TransitionImpl() {
+	protected TransitionImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -184,7 +185,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getTransition();
 	}
 
@@ -193,7 +195,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TransitionKind getKind() {
+	public TransitionKind getKind()
+	{
 		return kind;
 	}
 
@@ -208,7 +211,9 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKind(TransitionKind newKind) {
+	public void setKind(TransitionKind newKind)
+	{
+
 		TransitionKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
@@ -222,7 +227,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Region getContainer() {
+	public Region getContainer()
+	{
 		if (eContainerFeatureID != UML2Package.TRANSITION__CONTAINER) return null;
 		return (Region)eContainer;
 	}
@@ -237,7 +243,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Region undeleted_getContainer() {
+  public Region undeleted_getContainer()
+	{
 		Region temp = getContainer();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -249,8 +256,11 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainer(Region newContainer) {
-		if (newContainer != eContainer || (eContainerFeatureID != UML2Package.TRANSITION__CONTAINER && newContainer != null)) {
+	public void setContainer(Region newContainer)
+	{
+
+		if (newContainer != eContainer || (eContainerFeatureID != UML2Package.TRANSITION__CONTAINER && newContainer != null))
+		{
 			if (EcoreUtil.isAncestor(this, newContainer))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -272,11 +282,14 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vertex getSource() {
-		if (source != null && source.eIsProxy()) {
+	public Vertex getSource()
+	{
+		if (source != null && source.eIsProxy())
+		{
 			Vertex oldSource = source;
 			source = (Vertex)eResolveProxy((InternalEObject)source);
-			if (source != oldSource) {
+			if (source != oldSource)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.TRANSITION__SOURCE, oldSource, source));
 			}
@@ -294,7 +307,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Vertex undeleted_getSource() {
+  public Vertex undeleted_getSource()
+	{
 		Vertex temp = getSource();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -306,7 +320,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vertex basicGetSource() {
+	public Vertex basicGetSource()
+	{
 		return source;
 	}
 
@@ -315,10 +330,13 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(Vertex newSource, NotificationChain msgs) {
+	public NotificationChain basicSetSource(Vertex newSource, NotificationChain msgs)
+	{
+
 		Vertex oldSource = source;
 		source = newSource;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.TRANSITION__SOURCE, oldSource, newSource);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -331,8 +349,11 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(Vertex newSource) {
-		if (newSource != source) {
+	public void setSource(Vertex newSource)
+	{
+
+		if (newSource != source)
+		{
 			NotificationChain msgs = null;
 			if (source != null)
 				msgs = ((InternalEObject)source).eInverseRemove(this, UML2Package.VERTEX__OUTGOING, Vertex.class, msgs);
@@ -352,11 +373,14 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vertex getTarget() {
-		if (target != null && target.eIsProxy()) {
+	public Vertex getTarget()
+	{
+		if (target != null && target.eIsProxy())
+		{
 			Vertex oldTarget = target;
 			target = (Vertex)eResolveProxy((InternalEObject)target);
-			if (target != oldTarget) {
+			if (target != oldTarget)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.TRANSITION__TARGET, oldTarget, target));
 			}
@@ -374,7 +398,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Vertex undeleted_getTarget() {
+  public Vertex undeleted_getTarget()
+	{
 		Vertex temp = getTarget();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -386,7 +411,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vertex basicGetTarget() {
+	public Vertex basicGetTarget()
+	{
 		return target;
 	}
 
@@ -395,10 +421,13 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(Vertex newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(Vertex newTarget, NotificationChain msgs)
+	{
+
 		Vertex oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.TRANSITION__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -411,8 +440,11 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(Vertex newTarget) {
-		if (newTarget != target) {
+	public void setTarget(Vertex newTarget)
+	{
+
+		if (newTarget != target)
+		{
 			NotificationChain msgs = null;
 			if (target != null)
 				msgs = ((InternalEObject)target).eInverseRemove(this, UML2Package.VERTEX__INCOMING, Vertex.class, msgs);
@@ -432,11 +464,14 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition getRedefinedTransition() {
-		if (redefinedTransition != null && redefinedTransition.eIsProxy()) {
+	public Transition getRedefinedTransition()
+	{
+		if (redefinedTransition != null && redefinedTransition.eIsProxy())
+		{
 			Transition oldRedefinedTransition = redefinedTransition;
 			redefinedTransition = (Transition)eResolveProxy((InternalEObject)redefinedTransition);
-			if (redefinedTransition != oldRedefinedTransition) {
+			if (redefinedTransition != oldRedefinedTransition)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.TRANSITION__REDEFINED_TRANSITION, oldRedefinedTransition, redefinedTransition));
 			}
@@ -454,7 +489,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Transition undeleted_getRedefinedTransition() {
+  public Transition undeleted_getRedefinedTransition()
+	{
 		Transition temp = getRedefinedTransition();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -466,7 +502,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition basicGetRedefinedTransition() {
+	public Transition basicGetRedefinedTransition()
+	{
 		return redefinedTransition;
 	}
 
@@ -475,7 +512,9 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRedefinedTransition(Transition newRedefinedTransition) {
+	public void setRedefinedTransition(Transition newRedefinedTransition)
+	{
+
 		Transition oldRedefinedTransition = redefinedTransition;
 		redefinedTransition = newRedefinedTransition;
 		if (eNotificationRequired())
@@ -489,9 +528,13 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTriggers() {
-		if (trigger == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getTriggers()
+	{
+		if (trigger == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		trigger = new com.intrinsarc.emflist.PersistentEList(Trigger.class, this, UML2Package.TRANSITION__TRIGGER);
 			 		return trigger;
@@ -508,8 +551,12 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getTriggers() {
-		if (trigger == null) {
+  public EList settable_getTriggers()
+	{
+		if (trigger == null)
+		{
+			
+		
 			trigger = new com.intrinsarc.emflist.PersistentEList(Trigger.class, this, UML2Package.TRANSITION__TRIGGER);
 		}
 		return trigger;
@@ -520,11 +567,14 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getTriggers() {
+  public java.util.ArrayList undeleted_getTriggers()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (trigger != null) {
-			for (Object object : trigger) {
+		if (trigger != null)
+		{
+			for (Object object : trigger)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -557,7 +607,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint getGuard() {
+	public Constraint getGuard()
+	{
 		return guard;
 	}
 
@@ -571,7 +622,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Constraint undeleted_getGuard() {
+  public Constraint undeleted_getGuard()
+	{
 		Constraint temp = getGuard();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -583,10 +635,13 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGuard(Constraint newGuard, NotificationChain msgs) {
+	public NotificationChain basicSetGuard(Constraint newGuard, NotificationChain msgs)
+	{
+
 		Constraint oldGuard = guard;
 		guard = newGuard;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.TRANSITION__GUARD, oldGuard, newGuard);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -599,8 +654,11 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGuard(Constraint newGuard) {
-		if (newGuard != guard) {
+	public void setGuard(Constraint newGuard)
+	{
+
+		if (newGuard != guard)
+		{
 			NotificationChain msgs = null;
 			if (guard != null)
 				msgs = ((InternalEObject)guard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.TRANSITION__GUARD, null, msgs);
@@ -648,7 +706,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getEffect() {
+	public Activity getEffect()
+	{
 		return effect;
 	}
 
@@ -662,7 +721,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Activity undeleted_getEffect() {
+  public Activity undeleted_getEffect()
+	{
 		Activity temp = getEffect();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -674,10 +734,13 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEffect(Activity newEffect, NotificationChain msgs) {
+	public NotificationChain basicSetEffect(Activity newEffect, NotificationChain msgs)
+	{
+
 		Activity oldEffect = effect;
 		effect = newEffect;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.TRANSITION__EFFECT, oldEffect, newEffect);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -690,8 +753,11 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEffect(Activity newEffect) {
-		if (newEffect != effect) {
+	public void setEffect(Activity newEffect)
+	{
+
+		if (newEffect != effect)
+		{
 			NotificationChain msgs = null;
 			if (effect != null)
 				msgs = ((InternalEObject)effect).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.TRANSITION__EFFECT, null, msgs);
@@ -789,7 +855,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		Region container = getContainer();			
 		if (container != null) {
 			return container;
@@ -803,7 +870,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement) {
+	protected EList getOwnedElementsHelper(EList ownedElement)
+	{
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getTransition_Guard())) {
 			ownedElement.add(getGuard());
@@ -820,7 +888,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedElements() {
+	public EList getRedefinedElements()
+	{
 		return new EcoreEList.UnmodifiableEList(this, null, 0, Collections.EMPTY_LIST.toArray());
 	}
 
@@ -830,9 +899,12 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.TRANSITION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.TRANSITION__TEMPLATE_BINDING:
@@ -869,9 +941,12 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.TRANSITION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.TRANSITION__OWNED_COMMENT:
@@ -910,9 +985,12 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.TRANSITION__CONTAINER:
 					return eContainer.eInverseRemove(this, UML2Package.REGION__TRANSITION, Region.class, msgs);
 				default:
@@ -927,8 +1005,10 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TRANSITION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.TRANSITION__OWNED_ELEMENT:
@@ -1000,8 +1080,10 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TRANSITION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1096,8 +1178,10 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TRANSITION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1182,8 +1266,10 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.TRANSITION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.TRANSITION__OWNED_ELEMENT:
@@ -1251,7 +1337,8 @@ public class TransitionImpl extends RedefinableElementImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

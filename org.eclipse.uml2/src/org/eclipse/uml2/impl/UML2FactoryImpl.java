@@ -269,7 +269,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2FactoryImpl() {
+	public UML2FactoryImpl()
+	{
 		super();
 	}
 
@@ -278,8 +279,10 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+	public EObject create(EClass eClass)
+	{
+		switch (eClass.getClassifierID())
+		{
 			case UML2Package.OPAQUE_EXPRESSION: return createOpaqueExpression();
 			case UML2Package.EXPRESSION: return createExpression();
 			case UML2Package.COMMENT: return createComment();
@@ -494,89 +497,108 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case UML2Package.VISIBILITY_KIND: {
+	public Object createFromString(EDataType eDataType, String initialValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case UML2Package.VISIBILITY_KIND:
+			{
 				VisibilityKind result = VisibilityKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.PARAMETER_DIRECTION_KIND: {
+			case UML2Package.PARAMETER_DIRECTION_KIND:
+			{
 				ParameterDirectionKind result = ParameterDirectionKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.AGGREGATION_KIND: {
+			case UML2Package.AGGREGATION_KIND:
+			{
 				AggregationKind result = AggregationKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.CALL_CONCURRENCY_KIND: {
+			case UML2Package.CALL_CONCURRENCY_KIND:
+			{
 				CallConcurrencyKind result = CallConcurrencyKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.MESSAGE_KIND: {
+			case UML2Package.MESSAGE_KIND:
+			{
 				MessageKind result = MessageKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.MESSAGE_SORT: {
+			case UML2Package.MESSAGE_SORT:
+			{
 				MessageSort result = MessageSort.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.EXPANSION_KIND: {
+			case UML2Package.EXPANSION_KIND:
+			{
 				ExpansionKind result = ExpansionKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.INTERACTION_OPERATOR: {
+			case UML2Package.INTERACTION_OPERATOR:
+			{
 				InteractionOperator result = InteractionOperator.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.TRANSITION_KIND: {
+			case UML2Package.TRANSITION_KIND:
+			{
 				TransitionKind result = TransitionKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.PSEUDOSTATE_KIND: {
+			case UML2Package.PSEUDOSTATE_KIND:
+			{
 				PseudostateKind result = PseudostateKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.PARAMETER_EFFECT_KIND: {
+			case UML2Package.PARAMETER_EFFECT_KIND:
+			{
 				ParameterEffectKind result = ParameterEffectKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.OBJECT_NODE_ORDERING_KIND: {
+			case UML2Package.OBJECT_NODE_ORDERING_KIND:
+			{
 				ObjectNodeOrderingKind result = ObjectNodeOrderingKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.CONNECTOR_KIND: {
+			case UML2Package.CONNECTOR_KIND:
+			{
 				ConnectorKind result = ConnectorKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.COMPONENT_KIND: {
+			case UML2Package.COMPONENT_KIND:
+			{
 				ComponentKind result = ComponentKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.PROPERTY_ACCESS_KIND: {
+			case UML2Package.PROPERTY_ACCESS_KIND:
+			{
 				PropertyAccessKind result = PropertyAccessKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.PORT_KIND: {
+			case UML2Package.PORT_KIND:
+			{
 				PortKind result = PortKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
-			case UML2Package.REQUIREMENTS_LINK_KIND: {
+			case UML2Package.REQUIREMENTS_LINK_KIND:
+			{
 				RequirementsLinkKind result = RequirementsLinkKind.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
@@ -603,8 +625,10 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+	public String convertToString(EDataType eDataType, Object instanceValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
 			case UML2Package.VISIBILITY_KIND:
 				return instanceValue == null ? null : instanceValue.toString();
 			case UML2Package.PARAMETER_DIRECTION_KIND:
@@ -661,7 +685,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Comment createComment() {
+	public Comment createComment()
+	{
 		CommentImpl comment = new CommentImpl();
 		return comment;
 	}
@@ -671,7 +696,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OpaqueExpression createOpaqueExpression() {
+	public OpaqueExpression createOpaqueExpression()
+	{
 		OpaqueExpressionImpl opaqueExpression = new OpaqueExpressionImpl();
 		return opaqueExpression;
 	}
@@ -681,7 +707,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression createExpression() {
+	public Expression createExpression()
+	{
 		ExpressionImpl expression = new ExpressionImpl();
 		return expression;
 	}
@@ -691,7 +718,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Class createClass() {
+	public org.eclipse.uml2.Class createClass()
+	{
 		ClassImpl class_ = new ClassImpl();
 		return class_;
 	}
@@ -701,7 +729,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property createProperty() {
+	public Property createProperty()
+	{
 		PropertyImpl property = new PropertyImpl();
 		return property;
 	}
@@ -711,7 +740,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation createOperation() {
+	public Operation createOperation()
+	{
 		OperationImpl operation = new OperationImpl();
 		return operation;
 	}
@@ -721,7 +751,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Parameter createParameter() {
+	public Parameter createParameter()
+	{
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
 	}
@@ -731,7 +762,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package createPackage() {
+	public org.eclipse.uml2.Package createPackage()
+	{
 		PackageImpl package_ = new PackageImpl();
 		return package_;
 	}
@@ -741,7 +773,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Enumeration createEnumeration() {
+	public Enumeration createEnumeration()
+	{
 		EnumerationImpl enumeration = new EnumerationImpl();
 		return enumeration;
 	}
@@ -751,7 +784,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataType createDataType() {
+	public DataType createDataType()
+	{
 		DataTypeImpl dataType = new DataTypeImpl();
 		return dataType;
 	}
@@ -761,7 +795,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnumerationLiteral createEnumerationLiteral() {
+	public EnumerationLiteral createEnumerationLiteral()
+	{
 		EnumerationLiteralImpl enumerationLiteral = new EnumerationLiteralImpl();
 		return enumerationLiteral;
 	}
@@ -771,7 +806,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimitiveType createPrimitiveType() {
+	public PrimitiveType createPrimitiveType()
+	{
 		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
 		return primitiveType;
 	}
@@ -781,7 +817,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint createConstraint() {
+	public Constraint createConstraint()
+	{
 		ConstraintImpl constraint = new ConstraintImpl();
 		return constraint;
 	}
@@ -791,7 +828,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralBoolean createLiteralBoolean() {
+	public LiteralBoolean createLiteralBoolean()
+	{
 		LiteralBooleanImpl literalBoolean = new LiteralBooleanImpl();
 		return literalBoolean;
 	}
@@ -801,7 +839,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralString createLiteralString() {
+	public LiteralString createLiteralString()
+	{
 		LiteralStringImpl literalString = new LiteralStringImpl();
 		return literalString;
 	}
@@ -811,7 +850,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralNull createLiteralNull() {
+	public LiteralNull createLiteralNull()
+	{
 		LiteralNullImpl literalNull = new LiteralNullImpl();
 		return literalNull;
 	}
@@ -821,7 +861,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralInteger createLiteralInteger() {
+	public LiteralInteger createLiteralInteger()
+	{
 		LiteralIntegerImpl literalInteger = new LiteralIntegerImpl();
 		return literalInteger;
 	}
@@ -831,7 +872,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralUnlimitedNatural createLiteralUnlimitedNatural() {
+	public LiteralUnlimitedNatural createLiteralUnlimitedNatural()
+	{
 		LiteralUnlimitedNaturalImpl literalUnlimitedNatural = new LiteralUnlimitedNaturalImpl();
 		return literalUnlimitedNatural;
 	}
@@ -841,7 +883,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Generalization createGeneralization() {
+	public Generalization createGeneralization()
+	{
 		GeneralizationImpl generalization = new GeneralizationImpl();
 		return generalization;
 	}
@@ -851,7 +894,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSpecification createInstanceSpecification() {
+	public InstanceSpecification createInstanceSpecification()
+	{
 		InstanceSpecificationImpl instanceSpecification = new InstanceSpecificationImpl();
 		return instanceSpecification;
 	}
@@ -861,7 +905,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Slot createSlot() {
+	public Slot createSlot()
+	{
 		SlotImpl slot = new SlotImpl();
 		return slot;
 	}
@@ -871,7 +916,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceValue createInstanceValue() {
+	public InstanceValue createInstanceValue()
+	{
 		InstanceValueImpl instanceValue = new InstanceValueImpl();
 		return instanceValue;
 	}
@@ -881,7 +927,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementImport createElementImport() {
+	public ElementImport createElementImport()
+	{
 		ElementImportImpl elementImport = new ElementImportImpl();
 		return elementImport;
 	}
@@ -891,7 +938,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageImport createPackageImport() {
+	public PackageImport createPackageImport()
+	{
 		PackageImportImpl packageImport = new PackageImportImpl();
 		return packageImport;
 	}
@@ -901,7 +949,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Association createAssociation() {
+	public Association createAssociation()
+	{
 		AssociationImpl association = new AssociationImpl();
 		return association;
 	}
@@ -911,7 +960,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageMerge createPackageMerge() {
+	public PackageMerge createPackageMerge()
+	{
 		PackageMergeImpl packageMerge = new PackageMergeImpl();
 		return packageMerge;
 	}
@@ -921,7 +971,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Stereotype createStereotype() {
+	public Stereotype createStereotype()
+	{
 		StereotypeImpl stereotype = new StereotypeImpl();
 		return stereotype;
 	}
@@ -931,7 +982,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Profile createProfile() {
+	public Profile createProfile()
+	{
 		ProfileImpl profile = new ProfileImpl();
 		return profile;
 	}
@@ -941,7 +993,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProfileApplication createProfileApplication() {
+	public ProfileApplication createProfileApplication()
+	{
 		ProfileApplicationImpl profileApplication = new ProfileApplicationImpl();
 		return profileApplication;
 	}
@@ -951,7 +1004,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Extension createExtension() {
+	public Extension createExtension()
+	{
 		ExtensionImpl extension = new ExtensionImpl();
 		return extension;
 	}
@@ -961,7 +1015,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionEnd createExtensionEnd() {
+	public ExtensionEnd createExtensionEnd()
+	{
 		ExtensionEndImpl extensionEnd = new ExtensionEndImpl();
 		return extensionEnd;
 	}
@@ -971,7 +1026,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Model createModel() {
+	public Model createModel()
+	{
 		ModelImpl model = new ModelImpl();
 		return model;
 	}
@@ -981,7 +1037,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Permission createPermission() {
+	public Permission createPermission()
+	{
 		PermissionImpl permission = new PermissionImpl();
 		return permission;
 	}
@@ -991,7 +1048,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Dependency createDependency() {
+	public Dependency createDependency()
+	{
 		DependencyImpl dependency = new DependencyImpl();
 		return dependency;
 	}
@@ -1001,7 +1059,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Usage createUsage() {
+	public Usage createUsage()
+	{
 		UsageImpl usage = new UsageImpl();
 		return usage;
 	}
@@ -1011,7 +1070,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Abstraction createAbstraction() {
+	public Abstraction createAbstraction()
+	{
 		AbstractionImpl abstraction = new AbstractionImpl();
 		return abstraction;
 	}
@@ -1021,7 +1081,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Realization createRealization() {
+	public Realization createRealization()
+	{
 		RealizationImpl realization = new RealizationImpl();
 		return realization;
 	}
@@ -1031,7 +1092,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Substitution createSubstitution() {
+	public Substitution createSubstitution()
+	{
 		SubstitutionImpl substitution = new SubstitutionImpl();
 		return substitution;
 	}
@@ -1041,7 +1103,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationClass createAssociationClass() {
+	public AssociationClass createAssociationClass()
+	{
 		AssociationClassImpl associationClass = new AssociationClassImpl();
 		return associationClass;
 	}
@@ -1051,7 +1114,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeneralizationSet createGeneralizationSet() {
+	public GeneralizationSet createGeneralizationSet()
+	{
 		GeneralizationSetImpl generalizationSet = new GeneralizationSetImpl();
 		return generalizationSet;
 	}
@@ -1061,7 +1125,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity createActivity() {
+	public Activity createActivity()
+	{
 		ActivityImpl activity = new ActivityImpl();
 		return activity;
 	}
@@ -1071,7 +1136,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InformationItem createInformationItem() {
+	public InformationItem createInformationItem()
+	{
 		InformationItemImpl informationItem = new InformationItemImpl();
 		return informationItem;
 	}
@@ -1081,7 +1147,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InformationFlow createInformationFlow() {
+	public InformationFlow createInformationFlow()
+	{
 		InformationFlowImpl informationFlow = new InformationFlowImpl();
 		return informationFlow;
 	}
@@ -1091,7 +1158,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interface createInterface() {
+	public Interface createInterface()
+	{
 		InterfaceImpl interface_ = new InterfaceImpl();
 		return interface_;
 	}
@@ -1101,7 +1169,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Implementation createImplementation() {
+	public Implementation createImplementation()
+	{
 		ImplementationImpl implementation = new ImplementationImpl();
 		return implementation;
 	}
@@ -1111,7 +1180,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Actor createActor() {
+	public Actor createActor()
+	{
 		ActorImpl actor = new ActorImpl();
 		return actor;
 	}
@@ -1121,7 +1191,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Extend createExtend() {
+	public Extend createExtend()
+	{
 		ExtendImpl extend = new ExtendImpl();
 		return extend;
 	}
@@ -1131,7 +1202,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseCase createUseCase() {
+	public UseCase createUseCase()
+	{
 		UseCaseImpl useCase = new UseCaseImpl();
 		return useCase;
 	}
@@ -1141,7 +1213,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionPoint createExtensionPoint() {
+	public ExtensionPoint createExtensionPoint()
+	{
 		ExtensionPointImpl extensionPoint = new ExtensionPointImpl();
 		return extensionPoint;
 	}
@@ -1151,7 +1224,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Include createInclude() {
+	public Include createInclude()
+	{
 		IncludeImpl include = new IncludeImpl();
 		return include;
 	}
@@ -1161,7 +1235,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Action createAction() {
+	public Action createAction()
+	{
 		ActionImpl action = new ActionImpl();
 		return action;
 	}
@@ -1171,7 +1246,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ControlFlow createControlFlow() {
+	public ControlFlow createControlFlow()
+	{
 		ControlFlowImpl controlFlow = new ControlFlowImpl();
 		return controlFlow;
 	}
@@ -1181,7 +1257,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectFlow createObjectFlow() {
+	public ObjectFlow createObjectFlow()
+	{
 		ObjectFlowImpl objectFlow = new ObjectFlowImpl();
 		return objectFlow;
 	}
@@ -1191,7 +1268,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InitialNode createInitialNode() {
+	public InitialNode createInitialNode()
+	{
 		InitialNodeImpl initialNode = new InitialNodeImpl();
 		return initialNode;
 	}
@@ -1201,7 +1279,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityFinalNode createActivityFinalNode() {
+	public ActivityFinalNode createActivityFinalNode()
+	{
 		ActivityFinalNodeImpl activityFinalNode = new ActivityFinalNodeImpl();
 		return activityFinalNode;
 	}
@@ -1211,7 +1290,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DecisionNode createDecisionNode() {
+	public DecisionNode createDecisionNode()
+	{
 		DecisionNodeImpl decisionNode = new DecisionNodeImpl();
 		return decisionNode;
 	}
@@ -1221,7 +1301,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MergeNode createMergeNode() {
+	public MergeNode createMergeNode()
+	{
 		MergeNodeImpl mergeNode = new MergeNodeImpl();
 		return mergeNode;
 	}
@@ -1231,7 +1312,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OutputPin createOutputPin() {
+	public OutputPin createOutputPin()
+	{
 		OutputPinImpl outputPin = new OutputPinImpl();
 		return outputPin;
 	}
@@ -1241,7 +1323,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin createInputPin() {
+	public InputPin createInputPin()
+	{
 		InputPinImpl inputPin = new InputPinImpl();
 		return inputPin;
 	}
@@ -1251,7 +1334,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityParameterNode createActivityParameterNode() {
+	public ActivityParameterNode createActivityParameterNode()
+	{
 		ActivityParameterNodeImpl activityParameterNode = new ActivityParameterNodeImpl();
 		return activityParameterNode;
 	}
@@ -1261,7 +1345,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValuePin createValuePin() {
+	public ValuePin createValuePin()
+	{
 		ValuePinImpl valuePin = new ValuePinImpl();
 		return valuePin;
 	}
@@ -1271,7 +1356,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Artifact createArtifact() {
+	public Artifact createArtifact()
+	{
 		ArtifactImpl artifact = new ArtifactImpl();
 		return artifact;
 	}
@@ -1281,7 +1367,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Manifestation createManifestation() {
+	public Manifestation createManifestation()
+	{
 		ManifestationImpl manifestation = new ManifestationImpl();
 		return manifestation;
 	}
@@ -1291,7 +1378,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallTrigger createCallTrigger() {
+	public CallTrigger createCallTrigger()
+	{
 		CallTriggerImpl callTrigger = new CallTriggerImpl();
 		return callTrigger;
 	}
@@ -1301,7 +1389,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangeTrigger createChangeTrigger() {
+	public ChangeTrigger createChangeTrigger()
+	{
 		ChangeTriggerImpl changeTrigger = new ChangeTriggerImpl();
 		return changeTrigger;
 	}
@@ -1311,7 +1400,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Reception createReception() {
+	public Reception createReception()
+	{
 		ReceptionImpl reception = new ReceptionImpl();
 		return reception;
 	}
@@ -1321,7 +1411,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signal createSignal() {
+	public Signal createSignal()
+	{
 		SignalImpl signal = new SignalImpl();
 		return signal;
 	}
@@ -1331,7 +1422,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SignalTrigger createSignalTrigger() {
+	public SignalTrigger createSignalTrigger()
+	{
 		SignalTriggerImpl signalTrigger = new SignalTriggerImpl();
 		return signalTrigger;
 	}
@@ -1341,7 +1433,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeTrigger createTimeTrigger() {
+	public TimeTrigger createTimeTrigger()
+	{
 		TimeTriggerImpl timeTrigger = new TimeTriggerImpl();
 		return timeTrigger;
 	}
@@ -1351,7 +1444,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnyTrigger createAnyTrigger() {
+	public AnyTrigger createAnyTrigger()
+	{
 		AnyTriggerImpl anyTrigger = new AnyTriggerImpl();
 		return anyTrigger;
 	}
@@ -1361,7 +1455,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable createVariable() {
+	public Variable createVariable()
+	{
 		VariableImpl variable = new VariableImpl();
 		return variable;
 	}
@@ -1371,7 +1466,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuredActivityNode createStructuredActivityNode() {
+	public StructuredActivityNode createStructuredActivityNode()
+	{
 		StructuredActivityNodeImpl structuredActivityNode = new StructuredActivityNodeImpl();
 		return structuredActivityNode;
 	}
@@ -1381,7 +1477,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalNode createConditionalNode() {
+	public ConditionalNode createConditionalNode()
+	{
 		ConditionalNodeImpl conditionalNode = new ConditionalNodeImpl();
 		return conditionalNode;
 	}
@@ -1391,7 +1488,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Clause createClause() {
+	public Clause createClause()
+	{
 		ClauseImpl clause = new ClauseImpl();
 		return clause;
 	}
@@ -1401,7 +1499,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LoopNode createLoopNode() {
+	public LoopNode createLoopNode()
+	{
 		LoopNodeImpl loopNode = new LoopNodeImpl();
 		return loopNode;
 	}
@@ -1411,7 +1510,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectorEnd createConnectorEnd() {
+	public ConnectorEnd createConnectorEnd()
+	{
 		ConnectorEndImpl connectorEnd = new ConnectorEndImpl();
 		return connectorEnd;
 	}
@@ -1421,7 +1521,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Connector createConnector() {
+	public Connector createConnector()
+	{
 		ConnectorImpl connector = new ConnectorImpl();
 		return connector;
 	}
@@ -1431,7 +1532,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CreateObjectAction createCreateObjectAction() {
+	public CreateObjectAction createCreateObjectAction()
+	{
 		CreateObjectActionImpl createObjectAction = new CreateObjectActionImpl();
 		return createObjectAction;
 	}
@@ -1441,7 +1543,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DestroyObjectAction createDestroyObjectAction() {
+	public DestroyObjectAction createDestroyObjectAction()
+	{
 		DestroyObjectActionImpl destroyObjectAction = new DestroyObjectActionImpl();
 		return destroyObjectAction;
 	}
@@ -1451,7 +1554,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestIdentityAction createTestIdentityAction() {
+	public TestIdentityAction createTestIdentityAction()
+	{
 		TestIdentityActionImpl testIdentityAction = new TestIdentityActionImpl();
 		return testIdentityAction;
 	}
@@ -1461,7 +1565,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadSelfAction createReadSelfAction() {
+	public ReadSelfAction createReadSelfAction()
+	{
 		ReadSelfActionImpl readSelfAction = new ReadSelfActionImpl();
 		return readSelfAction;
 	}
@@ -1471,7 +1576,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadStructuralFeatureAction createReadStructuralFeatureAction() {
+	public ReadStructuralFeatureAction createReadStructuralFeatureAction()
+	{
 		ReadStructuralFeatureActionImpl readStructuralFeatureAction = new ReadStructuralFeatureActionImpl();
 		return readStructuralFeatureAction;
 	}
@@ -1481,7 +1587,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClearStructuralFeatureAction createClearStructuralFeatureAction() {
+	public ClearStructuralFeatureAction createClearStructuralFeatureAction()
+	{
 		ClearStructuralFeatureActionImpl clearStructuralFeatureAction = new ClearStructuralFeatureActionImpl();
 		return clearStructuralFeatureAction;
 	}
@@ -1491,7 +1598,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RemoveStructuralFeatureValueAction createRemoveStructuralFeatureValueAction() {
+	public RemoveStructuralFeatureValueAction createRemoveStructuralFeatureValueAction()
+	{
 		RemoveStructuralFeatureValueActionImpl removeStructuralFeatureValueAction = new RemoveStructuralFeatureValueActionImpl();
 		return removeStructuralFeatureValueAction;
 	}
@@ -1501,7 +1609,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AddStructuralFeatureValueAction createAddStructuralFeatureValueAction() {
+	public AddStructuralFeatureValueAction createAddStructuralFeatureValueAction()
+	{
 		AddStructuralFeatureValueActionImpl addStructuralFeatureValueAction = new AddStructuralFeatureValueActionImpl();
 		return addStructuralFeatureValueAction;
 	}
@@ -1511,7 +1620,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkEndData createLinkEndData() {
+	public LinkEndData createLinkEndData()
+	{
 		LinkEndDataImpl linkEndData = new LinkEndDataImpl();
 		return linkEndData;
 	}
@@ -1521,7 +1631,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadLinkAction createReadLinkAction() {
+	public ReadLinkAction createReadLinkAction()
+	{
 		ReadLinkActionImpl readLinkAction = new ReadLinkActionImpl();
 		return readLinkAction;
 	}
@@ -1531,7 +1642,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkEndCreationData createLinkEndCreationData() {
+	public LinkEndCreationData createLinkEndCreationData()
+	{
 		LinkEndCreationDataImpl linkEndCreationData = new LinkEndCreationDataImpl();
 		return linkEndCreationData;
 	}
@@ -1541,7 +1653,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CreateLinkAction createCreateLinkAction() {
+	public CreateLinkAction createCreateLinkAction()
+	{
 		CreateLinkActionImpl createLinkAction = new CreateLinkActionImpl();
 		return createLinkAction;
 	}
@@ -1551,7 +1664,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DestroyLinkAction createDestroyLinkAction() {
+	public DestroyLinkAction createDestroyLinkAction()
+	{
 		DestroyLinkActionImpl destroyLinkAction = new DestroyLinkActionImpl();
 		return destroyLinkAction;
 	}
@@ -1561,7 +1675,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClearAssociationAction createClearAssociationAction() {
+	public ClearAssociationAction createClearAssociationAction()
+	{
 		ClearAssociationActionImpl clearAssociationAction = new ClearAssociationActionImpl();
 		return clearAssociationAction;
 	}
@@ -1571,7 +1686,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadVariableAction createReadVariableAction() {
+	public ReadVariableAction createReadVariableAction()
+	{
 		ReadVariableActionImpl readVariableAction = new ReadVariableActionImpl();
 		return readVariableAction;
 	}
@@ -1581,7 +1697,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClearVariableAction createClearVariableAction() {
+	public ClearVariableAction createClearVariableAction()
+	{
 		ClearVariableActionImpl clearVariableAction = new ClearVariableActionImpl();
 		return clearVariableAction;
 	}
@@ -1591,7 +1708,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AddVariableValueAction createAddVariableValueAction() {
+	public AddVariableValueAction createAddVariableValueAction()
+	{
 		AddVariableValueActionImpl addVariableValueAction = new AddVariableValueActionImpl();
 		return addVariableValueAction;
 	}
@@ -1601,7 +1719,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RemoveVariableValueAction createRemoveVariableValueAction() {
+	public RemoveVariableValueAction createRemoveVariableValueAction()
+	{
 		RemoveVariableValueActionImpl removeVariableValueAction = new RemoveVariableValueActionImpl();
 		return removeVariableValueAction;
 	}
@@ -1611,7 +1730,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ApplyFunctionAction createApplyFunctionAction() {
+	public ApplyFunctionAction createApplyFunctionAction()
+	{
 		ApplyFunctionActionImpl applyFunctionAction = new ApplyFunctionActionImpl();
 		return applyFunctionAction;
 	}
@@ -1621,7 +1741,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimitiveFunction createPrimitiveFunction() {
+	public PrimitiveFunction createPrimitiveFunction()
+	{
 		PrimitiveFunctionImpl primitiveFunction = new PrimitiveFunctionImpl();
 		return primitiveFunction;
 	}
@@ -1631,7 +1752,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SendSignalAction createSendSignalAction() {
+	public SendSignalAction createSendSignalAction()
+	{
 		SendSignalActionImpl sendSignalAction = new SendSignalActionImpl();
 		return sendSignalAction;
 	}
@@ -1641,7 +1763,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BroadcastSignalAction createBroadcastSignalAction() {
+	public BroadcastSignalAction createBroadcastSignalAction()
+	{
 		BroadcastSignalActionImpl broadcastSignalAction = new BroadcastSignalActionImpl();
 		return broadcastSignalAction;
 	}
@@ -1651,7 +1774,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SendObjectAction createSendObjectAction() {
+	public SendObjectAction createSendObjectAction()
+	{
 		SendObjectActionImpl sendObjectAction = new SendObjectActionImpl();
 		return sendObjectAction;
 	}
@@ -1661,7 +1785,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallOperationAction createCallOperationAction() {
+	public CallOperationAction createCallOperationAction()
+	{
 		CallOperationActionImpl callOperationAction = new CallOperationActionImpl();
 		return callOperationAction;
 	}
@@ -1671,7 +1796,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallBehaviorAction createCallBehaviorAction() {
+	public CallBehaviorAction createCallBehaviorAction()
+	{
 		CallBehaviorActionImpl callBehaviorAction = new CallBehaviorActionImpl();
 		return callBehaviorAction;
 	}
@@ -1681,7 +1807,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature createTemplateSignature() {
+	public TemplateSignature createTemplateSignature()
+	{
 		TemplateSignatureImpl templateSignature = new TemplateSignatureImpl();
 		return templateSignature;
 	}
@@ -1691,7 +1818,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter createTemplateParameter() {
+	public TemplateParameter createTemplateParameter()
+	{
 		TemplateParameterImpl templateParameter = new TemplateParameterImpl();
 		return templateParameter;
 	}
@@ -1701,7 +1829,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringExpression createStringExpression() {
+	public StringExpression createStringExpression()
+	{
 		StringExpressionImpl stringExpression = new StringExpressionImpl();
 		return stringExpression;
 	}
@@ -1711,7 +1840,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateBinding createTemplateBinding() {
+	public TemplateBinding createTemplateBinding()
+	{
 		TemplateBindingImpl templateBinding = new TemplateBindingImpl();
 		return templateBinding;
 	}
@@ -1721,7 +1851,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameterSubstitution createTemplateParameterSubstitution() {
+	public TemplateParameterSubstitution createTemplateParameterSubstitution()
+	{
 		TemplateParameterSubstitutionImpl templateParameterSubstitution = new TemplateParameterSubstitutionImpl();
 		return templateParameterSubstitution;
 	}
@@ -1731,7 +1862,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collaboration createCollaboration() {
+	public Collaboration createCollaboration()
+	{
 		CollaborationImpl collaboration = new CollaborationImpl();
 		return collaboration;
 	}
@@ -1741,7 +1873,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperationTemplateParameter createOperationTemplateParameter() {
+	public OperationTemplateParameter createOperationTemplateParameter()
+	{
 		OperationTemplateParameterImpl operationTemplateParameter = new OperationTemplateParameterImpl();
 		return operationTemplateParameter;
 	}
@@ -1751,7 +1884,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierTemplateParameter createClassifierTemplateParameter() {
+	public ClassifierTemplateParameter createClassifierTemplateParameter()
+	{
 		ClassifierTemplateParameterImpl classifierTemplateParameter = new ClassifierTemplateParameterImpl();
 		return classifierTemplateParameter;
 	}
@@ -1761,7 +1895,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RedefinableTemplateSignature createRedefinableTemplateSignature() {
+	public RedefinableTemplateSignature createRedefinableTemplateSignature()
+	{
 		RedefinableTemplateSignatureImpl redefinableTemplateSignature = new RedefinableTemplateSignatureImpl();
 		return redefinableTemplateSignature;
 	}
@@ -1771,7 +1906,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectableElementTemplateParameter createConnectableElementTemplateParameter() {
+	public ConnectableElementTemplateParameter createConnectableElementTemplateParameter()
+	{
 		ConnectableElementTemplateParameterImpl connectableElementTemplateParameter = new ConnectableElementTemplateParameterImpl();
 		return connectableElementTemplateParameter;
 	}
@@ -1781,7 +1917,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine createStateMachine() {
+	public StateMachine createStateMachine()
+	{
 		StateMachineImpl stateMachine = new StateMachineImpl();
 		return stateMachine;
 	}
@@ -1791,7 +1928,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Region createRegion() {
+	public Region createRegion()
+	{
 		RegionImpl region = new RegionImpl();
 		return region;
 	}
@@ -1801,7 +1939,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Pseudostate createPseudostate() {
+	public Pseudostate createPseudostate()
+	{
 		PseudostateImpl pseudostate = new PseudostateImpl();
 		return pseudostate;
 	}
@@ -1811,7 +1950,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State createState() {
+	public State createState()
+	{
 		StateImpl state = new StateImpl();
 		return state;
 	}
@@ -1821,7 +1961,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectionPointReference createConnectionPointReference() {
+	public ConnectionPointReference createConnectionPointReference()
+	{
 		ConnectionPointReferenceImpl connectionPointReference = new ConnectionPointReferenceImpl();
 		return connectionPointReference;
 	}
@@ -1831,7 +1972,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition createTransition() {
+	public Transition createTransition()
+	{
 		TransitionImpl transition = new TransitionImpl();
 		return transition;
 	}
@@ -1841,7 +1983,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FinalState createFinalState() {
+	public FinalState createFinalState()
+	{
 		FinalStateImpl finalState = new FinalStateImpl();
 		return finalState;
 	}
@@ -1851,7 +1994,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interaction createInteraction() {
+	public Interaction createInteraction()
+	{
 		InteractionImpl interaction = new InteractionImpl();
 		return interaction;
 	}
@@ -1861,7 +2005,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Lifeline createLifeline() {
+	public Lifeline createLifeline()
+	{
 		LifelineImpl lifeline = new LifelineImpl();
 		return lifeline;
 	}
@@ -1871,7 +2016,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Message createMessage() {
+	public Message createMessage()
+	{
 		MessageImpl message = new MessageImpl();
 		return message;
 	}
@@ -1881,7 +2027,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeneralOrdering createGeneralOrdering() {
+	public GeneralOrdering createGeneralOrdering()
+	{
 		GeneralOrderingImpl generalOrdering = new GeneralOrderingImpl();
 		return generalOrdering;
 	}
@@ -1891,7 +2038,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence createEventOccurrence() {
+	public EventOccurrence createEventOccurrence()
+	{
 		EventOccurrenceImpl eventOccurrence = new EventOccurrenceImpl();
 		return eventOccurrence;
 	}
@@ -1901,7 +2049,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutionOccurrence createExecutionOccurrence() {
+	public ExecutionOccurrence createExecutionOccurrence()
+	{
 		ExecutionOccurrenceImpl executionOccurrence = new ExecutionOccurrenceImpl();
 		return executionOccurrence;
 	}
@@ -1911,7 +2060,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateInvariant createStateInvariant() {
+	public StateInvariant createStateInvariant()
+	{
 		StateInvariantImpl stateInvariant = new StateInvariantImpl();
 		return stateInvariant;
 	}
@@ -1921,7 +2071,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Stop createStop() {
+	public Stop createStop()
+	{
 		StopImpl stop = new StopImpl();
 		return stop;
 	}
@@ -1931,7 +2082,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ForkNode createForkNode() {
+	public ForkNode createForkNode()
+	{
 		ForkNodeImpl forkNode = new ForkNodeImpl();
 		return forkNode;
 	}
@@ -1941,7 +2093,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JoinNode createJoinNode() {
+	public JoinNode createJoinNode()
+	{
 		JoinNodeImpl joinNode = new JoinNodeImpl();
 		return joinNode;
 	}
@@ -1951,7 +2104,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FlowFinalNode createFlowFinalNode() {
+	public FlowFinalNode createFlowFinalNode()
+	{
 		FlowFinalNodeImpl flowFinalNode = new FlowFinalNodeImpl();
 		return flowFinalNode;
 	}
@@ -1961,7 +2115,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CentralBufferNode createCentralBufferNode() {
+	public CentralBufferNode createCentralBufferNode()
+	{
 		CentralBufferNodeImpl centralBufferNode = new CentralBufferNodeImpl();
 		return centralBufferNode;
 	}
@@ -1971,7 +2126,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityPartition createActivityPartition() {
+	public ActivityPartition createActivityPartition()
+	{
 		ActivityPartitionImpl activityPartition = new ActivityPartitionImpl();
 		return activityPartition;
 	}
@@ -1981,7 +2137,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CollaborationOccurrence createCollaborationOccurrence() {
+	public CollaborationOccurrence createCollaborationOccurrence()
+	{
 		CollaborationOccurrenceImpl collaborationOccurrence = new CollaborationOccurrenceImpl();
 		return collaborationOccurrence;
 	}
@@ -1991,7 +2148,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Port createPort() {
+	public Port createPort()
+	{
 		PortImpl port = new PortImpl();
 		return port;
 	}
@@ -2001,7 +2159,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionRegion createExpansionRegion() {
+	public ExpansionRegion createExpansionRegion()
+	{
 		ExpansionRegionImpl expansionRegion = new ExpansionRegionImpl();
 		return expansionRegion;
 	}
@@ -2011,7 +2170,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExceptionHandler createExceptionHandler() {
+	public ExceptionHandler createExceptionHandler()
+	{
 		ExceptionHandlerImpl exceptionHandler = new ExceptionHandlerImpl();
 		return exceptionHandler;
 	}
@@ -2021,7 +2181,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataStoreNode createDataStoreNode() {
+	public DataStoreNode createDataStoreNode()
+	{
 		DataStoreNodeImpl dataStoreNode = new DataStoreNodeImpl();
 		return dataStoreNode;
 	}
@@ -2031,7 +2192,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterruptibleActivityRegion createInterruptibleActivityRegion() {
+	public InterruptibleActivityRegion createInterruptibleActivityRegion()
+	{
 		InterruptibleActivityRegionImpl interruptibleActivityRegion = new InterruptibleActivityRegionImpl();
 		return interruptibleActivityRegion;
 	}
@@ -2041,7 +2203,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterSet createParameterSet() {
+	public ParameterSet createParameterSet()
+	{
 		ParameterSetImpl parameterSet = new ParameterSetImpl();
 		return parameterSet;
 	}
@@ -2051,7 +2214,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolConformance createProtocolConformance() {
+	public ProtocolConformance createProtocolConformance()
+	{
 		ProtocolConformanceImpl protocolConformance = new ProtocolConformanceImpl();
 		return protocolConformance;
 	}
@@ -2061,7 +2225,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolStateMachine createProtocolStateMachine() {
+	public ProtocolStateMachine createProtocolStateMachine()
+	{
 		ProtocolStateMachineImpl protocolStateMachine = new ProtocolStateMachineImpl();
 		return protocolStateMachine;
 	}
@@ -2071,7 +2236,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolTransition createProtocolTransition() {
+	public ProtocolTransition createProtocolTransition()
+	{
 		ProtocolTransitionImpl protocolTransition = new ProtocolTransitionImpl();
 		return protocolTransition;
 	}
@@ -2081,7 +2247,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionOccurrence createInteractionOccurrence() {
+	public InteractionOccurrence createInteractionOccurrence()
+	{
 		InteractionOccurrenceImpl interactionOccurrence = new InteractionOccurrenceImpl();
 		return interactionOccurrence;
 	}
@@ -2091,7 +2258,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Gate createGate() {
+	public Gate createGate()
+	{
 		GateImpl gate = new GateImpl();
 		return gate;
 	}
@@ -2101,7 +2269,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PartDecomposition createPartDecomposition() {
+	public PartDecomposition createPartDecomposition()
+	{
 		PartDecompositionImpl partDecomposition = new PartDecompositionImpl();
 		return partDecomposition;
 	}
@@ -2111,7 +2280,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionOperand createInteractionOperand() {
+	public InteractionOperand createInteractionOperand()
+	{
 		InteractionOperandImpl interactionOperand = new InteractionOperandImpl();
 		return interactionOperand;
 	}
@@ -2121,7 +2291,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionConstraint createInteractionConstraint() {
+	public InteractionConstraint createInteractionConstraint()
+	{
 		InteractionConstraintImpl interactionConstraint = new InteractionConstraintImpl();
 		return interactionConstraint;
 	}
@@ -2131,7 +2302,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CombinedFragment createCombinedFragment() {
+	public CombinedFragment createCombinedFragment()
+	{
 		CombinedFragmentImpl combinedFragment = new CombinedFragmentImpl();
 		return combinedFragment;
 	}
@@ -2141,7 +2313,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Continuation createContinuation() {
+	public Continuation createContinuation()
+	{
 		ContinuationImpl continuation = new ContinuationImpl();
 		return continuation;
 	}
@@ -2151,7 +2324,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionNode createExpansionNode() {
+	public ExpansionNode createExpansionNode()
+	{
 		ExpansionNodeImpl expansionNode = new ExpansionNodeImpl();
 		return expansionNode;
 	}
@@ -2161,7 +2335,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadExtentAction createReadExtentAction() {
+	public ReadExtentAction createReadExtentAction()
+	{
 		ReadExtentActionImpl readExtentAction = new ReadExtentActionImpl();
 		return readExtentAction;
 	}
@@ -2171,7 +2346,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReclassifyObjectAction createReclassifyObjectAction() {
+	public ReclassifyObjectAction createReclassifyObjectAction()
+	{
 		ReclassifyObjectActionImpl reclassifyObjectAction = new ReclassifyObjectActionImpl();
 		return reclassifyObjectAction;
 	}
@@ -2181,7 +2357,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadIsClassifiedObjectAction createReadIsClassifiedObjectAction() {
+	public ReadIsClassifiedObjectAction createReadIsClassifiedObjectAction()
+	{
 		ReadIsClassifiedObjectActionImpl readIsClassifiedObjectAction = new ReadIsClassifiedObjectActionImpl();
 		return readIsClassifiedObjectAction;
 	}
@@ -2191,7 +2368,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StartOwnedBehaviorAction createStartOwnedBehaviorAction() {
+	public StartOwnedBehaviorAction createStartOwnedBehaviorAction()
+	{
 		StartOwnedBehaviorActionImpl startOwnedBehaviorAction = new StartOwnedBehaviorActionImpl();
 		return startOwnedBehaviorAction;
 	}
@@ -2201,7 +2379,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QualifierValue createQualifierValue() {
+	public QualifierValue createQualifierValue()
+	{
 		QualifierValueImpl qualifierValue = new QualifierValueImpl();
 		return qualifierValue;
 	}
@@ -2211,7 +2390,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadLinkObjectEndAction createReadLinkObjectEndAction() {
+	public ReadLinkObjectEndAction createReadLinkObjectEndAction()
+	{
 		ReadLinkObjectEndActionImpl readLinkObjectEndAction = new ReadLinkObjectEndActionImpl();
 		return readLinkObjectEndAction;
 	}
@@ -2221,7 +2401,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadLinkObjectEndQualifierAction createReadLinkObjectEndQualifierAction() {
+	public ReadLinkObjectEndQualifierAction createReadLinkObjectEndQualifierAction()
+	{
 		ReadLinkObjectEndQualifierActionImpl readLinkObjectEndQualifierAction = new ReadLinkObjectEndQualifierActionImpl();
 		return readLinkObjectEndQualifierAction;
 	}
@@ -2231,7 +2412,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CreateLinkObjectAction createCreateLinkObjectAction() {
+	public CreateLinkObjectAction createCreateLinkObjectAction()
+	{
 		CreateLinkObjectActionImpl createLinkObjectAction = new CreateLinkObjectActionImpl();
 		return createLinkObjectAction;
 	}
@@ -2241,7 +2423,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AcceptEventAction createAcceptEventAction() {
+	public AcceptEventAction createAcceptEventAction()
+	{
 		AcceptEventActionImpl acceptEventAction = new AcceptEventActionImpl();
 		return acceptEventAction;
 	}
@@ -2251,7 +2434,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AcceptCallAction createAcceptCallAction() {
+	public AcceptCallAction createAcceptCallAction()
+	{
 		AcceptCallActionImpl acceptCallAction = new AcceptCallActionImpl();
 		return acceptCallAction;
 	}
@@ -2261,7 +2445,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplyAction createReplyAction() {
+	public ReplyAction createReplyAction()
+	{
 		ReplyActionImpl replyAction = new ReplyActionImpl();
 		return replyAction;
 	}
@@ -2271,7 +2456,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RaiseExceptionAction createRaiseExceptionAction() {
+	public RaiseExceptionAction createRaiseExceptionAction()
+	{
 		RaiseExceptionActionImpl raiseExceptionAction = new RaiseExceptionActionImpl();
 		return raiseExceptionAction;
 	}
@@ -2281,7 +2467,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeExpression createTimeExpression() {
+	public TimeExpression createTimeExpression()
+	{
 		TimeExpressionImpl timeExpression = new TimeExpressionImpl();
 		return timeExpression;
 	}
@@ -2291,7 +2478,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Duration createDuration() {
+	public Duration createDuration()
+	{
 		DurationImpl duration = new DurationImpl();
 		return duration;
 	}
@@ -2301,7 +2489,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeObservationAction createTimeObservationAction() {
+	public TimeObservationAction createTimeObservationAction()
+	{
 		TimeObservationActionImpl timeObservationAction = new TimeObservationActionImpl();
 		return timeObservationAction;
 	}
@@ -2311,7 +2500,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DurationInterval createDurationInterval() {
+	public DurationInterval createDurationInterval()
+	{
 		DurationIntervalImpl durationInterval = new DurationIntervalImpl();
 		return durationInterval;
 	}
@@ -2321,7 +2511,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interval createInterval() {
+	public Interval createInterval()
+	{
 		IntervalImpl interval = new IntervalImpl();
 		return interval;
 	}
@@ -2331,7 +2522,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeConstraint createTimeConstraint() {
+	public TimeConstraint createTimeConstraint()
+	{
 		TimeConstraintImpl timeConstraint = new TimeConstraintImpl();
 		return timeConstraint;
 	}
@@ -2341,7 +2533,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntervalConstraint createIntervalConstraint() {
+	public IntervalConstraint createIntervalConstraint()
+	{
 		IntervalConstraintImpl intervalConstraint = new IntervalConstraintImpl();
 		return intervalConstraint;
 	}
@@ -2351,7 +2544,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeInterval createTimeInterval() {
+	public TimeInterval createTimeInterval()
+	{
 		TimeIntervalImpl timeInterval = new TimeIntervalImpl();
 		return timeInterval;
 	}
@@ -2361,7 +2555,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DurationObservationAction createDurationObservationAction() {
+	public DurationObservationAction createDurationObservationAction()
+	{
 		DurationObservationActionImpl durationObservationAction = new DurationObservationActionImpl();
 		return durationObservationAction;
 	}
@@ -2371,7 +2566,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DurationConstraint createDurationConstraint() {
+	public DurationConstraint createDurationConstraint()
+	{
 		DurationConstraintImpl durationConstraint = new DurationConstraintImpl();
 		return durationConstraint;
 	}
@@ -2381,7 +2577,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Deployment createDeployment() {
+	public Deployment createDeployment()
+	{
 		DeploymentImpl deployment = new DeploymentImpl();
 		return deployment;
 	}
@@ -2391,7 +2588,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node createNode() {
+	public Node createNode()
+	{
 		NodeImpl node = new NodeImpl();
 		return node;
 	}
@@ -2401,7 +2599,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Device createDevice() {
+	public Device createDevice()
+	{
 		DeviceImpl device = new DeviceImpl();
 		return device;
 	}
@@ -2411,7 +2610,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutionEnvironment createExecutionEnvironment() {
+	public ExecutionEnvironment createExecutionEnvironment()
+	{
 		ExecutionEnvironmentImpl executionEnvironment = new ExecutionEnvironmentImpl();
 		return executionEnvironment;
 	}
@@ -2421,7 +2621,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommunicationPath createCommunicationPath() {
+	public CommunicationPath createCommunicationPath()
+	{
 		CommunicationPathImpl communicationPath = new CommunicationPathImpl();
 		return communicationPath;
 	}
@@ -2431,7 +2632,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Component createComponent() {
+	public Component createComponent()
+	{
 		ComponentImpl component = new ComponentImpl();
 		return component;
 	}
@@ -2441,7 +2643,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeploymentSpecification createDeploymentSpecification() {
+	public DeploymentSpecification createDeploymentSpecification()
+	{
 		DeploymentSpecificationImpl deploymentSpecification = new DeploymentSpecificationImpl();
 		return deploymentSpecification;
 	}
@@ -2451,7 +2654,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public J_FigureContainer createJ_FigureContainer() {
+  public J_FigureContainer createJ_FigureContainer()
+	{
 		J_FigureContainerImpl j_FigureContainer = new J_FigureContainerImpl();
 		return j_FigureContainer;
 	}
@@ -2461,7 +2665,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_Figure createJ_Figure() {
+	public J_Figure createJ_Figure()
+	{
 		J_FigureImpl j_Figure = new J_FigureImpl();
 		return j_Figure;
 	}
@@ -2471,7 +2676,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_Property createJ_Property() {
+	public J_Property createJ_Property()
+	{
 		J_PropertyImpl j_Property = new J_PropertyImpl();
 		return j_Property;
 	}
@@ -2481,7 +2687,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_Diagram createJ_Diagram() {
+	public J_Diagram createJ_Diagram()
+	{
 		J_DiagramImpl j_Diagram = new J_DiagramImpl();
 		return j_Diagram;
 	}
@@ -2491,7 +2698,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_DiagramHolder createJ_DiagramHolder() {
+	public J_DiagramHolder createJ_DiagramHolder()
+	{
 		J_DiagramHolderImpl j_DiagramHolder = new J_DiagramHolderImpl();
 		return j_DiagramHolder;
 	}
@@ -2501,7 +2709,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AppliedBasicStereotypeValue createAppliedBasicStereotypeValue() {
+	public AppliedBasicStereotypeValue createAppliedBasicStereotypeValue()
+	{
 		AppliedBasicStereotypeValueImpl appliedBasicStereotypeValue = new AppliedBasicStereotypeValueImpl();
 		return appliedBasicStereotypeValue;
 	}
@@ -2511,7 +2720,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyValueSpecification createPropertyValueSpecification() {
+	public PropertyValueSpecification createPropertyValueSpecification()
+	{
 		PropertyValueSpecificationImpl propertyValueSpecification = new PropertyValueSpecificationImpl();
 		return propertyValueSpecification;
 	}
@@ -2521,7 +2731,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedConstituent createDeltaReplacedConstituent() {
+	public DeltaReplacedConstituent createDeltaReplacedConstituent()
+	{
 		DeltaReplacedConstituentImpl deltaReplacedConstituent = new DeltaReplacedConstituentImpl();
 		return deltaReplacedConstituent;
 	}
@@ -2531,7 +2742,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedConstituent createDeltaDeletedConstituent() {
+	public DeltaDeletedConstituent createDeltaDeletedConstituent()
+	{
 		DeltaDeletedConstituentImpl deltaDeletedConstituent = new DeltaDeletedConstituentImpl();
 		return deltaDeletedConstituent;
 	}
@@ -2541,7 +2753,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedAttribute createDeltaReplacedAttribute() {
+	public DeltaReplacedAttribute createDeltaReplacedAttribute()
+	{
 		DeltaReplacedAttributeImpl deltaReplacedAttribute = new DeltaReplacedAttributeImpl();
 		return deltaReplacedAttribute;
 	}
@@ -2551,7 +2764,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedAttribute createDeltaDeletedAttribute() {
+	public DeltaDeletedAttribute createDeltaDeletedAttribute()
+	{
 		DeltaDeletedAttributeImpl deltaDeletedAttribute = new DeltaDeletedAttributeImpl();
 		return deltaDeletedAttribute;
 	}
@@ -2561,7 +2775,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedPort createDeltaReplacedPort() {
+	public DeltaReplacedPort createDeltaReplacedPort()
+	{
 		DeltaReplacedPortImpl deltaReplacedPort = new DeltaReplacedPortImpl();
 		return deltaReplacedPort;
 	}
@@ -2571,7 +2786,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedPort createDeltaDeletedPort() {
+	public DeltaDeletedPort createDeltaDeletedPort()
+	{
 		DeltaDeletedPortImpl deltaDeletedPort = new DeltaDeletedPortImpl();
 		return deltaDeletedPort;
 	}
@@ -2581,7 +2797,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedConnector createDeltaReplacedConnector() {
+	public DeltaReplacedConnector createDeltaReplacedConnector()
+	{
 		DeltaReplacedConnectorImpl deltaReplacedConnector = new DeltaReplacedConnectorImpl();
 		return deltaReplacedConnector;
 	}
@@ -2591,7 +2808,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedConnector createDeltaDeletedConnector() {
+	public DeltaDeletedConnector createDeltaDeletedConnector()
+	{
 		DeltaDeletedConnectorImpl deltaDeletedConnector = new DeltaDeletedConnectorImpl();
 		return deltaDeletedConnector;
 	}
@@ -2601,7 +2819,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedOperation createDeltaReplacedOperation() {
+	public DeltaReplacedOperation createDeltaReplacedOperation()
+	{
 		DeltaReplacedOperationImpl deltaReplacedOperation = new DeltaReplacedOperationImpl();
 		return deltaReplacedOperation;
 	}
@@ -2611,7 +2830,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedOperation createDeltaDeletedOperation() {
+	public DeltaDeletedOperation createDeltaDeletedOperation()
+	{
 		DeltaDeletedOperationImpl deltaDeletedOperation = new DeltaDeletedOperationImpl();
 		return deltaDeletedOperation;
 	}
@@ -2621,7 +2841,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PortRemap createPortRemap() {
+  public PortRemap createPortRemap()
+	{
 		PortRemapImpl portRemap = new PortRemapImpl();
 		return portRemap;
 	}
@@ -2631,7 +2852,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SavedReference createSavedReference() {
+	public SavedReference createSavedReference()
+	{
 		SavedReferenceImpl savedReference = new SavedReferenceImpl();
 		return savedReference;
 	}
@@ -2641,7 +2863,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsFeature createRequirementsFeature() {
+	public RequirementsFeature createRequirementsFeature()
+	{
 		RequirementsFeatureImpl requirementsFeature = new RequirementsFeatureImpl();
 		return requirementsFeature;
 	}
@@ -2651,7 +2874,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsFeatureLink createRequirementsFeatureLink() {
+	public RequirementsFeatureLink createRequirementsFeatureLink()
+	{
 		RequirementsFeatureLinkImpl requirementsFeatureLink = new RequirementsFeatureLinkImpl();
 		return requirementsFeatureLink;
 	}
@@ -2661,7 +2885,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedRequirementsFeatureLink createDeltaReplacedRequirementsFeatureLink() {
+	public DeltaReplacedRequirementsFeatureLink createDeltaReplacedRequirementsFeatureLink()
+	{
 		DeltaReplacedRequirementsFeatureLinkImpl deltaReplacedRequirementsFeatureLink = new DeltaReplacedRequirementsFeatureLinkImpl();
 		return deltaReplacedRequirementsFeatureLink;
 	}
@@ -2671,7 +2896,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedRequirementsFeatureLink createDeltaDeletedRequirementsFeatureLink() {
+	public DeltaDeletedRequirementsFeatureLink createDeltaDeletedRequirementsFeatureLink()
+	{
 		DeltaDeletedRequirementsFeatureLinkImpl deltaDeletedRequirementsFeatureLink = new DeltaDeletedRequirementsFeatureLinkImpl();
 		return deltaDeletedRequirementsFeatureLink;
 	}
@@ -2681,7 +2907,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedTrace createDeltaDeletedTrace() {
+	public DeltaDeletedTrace createDeltaDeletedTrace()
+	{
 		DeltaDeletedTraceImpl deltaDeletedTrace = new DeltaDeletedTraceImpl();
 		return deltaDeletedTrace;
 	}
@@ -2691,7 +2918,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedTrace createDeltaReplacedTrace() {
+	public DeltaReplacedTrace createDeltaReplacedTrace()
+	{
 		DeltaReplacedTraceImpl deltaReplacedTrace = new DeltaReplacedTraceImpl();
 		return deltaReplacedTrace;
 	}
@@ -2701,7 +2929,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer createIntegerFromString(EDataType eDataType, String initialValue) {
+	public Integer createIntegerFromString(EDataType eDataType, String initialValue)
+	{
 		return (Integer)super.createFromString(eDataType, initialValue);
 	}
 
@@ -2710,7 +2939,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIntegerToString(EDataType eDataType, Object instanceValue) {
+	public String convertIntegerToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -2719,7 +2949,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Boolean createBooleanFromString(EDataType eDataType, String initialValue) {
+	public Boolean createBooleanFromString(EDataType eDataType, String initialValue)
+	{
 		return (Boolean)super.createFromString(eDataType, initialValue);
 	}
 
@@ -2728,7 +2959,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertBooleanToString(EDataType eDataType, Object instanceValue) {
+	public String convertBooleanToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -2737,7 +2969,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String createStringFromString(EDataType eDataType, String initialValue) {
+	public String createStringFromString(EDataType eDataType, String initialValue)
+	{
 		return (String)super.createFromString(eDataType, initialValue);
 	}
 
@@ -2746,7 +2979,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertStringToString(EDataType eDataType, Object instanceValue) {
+	public String convertStringToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -2755,7 +2989,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer createUnlimitedNaturalFromString(EDataType eDataType, String initialValue) {
+	public Integer createUnlimitedNaturalFromString(EDataType eDataType, String initialValue)
+	{
 		return (Integer)super.createFromString(eDataType, initialValue);
 	}
 
@@ -2764,7 +2999,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertUnlimitedNaturalToString(EDataType eDataType, Object instanceValue) {
+	public String convertUnlimitedNaturalToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -2773,7 +3009,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set createSetFromString(EDataType eDataType, String initialValue) {
+	public Set createSetFromString(EDataType eDataType, String initialValue)
+	{
 		return (Set)super.createFromString(eDataType, initialValue);
 	}
 
@@ -2782,7 +3019,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertSetToString(EDataType eDataType, Object instanceValue) {
+	public String convertSetToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -2791,7 +3029,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List createSequenceFromString(EDataType eDataType, String initialValue) {
+	public List createSequenceFromString(EDataType eDataType, String initialValue)
+	{
 		return (List)super.createFromString(eDataType, initialValue);
 	}
 
@@ -2800,7 +3039,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertSequenceToString(EDataType eDataType, Object instanceValue) {
+	public String convertSequenceToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -2809,7 +3049,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2Package getUML2Package() {
+	public UML2Package getUML2Package()
+	{
 		return (UML2Package)getEPackage();
 	}
 
@@ -2819,7 +3060,8 @@ public class UML2FactoryImpl extends EFactoryImpl implements UML2Factory {
 	 * @deprecated
 	 * @generated
 	 */
-	public static UML2Package getPackage() {
+	public static UML2Package getPackage()
+	{
 		return UML2Package.eINSTANCE;
 	}
 

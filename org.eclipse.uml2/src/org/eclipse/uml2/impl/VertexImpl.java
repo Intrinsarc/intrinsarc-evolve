@@ -85,7 +85,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VertexImpl() {
+	protected VertexImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -100,7 +101,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getVertex();
 	}
 
@@ -109,7 +111,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Region getContainer() {
+	public Region getContainer()
+	{
 		if (eContainerFeatureID != UML2Package.VERTEX__CONTAINER) return null;
 		return (Region)eContainer;
 	}
@@ -124,7 +127,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Region undeleted_getContainer() {
+  public Region undeleted_getContainer()
+	{
 		Region temp = getContainer();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -136,8 +140,11 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainer(Region newContainer) {
-		if (newContainer != eContainer || (eContainerFeatureID != UML2Package.VERTEX__CONTAINER && newContainer != null)) {
+	public void setContainer(Region newContainer)
+	{
+
+		if (newContainer != eContainer || (eContainerFeatureID != UML2Package.VERTEX__CONTAINER && newContainer != null))
+		{
 			if (EcoreUtil.isAncestor(this, newContainer))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -159,9 +166,13 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOutgoings() {
-		if (outgoing == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOutgoings()
+	{
+		if (outgoing == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		outgoing = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__OUTGOING, UML2Package.TRANSITION__SOURCE);
 			 		return outgoing;
@@ -178,8 +189,12 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOutgoings() {
-		if (outgoing == null) {
+  public EList settable_getOutgoings()
+	{
+		if (outgoing == null)
+		{
+			
+		
 			outgoing = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__OUTGOING, UML2Package.TRANSITION__SOURCE);
 		}
 		return outgoing;
@@ -190,11 +205,14 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOutgoings() {
+  public java.util.ArrayList undeleted_getOutgoings()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (outgoing != null) {
-			for (Object object : outgoing) {
+		if (outgoing != null)
+		{
+			for (Object object : outgoing)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -227,9 +245,13 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getIncomings() {
-		if (incoming == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getIncomings()
+	{
+		if (incoming == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		incoming = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__INCOMING, UML2Package.TRANSITION__TARGET);
 			 		return incoming;
@@ -246,8 +268,12 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getIncomings() {
-		if (incoming == null) {
+  public EList settable_getIncomings()
+	{
+		if (incoming == null)
+		{
+			
+		
 			incoming = new com.intrinsarc.emflist.PersistentEList(Transition.class, this, UML2Package.VERTEX__INCOMING, UML2Package.TRANSITION__TARGET);
 		}
 		return incoming;
@@ -258,11 +284,14 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getIncomings() {
+  public java.util.ArrayList undeleted_getIncomings()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (incoming != null) {
-			for (Object object : incoming) {
+		if (incoming != null)
+		{
+			for (Object object : incoming)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -295,7 +324,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner() {
+	public Element basicGetOwner()
+	{
 		return getContainer();
 	}
 
@@ -304,7 +334,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwner(Element newOwner, NotificationChain msgs) {
+	public NotificationChain basicSetOwner(Element newOwner, NotificationChain msgs)
+	{
 		if (newOwner != null && !(newOwner instanceof Region)) {
 			throw new IllegalArgumentException(String.valueOf(newOwner));
 		}
@@ -318,9 +349,12 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.VERTEX__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.VERTEX__TEMPLATE_BINDING:
@@ -353,9 +387,12 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.VERTEX__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.VERTEX__OWNED_COMMENT:
@@ -390,9 +427,12 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.VERTEX__CONTAINER:
 					return eContainer.eInverseRemove(this, UML2Package.REGION__SUBVERTEX, Region.class, msgs);
 				default:
@@ -407,8 +447,10 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.VERTEX__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.VERTEX__OWNED_ELEMENT:
@@ -463,8 +505,10 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.VERTEX__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -542,8 +586,10 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.VERTEX__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -610,8 +656,10 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.VERTEX__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.VERTEX__OWNED_ELEMENT:
@@ -666,7 +714,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getOwner() {
+	public Element getOwner()
+	{
 		return getContainer();
 	}
 

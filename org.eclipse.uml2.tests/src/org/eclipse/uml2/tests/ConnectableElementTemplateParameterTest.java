@@ -30,7 +30,8 @@ public class ConnectableElementTemplateParameterTest extends TemplateParameterTe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ConnectableElementTemplateParameterTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ConnectableElementTemplateParameterTest extends TemplateParameterTe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectableElementTemplateParameterTest(String name) {
+	public ConnectableElementTemplateParameterTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ConnectableElementTemplateParameterTest extends TemplateParameterTe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ConnectableElementTemplateParameter getFixture() {
+	private ConnectableElementTemplateParameter getFixture()
+	{
 		return (ConnectableElementTemplateParameter)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ConnectableElementTemplateParameterTest extends TemplateParameterTe
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createConnectableElementTemplateParameter());
 	}
 
@@ -70,7 +74,8 @@ public class ConnectableElementTemplateParameterTest extends TemplateParameterTe
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

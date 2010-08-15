@@ -36,7 +36,8 @@ public class ProtocolTransitionTest extends TransitionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ProtocolTransitionTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class ProtocolTransitionTest extends TransitionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolTransitionTest(String name) {
+	public ProtocolTransitionTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class ProtocolTransitionTest extends TransitionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ProtocolTransition getFixture() {
+	private ProtocolTransition getFixture()
+	{
 		return (ProtocolTransition)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class ProtocolTransitionTest extends TransitionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createProtocolTransition());
 	}
 
@@ -76,7 +80,8 @@ public class ProtocolTransitionTest extends TransitionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class ProtocolTransitionTest extends TransitionTest {
 	 * @see org.eclipse.uml2.ProtocolTransition#getReferreds()
 	 * @generated
 	 */
-	public void testGetReferreds() {
+	public void testGetReferreds()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class ProtocolTransitionTest extends TransitionTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements() {
+	public void testGetOwnedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

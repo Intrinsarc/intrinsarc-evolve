@@ -300,8 +300,10 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2AdapterFactory() {
-		if (modelPackage == null) {
+	public UML2AdapterFactory()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = UML2Package.eINSTANCE;
 		}
 	}
@@ -314,11 +316,14 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+	public boolean isFactoryForType(Object object)
+	{
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -331,1004 +336,1338 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected UML2Switch modelSwitch=
-		new UML2Switch() {
-			public Object caseElement(Element object) {
+		new UML2Switch()
+		{
+			public Object caseElement(Element object)
+			{
 				return createElementAdapter();
 			}
-			public Object caseMultiplicityElement(MultiplicityElement object) {
+			public Object caseMultiplicityElement(MultiplicityElement object)
+			{
 				return createMultiplicityElementAdapter();
 			}
-			public Object caseNamedElement(NamedElement object) {
+			public Object caseNamedElement(NamedElement object)
+			{
 				return createNamedElementAdapter();
 			}
-			public Object caseNamespace(Namespace object) {
+			public Object caseNamespace(Namespace object)
+			{
 				return createNamespaceAdapter();
 			}
-			public Object caseOpaqueExpression(OpaqueExpression object) {
+			public Object caseOpaqueExpression(OpaqueExpression object)
+			{
 				return createOpaqueExpressionAdapter();
 			}
-			public Object caseValueSpecification(ValueSpecification object) {
+			public Object caseValueSpecification(ValueSpecification object)
+			{
 				return createValueSpecificationAdapter();
 			}
-			public Object caseExpression(Expression object) {
+			public Object caseExpression(Expression object)
+			{
 				return createExpressionAdapter();
 			}
-			public Object caseComment(Comment object) {
+			public Object caseComment(Comment object)
+			{
 				return createCommentAdapter();
 			}
-			public Object caseDirectedRelationship(DirectedRelationship object) {
+			public Object caseDirectedRelationship(DirectedRelationship object)
+			{
 				return createDirectedRelationshipAdapter();
 			}
-			public Object caseRelationship(Relationship object) {
+			public Object caseRelationship(Relationship object)
+			{
 				return createRelationshipAdapter();
 			}
-			public Object caseClass(org.eclipse.uml2.Class object) {
+			public Object caseClass(org.eclipse.uml2.Class object)
+			{
 				return createClassAdapter();
 			}
-			public Object caseType(Type object) {
+			public Object caseType(Type object)
+			{
 				return createTypeAdapter();
 			}
-			public Object caseProperty(Property object) {
+			public Object caseProperty(Property object)
+			{
 				return createPropertyAdapter();
 			}
-			public Object caseOperation(Operation object) {
+			public Object caseOperation(Operation object)
+			{
 				return createOperationAdapter();
 			}
-			public Object caseTypedElement(TypedElement object) {
+			public Object caseTypedElement(TypedElement object)
+			{
 				return createTypedElementAdapter();
 			}
-			public Object caseParameter(Parameter object) {
+			public Object caseParameter(Parameter object)
+			{
 				return createParameterAdapter();
 			}
-			public Object casePackage(org.eclipse.uml2.Package object) {
+			public Object casePackage(org.eclipse.uml2.Package object)
+			{
 				return createPackageAdapter();
 			}
-			public Object caseEnumeration(Enumeration object) {
+			public Object caseEnumeration(Enumeration object)
+			{
 				return createEnumerationAdapter();
 			}
-			public Object caseDataType(DataType object) {
+			public Object caseDataType(DataType object)
+			{
 				return createDataTypeAdapter();
 			}
-			public Object caseEnumerationLiteral(EnumerationLiteral object) {
+			public Object caseEnumerationLiteral(EnumerationLiteral object)
+			{
 				return createEnumerationLiteralAdapter();
 			}
-			public Object casePrimitiveType(PrimitiveType object) {
+			public Object casePrimitiveType(PrimitiveType object)
+			{
 				return createPrimitiveTypeAdapter();
 			}
-			public Object caseClassifier(Classifier object) {
+			public Object caseClassifier(Classifier object)
+			{
 				return createClassifierAdapter();
 			}
-			public Object caseFeature(Feature object) {
+			public Object caseFeature(Feature object)
+			{
 				return createFeatureAdapter();
 			}
-			public Object caseConstraint(Constraint object) {
+			public Object caseConstraint(Constraint object)
+			{
 				return createConstraintAdapter();
 			}
-			public Object caseLiteralBoolean(LiteralBoolean object) {
+			public Object caseLiteralBoolean(LiteralBoolean object)
+			{
 				return createLiteralBooleanAdapter();
 			}
-			public Object caseLiteralSpecification(LiteralSpecification object) {
+			public Object caseLiteralSpecification(LiteralSpecification object)
+			{
 				return createLiteralSpecificationAdapter();
 			}
-			public Object caseLiteralString(LiteralString object) {
+			public Object caseLiteralString(LiteralString object)
+			{
 				return createLiteralStringAdapter();
 			}
-			public Object caseLiteralNull(LiteralNull object) {
+			public Object caseLiteralNull(LiteralNull object)
+			{
 				return createLiteralNullAdapter();
 			}
-			public Object caseLiteralInteger(LiteralInteger object) {
+			public Object caseLiteralInteger(LiteralInteger object)
+			{
 				return createLiteralIntegerAdapter();
 			}
-			public Object caseLiteralUnlimitedNatural(LiteralUnlimitedNatural object) {
+			public Object caseLiteralUnlimitedNatural(LiteralUnlimitedNatural object)
+			{
 				return createLiteralUnlimitedNaturalAdapter();
 			}
-			public Object caseBehavioralFeature(BehavioralFeature object) {
+			public Object caseBehavioralFeature(BehavioralFeature object)
+			{
 				return createBehavioralFeatureAdapter();
 			}
-			public Object caseStructuralFeature(StructuralFeature object) {
+			public Object caseStructuralFeature(StructuralFeature object)
+			{
 				return createStructuralFeatureAdapter();
 			}
-			public Object caseInstanceSpecification(InstanceSpecification object) {
+			public Object caseInstanceSpecification(InstanceSpecification object)
+			{
 				return createInstanceSpecificationAdapter();
 			}
-			public Object caseSlot(Slot object) {
+			public Object caseSlot(Slot object)
+			{
 				return createSlotAdapter();
 			}
-			public Object caseInstanceValue(InstanceValue object) {
+			public Object caseInstanceValue(InstanceValue object)
+			{
 				return createInstanceValueAdapter();
 			}
-			public Object caseRedefinableElement(RedefinableElement object) {
+			public Object caseRedefinableElement(RedefinableElement object)
+			{
 				return createRedefinableElementAdapter();
 			}
-			public Object caseGeneralization(Generalization object) {
+			public Object caseGeneralization(Generalization object)
+			{
 				return createGeneralizationAdapter();
 			}
-			public Object casePackageableElement(PackageableElement object) {
+			public Object casePackageableElement(PackageableElement object)
+			{
 				return createPackageableElementAdapter();
 			}
-			public Object caseElementImport(ElementImport object) {
+			public Object caseElementImport(ElementImport object)
+			{
 				return createElementImportAdapter();
 			}
-			public Object casePackageImport(PackageImport object) {
+			public Object casePackageImport(PackageImport object)
+			{
 				return createPackageImportAdapter();
 			}
-			public Object caseAssociation(Association object) {
+			public Object caseAssociation(Association object)
+			{
 				return createAssociationAdapter();
 			}
-			public Object casePackageMerge(PackageMerge object) {
+			public Object casePackageMerge(PackageMerge object)
+			{
 				return createPackageMergeAdapter();
 			}
-			public Object caseStereotype(Stereotype object) {
+			public Object caseStereotype(Stereotype object)
+			{
 				return createStereotypeAdapter();
 			}
-			public Object caseProfile(Profile object) {
+			public Object caseProfile(Profile object)
+			{
 				return createProfileAdapter();
 			}
-			public Object caseProfileApplication(ProfileApplication object) {
+			public Object caseProfileApplication(ProfileApplication object)
+			{
 				return createProfileApplicationAdapter();
 			}
-			public Object caseExtension(Extension object) {
+			public Object caseExtension(Extension object)
+			{
 				return createExtensionAdapter();
 			}
-			public Object caseExtensionEnd(ExtensionEnd object) {
+			public Object caseExtensionEnd(ExtensionEnd object)
+			{
 				return createExtensionEndAdapter();
 			}
-			public Object caseBehavior(Behavior object) {
+			public Object caseBehavior(Behavior object)
+			{
 				return createBehaviorAdapter();
 			}
-			public Object caseBehavioredClassifier(BehavioredClassifier object) {
+			public Object caseBehavioredClassifier(BehavioredClassifier object)
+			{
 				return createBehavioredClassifierAdapter();
 			}
-			public Object caseActivity(Activity object) {
+			public Object caseActivity(Activity object)
+			{
 				return createActivityAdapter();
 			}
-			public Object casePermission(Permission object) {
+			public Object casePermission(Permission object)
+			{
 				return createPermissionAdapter();
 			}
-			public Object caseDependency(Dependency object) {
+			public Object caseDependency(Dependency object)
+			{
 				return createDependencyAdapter();
 			}
-			public Object caseUsage(Usage object) {
+			public Object caseUsage(Usage object)
+			{
 				return createUsageAdapter();
 			}
-			public Object caseAbstraction(Abstraction object) {
+			public Object caseAbstraction(Abstraction object)
+			{
 				return createAbstractionAdapter();
 			}
-			public Object caseRealization(Realization object) {
+			public Object caseRealization(Realization object)
+			{
 				return createRealizationAdapter();
 			}
-			public Object caseSubstitution(Substitution object) {
+			public Object caseSubstitution(Substitution object)
+			{
 				return createSubstitutionAdapter();
 			}
-			public Object caseGeneralizationSet(GeneralizationSet object) {
+			public Object caseGeneralizationSet(GeneralizationSet object)
+			{
 				return createGeneralizationSetAdapter();
 			}
-			public Object caseAssociationClass(AssociationClass object) {
+			public Object caseAssociationClass(AssociationClass object)
+			{
 				return createAssociationClassAdapter();
 			}
-			public Object caseInformationItem(InformationItem object) {
+			public Object caseInformationItem(InformationItem object)
+			{
 				return createInformationItemAdapter();
 			}
-			public Object caseInformationFlow(InformationFlow object) {
+			public Object caseInformationFlow(InformationFlow object)
+			{
 				return createInformationFlowAdapter();
 			}
-			public Object caseModel(Model object) {
+			public Object caseModel(Model object)
+			{
 				return createModelAdapter();
 			}
-			public Object caseConnectorEnd(ConnectorEnd object) {
+			public Object caseConnectorEnd(ConnectorEnd object)
+			{
 				return createConnectorEndAdapter();
 			}
-			public Object caseConnectableElement(ConnectableElement object) {
+			public Object caseConnectableElement(ConnectableElement object)
+			{
 				return createConnectableElementAdapter();
 			}
-			public Object caseConnector(Connector object) {
+			public Object caseConnector(Connector object)
+			{
 				return createConnectorAdapter();
 			}
-			public Object caseStructuredClassifier(StructuredClassifier object) {
+			public Object caseStructuredClassifier(StructuredClassifier object)
+			{
 				return createStructuredClassifierAdapter();
 			}
-			public Object caseActivityEdge(ActivityEdge object) {
+			public Object caseActivityEdge(ActivityEdge object)
+			{
 				return createActivityEdgeAdapter();
 			}
-			public Object caseActivityGroup(ActivityGroup object) {
+			public Object caseActivityGroup(ActivityGroup object)
+			{
 				return createActivityGroupAdapter();
 			}
-			public Object caseActivityNode(ActivityNode object) {
+			public Object caseActivityNode(ActivityNode object)
+			{
 				return createActivityNodeAdapter();
 			}
-			public Object caseAction(Action object) {
+			public Object caseAction(Action object)
+			{
 				return createActionAdapter();
 			}
-			public Object caseObjectNode(ObjectNode object) {
+			public Object caseObjectNode(ObjectNode object)
+			{
 				return createObjectNodeAdapter();
 			}
-			public Object caseControlNode(ControlNode object) {
+			public Object caseControlNode(ControlNode object)
+			{
 				return createControlNodeAdapter();
 			}
-			public Object caseControlFlow(ControlFlow object) {
+			public Object caseControlFlow(ControlFlow object)
+			{
 				return createControlFlowAdapter();
 			}
-			public Object caseObjectFlow(ObjectFlow object) {
+			public Object caseObjectFlow(ObjectFlow object)
+			{
 				return createObjectFlowAdapter();
 			}
-			public Object caseInitialNode(InitialNode object) {
+			public Object caseInitialNode(InitialNode object)
+			{
 				return createInitialNodeAdapter();
 			}
-			public Object caseFinalNode(FinalNode object) {
+			public Object caseFinalNode(FinalNode object)
+			{
 				return createFinalNodeAdapter();
 			}
-			public Object caseActivityFinalNode(ActivityFinalNode object) {
+			public Object caseActivityFinalNode(ActivityFinalNode object)
+			{
 				return createActivityFinalNodeAdapter();
 			}
-			public Object caseDecisionNode(DecisionNode object) {
+			public Object caseDecisionNode(DecisionNode object)
+			{
 				return createDecisionNodeAdapter();
 			}
-			public Object caseMergeNode(MergeNode object) {
+			public Object caseMergeNode(MergeNode object)
+			{
 				return createMergeNodeAdapter();
 			}
-			public Object caseExecutableNode(ExecutableNode object) {
+			public Object caseExecutableNode(ExecutableNode object)
+			{
 				return createExecutableNodeAdapter();
 			}
-			public Object caseOutputPin(OutputPin object) {
+			public Object caseOutputPin(OutputPin object)
+			{
 				return createOutputPinAdapter();
 			}
-			public Object caseInputPin(InputPin object) {
+			public Object caseInputPin(InputPin object)
+			{
 				return createInputPinAdapter();
 			}
-			public Object casePin(Pin object) {
+			public Object casePin(Pin object)
+			{
 				return createPinAdapter();
 			}
-			public Object caseActivityParameterNode(ActivityParameterNode object) {
+			public Object caseActivityParameterNode(ActivityParameterNode object)
+			{
 				return createActivityParameterNodeAdapter();
 			}
-			public Object caseValuePin(ValuePin object) {
+			public Object caseValuePin(ValuePin object)
+			{
 				return createValuePinAdapter();
 			}
-			public Object caseInterface(Interface object) {
+			public Object caseInterface(Interface object)
+			{
 				return createInterfaceAdapter();
 			}
-			public Object caseImplementation(Implementation object) {
+			public Object caseImplementation(Implementation object)
+			{
 				return createImplementationAdapter();
 			}
-			public Object caseArtifact(Artifact object) {
+			public Object caseArtifact(Artifact object)
+			{
 				return createArtifactAdapter();
 			}
-			public Object caseManifestation(Manifestation object) {
+			public Object caseManifestation(Manifestation object)
+			{
 				return createManifestationAdapter();
 			}
-			public Object caseActor(Actor object) {
+			public Object caseActor(Actor object)
+			{
 				return createActorAdapter();
 			}
-			public Object caseExtend(Extend object) {
+			public Object caseExtend(Extend object)
+			{
 				return createExtendAdapter();
 			}
-			public Object caseUseCase(UseCase object) {
+			public Object caseUseCase(UseCase object)
+			{
 				return createUseCaseAdapter();
 			}
-			public Object caseExtensionPoint(ExtensionPoint object) {
+			public Object caseExtensionPoint(ExtensionPoint object)
+			{
 				return createExtensionPointAdapter();
 			}
-			public Object caseInclude(Include object) {
+			public Object caseInclude(Include object)
+			{
 				return createIncludeAdapter();
 			}
-			public Object caseCollaborationOccurrence(CollaborationOccurrence object) {
+			public Object caseCollaborationOccurrence(CollaborationOccurrence object)
+			{
 				return createCollaborationOccurrenceAdapter();
 			}
-			public Object caseCollaboration(Collaboration object) {
+			public Object caseCollaboration(Collaboration object)
+			{
 				return createCollaborationAdapter();
 			}
-			public Object casePort(Port object) {
+			public Object casePort(Port object)
+			{
 				return createPortAdapter();
 			}
-			public Object caseEncapsulatedClassifier(EncapsulatedClassifier object) {
+			public Object caseEncapsulatedClassifier(EncapsulatedClassifier object)
+			{
 				return createEncapsulatedClassifierAdapter();
 			}
-			public Object caseCallTrigger(CallTrigger object) {
+			public Object caseCallTrigger(CallTrigger object)
+			{
 				return createCallTriggerAdapter();
 			}
-			public Object caseMessageTrigger(MessageTrigger object) {
+			public Object caseMessageTrigger(MessageTrigger object)
+			{
 				return createMessageTriggerAdapter();
 			}
-			public Object caseChangeTrigger(ChangeTrigger object) {
+			public Object caseChangeTrigger(ChangeTrigger object)
+			{
 				return createChangeTriggerAdapter();
 			}
-			public Object caseTrigger(Trigger object) {
+			public Object caseTrigger(Trigger object)
+			{
 				return createTriggerAdapter();
 			}
-			public Object caseReception(Reception object) {
+			public Object caseReception(Reception object)
+			{
 				return createReceptionAdapter();
 			}
-			public Object caseSignal(Signal object) {
+			public Object caseSignal(Signal object)
+			{
 				return createSignalAdapter();
 			}
-			public Object caseSignalTrigger(SignalTrigger object) {
+			public Object caseSignalTrigger(SignalTrigger object)
+			{
 				return createSignalTriggerAdapter();
 			}
-			public Object caseTimeTrigger(TimeTrigger object) {
+			public Object caseTimeTrigger(TimeTrigger object)
+			{
 				return createTimeTriggerAdapter();
 			}
-			public Object caseAnyTrigger(AnyTrigger object) {
+			public Object caseAnyTrigger(AnyTrigger object)
+			{
 				return createAnyTriggerAdapter();
 			}
-			public Object caseVariable(Variable object) {
+			public Object caseVariable(Variable object)
+			{
 				return createVariableAdapter();
 			}
-			public Object caseStructuredActivityNode(StructuredActivityNode object) {
+			public Object caseStructuredActivityNode(StructuredActivityNode object)
+			{
 				return createStructuredActivityNodeAdapter();
 			}
-			public Object caseConditionalNode(ConditionalNode object) {
+			public Object caseConditionalNode(ConditionalNode object)
+			{
 				return createConditionalNodeAdapter();
 			}
-			public Object caseClause(Clause object) {
+			public Object caseClause(Clause object)
+			{
 				return createClauseAdapter();
 			}
-			public Object caseLoopNode(LoopNode object) {
+			public Object caseLoopNode(LoopNode object)
+			{
 				return createLoopNodeAdapter();
 			}
-			public Object caseInteraction(Interaction object) {
+			public Object caseInteraction(Interaction object)
+			{
 				return createInteractionAdapter();
 			}
-			public Object caseInteractionFragment(InteractionFragment object) {
+			public Object caseInteractionFragment(InteractionFragment object)
+			{
 				return createInteractionFragmentAdapter();
 			}
-			public Object caseLifeline(Lifeline object) {
+			public Object caseLifeline(Lifeline object)
+			{
 				return createLifelineAdapter();
 			}
-			public Object caseMessage(Message object) {
+			public Object caseMessage(Message object)
+			{
 				return createMessageAdapter();
 			}
-			public Object caseGeneralOrdering(GeneralOrdering object) {
+			public Object caseGeneralOrdering(GeneralOrdering object)
+			{
 				return createGeneralOrderingAdapter();
 			}
-			public Object caseMessageEnd(MessageEnd object) {
+			public Object caseMessageEnd(MessageEnd object)
+			{
 				return createMessageEndAdapter();
 			}
-			public Object caseEventOccurrence(EventOccurrence object) {
+			public Object caseEventOccurrence(EventOccurrence object)
+			{
 				return createEventOccurrenceAdapter();
 			}
-			public Object caseExecutionOccurrence(ExecutionOccurrence object) {
+			public Object caseExecutionOccurrence(ExecutionOccurrence object)
+			{
 				return createExecutionOccurrenceAdapter();
 			}
-			public Object caseStateInvariant(StateInvariant object) {
+			public Object caseStateInvariant(StateInvariant object)
+			{
 				return createStateInvariantAdapter();
 			}
-			public Object caseStop(Stop object) {
+			public Object caseStop(Stop object)
+			{
 				return createStopAdapter();
 			}
-			public Object caseTemplateSignature(TemplateSignature object) {
+			public Object caseTemplateSignature(TemplateSignature object)
+			{
 				return createTemplateSignatureAdapter();
 			}
-			public Object caseTemplateParameter(TemplateParameter object) {
+			public Object caseTemplateParameter(TemplateParameter object)
+			{
 				return createTemplateParameterAdapter();
 			}
-			public Object caseTemplateableElement(TemplateableElement object) {
+			public Object caseTemplateableElement(TemplateableElement object)
+			{
 				return createTemplateableElementAdapter();
 			}
-			public Object caseStringExpression(StringExpression object) {
+			public Object caseStringExpression(StringExpression object)
+			{
 				return createStringExpressionAdapter();
 			}
-			public Object caseParameterableElement(ParameterableElement object) {
+			public Object caseParameterableElement(ParameterableElement object)
+			{
 				return createParameterableElementAdapter();
 			}
-			public Object caseTemplateBinding(TemplateBinding object) {
+			public Object caseTemplateBinding(TemplateBinding object)
+			{
 				return createTemplateBindingAdapter();
 			}
-			public Object caseTemplateParameterSubstitution(TemplateParameterSubstitution object) {
+			public Object caseTemplateParameterSubstitution(TemplateParameterSubstitution object)
+			{
 				return createTemplateParameterSubstitutionAdapter();
 			}
-			public Object caseOperationTemplateParameter(OperationTemplateParameter object) {
+			public Object caseOperationTemplateParameter(OperationTemplateParameter object)
+			{
 				return createOperationTemplateParameterAdapter();
 			}
-			public Object caseClassifierTemplateParameter(ClassifierTemplateParameter object) {
+			public Object caseClassifierTemplateParameter(ClassifierTemplateParameter object)
+			{
 				return createClassifierTemplateParameterAdapter();
 			}
-			public Object caseParameterableClassifier(ParameterableClassifier object) {
+			public Object caseParameterableClassifier(ParameterableClassifier object)
+			{
 				return createParameterableClassifierAdapter();
 			}
-			public Object caseRedefinableTemplateSignature(RedefinableTemplateSignature object) {
+			public Object caseRedefinableTemplateSignature(RedefinableTemplateSignature object)
+			{
 				return createRedefinableTemplateSignatureAdapter();
 			}
-			public Object caseTemplateableClassifier(TemplateableClassifier object) {
+			public Object caseTemplateableClassifier(TemplateableClassifier object)
+			{
 				return createTemplateableClassifierAdapter();
 			}
-			public Object caseConnectableElementTemplateParameter(ConnectableElementTemplateParameter object) {
+			public Object caseConnectableElementTemplateParameter(ConnectableElementTemplateParameter object)
+			{
 				return createConnectableElementTemplateParameterAdapter();
 			}
-			public Object caseForkNode(ForkNode object) {
+			public Object caseForkNode(ForkNode object)
+			{
 				return createForkNodeAdapter();
 			}
-			public Object caseJoinNode(JoinNode object) {
+			public Object caseJoinNode(JoinNode object)
+			{
 				return createJoinNodeAdapter();
 			}
-			public Object caseFlowFinalNode(FlowFinalNode object) {
+			public Object caseFlowFinalNode(FlowFinalNode object)
+			{
 				return createFlowFinalNodeAdapter();
 			}
-			public Object caseCentralBufferNode(CentralBufferNode object) {
+			public Object caseCentralBufferNode(CentralBufferNode object)
+			{
 				return createCentralBufferNodeAdapter();
 			}
-			public Object caseActivityPartition(ActivityPartition object) {
+			public Object caseActivityPartition(ActivityPartition object)
+			{
 				return createActivityPartitionAdapter();
 			}
-			public Object caseExpansionNode(ExpansionNode object) {
+			public Object caseExpansionNode(ExpansionNode object)
+			{
 				return createExpansionNodeAdapter();
 			}
-			public Object caseExpansionRegion(ExpansionRegion object) {
+			public Object caseExpansionRegion(ExpansionRegion object)
+			{
 				return createExpansionRegionAdapter();
 			}
-			public Object caseExceptionHandler(ExceptionHandler object) {
+			public Object caseExceptionHandler(ExceptionHandler object)
+			{
 				return createExceptionHandlerAdapter();
 			}
-			public Object caseInteractionOccurrence(InteractionOccurrence object) {
+			public Object caseInteractionOccurrence(InteractionOccurrence object)
+			{
 				return createInteractionOccurrenceAdapter();
 			}
-			public Object caseGate(Gate object) {
+			public Object caseGate(Gate object)
+			{
 				return createGateAdapter();
 			}
-			public Object casePartDecomposition(PartDecomposition object) {
+			public Object casePartDecomposition(PartDecomposition object)
+			{
 				return createPartDecompositionAdapter();
 			}
-			public Object caseInteractionOperand(InteractionOperand object) {
+			public Object caseInteractionOperand(InteractionOperand object)
+			{
 				return createInteractionOperandAdapter();
 			}
-			public Object caseInteractionConstraint(InteractionConstraint object) {
+			public Object caseInteractionConstraint(InteractionConstraint object)
+			{
 				return createInteractionConstraintAdapter();
 			}
-			public Object caseCombinedFragment(CombinedFragment object) {
+			public Object caseCombinedFragment(CombinedFragment object)
+			{
 				return createCombinedFragmentAdapter();
 			}
-			public Object caseContinuation(Continuation object) {
+			public Object caseContinuation(Continuation object)
+			{
 				return createContinuationAdapter();
 			}
-			public Object caseStateMachine(StateMachine object) {
+			public Object caseStateMachine(StateMachine object)
+			{
 				return createStateMachineAdapter();
 			}
-			public Object caseRegion(Region object) {
+			public Object caseRegion(Region object)
+			{
 				return createRegionAdapter();
 			}
-			public Object casePseudostate(Pseudostate object) {
+			public Object casePseudostate(Pseudostate object)
+			{
 				return createPseudostateAdapter();
 			}
-			public Object caseState(State object) {
+			public Object caseState(State object)
+			{
 				return createStateAdapter();
 			}
-			public Object caseVertex(Vertex object) {
+			public Object caseVertex(Vertex object)
+			{
 				return createVertexAdapter();
 			}
-			public Object caseConnectionPointReference(ConnectionPointReference object) {
+			public Object caseConnectionPointReference(ConnectionPointReference object)
+			{
 				return createConnectionPointReferenceAdapter();
 			}
-			public Object caseTransition(Transition object) {
+			public Object caseTransition(Transition object)
+			{
 				return createTransitionAdapter();
 			}
-			public Object caseFinalState(FinalState object) {
+			public Object caseFinalState(FinalState object)
+			{
 				return createFinalStateAdapter();
 			}
-			public Object caseCreateObjectAction(CreateObjectAction object) {
+			public Object caseCreateObjectAction(CreateObjectAction object)
+			{
 				return createCreateObjectActionAdapter();
 			}
-			public Object caseDestroyObjectAction(DestroyObjectAction object) {
+			public Object caseDestroyObjectAction(DestroyObjectAction object)
+			{
 				return createDestroyObjectActionAdapter();
 			}
-			public Object caseTestIdentityAction(TestIdentityAction object) {
+			public Object caseTestIdentityAction(TestIdentityAction object)
+			{
 				return createTestIdentityActionAdapter();
 			}
-			public Object caseReadSelfAction(ReadSelfAction object) {
+			public Object caseReadSelfAction(ReadSelfAction object)
+			{
 				return createReadSelfActionAdapter();
 			}
-			public Object caseStructuralFeatureAction(StructuralFeatureAction object) {
+			public Object caseStructuralFeatureAction(StructuralFeatureAction object)
+			{
 				return createStructuralFeatureActionAdapter();
 			}
-			public Object caseReadStructuralFeatureAction(ReadStructuralFeatureAction object) {
+			public Object caseReadStructuralFeatureAction(ReadStructuralFeatureAction object)
+			{
 				return createReadStructuralFeatureActionAdapter();
 			}
-			public Object caseWriteStructuralFeatureAction(WriteStructuralFeatureAction object) {
+			public Object caseWriteStructuralFeatureAction(WriteStructuralFeatureAction object)
+			{
 				return createWriteStructuralFeatureActionAdapter();
 			}
-			public Object caseClearStructuralFeatureAction(ClearStructuralFeatureAction object) {
+			public Object caseClearStructuralFeatureAction(ClearStructuralFeatureAction object)
+			{
 				return createClearStructuralFeatureActionAdapter();
 			}
-			public Object caseRemoveStructuralFeatureValueAction(RemoveStructuralFeatureValueAction object) {
+			public Object caseRemoveStructuralFeatureValueAction(RemoveStructuralFeatureValueAction object)
+			{
 				return createRemoveStructuralFeatureValueActionAdapter();
 			}
-			public Object caseAddStructuralFeatureValueAction(AddStructuralFeatureValueAction object) {
+			public Object caseAddStructuralFeatureValueAction(AddStructuralFeatureValueAction object)
+			{
 				return createAddStructuralFeatureValueActionAdapter();
 			}
-			public Object caseLinkAction(LinkAction object) {
+			public Object caseLinkAction(LinkAction object)
+			{
 				return createLinkActionAdapter();
 			}
-			public Object caseLinkEndData(LinkEndData object) {
+			public Object caseLinkEndData(LinkEndData object)
+			{
 				return createLinkEndDataAdapter();
 			}
-			public Object caseReadLinkAction(ReadLinkAction object) {
+			public Object caseReadLinkAction(ReadLinkAction object)
+			{
 				return createReadLinkActionAdapter();
 			}
-			public Object caseLinkEndCreationData(LinkEndCreationData object) {
+			public Object caseLinkEndCreationData(LinkEndCreationData object)
+			{
 				return createLinkEndCreationDataAdapter();
 			}
-			public Object caseCreateLinkAction(CreateLinkAction object) {
+			public Object caseCreateLinkAction(CreateLinkAction object)
+			{
 				return createCreateLinkActionAdapter();
 			}
-			public Object caseWriteLinkAction(WriteLinkAction object) {
+			public Object caseWriteLinkAction(WriteLinkAction object)
+			{
 				return createWriteLinkActionAdapter();
 			}
-			public Object caseDestroyLinkAction(DestroyLinkAction object) {
+			public Object caseDestroyLinkAction(DestroyLinkAction object)
+			{
 				return createDestroyLinkActionAdapter();
 			}
-			public Object caseClearAssociationAction(ClearAssociationAction object) {
+			public Object caseClearAssociationAction(ClearAssociationAction object)
+			{
 				return createClearAssociationActionAdapter();
 			}
-			public Object caseVariableAction(VariableAction object) {
+			public Object caseVariableAction(VariableAction object)
+			{
 				return createVariableActionAdapter();
 			}
-			public Object caseReadVariableAction(ReadVariableAction object) {
+			public Object caseReadVariableAction(ReadVariableAction object)
+			{
 				return createReadVariableActionAdapter();
 			}
-			public Object caseWriteVariableAction(WriteVariableAction object) {
+			public Object caseWriteVariableAction(WriteVariableAction object)
+			{
 				return createWriteVariableActionAdapter();
 			}
-			public Object caseClearVariableAction(ClearVariableAction object) {
+			public Object caseClearVariableAction(ClearVariableAction object)
+			{
 				return createClearVariableActionAdapter();
 			}
-			public Object caseAddVariableValueAction(AddVariableValueAction object) {
+			public Object caseAddVariableValueAction(AddVariableValueAction object)
+			{
 				return createAddVariableValueActionAdapter();
 			}
-			public Object caseRemoveVariableValueAction(RemoveVariableValueAction object) {
+			public Object caseRemoveVariableValueAction(RemoveVariableValueAction object)
+			{
 				return createRemoveVariableValueActionAdapter();
 			}
-			public Object caseApplyFunctionAction(ApplyFunctionAction object) {
+			public Object caseApplyFunctionAction(ApplyFunctionAction object)
+			{
 				return createApplyFunctionActionAdapter();
 			}
-			public Object casePrimitiveFunction(PrimitiveFunction object) {
+			public Object casePrimitiveFunction(PrimitiveFunction object)
+			{
 				return createPrimitiveFunctionAdapter();
 			}
-			public Object caseCallAction(CallAction object) {
+			public Object caseCallAction(CallAction object)
+			{
 				return createCallActionAdapter();
 			}
-			public Object caseInvocationAction(InvocationAction object) {
+			public Object caseInvocationAction(InvocationAction object)
+			{
 				return createInvocationActionAdapter();
 			}
-			public Object caseSendSignalAction(SendSignalAction object) {
+			public Object caseSendSignalAction(SendSignalAction object)
+			{
 				return createSendSignalActionAdapter();
 			}
-			public Object caseBroadcastSignalAction(BroadcastSignalAction object) {
+			public Object caseBroadcastSignalAction(BroadcastSignalAction object)
+			{
 				return createBroadcastSignalActionAdapter();
 			}
-			public Object caseSendObjectAction(SendObjectAction object) {
+			public Object caseSendObjectAction(SendObjectAction object)
+			{
 				return createSendObjectActionAdapter();
 			}
-			public Object caseCallOperationAction(CallOperationAction object) {
+			public Object caseCallOperationAction(CallOperationAction object)
+			{
 				return createCallOperationActionAdapter();
 			}
-			public Object caseCallBehaviorAction(CallBehaviorAction object) {
+			public Object caseCallBehaviorAction(CallBehaviorAction object)
+			{
 				return createCallBehaviorActionAdapter();
 			}
-			public Object caseTimeExpression(TimeExpression object) {
+			public Object caseTimeExpression(TimeExpression object)
+			{
 				return createTimeExpressionAdapter();
 			}
-			public Object caseDuration(Duration object) {
+			public Object caseDuration(Duration object)
+			{
 				return createDurationAdapter();
 			}
-			public Object caseTimeObservationAction(TimeObservationAction object) {
+			public Object caseTimeObservationAction(TimeObservationAction object)
+			{
 				return createTimeObservationActionAdapter();
 			}
-			public Object caseDurationInterval(DurationInterval object) {
+			public Object caseDurationInterval(DurationInterval object)
+			{
 				return createDurationIntervalAdapter();
 			}
-			public Object caseInterval(Interval object) {
+			public Object caseInterval(Interval object)
+			{
 				return createIntervalAdapter();
 			}
-			public Object caseTimeConstraint(TimeConstraint object) {
+			public Object caseTimeConstraint(TimeConstraint object)
+			{
 				return createTimeConstraintAdapter();
 			}
-			public Object caseIntervalConstraint(IntervalConstraint object) {
+			public Object caseIntervalConstraint(IntervalConstraint object)
+			{
 				return createIntervalConstraintAdapter();
 			}
-			public Object caseTimeInterval(TimeInterval object) {
+			public Object caseTimeInterval(TimeInterval object)
+			{
 				return createTimeIntervalAdapter();
 			}
-			public Object caseDurationObservationAction(DurationObservationAction object) {
+			public Object caseDurationObservationAction(DurationObservationAction object)
+			{
 				return createDurationObservationActionAdapter();
 			}
-			public Object caseDurationConstraint(DurationConstraint object) {
+			public Object caseDurationConstraint(DurationConstraint object)
+			{
 				return createDurationConstraintAdapter();
 			}
-			public Object caseDataStoreNode(DataStoreNode object) {
+			public Object caseDataStoreNode(DataStoreNode object)
+			{
 				return createDataStoreNodeAdapter();
 			}
-			public Object caseInterruptibleActivityRegion(InterruptibleActivityRegion object) {
+			public Object caseInterruptibleActivityRegion(InterruptibleActivityRegion object)
+			{
 				return createInterruptibleActivityRegionAdapter();
 			}
-			public Object caseParameterSet(ParameterSet object) {
+			public Object caseParameterSet(ParameterSet object)
+			{
 				return createParameterSetAdapter();
 			}
-			public Object caseComponent(Component object) {
+			public Object caseComponent(Component object)
+			{
 				return createComponentAdapter();
 			}
-			public Object caseDeployment(Deployment object) {
+			public Object caseDeployment(Deployment object)
+			{
 				return createDeploymentAdapter();
 			}
-			public Object caseDeployedArtifact(DeployedArtifact object) {
+			public Object caseDeployedArtifact(DeployedArtifact object)
+			{
 				return createDeployedArtifactAdapter();
 			}
-			public Object caseDeploymentTarget(DeploymentTarget object) {
+			public Object caseDeploymentTarget(DeploymentTarget object)
+			{
 				return createDeploymentTargetAdapter();
 			}
-			public Object caseNode(Node object) {
+			public Object caseNode(Node object)
+			{
 				return createNodeAdapter();
 			}
-			public Object caseDevice(Device object) {
+			public Object caseDevice(Device object)
+			{
 				return createDeviceAdapter();
 			}
-			public Object caseExecutionEnvironment(ExecutionEnvironment object) {
+			public Object caseExecutionEnvironment(ExecutionEnvironment object)
+			{
 				return createExecutionEnvironmentAdapter();
 			}
-			public Object caseCommunicationPath(CommunicationPath object) {
+			public Object caseCommunicationPath(CommunicationPath object)
+			{
 				return createCommunicationPathAdapter();
 			}
-			public Object caseProtocolConformance(ProtocolConformance object) {
+			public Object caseProtocolConformance(ProtocolConformance object)
+			{
 				return createProtocolConformanceAdapter();
 			}
-			public Object caseProtocolStateMachine(ProtocolStateMachine object) {
+			public Object caseProtocolStateMachine(ProtocolStateMachine object)
+			{
 				return createProtocolStateMachineAdapter();
 			}
-			public Object caseProtocolTransition(ProtocolTransition object) {
+			public Object caseProtocolTransition(ProtocolTransition object)
+			{
 				return createProtocolTransitionAdapter();
 			}
-			public Object caseReadExtentAction(ReadExtentAction object) {
+			public Object caseReadExtentAction(ReadExtentAction object)
+			{
 				return createReadExtentActionAdapter();
 			}
-			public Object caseReclassifyObjectAction(ReclassifyObjectAction object) {
+			public Object caseReclassifyObjectAction(ReclassifyObjectAction object)
+			{
 				return createReclassifyObjectActionAdapter();
 			}
-			public Object caseReadIsClassifiedObjectAction(ReadIsClassifiedObjectAction object) {
+			public Object caseReadIsClassifiedObjectAction(ReadIsClassifiedObjectAction object)
+			{
 				return createReadIsClassifiedObjectActionAdapter();
 			}
-			public Object caseStartOwnedBehaviorAction(StartOwnedBehaviorAction object) {
+			public Object caseStartOwnedBehaviorAction(StartOwnedBehaviorAction object)
+			{
 				return createStartOwnedBehaviorActionAdapter();
 			}
-			public Object caseQualifierValue(QualifierValue object) {
+			public Object caseQualifierValue(QualifierValue object)
+			{
 				return createQualifierValueAdapter();
 			}
-			public Object caseReadLinkObjectEndAction(ReadLinkObjectEndAction object) {
+			public Object caseReadLinkObjectEndAction(ReadLinkObjectEndAction object)
+			{
 				return createReadLinkObjectEndActionAdapter();
 			}
-			public Object caseReadLinkObjectEndQualifierAction(ReadLinkObjectEndQualifierAction object) {
+			public Object caseReadLinkObjectEndQualifierAction(ReadLinkObjectEndQualifierAction object)
+			{
 				return createReadLinkObjectEndQualifierActionAdapter();
 			}
-			public Object caseCreateLinkObjectAction(CreateLinkObjectAction object) {
+			public Object caseCreateLinkObjectAction(CreateLinkObjectAction object)
+			{
 				return createCreateLinkObjectActionAdapter();
 			}
-			public Object caseAcceptEventAction(AcceptEventAction object) {
+			public Object caseAcceptEventAction(AcceptEventAction object)
+			{
 				return createAcceptEventActionAdapter();
 			}
-			public Object caseAcceptCallAction(AcceptCallAction object) {
+			public Object caseAcceptCallAction(AcceptCallAction object)
+			{
 				return createAcceptCallActionAdapter();
 			}
-			public Object caseReplyAction(ReplyAction object) {
+			public Object caseReplyAction(ReplyAction object)
+			{
 				return createReplyActionAdapter();
 			}
-			public Object caseRaiseExceptionAction(RaiseExceptionAction object) {
+			public Object caseRaiseExceptionAction(RaiseExceptionAction object)
+			{
 				return createRaiseExceptionActionAdapter();
 			}
-			public Object caseDeploymentSpecification(DeploymentSpecification object) {
+			public Object caseDeploymentSpecification(DeploymentSpecification object)
+			{
 				return createDeploymentSpecificationAdapter();
 			}
-			public Object caseJ_FigureContainer(J_FigureContainer object) {
+			public Object caseJ_FigureContainer(J_FigureContainer object)
+			{
 				return createJ_FigureContainerAdapter();
 			}
-			public Object caseJ_Figure(J_Figure object) {
+			public Object caseJ_Figure(J_Figure object)
+			{
 				return createJ_FigureAdapter();
 			}
-			public Object caseJ_Property(J_Property object) {
+			public Object caseJ_Property(J_Property object)
+			{
 				return createJ_PropertyAdapter();
 			}
-			public Object caseJ_Diagram(J_Diagram object) {
+			public Object caseJ_Diagram(J_Diagram object)
+			{
 				return createJ_DiagramAdapter();
 			}
-			public Object caseJ_DiagramHolder(J_DiagramHolder object) {
+			public Object caseJ_DiagramHolder(J_DiagramHolder object)
+			{
 				return createJ_DiagramHolderAdapter();
 			}
-			public Object caseAppliedBasicStereotypeValue(AppliedBasicStereotypeValue object) {
+			public Object caseAppliedBasicStereotypeValue(AppliedBasicStereotypeValue object)
+			{
 				return createAppliedBasicStereotypeValueAdapter();
 			}
-			public Object casePropertyValueSpecification(PropertyValueSpecification object) {
+			public Object casePropertyValueSpecification(PropertyValueSpecification object)
+			{
 				return createPropertyValueSpecificationAdapter();
 			}
-			public Object caseDeltaReplacedConstituent(DeltaReplacedConstituent object) {
+			public Object caseDeltaReplacedConstituent(DeltaReplacedConstituent object)
+			{
 				return createDeltaReplacedConstituentAdapter();
 			}
-			public Object caseDeltaDeletedConstituent(DeltaDeletedConstituent object) {
+			public Object caseDeltaDeletedConstituent(DeltaDeletedConstituent object)
+			{
 				return createDeltaDeletedConstituentAdapter();
 			}
-			public Object caseDeltaReplacedAttribute(DeltaReplacedAttribute object) {
+			public Object caseDeltaReplacedAttribute(DeltaReplacedAttribute object)
+			{
 				return createDeltaReplacedAttributeAdapter();
 			}
-			public Object caseDeltaDeletedAttribute(DeltaDeletedAttribute object) {
+			public Object caseDeltaDeletedAttribute(DeltaDeletedAttribute object)
+			{
 				return createDeltaDeletedAttributeAdapter();
 			}
-			public Object caseDeltaReplacedPort(DeltaReplacedPort object) {
+			public Object caseDeltaReplacedPort(DeltaReplacedPort object)
+			{
 				return createDeltaReplacedPortAdapter();
 			}
-			public Object caseDeltaDeletedPort(DeltaDeletedPort object) {
+			public Object caseDeltaDeletedPort(DeltaDeletedPort object)
+			{
 				return createDeltaDeletedPortAdapter();
 			}
-			public Object caseDeltaReplacedConnector(DeltaReplacedConnector object) {
+			public Object caseDeltaReplacedConnector(DeltaReplacedConnector object)
+			{
 				return createDeltaReplacedConnectorAdapter();
 			}
-			public Object caseDeltaDeletedConnector(DeltaDeletedConnector object) {
+			public Object caseDeltaDeletedConnector(DeltaDeletedConnector object)
+			{
 				return createDeltaDeletedConnectorAdapter();
 			}
-			public Object caseDeltaReplacedOperation(DeltaReplacedOperation object) {
+			public Object caseDeltaReplacedOperation(DeltaReplacedOperation object)
+			{
 				return createDeltaReplacedOperationAdapter();
 			}
-			public Object caseDeltaDeletedOperation(DeltaDeletedOperation object) {
+			public Object caseDeltaDeletedOperation(DeltaDeletedOperation object)
+			{
 				return createDeltaDeletedOperationAdapter();
 			}
-			public Object casePortRemap(PortRemap object) {
+			public Object casePortRemap(PortRemap object)
+			{
 				return createPortRemapAdapter();
 			}
-			public Object caseSavedReference(SavedReference object) {
+			public Object caseSavedReference(SavedReference object)
+			{
 				return createSavedReferenceAdapter();
 			}
-			public Object caseRequirementsFeature(RequirementsFeature object) {
+			public Object caseRequirementsFeature(RequirementsFeature object)
+			{
 				return createRequirementsFeatureAdapter();
 			}
-			public Object caseRequirementsFeatureLink(RequirementsFeatureLink object) {
+			public Object caseRequirementsFeatureLink(RequirementsFeatureLink object)
+			{
 				return createRequirementsFeatureLinkAdapter();
 			}
-			public Object caseDeltaReplacedRequirementsFeatureLink(DeltaReplacedRequirementsFeatureLink object) {
+			public Object caseDeltaReplacedRequirementsFeatureLink(DeltaReplacedRequirementsFeatureLink object)
+			{
 				return createDeltaReplacedRequirementsFeatureLinkAdapter();
 			}
-			public Object caseDeltaDeletedRequirementsFeatureLink(DeltaDeletedRequirementsFeatureLink object) {
+			public Object caseDeltaDeletedRequirementsFeatureLink(DeltaDeletedRequirementsFeatureLink object)
+			{
 				return createDeltaDeletedRequirementsFeatureLinkAdapter();
 			}
-			public Object caseDeltaDeletedTrace(DeltaDeletedTrace object) {
+			public Object caseDeltaDeletedTrace(DeltaDeletedTrace object)
+			{
 				return createDeltaDeletedTraceAdapter();
 			}
-			public Object caseDeltaReplacedTrace(DeltaReplacedTrace object) {
+			public Object caseDeltaReplacedTrace(DeltaReplacedTrace object)
+			{
 				return createDeltaReplacedTraceAdapter();
 			}
-			public Object caseEModelElement(EModelElement object) {
+			public Object caseEModelElement(EModelElement object)
+			{
 				return createEModelElementAdapter();
 			}
-			public Object caseUML2_Element(Element object) {
+			public Object caseUML2_Element(Element object)
+			{
 				return createUML2_ElementAdapter();
 			}
-			public Object caseUML2_TemplateableElement(TemplateableElement object) {
+			public Object caseUML2_TemplateableElement(TemplateableElement object)
+			{
 				return createUML2_TemplateableElementAdapter();
 			}
-			public Object caseUML2_NamedElement(NamedElement object) {
+			public Object caseUML2_NamedElement(NamedElement object)
+			{
 				return createUML2_NamedElementAdapter();
 			}
-			public Object caseUML2_TypedElement(TypedElement object) {
+			public Object caseUML2_TypedElement(TypedElement object)
+			{
 				return createUML2_TypedElementAdapter();
 			}
-			public Object caseUML2_ParameterableElement(ParameterableElement object) {
+			public Object caseUML2_ParameterableElement(ParameterableElement object)
+			{
 				return createUML2_ParameterableElementAdapter();
 			}
-			public Object caseUML2_ValueSpecification(ValueSpecification object) {
+			public Object caseUML2_ValueSpecification(ValueSpecification object)
+			{
 				return createUML2_ValueSpecificationAdapter();
 			}
-			public Object caseUML2_OpaqueExpression(OpaqueExpression object) {
+			public Object caseUML2_OpaqueExpression(OpaqueExpression object)
+			{
 				return createUML2_OpaqueExpressionAdapter();
 			}
-			public Object caseUML2_Relationship(Relationship object) {
+			public Object caseUML2_Relationship(Relationship object)
+			{
 				return createUML2_RelationshipAdapter();
 			}
-			public Object caseUML2_Namespace(Namespace object) {
+			public Object caseUML2_Namespace(Namespace object)
+			{
 				return createUML2_NamespaceAdapter();
 			}
-			public Object caseUML2_PackageableElement(PackageableElement object) {
+			public Object caseUML2_PackageableElement(PackageableElement object)
+			{
 				return createUML2_PackageableElementAdapter();
 			}
-			public Object caseUML2_Type(Type object) {
+			public Object caseUML2_Type(Type object)
+			{
 				return createUML2_TypeAdapter();
 			}
-			public Object caseUML2_RedefinableElement(RedefinableElement object) {
+			public Object caseUML2_RedefinableElement(RedefinableElement object)
+			{
 				return createUML2_RedefinableElementAdapter();
 			}
-			public Object caseUML2_Classifier(Classifier object) {
+			public Object caseUML2_Classifier(Classifier object)
+			{
 				return createUML2_ClassifierAdapter();
 			}
-			public Object caseUML2_BehavioredClassifier(BehavioredClassifier object) {
+			public Object caseUML2_BehavioredClassifier(BehavioredClassifier object)
+			{
 				return createUML2_BehavioredClassifierAdapter();
 			}
-			public Object caseUML2_StructuredClassifier(StructuredClassifier object) {
+			public Object caseUML2_StructuredClassifier(StructuredClassifier object)
+			{
 				return createUML2_StructuredClassifierAdapter();
 			}
-			public Object caseUML2_EncapsulatedClassifier(EncapsulatedClassifier object) {
+			public Object caseUML2_EncapsulatedClassifier(EncapsulatedClassifier object)
+			{
 				return createUML2_EncapsulatedClassifierAdapter();
 			}
-			public Object caseUML2_Feature(Feature object) {
+			public Object caseUML2_Feature(Feature object)
+			{
 				return createUML2_FeatureAdapter();
 			}
-			public Object caseUML2_MultiplicityElement(MultiplicityElement object) {
+			public Object caseUML2_MultiplicityElement(MultiplicityElement object)
+			{
 				return createUML2_MultiplicityElementAdapter();
 			}
-			public Object caseUML2_StructuralFeature(StructuralFeature object) {
+			public Object caseUML2_StructuralFeature(StructuralFeature object)
+			{
 				return createUML2_StructuralFeatureAdapter();
 			}
-			public Object caseUML2_ConnectableElement(ConnectableElement object) {
+			public Object caseUML2_ConnectableElement(ConnectableElement object)
+			{
 				return createUML2_ConnectableElementAdapter();
 			}
-			public Object caseUML2_DeploymentTarget(DeploymentTarget object) {
+			public Object caseUML2_DeploymentTarget(DeploymentTarget object)
+			{
 				return createUML2_DeploymentTargetAdapter();
 			}
-			public Object caseUML2_BehavioralFeature(BehavioralFeature object) {
+			public Object caseUML2_BehavioralFeature(BehavioralFeature object)
+			{
 				return createUML2_BehavioralFeatureAdapter();
 			}
-			public Object caseUML2_DataType(DataType object) {
+			public Object caseUML2_DataType(DataType object)
+			{
 				return createUML2_DataTypeAdapter();
 			}
-			public Object caseUML2_DeployedArtifact(DeployedArtifact object) {
+			public Object caseUML2_DeployedArtifact(DeployedArtifact object)
+			{
 				return createUML2_DeployedArtifactAdapter();
 			}
-			public Object caseUML2_InstanceSpecification(InstanceSpecification object) {
+			public Object caseUML2_InstanceSpecification(InstanceSpecification object)
+			{
 				return createUML2_InstanceSpecificationAdapter();
 			}
-			public Object caseUML2_LiteralSpecification(LiteralSpecification object) {
+			public Object caseUML2_LiteralSpecification(LiteralSpecification object)
+			{
 				return createUML2_LiteralSpecificationAdapter();
 			}
-			public Object caseUML2_DirectedRelationship(DirectedRelationship object) {
+			public Object caseUML2_DirectedRelationship(DirectedRelationship object)
+			{
 				return createUML2_DirectedRelationshipAdapter();
 			}
-			public Object caseUML2_Class(org.eclipse.uml2.Class object) {
+			public Object caseUML2_Class(org.eclipse.uml2.Class object)
+			{
 				return createUML2_ClassAdapter();
 			}
-			public Object caseUML2_Package(org.eclipse.uml2.Package object) {
+			public Object caseUML2_Package(org.eclipse.uml2.Package object)
+			{
 				return createUML2_PackageAdapter();
 			}
-			public Object caseUML2_PackageImport(PackageImport object) {
+			public Object caseUML2_PackageImport(PackageImport object)
+			{
 				return createUML2_PackageImportAdapter();
 			}
-			public Object caseUML2_Association(Association object) {
+			public Object caseUML2_Association(Association object)
+			{
 				return createUML2_AssociationAdapter();
 			}
-			public Object caseUML2_Property(Property object) {
+			public Object caseUML2_Property(Property object)
+			{
 				return createUML2_PropertyAdapter();
 			}
-			public Object caseUML2_Behavior(Behavior object) {
+			public Object caseUML2_Behavior(Behavior object)
+			{
 				return createUML2_BehaviorAdapter();
 			}
-			public Object caseUML2_Dependency(Dependency object) {
+			public Object caseUML2_Dependency(Dependency object)
+			{
 				return createUML2_DependencyAdapter();
 			}
-			public Object caseUML2_Abstraction(Abstraction object) {
+			public Object caseUML2_Abstraction(Abstraction object)
+			{
 				return createUML2_AbstractionAdapter();
 			}
-			public Object caseUML2_Realization(Realization object) {
+			public Object caseUML2_Realization(Realization object)
+			{
 				return createUML2_RealizationAdapter();
 			}
-			public Object caseUML2_ActivityNode(ActivityNode object) {
+			public Object caseUML2_ActivityNode(ActivityNode object)
+			{
 				return createUML2_ActivityNodeAdapter();
 			}
-			public Object caseUML2_ExecutableNode(ExecutableNode object) {
+			public Object caseUML2_ExecutableNode(ExecutableNode object)
+			{
 				return createUML2_ExecutableNodeAdapter();
 			}
-			public Object caseUML2_ActivityEdge(ActivityEdge object) {
+			public Object caseUML2_ActivityEdge(ActivityEdge object)
+			{
 				return createUML2_ActivityEdgeAdapter();
 			}
-			public Object caseUML2_ControlNode(ControlNode object) {
+			public Object caseUML2_ControlNode(ControlNode object)
+			{
 				return createUML2_ControlNodeAdapter();
 			}
-			public Object caseUML2_FinalNode(FinalNode object) {
+			public Object caseUML2_FinalNode(FinalNode object)
+			{
 				return createUML2_FinalNodeAdapter();
 			}
-			public Object caseUML2_ObjectNode(ObjectNode object) {
+			public Object caseUML2_ObjectNode(ObjectNode object)
+			{
 				return createUML2_ObjectNodeAdapter();
 			}
-			public Object caseUML2_Pin(Pin object) {
+			public Object caseUML2_Pin(Pin object)
+			{
 				return createUML2_PinAdapter();
 			}
-			public Object caseUML2_InputPin(InputPin object) {
+			public Object caseUML2_InputPin(InputPin object)
+			{
 				return createUML2_InputPinAdapter();
 			}
-			public Object caseUML2_Trigger(Trigger object) {
+			public Object caseUML2_Trigger(Trigger object)
+			{
 				return createUML2_TriggerAdapter();
 			}
-			public Object caseUML2_MessageTrigger(MessageTrigger object) {
+			public Object caseUML2_MessageTrigger(MessageTrigger object)
+			{
 				return createUML2_MessageTriggerAdapter();
 			}
-			public Object caseUML2_Action(Action object) {
+			public Object caseUML2_Action(Action object)
+			{
 				return createUML2_ActionAdapter();
 			}
-			public Object caseUML2_ActivityGroup(ActivityGroup object) {
+			public Object caseUML2_ActivityGroup(ActivityGroup object)
+			{
 				return createUML2_ActivityGroupAdapter();
 			}
-			public Object caseUML2_StructuredActivityNode(StructuredActivityNode object) {
+			public Object caseUML2_StructuredActivityNode(StructuredActivityNode object)
+			{
 				return createUML2_StructuredActivityNodeAdapter();
 			}
-			public Object caseUML2_InteractionFragment(InteractionFragment object) {
+			public Object caseUML2_InteractionFragment(InteractionFragment object)
+			{
 				return createUML2_InteractionFragmentAdapter();
 			}
-			public Object caseUML2_MessageEnd(MessageEnd object) {
+			public Object caseUML2_MessageEnd(MessageEnd object)
+			{
 				return createUML2_MessageEndAdapter();
 			}
-			public Object caseUML2_EventOccurrence(EventOccurrence object) {
+			public Object caseUML2_EventOccurrence(EventOccurrence object)
+			{
 				return createUML2_EventOccurrenceAdapter();
 			}
-			public Object caseUML2_TemplateParameter(TemplateParameter object) {
+			public Object caseUML2_TemplateParameter(TemplateParameter object)
+			{
 				return createUML2_TemplateParameterAdapter();
 			}
-			public Object caseUML2_TemplateSignature(TemplateSignature object) {
+			public Object caseUML2_TemplateSignature(TemplateSignature object)
+			{
 				return createUML2_TemplateSignatureAdapter();
 			}
-			public Object caseUML2_InteractionOccurrence(InteractionOccurrence object) {
+			public Object caseUML2_InteractionOccurrence(InteractionOccurrence object)
+			{
 				return createUML2_InteractionOccurrenceAdapter();
 			}
-			public Object caseUML2_Constraint(Constraint object) {
+			public Object caseUML2_Constraint(Constraint object)
+			{
 				return createUML2_ConstraintAdapter();
 			}
-			public Object caseUML2_Vertex(Vertex object) {
+			public Object caseUML2_Vertex(Vertex object)
+			{
 				return createUML2_VertexAdapter();
 			}
-			public Object caseUML2_State(State object) {
+			public Object caseUML2_State(State object)
+			{
 				return createUML2_StateAdapter();
 			}
-			public Object caseUML2_StructuralFeatureAction(StructuralFeatureAction object) {
+			public Object caseUML2_StructuralFeatureAction(StructuralFeatureAction object)
+			{
 				return createUML2_StructuralFeatureActionAdapter();
 			}
-			public Object caseUML2_WriteStructuralFeatureAction(WriteStructuralFeatureAction object) {
+			public Object caseUML2_WriteStructuralFeatureAction(WriteStructuralFeatureAction object)
+			{
 				return createUML2_WriteStructuralFeatureActionAdapter();
 			}
-			public Object caseUML2_LinkAction(LinkAction object) {
+			public Object caseUML2_LinkAction(LinkAction object)
+			{
 				return createUML2_LinkActionAdapter();
 			}
-			public Object caseUML2_LinkEndData(LinkEndData object) {
+			public Object caseUML2_LinkEndData(LinkEndData object)
+			{
 				return createUML2_LinkEndDataAdapter();
 			}
-			public Object caseUML2_WriteLinkAction(WriteLinkAction object) {
+			public Object caseUML2_WriteLinkAction(WriteLinkAction object)
+			{
 				return createUML2_WriteLinkActionAdapter();
 			}
-			public Object caseUML2_VariableAction(VariableAction object) {
+			public Object caseUML2_VariableAction(VariableAction object)
+			{
 				return createUML2_VariableActionAdapter();
 			}
-			public Object caseUML2_WriteVariableAction(WriteVariableAction object) {
+			public Object caseUML2_WriteVariableAction(WriteVariableAction object)
+			{
 				return createUML2_WriteVariableActionAdapter();
 			}
-			public Object caseUML2_InvocationAction(InvocationAction object) {
+			public Object caseUML2_InvocationAction(InvocationAction object)
+			{
 				return createUML2_InvocationActionAdapter();
 			}
-			public Object caseUML2_CallAction(CallAction object) {
+			public Object caseUML2_CallAction(CallAction object)
+			{
 				return createUML2_CallActionAdapter();
 			}
-			public Object caseUML2_Interval(Interval object) {
+			public Object caseUML2_Interval(Interval object)
+			{
 				return createUML2_IntervalAdapter();
 			}
-			public Object caseUML2_IntervalConstraint(IntervalConstraint object) {
+			public Object caseUML2_IntervalConstraint(IntervalConstraint object)
+			{
 				return createUML2_IntervalConstraintAdapter();
 			}
-			public Object caseUML2_CentralBufferNode(CentralBufferNode object) {
+			public Object caseUML2_CentralBufferNode(CentralBufferNode object)
+			{
 				return createUML2_CentralBufferNodeAdapter();
 			}
-			public Object caseUML2_Node(Node object) {
+			public Object caseUML2_Node(Node object)
+			{
 				return createUML2_NodeAdapter();
 			}
-			public Object caseUML2_StateMachine(StateMachine object) {
+			public Object caseUML2_StateMachine(StateMachine object)
+			{
 				return createUML2_StateMachineAdapter();
 			}
-			public Object caseUML2_Transition(Transition object) {
+			public Object caseUML2_Transition(Transition object)
+			{
 				return createUML2_TransitionAdapter();
 			}
-			public Object caseUML2_CreateLinkAction(CreateLinkAction object) {
+			public Object caseUML2_CreateLinkAction(CreateLinkAction object)
+			{
 				return createUML2_CreateLinkActionAdapter();
 			}
-			public Object caseUML2_AcceptEventAction(AcceptEventAction object) {
+			public Object caseUML2_AcceptEventAction(AcceptEventAction object)
+			{
 				return createUML2_AcceptEventActionAdapter();
 			}
-			public Object caseUML2_Artifact(Artifact object) {
+			public Object caseUML2_Artifact(Artifact object)
+			{
 				return createUML2_ArtifactAdapter();
 			}
-			public Object caseUML2_J_FigureContainer(J_FigureContainer object) {
+			public Object caseUML2_J_FigureContainer(J_FigureContainer object)
+			{
 				return createUML2_J_FigureContainerAdapter();
 			}
-			public Object caseUML2_DeltaReplacedConstituent(DeltaReplacedConstituent object) {
+			public Object caseUML2_DeltaReplacedConstituent(DeltaReplacedConstituent object)
+			{
 				return createUML2_DeltaReplacedConstituentAdapter();
 			}
-			public Object caseUML2_DeltaDeletedConstituent(DeltaDeletedConstituent object) {
+			public Object caseUML2_DeltaDeletedConstituent(DeltaDeletedConstituent object)
+			{
 				return createUML2_DeltaDeletedConstituentAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			public Object defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};
@@ -1341,7 +1680,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	public Adapter createAdapter(Notifier target) {
+	public Adapter createAdapter(Notifier target)
+	{
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 
@@ -1356,7 +1696,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Element
 	 * @generated
 	 */
-	public Adapter createElementAdapter() {
+	public Adapter createElementAdapter()
+	{
 		return null;
 	}
 
@@ -1370,7 +1711,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.MultiplicityElement
 	 * @generated
 	 */
-	public Adapter createMultiplicityElementAdapter() {
+	public Adapter createMultiplicityElementAdapter()
+	{
 		return null;
 	}
 
@@ -1384,7 +1726,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DirectedRelationship
 	 * @generated
 	 */
-	public Adapter createDirectedRelationshipAdapter() {
+	public Adapter createDirectedRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -1398,7 +1741,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Relationship
 	 * @generated
 	 */
-	public Adapter createRelationshipAdapter() {
+	public Adapter createRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -1412,7 +1756,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.NamedElement
 	 * @generated
 	 */
-	public Adapter createNamedElementAdapter() {
+	public Adapter createNamedElementAdapter()
+	{
 		return null;
 	}
 
@@ -1426,7 +1771,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Namespace
 	 * @generated
 	 */
-	public Adapter createNamespaceAdapter() {
+	public Adapter createNamespaceAdapter()
+	{
 		return null;
 	}
 
@@ -1440,7 +1786,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.OpaqueExpression
 	 * @generated
 	 */
-	public Adapter createOpaqueExpressionAdapter() {
+	public Adapter createOpaqueExpressionAdapter()
+	{
 		return null;
 	}
 
@@ -1454,7 +1801,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ValueSpecification
 	 * @generated
 	 */
-	public Adapter createValueSpecificationAdapter() {
+	public Adapter createValueSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -1468,7 +1816,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Expression
 	 * @generated
 	 */
-	public Adapter createExpressionAdapter() {
+	public Adapter createExpressionAdapter()
+	{
 		return null;
 	}
 
@@ -1482,7 +1831,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Comment
 	 * @generated
 	 */
-	public Adapter createCommentAdapter() {
+	public Adapter createCommentAdapter()
+	{
 		return null;
 	}
 
@@ -1496,7 +1846,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Class
 	 * @generated
 	 */
-	public Adapter createClassAdapter() {
+	public Adapter createClassAdapter()
+	{
 		return null;
 	}
 
@@ -1510,7 +1861,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Type
 	 * @generated
 	 */
-	public Adapter createTypeAdapter() {
+	public Adapter createTypeAdapter()
+	{
 		return null;
 	}
 
@@ -1524,7 +1876,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Property
 	 * @generated
 	 */
-	public Adapter createPropertyAdapter() {
+	public Adapter createPropertyAdapter()
+	{
 		return null;
 	}
 
@@ -1538,7 +1891,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Operation
 	 * @generated
 	 */
-	public Adapter createOperationAdapter() {
+	public Adapter createOperationAdapter()
+	{
 		return null;
 	}
 
@@ -1552,7 +1906,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TypedElement
 	 * @generated
 	 */
-	public Adapter createTypedElementAdapter() {
+	public Adapter createTypedElementAdapter()
+	{
 		return null;
 	}
 
@@ -1566,7 +1921,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Parameter
 	 * @generated
 	 */
-	public Adapter createParameterAdapter() {
+	public Adapter createParameterAdapter()
+	{
 		return null;
 	}
 
@@ -1580,7 +1936,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Package
 	 * @generated
 	 */
-	public Adapter createPackageAdapter() {
+	public Adapter createPackageAdapter()
+	{
 		return null;
 	}
 
@@ -1594,7 +1951,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Enumeration
 	 * @generated
 	 */
-	public Adapter createEnumerationAdapter() {
+	public Adapter createEnumerationAdapter()
+	{
 		return null;
 	}
 
@@ -1608,7 +1966,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DataType
 	 * @generated
 	 */
-	public Adapter createDataTypeAdapter() {
+	public Adapter createDataTypeAdapter()
+	{
 		return null;
 	}
 
@@ -1622,7 +1981,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.EnumerationLiteral
 	 * @generated
 	 */
-	public Adapter createEnumerationLiteralAdapter() {
+	public Adapter createEnumerationLiteralAdapter()
+	{
 		return null;
 	}
 
@@ -1636,7 +1996,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PrimitiveType
 	 * @generated
 	 */
-	public Adapter createPrimitiveTypeAdapter() {
+	public Adapter createPrimitiveTypeAdapter()
+	{
 		return null;
 	}
 
@@ -1650,7 +2011,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LiteralBoolean
 	 * @generated
 	 */
-	public Adapter createLiteralBooleanAdapter() {
+	public Adapter createLiteralBooleanAdapter()
+	{
 		return null;
 	}
 
@@ -1664,7 +2026,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LiteralSpecification
 	 * @generated
 	 */
-	public Adapter createLiteralSpecificationAdapter() {
+	public Adapter createLiteralSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -1678,7 +2041,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LiteralString
 	 * @generated
 	 */
-	public Adapter createLiteralStringAdapter() {
+	public Adapter createLiteralStringAdapter()
+	{
 		return null;
 	}
 
@@ -1692,7 +2056,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LiteralNull
 	 * @generated
 	 */
-	public Adapter createLiteralNullAdapter() {
+	public Adapter createLiteralNullAdapter()
+	{
 		return null;
 	}
 
@@ -1706,7 +2071,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LiteralInteger
 	 * @generated
 	 */
-	public Adapter createLiteralIntegerAdapter() {
+	public Adapter createLiteralIntegerAdapter()
+	{
 		return null;
 	}
 
@@ -1720,7 +2086,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LiteralUnlimitedNatural
 	 * @generated
 	 */
-	public Adapter createLiteralUnlimitedNaturalAdapter() {
+	public Adapter createLiteralUnlimitedNaturalAdapter()
+	{
 		return null;
 	}
 
@@ -1734,7 +2101,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Constraint
 	 * @generated
 	 */
-	public Adapter createConstraintAdapter() {
+	public Adapter createConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -1748,7 +2116,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Classifier
 	 * @generated
 	 */
-	public Adapter createClassifierAdapter() {
+	public Adapter createClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -1762,7 +2131,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Feature
 	 * @generated
 	 */
-	public Adapter createFeatureAdapter() {
+	public Adapter createFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -1776,7 +2146,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.BehavioralFeature
 	 * @generated
 	 */
-	public Adapter createBehavioralFeatureAdapter() {
+	public Adapter createBehavioralFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -1790,7 +2161,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StructuralFeature
 	 * @generated
 	 */
-	public Adapter createStructuralFeatureAdapter() {
+	public Adapter createStructuralFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -1804,7 +2176,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.RedefinableElement
 	 * @generated
 	 */
-	public Adapter createRedefinableElementAdapter() {
+	public Adapter createRedefinableElementAdapter()
+	{
 		return null;
 	}
 
@@ -1818,7 +2191,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InstanceSpecification
 	 * @generated
 	 */
-	public Adapter createInstanceSpecificationAdapter() {
+	public Adapter createInstanceSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -1832,7 +2206,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Slot
 	 * @generated
 	 */
-	public Adapter createSlotAdapter() {
+	public Adapter createSlotAdapter()
+	{
 		return null;
 	}
 
@@ -1846,7 +2221,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InstanceValue
 	 * @generated
 	 */
-	public Adapter createInstanceValueAdapter() {
+	public Adapter createInstanceValueAdapter()
+	{
 		return null;
 	}
 
@@ -1860,7 +2236,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Generalization
 	 * @generated
 	 */
-	public Adapter createGeneralizationAdapter() {
+	public Adapter createGeneralizationAdapter()
+	{
 		return null;
 	}
 
@@ -1874,7 +2251,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PackageableElement
 	 * @generated
 	 */
-	public Adapter createPackageableElementAdapter() {
+	public Adapter createPackageableElementAdapter()
+	{
 		return null;
 	}
 
@@ -1888,7 +2266,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ElementImport
 	 * @generated
 	 */
-	public Adapter createElementImportAdapter() {
+	public Adapter createElementImportAdapter()
+	{
 		return null;
 	}
 
@@ -1902,7 +2281,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PackageImport
 	 * @generated
 	 */
-	public Adapter createPackageImportAdapter() {
+	public Adapter createPackageImportAdapter()
+	{
 		return null;
 	}
 
@@ -1916,7 +2296,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Association
 	 * @generated
 	 */
-	public Adapter createAssociationAdapter() {
+	public Adapter createAssociationAdapter()
+	{
 		return null;
 	}
 
@@ -1930,7 +2311,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PackageMerge
 	 * @generated
 	 */
-	public Adapter createPackageMergeAdapter() {
+	public Adapter createPackageMergeAdapter()
+	{
 		return null;
 	}
 
@@ -1944,7 +2326,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Stereotype
 	 * @generated
 	 */
-	public Adapter createStereotypeAdapter() {
+	public Adapter createStereotypeAdapter()
+	{
 		return null;
 	}
 
@@ -1958,7 +2341,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Profile
 	 * @generated
 	 */
-	public Adapter createProfileAdapter() {
+	public Adapter createProfileAdapter()
+	{
 		return null;
 	}
 
@@ -1972,7 +2356,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ProfileApplication
 	 * @generated
 	 */
-	public Adapter createProfileApplicationAdapter() {
+	public Adapter createProfileApplicationAdapter()
+	{
 		return null;
 	}
 
@@ -1986,7 +2371,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Extension
 	 * @generated
 	 */
-	public Adapter createExtensionAdapter() {
+	public Adapter createExtensionAdapter()
+	{
 		return null;
 	}
 
@@ -2000,7 +2386,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExtensionEnd
 	 * @generated
 	 */
-	public Adapter createExtensionEndAdapter() {
+	public Adapter createExtensionEndAdapter()
+	{
 		return null;
 	}
 
@@ -2014,7 +2401,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Model
 	 * @generated
 	 */
-	public Adapter createModelAdapter() {
+	public Adapter createModelAdapter()
+	{
 		return null;
 	}
 
@@ -2028,7 +2416,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InformationItem
 	 * @generated
 	 */
-	public Adapter createInformationItemAdapter() {
+	public Adapter createInformationItemAdapter()
+	{
 		return null;
 	}
 
@@ -2042,7 +2431,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InformationFlow
 	 * @generated
 	 */
-	public Adapter createInformationFlowAdapter() {
+	public Adapter createInformationFlowAdapter()
+	{
 		return null;
 	}
 
@@ -2056,7 +2446,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.AssociationClass
 	 * @generated
 	 */
-	public Adapter createAssociationClassAdapter() {
+	public Adapter createAssociationClassAdapter()
+	{
 		return null;
 	}
 
@@ -2070,7 +2461,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Permission
 	 * @generated
 	 */
-	public Adapter createPermissionAdapter() {
+	public Adapter createPermissionAdapter()
+	{
 		return null;
 	}
 
@@ -2084,7 +2476,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Dependency
 	 * @generated
 	 */
-	public Adapter createDependencyAdapter() {
+	public Adapter createDependencyAdapter()
+	{
 		return null;
 	}
 
@@ -2098,7 +2491,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Usage
 	 * @generated
 	 */
-	public Adapter createUsageAdapter() {
+	public Adapter createUsageAdapter()
+	{
 		return null;
 	}
 
@@ -2112,7 +2506,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Abstraction
 	 * @generated
 	 */
-	public Adapter createAbstractionAdapter() {
+	public Adapter createAbstractionAdapter()
+	{
 		return null;
 	}
 
@@ -2126,7 +2521,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Realization
 	 * @generated
 	 */
-	public Adapter createRealizationAdapter() {
+	public Adapter createRealizationAdapter()
+	{
 		return null;
 	}
 
@@ -2140,7 +2536,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Substitution
 	 * @generated
 	 */
-	public Adapter createSubstitutionAdapter() {
+	public Adapter createSubstitutionAdapter()
+	{
 		return null;
 	}
 
@@ -2154,7 +2551,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Behavior
 	 * @generated
 	 */
-	public Adapter createBehaviorAdapter() {
+	public Adapter createBehaviorAdapter()
+	{
 		return null;
 	}
 
@@ -2168,7 +2566,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.BehavioredClassifier
 	 * @generated
 	 */
-	public Adapter createBehavioredClassifierAdapter() {
+	public Adapter createBehavioredClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -2182,7 +2581,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Activity
 	 * @generated
 	 */
-	public Adapter createActivityAdapter() {
+	public Adapter createActivityAdapter()
+	{
 		return null;
 	}
 
@@ -2196,7 +2596,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.GeneralizationSet
 	 * @generated
 	 */
-	public Adapter createGeneralizationSetAdapter() {
+	public Adapter createGeneralizationSetAdapter()
+	{
 		return null;
 	}
 
@@ -2210,7 +2611,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Artifact
 	 * @generated
 	 */
-	public Adapter createArtifactAdapter() {
+	public Adapter createArtifactAdapter()
+	{
 		return null;
 	}
 
@@ -2224,7 +2626,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Manifestation
 	 * @generated
 	 */
-	public Adapter createManifestationAdapter() {
+	public Adapter createManifestationAdapter()
+	{
 		return null;
 	}
 
@@ -2238,7 +2641,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityEdge
 	 * @generated
 	 */
-	public Adapter createActivityEdgeAdapter() {
+	public Adapter createActivityEdgeAdapter()
+	{
 		return null;
 	}
 
@@ -2252,7 +2656,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityGroup
 	 * @generated
 	 */
-	public Adapter createActivityGroupAdapter() {
+	public Adapter createActivityGroupAdapter()
+	{
 		return null;
 	}
 
@@ -2266,7 +2671,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityNode
 	 * @generated
 	 */
-	public Adapter createActivityNodeAdapter() {
+	public Adapter createActivityNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2280,7 +2686,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Action
 	 * @generated
 	 */
-	public Adapter createActionAdapter() {
+	public Adapter createActionAdapter()
+	{
 		return null;
 	}
 
@@ -2294,7 +2701,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ObjectNode
 	 * @generated
 	 */
-	public Adapter createObjectNodeAdapter() {
+	public Adapter createObjectNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2308,7 +2716,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ControlNode
 	 * @generated
 	 */
-	public Adapter createControlNodeAdapter() {
+	public Adapter createControlNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2322,7 +2731,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ControlFlow
 	 * @generated
 	 */
-	public Adapter createControlFlowAdapter() {
+	public Adapter createControlFlowAdapter()
+	{
 		return null;
 	}
 
@@ -2336,7 +2746,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ObjectFlow
 	 * @generated
 	 */
-	public Adapter createObjectFlowAdapter() {
+	public Adapter createObjectFlowAdapter()
+	{
 		return null;
 	}
 
@@ -2350,7 +2761,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InitialNode
 	 * @generated
 	 */
-	public Adapter createInitialNodeAdapter() {
+	public Adapter createInitialNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2364,7 +2776,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.FinalNode
 	 * @generated
 	 */
-	public Adapter createFinalNodeAdapter() {
+	public Adapter createFinalNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2378,7 +2791,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityFinalNode
 	 * @generated
 	 */
-	public Adapter createActivityFinalNodeAdapter() {
+	public Adapter createActivityFinalNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2392,7 +2806,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DecisionNode
 	 * @generated
 	 */
-	public Adapter createDecisionNodeAdapter() {
+	public Adapter createDecisionNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2406,7 +2821,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.MergeNode
 	 * @generated
 	 */
-	public Adapter createMergeNodeAdapter() {
+	public Adapter createMergeNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2420,7 +2836,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExecutableNode
 	 * @generated
 	 */
-	public Adapter createExecutableNodeAdapter() {
+	public Adapter createExecutableNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2434,7 +2851,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.OutputPin
 	 * @generated
 	 */
-	public Adapter createOutputPinAdapter() {
+	public Adapter createOutputPinAdapter()
+	{
 		return null;
 	}
 
@@ -2448,7 +2866,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InputPin
 	 * @generated
 	 */
-	public Adapter createInputPinAdapter() {
+	public Adapter createInputPinAdapter()
+	{
 		return null;
 	}
 
@@ -2462,7 +2881,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Pin
 	 * @generated
 	 */
-	public Adapter createPinAdapter() {
+	public Adapter createPinAdapter()
+	{
 		return null;
 	}
 
@@ -2476,7 +2896,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityParameterNode
 	 * @generated
 	 */
-	public Adapter createActivityParameterNodeAdapter() {
+	public Adapter createActivityParameterNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2490,7 +2911,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ValuePin
 	 * @generated
 	 */
-	public Adapter createValuePinAdapter() {
+	public Adapter createValuePinAdapter()
+	{
 		return null;
 	}
 
@@ -2504,7 +2926,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Interface
 	 * @generated
 	 */
-	public Adapter createInterfaceAdapter() {
+	public Adapter createInterfaceAdapter()
+	{
 		return null;
 	}
 
@@ -2518,7 +2941,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Implementation
 	 * @generated
 	 */
-	public Adapter createImplementationAdapter() {
+	public Adapter createImplementationAdapter()
+	{
 		return null;
 	}
 
@@ -2532,7 +2956,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Actor
 	 * @generated
 	 */
-	public Adapter createActorAdapter() {
+	public Adapter createActorAdapter()
+	{
 		return null;
 	}
 
@@ -2546,7 +2971,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Extend
 	 * @generated
 	 */
-	public Adapter createExtendAdapter() {
+	public Adapter createExtendAdapter()
+	{
 		return null;
 	}
 
@@ -2560,7 +2986,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.UseCase
 	 * @generated
 	 */
-	public Adapter createUseCaseAdapter() {
+	public Adapter createUseCaseAdapter()
+	{
 		return null;
 	}
 
@@ -2574,7 +3001,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExtensionPoint
 	 * @generated
 	 */
-	public Adapter createExtensionPointAdapter() {
+	public Adapter createExtensionPointAdapter()
+	{
 		return null;
 	}
 
@@ -2588,7 +3016,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Include
 	 * @generated
 	 */
-	public Adapter createIncludeAdapter() {
+	public Adapter createIncludeAdapter()
+	{
 		return null;
 	}
 
@@ -2602,7 +3031,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CallTrigger
 	 * @generated
 	 */
-	public Adapter createCallTriggerAdapter() {
+	public Adapter createCallTriggerAdapter()
+	{
 		return null;
 	}
 
@@ -2616,7 +3046,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.MessageTrigger
 	 * @generated
 	 */
-	public Adapter createMessageTriggerAdapter() {
+	public Adapter createMessageTriggerAdapter()
+	{
 		return null;
 	}
 
@@ -2630,7 +3061,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ChangeTrigger
 	 * @generated
 	 */
-	public Adapter createChangeTriggerAdapter() {
+	public Adapter createChangeTriggerAdapter()
+	{
 		return null;
 	}
 
@@ -2644,7 +3076,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Trigger
 	 * @generated
 	 */
-	public Adapter createTriggerAdapter() {
+	public Adapter createTriggerAdapter()
+	{
 		return null;
 	}
 
@@ -2658,7 +3091,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Reception
 	 * @generated
 	 */
-	public Adapter createReceptionAdapter() {
+	public Adapter createReceptionAdapter()
+	{
 		return null;
 	}
 
@@ -2672,7 +3106,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Signal
 	 * @generated
 	 */
-	public Adapter createSignalAdapter() {
+	public Adapter createSignalAdapter()
+	{
 		return null;
 	}
 
@@ -2686,7 +3121,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.SignalTrigger
 	 * @generated
 	 */
-	public Adapter createSignalTriggerAdapter() {
+	public Adapter createSignalTriggerAdapter()
+	{
 		return null;
 	}
 
@@ -2700,7 +3136,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TimeTrigger
 	 * @generated
 	 */
-	public Adapter createTimeTriggerAdapter() {
+	public Adapter createTimeTriggerAdapter()
+	{
 		return null;
 	}
 
@@ -2714,7 +3151,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.AnyTrigger
 	 * @generated
 	 */
-	public Adapter createAnyTriggerAdapter() {
+	public Adapter createAnyTriggerAdapter()
+	{
 		return null;
 	}
 
@@ -2728,7 +3166,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ConnectorEnd
 	 * @generated
 	 */
-	public Adapter createConnectorEndAdapter() {
+	public Adapter createConnectorEndAdapter()
+	{
 		return null;
 	}
 
@@ -2742,7 +3181,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ConnectableElement
 	 * @generated
 	 */
-	public Adapter createConnectableElementAdapter() {
+	public Adapter createConnectableElementAdapter()
+	{
 		return null;
 	}
 
@@ -2756,7 +3196,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Connector
 	 * @generated
 	 */
-	public Adapter createConnectorAdapter() {
+	public Adapter createConnectorAdapter()
+	{
 		return null;
 	}
 
@@ -2770,7 +3211,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StructuredClassifier
 	 * @generated
 	 */
-	public Adapter createStructuredClassifierAdapter() {
+	public Adapter createStructuredClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -2784,7 +3226,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Variable
 	 * @generated
 	 */
-	public Adapter createVariableAdapter() {
+	public Adapter createVariableAdapter()
+	{
 		return null;
 	}
 
@@ -2798,7 +3241,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StructuredActivityNode
 	 * @generated
 	 */
-	public Adapter createStructuredActivityNodeAdapter() {
+	public Adapter createStructuredActivityNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2812,7 +3256,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ConditionalNode
 	 * @generated
 	 */
-	public Adapter createConditionalNodeAdapter() {
+	public Adapter createConditionalNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2826,7 +3271,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Clause
 	 * @generated
 	 */
-	public Adapter createClauseAdapter() {
+	public Adapter createClauseAdapter()
+	{
 		return null;
 	}
 
@@ -2840,7 +3286,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LoopNode
 	 * @generated
 	 */
-	public Adapter createLoopNodeAdapter() {
+	public Adapter createLoopNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2854,7 +3301,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StateMachine
 	 * @generated
 	 */
-	public Adapter createStateMachineAdapter() {
+	public Adapter createStateMachineAdapter()
+	{
 		return null;
 	}
 
@@ -2868,7 +3316,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Region
 	 * @generated
 	 */
-	public Adapter createRegionAdapter() {
+	public Adapter createRegionAdapter()
+	{
 		return null;
 	}
 
@@ -2882,7 +3331,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Pseudostate
 	 * @generated
 	 */
-	public Adapter createPseudostateAdapter() {
+	public Adapter createPseudostateAdapter()
+	{
 		return null;
 	}
 
@@ -2896,7 +3346,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.State
 	 * @generated
 	 */
-	public Adapter createStateAdapter() {
+	public Adapter createStateAdapter()
+	{
 		return null;
 	}
 
@@ -2910,7 +3361,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Vertex
 	 * @generated
 	 */
-	public Adapter createVertexAdapter() {
+	public Adapter createVertexAdapter()
+	{
 		return null;
 	}
 
@@ -2924,7 +3376,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ConnectionPointReference
 	 * @generated
 	 */
-	public Adapter createConnectionPointReferenceAdapter() {
+	public Adapter createConnectionPointReferenceAdapter()
+	{
 		return null;
 	}
 
@@ -2938,7 +3391,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Transition
 	 * @generated
 	 */
-	public Adapter createTransitionAdapter() {
+	public Adapter createTransitionAdapter()
+	{
 		return null;
 	}
 
@@ -2952,7 +3406,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.FinalState
 	 * @generated
 	 */
-	public Adapter createFinalStateAdapter() {
+	public Adapter createFinalStateAdapter()
+	{
 		return null;
 	}
 
@@ -2966,7 +3421,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExpansionNode
 	 * @generated
 	 */
-	public Adapter createExpansionNodeAdapter() {
+	public Adapter createExpansionNodeAdapter()
+	{
 		return null;
 	}
 
@@ -2980,7 +3436,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExpansionRegion
 	 * @generated
 	 */
-	public Adapter createExpansionRegionAdapter() {
+	public Adapter createExpansionRegionAdapter()
+	{
 		return null;
 	}
 
@@ -2994,7 +3451,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExceptionHandler
 	 * @generated
 	 */
-	public Adapter createExceptionHandlerAdapter() {
+	public Adapter createExceptionHandlerAdapter()
+	{
 		return null;
 	}
 
@@ -3008,7 +3466,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Port
 	 * @generated
 	 */
-	public Adapter createPortAdapter() {
+	public Adapter createPortAdapter()
+	{
 		return null;
 	}
 
@@ -3022,7 +3481,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.EncapsulatedClassifier
 	 * @generated
 	 */
-	public Adapter createEncapsulatedClassifierAdapter() {
+	public Adapter createEncapsulatedClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -3036,7 +3496,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CreateObjectAction
 	 * @generated
 	 */
-	public Adapter createCreateObjectActionAdapter() {
+	public Adapter createCreateObjectActionAdapter()
+	{
 		return null;
 	}
 
@@ -3050,7 +3511,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DestroyObjectAction
 	 * @generated
 	 */
-	public Adapter createDestroyObjectActionAdapter() {
+	public Adapter createDestroyObjectActionAdapter()
+	{
 		return null;
 	}
 
@@ -3064,7 +3526,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TestIdentityAction
 	 * @generated
 	 */
-	public Adapter createTestIdentityActionAdapter() {
+	public Adapter createTestIdentityActionAdapter()
+	{
 		return null;
 	}
 
@@ -3078,7 +3541,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReadSelfAction
 	 * @generated
 	 */
-	public Adapter createReadSelfActionAdapter() {
+	public Adapter createReadSelfActionAdapter()
+	{
 		return null;
 	}
 
@@ -3092,7 +3556,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StructuralFeatureAction
 	 * @generated
 	 */
-	public Adapter createStructuralFeatureActionAdapter() {
+	public Adapter createStructuralFeatureActionAdapter()
+	{
 		return null;
 	}
 
@@ -3106,7 +3571,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReadStructuralFeatureAction
 	 * @generated
 	 */
-	public Adapter createReadStructuralFeatureActionAdapter() {
+	public Adapter createReadStructuralFeatureActionAdapter()
+	{
 		return null;
 	}
 
@@ -3120,7 +3586,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.WriteStructuralFeatureAction
 	 * @generated
 	 */
-	public Adapter createWriteStructuralFeatureActionAdapter() {
+	public Adapter createWriteStructuralFeatureActionAdapter()
+	{
 		return null;
 	}
 
@@ -3134,7 +3601,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ClearStructuralFeatureAction
 	 * @generated
 	 */
-	public Adapter createClearStructuralFeatureActionAdapter() {
+	public Adapter createClearStructuralFeatureActionAdapter()
+	{
 		return null;
 	}
 
@@ -3148,7 +3616,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.RemoveStructuralFeatureValueAction
 	 * @generated
 	 */
-	public Adapter createRemoveStructuralFeatureValueActionAdapter() {
+	public Adapter createRemoveStructuralFeatureValueActionAdapter()
+	{
 		return null;
 	}
 
@@ -3162,7 +3631,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.AddStructuralFeatureValueAction
 	 * @generated
 	 */
-	public Adapter createAddStructuralFeatureValueActionAdapter() {
+	public Adapter createAddStructuralFeatureValueActionAdapter()
+	{
 		return null;
 	}
 
@@ -3176,7 +3646,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LinkAction
 	 * @generated
 	 */
-	public Adapter createLinkActionAdapter() {
+	public Adapter createLinkActionAdapter()
+	{
 		return null;
 	}
 
@@ -3190,7 +3661,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LinkEndData
 	 * @generated
 	 */
-	public Adapter createLinkEndDataAdapter() {
+	public Adapter createLinkEndDataAdapter()
+	{
 		return null;
 	}
 
@@ -3204,7 +3676,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReadLinkAction
 	 * @generated
 	 */
-	public Adapter createReadLinkActionAdapter() {
+	public Adapter createReadLinkActionAdapter()
+	{
 		return null;
 	}
 
@@ -3218,7 +3691,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LinkEndCreationData
 	 * @generated
 	 */
-	public Adapter createLinkEndCreationDataAdapter() {
+	public Adapter createLinkEndCreationDataAdapter()
+	{
 		return null;
 	}
 
@@ -3232,7 +3706,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CreateLinkAction
 	 * @generated
 	 */
-	public Adapter createCreateLinkActionAdapter() {
+	public Adapter createCreateLinkActionAdapter()
+	{
 		return null;
 	}
 
@@ -3246,7 +3721,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.WriteLinkAction
 	 * @generated
 	 */
-	public Adapter createWriteLinkActionAdapter() {
+	public Adapter createWriteLinkActionAdapter()
+	{
 		return null;
 	}
 
@@ -3260,7 +3736,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DestroyLinkAction
 	 * @generated
 	 */
-	public Adapter createDestroyLinkActionAdapter() {
+	public Adapter createDestroyLinkActionAdapter()
+	{
 		return null;
 	}
 
@@ -3274,7 +3751,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ClearAssociationAction
 	 * @generated
 	 */
-	public Adapter createClearAssociationActionAdapter() {
+	public Adapter createClearAssociationActionAdapter()
+	{
 		return null;
 	}
 
@@ -3288,7 +3766,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.VariableAction
 	 * @generated
 	 */
-	public Adapter createVariableActionAdapter() {
+	public Adapter createVariableActionAdapter()
+	{
 		return null;
 	}
 
@@ -3302,7 +3781,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReadVariableAction
 	 * @generated
 	 */
-	public Adapter createReadVariableActionAdapter() {
+	public Adapter createReadVariableActionAdapter()
+	{
 		return null;
 	}
 
@@ -3316,7 +3796,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.WriteVariableAction
 	 * @generated
 	 */
-	public Adapter createWriteVariableActionAdapter() {
+	public Adapter createWriteVariableActionAdapter()
+	{
 		return null;
 	}
 
@@ -3330,7 +3811,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ClearVariableAction
 	 * @generated
 	 */
-	public Adapter createClearVariableActionAdapter() {
+	public Adapter createClearVariableActionAdapter()
+	{
 		return null;
 	}
 
@@ -3344,7 +3826,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.AddVariableValueAction
 	 * @generated
 	 */
-	public Adapter createAddVariableValueActionAdapter() {
+	public Adapter createAddVariableValueActionAdapter()
+	{
 		return null;
 	}
 
@@ -3358,7 +3841,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.RemoveVariableValueAction
 	 * @generated
 	 */
-	public Adapter createRemoveVariableValueActionAdapter() {
+	public Adapter createRemoveVariableValueActionAdapter()
+	{
 		return null;
 	}
 
@@ -3372,7 +3856,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ApplyFunctionAction
 	 * @generated
 	 */
-	public Adapter createApplyFunctionActionAdapter() {
+	public Adapter createApplyFunctionActionAdapter()
+	{
 		return null;
 	}
 
@@ -3386,7 +3871,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PrimitiveFunction
 	 * @generated
 	 */
-	public Adapter createPrimitiveFunctionAdapter() {
+	public Adapter createPrimitiveFunctionAdapter()
+	{
 		return null;
 	}
 
@@ -3400,7 +3886,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CallAction
 	 * @generated
 	 */
-	public Adapter createCallActionAdapter() {
+	public Adapter createCallActionAdapter()
+	{
 		return null;
 	}
 
@@ -3414,7 +3901,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InvocationAction
 	 * @generated
 	 */
-	public Adapter createInvocationActionAdapter() {
+	public Adapter createInvocationActionAdapter()
+	{
 		return null;
 	}
 
@@ -3428,7 +3916,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.SendSignalAction
 	 * @generated
 	 */
-	public Adapter createSendSignalActionAdapter() {
+	public Adapter createSendSignalActionAdapter()
+	{
 		return null;
 	}
 
@@ -3442,7 +3931,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.BroadcastSignalAction
 	 * @generated
 	 */
-	public Adapter createBroadcastSignalActionAdapter() {
+	public Adapter createBroadcastSignalActionAdapter()
+	{
 		return null;
 	}
 
@@ -3456,7 +3946,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.SendObjectAction
 	 * @generated
 	 */
-	public Adapter createSendObjectActionAdapter() {
+	public Adapter createSendObjectActionAdapter()
+	{
 		return null;
 	}
 
@@ -3470,7 +3961,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CallOperationAction
 	 * @generated
 	 */
-	public Adapter createCallOperationActionAdapter() {
+	public Adapter createCallOperationActionAdapter()
+	{
 		return null;
 	}
 
@@ -3484,7 +3976,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CallBehaviorAction
 	 * @generated
 	 */
-	public Adapter createCallBehaviorActionAdapter() {
+	public Adapter createCallBehaviorActionAdapter()
+	{
 		return null;
 	}
 
@@ -3498,7 +3991,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ForkNode
 	 * @generated
 	 */
-	public Adapter createForkNodeAdapter() {
+	public Adapter createForkNodeAdapter()
+	{
 		return null;
 	}
 
@@ -3512,7 +4006,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.JoinNode
 	 * @generated
 	 */
-	public Adapter createJoinNodeAdapter() {
+	public Adapter createJoinNodeAdapter()
+	{
 		return null;
 	}
 
@@ -3526,7 +4021,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.FlowFinalNode
 	 * @generated
 	 */
-	public Adapter createFlowFinalNodeAdapter() {
+	public Adapter createFlowFinalNodeAdapter()
+	{
 		return null;
 	}
 
@@ -3540,7 +4036,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CentralBufferNode
 	 * @generated
 	 */
-	public Adapter createCentralBufferNodeAdapter() {
+	public Adapter createCentralBufferNodeAdapter()
+	{
 		return null;
 	}
 
@@ -3554,7 +4051,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityPartition
 	 * @generated
 	 */
-	public Adapter createActivityPartitionAdapter() {
+	public Adapter createActivityPartitionAdapter()
+	{
 		return null;
 	}
 
@@ -3568,7 +4066,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateSignature
 	 * @generated
 	 */
-	public Adapter createTemplateSignatureAdapter() {
+	public Adapter createTemplateSignatureAdapter()
+	{
 		return null;
 	}
 
@@ -3582,7 +4081,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateParameter
 	 * @generated
 	 */
-	public Adapter createTemplateParameterAdapter() {
+	public Adapter createTemplateParameterAdapter()
+	{
 		return null;
 	}
 
@@ -3596,7 +4096,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateableElement
 	 * @generated
 	 */
-	public Adapter createTemplateableElementAdapter() {
+	public Adapter createTemplateableElementAdapter()
+	{
 		return null;
 	}
 
@@ -3610,7 +4111,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StringExpression
 	 * @generated
 	 */
-	public Adapter createStringExpressionAdapter() {
+	public Adapter createStringExpressionAdapter()
+	{
 		return null;
 	}
 
@@ -3624,7 +4126,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ParameterableElement
 	 * @generated
 	 */
-	public Adapter createParameterableElementAdapter() {
+	public Adapter createParameterableElementAdapter()
+	{
 		return null;
 	}
 
@@ -3638,7 +4141,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateBinding
 	 * @generated
 	 */
-	public Adapter createTemplateBindingAdapter() {
+	public Adapter createTemplateBindingAdapter()
+	{
 		return null;
 	}
 
@@ -3652,7 +4156,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateParameterSubstitution
 	 * @generated
 	 */
-	public Adapter createTemplateParameterSubstitutionAdapter() {
+	public Adapter createTemplateParameterSubstitutionAdapter()
+	{
 		return null;
 	}
 
@@ -3666,7 +4171,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Collaboration
 	 * @generated
 	 */
-	public Adapter createCollaborationAdapter() {
+	public Adapter createCollaborationAdapter()
+	{
 		return null;
 	}
 
@@ -3680,7 +4186,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.OperationTemplateParameter
 	 * @generated
 	 */
-	public Adapter createOperationTemplateParameterAdapter() {
+	public Adapter createOperationTemplateParameterAdapter()
+	{
 		return null;
 	}
 
@@ -3694,7 +4201,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ClassifierTemplateParameter
 	 * @generated
 	 */
-	public Adapter createClassifierTemplateParameterAdapter() {
+	public Adapter createClassifierTemplateParameterAdapter()
+	{
 		return null;
 	}
 
@@ -3708,7 +4216,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ParameterableClassifier
 	 * @generated
 	 */
-	public Adapter createParameterableClassifierAdapter() {
+	public Adapter createParameterableClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -3722,7 +4231,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.RedefinableTemplateSignature
 	 * @generated
 	 */
-	public Adapter createRedefinableTemplateSignatureAdapter() {
+	public Adapter createRedefinableTemplateSignatureAdapter()
+	{
 		return null;
 	}
 
@@ -3736,7 +4246,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateableClassifier
 	 * @generated
 	 */
-	public Adapter createTemplateableClassifierAdapter() {
+	public Adapter createTemplateableClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -3750,7 +4261,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ConnectableElementTemplateParameter
 	 * @generated
 	 */
-	public Adapter createConnectableElementTemplateParameterAdapter() {
+	public Adapter createConnectableElementTemplateParameterAdapter()
+	{
 		return null;
 	}
 
@@ -3764,7 +4276,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Interaction
 	 * @generated
 	 */
-	public Adapter createInteractionAdapter() {
+	public Adapter createInteractionAdapter()
+	{
 		return null;
 	}
 
@@ -3778,7 +4291,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InteractionFragment
 	 * @generated
 	 */
-	public Adapter createInteractionFragmentAdapter() {
+	public Adapter createInteractionFragmentAdapter()
+	{
 		return null;
 	}
 
@@ -3792,7 +4306,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Lifeline
 	 * @generated
 	 */
-	public Adapter createLifelineAdapter() {
+	public Adapter createLifelineAdapter()
+	{
 		return null;
 	}
 
@@ -3806,7 +4321,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Message
 	 * @generated
 	 */
-	public Adapter createMessageAdapter() {
+	public Adapter createMessageAdapter()
+	{
 		return null;
 	}
 
@@ -3820,7 +4336,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.GeneralOrdering
 	 * @generated
 	 */
-	public Adapter createGeneralOrderingAdapter() {
+	public Adapter createGeneralOrderingAdapter()
+	{
 		return null;
 	}
 
@@ -3834,7 +4351,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.MessageEnd
 	 * @generated
 	 */
-	public Adapter createMessageEndAdapter() {
+	public Adapter createMessageEndAdapter()
+	{
 		return null;
 	}
 
@@ -3848,7 +4366,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.EventOccurrence
 	 * @generated
 	 */
-	public Adapter createEventOccurrenceAdapter() {
+	public Adapter createEventOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -3862,7 +4381,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExecutionOccurrence
 	 * @generated
 	 */
-	public Adapter createExecutionOccurrenceAdapter() {
+	public Adapter createExecutionOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -3876,7 +4396,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StateInvariant
 	 * @generated
 	 */
-	public Adapter createStateInvariantAdapter() {
+	public Adapter createStateInvariantAdapter()
+	{
 		return null;
 	}
 
@@ -3890,7 +4411,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Stop
 	 * @generated
 	 */
-	public Adapter createStopAdapter() {
+	public Adapter createStopAdapter()
+	{
 		return null;
 	}
 
@@ -3904,7 +4426,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CollaborationOccurrence
 	 * @generated
 	 */
-	public Adapter createCollaborationOccurrenceAdapter() {
+	public Adapter createCollaborationOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -3918,7 +4441,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DataStoreNode
 	 * @generated
 	 */
-	public Adapter createDataStoreNodeAdapter() {
+	public Adapter createDataStoreNodeAdapter()
+	{
 		return null;
 	}
 
@@ -3932,7 +4456,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InterruptibleActivityRegion
 	 * @generated
 	 */
-	public Adapter createInterruptibleActivityRegionAdapter() {
+	public Adapter createInterruptibleActivityRegionAdapter()
+	{
 		return null;
 	}
 
@@ -3946,7 +4471,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ParameterSet
 	 * @generated
 	 */
-	public Adapter createParameterSetAdapter() {
+	public Adapter createParameterSetAdapter()
+	{
 		return null;
 	}
 
@@ -3960,7 +4486,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReadExtentAction
 	 * @generated
 	 */
-	public Adapter createReadExtentActionAdapter() {
+	public Adapter createReadExtentActionAdapter()
+	{
 		return null;
 	}
 
@@ -3974,7 +4501,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReclassifyObjectAction
 	 * @generated
 	 */
-	public Adapter createReclassifyObjectActionAdapter() {
+	public Adapter createReclassifyObjectActionAdapter()
+	{
 		return null;
 	}
 
@@ -3988,7 +4516,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReadIsClassifiedObjectAction
 	 * @generated
 	 */
-	public Adapter createReadIsClassifiedObjectActionAdapter() {
+	public Adapter createReadIsClassifiedObjectActionAdapter()
+	{
 		return null;
 	}
 
@@ -4002,7 +4531,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StartOwnedBehaviorAction
 	 * @generated
 	 */
-	public Adapter createStartOwnedBehaviorActionAdapter() {
+	public Adapter createStartOwnedBehaviorActionAdapter()
+	{
 		return null;
 	}
 
@@ -4016,7 +4546,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.QualifierValue
 	 * @generated
 	 */
-	public Adapter createQualifierValueAdapter() {
+	public Adapter createQualifierValueAdapter()
+	{
 		return null;
 	}
 
@@ -4030,7 +4561,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReadLinkObjectEndAction
 	 * @generated
 	 */
-	public Adapter createReadLinkObjectEndActionAdapter() {
+	public Adapter createReadLinkObjectEndActionAdapter()
+	{
 		return null;
 	}
 
@@ -4044,7 +4576,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReadLinkObjectEndQualifierAction
 	 * @generated
 	 */
-	public Adapter createReadLinkObjectEndQualifierActionAdapter() {
+	public Adapter createReadLinkObjectEndQualifierActionAdapter()
+	{
 		return null;
 	}
 
@@ -4058,7 +4591,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CreateLinkObjectAction
 	 * @generated
 	 */
-	public Adapter createCreateLinkObjectActionAdapter() {
+	public Adapter createCreateLinkObjectActionAdapter()
+	{
 		return null;
 	}
 
@@ -4072,7 +4606,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.AcceptEventAction
 	 * @generated
 	 */
-	public Adapter createAcceptEventActionAdapter() {
+	public Adapter createAcceptEventActionAdapter()
+	{
 		return null;
 	}
 
@@ -4086,7 +4621,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.AcceptCallAction
 	 * @generated
 	 */
-	public Adapter createAcceptCallActionAdapter() {
+	public Adapter createAcceptCallActionAdapter()
+	{
 		return null;
 	}
 
@@ -4100,7 +4636,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ReplyAction
 	 * @generated
 	 */
-	public Adapter createReplyActionAdapter() {
+	public Adapter createReplyActionAdapter()
+	{
 		return null;
 	}
 
@@ -4114,7 +4651,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.RaiseExceptionAction
 	 * @generated
 	 */
-	public Adapter createRaiseExceptionActionAdapter() {
+	public Adapter createRaiseExceptionActionAdapter()
+	{
 		return null;
 	}
 
@@ -4128,7 +4666,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TimeExpression
 	 * @generated
 	 */
-	public Adapter createTimeExpressionAdapter() {
+	public Adapter createTimeExpressionAdapter()
+	{
 		return null;
 	}
 
@@ -4142,7 +4681,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Duration
 	 * @generated
 	 */
-	public Adapter createDurationAdapter() {
+	public Adapter createDurationAdapter()
+	{
 		return null;
 	}
 
@@ -4156,7 +4696,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TimeObservationAction
 	 * @generated
 	 */
-	public Adapter createTimeObservationActionAdapter() {
+	public Adapter createTimeObservationActionAdapter()
+	{
 		return null;
 	}
 
@@ -4170,7 +4711,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DurationInterval
 	 * @generated
 	 */
-	public Adapter createDurationIntervalAdapter() {
+	public Adapter createDurationIntervalAdapter()
+	{
 		return null;
 	}
 
@@ -4184,7 +4726,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Interval
 	 * @generated
 	 */
-	public Adapter createIntervalAdapter() {
+	public Adapter createIntervalAdapter()
+	{
 		return null;
 	}
 
@@ -4198,7 +4741,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TimeConstraint
 	 * @generated
 	 */
-	public Adapter createTimeConstraintAdapter() {
+	public Adapter createTimeConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -4212,7 +4756,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.IntervalConstraint
 	 * @generated
 	 */
-	public Adapter createIntervalConstraintAdapter() {
+	public Adapter createIntervalConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -4226,7 +4771,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TimeInterval
 	 * @generated
 	 */
-	public Adapter createTimeIntervalAdapter() {
+	public Adapter createTimeIntervalAdapter()
+	{
 		return null;
 	}
 
@@ -4240,7 +4786,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DurationObservationAction
 	 * @generated
 	 */
-	public Adapter createDurationObservationActionAdapter() {
+	public Adapter createDurationObservationActionAdapter()
+	{
 		return null;
 	}
 
@@ -4254,7 +4801,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DurationConstraint
 	 * @generated
 	 */
-	public Adapter createDurationConstraintAdapter() {
+	public Adapter createDurationConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -4268,7 +4816,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ProtocolConformance
 	 * @generated
 	 */
-	public Adapter createProtocolConformanceAdapter() {
+	public Adapter createProtocolConformanceAdapter()
+	{
 		return null;
 	}
 
@@ -4282,7 +4831,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ProtocolStateMachine
 	 * @generated
 	 */
-	public Adapter createProtocolStateMachineAdapter() {
+	public Adapter createProtocolStateMachineAdapter()
+	{
 		return null;
 	}
 
@@ -4296,7 +4846,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ProtocolTransition
 	 * @generated
 	 */
-	public Adapter createProtocolTransitionAdapter() {
+	public Adapter createProtocolTransitionAdapter()
+	{
 		return null;
 	}
 
@@ -4310,7 +4861,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InteractionOccurrence
 	 * @generated
 	 */
-	public Adapter createInteractionOccurrenceAdapter() {
+	public Adapter createInteractionOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -4324,7 +4876,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Gate
 	 * @generated
 	 */
-	public Adapter createGateAdapter() {
+	public Adapter createGateAdapter()
+	{
 		return null;
 	}
 
@@ -4338,7 +4891,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PartDecomposition
 	 * @generated
 	 */
-	public Adapter createPartDecompositionAdapter() {
+	public Adapter createPartDecompositionAdapter()
+	{
 		return null;
 	}
 
@@ -4352,7 +4906,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InteractionOperand
 	 * @generated
 	 */
-	public Adapter createInteractionOperandAdapter() {
+	public Adapter createInteractionOperandAdapter()
+	{
 		return null;
 	}
 
@@ -4366,7 +4921,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InteractionConstraint
 	 * @generated
 	 */
-	public Adapter createInteractionConstraintAdapter() {
+	public Adapter createInteractionConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -4380,7 +4936,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CombinedFragment
 	 * @generated
 	 */
-	public Adapter createCombinedFragmentAdapter() {
+	public Adapter createCombinedFragmentAdapter()
+	{
 		return null;
 	}
 
@@ -4394,7 +4951,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Continuation
 	 * @generated
 	 */
-	public Adapter createContinuationAdapter() {
+	public Adapter createContinuationAdapter()
+	{
 		return null;
 	}
 
@@ -4408,7 +4966,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Component
 	 * @generated
 	 */
-	public Adapter createComponentAdapter() {
+	public Adapter createComponentAdapter()
+	{
 		return null;
 	}
 
@@ -4422,7 +4981,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Deployment
 	 * @generated
 	 */
-	public Adapter createDeploymentAdapter() {
+	public Adapter createDeploymentAdapter()
+	{
 		return null;
 	}
 
@@ -4436,7 +4996,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeployedArtifact
 	 * @generated
 	 */
-	public Adapter createDeployedArtifactAdapter() {
+	public Adapter createDeployedArtifactAdapter()
+	{
 		return null;
 	}
 
@@ -4450,7 +5011,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeploymentTarget
 	 * @generated
 	 */
-	public Adapter createDeploymentTargetAdapter() {
+	public Adapter createDeploymentTargetAdapter()
+	{
 		return null;
 	}
 
@@ -4464,7 +5026,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Node
 	 * @generated
 	 */
-	public Adapter createNodeAdapter() {
+	public Adapter createNodeAdapter()
+	{
 		return null;
 	}
 
@@ -4478,7 +5041,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Device
 	 * @generated
 	 */
-	public Adapter createDeviceAdapter() {
+	public Adapter createDeviceAdapter()
+	{
 		return null;
 	}
 
@@ -4492,7 +5056,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExecutionEnvironment
 	 * @generated
 	 */
-	public Adapter createExecutionEnvironmentAdapter() {
+	public Adapter createExecutionEnvironmentAdapter()
+	{
 		return null;
 	}
 
@@ -4506,7 +5071,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CommunicationPath
 	 * @generated
 	 */
-	public Adapter createCommunicationPathAdapter() {
+	public Adapter createCommunicationPathAdapter()
+	{
 		return null;
 	}
 
@@ -4520,7 +5086,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeploymentSpecification
 	 * @generated
 	 */
-	public Adapter createDeploymentSpecificationAdapter() {
+	public Adapter createDeploymentSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -4534,7 +5101,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.J_FigureContainer
 	 * @generated
 	 */
-  public Adapter createJ_FigureContainerAdapter() {
+  public Adapter createJ_FigureContainerAdapter()
+	{
 		return null;
 	}
 
@@ -4548,7 +5116,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.J_Diagram
 	 * @generated
 	 */
-	public Adapter createJ_DiagramAdapter() {
+	public Adapter createJ_DiagramAdapter()
+	{
 		return null;
 	}
 
@@ -4562,7 +5131,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.J_DiagramHolder
 	 * @generated
 	 */
-	public Adapter createJ_DiagramHolderAdapter() {
+	public Adapter createJ_DiagramHolderAdapter()
+	{
 		return null;
 	}
 
@@ -4576,7 +5146,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.AppliedBasicStereotypeValue
 	 * @generated
 	 */
-	public Adapter createAppliedBasicStereotypeValueAdapter() {
+	public Adapter createAppliedBasicStereotypeValueAdapter()
+	{
 		return null;
 	}
 
@@ -4590,7 +5161,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PropertyValueSpecification
 	 * @generated
 	 */
-	public Adapter createPropertyValueSpecificationAdapter() {
+	public Adapter createPropertyValueSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -4604,7 +5176,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaReplacedConstituent
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedConstituentAdapter() {
+	public Adapter createDeltaReplacedConstituentAdapter()
+	{
 		return null;
 	}
 
@@ -4618,7 +5191,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaDeletedConstituent
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedConstituentAdapter() {
+	public Adapter createDeltaDeletedConstituentAdapter()
+	{
 		return null;
 	}
 
@@ -4632,7 +5206,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaReplacedAttribute
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedAttributeAdapter() {
+	public Adapter createDeltaReplacedAttributeAdapter()
+	{
 		return null;
 	}
 
@@ -4646,7 +5221,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaDeletedAttribute
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedAttributeAdapter() {
+	public Adapter createDeltaDeletedAttributeAdapter()
+	{
 		return null;
 	}
 
@@ -4660,7 +5236,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaReplacedPort
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedPortAdapter() {
+	public Adapter createDeltaReplacedPortAdapter()
+	{
 		return null;
 	}
 
@@ -4674,7 +5251,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaDeletedPort
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedPortAdapter() {
+	public Adapter createDeltaDeletedPortAdapter()
+	{
 		return null;
 	}
 
@@ -4688,7 +5266,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaReplacedConnector
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedConnectorAdapter() {
+	public Adapter createDeltaReplacedConnectorAdapter()
+	{
 		return null;
 	}
 
@@ -4702,7 +5281,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaDeletedConnector
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedConnectorAdapter() {
+	public Adapter createDeltaDeletedConnectorAdapter()
+	{
 		return null;
 	}
 
@@ -4716,7 +5296,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaReplacedOperation
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedOperationAdapter() {
+	public Adapter createDeltaReplacedOperationAdapter()
+	{
 		return null;
 	}
 
@@ -4730,7 +5311,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaDeletedOperation
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedOperationAdapter() {
+	public Adapter createDeltaDeletedOperationAdapter()
+	{
 		return null;
 	}
 
@@ -4744,7 +5326,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PortRemap
 	 * @generated
 	 */
-  public Adapter createPortRemapAdapter() {
+  public Adapter createPortRemapAdapter()
+	{
 		return null;
 	}
 
@@ -4758,7 +5341,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.SavedReference
 	 * @generated
 	 */
-	public Adapter createSavedReferenceAdapter() {
+	public Adapter createSavedReferenceAdapter()
+	{
 		return null;
 	}
 
@@ -4772,7 +5356,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.RequirementsFeature
 	 * @generated
 	 */
-	public Adapter createRequirementsFeatureAdapter() {
+	public Adapter createRequirementsFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -4786,7 +5371,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.RequirementsFeatureLink
 	 * @generated
 	 */
-	public Adapter createRequirementsFeatureLinkAdapter() {
+	public Adapter createRequirementsFeatureLinkAdapter()
+	{
 		return null;
 	}
 
@@ -4800,7 +5386,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaReplacedRequirementsFeatureLink
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedRequirementsFeatureLinkAdapter() {
+	public Adapter createDeltaReplacedRequirementsFeatureLinkAdapter()
+	{
 		return null;
 	}
 
@@ -4814,7 +5401,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaDeletedRequirementsFeatureLink
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedRequirementsFeatureLinkAdapter() {
+	public Adapter createDeltaDeletedRequirementsFeatureLinkAdapter()
+	{
 		return null;
 	}
 
@@ -4828,7 +5416,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaDeletedTrace
 	 * @generated
 	 */
-	public Adapter createDeltaDeletedTraceAdapter() {
+	public Adapter createDeltaDeletedTraceAdapter()
+	{
 		return null;
 	}
 
@@ -4842,7 +5431,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaReplacedTrace
 	 * @generated
 	 */
-	public Adapter createDeltaReplacedTraceAdapter() {
+	public Adapter createDeltaReplacedTraceAdapter()
+	{
 		return null;
 	}
 
@@ -4856,7 +5446,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.J_Figure
 	 * @generated
 	 */
-	public Adapter createJ_FigureAdapter() {
+	public Adapter createJ_FigureAdapter()
+	{
 		return null;
 	}
 
@@ -4870,7 +5461,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.J_Property
 	 * @generated
 	 */
-	public Adapter createJ_PropertyAdapter() {
+	public Adapter createJ_PropertyAdapter()
+	{
 		return null;
 	}
 
@@ -4884,7 +5476,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.emf.ecore.EModelElement
 	 * @generated
 	 */
-	public Adapter createEModelElementAdapter() {
+	public Adapter createEModelElementAdapter()
+	{
 		return null;
 	}
 
@@ -4898,7 +5491,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Element
 	 * @generated
 	 */
-	public Adapter createUML2_ElementAdapter() {
+	public Adapter createUML2_ElementAdapter()
+	{
 		return null;
 	}
 
@@ -4912,7 +5506,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateableElement
 	 * @generated
 	 */
-	public Adapter createUML2_TemplateableElementAdapter() {
+	public Adapter createUML2_TemplateableElementAdapter()
+	{
 		return null;
 	}
 
@@ -4926,7 +5521,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.NamedElement
 	 * @generated
 	 */
-	public Adapter createUML2_NamedElementAdapter() {
+	public Adapter createUML2_NamedElementAdapter()
+	{
 		return null;
 	}
 
@@ -4940,7 +5536,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TypedElement
 	 * @generated
 	 */
-	public Adapter createUML2_TypedElementAdapter() {
+	public Adapter createUML2_TypedElementAdapter()
+	{
 		return null;
 	}
 
@@ -4954,7 +5551,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ParameterableElement
 	 * @generated
 	 */
-	public Adapter createUML2_ParameterableElementAdapter() {
+	public Adapter createUML2_ParameterableElementAdapter()
+	{
 		return null;
 	}
 
@@ -4968,7 +5566,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ValueSpecification
 	 * @generated
 	 */
-	public Adapter createUML2_ValueSpecificationAdapter() {
+	public Adapter createUML2_ValueSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -4982,7 +5581,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.OpaqueExpression
 	 * @generated
 	 */
-	public Adapter createUML2_OpaqueExpressionAdapter() {
+	public Adapter createUML2_OpaqueExpressionAdapter()
+	{
 		return null;
 	}
 
@@ -4996,7 +5596,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Relationship
 	 * @generated
 	 */
-	public Adapter createUML2_RelationshipAdapter() {
+	public Adapter createUML2_RelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -5010,7 +5611,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Namespace
 	 * @generated
 	 */
-	public Adapter createUML2_NamespaceAdapter() {
+	public Adapter createUML2_NamespaceAdapter()
+	{
 		return null;
 	}
 
@@ -5024,7 +5626,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PackageableElement
 	 * @generated
 	 */
-	public Adapter createUML2_PackageableElementAdapter() {
+	public Adapter createUML2_PackageableElementAdapter()
+	{
 		return null;
 	}
 
@@ -5038,7 +5641,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Type
 	 * @generated
 	 */
-	public Adapter createUML2_TypeAdapter() {
+	public Adapter createUML2_TypeAdapter()
+	{
 		return null;
 	}
 
@@ -5052,7 +5656,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.RedefinableElement
 	 * @generated
 	 */
-	public Adapter createUML2_RedefinableElementAdapter() {
+	public Adapter createUML2_RedefinableElementAdapter()
+	{
 		return null;
 	}
 
@@ -5066,7 +5671,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Classifier
 	 * @generated
 	 */
-	public Adapter createUML2_ClassifierAdapter() {
+	public Adapter createUML2_ClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -5080,7 +5686,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.BehavioredClassifier
 	 * @generated
 	 */
-	public Adapter createUML2_BehavioredClassifierAdapter() {
+	public Adapter createUML2_BehavioredClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -5094,7 +5701,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StructuredClassifier
 	 * @generated
 	 */
-	public Adapter createUML2_StructuredClassifierAdapter() {
+	public Adapter createUML2_StructuredClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -5108,7 +5716,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.EncapsulatedClassifier
 	 * @generated
 	 */
-	public Adapter createUML2_EncapsulatedClassifierAdapter() {
+	public Adapter createUML2_EncapsulatedClassifierAdapter()
+	{
 		return null;
 	}
 
@@ -5122,7 +5731,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Feature
 	 * @generated
 	 */
-	public Adapter createUML2_FeatureAdapter() {
+	public Adapter createUML2_FeatureAdapter()
+	{
 		return null;
 	}
 
@@ -5136,7 +5746,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.MultiplicityElement
 	 * @generated
 	 */
-	public Adapter createUML2_MultiplicityElementAdapter() {
+	public Adapter createUML2_MultiplicityElementAdapter()
+	{
 		return null;
 	}
 
@@ -5150,7 +5761,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StructuralFeature
 	 * @generated
 	 */
-	public Adapter createUML2_StructuralFeatureAdapter() {
+	public Adapter createUML2_StructuralFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -5164,7 +5776,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ConnectableElement
 	 * @generated
 	 */
-	public Adapter createUML2_ConnectableElementAdapter() {
+	public Adapter createUML2_ConnectableElementAdapter()
+	{
 		return null;
 	}
 
@@ -5178,7 +5791,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeploymentTarget
 	 * @generated
 	 */
-	public Adapter createUML2_DeploymentTargetAdapter() {
+	public Adapter createUML2_DeploymentTargetAdapter()
+	{
 		return null;
 	}
 
@@ -5192,7 +5806,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.BehavioralFeature
 	 * @generated
 	 */
-	public Adapter createUML2_BehavioralFeatureAdapter() {
+	public Adapter createUML2_BehavioralFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -5206,7 +5821,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DataType
 	 * @generated
 	 */
-	public Adapter createUML2_DataTypeAdapter() {
+	public Adapter createUML2_DataTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5220,7 +5836,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeployedArtifact
 	 * @generated
 	 */
-	public Adapter createUML2_DeployedArtifactAdapter() {
+	public Adapter createUML2_DeployedArtifactAdapter()
+	{
 		return null;
 	}
 
@@ -5234,7 +5851,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InstanceSpecification
 	 * @generated
 	 */
-	public Adapter createUML2_InstanceSpecificationAdapter() {
+	public Adapter createUML2_InstanceSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -5248,7 +5866,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LiteralSpecification
 	 * @generated
 	 */
-	public Adapter createUML2_LiteralSpecificationAdapter() {
+	public Adapter createUML2_LiteralSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -5262,7 +5881,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DirectedRelationship
 	 * @generated
 	 */
-	public Adapter createUML2_DirectedRelationshipAdapter() {
+	public Adapter createUML2_DirectedRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -5276,7 +5896,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Class
 	 * @generated
 	 */
-	public Adapter createUML2_ClassAdapter() {
+	public Adapter createUML2_ClassAdapter()
+	{
 		return null;
 	}
 
@@ -5290,7 +5911,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Package
 	 * @generated
 	 */
-	public Adapter createUML2_PackageAdapter() {
+	public Adapter createUML2_PackageAdapter()
+	{
 		return null;
 	}
 
@@ -5304,7 +5926,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.PackageImport
 	 * @generated
 	 */
-	public Adapter createUML2_PackageImportAdapter() {
+	public Adapter createUML2_PackageImportAdapter()
+	{
 		return null;
 	}
 
@@ -5318,7 +5941,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Association
 	 * @generated
 	 */
-	public Adapter createUML2_AssociationAdapter() {
+	public Adapter createUML2_AssociationAdapter()
+	{
 		return null;
 	}
 
@@ -5332,7 +5956,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Property
 	 * @generated
 	 */
-	public Adapter createUML2_PropertyAdapter() {
+	public Adapter createUML2_PropertyAdapter()
+	{
 		return null;
 	}
 
@@ -5346,7 +5971,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Behavior
 	 * @generated
 	 */
-	public Adapter createUML2_BehaviorAdapter() {
+	public Adapter createUML2_BehaviorAdapter()
+	{
 		return null;
 	}
 
@@ -5360,7 +5986,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Dependency
 	 * @generated
 	 */
-	public Adapter createUML2_DependencyAdapter() {
+	public Adapter createUML2_DependencyAdapter()
+	{
 		return null;
 	}
 
@@ -5374,7 +6001,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Abstraction
 	 * @generated
 	 */
-	public Adapter createUML2_AbstractionAdapter() {
+	public Adapter createUML2_AbstractionAdapter()
+	{
 		return null;
 	}
 
@@ -5388,7 +6016,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Realization
 	 * @generated
 	 */
-	public Adapter createUML2_RealizationAdapter() {
+	public Adapter createUML2_RealizationAdapter()
+	{
 		return null;
 	}
 
@@ -5402,7 +6031,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityNode
 	 * @generated
 	 */
-	public Adapter createUML2_ActivityNodeAdapter() {
+	public Adapter createUML2_ActivityNodeAdapter()
+	{
 		return null;
 	}
 
@@ -5416,7 +6046,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ExecutableNode
 	 * @generated
 	 */
-	public Adapter createUML2_ExecutableNodeAdapter() {
+	public Adapter createUML2_ExecutableNodeAdapter()
+	{
 		return null;
 	}
 
@@ -5430,7 +6061,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityEdge
 	 * @generated
 	 */
-	public Adapter createUML2_ActivityEdgeAdapter() {
+	public Adapter createUML2_ActivityEdgeAdapter()
+	{
 		return null;
 	}
 
@@ -5444,7 +6076,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ControlNode
 	 * @generated
 	 */
-	public Adapter createUML2_ControlNodeAdapter() {
+	public Adapter createUML2_ControlNodeAdapter()
+	{
 		return null;
 	}
 
@@ -5458,7 +6091,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.FinalNode
 	 * @generated
 	 */
-	public Adapter createUML2_FinalNodeAdapter() {
+	public Adapter createUML2_FinalNodeAdapter()
+	{
 		return null;
 	}
 
@@ -5472,7 +6106,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ObjectNode
 	 * @generated
 	 */
-	public Adapter createUML2_ObjectNodeAdapter() {
+	public Adapter createUML2_ObjectNodeAdapter()
+	{
 		return null;
 	}
 
@@ -5486,7 +6121,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Pin
 	 * @generated
 	 */
-	public Adapter createUML2_PinAdapter() {
+	public Adapter createUML2_PinAdapter()
+	{
 		return null;
 	}
 
@@ -5500,7 +6136,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InputPin
 	 * @generated
 	 */
-	public Adapter createUML2_InputPinAdapter() {
+	public Adapter createUML2_InputPinAdapter()
+	{
 		return null;
 	}
 
@@ -5514,7 +6151,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Trigger
 	 * @generated
 	 */
-	public Adapter createUML2_TriggerAdapter() {
+	public Adapter createUML2_TriggerAdapter()
+	{
 		return null;
 	}
 
@@ -5528,7 +6166,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.MessageTrigger
 	 * @generated
 	 */
-	public Adapter createUML2_MessageTriggerAdapter() {
+	public Adapter createUML2_MessageTriggerAdapter()
+	{
 		return null;
 	}
 
@@ -5542,7 +6181,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Action
 	 * @generated
 	 */
-	public Adapter createUML2_ActionAdapter() {
+	public Adapter createUML2_ActionAdapter()
+	{
 		return null;
 	}
 
@@ -5556,7 +6196,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.ActivityGroup
 	 * @generated
 	 */
-	public Adapter createUML2_ActivityGroupAdapter() {
+	public Adapter createUML2_ActivityGroupAdapter()
+	{
 		return null;
 	}
 
@@ -5570,7 +6211,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StructuredActivityNode
 	 * @generated
 	 */
-	public Adapter createUML2_StructuredActivityNodeAdapter() {
+	public Adapter createUML2_StructuredActivityNodeAdapter()
+	{
 		return null;
 	}
 
@@ -5584,7 +6226,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InteractionFragment
 	 * @generated
 	 */
-	public Adapter createUML2_InteractionFragmentAdapter() {
+	public Adapter createUML2_InteractionFragmentAdapter()
+	{
 		return null;
 	}
 
@@ -5598,7 +6241,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.MessageEnd
 	 * @generated
 	 */
-	public Adapter createUML2_MessageEndAdapter() {
+	public Adapter createUML2_MessageEndAdapter()
+	{
 		return null;
 	}
 
@@ -5612,7 +6256,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.EventOccurrence
 	 * @generated
 	 */
-	public Adapter createUML2_EventOccurrenceAdapter() {
+	public Adapter createUML2_EventOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -5626,7 +6271,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateParameter
 	 * @generated
 	 */
-	public Adapter createUML2_TemplateParameterAdapter() {
+	public Adapter createUML2_TemplateParameterAdapter()
+	{
 		return null;
 	}
 
@@ -5640,7 +6286,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.TemplateSignature
 	 * @generated
 	 */
-	public Adapter createUML2_TemplateSignatureAdapter() {
+	public Adapter createUML2_TemplateSignatureAdapter()
+	{
 		return null;
 	}
 
@@ -5654,7 +6301,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InteractionOccurrence
 	 * @generated
 	 */
-	public Adapter createUML2_InteractionOccurrenceAdapter() {
+	public Adapter createUML2_InteractionOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -5668,7 +6316,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Constraint
 	 * @generated
 	 */
-	public Adapter createUML2_ConstraintAdapter() {
+	public Adapter createUML2_ConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -5682,7 +6331,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Vertex
 	 * @generated
 	 */
-	public Adapter createUML2_VertexAdapter() {
+	public Adapter createUML2_VertexAdapter()
+	{
 		return null;
 	}
 
@@ -5696,7 +6346,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.State
 	 * @generated
 	 */
-	public Adapter createUML2_StateAdapter() {
+	public Adapter createUML2_StateAdapter()
+	{
 		return null;
 	}
 
@@ -5710,7 +6361,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StructuralFeatureAction
 	 * @generated
 	 */
-	public Adapter createUML2_StructuralFeatureActionAdapter() {
+	public Adapter createUML2_StructuralFeatureActionAdapter()
+	{
 		return null;
 	}
 
@@ -5724,7 +6376,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.WriteStructuralFeatureAction
 	 * @generated
 	 */
-	public Adapter createUML2_WriteStructuralFeatureActionAdapter() {
+	public Adapter createUML2_WriteStructuralFeatureActionAdapter()
+	{
 		return null;
 	}
 
@@ -5738,7 +6391,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LinkAction
 	 * @generated
 	 */
-	public Adapter createUML2_LinkActionAdapter() {
+	public Adapter createUML2_LinkActionAdapter()
+	{
 		return null;
 	}
 
@@ -5752,7 +6406,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.LinkEndData
 	 * @generated
 	 */
-	public Adapter createUML2_LinkEndDataAdapter() {
+	public Adapter createUML2_LinkEndDataAdapter()
+	{
 		return null;
 	}
 
@@ -5766,7 +6421,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.WriteLinkAction
 	 * @generated
 	 */
-	public Adapter createUML2_WriteLinkActionAdapter() {
+	public Adapter createUML2_WriteLinkActionAdapter()
+	{
 		return null;
 	}
 
@@ -5780,7 +6436,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.VariableAction
 	 * @generated
 	 */
-	public Adapter createUML2_VariableActionAdapter() {
+	public Adapter createUML2_VariableActionAdapter()
+	{
 		return null;
 	}
 
@@ -5794,7 +6451,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.WriteVariableAction
 	 * @generated
 	 */
-	public Adapter createUML2_WriteVariableActionAdapter() {
+	public Adapter createUML2_WriteVariableActionAdapter()
+	{
 		return null;
 	}
 
@@ -5808,7 +6466,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.InvocationAction
 	 * @generated
 	 */
-	public Adapter createUML2_InvocationActionAdapter() {
+	public Adapter createUML2_InvocationActionAdapter()
+	{
 		return null;
 	}
 
@@ -5822,7 +6481,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CallAction
 	 * @generated
 	 */
-	public Adapter createUML2_CallActionAdapter() {
+	public Adapter createUML2_CallActionAdapter()
+	{
 		return null;
 	}
 
@@ -5836,7 +6496,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Interval
 	 * @generated
 	 */
-	public Adapter createUML2_IntervalAdapter() {
+	public Adapter createUML2_IntervalAdapter()
+	{
 		return null;
 	}
 
@@ -5850,7 +6511,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.IntervalConstraint
 	 * @generated
 	 */
-	public Adapter createUML2_IntervalConstraintAdapter() {
+	public Adapter createUML2_IntervalConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -5864,7 +6526,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CentralBufferNode
 	 * @generated
 	 */
-	public Adapter createUML2_CentralBufferNodeAdapter() {
+	public Adapter createUML2_CentralBufferNodeAdapter()
+	{
 		return null;
 	}
 
@@ -5878,7 +6541,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Node
 	 * @generated
 	 */
-	public Adapter createUML2_NodeAdapter() {
+	public Adapter createUML2_NodeAdapter()
+	{
 		return null;
 	}
 
@@ -5892,7 +6556,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.StateMachine
 	 * @generated
 	 */
-	public Adapter createUML2_StateMachineAdapter() {
+	public Adapter createUML2_StateMachineAdapter()
+	{
 		return null;
 	}
 
@@ -5906,7 +6571,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Transition
 	 * @generated
 	 */
-	public Adapter createUML2_TransitionAdapter() {
+	public Adapter createUML2_TransitionAdapter()
+	{
 		return null;
 	}
 
@@ -5920,7 +6586,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.CreateLinkAction
 	 * @generated
 	 */
-	public Adapter createUML2_CreateLinkActionAdapter() {
+	public Adapter createUML2_CreateLinkActionAdapter()
+	{
 		return null;
 	}
 
@@ -5934,7 +6601,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.AcceptEventAction
 	 * @generated
 	 */
-	public Adapter createUML2_AcceptEventActionAdapter() {
+	public Adapter createUML2_AcceptEventActionAdapter()
+	{
 		return null;
 	}
 
@@ -5948,7 +6616,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.Artifact
 	 * @generated
 	 */
-	public Adapter createUML2_ArtifactAdapter() {
+	public Adapter createUML2_ArtifactAdapter()
+	{
 		return null;
 	}
 
@@ -5962,7 +6631,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.J_FigureContainer
 	 * @generated
 	 */
-	public Adapter createUML2_J_FigureContainerAdapter() {
+	public Adapter createUML2_J_FigureContainerAdapter()
+	{
 		return null;
 	}
 
@@ -5976,7 +6646,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaReplacedConstituent
 	 * @generated
 	 */
-	public Adapter createUML2_DeltaReplacedConstituentAdapter() {
+	public Adapter createUML2_DeltaReplacedConstituentAdapter()
+	{
 		return null;
 	}
 
@@ -5990,7 +6661,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.uml2.DeltaDeletedConstituent
 	 * @generated
 	 */
-	public Adapter createUML2_DeltaDeletedConstituentAdapter() {
+	public Adapter createUML2_DeltaDeletedConstituentAdapter()
+	{
 		return null;
 	}
 
@@ -6002,7 +6674,8 @@ public class UML2AdapterFactory extends AdapterFactoryImpl {
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter() {
+	public Adapter createEObjectAdapter()
+	{
 		return null;
 	}
 

@@ -79,7 +79,8 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EnumerationImpl() {
+	protected EnumerationImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -94,7 +95,8 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getEnumeration();
 	}
 
@@ -103,9 +105,13 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedLiterals() {
-		if (ownedLiteral == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedLiterals()
+	{
+		if (ownedLiteral == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedLiteral = new com.intrinsarc.emflist.PersistentEList(EnumerationLiteral.class, this, UML2Package.ENUMERATION__OWNED_LITERAL, UML2Package.ENUMERATION_LITERAL__ENUMERATION);
 			 		return ownedLiteral;
@@ -122,8 +128,12 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedLiterals() {
-		if (ownedLiteral == null) {
+  public EList settable_getOwnedLiterals()
+	{
+		if (ownedLiteral == null)
+		{
+			
+		
 			ownedLiteral = new com.intrinsarc.emflist.PersistentEList(EnumerationLiteral.class, this, UML2Package.ENUMERATION__OWNED_LITERAL, UML2Package.ENUMERATION_LITERAL__ENUMERATION);
 		}
 		return ownedLiteral;
@@ -134,11 +144,14 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedLiterals() {
+  public java.util.ArrayList undeleted_getOwnedLiterals()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedLiteral != null) {
-			for (Object object : ownedLiteral) {
+		if (ownedLiteral != null)
+		{
+			for (Object object : ownedLiteral)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -200,9 +213,12 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ENUMERATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ENUMERATION__TEMPLATE_BINDING:
@@ -255,9 +271,12 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.ENUMERATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ENUMERATION__OWNED_COMMENT:
@@ -314,9 +333,12 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.ENUMERATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -331,8 +353,10 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ENUMERATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ENUMERATION__OWNED_ELEMENT:
@@ -439,8 +463,10 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ENUMERATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -580,8 +606,10 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ENUMERATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -699,8 +727,10 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.ENUMERATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ENUMERATION__OWNED_ELEMENT:
@@ -815,7 +845,8 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getEnumeration_OwnedLiteral())) {
 			ownedMember.addAll(getOwnedLiterals());

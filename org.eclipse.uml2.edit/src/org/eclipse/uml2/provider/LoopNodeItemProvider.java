@@ -60,7 +60,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LoopNodeItemProvider(AdapterFactory adapterFactory) {
+	public LoopNodeItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -70,8 +71,10 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addIsTestedFirstPropertyDescriptor(object);
@@ -93,7 +96,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsTestedFirstPropertyDescriptor(Object object) {
+	protected void addIsTestedFirstPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -113,7 +117,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyPartPropertyDescriptor(Object object) {
+	protected void addBodyPartPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -133,7 +138,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSetupPartPropertyDescriptor(Object object) {
+	protected void addSetupPartPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -153,7 +159,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDeciderPropertyDescriptor(Object object) {
+	protected void addDeciderPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -173,7 +180,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTestPropertyDescriptor(Object object) {
+	protected void addTestPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -193,7 +201,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResultPropertyDescriptor(Object object) {
+	protected void addResultPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -215,7 +224,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLoopVariablePropertyDescriptor(Object object) {
+	protected void addLoopVariablePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -237,7 +247,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyOutputPropertyDescriptor(Object object) {
+	protected void addBodyOutputPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -257,7 +268,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLoopVariableInputPropertyDescriptor(Object object) {
+	protected void addLoopVariableInputPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -281,8 +293,10 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getLoopNode_Result());
 			childrenFeatures.add(UML2Package.eINSTANCE.getLoopNode_LoopVariable());
@@ -296,7 +310,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -309,7 +324,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/LoopNode"); //$NON-NLS-1$
 	}
 
@@ -319,7 +335,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((LoopNode)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LoopNode_type") : //$NON-NLS-1$
@@ -333,10 +350,12 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LoopNode.class)) {
+		switch (notification.getFeatureID(LoopNode.class))
+		{
 			case UML2Package.LOOP_NODE__IS_TESTED_FIRST:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -356,7 +375,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -406,7 +426,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -419,7 +440,8 @@ public class LoopNodeItemProvider
 			childFeature == UML2Package.eINSTANCE.getLoopNode_LoopVariable() ||
 			childFeature == UML2Package.eINSTANCE.getLoopNode_LoopVariableInput();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -433,7 +455,8 @@ public class LoopNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

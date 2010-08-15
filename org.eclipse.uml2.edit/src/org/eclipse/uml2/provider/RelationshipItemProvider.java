@@ -54,7 +54,8 @@ public class RelationshipItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RelationshipItemProvider(AdapterFactory adapterFactory) {
+	public RelationshipItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -64,8 +65,10 @@ public class RelationshipItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRelatedElementPropertyDescriptor(object);
@@ -79,7 +82,8 @@ public class RelationshipItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedElementPropertyDescriptor(Object object) {
+	protected void addRelatedElementPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -101,7 +105,8 @@ public class RelationshipItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		Relationship relationship = (Relationship)object;
 		return getString("_UI_Relationship_type") + " " + relationship.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -113,7 +118,8 @@ public class RelationshipItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -125,7 +131,8 @@ public class RelationshipItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -135,7 +142,8 @@ public class RelationshipItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -53,7 +53,8 @@ public class ClearVariableActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClearVariableActionItemProvider(AdapterFactory adapterFactory) {
+	public ClearVariableActionItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -63,8 +64,10 @@ public class ClearVariableActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -77,7 +80,8 @@ public class ClearVariableActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/ClearVariableAction"); //$NON-NLS-1$
 	}
 
@@ -87,7 +91,8 @@ public class ClearVariableActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((ClearVariableAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ClearVariableAction_type") : //$NON-NLS-1$
@@ -101,7 +106,8 @@ public class ClearVariableActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -113,7 +119,8 @@ public class ClearVariableActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -123,7 +130,8 @@ public class ClearVariableActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -131,7 +139,8 @@ public class ClearVariableActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPrecondition() ||
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -145,7 +154,8 @@ public class ClearVariableActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

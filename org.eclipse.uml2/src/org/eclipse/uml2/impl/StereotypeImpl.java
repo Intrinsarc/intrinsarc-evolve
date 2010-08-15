@@ -107,7 +107,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getStereotype();
 	}
 
@@ -116,7 +117,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getExtendsMetaModelElement() {
+	public String getExtendsMetaModelElement()
+	{
 		return extendsMetaModelElement;
 	}
 
@@ -131,7 +133,9 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtendsMetaModelElement(String newExtendsMetaModelElement) {
+	public void setExtendsMetaModelElement(String newExtendsMetaModelElement)
+	{
+
 		newExtendsMetaModelElement = newExtendsMetaModelElement == null ? EXTENDS_META_MODEL_ELEMENT_EDEFAULT : newExtendsMetaModelElement;
 		String oldExtendsMetaModelElement = extendsMetaModelElement;
 		extendsMetaModelElement = newExtendsMetaModelElement;
@@ -146,9 +150,12 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.STEREOTYPE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.STEREOTYPE__TEMPLATE_BINDING:
@@ -210,9 +217,12 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.STEREOTYPE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.STEREOTYPE__OWNED_COMMENT:
@@ -303,9 +313,12 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.STEREOTYPE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -320,8 +333,10 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STEREOTYPE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.STEREOTYPE__OWNED_ELEMENT:
@@ -478,8 +493,10 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STEREOTYPE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -699,8 +716,10 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STEREOTYPE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -890,8 +909,10 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.STEREOTYPE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.STEREOTYPE__OWNED_ELEMENT:
@@ -1061,7 +1082,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+	{
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

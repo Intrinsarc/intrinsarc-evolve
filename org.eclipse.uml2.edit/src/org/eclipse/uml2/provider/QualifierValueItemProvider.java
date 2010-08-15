@@ -54,7 +54,8 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QualifierValueItemProvider(AdapterFactory adapterFactory) {
+	public QualifierValueItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -64,8 +65,10 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addQualifierPropertyDescriptor(object);
@@ -80,7 +83,8 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addQualifierPropertyDescriptor(Object object) {
+	protected void addQualifierPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -100,7 +104,8 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object) {
+	protected void addValuePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -120,7 +125,8 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/QualifierValue"); //$NON-NLS-1$
 	}
 
@@ -130,7 +136,8 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		QualifierValue qualifierValue = (QualifierValue)object;
 		return getString("_UI_QualifierValue_type") + " " + qualifierValue.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -142,7 +149,8 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -154,7 +162,8 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -164,7 +173,8 @@ public class QualifierValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

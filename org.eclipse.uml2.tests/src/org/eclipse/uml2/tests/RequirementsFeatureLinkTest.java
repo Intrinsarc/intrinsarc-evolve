@@ -34,7 +34,8 @@ public class RequirementsFeatureLinkTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(RequirementsFeatureLinkTest.class);
 	}
 
@@ -44,7 +45,8 @@ public class RequirementsFeatureLinkTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsFeatureLinkTest(String name) {
+	public RequirementsFeatureLinkTest(String name)
+	{
 		super(name);
 	}
 
@@ -54,7 +56,8 @@ public class RequirementsFeatureLinkTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private RequirementsFeatureLink getFixture() {
+	private RequirementsFeatureLink getFixture()
+	{
 		return (RequirementsFeatureLink)fixture;
 	}
 
@@ -64,7 +67,8 @@ public class RequirementsFeatureLinkTest extends ElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createRequirementsFeatureLink());
 	}
 
@@ -74,7 +78,8 @@ public class RequirementsFeatureLinkTest extends ElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

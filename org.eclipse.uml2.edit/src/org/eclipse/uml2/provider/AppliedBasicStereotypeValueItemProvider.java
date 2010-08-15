@@ -57,7 +57,8 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AppliedBasicStereotypeValueItemProvider(AdapterFactory adapterFactory) {
+	public AppliedBasicStereotypeValueItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -67,8 +68,10 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addPropertyPropertyDescriptor(object);
@@ -82,7 +85,8 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPropertyPropertyDescriptor(Object object) {
+	protected void addPropertyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -104,8 +108,10 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getAppliedBasicStereotypeValue_Value());
 		}
@@ -118,7 +124,8 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return getResourceLocator().getImage("full/obj16/AppliedBasicStereotypeValue"); //$NON-NLS-1$
 	}
 
@@ -128,7 +135,8 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		AppliedBasicStereotypeValue appliedBasicStereotypeValue = (AppliedBasicStereotypeValue)object;
 		return getString("_UI_AppliedBasicStereotypeValue_type") + " " + appliedBasicStereotypeValue.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -140,10 +148,12 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AppliedBasicStereotypeValue.class)) {
+		switch (notification.getFeatureID(AppliedBasicStereotypeValue.class))
+		{
 			case UML2Package.APPLIED_BASIC_STEREOTYPE_VALUE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -158,7 +168,8 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -308,7 +319,8 @@ public class AppliedBasicStereotypeValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

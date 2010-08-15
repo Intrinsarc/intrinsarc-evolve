@@ -32,7 +32,8 @@ public class DeltaDeletedRequirementsFeatureLinkTest extends DeltaDeletedConstit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(DeltaDeletedRequirementsFeatureLinkTest.class);
 	}
 
@@ -42,7 +43,8 @@ public class DeltaDeletedRequirementsFeatureLinkTest extends DeltaDeletedConstit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaDeletedRequirementsFeatureLinkTest(String name) {
+	public DeltaDeletedRequirementsFeatureLinkTest(String name)
+	{
 		super(name);
 	}
 
@@ -52,7 +54,8 @@ public class DeltaDeletedRequirementsFeatureLinkTest extends DeltaDeletedConstit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DeltaDeletedRequirementsFeatureLink getFixture() {
+	private DeltaDeletedRequirementsFeatureLink getFixture()
+	{
 		return (DeltaDeletedRequirementsFeatureLink)fixture;
 	}
 
@@ -62,7 +65,8 @@ public class DeltaDeletedRequirementsFeatureLinkTest extends DeltaDeletedConstit
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createDeltaDeletedRequirementsFeatureLink());
 	}
 
@@ -72,7 +76,8 @@ public class DeltaDeletedRequirementsFeatureLinkTest extends DeltaDeletedConstit
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

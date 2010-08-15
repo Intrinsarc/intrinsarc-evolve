@@ -30,7 +30,8 @@ public class ClearVariableActionTest extends VariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(ClearVariableActionTest.class);
 	}
 
@@ -40,7 +41,8 @@ public class ClearVariableActionTest extends VariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClearVariableActionTest(String name) {
+	public ClearVariableActionTest(String name)
+	{
 		super(name);
 	}
 
@@ -50,7 +52,8 @@ public class ClearVariableActionTest extends VariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ClearVariableAction getFixture() {
+	private ClearVariableAction getFixture()
+	{
 		return (ClearVariableAction)fixture;
 	}
 
@@ -60,7 +63,8 @@ public class ClearVariableActionTest extends VariableActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createClearVariableAction());
 	}
 
@@ -70,7 +74,8 @@ public class ClearVariableActionTest extends VariableActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 

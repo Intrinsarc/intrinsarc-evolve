@@ -189,7 +189,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InterfaceImpl() {
+	protected InterfaceImpl()
+	{
 		super();
 		
 		if (eAdapters().size() == 0)
@@ -204,7 +205,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return UML2Package.eINSTANCE.getInterface();
 	}
 
@@ -213,9 +215,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedAttributes() {
-		if (ownedAttribute == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedAttributes()
+	{
+		if (ownedAttribute == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.INTERFACE__OWNED_ATTRIBUTE);
 			 		return ownedAttribute;
@@ -232,8 +238,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedAttributes() {
-		if (ownedAttribute == null) {
+  public EList settable_getOwnedAttributes()
+	{
+		if (ownedAttribute == null)
+		{
+			
+		
 			ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.INTERFACE__OWNED_ATTRIBUTE);
 		}
 		return ownedAttribute;
@@ -244,11 +254,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedAttributes() {
+  public java.util.ArrayList undeleted_getOwnedAttributes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedAttribute != null) {
-			for (Object object : ownedAttribute) {
+		if (ownedAttribute != null)
+		{
+			for (Object object : ownedAttribute)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -309,9 +322,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedOperations() {
-		if (ownedOperation == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedOperations()
+	{
+		if (ownedOperation == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.INTERFACE__OWNED_OPERATION);
 			 		return ownedOperation;
@@ -328,8 +345,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedOperations() {
-		if (ownedOperation == null) {
+  public EList settable_getOwnedOperations()
+	{
+		if (ownedOperation == null)
+		{
+			
+		
 			ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.INTERFACE__OWNED_OPERATION);
 		}
 		return ownedOperation;
@@ -340,11 +361,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedOperations() {
+  public java.util.ArrayList undeleted_getOwnedOperations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedOperation != null) {
-			for (Object object : ownedOperation) {
+		if (ownedOperation != null)
+		{
+			for (Object object : ownedOperation)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -406,9 +430,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRedefinedInterfaces() {
-		if (redefinedInterface == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getRedefinedInterfaces()
+	{
+		if (redefinedInterface == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		redefinedInterface = new com.intrinsarc.emflist.PersistentEList(Interface.class, this, UML2Package.INTERFACE__REDEFINED_INTERFACE);
 			 		return redefinedInterface;
@@ -425,8 +453,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getRedefinedInterfaces() {
-		if (redefinedInterface == null) {
+  public EList settable_getRedefinedInterfaces()
+	{
+		if (redefinedInterface == null)
+		{
+			
+		
 			redefinedInterface = new com.intrinsarc.emflist.PersistentEList(Interface.class, this, UML2Package.INTERFACE__REDEFINED_INTERFACE);
 		}
 		return redefinedInterface;
@@ -437,11 +469,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getRedefinedInterfaces() {
+  public java.util.ArrayList undeleted_getRedefinedInterfaces()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (redefinedInterface != null) {
-			for (Object object : redefinedInterface) {
+		if (redefinedInterface != null)
+		{
+			for (Object object : redefinedInterface)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -474,9 +509,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getNestedClassifiers() {
-		if (nestedClassifier == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getNestedClassifiers()
+	{
+		if (nestedClassifier == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		nestedClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INTERFACE__NESTED_CLASSIFIER);
 			 		return nestedClassifier;
@@ -493,8 +532,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getNestedClassifiers() {
-		if (nestedClassifier == null) {
+  public EList settable_getNestedClassifiers()
+	{
+		if (nestedClassifier == null)
+		{
+			
+		
 			nestedClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.INTERFACE__NESTED_CLASSIFIER);
 		}
 		return nestedClassifier;
@@ -505,11 +548,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getNestedClassifiers() {
+  public java.util.ArrayList undeleted_getNestedClassifiers()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (nestedClassifier != null) {
-			for (Object object : nestedClassifier) {
+		if (nestedClassifier != null)
+		{
+			for (Object object : nestedClassifier)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -556,9 +602,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedReceptions() {
-		if (ownedReception == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getOwnedReceptions()
+	{
+		if (ownedReception == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		ownedReception = new com.intrinsarc.emflist.PersistentEList(Reception.class, this, UML2Package.INTERFACE__OWNED_RECEPTION);
 			 		return ownedReception;
@@ -575,8 +625,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedReceptions() {
-		if (ownedReception == null) {
+  public EList settable_getOwnedReceptions()
+	{
+		if (ownedReception == null)
+		{
+			
+		
 			ownedReception = new com.intrinsarc.emflist.PersistentEList(Reception.class, this, UML2Package.INTERFACE__OWNED_RECEPTION);
 		}
 		return ownedReception;
@@ -587,11 +641,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedReceptions() {
+  public java.util.ArrayList undeleted_getOwnedReceptions()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedReception != null) {
-			for (Object object : ownedReception) {
+		if (ownedReception != null)
+		{
+			for (Object object : ownedReception)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -653,7 +710,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProtocolStateMachine getProtocol() {
+	public ProtocolStateMachine getProtocol()
+	{
 		return protocol;
 	}
 
@@ -667,7 +725,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ProtocolStateMachine undeleted_getProtocol() {
+  public ProtocolStateMachine undeleted_getProtocol()
+	{
 		ProtocolStateMachine temp = getProtocol();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -679,10 +738,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetProtocol(ProtocolStateMachine newProtocol, NotificationChain msgs) {
+	public NotificationChain basicSetProtocol(ProtocolStateMachine newProtocol, NotificationChain msgs)
+	{
+
 		ProtocolStateMachine oldProtocol = protocol;
 		protocol = newProtocol;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.INTERFACE__PROTOCOL, oldProtocol, newProtocol);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -695,8 +757,11 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProtocol(ProtocolStateMachine newProtocol) {
-		if (newProtocol != protocol) {
+	public void setProtocol(ProtocolStateMachine newProtocol)
+	{
+
+		if (newProtocol != protocol)
+		{
 			NotificationChain msgs = null;
 			if (protocol != null)
 				msgs = ((InternalEObject)protocol).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.INTERFACE__PROTOCOL, null, msgs);
@@ -745,9 +810,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedOperations() {
-		if (deltaDeletedOperations == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaDeletedOperations()
+	{
+		if (deltaDeletedOperations == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaDeletedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS);
 			 		return deltaDeletedOperations;
@@ -764,8 +833,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedOperations() {
-		if (deltaDeletedOperations == null) {
+	public EList settable_getDeltaDeletedOperations()
+	{
+		if (deltaDeletedOperations == null)
+		{
+			
+		
 			deltaDeletedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.INTERFACE__DELTA_DELETED_OPERATIONS);
 		}
 		return deltaDeletedOperations;
@@ -776,11 +849,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedOperations() {
+	public java.util.ArrayList undeleted_getDeltaDeletedOperations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedOperations != null) {
-			for (Object object : deltaDeletedOperations) {
+		if (deltaDeletedOperations != null)
+		{
+			for (Object object : deltaDeletedOperations)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -826,9 +902,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedOperations() {
-		if (deltaReplacedOperations == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaReplacedOperations()
+	{
+		if (deltaReplacedOperations == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaReplacedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS);
 			 		return deltaReplacedOperations;
@@ -845,8 +925,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedOperations() {
-		if (deltaReplacedOperations == null) {
+	public EList settable_getDeltaReplacedOperations()
+	{
+		if (deltaReplacedOperations == null)
+		{
+			
+		
 			deltaReplacedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.INTERFACE__DELTA_REPLACED_OPERATIONS);
 		}
 		return deltaReplacedOperations;
@@ -857,11 +941,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedOperations() {
+	public java.util.ArrayList undeleted_getDeltaReplacedOperations()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedOperations != null) {
-			for (Object object : deltaReplacedOperations) {
+		if (deltaReplacedOperations != null)
+		{
+			for (Object object : deltaReplacedOperations)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -907,9 +994,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedAttributes() {
-		if (deltaDeletedAttributes == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaDeletedAttributes()
+	{
+		if (deltaDeletedAttributes == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaDeletedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES);
 			 		return deltaDeletedAttributes;
@@ -926,8 +1017,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedAttributes() {
-		if (deltaDeletedAttributes == null) {
+	public EList settable_getDeltaDeletedAttributes()
+	{
+		if (deltaDeletedAttributes == null)
+		{
+			
+		
 			deltaDeletedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.INTERFACE__DELTA_DELETED_ATTRIBUTES);
 		}
 		return deltaDeletedAttributes;
@@ -938,11 +1033,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedAttributes() {
+	public java.util.ArrayList undeleted_getDeltaDeletedAttributes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedAttributes != null) {
-			for (Object object : deltaDeletedAttributes) {
+		if (deltaDeletedAttributes != null)
+		{
+			for (Object object : deltaDeletedAttributes)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -988,9 +1086,13 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedAttributes() {
-		if (deltaReplacedAttributes == null) {
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
+	public EList getDeltaReplacedAttributes()
+	{
+		if (deltaReplacedAttributes == null)
+		{
+			
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
+			 {
 			 		// create the list lazily...
 			 		deltaReplacedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES);
 			 		return deltaReplacedAttributes;
@@ -1007,8 +1109,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedAttributes() {
-		if (deltaReplacedAttributes == null) {
+	public EList settable_getDeltaReplacedAttributes()
+	{
+		if (deltaReplacedAttributes == null)
+		{
+			
+		
 			deltaReplacedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.INTERFACE__DELTA_REPLACED_ATTRIBUTES);
 		}
 		return deltaReplacedAttributes;
@@ -1019,11 +1125,14 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedAttributes() {
+	public java.util.ArrayList undeleted_getDeltaReplacedAttributes()
+	{
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedAttributes != null) {
-			for (Object object : deltaReplacedAttributes) {
+		if (deltaReplacedAttributes != null)
+		{
+			for (Object object : deltaReplacedAttributes)
+			{
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1069,9 +1178,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.INTERFACE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INTERFACE__TEMPLATE_BINDING:
@@ -1118,9 +1230,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+	{
+		if (featureID >= 0)
+		{
+			switch (eDerivedStructuralFeatureID(featureID, baseClass))
+			{
 				case UML2Package.INTERFACE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INTERFACE__OWNED_COMMENT:
@@ -1189,9 +1304,12 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+	{
+		if (eContainerFeatureID >= 0)
+		{
+			switch (eContainerFeatureID)
+			{
 				case UML2Package.INTERFACE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -1206,8 +1324,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INTERFACE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INTERFACE__OWNED_ELEMENT:
@@ -1328,8 +1448,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(EStructuralFeature eFeature, Object newValue)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INTERFACE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1496,8 +1618,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INTERFACE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1636,8 +1760,10 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSetGen(EStructuralFeature eFeature)
+	{
+		switch (eDerivedStructuralFeatureID(eFeature))
+		{
 			case UML2Package.INTERFACE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INTERFACE__OWNED_ELEMENT:
@@ -1766,7 +1892,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getAttributesHelper(EList attribute) {
+	protected EList getAttributesHelper(EList attribute)
+	{
 		super.getAttributesHelper(attribute);
 		if (eIsSet(UML2Package.eINSTANCE.getInterface_OwnedAttribute())) {
 			attribute.addAll(getOwnedAttributes());
@@ -1780,7 +1907,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember) {
+	protected EList getOwnedMembersHelper(EList ownedMember)
+	{
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getInterface_OwnedAttribute())) {
 			ownedMember.addAll(getOwnedAttributes());
@@ -1806,7 +1934,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getFeaturesHelper(EList feature) {
+	protected EList getFeaturesHelper(EList feature)
+	{
 		super.getFeaturesHelper(feature);
 		if (eIsSet(UML2Package.eINSTANCE.getInterface_OwnedOperation())) {
 			feature.addAll(getOwnedOperations());
@@ -1823,7 +1952,8 @@ public class InterfaceImpl extends ClassifierImpl implements Interface {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRedefinedElementsHelper(EList redefinedElement) {
+	protected EList getRedefinedElementsHelper(EList redefinedElement)
+	{
 		super.getRedefinedElementsHelper(redefinedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getInterface_RedefinedInterface())) {
 			for (Iterator i = ((InternalEList) getRedefinedInterfaces()).basicIterator(); i.hasNext(); ) {

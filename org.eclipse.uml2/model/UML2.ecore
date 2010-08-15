@@ -4898,9 +4898,8 @@
   <eClassifiers xsi:type="ecore:EEnum" name="PortKind" instanceClassName="">
     <eLiterals name="normal"/>
     <eLiterals name="create" value="1"/>
-    <eLiterals name="hyperport_start" value="2"/>
-    <eLiterals name="hyperport_end" value="3"/>
-    <eLiterals name="autoconnect" value="4"/>
+    <eLiterals name="hyperport" value="2"/>
+    <eLiterals name="autoconnect" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SavedReference" eSuperTypes="#//PackageableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="#//String"/>

@@ -74,7 +74,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierItemProvider(AdapterFactory adapterFactory) {
+	public ClassifierItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -84,8 +85,10 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addTemplateParameterPropertyDescriptor(object);
@@ -118,7 +121,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTemplateParameterPropertyDescriptor(Object object) {
+	protected void addTemplateParameterPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -138,7 +142,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwningParameterPropertyDescriptor(Object object) {
+	protected void addOwningParameterPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -160,7 +165,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPackageableElement_visibilityPropertyDescriptor(Object object) {
+	protected void addPackageableElement_visibilityPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -180,7 +186,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPackagePropertyDescriptor(Object object) {
+	protected void addPackagePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -202,7 +209,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsLeafPropertyDescriptor(Object object) {
+	protected void addIsLeafPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -222,7 +230,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinitionContextPropertyDescriptor(Object object) {
+	protected void addRedefinitionContextPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -244,7 +253,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsAbstractPropertyDescriptor(Object object) {
+	protected void addIsAbstractPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -264,7 +274,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFeaturePropertyDescriptor(Object object) {
+	protected void addFeaturePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -286,7 +297,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInheritedMemberPropertyDescriptor(Object object) {
+	protected void addInheritedMemberPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -308,7 +320,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGeneralPropertyDescriptor(Object object) {
+	protected void addGeneralPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -330,7 +343,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGeneralizationPropertyDescriptor(Object object) {
+	protected void addGeneralizationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -352,7 +366,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAttributePropertyDescriptor(Object object) {
+	protected void addAttributePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -374,7 +389,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRedefinedClassifierPropertyDescriptor(Object object) {
+	protected void addRedefinedClassifierPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -394,7 +410,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSubstitutionPropertyDescriptor(Object object) {
+	protected void addSubstitutionPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -416,7 +433,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPowertypeExtentPropertyDescriptor(Object object) {
+	protected void addPowertypeExtentPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -436,7 +454,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedUseCasePropertyDescriptor(Object object) {
+	protected void addOwnedUseCasePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -458,7 +477,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUseCasePropertyDescriptor(Object object) {
+	protected void addUseCasePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -478,7 +498,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRepresentationPropertyDescriptor(Object object) {
+	protected void addRepresentationPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -498,7 +519,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOccurrencePropertyDescriptor(Object object) {
+	protected void addOccurrencePropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -520,7 +542,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsRetiredPropertyDescriptor(Object object) {
+	protected void addIsRetiredPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -542,8 +565,10 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getClassifier_Generalization());
 			childrenFeatures.add(UML2Package.eINSTANCE.getClassifier_Substitution());
@@ -558,7 +583,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -571,7 +597,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		String label = ((Classifier)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Classifier_type") : //$NON-NLS-1$
@@ -585,10 +612,12 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Classifier.class)) {
+		switch (notification.getFeatureID(Classifier.class))
+		{
 			case UML2Package.CLASSIFIER__PACKAGEABLE_ELEMENT_VISIBILITY:
 			case UML2Package.CLASSIFIER__IS_RETIRED:
 			case UML2Package.CLASSIFIER__IS_LEAF:
@@ -612,7 +641,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -662,7 +692,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
+	{
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -670,7 +701,8 @@ public class ClassifierItemProvider
 			childFeature == UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies() ||
 			childFeature == UML2Package.eINSTANCE.getClassifier_Substitution();
 
-		if (qualify) {
+		if (qualify)
+		{
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -684,7 +716,8 @@ public class ClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return UML2EditPlugin.INSTANCE;
 	}
 

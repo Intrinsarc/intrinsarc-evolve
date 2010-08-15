@@ -28,7 +28,8 @@ public abstract class DirectedRelationshipTest extends RelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DirectedRelationshipTest(String name) {
+	public DirectedRelationshipTest(String name)
+	{
 		super(name);
 	}
 
@@ -38,7 +39,8 @@ public abstract class DirectedRelationshipTest extends RelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DirectedRelationship getFixture() {
+	private DirectedRelationship getFixture()
+	{
 		return (DirectedRelationship)fixture;
 	}
 
@@ -51,7 +53,8 @@ public abstract class DirectedRelationshipTest extends RelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getSources()
 	 * @generated
 	 */
-	public void testGetSources() {
+	public void testGetSources()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -63,7 +66,8 @@ public abstract class DirectedRelationshipTest extends RelationshipTest {
 	 * @see org.eclipse.uml2.Relationship#getRelatedElements()
 	 * @generated
 	 */
-	public void testGetRelatedElements() {
+	public void testGetRelatedElements()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -75,7 +79,8 @@ public abstract class DirectedRelationshipTest extends RelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getTargets()
 	 * @generated
 	 */
-	public void testGetTargets() {
+	public void testGetTargets()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

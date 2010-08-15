@@ -36,7 +36,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		TestRunner.run(DataTypeTest.class);
 	}
 
@@ -46,7 +47,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeTest(String name) {
+	public DataTypeTest(String name)
+	{
 		super(name);
 	}
 
@@ -56,7 +58,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DataType getFixture() {
+	private DataType getFixture()
+	{
 		return (DataType)fixture;
 	}
 
@@ -66,7 +69,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		setFixture(UML2Factory.eINSTANCE.createDataType());
 	}
 
@@ -76,7 +80,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		setFixture(null);
 	}
 
@@ -87,7 +92,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.DataType#inherit(java.util.Set)
 	 * @generated
 	 */
-	public void testInherit__Set() {
+	public void testInherit__Set()
+	{
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,7 +107,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers() {
+	public void testGetOwnedMembers()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -113,7 +120,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getAttributes()
 	 * @generated
 	 */
-	public void testGetAttributes() {
+	public void testGetAttributes()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,7 +133,8 @@ public class DataTypeTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getFeatures()
 	 * @generated
 	 */
-	public void testGetFeatures() {
+	public void testGetFeatures()
+	{
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
