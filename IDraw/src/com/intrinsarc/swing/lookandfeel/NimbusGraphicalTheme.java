@@ -1,4 +1,4 @@
-package com.intrinsarc.evolve.gui.lookandfeel;
+package com.intrinsarc.swing.lookandfeel;
 
 import java.util.*;
 
@@ -27,4 +27,9 @@ public class NimbusGraphicalTheme implements GraphicalTheme
   public void setProgressBarUI(JProgressBar progress)
   {
   }
+
+	public boolean drawsBoxAroundTextArea()
+	{
+		return true;
+	}
 }

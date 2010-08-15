@@ -8,6 +8,8 @@ import javax.swing.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 
+import com.intrinsarc.swing.lookandfeel.*;
+
 public class UMLStringAttributeViewer extends UMLAttributeViewerBase
 {
   private JTextArea text;
@@ -27,9 +29,12 @@ public class UMLStringAttributeViewer extends UMLAttributeViewerBase
     if (readOnly)
     	text.setEnabled(false);
 
-    // use a scroll pane to add a border around the text area
+    // use a scroll pane to add a border around the text area if the look and feel requires it
     // -- it's not pretty code, but it works well visually
-    final JScrollPane border = new JScrollPane(text);
+    final JScrollPane border = 
+    	RegisteredGraphicalThemes.getInstance().getStartupTheme().drawsBoxAroundTextArea() ?
+    		null : new JScrollPane(text);
+    		
     text.addKeyListener(new KeyAdapter()
         {
           public void keyTyped(KeyEvent e)
@@ -42,7 +47,7 @@ public class UMLStringAttributeViewer extends UMLAttributeViewerBase
             colourLine();
           }
         });
-    insetPanel.add(border, gbcRight);
+    insetPanel.add(border != null ? border : text, gbcRight);
     gbcLeft.gridy++;
     gbcRight.gridy++;
     return text;

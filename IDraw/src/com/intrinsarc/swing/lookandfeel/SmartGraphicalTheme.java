@@ -1,4 +1,4 @@
-package com.intrinsarc.evolve.gui.lookandfeel;
+package com.intrinsarc.swing.lookandfeel;
 
 import java.awt.*;
 import java.util.*;
@@ -147,5 +147,10 @@ public class SmartGraphicalTheme implements GraphicalTheme
 		      }
 		  }
 		});
+	}
+
+	public boolean drawsBoxAroundTextArea()
+	{
+		return false;
 	}
 }

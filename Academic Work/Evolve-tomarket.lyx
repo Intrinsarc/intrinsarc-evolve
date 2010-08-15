@@ -342,6 +342,8 @@ no hyperport ends needed! still use hyperport start though - important to
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 replacing stereo in browser should make it writeable
 \end_layout
 
@@ -369,6 +371,10 @@ problem with error adorner and undo
 \begin_layout Enumerate
 get rid of dark mark in upper corner of packages/factories when copying
  to word
+\end_layout
+
+\begin_layout Enumerate
+double doc field in repository browser
 \end_layout
 
 \begin_layout Enumerate

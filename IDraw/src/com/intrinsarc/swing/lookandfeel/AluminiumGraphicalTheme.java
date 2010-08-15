@@ -1,4 +1,4 @@
-package com.intrinsarc.evolve.gui.lookandfeel;
+package com.intrinsarc.swing.lookandfeel;
 
 import java.util.*;
 
@@ -36,4 +36,9 @@ public class AluminiumGraphicalTheme implements GraphicalTheme
   {
   	SmartGraphicalTheme.fixProgressBarUI(progress);
   }
+
+	public boolean drawsBoxAroundTextArea()
+	{
+		return false;
+	}
 }

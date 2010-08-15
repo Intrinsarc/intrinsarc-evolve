@@ -1,4 +1,4 @@
-package com.intrinsarc.evolve.gui.lookandfeel;
+package com.intrinsarc.swing.lookandfeel;
 
 import java.util.*;
 

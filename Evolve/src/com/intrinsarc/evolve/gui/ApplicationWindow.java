@@ -23,7 +23,6 @@ import com.intrinsarc.easydock.*;
 import com.intrinsarc.easydock.dockingframes.*;
 import com.intrinsarc.evolve.deltaview.*;
 import com.intrinsarc.evolve.errorchecking.*;
-import com.intrinsarc.evolve.gui.lookandfeel.*;
 import com.intrinsarc.evolve.html.*;
 import com.intrinsarc.evolve.importexport.*;
 import com.intrinsarc.evolve.packageview.actions.*;
@@ -37,6 +36,7 @@ import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 import com.intrinsarc.swing.enhanced.*;
+import com.intrinsarc.swing.lookandfeel.*;
 import com.intrinsarc.swing.smartmenus.*;
 
 public class ApplicationWindow extends SmartJFrame

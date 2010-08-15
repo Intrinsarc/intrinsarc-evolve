@@ -9,7 +9,6 @@ import org.eclipse.emf.common.util.*;
 
 import com.intrinsarc.backbone.generator.*;
 import com.intrinsarc.deltaengine.errorchecking.*;
-import com.intrinsarc.evolve.gui.lookandfeel.*;
 import com.intrinsarc.evolve.html.*;
 import com.intrinsarc.evolve.repositorybrowser.*;
 import com.intrinsarc.evolve.umldiagrams.colors.*;
@@ -21,6 +20,7 @@ import com.intrinsarc.notifications.*;
 import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
+import com.intrinsarc.swing.lookandfeel.*;
 
 /**
  * 

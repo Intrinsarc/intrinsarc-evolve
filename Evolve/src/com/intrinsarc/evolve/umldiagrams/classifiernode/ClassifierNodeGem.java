@@ -16,7 +16,6 @@ import org.eclipse.uml2.impl.*;
 import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.evolve.deltaview.*;
 import com.intrinsarc.evolve.expander.*;
-import com.intrinsarc.evolve.gui.lookandfeel.*;
 import com.intrinsarc.evolve.packageview.base.*;
 import com.intrinsarc.evolve.umldiagrams.base.*;
 import com.intrinsarc.evolve.umldiagrams.basicnamespacenode.*;
@@ -46,6 +45,7 @@ import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 import com.intrinsarc.swing.enhanced.*;
+import com.intrinsarc.swing.lookandfeel.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;

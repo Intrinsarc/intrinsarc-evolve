@@ -182,8 +182,7 @@ public class StereotypeEditor
       newViewers.put(type, viewer);
       
       viewer.installAttributeEditor(type.getConstituentProperty().getDocumentation(), insetPanel, gbcLeft, gbcRight, true);
-      if (readOnly)
-        viewer.getEditor().setEnabled(false);
+      viewer.getEditor().setEnabled(!readOnly);
     }
     
     // handle the viewers for any left over properties that aren't associated with a stereotype
@@ -309,12 +308,12 @@ public class StereotypeEditor
       viewer.revert();
   }
 
-  public void setEnabled(boolean enabled)
+  public void setEnabled(final boolean enabled)
   {
     if (this.enabled == enabled)
       return;
     
     this.enabled = enabled;
-    Utilities.setEnabledRecursively(insetPanel, enabled);
+		Utilities.setEnabledRecursively(insetPanel, enabled);
   }
 }

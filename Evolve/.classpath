@@ -7,7 +7,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/RepositoryBrowser"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BackboneGenerator"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/DocumentationGenerator"/>
-	<classpathentry kind="lib" path="/CommonResources/JTattoo.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RichPalette"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Resources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/DeltaEngine-UML2"/>

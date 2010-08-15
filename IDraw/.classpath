@@ -7,5 +7,6 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ekit"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/LeanFoundation"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RichPalette"/>
+	<classpathentry kind="lib" path="/CommonResources/JTattoo.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

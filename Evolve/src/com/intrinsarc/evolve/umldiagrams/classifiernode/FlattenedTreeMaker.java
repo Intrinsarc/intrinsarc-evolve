@@ -13,11 +13,11 @@ import com.intrinsarc.backbone.nodes.simple.*;
 import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.deltaengine.errorchecking.*;
 import com.intrinsarc.easydock.*;
-import com.intrinsarc.evolve.gui.lookandfeel.*;
 import com.intrinsarc.evolve.repositorybrowser.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
+import com.intrinsarc.swing.lookandfeel.*;
 import com.sun.org.apache.xpath.internal.axes.*;
 
 public class FlattenedTreeMaker
