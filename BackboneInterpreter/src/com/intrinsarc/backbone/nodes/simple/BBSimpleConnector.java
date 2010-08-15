@@ -349,7 +349,7 @@ public class BBSimpleConnector extends BBSimpleObject
 		return true;
 	}
 
-	public boolean clearRequires(BBSimpleInstantiatedFactory context, Map<BBSimpleInterface, Object> cachedProvides, int reqSide) throws BBRuntimeException
+	public void clearRequires(BBSimpleInstantiatedFactory context, Map<BBSimpleInterface, Object> cachedProvides, int reqSide) throws BBRuntimeException
 	{
 		// get the 2 objects involved
 		Object partObjects[] = new Object[2];
@@ -358,9 +358,18 @@ public class BBSimpleConnector extends BBSimpleObject
 
 		for (BBSimpleInterface i : provPortFields[1 - reqSide].keySet())
 			clearRequired(i, getPossibleSubInterfaceField(reqPortFields[reqSide], i), partObjects[reqSide], reqSide, cachedProvides.get(i));
-		return true;
 	}
+	
+	public void clearProvides(BBSimpleInstantiatedFactory context, Map<BBSimpleInterface, Object> cachedProvides, int provSide) throws BBRuntimeException
+	{
+		// get the 2 objects involved
+		Object partObjects[] = new Object[2];
+		for (int lp = 0; lp < 2; lp++)
+			partObjects[lp] = context.getPartObject(parts[lp]);
 
+		for (BBSimpleInterface i : provPortFields[provSide].keySet())
+			clearProvided(i, provPortFields[provSide].get(i), partObjects[provSide], provSide, cachedProvides.get(i));
+	}
 	
 	private ReflectivePort getPossibleSubInterfaceField(PortFieldMap reqFieldMap, BBSimpleInterface provided)
 	{
@@ -393,6 +402,13 @@ public class BBSimpleConnector extends BBSimpleObject
 		  reqField.setSingle(required, null);
 		else
 			reqField.remove(required, provided);
+	}
+
+	private void clearProvided(BBSimpleInterface iface, ReflectivePort provField, Object provided, int provIndex, Object providedObject) throws BBRuntimeException
+	{
+		BBSimplePort port = ports[provIndex];
+		if (indexed(port))
+			provField.remove(provided, providedObject);
 	}
 
 	private void setRequired(BBSimpleInterface iface, ReflectivePort reqField, Object required, int reqIndex, Object provided) throws BBRuntimeException

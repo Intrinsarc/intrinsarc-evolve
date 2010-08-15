@@ -190,9 +190,14 @@ public class BBSimpleInstantiatedFactory
 						if (!conn.isRunConnector())
 						{
 							BBSimpleConnectorEnd end = conn.makeSimpleConnectorEnd(side);
+							BBSimpleConnectorEnd otherEnd = conn.makeSimpleConnectorEnd(1 - side);
+							
 							Map<BBSimpleInterface, Object> cache = cachedProvides.get(new CachedConnectorEnd(end.getConnector(), 1 - end.getSide()));
 							if (end.getPort() == port && (pass == 0 && !end.isTakeNext() || pass == 1 && end.isTakeNext()))
+							{
 								end.getConnector().clearRequires(this, cache, end.getSide());
+								otherEnd.getConnector().clearProvides(this, cache, otherEnd.getSide());
+							}
 						}
 					}
 				}

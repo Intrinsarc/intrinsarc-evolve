@@ -16,7 +16,6 @@ public class PortHelper
 			}
 			else
 			{
-				System.out.println("$$ found null");
 				list.set(possible, provided);
 			}
 		}

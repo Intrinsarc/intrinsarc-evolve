@@ -4,7 +4,7 @@ import java.util.*;
 
 public class PortHelper
 {
-	public static <T> int fill(List<T> list, T provided, int index)
+	public static <T> T fill(List<T> list, T provided, int index)
 	{
 		if (index == -1)
 		{
@@ -13,12 +13,10 @@ public class PortHelper
 			if (possible == -1)
 			{
 				list.add(provided);
-				return list.size() - 1;
 			}
 			else
 			{
 				list.set(possible, provided);
-				return possible;
 			}
 		}
 		else
@@ -27,8 +25,8 @@ public class PortHelper
 			for (; size <= index; size++)
 					list.add(null);
 			list.set(index, provided);
-			return index;
 		}
+		return provided;
 	}
 	
 	public static void remove(List<?> list, Object provided)

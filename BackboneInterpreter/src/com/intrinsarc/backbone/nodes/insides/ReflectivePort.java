@@ -65,6 +65,31 @@ public class ReflectivePort
 
     if (getSingle == null && getIndexed == null)
       throw new BBImplementationInstantiationException("Cannot find method for getting port " + portName + " of " + partTypeClass, partType);
+    
+    if (isBean)
+    {
+    	if (many)
+    	{
+        String methodName2 = "remove" + (port.getComplexPort().isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
+        removeMany = resolveMethod(
+            methodName2,
+            new Class<?>[]{iface});
+        if (removeMany == null)
+          throw new BBImplementationInstantiationException("Cannot find method for removing provided port " + portName + " of " + partTypeClass, partType);
+    	}
+    }
+    else
+    {
+      if (many)
+      {
+        String methodName2 = "remove" + upperFirst(portName) + "_" + getInterfaceName(iface);
+        removeMany = resolveMethod(
+            methodName2,
+            new Class<?>[]{iface});
+        if (removeMany == null)
+          throw new BBImplementationInstantiationException("Cannot find method for removing provided port " + portName + " of " + partTypeClass, partType);
+      }
+    }
   }
 
   private void resolveSets(Class<?> iface, boolean many) throws BBImplementationInstantiationException
@@ -108,6 +133,7 @@ public class ReflectivePort
         removeMany = resolveMethod(
             methodName2,
             new Class<?>[]{iface});
+        System.out.println("$$ resolving method for removemany: " + methodName2 + ", resolution = " + removeMany);
       }
     }
  
