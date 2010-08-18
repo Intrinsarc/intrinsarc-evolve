@@ -2,14 +2,14 @@
 \lyxformat 345
 \begin_document
 \begin_header
-\textclass article
+\textclass book
 \use_default_options true
 \language english
 \inputencoding auto
 \font_roman default
 \font_sans default
 \font_typewriter default
-\font_default_family default
+\font_default_family sfdefault
 \font_sc false
 \font_osf false
 \font_sf_scale 100
@@ -20,14 +20,14 @@
 \spacing other 0.7
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_amsmath 1
 \use_esint 1
 \cite_engine basic
 \use_bibtopic false
 \paperorientation portrait
-\secnumdepth 3
-\tocdepth 3
+\secnumdepth 2
+\tocdepth 2
 \paragraph_separation skip
 \defskip medskip
 \quotes_language english
@@ -373,6 +373,11 @@ problem with error adorner and undo
 \end_layout
 
 \begin_layout Enumerate
+fix editing + positioning of connector ends -- tie into visual display on
+ actual line?
+\end_layout
+
+\begin_layout Enumerate
 moving stuff to packages messes up visual resemblance
 \end_layout
 
@@ -400,12 +405,14 @@ visual lock problems (possibly move to deleteduuids)
 \begin_layout Standard
 
 \series bold
+\color blue
 Next up:
 \end_layout
 
 \begin_layout Itemize
-fix editing + positioning of connector ends -- tie into visual display on
- actual line?
+
+\series bold
+team system!
 \end_layout
 
 \begin_layout Itemize
@@ -462,6 +469,11 @@ making nice for MacOS
 
 \series bold
 Documentation:
+\end_layout
+
+\begin_layout Enumerate
+white paper: why evolve and what does it offer? aimed at managers and a
+ sales pitch.
 \end_layout
 
 \begin_layout Enumerate

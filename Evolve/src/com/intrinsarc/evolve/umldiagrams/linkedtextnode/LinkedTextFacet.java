@@ -15,4 +15,5 @@ public interface LinkedTextFacet extends TextableFacet
   public JMenuItem getViewLabelMenuItem(ToolCoordinatorFacet coordinator, String labelType);
   public boolean isHidden();
   public String getText();
+  public UPoint getNewPoint(ActualArcPoints actualPoints, UPoint originalMiddle, boolean curved, UBounds textBounds);
 }

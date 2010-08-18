@@ -3,6 +3,7 @@ package com.intrinsarc.evolve.umldiagrams.linkedtextnode;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -223,11 +224,64 @@ public class LinkedTextGem implements Gem
 		{
 			return text;
 		}
-
+		
     public JList formSelectionList(String textSoFar)
     {
       return null;
     }
+
+		public UPoint getNewPoint(ActualArcPoints actualPoints, UPoint originalMiddle, boolean curved, UBounds bounds)
+		{
+			CalculatedArcPoints calc = actualPoints.calculateAllPoints();
+
+			UDimension offset = calculateOffset(calc, majorPointType, bounds);
+			
+			switch (majorPointType)
+			{
+				case CalculatedArcPoints.MAJOR_POINT_START:
+					return calc.getStartPoint().add(offset);
+				case CalculatedArcPoints.MAJOR_POINT_END:
+					return calc.getEndPoint().add(offset);
+				default:
+					return calc.calculateMiddlePoint(curved);
+			}
+		}
+
+		private UDimension calculateOffset(CalculatedArcPoints calc, int point, UBounds bounds)
+		{
+			if (point == CalculatedArcPoints.MAJOR_POINT_MIDDLE)
+				return UDimension.ZERO;
+			List<UPoint> all = calc.getAllPoints();
+			
+			UPoint first = point == CalculatedArcPoints.MAJOR_POINT_START ? calc.getStartPoint() : calc.getEndPoint();
+			UPoint second = point == CalculatedArcPoints.MAJOR_POINT_START ? all.get(1) : all.get(all.size() - 2);
+			
+			boolean wider = first.xDistance(second) > first.yDistance(second);
+			boolean higher = first.getY() <= second.getY();
+			boolean left = first.getX() <= second.getX();
+			if (wider)
+			{
+				// we are more horizontal
+				UDimension offset = first.getTowardsOffsetUsingX(second, 4 + bounds.getWidth());
+				if (higher)
+					offset = offset.subtract(new UDimension(0, 2));
+				else
+					offset = offset.add(new UDimension(0, bounds.getHeight() + 2));
+				
+				return !left ? offset.subtract(new UDimension(bounds.getWidth(), bounds.getHeight())) : offset.subtract(new UDimension(0, bounds.getHeight()));
+			}
+			else
+			{
+				// we are more vertical
+				UDimension offset = first.getTowardsOffsetUsingY(second, 4 + bounds.getHeight());
+				if (left)
+					offset = offset.add(new UDimension(2, 0));
+				else
+					offset = offset.subtract(new UDimension(bounds.getWidth() + 2, 0));
+				
+				return higher ? offset.subtract(new UDimension(0, bounds.getHeight())) : offset;
+			}
+		}
 	}
 	
   private class BasicNodeAppearanceFacetImpl implements BasicNodeAppearanceFacet

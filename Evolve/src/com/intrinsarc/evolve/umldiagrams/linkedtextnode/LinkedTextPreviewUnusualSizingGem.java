@@ -23,8 +23,7 @@ public class LinkedTextPreviewUnusualSizingGem
     return unusualSizingFacet;
   }
   
-  private class BasicNodePreviewUnusualSizingFacetImpl
-    implements BasicNodePreviewUnusualSizingFacet
+  private class BasicNodePreviewUnusualSizingFacetImpl implements BasicNodePreviewUnusualSizingFacet
   {
     /**
      * only return the full bounds if the linked text is showing

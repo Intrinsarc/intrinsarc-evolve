@@ -8,5 +8,5 @@ import com.intrinsarc.idraw.foundation.*;
  */
 public interface BasicArcContainerPreviewFacet extends ContainerPreviewFacet
 {
-  void newPointsHaveBeenSet(ActualArcPoints actualPoints, UPoint originalMiddle);
+  void newPointsHaveBeenSet(ActualArcPoints actualPoints, UPoint originalMiddle, boolean curved);
 }

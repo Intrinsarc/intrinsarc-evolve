@@ -2,6 +2,7 @@ package com.intrinsarc.evolve.umldiagrams.dependencyarc;
 
 import java.util.*;
 
+import com.intrinsarc.evolve.umldiagrams.linkedtextnode.*;
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.arcfacilities.previewsupport.*;
@@ -57,7 +58,7 @@ public class DependencyArcContainerPreviewGem implements Gem
 			return previewFacet;
 		}
 
-    public void newPointsHaveBeenSet(ActualArcPoints actualPoints, UPoint originalMiddle)
+    public void newPointsHaveBeenSet(ActualArcPoints actualPoints, UPoint originalMiddle, boolean curved)
     {
       // need to expand this to handle more major points
       UPoint newMiddle = getMiddlePoint();
@@ -68,7 +69,18 @@ public class DependencyArcContainerPreviewGem implements Gem
 		  {
 		    FigureFacet contained = (FigureFacet) iter.next();
 		    PreviewFacet preview = previews.getCachedPreview(contained);
-		    preview.setFullBounds(preview.getFullBounds().addToPoint(offset), true);
+		    
+		    if (contained.hasDynamicFacet(LinkedTextFacet.class))
+		    {
+		    	LinkedTextFacet linked = contained.getDynamicFacet(LinkedTextFacet.class);
+		    	preview.setFullBounds(
+		    			new UBounds(linked.getNewPoint(actualPoints, originalMiddle, curved, preview.getFullBounds()),
+		    			preview.getFullBounds().getDimension()), true);
+		    }
+		    else
+		    {
+		    	preview.setFullBounds(preview.getFullBounds().addToPoint(offset), true);
+		    }
 		  }
     }
 	}

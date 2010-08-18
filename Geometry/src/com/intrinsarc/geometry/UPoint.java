@@ -138,5 +138,19 @@ public final class UPoint extends Point2D implements Serializable
 	{
 		return Math.abs(point.x - x);
 	}
+
+	public UDimension getTowardsOffsetUsingY(UPoint second, double yDist)
+	{
+		double ratio = (second.x - x) / Math.abs(y - second.y);
+		
+		return new UDimension(yDist * ratio, yDist * (y > second.y ? -1 : 1));
+	}
+
+	public UDimension getTowardsOffsetUsingX(UPoint second, double xDist)
+	{
+		double ratio = (second.y - y) / Math.abs(x - second.x);
+		
+		return new UDimension(xDist * (x > second.x ? -1 : 1), xDist * ratio);
+	}
 }
 

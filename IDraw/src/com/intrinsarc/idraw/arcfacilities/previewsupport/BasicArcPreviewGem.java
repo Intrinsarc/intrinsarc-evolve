@@ -413,7 +413,7 @@ public final class BasicArcPreviewGem implements Gem
   {
     // possibly need to tell the children also
     if (containerPreviewFacet != null)
-      containerPreviewFacet.newPointsHaveBeenSet(actualPoints, originalMiddle);
+      containerPreviewFacet.newPointsHaveBeenSet(actualPoints, originalMiddle, curved);
     originalMiddle = anchorFacet.getMiddlePoint();
   }
 
