@@ -115,24 +115,6 @@ public class PackageViewRegistryGem implements Gem
 			view.viewDiagram(diagram, openRegionHint, addToStack);
 			focussedView = view;
       coordinator.changedDiagram(diagram);
-      final ReusableDiagramViewFacet test = view;
-      
-      // make sure we take the focus, so that keyboard presses will work
-      // the pause allows the menu choice to clear if that is how we got here...
-      new Thread()
-      {
-      	public void run()
-      	{
-      		try
-					{
-						Thread.sleep(250);
-					}
-      		catch (InterruptedException e)
-					{
-					}
-          test.getCurrentDiagramView().getCanvas().requestFocus();
-      	}
-      }.start();
       GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
 		}
 

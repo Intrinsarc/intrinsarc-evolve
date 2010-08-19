@@ -53,7 +53,7 @@ public class Evolve
 		// must have at least one arg
 		if (args.length == 0)
 		{
-			System.err.println("Usage: evolve home_directory {logToFile}");
+			System.err.println("Usage: evolve home_directory {logToFile} {fileToOpen}");
 			System.exit(-1);
 		}
 		String home = args[0];
@@ -125,11 +125,11 @@ public class Evolve
     
     setUpUUIDGenerator();
     Evolve application = new Evolve();
-    application.setUpServices(home);
+    application.setUpServices(home, args.length > 2 && args[2] != null ? args[2] : null);
     application.setUpGUI(args.length > 1 && args[1] != null);
     application.showGUI();
     
-    EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;    
+    EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
   }
 	
 	private static void registerFileTypes()
@@ -194,7 +194,7 @@ public class Evolve
 		windowCoordinator.getApplicationWindowCoordinatorFacet().openNewApplicationWindow();
 	}
 
-	private void setUpServices(String home)
+	private void setUpServices(String home, String initialFile)
 	{
 		// make the diagram registry
 		int max = GlobalPreferences.preferences.getRawPreference(OPEN_DIAGRAMS).asInteger();
@@ -212,7 +212,10 @@ public class Evolve
 			boolean useBase = false;
 			if (initialXMLRepository == null || !new File(initialXMLRepository).exists())
 			{
-				initialXMLRepository = home + "/models/base" + XMLSubjectRepositoryGem.UML2_SUFFIX;
+				initialXMLRepository =
+					initialFile != null ?
+							initialFile :
+							home + "/models/base" + XMLSubjectRepositoryGem.UML2_SUFFIX;
 				useBase = true;
 			}
 			

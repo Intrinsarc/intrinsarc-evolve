@@ -4,7 +4,6 @@ import java.util.*;
 
 import javax.swing.*;
 
-import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.deltaengine.errorchecking.*;
 import com.intrinsarc.evolve.deltaview.*;
 import com.intrinsarc.evolve.errorchecking.*;
@@ -97,22 +96,7 @@ public class ApplicationWindowCoordinatorGem
 			PackageViewRegistryFacet viewRegistryFacet = viewRegistryGem.getPackageDiagramViewRegistryFacet();
 			
 			window.setUp(this, toolCoordinator, viewRegistryFacet, errorAdorner, deltaAdorner);
-			window.openTopLevel(true, true);
-			
-			// if we don't have the native title bar, then turn on and off to make sure
-			// that the colouring is correct (possibly only under linux)
-			if (JFrame.isDefaultLookAndFeelDecorated())
-			{
-				window.setVisible(false);
-	      window.setVisible(true);
-			}
-			SwingUtilities.invokeLater(new Runnable()
-			{
-				public void run()
-				{
-					window.requestFocus();
-				}
-			});
+			window.openTopLevel(true, true);			
 		}
 		
 		public void exitApplication()

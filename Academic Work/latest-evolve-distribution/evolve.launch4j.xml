@@ -1,5 +1,5 @@
 <launch4jConfig>
-  <dontWrapJar>false</dontWrapJar>
+  <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
   <jar>evolve.jar</jar>
   <outfile>evolve.exe</outfile>

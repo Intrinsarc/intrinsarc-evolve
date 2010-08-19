@@ -17,17 +17,14 @@
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.style"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.arcfacilities.adjust"/>
         <javaElement handleIdentifier="=RepositoryBrowser/src"/>
-        <file path="/IDraw/.classpath"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.previewsupport"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.swing.smartmenus"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.textmanipulation"/>
-        <folder path="/DocumentationGenerator/html_generation/hopstepjump_theme"/>
         <javaElement handleIdentifier="=UML2Repository/src"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.containment"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.swing.enhanced"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.resize"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.selectionbase"/>
-        <file path="/IDraw/.project"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.creationbase"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.arcfacilities.arcsupport"/>
         <javaElement handleIdentifier="=DeltaEngine-UML2/src"/>
@@ -50,7 +47,7 @@
         <javaElement handleIdentifier="=DocumentationGenerator/src"/>
         <javaElement handleIdentifier="=Utilities/src"/>
         <javaElement handleIdentifier="=VectorGraphicsFixes/src"/>
-        <file path="/DocumentationGenerator/html_generation/banner.svg"/>
+        <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.swing.lookandfeel"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.textmanipulationbase"/>
         <javaElement handleIdentifier="=Evolve/resources"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.linking"/>

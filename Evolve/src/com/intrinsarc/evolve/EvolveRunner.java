@@ -14,17 +14,14 @@ public class EvolveRunner
 {
 	public static void main(String args[])
 	{
-		// if no arguments, pass in the actual home directory
-		String home;
+		// if no arguments, pass in the actual home directory		
 		boolean fromJars[] = {false};
-		if (args.length == 0)
-			home = getHomeDirectory(fromJars);
-		else
-			home = args[0];
+		String home = getHomeDirectory(fromJars);
 		
 		Evolve.main(new String[]{
 				home,
-				fromJars[0] ? "logToFile" : null});
+				fromJars[0] ? "logToFile" : null,
+				args.length > 0 ? args[0] : null});
 	}
 	
 	private static String getHomeDirectory(boolean fromJars[])
