@@ -8,7 +8,7 @@ import com.intrinsarc.backbone.runtime.implementation.*;
 
 public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 {
-	public static final Object GWT_PROFILE = "gwt";
+	public static final Object GWT_PROFILE = "GWTClient";
 	private Set<String> types = new LinkedHashSet<String>();
 	
 	public String constructClasses()
@@ -50,7 +50,7 @@ public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 		String impl = part.getType().getImplementationClassName();
 		
 		// only return something if this matches the start type and		
-		if (impl.equals(matchingClassName) && profile.contains(GWT_PROFILE))
+		if (impl.equals(matchingClassName) && profile.equals(GWT_PROFILE))
 		{
 			// extract the generic type
 			String genericType = getRequiredImplementation(registry, part, ifaceUUID);
