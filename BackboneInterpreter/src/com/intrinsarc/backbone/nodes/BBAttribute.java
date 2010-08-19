@@ -4,12 +4,11 @@ import java.util.*;
 
 import com.intrinsarc.backbone.nodes.insides.*;
 import com.intrinsarc.backbone.nodes.lazy.*;
-import com.intrinsarc.backbone.parserbase.*;
 import com.intrinsarc.deltaengine.base.*;
 
 public class BBAttribute extends DEAttribute implements INode
 {
-  private transient DEObject parent;
+  private DEObject parent;
   private String name;
   private String uuid = BBUidGenerator.newUuid(getClass());
   private LazyObject<DEElement> type = new LazyObject<DEElement>(DEElement.class);
@@ -18,8 +17,8 @@ public class BBAttribute extends DEAttribute implements INode
 	private Boolean readOnly;
 	private Boolean writeOnly;
 	private Boolean suppressGeneration;
-	private transient boolean synthetic;
-	private transient boolean pullUp;
+	private boolean synthetic;
+	private boolean pullUp;
   
 	public BBAttribute() {}
 	

@@ -68,7 +68,6 @@ public class RentalLogic
 	
 	private void setRenter(String renterName)
 	{
-		System.out.println("$$ setting renter for car: " + carNo.get());
 		service.setRenter(carNo.get(), renterName, new AsyncCallback<Void>()
 		{
 			public void onSuccess(Void v)

@@ -309,6 +309,7 @@ public class BBSimpleComponent extends BBSimpleElement
 		if (attributes != null)
 			for (BBSimpleAttribute a : attributes)
 				getMap(a.getFactory()).addAttribute(a);
+
 		if (parts != null)
 			for (BBSimplePart p : parts)
 				getMap(p.getFactory()).addPart(p);

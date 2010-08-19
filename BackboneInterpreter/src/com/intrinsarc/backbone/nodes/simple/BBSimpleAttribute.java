@@ -127,7 +127,10 @@ public class BBSimpleAttribute extends BBSimpleObject
 			setFactory(slot.getAttribute(), factory, partFactory);
 		}
 		else
+		{
 			defaultValue = translateDefaultValues(copied, attr.defaultValue);
+			this.factory = factory;
+		}
 		this.position = position;
 	}
 

@@ -48,6 +48,7 @@ public class LeafImplementationRefresher
 		BufferedWriter writer = null;
 		BufferedReader reader = null;
 		StringWriter complexWriter = new StringWriter();
+		boolean deleteTemp = false;
 		try
 		{
 			tempFile.getParentFile().mkdirs();
@@ -68,6 +69,7 @@ public class LeafImplementationRefresher
 				if (!copyPreamble(reader, writer))
 				{
 //					System.out.println("$$ skipping file " + realFile + ", as start generator marker not found...");
+					deleteTemp = true;
 					return false;
 				}
 				makeGeneratedCode(writer);
@@ -75,7 +77,8 @@ public class LeafImplementationRefresher
 				if (!copyPostamble(reader, writer))
 				{
 //					System.out.println("$$ skipping file " + realFile + ", as end generator marker not found...");
-					return false;				
+					deleteTemp = true;
+					return false;
 				}
 			}			
 		}
@@ -91,6 +94,8 @@ public class LeafImplementationRefresher
 					writer.close();
 				if (reader != null)
 					reader.close();
+				if (deleteTemp)
+					tempFile.delete();
 			}
 			catch (IOException ex)
 			{

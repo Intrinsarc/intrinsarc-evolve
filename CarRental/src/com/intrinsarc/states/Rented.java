@@ -1,7 +1,5 @@
 package com.intrinsarc.states;
 
-import java.util.*;
-
 import com.intrinsarc.backbone.runtime.api.*;
 
 public class Rented
@@ -34,7 +32,6 @@ public class Rented
 
 		public String getRenter()
 		{
-			System.out.println("$$ renterName = " + renterName);
 			return renterName.get();
 		}
 

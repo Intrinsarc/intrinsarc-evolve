@@ -11,8 +11,8 @@ public class CarRentalFormFactory implements IHardcodedFactory
   private Attribute<Integer> spacing;
   private Attribute<Integer> spacing1;
   private Attribute<Integer> spacing2;
-  private Attribute<Integer> spacing3;
   private Attribute<String> width;
+  private Attribute<Integer> spacing3;
   private Attribute<String> text;
 
   // connectors
@@ -60,14 +60,14 @@ public class CarRentalFormFactory implements IHardcodedFactory
     spacing = new Attribute<Integer>(10);
     spacing1 = new Attribute<Integer>(10);
     spacing2 = new Attribute<Integer>(10);
-    spacing3 = new Attribute<Integer>(10);
     width = new Attribute<String>("400px");
+    spacing3 = new Attribute<Integer>(10);
     text = new Attribute<String>("Add new car:");
     x1.setSpacing(spacing.get());
     x2.setSpacing(spacing1.get());
     x14.setSpacing(spacing2.get());
-    x.setSpacing(spacing3.get());
     x.setWidth(width.get());
+    x.setSpacing(spacing3.get());
     x9.setText(text.get());
     c = x3.getService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync.class);
     c1 = factory;
@@ -118,24 +118,24 @@ class CarWidgetFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private Attribute<String> renter = new Attribute<String>("");
-  public void setRenter(String renter) { this.renter.set(renter); }
-  public String getRenter() { return renter.get(); }
-  private Attribute<String> model = new Attribute<String>("");
-  public void setModel(String model) { this.model.set(model); }
-  public String getModel() { return model.get(); }
+  private Attribute<Integer> carNo = new Attribute<Integer>(0);
+  public void setCarNo(int carNo) { this.carNo.set(carNo); }
+  public int getCarNo() { return carNo.get(); }
   private Attribute<Boolean> rentEnabled = new Attribute<Boolean>(true);
   public void setRentEnabled(boolean rentEnabled) { this.rentEnabled.set(rentEnabled); }
   public boolean getRentEnabled() { return rentEnabled.get(); }
   private Attribute<Boolean> returnEnabled = new Attribute<Boolean>(true);
   public void setReturnEnabled(boolean returnEnabled) { this.returnEnabled.set(returnEnabled); }
   public boolean getReturnEnabled() { return returnEnabled.get(); }
-  private Attribute<Integer> carNo = new Attribute<Integer>(0);
-  public void setCarNo(int carNo) { this.carNo.set(carNo); }
-  public int getCarNo() { return carNo.get(); }
+  private Attribute<String> renter = new Attribute<String>("");
+  public void setRenter(String renter) { this.renter.set(renter); }
+  public String getRenter() { return renter.get(); }
+  private Attribute<String> model = new Attribute<String>("");
+  public void setModel(String model) { this.model.set(model); }
+  public String getModel() { return model.get(); }
   private Attribute<String> model1;
-  private Attribute<Integer> spacing4;
   private Attribute<String> width1;
+  private Attribute<Integer> spacing4;
   private Attribute<String> width2;
   private Attribute<String> text1;
   private Attribute<String> text2;
@@ -167,28 +167,28 @@ class CarWidgetFactory implements IHardcodedFactory
   public CarWidgetFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
     this.parent = parent;
-    if (values != null && values.containsKey("renter")) renter = new Attribute<String>((String) values.get("renter"));
-    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
+    if (values != null && values.containsKey("carNo")) carNo = new Attribute<Integer>((Integer) values.get("carNo"));
     if (values != null && values.containsKey("rentEnabled")) rentEnabled = new Attribute<Boolean>((Boolean) values.get("rentEnabled"));
     if (values != null && values.containsKey("returnEnabled")) returnEnabled = new Attribute<Boolean>((Boolean) values.get("returnEnabled"));
-    if (values != null && values.containsKey("carNo")) carNo = new Attribute<Integer>((Integer) values.get("carNo"));
+    if (values != null && values.containsKey("renter")) renter = new Attribute<String>((String) values.get("renter"));
+    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
     model1 = new Attribute<String>(model.get());
-    spacing4 = new Attribute<Integer>(10);
     width1 = new Attribute<String>("400px");
+    spacing4 = new Attribute<Integer>(10);
     width2 = new Attribute<String>("100px");
     text1 = new Attribute<String>("rent");
     text2 = new Attribute<String>("return");
     text3 = new Attribute<String>(renter.get());
-    x21.setSpacing(spacing4.get());
     x21.setWidth(width1.get());
-    x34.setText(model1.get());
+    x21.setSpacing(spacing4.get());
     x34.setWidth(width2.get());
-    x31.setText(text1.get());
+    x34.setText(model1.get());
     x31.setEnabled(rentEnabled.get());
-    x24.setText(text2.get());
+    x31.setText(text1.get());
     x24.setEnabled(returnEnabled.get());
-    x26.setEnabled(returnEnabled.get());
+    x24.setText(text2.get());
     x26.setText(text3.get());
+    x26.setEnabled(returnEnabled.get());
     x23.setCarNo(carNo);
     c11 = x3.getService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync.class);
     c12 = x24;

@@ -8,7 +8,6 @@ public class CarRentalServiceFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private Attribute<String> renterName;
 
   // connectors
   private com.intrinsarc.backbone.runtime.api.ICreate c;
@@ -33,7 +32,6 @@ public class CarRentalServiceFactory implements IHardcodedFactory
 
   public CarRentalServiceFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
-    renterName = new Attribute<String>(null);
     c = factory;
     x1.setCreate_ICreate(c);
     return this;
@@ -68,6 +66,7 @@ class RentalStateFactory implements IHardcodedFactory
   private Attribute<java.util.Date> purchased = new Attribute<java.util.Date>(new java.util.Date());
   public void setPurchased(java.util.Date purchased) { this.purchased.set(purchased); }
   public java.util.Date getPurchased() { return purchased.get(); }
+  private Attribute<String> renterName;
 
   // connectors
   private com.intrinsarc.states.IRentalEvent c1;
@@ -94,8 +93,9 @@ class RentalStateFactory implements IHardcodedFactory
     this.parent = parent;
     if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
     if (values != null && values.containsKey("purchased")) purchased = new Attribute<java.util.Date>((java.util.Date) values.get("purchased"));
-    x9.setPurchased(purchased);
+    renterName = new Attribute<String>(null);
     x9.setModel(model);
+    x9.setPurchased(purchased);
     r.setRenterName(renterName);
     c1 = a.getEvents_IRentalEvent(com.intrinsarc.states.IRentalEvent.class);
     c2 = r.getEvents_IRentalEvent(com.intrinsarc.states.IRentalEvent.class);

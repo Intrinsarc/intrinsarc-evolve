@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Class;
+import org.eclipse.uml2.Package;
 
 import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.evolve.umldiagrams.constituenthelpers.*;
@@ -488,8 +489,9 @@ public abstract class ClassifierConstituentHelper
 	
 	private static FigureFacet[] findFigures(FigureFacet avoid, DEComponent component, String uuid1, String uuid2, boolean foundClass[])
 	{
-		// open or retrieve the home diagram		
-    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(component.getHomeStratum().getUuid()));
+		// get the actual home, which may be a package
+		Package pkg = GlobalSubjectRepository.repository.findOwningPackage((Element) component.getRepositoryObject());
+    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg.getUuid()));
 
 		// look through all the diagram figures for the port in its home classifier
 		for (FigureFacet figure : diagram.getFigures())
