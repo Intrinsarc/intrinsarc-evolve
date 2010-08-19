@@ -345,10 +345,9 @@ public class ConnectorArcAppearanceGem implements Gem
 	      	    firstSelected).getManipulatorFacet());
       if (favoured)
       {
-      	manips.addOther(startLinkedTextFacet.getTextEntryManipulator(coordinator, diagramView));
-      	manips.addOther(endLinkedTextFacet.getTextEntryManipulator(coordinator, diagramView));
+    		manips.addOther(startLinkedTextFacet.getTextEntryManipulator(coordinator, diagramView));
+    		manips.addOther(endLinkedTextFacet.getTextEntryManipulator(coordinator, diagramView));
       }
-      
 
       return manips;
     }
@@ -818,15 +817,18 @@ public class ConnectorArcAppearanceGem implements Gem
     // make the end text
     {
       UPoint location = figureFacet.getLinkingFacet().getMajorPoint(CalculatedArcPoints.MAJOR_POINT_END);
+      UPoint pt = Grid.roundToGrid(location.add(offset));
+      LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_END);
+      UPoint newPoint = linkedTextGem.getLinkedTextFacet().getNewPoint(figureFacet.getLinkingFacet().getCalculated(), pt, UDimension.ZERO, null);
+
       BasicNodeGem basicLinkedTextGem = new BasicNodeGem(
           LinkedTextCreatorGem.RECREATOR_NAME,
           diagram,
           reference + "E",
-          Grid.roundToGrid(location.add(offset)),
+          newPoint,
           true,
           "endText",
           true);
-      LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_END);
       basicLinkedTextGem.connectBasicNodeAppearanceFacet(linkedTextGem.getBasicNodeAppearanceFacet());
       linkedTextGem.connectBasicNodeFigureFacet(basicLinkedTextGem.getBasicNodeFigureFacet());
       
@@ -845,15 +847,18 @@ public class ConnectorArcAppearanceGem implements Gem
     // make the start text
     {
       UPoint location = figureFacet.getLinkingFacet().getMajorPoint(CalculatedArcPoints.MAJOR_POINT_START);
+      UPoint pt = Grid.roundToGrid(location.add(offset));
+      LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_START);
+      UPoint newPoint = linkedTextGem.getLinkedTextFacet().getNewPoint(figureFacet.getLinkingFacet().getCalculated(), pt, UDimension.ZERO, null);
+      
       BasicNodeGem basicLinkedTextGem = new BasicNodeGem(
           LinkedTextCreatorGem.RECREATOR_NAME,
           diagram,
           reference + "S",
-          Grid.roundToGrid(location.add(offset)),
+          newPoint,
           true,
           "startText",
           true);
-      LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_START);
       basicLinkedTextGem.connectBasicNodeAppearanceFacet(linkedTextGem.getBasicNodeAppearanceFacet());
       linkedTextGem.connectBasicNodeFigureFacet(basicLinkedTextGem.getBasicNodeFigureFacet());
       
@@ -872,15 +877,18 @@ public class ConnectorArcAppearanceGem implements Gem
 
     {
       UPoint location = figureFacet.getLinkingFacet().getMajorPoint(CalculatedArcPoints.MAJOR_POINT_MIDDLE);
-      BasicNodeGem basicLinkedTextGem = new BasicNodeGem(
+      UPoint pt = Grid.roundToGrid(location.add(offset));
+    	LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_MIDDLE);
+      UPoint newPoint = linkedTextGem.getLinkedTextFacet().getNewPoint(figureFacet.getLinkingFacet().getCalculated(), pt, UDimension.ZERO, null);
+
+    	BasicNodeGem basicLinkedTextGem = new BasicNodeGem(
           LinkedTextCreatorGem.RECREATOR_NAME,
           diagram,
           reference + "_M",
-          Grid.roundToGrid(location.add(offset)),
+          newPoint,
           true,
           "text",
           true);
-    	LinkedTextGem linkedTextGem = new LinkedTextGem("", suppress, CalculatedArcPoints.MAJOR_POINT_MIDDLE);
   		basicLinkedTextGem.connectBasicNodeAppearanceFacet(linkedTextGem.getBasicNodeAppearanceFacet());
   		linkedTextGem.connectBasicNodeFigureFacet(basicLinkedTextGem.getBasicNodeFigureFacet());
       

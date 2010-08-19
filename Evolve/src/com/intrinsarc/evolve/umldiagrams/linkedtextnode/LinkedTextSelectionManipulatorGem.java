@@ -1,7 +1,5 @@
 package com.intrinsarc.evolve.umldiagrams.linkedtextnode;
 
-import java.awt.*;
-
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.foundation.*;
@@ -15,9 +13,7 @@ import edu.umd.cs.jazz.util.*;
 
 public class LinkedTextSelectionManipulatorGem implements Gem
 {
-	private static final Color PEN_COLOUR = Color.black;
 	private ManipulatorFacet manipulatorFacet = new ManipulatorFacetImpl();
-	private ManipulatorFacet textManipulatorFacet;
   private UBounds figureBounds;
   private ZGroup diagramLayer;
   private ZGroup group;

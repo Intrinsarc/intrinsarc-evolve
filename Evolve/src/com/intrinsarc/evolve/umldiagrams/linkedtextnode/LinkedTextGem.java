@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.swing.*;
 
+import com.intrinsarc.evolve.guibase.*;
+import com.intrinsarc.evolve.packageview.base.*;
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.figurefacilities.textmanipulation.*;
@@ -120,29 +122,26 @@ public class LinkedTextGem implements Gem
   {
     public ManipulatorFacet getTextEntryManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView)
     {
-      TextManipulatorGem textGem = new TextManipulatorGem(
-      		coordinator,
-      		"changed port text", "restored port text",
-      		getPrefixedText(text), 
-      		font,
-      		lineColor,
-      		Color.white,
-      		TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+    	if (!figureFacet.isShowing())
+    		return null;
+    	
+	    ManipulatorFacet keyFocus = null;
+      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed text", "restored text", getPrefixedText(text), font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
       textGem.connectTextableFacet(linkedTextFacet);
-
-	    OriginLineManipulatorGem decorator =
+      keyFocus = textGem.getManipulatorFacet();
+      OriginLineManipulatorGem decorator =
 	      new OriginLineManipulatorGem(figureFacet, getMajorPoint());
-	    decorator.setDecoratedManipulatorFacet(textGem.getManipulatorFacet());
-
-	    if (getPrefixedText(text).length() == 0)
-	    {
-		    EmptyTextManipulatorGem decorator2 =
-	    		new EmptyTextManipulatorGem(diagramView, figureFacet, figureFacet.getFullBounds().getTopLeftPoint(), "(?)");
-	    	decorator2.setDecoratedManipulatorFacet(decorator.getManipulatorFacet());
-	    	return decorator2.getManipulatorFacet();
-	    }
-	    else
-	    	return decorator.getManipulatorFacet();
+	    decorator.setDecoratedManipulatorFacet(keyFocus);
+	    
+	    Manipulators manipulators =
+	      new Manipulators(
+	      		decorator.getManipulatorFacet(),
+	          new LinkedTextSelectionManipulatorGem(
+	              figureFacet.getFullBounds(),
+	              false,
+	              new UDimension(4, 4)).getManipulatorFacet());
+	    
+	    return manipulators;
     }
     
     public JMenuItem getViewLabelMenuItem(final ToolCoordinatorFacet coordinator, final String name)
@@ -159,6 +158,11 @@ public class LinkedTextGem implements Gem
                 suppress ? "show " + name + " label" : "hide " + name + " label",
                 suppress ? "hide " + name + " label" : "show " + name + " label");
           hideLinkedText(!suppress);
+          
+          // force the parent to be adjusted so the manipulators get redone
+          FigureFacet parent = figureFacet.getContainedFacet().getContainer().getFigureFacet();
+          figureFacet.getDiagram().forceAdjust(parent);
+          
           coordinator.commitTransaction();
         }
       });
@@ -184,10 +188,21 @@ public class LinkedTextGem implements Gem
 		 */
 		public UBounds vetTextResizedExtent(String text)
 		{
-			ZText nameText = new ZText(getPrefixedText(text), font);	
-			return new UBounds(
-			    figureFacet.getFullBounds().getTopLeftPoint(),
-			    new UBounds(nameText.getBounds()).getDimension());
+			ZText nameText = new ZText(getPrefixedText(text), font);
+			UPoint point = figureFacet.getFullBounds().getTopLeftPoint();
+			UDimension extent = new UBounds(nameText.getBounds()).getDimension();
+			
+			// see if the container is an arc
+			ContainerFacet container = figureFacet.getContainedFacet().getContainer();
+			if (container != null && container.getFigureFacet().getLinkingFacet() != null && majorPointType != CalculatedArcPoints.MAJOR_POINT_MIDDLE)
+			{
+				CalculatedArcPoints calc = container.getFigureFacet().getLinkingFacet().getCalculated();
+				return new UBounds(
+						getNewPoint(calc, point, UDimension.ZERO, extent),
+						extent);
+			}
+			
+			return new UBounds(point, extent);
 		}
 	
 	  public void setText(String newText, Object listSelection, boolean unsuppress)
@@ -209,7 +224,7 @@ public class LinkedTextGem implements Gem
 	    	suppress = false;
 	    	figureFacet.setShowing(true);
 	    }
-	    figureFacet.performResizingTransaction(linkedTextFacet.vetTextResizedExtent(newText));
+	    figureFacet.performResizingTransaction(linkedTextFacet.vetTextResizedExtent(text));
 	  }
 	
 		/**
@@ -230,11 +245,9 @@ public class LinkedTextGem implements Gem
       return null;
     }
 
-		public UPoint getNewPoint(ActualArcPoints actualPoints, UPoint originalMiddle, boolean curved, UBounds bounds)
+		public UPoint getNewPoint(CalculatedArcPoints calc, UPoint previewPoint, UDimension middleOffset, UDimension extent)
 		{
-			CalculatedArcPoints calc = actualPoints.calculateAllPoints();
-
-			UDimension offset = calculateOffset(calc, majorPointType, bounds);
+			UDimension offset = calculateOffset(calc, majorPointType, extent);
 			
 			switch (majorPointType)
 			{
@@ -243,15 +256,19 @@ public class LinkedTextGem implements Gem
 				case CalculatedArcPoints.MAJOR_POINT_END:
 					return calc.getEndPoint().add(offset);
 				default:
-					return calc.calculateMiddlePoint(curved);
+					return previewPoint.add(middleOffset);
 			}
 		}
 
-		private UDimension calculateOffset(CalculatedArcPoints calc, int point, UBounds bounds)
+		private UDimension calculateOffset(CalculatedArcPoints calc, int point, UDimension extent)
 		{
 			if (point == CalculatedArcPoints.MAJOR_POINT_MIDDLE)
 				return UDimension.ZERO;
 			List<UPoint> all = calc.getAllPoints();
+			
+			// if we have a null extent, work out the extent ourselves
+			if (extent == null)
+				extent = new UBounds(new ZText(text).getBounds()).getDimension();
 			
 			UPoint first = point == CalculatedArcPoints.MAJOR_POINT_START ? calc.getStartPoint() : calc.getEndPoint();
 			UPoint second = point == CalculatedArcPoints.MAJOR_POINT_START ? all.get(1) : all.get(all.size() - 2);
@@ -262,24 +279,27 @@ public class LinkedTextGem implements Gem
 			if (wider)
 			{
 				// we are more horizontal
-				UDimension offset = first.getTowardsOffsetUsingX(second, 4 + bounds.getWidth());
-				if (higher)
-					offset = offset.subtract(new UDimension(0, 2));
-				else
-					offset = offset.add(new UDimension(0, bounds.getHeight() + 2));
+				UDimension offset = first.getTowardsOffsetUsingX(second, 2 + extent.getHeight());
+				if (!higher)
+					offset = offset.add(new UDimension(0, extent.getHeight()));
 				
-				return !left ? offset.subtract(new UDimension(bounds.getWidth(), bounds.getHeight())) : offset.subtract(new UDimension(0, bounds.getHeight()));
+				offset = !left ? offset.subtract(new UDimension(extent.getWidth(), extent.getHeight())) : offset.subtract(new UDimension(0, extent.getHeight()));
+				return higher ? offset.add(new UDimension(0, 0)) : offset.subtract(new UDimension(0, 2));
 			}
 			else
 			{
 				// we are more vertical
-				UDimension offset = first.getTowardsOffsetUsingY(second, 4 + bounds.getHeight());
-				if (left)
-					offset = offset.add(new UDimension(2, 0));
+				UDimension offset = first.getTowardsOffsetUsingY(second, 6 + extent.getHeight());
+				if (!left)
+					offset = offset.subtract(new UDimension(extent.getWidth(), 0));
 				else
-					offset = offset.subtract(new UDimension(bounds.getWidth() + 2, 0));
+					 offset = offset.add(new UDimension(1, 0));
 				
-				return higher ? offset.subtract(new UDimension(0, bounds.getHeight())) : offset;
+				// odd tweak
+				if (first.getIntX() == second.getIntX() && higher)
+					offset = offset.add(new UDimension(0, 1));
+				
+				return higher ? offset.subtract(new UDimension(0, extent.getHeight())) : offset.subtract(new UDimension(0, 0));
 			}
 		}
 	}
@@ -336,29 +356,7 @@ public class LinkedTextGem implements Gem
 		 */
 		public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
 		{
-		  ManipulatorFacet primaryFocus = null;
-	    if (favoured)
-	    {
-		    ManipulatorFacet keyFocus = null;
-	      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed text", "restored text", getPrefixedText(text), font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
-	      textGem.connectTextableFacet(linkedTextFacet);
-	      keyFocus = textGem.getManipulatorFacet();
-
-	      OriginLineManipulatorGem decorator =
-		      new OriginLineManipulatorGem(figureFacet, getMajorPoint());
-		    decorator.setDecoratedManipulatorFacet(keyFocus);
-		    primaryFocus = decorator.getManipulatorFacet();
-	    }
-	    
-	    Manipulators manipulators =
-	      new Manipulators(
-	          primaryFocus,
-	          new LinkedTextSelectionManipulatorGem(
-	              figureFacet.getFullBounds(),
-	              firstSelected,
-	              new UDimension(4, 8)).getManipulatorFacet());
-	    
-	    return manipulators;
+			return figureFacet.getContainedFacet().getContainer().getFigureFacet().getSelectionManipulators(coordinator, diagramView, favoured, firstSelected, allowTYPE0Manipulators);
 		}
 
     /**
@@ -392,6 +390,11 @@ public class LinkedTextGem implements Gem
 		public PreviewFacet makeNodePreviewFigure(PreviewCacheFacet previews, DiagramFacet diagram, UPoint start, boolean isFocus)
 		{
 			BasicNodePreviewGem basicGem = new BasicNodePreviewGem(figureFacet, start, isFocus, true);
+			ReusableDiagramViewFacet view = GlobalPackageViewRegistry.activeRegistry.getFocussedView();
+			// a start or end linked text cannot be moved by dragging it directly
+			if (view != null && view.getCurrentDiagramView().getSelection().getFirstSelectedFigure() == figureFacet)
+				if (majorPointType != CalculatedArcPoints.MAJOR_POINT_MIDDLE)
+					basicGem.setAllowedToMove(false);
 			basicGem.connectPreviewCacheFacet(previews);
 			basicGem.connectFigureFacet(figureFacet);
       basicGem.connectBasicNodePreviewUnusualSizingFacet(

@@ -597,7 +597,9 @@ public final class PortNodeGem implements Gem
 		{
 		  ManipulatorFacet keyFocus = null;
 		  if (favoured)
+		  {
 		    keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
+		  }
 		    
 	    Manipulators manipulators =
 	      new Manipulators(

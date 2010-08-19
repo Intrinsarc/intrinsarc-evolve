@@ -189,11 +189,6 @@ public final class BasicNodeFigureFacetImpl implements BasicNodeFigureFacet, Mov
   	return state.appearanceFacet.getFigureName();
   }
 
-  public PreviewFacet makeNodePreviewFigure(PreviewCacheFacet previews, DiagramFacet diagram, UPoint start, boolean isFocus)
-  {
-  	return state.appearanceFacet.makeNodePreviewFigure(previews, diagram, start, isFocus);
-  }
-  
   public Manipulators getSelectionManipulators(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, boolean favoured, boolean firstSelected, boolean allowTYPE0Manipulators)
   {
   	return state.appearanceFacet.getSelectionManipulators(coordinator, diagramView, favoured, firstSelected, allowTYPE0Manipulators);

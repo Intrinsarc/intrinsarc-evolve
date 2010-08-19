@@ -73,9 +73,11 @@ public class DependencyArcContainerPreviewGem implements Gem
 		    if (contained.hasDynamicFacet(LinkedTextFacet.class))
 		    {
 		    	LinkedTextFacet linked = contained.getDynamicFacet(LinkedTextFacet.class);
+		    	UBounds bounds = preview.getFullBounds();
 		    	preview.setFullBounds(
-		    			new UBounds(linked.getNewPoint(actualPoints, originalMiddle, curved, preview.getFullBounds()),
-		    			preview.getFullBounds().getDimension()), true);
+		    			new UBounds(linked.getNewPoint(
+		    					actualPoints.calculateAllPoints(), bounds.getPoint(), offset, bounds.getDimension()),
+    			preview.getFullBounds().getDimension()), true);
 		    }
 		    else
 		    {

@@ -282,7 +282,7 @@ public class DependencyArcGem implements Gem
       {
         keyFocus = linkedTextFacet.getTextEntryManipulator(coordinator, diagramView);
       }
-		    
+
       Manipulators manips = new Manipulators(
 	      	keyFocus,
 	      	new ArcAdjustManipulatorGem(

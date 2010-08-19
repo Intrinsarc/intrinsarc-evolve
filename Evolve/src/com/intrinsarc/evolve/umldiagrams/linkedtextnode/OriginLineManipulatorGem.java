@@ -14,7 +14,6 @@ import edu.umd.cs.jazz.util.*;
 
 public class OriginLineManipulatorGem implements Gem
 {
-	private static final Color PEN_COLOR = Color.black;
 	private ManipulatorFacet manipulatorFacet = new ManipulatorFacetImpl();
 	private ManipulatorFacet decoratedManipulatorFacet;
   private FigureFacet originFigure;

@@ -30,6 +30,7 @@ public final class BasicNodePreviewGem implements Gem
   private boolean displayPreview;
   private UDimension centreToEdge;
   private boolean forceCentre;
+  boolean allowedToMove = true;
   
   public void setCentreToEdge(UDimension centreToEdge)
   {
@@ -147,11 +148,14 @@ public final class BasicNodePreviewGem implements Gem
 	
 	  public void move(UPoint current)
 	  {
-	    UDimension offset = current.subtract(start);
-	    appearanceFacet.restoreOriginalBounds();
-	    appearanceFacet.setBounds(appearanceFacet.getFullBounds().addToPoint(offset), false);
-	    setBounds = false;
-	    tellLinked();
+	  	if (allowedToMove)
+	  	{
+		    UDimension offset = current.subtract(start);
+		    appearanceFacet.restoreOriginalBounds();
+		    appearanceFacet.setBounds(appearanceFacet.getFullBounds().addToPoint(offset), false);
+		    setBounds = false;
+		    tellLinked();
+	  	}
 	  }
 	
 		public void setFullBounds(UBounds newBounds, boolean resizedNotMoved)
@@ -325,5 +329,10 @@ public final class BasicNodePreviewGem implements Gem
 	public void setCentreToEdge(boolean forceCentre)
 	{
 		this.forceCentre = forceCentre;
+	}
+
+	public void setAllowedToMove(boolean allowed)
+	{
+		allowedToMove = allowed;
 	}
 }
