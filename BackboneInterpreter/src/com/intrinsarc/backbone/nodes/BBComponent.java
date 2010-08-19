@@ -106,7 +106,7 @@ public class BBComponent extends DEComponent implements INode
   			r.getPossibleImmediateSubElements().add(this);
   	if (replaces != null)
   		for (DEElement r : replaces.getObjects())
-  			r.getSubstituters().add(this);
+  			r.getReplacers().add(this);
   }
 
   private void informAboutParent(List<? extends BBReplacedConstituent> constituents)
@@ -281,13 +281,13 @@ public class BBComponent extends DEComponent implements INode
 	}
 
 	@Override
-	public List<DEElement> getSubstituters()
+	public List<DEElement> getReplacers()
 	{
 		return substituters;
 	}
 	
 	@Override
-	public List<DEElement> getRawSubstitutes()
+	public List<DEElement> getRawReplaces()
 	{
     return replaces.getObjects();
 	}

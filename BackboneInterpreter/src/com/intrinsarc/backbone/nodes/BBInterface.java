@@ -69,7 +69,7 @@ public class BBInterface extends DEInterface implements INode, Serializable
   			r.getPossibleImmediateSubElements().add(this);
   	if (substitutes != null)
   		for (DEElement r : substitutes.getObjects())
-  			r.getSubstituters().add(this);
+  			r.getReplacers().add(this);
   }
 
   private void informAboutParent(List<? extends BBReplacedConstituent> constituents)
@@ -144,7 +144,7 @@ public class BBInterface extends DEInterface implements INode, Serializable
 	}
 
 	@Override
-	public List<DEElement> getSubstituters()
+	public List<DEElement> getReplacers()
 	{
 		return substituters;
 	}
@@ -182,7 +182,7 @@ public class BBInterface extends DEInterface implements INode, Serializable
   } 
 
   @Override
-  public List<DEElement> getRawSubstitutes()
+  public List<DEElement> getRawReplaces()
   {
   	return substitutes.getObjects();
   }

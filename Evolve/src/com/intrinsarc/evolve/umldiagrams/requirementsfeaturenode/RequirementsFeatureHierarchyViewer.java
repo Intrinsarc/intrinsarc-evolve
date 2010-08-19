@@ -158,7 +158,7 @@ public class RequirementsFeatureHierarchyViewer
 	{
 		// get the original
 		DERequirementsFeature req = GlobalDeltaEngine.engine.locateObject(feature).asRequirementsFeature();
-		return (RequirementsFeature) req.getSubstitutesOrSelf().iterator().next().getRepositoryObject();
+		return (RequirementsFeature) req.getReplacesOrSelf().iterator().next().getRepositoryObject();
 	}
 
 	public void constructComponent()

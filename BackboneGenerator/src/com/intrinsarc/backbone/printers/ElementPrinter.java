@@ -110,12 +110,12 @@ public class ElementPrinter
 			for (DEElement e : c.getRawResembles())
 				ret += ref.reference(e) + (++lp != size ? ", " : "");
 		}
-		size = c.getSubstitutes().size();
+		size = c.getReplaces().size();
 		if (size > 0)
 		{
 			ret += " replaces ";
 			int lp = 0;
-			for (DEElement e : c.getSubstitutes())
+			for (DEElement e : c.getReplaces())
 				ret += ref.reference(e) + (++lp != size ? ", " : "");
 		}
 		if (ret.length() == 0)

@@ -25,7 +25,7 @@ public class ElementErrorChecker
     DEStratum myHome = element.getHomeStratum();
     
   	// if this is replacing, and we are not at home, don't bother
-  	if (element.isSubstitution() && perspective != myHome)
+  	if (element.isReplacement() && perspective != myHome)
   		return;
   	
     // element must be visible
@@ -39,7 +39,7 @@ public class ElementErrorChecker
           new ErrorLocation(perspective, element), ErrorCatalog.DIAGRAM_ELEMENT_REFERS_TO_RETIRED);
 
     // must have a name
-    if ((element.getName() == null || element.getName().length() == 0) && !element.isSubstitution())
+    if ((element.getName() == null || element.getName().length() == 0) && !element.isReplacement())
       errors.addError(
           new ErrorLocation(myHome, element), ErrorCatalog.ELEMENT_NAME);
     
@@ -49,7 +49,7 @@ public class ElementErrorChecker
           new ErrorLocation(myHome, element), ErrorCatalog.ELEMENT_NOT_AT_TOPLEVEL);
 
     // anything we substitute must be visible, and there must only be 1 substitution
-    Set<DEElement> redefs = element.getSubstitutes();
+    Set<DEElement> redefs = element.getReplaces();
     if (redefs.size() > 1)
       errors.addError(
           new ErrorLocation(perspective, element), ErrorCatalog.MAX_ONE_SUBSTITUTION);
@@ -152,9 +152,9 @@ public class ElementErrorChecker
           new ErrorLocation(element), ErrorCatalog.HOME_OF_DESTRUCTIVE_ELEMENT_MUST_BE_DESTRUCTIVE_ALSO);
     
     // we cannot replace an element in a stratum with "check once if read only" set
-    if (element.isSubstitution())
+    if (element.isReplacement())
     {
-    	for (DEElement replace : element.getSubstitutes())
+    	for (DEElement replace : element.getReplaces())
     	{
     		DEStratum replaceHome = replace.getHomeStratum();
     		if (replaceHome.isReadOnly() && replaceHome.isCheckOnceIfReadOnly())
@@ -201,7 +201,7 @@ public class ElementErrorChecker
 
   private void checkReferenceToSubstitution(DEElement referenced, DEObject element)
   {
-    if (referenced.isSubstitution())
+    if (referenced.isReplacement())
       errors.addError(
           new ErrorLocation(element), ErrorCatalog.CANNOT_REFER_TO_SUBSTITUTION);          
   }

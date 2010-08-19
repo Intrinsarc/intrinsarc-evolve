@@ -10,12 +10,12 @@ import org.eclipse.uml2.*;
 
 import com.intrinsarc.swing.lookandfeel.*;
 
-public class UMLDocStringAttributeViewer extends UMLAttributeViewerBase
+public class UMLLongStringAttributeViewer extends UMLAttributeViewerBase
 {
   private JTextArea text;
   private boolean readOnly;
   
-  public UMLDocStringAttributeViewer(Element element, EStructuralFeature attribute, UMLAttributeModificationListener listener, boolean readOnly)
+  public UMLLongStringAttributeViewer(Element element, EStructuralFeature attribute, UMLAttributeModificationListener listener, boolean readOnly)
   {
     super(element, attribute, listener);
     this.readOnly = readOnly;

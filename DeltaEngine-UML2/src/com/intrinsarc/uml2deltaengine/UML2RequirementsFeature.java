@@ -24,7 +24,7 @@ public class UML2RequirementsFeature extends DERequirementsFeature
   }
   
   @Override
-  public List<DEElement> getRawSubstitutes()
+  public List<DEElement> getRawReplaces()
   {
     // filter owned dependencies
     List<DEElement> substitutes = new ArrayList<DEElement>();
@@ -170,7 +170,7 @@ public class UML2RequirementsFeature extends DERequirementsFeature
 	}
 
 	@Override
-	public List<DEElement> getSubstituters()
+	public List<DEElement> getReplacers()
 	{
 		// look back to find any elements that substitute this
 		List<DEElement> substituters = new ArrayList<DEElement>();

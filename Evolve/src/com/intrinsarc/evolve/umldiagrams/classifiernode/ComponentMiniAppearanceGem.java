@@ -17,6 +17,7 @@ import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.figurefacilities.textmanipulationbase.*;
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 import com.intrinsarc.swing.enhanced.*;
@@ -289,8 +290,7 @@ public class ComponentMiniAppearanceGem implements Gem
 		public Object setText(TextableFacet textable, String text,
 				Object listSelection, boolean unsuppress)
 		{
-			return setElementText(figureFacet, textable, text, listSelection,
-					unsuppress);
+			return setElementText(figureFacet, textable, text, listSelection, unsuppress);
 		}
 
 		public ToolFigureClassification getToolClassification(
@@ -339,17 +339,46 @@ public class ComponentMiniAppearanceGem implements Gem
 		}
 
 		ElementSelection sel = (ElementSelection) listSelection;
+		Element selected = sel.getElement();
 		GlobalSubjectRepository.repository.markLongRunningTransaction();
 		if (oldText.length() == 0)
 		{
-			// delete the previous subject
+			changeColor(figure, subject, selected);
 			GlobalSubjectRepository.repository.incrementPersistentDelete(subject);
-			return sel.getElement();
+			return selected;
 		}
 		else
 		{
 			// just link to the new object
+			changeColor(figure, subject, selected);
 			return sel.getElement();
+		}
+	}
+
+	private static void changeColor(FigureFacet figure, NamedElement subject, Element selected)
+	{
+		// delete the previous subject
+		GlobalSubjectRepository.repository.incrementPersistentDelete(subject);
+		
+		// find the old element
+		Object obj[] = ClassifierConstituentHelper.findOwningDiagram(
+				(Package) figure.getDiagram().getLinkedObject(),
+				selected,
+				false);
+		FigureFacet original = ClassifierConstituentHelper.findFigureInDiagram((DiagramFacet) obj[0], obj[1]);
+		
+		if (original != null)
+		{
+			PersistentFigure ofig = original.makePersistentFigure();
+			PersistentProperties op = ofig.getProperties();
+			if (op.contains("fill"))
+			{
+				// set to the color of the old element
+				PersistentFigure pfig = figure.makePersistentFigure();
+				Color col = op.retrieve("fill").asColor();
+				pfig.getProperties().add(new PersistentProperty("fill", col, col));
+				figure.acceptPersistentFigure(pfig);
+			}
 		}
 	}
 	

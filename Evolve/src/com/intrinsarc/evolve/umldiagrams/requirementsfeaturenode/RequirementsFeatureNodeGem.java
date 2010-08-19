@@ -167,7 +167,7 @@ public class RequirementsFeatureNodeGem implements Gem
   {
     // should we be displaying the owner?
     RequirementsFeatureProperties props = new RequirementsFeatureProperties(figureFacet);
-    boolean sub = props.getElement().isSubstitution();
+    boolean sub = props.getElement().isReplacement();
     boolean locatedInCorrectView = props.getPerspective() == props.getElement().getHomeStratum();
 
     final boolean shouldBeDisplayingOwningPackage =
@@ -892,12 +892,12 @@ public class RequirementsFeatureNodeGem implements Gem
 
 			RequirementsFeatureProperties props = new RequirementsFeatureProperties(figureFacet, subject); 
 			final boolean shouldBeDisplayingOwningPackage =
-				!locatedInCorrectView && !forceSuppressOwningPackage || props.getElement().isSubstitution(); 
+				!locatedInCorrectView && !forceSuppressOwningPackage || props.getElement().isReplacement(); 
 
 			String newName = props.getPerspectiveName();
 			
 			// get the new stratum owner
-			String newOwner = props.getElement().isSubstitution() ?
+			String newOwner = props.getElement().isReplacement() ?
 					"(replaces " + props.getSubstitutesForName() + ")" :
 					"(from " + repository.getFullStratumNames((Element) props.getHomePackage().getRepositoryObject()) + ")";
 			

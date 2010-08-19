@@ -28,9 +28,13 @@ public class UMLTreeMenuCreator
     UMLTreeUserObject user = (UMLTreeUserObject) node.getUserObject();
     final Element element = user.getElement();
     
+    // is the item readonly?
+    boolean readonly = repository.isReadOnly(element);
+    
     // (1) add the creation options
     // look for all createOwned() things in the class definition
     JMenu createItem = new JMenu("Create");
+    createItem.setEnabled(!readonly);
     
     // add the menu elements for creation
     EClass ecls = element.eClass();
@@ -70,7 +74,7 @@ public class UMLTreeMenuCreator
       };          
 
     // grey out the deletion command if this is the top level
-    if (element == repository.getTopLevelModel())
+    if (element == repository.getTopLevelModel() || readonly)
       delete.setEnabled(false);
     menu.add(delete);
 

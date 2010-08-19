@@ -412,7 +412,7 @@ public class TraceArcGem implements Gem
     {
     	FigureFacet target = figureFacet.getLinkingFacet().getAnchor2().getFigureFacet();
     	DEElement de = GlobalDeltaEngine.engine.locateObject(target.getSubject()).asElement();
-    	return de.getSubstitutesOrSelf().iterator().next().asElement();
+    	return de.getReplacesOrSelf().iterator().next().asElement();
     }
 
     private FigureFacet getOwnerFigure()
@@ -439,7 +439,7 @@ public class TraceArcGem implements Gem
       	if (pair.getConstituent().getUuid().equals(subject.getUuid()))
       	{
       		// ensure this links to the correct element
-      		if (pair.getConstituent().asTrace().getTarget().getSubstitutesOrSelf().iterator().next() == visualTarget)
+      		if (pair.getConstituent().asTrace().getTarget().getReplacesOrSelf().iterator().next() == visualTarget)
       			found = true;
       		break;
       	}
@@ -494,7 +494,7 @@ public class TraceArcGem implements Gem
   private void setTarget(NamedElement element)
   {
     // change the owner, but make sure we take the original
-    DEElement elem = GlobalDeltaEngine.engine.locateObject(element).asElement().getSubstitutesOrSelf().iterator().next();
+    DEElement elem = GlobalDeltaEngine.engine.locateObject(element).asElement().getReplacesOrSelf().iterator().next();
     subject.setDependencyTarget((NamedElement) elem.getRepositoryObject());  	
   }
 }

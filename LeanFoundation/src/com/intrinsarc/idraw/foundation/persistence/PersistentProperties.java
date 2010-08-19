@@ -176,4 +176,10 @@ public class PersistentProperties implements Cloneable
 			throw new InternalError(ex.toString());
 		}
 	}
+
+	public void addAll(PersistentProperties properties)
+	{
+		for (PersistentProperty property : properties.properties.values())
+			add(property);
+	}
 }

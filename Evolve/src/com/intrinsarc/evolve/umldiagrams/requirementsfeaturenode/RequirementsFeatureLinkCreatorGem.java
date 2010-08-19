@@ -108,7 +108,7 @@ public class RequirementsFeatureLinkCreatorGem
   public static RequirementsFeature getRealTarget(NamedElement element)
   {
     // change the owner, but make sure we take the original
-    DEElement elem = GlobalDeltaEngine.engine.locateObject(element).asElement().getSubstitutesOrSelf().iterator().next();
+    DEElement elem = GlobalDeltaEngine.engine.locateObject(element).asElement().getReplacesOrSelf().iterator().next();
     return (RequirementsFeature) elem.getRepositoryObject();  	
   }
 }

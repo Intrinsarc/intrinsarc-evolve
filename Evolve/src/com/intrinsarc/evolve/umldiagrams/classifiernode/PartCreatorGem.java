@@ -57,10 +57,11 @@ public class PartCreatorGem
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figureId, location, true, false);
       PersistentProperties actualProperties = new PersistentProperties();
       initialiseExtraProperties(actualProperties);
+      actualProperties.addAll(properties);
       ClassifierNodeGem classifierGem =
         new ClassifierNodeGem(
             diagram,
-            getFillColor(),
+            getFillColor(properties),
       			new PersistentFigure(figureId, null, subject, actualProperties),
             true);
       basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
@@ -102,7 +103,7 @@ public class PartCreatorGem
       BasicNodeGem basicGem = new BasicNodeGem(getRecreatorName(), diagram, figure, false);
       ClassifierNodeGem classifierGem =
         new ClassifierNodeGem(
-        		getFillColor(),
+        		getFillColor(figure.getProperties()),
         		true,
         		figure);
       basicGem.connectBasicNodeAppearanceFacet(classifierGem.getBasicNodeAppearanceFacet());
@@ -183,7 +184,7 @@ public class PartCreatorGem
       properties.addIfNotThere(new PersistentProperty("supO", suppressOperations, false));
       properties.addIfNotThere(new PersistentProperty("icon", displayOnlyIcon, false));
 			properties.addIfNotThere(new PersistentProperty("auto", false, true));
-      properties.addIfNotThere(new PersistentProperty("fill", getFillColor(), Color.WHITE));
+      properties.addIfNotThere(new PersistentProperty("fill", getFillColor(null), Color.WHITE));
       if (statePart)
         properties.addIfNotThere(new PersistentProperty(">stereotype", "state-part"));
 		}		
@@ -194,8 +195,10 @@ public class PartCreatorGem
 		this.fillColorPreference = fillColorPreference;
 	}
 
-	private Color getFillColor()
+	private Color getFillColor(PersistentProperties properties)
 	{
+		if (properties != null && properties.contains("fill"))
+			return properties.retrieve("fill").asColor();
 		if (fillColorPreference == null)
 			return BaseColors.getColorPreference(BaseColors.COMPONENT_COLOR);
 		return BaseColors.getColorPreference(fillColorPreference);

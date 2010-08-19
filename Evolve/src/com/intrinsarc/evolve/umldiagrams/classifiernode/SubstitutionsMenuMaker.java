@@ -27,7 +27,7 @@ public class SubstitutionsMenuMaker
       {
         IDeltaEngine engine = GlobalDeltaEngine.engine;
 
-        List<? extends DEElement> substituters = engine.locateObject(subject).asElement().getSubstituters();
+        List<? extends DEElement> substituters = engine.locateObject(subject).asElement().getReplacers();
         
         String leadIn = "<html>Substitutions of " + qualName(subject) + "<hr>";
         JScrollPane scroll = makeTextPane(leadIn, substituters);

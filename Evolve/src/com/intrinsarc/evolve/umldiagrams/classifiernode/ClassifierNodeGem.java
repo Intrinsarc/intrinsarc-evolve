@@ -202,7 +202,7 @@ public final class ClassifierNodeGem implements Gem
 	{
 		// should we be displaying the owner?
 		ElementProperties props = new ElementProperties(figureFacet);
-		boolean sub = props.getElement().isSubstitution();
+		boolean sub = props.getElement().isReplacement();
 		boolean locatedInCorrectView = props.getPerspective() == props.getElement().getHomeStratum();
 
 		final boolean shouldBeDisplayingOwningPackage = !locatedInCorrectView && !forceSuppressOwningPackage || sub;
@@ -2067,7 +2067,7 @@ public final class ClassifierNodeGem implements Gem
 
 			ElementProperties props = new ElementProperties(figureFacet, subject);
 			final boolean shouldBeDisplayingOwningPackage = !locatedInCorrectView && !forceSuppressOwningPackage
-					|| props.getElement().isSubstitution();
+					|| props.getElement().isReplacement();
 
 			// is this active?
 			boolean subjectActive = false;
@@ -2079,7 +2079,7 @@ public final class ClassifierNodeGem implements Gem
 			String newName = props.getPerspectiveName();
 
 			// get the new stratum owner
-			String newOwner = props.getElement().isSubstitution() ? "(replaces " + props.getSubstitutesForName() + ")"
+			String newOwner = props.getElement().isReplacement() ? "(replaces " + props.getSubstitutesForName() + ")"
 					: "(from " + repository.getFullStratumNames((Element) props.getHomePackage().getRepositoryObject()) + ")";
 
 			// if neither the name or the namespace has changed, or the in-placeness,
@@ -2112,17 +2112,29 @@ public final class ClassifierNodeGem implements Gem
 			// look up through the owning namespaces, until we find a possible package
 			if (subject != null)
 			{
-				Element possiblePackage = isPart ? ((Property) subject).getType() : subject;
-
-				while (possiblePackage != null && !(possiblePackage instanceof Package))
-					possiblePackage = possiblePackage.getOwner();
-
-				if (possiblePackage != null)
+				Element type = isPart ? ((Property) subject).getType() : subject;
+				DEElement component = GlobalDeltaEngine.engine.locateObject(type).asElement();
+				boolean replaces = false;
+				if (!isPart && component.isReplacement())
 				{
-					// want to open the diagram for this package
-					GlobalPackageViewRegistry.activeRegistry.open((Package) possiblePackage, true, false, figureFacet
-							.getFullBounds(), GlobalPackageViewRegistry.activeRegistry.getFocussedView().getFixedPerspective(), true);
+					replaces = true;
+					component = component.getReplaces().iterator().next();
 				}
+
+				Element elem = (Element) component.getRepositoryObject(); 
+				DiagramFacet sourceDiagram = (DiagramFacet) ClassifierConstituentHelper.findOwningDiagram(
+						(Package) figureFacet.getDiagram().getLinkedObject(),
+						elem,
+						replaces)[0];
+				
+				if (sourceDiagram != null)
+					GlobalPackageViewRegistry.activeRegistry.open(
+								(Package) sourceDiagram.getLinkedObject(),
+								true,
+								false,
+								figureFacet.getFullBounds(),
+								GlobalPackageViewRegistry.activeRegistry.getFocussedView().getFixedPerspective(),
+								true);
 			}
 		}
 

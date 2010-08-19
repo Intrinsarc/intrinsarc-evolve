@@ -60,7 +60,7 @@ class RentalStateFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private Attribute<String> model = new Attribute<String>("");
+  private Attribute<String> model = new Attribute<String>(new java.lang.String());
   public void setModel(String model) { this.model.set(model); }
   public String getModel() { return model.get(); }
   private Attribute<java.util.Date> purchased = new Attribute<java.util.Date>(new java.util.Date());

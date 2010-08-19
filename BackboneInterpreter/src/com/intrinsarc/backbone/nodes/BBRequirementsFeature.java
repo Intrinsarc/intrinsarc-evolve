@@ -62,7 +62,7 @@ public class BBRequirementsFeature extends DEInterface implements INode, Seriali
   			r.getPossibleImmediateSubElements().add(this);
   	if (replaces != null)
   		for (DEElement r : replaces.getObjects())
-  			r.getSubstituters().add(this);
+  			r.getReplacers().add(this);
   }
 
   private void informAboutParent(List<? extends BBReplacedConstituent> constituents)
@@ -137,7 +137,7 @@ public class BBRequirementsFeature extends DEInterface implements INode, Seriali
 	}
 
 	@Override
-	public List<DEElement> getSubstituters()
+	public List<DEElement> getReplacers()
 	{
 		return substituters;
 	}
@@ -175,7 +175,7 @@ public class BBRequirementsFeature extends DEInterface implements INode, Seriali
   } 
 
   @Override
-  public List<DEElement> getRawSubstitutes()
+  public List<DEElement> getRawReplaces()
   {
     return replaces.getObjects();
   }

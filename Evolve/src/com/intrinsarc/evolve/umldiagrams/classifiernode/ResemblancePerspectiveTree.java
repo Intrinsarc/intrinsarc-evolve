@@ -74,7 +74,7 @@ public class ResemblancePerspectiveTree
   public ResemblancePerspectiveTree(DEStratum perspective, DEElement start)
   {
     this.perspective = perspective;
-    this.base = start.getSubstitutesOrSelf();
+    this.base = start.getReplacesOrSelf();
   }
   
   public JTree makeTree()
@@ -164,10 +164,10 @@ public class ResemblancePerspectiveTree
   {
     // add the element and any children in the resemblance graph
     String annotation = "";
-    if (element.isSubstitution())
+    if (element.isReplacement())
     {
       annotation = " (substitutes for ";
-      List<DEElement> list = new ArrayList<DEElement>(element.getSubstitutes());
+      List<DEElement> list = new ArrayList<DEElement>(element.getReplaces());
       int size = list.size();
       int lp = 0;
       for (DEElement r : list)

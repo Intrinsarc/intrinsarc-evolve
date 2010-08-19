@@ -1,5 +1,6 @@
 package com.intrinsarc.evolve.umldiagrams.constituenthelpers;
 
+import java.awt.*;
 import java.util.*;
 
 import org.eclipse.uml2.*;
@@ -81,7 +82,19 @@ public class ClassPartHelper extends ClassifierConstituentHelper
 		final FigureReference partReference = classifierFigure.getDiagram().makeNewFigureReference();
     final Element subject = (Element) addOrReplace.getConstituent().getRepositoryObject();
 
-    createPart(classifierFigure, subject, partReference, partTop);
+    Color fill = null;
+    if (existing != null)
+    {
+    	PersistentProperties props = existing.makePersistentFigure().getProperties();
+    	if (props.contains("fill"))
+    		fill = props.retrieve("fill").asColor();
+    }
+    createPart(
+    		classifierFigure,
+    		subject,
+    		partReference,
+    		partTop,
+    		fill);
 
 		// resize to match the other part
 		if (size != null)
@@ -91,13 +104,17 @@ public class ClassPartHelper extends ClassifierConstituentHelper
 		}  	
   }
   
-    protected void createPart(
+  protected void createPart(
       FigureFacet owner,
       Element subject,
       FigureReference partRef,
-      UPoint top)
+      UPoint top,
+      Color color)
   {
     // create the component
+  	PersistentProperties props = new PersistentProperties();
+  	if (color != null)
+  		props.add(new PersistentProperty("fill", color, color));
     NodeCreateFigureTransaction.create(
     		owner.getDiagram(),
         subject,
@@ -105,7 +122,7 @@ public class ClassPartHelper extends ClassifierConstituentHelper
         owner.getFigureReference(),
         StereotypeUtilities.isRawStereotypeApplied(subject, "state-part") ? statePartCreator : partCreator,
         top,
-        new PersistentProperties(),
+        props,
         null);
 
     FigureFacet figure = owner.getDiagram().retrieveFigure(partRef.getId());

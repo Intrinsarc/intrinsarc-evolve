@@ -413,8 +413,8 @@ public class PaletteManagerGem
     {
       RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Evolution", new String[]{COMPONENT_FOCUS, FEATURE_FOCUS, STATE_FOCUS, PROFILE_FOCUS});
       palette.addEntry(makeEntry(false, "resemblance.png",  "Resemble",         new ArcCreateToolGem(SubstitutionUtilities.makeResemblanceCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
-      palette.addEntry(makeEntry(false, "replacement.png",  "Replace",         new ArcCreateToolGem(SubstitutionUtilities.makeReplacementCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
       palette.addEntry(makeEntry(false, "evolution.png",  "Evolve",             new ArcCreateToolGem(SubstitutionUtilities.makeEvolutionCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
+//    palette.addEntry(makeEntry(false, "replacement.png",  "Replace",         new ArcCreateToolGem(SubstitutionUtilities.makeReplacementCreator().getArcCreateFacet()).getToolFacet(), "classifier"));
       tools.addCategory(palette);
     }
 

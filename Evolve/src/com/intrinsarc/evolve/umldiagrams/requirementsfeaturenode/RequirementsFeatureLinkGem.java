@@ -166,7 +166,7 @@ public class RequirementsFeatureLinkGem
   {
   	FigureFacet target = figureFacet.getLinkingFacet().getAnchor2().getFigureFacet();
   	DERequirementsFeature de = GlobalDeltaEngine.engine.locateObject(target.getSubject()).asRequirementsFeature();
-  	return de.getSubstitutesOrSelf().iterator().next().asRequirementsFeature();
+  	return de.getReplacesOrSelf().iterator().next().asRequirementsFeature();
   }
   
   class BasicArcAppearanceFacetImpl implements BasicArcAppearanceFacet
@@ -303,7 +303,7 @@ public class RequirementsFeatureLinkGem
 	      	if (pair.getConstituent().getUuid().equals(subject.getUuid()))
 	      	{
 	      		// ensure this links to the correct element
-	      		if (pair.getConstituent().asRequirementsFeatureLink().getSubfeature().getSubstitutesOrSelf().iterator().next() == visualTarget)
+	      		if (pair.getConstituent().asRequirementsFeatureLink().getSubfeature().getReplacesOrSelf().iterator().next() == visualTarget)
 	      			found = true;
 	      		break;
 	      	}

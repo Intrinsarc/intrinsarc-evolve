@@ -13,7 +13,7 @@ public abstract class DEElement extends DEObject
   private Map<DEStratum, Boolean> cachedDirectlyCircular;
   private Map<DEStratum, Boolean> cachedIndirectlyCircular;
   private Map<DEStratum, List<DEElement>> cachedTopmost;
-  private HashSet<DEElement> cachedSubstitutes;
+  private HashSet<DEElement> cachedReplaces;
 
 	private Map<DEStratum, Set<DEElement>> superCachedImmediate;
 	private Map<DEStratum, Set<DEElement>> superCachedClosure;
@@ -28,8 +28,8 @@ public abstract class DEElement extends DEObject
 	
 
   public abstract List<? extends DEElement> getRawResembles();
-  public abstract List<? extends DEElement> getRawSubstitutes();
-  public abstract List<DEElement> getSubstituters();
+  public abstract List<? extends DEElement> getRawReplaces();
+  public abstract List<DEElement> getReplacers();
   public abstract Set<DEElement> getPossibleImmediateSubElements();
   public abstract Set<String> getReplaceUuidsOnly();
   public abstract boolean isRawRetired();
@@ -139,7 +139,7 @@ public abstract class DEElement extends DEObject
   
   public String getName(DEStratum perspective)
   {
-  	if (isSubstitution())
+  	if (isReplacement())
   	{
   		if (getRawName().length() > 0)
   			return getRawName() + "`";
@@ -148,27 +148,27 @@ public abstract class DEElement extends DEObject
   	return getName(perspective, null);
   }
   
-  public String getSubstitutesForName(DEStratum perspective)
+  public String getReplacesForName(DEStratum perspective)
   {
-  	if (isSubstitution())
-  		return getSubstitutes().iterator().next().getFullyQualifiedName();
+  	if (isReplacement())
+  		return getReplaces().iterator().next().getFullyQualifiedName();
   	return "";
   }
   
   public String getName(DEStratum perspective, Set<DEStratum> lookFrom)
   {
-  	if (isSubstitution())
+  	if (isReplacement())
   	{
   		if (getRawName().length() > 0)
   			return getRawName();
-  		return getSubstitutes().iterator().next().getName(perspective, perspective.getSimpleDependsOn());
+  		return getReplaces().iterator().next().getName(perspective, perspective.getSimpleDependsOn());
   	}
   	
-  	// this is not a substitution, so look for possible substituters
+  	// this is not a replacement, so look for possible replacers
   	List<DEElement> tops = lookFrom == null ? getTopmost(perspective) : getTopmost(lookFrom);
   	String name = "";
   	for (DEElement elem : tops)
-  		if (elem.isSubstitution())
+  		if (elem.isReplacement())
   			if (elem.getName().length() > 0)
   			{
   				if (name.length() != 0)
@@ -180,25 +180,25 @@ public abstract class DEElement extends DEObject
   }
   
   /**
-   * if we substitute something, we are a substitution
+   * if we replace something, we are a replacement
    * @return
    */
-  public boolean isSubstitution()
+  public boolean isReplacement()
   {
-    return !getSubstitutes().isEmpty();
+    return !getReplaces().isEmpty();
   }
   
-  public Set<DEElement> getSubstitutes()
+  public Set<DEElement> getReplaces()
   {
     // return a cached value if we have it
-    if (cachedSubstitutes != null)
-      return cachedSubstitutes;
+    if (cachedReplaces != null)
+      return cachedReplaces;
     
-    cachedSubstitutes = new LinkedHashSet<DEElement>();
-    for (DEElement element : getRawSubstitutes())
+    cachedReplaces = new LinkedHashSet<DEElement>();
+    for (DEElement element : getRawReplaces())
       if (element.getHomeStratum() != getHomeStratum())
-        cachedSubstitutes.add(element);
-    return cachedSubstitutes;
+        cachedReplaces.add(element);
+    return cachedReplaces;
   }
   
   /**
@@ -252,7 +252,7 @@ public abstract class DEElement extends DEObject
   	List<DEElement> tops = getTopmost(perspective);
   	
   	// for each thing we resemble directly, add it in
-  	// unless it is "ourself" and we are substituting.  if that is the case, add what we resemble directly
+  	// unless it is "ourself" and we are replacing.  if that is the case, add what we resemble directly
   	if (tops.size() == 1 && tops.get(0) == this)
   	{
   		Set<DEElement> raw =
@@ -260,7 +260,7 @@ public abstract class DEElement extends DEObject
   					getFilteredResembles_e(perspective, allowFirstLevelCycles) : getResembles_e(perspective);
   		Set<DEElement> result = new HashSet<DEElement>();
   		for (DEElement e : raw)
-  			result.addAll(e.getSubstitutesOrSelf());
+  			result.addAll(e.getReplacesOrSelf());
   		
   		return result;
   	}
@@ -273,10 +273,10 @@ public abstract class DEElement extends DEObject
   			if (res == this)
   			{
   				for (DEElement down : res.getResembles_e(perspective))
-  					resembles.addAll(down.getSubstitutesOrSelf());
+  					resembles.addAll(down.getReplacesOrSelf());
   			}
   			else
-  				resembles.addAll(res.getSubstitutesOrSelf());
+  				resembles.addAll(res.getReplacesOrSelf());
   		}
   	}
   	
@@ -334,7 +334,7 @@ public abstract class DEElement extends DEObject
   }
   
   /**
-   * Resembles_e takes substitutions and stratum perspective into account when calculating the resemblance graph.
+   * Resembles_e takes replacements and stratum perspective into account when calculating the resemblance graph.
    * Makes no effort to remove redundant paths, so can be used to check circularity.
    * @param perspective
    * @return
@@ -349,7 +349,7 @@ public abstract class DEElement extends DEObject
     fromHere = new LinkedHashSet<DEElement>();
     
     // handle any redef/resemblance intersection by looking from the owner down (because a redef can't be redef'ed)
-    Set<DEElement> both = new LinkedHashSet<DEElement>(getSubstitutes());
+    Set<DEElement> both = new LinkedHashSet<DEElement>(getReplaces());
     both.retainAll(getRawResembles());
     for (DEElement b : both)
       fromHere.addAll(b.getTopmost(getHomeStratum().getSimpleDependsOn()));
@@ -432,7 +432,8 @@ public abstract class DEElement extends DEObject
   }
   
   
-  List<DEElement> getTopmost(Set<DEStratum> lookFrom)
+  /** not cached, can be a bit slow */
+  public List<DEElement> getTopmost(Set<DEStratum> lookFrom)
   {
   	// if we are at home, return just this
   	if (lookFrom.contains(getHomeStratum()))
@@ -442,8 +443,8 @@ public abstract class DEElement extends DEObject
   		return me;
   	}
   	
-    // find the topmost substituters based on where we are looking from
-    List<? extends DEElement> substituters = getSubstituters();
+    // find the topmost replacements based on where we are looking from
+    List<? extends DEElement> replacers = getReplacers();
     
     // find all strata we need to consider
     Set<DEStratum> all = new LinkedHashSet<DEStratum>();
@@ -451,17 +452,17 @@ public abstract class DEElement extends DEObject
       all.addAll(look.getTransitivePlusMe());
     
     // find all substituters -- should only be in the packages
-    Set<DEElement> relevantSubstituters = new LinkedHashSet<DEElement>();
-    for (DEElement r : substituters)
+    Set<DEElement> relevantReplacers = new LinkedHashSet<DEElement>();
+    for (DEElement r : replacers)
       if (all.contains(r.getHomeStratum()))
-        relevantSubstituters.add(r);
+        relevantReplacers.add(r);
     
     // only use those that aren't covered elsewere
-    Set<DEElement> topmostSubstituters = new LinkedHashSet<DEElement>();
-    for (DEElement r : relevantSubstituters)
+    Set<DEElement> topmostReplacers = new LinkedHashSet<DEElement>();
+    for (DEElement r : relevantReplacers)
     {
       boolean contains = false;
-      for (DEElement other : relevantSubstituters)
+      for (DEElement other : relevantReplacers)
       {
         if (r == other)
           continue;
@@ -469,13 +470,13 @@ public abstract class DEElement extends DEObject
           contains = true;
       }
       if (!contains)
-        topmostSubstituters.add(r);
+        topmostReplacers.add(r);
     }
     
-    if (topmostSubstituters.isEmpty())
-      topmostSubstituters.add(this);
+    if (topmostReplacers.isEmpty())
+      topmostReplacers.add(this);
     
-    List<DEElement> sorted = new ArrayList<DEElement>(topmostSubstituters);
+    List<DEElement> sorted = new ArrayList<DEElement>(topmostReplacers);
     Collections.sort(sorted, new Comparator<DEElement>()
     {
       public int compare(DEElement o1, DEElement o2)
@@ -587,7 +588,7 @@ public abstract class DEElement extends DEObject
   	return constituents;
 	}
   
-  /** takes substitution into account */
+  /** takes replacement into account */
 	public Set<DEElement> getSubElementClosure(DEStratum perspective, boolean inheritanceOnly)
   {
 		if (inheritanceOnly)
@@ -699,9 +700,9 @@ public abstract class DEElement extends DEObject
 		if (shallowDestructive != null)
 			return shallowDestructive;
 		
-		// an element is destructive if it is a substitution,
-		// and it subtracts or replaces from the thing it substitutes rather than just adds
-		if (!isSubstitution())
+		// an element is destructive if it is a replacement,
+		// and it subtracts or replaces from the thing it replaces rather than just adds
+		if (!isReplacement())
 			return false;
 		
 		Set<String> replaces = getReplaceUuidsOnly();
@@ -715,7 +716,7 @@ public abstract class DEElement extends DEObject
 			replDelUuids.addAll(replaces);
 			
 			// look for the topmost from the home stratum
-			Set<DEElement> iRedef = getSubstitutes();
+			Set<DEElement> iRedef = getReplaces();
 			for (DEElement redef : iRedef)
 			{
 				// for this constituent type, get all original objects
@@ -861,10 +862,10 @@ public abstract class DEElement extends DEObject
 		return highest;
 	}
 
-	public Set<DEElement> getSubstitutesOrSelf()
+	public Set<DEElement> getReplacesOrSelf()
 	{
-		if (isSubstitution())
-			return getSubstitutes();
+		if (isReplacement())
+			return getReplaces();
 		Set<DEElement> self = new HashSet<DEElement>();
 		self.add(this);
 		return self;

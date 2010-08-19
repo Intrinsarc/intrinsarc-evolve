@@ -7,6 +7,7 @@ import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
 
 import com.intrinsarc.deltaengine.base.*;
+import com.intrinsarc.evolve.packageview.base.*;
 import com.intrinsarc.evolve.umldiagrams.constituenthelpers.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.diagramsupport.moveandresize.*;
@@ -15,6 +16,7 @@ import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.idraw.nodefacilities.nodesupport.*;
 import com.intrinsarc.repositorybase.*;
+import com.intrinsarc.uml2deltaengine.*;
 
 public abstract class ClassifierConstituentHelper
 {
@@ -559,6 +561,38 @@ public abstract class ClassifierConstituentHelper
 		return findClassAndConstituent(avoid, perspective, tops, uuid1, uuid2, shallowOnly);
 	}
 
+	public static Object[] findOwningDiagram(Package fromPackage, Element cls, boolean underHereOnly)
+	{
+		IDeltaEngine engine = GlobalDeltaEngine.engine;				
+		DEElement component = engine.locateObject(cls).asElement();
+		
+		SubjectRepositoryFacet repos = GlobalSubjectRepository.repository;
+		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(fromPackage).asStratum();
+		
+		Set<DEStratum> simple = new HashSet<DEStratum>();
+		simple.add(perspective);
+		List<DEElement> tops = component.getTopmost(
+				underHereOnly ? perspective.getSimpleDependsOn() : simple);
+		if (tops.size() != 0)
+		{
+			// want to open the diagram for this package
+			Element elem = (Element) tops.get(0).getRepositoryObject();
+			return new Object[] {
+					GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(repos.findOwningStratum(elem).getUuid())),
+					tops.get(0).getRepositoryObject()
+			};
+		}
+		return null;
+	}
+	
+	public static FigureFacet findFigureInDiagram(DiagramFacet diagram, Object subject)
+	{
+		for (FigureFacet figure : diagram.getFigures())
+			if (figure.getSubject() == subject)
+				return figure;
+		return null;
+	}
+	
 	public static FigureFacet[] findClassAndConstituent(
 			FigureFacet avoid,
 			DEStratum perspective,

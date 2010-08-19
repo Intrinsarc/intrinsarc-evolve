@@ -21,7 +21,7 @@ public class InterfaceErrorChecker
   public void performCheck(boolean diagramCheck)
   {
   	// if this is replacing, and we are not at home, don't bother
-  	if (iface.isSubstitution() && perspective != iface.getHomeStratum() || iface.isRetired(perspective))
+  	if (iface.isReplacement() && perspective != iface.getHomeStratum() || iface.isRetired(perspective))
   		return;
     
     // all things subsituted or resembled must refer to a composite
@@ -31,7 +31,7 @@ public class InterfaceErrorChecker
         errors.addError(
             new ErrorLocation(iface), ErrorCatalog.INTERFACE_RESEMBLES_INTERFACE);
     }
-    for (DEElement redef : iface.getSubstitutes())
+    for (DEElement redef : iface.getReplaces())
     {
       if (redef.asInterface() == null)
         errors.addError(

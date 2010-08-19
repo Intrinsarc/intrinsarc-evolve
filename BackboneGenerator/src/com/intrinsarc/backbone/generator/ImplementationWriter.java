@@ -68,8 +68,8 @@ public class ImplementationWriter
       if (iface != null && !iface.isBean(iface.getHomeStratum()))
       {
       	// possibly repoint to what we are substituting
-      	if (iface.isSubstitution())
-      		iface = (DEInterface) iface.getSubstitutes().iterator().next();
+      	if (iface.isReplacement())
+      		iface = (DEInterface) iface.getReplaces().iterator().next();
       	
         InterfaceImplementationMaker maker = new InterfaceImplementationMaker(base, stratum, iface);
       	if (maker.possiblyMakeDefinition())
@@ -102,8 +102,8 @@ public class ImplementationWriter
 				comp.getComponentKind() != ComponentKindEnum.STEREOTYPE)
 		{
 			// if this is a substituter, take what it substitutes...
-			if (comp.isSubstitution())
-				comp = (DEComponent) comp.getSubstitutes().iterator().next();
+			if (comp.isReplacement())
+				comp = (DEComponent) comp.getReplaces().iterator().next();
 			LeafImplementationRefresher refresher = new LeafImplementationRefresher(base, stratum, comp);
 			return refresher.refreshLeafCode();
 		}

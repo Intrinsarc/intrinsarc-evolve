@@ -9,6 +9,7 @@ import javax.swing.*;
 import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
+import org.eclipse.uml2.Package;
 
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.repository.*;
@@ -122,8 +123,8 @@ public class UMLElementViewer
       	boolean readOnly = false;
       	if (fName.equals("uuid") && !GlobalPreferences.preferences.getRawPreference(RepositoryBrowserGem.EDITABLE_UUIDS).asBoolean())
       		readOnly = true;
-      	if (documentation)
-      		return new UMLDocStringAttributeViewer(element, feature, listener, readOnly);
+      	if (documentation || element instanceof Package && fName.equals("name"))
+      		return new UMLLongStringAttributeViewer(element, feature, listener, readOnly);
       	else
       		return new UMLStringAttributeViewer(element, feature, listener, readOnly);
       }

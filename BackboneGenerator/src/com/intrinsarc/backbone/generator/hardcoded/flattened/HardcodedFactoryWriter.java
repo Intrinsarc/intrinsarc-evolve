@@ -331,7 +331,9 @@ public class HardcodedFactoryWriter
 				c.write(attrName);
 				List<BBSimpleParameter> def = attr.getDefaultValue();
 				if (factoryNumber == 0 && attr.getDefaultValue() != null)
+				{
 					def = attr.getDefaultValue();
+				}
 				if (def == null || position != PositionEnum.TOP && top)
 				{
 					c.write(";");
@@ -591,28 +593,49 @@ public class HardcodedFactoryWriter
 	{
 		String translated = PrimitiveHelper.translateLongToShortPrimitive(impl);
 		boolean primitive = !impl.equals(translated);
-		c.write("new Attribute<" + PrimitiveHelper.stripJavaLang(impl) + ">(");
-		if (!primitive)
-			c.write("new " + impl + "(");
-		boolean start = true;
-		for (BBSimpleParameter p : def)
+		String primTrans = PrimitiveHelper.stripJavaLang(impl);
+		c.write("new Attribute<" + primTrans + ">(");
+
+		if (isDefault(def))
 		{
-			if (!start)
-				c.write(", ");
-			start = false;
-			if (p.getLiteral() != null)
-				c.write(p.getLiteral());
-			else
-			{
-				c.write(namer.getUniqueName(p.getAttribute()));
-				if (!p.getAttribute().getType().isBean())
-					c.write(".get()");
-			}
+			c.write("new " + primTrans + "());");
 		}
-		if (primitive)
-			c.write(");");
 		else
-			c.write("));");
+		{
+			if (!primitive)
+				c.write("new " + impl + "(");
+			boolean start = true;
+			for (BBSimpleParameter p : def)
+			{
+				if (!start)
+					c.write(", ");
+				start = false;
+				if (p.getLiteral() != null)
+				{
+					c.write(p.getLiteral());
+				}
+				else
+				{
+					c.write(namer.getUniqueName(p.getAttribute()));
+					if (!p.getAttribute().getType().isBean())
+						c.write(".get()");
+				}
+			}
+			if (primitive)
+				c.write(");");
+			else
+				c.write("));");
+		}
+	}
+
+	/**
+	 * has a default value been requested?
+	 */
+	private boolean isDefault(List<BBSimpleParameter> def)
+	{
+		if (def.size() != 1)
+			return false;
+		return def.get(0).getLiteral() != null && def.get(0).getLiteral().equals("default");
 	}
 
 	private void writeVisiblePorts(UniqueNamer namer, BBSimpleFactory factory, BBSimpleComponent comp, BufferedWriter c,

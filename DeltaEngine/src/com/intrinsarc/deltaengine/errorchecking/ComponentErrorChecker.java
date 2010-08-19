@@ -28,7 +28,7 @@ public class ComponentErrorChecker
   	boolean atHome = perspective == component.getHomeStratum();
   	
   	// if this is replacing, and we are not at home, don't bother
-  	if (component.isSubstitution() && perspective != component.getHomeStratum() || component.isRetired(perspective))
+  	if (component.isReplacement() && perspective != component.getHomeStratum() || component.isRetired(perspective))
   		return;
   		
     // components can only resemble or substitute the same type
@@ -40,7 +40,7 @@ public class ComponentErrorChecker
             new ErrorLocation(perspective, component), ErrorCatalog.COMPONENT_RESEMBLES_COMPONENT_OF_SAME_TYPE);
     }
     
-    for (DEElement substitutes : component.getRawSubstitutes())
+    for (DEElement substitutes : component.getRawReplaces())
     {
       if (substitutes.asComponent() == null || substitutes.asComponent().getComponentKind() != kind)
         errors.addError(

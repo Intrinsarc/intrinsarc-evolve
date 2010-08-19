@@ -43,7 +43,7 @@ public class BeanFinder
 		{
 			for (DEElement elem : see.getChildElements())
 			{
-				if (elem.asComponent() != null && !elem.isSubstitution())
+				if (elem.asComponent() != null && !elem.isReplacement())
 				{
 					String impl = elem.getImplementationClass(stratum);
 					if (impl != null && impl.length() > 0)
@@ -52,7 +52,7 @@ public class BeanFinder
 					}
 				}
 
-				if (elem.asInterface() != null && !elem.isSubstitution())
+				if (elem.asInterface() != null && !elem.isReplacement())
 				{
 					String impl = elem.getImplementationClass(stratum);
 					if (impl != null && impl.length() > 0)
@@ -69,7 +69,7 @@ public class BeanFinder
 		
 		for (DEElement elem : stratum.getChildElements())
 		{
-			if (elem.asComponent() != null && !elem.isSubstitution())
+			if (elem.asComponent() != null && !elem.isReplacement())
 			{
 				String impl = elem.getImplementationClass(stratum);
 				if (impl != null && impl.length() > 0)
@@ -78,7 +78,7 @@ public class BeanFinder
 				}
 			}
 
-			if (elem.asInterface() != null && !elem.isSubstitution())
+			if (elem.asInterface() != null && !elem.isReplacement())
 			{
 				String impl = elem.getImplementationClass(stratum);
 				if (impl != null && impl.length() > 0)

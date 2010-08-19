@@ -61,7 +61,7 @@ public class RequirementsFeatureProperties
 	{
 		if (element == null)
 			return "";
-		return element.getSubstitutesForName(perspective);
+		return element.getReplacesForName(perspective);
 	}
 
 	public DEStratum getPerspective()
