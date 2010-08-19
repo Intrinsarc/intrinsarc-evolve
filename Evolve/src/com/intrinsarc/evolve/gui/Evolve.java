@@ -210,11 +210,14 @@ public class Evolve
 		try
 		{			
 			boolean useBase = false;
+			if (initialFile != null && new File(initialFile).exists())
+			{
+				initialXMLRepository = initialFile;
+				useBase = false;
+			}
 			if (initialXMLRepository == null || !new File(initialXMLRepository).exists())
 			{
 				initialXMLRepository =
-					initialFile != null ?
-							initialFile :
 							home + "/models/base" + XMLSubjectRepositoryGem.UML2_SUFFIX;
 				useBase = true;
 			}

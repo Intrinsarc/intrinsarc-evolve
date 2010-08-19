@@ -578,7 +578,7 @@ public abstract class ClassifierConstituentHelper
 			// want to open the diagram for this package
 			Element elem = (Element) tops.get(0).getRepositoryObject();
 			return new Object[] {
-					GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(repos.findOwningStratum(elem).getUuid())),
+					GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(repos.findOwningPackage(elem).getUuid())),
 					tops.get(0).getRepositoryObject()
 			};
 		}
