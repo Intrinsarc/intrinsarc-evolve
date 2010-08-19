@@ -79,6 +79,7 @@ public final class TextManipulatorGem implements Gem
 
 	private String cmdDescription;
 	private String undoCmdDescription;
+	private DiagramViewFacet diagramView;
 
 
 
@@ -128,7 +129,7 @@ public final class TextManipulatorGem implements Gem
 	    {
 	      // add an alpha transparent box to cover the text, so that picking will find this manipulator figure
 	      // can't use a ZText, as a pick without manipulators will always find null rather than what is under this %-)
-	      ZRectangle rect = new ZRectangle(bounds);
+	      ZRectangle rect = new ZRectangle(bounds.addToPoint(new UDimension(-2, -2)).addToExtent(new UDimension(4, 4)));
 	      rect.setFillPaint(ScreenProperties.getTransparentColor());
 	      rect.setPenPaint(null);
 	      ZVisualLeaf transparent = new ZVisualLeaf(rect);
@@ -641,14 +642,15 @@ public final class TextManipulatorGem implements Gem
     }
 	}
 
-  public TextManipulatorGem(ToolCoordinatorFacet coordinator, String cmdDescription, String undoCmdDescription, String textToStart, Font font, Color textColour, Color backgroundColour, int type)
+  public TextManipulatorGem(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, String cmdDescription, String undoCmdDescription, String textToStart, Font font, Color textColour, Color backgroundColour, int type)
   {
-  	this(coordinator, cmdDescription, undoCmdDescription, textToStart, null, font, textColour, backgroundColour, type, ManipulatorFacet.TYPE3);
+  	this(coordinator, diagramView, cmdDescription, undoCmdDescription, textToStart, null, font, textColour, backgroundColour, type, ManipulatorFacet.TYPE3);
   }
 
-  public TextManipulatorGem(ToolCoordinatorFacet coordinator, String cmdDescription, String undoCmdDescription, String textToStart, String underlyingText, Font font, Color textColour, Color backgroundColour, int type, int manipulatorType)
+  public TextManipulatorGem(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, String cmdDescription, String undoCmdDescription, String textToStart, String underlyingText, Font font, Color textColour, Color backgroundColour, int type, int manipulatorType)
   {
   	this.coordinator = coordinator;
+  	this.diagramView = diagramView;
   	this.cmdDescription = cmdDescription;
   	this.undoCmdDescription = undoCmdDescription;
     this.textToStart = textToStart;
@@ -693,21 +695,21 @@ public final class TextManipulatorGem implements Gem
     point = makeLocalPoint(node, point);
 
     // if we have a composite, look for the child that is best positioned
-    Component target = SwingUtilities.getDeepestComponentAt(
+    Component ctarget = SwingUtilities.getDeepestComponentAt(
         component,
         point.getIntX(),
         point.getIntY());
     
-    if (target != null)
+    if (ctarget != null)
     {
       // convert the point to a local coordinate
       point = new UPoint(
           SwingUtilities.convertPoint(
-              component,
+              ctarget,
               new Point(point.getIntX(), point.getIntY()),
-              target));
-      target.dispatchEvent(new MouseEvent(
-          target,
+              ctarget));
+      ctarget.dispatchEvent(new MouseEvent(
+          ctarget,
           event,
           0,
           buttonMask,

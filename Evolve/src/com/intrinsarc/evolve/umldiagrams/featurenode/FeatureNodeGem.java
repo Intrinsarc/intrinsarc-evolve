@@ -203,6 +203,7 @@ public final class FeatureNodeGem implements Gem
 			{
 	      TextManipulatorGem textGem = new TextManipulatorGem(
 	      		coordinator,
+	      		diagramView,
             "change " + getFigureName() + " details",
             "restore " + getFigureName() + " details",
             name,

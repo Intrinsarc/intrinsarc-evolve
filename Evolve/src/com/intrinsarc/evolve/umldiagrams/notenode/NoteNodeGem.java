@@ -290,7 +290,8 @@ public final class NoteNodeGem implements Gem
       if (favoured)
       {
         TextManipulatorGem textGem = new TextManipulatorGem(
-        		coordinator, 
+        		coordinator,
+        		diagramView,
         		"changed note text", "restored note text",
         		textableFacet.getText(),
             font, Color.black, fillColor, useHTML

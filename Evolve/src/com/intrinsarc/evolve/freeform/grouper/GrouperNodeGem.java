@@ -292,7 +292,8 @@ public class GrouperNodeGem
 			{
 				TextManipulatorGem textGem =
 					new TextManipulatorGem(
-							coordinator, 
+							coordinator,
+							diagramView,
 							"changed grouper text", "restored grouper text", name,
 							font, Color.black,
 							fillColor.equals(ScreenProperties.getTransparentColor()) ? Color.WHITE : fillColor, TextManipulatorGem.TEXT_PANE_CENTRED_TYPE);

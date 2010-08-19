@@ -220,6 +220,7 @@ public final class SequenceSectionGem implements Gem
 	    {
 	      TextManipulatorGem textGem = new TextManipulatorGem(
 	      		coordinator,
+	      		diagramView,
 	      		"changed section text", "restored section text",
 	      		text,
 	      		font,

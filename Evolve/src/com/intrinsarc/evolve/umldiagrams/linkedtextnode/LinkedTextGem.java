@@ -126,7 +126,7 @@ public class LinkedTextGem implements Gem
     		return null;
     	
 	    ManipulatorFacet keyFocus = null;
-      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed text", "restored text", getPrefixedText(text), font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+      TextManipulatorGem textGem = new TextManipulatorGem(coordinator, diagramView, "changed text", "restored text", getPrefixedText(text), font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
       textGem.connectTextableFacet(linkedTextFacet);
       keyFocus = textGem.getManipulatorFacet();
       OriginLineManipulatorGem decorator =
@@ -138,7 +138,6 @@ public class LinkedTextGem implements Gem
 	      		decorator.getManipulatorFacet(),
 	          new LinkedTextSelectionManipulatorGem(
 	              figureFacet.getFullBounds(),
-	              false,
 	              new UDimension(4, 4)).getManipulatorFacet());
 	    
 	    return manipulators;

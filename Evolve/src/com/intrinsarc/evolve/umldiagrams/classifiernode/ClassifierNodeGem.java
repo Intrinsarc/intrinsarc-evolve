@@ -734,7 +734,7 @@ public final class ClassifierNodeGem implements Gem
 			ManipulatorFacet keyFocus = null;
 			if (favoured)
 			{
-				TextManipulatorGem textGem = new TextManipulatorGem(coordinator, isPart ? "changed part details"
+				TextManipulatorGem textGem = new TextManipulatorGem(coordinator, diagramView, isPart ? "changed part details"
 						: "changed classifier name", isPart ? "reverted part details" : "reverted classifier name", isPart ? name
 						: subject.getName(), font, Color.black, fillColor, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
 				textGem.connectTextableFacet(textableFacet);

@@ -1,9 +1,10 @@
 package com.intrinsarc.evolve.umldiagrams.linkedtextnode;
 
+import java.awt.*;
+
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.foundation.*;
-import com.intrinsarc.idraw.utility.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -17,7 +18,6 @@ public class LinkedTextSelectionManipulatorGem implements Gem
   private UBounds figureBounds;
   private ZGroup diagramLayer;
   private ZGroup group;
-  private boolean firstSelected;
   private UDimension offset;
 
 	private class ManipulatorFacetImpl implements ManipulatorFacet
@@ -92,53 +92,16 @@ public class LinkedTextSelectionManipulatorGem implements Gem
 	
 	  public void addToView(ZGroup newDiagramLayer, ZCanvas newCanvas)
 	  {
-	    int extent = 6;
-	    int thickness = 3;
-	    
 	    diagramLayer = newDiagramLayer;
 	    UBounds bounds = figureBounds.addToPoint(offset.negative()).addToExtent(offset.multiply(2));
 	    group = new ZGroup();
-	    group.addChild(
-	        createHandle(bounds.getTopLeftPoint(), extent, extent, thickness, thickness, firstSelected));
-	    group.addChild(
-	        createHandle(bounds.getTopRightPoint(), -extent, extent, -thickness, thickness, firstSelected));
-	    group.addChild(
-	        createHandle(bounds.getBottomLeftPoint(), extent, -extent, thickness, -thickness, firstSelected));
-	    group.addChild(
-	        createHandle(bounds.getBottomRightPoint(), -extent, -extent, -thickness, -thickness, firstSelected));
+	    ZRoundedRectangle rect = new ZRoundedRectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight(), 6, 4);
+	    rect.setPenPaint(Color.BLACK);
+	    rect.setStroke(new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 0, new float[]{0,2}, 0));
+	    rect.setFillPaint(null);
+	    group.addChild(new ZVisualLeaf(rect));
 	    diagramLayer.addChild(group);
 	  }
-
-	  /**
-     * @param topLeftPoint
-     * @return
-     */
-    private ZNode createHandle(
-        UPoint point,
-        int horizontalOffset,
-        int verticalOffset,
-        int horizontalThickness,
-        int verticalThickness,
-        boolean firstSelected)
-    {
-      ZGroup corner = new ZGroup();
-      
-      ZPolygon poly = new ZPolygon(point.add(new UDimension(horizontalOffset, 0)));
-      poly.add(point);
-      poly.add(point.add(new UDimension(0, verticalOffset)));
-      poly.add(point.add(new UDimension(horizontalThickness, verticalOffset)));
-      poly.add(point.add(new UDimension(horizontalThickness, verticalThickness)));
-      poly.add(point.add(new UDimension(horizontalOffset, verticalThickness)));
-      poly.add(point.add(new UDimension(horizontalOffset, 0)));
-      
-      if (firstSelected)
-        poly.setFillPaint(ScreenProperties.getFirstSelectedHighlightColor());
-      else
-        poly.setFillPaint(ScreenProperties.getHighlightColor());
-      corner.addChild(new ZVisualLeaf(poly));
-      
-      return corner;
-    }
 
     public void cleanUp()
 	  {
@@ -152,10 +115,9 @@ public class LinkedTextSelectionManipulatorGem implements Gem
     }
 	}
 
-  public LinkedTextSelectionManipulatorGem(UBounds figureBounds, boolean firstSelected, UDimension offset)
+  public LinkedTextSelectionManipulatorGem(UBounds figureBounds, UDimension offset)
   {
     this.figureBounds = figureBounds;
-    this.firstSelected = firstSelected;
     this.offset = offset;
   }
 

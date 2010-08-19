@@ -503,6 +503,7 @@ public class RequirementsFeatureNodeGem implements Gem
 				TextManipulatorGem textGem =
 					new TextManipulatorGem(
 							coordinator,
+							diagramView,
 							"changed feature name",
 							"reverted feature name",
 							subject.getName(),

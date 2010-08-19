@@ -415,6 +415,7 @@ public final class BasicNamespaceNodeGem implements Gem
 	    {
 	      TextManipulatorGem textGem = new TextManipulatorGem(
 	      		coordinator,
+	      		diagramView,
 	          "changed " + figureFacet.getFigureName() + " name",
 	          "restored " + figureFacet.getFigureName() + " name",
 	          name,

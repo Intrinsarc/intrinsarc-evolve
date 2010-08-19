@@ -151,7 +151,7 @@ public final class FreetextNodeGem implements Gem
       if (favoured)
       {
         ManipulatorFacet keyFocus = null;
-        TextManipulatorGem textGem = new TextManipulatorGem(coordinator, "changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
+        TextManipulatorGem textGem = new TextManipulatorGem(coordinator, diagramView, "changed measure box text", "restored measure box text", text, font, lineColor, Color.white, TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE);
         textGem.connectTextableFacet(textableFacet);
         keyFocus = textGem.getManipulatorFacet();
         primaryFocus = keyFocus;
@@ -162,7 +162,6 @@ public final class FreetextNodeGem implements Gem
             primaryFocus,
             new LinkedTextSelectionManipulatorGem(
                 figureFacet.getFullBounds(),
-                firstSelected,
                 new UDimension(4, 8)).getManipulatorFacet());
       
       return manipulators;
