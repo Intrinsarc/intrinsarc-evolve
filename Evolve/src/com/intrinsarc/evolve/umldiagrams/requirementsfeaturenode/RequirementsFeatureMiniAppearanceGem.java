@@ -25,7 +25,7 @@ import edu.umd.cs.jazz.component.*;
 
 public class RequirementsFeatureMiniAppearanceGem implements Gem
 {
-	public static final ImageIcon EVOLVE_ICON = IconLoader.loadIcon("monkey-icon.png");
+	public static final ImageIcon EVOLVE_ICON = IconLoader.loadIcon("evolution.png");
 	private RequirementsFeatureMiniAppearanceFacet miniAppearanceFacet = new RequirementsFeatureMiniAppearanceFacetImpl();
 	private FigureFacet figureFacet;
 

@@ -1200,23 +1200,7 @@ public class RequirementsFeatureNodeGem implements Gem
 		String owningPackageString = null;
 		if (showOwningPackage && owner != null)
 			owningPackageString = owner;
-		
-		// see if we need to turn the compartment ellipsis on
-/*    boolean partsEllipsis = false;
-    if (subject != null)
-    {
-      if (!displayOnlyIcon && !autoSized)
-      {
-        partsEllipsis =
-          !new ClassPartHelper(
-          		null,
-              figureFacet,
-              primitiveContents,
-              contents).isShowingAllConstituents();
-
-      }
-    }
-*/    
+  
 		info =
 			new RequirementsFeatureSizeInfo(
 			topLeft,

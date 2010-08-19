@@ -11,7 +11,6 @@ import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
 import com.intrinsarc.evolve.umldiagrams.base.*;
-import com.intrinsarc.evolve.umldiagrams.classifiernode.*;
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.figurefacilities.textmanipulation.*;

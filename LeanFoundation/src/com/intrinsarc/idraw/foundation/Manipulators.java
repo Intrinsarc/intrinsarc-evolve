@@ -53,12 +53,11 @@ public class Manipulators implements ManipulatorFacet
     if (keyFocus != null)
       keyFocus.addToView(diagramLayer, canvas);
 
-    Iterator iter = others.iterator();
-    while (iter.hasNext())
-    {
-      ManipulatorFacet manip = (ManipulatorFacet) iter.next();
+    // draw in the reverse order so that earlier manipulators have visual precendence
+    List<ManipulatorFacet> manips = new ArrayList<ManipulatorFacet>(others);
+    Collections.reverse(manips);
+    for (ManipulatorFacet manip : manips)
       manip.addToView(diagramLayer, canvas);
-    }
   }
 
   public void cleanUp()

@@ -14,7 +14,7 @@ public class BaseColors
   public static final Preference FACTORY_COLOR = new Preference("Colors", "Default factory color", new PersistentProperty(Color.WHITE));
   public static final Preference PLACEHOLDER_COLOR = new Preference("Colors", "Default placeholder color", new PersistentProperty(Color.LIGHT_GRAY));
   public static final Preference STATE_COLOR = new Preference("Colors", "Default state/state part color", new PersistentProperty(new Color(240, 200, 200)));
-  public static final Preference REQUIREMENTS_FEATURE_COLOR = new Preference("Colors", "Default requirements feature color", new PersistentProperty(Color.LIGHT_GRAY));
+  public static final Preference REQUIREMENTS_FEATURE_COLOR = new Preference("Colors", "Default requirements feature color", new PersistentProperty(new Color(180, 193, 101)));
   public static final Preference PACKAGE_COLOR = new Preference("Colors", "Default package color", new PersistentProperty(new Color(224, 224, 210)));
   public static final Preference STRATUM_COLOR = new Preference("Colors", "Default stratum color", new PersistentProperty(new Color(224, 207, 207)));
   public static final Preference MODEL_COLOR = new Preference("Colors", "Default model color", new PersistentProperty(new Color(255, 217, 102)));

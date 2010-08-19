@@ -8,6 +8,7 @@ import java.awt.*;
 
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.figures.simplecontainernode.*;
+import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.layout.*;
 
 import edu.umd.cs.jazz.component.*;
@@ -38,9 +39,7 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
 	private boolean isAbstract;
 	private boolean isActive;
 	private boolean hasPorts;
-	private boolean ellipsisForAttributes;
-  private boolean ellipsisForOperations;
-  private boolean ellipsisForBody;
+	private boolean ellipsis;
 	
 	/** constructor */
 	public ClassifierSizeInfo(UPoint topLeft,
@@ -249,7 +248,7 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
 		// the attributes
 		if (!suppressAttributes)
 		{
-			LayoutBox attributes = new ExpandingBox("attributes", minAttributeDimensions.add(ellipsisForAttributes ? new UDimension(0, 8) : new UDimension(0, 0)), ExpandingBox.EXPAND_X, ExpandingBox.X_CENTRE);
+			LayoutBox attributes = new ExpandingBox("attributes", minAttributeDimensions, ExpandingBox.EXPAND_X, ExpandingBox.X_CENTRE);
 			container.addBox(attributes);
 		}
 		else
@@ -258,7 +257,7 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
 		// the operations
 		if (!suppressOperations)
 		{
-			LayoutBox operations = new ExpandingBox("operations", minOperationDimensions.add(ellipsisForOperations ? new UDimension(0, 8) : new UDimension(0, 0)), ExpandingBox.EXPAND_X, ExpandingBox.X_CENTRE);
+			LayoutBox operations = new ExpandingBox("operations", minOperationDimensions, ExpandingBox.EXPAND_X, ExpandingBox.X_CENTRE);
 			container.addBox(operations);
 		}
 		else
@@ -326,7 +325,7 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
 		int sideWidth = 0;
 		if (hasPorts || isActive)
 		  sideWidth = 8;
-		int bottomHeight = hasPorts ? 8 : (ellipsisForBody ? 6 : 0);
+		int bottomHeight = hasPorts ? 8 : (ellipsis ? 6 : 0);
 		int topHeight = hasPorts ? 4 : 0;
 		
 		BorderBox borderBox = new BorderBox(
@@ -370,13 +369,13 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
 		container.addBox(verticalNameBorder);
 
 		// the attributes
-		LayoutBox attributes = new ExpandingBox("attributes", suppressAttributes ? new UDimension(0,0) : minAttributeDimensions.add(ellipsisForAttributes ? new UDimension(0, 8) : new UDimension(0, 0)),
+		LayoutBox attributes = new ExpandingBox("attributes", suppressAttributes ? new UDimension(0,0) : minAttributeDimensions,
 										 									ExpandingBox.EXPAND_X, ExpandingBox.X_CENTRE);
 		container.addBox(attributes);
 
 		// the operations
 		
-		LayoutBox operations = new ExpandingBox("operations", suppressOperations ? new UDimension(0,0) : minOperationDimensions.add(ellipsisForOperations ? new UDimension(0, 8) : new UDimension(0, 0)),
+		LayoutBox operations = new ExpandingBox("operations", suppressOperations ? new UDimension(0,0) : minOperationDimensions,
 										 									ExpandingBox.EXPAND_X, ExpandingBox.X_CENTRE);
 		container.addBox(operations);
 
@@ -442,33 +441,13 @@ public final class ClassifierSizeInfo implements ContainerSizeInfo
   	return extent;
   }
 
-  public boolean isEllipsisForAttributes()
+  public boolean isEllipsis()
   {
-    return ellipsisForAttributes;
+    return ellipsis;
   }
-
-  public void setEllipsisForAttributes(boolean ellipsisForAttributes)
+  
+  public void setEllipsis(boolean ellipsis)
   {
-    this.ellipsisForAttributes = ellipsisForAttributes;
-  }
-
-  public void setEllipsisForOperations(boolean ellipsisForOperations)
-  {
-    this.ellipsisForOperations = ellipsisForOperations;
-  }
-
-  public boolean isEllipsisForOperations()
-  {
-    return ellipsisForOperations;
-  }
-
-  public boolean isEllipsisForBody()
-  {
-    return ellipsisForBody;
-  }
-
-  public void setEllipsisForBody(boolean ellipsisForBody)
-  {
-    this.ellipsisForBody = ellipsisForBody;
+  	this.ellipsis = ellipsis;
   }
 }

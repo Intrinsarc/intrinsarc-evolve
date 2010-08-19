@@ -108,10 +108,7 @@ public final class ClassifierNodeGem implements Gem
 	private SimpleDeletedUuidsFacetImpl deletedConnectorUuidsFacet = new SimpleDeletedUuidsFacetImpl();
 	private Set<String> addedUuids = new HashSet<String>();
 	private Set<String> deletedUuids = new HashSet<String>();
-	private boolean attributeEllipsis = false;
-	private boolean operationEllipsis = false;
-	private boolean traceEllipsis = false;
-	private boolean bodyEllipsis = false;
+	private boolean ellipsis = false;
 	private boolean retired = false;
 	private SwitchSubjectFacet switchableFacet = new SwitchSubjectFacetImpl();
 	private boolean locked;
@@ -193,12 +190,10 @@ public final class ClassifierNodeGem implements Gem
 	private void refreshEllipsis()
 	{
 		ClassifierSizeInfo info = makeCurrentInfo();
-		attributeEllipsis = isPart ? false : info.isEllipsisForAttributes();
-		operationEllipsis = isPart ? false : info.isEllipsisForOperations();
-		bodyEllipsis = isPart ? false : info.isEllipsisForBody();
+		ellipsis = info.isEllipsis();
 	}
 
-	private void updateClassifierViewAfterSubjectChanged(int actualStereotypeHashcode, boolean traceEllipsis)
+	private void updateClassifierViewAfterSubjectChanged(int actualStereotypeHashcode)
 	{
 		// should we be displaying the owner?
 		ElementProperties props = new ElementProperties(figureFacet);
@@ -222,7 +217,6 @@ public final class ClassifierNodeGem implements Gem
 		String newName = new ElementProperties(figureFacet, subject).getPerspectiveName();
 
 		refreshEllipsis();
-		this.traceEllipsis = traceEllipsis;
 
 		// set the variables
 		name = newName;
@@ -836,8 +830,8 @@ public final class ClassifierNodeGem implements Gem
 				group.addChild(miniAppearance);
 
 			// avoid drawing the last line if possible, as it looks ugly on leaves
-			boolean haveAttributes = !suppressAttributesOrSlots && (!attributesOrSlots.isEmpty() || attributeEllipsis);
-			boolean haveOperations = !suppressOperations && (!operations.isEmpty() || operationEllipsis);
+			boolean haveAttributes = !suppressAttributesOrSlots && !attributesOrSlots.isEmpty();
+			boolean haveOperations = !suppressOperations && !operations.isEmpty();
 			if ((haveAttributes || haveOperations) && !isPart)
 				group.addChild(new ZVisualLeaf(titleLine));
 			if (haveOperations)
@@ -891,33 +885,7 @@ public final class ClassifierNodeGem implements Gem
 			}
 
 			// possibly add in a ... for missing display attributes
-			if (attributeEllipsis)
-			{
-				UPoint pt = sizes.getAttributes().getBottomRightPoint();
-				UPoint start = pt.subtract(new UDimension(14, 6));
-				for (int lp = 0; lp < 3; lp++)
-				{
-					ZRectangle dot = new ZRectangle(new UBounds(start, new UDimension(1, 1)));
-					group.addChild(new ZVisualLeaf(dot));
-					start = start.add(new UDimension(4, 0));
-				}
-			}
-
-			// possibly add in a ... for missing display attributes
-			if (operationEllipsis)
-			{
-				UPoint pt = sizes.getOperations().getBottomRightPoint();
-				UPoint start = pt.subtract(new UDimension(14, 6));
-				for (int lp = 0; lp < 3; lp++)
-				{
-					ZRectangle dot = new ZRectangle(new UBounds(start, new UDimension(1, 1)));
-					group.addChild(new ZVisualLeaf(dot));
-					start = start.add(new UDimension(4, 0));
-				}
-			}
-
-			// possibly add in a ... for missing display attributes
-			if (bodyEllipsis)
+			if (ellipsis)
 			{
 				UPoint pt = sizes.getFull().getBottomRightPoint();
 				UPoint start = pt.subtract(new UDimension(14, 6));
@@ -926,19 +894,6 @@ public final class ClassifierNodeGem implements Gem
 					ZRectangle dot = new ZRectangle(new UBounds(start, new UDimension(1, 1)));
 					group.addChild(new ZVisualLeaf(dot));
 					start = start.add(new UDimension(4, 0));
-				}
-			}
-
-			// possibly add in a ... for missing display attributes
-			if (traceEllipsis)
-			{
-				UPoint pt = sizes.getFull().getPoint();
-				UPoint start = pt.add(new UDimension(6, 6));
-				for (int lp = 0; lp < 3; lp++)
-				{
-					ZRectangle dot = new ZRectangle(new UBounds(start, new UDimension(1, 1)));
-					group.addChild(new ZVisualLeaf(dot));
-					start = start.add(new UDimension(0, 4));
 				}
 			}
 
@@ -1574,8 +1529,8 @@ public final class ClassifierNodeGem implements Gem
 					primitiveContents, false, deletedConnectorUuidsFacet, false);
 			final ClassConnectorHelper portLinkHelper = new ClassConnectorHelper(figureFacet, primitivePorts,
 					primitiveContents, true, deletedConnectorUuidsFacet, false);
-			showAllItem
-					.setEnabled((!connectorHelper.isShowingAllConstituents() || !portLinkHelper.isShowingAllConstituents())
+			showAllItem.setEnabled(
+					(!connectorHelper.isShowingAllConstituents() || !portLinkHelper.isShowingAllConstituents())
 							&& primitiveContents.isShowing());
 
 			showAllItem.addActionListener(new ActionListener()
@@ -1587,6 +1542,7 @@ public final class ClassifierNodeGem implements Gem
 					SimpleDeletedUuidsFacet del = figureFacet.getDynamicFacet(SimpleDeletedUuidsFacet.class);
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PART));
 					connectorHelper.makeUpdateCommand(false);
+					portLinkHelper.makeUpdateCommand(false);
 					coordinator.commitTransaction();
 				}
 			});
@@ -1905,10 +1861,7 @@ public final class ClassifierNodeGem implements Gem
 			properties.add(new PersistentProperty("deletedUuids", deletedUuids));
 			properties.add(new PersistentProperty("locked", locked, false));
 			properties.add(new PersistentProperty("stereoHash", stereotypeHashcode, 0));
-			properties.add(new PersistentProperty("traceEllipsis", traceEllipsis, false));
-			properties.add(new PersistentProperty("attrEllipsis", attributeEllipsis, false));
-			properties.add(new PersistentProperty("opEllipsis", operationEllipsis, false));
-			properties.add(new PersistentProperty("bodyEllipsis", bodyEllipsis, false));
+			properties.add(new PersistentProperty("ellipsis", ellipsis, false));
 		}
 
 		/**
@@ -1947,11 +1900,9 @@ public final class ClassifierNodeGem implements Gem
 
 				// find any attributes to add or delete
 				PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, true);
-				/*
-				 * ports.clean(
-				 * getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
-				 * portInstanceHelper.getConstituentUuids());
-				 */
+				ports.clean(
+						getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
+						portInstanceHelper.getConstituentUuids());
 				if (!suppressAttributesOrSlots)
 					slotHelper.makeUpdateTransaction(attributesOrSlots, locked);
 				if (!displayOnlyIcon)
@@ -2041,15 +1992,25 @@ public final class ClassifierNodeGem implements Gem
 			if (pass == ViewUpdatePassEnum.PENULTIMATE)
 			{
 				// find any connectors to possibly add or delete
-				ClassConnectorHelper connectorHelper = new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents,
-						false, deletedConnectorUuidsFacet, true);
+				ClassConnectorHelper connectorHelper = new ClassConnectorHelper(
+						figureFacet,
+						primitivePorts,
+						primitiveContents,
+						false,
+						deletedConnectorUuidsFacet,
+						false);
 
 				// get the composite command for fixing up the connectors
 				connectorHelper.makeUpdateCommand(locked);
 
 				// find any connectors or port links to possibly add or delete
-				ClassConnectorHelper portLinkHelper = new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents,
-						true, deletedConnectorUuidsFacet, true);
+				ClassConnectorHelper portLinkHelper = new ClassConnectorHelper(
+						figureFacet,
+						primitivePorts,
+						primitiveContents,
+						true,
+						deletedConnectorUuidsFacet,
+						false);
 				// get the composite command for fixing up the port links
 				portLinkHelper.makeUpdateCommand(locked);
 				portLinkHelper.cleanUuids(ConstituentTypeEnum.DELTA_CONNECTOR);
@@ -2089,19 +2050,17 @@ public final class ClassifierNodeGem implements Gem
 
 			// if neither the name or the namespace has changed, or the in-placeness,
 			// suppress any command
-			boolean trEllipsis = isTraceEllipsis();
-
 			if (shouldBeDisplayingOwningPackage == showOwningPackage && newName.equals(name) && owner.equals(newOwner)
 					&& classifierSubject.isAbstract() == isAbstract && subjectActive == isActive
-					&& stereotypeHashcode == actualStereotypeHashcode && attributeEllipsis == info.isEllipsisForAttributes()
-					&& operationEllipsis == info.isEllipsisForOperations() && bodyEllipsis == info.isEllipsisForBody()
+					&& stereotypeHashcode == actualStereotypeHashcode
+					&& ellipsis == (info.isEllipsis())
 					&& displayOnlyIcon == shouldDisplayOnlyIcon() && isElementRetired() == retired
-					&& shouldBeState == showAsState && trEllipsis == traceEllipsis)
+					&& shouldBeState == showAsState)
 			{
 				return;
 			}
 
-			updateClassifierViewAfterSubjectChanged(actualStereotypeHashcode, trEllipsis);
+			updateClassifierViewAfterSubjectChanged(actualStereotypeHashcode);
 		}
 
 		/**
@@ -2457,10 +2416,7 @@ public final class ClassifierNodeGem implements Gem
 		locked = properties.retrieve("locked", false).asBoolean();
 		stereotypeHashcode = properties.retrieve("stereoHash", 0).asInteger();
 
-		traceEllipsis = properties.retrieve("traceEllipsis", false).asBoolean();
-		attributeEllipsis = properties.retrieve("attributeEllipsis", false).asBoolean();
-		operationEllipsis = properties.retrieve("operationEllipsis", false).asBoolean();
-		bodyEllipsis = properties.retrieve("bodyEllipsis", false).asBoolean();
+		ellipsis = properties.retrieve("ellipsis", false).asBoolean();
 	}
 
 	// work out what we is suppressed by virtue of a stereotype
@@ -2575,8 +2531,7 @@ public final class ClassifierNodeGem implements Gem
 		if (isPart && subject == null)
 			haveIcon = false;
 
-		UDimension minimumIconExtent = (miniAppearanceFacet == null ? null : miniAppearanceFacet
-				.getMinimumDisplayOnlyAsIconExtent());
+		UDimension minimumIconExtent = (miniAppearanceFacet == null ? null : miniAppearanceFacet.getMinimumDisplayOnlyAsIconExtent());
 
 		// work out the package name for visibility calcs
 		String owningPackageString = null;
@@ -2589,6 +2544,7 @@ public final class ClassifierNodeGem implements Gem
 		boolean portsEllipsis = false;
 		boolean partsEllipsis = false;
 		boolean connectorsEllipsis = false;
+		boolean traceEllipsis = false;
 		if (!isPart && subject != null)
 		{
 			attributeEllipsis = !new ClassifierAttributeHelper(figureFacet, primitiveAttributesOrSlots, attributesOrSlots,
@@ -2604,22 +2560,35 @@ public final class ClassifierNodeGem implements Gem
 						deletedConnectorUuidsFacet, false).isShowingAllConstituents()
 						|| !new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents, true,
 								deletedConnectorUuidsFacet, false).isShowingAllConstituents();
+				traceEllipsis = isTraceEllipsis();
 			}
 		}
-		if (isPart && subject != null)
-		{
-			attributeEllipsis = !new PartSlotHelper(figureFacet, primitiveAttributesOrSlots).isShowingAllConstituents();
-			portsEllipsis = !new PartPortInstanceHelper(figureFacet, primitivePorts, ports, false).isShowingAllConstituents();
-		}
 
-		info = new ClassifierSizeInfo(topLeft, extent, autoSized, isPart && name.length() == 0 ? " : " : name, font,
-				packageFont, haveIcon, displayOnlyIcon, minimumIconExtent, attributesOrSlots.getMinimumExtent(),
-				suppressAttributesOrSlots, operations.getMinimumExtent(), suppressOperations, suppressContents,
-				contents.getMinimumBounds(), contents.isEmpty(), owningPackageString, isAbstract, isActive, ports
-						.getFigureFacet().getContainerFacet().getContents().hasNext());
-		info.setEllipsisForAttributes(attributeEllipsis && !suppressAttributesOrSlots);
-		info.setEllipsisForOperations(operationEllipsis && !suppressOperations);
-		info.setEllipsisForBody(portsEllipsis || partsEllipsis || connectorsEllipsis);
+		info = new ClassifierSizeInfo(
+				topLeft,
+				extent,
+				autoSized,
+				isPart && name.length() == 0 ? " : " : name,
+				font,
+				packageFont,
+				haveIcon,
+				displayOnlyIcon,
+				minimumIconExtent,
+				attributesOrSlots.getMinimumExtent(),
+				suppressAttributesOrSlots,
+				operations.getMinimumExtent(),
+				suppressOperations,
+				suppressContents,
+				contents.getMinimumBounds(),
+				contents.isEmpty(),
+				owningPackageString,
+				isAbstract,
+				isActive,
+				ports.getFigureFacet().getContainerFacet().getContents().hasNext());
+		info.setEllipsis(
+				attributeEllipsis && !suppressAttributesOrSlots ||
+				operationEllipsis && !suppressOperations ||
+				portsEllipsis || partsEllipsis || connectorsEllipsis || traceEllipsis);
 
 		return info;
 	}

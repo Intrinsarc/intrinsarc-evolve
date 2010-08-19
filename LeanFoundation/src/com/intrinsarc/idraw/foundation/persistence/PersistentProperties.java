@@ -179,7 +179,8 @@ public class PersistentProperties implements Cloneable
 
 	public void addAll(PersistentProperties properties)
 	{
-		for (PersistentProperty property : properties.properties.values())
-			add(property);
+		if (properties != null)
+			for (PersistentProperty property : properties.properties.values())
+				add(property);
 	}
 }

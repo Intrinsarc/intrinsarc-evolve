@@ -7,7 +7,6 @@ import org.eclipse.uml2.*;
 import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.evolve.umldiagrams.base.*;
 import com.intrinsarc.evolve.umldiagrams.connectorarc.*;
-import com.intrinsarc.evolve.umldiagrams.portnode.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.arcfacilities.creation.*;
 import com.intrinsarc.idraw.arcfacilities.creationbase.*;
@@ -140,7 +139,7 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
         props);
   }
 
-  private FigureFacet findPortFigure(FigureFacet container, Object clsRepositoryObject, DEPort port, DEPart part)
+  private static FigureFacet findPortFigure(FigureFacet container, Object clsRepositoryObject, DEPort port, DEPart part)
   {
     // look down into the contained elements recursively until we find the port
     Object containingSubject =
@@ -183,7 +182,9 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
         		ConnectorKind kind = c.getKind();
         		if (portLinks && kind.equals(ConnectorKind.PORT_LINK_LITERAL) ||
         				!portLinks && !kind.equals(ConnectorKind.PORT_LINK_LITERAL))
-        			links.add(l);
+        		{
+        				links.add(l);
+        		}
         	}
         }
     }
@@ -230,10 +231,5 @@ public class ClassConnectorHelper extends ClassifierConstituentHelper
     }    
     
     return anchor1 != screen1 || anchor2 != screen2;
-	}
-
-	private String name(DEObject obj)
-	{
-		return obj == null ? "null" : obj.getName();
 	}
 }

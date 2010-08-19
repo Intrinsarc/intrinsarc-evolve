@@ -360,12 +360,29 @@ double doc field in repository browser
 \end_layout
 
 \begin_layout Enumerate
-why does portlink between replaced and original port die when deleting the
- replaced to leave the original?
+
+\color green
+fix editing + positioning of connector ends -- tie into visual display on
+ actual line?
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
+moving stuff to packages messes up visual resemblance
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
 parts are larger with slots, even if all showing are removed
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+why does portlink between replaced and original port die when deleting the
+ replaced to leave the original?
 \end_layout
 
 \begin_layout Enumerate
@@ -373,12 +390,7 @@ problem with error adorner and undo
 \end_layout
 
 \begin_layout Enumerate
-fix editing + positioning of connector ends -- tie into visual display on
- actual line?
-\end_layout
-
-\begin_layout Enumerate
-moving stuff to packages messes up visual resemblance
+GWT states test + must start in first state
 \end_layout
 
 \begin_layout Enumerate

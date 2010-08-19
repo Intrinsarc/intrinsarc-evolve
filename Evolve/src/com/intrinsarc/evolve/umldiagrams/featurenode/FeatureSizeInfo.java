@@ -80,7 +80,7 @@ public final class FeatureSizeInfo
 	  sizes.setIconPoint(topLeft.subtract(offsetForIcon));
 		
 		// set the translation for the text point
-		UPoint textPt = topLeft.add(new UDimension(ICON_WIDTH,0)).add(TEXT_FROM_ICON_OFFSET).subtract(offset);
+		UPoint textPt = topLeft.add(new UDimension(ICON_WIDTH, 0)).add(TEXT_FROM_ICON_OFFSET).subtract(offset);
 		zName.setTranslation(textPt);
 		
 		sizes.setTopLeft(topLeft);
