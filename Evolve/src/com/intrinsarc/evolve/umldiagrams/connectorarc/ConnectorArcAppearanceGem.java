@@ -225,8 +225,6 @@ public class ConnectorArcAppearanceGem implements Gem
     }
   }
   
-  private static Pattern match = Pattern.compile("\\s*\\[\\s*(\\d*|\\+)\\s*\\]\\s*");
-  private static Pattern matchAlpha = Pattern.compile("\\s*\\[\\s*(\\w*)\\s*\\]\\s*");
   class LinkedTextOriginFacetImpl implements LinkedTextOriginFacet
   {
     public UPoint getMajorPoint(int majorPointType)
@@ -269,23 +267,9 @@ public class ConnectorArcAppearanceGem implements Gem
 				return newText;
 			
 			ConnectorEnd end = (ConnectorEnd) subject.getEnds().get(index);
-			Matcher matcher = match.matcher(newText);
-			Matcher matcherAlpha = matchAlpha.matcher(newText);
-			if (matcher.matches())
-			{
-				LiteralInteger lower = (LiteralInteger) end.createLowerValue(UML2Package.eINSTANCE.getLiteralInteger());
-				lower.setValue(new Integer(matcher.group(1)));
-			}
-			else
-			if (matcherAlpha.matches())
-			{
-				Expression lower = (Expression) end.createLowerValue(UML2Package.eINSTANCE.getExpression());
-				lower.setBody(matcherAlpha.group(1));				
-			}
-			else
-				end.setLowerValue(null);
-			
-			return getConnectionIndexString(index);
+			Expression lower = (Expression) end.createLowerValue(UML2Package.eINSTANCE.getExpression());
+			lower.setBody(newText);							
+			return newText;
 		}    
   }
   
@@ -977,18 +961,8 @@ public class ConnectorArcAppearanceGem implements Gem
 	{
 		ConnectorEnd end = (ConnectorEnd) subject.getEnds().get(index);
 		ValueSpecification spec = end.getLowerValue();
-		
 		if (spec instanceof Expression)
-			return "[" + ((Expression) spec).getBody() + "]";
-		
-		if (spec instanceof LiteralInteger)
-		{
-			int lower = end.getLower();
-			return
-				"[" +
-				(lower == -1 ? "+" : ("" + end.getLower()))
-				+ "]";
-		}
+			return ((Expression) spec).getBody();
 		return "";
 	}
 	

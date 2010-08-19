@@ -220,6 +220,11 @@ public class ComponentErrorChecker
       	DEPart part2 = conn.getPart(perspective, component, 1);
     		DEPort port1 = conn.getPort(perspective, component, 0);
     		DEPort port2 = conn.getPort(perspective, component, 1);
+    		
+    		// ensure all the connector ends are ok
+    		for (int lp = 0; lp < 2; lp++)
+    			if (!conn.isIndexOk(lp))
+        		errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.BAD_INDEX);
       	
       	if (part1 == null && part2 == null)
       		errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.NO_DIRECT_PORT_CONNECTIONS_ALLOWED);

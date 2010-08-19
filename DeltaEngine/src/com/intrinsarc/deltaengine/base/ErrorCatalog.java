@@ -63,6 +63,15 @@ public class ErrorCatalog
 	public static final ErrorDescription PORT_HAS_TOO_MUCH_OPTIONALITY_FOR_DELEGATION = new ErrorDescription("Port has too much optionality for delegation");
 	public static final ErrorDescription PORT_UPPER_TOO_HIGH_FOR_DELEGATION = new ErrorDescription("Port upper bounds is too high for port instance");
 	public static final ErrorDescription SELF_COMPOSITION = new ErrorDescription("Inclusion of part causes self-composition");
+	public static final ErrorDescription BAD_INDEX = new ErrorDescription("Index must be of form [index]");
+	public static final ErrorDescription CANNOT_INSTANTIATE_ABSTRACT_COMPONENT = new ErrorDescription("Cannot instantiate an abstract component");
+	public static final ErrorDescription CONNECTOR_TO_ORDERED_PORT_MUST_BE_INDEXED = new ErrorDescription("A connector to an ordered port must be indexed");
+	public static final ErrorDescription HYPERPORTS_CANNOT_BE_ORDERED = new ErrorDescription("Hyperports cannot be ordered");
+	public static final ErrorDescription CONNECTOR_INDEX_IS_NOT_UNIQUE = new ErrorDescription("Connector indices must be unique for a given port");
+	public static final ErrorDescription DELEGATE_CONNECTORS_CANNOT_HAVE_INDICES = new ErrorDescription("Delegation connectors cannot have indices");
+	public static final ErrorDescription ATTRIBUTE_DEFAULT_BAD = new ErrorDescription("Defaults specified by > must be set via the actual value field");
+	public static final ErrorDescription SLOT_DEFAULT_BAD = new ErrorDescription("Slot values specified by > must be set via the actual value field");
+	public static final ErrorDescription SLOT_MUST_HAVE_VALUE = new ErrorDescription("All slots must have values");
 
 	// the diagram errors
   public static final ErrorDescription DIAGRAM_ELEMENT_NOT_VISIBLE = new ErrorDescription("This element is not visible from this diagram", true);
@@ -80,13 +89,5 @@ public class ErrorCatalog
 	public static final ErrorDescription NO_PART_TYPE = new ErrorDescription("A part must have a type");
 	public static final ErrorDescription PART_REFERS_TO_RETIRED_TYPE = new ErrorDescription("Part refers to a retired type");
 	public static final ErrorDescription PORT_REFERS_TO_RETIRED_INTERFACE = new ErrorDescription("Port refers to retired interface");
-	public static final ErrorDescription CANNOT_INSTANTIATE_ABSTRACT_COMPONENT = new ErrorDescription("Cannot instantiate an abstract component");
-	public static final ErrorDescription CONNECTOR_TO_ORDERED_PORT_MUST_BE_INDEXED = new ErrorDescription("A connector to an ordered port must be indexed");
-	public static final ErrorDescription HYPERPORTS_CANNOT_BE_ORDERED = new ErrorDescription("Hyperports cannot be ordered");
-	public static final ErrorDescription CONNECTOR_INDEX_IS_NOT_UNIQUE = new ErrorDescription("Connector indices must be unique for a given port");
-	public static final ErrorDescription DELEGATE_CONNECTORS_CANNOT_HAVE_INDICES = new ErrorDescription("Delegation connectors cannot have indices");
-	public static final ErrorDescription ATTRIBUTE_DEFAULT_BAD = new ErrorDescription("Defaults specified by > must be set via the actual value field");
-	public static final ErrorDescription SLOT_DEFAULT_BAD = new ErrorDescription("Slot values specified by > must be set via the actual value field");
-	public static final ErrorDescription SLOT_MUST_HAVE_VALUE = new ErrorDescription("All slots must have values");
 	public static final ErrorDescription CANNOT_REPLACE_ELEMENT_IN_CHECK_ONCE_STRATUM = new ErrorDescription("Cannot replace an element in a 'check once' stratum");
 }

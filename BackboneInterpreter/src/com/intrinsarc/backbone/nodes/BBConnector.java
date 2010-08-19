@@ -234,4 +234,10 @@ public class BBConnector extends DEConnector implements INode
 			for (DEObject obj : objects)
 				obj.resolveLazyReferences();
 	}
+
+	@Override
+	public boolean isIndexOk(int index)
+	{
+		return true; // this is only really useful for the UML2 version which should be of the form [xxx]
+	}
 }

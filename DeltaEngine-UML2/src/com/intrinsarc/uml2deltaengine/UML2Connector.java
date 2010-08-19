@@ -1,6 +1,7 @@
 package com.intrinsarc.uml2deltaengine;
 
 import java.util.*;
+import java.util.regex.*;
 
 import org.eclipse.uml2.*;
 
@@ -87,6 +88,30 @@ public class UML2Connector extends DEConnector
     return getEngine().locateObject(part).asConstituent().asPart();
   }
 
+  private static Pattern matchAlpha = Pattern.compile("\\s*\\[\\s*(\\w*)\\s*\\]\\s*");
+  
+	@Override
+	public boolean isIndexOk(int ind)
+	{
+    List<ConnectorEnd> ends = subject.undeleted_getEnds();
+    if (ends.size() > ind)
+    {
+    	ConnectorEnd end = ends.get(ind);
+    	ValueSpecification spec = end.undeleted_getLowerValue();
+    	if (spec instanceof Expression)
+    	{
+    		Expression e = (Expression) spec;
+    		String txt = e.getBody();
+    		
+    		// match against the regular expression to see if it is ok
+    		if (txt.trim().length() > 0 && !matchAlpha.matcher(txt).matches())
+    			return false;
+    	}    	
+    }
+    
+    return true;
+	}
+	
 	@Override
 	public String getIndex(int ind)
 	{
@@ -100,20 +125,15 @@ public class UML2Connector extends DEConnector
     for (ConnectorEnd end : ends)
     {
     	ValueSpecification spec = end.undeleted_getLowerValue();
-    	if (spec instanceof LiteralInteger)
-    	{
-    		LiteralInteger i = (LiteralInteger) spec;
-    		int actual = i.getValue();
-    		if (actual == -1)
-    			takeNext[lp] = true;
-    		else
-    			index[lp] = "" + i.getValue();
-    	}
-    	else
     	if (spec instanceof Expression)
     	{
     		Expression e = (Expression) spec;
-    		index[lp] = e.getBody();
+    		String txt = e.getBody();
+
+  			// extract out the inside of the index string
+    		Matcher matcher = matchAlpha.matcher(txt);
+    		if (matcher.matches())
+    			index[lp] = matcher.group(1);
     	}
     	lp++;
     }

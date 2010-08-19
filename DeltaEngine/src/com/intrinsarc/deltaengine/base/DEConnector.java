@@ -17,6 +17,7 @@ public abstract class DEConnector extends DEConstituent
 
   public abstract DEPort getOriginalPort(int index);
   public abstract DEPart getOriginalPart(int index);
+  public abstract boolean isIndexOk(int index);
   public abstract String getIndex(int index);
   public abstract boolean getTakeNext(int index);
   public abstract boolean isDelegate();
