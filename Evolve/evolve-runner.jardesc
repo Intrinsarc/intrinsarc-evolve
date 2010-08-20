@@ -11,8 +11,6 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=Evolve/src&lt;com.hopstepjump.jumble"/>
-        <javaElement handleIdentifier="=Evolve/src&lt;com.hopstepjump"/>
-        <file path="/Resources/resources/evolve-border.png"/>
+        <file path="/Resources/resources/evolve.png"/>
     </selectedElements>
 </jardesc>

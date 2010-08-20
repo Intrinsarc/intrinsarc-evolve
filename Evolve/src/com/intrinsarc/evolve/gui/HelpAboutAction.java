@@ -40,18 +40,6 @@ public class HelpAboutAction extends AbstractAction
     tabs.add(logo);
     Dimension preferred = logo.getPreferredSize();
     
-/*    tabs.add(
-    		makeTextPanelFromHTMLDocument(
-          preferred,
-          "Description", 
-          "help-documents/evolve-description.html"));
-*/
-/*    tabs.add(
-    		makeTextPanelFromHTMLDocument(
-          preferred,
-          "Credits", 
-          "help-documents/evolve-credits.html"));
-*/    
     tabs.add(
     		makeTextPanelFromHTMLDocument(
           preferred,
@@ -158,7 +146,7 @@ public class HelpAboutAction extends AbstractAction
       }
     };
     panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    panel.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+    panel.setPreferredSize(new Dimension(icon.getIconWidth()-1, icon.getIconHeight()));
     panel.setName("Evolve");
     
     panel.addMouseListener(new MouseAdapter()

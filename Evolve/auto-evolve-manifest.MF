@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Created-By: Andrew
-SplashScreen-Image: evolve-border.png
+SplashScreen-Image: evolve.png
 Class-path: extended-emf/objectdb.jar
   extended-emf/uml2-odb-latest.jar
   emf/org.eclipse.core.resources_3.1.0.jar

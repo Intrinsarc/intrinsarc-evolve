@@ -12,6 +12,6 @@
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <javaElement handleIdentifier="=Evolve/src&lt;com.intrinsarc.evolve"/>
-        <file path="/Resources/resources/evolve-border.png"/>
+        <file path="/Resources/resources/evolve.png"/>
     </selectedElements>
 </jardesc>
