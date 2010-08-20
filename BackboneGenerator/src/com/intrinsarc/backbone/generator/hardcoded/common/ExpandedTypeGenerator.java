@@ -6,6 +6,6 @@ import com.intrinsarc.backbone.nodes.simple.*;
 
 public interface ExpandedTypeGenerator
 {
-	String formConstructionAndRemember(BBSimpleElementRegistry registry, BBSimplePart part, String partName, List<String> profile);
+	String formConstructionAndRemember(BBSimpleElementRegistry registry, BBSimplePart part, String partName, List<String> profiles);
 	String constructClasses();
 }

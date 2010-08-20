@@ -8,7 +8,7 @@ import com.intrinsarc.backbone.runtime.implementation.*;
 
 public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 {
-	public static final Object GWT_PROFILE = "GWTClient";
+	public static final String GWT_PROFILE = "gwtclient";
 	private Set<String> types = new LinkedHashSet<String>();
 	
 	public String constructClasses()
@@ -31,9 +31,18 @@ public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 		return type.replace(".", "_");
 	}
 
-	public String formConstructionAndRemember(BBSimpleElementRegistry registry, BBSimplePart part, String partName, List<String> profile)
+	public String formConstructionAndRemember(BBSimpleElementRegistry registry, BBSimplePart part, String partName, List<String> profiles)
 	{
-		return formConstruction(registry, Terminal.class.getName(), part, partName, profile, types, "com.intrinsarc.backbone.runtime.api.IStateTerminalComponent", "ITransition", "Terminal");
+		return formConstruction(
+				registry,
+				Terminal.class.getName(),
+				part,
+				partName,
+				profiles,
+				types,
+				"com.intrinsarc.backbone.runtime.api.IStateTerminalComponent",
+				"ITransition",
+				"Terminal");
 	}
 	
 	public static String formConstruction(
@@ -41,7 +50,7 @@ public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 			String matchingClassName,
 			BBSimplePart part,
 			String partName,
-			List<String> profile,
+			List<String> profiles,
 			Set<String> types,
 			String ifaceName,
 			String ifaceUUID,
@@ -49,8 +58,8 @@ public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 	{
 		String impl = part.getType().getImplementationClassName();
 		
-		// only return something if this matches the start type and		
-		if (impl.equals(matchingClassName) && profile.equals(GWT_PROFILE))
+		// only return something if this matches the start type and
+		if (impl.equals(matchingClassName) && profiles.contains(GWT_PROFILE))
 		{
 			// extract the generic type
 			String genericType = getRequiredImplementation(registry, part, ifaceUUID);
@@ -61,7 +70,7 @@ public class ExpandedTypeGWTTerminal implements ExpandedTypeGenerator
 		return null;
 	}
 	
-	private static String getRequiredImplementation(BBSimpleElementRegistry registry, BBSimplePart part, String provInterfaceUuid)
+	public static String getRequiredImplementation(BBSimpleElementRegistry registry, BBSimplePart part, String provInterfaceUuid)
 	{
 		for (BBSimplePort p : part.getType().getPorts())
 		{

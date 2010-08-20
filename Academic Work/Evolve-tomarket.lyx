@@ -133,6 +133,8 @@ more rules implemented including composition and stereo visibility...
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 full example with complex scenario for documentation + importing beans
 \begin_inset Newline newline
 \end_inset
@@ -386,6 +388,18 @@ why does portlink between replaced and original port die when deleting the
 \end_layout
 
 \begin_layout Enumerate
+connectors ends not moving when class is resized
+\end_layout
+
+\begin_layout Enumerate
+stop delta delete on part ports
+\end_layout
+
+\begin_layout Enumerate
+ctrl-T should work on package also
+\end_layout
+
+\begin_layout Enumerate
 problem with error adorner and undo
 \end_layout
 
@@ -428,7 +442,12 @@ team system!
 \end_layout
 
 \begin_layout Itemize
-part aliasing in factories! -- for many to many relationships
+part aliasing in factories! - for many to many relationships
+\end_layout
+
+\begin_layout Itemize
+fix to work properly with beans - fwd gen, multiple provided, multiple interface
+s per port, aliasing
 \end_layout
 
 \begin_layout Itemize
@@ -523,6 +542,10 @@ navigation basics: difference between diagram and model, hold down shift
 
 \begin_layout Enumerate
 printing options + export grouped images
+\end_layout
+
+\begin_layout Enumerate
+how to get lifecycle callbacks
 \end_layout
 
 \begin_layout Standard

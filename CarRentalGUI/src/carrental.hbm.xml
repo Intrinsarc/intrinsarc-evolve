@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.intrinsarc.cars.RentalCarDetails" table="CARS">
+  
+  	<id name="rawModel" type="java.lang.String" column="MODEL" />	
+	  <property name="rawPurchased" type="java.util.Date" column="PURCHASED" />
+	  
+	  <component name="renter_IRenterDetails" class="com.intrinsarc.cars.RenterDetails">
+		  <property name="rawRenterName" type="java.lang.String" column="RENTER" />
+	  </component>
+	  
+  </class>
+  
+</hibernate-mapping>

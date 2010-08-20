@@ -2,11 +2,14 @@ package com.intrinsarc.carrentalgui.server;
 
 import java.util.*;
 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+
 import com.intrinsarc.backbone.runtime.api.*;
+import com.intrinsarc.backbone.runtime.implementation.*;
 import com.intrinsarc.cars.*;
 
-
-public class CarRental
+public class JPACarRental
 {
 // start generated code
 // attributes
@@ -24,6 +27,42 @@ public class CarRental
 	public void removeRenters_IRenterDetails(com.intrinsarc.cars.IRenterDetails renters) { PortHelper.remove(this.renters, renters); }
 	public com.intrinsarc.carrentalgui.client.IRentalService getService_IRentalService(Class<?> required) { return service_IRentalServiceProvided; }
 // end generated code
+
+	public static void main(String args[])
+	{
+		Session session = null;
+
+		try
+		{
+			// This step will read hibernate.cfg.xml and prepare hibernate for use
+			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+			session = sessionFactory.openSession();
+
+			System.out.println("$$ creating car");
+			RentalCarDetails rcd = new RentalCarDetails();
+			rcd.setModel(new Attribute<String>("Porsche"));
+			rcd.setPurchased(new Attribute<Date>(new Date(105, 10, 10)));
+			
+			RenterDetails renter = new RenterDetails();
+			renter.setRenterName(new Attribute<String>("Andrew"));
+			rcd.setRenter_IRenterDetails(renter.getDetails_IRenterDetails(null));
+			
+			System.out.println("$$ about to save...");
+			Transaction tx = session.beginTransaction();
+			session.save(rcd);
+			tx.commit();
+			System.out.println("$$ saved car");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (session != null)
+				session.close();
+		}
+	}
 
 	private class IRentalServiceServiceImpl implements com.intrinsarc.carrentalgui.client.IRentalService
 	{
@@ -57,5 +96,4 @@ public class CarRental
 			return newCars;
 		}
 	}
-
 }

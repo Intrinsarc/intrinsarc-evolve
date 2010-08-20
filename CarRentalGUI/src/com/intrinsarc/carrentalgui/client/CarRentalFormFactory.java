@@ -42,7 +42,7 @@ public class CarRentalFormFactory implements IHardcodedFactory
   private com.google.gwt.user.client.ui.TextBox x7 = new com.google.gwt.user.client.ui.TextBox();
   private ICreate factory = new ICreate() {
     public Object create(java.util.Map<String, Object> values) {
-      CarWidgetFactory f = new CarWidgetFactory();
+      CarRentalWidgetFactory f = new CarRentalWidgetFactory();
       f.initialize(CarRentalFormFactory.this, values);
       if (children == null)
         children = new java.util.ArrayList<IHardcodedFactory>();
@@ -115,24 +115,24 @@ public class CarRentalFormFactory implements IHardcodedFactory
   }
 
 // flattened factories
-class CarWidgetFactory implements IHardcodedFactory
+class CarRentalWidgetFactory implements IHardcodedFactory
 {
   private IHardcodedFactory parent;
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private Attribute<String> model = new Attribute<String>("");
-  public void setModel(String model) { this.model.set(model); }
-  public String getModel() { return model.get(); }
-  private Attribute<String> renter = new Attribute<String>("");
-  public void setRenter(String renter) { this.renter.set(renter); }
-  public String getRenter() { return renter.get(); }
   private Attribute<Integer> carNo = new Attribute<Integer>(0);
   public void setCarNo(int carNo) { this.carNo.set(carNo); }
   public int getCarNo() { return carNo.get(); }
   private Attribute<Boolean> rentEnabled = new Attribute<Boolean>(true);
   public void setRentEnabled(boolean rentEnabled) { this.rentEnabled.set(rentEnabled); }
   public boolean getRentEnabled() { return rentEnabled.get(); }
+  private Attribute<String> renter = new Attribute<String>("");
+  public void setRenter(String renter) { this.renter.set(renter); }
+  public String getRenter() { return renter.get(); }
+  private Attribute<String> model = new Attribute<String>("");
+  public void setModel(String model) { this.model.set(model); }
+  public String getModel() { return model.get(); }
   private Attribute<Boolean> returnEnabled = new Attribute<Boolean>(true);
   public void setReturnEnabled(boolean returnEnabled) { this.returnEnabled.set(returnEnabled); }
   public boolean getReturnEnabled() { return returnEnabled.get(); }
@@ -165,15 +165,15 @@ class CarWidgetFactory implements IHardcodedFactory
   private com.intrinsarc.carrentalgui.client.RentalLogic x23 = new com.intrinsarc.carrentalgui.client.RentalLogic();
   private com.google.gwt.user.client.ui.Label x24 = new com.google.gwt.user.client.ui.Label();
 
-  public CarWidgetFactory() {}
+  public CarRentalWidgetFactory() {}
 
-  public CarWidgetFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
+  public CarRentalWidgetFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
     this.parent = parent;
-    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
-    if (values != null && values.containsKey("renter")) renter = new Attribute<String>((String) values.get("renter"));
     if (values != null && values.containsKey("carNo")) carNo = new Attribute<Integer>((Integer) values.get("carNo"));
     if (values != null && values.containsKey("rentEnabled")) rentEnabled = new Attribute<Boolean>((Boolean) values.get("rentEnabled"));
+    if (values != null && values.containsKey("renter")) renter = new Attribute<String>((String) values.get("renter"));
+    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
     if (values != null && values.containsKey("returnEnabled")) returnEnabled = new Attribute<Boolean>((Boolean) values.get("returnEnabled"));
     model1 = new Attribute<String>(model.get());
     spacing4 = new Attribute<Integer>(10);
@@ -189,8 +189,8 @@ class CarWidgetFactory implements IHardcodedFactory
     x33.setWidth(width3.get());
     x26.setText(text1.get());
     x26.setEnabled(returnEnabled.get());
-    x28.setEnabled(rentEnabled.get());
     x28.setText(text2.get());
+    x28.setEnabled(rentEnabled.get());
     x23.setCarNo(carNo);
     x24.setText(text3.get());
     x24.setWidth(width4.get());

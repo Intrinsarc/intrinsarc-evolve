@@ -44,7 +44,7 @@ public class LoggingRentalCarDetails
 
 		public boolean isRented()
 		{
-			return renter.isRented();
+			return renter.getRenter() != null;
 		}
 	}
 }

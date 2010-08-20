@@ -24,6 +24,11 @@ public class RenterDetails
 
 	private class IRenterDetailsDetailsImpl implements com.intrinsarc.cars.IRenterDetails
 	{
+		public void setRenter(String renter)
+		{
+			renterName.set(renter);
+		}
+		
 		public String getRenter()
 		{
 			return renterName.get();

@@ -1,4 +1,4 @@
-package com.intrinsarc.carrentalgui.server;
+package com.intrinsarc.carrentalgui.jpaserver;
 
 import com.intrinsarc.backbone.runtime.api.*;
 
@@ -13,7 +13,7 @@ public class CarRentalServiceFactory implements IHardcodedFactory
   private com.intrinsarc.backbone.runtime.api.ICreate c;
 
  // parts
-  private com.intrinsarc.carrentalgui.server.CarRental x1 = new com.intrinsarc.carrentalgui.server.CarRental();
+  private com.intrinsarc.carrentalgui.server.JPACarRental x1 = new com.intrinsarc.carrentalgui.server.JPACarRental();
   private ICreate factory = new ICreate() {
     public Object create(java.util.Map<String, Object> values) {
       RentalCarFactory f = new RentalCarFactory();
@@ -60,12 +60,12 @@ class RentalCarFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private Attribute<String> model = new Attribute<String>(new String());
-  public void setModel(String model) { this.model.set(model); }
-  public String getModel() { return model.get(); }
   private Attribute<java.util.Date> purchased = new Attribute<java.util.Date>(new java.util.Date());
   public void setPurchased(java.util.Date purchased) { this.purchased.set(purchased); }
   public java.util.Date getPurchased() { return purchased.get(); }
+  private Attribute<String> model = new Attribute<String>(new String());
+  public void setModel(String model) { this.model.set(model); }
+  public String getModel() { return model.get(); }
   private Attribute<String> renterName;
 
   // connectors
@@ -82,8 +82,8 @@ class RentalCarFactory implements IHardcodedFactory
   public RentalCarFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
     this.parent = parent;
-    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
     if (values != null && values.containsKey("purchased")) purchased = new Attribute<java.util.Date>((java.util.Date) values.get("purchased"));
+    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
     renterName = new Attribute<String>(null);
     x2.setModel(model);
     x2.setPurchased(purchased);

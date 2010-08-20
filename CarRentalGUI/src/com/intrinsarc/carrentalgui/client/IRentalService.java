@@ -10,8 +10,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface IRentalService extends RemoteService
 {
 	void createRentalCar(String model);
-	void rent(int car);
-	void setRenter(int car, String renter);
+	void rent(int car, String renter);
 	void returnRental(int car);
 	String[] getCars();
 }

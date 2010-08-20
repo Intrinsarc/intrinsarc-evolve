@@ -32,10 +32,10 @@ public class RentalLogic
 	{
 		public void onChange(Widget sender)
 		{
-			service.rent(carNo.get(), new AsyncCallback<Void>()
+			service.rent(carNo.get(), renter.getValue(), new AsyncCallback<Void>()
 					{
 						public void onSuccess(Void v)
-						{ setRenter(renter.getValue()); }
+						{ refresh.onChange(null); }
 						
 						public void onFailure(Throwable caught) {}
 					});
@@ -54,19 +54,6 @@ public class RentalLogic
 						public void onFailure(Throwable caught) {}
 					});
 		}
-	}
-	
-	private void setRenter(String renterName)
-	{
-		service.setRenter(carNo.get(), renterName, new AsyncCallback<Void>()
-		{
-			public void onSuccess(Void v)
-			{
-				refresh.onChange(null);
-			}
-			
-			public void onFailure(Throwable caught) {}
-		});
 	}
 }
 
