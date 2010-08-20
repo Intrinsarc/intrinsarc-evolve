@@ -14,7 +14,6 @@ public class RentalLogic
 	private com.intrinsarc.carrentalgui.client.IRentalServiceAsync service;
 	private com.google.gwt.user.client.ui.TextBox renter;
 // provided ports
-	private ClickListenerRentImpl rent_ClickListenerProvided = new ClickListenerRentImpl();
 	private ClickListenerReturnImpl return_ClickListenerProvided = new ClickListenerReturnImpl();
 	private ChangeListenerRenterSetImpl renterSet_ChangeListenerProvided = new ChangeListenerRenterSetImpl();
 // setters and getters
@@ -24,7 +23,6 @@ public class RentalLogic
 	public void setRefresh_ChangeHandler(com.google.gwt.event.dom.client.ChangeHandler refresh) { this.refresh = refresh; }
 	public void setService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync service) { this.service = service; }
 	public void setRenter_TextBox(com.google.gwt.user.client.ui.TextBox renter) { this.renter = renter; }
-	public com.google.gwt.user.client.ui.ClickListener getRent_ClickListener(Class<?> required) { return rent_ClickListenerProvided; }
 	public com.google.gwt.user.client.ui.ClickListener getReturn_ClickListener(Class<?> required) { return return_ClickListenerProvided; }
 	public com.google.gwt.user.client.ui.ChangeListener getRenterSet_ChangeListener(Class<?> required) { return renterSet_ChangeListenerProvided; }
 // end generated code
@@ -34,24 +32,16 @@ public class RentalLogic
 	{
 		public void onChange(Widget sender)
 		{
-			setRenter(renter.getValue());
+			service.rent(carNo.get(), new AsyncCallback<Void>()
+					{
+						public void onSuccess(Void v)
+						{ setRenter(renter.getValue()); }
+						
+						public void onFailure(Throwable caught) {}
+					});
 		}
 	}
 	
-	private class ClickListenerRentImpl implements com.google.gwt.user.client.ui.ClickListener
-	{
-		public void onClick(Widget sender)
-		{
-			service.rent(carNo.get(), new AsyncCallback<Void>()
-			{
-				public void onSuccess(Void v)
-				{ setRenter("Enter renter name..."); }
-				
-				public void onFailure(Throwable caught) {}
-			});
-		}
-	}
-
 	private class ClickListenerReturnImpl implements com.google.gwt.user.client.ui.ClickListener
 	{
 		public void onClick(Widget sender)

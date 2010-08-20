@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.intrinsarc.backbone.runtime.api.*;
 
-public class RentalCarDetailsL
+public class LoggingRentalCarDetails
 {
 // start generated code
 // attributes

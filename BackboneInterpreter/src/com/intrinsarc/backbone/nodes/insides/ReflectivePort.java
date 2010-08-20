@@ -133,7 +133,6 @@ public class ReflectivePort
         removeMany = resolveMethod(
             methodName2,
             new Class<?>[]{iface});
-        System.out.println("$$ resolving method for removemany: " + methodName2 + ", resolution = " + removeMany);
       }
     }
  
@@ -151,24 +150,6 @@ public class ReflectivePort
 	private String getInterfaceName(Class<?> iface)
   {
     return iface.getSimpleName();
-  }
-
-  private Field resolveField(String name) throws BBImplementationInstantiationException
-  {
-    try
-    {
-    	for (Field f : partTypeClass.getDeclaredFields())
-        if (f.getName().equals(name))
-        {
-          f.setAccessible(true);
-          return f;
-        }
-      return null;
-    }
-    catch (SecurityException e)
-    {
-      throw new BBImplementationInstantiationException("Security error when getting port access field " + name + " of " + partTypeClass + " via direct field access", partType);
-    }
   }
 
   private Method resolveMethod(String name, Class<?>[] paramClasses) throws BBImplementationInstantiationException

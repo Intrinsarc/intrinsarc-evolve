@@ -466,6 +466,10 @@ slightly slow diagrams in complex situations == profile using jprofiler
 \end_layout
 
 \begin_layout Itemize
+performance of checking -- jprofiler?
+\end_layout
+
+\begin_layout Itemize
 online update + web machinery?
 \end_layout
 
