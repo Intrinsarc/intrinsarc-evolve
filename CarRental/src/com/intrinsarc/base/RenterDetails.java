@@ -1,4 +1,4 @@
-package com.intrinsarc.cars;
+package com.intrinsarc.base;
 
 
 public class RenterDetails
@@ -12,11 +12,11 @@ public class RenterDetails
 // setters and getters
 	public String getRenterName() { return renterName; }
 	public void setRenterName(String renterName) { this.renterName = renterName;}
-	public com.intrinsarc.cars.IRenterDetails getDetails_IRenterDetails(Class<?> required) { return details_IRenterDetailsProvided; }
+	public com.intrinsarc.base.IRenterDetails getDetails_IRenterDetails(Class<?> required) { return details_IRenterDetailsProvided; }
 // end generated code
 
 
-	private class IRenterDetailsDetailsImpl implements com.intrinsarc.cars.IRenterDetails
+	private class IRenterDetailsDetailsImpl implements com.intrinsarc.base.IRenterDetails
 	{
 		public void setRenter(String renter)
 		{

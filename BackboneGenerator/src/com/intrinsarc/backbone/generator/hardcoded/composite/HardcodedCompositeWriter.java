@@ -125,8 +125,8 @@ public class HardcodedCompositeWriter
 							+ upper(getUniqueConstituentName(type, slot.getAttribute(), ConstituentTypeEnum.DELTA_ATTRIBUTE)) + "(");
 					// put in the translated parameters
 					s.append(makeInitializer(
-							slot.getAttribute(perspective, type).getType().asComponent(), slot.getValue(), slot.getEnvironmentAlias(), false));
-					if (type.asComponent().isBean(perspective))
+							slot.getAttribute(perspective, type).getType().asComponent(), slot.getValue(), false));
+					if (type.asComponent().isLegacyBean(perspective))
 						s.append(".get()");
 					s.append(");\n");
 				}
@@ -170,7 +170,7 @@ public class HardcodedCompositeWriter
 				String implName = getImplementationName(attr.getType());
 				String strip = PrimitiveHelper.stripJavaLang(implName);
 				s.append("  private Attribute<" + strip + "> " + attrName);
-				s.append(makeInitializer(attr.getType().asComponent(), attr.getDefaultValue(), null, true));
+				s.append(makeInitializer(attr.getType().asComponent(), attr.getDefaultValue(), true));
 				s.append(";\n");
 	
 				// possibly make a setter or getter function
@@ -234,13 +234,9 @@ public class HardcodedCompositeWriter
 		return null;
 	}
 
-	private String makeInitializer(DEComponent type, List<DEParameter> params, DEAttribute alias, boolean addEquals)
+	private String makeInitializer(DEComponent type, List<DEParameter> params, boolean addEquals)
 	{
 		String s = addEquals ? " = " : "";
-
-		// is this an environment alias?
-		if (alias != null)
-			return s + getUniqueConstituentName(next, alias, ConstituentTypeEnum.DELTA_ATTRIBUTE);
 
 		String implName = getImplementationName(type);
 		String translatedImpl = PrimitiveHelper.translateLongToShortPrimitive(implName);
@@ -339,7 +335,7 @@ public class HardcodedCompositeWriter
 			String portName = upper(getUniqueConstituentName(next, pair.getOriginal(), ConstituentTypeEnum.DELTA_PORT));
 			String otherPartName = getUniqueConstituentName(next, otherSide.getPart(), ConstituentTypeEnum.DELTA_PART);
 			String otherPortName = upper(getUniqueConstituentName(other, otherSide.getPort(), ConstituentTypeEnum.DELTA_PORT));
-			boolean bean = other.isBean(perspective);
+			boolean bean = other.isLegacyBean(perspective);
 			if (bean)
 				otherPortName = makeSingular(otherPortName);
 
@@ -529,7 +525,7 @@ public class HardcodedCompositeWriter
 		DEComponent other = end.getPart().getType();
 		String partName = getUniqueConstituentName(next, end.getPart(), ConstituentTypeEnum.DELTA_PART);
 		String portName = upper(getUniqueConstituentName(other, port, ConstituentTypeEnum.DELTA_PORT));
-		boolean bean = other.isBean(perspective);
+		boolean bean = other.isLegacyBean(perspective);
 		if (bean)
 			portName = makeSingular(portName);
 
@@ -567,7 +563,7 @@ public class HardcodedCompositeWriter
 		DEComponent type = end.getPart().getType();
 		String partName = getUniqueConstituentName(next, end.getPart(), ConstituentTypeEnum.DELTA_PART);
 		String portName = upper(getUniqueConstituentName(type, port, ConstituentTypeEnum.DELTA_PORT));
-		boolean bean = type.isBean(perspective);
+		boolean bean = type.isLegacyBean(perspective);
 		if (bean)
 			portName = makeSingular(portName);
 

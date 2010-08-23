@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.intrinsarc.backbone.exceptions.*;
 import com.intrinsarc.backbone.nodes.insides.*;
-import com.intrinsarc.backbone.runtime.api.*;
 import com.intrinsarc.deltaengine.base.*;
 
 public class BBSimpleSlot extends BBSimpleObject
@@ -12,38 +11,24 @@ public class BBSimpleSlot extends BBSimpleObject
 	private BBSimpleAttribute attribute;
 	private BBSimpleAttribute environmentAlias;
 	private List<BBSimpleParameter> value;
-	private Object valueObject;
 	private boolean resolved;
 	private ReflectiveAttribute reflectiveField;
 	
 	public BBSimpleSlot(BBSimpleElementRegistry registry, BBSimpleComponent component, DEComponent partType, DESlot complex)
 	{
-		// the environment alias must be in the component
-		if (complex.getEnvironmentAlias() != null)
-		{
-			for (BBSimpleAttribute attr : component.getAttributes())
-				if (attr.getComplex() == complex.getEnvironmentAlias(registry.getPerspective(), component.getComplex()))
-				{
-					environmentAlias = attr;
-					break;
-				}
-		}
-		else
-		{
-			value = new ArrayList<BBSimpleParameter>();
-			for (DEParameter p : complex.getValue())
-				if (p.getAttribute() != null)
-				{
-					BBSimpleAttribute simple =
-						translateAttribute(component.getAttributes(), p.getAttribute(registry.getPerspective(), component.getComplex()));
-					if (simple != null)
-						value.add(new BBSimpleParameter(simple));
-				}
-				else
-				{
-					value.add(new BBSimpleParameter(p.getLiteral()));
-				}
-		}
+		value = new ArrayList<BBSimpleParameter>();
+		for (DEParameter p : complex.getValue())
+			if (p.getAttribute() != null)
+			{
+				BBSimpleAttribute simple =
+					translateAttribute(component.getAttributes(), p.getAttribute(registry.getPerspective(), component.getComplex()));
+				if (simple != null)
+					value.add(new BBSimpleParameter(simple));
+			}
+			else
+			{
+				value.add(new BBSimpleParameter(p.getLiteral()));
+			}
 
 		// the attribute must be in the type of the part
 		BBSimpleComponent partComp = registry.retrieveComponent(partType);

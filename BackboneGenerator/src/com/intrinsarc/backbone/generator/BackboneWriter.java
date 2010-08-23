@@ -26,11 +26,13 @@ public class BackboneWriter
   public static final Preference BB_CLASS_PATH_PREF = new Preference("Backbone", "Base backbone classpath", new PersistentProperty("$EVOLVE/common/backbone.jar"));
   public static final Preference BB_JAVA_CMD_PREF = new Preference("Backbone", "Java command", new PersistentProperty("java"));
   public static final Preference BB_WRITE_BASE_PREF = new Preference("Backbone", "Generate Backbone base", new PersistentProperty(true));
+  public static final Preference BB_WRITE_BACKUPS = new Preference("Backbone", "Backup leaf implementation files before writing", new PersistentProperty(true));
 	
   public static void registerPreferenceSlots()
   {
     // declare the preference types
     PreferenceType stringType = new PreferenceTypeString();
+    PreferenceType booleanType = new PreferenceTypeBoolean();
     PreferenceType directoryType = new PreferenceTypeDirectory();
     
     // add the slots for backbone
@@ -50,6 +52,10 @@ public class BackboneWriter
     		BB_JAVA_CMD_PREF,
         stringType,
         "The command used to run java.");
+    GlobalPreferences.preferences.addPreferenceSlot(
+    		BB_WRITE_BACKUPS,
+        booleanType,
+        "Should we create backup files before refreshing leaf implementations?");
   }
  
   public File writeBackbone(BackboneGenerationChoice choice, List<String> classpaths, List<String> untranslatedClasspaths) throws BackboneGenerationException, VariableNotFoundException

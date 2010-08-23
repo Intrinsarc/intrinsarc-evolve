@@ -1,4 +1,4 @@
-package com.intrinsarc.cars;
+package com.intrinsarc.base;
 
 
 public interface IRenterDetails

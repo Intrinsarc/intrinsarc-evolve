@@ -388,15 +388,19 @@ why does portlink between replaced and original port die when deleting the
 \end_layout
 
 \begin_layout Enumerate
-connectors ends not moving when class is resized
+
+\color green
+ctrl-T should work on package also
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 stop delta delete on part ports
 \end_layout
 
 \begin_layout Enumerate
-ctrl-T should work on package also
+connectors ends not moving when class is resized
 \end_layout
 
 \begin_layout Enumerate

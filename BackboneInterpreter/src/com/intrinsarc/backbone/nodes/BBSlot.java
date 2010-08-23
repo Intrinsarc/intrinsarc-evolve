@@ -11,7 +11,6 @@ public class BBSlot extends DESlot implements INode, Serializable
 {
 	private DEObject parent;
 	private LazyObject<DEAttribute> attribute = new LazyObject<DEAttribute>(DEAttribute.class);
-	private LazyObject<DEAttribute> environmentAlias;
 	private List<DEParameter> value;
 	private List<DEAppliedStereotype> appliedStereotypes;
 
@@ -21,16 +20,10 @@ public class BBSlot extends DESlot implements INode, Serializable
 		this.value = value;
 	}
 	
-	public BBSlot(DEAttribute attr, DEAttribute alias)
+	public BBSlot(DEAttribute attribute, List<DEParameter> value)
 	{
-		this.attribute.setObject(attr);
-		this.environmentAlias = new LazyObject<DEAttribute>(DEAttribute.class, alias);
-	}
-	
-	public BBSlot(UuidReference attribute, UuidReference environmentAlias)
-	{
-		this.attribute.setReference(attribute);
-		this.environmentAlias = new LazyObject<DEAttribute>(DEAttribute.class, environmentAlias);
+		this.attribute.setObject(attribute);
+		this.value = value;
 	}
 	
   @Override
@@ -40,23 +33,9 @@ public class BBSlot extends DESlot implements INode, Serializable
 	}
 
 	@Override
-	public DEAttribute getEnvironmentAlias()
-	{
-		if (environmentAlias == null)
-			return null;
-		return environmentAlias.getObject();
-	}
-
-	@Override
 	public List<DEParameter> getValue()
 	{
 		return value;
-	}
-
-	@Override
-	public boolean isAliased()
-	{
-		return getEnvironmentAlias() != null;
 	}
 
 	@Override
@@ -106,8 +85,6 @@ public class BBSlot extends DESlot implements INode, Serializable
 			for (DEAppliedStereotype app : appliedStereotypes)
 				app.resolveLazyReferences();
 		attribute.resolve();
-		if (environmentAlias != null)
-			environmentAlias.resolve();
 		if (value != null)
 			for (DEParameter p : value)
 				p.resolveLazyReferences();

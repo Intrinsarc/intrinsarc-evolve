@@ -1,4 +1,4 @@
-package com.intrinsarc.logger;
+package com.intrinsarc.hyperports;
 
 public interface ILogger
 {

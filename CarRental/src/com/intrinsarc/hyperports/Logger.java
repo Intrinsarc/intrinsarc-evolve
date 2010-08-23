@@ -1,4 +1,4 @@
-package com.intrinsarc.logger;
+package com.intrinsarc.hyperports;
 
 import com.intrinsarc.backbone.runtime.api.*;
 
@@ -10,11 +10,11 @@ public class Logger
 // provided ports
 	private ILoggerLoggerImpl logger_ILoggerProvided = new ILoggerLoggerImpl();
 // setters and getters
-	public com.intrinsarc.logger.ILogger getLogger_ILogger(Class<?> required) { return logger_ILoggerProvided; }
+	public com.intrinsarc.hyperports.ILogger getLogger_ILogger(Class<?> required) { return logger_ILoggerProvided; }
 // end generated code
 
 
-	private class ILoggerLoggerImpl implements com.intrinsarc.logger.ILogger
+	private class ILoggerLoggerImpl implements com.intrinsarc.hyperports.ILogger
 	{
 		public void log(String msg)
 		{

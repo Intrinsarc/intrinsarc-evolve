@@ -20,7 +20,7 @@ public class EvolveRunner
 		
 		Evolve.main(new String[]{
 				home,
-				fromJars[0] ? "logToFile" : null,
+				fromJars[0] && System.getProperty("logToConsole") != null ? "logToFile" : null,
 				args.length > 0 ? args[0] : null});
 	}
 	

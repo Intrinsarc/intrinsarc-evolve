@@ -1,7 +1,7 @@
 package com.intrinsarc.states;
 
 import com.intrinsarc.backbone.runtime.api.*;
-import com.intrinsarc.cars.*;
+import com.intrinsarc.base.*;
 
 public interface IRentalEvent extends IEvent, IRenterDetails
 {

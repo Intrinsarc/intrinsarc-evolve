@@ -97,7 +97,7 @@ public class ImplementationWriter
 		if (comp != null &&
 				comp.isLeaf(home) &&
 				!comp.isPlaceholder(home) &&
-				!comp.isBean(home) &&
+				!comp.isLegacyBean(home) &&
 				!comp.isRawAbstract() &&
 				comp.getComponentKind() != ComponentKindEnum.STEREOTYPE)
 		{

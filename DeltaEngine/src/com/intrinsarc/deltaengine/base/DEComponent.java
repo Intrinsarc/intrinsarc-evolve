@@ -670,7 +670,7 @@ public abstract class DEComponent extends DEElement
 				&& stereo.getBooleanProperty(FACTORY_STEREOTYPE_PROPERTY);
 	}
 
-	public boolean isBean(DEStratum perspective)
+	public boolean isLegacyBean(DEStratum perspective)
 	{
 		DEAppliedStereotype stereo = getAppliedStereotype(perspective);
 		if (stereo == null)

@@ -7,6 +7,7 @@ import static com.intrinsarc.backbone.generator.hardcoded.common.WriterHelper.*;
 
 import com.intrinsarc.backbone.nodes.*;
 import com.intrinsarc.deltaengine.base.*;
+import com.intrinsarc.idraw.environment.*;
 
 public class LeafImplementationRefresher
 {
@@ -111,7 +112,8 @@ public class LeafImplementationRefresher
 		}
 		else
 		{
-			moveFile(realFile, backupFile);
+			if (GlobalPreferences.preferences.getRawPreference(BackboneWriter.BB_WRITE_BACKUPS).asBoolean())
+				moveFile(realFile, backupFile);
 			moveFile(tempFile, realFile);
 			return true;
 		}

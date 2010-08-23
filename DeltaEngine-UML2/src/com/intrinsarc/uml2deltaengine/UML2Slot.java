@@ -67,23 +67,11 @@ public class UML2Slot extends DESlot
 	}
 
 	@Override
-	public DEAttribute getEnvironmentAlias()
-	{
-		return null;
-	}
-
-	@Override
 	public List<DEParameter> getValue()
 	{
 		return value;
 	}
 
-	@Override
-	public boolean isAliased()
-	{
-		return false;
-	}
-	
 	@Override
 	public DESlot asSlot()
 	{

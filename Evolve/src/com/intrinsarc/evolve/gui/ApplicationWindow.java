@@ -739,6 +739,8 @@ public class ApplicationWindow extends SmartJFrame
 					// ensure we have a single stratum
 					try
 					{
+						if (!UMLTypes.isStratum(pkg))
+							pkg = GlobalSubjectRepository.repository.findOwningStratum(pkg);
 						choice.selectSingleStratum(pkg);
 					}
 					catch (BackboneGenerationException ex)

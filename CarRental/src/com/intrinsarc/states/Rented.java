@@ -13,8 +13,8 @@ public class Rented
 	private ITransitionInImpl in_ITransitionProvided = new ITransitionInImpl();
 	private IRentalEventEventsImpl events_IRentalEventProvided = new IRentalEventEventsImpl();
 // setters and getters
-	public java.lang.String getRenterName() { return renterName; }
-	public void setRenterName(java.lang.String renterName) { this.renterName = renterName;}
+	public String getRenterName() { return renterName; }
+	public void setRenterName(String renterName) { this.renterName = renterName;}
 	public void setOut_ITransition(com.intrinsarc.backbone.runtime.api.ITransition out) { this.out = out; }
 	public com.intrinsarc.backbone.runtime.api.ITransition getIn_ITransition(Class<?> required) { return in_ITransitionProvided; }
 	public com.intrinsarc.states.IRentalEvent getEvents_IRentalEvent(Class<?> required) { return events_IRentalEventProvided; }

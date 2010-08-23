@@ -41,7 +41,9 @@ public class FactoryExpander implements StereotypeExpander
 				part.setName("factory");
 				Set<DeltaPair> attrPairs = creator.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getAddObjects();
 				DEAttribute factoryAttr = attrPairs.iterator().next().getConstituent().asAttribute();
-				part.settable_getSlots().add(new BBSlot(factoryAttr, factoryNumber));
+				List<DEParameter> params = new ArrayList<DEParameter>();
+				params.add(new BBParameter(factoryNumber));
+				part.settable_getSlots().add(new BBSlot(factoryAttr, params));
 				DeltaPair partPair = new DeltaPair(part.getUuid(), part, part);
 				element.getDeltas(ConstituentTypeEnum.DELTA_PART).getConstituents(perspective).add(partPair);
 				

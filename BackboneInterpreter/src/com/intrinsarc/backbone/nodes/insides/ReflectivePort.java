@@ -29,7 +29,7 @@ public class ReflectivePort
     this.port = port;
     partTypeClass = partType.getImplementationClass();
     portName = port.getRawName();
-    isBean = partType.isBean();
+    isBean = partType.isLegacyBean();
     if (!required)
       resolveGets(iface, port.isIndexed());
     else

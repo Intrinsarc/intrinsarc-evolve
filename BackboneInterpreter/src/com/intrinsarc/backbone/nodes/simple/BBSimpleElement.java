@@ -9,6 +9,6 @@ public abstract class BBSimpleElement extends BBSimpleObject
 	public abstract Class<?> getImplementationClass();
 	public abstract String getImplementationClassName();
 	public abstract void resolveImplementation(BBSimpleElementRegistry registry) throws BBImplementationInstantiationException;
-  public abstract boolean isBean();
+  public abstract boolean isLegacyBean();
 	public abstract DEElement getComplex();
 }

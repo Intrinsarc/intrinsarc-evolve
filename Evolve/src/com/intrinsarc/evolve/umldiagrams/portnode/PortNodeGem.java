@@ -162,6 +162,17 @@ public final class PortNodeGem implements Gem
       // be defensive
       if (figureFacet.getContainedFacet().getContainer() == null)
         return;
+
+      // cannot delete port instance
+      if (instance)
+      {
+        coordinator.displayPopup(ERROR_ICON, "Invalid subject delete",
+            new JLabel("Port instances cannot be deleted, delete the port on the component instead!", DELTA_ICON, JLabel.LEFT),
+            ScreenProperties.getUndoPopupColor(),
+            Color.black,
+            3000);
+        return;
+      }
       
       // only allow changes in the home stratum
       if (!atHome())

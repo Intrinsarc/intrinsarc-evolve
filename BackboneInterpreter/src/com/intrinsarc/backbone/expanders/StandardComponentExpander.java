@@ -35,7 +35,7 @@ public class StandardComponentExpander
 		{
 			DEPart part = pair.getConstituent().asPart();
 			DEComponent type = part.getType();
-			if (type != null && !type.isBean(perspective))
+			if (type != null && !type.isLegacyBean(perspective))
 				for (DeltaPair pPair : part.getType().getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
 					// getConstituent() here should ideally be getOriginal()
 					if (links.getEnds(new DELinkEnd(pPair.getConstituent().asPort(), pair.getOriginal().asPart())).isEmpty())

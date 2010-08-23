@@ -26,7 +26,6 @@ public class BBSimpleAttribute extends BBSimpleObject
   private String uuid;
   private boolean readOnly;
   private boolean writeOnly;
-	private boolean isFactoryNumber;
 	private boolean isNull;
   	
 	public BBSimpleAttribute(BBSimpleElementRegistry registry, DEAttribute complex, List<BBSimpleAttribute> attributes, BBSimpleElement owner)
@@ -143,7 +142,6 @@ public class BBSimpleAttribute extends BBSimpleObject
 		{
 			defaultValue = new ArrayList<BBSimpleParameter>();
 			defaultValue.add(new BBSimpleParameter("" + factory));
-			this.isFactoryNumber = true;
 		}
 	}
 

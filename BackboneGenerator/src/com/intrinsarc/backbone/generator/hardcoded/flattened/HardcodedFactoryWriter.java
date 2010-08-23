@@ -183,8 +183,8 @@ public class HardcodedFactoryWriter
 					String rawName = attr.getRawName();
 					String impl = attr.getType().getImplementationClassName();
 					String translated = PrimitiveHelper.stripJavaLang(impl);
-					c.write("    if (values != null && values.containsKey(\"" + rawName + "\")) " + attrName + " = new Attribute<" + translated + ">((" + translated
-							+ ") values.get(\"" + rawName + "\"));");
+					c.write("    if (values != null && values.containsKey(\"" + rawName + "\")) " + attrName +
+							" = (" + translated + ") values.get(\"" + rawName + "\");");
 					c.newLine();
 				}
 			}
@@ -200,16 +200,8 @@ public class HardcodedFactoryWriter
 				String partName = namer.getUniqueName(part);
 				for (BBSimpleSlot slot : part.getSlots())
 				{
-					if (part.getType().isBean())
-					{
-						c.write("    " + partName + ".set" + upper(slot.getAttribute().getRawName()) + "(");
-						c.write(namer.getUniqueName(slot.getEnvironmentAlias()) + ".get()");
-					}
-					else
-					{
-						c.write("    " + partName + ".set" + upper(slot.getAttribute().getRawName()) + "(");
-						c.write(namer.getUniqueName(slot.getEnvironmentAlias()));
-					}
+					c.write("    " + partName + ".set" + upper(slot.getAttribute().getRawName()) + "(");
+					c.write(namer.getUniqueName(slot.getEnvironmentAlias()));
 					c.write(");");
 					c.newLine();
 				}
@@ -325,7 +317,7 @@ public class HardcodedFactoryWriter
 				String impl = attr.getType().getImplementationClassName();
 				String translatedImpl = PrimitiveHelper.translateLongToShortPrimitive(impl);
 				if (top)
-					c.write("  private Attribute<" + PrimitiveHelper.stripJavaLang(impl) + "> ");
+					c.write("  private " + translatedImpl + " ");
 				else
 					c.write("    ");
 				c.write(attrName);
@@ -342,7 +334,7 @@ public class HardcodedFactoryWriter
 				else
 				{
 					c.write(" = ");
-					writeInitializer(namer, c, impl, def);
+					writeInitializer(attr.getType(), namer, c, impl, def);
 					c.newLine();
 
 					if (top)
@@ -351,12 +343,12 @@ public class HardcodedFactoryWriter
 						if (!attr.isReadOnly())
 						{
 							c.write("  public void set" + upper(attrName) + "(" + translatedImpl + " " + attrName + ") { this."
-									+ attrName + ".set(" + attrName + "); }");
+									+ attrName + " = " + attrName + "; }");
 							c.newLine();
 						}
 						if (!attr.isWriteOnly())
 						{
-							c.write("  public " + translatedImpl + " get" + upper(attrName) + "() { return " + attrName + ".get(); }");
+							c.write("  public " + translatedImpl + " get" + upper(attrName) + "() { return " + attrName + "; }");
 							c.newLine();
 						}
 					}
@@ -400,7 +392,7 @@ public class HardcodedFactoryWriter
 		}
 		for (BBSimpleConnectorEnd end : ends)
 		{
-			boolean bean = end.getPart().getType().isBean();
+			boolean bean = end.getPart().getType().isLegacyBean();
 			String partName = namer.getUniqueName(end.getPart());
 			BBSimplePort port = end.getPort();
 			for (BBSimpleInterface p : port.getProvides())
@@ -458,7 +450,7 @@ public class HardcodedFactoryWriter
 
 		for (BBSimpleConnectorEnd end : ends)
 		{
-			boolean bean = end.getPart().getType().isBean();
+			boolean bean = end.getPart().getType().isLegacyBean();
 			String partName = namer.getUniqueName(end.getPart());
 			BBSimplePort port = end.getPort();
 			// look to the other side for the variable name
@@ -548,7 +540,7 @@ public class HardcodedFactoryWriter
 		String impl = provides.getImplementationClassName();
 		String shortImpl = getAfterLastDot(impl);
 
-		boolean bean = part.getType().isBean();
+		boolean bean = part.getType().isLegacyBean();
 		String name = upper(port.getRawName());
 
 		if (bean)
@@ -588,22 +580,37 @@ public class HardcodedFactoryWriter
 		return name;
 	}
 
-	private void writeInitializer(UniqueNamer namer, BufferedWriter c, String impl, List<BBSimpleParameter> def)
+	private void writeInitializer(BBSimpleElement attrType, UniqueNamer namer, BufferedWriter c, String impl, List<BBSimpleParameter> def)
 			throws IOException
 	{
 		String translated = PrimitiveHelper.translateLongToShortPrimitive(impl);
-		boolean primitive = !impl.equals(translated);
 		String primTrans = PrimitiveHelper.stripJavaLang(impl);
-		c.write("new Attribute<" + primTrans + ">(");
+		boolean primitive = !impl.equals(translated);
 
+		BBSimpleAttribute oneAttr = def.size() == 1 ? def.get(0).getAttribute() : null;
 		if (isDefault(def))
 		{
-			c.write("new " + primTrans + "());");
+			c.write("new " + primTrans + "()");
+		}
+		else
+		if (isNull(def))
+		{
+			c.write("null");
+		}
+		else
+		if ("String".equals(primTrans) && def.size() == 1 && def.get(0).getLiteral() != null)
+		{
+			c.write(def.get(0).getLiteral());
+		}
+		else
+		if (oneAttr != null && oneAttr.getType() == attrType)
+		{
+			c.write(namer.getUniqueName(oneAttr));
 		}
 		else
 		{
 			if (!primitive)
-				c.write("new " + impl + "(");
+				c.write("new " + primTrans + "(");
 			boolean start = true;
 			for (BBSimpleParameter p : def)
 			{
@@ -617,15 +624,19 @@ public class HardcodedFactoryWriter
 				else
 				{
 					c.write(namer.getUniqueName(p.getAttribute()));
-					if (!p.getAttribute().getType().isBean())
-						c.write(".get()");
 				}
 			}
-			if (primitive)
-				c.write(");");
-			else
-				c.write("));");
+			if (!primitive)
+				c.write(")");
 		}
+		
+		// finish the statement
+		c.write(";");
+	}
+
+	private boolean isNull(List<BBSimpleParameter> def)
+	{
+		return def.size() == 1 && "null".equals(def.get(0).getLiteral()); 
 	}
 
 	/**
@@ -633,9 +644,7 @@ public class HardcodedFactoryWriter
 	 */
 	private boolean isDefault(List<BBSimpleParameter> def)
 	{
-		if (def.size() != 1)
-			return false;
-		return def.get(0).getLiteral() != null && def.get(0).getLiteral().equals("default");
+		return def.size() == 1 && "default".equals(def.get(0).getLiteral()); 
 	}
 
 	private void writeVisiblePorts(UniqueNamer namer, BBSimpleFactory factory, BBSimpleComponent comp, BufferedWriter c,
@@ -674,7 +683,7 @@ public class HardcodedFactoryWriter
 
 			// write out the port getter or setter
 			String name = upper(port.getRawName());
-			boolean bean = end.getPart().getType().isBean();
+			boolean bean = end.getPart().getType().isLegacyBean();
 			String partName = namer.getUniqueName(end.getPart());
 
 			for (BBSimpleInterface p : port.getProvides())

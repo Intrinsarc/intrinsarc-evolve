@@ -41,14 +41,7 @@ public class StateDispatcher implements IStateDispatcher
 				if (end.isCurrent())
 					end.moveToNextState();
 
-			// find the next state
-			for (IEvent e : dDispatch_IEventRequired)
-				if (e.isCurrent())
-				{
-					current = e;
-					break;
-				}
-			
+			establishCurrentState();
 			if (current != null)
 			{
 				try
@@ -57,10 +50,27 @@ public class StateDispatcher implements IStateDispatcher
 				}
 				catch (InvocationTargetException ex)
 				{
+					// get the real reason
 					throw ex.getCause();
+				}
+				finally
+				{
+					// we may have moved state since and we want the dispatcher to reflect that
+					establishCurrentState();
 				}
 			}
 			return null;
+		}
+
+		private void establishCurrentState()
+		{
+			// find the next state
+			for (IEvent e : dDispatch_IEventRequired)
+				if (e.isCurrent())
+				{
+					current = e;
+					break;
+				}
 		}
 	};
 	

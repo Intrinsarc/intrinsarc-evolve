@@ -13,7 +13,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	private String name;
 	private String rawName;
 	private boolean factory;
-	private boolean bean;
+	private boolean legacyBean;
 	private boolean leaf;
 	private List<BBSimplePort>      ports;
 	private List<BBSimpleAttribute> attributes;
@@ -39,8 +39,8 @@ public class BBSimpleComponent extends BBSimpleElement
 		DEStratum perspective = registry.getPerspective(); 
 		if (complex.isFactory(perspective))
 			factory = true;
-		if (complex.isBean(perspective))
-		  bean = true;
+		if (complex.isLegacyBean(perspective))
+		  legacyBean = true;
 
 		if (!complex.canBeDecomposed(perspective))
 		{
@@ -508,7 +508,7 @@ public class BBSimpleComponent extends BBSimpleElement
   			        slot = s;
   			        break;
   			      }
-					if (part.getType().isBean() && slot == null)
+					if (part.getType().isLegacyBean() && slot == null)
 					  continue;
 					
 					BBSimpleAttribute pushedAttr =
@@ -615,7 +615,9 @@ public class BBSimpleComponent extends BBSimpleElement
 	// an attribute is redundant if it is aliased, but it isn't at the top...
 	private boolean isRedundant(BBSimpleAttribute attr)
 	{
-		return attr.getAlias() != null || attr.getDefaultValue().size() == 1 && attr.getDefaultValue().get(0).getAttribute() != null;
+		return
+			attr.getAlias() != null ||
+			attr.getDefaultValue() != null && attr.getDefaultValue().size() == 1 && attr.getDefaultValue().get(0).getAttribute() != null;
 	}
 
 	private BBSimpleFactory getMap(int factory)
@@ -647,7 +649,7 @@ public class BBSimpleComponent extends BBSimpleElement
 			// look for a slot to see if this is aliased or set to a different value
 			BBSimpleSlot slot = part.findSlot(old);
 			// don't copy over if this isn't a bean and it isn't set
-			if (type.isBean() && slot == null)
+			if (type.isLegacyBean() && slot == null)
 			  continue;
 
 			BBSimpleAttribute newAttr =
@@ -781,9 +783,9 @@ public class BBSimpleComponent extends BBSimpleElement
 		return uuid;
 	}
 
-  public boolean isBean()
+  public boolean isLegacyBean()
   {
-    return bean;
+    return legacyBean;
   }
   
   public void setLifecycleCallbacks(boolean callbacks)

@@ -13,6 +13,11 @@ public class BBParameter extends DEParameter
 		this.literal = literal;
 	}
 
+	public BBParameter(DEAttribute attribute)
+	{
+		this.attribute = new LazyObject<DEAttribute>(DEAttribute.class, attribute);
+	}
+
 	public BBParameter(UuidReference reference)
 	{
 		this.attribute = new LazyObject<DEAttribute>(DEAttribute.class, reference);

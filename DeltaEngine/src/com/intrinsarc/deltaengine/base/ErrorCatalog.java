@@ -59,7 +59,7 @@ public class ErrorCatalog
 	public static final ErrorDescription NO_FULL_CLASS_ALLOWED = new ErrorDescription("No composite full class can be specified for a leaf");
 	public static final ErrorDescription ATTRIBUTE_MUST_HAVE_TYPE = new ErrorDescription("An attribute must have a type");
 	public static final ErrorDescription PORT_MUST_PROVIDE_OR_REQUIRE = new ErrorDescription("A port must provide or require at least one interface");
-	public static final ErrorDescription SLOT_ALIAS_INCOMPATIBLE_TYPE = new ErrorDescription("A slot is aliased to an attribute with a different type");
+	public static final ErrorDescription SLOT_ALIAS_INCOMPATIBLE_TYPE = new ErrorDescription("A slot assignment to an attribute has the wrong type");
 	public static final ErrorDescription PORT_HAS_TOO_MUCH_OPTIONALITY_FOR_DELEGATION = new ErrorDescription("Port has too much optionality for delegation");
 	public static final ErrorDescription PORT_UPPER_TOO_HIGH_FOR_DELEGATION = new ErrorDescription("Port upper bounds is too high for port instance");
 	public static final ErrorDescription SELF_COMPOSITION = new ErrorDescription("Inclusion of part causes self-composition");

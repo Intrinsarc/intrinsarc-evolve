@@ -393,33 +393,25 @@ public class ElementPrinter
 			b.append("\n" + indent + "\t\t\t\tslots:\n");			
 		for (DESlot slot : slots)
 		{
-			if (slot.isAliased())
+			int dvSize = slot.getValue().size();
+			if (dvSize != 0)
 			{
 				DEAttribute attr = slot.getAttribute(perspective, part.getType());
-				b.append(indent + "\t\t\t\t\t" + ref.reference(attr) + " (" + ref.reference(slot.getEnvironmentAlias(perspective, element)) + ")");
-			}
-			else
-			{
-				int dvSize = slot.getValue().size();
-				if (dvSize != 0)
+				b.append(indent + "\t\t\t\t\t" + ref.reference(attr) + " = ");
+				if (dvSize > 1)
+					b.append("(");
+				int lp = 0;
+				for (DEParameter p : slot.getValue())
 				{
-					DEAttribute attr = slot.getAttribute(perspective, part.getType());
-					b.append(indent + "\t\t\t\t\t" + ref.reference(attr) + " = ");
-					if (dvSize > 1)
-						b.append("(");
-					int lp = 0;
-					for (DEParameter p : slot.getValue())
-					{
-						if (p.getAttribute() != null)
-							b.append(ref.reference(p.getAttribute()));
-						else
-						if (p.getLiteral() != null)
-							b.append(p.getLiteral());
-						b.append(++lp != dvSize ? ", " : "");
-					}
-					if (dvSize > 1)
-						b.append(")");
+					if (p.getAttribute() != null)
+						b.append(ref.reference(p.getAttribute()));
+					else
+					if (p.getLiteral() != null)
+						b.append(p.getLiteral());
+					b.append(++lp != dvSize ? ", " : "");
 				}
+				if (dvSize > 1)
+					b.append(")");
 			}
 			b.append(++slp != size ? "\n" : "");
 		}

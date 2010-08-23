@@ -91,7 +91,7 @@ public class BBSimpleInterface extends BBSimpleElement
 	}
 
   @Override
-  public boolean isBean()
+  public boolean isLegacyBean()
   {
     return false;
   }

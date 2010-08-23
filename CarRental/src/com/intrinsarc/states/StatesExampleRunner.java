@@ -3,20 +3,20 @@ package com.intrinsarc.states;
 import java.util.*;
 
 import com.intrinsarc.backbone.runtime.api.*;
-import com.intrinsarc.cars.*;
+import com.intrinsarc.base.*;
 
-public class RentalExample2Runner
+public class StatesExampleRunner
 {
 // start generated code
 // attributes
 // required ports
-	private java.util.List<com.intrinsarc.cars.IRentalCarDetails> cars = new java.util.ArrayList<com.intrinsarc.cars.IRentalCarDetails>();
+	private java.util.List<com.intrinsarc.base.IRentalCarDetails> cars = new java.util.ArrayList<com.intrinsarc.base.IRentalCarDetails>();
 	private java.util.List<com.intrinsarc.states.IRentalEvent> rentalStates = new java.util.ArrayList<com.intrinsarc.states.IRentalEvent>();
 // provided ports
 	private IRunRunImpl run_IRunProvided = new IRunRunImpl();
 // setters and getters
-	public void setCars_IRentalCarDetails(com.intrinsarc.cars.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
-	public void removeCars_IRentalCarDetails(com.intrinsarc.cars.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
+	public void setCars_IRentalCarDetails(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
+	public void removeCars_IRentalCarDetails(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
 	public void setRentalStates_IRentalEvent(com.intrinsarc.states.IRentalEvent rentalStates, int index) { PortHelper.fill(this.rentalStates, rentalStates, index); }
 	public void removeRentalStates_IRentalEvent(com.intrinsarc.states.IRentalEvent rentalStates) { PortHelper.remove(this.rentalStates, rentalStates); }
 	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }

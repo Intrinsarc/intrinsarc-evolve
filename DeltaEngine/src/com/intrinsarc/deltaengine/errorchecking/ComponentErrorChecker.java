@@ -360,7 +360,7 @@ public class ComponentErrorChecker
 			return;
 		
 		// a slot must have a value of some sort
-		if (slot.getValue() == null && slot.getEnvironmentAlias() == null)
+		if (slot.getValue() == null)
 		{
 			errors.addError(
           new ErrorLocation(perspective, component, part), ErrorCatalog.SLOT_MUST_HAVE_VALUE);
@@ -378,10 +378,7 @@ public class ComponentErrorChecker
 	  		writeOnly.add(pair.getOriginal().asAttribute());			
 		}
 		
-		// a slot cannot refer in any way to a read-only attribute
-		if (writeOnly.contains(slot.getEnvironmentAlias()))
-			errors.addError(
-          new ErrorLocation(perspective, component, part), ErrorCatalog.CANNOT_REFER_TO_WRITEONLY_ATTRIBUTE);
+		// a slot cannot refer in any way to a write-only attribute
 		if (slot.getValue() != null)
 			for (DEParameter p : slot.getValue())
 			{
@@ -394,13 +391,16 @@ public class ComponentErrorChecker
 			errors.addError(
           new ErrorLocation(perspective, component, part), ErrorCatalog.CANNOT_SET_READONLY_ATTRIBUTE);
 		
-		// if this is an alias, ensure it is the same type
-		DEAttribute alias = slot.getEnvironmentAlias(perspective, component);
-		if (alias != null)
+		// if this is a single assignment, ensure it is the same type
+		if (slot.getValue().size() == 1 && slot.getValue().get(0).getAttribute() != null)
 		{
-			if (slot.getAttribute().getType() != alias.getType())
-				errors.addError(
-	          new ErrorLocation(perspective, component, part), ErrorCatalog.SLOT_ALIAS_INCOMPATIBLE_TYPE);						
+			DEAttribute alias = slot.getValue().get(0).getAttribute();;
+			if (alias != null)
+			{
+				if (slot.getAttribute().getType() != alias.getType())
+					errors.addError(
+							new ErrorLocation(perspective, component, part), ErrorCatalog.SLOT_ALIAS_INCOMPATIBLE_TYPE);						
+			}
 		}
 	}
 
@@ -524,7 +524,7 @@ public class ComponentErrorChecker
 		}
 
 		// don't bother to see if all non-default attributes have slots if this is a bean -- all attributes are optional
-		if (partType.isBean(perspective))
+		if (partType.isLegacyBean(perspective))
 			return;
 		
 		for (DeltaPair attrPair : partType.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective))

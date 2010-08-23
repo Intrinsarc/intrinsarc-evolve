@@ -1,8 +1,6 @@
-package com.intrinsarc.logger;
+package com.intrinsarc.hyperports;
 
 import java.util.*;
-
-import com.intrinsarc.backbone.runtime.api.*;
 
 public class LoggingRentalCarDetails
 {
@@ -11,22 +9,22 @@ public class LoggingRentalCarDetails
 	private java.util.Date purchased;
 	private String model;
 // required ports
-	private com.intrinsarc.cars.IRenterDetails renter;
-	private com.intrinsarc.logger.ILogger logger;
+	private com.intrinsarc.base.IRenterDetails renter;
+	private com.intrinsarc.hyperports.ILogger logger;
 // provided ports
 	private IRentalCarDetailsDetailsImpl details_IRentalCarDetailsProvided = new IRentalCarDetailsDetailsImpl();
 // setters and getters
 	public java.util.Date getPurchased() { return purchased; }
 	public void setPurchased(java.util.Date purchased) { this.purchased = purchased;}
-	public java.lang.String getModel() { return model; }
-	public void setModel(java.lang.String model) { this.model = model;}
-	public void setRenter_IRenterDetails(com.intrinsarc.cars.IRenterDetails renter) { this.renter = renter; }
-	public void setLogger_ILogger(com.intrinsarc.logger.ILogger logger) { this.logger = logger; }
-	public com.intrinsarc.cars.IRentalCarDetails getDetails_IRentalCarDetails(Class<?> required) { return details_IRentalCarDetailsProvided; }
+	public String getModel() { return model; }
+	public void setModel(String model) { this.model = model;}
+	public void setRenter_IRenterDetails(com.intrinsarc.base.IRenterDetails renter) { this.renter = renter; }
+	public void setLogger_ILogger(com.intrinsarc.hyperports.ILogger logger) { this.logger = logger; }
+	public com.intrinsarc.base.IRentalCarDetails getDetails_IRentalCarDetails(Class<?> required) { return details_IRentalCarDetailsProvided; }
 // end generated code
 
 
-	private class IRentalCarDetailsDetailsImpl implements com.intrinsarc.cars.IRentalCarDetails
+	private class IRentalCarDetailsDetailsImpl implements com.intrinsarc.base.IRentalCarDetails
 	{
 		public String getModel()
 		{
