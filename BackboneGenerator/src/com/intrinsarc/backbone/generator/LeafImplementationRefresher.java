@@ -253,7 +253,7 @@ public class LeafImplementationRefresher
 	    String impl = PrimitiveHelper.translateLongToShortPrimitive(preImpl);
 
 			String name = property.getName();
-			writer.write("\tprivate Attribute<" + preImpl + "> " + name);
+			writer.write("\tprivate " + impl + " " + name);
 			writer.write(makeInitializer(leaf, property, preImpl, preImpl.length() != impl.length()));
 			writer.write(";");
 			writer.newLine();
@@ -261,14 +261,12 @@ public class LeafImplementationRefresher
 			String up = upper(name);
 			if (!property.isWriteOnly())
 			{
-				complexWriter.write("\tpublic Attribute<" + preImpl + "> get" + up + "() { return " + name + "; }");
+				complexWriter.write("\tpublic " + preImpl + " get" + up + "() { return " + name + "; }");
 				complexWriter.newLine();
 			}
 			if (!property.isReadOnly())
 			{
-				complexWriter.write("\tpublic void set" + up + "(Attribute<" + preImpl + "> " + name + ") { this." + name + " = " + name + ";}");
-				complexWriter.newLine();
-				complexWriter.write("\tpublic void setRaw" + up + "(" + preImpl + " " + name + ") { this." + name + ".set(" + name + ");}");
+				complexWriter.write("\tpublic void set" + up + "(" + preImpl + " " + name + ") { this." + name + " = " + name + ";}");
 				complexWriter.newLine();
 			}
 		}
@@ -380,7 +378,7 @@ public class LeafImplementationRefresher
 		if (size == 0)
 			return "";
 		
-		String s = " = new Attribute<" + implName + ">(";
+		String s = " = " + implName + "(";
 		if (size == 1 && params.get(0).getAttribute() != null)
 			return s + translateParameter(owner, params.get(0));
 

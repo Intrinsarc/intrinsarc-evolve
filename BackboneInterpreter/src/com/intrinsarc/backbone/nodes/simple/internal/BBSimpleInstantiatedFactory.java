@@ -13,7 +13,7 @@ public class BBSimpleInstantiatedFactory
 {
 	private BBSimpleInstantiatedFactory parent;
 	private BBSimpleFactory factory;
-	private Map<BBSimpleAttribute, Attribute<? extends Object>> iattributes = new HashMap<BBSimpleAttribute, Attribute<? extends Object>>();
+	private Map<BBSimpleAttribute, Object> iattributes = new HashMap<BBSimpleAttribute, Object>();
 	private Map<BBSimplePart, Object> iparts = new HashMap<BBSimplePart, Object>();
 	private Map<CachedConnectorEnd, Map<BBSimpleInterface, Object>> cachedProvides = new HashMap<CachedConnectorEnd, Map<BBSimpleInterface,Object>>();
 	private ArrayList<BBSimpleInstantiatedFactory> children;
@@ -46,7 +46,7 @@ public class BBSimpleInstantiatedFactory
 		List<BBSimpleAttribute> attrs = factory.getAttributes();
 		if (attrs != null)
 			for (BBSimpleAttribute attr : attrs)
-				iattributes.put(attr, new Attribute<Object>(attr.instantiate(this, suppliedParameters, setNames)));
+				iattributes.put(attr, attr.instantiate(this, suppliedParameters, setNames));
 		
 		// we shouldn't have any names left over
 		if (setNames != null && setNames.size() != 0)
@@ -66,7 +66,7 @@ public class BBSimpleInstantiatedFactory
 			// set up the attributes
 			for (BBSimpleSlot s : part.getSlots())
 			{
-				Attribute<?> simple = iattributes.get(s.getEnvironmentAlias());
+				Object simple = iattributes.get(s.getEnvironmentAlias());
 				if (simple == null)
 					simple = parent.resolveAttributeValue(s.getEnvironmentAlias());
 				s.setValue(obj, simple, part.getType());
@@ -104,9 +104,9 @@ public class BBSimpleInstantiatedFactory
 				((ILifecycle) iparts.get(p)).afterInit();
 	}
 	
-	public Attribute<? extends Object> resolveAttributeValue(BBSimpleAttribute attr) throws BBRuntimeException
+	public Object resolveAttributeValue(BBSimpleAttribute attr) throws BBRuntimeException
 	{
-		Attribute<? extends Object> value = iattributes.get(attr);
+		Object value = iattributes.get(attr);
 		if (value != null)
 			return value;
 		if (parent == null)

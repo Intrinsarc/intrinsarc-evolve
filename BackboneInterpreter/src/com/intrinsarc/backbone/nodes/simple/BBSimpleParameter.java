@@ -148,7 +148,7 @@ public class BBSimpleParameter extends BBSimpleObject
   	if (literal != null)
   		return resolvedLiteral;
   	else
-  		return context.resolveAttributeValue(attribute).get();
+  		return context.resolveAttributeValue(attribute);
   }
 
 	public Object getResolvedLiteral()

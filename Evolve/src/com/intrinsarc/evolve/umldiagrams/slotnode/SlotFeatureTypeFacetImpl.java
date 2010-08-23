@@ -22,7 +22,7 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
 	public static final String FIGURE_NAME = "slot";  // for the creator
   private BasicNodeFigureFacet figureFacet;
 	private TextableFacet textableFacet;
-  private Pattern pattern = Pattern.compile("(\\w+)\\s*(?:\\(\\s*(.*)\\s*\\)|=\\s*(.*))\\s*");
+  private Pattern pattern = Pattern.compile("(\\w+)\\s*=\\s*(.*)\\s*");
 
   public SlotFeatureTypeFacetImpl(BasicNodeFigureFacet figureFacet, TextableFacet textableFacet)
   {
@@ -69,18 +69,15 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
     Matcher matcher = pattern.matcher(text);
     final String newName;
     final String newValue;
-    final boolean alias;
     if (matcher.matches())
     {
       newName = matcher.group(1);
-      alias = matcher.group(2) != null;
-      newValue = alias ? matcher.group(2) : matcher.group(3);
+      newValue = matcher.group(2);
     }
     else
     {
     	newName = "";
     	newValue = "??";
-    	alias = false;
     }
 
     // look for the attribute in the class with the given name
@@ -101,32 +98,11 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
     
     // may be null if not found
     final Property newAttribute = newProperty;
+    final List<ValueSpecification> values = resolveParameters(slot, newValue);
     
-    // find a possible attribute in the parent of the part
-    if (alias)
-    {
-	    final List<ValueSpecification> values = resolveParameters(slot, newValue);
-	    ValueSpecification spec = values.isEmpty() ? null : (ValueSpecification) values.get(0);
-	    final PropertyValueSpecification valueSpec =
-	    	(spec != null && spec instanceof PropertyValueSpecification) ? (PropertyValueSpecification) spec : null;
-	    if (valueSpec != null)
-	    	valueSpec.setAliased(true);
-	    
-	    // if the value matches a property, create a PropertyValueSpecification, which is
-	    // possible aliased
-			slot.setDefiningFeature(newAttribute);
-			slot.settable_getValues().clear();
-			if (valueSpec != null)
-				slot.settable_getValues().add(valueSpec);
-    }
-    else
-    {
-	    final List<ValueSpecification> values = resolveParameters(slot, newValue);
-	    
-			slot.setDefiningFeature(newAttribute);
-  		slot.settable_getValues().clear();
-  		slot.settable_getValues().addAll(0, values);
-    }
+		slot.setDefiningFeature(newAttribute);
+		slot.settable_getValues().clear();
+		slot.settable_getValues().addAll(0, values);
     
     String finalText = makeNameFromSubject();
     figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(finalText));

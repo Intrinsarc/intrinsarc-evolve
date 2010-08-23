@@ -29,9 +29,7 @@ public class ReflectiveAttribute
   {
 		setMethod = resolveMethod(
 				"set" + upperFirst(attributeName),
-				type.isBean() ?
-						new Class<?>[]{PrimitiveHelper.translateLongToShortPrimitive(implClass)} :
-						new Class<?>[]{Attribute.class});
+				new Class<?>[]{PrimitiveHelper.translateLongToShortPrimitive(implClass)});
     
     if (setMethod == null)
       throw new BBImplementationInstantiationException("Cannot find method for setting attribute " + attributeName + " of class " + cls, type);      
@@ -60,14 +58,11 @@ public class ReflectiveAttribute
     return str.toUpperCase();
   }
 
-  public void set(Object target, Attribute<? extends Object> value) throws BBRuntimeException
+  public void set(Object target, Object value) throws BBRuntimeException
   {
     try
     {
-    	if (type.isBean())
-    		setMethod.invoke(target, value.get());
-    	else
-    		setMethod.invoke(target, value);    		
+  		setMethod.invoke(target, value);
     }
     catch (IllegalArgumentException e)
     {

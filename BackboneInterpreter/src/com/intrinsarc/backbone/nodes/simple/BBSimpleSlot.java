@@ -135,7 +135,7 @@ public class BBSimpleSlot extends BBSimpleObject
 			environmentAlias = redundant.get(environmentAlias);
 	}
 
-	public void setValue(Object obj, Attribute<? extends Object> value, BBSimpleElement element) throws BBRuntimeException
+	public void setValue(Object obj, Object value, BBSimpleElement element) throws BBRuntimeException
 	{
 	  reflectiveField.set(obj, value);
 	}

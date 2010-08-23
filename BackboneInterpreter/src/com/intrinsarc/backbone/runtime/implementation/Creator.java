@@ -8,9 +8,9 @@ import com.intrinsarc.backbone.runtime.api.*;
 
 public class Creator
 {
-	private Attribute<Integer> factoryNumber;
-	public Attribute<Integer> getFactoryNumber() { return factoryNumber; }
-	public void setFactoryNumber(Attribute<Integer> factory) { this.factoryNumber = factory; }
+	private int factoryNumber;
+	public int getFactoryNumber() { return factoryNumber; }
+	public void setFactoryNumber(int factory) { this.factoryNumber = factory; }
 
 	private BBSimpleInstantiatedFactory context;
 	private ICreate create_ICreateProvided = new ICreateImpl();
@@ -26,7 +26,7 @@ public class Creator
 	{
 		public Object create(Map<String, Object> values)
 		{
-			BBSimpleInstantiatedFactory me = new BBSimpleInstantiatedFactory(context, context.getFactory(factoryNumber.get()));
+			BBSimpleInstantiatedFactory me = new BBSimpleInstantiatedFactory(context, context.getFactory(factoryNumber));
 			try
 			{
 				me.instantiate(values);

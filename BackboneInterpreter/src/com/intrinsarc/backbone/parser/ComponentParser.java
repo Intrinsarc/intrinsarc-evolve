@@ -415,19 +415,7 @@ public class ComponentParser
 											{
 												public void act()
 												{
-													
 													BBSlot slot = new BBSlot(attrRef, parseParameters());
-													part.settable_getSlots().add(slot);
-												}
-											},
-											// aliased
-											new IAction()
-											{
-												public void act()
-												{
-													UuidReference aliasRef = new UuidReference();
-													ex.literal("(").uuid(aliasRef).literal(")");
-													BBSlot slot = new BBSlot(attrRef, aliasRef);
 													part.settable_getSlots().add(slot);
 												}
 											});										

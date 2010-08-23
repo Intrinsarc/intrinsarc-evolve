@@ -315,26 +315,9 @@ public class UMLNodeText
 
   public static String getSlotText(Package current, Classifier cls, Slot slot)
   {
-  	// get the part
-  	Property part = (Property) slot.getOwner().getOwner().getOwner();
-  	
     String name = getSlotName(current, slot);
-    ArrayList values = slot.undeleted_getValues();
+    ArrayList<ValueSpecification> values = slot.undeleted_getValues();
     
-    ValueSpecification expression = null;
-    if (values != null && !values.isEmpty())
-      expression = (ValueSpecification) values.get(0);
-    
-    if (expression instanceof PropertyValueSpecification)	
-    {
-      PropertyValueSpecification spec = (PropertyValueSpecification) expression;
-      if (spec.undeleted_getProperty() != null && spec.isAliased())
-      {
-      	String propertyName = spec.getProperty() == null ? "??" : getAttributeName(current, (Classifier) getPossibleDeltaSubject(part).getOwner(), spec.getProperty());
-      	return name + " (" + propertyName + ")";
-      }
-    }
-
     // make up the parameter list
     return name + makeValueText(current, cls, values);
   }

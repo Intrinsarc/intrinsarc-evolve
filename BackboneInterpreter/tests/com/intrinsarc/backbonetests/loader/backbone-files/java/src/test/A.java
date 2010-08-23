@@ -6,14 +6,13 @@ public class A
 {
 // start generated code
 // attributes
-	private Attribute<java.lang.Integer> age;
+	private int age;
 // required ports
 // provided ports
 	private IRunPortImpl port_IRunProvided = new IRunPortImpl();
 // setters and getters
-	public Attribute<java.lang.Integer> getAge() { return age; }
-	public void setAge(Attribute<java.lang.Integer> age) { this.age = age;}
-	public void setRawAge(java.lang.Integer age) { this.age.set(age);}
+	public int getAge() { return age; }
+	public void setAge(int age) { this.age = age;}
 	public com.intrinsarc.backbone.runtime.api.IRun getPort_IRun(Class<?> required) { return port_IRunProvided; }
 // end generated code
 
@@ -22,7 +21,7 @@ public class A
 	{
 		public int run(String[] args)
 		{
-			System.out.println("$$ ran correctly, age = " + age.get());
+			System.out.println("$$ ran correctly, age = " + age);
 			return 0;
 		}
 	}

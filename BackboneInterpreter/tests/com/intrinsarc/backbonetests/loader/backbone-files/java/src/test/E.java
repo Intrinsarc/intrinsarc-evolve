@@ -6,7 +6,7 @@ public class E
 {
 // start generated code
 // attributes
-	private Attribute<java.lang.Integer> ageX;
+	private int ageX;
 // required ports
 	private test.IFace out;
 	private com.intrinsarc.backbone.runtime.api.ICreate create;
@@ -14,9 +14,8 @@ public class E
 	private IRunPortImpl port_IRunProvided = new IRunPortImpl();
 	private IFaceInImpl in_IFaceProvided = new IFaceInImpl();
 // setters and getters
-	public Attribute<java.lang.Integer> getAgeX() { return ageX; }
-	public void setAgeX(Attribute<java.lang.Integer> ageX) { this.ageX = ageX;}
-	public void setRawAgeX(java.lang.Integer ageX) { this.ageX.set(ageX);}
+	public int getAgeX() { return ageX; }
+	public void setAgeX(int ageX) { this.ageX = ageX;}
 	public void setOut_IFace(test.IFace out) { this.out = out; }
 	public void setCreate_ICreate(com.intrinsarc.backbone.runtime.api.ICreate create) { this.create = create; }
 	public com.intrinsarc.backbone.runtime.api.IRun getPort_IRun(Class<?> required) { return port_IRunProvided; }
@@ -37,7 +36,7 @@ public class E
 
 		public int run(String[] args)
 		{
-			System.out.println("$$ running, about to create: ageX = " + ageX.get());
+			System.out.println("$$ running, about to create: ageX = " + ageX);
 			create.create(null);
 			out.test();
 			return 0;

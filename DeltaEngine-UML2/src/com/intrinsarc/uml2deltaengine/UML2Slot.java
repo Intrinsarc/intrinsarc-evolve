@@ -12,7 +12,6 @@ public class UML2Slot extends DESlot
 {
 	private Slot subject;
 	private DEAttribute attribute;
-	private DEAttribute alias;
 	private List<DEParameter> value;
 	private List<DEAppliedStereotype> appliedStereotypes;
 
@@ -28,47 +27,36 @@ public class UML2Slot extends DESlot
 		
 		if (!values.isEmpty())
 		{
-			ValueSpecification val = (ValueSpecification) values.get(0);
-			if (val instanceof PropertyValueSpecification && ((PropertyValueSpecification) val).isAliased())
-			{
-				PropertyValueSpecification pval = (PropertyValueSpecification) val;
-				Property prop = pval.undeleted_getProperty();
-				if (prop != null)
-					alias = engine.locateObject(prop).asConstituent().asAttribute();
-			}
-			else
-			{
-		  	value = new ArrayList<DEParameter>();
-		  	for (Object spec : subject.undeleted_getValues())
-		  	{
-		  		if (spec instanceof Expression)
-		  		{
-	    			String body = ((Expression) spec).getBody();
-	    			if (body.startsWith(">"))
-	    			{
-	    				body = StereotypeUtilities.extractStringProperty(subject, CommonRepositoryFunctions.ACTUAL_SLOT_VALUE);
-	    				if (body == null)
-	    				{
-	    					// set the value to > so we can alert the error checker
-	    					value.clear();
-	    					BBParameter param = new BBParameter(">");
-	    					value.add(param);
-	    					break;
-	    				}
-	    				value.add(new UML2Parameter(body));
-	    			}
-	    			else
-	    				value.add(new UML2Parameter(body));
-		  		}
-		  		else
-		  		if (spec instanceof PropertyValueSpecification)
-		  		{
-		  			Property prop = ((PropertyValueSpecification) spec).getProperty();
-		  			value.add(new UML2Parameter(GlobalDeltaEngine.engine.locateObject(prop).asConstituent().asAttribute()));
-		  		}
-		  	}
+	  	value = new ArrayList<DEParameter>();
+	  	for (Object spec : subject.undeleted_getValues())
+	  	{
+	  		if (spec instanceof Expression)
+	  		{
+    			String body = ((Expression) spec).getBody();
+    			if (body.startsWith(">"))
+    			{
+    				body = StereotypeUtilities.extractStringProperty(subject, CommonRepositoryFunctions.ACTUAL_SLOT_VALUE);
+    				if (body == null)
+    				{
+    					// set the value to > so we can alert the error checker
+    					value.clear();
+    					BBParameter param = new BBParameter(">");
+    					value.add(param);
+    					break;
+    				}
+    				value.add(new UML2Parameter(body));
+    			}
+    			else
+    				value.add(new UML2Parameter(body));
+	  		}
+	  		else
+	  		if (spec instanceof PropertyValueSpecification)
+	  		{
+	  			Property prop = ((PropertyValueSpecification) spec).getProperty();
+	  			value.add(new UML2Parameter(GlobalDeltaEngine.engine.locateObject(prop).asConstituent().asAttribute()));
+	  		}
 	  	}
-		}
+  	}
 	  appliedStereotypes = UML2Component.extractStereotypes(subject);
 	}
 	
@@ -81,7 +69,7 @@ public class UML2Slot extends DESlot
 	@Override
 	public DEAttribute getEnvironmentAlias()
 	{
-		return alias;
+		return null;
 	}
 
 	@Override
@@ -93,7 +81,7 @@ public class UML2Slot extends DESlot
 	@Override
 	public boolean isAliased()
 	{
-		return alias != null;
+		return false;
 	}
 	
 	@Override
