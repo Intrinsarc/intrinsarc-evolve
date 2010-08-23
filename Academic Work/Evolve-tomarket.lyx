@@ -404,6 +404,11 @@ problem with error adorner and undo
 \end_layout
 
 \begin_layout Enumerate
+undo of default value attr set with multiple values e.g.
+ (105, 10, 10) for Date - event not handled...
+\end_layout
+
+\begin_layout Enumerate
 GWT states test + must start in first state
 \end_layout
 

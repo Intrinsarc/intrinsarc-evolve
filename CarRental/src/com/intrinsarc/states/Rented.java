@@ -6,16 +6,15 @@ public class Rented
 {
 // start generated code
 // attributes
-	private Attribute<java.lang.String> renterName = new Attribute<java.lang.String>(null);
+	private String renterName = null;
 // required ports
 	private com.intrinsarc.backbone.runtime.api.ITransition out;
 // provided ports
 	private ITransitionInImpl in_ITransitionProvided = new ITransitionInImpl();
 	private IRentalEventEventsImpl events_IRentalEventProvided = new IRentalEventEventsImpl();
 // setters and getters
-	public Attribute<java.lang.String> getRenterName() { return renterName; }
-	public void setRenterName(Attribute<java.lang.String> renterName) { this.renterName = renterName;}
-	public void setRawRenterName(java.lang.String renterName) { this.renterName.set(renterName);}
+	public java.lang.String getRenterName() { return renterName; }
+	public void setRenterName(java.lang.String renterName) { this.renterName = renterName;}
 	public void setOut_ITransition(com.intrinsarc.backbone.runtime.api.ITransition out) { this.out = out; }
 	public com.intrinsarc.backbone.runtime.api.ITransition getIn_ITransition(Class<?> required) { return in_ITransitionProvided; }
 	public com.intrinsarc.states.IRentalEvent getEvents_IRentalEvent(Class<?> required) { return events_IRentalEventProvided; }
@@ -32,7 +31,7 @@ public class Rented
 
 		public String getRenter()
 		{
-			return renterName.get();
+			return renterName;
 		}
 
 		public boolean isRented()
@@ -47,14 +46,14 @@ public class Rented
 		
 		public void setRenter(String newRenterName)
 		{
-			renterName.set(newRenterName);
+			renterName = newRenterName;
 		}
 
 		@Override
 		public void returnRental()
 		{
 			current = !out.enter();
-			renterName.set(null);
+			renterName = null;
 		}
 		
 		public String toString()

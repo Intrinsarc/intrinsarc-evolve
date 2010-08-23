@@ -46,7 +46,9 @@ public class BBSimpleInstantiatedFactory
 		List<BBSimpleAttribute> attrs = factory.getAttributes();
 		if (attrs != null)
 			for (BBSimpleAttribute attr : attrs)
+			{
 				iattributes.put(attr, attr.instantiate(this, suppliedParameters, setNames));
+			}
 		
 		// we shouldn't have any names left over
 		if (setNames != null && setNames.size() != 0)
@@ -66,8 +68,10 @@ public class BBSimpleInstantiatedFactory
 			// set up the attributes
 			for (BBSimpleSlot s : part.getSlots())
 			{
-				Object simple = iattributes.get(s.getEnvironmentAlias());
-				if (simple == null)
+				Object simple = null;
+				if (iattributes.containsKey(s.getEnvironmentAlias()))
+					simple = iattributes.get(s.getEnvironmentAlias());
+				else
 					simple = parent.resolveAttributeValue(s.getEnvironmentAlias());
 				s.setValue(obj, simple, part.getType());
 			}

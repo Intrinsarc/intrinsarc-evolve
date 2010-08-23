@@ -36,16 +36,16 @@ public class RentalExample1Factory implements IHardcodedFactory
   public RentalExample1Factory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
     purchasedWhen = new Attribute<java.util.Date>(new java.util.Date(105, 10, 25));
-    model = new Attribute<String>("Porsche");
+    model = new Attribute<String>(new java.lang.String("Porsche"));
     purchasedWhen1 = new Attribute<java.util.Date>(new java.util.Date(109, 5, 15));
-    model1 = new Attribute<String>("Mini");
-    renterName = new Attribute<String>(null);
-    renterName1 = new Attribute<String>(null);
-    x6.setModel(model);
+    model1 = new Attribute<String>(new java.lang.String("Mini"));
+    renterName = new Attribute<String>(new java.lang.String(null));
+    renterName1 = new Attribute<String>(new java.lang.String(null));
     x6.setPurchased(purchasedWhen);
+    x6.setModel(model);
     x7.setRenterName(renterName);
-    x1.setModel(model1);
     x1.setPurchased(purchasedWhen1);
+    x1.setModel(model1);
     x2.setRenterName(renterName1);
     c = x2.getDetails_IRenterDetails(com.intrinsarc.cars.IRenterDetails.class);
     c1 = x1.getDetails_IRentalCarDetails(com.intrinsarc.cars.IRentalCarDetails.class);

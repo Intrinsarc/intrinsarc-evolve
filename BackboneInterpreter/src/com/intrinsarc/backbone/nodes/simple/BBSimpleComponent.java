@@ -549,7 +549,7 @@ public class BBSimpleComponent extends BBSimpleElement
 			{
 				if (attr.getPosition() != PositionEnum.TOP)
 					iter.remove();
-				redundant.put(attr, attr.getAlias());
+				redundant.put(attr, getVariableParameter(attr));
 			}
 		}
 		
@@ -595,6 +595,13 @@ public class BBSimpleComponent extends BBSimpleElement
 		}
 	}
 
+	private BBSimpleAttribute getVariableParameter(BBSimpleAttribute attr)
+	{
+		if (attr.getAlias() != null)
+			return attr.getAlias();
+		return attr.getDefaultValue().get(0).getAttribute();
+	}
+
 	private void remapAttributes(Map<BBSimpleAttribute, BBSimpleAttribute> redundant)
 	{
 		if (attributes != null)
@@ -608,7 +615,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	// an attribute is redundant if it is aliased, but it isn't at the top...
 	private boolean isRedundant(BBSimpleAttribute attr)
 	{
-		return attr.getAlias() != null;
+		return attr.getAlias() != null || attr.getDefaultValue().size() == 1 && attr.getDefaultValue().get(0).getAttribute() != null;
 	}
 
 	private BBSimpleFactory getMap(int factory)

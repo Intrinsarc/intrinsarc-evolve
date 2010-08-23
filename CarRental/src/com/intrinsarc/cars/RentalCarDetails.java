@@ -2,8 +2,6 @@ package com.intrinsarc.cars;
 
 import java.util.*;
 
-import com.intrinsarc.backbone.runtime.api.*;
-
 public class RentalCarDetails
 {
 // start generated code
@@ -17,8 +15,8 @@ public class RentalCarDetails
 // setters and getters
 	public java.util.Date getPurchased() { return purchased; }
 	public void setPurchased(java.util.Date purchased) { this.purchased = purchased;}
-	public java.lang.String getModel() { return model; }
-	public void setModel(java.lang.String model) { this.model = model;}
+	public String getModel() { return model; }
+	public void setModel(String model) { this.model = model;}
 	public void setRenter_IRenterDetails(com.intrinsarc.cars.IRenterDetails renter) { this.renter = renter; }
 	public com.intrinsarc.cars.IRentalCarDetails getDetails_IRentalCarDetails(Class<?> required) { return details_IRentalCarDetailsProvided; }
 // end generated code

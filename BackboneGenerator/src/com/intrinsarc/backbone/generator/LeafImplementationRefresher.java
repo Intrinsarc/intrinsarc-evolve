@@ -216,11 +216,6 @@ public class LeafImplementationRefresher
 			writer.newLine();
 			writer.newLine();
 		}
-
-		// write some import statements
-		writer.write("import com.intrinsarc.backbone.runtime.api.*;");
-		writer.newLine();
-		writer.newLine();
 		
 		String className = index == -1 ? fullClassName : fullClassName.substring(index + 1);
 		writer.write("public class " + className);
@@ -378,15 +373,26 @@ public class LeafImplementationRefresher
 		if (size == 0)
 			return "";
 		
-		String s = " = " + implName + "(";
-		if (size == 1 && params.get(0).getAttribute() != null)
+		String s = " = ";
+		boolean single = size == 1;
+		if (single && params.get(0).getAttribute() != null)
 			return s + translateParameter(owner, params.get(0));
+		
+		// handle default
+		if (single && "default".equals(params.get(0).getLiteral()))
+		{
+			if (primitive)
+				return "";
+			if (implName.equals("String"))
+				return s + "\"\"";
+			return s + "new " + implName + "()";
+		}
 
 		// is this primitive?
 		if (primitive && size == 0)
 			return "";
-		if (size == 1 && (primitive || isNull(params.get(0))))
-			return s + translateParameter(owner, params.get(0)) + ")";
+		if (size == 1 && (primitive || isNull(params.get(0)) || implName.equals("String")))
+			return s + translateParameter(owner, params.get(0));
 		else
 		{
 			s += "new " + implName + "(";
@@ -423,6 +429,8 @@ public class LeafImplementationRefresher
 	{    
     if (impl.startsWith(BB_API))
     	impl = impl.substring(BB_API.length());
+    if (impl.startsWith("java.lang."))
+    	impl = impl.substring("java.lang.".length());
     return impl;
 	}
 
