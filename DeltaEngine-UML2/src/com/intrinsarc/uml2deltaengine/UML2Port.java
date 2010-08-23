@@ -124,13 +124,13 @@ public class UML2Port extends DEPort
 	}
 	
 	@Override
-	public boolean isBeanMain()
+	public boolean isForceBeanMain()
 	{
 		return StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.PORT_BEAN_MAIN);
 	}
 	
 	@Override
-	public boolean isBeanNoName()
+	public boolean isForceBeanNoName()
 	{
 		return StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.PORT_BEAN_NO_NAME);
 	}

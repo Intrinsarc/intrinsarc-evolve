@@ -7,16 +7,14 @@ import com.intrinsarc.backbone.runtime.api.*;
 
 public class StateDispatcher implements IStateDispatcher
 {
-// start generated code
 	private java.util.List<IEvent> dDispatch_IEventRequired = new java.util.ArrayList<IEvent>();
-	public void setDDispatch_IEvent(IEvent event, int index) { PortHelper.fill(this.dDispatch_IEventRequired, event, index); }
-	public void removeDDispatch_IEvent(IEvent event) { this.dDispatch_IEventRequired.remove(event); }
+	public void setDDispatch(IEvent event, int index) { PortHelper.fill(this.dDispatch_IEventRequired, event, index); }
+	public void removeDDispatch(IEvent event) { this.dDispatch_IEventRequired.remove(event); }
 	private ITerminal dStart_ITerminalRequired;
-	public void setDStart_ITerminal(ITerminal start) { dStart_ITerminalRequired = start; }
+	public void setDStart(ITerminal start) { dStart_ITerminalRequired = start; }
 	private java.util.List<ITerminal> dEnd_ITerminalRequired = new java.util.ArrayList<ITerminal>();
-	public void setDEnd_ITerminal(ITerminal end, int index) { PortHelper.fill(this.dEnd_ITerminalRequired, end, index); }
-	public void removeDEnd_ITerminal(ITerminal end) { dEnd_ITerminalRequired.remove(end); }
-// end generated code
+	public void setDEnd(ITerminal end, int index) { PortHelper.fill(this.dEnd_ITerminalRequired, end, index); }
+	public void removeDEnd(ITerminal end) { dEnd_ITerminalRequired.remove(end); }
 	
 	private IEvent proxy;
 	private IEvent current;
@@ -74,7 +72,7 @@ public class StateDispatcher implements IStateDispatcher
 		}
 	};
 	
-	public IEvent getDEvents_IEvent(Class<?> required)
+	public IEvent getDEvents(Class<?> required)
 	{
 		if (proxy == null)
 		{

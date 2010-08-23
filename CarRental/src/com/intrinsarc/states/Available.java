@@ -3,58 +3,56 @@ package com.intrinsarc.states;
 import com.intrinsarc.backbone.runtime.api.*;
 
 public class Available
-{
 // start generated code
-// attributes
-// required ports
+
+  // main port
+  implements com.intrinsarc.states.IRentalEvent
+{
+  // required ports
 	private com.intrinsarc.backbone.runtime.api.ITransition out;
-// provided ports
-	private ITransitionInImpl in_ITransitionProvided = new ITransitionInImpl();
-	private IRentalEventEventsImpl events_IRentalEventProvided = new IRentalEventEventsImpl();
-// setters and getters
-	public void setOut_ITransition(com.intrinsarc.backbone.runtime.api.ITransition out) { this.out = out; }
-	public com.intrinsarc.backbone.runtime.api.ITransition getIn_ITransition(Class<?> required) { return in_ITransitionProvided; }
-	public com.intrinsarc.states.IRentalEvent getEvents_IRentalEvent(Class<?> required) { return events_IRentalEventProvided; }
+  // provided ports
+	private ITransitionInImpl in_Provided = new ITransitionInImpl();
+
+  // port setters and getters
+	public void setOut(com.intrinsarc.backbone.runtime.api.ITransition out) { this.out = out; }
+	public com.intrinsarc.backbone.runtime.api.ITransition getIn_Provided() { return in_Provided; }
 // end generated code
 
 	private boolean current;
 
-	private class IRentalEventEventsImpl implements com.intrinsarc.states.IRentalEvent
+	public boolean isCurrent()
 	{
-		public boolean isCurrent()
-		{
-			return current;
-		}
+		return current;
+	}
 
-		public boolean isRented()
-		{
-			return false;
-		}
+	public boolean isRented()
+	{
+		return false;
+	}
 
-		public void rent()
-		{
-			current = !out.enter();
-		}
+	public void rent()
+	{
+		current = !out.enter();
+	}
 
-		public void returnRental()
-		{
-			// does nothing in this state
-		}
+	public void returnRental()
+	{
+		// does nothing in this state
+	}
 
-		public void setRenter(String name)
-		{
-			throw new IllegalStateException("Cannot set renter as car is currently available");
-		}
-		
-		public String toString()
-		{
-			return "available";
-		}
+	public void setRenter(String name)
+	{
+		throw new IllegalStateException("Cannot set renter as car is currently available");
+	}
+	
+	public String toString()
+	{
+		return "available";
+	}
 
-		public String getRenter()
-		{
-			return "";
-		}
+	public String getRenter()
+	{
+		return "";
 	}
 
 	private class ITransitionInImpl implements ITransition

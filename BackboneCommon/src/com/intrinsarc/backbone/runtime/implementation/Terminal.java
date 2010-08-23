@@ -9,16 +9,15 @@ public class Terminal implements IStateTerminalComponent
 {
 // start generated code
 	private ITransition out_ITransitionRequired;
-	public void setOut_ITransition(ITransition out) { out_ITransitionRequired = out; }
+	public void setOut(ITransition out) { out_ITransitionRequired = out; }
 	private ITerminal terminal_ITerminalProvided = new ITerminalImpl();
-	public ITerminal getTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }
 // end generated code
 	
 	// the below is to work around a limitation with the backbone parser where both start and end
 	// terminals expect to refer to the same port by different uuids.
 	// alternative would be to make a separate Start and End class.
-	public ITerminal getStartTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }
-	public ITerminal getEndTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }
+	public ITerminal getStartTerminal_Provided() { return terminal_ITerminalProvided; }
+	public ITerminal getEndTerminal_Provided() { return terminal_ITerminalProvided; }
 	
 	private boolean current;
 	private Method savedMethod;
@@ -60,7 +59,7 @@ public class Terminal implements IStateTerminalComponent
 	}
 
 	private ITransition proxy;
-	public ITransition getIn_ITransition(Class<?> required)
+	public ITransition getIn(Class<?> required)
 	{
 		if (proxy == null)
 		{

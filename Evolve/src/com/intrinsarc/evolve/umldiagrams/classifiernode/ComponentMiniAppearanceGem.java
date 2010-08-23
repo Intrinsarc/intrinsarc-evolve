@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -264,6 +265,47 @@ public class ComponentMiniAppearanceGem implements Gem
 			code.setIcon(FLAT_ICON);
 			menu.add(code);
 			code.addActionListener(new FlattenedTreeMaker(coordinator, figureFacet).makeTree());
+			
+			// get the perspective
+			Package pkg = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet());
+			final DEStratum perspective = GlobalDeltaEngine.engine.locateObject(pkg).asStratum();					
+			final DEComponent comp = GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asComponent();
+
+			// display the port details
+			if (comp.isLeaf(perspective))
+			{
+				JMenuItem ports = new JMenuItem("Display bean port information");
+				ports.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						List<DEPort> mains = comp.getBeanMainPorts(perspective);
+						List<DEPort> nonames = comp.getBeanNoNamePorts(perspective);
+						
+						String p = "<html><b>Bean main-ports</b>";
+						for (DEPort port : mains)
+							p += "<br>&nbsp;&nbsp;&nbsp;&nbsp;" + port.getName();
+						p += "<br><br><hr><br><b>Bean no-name ports</b>";
+						for (DEPort port : nonames)
+							p += "<br>&nbsp;&nbsp;&nbsp;&nbsp;" + port.getName();
+						
+						JTextPane area = new JTextPane();
+						area.setContentType("text/html");
+						area.setText(p);
+						area.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+						JScrollPane pane = new JScrollPane(area);
+						pane.setPreferredSize(new Dimension(400, 200));
+						coordinator.invokeAsDialog(
+								null,
+								"Bean port information",
+								pane,
+								null,
+								0,
+								null);
+					}
+				});
+				menu.add(ports);
+			}
 
 			Utilities.addSeparator(menu);
 		}

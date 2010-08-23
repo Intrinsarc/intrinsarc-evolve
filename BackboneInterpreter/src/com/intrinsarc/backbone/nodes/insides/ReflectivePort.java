@@ -14,11 +14,13 @@ public class ReflectivePort
   /** for things that resolve to methods */
   private Method getSingle;
   private Method getIndexed;
+  private Method getSingleSimple;
+  private Method getIndexedSimple;
   private Method setSingle;
   private Method addNoIndexed;
   private Method addIndexed;
   private Method removeMany;
-  private boolean isBean;
+  private boolean isLegacyBean;
   
   public ReflectivePort(
   		BBSimpleComponent partType,
@@ -29,7 +31,7 @@ public class ReflectivePort
     this.port = port;
     partTypeClass = partType.getImplementationClass();
     portName = port.getRawName();
-    isBean = partType.isLegacyBean();
+    isLegacyBean = partType.isLegacyBean();
     if (!required)
       resolveGets(iface, port.isIndexed());
     else
@@ -39,105 +41,74 @@ public class ReflectivePort
   private void resolveGets(Class<?> iface, boolean many) throws BBImplementationInstantiationException
   {
     // main is just the object itself
-    if (port.getComplexPort().isBeanMain())
+    if (port.isBeanMain())
       return;
     
     // look for a method if this is a bean
-    if (isBean)
+    boolean cp = port.isComplexProvided();
+    String extra = cp ? iface.getSimpleName() : "";
+    String tried[] = {""};
+
+    String methodName = "get" + upperFirst(portName) + extra + "_Provided";
+    if (!many)
     {
-    	if (many)
-        throw new BBImplementationInstantiationException("Beans cannot support ports that provide many: " + portName + " of " + partTypeClass, partType);
-    		
-      String methodName = "get" + (many ? makeSingular(portName) : upperFirst(portName));
-      getSingle = resolveMethod(methodName, null);
+    	getSingle = resolveMethod(
+    			methodName,
+    			new Class<?>[]{Class.class},
+    			tried);
+    	getSingleSimple = resolveMethod(
+    			methodName,
+    			new Class<?>[]{},
+    			tried);
     }
     else
     {
-      String methodName = "get" + upperFirst(portName) + "_" + getInterfaceName(iface);
-      if (!many)
-      getSingle = resolveMethod(
-          methodName,
-          new Class<?>[]{Class.class});
       getIndexed = resolveMethod(
           methodName,
-          new Class<?>[]{Class.class, int.class});    		
+          new Class<?>[]{Class.class, int.class},
+          tried);    		
+      getIndexedSimple = resolveMethod(
+          methodName,
+          new Class<?>[]{int.class},
+          tried);
     }
 
-    if (getSingle == null && getIndexed == null)
-      throw new BBImplementationInstantiationException("Cannot find method for getting port " + portName + " of " + partTypeClass, partType);
-    
-    if (isBean)
-    {
-    	if (many)
-    	{
-        String methodName2 = "remove" + (port.getComplexPort().isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
-        removeMany = resolveMethod(
-            methodName2,
-            new Class<?>[]{iface});
-        if (removeMany == null)
-          throw new BBImplementationInstantiationException("Cannot find method for removing provided port " + portName + " of " + partTypeClass, partType);
-    	}
-    }
-    else
-    {
-      if (many)
-      {
-        String methodName2 = "remove" + upperFirst(portName) + "_" + getInterfaceName(iface);
-        removeMany = resolveMethod(
-            methodName2,
-            new Class<?>[]{iface});
-        if (removeMany == null)
-          throw new BBImplementationInstantiationException("Cannot find method for removing provided port " + portName + " of " + partTypeClass, partType);
-      }
-    }
+    if (getSingle == null && getIndexed == null && getSingleSimple == null && getIndexedSimple == null)
+      throw new BBImplementationInstantiationException("Cannot find method for getting port " + portName + " of " + partTypeClass + ", tried " + tried[0], partType);
   }
 
   private void resolveSets(Class<?> iface, boolean many) throws BBImplementationInstantiationException
   {
-    if (isBean)
-    {
-    	if (!many)
-    	{
-    		String methodName = "set" + upperFirst(portName);
-    		setSingle = resolveMethod(
-            methodName,
-            new Class<?>[]{iface});
-    	}
-    	else
-    	{
-        String methodName = "add" + (port.getComplexPort().isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
-        addNoIndexed = resolveMethod(
-            methodName,
-            new Class<?>[]{iface});
-        String methodName2 = "remove" + (port.getComplexPort().isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
-        removeMany = resolveMethod(
-            methodName2,
-            new Class<?>[]{iface});
-    	}
-    }
-    else
-    {
-      String methodName = "set" + upperFirst(portName) + "_" + getInterfaceName(iface);
-      if (!many)
-      {
-	      setSingle = resolveMethod(
-	          methodName,
-	          new Class<?>[]{iface});
-      }
-      else
-      {
-        addIndexed = resolveMethod(
-            methodName,
-            new Class<?>[]{iface, int.class});
-        String methodName2 = "remove" + upperFirst(portName) + "_" + getInterfaceName(iface);
-        removeMany = resolveMethod(
-            methodName2,
-            new Class<?>[]{iface});
-      }
-    }
+  	String tried[] = {""};
+  	if (!many)
+  	{
+  		String methodName = "set" + upperFirst(portName);
+  		setSingle = resolveMethod(
+          methodName,
+          new Class<?>[]{iface},
+          tried);
+  	}
+  	else
+  	{
+      String methodName = "set" + upperFirst(portName);
+      addIndexed = resolveMethod(
+          methodName,
+          new Class<?>[]{iface, int.class},
+          tried);
+      methodName = "add" + (port.isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
+      addNoIndexed = resolveMethod(
+          methodName,
+          new Class<?>[]{iface},
+          tried);
+      String methodName2 = "remove" + (port.isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
+      removeMany = resolveMethod(
+          methodName2,
+          new Class<?>[]{iface},
+          tried);
+  	}
  
     if (setSingle == null && addNoIndexed == null && addIndexed == null)
-      throw new BBImplementationInstantiationException("Cannot find method for setting port " + portName + " of " + partTypeClass + ", bean = " + isBean, partType);      
+      throw new BBImplementationInstantiationException("Cannot find method for setting port " + portName + " of " + partTypeClass + ", tried " + tried[0], partType);      
   }
 
   private String makeSingular(String name)
@@ -147,12 +118,7 @@ public class ReflectivePort
   	return name;
 	}
 
-	private String getInterfaceName(Class<?> iface)
-  {
-    return iface.getSimpleName();
-  }
-
-  private Method resolveMethod(String name, Class<?>[] paramClasses) throws BBImplementationInstantiationException
+  private Method resolveMethod(String name, Class<?>[] paramClasses, String[] tried) throws BBImplementationInstantiationException
   {
     try
     {
@@ -164,11 +130,30 @@ public class ReflectivePort
     }
     catch (NoSuchMethodException e)
     {
+    	if (tried[0].length() > 0)
+    		tried[0] += " / ";
+    	tried[0] += name + "(" + stringify(paramClasses) + ")";
+    		
       return null;
     }
   }
 
-  private String upperFirst(String str)
+  private String stringify(Class<?>[] paramClasses)
+	{
+  	if (paramClasses == null)
+  		return "";
+  	
+  	String params = "";
+  	for (Class<?> cls : paramClasses)
+  	{
+  		if (params.length() > 0)
+  			params += ", ";
+  		params += cls.getSimpleName();
+  	}
+  	return params;
+	}
+
+	private String upperFirst(String str)
   {
     if (str.length() > 1)
       return Character.toUpperCase(str.charAt(0)) + str.substring(1);
@@ -178,14 +163,17 @@ public class ReflectivePort
   public Object getSingle(Class<?> required, Object target) throws BBRuntimeException
   {
     // if this is main, return the target
-    if (port.getComplexPort().isBeanMain())
+    if (port.isBeanMain())
       return target;
     
     try
     {
       if (getSingle != null)
-          return getSingle.invoke(target, required);
-      else      
+        return getSingle.invoke(target, required);
+      else
+      if (getSingleSimple != null)
+        return getSingleSimple.invoke(target, (Object[]) null);
+      else
         throw new BBRuntimeException("No single getXXX(...) method or field for port " + portName + " in class " + partTypeClass, partType);
     }
     catch (IllegalArgumentException e)
@@ -206,12 +194,18 @@ public class ReflectivePort
   public Object getIndexed(Class<?> required, Object target, int index) throws BBRuntimeException
   {
     // can't use an index on a bean
-    if (isBean)
+    if (isLegacyBean)
       throw new BBRuntimeException("Cannot use an index with a bean getXXX(...) method", port.getOwner());                
 
     try
-		{
-			return getIndexed.invoke(target, required, index);
+    {
+    	if (getIndexed != null)
+    		return getIndexed.invoke(target, required, index);
+    	else
+    	if (getIndexedSimple != null)
+    		return getIndexedSimple.invoke(target, index);
+    	else
+        throw new BBRuntimeException("No indexed getXXX(...) method or field for port " + portName + " in class " + partTypeClass, partType);
 		}
     catch (IllegalArgumentException e)
     {
@@ -238,7 +232,10 @@ public class ReflectivePort
     try
     {
       if (setSingle != null)
+      {
+      	System.out.println("$$ invoking setsingle: method = " + setSingle + ", target = " + target + ", value = " + value.getClass().getSimpleName());
         setSingle.invoke(target, value);
+      }
       else
         throw new BBRuntimeException("No single setXXX(...) method or field for port " + portName + " in class " + partTypeClass, partType);
     }
@@ -291,16 +288,16 @@ public class ReflectivePort
   public void addIndexed(Object target, Object value, int index) throws BBRuntimeException
   {
     // can't use an index on a bean
-    if (isBean && index != -1)
+    if (isLegacyBean && index != -1)
       throw new BBRuntimeException("Cannot use an index with a bean addXXX(...) method: index = " + index + " of port " + port.getName() + ", when upper bound is " + port.getUpperBound(), port.getOwner());
 
     try
     {
-      if (addNoIndexed != null)
-        addNoIndexed.invoke(target, value);
-      else
       if (addIndexed != null)
       	addIndexed.invoke(target, value, index);
+      else
+      if (addNoIndexed != null)
+        addNoIndexed.invoke(target, value);
       else
         throw new BBRuntimeException("No addXXX(...) method for port " + portName + " in class " + partTypeClass, partType);
     }

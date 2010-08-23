@@ -384,7 +384,7 @@ public class HardcodedCompositeWriter
 				{
 					if (bean)
 					{
-						if (otherPort.isBeanMain())
+						if (otherPort.isForceBeanMain())
 							s.append("    " + otherPartName + ".add(iface);\n");
 						else
 							s.append("    " + otherPartName + ".add" + otherPortName + "(iface);\n");
@@ -536,7 +536,7 @@ public class HardcodedCompositeWriter
 		{
 			if (bean)
 			{
-				if (port.isBeanNoName())
+				if (port.isForceBeanNoName())
 					s.append("    " + partName + ".add(" + get + ");\n");
 				else
 					s.append("    " + partName + ".add" + portName + "(" + get + ");\n");
@@ -593,7 +593,7 @@ public class HardcodedCompositeWriter
 		{
 			if (bean)
 			{
-				if (port.isBeanMain())
+				if (port.isForceBeanMain())
 					s.append(partName);
 				else
 					s.append(partName + ".get" + portName + "(" + shouldProvide + ".class)");

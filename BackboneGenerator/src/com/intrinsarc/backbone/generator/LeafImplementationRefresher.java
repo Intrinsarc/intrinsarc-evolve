@@ -222,8 +222,6 @@ public class LeafImplementationRefresher
 		String className = index == -1 ? fullClassName : fullClassName.substring(index + 1);
 		writer.write("public class " + className);
 		writer.newLine();
-		writer.write("{");
-		writer.newLine();
 	}
 	
 	private Map<String, String> makeGeneratedCode(BufferedWriter writer) throws IOException
@@ -234,39 +232,76 @@ public class LeafImplementationRefresher
 		writer.write(START_GENERATED_CODE);
 		writer.newLine();
 		
-		writer.write("// attributes");				
-		writer.newLine();
-		
-		// write all the properties -- NOTE that since a leaf cannot be resembled or substituted, we can use add objects
-		for (DeltaPair pair : leaf.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective))
+		// get the main port
+		List<DEPort> mains = leaf.getBeanMainPorts(perspective);
+		List<DEPort> nonames = leaf.getBeanNoNamePorts(perspective);
+		if (mains.size() == 1)
 		{
-			DEAttribute property = pair.getConstituent().asAttribute();
-			if (property.isSuppressGeneration())
-				continue;
-			
-	    // for low level attributes, take the implementation class name in preference
-	    DEElement type = property.getType();
-	    String preImpl = removeRedundantPrefixes(type.getImplementationClass(perspective));
-	    String impl = PrimitiveHelper.translateLongToShortPrimitive(preImpl);
-
-			String name = property.getName();
-			writer.write("\tprivate " + impl + " " + name);
-			writer.write(makeInitializer(leaf, property, preImpl, preImpl.length() != impl.length()));
-			writer.write(";");
 			writer.newLine();
-			// add a method to either get or set
-			String up = upper(name);
-			if (!property.isWriteOnly())
+			writer.write("  // main port");		
+			writer.newLine();
+			Set<? extends DEInterface> provided = mains.get(0).getSetProvidedInterfaces();
+			int lp = 0;
+			writer.write("  implements ");
+			for (DEInterface iface : provided)
 			{
-				complexWriter.write("\tpublic " + preImpl + " get" + up + "() { return " + name + "; }");
-				complexWriter.newLine();
+				if (lp++ != 0)
+					writer.write(", ");
+				writer.write(iface.getImplementationClass(perspective));
 			}
-			if (!property.isReadOnly())
-			{
-				complexWriter.write("\tpublic void set" + up + "(" + preImpl + " " + name + ") { this." + name + " = " + name + ";}");
-				complexWriter.newLine();
-			}
+			writer.newLine();
 		}
+		writer.write("{");
+		writer.newLine();
+
+		Set<DeltaPair> attrPairs = leaf.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective);
+		if (!attrPairs.isEmpty())
+		{
+			writer.write("  // attributes");				
+			writer.newLine();
+			
+			// write all the attributes
+			for (DeltaPair pair : attrPairs)
+			{
+				DEAttribute property = pair.getConstituent().asAttribute();
+				if (property.isSuppressGeneration())
+					continue;
+				
+		    // for low level attributes, take the implementation class name in preference
+		    DEElement type = property.getType();
+		    String preImpl = removeRedundantPrefixes(type.getImplementationClass(perspective));
+		    String impl = PrimitiveHelper.translateLongToShortPrimitive(preImpl);
+	
+				String name = property.getName();
+				writer.write("\tprivate " + impl + " " + name);
+				writer.write(makeInitializer(leaf, property, preImpl, preImpl.length() != impl.length()));
+				writer.write(";");
+				writer.newLine();
+				// add a method to either get or set
+				String up = upper(name);
+				if (!property.isWriteOnly())
+				{
+					complexWriter.write("\tpublic " + preImpl + " get" + up + "() { return " + name + "; }");
+					complexWriter.newLine();
+				}
+				if (!property.isReadOnly())
+				{
+					complexWriter.write("\tpublic void set" + up + "(" + preImpl + " " + name + ") { this." + name + " = " + name + ";}");
+					complexWriter.newLine();
+				}
+			}
+			
+			writer.newLine();
+			writer.append("  // attribute setters and getters");
+			writer.newLine();
+			complexWriter.flush();
+			writer.append(complex.toString());
+			writer.newLine();
+		}
+		
+		// start complex again
+		complex = new StringWriter();
+		complexWriter = new BufferedWriter(complex);
 		
 		// keep track of any new type names
 		Map<String, String> newTypes = new HashMap<String, String>();
@@ -275,15 +310,15 @@ public class LeafImplementationRefresher
 		for (int lp = 0; lp < 2; lp++)
 		{
 			if (lp == 0)
-				writer.write("// required ports");
+				writer.write("  // required ports");
 			else
-				writer.write("// provided ports");				
+				writer.write("  // provided ports");				
 			writer.newLine();
 
 			for (DeltaPair pair : leaf.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
 			{
 				DEPort port = pair.getConstituent().asPort();
-				if (port.getPortKind() == PortKindEnum.CREATE || port.isSuppressGeneration())
+				if (port.getPortKind() == PortKindEnum.CREATE || port.isSuppressGeneration()|| mains.contains(port))
 					continue;
 				
 				// does this have multiplicty
@@ -299,14 +334,17 @@ public class LeafImplementationRefresher
 						String tname = getAfterLastDot(iname);
 						String pname = port.getName();
 						String vname = first ? pname : pname + "_" + tname + "Required";
-						String mname = "set" + upper(pname) + "_" + tname;
+						String mname = "set" + upper(pname);
+						String aname = "add" + (nonames.contains(port) ? "" : upper(pname));
 						
 						if (many)
 						{
-							String mname2 = "remove" + upper(pname) + "_" + tname;
+							String mname2 = "remove" + upper(pname);
 							writer.write("\tprivate java.util.List<" + iname + "> " + vname + " = new java.util.ArrayList<" + iname + ">();");
 							writer.newLine();
 							complexWriter.write("\tpublic void " + mname + "(" + iname + " " + vname + ", int index) { PortHelper.fill(this." + vname + ", " + vname + ", index); }");					
+							complexWriter.newLine();
+							complexWriter.write("\tpublic void " + aname + "(" + iname + " " + vname + ") { PortHelper.fill(this." + vname + ", " + vname + ", -1); }");					
 							complexWriter.newLine();
 							complexWriter.write("\tpublic void " + mname2 + "(" + iname + " " + vname + ") { PortHelper.remove(this." + vname + ", " + vname + "); }");					
 						}
@@ -325,14 +363,15 @@ public class LeafImplementationRefresher
 				// for provided, generate an instance var of the correct multiplicity
 				if (lp == 1)
 				{
+					boolean complexPort = port.getSetProvidedInterfaces().size() > 1;
 					for (DEInterface provided : port.getSetProvidedInterfaces())
 					{
 						String iname = provided.getImplementationClass(perspective);
 						String tname = getAfterLastDot(iname);
 						String pname = port.getName();
-						String vname = pname + "_" + tname + "Provided";
-						String mname = "get" + upper(pname) + "_" + tname;
-						String rmname = "remove" + upper(pname) + "_" + tname;
+						String vname = pname + (complexPort ? tname : "") + "_Provided";
+						String mname = "get" + upper(pname) + "_Provided";
+						String rmname = "remove" + upper(pname);
 						String newTypeName = tname + upper(pname) + "Impl";
 						newTypes.put(newTypeName, iname);
 						
@@ -340,7 +379,7 @@ public class LeafImplementationRefresher
 						{
 							writer.write("\tprivate java.util.List<" + newTypeName + "> " + " " + vname + " = new java.util.ArrayList<" + newTypeName + ">();");
 							writer.newLine();
-							complexWriter.write("\tpublic " + iname + " " + mname + "(Class<?> provided, int index) { return PortHelper.fill(" + vname + ", new " + newTypeName + "(), index); }");
+							complexWriter.write("\tpublic " + iname + " " + mname + "(int index) { return PortHelper.fill(" + vname + ", new " + newTypeName + "(), index); }");
 							complexWriter.newLine();
 							complexWriter.write("\tpublic void " + rmname + "(" + iname + "  provided) { PortHelper.remove(" + vname + ", provided); }");
 						}
@@ -348,7 +387,7 @@ public class LeafImplementationRefresher
 						{
 							writer.write("\tprivate " + newTypeName + " " + vname + " = new " + newTypeName + "();");
 							writer.newLine();
-							complexWriter.write("\tpublic " + iname + " " + mname + "(Class<?> required) { return " + vname + "; }");					
+							complexWriter.write("\tpublic " + iname + " " + mname + "() { return " + vname + "; }");					
 						}
 						complexWriter.newLine();
 					}
@@ -356,7 +395,8 @@ public class LeafImplementationRefresher
 			}
 		}
 
-		writer.append("// setters and getters");
+		writer.newLine();
+		writer.append("  // port setters and getters");
 		writer.newLine();
 		complexWriter.flush();
 		writer.append(complex.toString());

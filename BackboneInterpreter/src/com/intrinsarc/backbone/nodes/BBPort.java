@@ -20,8 +20,8 @@ public class BBPort extends DEPort implements INode, Serializable
   private Set<DEInterface> setRequires;
   private Boolean suppressGeneration;
 	private List<DEAppliedStereotype> appliedStereotypes;
-	private boolean beanMain;
-	private boolean beanNoName;
+	private boolean forceBeanMain;
+	private boolean forceBeanNoName;
 	private PortKindEnum portKind = PortKindEnum.NORMAL;
 	private Boolean ordered;
  
@@ -164,26 +164,26 @@ public class BBPort extends DEPort implements INode, Serializable
 		return appliedStereotypes == null ? new ArrayList<DEAppliedStereotype>() : appliedStereotypes;
 	}
 
-	public void setBeanMain(boolean beanMain)
+	public void setForceBeanMain(boolean beanMain)
 	{
-		this.beanMain = beanMain;
+		this.forceBeanMain = beanMain;
 	}
 	
-	public void setBeanNoName(boolean beanNoName)
+	public void setForceBeanNoName(boolean beanNoName)
 	{
-		this.beanNoName = beanNoName;
+		this.forceBeanNoName = beanNoName;
 	}
 	
 	@Override
-	public boolean isBeanMain()
+	public boolean isForceBeanMain()
 	{
-		return beanMain;
+		return forceBeanMain;
 	}
 
 	@Override
-	public boolean isBeanNoName()
+	public boolean isForceBeanNoName()
 	{
-		return beanNoName;
+		return forceBeanNoName;
 	}
 
 	public void setPortKind(PortKindEnum portKind)

@@ -125,6 +125,44 @@ public class ComponentErrorChecker
     // leaf checks
     if (!component.canBeDecomposed(perspective))
     {
+    	// must have at most one main port
+    	List<DEPort> mains = component.getBeanMainPorts(perspective); 
+    	if (mains.size() > 1)
+        errors.addError(
+            new ErrorLocation(perspective, component), ErrorCatalog.AT_MOST_ONE_BEAN_MAIN_PORT);
+    	
+    	// each main should have only provided ports
+    	if (mains.size() == 1)
+    	{
+    		DEPort main = mains.get(0);
+    		if (!main.getSetRequiredInterfaces().isEmpty() ||
+    				main.getSetProvidedInterfaces().isEmpty() ||
+    				main.isMany())
+    		{
+          errors.addError(
+              new ErrorLocation(perspective, component, main), ErrorCatalog.BEAN_MAIN_NOT_SUITABLE);
+    		}
+    	}
+    	
+    	// must have at most one no-name port
+    	List<DEPort> nonames = component.getBeanNoNamePorts(perspective); 
+    	if (nonames.size() > 1)
+        errors.addError(
+            new ErrorLocation(perspective, component), ErrorCatalog.AT_MOST_ONE_BEAN_NO_NAME_PORT);
+    	
+    	// each noname port should have only requires, and be indexed
+    	if (nonames.size() == 1)
+    	{
+    		DEPort noname = nonames.get(0);
+    		if (!noname.getSetProvidedInterfaces().isEmpty() ||
+    				noname.getSetRequiredInterfaces().isEmpty() ||
+    				!noname.isMany())
+    		{
+          errors.addError(
+              new ErrorLocation(perspective, component, noname), ErrorCatalog.BEAN_NO_NAME_NOT_SUITABLE);
+    		}
+    	}
+    	
       // check that the port links imply mirror interface arrangements
       for (DeltaPair pair : component.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
       {

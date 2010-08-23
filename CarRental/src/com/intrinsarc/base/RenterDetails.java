@@ -2,35 +2,26 @@ package com.intrinsarc.base;
 
 
 public class RenterDetails
-{
 // start generated code
-// attributes
-	private String renterName = null;
-// required ports
-// provided ports
-	private IRenterDetailsDetailsImpl details_IRenterDetailsProvided = new IRenterDetailsDetailsImpl();
-// setters and getters
-	public String getRenterName() { return renterName; }
-	public void setRenterName(String renterName) { this.renterName = renterName;}
-	public com.intrinsarc.base.IRenterDetails getDetails_IRenterDetails(Class<?> required) { return details_IRenterDetailsProvided; }
+
+  // main port
+  implements com.intrinsarc.base.IRenterDetails
+{
+  // attributes
+	private String renter = null;
+
+  // attribute setters and getters
+	public String getRenter() { return renter; }
+	public void setRenter(String renter) { this.renter = renter;}
+
+  // required ports
+  // provided ports
+
+  // port setters and getters
 // end generated code
-
-
-	private class IRenterDetailsDetailsImpl implements com.intrinsarc.base.IRenterDetails
+	
+	public boolean isRented()
 	{
-		public void setRenter(String renter)
-		{
-			renterName = renter;
-		}
-		
-		public String getRenter()
-		{
-			return renterName;
-		}
-
-		public boolean isRented()
-		{
-			return renterName != null && renterName.length() > 0;
-		}
+		return renter != null && renter.length() > 0;
 	}
 }

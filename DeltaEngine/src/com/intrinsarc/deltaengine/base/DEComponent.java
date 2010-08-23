@@ -10,17 +10,17 @@ public abstract class DEComponent extends DEElement
 	public static final String LIFECYCLE_CALLBACKS_PROPERTY    = "lifecycle-callbacks";
   public static final String PROTOCOLS_PROPERTY              = "protocols";
 
-	private transient Map<PortPartPerspective, DELinks> cachedLinks;
-	private transient Map<PortPartPerspective, Set<? extends DEInterface>> cachedProvided;
-	private transient Map<PortPartPerspective, Set<? extends DEInterface>> cachedRequired;
-	private transient Map<PortPartPerspective, Set<DELinkEnd>> cachedVisitedTerminals;
-	private transient Map<PortPartPerspective, Set<DELinkEnd>> cachedVisitedIntoParts;
-	private transient Map<PortPartPerspective, Set<DELinkEnd>> cachedVisitedOutOfParts;
-	private transient Map<PortPartPerspective, Set<DEPort>> cachedVisitedPorts;
-	private transient Map<DEStratum, Set<DEConnector>> cachedImproperlyMatched;
-	private transient Map<DEStratum, DELinks> cachedPortLinks = new HashMap<DEStratum, DELinks>();
-	private transient Map<DEStratum, DELinks> cachedCompositeLinks = new HashMap<DEStratum, DELinks>();
-	private transient Map<DEStratum, DELinks> cachedCompositeLinksAll = new HashMap<DEStratum, DELinks>();
+	private Map<PortPartPerspective, DELinks> cachedLinks;
+	private Map<PortPartPerspective, Set<? extends DEInterface>> cachedProvided;
+	private Map<PortPartPerspective, Set<? extends DEInterface>> cachedRequired;
+	private Map<PortPartPerspective, Set<DELinkEnd>> cachedVisitedTerminals;
+	private Map<PortPartPerspective, Set<DELinkEnd>> cachedVisitedIntoParts;
+	private Map<PortPartPerspective, Set<DELinkEnd>> cachedVisitedOutOfParts;
+	private Map<PortPartPerspective, Set<DEPort>> cachedVisitedPorts;
+	private Map<DEStratum, Set<DEConnector>> cachedImproperlyMatched;
+	private Map<DEStratum, DELinks> cachedPortLinks = new HashMap<DEStratum, DELinks>();
+	private Map<DEStratum, DELinks> cachedCompositeLinks = new HashMap<DEStratum, DELinks>();
+	private Map<DEStratum, DELinks> cachedCompositeLinksAll = new HashMap<DEStratum, DELinks>();
 
 	public Set<DELinkEnd> getCachedVisitedIntoParts(DEStratum perspective, DEPort port, DEPart part)
 	{
@@ -771,5 +771,84 @@ public abstract class DEComponent extends DEElement
 		if (protocol == null || protocol.trim().length() == 0)
 			return null;
 		return protocol;
+	}
+	
+	/**
+	 * special port method for bean compatibility
+	 * if this has only provideds, and is not indexed, then it is a main port
+	 * only one port can be this, as it determines the interfaces implemented by the bean
+	 * -- if there are more than one, a single  one can be forced by indicating it is the bean-main port
+	 */
+	public List<DEPort> getBeanMainPorts(DEStratum perspective)
+	{
+		List<DEPort> mains = new ArrayList<DEPort>();
+		
+		// see if any port is forced
+		for (DeltaPair pair : getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
+		{
+			DEPort port = pair.getConstituent().asPort();
+			
+			if (port.isForceBeanMain())
+				mains.add(port);
+		}
+		
+		// if we have a forced main, then just return now
+		if (mains.size() > 0)
+			return mains;
+		
+		// otherwise, look for any port with just provides
+		for (DeltaPair pair : getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
+		{
+			DEPort port = pair.getConstituent().asPort();
+			
+			if (getProvidedInterfaces(perspective, port).size() > 0 &&
+					getRequiredInterfaces(perspective, port).size() == 0 &&
+					!port.isMany())
+			{
+				mains.add(port);
+			}
+		}
+		
+		// sort alphabetically
+		Collections.sort(mains,
+				new Comparator<DEPort>()
+				{
+					public int compare(DEPort o1, DEPort o2)
+					{
+						return o1.getRawName().compareTo(o2.getRawName());
+					}
+				});
+			
+		if (mains.size() == 0)
+			return mains;
+		
+		// otherwise, just take the first alphabetically
+		DEPort main = mains.get(0);
+		mains.clear();
+		mains.add(main);
+		return mains;
+	}
+	
+	/**
+	 * special port method for bean compatibility
+	 * if this has only requires, and it is indexed, then it can be a noname port, so called because it will turn into an add() method
+	 * only one port can be this, it is an error to have more than one noname port
+	 * -- if there are more than one, a single one can be forced by indicating it is the bean-no-name port
+	 */
+	public List<DEPort> getBeanNoNamePorts(DEStratum perspective)
+	{
+		List<DEPort> nonames = new ArrayList<DEPort>();
+		
+		// see if any port is forced
+		for (DeltaPair pair : getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
+		{
+			DEPort port = pair.getConstituent().asPort();
+			
+			if (port.isForceBeanNoName())
+				nonames.add(port);
+		}
+
+		// never force a noname port, they are ugly
+		return nonames;
 	}
 }

@@ -13,9 +13,12 @@ public class BBSimplePort extends BBSimpleObject
 	private List<BBSimpleInterface> requires;
   private int upperBound;
   private int lowerBound;
-	private transient DEPort complex;
-	private transient boolean resolved;
-	private transient BBSimpleComponent owner;
+	private DEPort complex;
+	private boolean resolved;
+	private BBSimpleComponent owner;
+	private boolean beanMain;
+	private boolean beanNoName;
+	private boolean complexProvided;
 	
 	public BBSimplePort(BBSimpleElementRegistry registry, DEComponent component, DEPort port, BBSimpleComponent owner)
 	{
@@ -39,6 +42,13 @@ public class BBSimplePort extends BBSimpleObject
 				requires.add(registry.retrieveInterface(req));
 		}
 		complex = port;
+		
+		// is this a bean main?
+		beanMain = component.getBeanMainPorts(registry.getPerspective()).contains(complex);
+		beanNoName = component.getBeanNoNamePorts(registry.getPerspective()).contains(complex);
+		
+		// a port is complex provided if it has 2 or more provided ports and is not a bean main
+		complexProvided = !beanMain && component.getProvidedInterfaces(registry.getPerspective(), complex).size() > 1;
 	}
 
 	public void resolveImplementation(BBSimpleElementRegistry registry) throws BBImplementationInstantiationException
@@ -131,5 +141,20 @@ public class BBSimplePort extends BBSimpleObject
 		return
 			"Port " + name + ", lower bound = " + lowerBound +
 			", upper bound = " + upperBound;
+	}
+	
+	public boolean isBeanMain()
+	{
+		return beanMain;
+	}
+
+	public boolean isBeanNoName()
+	{
+		return beanNoName;
+	}
+	
+	public boolean isComplexProvided()
+	{
+		return complexProvided;
 	}
 }

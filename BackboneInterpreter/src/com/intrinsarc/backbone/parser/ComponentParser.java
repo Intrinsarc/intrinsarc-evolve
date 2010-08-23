@@ -507,8 +507,8 @@ public class ComponentParser
 			optionalLiteral("is-hyperport", hyper).
 			optionalLiteral("is-autoconnect", autoConnect).
 			optionalLiteral("is-ordered", ordered).
-			optionalLiteral("is-bean-main", beanMain).
-			optionalLiteral("is-bean-noname", beanNoName);
+			optionalLiteral("force-bean-main", beanMain).
+			optionalLiteral("force-bean-noname", beanNoName);
 			
 
 		if (create[0])
@@ -520,9 +520,9 @@ public class ComponentParser
 		if (ordered[0])
 			port.setOrdered(true);
 		if (beanMain[0])
-			port.setBeanMain(true);
+			port.setForceBeanMain(true);
 		if (beanNoName[0])
-			port.setBeanNoName(true);
+			port.setForceBeanNoName(true);
 
 		ex.
 			guard("provides",

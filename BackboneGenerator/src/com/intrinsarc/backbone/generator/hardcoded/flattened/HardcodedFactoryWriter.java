@@ -480,7 +480,7 @@ public class HardcodedFactoryWriter
 
 				if (bean)
 				{
-					if (port.getComplexPort().isBeanNoName())
+					if (port.getComplexPort().isForceBeanNoName())
 					{
 						c.write("    " + partName + ".add(" + vname + ");");
 						d.write("    " + partName + ".remove(" + vname + ");");
@@ -545,7 +545,7 @@ public class HardcodedFactoryWriter
 
 		if (bean)
 		{
-			if (port.getComplexPort().isBeanNoName())
+			if (port.getComplexPort().isForceBeanNoName())
 			{
 				d.newLine();
 				d.write("    " + partName + ".remove(" + vname + ");");

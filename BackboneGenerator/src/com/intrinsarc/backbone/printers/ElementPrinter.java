@@ -46,7 +46,7 @@ public class ElementPrinter
 					(isNormal(c) ? " is-normal" : "") +
 					(isRawFactory(c) ? " is-factory" : "") +
 					(isRawPlaceholder(c) ? " is-placeholder" : "") +
-					(isRawBean(c) ? " is-bean" : "") +
+					(isRawLegacyBean(c) ? " is-bean" : "") +
 					(hasLifecycleCallbacks(c) ? " has-lifecycle-callbacks" : "") +
 					(c.getComponentKind() == ComponentKindEnum.PRIMITIVE ? " is-primitive" :
 					  (c.getComponentKind() == ComponentKindEnum.STEREOTYPE ? " is-stereotype" : "")));
@@ -296,19 +296,22 @@ public class ElementPrinter
 			{
 				if (!ignoreProperty(prop))
 				{
-					if (first)
-					{
-						str += ": ";
-						first = false;
-					}
 					String val = props.get(prop);
 					if (val.equals("false"))
 						;  // show nothing for false
 					else
-					if (val.equals("true"))
-						str += (lp++ == 0 ? "" : ", ") + ref.reference(prop);
-					else
-						str += (lp++ == 0 ? "" : ", ") + ref.reference(prop) + " = \"" + props.get(prop) + "\"";
+					{
+						if (first)
+						{
+							str += ": ";
+							first = false;
+						}
+
+						if (val.equals("true"))
+							str += (lp++ == 0 ? "" : ", ") + ref.reference(prop);
+						else
+							str += (lp++ == 0 ? "" : ", ") + ref.reference(prop) + " = \"" + props.get(prop) + "\"";
+					}
 				}
 			}
 		}
@@ -441,10 +444,10 @@ public class ElementPrinter
 			b.append(" is-autoconnect");
 		if (port.isOrdered())
 			b.append(" is-ordered");
-		if (port.isBeanMain())
-			b.append(" is-bean-main");
-		if (port.isBeanNoName())
-			b.append(" is-bean-noname");
+		if (port.isForceBeanMain())
+			b.append(" force-bean-main");
+		if (port.isForceBeanNoName())
+			b.append(" force-bean-noname");
 		b.append(makeInterfacesString(" provides", port.getSetProvidedInterfaces()));
 		b.append(makeInterfacesString(" requires", port.getSetRequiredInterfaces()));
 		if (last)
@@ -470,7 +473,7 @@ public class ElementPrinter
     DEAppliedStereotype applied = c.getRawAppliedStereotype();
     return
     	applied != null && !c.getRawResembles().isEmpty() &&
-    	!isRawPlaceholder(c) && !isRawFactory(c) && !isRawBean(c);
+    	!isRawPlaceholder(c) && !isRawFactory(c) && !isRawLegacyBean(c);
 	}
 	
 	private boolean isRawPlaceholder(DEComponent c)
@@ -481,7 +484,7 @@ public class ElementPrinter
     return applied.getBooleanProperty(DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY);
   }
 
-	private boolean isRawBean(DEComponent c)
+	private boolean isRawLegacyBean(DEComponent c)
   {
     DEAppliedStereotype applied = c.getRawAppliedStereotype();
     if (applied == null)
