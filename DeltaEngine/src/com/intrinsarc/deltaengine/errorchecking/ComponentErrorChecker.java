@@ -135,8 +135,7 @@ public class ComponentErrorChecker
     	if (mains.size() == 1)
     	{
     		DEPort main = mains.get(0);
-    		if (!main.getSetRequiredInterfaces().isEmpty() ||
-    				main.getSetProvidedInterfaces().isEmpty() ||
+    		if (main.getSetProvidedInterfaces().isEmpty() ||
     				main.isMany())
     		{
           errors.addError(

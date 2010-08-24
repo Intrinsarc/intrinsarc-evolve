@@ -11,7 +11,7 @@ import com.intrinsarc.deltaengine.base.*;
 public class BBSimpleAttribute extends BBSimpleObject
 {	
 	private String name;
-	private transient String rawName;
+	private String rawName;
   private BBSimpleElement type;
   private BBSimpleAttribute alias;
   private List<BBSimpleParameter> defaultValue;
@@ -27,6 +27,7 @@ public class BBSimpleAttribute extends BBSimpleObject
   private boolean readOnly;
   private boolean writeOnly;
 	private boolean isNull;
+	private BBSimpleAttribute copy;
   	
 	public BBSimpleAttribute(BBSimpleElementRegistry registry, DEAttribute complex, List<BBSimpleAttribute> attributes, BBSimpleElement owner)
 	{
@@ -189,7 +190,16 @@ public class BBSimpleAttribute extends BBSimpleObject
 			for (BBSimpleParameter p : defaultValue)
 				p.resolveImplementation(registry, this);
 	    isDefault = defaultValue.size() == 1 && defaultValue.get(0).isDefault();
-			constructor = resolveConstructor(type.getImplementationClass(), defaultValue, this);
+			// is this a copy?
+			if (defaultValue.size() == 1 && defaultValue.get(0).getAttribute() != null)
+			{
+				BBSimpleAttribute copyAttr = defaultValue.get(0).getAttribute();
+				if (copyAttr.getType() == type)
+					copy = copyAttr;
+			}
+			
+			if (alias == null && copy == null)
+				constructor = resolveConstructor(type.getImplementationClass(), defaultValue, this);
 		}
 
 		// place here so we aren't resolved for the above methods
@@ -424,6 +434,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 		{
 			// (1) has this been overridden by the program caller?
 			Class<?> implClass = type.getImplementationClass();
+			
 			if (setNames != null && position == PositionEnum.TOP && setNames.contains(originalName))
 			{
 				setNames.remove(originalName);
@@ -443,7 +454,14 @@ public class BBSimpleAttribute extends BBSimpleObject
 
 			// (4) is this an alias?
 			if (alias != null)
+			{
+				System.out.println("$$ resolved alias...");
 				return context.resolveAttributeValue(alias);
+			}
+			
+			// (4b) is this a copy
+			if (copy != null)
+				return context.resolveAttributeValue(copy);
 			
 			// short cut for basic, immutable types
 			if (defaultValue != null && defaultValue.size() == 1)
@@ -453,7 +471,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 					return first.getResolvedLiteral();
 			}
 			
-			// (4) should we instantiate from default parameters, each of which may further refer to other variables? 
+			// (5) should we instantiate from default parameters, each of which may further refer to other variables? 
 			// if we don't have a default then it hasn't been set even though it should have been
 			if (defaultValue == null)
 				throw new BBRuntimeException("No value for attribute " + name + " in factory " + factory, owner);

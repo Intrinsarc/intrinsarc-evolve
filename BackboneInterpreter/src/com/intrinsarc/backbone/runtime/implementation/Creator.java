@@ -6,15 +6,13 @@ import com.intrinsarc.backbone.exceptions.*;
 import com.intrinsarc.backbone.nodes.simple.internal.*;
 import com.intrinsarc.backbone.runtime.api.*;
 
-public class Creator
+public class Creator implements ICreate
 {
 	private int factoryNumber;
 	public int getFactoryNumber() { return factoryNumber; }
 	public void setFactoryNumber(int factory) { this.factoryNumber = factory; }
 
 	private BBSimpleInstantiatedFactory context;
-	private ICreate create_ICreateProvided = new ICreateImpl();
-	public ICreate getCreate_ICreate(Class<?> required) { return create_ICreateProvided; }
 	private Object lastMemento;
 	
 	public Creator(BBSimpleInstantiatedFactory context)
@@ -22,39 +20,36 @@ public class Creator
 		this.context = context;
 	}
 	
-	private class ICreateImpl implements ICreate
+	public Object create(Map<String, Object> values)
 	{
-		public Object create(Map<String, Object> values)
+		BBSimpleInstantiatedFactory me = new BBSimpleInstantiatedFactory(context, context.getFactory(factoryNumber));
+		try
 		{
-			BBSimpleInstantiatedFactory me = new BBSimpleInstantiatedFactory(context, context.getFactory(factoryNumber));
-			try
-			{
-				me.instantiate(values);
-				lastMemento = me;
-				return me;
-			}
-			catch (BBRuntimeException ex)
-			{
-				// translate this into a runtime exception so the program doesn't have to catch it
-				throw new IllegalStateException(ex.getMessage(), ex);
-			}
+			me.instantiate(values);
+			lastMemento = me;
+			return me;
 		}
-
-		public void destroy(Object memento)
+		catch (BBRuntimeException ex)
 		{
-			BBSimpleInstantiatedFactory me = (BBSimpleInstantiatedFactory) (memento == null ? lastMemento : memento);
-			if (me == null)
-				throw new IllegalStateException("No last memento available to destroy instantiated factory");
-			try
-			{
-				me.destroy();
-				lastMemento = null;
-			}
-			catch (BBRuntimeException ex)
-			{
-				// translate this into a runtime exception so the program doesn't have to catch it
-				throw new IllegalStateException(ex.getMessage(), ex);
-			}
+			// translate this into a runtime exception so the program doesn't have to catch it
+			throw new IllegalStateException(ex.getMessage(), ex);
+		}
+	}
+
+	public void destroy(Object memento)
+	{
+		BBSimpleInstantiatedFactory me = (BBSimpleInstantiatedFactory) (memento == null ? lastMemento : memento);
+		if (me == null)
+			throw new IllegalStateException("No last memento available to destroy instantiated factory");
+		try
+		{
+			me.destroy();
+			lastMemento = null;
+		}
+		catch (BBRuntimeException ex)
+		{
+			// translate this into a runtime exception so the program doesn't have to catch it
+			throw new IllegalStateException(ex.getMessage(), ex);
 		}
 	}
 }

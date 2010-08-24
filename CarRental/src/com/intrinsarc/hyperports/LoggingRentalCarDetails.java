@@ -3,44 +3,39 @@ package com.intrinsarc.hyperports;
 import java.util.*;
 
 public class LoggingRentalCarDetails
-{
 // start generated code
-// attributes
-	private java.util.Date purchased;
+
+  // main port
+  implements com.intrinsarc.base.IRentalCarDetails
+{
+  // attributes
 	private String model;
-// required ports
-	private com.intrinsarc.base.IRenterDetails renter;
-	private com.intrinsarc.hyperports.ILogger logger;
-// provided ports
-	private IRentalCarDetailsDetailsImpl details_IRentalCarDetailsProvided = new IRentalCarDetailsDetailsImpl();
-// setters and getters
-	public java.util.Date getPurchased() { return purchased; }
-	public void setPurchased(java.util.Date purchased) { this.purchased = purchased;}
+
+  // attribute setters and getters
 	public String getModel() { return model; }
 	public void setModel(String model) { this.model = model;}
-	public void setRenter_IRenterDetails(com.intrinsarc.base.IRenterDetails renter) { this.renter = renter; }
-	public void setLogger_ILogger(com.intrinsarc.hyperports.ILogger logger) { this.logger = logger; }
-	public com.intrinsarc.base.IRentalCarDetails getDetails_IRentalCarDetails(Class<?> required) { return details_IRentalCarDetailsProvided; }
+
+  // required ports
+	private com.intrinsarc.base.IRenterDetails renter;
+	private com.intrinsarc.hyperports.ILogger logger;
+  // provided ports
+
+  // port setters and getters
+	public void setRenter(com.intrinsarc.base.IRenterDetails renter) { this.renter = renter; }
+	public void setLogger(com.intrinsarc.hyperports.ILogger logger) { this.logger = logger; }
 // end generated code
 
-
-	private class IRentalCarDetailsDetailsImpl implements com.intrinsarc.base.IRentalCarDetails
+	private Date purchased;
+	public void setPurchased(java.util.Date purchased) { this.purchased = purchased;}
+	public Date getPurchased()
 	{
-		public String getModel()
-		{
-			return model;
-		}
+		if (logger != null)
+			logger.log(">> returning purchased field");
+		return purchased;
+	}
 
-		public Date getPurchased()
-		{
-			if (logger != null)
-				logger.log(">> returning purchased field");
-			return purchased;
-		}
-
-		public boolean isRented()
-		{
-			return renter.getRenter() != null;
-		}
+	public boolean isRented()
+	{
+		return renter.getRenter() != null;
 	}
 }

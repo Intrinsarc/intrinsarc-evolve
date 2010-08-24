@@ -48,8 +48,7 @@ public class FeatureSuppressToggleManipulator extends ManipulatorAdapter
         location,
         size,
         null,
-        featureType,
-        false);
+        featureType);
     group = new ZGroup();
     group.addChild(icon);
 

@@ -233,7 +233,6 @@ public class ReflectivePort
     {
       if (setSingle != null)
       {
-      	System.out.println("$$ invoking setsingle: method = " + setSingle + ", target = " + target + ", value = " + value.getClass().getSimpleName());
         setSingle.invoke(target, value);
       }
       else

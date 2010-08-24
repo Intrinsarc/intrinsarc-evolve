@@ -14,8 +14,8 @@ public class CarsExampleRunner
 
   // port setters and getters
 	public void setCars(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
-	public void addCars(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.fill(this.cars, cars, -1); }
-	public void removeCars(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
+	public void addCar(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.fill(this.cars, cars, -1); }
+	public void removeCar(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
 // end generated code
 	
 	public int run(String[] args)

@@ -70,7 +70,9 @@ public class BBSimpleInstantiatedFactory
 			{
 				Object simple = null;
 				if (iattributes.containsKey(s.getEnvironmentAlias()))
+				{
 					simple = iattributes.get(s.getEnvironmentAlias());
+				}
 				else
 					simple = parent.resolveAttributeValue(s.getEnvironmentAlias());
 				s.setValue(obj, simple, part.getType());

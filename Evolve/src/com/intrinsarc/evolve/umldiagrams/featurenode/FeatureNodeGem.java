@@ -250,21 +250,6 @@ public final class FeatureNodeGem implements Gem
 	    myGroup.setChildrenPickable(false);
 	    myGroup.setChildrenFindable(false);
 		  myGroup.putClientProperty("figure", figureFacet);
-      boolean isEnvironment = false;
-      // the next check is ugly and should go elsewhere
-      // also, we shouldn't need the deletion check...
-      if (subject instanceof Slot && !hasSubjectBeenDeleted())
-      {
-        isEnvironment =
-          StereotypeUtilities.extractBooleanProperty(getSubjectAsSlot(), CommonRepositoryFunctions.OVERRIDDEN_SLOT_ALIAS);
-      	Slot slot = (Slot) subject;
-      	if (slot.undeleted_getValues().size() > 0)
-      	{
-      		ValueSpecification spec = (ValueSpecification) slot.undeleted_getValues().get(0);
-      		if (spec instanceof PropertyValueSpecification)
-      			isEnvironment = ((PropertyValueSpecification) spec).isAliased();
-      	}
-      }
       
       ZNode icon =
         makeIcon(
@@ -273,8 +258,7 @@ public final class FeatureNodeGem implements Gem
             sizes.getIconPoint(),
             sizes.getText().getBounds().getHeight(),
             null,
-            featureTypeFacet.getFeatureType(),
-            isEnvironment);
+            featureTypeFacet.getFeatureType());
       myGroup.addChild(icon);
 
       if (sizes.getLinkMark() != null)
@@ -698,17 +682,16 @@ public final class FeatureNodeGem implements Gem
   	return figureFacet;
   }
 
-	public static ZNode makeIcon(VisibilityKind accessType, boolean paintBackground, UPoint point, double textHeight,
-      Color reverseColor, int featureType, boolean isEnvironment)
+	public static ZNode makeIcon(
+			VisibilityKind accessType,
+			boolean paintBackground,
+			UPoint point,
+			double textHeight,
+      Color reverseColor,
+      int featureType)
   {
     // determine the fill paint and the pen paint
     Color fillPaint = Color.white;
-    if (featureType == 2)
-    {
-    	if (!isEnvironment)
-    		fillPaint = Color.CYAN; 
-    }
-    else
     if (paintBackground && featureType != 2)
     {
       if (accessType.equals(VisibilityKind.PUBLIC_LITERAL))

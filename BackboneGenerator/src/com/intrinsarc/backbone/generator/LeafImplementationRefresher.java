@@ -281,12 +281,15 @@ public class LeafImplementationRefresher
 				String up = upper(name);
 				if (!property.isWriteOnly())
 				{
-					complexWriter.write("\tpublic " + preImpl + " get" + up + "() { return " + name + "; }");
+					if ("boolean".equals(impl))
+						complexWriter.write("\tpublic " + impl + " is" + up + "() { return " + name + "; }");
+					else
+						complexWriter.write("\tpublic " + impl + " get" + up + "() { return " + name + "; }");
 					complexWriter.newLine();
 				}
 				if (!property.isReadOnly())
 				{
-					complexWriter.write("\tpublic void set" + up + "(" + preImpl + " " + name + ") { this." + name + " = " + name + ";}");
+					complexWriter.write("\tpublic void set" + up + "(" + impl + " " + name + ") { this." + name + " = " + name + ";}");
 					complexWriter.newLine();
 				}
 			}
@@ -318,7 +321,7 @@ public class LeafImplementationRefresher
 			for (DeltaPair pair : leaf.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
 			{
 				DEPort port = pair.getConstituent().asPort();
-				if (port.getPortKind() == PortKindEnum.CREATE || port.isSuppressGeneration()|| mains.contains(port))
+				if (port.getPortKind() == PortKindEnum.CREATE || port.isSuppressGeneration())
 					continue;
 				
 				// does this have multiplicty
@@ -335,11 +338,11 @@ public class LeafImplementationRefresher
 						String pname = port.getName();
 						String vname = first ? pname : pname + "_" + tname + "Required";
 						String mname = "set" + upper(pname);
-						String aname = "add" + (nonames.contains(port) ? "" : upper(pname));
+						String aname = "add" + (nonames.contains(port) ? "" : makeSingular(upper(pname)));
 						
 						if (many)
 						{
-							String mname2 = "remove" + upper(pname);
+							String mname2 = "remove" + makeSingular(upper(pname));
 							writer.write("\tprivate java.util.List<" + iname + "> " + vname + " = new java.util.ArrayList<" + iname + ">();");
 							writer.newLine();
 							complexWriter.write("\tpublic void " + mname + "(" + iname + " " + vname + ", int index) { PortHelper.fill(this." + vname + ", " + vname + ", index); }");					
@@ -361,7 +364,7 @@ public class LeafImplementationRefresher
 				}
 	
 				// for provided, generate an instance var of the correct multiplicity
-				if (lp == 1)
+				if (lp == 1 && !mains.contains(port))
 				{
 					boolean complexPort = port.getSetProvidedInterfaces().size() > 1;
 					for (DEInterface provided : port.getSetProvidedInterfaces())
@@ -371,7 +374,7 @@ public class LeafImplementationRefresher
 						String pname = port.getName();
 						String vname = pname + (complexPort ? tname : "") + "_Provided";
 						String mname = "get" + upper(pname) + "_Provided";
-						String rmname = "remove" + upper(pname);
+						String rmname = "remove" + makeSingular(upper(pname));
 						String newTypeName = tname + upper(pname) + "Impl";
 						newTypes.put(newTypeName, iname);
 						

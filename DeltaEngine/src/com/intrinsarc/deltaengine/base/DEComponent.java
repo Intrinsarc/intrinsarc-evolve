@@ -801,31 +801,10 @@ public abstract class DEComponent extends DEElement
 		{
 			DEPort port = pair.getConstituent().asPort();
 			
-			if (getProvidedInterfaces(perspective, port).size() > 0 &&
-					getRequiredInterfaces(perspective, port).size() == 0 &&
-					!port.isMany())
-			{
+			if (getProvidedInterfaces(perspective, port).size() > 0 && !port.isMany())
 				mains.add(port);
-			}
 		}
 		
-		// sort alphabetically
-		Collections.sort(mains,
-				new Comparator<DEPort>()
-				{
-					public int compare(DEPort o1, DEPort o2)
-					{
-						return o1.getRawName().compareTo(o2.getRawName());
-					}
-				});
-			
-		if (mains.size() == 0)
-			return mains;
-		
-		// otherwise, just take the first alphabetically
-		DEPort main = mains.get(0);
-		mains.clear();
-		mains.add(main);
 		return mains;
 	}
 	

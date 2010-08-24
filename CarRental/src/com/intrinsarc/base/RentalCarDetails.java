@@ -1,6 +1,5 @@
 package com.intrinsarc.base;
 
-import java.util.*;
 
 public class RentalCarDetails
 // start generated code

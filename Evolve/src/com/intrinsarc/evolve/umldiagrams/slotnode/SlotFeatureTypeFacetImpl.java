@@ -61,10 +61,6 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
     // make a command to effect the changes
     final Slot slot = getSubject();
     
-    // save the old values
-    final Property oldAttribute = (Property) slot.undeleted_getDefiningFeature();
-    final ArrayList oldExpressions = slot.undeleted_getValues();
-    
     // get the new name and type
     Matcher matcher = pattern.matcher(text);
     final String newName;
@@ -138,19 +134,6 @@ public class SlotFeatureTypeFacetImpl implements FeatureTypeFacet
   	return UMLNodeText.getSlotText(current, cls, getSubject()); 
   }
   	
-  private Type getSubjectType(Property subject)
-  {
-    return subject.undeleted_getType();
-  }
-  
-  private Class findOwningVisualElement()
-  {
-    SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-    return (Class)
-      repository.findOwningElement(
-          figureFacet.getFigureReference(), UML2Package.eINSTANCE.getClass_());
-  }
-
   public void performPostContainerDropTransaction()
   {
   }

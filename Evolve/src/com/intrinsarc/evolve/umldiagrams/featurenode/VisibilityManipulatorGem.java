@@ -68,8 +68,7 @@ public final class VisibilityManipulatorGem implements Gem
 	  	    point,
 	  	    height,
 	  	    firstSelected ? ScreenProperties.getFirstSelectedHighlightColor() : ScreenProperties.getHighlightColor(),
-	  	    featureType,
-          false);
+	  	    featureType);
 	  	diagramLayer.addChild(hilight);
 	  }
 	  
