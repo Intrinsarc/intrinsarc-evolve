@@ -281,24 +281,26 @@ public class BBSimpleConnector extends BBSimpleObject
 
 			for (BBSimpleInterface i : ports[lp].getRequires())
 			{
-				ReflectivePort field = getPortField(parts[lp].getType(), ports[lp], i.getImplementationClass(), false);
+				ReflectivePort field = getPortField(registry.getPerspective(), parts[lp].getType(), ports[lp], i.getImplementationClass(), false);
 				reqPortFields[lp].put(i, field);
 			}
 			for (BBSimpleInterface i : ports[lp].getProvides())
 			{
-				ReflectivePort field = getPortField(parts[lp].getType(), ports[lp], i.getImplementationClass(), true);
+				ReflectivePort field = getPortField(registry.getPerspective(), parts[lp].getType(), ports[lp], i.getImplementationClass(), true);
 				provPortFields[lp].put(i, field);
 			}
 		}
 	}
 
-	public static ReflectivePort getPortField(BBSimpleComponent type, BBSimplePort simplePort, Class<?> iface, boolean provided) throws BBImplementationInstantiationException
+	public static ReflectivePort getPortField(
+			DEStratum perspective, BBSimpleComponent type, BBSimplePort simplePort, Class<?> ifaceClass, boolean provided) throws BBImplementationInstantiationException
 	{
 	  return 
 	    new ReflectivePort(
+	    	perspective,
 	    	type,
 	      simplePort,
-	      iface,
+	      ifaceClass,
 	      !provided);
 	}
 

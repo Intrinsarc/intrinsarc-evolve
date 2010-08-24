@@ -133,7 +133,7 @@ public class BackboneInterpreter
 
 			BBSimpleInstantiatedFactory instance = top.instantiate(registry);
 			if (provider != null)
-				instance.runViaPort(provider, args);
+				instance.runViaPort(registry.getPerspective(), provider, args);
 		}
 		catch (BBNodeNotFoundException e)
 		{
@@ -160,8 +160,8 @@ public class BackboneInterpreter
 		}
 		catch (BBImplementationInstantiationException e)
 		{
-			if (e.getElement() != null)
-				System.err.println(e.getElement().getName() + " | " + e.getMessage() + " at " + e.getElement().getUuid() + " |");
+			if (e.getElementUuid() != null)
+				System.err.println(e.getElementName() + " | " + e.getMessage() + " at " + e.getElementUuid() + " |");
 			e.printStackTrace(System.err);
 			System.exit(-1);
 		}

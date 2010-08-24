@@ -61,7 +61,7 @@ public class BBSimpleInterface extends BBSimpleElement
 	}
 
 	@Override
-	public Class getImplementationClass()
+	public Class<?> getImplementationClass()
 	{
 		return implementationClass;
 	}

@@ -143,7 +143,7 @@ public class BBSimpleInstantiatedFactory
 		return factory.getFactory(factoryNumber);
 	}
 
-	public void runViaPort(BBSimplePort provider, String[] args) throws BBRuntimeException, BBImplementationInstantiationException
+	public void runViaPort(DEStratum perspective, BBSimplePort provider, String[] args) throws BBRuntimeException, BBImplementationInstantiationException
 	{
 		// locate the connector that is connected to this port
 		for (BBSimpleConnector conn : factory.getConnectors())
@@ -154,7 +154,8 @@ public class BBSimpleInstantiatedFactory
 				BBSimpleConnectorEnd connEnd = conn.makeSimpleConnectorEnd(1 - end);
 				BBSimplePart part = connEnd.getPart();
 				Object object = iparts.get(part);
-				ReflectivePort field = BBSimpleConnector.getPortField(part.getType(), connEnd.getPort(), IRun.class, true);
+				ReflectivePort field = BBSimpleConnector.getPortField(
+						perspective, part.getType(), connEnd.getPort(), IRun.class, true);
 				((IRun) field.getSingle(IRun.class, object)).run(args);
 			}
 		}

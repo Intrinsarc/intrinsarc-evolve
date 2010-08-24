@@ -1,0 +1,351 @@
+package com.intrinsarc.backbone.nodes;
+
+import java.lang.reflect.*;
+
+import com.intrinsarc.backbone.exceptions.*;
+import com.intrinsarc.backbone.nodes.simple.*;
+import com.intrinsarc.deltaengine.base.*;
+
+/**
+ * encapsulates all of the logic about how ports and provided & required interfaces turn into method names
+ * @author andrew
+ */
+public class PortMethodHelper
+{
+	private DEStratum perspective;
+	private BBSimplePort port;
+  private DEComponent partType;
+  private String ifaceSimpleClassName;
+  private String partTypeClassName;
+  private String portName;
+  private boolean many;
+
+  private Class<?> partTypeClass; // only needed if methods are actually resolved
+  private Class<?> ifaceClass;    // only needed if methods are actually resolved
+  
+  /** so we don't do it many times over */
+  private boolean haveGetNames;
+  private boolean haveGetMethods;
+  private boolean haveSetNames;
+  private boolean haveSetMethods;
+  
+  /** for things that resolve to methods */
+  private Method getSingle;
+  private Method getIndexed;
+  private Method getSingleSimple;
+  private Method getIndexedSimple;
+  private Method setSingle;
+  private Method addNoIndexed;
+  private Method addIndexed;
+  private Method removeMany;
+  
+  /** for names of methods */
+  private String getSingleName;
+  private String getIndexedName;
+  private String getSingleSimpleName;
+  private String getIndexedSimpleName;
+  private String setSingleName;
+  private String addNoIndexedName;
+  private String addIndexedName;
+  private String removeManyName;
+	
+	public PortMethodHelper(DEStratum perspective, DEComponent partType, DEPort cport, DEInterface iface)
+	{
+		this.perspective = perspective;
+		this.partType = partType;
+    this.ifaceSimpleClassName = iface.getImplementationClass(perspective);
+		port = new BBSimplePort(new BBSimpleElementRegistry(perspective, null), partType, cport, null);
+		partTypeClassName = partType.getImplementationClass(perspective);
+    portName = port.getRawName();
+    many = port.isIndexed();
+	}
+	
+	public PortMethodHelper(DEStratum perspective, BBSimplePort port, Class<?> ifaceClass)
+	{
+		this.perspective = perspective;
+		this.port = port;
+    this.ifaceClass = ifaceClass;
+    this.ifaceSimpleClassName = ifaceClass.getSimpleName();
+		partType = port.getOwner().getComplex().asComponent();
+    partTypeClass = port.getOwner().getImplementationClass();
+		partTypeClassName = partType.getImplementationClass(perspective);
+    portName = port.getRawName();
+    many = port.isIndexed();
+	}
+  
+  public void resolveGetMethodNames()
+  {
+  	if (haveGetNames)
+  		return;
+  	
+    // main is just the object itself
+    if (port.isBeanMain())
+      return;
+    
+    // look for a method if this is a bean
+    boolean cp = port.isComplexProvided();
+    String extra = cp ? ifaceSimpleClassName : "";
+
+    if (!many)
+    {
+      String methodName = "get" + upperFirst(portName) + extra + "_Provided";
+    	if (port.isWantsRequiredWhenProviding())
+	    	getSingleName = methodName;
+    	else
+	    	getSingleSimpleName = methodName;
+    }
+    else
+    {
+      String methodName = "get" + makeSingular(upperFirst(portName)) + extra + "_Provided";
+    	if (port.isWantsRequiredWhenProviding())
+	      getIndexedName = methodName;
+    	else
+	      getIndexedSimpleName = methodName;
+    }
+
+    haveGetNames = true;
+  }
+
+  public void resolveGetMethods() throws BBImplementationInstantiationException
+  {
+  	if (haveGetMethods)
+  		return;
+  	resolveGetMethodNames();
+  	
+    // main is just the object itself
+    if (port.isBeanMain())
+      return;
+    
+    String tried[] = {""};
+
+    if (!many)
+    {
+    	if (port.isWantsRequiredWhenProviding())
+	    	getSingle = resolveMethod(
+	    			getSingleName,
+	    			new Class<?>[]{Class.class},
+	    			tried);
+    	else
+	    	getSingleSimple = resolveMethod(
+	    			getSingleSimpleName,
+	    			new Class<?>[]{},
+	    			tried);
+    }
+    else
+    {
+    	if (port.isWantsRequiredWhenProviding())
+	      getIndexed = resolveMethod(
+	          getIndexedName,
+	          new Class<?>[]{Class.class, int.class},
+	          tried);
+    	else
+	      getIndexedSimple = resolveMethod(
+	          getIndexedSimpleName,
+	          new Class<?>[]{int.class},
+	          tried);
+    }
+
+    if (getSingle == null && getIndexed == null && getSingleSimple == null && getIndexedSimple == null)
+      throw new BBImplementationInstantiationException("Cannot find method for getting port " + portName + " of " + partTypeClassName + ", tried " + tried[0], partType);
+    haveGetMethods = true;
+  }
+
+	public void resolveSetMethodNames() throws BBImplementationInstantiationException
+  {
+		if (haveSetNames)
+			return;
+		
+  	if (!many)
+  	{
+  		String methodName = "set" + upperFirst(portName);
+  		setSingleName = methodName;
+  	}
+  	else
+  	{
+  		addIndexedName = "set" + upperFirst(portName);
+      addNoIndexedName = "add" + (port.isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
+      removeManyName = "remove" + (port.isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
+  	}
+  	haveSetNames = true;
+  }
+
+	public void resolveSetMethods() throws BBImplementationInstantiationException
+  {
+		if (haveSetMethods)
+			return;
+		resolveSetMethodNames();
+		
+  	String tried[] = {""};
+  	if (!many)
+  	{
+  		setSingle = resolveMethod(
+          setSingleName,
+          new Class<?>[]{ifaceClass},
+          tried);
+  	}
+  	else
+  	{
+      addIndexed = resolveMethod(
+          addIndexedName,
+          new Class<?>[]{ifaceClass, int.class},
+          tried);
+      addNoIndexed = resolveMethod(
+          addNoIndexedName,
+          new Class<?>[]{ifaceClass},
+          tried);
+      removeMany = resolveMethod(
+          removeManyName,
+          new Class<?>[]{ifaceClass},
+          tried);
+  	}
+ 
+    if (setSingle == null && addNoIndexed == null && addIndexed == null)
+      throw new BBImplementationInstantiationException("Cannot find method for setting port " + portName + " of " + partTypeClassName + ", tried " + tried[0], partType);
+    haveSetMethods = true;
+  }
+
+  private String makeSingular(String name)
+	{
+  	if (name.endsWith("s") && name.length() > 1)
+  		return name.substring(0, name.length() - 1);
+  	return name;
+	}
+
+  private Method resolveMethod(String name, Class<?>[] paramClasses, String[] tried) throws BBImplementationInstantiationException
+  {
+    try
+    {
+      return partTypeClass.getMethod(name, paramClasses);
+    }
+    catch (SecurityException e)
+    {
+      throw new BBImplementationInstantiationException("Security error when getting port method " + name + " of " + partTypeClass + " via method " + name + "(...)", partType);
+    }
+    catch (NoSuchMethodException e)
+    {
+    	if (tried[0].length() > 0)
+    		tried[0] += " / ";
+    	tried[0] += name + "(" + stringify(paramClasses) + ")";
+    		
+      return null;
+    }
+  }
+
+  private String stringify(Class<?>[] paramClasses)
+	{
+  	if (paramClasses == null)
+  		return "";
+  	
+  	String params = "";
+  	for (Class<?> cls : paramClasses)
+  	{
+  		if (params.length() > 0)
+  			params += ", ";
+  		params += cls.getSimpleName();
+  	}
+  	return params;
+	}
+
+	private String upperFirst(String str)
+  {
+    if (str.length() > 1)
+      return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+    return str.toUpperCase();
+  }
+	
+	///////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
+
+	public Method getGetSingle()
+	{
+		return getSingle;
+	}
+
+	public Method getGetIndexed()
+	{
+		return getIndexed;
+	}
+
+	public Method getGetSingleSimple()
+	{
+		return getSingleSimple;
+	}
+
+	public Method getGetIndexedSimple()
+	{
+		return getIndexedSimple;
+	}
+
+	public Method getSetSingle()
+	{
+		return setSingle;
+	}
+
+	public Method getAddNoIndexed()
+	{
+		return addNoIndexed;
+	}
+
+	public Method getAddIndexed()
+	{
+		return addIndexed;
+	}
+
+	public Method getRemoveMany()
+	{
+		return removeMany;
+	}
+
+	public String getGetSingleName()
+	{
+		return getSingleName;
+	}
+
+	public String getGetIndexedName()
+	{
+		return getIndexedName;
+	}
+
+	public String getGetSingleSimpleName()
+	{
+		return getSingleSimpleName;
+	}
+
+	public String getGetIndexedSimpleName()
+	{
+		return getIndexedSimpleName;
+	}
+
+	public String getSetSingleName()
+	{
+		return setSingleName;
+	}
+
+	public String getAddNoIndexedName()
+	{
+		return addNoIndexedName;
+	}
+
+	public String getAddIndexedName()
+	{
+		return addIndexedName;
+	}
+
+	public String getRemoveManyName()
+	{
+		return removeManyName;
+	}
+
+	///////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
+	
+	public boolean isBeanMain()
+	{
+		return port.isBeanMain();
+	}
+
+	public boolean isMany()
+	{
+		return many;
+	}
+}
