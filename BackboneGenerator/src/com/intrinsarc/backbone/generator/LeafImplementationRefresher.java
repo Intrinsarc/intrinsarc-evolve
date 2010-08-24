@@ -332,30 +332,28 @@ public class LeafImplementationRefresher
 					boolean first = true;
 					for (DEInterface required : port.getSetRequiredInterfaces())
 					{
+						PortMethodHelper ph = new PortMethodHelper(perspective, leaf, port, required);
+						ph.resolveSetMethodNames();
+						
 						String iname = required.getImplementationClass(perspective);
 						String tname = getAfterLastDot(iname);
 						String pname = port.getName();
 						String vname = first ? pname : pname + "_" + tname + "Required";
 						if (many)
 						{
-							String mname = "set" + makeSingular(upper(pname));
-							String aname = "add" + (nonames.contains(port) ? "" : makeSingular(upper(pname)));
-							
-							String mname2 = "remove" + makeSingular(upper(pname));
 							writer.write("\tprivate java.util.List<" + iname + "> " + vname + " = new java.util.ArrayList<" + iname + ">();");
 							writer.newLine();
-							complexWriter.write("\tpublic void " + mname + "(" + iname + " " + vname + ", int index) { PortHelper.fill(this." + vname + ", " + vname + ", index); }");					
+							complexWriter.write("\tpublic void " + ph.getAddIndexedName() + "(" + iname + " " + vname + ", int index) { PortHelper.fill(this." + vname + ", " + vname + ", index); }");					
 							complexWriter.newLine();
-							complexWriter.write("\tpublic void " + aname + "(" + iname + " " + vname + ") { PortHelper.fill(this." + vname + ", " + vname + ", -1); }");					
+							complexWriter.write("\tpublic void " + ph.getAddNoIndexedName() + "(" + iname + " " + vname + ") { PortHelper.fill(this." + vname + ", " + vname + ", -1); }");					
 							complexWriter.newLine();
-							complexWriter.write("\tpublic void " + mname2 + "(" + iname + " " + vname + ") { PortHelper.remove(this." + vname + ", " + vname + "); }");					
+							complexWriter.write("\tpublic void " + ph.getRemoveManyName() + "(" + iname + " " + vname + ") { PortHelper.remove(this." + vname + ", " + vname + "); }");					
 						}
 						else
 						{
-							String mname = "set" + upper(pname);
 							writer.write("\tprivate " + iname + " " + vname + ";");
 							writer.newLine();
-							complexWriter.write("\tpublic void " + mname + "(" + iname + " " + vname + ") { this." + vname + " = " + vname + "; }");
+							complexWriter.write("\tpublic void " + ph.getSetSingleName() + "(" + iname + " " + vname + ") { this." + vname + " = " + vname + "; }");
 						}
 						
 						complexWriter.newLine();
@@ -369,12 +367,13 @@ public class LeafImplementationRefresher
 					boolean complexPort = port.getSetProvidedInterfaces().size() > 1;
 					for (DEInterface provided : port.getSetProvidedInterfaces())
 					{
+						PortMethodHelper ph = new PortMethodHelper(perspective, leaf, port, provided);
+						ph.resolveGetMethodNames();
+						
 						String iname = provided.getImplementationClass(perspective);
 						String tname = getAfterLastDot(iname);
 						String pname = port.getName();
 						String vname = pname + (complexPort ? tname : "") + "_Provided";
-						String mname = "get" + upper(pname) + "_Provided";
-						String rmname = "remove" + makeSingular(upper(pname));
 						String newTypeName = tname + upper(pname) + "Impl";
 						newTypes.put(newTypeName, iname);
 						
@@ -382,15 +381,15 @@ public class LeafImplementationRefresher
 						{
 							writer.write("\tprivate java.util.List<" + newTypeName + "> " + " " + vname + " = new java.util.ArrayList<" + newTypeName + ">();");
 							writer.newLine();
-							complexWriter.write("\tpublic " + iname + " " + mname + "(int index) { return PortHelper.fill(" + vname + ", new " + newTypeName + "(), index); }");
+							complexWriter.write("\tpublic " + iname + " " + ph.getGetIndexedName() + "(int index) { return PortHelper.fill(" + vname + ", new " + newTypeName + "(), index); }");
 							complexWriter.newLine();
-							complexWriter.write("\tpublic void " + rmname + "(" + iname + "  provided) { PortHelper.remove(" + vname + ", provided); }");
+							complexWriter.write("\tpublic void " + ph.getRemoveManyName() + "(" + iname + "  provided) { PortHelper.remove(" + vname + ", provided); }");
 						}
 						else
 						{
 							writer.write("\tprivate " + newTypeName + " " + vname + " = new " + newTypeName + "();");
 							writer.newLine();
-							complexWriter.write("\tpublic " + iname + " " + mname + "() { return " + vname + "; }");					
+							complexWriter.write("\tpublic " + iname + " " + ph.getGetSingleSimpleName() + "() { return " + vname + "; }");					
 						}
 						complexWriter.newLine();
 					}

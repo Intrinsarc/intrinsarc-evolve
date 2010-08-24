@@ -12,7 +12,6 @@ import com.intrinsarc.deltaengine.base.*;
  */
 public class PortMethodHelper
 {
-	private DEStratum perspective;
 	private BBSimplePort port;
   private DEComponent partType;
   private String ifaceSimpleClassName;
@@ -51,7 +50,6 @@ public class PortMethodHelper
 	
 	public PortMethodHelper(DEStratum perspective, DEComponent partType, DEPort cport, DEInterface iface)
 	{
-		this.perspective = perspective;
 		this.partType = partType;
     this.ifaceSimpleClassName = iface.getImplementationClass(perspective);
 		port = new BBSimplePort(new BBSimpleElementRegistry(perspective, null), partType, cport, null);
@@ -62,7 +60,6 @@ public class PortMethodHelper
 	
 	public PortMethodHelper(DEStratum perspective, BBSimplePort port, Class<?> ifaceClass)
 	{
-		this.perspective = perspective;
 		this.port = port;
     this.ifaceClass = ifaceClass;
     this.ifaceSimpleClassName = ifaceClass.getSimpleName();
@@ -101,6 +98,7 @@ public class PortMethodHelper
 	      getIndexedName = methodName;
     	else
 	      getIndexedSimpleName = methodName;
+      removeManyName = "remove" + (port.isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
     }
 
     haveGetNames = true;
@@ -143,6 +141,10 @@ public class PortMethodHelper
 	          getIndexedSimpleName,
 	          new Class<?>[]{int.class},
 	          tried);
+      removeMany = resolveMethod(
+          removeManyName,
+          new Class<?>[]{ifaceClass},
+          tried);
     }
 
     if (getSingle == null && getIndexed == null && getSingleSimple == null && getIndexedSimple == null)
@@ -150,19 +152,18 @@ public class PortMethodHelper
     haveGetMethods = true;
   }
 
-	public void resolveSetMethodNames() throws BBImplementationInstantiationException
+	public void resolveSetMethodNames()
   {
 		if (haveSetNames)
 			return;
 		
   	if (!many)
   	{
-  		String methodName = "set" + upperFirst(portName);
-  		setSingleName = methodName;
+  		setSingleName = "set" + upperFirst(portName);
   	}
   	else
   	{
-  		addIndexedName = "set" + upperFirst(portName);
+  		addIndexedName = "set" + makeSingular(upperFirst(portName));
       addNoIndexedName = "add" + (port.isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
       removeManyName = "remove" + (port.isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
   	}
