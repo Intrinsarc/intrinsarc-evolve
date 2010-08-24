@@ -3,6 +3,7 @@ package com.intrinsarc.backbone.printers;
 import java.util.*;
 
 import com.intrinsarc.deltaengine.base.*;
+import com.intrinsarc.repositorybase.*;
 
 public class ElementPrinter
 {
@@ -46,7 +47,7 @@ public class ElementPrinter
 					(isNormal(c) ? " is-normal" : "") +
 					(isRawFactory(c) ? " is-factory" : "") +
 					(isRawPlaceholder(c) ? " is-placeholder" : "") +
-					(isRawLegacyBean(c) ? " is-bean" : "") +
+					(isRawLegacyBean(c) ? " is-legacy-bean" : "") +
 					(hasLifecycleCallbacks(c) ? " has-lifecycle-callbacks" : "") +
 					(c.getComponentKind() == ComponentKindEnum.PRIMITIVE ? " is-primitive" :
 					  (c.getComponentKind() == ComponentKindEnum.STEREOTYPE ? " is-stereotype" : "")));
@@ -262,8 +263,14 @@ public class ElementPrinter
 		DEComponent.FACTORY_STEREOTYPE_PROPERTY,
 		DEComponent.BEAN_STEREOTYPE_PROPERTY,
 		DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY,
-		DEComponent.LIFECYCLE_CALLBACKS_PROPERTY}
-	;
+		DEComponent.LIFECYCLE_CALLBACKS_PROPERTY,
+		CommonRepositoryFunctions.SUPPRESS_GENERATION_PORT,
+		CommonRepositoryFunctions.PORT_BEAN_MAIN,
+		CommonRepositoryFunctions.PORT_BEAN_NO_NAME,
+		CommonRepositoryFunctions.PORT_BEAN_NOT_MAIN,
+		CommonRepositoryFunctions.PORT_WANTS_REQUIRED
+	};
+	
 	private boolean ignoreProperty(DEAttribute prop)
 	{
 		for (String name : UUIDs)
@@ -444,10 +451,15 @@ public class ElementPrinter
 			b.append(" is-autoconnect");
 		if (port.isOrdered())
 			b.append(" is-ordered");
+		if (port.isForceNotBeanMain())
+			b.append(" force-not-bean-main");
+		else
 		if (port.isForceBeanMain())
 			b.append(" force-bean-main");
 		if (port.isForceBeanNoName())
 			b.append(" force-bean-noname");
+		if (port.isWantsRequiredWhenProviding())
+			b.append(" wants-required-when-providing");
 		b.append(makeInterfacesString(" provides", port.getSetProvidedInterfaces()));
 		b.append(makeInterfacesString(" requires", port.getSetRequiredInterfaces()));
 		if (last)

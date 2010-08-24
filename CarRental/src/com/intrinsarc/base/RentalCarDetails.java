@@ -3,7 +3,6 @@ package com.intrinsarc.base;
 
 public class RentalCarDetails
 // start generated code
-
   // main port
   implements com.intrinsarc.base.IRentalCarDetails
 {

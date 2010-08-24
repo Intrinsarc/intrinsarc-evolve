@@ -788,7 +788,7 @@ public abstract class DEComponent extends DEElement
 		{
 			DEPort port = pair.getConstituent().asPort();
 			
-			if (port.isForceBeanMain())
+			if (port.isForceBeanMain() && !port.isForceNotBeanMain())
 				mains.add(port);
 		}
 		
@@ -801,7 +801,7 @@ public abstract class DEComponent extends DEElement
 		{
 			DEPort port = pair.getConstituent().asPort();
 			
-			if (getProvidedInterfaces(perspective, port).size() > 0 && !port.isMany())
+			if (!port.isForceNotBeanMain() && getProvidedInterfaces(perspective, port).size() > 0 && !port.isMany())
 				mains.add(port);
 		}
 		

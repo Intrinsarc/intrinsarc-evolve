@@ -4,7 +4,6 @@ import com.intrinsarc.backbone.runtime.api.*;
 
 public class Available
 // start generated code
-
   // main port
   implements com.intrinsarc.states.IRentalEvent
 {

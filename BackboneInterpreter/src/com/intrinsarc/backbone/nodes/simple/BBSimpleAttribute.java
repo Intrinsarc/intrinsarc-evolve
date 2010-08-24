@@ -13,7 +13,6 @@ public class BBSimpleAttribute extends BBSimpleObject
 	private String name;
 	private String rawName;
   private BBSimpleElement type;
-  private BBSimpleAttribute alias;
   private List<BBSimpleParameter> defaultValue;
   private int factory;
   private boolean resolved;
@@ -95,7 +94,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 		complex = old.complex;
 		uuid = old.uuid;
 		readOnly = old.readOnly;
-		this.alias = slot.getEnvironmentAlias();
+		this.copy = slot.getEnvironmentAlias();
 		this.position = position;
 		setFactory(slot.getAttribute(), factory, partFactory);
 	}
@@ -123,7 +122,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 		if (slot != null)
 		{
 			defaultValue = translateDefaultValues(copied, slot.getValue());
-			alias = slot.getEnvironmentAlias();
+			copy = slot.getEnvironmentAlias();
 			setFactory(slot.getAttribute(), factory, partFactory);
 		}
 		else
@@ -190,6 +189,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 			for (BBSimpleParameter p : defaultValue)
 				p.resolveImplementation(registry, this);
 	    isDefault = defaultValue.size() == 1 && defaultValue.get(0).isDefault();
+	    
 			// is this a copy?
 			if (defaultValue.size() == 1 && defaultValue.get(0).getAttribute() != null)
 			{
@@ -198,7 +198,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 					copy = copyAttr;
 			}
 			
-			if (alias == null && copy == null)
+			if (copy == null)
 				constructor = resolveConstructor(type.getImplementationClass(), defaultValue, this);
 		}
 
@@ -305,11 +305,6 @@ public class BBSimpleAttribute extends BBSimpleObject
 		return type;
 	}
 	
-	public BBSimpleAttribute getAlias()
-	{
-		return alias;
-	}
-
   /**
    * NOTE: floats cause a problem, so we cannot move from any other numeric type to a float
    *       floats must be directly specified using the (fF) notation
@@ -399,8 +394,6 @@ public class BBSimpleAttribute extends BBSimpleObject
 
 	public void remapAttributes(Map<BBSimpleAttribute, BBSimpleAttribute> redundant)
 	{
-		if (alias != null && redundant.containsKey(alias))
-			alias = redundant.get(alias);
 		if (defaultValue != null)
 			for (BBSimpleParameter v : defaultValue)
 				v.remapAttribute(redundant);
@@ -409,8 +402,6 @@ public class BBSimpleAttribute extends BBSimpleObject
 	public void addAllDependencies(Set<BBSimpleAttribute> all)
 	{
 		// add an alias or anything reference from the parameters
-		if (alias != null)
-			all.add(alias);
 		if (defaultValue != null)
 			for (BBSimpleParameter v : defaultValue)
 				v.addAllDependencies(all);
@@ -452,14 +443,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 			if (isDefault)
 				return constructor.newInstance();
 
-			// (4) is this an alias?
-			if (alias != null)
-			{
-				System.out.println("$$ resolved alias...");
-				return context.resolveAttributeValue(alias);
-			}
-			
-			// (4b) is this a copy
+			// (4) is this a copy
 			if (copy != null)
 				return context.resolveAttributeValue(copy);
 			
@@ -522,9 +506,6 @@ public class BBSimpleAttribute extends BBSimpleObject
 		t.add(type);
 		children.put("type", t);
 		children.put("default value", defaultValue);
-		List<BBSimpleObject> al = new ArrayList<BBSimpleObject>();
-		al.add(alias);
-		children.put("alias", al);
 		return children;
 	}
 

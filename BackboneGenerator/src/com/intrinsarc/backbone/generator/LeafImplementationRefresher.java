@@ -119,7 +119,7 @@ public class LeafImplementationRefresher
 		}
 	}
 
-	private boolean identicalContents(File file1, File file2) throws BackboneGenerationException
+	public static boolean identicalContents(File file1, File file2) throws BackboneGenerationException
 	{
 		BufferedReader reader1 = null;
 		BufferedReader reader2 = null;
@@ -173,7 +173,7 @@ public class LeafImplementationRefresher
 	 * @param realFile
 	 * @param backupFile
 	 */
-	private void moveFile(File from, File to)
+	public static void moveFile(File from, File to)
 	{
 		to.delete();
 		from.renameTo(to);
@@ -237,7 +237,6 @@ public class LeafImplementationRefresher
 		List<DEPort> nonames = leaf.getBeanNoNamePorts(perspective);
 		if (mains.size() == 1)
 		{
-			writer.newLine();
 			writer.write("  // main port");		
 			writer.newLine();
 			Set<? extends DEInterface> provided = mains.get(0).getSetProvidedInterfaces();
@@ -337,11 +336,11 @@ public class LeafImplementationRefresher
 						String tname = getAfterLastDot(iname);
 						String pname = port.getName();
 						String vname = first ? pname : pname + "_" + tname + "Required";
-						String mname = "set" + upper(pname);
-						String aname = "add" + (nonames.contains(port) ? "" : makeSingular(upper(pname)));
-						
 						if (many)
 						{
+							String mname = "set" + makeSingular(upper(pname));
+							String aname = "add" + (nonames.contains(port) ? "" : makeSingular(upper(pname)));
+							
 							String mname2 = "remove" + makeSingular(upper(pname));
 							writer.write("\tprivate java.util.List<" + iname + "> " + vname + " = new java.util.ArrayList<" + iname + ">();");
 							writer.newLine();
@@ -353,6 +352,7 @@ public class LeafImplementationRefresher
 						}
 						else
 						{
+							String mname = "set" + upper(pname);
 							writer.write("\tprivate " + iname + " " + vname + ";");
 							writer.newLine();
 							complexWriter.write("\tpublic void " + mname + "(" + iname + " " + vname + ") { this." + vname + " = " + vname + "; }");

@@ -7,7 +7,6 @@ import com.intrinsarc.base.*;
 
 public class StatesExampleRunner
 // start generated code
-
   // main port
   implements com.intrinsarc.backbone.runtime.api.IRun
 {
@@ -17,12 +16,12 @@ public class StatesExampleRunner
   // provided ports
 
   // port setters and getters
-	public void setCars(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
-	public void addCars(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.fill(this.cars, cars, -1); }
-	public void removeCars(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
-	public void setRentalStates(com.intrinsarc.states.IRentalEvent rentalStates, int index) { PortHelper.fill(this.rentalStates, rentalStates, index); }
-	public void addRentalStates(com.intrinsarc.states.IRentalEvent rentalStates) { PortHelper.fill(this.rentalStates, rentalStates, -1); }
-	public void removeRentalStates(com.intrinsarc.states.IRentalEvent rentalStates) { PortHelper.remove(this.rentalStates, rentalStates); }
+	public void setCar(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
+	public void addCar(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.fill(this.cars, cars, -1); }
+	public void removeCar(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
+	public void setRentalState(com.intrinsarc.states.IRentalEvent rentalStates, int index) { PortHelper.fill(this.rentalStates, rentalStates, index); }
+	public void addRentalState(com.intrinsarc.states.IRentalEvent rentalStates) { PortHelper.fill(this.rentalStates, rentalStates, -1); }
+	public void removeRentalState(com.intrinsarc.states.IRentalEvent rentalStates) { PortHelper.remove(this.rentalStates, rentalStates); }
 // end generated code
 
 

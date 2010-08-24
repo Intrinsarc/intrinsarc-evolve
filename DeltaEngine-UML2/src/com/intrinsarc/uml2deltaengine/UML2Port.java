@@ -120,19 +120,36 @@ public class UML2Port extends DEPort
 	@Override
 	public boolean isSuppressGeneration()
 	{
-		return StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.SUPPRESS_GENERATION_PORT);
+		return
+			StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.SUPPRESS_GENERATION_PORT);
 	}
 	
 	@Override
 	public boolean isForceBeanMain()
 	{
-		return StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.PORT_BEAN_MAIN);
+		return
+			StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.PORT_BEAN_MAIN);
+	}
+	
+	@Override
+	public boolean isWantsRequiredWhenProviding()
+	{
+		return
+			StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.PORT_WANTS_REQUIRED);
+	}
+	
+	@Override
+	public boolean isForceNotBeanMain()
+	{
+		return
+			StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.PORT_BEAN_NOT_MAIN);
 	}
 	
 	@Override
 	public boolean isForceBeanNoName()
 	{
-		return StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.PORT_BEAN_NO_NAME);
+		return
+			StereotypeUtilities.extractBooleanProperty(subject, CommonRepositoryFunctions.PORT_BEAN_NO_NAME);
 	}
 	
 	@Override

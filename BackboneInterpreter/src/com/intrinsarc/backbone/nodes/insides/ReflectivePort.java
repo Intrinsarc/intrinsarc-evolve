@@ -49,28 +49,33 @@ public class ReflectivePort
     String extra = cp ? iface.getSimpleName() : "";
     String tried[] = {""};
 
-    String methodName = "get" + upperFirst(portName) + extra + "_Provided";
     if (!many)
     {
-    	getSingle = resolveMethod(
-    			methodName,
-    			new Class<?>[]{Class.class},
-    			tried);
-    	getSingleSimple = resolveMethod(
-    			methodName,
-    			new Class<?>[]{},
-    			tried);
+      String methodName = "get" + upperFirst(portName) + extra + "_Provided";
+    	if (port.isWantsRequiredWhenProviding())
+	    	getSingle = resolveMethod(
+	    			methodName,
+	    			new Class<?>[]{Class.class},
+	    			tried);
+    	else
+	    	getSingleSimple = resolveMethod(
+	    			methodName,
+	    			new Class<?>[]{},
+	    			tried);
     }
     else
     {
-      getIndexed = resolveMethod(
-          methodName,
-          new Class<?>[]{Class.class, int.class},
-          tried);    		
-      getIndexedSimple = resolveMethod(
-          methodName,
-          new Class<?>[]{int.class},
-          tried);
+      String methodName = "get" + makeSingular(upperFirst(portName)) + extra + "_Provided";
+    	if (port.isWantsRequiredWhenProviding())
+	      getIndexed = resolveMethod(
+	          methodName,
+	          new Class<?>[]{Class.class, int.class},
+	          tried);
+    	else
+	      getIndexedSimple = resolveMethod(
+	          methodName,
+	          new Class<?>[]{int.class},
+	          tried);
     }
 
     if (getSingle == null && getIndexed == null && getSingleSimple == null && getIndexedSimple == null)
@@ -292,7 +297,7 @@ public class ReflectivePort
 
     try
     {
-      if (addIndexed != null)
+      if (index != -1 && addIndexed != null)
       	addIndexed.invoke(target, value, index);
       else
       if (addNoIndexed != null)

@@ -16,7 +16,7 @@ public final class TALLexer implements Lexer
 	private static final String[] MODIFIERS = {
 		"parent", "is-normal", "is-relaxed", "is-destructive", "depends-on", "nests",
 		"is-composite", "is-leaf", "is-primitive", "is-factory", "is-placeholder",
-		"resembles", "replaces", "implementation-class", "is-factory-interface", "is-bean",
+		"resembles", "replaces", "implementation-class", "is-factory-interface", "is-legacy-bean"
 		};
 	private static final String[] INSIDE_KEYWORDS = {
 		"delete-operations:", "operations:", "replace-operations:", 
@@ -29,8 +29,10 @@ public final class TALLexer implements Lexer
 	private static final String[] JOINING_KEYWORDS = {
 		"is-create-port", "is-hyperport-start", "is-hyperport-end", "read-only", "write-only", "becomes",
 		"maps-onto", "ports-remaps:", "slots:", "joins", "to", "delegates-from",
-		"is-ordered", "is-bean-main", "is-bean-noname", "provides", "requires", "upto"
-		};
+		"is-ordered", "is-bean-main", "is-bean-noname", "provides", "requires", "upto",
+		"force-not-bean-main", "force-bean-main", "force-bean-noname", "wants-required-when-providing"
+	};
+		
 	private static final char GUILLEMET_START = '\u00ab';
 	private static final char GUILLEMET_END   = '\u00bb';
 	private int offset;

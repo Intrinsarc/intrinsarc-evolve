@@ -32,7 +32,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   private static final String READ_ONLY = "{readonly}";
   private static final String WRITE_ONLY = "{writeonly}";
   private Pattern pattern = Pattern.compile(
-      "(\\w+)" +                                                    // attribute name
+      "([\\w\\-\\_]+)" +                                             // attribute name
             "(?:\\s*" +                                              // first bracket and whitespace
                   "(?:\\s*\\[(?:([0-9]+)\\s*\\.\\.\\s*)?([0-9]+|\\*)\\s*\\])?\\s*" +  // multiplicity     (optional)
                   ":\\s*(\\w+)\\s*(?:\\=\\s*([^\\{]*\\S))?" +             // type and default (optional)

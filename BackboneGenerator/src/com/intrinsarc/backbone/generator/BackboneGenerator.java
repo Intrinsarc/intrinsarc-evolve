@@ -48,8 +48,7 @@ public class BackboneGenerator
     			}
     			else
     			{
-    				new FlatteningHardcoder().writeFlattened(choice);
-    				modified[0] = 1;
+    				modified[0] += new FlatteningHardcoder().writeFlattened(choice);
     			}
     			return null;
     		}

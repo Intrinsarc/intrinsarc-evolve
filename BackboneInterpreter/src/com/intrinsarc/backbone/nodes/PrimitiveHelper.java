@@ -27,21 +27,21 @@ public class PrimitiveHelper
 	
   public static String translateLongToShortPrimitive(String longName)
   {
-  	if (longName.equals("Integer"))
+  	if (longName.equals("java.lang.Integer"))
   		return "int";
-  	if (longName.equals("Boolean"))
+  	if (longName.equals("java.lang.Boolean"))
   		return "boolean";
-  	if (longName.equals("Double"))
+  	if (longName.equals("java.lang.Double"))
   		return "double";
-  	if (longName.equals("Long"))
+  	if (longName.equals("java.lang.Long"))
   		return "long";
-  	if (longName.equals("Character"))
+  	if (longName.equals("java.lang.Character"))
   		return "char";
-  	if (longName.equals("Short"))
+  	if (longName.equals("java.lang.Short"))
   		return "short";
-  	if (longName.equals("Byte"))
+  	if (longName.equals("java.lang.Byte"))
   		return "byte";
-  	if (longName.equals("Float"))
+  	if (longName.equals("java.lang.Float"))
   		return "float";
   	return longName;
   }

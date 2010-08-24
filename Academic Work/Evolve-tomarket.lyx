@@ -400,6 +400,11 @@ stop delta delete on part ports
 \end_layout
 
 \begin_layout Enumerate
+fix to work properly with beans - fwd gen, reverse gen, multiple provided,
+ multiple interfaces per port, aliasing, hardcoder
+\end_layout
+
+\begin_layout Enumerate
 connectors ends not moving when class is resized
 \end_layout
 
@@ -413,7 +418,8 @@ undo of default value attr set with multiple values e.g.
 \end_layout
 
 \begin_layout Enumerate
-GWT states test + must start in first state
+GWT states fixup for new scheme + must start in first state + refresh current
+ after dispatch
 \end_layout
 
 \begin_layout Enumerate
@@ -452,11 +458,6 @@ team system!
 
 \begin_layout Itemize
 part aliasing in factories! - for many to many relationships
-\end_layout
-
-\begin_layout Itemize
-fix to work properly with beans - fwd gen, multiple provided, multiple interface
-s per port, aliasing
 \end_layout
 
 \begin_layout Itemize

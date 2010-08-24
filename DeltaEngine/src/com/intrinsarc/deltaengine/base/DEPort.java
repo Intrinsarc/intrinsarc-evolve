@@ -26,7 +26,9 @@ public abstract class DEPort extends DEConstituent
 
 	public abstract boolean isSuppressGeneration();
 	public abstract boolean isForceBeanMain();
+	public abstract boolean isForceNotBeanMain();
 	public abstract boolean isForceBeanNoName();
+	public abstract boolean isWantsRequiredWhenProviding();
 	public abstract PortKindEnum getPortKind();
 	public abstract boolean isOrdered();
 }

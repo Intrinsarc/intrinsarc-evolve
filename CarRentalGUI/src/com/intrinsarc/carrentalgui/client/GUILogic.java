@@ -6,44 +6,41 @@ import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.rpc.*;
 import com.intrinsarc.backbone.runtime.api.*;
 
-public class GUILogic implements ILifecycle
-{
+public class GUILogic
 // start generated code
-// attributes
-// required ports
+  // main port
+  implements com.google.gwt.event.dom.client.ChangeHandler
+{
+  // required ports
 	private com.intrinsarc.backbone.runtime.api.ICreate create;
 	private com.google.gwt.user.client.ui.TextBox text;
-// provided ports
-	private ChangeHandlerChangeImpl change_ChangeHandlerProvided = new ChangeHandlerChangeImpl();
-// setters and getters
-	public void setCreate_ICreate(com.intrinsarc.backbone.runtime.api.ICreate create) { this.create = create; }
-	public void setText_TextBox(com.google.gwt.user.client.ui.TextBox text) { this.text = text; }
-	public com.google.gwt.event.dom.client.ChangeHandler getChange_ChangeHandler(Class<?> required) { return change_ChangeHandlerProvided; }
+  // provided ports
+
+  // port setters and getters
+	public void setCreate(com.intrinsarc.backbone.runtime.api.ICreate create) { this.create = create; }
+	public void setText(com.google.gwt.user.client.ui.TextBox text) { this.text = text; }
 // end generated code
 
 	private IRentalServiceAsync service;
-	public void setService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync service) { this.service = service; refresh(); }
+	public void setService(com.intrinsarc.carrentalgui.client.IRentalServiceAsync service) { this.service = service; refresh(); }
 	private List<Object> mementos = new ArrayList<Object>();
 
-	private class ChangeHandlerChangeImpl implements com.google.gwt.event.dom.client.ChangeHandler
+	public void onChange(ChangeEvent event)
 	{
-		public void onChange(ChangeEvent event)
+		if (event == null)
 		{
-			if (event == null)
-			{
-				refresh();
-				return;
-			}
-			
-			service.createRentalCar(text.getText(), new AsyncCallback<Void>()
-			{
-				public void onSuccess(Void v)
-				{ refresh(); }
-				
-				public void onFailure(Throwable caught) {}
-			});
-			text.setValue("");
+			refresh();
+			return;
 		}
+		
+		service.createRentalCar(text.getText(), new AsyncCallback<Void>()
+		{
+			public void onSuccess(Void v)
+			{ refresh(); }
+			
+			public void onFailure(Throwable caught) {}
+		});
+		text.setValue("");
 	}
 
 	private void refresh()

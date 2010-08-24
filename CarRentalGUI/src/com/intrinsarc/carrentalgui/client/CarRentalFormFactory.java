@@ -8,13 +8,13 @@ public class CarRentalFormFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private Attribute<Integer> spacing;
-  private Attribute<Integer> spacing1;
-  private Attribute<String> width;
-  private Attribute<Integer> spacing2;
-  private Attribute<Integer> spacing3;
-  private Attribute<String> width1;
-  private Attribute<String> text;
+  private int spacing;
+  private String width;
+  private int spacing1;
+  private int spacing2;
+  private String width1;
+  private int spacing3;
+  private String text;
 
   // connectors
   private com.intrinsarc.carrentalgui.client.IRentalServiceAsync c;
@@ -58,26 +58,26 @@ public class CarRentalFormFactory implements IHardcodedFactory
 
   public CarRentalFormFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
-    spacing = new Attribute<Integer>(10);
-    spacing1 = new Attribute<Integer>(10);
-    width = new Attribute<String>("500px");
-    spacing2 = new Attribute<Integer>(10);
-    spacing3 = new Attribute<Integer>(10);
-    width1 = new Attribute<String>("400px");
-    text = new Attribute<String>("Add new car:");
-    x1.setSpacing(spacing.get());
-    x2.setSpacing(spacing1.get());
-    x2.setWidth(width.get());
-    x14.setSpacing(spacing2.get());
-    x.setSpacing(spacing3.get());
-    x.setWidth(width1.get());
-    x9.setText(text.get());
-    c = x3.getService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync.class);
+    spacing = 10;
+    width = "500px";
+    spacing1 = 10;
+    spacing2 = 10;
+    width1 = "400px";
+    spacing3 = 10;
+    text = "Add new car:";
+    x1.setSpacing(spacing);
+    x2.setWidth(width);
+    x2.setSpacing(spacing1);
+    x14.setSpacing(spacing2);
+    x.setWidth(width1);
+    x.setSpacing(spacing3);
+    x9.setText(text);
+    c = x3.getService_Provided();
     c1 = factory;
     c2 = x7;
     c3 = x9;
     c4 = x7;
-    c5 = x5.getChange_ChangeHandler(com.google.gwt.event.dom.client.ChangeHandler.class);
+    c5 = x5;
     c6 = x;
     c7 = x14;
     c8 = x1;
@@ -88,9 +88,9 @@ public class CarRentalFormFactory implements IHardcodedFactory
     x2.add(c10);
     x.add(c2);
     x2.add(c9);
-    x5.setService_IRentalServiceAsync(c);
-    x5.setCreate_ICreate(c1);
-    x5.setText_TextBox(c4);
+    x5.setService(c);
+    x5.setCreate(c1);
+    x5.setText(c4);
     x7.addChangeHandler(c5);
     x16.setWidget(c7);
     x17.setWidget(c8);
@@ -121,29 +121,27 @@ class CarRentalWidgetFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private Attribute<Integer> carNo = new Attribute<Integer>(0);
-  public void setCarNo(int carNo) { this.carNo.set(carNo); }
-  public int getCarNo() { return carNo.get(); }
-  private Attribute<Boolean> rentEnabled = new Attribute<Boolean>(true);
-  public void setRentEnabled(boolean rentEnabled) { this.rentEnabled.set(rentEnabled); }
-  public boolean getRentEnabled() { return rentEnabled.get(); }
-  private Attribute<String> renter = new Attribute<String>("");
-  public void setRenter(String renter) { this.renter.set(renter); }
-  public String getRenter() { return renter.get(); }
-  private Attribute<String> model = new Attribute<String>("");
-  public void setModel(String model) { this.model.set(model); }
-  public String getModel() { return model.get(); }
-  private Attribute<Boolean> returnEnabled = new Attribute<Boolean>(true);
-  public void setReturnEnabled(boolean returnEnabled) { this.returnEnabled.set(returnEnabled); }
-  public boolean getReturnEnabled() { return returnEnabled.get(); }
-  private Attribute<String> model1;
-  private Attribute<Integer> spacing4;
-  private Attribute<String> width2;
-  private Attribute<String> width3;
-  private Attribute<String> text1;
-  private Attribute<String> text2;
-  private Attribute<String> text3;
-  private Attribute<String> width4;
+  private String model = "";
+  public void setModel(String model) { this.model = model; }
+  public String getModel() { return model; }
+  private boolean rentEnabled = true;
+  public void setRentEnabled(boolean rentEnabled) { this.rentEnabled = rentEnabled; }
+  public boolean getRentEnabled() { return rentEnabled; }
+  private boolean returnEnabled = true;
+  public void setReturnEnabled(boolean returnEnabled) { this.returnEnabled = returnEnabled; }
+  public boolean getReturnEnabled() { return returnEnabled; }
+  private int carNo = 0;
+  public void setCarNo(int carNo) { this.carNo = carNo; }
+  public int getCarNo() { return carNo; }
+  private String renter = "";
+  public void setRenter(String renter) { this.renter = renter; }
+  public String getRenter() { return renter; }
+  private String width2;
+  private int spacing4;
+  private String width3;
+  private String text1;
+  private String width4;
+  private String text2;
 
   // connectors
   private com.intrinsarc.carrentalgui.client.IRentalServiceAsync c11;
@@ -170,49 +168,47 @@ class CarRentalWidgetFactory implements IHardcodedFactory
   public CarRentalWidgetFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)
   {
     this.parent = parent;
-    if (values != null && values.containsKey("carNo")) carNo = new Attribute<Integer>((Integer) values.get("carNo"));
-    if (values != null && values.containsKey("rentEnabled")) rentEnabled = new Attribute<Boolean>((Boolean) values.get("rentEnabled"));
-    if (values != null && values.containsKey("renter")) renter = new Attribute<String>((String) values.get("renter"));
-    if (values != null && values.containsKey("model")) model = new Attribute<String>((String) values.get("model"));
-    if (values != null && values.containsKey("returnEnabled")) returnEnabled = new Attribute<Boolean>((Boolean) values.get("returnEnabled"));
-    model1 = new Attribute<String>(model.get());
-    spacing4 = new Attribute<Integer>(10);
-    width2 = new Attribute<String>("400px");
-    width3 = new Attribute<String>("150px");
-    text1 = new Attribute<String>("return");
-    text2 = new Attribute<String>(renter.get());
-    text3 = new Attribute<String>("Enter renter:");
-    width4 = new Attribute<String>("90px");
-    x21.setSpacing(spacing4.get());
-    x21.setWidth(width2.get());
-    x33.setText(model1.get());
-    x33.setWidth(width3.get());
-    x26.setText(text1.get());
-    x26.setEnabled(returnEnabled.get());
-    x28.setText(text2.get());
-    x28.setEnabled(rentEnabled.get());
+    if (values != null && values.containsKey("model")) model = (String) values.get("model");
+    if (values != null && values.containsKey("rentEnabled")) rentEnabled = (Boolean) values.get("rentEnabled");
+    if (values != null && values.containsKey("returnEnabled")) returnEnabled = (Boolean) values.get("returnEnabled");
+    if (values != null && values.containsKey("carNo")) carNo = (Integer) values.get("carNo");
+    if (values != null && values.containsKey("renter")) renter = (String) values.get("renter");
+    width2 = "400px";
+    spacing4 = 10;
+    width3 = "150px";
+    text1 = "return";
+    width4 = "90px";
+    text2 = "Enter renter:";
+    x21.setWidth(width2);
+    x21.setSpacing(spacing4);
+    x33.setWidth(width3);
+    x33.setText(model);
+    x26.setEnabled(returnEnabled);
+    x26.setText(text1);
+    x28.setEnabled(rentEnabled);
+    x28.setText(renter);
     x23.setCarNo(carNo);
-    x24.setText(text3.get());
-    x24.setWidth(width4.get());
-    c11 = x3.getService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync.class);
+    x24.setWidth(width4);
+    x24.setText(text2);
+    c11 = x3.getService_Provided();
     c12 = x24;
     c13 = x26;
-    c14 = x23.getRenterSet_ChangeListener(com.google.gwt.user.client.ui.ChangeListener.class);
-    c15 = x23.getReturn_ClickListener(com.google.gwt.user.client.ui.ClickListener.class);
+    c14 = x23.getRenterSet_Provided();
+    c15 = x23;
     c16 = x28;
     c17 = x28;
     c18 = x33;
-    c19 = x5.getChange_ChangeHandler(com.google.gwt.event.dom.client.ChangeHandler.class);
+    c19 = x5;
     c20 = x21;
     x21.add(c18);
     x21.add(c12);
     x21.add(c17);
     x21.add(c13);
-    x23.setService_IRentalServiceAsync(c11);
+    x23.setService(c11);
     x28.addChangeListener(c14);
     x26.addClickListener(c15);
-    x23.setRenter_TextBox(c16);
-    x23.setRefresh_ChangeHandler(c19);
+    x23.setRenter(c16);
+    x23.setRefresh(c19);
     x14.add(c20);
     return this;
   }
@@ -225,11 +221,11 @@ class CarRentalWidgetFactory implements IHardcodedFactory
     x21.remove(c12);
     x21.remove(c17);
     x21.remove(c13);
-    x23.setService_IRentalServiceAsync(null);
+    x23.setService(null);
     x28.removeChangeListener(c14);
     x26.removeClickListener(c15);
-    x23.setRenter_TextBox(null);
-    x23.setRefresh_ChangeHandler(null);
+    x23.setRenter(null);
+    x23.setRefresh(null);
     x14.remove(c20);
   }
 

@@ -282,10 +282,10 @@ public class ComponentMiniAppearanceGem implements Gem
 						List<DEPort> mains = comp.getBeanMainPorts(perspective);
 						List<DEPort> nonames = comp.getBeanNoNamePorts(perspective);
 						
-						String p = "<html><b>Bean main-ports</b>";
+						String p = "<html><b>Bean main-port</b>";
 						for (DEPort port : mains)
 							p += "<br>&nbsp;&nbsp;&nbsp;&nbsp;" + port.getName();
-						p += "<br><br><hr><br><b>Bean no-name ports</b>";
+						p += "<br><br><hr><br><b>Bean no-name port</b>";
 						for (DEPort port : nonames)
 							p += "<br>&nbsp;&nbsp;&nbsp;&nbsp;" + port.getName();
 						

@@ -15,7 +15,7 @@ import com.intrinsarc.deltaengine.base.*;
 
 public class HardcodedFactoryWriter
 {
-	public void writeHardcodedFactory(BBSimpleElementRegistry registry, File write, String className, String pkgName,
+	public int writeHardcodedFactory(BBSimpleElementRegistry registry, File real, File temp, String className, String pkgName,
 			BBSimpleComponent simple, int factoryNumber, UniqueNamer namer, ExpandedTypeManager expander)
 			throws BackboneGenerationException
 	{
@@ -27,7 +27,7 @@ public class HardcodedFactoryWriter
 
 		try
 		{
-			c = new BufferedWriter(new FileWriter(write));
+			c = new BufferedWriter(new FileWriter(temp));
 			if (pkgName != null)
 				c.write("package " + pkgName + ";");
 			c.newLine();
@@ -40,12 +40,13 @@ public class HardcodedFactoryWriter
 
 			writeSingleFactory(registry, c, className, simple, factoryNumber, namer, expander);
 			// possibly add in any expanded classes such as states and dispatchers
-			c.write(expander.constructClasses());
+			c.write(expander.constructClasses());			
 		}
 		catch (IOException ex)
 		{
 			throw new BackboneGenerationException("Problem writing to file when writing hardcoded factory", null);
-		} finally
+		}
+		finally
 		{
 			try
 			{
@@ -55,6 +56,18 @@ public class HardcodedFactoryWriter
 			{
 				throw new BackboneGenerationException("Problem closing file when writing hardcoded factory", ex);
 			}
+		}
+		
+		// move the files over now to complete the generation
+		if (real.exists() && LeafImplementationRefresher.identicalContents(real, temp))
+		{
+			temp.delete();
+			return 0;
+		}
+		else
+		{
+			LeafImplementationRefresher.moveFile(temp, real);
+			return 1;
 		}
 	}
 
@@ -315,7 +328,7 @@ public class HardcodedFactoryWriter
 			{
 				String attrName = namer.getUniqueName(attr);
 				String impl = attr.getType().getImplementationClassName();
-				String translatedImpl = PrimitiveHelper.translateLongToShortPrimitive(impl);
+				String translatedImpl = PrimitiveHelper.stripJavaLang(PrimitiveHelper.translateLongToShortPrimitive(impl));
 				if (top)
 					c.write("  private " + translatedImpl + " ");
 				else
@@ -392,7 +405,6 @@ public class HardcodedFactoryWriter
 		}
 		for (BBSimpleConnectorEnd end : ends)
 		{
-			boolean bean = end.getPart().getType().isLegacyBean();
 			String partName = namer.getUniqueName(end.getPart());
 			BBSimplePort port = end.getPort();
 			for (BBSimpleInterface p : port.getProvides())
@@ -403,44 +415,40 @@ public class HardcodedFactoryWriter
 				// generate a variable
 				String vname = namer.getUniqueName("var_" + partName + "_" + namer.getUniqueName(port) + "_" + shortOriginalImpl + "_"
 						+ namer.getUniqueName(end.getConnector()), "c");
-				String name = upper(port.getRawName());
 
-				if (bean || isFactoryPart(end.getPart()))
+				String cast = originalImpl.equals(impl) ? "" : ("(" + impl + ") ");
+				if (declarations)
 				{
-					if (declarations)
-					{
-						c.write("  private " + impl + " " + vname + ";");
-						c.newLine();						
-					}
-					else
-					{
-						c.write("    " + vname + " = " + partName + ";");
-						c.newLine();
-					}
+					c.write("  private " + impl + " " + vname + ";");
+					c.newLine();
 				}
 				else
 				{
-					String methodName = "get" + name + "_" + shortOriginalImpl;
-					String cast = originalImpl.equals(impl) ? "" : ("(" + impl + ") ");
-					if (declarations)
+					if (port.isBeanMain())
 					{
-						c.write("  private " + impl + " " + vname + ";");
-						c.newLine();
+						c.write("    " + vname + " = " + partName + ";");
 					}
 					else
 					{
-						c.write("    " + vname + " = " + cast + partName + "." + methodName + "(" + impl + ".class");
+				    boolean cp = port.isComplexProvided();
+				    String extra = cp ? impl : "";
+				    String uname = upper(port.getRawName());
+						String name = port.isIndexed() ? makeSingular(uname) : uname;
+
+						String methodName = "get" + name + extra + "_Provided";
+						c.write("    " + vname + " = " + cast + partName + "." + methodName + "(" +
+								(port.isWantsRequiredWhenProviding() ? (impl + ".class") : ""));
 						if (end.getIndex() != null)
 						{
 								c.write(", " + end.getIndex());
 						}
 						else
 							if (end.getPort().isIndexed() && end.isTakeNext())
-								c.write(", -1");							
-
+								c.write(", -1");
 						c.write(");");
-						c.newLine();
 					}
+
+					c.newLine();
 				}
 			}
 		}
@@ -450,7 +458,6 @@ public class HardcodedFactoryWriter
 
 		for (BBSimpleConnectorEnd end : ends)
 		{
-			boolean bean = end.getPart().getType().isLegacyBean();
 			String partName = namer.getUniqueName(end.getPart());
 			BBSimplePort port = end.getPort();
 			// look to the other side for the variable name
@@ -461,9 +468,6 @@ public class HardcodedFactoryWriter
 
 			for (BBSimpleInterface p : port.getRequires())
 			{
-				String impl = p.getImplementationClassName();
-				String shortImpl = getAfterLastDot(impl);
-
 				Set<? extends DEInterface> provided =
 					otherPort.getOwner().getComplex().asComponent().getProvidedInterfaces(
 							registry.getPerspective(),
@@ -477,98 +481,62 @@ public class HardcodedFactoryWriter
 						+ shortOtherSideImpl + "_" + namer.getUniqueName(end.getConnector()), "c");
 
 				String name = upper(port.getRawName());
+				String sname = makeSingular(name);
 
-				if (bean)
+				String methodName = "set" + name;
+				if (end.getIndex() != null)
 				{
-					if (port.getComplexPort().isForceBeanNoName())
-					{
-						c.write("    " + partName + ".add(" + vname + ");");
-						d.write("    " + partName + ".remove(" + vname + ");");
-						possiblyRemove(namer, d, otherEnd, vname, p);
-					}
-					else if (port.isIndexed())
-					{
-						c.write("    " + partName + ".add" + makeSingular(name) + "(" + vname + ");");
-						d.write("    " + partName + ".remove" + makeSingular(name) + "(" + vname + ");");
-						possiblyRemove(namer, d, otherEnd, vname, p);
-					}
-					else
-					{
-						c.write("    " + partName + ".set" + name + "(" + vname + ");");
-						d.write("    " + partName + ".set" + name + "(null);");
-						possiblyRemove(namer, d, otherEnd, vname, p);
-					}
-					c.newLine();
-					d.newLine();
+					c.write("    " + partName + "." + methodName + "(" + vname);
+					c.write(", " + end.getIndex());
+				}
+				else
+				if (port.isIndexed())
+				{
+					String addName = "add" + (port.isBeanNoName() ? "" : sname);
+					c.write("    " + partName + "." + addName + "(" + vname);
 				}
 				else
 				{
-					String methodName = "set" + name + "_" + shortImpl;
 					c.write("    " + partName + "." + methodName + "(" + vname);
-					if (end.getIndex() != null)
-					{
-						c.write(", " + end.getIndex());
-						d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
-						possiblyRemove(namer, d, otherEnd, vname, p);
-					}
-					else
-					if (port.isIndexed())
-					{
-						c.write(", -1");
-						d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
-						possiblyRemove(namer, d, otherEnd, vname, p);
-					}
-					else
-					{
-						d.write("    " + partName + ".set" + name + "_" + shortImpl + "(null);");						
-						possiblyRemove(namer, d, otherEnd, vname, p);
-					}
-					c.write(");");
-					c.newLine();
-					d.newLine();
 				}
+				c.write(");");
+				c.newLine();
+				
+				// handle removal
+				if (port.isIndexed())
+				{
+					d.write("    " + partName + ".remove" + (port.isBeanNoName() ? "" : sname) + "(" + vname + ");");
+				}
+				else
+					d.write("    " + partName + "." + methodName + "(null);");						
+				possiblyRemoveOtherSide(namer, d, otherEnd, vname, p);
+
+				d.newLine();
 			}
 		}
 	}
 
-	private void possiblyRemove(UniqueNamer namer, BufferedWriter d, BBSimpleConnectorEnd end, String vname, BBSimpleInterface provides)
+	private void possiblyRemoveOtherSide(UniqueNamer namer, BufferedWriter d, BBSimpleConnectorEnd end, String vname, BBSimpleInterface provides)
 		throws IOException
 	{
 		BBSimplePort port = end.getPort();
+
+		if (port.isBeanMain() || !port.isIndexed())
+			return;
+			
 		BBSimplePart part = end.getPart();
 		String partName = namer.getUniqueName(part);
-		String impl = provides.getImplementationClassName();
-		String shortImpl = getAfterLastDot(impl);
+		String name = makeSingular(upper(port.getRawName()));
 
-		boolean bean = part.getType().isLegacyBean();
-		String name = upper(port.getRawName());
-
-		if (bean)
+		if (port.isBeanNoName())
 		{
-			if (port.getComplexPort().isForceBeanNoName())
-			{
-				d.newLine();
-				d.write("    " + partName + ".remove(" + vname + ");");
-			}
-			else if (port.isIndexed())
-			{
-				d.newLine();
-				d.write("    " + partName + ".remove" + makeSingular(name) + "(" + vname + ");");
-			}
+			d.newLine();
+			d.write("    " + partName + ".remove(" + vname + ");");
 		}
 		else
 		{
-			if (end.getIndex() != null)
-			{
-				d.newLine();
-				d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
-			}
-			else
-			if (port.isIndexed())
-			{
-				d.newLine();
-				d.write("    " + partName + ".remove" + name + "_" + shortImpl + "(" + vname + ");");
-			}
+			d.newLine();
+			d.write("    " + partName + ".remove" + name + "(" + vname + ");");
 		}
 	}
 
@@ -584,7 +552,7 @@ public class HardcodedFactoryWriter
 			throws IOException
 	{
 		String translated = PrimitiveHelper.translateLongToShortPrimitive(impl);
-		String primTrans = PrimitiveHelper.stripJavaLang(impl);
+		String primTrans = PrimitiveHelper.stripJavaLang(translated);
 		boolean primitive = !impl.equals(translated);
 
 		BBSimpleAttribute oneAttr = def.size() == 1 ? def.get(0).getAttribute() : null;
@@ -682,8 +650,8 @@ public class HardcodedFactoryWriter
 				throw new BackboneGenerationException("External port cannot be indexed " + port.getName(), comp);
 
 			// write out the port getter or setter
-			String name = upper(port.getRawName());
-			boolean bean = end.getPart().getType().isLegacyBean();
+			String uname = upper(port.getRawName());
+			String name = port.isIndexed() ? makeSingular(uname) : uname;
 			String partName = namer.getUniqueName(end.getPart());
 
 			for (BBSimpleInterface p : port.getProvides())
@@ -694,16 +662,16 @@ public class HardcodedFactoryWriter
 					desiredName = "get" + name;
 				String methodName = namer.getUniqueName(fullName, desiredName);
 				c.write("  public " + p.getImplementationClassName() + " " + methodName + "()");
-				if (bean)
+				if (port.isBeanMain())
 				{
-					// beans only provide themselves...
 					c.write(" { return " + partName + "; }");
 				}
 				else
 				{
 					String originalImpl = p.getImplementationClassName();
 					String shortOriginalImpl = getAfterLastDot(originalImpl);
-					c.write(" { return " + partName + "." + methodName + "_" + shortOriginalImpl + "(null); }");
+					String extra = port.isComplexProvided() ? shortOriginalImpl : "";
+					c.write(" { return " + partName + "." + methodName + extra + "_Provided(null); }");
 				}
 				c.newLine();
 			}
@@ -713,7 +681,7 @@ public class HardcodedFactoryWriter
 				String fullName = partName + "_" + getAfterLastDot(r.getImplementationClassName());
 				String methodName = namer.getUniqueName(fullName, desiredName);
 				c.write("  public void " + methodName + "(" + r.getImplementationClassName() + " val)");
-				if (bean)
+				if (port.isBeanMain())
 				{
 					// beans only provide themselves...
 					c.write(" { " + partName + ".set" + name + "(val); }");
@@ -722,7 +690,8 @@ public class HardcodedFactoryWriter
 				{
 					String originalImpl = r.getImplementationClassName();
 					String shortOriginalImpl = getAfterLastDot(originalImpl);
-					c.write(" { " + partName + "." + methodName + "_" + shortOriginalImpl + "(val); }");
+					String extra = port.isComplexProvided() ? shortOriginalImpl : "";
+					c.write(" { " + partName + "." + methodName + extra + "_Provided(val); }");
 				}
 
 				c.newLine();

@@ -5,26 +5,29 @@ import com.google.gwt.user.client.ui.*;
 import com.intrinsarc.backbone.runtime.api.*;
 
 public class RentalLogic
-{
 // start generated code
-// attributes
-	private Attribute<java.lang.Integer> carNo;
-// required ports
+  // main port
+  implements com.google.gwt.user.client.ui.ClickListener
+{
+  // attributes
+	private Integer carNo;
+
+  // attribute setters and getters
+	public Integer getCarNo() { return carNo; }
+	public void setCarNo(Integer carNo) { this.carNo = carNo;}
+
+  // required ports
 	private com.google.gwt.event.dom.client.ChangeHandler refresh;
 	private com.intrinsarc.carrentalgui.client.IRentalServiceAsync service;
 	private com.google.gwt.user.client.ui.TextBox renter;
-// provided ports
-	private ClickListenerReturnImpl return_ClickListenerProvided = new ClickListenerReturnImpl();
-	private ChangeListenerRenterSetImpl renterSet_ChangeListenerProvided = new ChangeListenerRenterSetImpl();
-// setters and getters
-	public Attribute<java.lang.Integer> getCarNo() { return carNo; }
-	public void setCarNo(Attribute<java.lang.Integer> carNo) { this.carNo = carNo;}
-	public void setRawCarNo(java.lang.Integer carNo) { this.carNo.set(carNo);}
-	public void setRefresh_ChangeHandler(com.google.gwt.event.dom.client.ChangeHandler refresh) { this.refresh = refresh; }
-	public void setService_IRentalServiceAsync(com.intrinsarc.carrentalgui.client.IRentalServiceAsync service) { this.service = service; }
-	public void setRenter_TextBox(com.google.gwt.user.client.ui.TextBox renter) { this.renter = renter; }
-	public com.google.gwt.user.client.ui.ClickListener getReturn_ClickListener(Class<?> required) { return return_ClickListenerProvided; }
-	public com.google.gwt.user.client.ui.ChangeListener getRenterSet_ChangeListener(Class<?> required) { return renterSet_ChangeListenerProvided; }
+  // provided ports
+	private ChangeListenerRenterSetImpl renterSet_Provided = new ChangeListenerRenterSetImpl();
+
+  // port setters and getters
+	public void setRefresh(com.google.gwt.event.dom.client.ChangeHandler refresh) { this.refresh = refresh; }
+	public void setService(com.intrinsarc.carrentalgui.client.IRentalServiceAsync service) { this.service = service; }
+	public void setRenter(com.google.gwt.user.client.ui.TextBox renter) { this.renter = renter; }
+	public com.google.gwt.user.client.ui.ChangeListener getRenterSet_Provided() { return renterSet_Provided; }
 // end generated code
 
 
@@ -32,7 +35,7 @@ public class RentalLogic
 	{
 		public void onChange(Widget sender)
 		{
-			service.rent(carNo.get(), renter.getValue(), new AsyncCallback<Void>()
+			service.rent(carNo, renter.getValue(), new AsyncCallback<Void>()
 					{
 						public void onSuccess(Void v)
 						{ refresh.onChange(null); }
@@ -42,18 +45,15 @@ public class RentalLogic
 		}
 	}
 	
-	private class ClickListenerReturnImpl implements com.google.gwt.user.client.ui.ClickListener
+	public void onClick(Widget sender)
 	{
-		public void onClick(Widget sender)
-		{
-			service.returnRental(carNo.get(), new AsyncCallback<Void>()
-					{
-						public void onSuccess(Void v)
-						{ refresh.onChange(null); }
-						
-						public void onFailure(Throwable caught) {}
-					});
-		}
+		service.returnRental(carNo, new AsyncCallback<Void>()
+				{
+					public void onSuccess(Void v)
+					{ refresh.onChange(null); }
+					
+					public void onFailure(Throwable caught) {}
+				});
 	}
 }
 

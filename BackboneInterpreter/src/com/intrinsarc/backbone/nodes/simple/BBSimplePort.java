@@ -18,6 +18,7 @@ public class BBSimplePort extends BBSimpleObject
 	private BBSimpleComponent owner;
 	private boolean beanMain;
 	private boolean beanNoName;
+	private boolean wantsRequiredWhenProviding;
 	private boolean complexProvided;
 	
 	public BBSimplePort(BBSimpleElementRegistry registry, DEComponent component, DEPort port, BBSimpleComponent owner)
@@ -46,6 +47,7 @@ public class BBSimplePort extends BBSimpleObject
 		// is this a bean main?
 		beanMain = component.getBeanMainPorts(registry.getPerspective()).contains(complex);
 		beanNoName = component.getBeanNoNamePorts(registry.getPerspective()).contains(complex);
+		wantsRequiredWhenProviding = port.isWantsRequiredWhenProviding();
 		
 		// a port is complex provided if it has 2 or more provided ports and is not a bean main
 		complexProvided = !beanMain && component.getProvidedInterfaces(registry.getPerspective(), complex).size() > 1;
@@ -156,5 +158,10 @@ public class BBSimplePort extends BBSimpleObject
 	public boolean isComplexProvided()
 	{
 		return complexProvided;
+	}
+	
+	public boolean isWantsRequiredWhenProviding()
+	{
+		return wantsRequiredWhenProviding;
 	}
 }

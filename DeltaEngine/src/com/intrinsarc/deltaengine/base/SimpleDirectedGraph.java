@@ -4,7 +4,7 @@ import java.util.*;
 
 public class SimpleDirectedGraph<N>
 {
-	private Set<N> nodes = new HashSet<N>();
+	private Set<N> nodes = new LinkedHashSet<N>();
 	private Map<N, Set<N>> edges = new HashMap<N, Set<N>>();
 
 	public SimpleDirectedGraph()
@@ -27,7 +27,7 @@ public class SimpleDirectedGraph<N>
 	public Set<N> getOutgoing(N node)
 	{
 		Set<N> out = edges.get(node);
-		return out == null ? new HashSet<N>() : new HashSet<N>(out);
+		return out == null ? new HashSet<N>() : new LinkedHashSet<N>(out);
 	}
 
 	public boolean pathExists(N start, N end)
@@ -51,7 +51,7 @@ public class SimpleDirectedGraph<N>
 	public List<N> makeTopologicalSort()
 	{
 		List<N> sorted = new ArrayList<N>();
-		makeTopologicalSort(new HashSet<N>(nodes), sorted);
+		makeTopologicalSort(new LinkedHashSet<N>(nodes), sorted);
 		return sorted;
 	}
 

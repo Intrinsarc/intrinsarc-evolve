@@ -20,7 +20,7 @@ import com.intrinsarc.repositorybase.*;
 
 public class FlatteningHardcoder
 {
-	public void writeFlattened(BackboneGenerationChoice choice) throws BackboneGenerationException, VariableNotFoundException, BBBadRunPointException
+	public int writeFlattened(BackboneGenerationChoice choice) throws BackboneGenerationException, VariableNotFoundException, BBBadRunPointException
 	{
     List<DEStratum> ordered = choice.extractRelatedStrata();
     List<String> profile = choice.getGenerationProfile();
@@ -55,6 +55,7 @@ public class FlatteningHardcoder
 		// start at the top and make all the factories
 		String directory = fullClassName.replace('.', '/');
 		File realFile = new File(javaBase, directory + ".java");
+		File tempFile = new File(javaBase, directory + ".java.temp");
 		
 		int index = fullClassName.lastIndexOf('.');
 		String className = fullClassName;
@@ -73,7 +74,7 @@ public class FlatteningHardcoder
 		expander.addGenerator(new ExpandedTypeGWTTerminal());
 		expander.addGenerator(new ExpandedTypeGWTDispatcher());
 		
-		new HardcodedFactoryWriter().writeHardcodedFactory(registry, realFile, className, pkgName, simple, 0, namer, expander);
+		return new HardcodedFactoryWriter().writeHardcodedFactory(registry, realFile, tempFile, className, pkgName, simple, 0, namer, expander);
 	}
 	
 	private static DEComponent findNamedComponent(DEStratum runStratum, String componentName) throws BBBadRunPointException

@@ -38,6 +38,8 @@ public class CommonRepositoryFunctions
 	public static final String SUPPRESS_GENERATION_PORT = "suppress-generation-port";
 	public static final String PORT_BEAN_MAIN           = "bean-main";
 	public static final String PORT_BEAN_NO_NAME        = "bean-no-name";
+	public static final String PORT_BEAN_NOT_MAIN       = "force-not-bean-main";
+	public static final String PORT_WANTS_REQUIRED      = "wants-required-when-providing";
   public static final String STRATUM_PREAMBLE         = "preamble";
   public static final String STRATUM_EXPORT_VERSION   = "export-version";
   public static final String STRATUM_EXPORT_INFO      = "export-info";
@@ -315,6 +317,8 @@ public class CommonRepositoryFunctions
     Property suppressMethodGeneration = addAttribute(uuids, stereoPort, SUPPRESS_GENERATION_PORT, booleanType, "Should we not generate methods and fields for this?");
     addAttribute(uuids, stereoPort, PORT_BEAN_MAIN, booleanType, "Is this the main port of a bean?");
     addAttribute(uuids, stereoPort, PORT_BEAN_NO_NAME, booleanType, "Is this port from an add() method on a bean?");
+    addAttribute(uuids, stereoPort, PORT_BEAN_NOT_MAIN, booleanType, "Force this port to not be a bean-main");
+    addAttribute(uuids, stereoPort, PORT_WANTS_REQUIRED, booleanType, "Provide the inferred required interface when getting a provided interface");
 
     Stereotype stereoAttr = createStereotype(uuids, profile, ATTRIBUTE, "'Property'", "An attribute holds simple state of a component.");
     addAttribute(uuids, stereoAttr, SUPPRESS_GENERATION, booleanType, "Should we not generate fields and methods for this?");

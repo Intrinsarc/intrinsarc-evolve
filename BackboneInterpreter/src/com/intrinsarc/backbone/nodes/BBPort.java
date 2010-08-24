@@ -21,7 +21,9 @@ public class BBPort extends DEPort implements INode, Serializable
   private Boolean suppressGeneration;
 	private List<DEAppliedStereotype> appliedStereotypes;
 	private boolean forceBeanMain;
+	private boolean forceNotBeanMain;
 	private boolean forceBeanNoName;
+	private boolean wantsRequiredWhenProviding;
 	private PortKindEnum portKind = PortKindEnum.NORMAL;
 	private Boolean ordered;
  
@@ -169,15 +171,37 @@ public class BBPort extends DEPort implements INode, Serializable
 		this.forceBeanMain = beanMain;
 	}
 	
+	public void setForceNotBeanMain(boolean notBeanMain)
+	{
+		this.forceNotBeanMain = notBeanMain;
+	}
+	
 	public void setForceBeanNoName(boolean beanNoName)
 	{
 		this.forceBeanNoName = beanNoName;
+	}
+	
+	public void setWantsRequiredWhenProviding(boolean wants)
+	{
+		wantsRequiredWhenProviding = wants;
 	}
 	
 	@Override
 	public boolean isForceBeanMain()
 	{
 		return forceBeanMain;
+	}
+
+	@Override
+	public boolean isForceNotBeanMain()
+	{
+		return forceNotBeanMain;
+	}
+
+	@Override
+	public boolean isWantsRequiredWhenProviding()
+	{
+		return wantsRequiredWhenProviding;
 	}
 
 	@Override

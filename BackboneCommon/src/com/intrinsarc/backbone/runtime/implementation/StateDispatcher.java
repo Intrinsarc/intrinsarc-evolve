@@ -7,14 +7,15 @@ import com.intrinsarc.backbone.runtime.api.*;
 
 public class StateDispatcher implements IStateDispatcher
 {
-	private java.util.List<IEvent> dDispatch_IEventRequired = new java.util.ArrayList<IEvent>();
-	public void setDDispatch(IEvent event, int index) { PortHelper.fill(this.dDispatch_IEventRequired, event, index); }
-	public void removeDDispatch(IEvent event) { this.dDispatch_IEventRequired.remove(event); }
-	private ITerminal dStart_ITerminalRequired;
-	public void setDStart(ITerminal start) { dStart_ITerminalRequired = start; }
-	private java.util.List<ITerminal> dEnd_ITerminalRequired = new java.util.ArrayList<ITerminal>();
-	public void setDEnd(ITerminal end, int index) { PortHelper.fill(this.dEnd_ITerminalRequired, end, index); }
-	public void removeDEnd(ITerminal end) { dEnd_ITerminalRequired.remove(end); }
+	private java.util.List<IEvent> dDispatch = new java.util.ArrayList<IEvent>();
+	public void setDDispatch(IEvent event, int index) { PortHelper.fill(dDispatch, event, index); }
+	public void addDDispatch(IEvent event) { PortHelper.fill(dDispatch, event, -1); }
+	public void removeDDispatch(IEvent event) { dDispatch.remove(event); }
+	private ITerminal dStart;
+	public void setDStart(ITerminal start) { dStart = start; }
+	private java.util.List<ITerminal> dEnd = new java.util.ArrayList<ITerminal>();
+	public void setDEnd(ITerminal end, int index) { PortHelper.fill(dEnd, end, index); }
+	public void removeDEnd(ITerminal end) { dEnd.remove(end); }
 	
 	private IEvent proxy;
 	private IEvent current;
@@ -28,14 +29,14 @@ public class StateDispatcher implements IStateDispatcher
 
 			// if current is null, use start
 			if (current == null)
-				dStart_ITerminalRequired.becomeCurrent();
+				dStart.becomeCurrent();
 			
 			// possibly still in start or end?
-			if (current == null || dStart_ITerminalRequired.isCurrent())
+			if (current == null || dStart.isCurrent())
 			{
-				dStart_ITerminalRequired.moveToNextState();
+				dStart.moveToNextState();
 			}
-			for (ITerminal end : dEnd_ITerminalRequired)
+			for (ITerminal end : dEnd)
 				if (end.isCurrent())
 					end.moveToNextState();
 
@@ -63,7 +64,7 @@ public class StateDispatcher implements IStateDispatcher
 		private void establishCurrentState()
 		{
 			// find the next state
-			for (IEvent e : dDispatch_IEventRequired)
+			for (IEvent e : dDispatch)
 				if (e.isCurrent())
 				{
 					current = e;
@@ -72,7 +73,7 @@ public class StateDispatcher implements IStateDispatcher
 		}
 	};
 	
-	public IEvent getDEvents(Class<?> required)
+	public IEvent getDEvents_Provided(Class<?> required)
 	{
 		if (proxy == null)
 		{

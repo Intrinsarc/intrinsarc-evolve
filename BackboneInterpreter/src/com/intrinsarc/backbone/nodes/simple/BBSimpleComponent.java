@@ -185,7 +185,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	}	
 
 	@Override
-	public Class getImplementationClass()
+	public Class<?> getImplementationClass()
 	{
 		return implementationClass;
 	}
@@ -545,10 +545,9 @@ public class BBSimpleComponent extends BBSimpleElement
 		for (Iterator<BBSimpleAttribute> iter = attributes.iterator(); iter.hasNext();)
 		{
 			BBSimpleAttribute attr = iter.next();
-			if (isRedundant(attr))
+			if (isRedundant(attr) && attr.getPosition() != PositionEnum.TOP)
 			{
-				if (attr.getPosition() != PositionEnum.TOP)
-					iter.remove();
+				iter.remove();
 				redundant.put(attr, getVariableParameter(attr));
 			}
 		}
@@ -597,8 +596,6 @@ public class BBSimpleComponent extends BBSimpleElement
 
 	private BBSimpleAttribute getVariableParameter(BBSimpleAttribute attr)
 	{
-		if (attr.getAlias() != null)
-			return attr.getAlias();
 		return attr.getDefaultValue().get(0).getAttribute();
 	}
 
@@ -612,11 +609,10 @@ public class BBSimpleComponent extends BBSimpleElement
 				p.remapAttributes(redundant);
 	}
 
-	// an attribute is redundant if it is aliased, but it isn't at the top...
+	// an attribute is redundant if it is a direct copy, but it isn't at the top...
 	private boolean isRedundant(BBSimpleAttribute attr)
 	{
 		return
-			attr.getAlias() != null ||
 			attr.getDefaultValue() != null && attr.getDefaultValue().size() == 1 && attr.getDefaultValue().get(0).getAttribute() != null;
 	}
 

@@ -7,20 +7,23 @@ import com.intrinsarc.base.*;
 
 public class FactoryExampleRunner
 // start generated code
-
   // main port
   implements com.intrinsarc.backbone.runtime.api.IRun
 {
   // required ports
 	private java.util.List<com.intrinsarc.base.IRentalCarDetails> cars = new java.util.ArrayList<com.intrinsarc.base.IRentalCarDetails>();
 	private com.intrinsarc.backbone.runtime.api.ICreate creator;
+	private java.util.List<com.intrinsarc.base.IRenterDetails> renters = new java.util.ArrayList<com.intrinsarc.base.IRenterDetails>();
   // provided ports
 
   // port setters and getters
-	public void setCars(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
+	public void setCar(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
 	public void addCar(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.fill(this.cars, cars, -1); }
 	public void removeCar(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
 	public void setCreator(com.intrinsarc.backbone.runtime.api.ICreate creator) { this.creator = creator; }
+	public void setRenter(com.intrinsarc.base.IRenterDetails renters, int index) { PortHelper.fill(this.renters, renters, index); }
+	public void addRenter(com.intrinsarc.base.IRenterDetails renters) { PortHelper.fill(this.renters, renters, -1); }
+	public void removeRenter(com.intrinsarc.base.IRenterDetails renters) { PortHelper.remove(this.renters, renters); }
 // end generated code
 
 

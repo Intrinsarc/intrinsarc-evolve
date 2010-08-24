@@ -4,7 +4,6 @@ import java.util.*;
 
 public class LoggingRentalCarDetails
 // start generated code
-
   // main port
   implements com.intrinsarc.base.IRentalCarDetails
 {

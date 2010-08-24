@@ -40,7 +40,7 @@ public class ComponentParser
 			optionalLiteral("is-placeholder", placeholder).
 			optionalLiteral("is-primitive", primitive).
 			optionalLiteral("is-stereotype", stereotype).
-			optionalLiteral("is-bean", bean).
+			optionalLiteral("is-legacy-bean", bean).
 			optionalLiteral("has-lifecycle-callbacks", lifecycle).
 			guard("implementation-class",
 					new IAction() { public void act() { ex.literal(implementation); } }).
@@ -465,7 +465,9 @@ public class ComponentParser
 		boolean autoConnect[] = {false};
 		boolean ordered[] = {false};
 		boolean beanMain[] = {false};
+		boolean notBeanMain[] = {false};
 		boolean beanNoName[] = {false};
+		boolean wantsRequired[] = {false};
 		
 		ParserUtilities.parseAppliedStereotype(ex);
 		ex.
@@ -508,8 +510,9 @@ public class ComponentParser
 			optionalLiteral("is-autoconnect", autoConnect).
 			optionalLiteral("is-ordered", ordered).
 			optionalLiteral("force-bean-main", beanMain).
-			optionalLiteral("force-bean-noname", beanNoName);
-			
+			optionalLiteral("force-not-bean-main", notBeanMain).
+			optionalLiteral("force-bean-noname", beanNoName).
+			optionalLiteral("wants-required-when-providing", wantsRequired);			
 
 		if (create[0])
 			port.setPortKind(PortKindEnum.CREATE);
@@ -521,8 +524,12 @@ public class ComponentParser
 			port.setOrdered(true);
 		if (beanMain[0])
 			port.setForceBeanMain(true);
+		if (notBeanMain[0])
+			port.setForceNotBeanMain(true);
 		if (beanNoName[0])
 			port.setForceBeanNoName(true);
+		if (wantsRequired[0])
+			port.setWantsRequiredWhenProviding(true);
 
 		ex.
 			guard("provides",

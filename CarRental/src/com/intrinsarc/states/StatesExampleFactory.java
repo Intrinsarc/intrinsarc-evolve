@@ -30,7 +30,7 @@ public class StatesExampleFactory implements IHardcodedFactory
   private com.intrinsarc.states.Rented r = new com.intrinsarc.states.Rented();
   private com.intrinsarc.states.Available a = new com.intrinsarc.states.Available();
   private com.intrinsarc.backbone.runtime.implementation.StateDispatcher dispatcher = new com.intrinsarc.backbone.runtime.implementation.StateDispatcher();
-  public com.intrinsarc.backbone.runtime.api.IRun getRun() { return x10.getRun_IRun(null); }
+  public com.intrinsarc.backbone.runtime.api.IRun getRun() { return x10; }
 
   public StatesExampleFactory() {}
 
@@ -39,27 +39,27 @@ public class StatesExampleFactory implements IHardcodedFactory
     purchasedWhen = new java.util.Date(108, 10, 10);
     model = "Volvo";
     renterName = null;
-    x7.setModel(model);
     x7.setPurchased(purchasedWhen);
+    x7.setModel(model);
     r.setRenterName(renterName);
-    c = a.getEvents_IRentalEvent(com.intrinsarc.states.IRentalEvent.class);
-    c1 = r.getEvents_IRentalEvent(com.intrinsarc.states.IRentalEvent.class);
-    c2 = x2.getStartTerminal_ITerminal(com.intrinsarc.backbone.runtime.api.ITerminal.class);
-    c3 = a.getIn_ITransition(com.intrinsarc.backbone.runtime.api.ITransition.class);
-    c4 = r.getIn_ITransition(com.intrinsarc.backbone.runtime.api.ITransition.class);
-    c5 = a.getIn_ITransition(com.intrinsarc.backbone.runtime.api.ITransition.class);
-    c6 = (com.intrinsarc.states.IRentalEvent) dispatcher.getDEvents_IEvent(com.intrinsarc.states.IRentalEvent.class);
-    c7 = (com.intrinsarc.states.IRentalEvent) dispatcher.getDEvents_IEvent(com.intrinsarc.states.IRentalEvent.class);
-    c8 = x7.getDetails_IRentalCarDetails(com.intrinsarc.base.IRentalCarDetails.class);
-    dispatcher.setDDispatch_IEvent(c, -1);
-    dispatcher.setDDispatch_IEvent(c1, -1);
-    dispatcher.setDStart_ITerminal(c2);
-    x2.setOut_ITransition(c3);
-    a.setOut_ITransition(c4);
-    r.setOut_ITransition(c5);
-    x7.setRenter_IRenterDetails(c6);
-    x10.setRentalStates_IRentalEvent(c7, -1);
-    x10.setCars_IRentalCarDetails(c8, -1);
+    c = a;
+    c1 = r;
+    c2 = x2;
+    c3 = a.getIn_Provided();
+    c4 = r.getIn_Provided();
+    c5 = a.getIn_Provided();
+    c6 = (com.intrinsarc.states.IRentalEvent) dispatcher.getDEvents_Provided(com.intrinsarc.states.IRentalEvent.class);
+    c7 = (com.intrinsarc.states.IRentalEvent) dispatcher.getDEvents_Provided(com.intrinsarc.states.IRentalEvent.class);
+    c8 = x7;
+    dispatcher.addDDispatch(c);
+    dispatcher.addDDispatch(c1);
+    dispatcher.setDStart(c2);
+    x2.setOut(c3);
+    a.setOut(c4);
+    r.setOut(c5);
+    x7.setRenter(c6);
+    x10.addRentalState(c7);
+    x10.addCar(c8);
     return this;
   }
   public void childDestroyed(IHardcodedFactory child) { children.remove(child); }

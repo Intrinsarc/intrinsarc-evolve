@@ -1906,7 +1906,7 @@ public class ApplicationWindow extends SmartJFrame
 
 			// add the backbone full implementation generator
 			JMenuItem fullGenerateItem = new JMenuItem(new GenerateFullImplementationAction());
-			GlobalPreferences.registerKeyAction("Backbone",fullGenerateItem, "ctrl shift G", "Generate hardcoded classes and leaf implementations for the model");
+			GlobalPreferences.registerKeyAction("Backbone", fullGenerateItem, "ctrl shift G", "Generate hardcoded classes and leaf implementations for the model");
 			entries.add(new SmartMenuItemImpl("Backbone", "Backbone", fullGenerateItem));
 
 			// add the backbone rerunner
