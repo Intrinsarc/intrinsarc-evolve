@@ -4,12 +4,11 @@ import java.util.*;
 
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.rpc.*;
-import com.intrinsarc.backbone.runtime.api.*;
 
 public class GUILogic
 // start generated code
   // main port
-  implements com.google.gwt.event.dom.client.ChangeHandler
+  implements com.google.gwt.event.dom.client.ChangeHandler, com.intrinsarc.backbone.runtime.api.ILifecycle
 {
   // required ports
 	private com.intrinsarc.backbone.runtime.api.ICreate create;

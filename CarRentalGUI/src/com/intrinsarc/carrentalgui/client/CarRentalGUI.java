@@ -14,6 +14,6 @@ public class CarRentalGUI implements EntryPoint
 	public void onModuleLoad()
 	{
 		CarRentalFormFactory form = new CarRentalFormFactory().initialize(null, null);
-		RootPanel.get("application").add(form.getPanel());
+		RootPanel.get("application").add(form.getPanel_Provided());
 	}
 }

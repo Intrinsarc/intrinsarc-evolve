@@ -15,9 +15,16 @@ import com.intrinsarc.deltaengine.base.*;
 
 public class HardcodedFactoryWriter
 {
-	public int writeHardcodedFactory(BBSimpleElementRegistry registry, File real, File temp, String className, String pkgName,
-			BBSimpleComponent simple, int factoryNumber, UniqueNamer namer, ExpandedTypeManager expander)
-			throws BackboneGenerationException
+	public int writeHardcodedFactory(
+			BBSimpleElementRegistry registry,
+			File real,
+			File temp,
+			String className,
+			String pkgName,
+			BBSimpleComponent simple,
+			int factoryNumber,
+			UniqueNamer namer,
+			ExpandedTypeManager expander) throws BackboneGenerationException
 	{
 		// create the class
 		BufferedWriter c = null;
@@ -170,7 +177,7 @@ public class HardcodedFactoryWriter
 		// NOTE: the interface is not appended if this is factory 0, in order to
 		// make the name more "robust"
 		if (factoryNumber == 0)
-			writeVisiblePorts(namer, factory, comp, c, true);
+			writeVisiblePorts(registry, namer, factory, comp, c);
 		
 		c.newLine();
 		c.write("  public " + className + "() {}");
@@ -430,21 +437,25 @@ public class HardcodedFactoryWriter
 					}
 					else
 					{
-				    boolean cp = port.isComplexProvided();
-				    String extra = cp ? impl : "";
-				    String uname = upper(port.getRawName());
-						String name = port.isIndexed() ? makeSingular(uname) : uname;
+						PortMethodHelper ph = new PortMethodHelper(registry.getPerspective(), port, originalImpl);
+						ph.resolveGetMethodNames();
 
-						String methodName = "get" + name + extra + "_Provided";
-						c.write("    " + vname + " = " + cast + partName + "." + methodName + "(" +
-								(port.isWantsRequiredWhenProviding() ? (impl + ".class") : ""));
-						if (end.getIndex() != null)
-						{
-								c.write(", " + end.getIndex());
+						String wants = port.isWantsRequiredWhenProviding() ? (impl + ".class") : ""; 
+						if (!port.isIndexed())
+						{							
+							c.write("    " + vname + " = " + cast + partName + "." + ph.getGetSingleName() + "(" + wants);
 						}
 						else
-							if (end.getPort().isIndexed() && end.isTakeNext())
-								c.write(", -1");
+						{
+							c.write("    " + vname + " = " + cast + partName + "." + ph.getGetIndexedName() + "(" + wants);
+							if (end.getIndex() != null)
+							{
+									c.write(", " + end.getIndex());
+							}
+							else
+								if (end.getPort().isIndexed() && end.isTakeNext())
+									c.write(", -1");
+						}
 						c.write(");");
 					}
 
@@ -468,6 +479,9 @@ public class HardcodedFactoryWriter
 
 			for (BBSimpleInterface p : port.getRequires())
 			{
+				PortMethodHelper ph = new PortMethodHelper(registry.getPerspective(), port, p.getImplementationClassName());
+				ph.resolveSetMethodNames();
+
 				Set<? extends DEInterface> provided =
 					otherPort.getOwner().getComplex().asComponent().getProvidedInterfaces(
 							registry.getPerspective(),
@@ -480,24 +494,19 @@ public class HardcodedFactoryWriter
 				String vname = namer.getUniqueName("var_" + otherPartName + "_" + namer.getUniqueName(otherPort) + "_"
 						+ shortOtherSideImpl + "_" + namer.getUniqueName(end.getConnector()), "c");
 
-				String name = upper(port.getRawName());
-				String sname = makeSingular(name);
-
-				String methodName = "set" + name;
 				if (end.getIndex() != null)
 				{
-					c.write("    " + partName + "." + methodName + "(" + vname);
+					c.write("    " + partName + "." + ph.getAddIndexedName() + "(" + vname);
 					c.write(", " + end.getIndex());
 				}
 				else
 				if (port.isIndexed())
 				{
-					String addName = "add" + (port.isBeanNoName() ? "" : sname);
-					c.write("    " + partName + "." + addName + "(" + vname);
+					c.write("    " + partName + "." + ph.getAddNoIndexedName() + "(" + vname);
 				}
 				else
 				{
-					c.write("    " + partName + "." + methodName + "(" + vname);
+					c.write("    " + partName + "." + ph.getSetSingleName() + "(" + vname);
 				}
 				c.write(");");
 				c.newLine();
@@ -505,47 +514,33 @@ public class HardcodedFactoryWriter
 				// handle removal
 				if (port.isIndexed())
 				{
-					d.write("    " + partName + ".remove" + (port.isBeanNoName() ? "" : sname) + "(" + vname + ");");
+					d.write("    " + partName + "." + ph.getRemoveManyName() + "(" + vname + ");");
 				}
 				else
-					d.write("    " + partName + "." + methodName + "(null);");						
-				possiblyRemoveOtherSide(namer, d, otherEnd, vname, p);
+					d.write("    " + partName + "." + ph.getSetSingleName() + "(null);");						
+				possiblyRemoveOtherSide(registry, namer, d, otherEnd, vname, p);
 
 				d.newLine();
 			}
 		}
 	}
 
-	private void possiblyRemoveOtherSide(UniqueNamer namer, BufferedWriter d, BBSimpleConnectorEnd end, String vname, BBSimpleInterface provides)
-		throws IOException
+	private void possiblyRemoveOtherSide(BBSimpleElementRegistry registry, UniqueNamer namer, BufferedWriter d, BBSimpleConnectorEnd end, String vname, BBSimpleInterface provides)
+		
+	throws IOException
 	{
 		BBSimplePort port = end.getPort();
+		PortMethodHelper ph = new PortMethodHelper(registry.getPerspective(), port, provides.getImplementationClassName());
+		ph.resolveSetMethodNames();
 
 		if (port.isBeanMain() || !port.isIndexed())
 			return;
 			
 		BBSimplePart part = end.getPart();
 		String partName = namer.getUniqueName(part);
-		String name = makeSingular(upper(port.getRawName()));
 
-		if (port.isBeanNoName())
-		{
-			d.newLine();
-			d.write("    " + partName + ".remove(" + vname + ");");
-		}
-		else
-		{
-			d.newLine();
-			d.write("    " + partName + ".remove" + name + "(" + vname + ");");
-		}
-	}
-
-	private String makeSingular(String name)
-	{
-		// remove a possible 's'
-		if (name.endsWith("s") && name.length() > 1)
-			return name.substring(0, name.length() - 1);
-		return name;
+		d.newLine();
+		d.write("    " + partName + "." + ph.getRemoveManyName() + "(" + vname + ");");
 	}
 
 	private void writeInitializer(BBSimpleElement attrType, UniqueNamer namer, BufferedWriter c, String impl, List<BBSimpleParameter> def)
@@ -615,8 +610,7 @@ public class HardcodedFactoryWriter
 		return def.size() == 1 && "default".equals(def.get(0).getLiteral()); 
 	}
 
-	private void writeVisiblePorts(UniqueNamer namer, BBSimpleFactory factory, BBSimpleComponent comp, BufferedWriter c,
-			boolean suppressInterfaceOnMethod) throws BackboneGenerationException, IOException
+	private void writeVisiblePorts(BBSimpleElementRegistry registry, UniqueNamer namer, BBSimpleFactory factory, BBSimpleComponent comp, BufferedWriter c) throws BackboneGenerationException, IOException
 	{
 		// handle visible ports
 		for (BBSimplePort port : comp.getPorts())
@@ -632,8 +626,8 @@ public class HardcodedFactoryWriter
 				{
 					// if we already have a match, we have a problem
 					if (matchingConn != null)
-						throw new BackboneGenerationException("Must have a single connector for external port " + port.getName(),
-								comp);
+						throw new BackboneGenerationException(
+								"Must have a single connector for external port " + port.getName(), comp);
 
 					matchingConn = conn;
 					matchingEnd = end;
@@ -650,49 +644,31 @@ public class HardcodedFactoryWriter
 				throw new BackboneGenerationException("External port cannot be indexed " + port.getName(), comp);
 
 			// write out the port getter or setter
-			String uname = upper(port.getRawName());
-			String name = port.isIndexed() ? makeSingular(uname) : uname;
 			String partName = namer.getUniqueName(end.getPart());
 
 			for (BBSimpleInterface p : port.getProvides())
 			{
-				String fullName = partName + "_" + getAfterLastDot(p.getImplementationClassName());
-				String desiredName = fullName;
-				if (suppressInterfaceOnMethod)
-					desiredName = "get" + name;
-				String methodName = namer.getUniqueName(fullName, desiredName);
-				c.write("  public " + p.getImplementationClassName() + " " + methodName + "()");
+				PortMethodHelper ph = new PortMethodHelper(registry.getPerspective(), port, p.getImplementationClassName());
+				ph.resolveGetMethodNames();
+
+				c.write("  public " + p.getImplementationClassName() + " " + ph.getGetSingleName() + "()");
 				if (port.isBeanMain())
 				{
 					c.write(" { return " + partName + "; }");
 				}
 				else
 				{
-					String originalImpl = p.getImplementationClassName();
-					String shortOriginalImpl = getAfterLastDot(originalImpl);
-					String extra = port.isComplexProvided() ? shortOriginalImpl : "";
-					c.write(" { return " + partName + "." + methodName + extra + "_Provided(null); }");
+					c.write(" { return " + partName + "." + ph.getGetSingleName() + "(); }");
 				}
 				c.newLine();
 			}
 			for (BBSimpleInterface r : port.getRequires())
 			{
-				String desiredName = "set" + name;
-				String fullName = partName + "_" + getAfterLastDot(r.getImplementationClassName());
-				String methodName = namer.getUniqueName(fullName, desiredName);
-				c.write("  public void " + methodName + "(" + r.getImplementationClassName() + " val)");
-				if (port.isBeanMain())
-				{
-					// beans only provide themselves...
-					c.write(" { " + partName + ".set" + name + "(val); }");
-				}
-				else
-				{
-					String originalImpl = r.getImplementationClassName();
-					String shortOriginalImpl = getAfterLastDot(originalImpl);
-					String extra = port.isComplexProvided() ? shortOriginalImpl : "";
-					c.write(" { " + partName + "." + methodName + extra + "_Provided(val); }");
-				}
+				PortMethodHelper ph = new PortMethodHelper(registry.getPerspective(), port, r.getImplementationClassName());
+				ph.resolveSetMethodNames();
+
+				c.write("  public void " + ph.getSetSingleName() + "(" + r.getImplementationClassName() + " val)");
+				c.write(" { " + partName + "." + ph.getSetSingleName() + "(val); }");
 
 				c.newLine();
 			}

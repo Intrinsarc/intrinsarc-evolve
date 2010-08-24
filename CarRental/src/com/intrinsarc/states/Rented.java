@@ -8,7 +8,7 @@ public class Rented
   implements com.intrinsarc.states.IRentalEvent
 {
   // attributes
-	private String renterName = null;
+	private String renterName = "";
 
   // attribute setters and getters
 	public String getRenterName() { return renterName; }

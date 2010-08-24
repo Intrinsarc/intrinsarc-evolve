@@ -52,7 +52,7 @@ public class CarRentalFormFactory implements IHardcodedFactory
     }
     public void destroy(Object memento) { ((IHardcodedFactory) memento).destroy(); }
   };
-  public com.google.gwt.user.client.ui.VerticalPanel getPanel() { return x2; }
+  public com.google.gwt.user.client.ui.VerticalPanel getPanel_Provided() { return x2; }
 
   public CarRentalFormFactory() {}
 

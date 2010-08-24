@@ -26,7 +26,7 @@ public class CarRentalServiceFactory implements IHardcodedFactory
     }
     public void destroy(Object memento) { ((IHardcodedFactory) memento).destroy(); }
   };
-  public com.intrinsarc.carrentalgui.client.IRentalService getService() { return x1; }
+  public com.intrinsarc.carrentalgui.client.IRentalService getService_Provided() { return x1; }
 
   public CarRentalServiceFactory() {}
 
@@ -60,13 +60,13 @@ class RentalCarFactory implements IHardcodedFactory
   private java.util.List<IHardcodedFactory> children;
 
   // attributes
-  private java.lang.String model = new String();
-  public void setModel(java.lang.String model) { this.model = model; }
-  public java.lang.String getModel() { return model; }
+  private String model = new String();
+  public void setModel(String model) { this.model = model; }
+  public String getModel() { return model; }
   private java.util.Date purchased = new java.util.Date();
   public void setPurchased(java.util.Date purchased) { this.purchased = purchased; }
   public java.util.Date getPurchased() { return purchased; }
-  private java.lang.String renter;
+  private String renter;
 
   // connectors
   private com.intrinsarc.base.IRenterDetails c1;
@@ -84,7 +84,7 @@ class RentalCarFactory implements IHardcodedFactory
     this.parent = parent;
     if (values != null && values.containsKey("model")) model = (String) values.get("model");
     if (values != null && values.containsKey("purchased")) purchased = (java.util.Date) values.get("purchased");
-    renter = null;
+    renter = "";
     x2.setPurchased(purchased);
     x2.setModel(model);
     x3.setRenter(renter);

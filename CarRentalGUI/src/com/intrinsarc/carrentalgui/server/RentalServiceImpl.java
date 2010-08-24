@@ -9,7 +9,7 @@ import com.intrinsarc.carrentalgui.client.*;
 @SuppressWarnings("serial")
 public class RentalServiceImpl extends RemoteServiceServlet implements IRentalService
 {
-	private IRentalService service = new CarRentalServiceFactory().initialize(null, null).getService();
+	private IRentalService service = new CarRentalServiceFactory().initialize(null, null).getService_Provided();
 	
 	public void createRentalCar(String model)
 	{

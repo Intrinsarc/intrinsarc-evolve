@@ -198,9 +198,7 @@ public final class ClassifierNodeGem implements Gem
 		// should we be displaying the owner?
 		ElementProperties props = new ElementProperties(figureFacet);
 		boolean sub = props.getElement().isReplacement();
-		boolean locatedInCorrectView = props.getPerspective() == props.getElement().getHomeStratum();
-
-		final boolean shouldBeDisplayingOwningPackage = !locatedInCorrectView && !forceSuppressOwningPackage || sub;
+		boolean shouldBeDisplayingOwningPackage = !isLocatedInCorrectView() && !forceSuppressOwningPackage || sub;
 
 		// is this active?
 		boolean subjectActive = false;
@@ -231,14 +229,22 @@ public final class ClassifierNodeGem implements Gem
 		// evolution)
 		final String newOwner = sub ? "(" + (retired ? "retires " : "replaces ") + props.getSubstitutesForName() + ")"
 				: "(from "
-						+ GlobalSubjectRepository.repository.getFullStratumNames((Element) props.getHomePackage()
-								.getRepositoryObject()) + ")";
+						+ GlobalSubjectRepository.repository.getFullStratumNames((Element) props.getHomePackage().getRepositoryObject()) + ")";
 		owner = newOwner;
 		showAsState = StereotypeUtilities.isStereotypeApplied(subject, "state");
 
 		// resize, using a text utility
 		DisplayAsIconTransaction.display(figureFacet, shouldDisplayOnlyIcon());
 		figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
+	}
+
+	private boolean isLocatedInCorrectView()
+	{
+		SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
+		Package visualStratum = repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainedFacet().getContainer());
+		Package owningStratum = repository.findOwningStratum(subject);
+		
+		return visualStratum == owningStratum;
 	}
 
 	public Object updatePartViewAfterSubjectChanged(int actualStereotypeHashcode)
@@ -308,8 +314,9 @@ public final class ClassifierNodeGem implements Gem
 			// look upwards, until we find one that has a PackageFacet registered
 			Namespace newOwner = (Namespace) figureFacet.getDiagram().getLinkedObject();
 			Namespace currentOwner = (Namespace) subject.getOwner();
-			Namespace containerOwner = repository.findVisuallyOwningNamespace(figureFacet.getDiagram(), figureFacet
-					.getContainedFacet().getContainer());
+			Namespace containerOwner = repository.findVisuallyOwningNamespace(
+					figureFacet.getDiagram(),
+					figureFacet.getContainedFacet().getContainer());
 			if (containerOwner != null)
 				newOwner = containerOwner;
 
@@ -2021,14 +2028,9 @@ public final class ClassifierNodeGem implements Gem
 
 			// should we be displaying the owner?
 			SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-			Package visualStratum = repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet
-					.getContainedFacet().getContainer());
-			Package owningStratum = repository.findOwningStratum(subject);
-			boolean locatedInCorrectView = visualStratum == owningStratum;
-
 			ElementProperties props = new ElementProperties(figureFacet, subject);
-			final boolean shouldBeDisplayingOwningPackage = !locatedInCorrectView && !forceSuppressOwningPackage
-					|| props.getElement().isReplacement();
+			final boolean shouldBeDisplayingOwningPackage =
+				!isLocatedInCorrectView() && !forceSuppressOwningPackage || props.getElement().isReplacement();
 
 			// is this active?
 			boolean subjectActive = false;

@@ -234,8 +234,8 @@ public class LeafImplementationRefresher
 		
 		// get the main port
 		List<DEPort> mains = leaf.getBeanMainPorts(perspective);
-		List<DEPort> nonames = leaf.getBeanNoNamePorts(perspective);
-		if (mains.size() == 1)
+		boolean lifecycle = leaf.hasLifecycleCallbacks(perspective);
+		if (mains.size() == 1 || lifecycle)
 		{
 			writer.write("  // main port");		
 			writer.newLine();
@@ -247,6 +247,14 @@ public class LeafImplementationRefresher
 				if (lp++ != 0)
 					writer.write(", ");
 				writer.write(iface.getImplementationClass(perspective));
+			}
+			
+			// do we want lifecycle callbacks?
+			if (lifecycle)
+			{
+				if (lp++ != 0)
+					writer.write(", ");
+				writer.write("com.intrinsarc.backbone.runtime.api.ILifecycle");
 			}
 			writer.newLine();
 		}
@@ -389,7 +397,7 @@ public class LeafImplementationRefresher
 						{
 							writer.write("\tprivate " + newTypeName + " " + vname + " = new " + newTypeName + "();");
 							writer.newLine();
-							complexWriter.write("\tpublic " + iname + " " + ph.getGetSingleSimpleName() + "() { return " + vname + "; }");					
+							complexWriter.write("\tpublic " + iname + " " + ph.getGetSingleName() + "() { return " + vname + "; }");					
 						}
 						complexWriter.newLine();
 					}

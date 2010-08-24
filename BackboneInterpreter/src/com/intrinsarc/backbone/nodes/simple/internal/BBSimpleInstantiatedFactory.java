@@ -157,6 +157,7 @@ public class BBSimpleInstantiatedFactory
 				ReflectivePort field = BBSimpleConnector.getPortField(
 						perspective, part.getType(), connEnd.getPort(), IRun.class, true);
 				((IRun) field.getSingle(IRun.class, object)).run(args);
+				destroy();
 			}
 		}
 	}

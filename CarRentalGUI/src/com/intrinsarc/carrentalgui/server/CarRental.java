@@ -42,7 +42,7 @@ public class CarRental
 	
 	public void returnRental(int car)
 	{
-		renters.get(car).setRenter(null);
+		renters.get(car).setRenter("");
 	}
 
 	public String[] getCars()

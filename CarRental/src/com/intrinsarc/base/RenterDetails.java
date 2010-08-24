@@ -7,7 +7,7 @@ public class RenterDetails
   implements com.intrinsarc.base.IRenterDetails
 {
   // attributes
-	private String renter = null;
+	private String renter = "";
 
   // attribute setters and getters
 	public String getRenter() { return renter; }

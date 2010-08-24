@@ -41,8 +41,6 @@ public class PortMethodHelper
   /** for names of methods */
   private String getSingleName;
   private String getIndexedName;
-  private String getSingleSimpleName;
-  private String getIndexedSimpleName;
   private String setSingleName;
   private String addNoIndexedName;
   private String addIndexedName;
@@ -62,7 +60,7 @@ public class PortMethodHelper
 	{
 		this.port = port;
     this.ifaceClass = ifaceClass;
-    this.ifaceSimpleClassName = ifaceClass.getSimpleName();
+    this.ifaceSimpleClassName = simplify(ifaceClass.getSimpleName());
 		partType = port.getOwner().getComplex().asComponent();
     partTypeClass = port.getOwner().getImplementationClass();
 		partTypeClassName = partType.getImplementationClass(perspective);
@@ -70,34 +68,41 @@ public class PortMethodHelper
     many = port.isIndexed();
 	}
   
+	public PortMethodHelper(DEStratum perspective, BBSimplePort port, String ifaceClassName)
+	{
+		this.port = port;
+    this.ifaceSimpleClassName = simplify(ifaceClassName);
+		partType = port.getOwner().getComplex().asComponent();
+    partTypeClass = port.getOwner().getImplementationClass();
+		partTypeClassName = partType.getImplementationClass(perspective);
+    portName = port.getRawName();
+    many = port.isIndexed();
+	}
+	
+	private String simplify(String clsName)
+	{
+		int index = clsName.lastIndexOf('.');
+		if (index == -1)
+			return clsName;
+		return clsName.substring(index + 1);
+	}
+  
   public void resolveGetMethodNames()
   {
   	if (haveGetNames)
   		return;
   	
-    // main is just the object itself
-    if (port.isBeanMain())
-      return;
-    
     // look for a method if this is a bean
     boolean cp = port.isComplexProvided();
     String extra = cp ? ifaceSimpleClassName : "";
 
     if (!many)
     {
-      String methodName = "get" + upperFirst(portName) + extra + "_Provided";
-    	if (port.isWantsRequiredWhenProviding())
-	    	getSingleName = methodName;
-    	else
-	    	getSingleSimpleName = methodName;
+    	getSingleName = "get" + upperFirst(portName) + extra + "_Provided";
     }
     else
     {
-      String methodName = "get" + makeSingular(upperFirst(portName)) + extra + "_Provided";
-    	if (port.isWantsRequiredWhenProviding())
-	      getIndexedName = methodName;
-    	else
-	      getIndexedSimpleName = methodName;
+    	getIndexedName = "get" + makeSingular(upperFirst(portName)) + extra + "_Provided";
       removeManyName = "remove" + (port.isBeanNoName() ? "" : makeSingular(upperFirst(portName)));
     }
 
@@ -125,7 +130,7 @@ public class PortMethodHelper
 	    			tried);
     	else
 	    	getSingleSimple = resolveMethod(
-	    			getSingleSimpleName,
+	    			getSingleName,
 	    			new Class<?>[]{},
 	    			tried);
     }
@@ -138,7 +143,7 @@ public class PortMethodHelper
 	          tried);
     	else
 	      getIndexedSimple = resolveMethod(
-	          getIndexedSimpleName,
+	          getIndexedName,
 	          new Class<?>[]{int.class},
 	          tried);
       removeMany = resolveMethod(
@@ -305,16 +310,6 @@ public class PortMethodHelper
 	public String getGetIndexedName()
 	{
 		return getIndexedName;
-	}
-
-	public String getGetSingleSimpleName()
-	{
-		return getSingleSimpleName;
-	}
-
-	public String getGetIndexedSimpleName()
-	{
-		return getIndexedSimpleName;
 	}
 
 	public String getSetSingleName()

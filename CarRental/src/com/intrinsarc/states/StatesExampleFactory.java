@@ -9,8 +9,8 @@ public class StatesExampleFactory implements IHardcodedFactory
 
   // attributes
   private java.util.Date purchasedWhen;
-  private java.lang.String model;
-  private java.lang.String renterName;
+  private String model;
+  private String renterName;
 
   // connectors
   private com.intrinsarc.states.IRentalEvent c;
@@ -30,7 +30,7 @@ public class StatesExampleFactory implements IHardcodedFactory
   private com.intrinsarc.states.Rented r = new com.intrinsarc.states.Rented();
   private com.intrinsarc.states.Available a = new com.intrinsarc.states.Available();
   private com.intrinsarc.backbone.runtime.implementation.StateDispatcher dispatcher = new com.intrinsarc.backbone.runtime.implementation.StateDispatcher();
-  public com.intrinsarc.backbone.runtime.api.IRun getRun() { return x10; }
+  public com.intrinsarc.backbone.runtime.api.IRun getRun_Provided() { return x10; }
 
   public StatesExampleFactory() {}
 

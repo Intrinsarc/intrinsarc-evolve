@@ -27,7 +27,7 @@ public class FlatteningHardcoder
 		org.eclipse.uml2.Package perspectivePkg = (org.eclipse.uml2.Package) ordered.get(0).getRepositoryObject();
 		String prefix = StereotypeUtilities.extractStringProperty(perspectivePkg, CommonRepositoryFunctions.COMPOSITE_PACKAGE);
   	if (prefix == null || prefix.trim().length() == 0)
-  		prefix = "hardcoded";
+  		throw new BackboneGenerationException("Set " + CommonRepositoryFunctions.COMPOSITE_PACKAGE + " on the stratum", null);
 
 		PreferencesFacet prefs = GlobalPreferences.preferences;
 		

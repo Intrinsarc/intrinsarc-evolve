@@ -24,8 +24,11 @@ public class StateDispatcher implements IStateDispatcher
 	{
 		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
 		{
-			if (method.getName().equals("toString") && (args == null || args.length == 0))
+			String mName = method.getName(); 
+			if (mName.equals("toString") && (args == null || args.length == 0))
 				return "State dispatcher: current state = " + (current == null ? "start" : current);
+			if (mName.equals("equals"))
+				return proxy == args[0];
 
 			// if current is null, use start
 			if (current == null)

@@ -1,8 +1,6 @@
 package com.intrinsarc.repositorybase;
 
-import java.io.*;
 import java.util.*;
-import java.util.zip.*;
 
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
@@ -270,7 +268,7 @@ public class CommonRepositoryFunctions
     Type timeType = createPrimitiveType(uuids, profile, "Time");
     Type dateTimeType = createPrimitiveType(uuids, profile, "DateTime");
     Type intervalType = createPrimitiveType(uuids, profile, "Interval");
-    Type objectType = createPrimitiveType(uuids, profile, "ValueObject");
+    Type objectType = createPrimitiveType(uuids, profile, "Object");
     
     Stereotype element = createStereotype(uuids, profile, "element", "'Class'", "The common ancestor of all backbone definitions that live in strata.");
     Property implClass = addAttribute(uuids, element, IMPLEMENTATION_CLASS, stringType, "The implementation class for this element");

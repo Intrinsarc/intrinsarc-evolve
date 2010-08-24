@@ -5,7 +5,7 @@ import com.intrinsarc.backbone.runtime.api.*;
 public class CarsExampleRunner
 // start generated code
   // main port
-  implements com.intrinsarc.backbone.runtime.api.IRun
+  implements com.intrinsarc.backbone.runtime.api.IRun, com.intrinsarc.backbone.runtime.api.ILifecycle
 {
   // required ports
 	private java.util.List<com.intrinsarc.base.IRentalCarDetails> cars = new java.util.ArrayList<com.intrinsarc.base.IRentalCarDetails>();
@@ -31,5 +31,15 @@ public class CarsExampleRunner
 					",is rented = " + car.isRented());
 		
 		return 0;
+	}
+	
+	public void afterInit()
+	{
+		System.out.println("\nAfterInit: Cars example started");
+	}
+
+	public void beforeDelete()
+	{
+		System.out.println("\nBeforeDelete: Cars example finished");
 	}
 }
