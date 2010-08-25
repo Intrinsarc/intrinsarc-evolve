@@ -6,7 +6,7 @@ public abstract class DEComponent extends DEElement
 {
 	public static final String PLACEHOLDER_STEREOTYPE_PROPERTY = "placeholder";
 	public static final String FACTORY_STEREOTYPE_PROPERTY     = "factory";
-	public static final String BEAN_STEREOTYPE_PROPERTY        = "bean";
+	public static final String LEGACY_BEAN_STEREOTYPE_PROPERTY = "legacy-bean";
 	public static final String LIFECYCLE_CALLBACKS_PROPERTY    = "lifecycle-callbacks";
   public static final String PROTOCOLS_PROPERTY              = "protocols";
 
@@ -676,7 +676,7 @@ public abstract class DEComponent extends DEElement
 		if (stereo == null)
 			return false;
 		return (getComponentKind() == ComponentKindEnum.NORMAL || getComponentKind() == ComponentKindEnum.STEREOTYPE)
-				&& stereo.getBooleanProperty(BEAN_STEREOTYPE_PROPERTY);
+				&& stereo.getBooleanProperty(LEGACY_BEAN_STEREOTYPE_PROPERTY);
 	}
 
 	public boolean isPlaceholder(DEStratum perspective)

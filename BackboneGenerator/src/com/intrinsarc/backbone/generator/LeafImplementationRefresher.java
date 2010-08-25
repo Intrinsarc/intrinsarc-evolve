@@ -1,215 +1,29 @@
 package com.intrinsarc.backbone.generator;
 
+import static com.intrinsarc.backbone.generator.hardcoded.common.WriterHelper.*;
+
 import java.io.*;
 import java.util.*;
 
-import static com.intrinsarc.backbone.generator.hardcoded.common.WriterHelper.*;
-
 import com.intrinsarc.backbone.nodes.*;
 import com.intrinsarc.deltaengine.base.*;
-import com.intrinsarc.idraw.environment.*;
+import com.intrinsarc.repositorybase.*;
 
-public class LeafImplementationRefresher
+public class LeafImplementationRefresher extends ImplementationRefresher
 {
-	private static final String START_GENERATED_CODE = "// start generated code";
-	private static final String END_GENERATED_CODE   = "// end generated code";
-	private File generationDir;
 	private DEStratum perspective;
 	private DEComponent leaf;
 	private String fullClassName;
 
 	public LeafImplementationRefresher(File generationDir, DEStratum perspective, DEComponent leaf)
 	{
-		this.generationDir = generationDir;
+		super(generationDir, leaf.getImplementationClass(perspective));
 		this.perspective = perspective;
 		this.leaf = leaf;
-		// guaranteed to be a single impl class, by the well-formedness rules
-		fullClassName = leaf.getImplementationClass(perspective);
 	}
 	
-	/**
-	 * generate or refresh the leaf code
-	 * @return true if the file was changed
-	 * @throws BackboneGenerationException
-	 */
-	public boolean refreshLeafCode() throws BackboneGenerationException
-	{
-		// turn the class name into a directory
-		String directory = fullClassName.replace('.', '/');
-		File realFile = new File(generationDir, directory + ".java");
-		
-		// make sure the directory is there
-		realFile.getParentFile().mkdirs();
-		
-		File tempFile = new File(generationDir, directory + ".java.temp");
-		File backupFile = new File(generationDir, directory + ".java.bak");		
-		
-		// if this doesn't exist, generate the preface
-		boolean exists = realFile.exists();
-		BufferedWriter writer = null;
-		BufferedReader reader = null;
-		StringWriter complexWriter = new StringWriter();
-		boolean deleteTemp = false;
-		try
-		{
-			tempFile.getParentFile().mkdirs();
-			writer = new BufferedWriter(new FileWriter(tempFile));
-			if (exists)
-				reader = new BufferedReader(new FileReader(realFile));
-
-			// if we can, copy the preamble
-			if (!exists)
-			{
-				makePreamble(writer);
-				Map<String, String> vars = makeGeneratedCode(writer);
-				writer.append(complexWriter.toString());				
-				makePostamble(writer, vars);
-			}
-			else
-			{
-				if (!copyPreamble(reader, writer))
-				{
-//					System.out.println("$$ skipping file " + realFile + ", as start generator marker not found...");
-					deleteTemp = true;
-					return false;
-				}
-				makeGeneratedCode(writer);
-				writer.append(complexWriter.toString());
-				if (!copyPostamble(reader, writer))
-				{
-//					System.out.println("$$ skipping file " + realFile + ", as end generator marker not found...");
-					deleteTemp = true;
-					return false;
-				}
-			}			
-		}
-		catch (IOException ex)
-		{
-			throw new BackboneGenerationException("Problem writing to file " + tempFile + " when refreshing leaves", null);
-		}
-		finally
-		{
-			try
-			{
-				if (writer != null)
-					writer.close();
-				if (reader != null)
-					reader.close();
-				if (deleteTemp)
-					tempFile.delete();
-			}
-			catch (IOException ex)
-			{
-				throw new BackboneGenerationException("Problem closing file " + tempFile + " when writing hardcoded factory", ex);
-			}
-		}
-		
-		// move the files over now to complete the generation
-		if (exists && identicalContents(realFile, tempFile))
-		{
-			tempFile.delete();
-			return false;
-		}
-		else
-		{
-			if (GlobalPreferences.preferences.getRawPreference(BackboneWriter.BB_WRITE_BACKUPS).asBoolean())
-				moveFile(realFile, backupFile);
-			moveFile(tempFile, realFile);
-			return true;
-		}
-	}
-
-	public static boolean identicalContents(File file1, File file2) throws BackboneGenerationException
-	{
-		BufferedReader reader1 = null;
-		BufferedReader reader2 = null;
-		try
-		{
-			reader1 = new BufferedReader(new FileReader(file1));
-			reader2 = new BufferedReader(new FileReader(file2));
-			
-			for (;;)
-			{
-				String line1 = reader1.readLine();
-				String line2 = reader2.readLine();
-				
-				if (line1 == null && line2 != null)
-					return false;
-				if (line1 != null && line2 == null)
-					return false;
-				// have we got to the end of the file?
-				if (line1 == null)
-					break;
-				// are the lines identical?
-				if (!line1.equals(line2))
-					return false;
-			}
-		}
-		catch (IOException ex)
-		{
-			throw new BackboneGenerationException("Problem comparing file " + file1 + " and " + file2, ex);
-		}
-		finally
-		{
-			try
-			{
-				if (reader1 != null)
-					reader1.close();
-				if (reader2 != null)
-					reader2.close();
-			}
-			catch (IOException ex)
-			{
-				throw new BackboneGenerationException("Problem closing file", ex);
-			}
-		}
-			
-		// if we got here there is no change...
-		return true;
-	}
-
-	/** copy the file from into the location to
-	 * 
-	 * @param realFile
-	 * @param backupFile
-	 */
-	public static void moveFile(File from, File to)
-	{
-		to.delete();
-		from.renameTo(to);
-	}
-
-	private boolean copyPreamble(BufferedReader reader, BufferedWriter writer) throws IOException
-	{
-		// copy lines until we get to the end of the file or to the start marker
-		String line = null;
-		boolean matched = false;
-		while ((line = reader.readLine()) != null && !(matched = line.contains(START_GENERATED_CODE)))
-		{
-			writer.write(line);
-			writer.newLine();
-		}
-
-		return matched;
-	}
-
-	private boolean copyPostamble(BufferedReader reader, BufferedWriter writer) throws IOException
-	{
-		// copy lines until we get to the end of the file or to the start marker
-		String line = null;
-		boolean matched = false;
-		while ((line = reader.readLine()) != null && !(matched = line.contains(END_GENERATED_CODE)))
-			;
-		
-		while ((line = reader.readLine()) != null)
-		{
-			writer.write(line);
-			writer.newLine();
-		}
-		return matched;
-	}
-
-	private void makePreamble(BufferedWriter writer) throws IOException
+	@Override
+	public void makePreamble(BufferedWriter writer) throws IOException
 	{
 		int index = fullClassName.lastIndexOf('.');
 		if (index != -1) // i.e. if it isn't the default package
@@ -224,13 +38,16 @@ public class LeafImplementationRefresher
 		writer.newLine();
 	}
 	
-	private Map<String, String> makeGeneratedCode(BufferedWriter writer) throws IOException
+	@Override
+	public Map<String, String> makeGeneratedCode(BufferedWriter writer) throws IOException
 	{
+		boolean useInheritance = !leaf.extractBooleanAppliedStereotypeProperty(
+				perspective, 
+				CommonRepositoryFunctions.COMPONENT, 
+				CommonRepositoryFunctions.SUPPRESS_INHERITANCE);
+
 		StringWriter complex = new StringWriter();
 		BufferedWriter complexWriter = new BufferedWriter(complex);
-		// write the start marker
-		writer.write(START_GENERATED_CODE);
-		writer.newLine();
 		
 		// get the main port
 		List<DEPort> mains = leaf.getBeanMainPorts(perspective);
@@ -239,9 +56,19 @@ public class LeafImplementationRefresher
 		{
 			writer.write("  // main port");		
 			writer.newLine();
+			
+			// if we are inheriting, get the super classes to inherit the implementation from
+			if (useInheritance)
+			{
+				Set<String> inherits = leaf.getImplementationInheritances(perspective);
+				String inherit = inherits.isEmpty() ? null : inherits.iterator().next();
+				if (inherit != null && !leaf.getImplementationClass(perspective).equals(inherit))
+					writer.write(" extends " + inherit);
+			}
+			
 			Set<? extends DEInterface> provided = mains.get(0).getSetProvidedInterfaces();
 			int lp = 0;
-			writer.write("  implements ");
+			writer.write(" implements ");
 			for (DEInterface iface : provided)
 			{
 				if (lp++ != 0)
@@ -261,7 +88,7 @@ public class LeafImplementationRefresher
 		writer.write("{");
 		writer.newLine();
 
-		Set<DeltaPair> attrPairs = leaf.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective);
+		Set<DeltaPair> attrPairs = getAttributePairs(useInheritance);
 		if (!attrPairs.isEmpty())
 		{
 			writer.write("  // attributes");				
@@ -317,15 +144,10 @@ public class LeafImplementationRefresher
 		Map<String, String> newTypes = new HashMap<String, String>();
 		
 		// write all the interface implementations
+		boolean output[] = {false, false};
 		for (int lp = 0; lp < 2; lp++)
 		{
-			if (lp == 0)
-				writer.write("  // required ports");
-			else
-				writer.write("  // provided ports");				
-			writer.newLine();
-
-			for (DeltaPair pair : leaf.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
+			for (DeltaPair pair : getPortPairs(useInheritance))
 			{
 				DEPort port = pair.getConstituent().asPort();
 				if (port.getPortKind() == PortKindEnum.CREATE || port.isSuppressGeneration())
@@ -340,6 +162,13 @@ public class LeafImplementationRefresher
 					boolean first = true;
 					for (DEInterface required : port.getSetRequiredInterfaces())
 					{
+						if (!output[lp])
+						{
+							writer.write("  // required ports");
+							writer.newLine();
+						}
+						output[lp] = true;
+						
 						PortMethodHelper ph = new PortMethodHelper(perspective, leaf, port, required);
 						ph.resolveSetMethodNames();
 						
@@ -375,6 +204,13 @@ public class LeafImplementationRefresher
 					boolean complexPort = port.getSetProvidedInterfaces().size() > 1;
 					for (DEInterface provided : port.getSetProvidedInterfaces())
 					{
+						if (!output[lp])
+						{
+							writer.write("  // provided ports");
+							writer.newLine();
+						}
+						output[lp] = true;
+
 						PortMethodHelper ph = new PortMethodHelper(perspective, leaf, port, provided);
 						ph.resolveGetMethodNames();
 						
@@ -405,19 +241,42 @@ public class LeafImplementationRefresher
 			}
 		}
 
-		writer.newLine();
-		writer.append("  // port setters and getters");
-		writer.newLine();
-		complexWriter.flush();
-		writer.append(complex.toString());
-		
-		
-		// write the end marker
-		writer.write(END_GENERATED_CODE);
-		writer.newLine();
+		if (output[0] || output[1])
+		{
+			writer.newLine();
+			writer.append("  // port setters and getters");
+			writer.newLine();
+			complexWriter.flush();
+			writer.append(complex.toString());
+			writer.newLine();
+		}
 		return newTypes;
 	}
 	
+	private Set<DeltaPair> getAttributePairs(boolean useInheritance)
+	{
+		if (useInheritance)
+		{
+			Set<DeltaPair> pairs = new LinkedHashSet<DeltaPair>();
+			pairs.addAll(leaf.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getAddObjects());
+			pairs.addAll(leaf.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getReplaceObjects());
+			return pairs;
+		}
+		return leaf.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective);
+	}
+
+	private Set<DeltaPair> getPortPairs(boolean useInheritance)
+	{
+		if (useInheritance)
+		{
+			Set<DeltaPair> pairs = new LinkedHashSet<DeltaPair>();
+			pairs.addAll(leaf.getDeltas(ConstituentTypeEnum.DELTA_PORT).getAddObjects());
+			pairs.addAll(leaf.getDeltas(ConstituentTypeEnum.DELTA_PORT).getReplaceObjects());
+			return pairs;
+		}
+		return leaf.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective);
+	}
+
 	private String makeInitializer(DEComponent owner, DEAttribute attr, String implName, boolean primitive)
 	{
 		List<DEParameter> params = attr.getDefaultValue();
@@ -486,7 +345,8 @@ public class LeafImplementationRefresher
     return impl;
 	}
 
-	private void makePostamble(BufferedWriter writer, Map<String, String> newTypes) throws IOException
+	@Override
+	public void makePostamble(BufferedWriter writer, Map<String, String> newTypes) throws IOException
 	{
 		writer.newLine();
 		writer.newLine();

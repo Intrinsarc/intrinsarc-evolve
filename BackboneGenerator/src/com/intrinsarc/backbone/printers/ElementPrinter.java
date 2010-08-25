@@ -261,10 +261,11 @@ public class ElementPrinter
 	private static final String[] UUIDs = {
 		DEElement.IMPLEMENTATION_STEREOTYPE_PROPERTY,
 		DEComponent.FACTORY_STEREOTYPE_PROPERTY,
-		DEComponent.BEAN_STEREOTYPE_PROPERTY,
+		DEComponent.LEGACY_BEAN_STEREOTYPE_PROPERTY,
 		DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY,
 		DEComponent.LIFECYCLE_CALLBACKS_PROPERTY,
 		CommonRepositoryFunctions.SUPPRESS_GENERATION_PORT,
+		CommonRepositoryFunctions.SUPPRESS_INHERITANCE,
 		CommonRepositoryFunctions.PORT_BEAN_MAIN,
 		CommonRepositoryFunctions.PORT_BEAN_NO_NAME,
 		CommonRepositoryFunctions.PORT_BEAN_NOT_MAIN,
@@ -501,7 +502,7 @@ public class ElementPrinter
     DEAppliedStereotype applied = c.getRawAppliedStereotype();
     if (applied == null)
       return false;
-    return applied.getBooleanProperty(DEComponent.BEAN_STEREOTYPE_PROPERTY);
+    return applied.getBooleanProperty(DEComponent.LEGACY_BEAN_STEREOTYPE_PROPERTY);
   }
 
 	private boolean hasLifecycleCallbacks(DEComponent c)

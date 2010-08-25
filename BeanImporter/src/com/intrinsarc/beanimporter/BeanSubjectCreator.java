@@ -460,7 +460,7 @@ public class BeanSubjectCreator
 		delete(iface.settable_getAppliedBasicStereotypeValues());
 		iface.settable_getAppliedBasicStereotypes().add(interfaceStereo);
 		setImplementation(iface, cls.getNode().name);
-		setBooleanProperty(iface, CommonRepositoryFunctions.BEAN);
+		setBooleanProperty(iface, CommonRepositoryFunctions.LEGACY_BEAN);
 		interfaces.put(cls.getNode().name, iface);
 	}
 
@@ -474,7 +474,7 @@ public class BeanSubjectCreator
 		delete(cl.settable_getAppliedBasicStereotypeValues());
 		cl.settable_getAppliedBasicStereotypes().add(componentStereo);
 		setImplementation(cl, cls.getNode().name);
-		setBooleanProperty(cl, CommonRepositoryFunctions.BEAN);
+		setBooleanProperty(cl, CommonRepositoryFunctions.LEGACY_BEAN);
 		classes.put(cls.getNode().name, cl);
 	}
 

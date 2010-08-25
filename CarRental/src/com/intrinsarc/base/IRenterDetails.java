@@ -1,9 +1,9 @@
 package com.intrinsarc.base;
 
-
 public interface IRenterDetails
+// start generated code
 {
-	void setRenter(String renter);
-	String getRenter();
-	boolean isRented();
+// end generated code
+	void setRenterName(String renterName);
+	String getRenterName();
 }

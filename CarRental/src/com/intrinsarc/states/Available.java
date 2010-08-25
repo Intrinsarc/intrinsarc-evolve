@@ -39,7 +39,7 @@ public class Available
 		// does nothing in this state
 	}
 
-	public void setRenter(String name)
+	public void setRenterName(String name)
 	{
 		throw new IllegalStateException("Cannot set renter as car is currently available");
 	}
@@ -49,7 +49,7 @@ public class Available
 		return "available";
 	}
 
-	public String getRenter()
+	public String getRenterName()
 	{
 		return "";
 	}

@@ -31,11 +31,6 @@ public class Rented
 		return current;
 	}
 
-	public String getRenter()
-	{
-		return renterName;
-	}
-
 	public boolean isRented()
 	{
 		return true;
@@ -46,11 +41,6 @@ public class Rented
 		throw new IllegalStateException("Already rented!");
 	}
 	
-	public void setRenter(String newRenterName)
-	{
-		renterName = newRenterName;
-	}
-
 	@Override
 	public void returnRental()
 	{

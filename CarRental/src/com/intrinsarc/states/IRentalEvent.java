@@ -6,7 +6,7 @@ import com.intrinsarc.base.*;
 public interface IRentalEvent extends IEvent, IRenterDetails
 {
 	void rent();
-	void setRenter(String name);
-	public String getRenter();
+	void setRenterName(String name);
+	public String getRenterName();
 	void returnRental();
 }

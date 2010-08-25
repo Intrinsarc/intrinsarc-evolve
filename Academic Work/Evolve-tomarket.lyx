@@ -558,6 +558,10 @@ printing options + export grouped images
 how to get lifecycle callbacks
 \end_layout
 
+\begin_layout Enumerate
+explain primitives
+\end_layout
+
 \begin_layout Standard
 
 \series bold

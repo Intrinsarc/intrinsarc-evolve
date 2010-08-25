@@ -78,7 +78,7 @@ public class ComponentParser
 			if (placeholder[0])
 				addBooleanStereotypeProperty(stereo, DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY, true);
 			if (bean[0])
-				addBooleanStereotypeProperty(stereo, DEComponent.BEAN_STEREOTYPE_PROPERTY, true);
+				addBooleanStereotypeProperty(stereo, DEComponent.LEGACY_BEAN_STEREOTYPE_PROPERTY, true);
 			if (implementation[0] != null)
 				addStringStereotypeProperty(stereo, DEComponent.IMPLEMENTATION_STEREOTYPE_PROPERTY, implementation[0]);			
 			if (lifecycle[0])

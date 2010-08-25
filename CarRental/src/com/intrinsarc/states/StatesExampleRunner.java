@@ -40,7 +40,7 @@ public class StatesExampleRunner
 		System.out.println("  : " + state + "\n");
 		
 		System.out.println("--> Sending event: setRenter");
-		state.setRenter("Andrew");
+		state.setRenterName("Andrew");
 		print(car);
 		System.out.println("  : " + state + "\n");
 		

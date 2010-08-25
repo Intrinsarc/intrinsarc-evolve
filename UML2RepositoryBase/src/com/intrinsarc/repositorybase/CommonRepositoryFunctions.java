@@ -32,8 +32,9 @@ public class CommonRepositoryFunctions
   public static final String PRIMITIVE_TYPE           = "primitive-type";
   public static final String TRACE                    = "trace";
   public static final String LIFECYCLE_CALLBACKS      = "lifecycle-callbacks";
-	public static final String SUPPRESS_GENERATION      = "suppress-generation";
-	public static final String SUPPRESS_GENERATION_PORT = "suppress-generation-port";
+	public static final String SUPPRESS_INHERITANCE     = "no-inheritance";
+	public static final String SUPPRESS_GENERATION      = "no-generation";
+	public static final String SUPPRESS_GENERATION_PORT = "no-generation-port";
 	public static final String PORT_BEAN_MAIN           = "bean-main";
 	public static final String PORT_BEAN_NO_NAME        = "bean-no-name";
 	public static final String PORT_BEAN_NOT_MAIN       = "force-not-bean-main";
@@ -43,7 +44,7 @@ public class CommonRepositoryFunctions
   public static final String STRATUM_EXPORT_INFO      = "export-info";
   public static final String PLACEHOLDER              = DEComponent.PLACEHOLDER_STEREOTYPE_PROPERTY;
   public static final String FACTORY                  = DEComponent.FACTORY_STEREOTYPE_PROPERTY;
-  public static final String BEAN                     = DEComponent.BEAN_STEREOTYPE_PROPERTY;
+  public static final String LEGACY_BEAN              = DEComponent.LEGACY_BEAN_STEREOTYPE_PROPERTY;
 
   public static final String IMPLEMENTATION_CLASS     = "implementation-class";
   public static final String PROTOCOLS                = "protocols";
@@ -272,7 +273,9 @@ public class CommonRepositoryFunctions
     
     Stereotype element = createStereotype(uuids, profile, "element", "'Class'", "The common ancestor of all backbone definitions that live in strata.");
     Property implClass = addAttribute(uuids, element, IMPLEMENTATION_CLASS, stringType, "The implementation class for this element");
-    addAttribute(uuids, element, BEAN, booleanType, "Is this element related to a legacy JavaBean?");
+    addAttribute(uuids, element, LEGACY_BEAN, booleanType, "Is this element related to a legacy JavaBean?");
+    addAttribute(uuids, element, SUPPRESS_INHERITANCE, booleanType, "Suppress implementation inheritance when a leaf resembles another");
+
     element.setIsAbstract(true);
     
     Stereotype iface = createStereotype(uuids, profile, INTERFACE, "'Interface'", "A component which cannot or hasn't been decomposed further.  An interface which is visible to backbone.");

@@ -162,6 +162,12 @@ public class ComponentErrorChecker
     		}
     	}
     	
+    	// if we have multiple implementation inheritance, then complain
+    	Set<String> inherited = component.getImplementationInheritances(perspective);
+    	if (inherited.size() > 1)
+        errors.addError(
+            new ErrorLocation(perspective, component), ErrorCatalog.TURN_OFF_INHERITANCE);
+    	
       // check that the port links imply mirror interface arrangements
       for (DeltaPair pair : component.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
       {

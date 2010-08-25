@@ -47,7 +47,7 @@ public class ImplementationWriter
   private int generateInterfaceSource(DEStratum stratum, File codeBase) throws BackboneGenerationException
   {
     codeBase.mkdirs();
-    return generatePossibleImplementationInterfaces(stratum, codeBase);
+    return refreshInterfaceDefinitions(stratum, codeBase);
   }
   
   private int generateLeafSource(DEStratum stratum, File codeBase) throws BackboneGenerationException
@@ -57,29 +57,29 @@ public class ImplementationWriter
   }
   
   
-  private int generatePossibleImplementationInterfaces(DEStratum stratum, File base) throws BackboneGenerationException
+  private int refreshInterfaceDefinitions(DEStratum stratum, File base) throws BackboneGenerationException
   {
     // start with this package
   	int count = 0;
     for (DEElement element : stratum.getChildElements())
-    {
-      // if this is a leaf, refresh the code
-      DEInterface iface = element.asInterface();
-      if (iface != null && !iface.isBean(iface.getHomeStratum()))
-      {
-      	// possibly repoint to what we are substituting
-      	if (iface.isReplacement())
-      		iface = (DEInterface) iface.getReplaces().iterator().next();
-      	
-        InterfaceImplementationMaker maker = new InterfaceImplementationMaker(base, stratum, iface);
-      	if (maker.possiblyMakeDefinition())
+      if (refreshInterface(stratum, base, element))
       		count++;
-      }
-    }
     return count;
   }
   
-  private int refreshLeafImplementations(DEStratum stratum, File base) throws BackboneGenerationException
+	private boolean refreshInterface(DEStratum stratum, File base, DEElement element) throws BackboneGenerationException
+	{
+		DEInterface iface = element.asInterface();
+		if (iface != null &&
+				!iface.isBean(iface.getHomeStratum()))
+		{
+			InterfaceDefinitionRefresher refresher = new InterfaceDefinitionRefresher(base, stratum, iface);
+			return refresher.refreshCode();
+		}
+		return false;
+	}
+
+	private int refreshLeafImplementations(DEStratum stratum, File base) throws BackboneGenerationException
   {
     // start with this package
   	int count = 0;
@@ -100,11 +100,8 @@ public class ImplementationWriter
 				!comp.isRawAbstract() &&
 				comp.getComponentKind() != ComponentKindEnum.STEREOTYPE)
 		{
-			// if this is a substituter, take what it substitutes...
-			if (comp.isReplacement())
-				comp = (DEComponent) comp.getReplaces().iterator().next();
 			LeafImplementationRefresher refresher = new LeafImplementationRefresher(base, stratum, comp);
-			return refresher.refreshLeafCode();
+			return refresher.refreshCode();
 		}
 		return false;
 	}

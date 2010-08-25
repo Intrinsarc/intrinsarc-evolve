@@ -4,7 +4,7 @@ package com.intrinsarc.base;
 public class RentalCarDetails
 // start generated code
   // main port
-  implements com.intrinsarc.base.IRentalCarDetails
+ implements com.intrinsarc.base.IRentalCarDetails
 {
   // attributes
 	private java.util.Date purchased;
@@ -18,14 +18,19 @@ public class RentalCarDetails
 
   // required ports
 	private com.intrinsarc.base.IRenterDetails renter;
-  // provided ports
 
   // port setters and getters
 	public void setRenter(com.intrinsarc.base.IRenterDetails renter) { this.renter = renter; }
+
 // end generated code
+	
+	public void setRenterName(String renterName)
+	{
+		renter.setRenterName(renterName);
+	}
 	
 	public boolean isRented()
 	{
-		return renter.isRented();
+		return renter.getRenterName() != null && renter.getRenterName().length() > 0;
 	}
 }

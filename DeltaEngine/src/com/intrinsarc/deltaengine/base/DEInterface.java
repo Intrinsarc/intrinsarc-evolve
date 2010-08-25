@@ -14,6 +14,6 @@ public abstract class DEInterface extends DEElement
 		DEAppliedStereotype stereo = getAppliedStereotype(perspective);
 		if (stereo == null)
 			return false;
-		return stereo.getBooleanProperty(DEComponent.BEAN_STEREOTYPE_PROPERTY); 
+		return stereo.getBooleanProperty(DEComponent.LEGACY_BEAN_STEREOTYPE_PROPERTY); 
 	}
 }

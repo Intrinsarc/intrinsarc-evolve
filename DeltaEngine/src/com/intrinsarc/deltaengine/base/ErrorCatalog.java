@@ -76,6 +76,7 @@ public class ErrorCatalog
 	public static final ErrorDescription AT_MOST_ONE_BEAN_NO_NAME_PORT = new ErrorDescription("A component has more than one bean no-name port");
 	public static final ErrorDescription BEAN_MAIN_NOT_SUITABLE = new ErrorDescription("Port is not suitable for a bean-main port");
 	public static final ErrorDescription BEAN_NO_NAME_NOT_SUITABLE = new ErrorDescription("Port is not suitable for a bean-no-name port");
+	public static final ErrorDescription TURN_OFF_INHERITANCE = new ErrorDescription("Turn off implementation inheritance using no-inheritance");
 
 	// the diagram errors
   public static final ErrorDescription DIAGRAM_ELEMENT_NOT_VISIBLE = new ErrorDescription("This element is not visible from this diagram", true);

@@ -938,4 +938,25 @@ public abstract class DEElement extends DEObject
 			return null;
 		return prop;
 	}
+	
+	/**
+	 * we want the implementation class that we should inherit from
+	 */
+	public Set<String> getImplementationInheritances(DEStratum perspective)
+	{
+		// look for the previous implementation classes we have inherited
+		Set<String> inherits = new LinkedHashSet<String>();
+		Set<DeltaPair> stereos =
+			getDeltas(ConstituentTypeEnum.DELTA_APPLIED_STEREOTYPE).getPairs(perspective, DeltaPairTypeEnum.OLD_OBJECTS_E);
+		for (DeltaPair pair : stereos)
+		{
+			// just take the first
+			DEAppliedStereotype applied = pair.getConstituent().asAppliedStereotype();
+			String inherit = applied.getStringProperty(IMPLEMENTATION_STEREOTYPE_PROPERTY);
+			if (inherit.length() != 0)
+				inherits.add(inherit);
+		}
+		
+		return inherits;
+	}
 }

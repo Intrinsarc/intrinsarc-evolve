@@ -169,7 +169,7 @@ public class Deltas implements IDeltas
     {
       case OLD_OBJECTS_E:
         List<DEElement> topmost = element.getTopmost(perspective);
-      	if (topmost.size() == 1 && topmost.get(1) == element)
+      	if (topmost.size() == 1 && topmost.get(0) == element)
         {
         		cached = getPairs(perspective, ORIGINAL_OLD_OBJECTS_E);
         }

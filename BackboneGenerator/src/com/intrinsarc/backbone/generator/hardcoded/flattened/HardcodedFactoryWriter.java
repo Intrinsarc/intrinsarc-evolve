@@ -255,25 +255,23 @@ public class HardcodedFactoryWriter
 		c.newLine();
 		c.write("  {");
 		c.newLine();
-		if (factoryNumber != 0)
-		{
-			// tell the parent
-			c.write("    destroyChildren(parent, this, children);");
-			c.newLine();
-	
-			// tell any parts we are about to delete them
-			for (BBSimplePart part : factory.getParts())
-				if (part.getType().hasLifecycleCallbacks())
-				{
-					String partName = namer.getUniqueName(part);
-					c.write("    " + partName + ".beforeDelete();");
-					c.newLine();
-				}
-	
-			// remove any connectors
-			deleted.flush();
-			c.write(deletedConnectors.toString());
-		}
+
+		// tell the parent
+		c.write("    destroyChildren(" + (factoryNumber == 0 ? "null" : "parent") + ", this, children);");
+		c.newLine();
+
+		// tell any parts we are about to delete them
+		for (BBSimplePart part : factory.getParts())
+			if (part.getType().hasLifecycleCallbacks())
+			{
+				String partName = namer.getUniqueName(part);
+				c.write("    " + partName + ".beforeDelete();");
+				c.newLine();
+			}
+
+		// remove any connectors
+		deleted.flush();
+		c.write(deletedConnectors.toString());
 
 		// finish the destroy method
 		c.write("  }");
@@ -288,7 +286,9 @@ public class HardcodedFactoryWriter
 			c.write("  {");
 			c.newLine();
 			// tell the parent
-			c.write("    parent.childDestroyed(me);");
+			c.write("    if (parent != null)");
+			c.newLine();
+			c.write("      parent.childDestroyed(me);");
 			c.newLine();
 			// tell any children to destroy themselves
 			c.write("    if (children != null) {");
