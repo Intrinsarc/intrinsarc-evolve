@@ -22,7 +22,7 @@ public class CarRentalFormFactory implements IHardcodedFactory
   private com.google.gwt.user.client.ui.TextBox c2;
   private com.google.gwt.user.client.ui.Label c3;
   private com.google.gwt.user.client.ui.TextBox c4;
-  private com.google.gwt.event.dom.client.ChangeHandler c5;
+  private com.google.gwt.user.client.ui.ChangeListener c5;
   private com.google.gwt.user.client.ui.HorizontalPanel c6;
   private com.google.gwt.user.client.ui.VerticalPanel c7;
   private com.google.gwt.user.client.ui.VerticalPanel c8;
@@ -91,21 +91,33 @@ public class CarRentalFormFactory implements IHardcodedFactory
     x5.setService(c);
     x5.setCreate(c1);
     x5.setText(c4);
-    x7.addChangeHandler(c5);
+    x7.addChangeListener(c5);
     x16.setWidget(c7);
     x17.setWidget(c8);
-    x5.afterInit();
     return this;
   }
   public void childDestroyed(IHardcodedFactory child) { children.remove(child); }
 
   public void destroy()
   {
+    destroyChildren(null, this, children);
+    x.remove(c3);
+    x1.remove(c6);
+    x2.remove(c10);
+    x.remove(c2);
+    x2.remove(c9);
+    x5.setService(null);
+    x5.setCreate(null);
+    x5.setText(null);
+    x7.removeChangeListener(c5);
+    x16.setWidget(null);
+    x17.setWidget(null);
   }
 
   static void destroyChildren(IHardcodedFactory parent, IHardcodedFactory me, java.util.List<IHardcodedFactory> children)
   {
-    parent.childDestroyed(me);
+    if (parent != null)
+      parent.childDestroyed(me);
     if (children != null) {
       java.util.List<IHardcodedFactory> copy = new java.util.ArrayList<IHardcodedFactory>(children);
       java.util.Collections.reverse(copy);
@@ -152,7 +164,7 @@ class CarRentalWidgetFactory implements IHardcodedFactory
   private com.google.gwt.user.client.ui.TextBox c16;
   private com.google.gwt.user.client.ui.TextBox c17;
   private com.google.gwt.user.client.ui.Label c18;
-  private com.google.gwt.event.dom.client.ChangeHandler c19;
+  private com.google.gwt.user.client.ui.ChangeListener c19;
   private com.google.gwt.user.client.ui.HorizontalPanel c20;
 
  // parts

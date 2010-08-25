@@ -13,7 +13,7 @@ public class CarRentalServiceFactory implements IHardcodedFactory
   private com.intrinsarc.backbone.runtime.api.ICreate c;
 
  // parts
-  private com.intrinsarc.carrentalgui.server.CarRental x1 = new com.intrinsarc.carrentalgui.server.CarRental();
+  private com.intrinsarc.carrentalgui.server.HibernateCarRental x1 = new com.intrinsarc.carrentalgui.server.HibernateCarRental();
   private ICreate factory = new ICreate() {
     public Object create(java.util.Map<String, Object> values) {
       RentalCarFactory f = new RentalCarFactory();
@@ -34,17 +34,22 @@ public class CarRentalServiceFactory implements IHardcodedFactory
   {
     c = factory;
     x1.setCreate(c);
+    x1.afterInit();
     return this;
   }
   public void childDestroyed(IHardcodedFactory child) { children.remove(child); }
 
   public void destroy()
   {
+    destroyChildren(null, this, children);
+    x1.beforeDelete();
+    x1.setCreate(null);
   }
 
   static void destroyChildren(IHardcodedFactory parent, IHardcodedFactory me, java.util.List<IHardcodedFactory> children)
   {
-    parent.childDestroyed(me);
+    if (parent != null)
+      parent.childDestroyed(me);
     if (children != null) {
       java.util.List<IHardcodedFactory> copy = new java.util.ArrayList<IHardcodedFactory>(children);
       java.util.Collections.reverse(copy);
@@ -66,12 +71,11 @@ class RentalCarFactory implements IHardcodedFactory
   private java.util.Date purchased = new java.util.Date();
   public void setPurchased(java.util.Date purchased) { this.purchased = purchased; }
   public java.util.Date getPurchased() { return purchased; }
-  private String renter;
+  private String renterName;
 
   // connectors
   private com.intrinsarc.base.IRenterDetails c1;
-  private com.intrinsarc.base.IRenterDetails c2;
-  private com.intrinsarc.base.IRentalCarDetails c3;
+  private com.intrinsarc.base.IRentalCarDetails c2;
 
  // parts
   private com.intrinsarc.base.RentalCarDetails x2 = new com.intrinsarc.base.RentalCarDetails();
@@ -84,16 +88,14 @@ class RentalCarFactory implements IHardcodedFactory
     this.parent = parent;
     if (values != null && values.containsKey("model")) model = (String) values.get("model");
     if (values != null && values.containsKey("purchased")) purchased = (java.util.Date) values.get("purchased");
-    renter = "";
+    renterName = "";
     x2.setPurchased(purchased);
     x2.setModel(model);
-    x3.setRenter(renter);
+    x3.setRenterName(renterName);
     c1 = x3;
-    c2 = x3;
-    c3 = x2;
+    c2 = x2;
     x2.setRenter(c1);
-    x1.addRenter(c2);
-    x1.addCar(c3);
+    x1.addCar(c2);
     return this;
   }
   public void childDestroyed(IHardcodedFactory child) { children.remove(child); }
@@ -102,8 +104,7 @@ class RentalCarFactory implements IHardcodedFactory
   {
     destroyChildren(parent, this, children);
     x2.setRenter(null);
-    x1.removeRenter(c2);
-    x1.removeCar(c3);
+    x1.removeCar(c2);
   }
 
 }

@@ -5,7 +5,7 @@ import com.intrinsarc.backbone.runtime.api.*;
 public class Available
 // start generated code
   // main port
-  implements com.intrinsarc.states.IRentalEvent
+ implements com.intrinsarc.states.IRentalEvent
 {
   // required ports
 	private com.intrinsarc.backbone.runtime.api.ITransition out;
@@ -15,6 +15,7 @@ public class Available
   // port setters and getters
 	public void setOut(com.intrinsarc.backbone.runtime.api.ITransition out) { this.out = out; }
 	public com.intrinsarc.backbone.runtime.api.ITransition getIn_Provided() { return in_Provided; }
+
 // end generated code
 
 	private boolean current;

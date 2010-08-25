@@ -20,7 +20,7 @@ public class InterfaceDefinitionRefresher extends ImplementationRefresher
 	@Override
 	public void makePreamble(BufferedWriter writer) throws IOException
 	{
-		String fullInterfaceName = iface.getImplementationClass(perspective);
+		String fullInterfaceName = getFullClassName();
 		// create the interface definition
 		int index = fullInterfaceName.lastIndexOf('.');
 		if (index != -1) // i.e. if it isn't the default package

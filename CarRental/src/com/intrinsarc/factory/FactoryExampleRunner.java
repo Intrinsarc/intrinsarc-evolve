@@ -13,7 +13,6 @@ public class FactoryExampleRunner
   // required ports
 	private java.util.List<com.intrinsarc.base.IRentalCarDetails> cars = new java.util.ArrayList<com.intrinsarc.base.IRentalCarDetails>();
 	private com.intrinsarc.backbone.runtime.api.ICreate creator;
-  // provided ports
 
   // port setters and getters
 	public void setCar(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }

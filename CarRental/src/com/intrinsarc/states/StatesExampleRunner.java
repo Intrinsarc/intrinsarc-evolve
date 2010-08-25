@@ -8,12 +8,11 @@ import com.intrinsarc.base.*;
 public class StatesExampleRunner
 // start generated code
   // main port
-  implements com.intrinsarc.backbone.runtime.api.IRun
+ implements com.intrinsarc.backbone.runtime.api.IRun
 {
   // required ports
 	private java.util.List<com.intrinsarc.base.IRentalCarDetails> cars = new java.util.ArrayList<com.intrinsarc.base.IRentalCarDetails>();
 	private java.util.List<com.intrinsarc.states.IRentalEvent> rentalStates = new java.util.ArrayList<com.intrinsarc.states.IRentalEvent>();
-  // provided ports
 
   // port setters and getters
 	public void setCar(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
@@ -22,6 +21,7 @@ public class StatesExampleRunner
 	public void setRentalState(com.intrinsarc.states.IRentalEvent rentalStates, int index) { PortHelper.fill(this.rentalStates, rentalStates, index); }
 	public void addRentalState(com.intrinsarc.states.IRentalEvent rentalStates) { PortHelper.fill(this.rentalStates, rentalStates, -1); }
 	public void removeRentalState(com.intrinsarc.states.IRentalEvent rentalStates) { PortHelper.remove(this.rentalStates, rentalStates); }
+
 // end generated code
 
 

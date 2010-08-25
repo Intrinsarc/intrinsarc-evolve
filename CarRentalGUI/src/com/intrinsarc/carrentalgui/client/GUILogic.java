@@ -4,29 +4,30 @@ import java.util.*;
 
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.rpc.*;
+import com.google.gwt.user.client.ui.*;
 
 public class GUILogic
 // start generated code
   // main port
-  implements com.google.gwt.event.dom.client.ChangeHandler, com.intrinsarc.backbone.runtime.api.ILifecycle
+ implements com.google.gwt.user.client.ui.ChangeListener
 {
   // required ports
 	private com.intrinsarc.backbone.runtime.api.ICreate create;
 	private com.google.gwt.user.client.ui.TextBox text;
-  // provided ports
 
   // port setters and getters
 	public void setCreate(com.intrinsarc.backbone.runtime.api.ICreate create) { this.create = create; }
 	public void setText(com.google.gwt.user.client.ui.TextBox text) { this.text = text; }
+
 // end generated code
 
 	private IRentalServiceAsync service;
 	public void setService(com.intrinsarc.carrentalgui.client.IRentalServiceAsync service) { this.service = service; refresh(); }
 	private List<Object> mementos = new ArrayList<Object>();
 
-	public void onChange(ChangeEvent event)
+	public void onChange(Widget widget)
 	{
-		if (event == null)
+		if (widget == null)
 		{
 			refresh();
 			return;

@@ -13,22 +13,26 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 {
 	private DEStratum perspective;
 	private DEComponent leaf;
-	private String fullClassName;
 
 	public LeafImplementationRefresher(File generationDir, DEStratum perspective, DEComponent leaf)
 	{
 		super(generationDir, leaf.getImplementationClass(perspective));
 		this.perspective = perspective;
 		this.leaf = leaf;
+		
 	}
 	
 	@Override
 	public void makePreamble(BufferedWriter writer) throws IOException
 	{
+		String fullClassName = getFullClassName();
 		int index = fullClassName.lastIndexOf('.');
 		if (index != -1) // i.e. if it isn't the default package
 		{
 			writer.write("package " + fullClassName.substring(0, index) + ";");
+			writer.newLine();
+			writer.newLine();
+			writer.write("import com.intrinsarc.backbone.runtime.api.*;");
 			writer.newLine();
 			writer.newLine();
 		}
@@ -45,7 +49,11 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 				perspective, 
 				CommonRepositoryFunctions.COMPONENT, 
 				CommonRepositoryFunctions.SUPPRESS_INHERITANCE);
-
+		Set<String> inherits = leaf.getImplementationInheritances(perspective);
+		String inherit = inherits.isEmpty() ? null : inherits.iterator().next();
+		// don't use inheritance if there is nothing to inherit from
+		useInheritance &= inherit != null;
+		
 		StringWriter complex = new StringWriter();
 		BufferedWriter complexWriter = new BufferedWriter(complex);
 		
@@ -60,8 +68,6 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 			// if we are inheriting, get the super classes to inherit the implementation from
 			if (useInheritance)
 			{
-				Set<String> inherits = leaf.getImplementationInheritances(perspective);
-				String inherit = inherits.isEmpty() ? null : inherits.iterator().next();
 				if (inherit != null && !leaf.getImplementationClass(perspective).equals(inherit))
 					writer.write(" extends " + inherit);
 			}
@@ -81,7 +87,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 			{
 				if (lp++ != 0)
 					writer.write(", ");
-				writer.write("com.intrinsarc.backbone.runtime.api.ILifecycle");
+				writer.write("ILifecycle");
 			}
 			writer.newLine();
 		}

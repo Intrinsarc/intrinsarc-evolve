@@ -24,6 +24,11 @@ public abstract class ImplementationRefresher
 		this.fullClassName = fullClassName;
 	}
 	
+	public String getFullClassName()
+	{
+		return fullClassName;
+	}
+	
 	/**
 	 * generate or refresh the code
 	 * @return true if the file was changed

@@ -9,7 +9,6 @@ public class LoggingRentalCarDetails
 {
   // required ports
 	private com.intrinsarc.hyperports.ILogger logger;
-  // provided ports
 
   // port setters and getters
 	public void setLogger(com.intrinsarc.hyperports.ILogger logger) { this.logger = logger; }

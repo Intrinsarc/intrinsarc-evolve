@@ -5,14 +5,13 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BackboneGWTBase"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/CarRental"/>
-	<classpathentry kind="lib" path="C:/work/thirdpartylibs/hibernate-distribution-3.5.5-Final/lib/required/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="C:/work/thirdpartylibs/hibernate-distribution-3.5.5-Final/lib/required/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/work/thirdpartylibs/hibernate-distribution-3.5.5-Final/lib/required/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/work/thirdpartylibs/hibernate-distribution-3.5.5-Final/lib/required/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/work/thirdpartylibs/hibernate-distribution-3.5.5-Final/lib/required/slf4j-api-1.5.8.jar"/>
-	<classpathentry kind="lib" path="C:/work/thirdpartylibs/hibernate-distribution-3.5.5-Final/hibernate3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/andrew/Desktop/slf4j-simple-1.5.8.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/H2/bin/h2-1.2.140.jar"/>
-	<classpathentry kind="lib" path="C:/work/thirdpartylibs/hibernate-distribution-3.5.5-Final/lib/bytecode/javassist/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-simple-1.5.8.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

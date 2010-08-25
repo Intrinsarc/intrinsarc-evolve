@@ -9,5 +9,6 @@ public interface IRentalCarDetails
 	String getModel();
 	Date getPurchased();
 	void setRenterName(String renterName);
+	String getRenterName();
 	boolean isRented();
 }

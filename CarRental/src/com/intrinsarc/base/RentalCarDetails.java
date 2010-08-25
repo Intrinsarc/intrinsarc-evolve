@@ -29,6 +29,11 @@ public class RentalCarDetails
 		renter.setRenterName(renterName);
 	}
 	
+	public String getRenterName()
+	{
+		return renter.getRenterName();
+	}
+
 	public boolean isRented()
 	{
 		return renter.getRenterName() != null && renter.getRenterName().length() > 0;

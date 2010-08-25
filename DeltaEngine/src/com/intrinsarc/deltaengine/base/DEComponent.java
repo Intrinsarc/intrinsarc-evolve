@@ -675,7 +675,8 @@ public abstract class DEComponent extends DEElement
 		DEAppliedStereotype stereo = getAppliedStereotype(perspective);
 		if (stereo == null)
 			return false;
-		return (getComponentKind() == ComponentKindEnum.NORMAL || getComponentKind() == ComponentKindEnum.STEREOTYPE)
+		return 
+				(getComponentKind() == ComponentKindEnum.NORMAL || getComponentKind() == ComponentKindEnum.STEREOTYPE)
 				&& stereo.getBooleanProperty(LEGACY_BEAN_STEREOTYPE_PROPERTY);
 	}
 

@@ -1,12 +1,9 @@
 package com.intrinsarc.states;
 
-import com.intrinsarc.backbone.runtime.api.*;
-import com.intrinsarc.base.*;
-
-public interface IRentalEvent extends IEvent, IRenterDetails
-{
+public interface IRentalEvent
+// start generated code
+  extends com.intrinsarc.base.IRenterDetails, com.intrinsarc.backbone.runtime.api.IEvent{
+// end generated code
 	void rent();
-	void setRenterName(String name);
-	public String getRenterName();
 	void returnRental();
 }
