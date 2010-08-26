@@ -1,14 +1,16 @@
 package com.intrinsarc.beanimporter;
 
 import java.io.*;
-import java.util.*;
+import java.util.Enumeration;
 import java.util.jar.*;
 
 import javax.swing.*;
 
+import org.eclipse.uml2.*;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 
+import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.swing.*;
 
@@ -16,13 +18,15 @@ public class BeanAnalyzer
 {
 	public static final ImageIcon BEAN_ADD_ICON = IconLoader.loadIcon("bean_add.png");
 
+	private DEStratum perspective;
 	private String classpath;
 	private LongRunningTaskProgressMonitorFacet monitor;
 	private BeanPackage root;
 	private int countSoFar;
 
-	public BeanAnalyzer(String classpath, LongRunningTaskProgressMonitorFacet monitor, int countSoFar)
+	public BeanAnalyzer(DEStratum perspective, String classpath, LongRunningTaskProgressMonitorFacet monitor, int countSoFar)
 	{
+		this.perspective = perspective;
 		this.classpath = classpath;
 		this.monitor = monitor;
 		// create the root package
@@ -90,7 +94,10 @@ public class BeanAnalyzer
 			if (finder.findClass(null, nm) != null || finder.findInterface(null, nm) != null)
 				return;
 	
-			BeanClass elem = new BeanClass(node);
+			Element refreshed = finder.getRefreshedClass(nm);
+			if (refreshed == null)
+				refreshed = finder.getRefreshedInterface(nm);
+			BeanClass elem = new BeanClass(node, perspective, refreshed);
 			BeanPackage current = root.locateOrCreatePackage(pkg);
 			if (elem.getType() == BeanTypeEnum.BAD)
 				current.addHidden(elem);
@@ -102,7 +109,7 @@ public class BeanAnalyzer
 					current.addBean(elem);
 				
 				// make a hidden interface even for non-beans, as they can be turned into beans later
-				if (elem.getType() == BeanTypeEnum.BEAN || elem.getType() == BeanTypeEnum.PRIMITIVE)
+				if (elem.isLegacyBean() && (elem.getType() == BeanTypeEnum.BEAN || elem.getType() == BeanTypeEnum.PRIMITIVE))
 					current.addHidden(elem.makeInterfaceForBean());
 			}
 		}
@@ -117,9 +124,9 @@ public class BeanAnalyzer
 		JarFile jar = new JarFile(file);
 		try
 		{
-			for (Enumeration e = jar.entries(); e.hasMoreElements();)
+			for (Enumeration<JarEntry> e = jar.entries(); e.hasMoreElements();)
 			{
-				JarEntry entry = (JarEntry) e.nextElement();
+				JarEntry entry = e.nextElement();
 				
 				String name = entry.getName();
 				if (name.endsWith(".class"))

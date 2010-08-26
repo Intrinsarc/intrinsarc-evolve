@@ -49,7 +49,7 @@ public class PortMethodHelper
 	public PortMethodHelper(DEStratum perspective, DEComponent partType, DEPort cport, DEInterface iface)
 	{
 		this.partType = partType;
-    this.ifaceSimpleClassName = iface.getImplementationClass(perspective);
+    this.ifaceSimpleClassName = simplify(iface.getImplementationClass(perspective));
 		port = new BBSimplePort(new BBSimpleElementRegistry(perspective, null), partType, cport, null);
 		partTypeClassName = partType.getImplementationClass(perspective);
     portName = port.getRawName();
@@ -94,7 +94,7 @@ public class PortMethodHelper
   	
     // look for a method if this is a bean
     boolean cp = port.isComplexProvided();
-    String extra = cp ? ifaceSimpleClassName : "";
+    String extra = cp ? "_" + ifaceSimpleClassName : "";
 
     if (!many)
     {

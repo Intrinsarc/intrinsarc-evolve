@@ -8,7 +8,8 @@ public class BeanField
 {
 	private BeanClass parent;
 	private String name;
-	private List<Type> types;
+	private List<Type> providedTypes;
+	private List<Type> requiredTypes;
 	private boolean writeable;
 	private boolean readable;
 	private boolean port;
@@ -21,19 +22,26 @@ public class BeanField
 	private String error;
 	private boolean ignore;
 
-	public BeanField(BeanClass parent, String name, Type type)
+	public BeanField(BeanClass parent, String name, Type providedType, Type requiredType)
 	{
 		this.parent = parent;
 		this.name = name;
-		types = new ArrayList<Type>();
-		types.add(type);
+		providedTypes = new ArrayList<Type>();
+		if (providedType != null)
+			providedTypes.add(providedType);
+		if (requiredType != null)
+		{
+			requiredTypes = new ArrayList<Type>();
+			requiredTypes.add(requiredType);
+		}
 	}
 	
-	public BeanField(BeanClass parent, String name, List<Type> types)
+	public BeanField(BeanClass parent, String name, List<Type> providedTypes, List<Type> requiredTypes)
 	{
 		this.parent = parent;
 		this.name = name;
-		this.types = types;
+		this.providedTypes = providedTypes;
+		this.requiredTypes = requiredTypes;
 	}
 
 	public String getName()
@@ -103,23 +111,57 @@ public class BeanField
 
 	public List<Type> getTypes()
 	{
-		return types;
+		List<Type> all = new ArrayList<Type>();
+		all.addAll(providedTypes);
+		if (requiredTypes != null)
+			all.addAll(requiredTypes);
+		
+		// if this is not a port, then compress into a single type for attributes
+		if (!port && all.size() == 2)
+			all.remove(1);
+		
+		return all;
 	}
 	
 	public String getTypesString(BeanFinder finder)
 	{
 		String ret = "";
-		for (Type type : types)
+		if (port)
 		{
-			String name = port ?
-											finder.makeInterfaceTypeName(type.getClassName()) :
-											finder.makeClassTypeName(type.getClassName());
-			if (ret.length() == 0)
-				ret = name;
-			else
-				ret += " / " + name;
+			if (!providedTypes.isEmpty())
+			{
+				ret += " provides ";
+				boolean start = true;
+				for (Type type : providedTypes)
+				{
+					String name = finder.makeInterfaceTypeName(type.getClassName());
+					if (start)
+						ret += name;
+					else
+						ret += ", " + name;
+					start = false;
+				}
+			}
+			if (requiredTypes != null && !requiredTypes.isEmpty())
+			{
+				ret += " requires ";
+				boolean start = true;
+				for (Type type : requiredTypes)
+				{
+					String name = finder.makeInterfaceTypeName(type.getClassName());
+					if (start)
+						ret += name;
+					else
+						ret += ", " + name;
+					start = false;
+				}
+			}
+			return ret;
 		}
-		return ret;
+		else
+		{
+			return finder.makeClassTypeName(getTypes().get(0).getClassName());
+		}
 	}
 	
 	public void setMany(boolean many)
@@ -153,30 +195,44 @@ public class BeanField
 	public Collection<String> getTypesNeeded()
 	{
 		List<String> ifaces = new ArrayList<String>();
-		for (Type type : types)
+		for (Type type : providedTypes)
 			ifaces.add(type.getClassName().replace("/", "."));
+		if (requiredTypes != null)
+			for (Type type : requiredTypes)
+				ifaces.add(type.getClassName().replace("/", "."));
 		return ifaces;
 	}
 
 	public void fixUpUsingFinder(BeanFinder finder)
 	{
 		// remove any types that are not public
-		List<Type> expunged = new ArrayList<Type>(types);
-		for (Type type : types)
+		List<Type> expunged = new ArrayList<Type>(providedTypes);		
+		for (Type type : providedTypes)
 		{
 			BeanClass cls = finder.locatePossibleBeanClass(type, port);
 			if (cls != null && cls.getType() == BeanTypeEnum.BAD)
 				expunged.remove(type);
 		}
-		types = expunged;
+		providedTypes = expunged;
+
+		if (requiredTypes != null)
+		{
+			expunged = new ArrayList<Type>(requiredTypes);		
+			for (Type type : requiredTypes)
+			{
+				BeanClass cls = finder.locatePossibleBeanClass(type, port);
+				if (cls != null && cls.getType() == BeanTypeEnum.BAD)
+					expunged.remove(type);
+			}
+			requiredTypes = expunged;
+		}
 		
 		// if the field is referring to a single primitive, it should be an attribute
 		if (!canTogglePortOrAttribute(finder))
 		{
-			if (types.size() == 1 && finder.refersToPrimitive(types.get(0)))
-					port = false;
+			if (getTypes().size() == 1 && finder.refersToPrimitive(getTypes().get(0)))
+				port = false;
 			else
-				// otherwise make it a port
 				port = true;
 		}
 	}
@@ -188,10 +244,18 @@ public class BeanField
 	
 	public boolean canTogglePortOrAttribute(BeanFinder finder)
 	{
-		// can only toggle if our size is exactly 1
-		if (types.size() != 1)
-			return false;		
-		return finder.refersToRealInterface(types.get(0));
+		// can only toggle if provided and required are 1 or less
+		// and if both are 1, then both must be the same
+		// also, what they refer to must be a real interface, not a fake interface or primitive
+		int pSize = providedTypes.size();
+		int rSize = requiredTypes != null ? requiredTypes.size() : 0;
+		
+		if (pSize > 1 || rSize > 1)
+			return false;
+		if (pSize == 1 && rSize == 1)
+			if (!providedTypes.get(0).equals(requiredTypes.get(0)))
+				return false;
+		return finder.refersToRealInterface(getTypes().get(0));
 	}
 	
 	public void togglePortOrAttribute(BeanFinder finder)
@@ -202,18 +266,25 @@ public class BeanField
 	
 	public boolean canToggleBeanOrPrimitiveOfTypes(BeanFinder finder)
 	{
-		for (Type type : types)
+		for (Type type : providedTypes)
 		{
 			BeanClass cls = finder.locatePossibleBeanClass(type, port);
 			if (cls == null || !cls.canToggleBeanOrPrimitive())
 				return false;
 		}
+		if (requiredTypes != null)
+			for (Type type : requiredTypes)
+			{
+				BeanClass cls = finder.locatePossibleBeanClass(type, port);
+				if (cls == null || !cls.canToggleBeanOrPrimitive())
+					return false;
+			}
 		return true;
 	}
 
 	public void toggleBeanOrPrimitiveOfTypes(BeanFinder finder)
 	{
-		for (Type type : types)
+		for (Type type : getTypes())
 		{
 			BeanClass cls = finder.locatePossibleBeanClass(type, port);
 			if (cls != null)
@@ -225,7 +296,8 @@ public class BeanField
 	{
 		error = null;
 		if (port)
-			for (Type type : types)
+		{
+			for (Type type : getTypes())
 			{
 				BeanClass cls = finder.locatePossibleBeanClass(type, port);
 				if (cls != null && cls.getType() == BeanTypeEnum.PRIMITIVE)
@@ -234,6 +306,7 @@ public class BeanField
 					return;
 				}
 			}
+		}
 	}
 
 	public boolean isInError()
@@ -258,9 +331,9 @@ public class BeanField
 
 	public void fixUpDueToInterfaces(BeanFinder finder, int[] count)
 	{
-		if (types.size() == 1 && !port)
+		if (getTypes().size() == 1 && !port)
 		{	
-			Type type = types.get(0);
+			Type type = getTypes().get(0);
 
 			// fix up any fields that point to interfaces, and should be ports
 			// if the type an interface?
@@ -268,7 +341,7 @@ public class BeanField
 			BeanClass existing = finder.locatePossibleBeanClass(type.getClassName(), true);
 			iface |= existing != null && existing.getType() == BeanTypeEnum.INTERFACE;
 			
-			if (types.size() == 1 && finder.refersToBean(types.get(0)))
+			if (getTypes().size() == 1 && finder.refersToBean(getTypes().get(0)))
 			{
 				port = true;
 				++count[0];
@@ -290,5 +363,29 @@ public class BeanField
 	public void setNoName(boolean noName)
 	{
 		this.noName = noName;
+	}
+
+	public void addRequiredType(Type type)
+	{
+		if (requiredTypes == null)
+			requiredTypes = new ArrayList<Type>();
+		requiredTypes.add(type);
+	}
+
+	public void addProvidedType(Type type)
+	{
+		providedTypes.add(type);
+	}
+
+	public List<Type> getProvidedTypes()
+	{
+		return providedTypes;
+	}
+
+	public List<Type> getRequiredTypes()
+	{
+		if (requiredTypes == null)
+			return new ArrayList<Type>();
+		return requiredTypes;
 	}
 }

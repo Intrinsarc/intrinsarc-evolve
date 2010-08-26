@@ -27,7 +27,6 @@ public class BeanSubjectCreator
 	private Stereotype componentStereo;
 	private Stereotype interfaceStereo;
 	private Stereotype primitiveStereo;
-	private Stereotype suppressStereo;
 	private Stereotype portStereo;
 	
 	public BeanSubjectCreator(List<BeanClass> toCreate, org.eclipse.uml2.Package in, BeanFinder finder, LongRunningTaskProgressMonitorFacet monitor)
@@ -42,7 +41,6 @@ public class BeanSubjectCreator
 		componentStereo = repository.findStereotype(UML2Package.eINSTANCE.getClass_(), CommonRepositoryFunctions.COMPONENT);
 		interfaceStereo = repository.findStereotype(UML2Package.eINSTANCE.getInterface(), CommonRepositoryFunctions.INTERFACE);
 		primitiveStereo = repository.findStereotype(UML2Package.eINSTANCE.getClass_(), CommonRepositoryFunctions.PRIMITIVE_TYPE);
-		suppressStereo = repository.findStereotype(UML2Package.eINSTANCE.getPort(), CommonRepositoryFunctions.VISUALLY_SUPPRESS);
 		portStereo = repository.findStereotype(UML2Package.eINSTANCE.getPort(), CommonRepositoryFunctions.PORT);
 	}
 	
@@ -155,7 +153,7 @@ public class BeanSubjectCreator
 				delete(existing);
 				
 				// handle any attributes
-				List<Property> existingAttrs = me.undeleted_getOwnedAttributes(); 
+				List<Property> existingAttrs = me.undeleted_getOwnedAttributes();
 				for (BeanField field : cls.getAttributes())
 				{
 					String className = field.getTypes().get(0).getClassName();
@@ -174,6 +172,12 @@ public class BeanSubjectCreator
 						attr.setReadWrite(PropertyAccessKind.WRITE_ONLY_LITERAL);
 					if (field.isReadOnly())
 						attr.setReadWrite(PropertyAccessKind.READ_ONLY_LITERAL);
+					
+					// handle lower and upper
+					if (field.isMany() && attr.getUpper() <= 1)
+						attr.setUpperBound(-1);
+					else
+						attr.setUpperBound(1);
 				}
 				delete(existingAttrs);
 				
@@ -182,7 +186,7 @@ public class BeanSubjectCreator
 				boolean madeMain = true;
 				for (BeanField field : cls.getPorts())
 				{
-					Port port= extractPort(existingPorts, field.getName());
+					Port port = extractPort(existingPorts, field.getName());
 					if (port != null)
 						existingPorts.remove(port);
 
@@ -195,7 +199,7 @@ public class BeanSubjectCreator
 					
 					if (port == null)
 						port = me.createOwnedPort();
-					setUpPort(interfaces, field, port);
+					setUpPort(cls, interfaces, field, port);
 				}
 				delete(existingPorts);
 				// remove the deltas if we have made a main
@@ -290,7 +294,7 @@ public class BeanSubjectCreator
 							if (port == null)
 								port = (Port) replace.createReplacement(UML2Package.eINSTANCE.getPort());
 							replace.setReplaced(p);
-							setUpPort(interfaces, field, port);
+							setUpPort(cls, interfaces, field, port);
 							found = true;
 							break;
 						}
@@ -307,7 +311,7 @@ public class BeanSubjectCreator
 									replace = me.createDeltaReplacedPorts();
 								Port port = (Port) replace.createReplacement(UML2Package.eINSTANCE.getPort());
 								replace.setReplaced(repl.getReplaced());
-								setUpPort(interfaces, field, port);
+								setUpPort(cls, interfaces, field, port);
 								found = true;
 								break;
 							}
@@ -317,7 +321,7 @@ public class BeanSubjectCreator
 					if (!found)
 					{
 						Port p = me.createOwnedPort();
-						setUpPort(interfaces, field, p);
+						setUpPort(cls, interfaces, field, p);
 					}
 				}
 			}
@@ -331,9 +335,9 @@ public class BeanSubjectCreator
 		return null;
 	}
 
-	private void setUpPort(Map<String, Interface> interfaces, BeanField field, Port port)
+	private void setUpPort(BeanClass cls, Map<String, Interface> interfaces, BeanField field, Port port)
 	{
-		if (field.isMain())
+		if (field.isMain() && cls.isLegacyBean())
 			port.setUuid(MAIN_PORT);
 		port.setName(field.getName());
 		Class type = (Class) port.getOwnedAnonymousType();
@@ -344,55 +348,57 @@ public class BeanSubjectCreator
 		
 		// if this is many, set the lower and upper bounds
 		// and if it is required (i.e. writable) then set it at [0..1]
-		port.setLowerValue(null);
-		port.setUpperValue(null);
 		if (field.isMany())
 		{
-			port.setLowerBound(0);
-			port.setUpperBound(-1);
+			if (port.getUpper() <= 1)
+				port.setUpperBound(-1);
 		}
 		else
-		if (!field.isReadOnly())
 		{
-			port.setLowerBound(0);
-			port.setUpperBound(1);
+			if (port.getUpper() > 1)
+				port.setUpperBound(1);
 		}
 		
 		List<Dependency> existingDeps = type.undeleted_getOwnedAnonymousDependencies();
 		List<Implementation> existingImpls = type.undeleted_getImplementations();
-		for (Type fieldType : field.getTypes())
-		{
-			String className = fieldType.getClassName();
-			Interface elem = finder.findInterface(interfaces, className);
-
-			// add the readonly interfaces as provided
-		  if (field.isReadOnly())
-		  {
-		  	Implementation implementation = extractImplementation(existingImpls, type);
-		  	if (implementation != null)
-		  		existingImpls.remove(implementation);
-		  	else
-		  		implementation = type.createImplementation();
-		  	implementation.setRealizingClassifier(type);
-		  	implementation.setContract(elem);
-		  }
-		  else
-		  {
-		  	Dependency dep = extractDependency(existingDeps, elem); 
-		  	if (dep != null)
-		  		existingDeps.remove(dep);
-		  	else
-		  		dep = type.createOwnedAnonymousDependencies();
-		    dep.settable_getClients().clear();
-		    dep.settable_getClients().add(type);
-		    dep.setDependencyTarget(elem);
-		  }
-		}
+		for (int lp = 0; lp < 2; lp++)
+			for (Type fieldType : lp == 0 ? field.getProvidedTypes() : field.getRequiredTypes())
+			{
+				String className = fieldType.getClassName();
+				Interface elem = finder.findInterface(interfaces, className);
+	
+				// add the readonly interfaces as provided
+			  if (lp == 0)
+			  {
+			  	Implementation implementation = extractImplementation(existingImpls, elem);
+			  	if (implementation != null)
+			  	{
+			  		existingImpls.remove(implementation);
+			  	}
+			  	else
+			  		implementation = type.createImplementation();
+			  	implementation.setRealizingClassifier(type);
+			  	implementation.setContract(elem);
+			  }
+			  else
+			  {
+			  	Dependency dep = extractDependency(existingDeps, elem); 
+			  	if (dep != null)
+			  	{
+			  		existingDeps.remove(dep);
+			  	}
+			  	else
+			  		dep = type.createOwnedAnonymousDependencies();
+			    dep.settable_getClients().clear();
+			    dep.settable_getClients().add(type);
+			    dep.setDependencyTarget(elem);
+			  }
+			}
 		delete(existingImpls);
 		delete(existingDeps);
 		
 		// add any needed stereotype properties
-		setUpBeanPortStereotype(field, port);
+		setUpBeanPortStereotype(cls, field, port);
 	}
 
 	private List<BeanClass> getDependedUponInterfaces(List<BeanClass> toCreate, BeanClass cls)
@@ -457,24 +463,24 @@ public class BeanSubjectCreator
 			iface = (Interface) in.createOwnedMember(UML2Package.eINSTANCE.getInterface());
 		iface.setName(name);
 		iface.settable_getAppliedBasicStereotypes().clear();
-		delete(iface.settable_getAppliedBasicStereotypeValues());
 		iface.settable_getAppliedBasicStereotypes().add(interfaceStereo);
 		setImplementation(iface, cls.getNode().name);
-		setBooleanProperty(iface, CommonRepositoryFunctions.LEGACY_BEAN);
 		interfaces.put(cls.getNode().name, iface);
+		System.out.println("$$ iface = " + cls.getName() + ", supers = " + cls.getInterfaces());
 	}
 
 	private void createLeaf(Map<String, Class> classes, BeanClass cls)
 	{
 		Class cl = finder.getRefreshedClass(cls);
 		if (cl == null)
+		{
 			cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
+			setBooleanProperty(cl, CommonRepositoryFunctions.LEGACY_BEAN);
+		}
 		cl.setComponentKind(ComponentKind.NORMAL_LITERAL);
 		cl.settable_getAppliedBasicStereotypes().clear();
-		delete(cl.settable_getAppliedBasicStereotypeValues());
 		cl.settable_getAppliedBasicStereotypes().add(componentStereo);
 		setImplementation(cl, cls.getNode().name);
-		setBooleanProperty(cl, CommonRepositoryFunctions.LEGACY_BEAN);
 		classes.put(cls.getNode().name, cl);
 	}
 
@@ -485,64 +491,58 @@ public class BeanSubjectCreator
 			cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
 		cl.setComponentKind(ComponentKind.PRIMITIVE_LITERAL);
 		cl.settable_getAppliedBasicStereotypes().clear();
-		delete(cl.settable_getAppliedBasicStereotypeValues());
 		cl.settable_getAppliedBasicStereotypes().add(primitiveStereo);
 		setImplementation(cl, cls.getNode().name);
 		classes.put(cls.getNode().name, cl);
 	}
 
-	private void setUpBeanPortStereotype(BeanField field, Port port)
+	private void setUpBeanPortStereotype(BeanClass cls, BeanField field, Port port)
 	{
 		if (!field.isNoName() && !field.isMain())
 			return;
 		port.settable_getAppliedBasicStereotypes().clear();
 		port.settable_getAppliedBasicStereotypes().add(portStereo);
-		delete(port.settable_getAppliedBasicStereotypeValues());
-		if (field.isMain())
+		if (cls.isLegacyBean() && field.isMain())
 			setBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_MAIN);
 		if (field.isNoName())
-		{
 			setBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_NO_NAME);
-			port.setIsOrdered(true);
-		}
 	}
 
 	private void setBooleanProperty(Element cl, String uuid)
 	{
-		AppliedBasicStereotypeValue value = cl.createAppliedBasicStereotypeValues();
     final Property property =
     	(Property) StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(uuid).getConstituent().getRepositoryObject();
     if (property == null)
       return;
 
-		value.setProperty(property);
+    AppliedBasicStereotypeValue value = findOrCreateAppliedValue(cl, property);
 		LiteralBoolean literal = (LiteralBoolean) value.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
 		literal.setValue(true);
 	}
 
-	private void setStringProperty(Element cl, String uuid, String str)
-	{
-		AppliedBasicStereotypeValue value = cl.createAppliedBasicStereotypeValues();
-    final Property property =
-    	(Property) StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(uuid).getConstituent().getRepositoryObject();
-    if (property == null)
-      return;
-
-		value.setProperty(property);
-		Expression literal = (Expression) value.createValue(UML2Package.eINSTANCE.getExpression());
-		literal.setBody(str);
-	}
-
 	private void setImplementation(Element cl, String className)
 	{
-		AppliedBasicStereotypeValue value = cl.createAppliedBasicStereotypeValues();
     final Property property =
     	(Property) StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(CommonRepositoryFunctions.IMPLEMENTATION_CLASS).getConstituent().getRepositoryObject();
     if (property == null)
       return;
-
-		value.setProperty(property);
+		AppliedBasicStereotypeValue value = findOrCreateAppliedValue(cl, property);
 		Expression literal = (Expression) value.createValue(UML2Package.eINSTANCE.getExpression());
 		literal.setBody(className);
+	}
+
+	private AppliedBasicStereotypeValue findOrCreateAppliedValue(Element cl, Property property)
+	{
+		for (Object obj : cl.undeleted_getAppliedBasicStereotypeValues())
+		{
+			AppliedBasicStereotypeValue val = (AppliedBasicStereotypeValue) obj;
+			if (val.getProperty() == property)
+			{
+				return val;
+			}
+		}
+		AppliedBasicStereotypeValue val = cl.createAppliedBasicStereotypeValues();
+		val.setProperty(property);
+		return val;
 	}
 }

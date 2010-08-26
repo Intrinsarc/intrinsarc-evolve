@@ -403,18 +403,11 @@ stop delta delete on part ports
 
 \color green
 fix to work properly with beans - fwd gen, hardcoder, multiple provided,
- multiple interfaces per port, aliasing,
-\color inherit
- reverse gen, 
+ multiple interfaces per port, aliasing, reverse gen
 \end_layout
 
 \begin_layout Enumerate
 connectors ends not moving when class is resized
-\end_layout
-
-\begin_layout Enumerate
-nested strata cause error when generating hardcoded, possibly run also --
- can't see backbone base
 \end_layout
 
 \begin_layout Enumerate
@@ -433,12 +426,16 @@ GWT states fixup for new scheme + must start in first state + refresh current
 \end_layout
 
 \begin_layout Enumerate
----
+attributes with multiplicity
 \end_layout
 
 \begin_layout Enumerate
-get rid of dark mark in upper corner of packages/factories when copying
- to word
+nested strata cause error when generating hardcoded, possibly run also --
+ can't see backbone base
+\end_layout
+
+\begin_layout Enumerate
+---
 \end_layout
 
 \begin_layout Enumerate
@@ -447,6 +444,11 @@ hanging on load (!), key strokes not registering
 
 \begin_layout Enumerate
 -------------- lower priority ------------------
+\end_layout
+
+\begin_layout Enumerate
+get rid of dark mark in upper corner of packages/factories when copying
+ to word
 \end_layout
 
 \begin_layout Enumerate

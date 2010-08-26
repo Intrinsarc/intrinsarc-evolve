@@ -36,13 +36,14 @@ public class BeanImporter
 	public static final ImageIcon PACKAGE_ICON = IconLoader.loadIcon("impl_package.png");
 	public static final ImageIcon LEAF_ICON = IconLoader.loadIcon("leaf.png");
 	public static final ImageIcon PRIMITIVE_ICON = IconLoader.loadIcon("class.png");
-	public static final ImageIcon INTERACE_ICON = IconLoader.loadIcon("interface.png");
+	public static final ImageIcon INTERFACE_ICON = IconLoader.loadIcon("interface.png");
 	public static final ImageIcon ATTRIBUTE_ICON = IconLoader.loadIcon("tree-public-attribute.png");
 	public static final ImageIcon PORT_ICON = IconLoader.loadIcon("tree-port.png");
-	public static final ImageIcon PROVIDED_ICON = IconLoader.loadIcon("provided.png");
-	public static final ImageIcon REQUIRED_ICON = IconLoader.loadIcon("required.png");
+	public static final ImageIcon MAIN_PORT_ICON = IconLoader.loadIcon("tree-main-port.png");
 	public static final ImageIcon BOX_ATTRIBUTE_ICON = IconLoader.loadIcon("box-attribute.png");
   public static final ImageIcon ERROR_ICON = IconLoader.loadIcon("error-decorator.png");
+  private static final String LEAF = "Leaf> ";
+  private static final String INTERFACE = "Interface> ";
 
 	private ToolCoordinatorFacet coordinator;
 	private Package current;
@@ -395,7 +396,7 @@ public class BeanImporter
 	
 	          JMenuItem prim = new JMenuItem("Toggle bean / primitive of field types");
 	          for (BeanField field : saveSelectedBeanFields())
-	          	if (!field.canToggleBeanOrPrimitiveOfTypes(finder))
+	          	if (field == null || !field.canToggleBeanOrPrimitiveOfTypes(finder))
 	          		prim.setEnabled(false);
 	          prim.addActionListener(new ActionListener()
 	          {
@@ -413,7 +414,7 @@ public class BeanImporter
 	          });
 	          popup.add(prim);
 	          
-	          JMenuItem port = new JMenuItem("Toggle port / attribute of field");
+	          JMenuItem port = new JMenuItem("Toggle port / attribute");
 	          for (BeanField field : saveSelectedBeanFields())
 	          	if (!field.canTogglePortOrAttribute(finder))
 	          		port.setEnabled(false);
@@ -541,12 +542,21 @@ public class BeanImporter
 					Icon icon = null;
 					if (name.startsWith("Classpath"))
 						icon = CLASSPATH_ICON;
-					if (name.startsWith("Provided"))
-						icon = PROVIDED_ICON;
-					if (name.startsWith("Required"))
-						icon = REQUIRED_ICON;
-					if (name.contains("Attribute"))
+					else
+					if (name.startsWith("Port") || name.startsWith("Attribute") || name.startsWith("Resembles"))
 						icon = BOX_ATTRIBUTE_ICON;
+					else
+					if (name.startsWith(LEAF))
+					{
+						name = name.substring(LEAF.length());
+						icon = LEAF_ICON;
+					}
+					else
+					if (name.startsWith(INTERFACE))
+					{
+						name = name.substring(INTERFACE.length());
+						icon = INTERFACE_ICON;
+					}
 						
 		      setLeafIcon(icon);
 		      setOpenIcon(icon);
@@ -562,6 +572,12 @@ public class BeanImporter
 				Icon icon = null;
 				String name = obj.getName();
 				String refresh = " (refresh)";
+				String leafRefresh = " (leaf refresh)";
+				String beanRefresh = " (legacy bean refresh)";
+				BeanClass bc = obj.getBeanClass();
+				boolean refreshMe = bc != null && bc.isRefresh();
+				boolean legacy = bc != null && bc.isLegacyBean();
+				
 				switch (obj.getType())
 				{
 					case PACKAGE:
@@ -575,35 +591,40 @@ public class BeanImporter
 						if (obj.getBeanClass().isAbstract())
 							setFont(getFont().deriveFont(Font.ITALIC));
 						// is this a refresh?
-						if (finder.isRefreshedClass(obj.getBeanClass()))
-							name += refresh;
+						if (refreshMe)
+							if (legacy)
+								name += beanRefresh;
+							else
+								name += leafRefresh;
 						break;
 					case INTERFACE:
-						icon = INTERACE_ICON;
+						icon = INTERFACE_ICON;
 						if (tree == beanTree)
 							name = obj.getBeanClass().getOriginalName();
 						// is this a refresh?
-						if (finder.isRefreshedInterface(obj.getBeanClass()))
+						if (refreshMe)
 							name += refresh;
 						break;
 					case PRIMITIVE:
 						icon = PRIMITIVE_ICON;
 						// is this a refresh?
-						if (finder.isRefreshedClass(obj.getBeanClass()))
+						if (refreshMe)
 							name += refresh;
 						break;
 					case ATTRIBUTE:
 						{
 							BeanField field = obj.getBeanField();
 							icon = ATTRIBUTE_ICON;
-							name = expandName(name)  + " : " + field.getTypesString(finder) + (field.isMany() ? " [0..*]" : "");
+							name = expandName(name) + (field.isMany() ? " [0..*]" : "") + " : " + field.getTypesString(finder);
 						}
 						break;
 					case PORT:
 						{
 							BeanField field = obj.getBeanField();
-							icon = PORT_ICON;
-							name = expandName(name)  + " : " + field.getTypesString(finder) + (field.isMany() ? " [0..*]" : "");
+							icon = field.isMain() ? MAIN_PORT_ICON : PORT_ICON;
+							name =
+								expandName(name) + (field.isMany() ? " [0..*]" : "") + " : " +
+								field.getTypesString(finder) ;
 						}
 						break;
 				}
@@ -611,9 +632,8 @@ public class BeanImporter
 				// possibly add an error as a tooltip
 				String msg = "";
 				
-				if (obj.getBeanClass() != null)
+				if (bc != null)
 				{
-					BeanClass bc = obj.getBeanClass();
 					if (bc.isSynthetic())
 					{
 						if (bc.getWantsThis() == null)
@@ -626,7 +646,6 @@ public class BeanImporter
 						}
 					}
 				}
-				
 				
 				if (obj.getBeanClass() != null && obj.getBeanClass().isInError(finder) && tree == leafTree)
 				{
@@ -690,11 +709,6 @@ public class BeanImporter
 		TreeExpander.expandTree(tree, new TreePath(root), true, null, null, 2);
   }
   
-  private void selectFirstRow(JTree tree)
-  {
-    tree.getSelectionModel().setSelectionPath(new TreePath(tree.getModel().getRoot()));
-  }
-
 	private JTree makePackageTree()
 	{
 		JTree tree = makeTree(true);
@@ -732,7 +746,6 @@ public class BeanImporter
 
   	// populate with possible classes
   	DefaultMutableTreeNode node = findSingleSelectedNode(leafTree);
-  	DefaultMutableTreeNode requiredPorts = null;
   	
   	featureLabel.setText("Features");
   	if (node != null && node != leafTree.getModel().getRoot())
@@ -742,17 +755,40 @@ public class BeanImporter
 	  		TreeElementUserObject user = (TreeElementUserObject) node.getUserObject();
 	  		BeanClass cls = user.getBeanClass();
 	  		featureLabel.setText("Features of " + cls.getNode().name);
+	  		
+	  		
+	  		if (cls.getType() == BeanTypeEnum.INTERFACE) 
+	  		{
+		  		List<String> ifaces = cls.getInterfaces();
+		  		if (ifaces != null)
+		  			for (String iface : ifaces)
+		  			{
+		  				DefaultMutableTreeNode resembles = new DefaultMutableTreeNode("Resembles");
+		  				root.add(resembles);
+		  				DefaultMutableTreeNode base = new DefaultMutableTreeNode(INTERFACE + iface);
+		  				resembles.add(base);
+		  			}
+	  		}
+	  		else
 	  		if (cls.isBean())
-	  		{	  		
-		  		// handle the different types of ports
-		  		processFeatures(cls, false, "Provided Ports", true, false, null, root); 
-		  		requiredPorts = processFeatures(cls, false, "Required Ports", true, true, null, root); 
-		  		processFeatures(cls, false, "Required Ports", false, true, requiredPorts, root); 
+	  		{
+	  			// show what this resembles
+		  		String superc = cls.getSuperClass();
+		  		if (superc != null)
+		  		{
+		  			DefaultMutableTreeNode resembles = new DefaultMutableTreeNode("Resembles");
+		  			root.add(resembles);
+		  			DefaultMutableTreeNode base = new DefaultMutableTreeNode(LEAF + superc);
+		  			resembles.add(base);
+		  		}
+
+		  		// handle the ports
+		  		processPorts(cls, "Ports", null, root); 
 		  		
 		  		// handle the different types of attributes
-		  		processFeatures(cls, true, "Read-only Attributes", true, false, null, root);
-		  		processFeatures(cls, true, "Write-only Attributes", false, true, null, root);
-		  		processFeatures(cls, true, "Attributes", true, true, null, root);
+		  		processFeatures(cls, "Read-only Attributes", true, false, null, root);
+		  		processFeatures(cls, "Write-only Attributes", false, true, null, root);
+		  		processFeatures(cls, "Attributes", true, true, null, root);
 	  			featureTree.setEnabled(true);
 	  		}
 	  		else
@@ -765,20 +801,37 @@ public class BeanImporter
   	reselectBeanFields(remembered);
 	}
 	
-	private DefaultMutableTreeNode processFeatures(BeanClass cls, boolean attributes, String name, boolean read, boolean write, DefaultMutableTreeNode parentNode, DefaultMutableTreeNode root)
+	private DefaultMutableTreeNode processPorts(BeanClass cls, String name, DefaultMutableTreeNode parentNode, DefaultMutableTreeNode root)
 	{
-		for (BeanField attr : attributes ? cls.getAttributes() : cls.getPorts())
+		for (BeanField field : cls.getPorts())
 		{
-			if (attr.isReadOnly() && read && !write ||
-					attr.isWriteOnly() && !read && write ||
-					!attr.isReadOnly() && !attr.isWriteOnly() && read && write)
+			if (parentNode == null)
+			{
+				parentNode = new DefaultMutableTreeNode(name);
+				root.add(parentNode);
+			}
+			TreeElementUserObject cUser = new TreeElementUserObject(field, BeanTypeEnum.PORT);
+			DefaultMutableTreeNode cNode = new DefaultMutableTreeNode(cUser);
+			parentNode.add(cNode);
+		}
+
+		return parentNode;
+	}
+
+	private DefaultMutableTreeNode processFeatures(BeanClass cls, String name, boolean read, boolean write, DefaultMutableTreeNode parentNode, DefaultMutableTreeNode root)
+	{
+		for (BeanField field : cls.getAttributes())
+		{
+			if (field.isReadOnly() && read && !write ||
+					field.isWriteOnly() && !read && write ||
+					!field.isReadOnly() && !field.isWriteOnly() && read && write)
 			{
 				if (parentNode == null)
 				{
 					parentNode = new DefaultMutableTreeNode(name);
 					root.add(parentNode);
 				}
-				TreeElementUserObject cUser = new TreeElementUserObject(attr, attributes ? BeanTypeEnum.ATTRIBUTE : BeanTypeEnum.PORT);
+				TreeElementUserObject cUser = new TreeElementUserObject(field, BeanTypeEnum.ATTRIBUTE);
 				DefaultMutableTreeNode cNode = new DefaultMutableTreeNode(cUser);
 				parentNode.add(cNode);
 			}
@@ -879,8 +932,11 @@ public class BeanImporter
 	    for (TreePath path : featureTree.getSelectionModel().getSelectionPaths())
 	    {
 	    	DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
-	    	TreeElementUserObject obj = (TreeElementUserObject) node.getUserObject();
-	    	fields.add(obj.getBeanField());
+	    	if (node.getUserObject() instanceof TreeElementUserObject)
+	    	{
+	    		TreeElementUserObject obj = (TreeElementUserObject) node.getUserObject();
+	    		fields.add(obj.getBeanField());
+	    	}
 	    }
 		return fields;
 	}
@@ -937,7 +993,7 @@ public class BeanImporter
   		// see if any fields have errors
   		cls.markFieldErrors(finder);
   		
-  		TreeElementUserObject obj = new TreeElementUserObject(cls, true);
+  		TreeElementUserObject obj = new TreeElementUserObject(cls, true, false);
   		
   		if (cls.isInError(finder))
   			errors++;

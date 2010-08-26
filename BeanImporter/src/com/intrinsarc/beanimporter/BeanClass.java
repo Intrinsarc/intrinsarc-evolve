@@ -8,12 +8,14 @@ import org.objectweb.asm.*;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 
+import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.repositorybase.*;
 
 public class BeanClass
 {
 	private BeanTypeEnum type;
 	private ClassNode node;
+	private DEStratum perspective;
 	private String name;
 	private Map<String, BeanField> fields = new LinkedHashMap<String, BeanField>();
 	private String error;
@@ -25,14 +27,17 @@ public class BeanClass
 	private List<String> interfaces;
 	private String superClass;
 	private Set<BeanClass> wantsThis;
+	private DEElement existing;
+	private boolean legacyBean;
 
-	public BeanClass(ClassNode node)
+	public BeanClass(ClassNode node, DEStratum perspective, Element existingElement)
 	{
 		this.node = node;
+		this.perspective = perspective;
 		node.name = node.name.replace("/", ".");
 		name = extractClassName(node.name);
 		originalName = name;
-		extractDetails();
+		extractDetails(existingElement);
 	}
 	
 	public BeanClass(ClassNode node, BeanTypeEnum type)
@@ -42,6 +47,16 @@ public class BeanClass
 		name = extractClassName(node.name);
 		originalName = name;
 		this.type = type;
+	}
+	
+	public boolean isRefresh()
+	{
+		return existing != null;
+	}
+	
+	public boolean isLegacyBean()
+	{
+		return legacyBean;
 	}
 	
 	public String getName()
@@ -72,7 +87,7 @@ public class BeanClass
 		return ports;
 	}
 
-	private void extractDetails()
+	private void extractDetails(Element existingElement)
 	{
 		hidden = true;
 		type = BeanTypeEnum.BAD;
@@ -93,11 +108,18 @@ public class BeanClass
 				interfaces = new ArrayList<String>();
 			interfaces.add(((String) i).replace("/", "."));
 		}
+		
+		// is this something existing?
+		if (existingElement != null)
+		{
+			existing = GlobalDeltaEngine.engine.locateObject(existingElement).asComponent();
+		}
+		
 		type = BeanTypeEnum.INTERFACE;
 		if (containsAnyOf(access, new int[]{Opcodes.ACC_INTERFACE}))
 		{
 			// update the name to be of the form IXXX...
-			name = updateInterfaceName(name);
+			name = updateInterfaceName(name);			
 			return;
 		}
 		type = BeanTypeEnum.PRIMITIVE;		
@@ -111,6 +133,42 @@ public class BeanClass
 			if (m.name.equals("<init>") && containsAnyOf(m.access, new int[]{Opcodes.ACC_PUBLIC}) &&
 					m.desc.equals("()V"))
 				haveDefaultConstructor = true;
+		}
+		
+		DEComponent cExist = existing != null ? existing.asComponent() : null;
+		if (cExist != null)
+		{
+			legacyBean = existing.asComponent().isLegacyBean(perspective);
+		}
+		else
+			legacyBean = true;
+		
+		// add a "main" port
+		if (legacyBean)
+		{
+			List<Type> types = new ArrayList<Type>();
+			types.add(Type.getType("L" + node.name + ";"));
+
+			BeanField mainPort = new BeanField(this, "main", types, null);
+			mainPort.setPort(true);
+			mainPort.setMain(true);
+			fields.put("main", mainPort);
+		}
+		else
+		{
+			List<DEPort> mains = cExist.getBeanMainPorts(perspective);
+			if (!mains.isEmpty())
+			{
+				List<Type> types = new ArrayList<Type>();
+				for (Object t : node.interfaces)
+					types.add(Type.getType("L" + (String) t + ";"));
+
+				String mainName = mains.get(0).getName();
+				BeanField mainPort = new BeanField(this, mainName, types, null);
+				mainPort.setPort(true);
+				mainPort.setMain(true);
+				fields.put(mainName, mainPort);
+			}
 		}
 		
 		// extract a possible property
@@ -128,16 +186,6 @@ public class BeanClass
 			if (mName.length() >= 3)
 				handleAdd(m, mName);
 		}
-		
-		// add a "main" port
-		List<Type> types = new ArrayList<Type>();
-		types.add(Type.getType("L" + node.name + ";"));
-
-		BeanField mainPort = new BeanField(this, "main", types);
-		mainPort.setPort(true);
-		mainPort.setMain(true);
-		mainPort.setReadable(true);
-		fields.put("main", mainPort);
 		
 		// we must have some valid fields and a default constructor for this to be a real bean
 		if (haveDefaultConstructor)
@@ -177,8 +225,12 @@ public class BeanClass
 			Type type = types[0];
 			
 			// possibly take the name from the type
-			boolean noName = mName.length() <= 3; 
-			String name = !noName ? firstLower(mName.substring(3)) + "s" : last(type.getClassName()) + "s";
+			boolean noName = mName.length() <= 3;
+			String name = noName ? getPossibleNoNamePort(type) : firstLower(mName.substring(3));
+			
+			// possibly make plural, unless we can find an existing attribute or port with the non-plural name
+			if (!nameExists(name))
+				name += "s";
 			
 			// if the type is an array type, ignore
 			if (type.getSort() == Type.ARRAY)
@@ -195,11 +247,12 @@ public class BeanClass
 				// must be a port marked already as many
 				if (!field.isMany() || !field.isPort())
 					return;
+				field.addRequiredType(type);
 			}
 			else
 			{
 				// create a port
-				field = new BeanField(this, name, type);
+				field = new BeanField(this, name, null, type);
 				field.setPort(true);
 				field.setMany(true);
 				field.setWriteable(true);
@@ -210,6 +263,37 @@ public class BeanClass
 		}
 	}
 	
+	private String getPossibleNoNamePort(Type type)
+	{
+		// is there a no-name port now?
+		if (existing != null && existing.asComponent() != null)
+		{
+			List<DEPort> nonames = existing.asComponent().getBeanNoNamePorts(perspective);
+			if (!nonames.isEmpty())
+				return nonames.get(0).getName();
+		}
+		// default to something with the interface name in it, prepended by a _
+		return last(type.getClassName());
+	}
+
+	private boolean nameExists(String name)
+	{
+		// do we have an existing port or attribute with this name?
+		if (existing == null)
+			return false;
+		for (DeltaPair pair : existing.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective))
+		{
+			if (pair.getConstituent().getName().equals(name))
+				return true;
+		}
+		for (DeltaPair pair : existing.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
+		{
+			if (pair.getConstituent().getName().equals(name))
+				return true;
+		}
+		return false;
+	}
+
 	private String last(String className)
 	{
 		int index = className.lastIndexOf('.');
@@ -218,6 +302,7 @@ public class BeanClass
 		return "_" + firstLower(className.substring(index + 1));
 	}
 
+	private static final String _PROVIDED = "_Provided";
 	private void handleGetOrSet(MethodNode m, String mName)
 	{
 		Type type = null;
@@ -259,6 +344,14 @@ public class BeanClass
 		if (type != null && (set || get))
 		{
 			String fieldName = firstLower(mName.substring(3));
+			if (fieldName.endsWith(_PROVIDED))
+			{
+				fieldName = fieldName.substring(0, fieldName.length() - _PROVIDED.length());
+				// possibly strip off the interface if this is complex provided
+				int last = fieldName.lastIndexOf('_');
+				if (last != -1)
+					fieldName = fieldName.substring(0, last);
+			}
 			
 			// locate or create
 			BeanField field = fields.get(fieldName);
@@ -272,14 +365,18 @@ public class BeanClass
 			{
 				if (field == null)
 				{
-					field = new BeanField(this, fieldName, type);
+					field = new BeanField(this, fieldName, set ? null : type, set ? type : null);
 					fields.put(fieldName, field);
 				}
 				else
 				{
-					// types must match or we have an invalid field
-					if (!type.getClassName().equals(field.getTypes().get(0).getClassName()))
-						field.setValid(false);
+					if (set)
+						field.addRequiredType(type);
+					else
+					{
+						// if this doesn't have _Provided, then it is an attribute, adjust accordingly
+						field.addProvidedType(type);
+					}
 				}
 				
 				// if this is one of the interfaces we ignore, then ignore it
@@ -341,7 +438,7 @@ public class BeanClass
 
 	public BeanClass makeInterfaceForBean()
 	{
-		BeanClass cls = new BeanClass(node);
+		BeanClass cls = new BeanClass(node, null, null);
 		cls.type = BeanTypeEnum.INTERFACE;
 		cls.name = "I" + cls.name;
 		cls.real = this;
@@ -396,7 +493,9 @@ public class BeanClass
 
 		if (isBean())
 		{
-			needed.add(node.name);
+			// the bean fake interface, only required if we are a legacy bean
+			if (legacyBean)
+				needed.add(node.name);
 			// handle each port
 			for (BeanField field : fields.values())
 			{

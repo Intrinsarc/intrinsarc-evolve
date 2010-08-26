@@ -8,8 +8,9 @@ public class TreeElementUserObject
 	private boolean disabled;
 	private BeanField field;
 	private BeanTypeEnum type;
+	private boolean suppressMenus;
 	
-	public TreeElementUserObject(BeanClass cls, boolean leaf)
+	public TreeElementUserObject(BeanClass cls, boolean leaf, boolean suppressMenus)
 	{
 		this.type = cls.getType();
 		this.cls = cls;
@@ -37,6 +38,11 @@ public class TreeElementUserObject
 		name = field.getName();
 	}
 
+	public boolean isSuppressMenus()
+	{
+		return suppressMenus;
+	}
+	
 	public BeanTypeEnum getType()
 	{
 		return type;

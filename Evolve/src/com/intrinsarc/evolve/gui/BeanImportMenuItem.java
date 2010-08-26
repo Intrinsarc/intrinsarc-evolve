@@ -43,6 +43,7 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 					pkg = getPossibleCurrentPackage();
 				if (pkg == null)
 					return;
+				final DEStratum perspective = GlobalDeltaEngine.engine.locateObject(pkg).asStratum();
 				
 				try
 				{
@@ -69,7 +70,7 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 							{
 								for (String path : paths)
 								{
-									BeanAnalyzer analyzer = new BeanAnalyzer(path, monitor, countSoFar[0]);
+									BeanAnalyzer analyzer = new BeanAnalyzer(perspective, path, monitor, countSoFar[0]);
 									countSoFar[0] = analyzer.analyzeClasses(finder);								
 									roots.put(path, analyzer.getRoot());
 								}
@@ -104,13 +105,23 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 					{
 						// create (import) the beans in the package
 						BeanSubjectCreator creator = new BeanSubjectCreator(importer.getImportList(), pkg, finder, monitor);
-						GlobalSubjectRepository.ignoreUpdates = true;
-						BeanCreatedSubjects created = creator.createSubjects();
-
-						popupMaker.displayPopup(BEAN_ADD_ICON, "Bean Import...",
-								"Imported " + created.getTotalMade() + " elements; cleared command history",
-								ScreenProperties.getUndoPopupColor(), Color.black, 3000, true,
-								coordinator.getTransactionPosition(), coordinator.getTotalTransactions());
+						try
+						{
+							GlobalSubjectRepository.ignoreUpdates = true;
+							BeanCreatedSubjects created = creator.createSubjects();
+	
+							popupMaker.displayPopup(BEAN_ADD_ICON, "Bean Import...",
+									"Imported " + created.getTotalMade() + " elements; cleared command history",
+									ScreenProperties.getUndoPopupColor(), Color.black, 3000, true,
+									coordinator.getTransactionPosition(), coordinator.getTotalTransactions());
+						}
+						finally
+						{
+							coordinator.startTransaction("", "");
+							coordinator.commitTransaction();
+							coordinator.clearTransactionHistory();
+							GlobalSubjectRepository.ignoreUpdates = false;												
+						}
 					}
 				}
 				catch (BackboneGenerationException ex)
@@ -120,13 +131,6 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 				catch (VariableNotFoundException ex)
 				{
 					coordinator.invokeErrorDialog("Environment variable not found", ex.getMessage());
-				}
-				finally
-				{
-					coordinator.startTransaction("", "");
-					coordinator.commitTransaction();
-					coordinator.clearTransactionHistory();
-					GlobalSubjectRepository.ignoreUpdates = false;					
 				}
 			}
 		});

@@ -301,7 +301,7 @@ public class BeanFinder
 			{
 				all.add(imp);
 				imp.setSynthetic(true);
-				imp.addWantsThis(bean);				
+				imp.addWantsThis(bean);	
 			}
 			else
 			{
@@ -440,9 +440,19 @@ public class BeanFinder
 		return cifaces.containsKey(bc.getNode().name);
 	}
 	
+	public Class getRefreshedClass(String name)
+	{
+		return cclasses.get(name);
+	}
+
 	public Class getRefreshedClass(BeanClass bc)
 	{
 		return cclasses.get(bc.getNode().name);
+	}
+
+	public Interface getRefreshedInterface(String name)
+	{
+		return cifaces.get(name);
 	}
 
 	public Interface getRefreshedInterface(BeanClass bc)
