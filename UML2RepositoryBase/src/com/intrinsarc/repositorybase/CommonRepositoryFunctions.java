@@ -174,7 +174,7 @@ public class CommonRepositoryFunctions
     return found;
   }
 
-  public String getFullyQualifiedName(Element element, String separator, Element stopAt)
+  public static String getFullyQualifiedName(Element element, String separator, Element stopAt)
   {
     // follow this up through its containment hierarchy
     ArrayList<String> names = new ArrayList<String>();
@@ -315,11 +315,11 @@ public class CommonRepositoryFunctions
     addAttribute(uuids, stereoConn, DIRECTED, booleanType, "Is this directional?");
 
     Stereotype stereoPort = createStereotype(uuids, profile, PORT, "'Port'", "A port allows a component to provide or require services.");
-    Property suppressMethodGeneration = addAttribute(uuids, stereoPort, SUPPRESS_GENERATION_PORT, booleanType, "Should we not generate methods and fields for this?");
-    addAttribute(uuids, stereoPort, PORT_BEAN_MAIN, booleanType, "Is this the main port of a bean?");
+    Property suppressPortGeneration = addAttribute(uuids, stereoPort, SUPPRESS_GENERATION_PORT, booleanType, "Should we not generate methods and fields for this?");
+    Property forceBeanMain = addAttribute(uuids, stereoPort, PORT_BEAN_MAIN, booleanType, "Is this the main port of a bean?");
     addAttribute(uuids, stereoPort, PORT_BEAN_NO_NAME, booleanType, "Is this port from an add() method on a bean?");
-    addAttribute(uuids, stereoPort, PORT_BEAN_NOT_MAIN, booleanType, "Force this port to not be a bean-main");
-    addAttribute(uuids, stereoPort, PORT_WANTS_REQUIRED, booleanType, "Provide the inferred required interface when getting a provided interface");
+    Property forceNotBeanMain = addAttribute(uuids, stereoPort, PORT_BEAN_NOT_MAIN, booleanType, "Force this port to not be a bean-main");
+    Property wantsRequiredWhenProviding = addAttribute(uuids, stereoPort, PORT_WANTS_REQUIRED, booleanType, "Provide the inferred required interface when getting a provided interface");
 
     Stereotype stereoAttr = createStereotype(uuids, profile, ATTRIBUTE, "'Property'", "An attribute holds simple state of a component.");
     addAttribute(uuids, stereoAttr, SUPPRESS_GENERATION, booleanType, "Should we not generate fields and methods for this?");
@@ -413,7 +413,6 @@ public class CommonRepositoryFunctions
     api.getAppliedBasicStereotypes().add(stratum);
     setUuid(uuids, api, "api");
     api.setName("api");
-    api.setReadOnly(true);
     createDependency(uuids, api, profile);
 
     addInterface(uuids, api, iface, "IRun", implClass, "com.intrinsarc.backbone.runtime.api.IRun");
@@ -425,7 +424,6 @@ public class CommonRepositoryFunctions
     impls.getAppliedBasicStereotypes().add(stratum);
     setUuid(uuids, impls, "implementation");
     impls.setName("implementation");
-    impls.setReadOnly(true);
     createDependency(uuids, impls, profile);
     createDependency(uuids, impls, api);
     
@@ -436,7 +434,7 @@ public class CommonRepositoryFunctions
     // make a creator: uuid must be the same as the uuid the factory expander looks for
     Class creator = addLeaf(uuids, impls, component, "Creator", implClass, "com.intrinsarc.backbone.runtime.implementation.Creator");
     addAttribute(uuids, creator, "factoryNumber", intType, "The factory number for this factory");
-    addPort(uuids, creator, "create", "create", iCreate, null, null, null);
+    addPort(uuids, creator, "create", "create", iCreate, null, null, null, stereoPort);
 
     // create the state stereotype
     Stereotype stateStereo = createStereotype(uuids, profile, STATE, "'Class'", "Indicates a component is a state.");
@@ -449,28 +447,34 @@ public class CommonRepositoryFunctions
     // create the base factory
     Class baseFactory = addLeaf(uuids, impls, component, FACTORY_BASE, factory, true);
     baseFactory.setIsAbstract(true);
-    Port create = addPort(uuids, baseFactory, "creator", "creator", iCreate, null, null, null);
+    Port create = addPort(uuids, baseFactory, "creator", "creator", iCreate, null, null, null, stereoPort);
     create.setKind(PortKind.CREATE_LITERAL);
     
     // create the state classes
-    Class state = addLeaf(uuids, impls, stateStereo, STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.State");
+    Class state = addLeaf(uuids, impls, stateStereo, STATE_CLASS, implClass, null);
     state.setIsAbstract(true);
-    Port in = addPort(uuids, state, "in", "in", transition, null, null, null);
-    Port out = addPort(uuids, state, "out", "out", null, transition, 0, 1);
-    Port events = addPort(uuids, state, "events", "events", event, null, null, null);
+    Port in = addPort(uuids, state, "in", "in", transition, null, null, null, stereoPort);
+    Port out = addPort(uuids, state, "out", "out", null, transition, 0, 1, stereoPort);
+    Port events = addPort(uuids, state, "events", "events", event, null, null, null, stereoPort);
+    addStereoBooleanValue(uuids, forceBeanMain, events);
+    
     // create the start and end terminals
     Class start = addLeaf(uuids, impls, stateStereo, START_STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.Terminal");
     createResemblance(uuids, state, start);
-    addPort(uuids, start, "startTerminal", "startTerminal", terminal, null, null, null);
-    Port startIn = replacePort(uuids, start, in, "in", transition, null, null, null);
-    setUseMethods(uuids, stereoPort, suppressMethodGeneration, startIn);
+    Port startTerminal = addPort(uuids, start, "startTerminal", "startTerminal", terminal, null, null, null, stereoPort);
+    addStereoBooleanValue(uuids, forceBeanMain, startTerminal);
+    
+    Port startIn = replacePort(uuids, start, in, "in", transition, null, null, null, stereoPort);
+    addStereoBooleanValue(uuids, suppressPortGeneration, startIn);
     createPortLink(uuids, start, in, out);
     deltaDeletePort(uuids, start, events);
     Class end = addLeaf(uuids, impls, stateStereo, END_STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.Terminal");
     createResemblance(uuids, state, end);
-    addPort(uuids, end, "endTerminal", "endTerminal", terminal, null, null, null);
-    Port endIn = replacePort(uuids, end, in, "in", transition, null, null, null);
-    setUseMethods(uuids, stereoPort, suppressMethodGeneration, endIn);
+    Port endTerminal = addPort(uuids, end, "endTerminal", "endTerminal", terminal, null, null, null, stereoPort);
+    addStereoBooleanValue(uuids, forceBeanMain, endTerminal);
+    
+    Port endIn = replacePort(uuids, end, in, "in", transition, null, null, null, stereoPort);
+    addStereoBooleanValue(uuids, suppressPortGeneration, endIn);
     createPortLink(uuids, end, in, out);
     deltaDeletePort(uuids, end, events);
     // create the composite state base class
@@ -481,12 +485,14 @@ public class CommonRepositoryFunctions
     addPart(uuids, cState, "end", "", end, statePart);
     // create the dispatcher
     Class stateDispatcher = addLeaf(uuids, impls, component, "StateDispatcher", implClass, "com.intrinsarc.backbone.runtime.implementation.StateDispatcher");
-    Port dEvents = addPort(uuids, stateDispatcher, "dEvents", "dEvents", event, null, null, null);
-    setUseMethods(uuids, stereoPort, suppressMethodGeneration, dEvents);
-    Port dDispatch = addPort(uuids, stateDispatcher, "dDispatch", "dDispatch", null, event, 0, -1);
+    Port dEvents = addPort(uuids, stateDispatcher, "dEvents", "dEvents", event, null, null, null, stereoPort);
+  	addStereoBooleanValue(uuids, forceNotBeanMain, dEvents);
+  	addStereoBooleanValue(uuids, wantsRequiredWhenProviding, dEvents);
+    addStereoBooleanValue(uuids, suppressPortGeneration, dEvents);
+    Port dDispatch = addPort(uuids, stateDispatcher, "dDispatch", "dDispatch", null, event, 0, -1, stereoPort);
     createPortLink(uuids, stateDispatcher, dEvents, dDispatch);
-    addPort(uuids, stateDispatcher, "dStart", "dStart", null, terminal, null, null);
-    addPort(uuids, stateDispatcher, "dEnd", "dEnd", null, terminal, 0, -1);
+    addPort(uuids, stateDispatcher, "dStart", "dStart", null, terminal, null, null, stereoPort);
+    addPort(uuids, stateDispatcher, "dEnd", "dEnd", null, terminal, 0, -1, stereoPort);
     
     return topLevel;
   }
@@ -529,7 +535,16 @@ public class CommonRepositoryFunctions
 		return c;
 	}
 
-	private Port replacePort(Set<String> uuids, Class cls, Port replaced, String portName, Interface provided, Interface required, Integer lower, Integer upper)
+	private Port replacePort(
+			Set<String> uuids,
+			Class cls,
+			Port replaced,
+			String portName,
+			Interface provided,
+			Interface required,
+			Integer lower,
+			Integer upper,
+			Stereotype stereoPort)
   {
     DeltaReplacedPort repl = cls.createDeltaReplacedPorts();
     repl.setReplaced(replaced);
@@ -552,10 +567,22 @@ public class CommonRepositoryFunctions
     	port.setLowerBound(lower);
     if (upper != null)
     	port.setUpperBound(upper);
+    
+    port.getAppliedBasicStereotypes().add(stereoPort);
+    
     return port;
   }
 
-	private Port addPort(Set<String> uuids, Class cls, String portName, String portUuid, Interface provided, Interface required, Integer lower, Integer upper)
+	private Port addPort(
+			Set<String> uuids,
+			Class cls,
+			String portName,
+			String portUuid,
+			Interface provided,
+			Interface required,
+			Integer lower,
+			Integer upper,
+			Stereotype stereoPort)
   {
     Port port = cls.createOwnedPort();
     port.setName(portName);
@@ -575,16 +602,18 @@ public class CommonRepositoryFunctions
     if (lower != null)
     	port.setLowerBound(lower);
     if (upper != null)
-    	port.setUpperBound(upper);    
+    	port.setUpperBound(upper);
+    
+    port.getAppliedBasicStereotypes().add(stereoPort);    
+    
     return port;
   }
 
-  private void setUseMethods(Set<String> uuids, Stereotype stereoPort, Property useMethods, Port port)
+	private void addStereoBooleanValue(Set<String> uuids, Property property, Port port)
 	{
-    port.settable_getAppliedBasicStereotypes().add(stereoPort);
     AppliedBasicStereotypeValue value = port.createAppliedBasicStereotypeValues();
     setUuid(uuids, value, port.getUuid() + "-" + value.getUuid());
-		value.setProperty(useMethods);
+		value.setProperty(property);
 		LiteralBoolean literal = (LiteralBoolean) value.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
 		literal.setValue(true);
   }

@@ -51,7 +51,7 @@ public class LocateElementsAction extends AbstractAction
 			coordinator.startTransaction("located elements in their places", "unlocated elements");
     for (FigureFacet figure : diagramView.getSelection().getSelectedFigures())
     {
-			if (figure.hasDynamicFacet(LocationFacet.class))
+			if (figure.hasDynamicFacet(LocationFacet.class) && !GlobalSubjectRepository.repository.isReadOnly((Element) figure.getSubject()))
 				SetLocationTransaction.locate(figure);
 		}
     coordinator.commitTransaction();

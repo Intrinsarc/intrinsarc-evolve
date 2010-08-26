@@ -2,8 +2,6 @@ package com.intrinsarc.deltaengine.errorchecking;
 
 import java.util.*;
 
-import javax.swing.plaf.basic.*;
-
 import com.intrinsarc.deltaengine.base.*;
 
 public class ComponentErrorChecker
@@ -125,6 +123,8 @@ public class ComponentErrorChecker
     // leaf checks
     if (!component.canBeDecomposed(perspective))
     {
+    	checkNameOverlaps();
+    	
     	// must have at most one main port
     	List<DEPort> mains = component.getBeanMainPorts(perspective); 
     	if (mains.size() > 1)
@@ -268,6 +268,16 @@ public class ComponentErrorChecker
     		for (int lp = 0; lp < 2; lp++)
     			if (!conn.isIndexOk(lp))
         		errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.BAD_INDEX);
+    		
+    		for (int lp = 0; lp < 2; lp++)
+    		{
+    			DEConnectorEnd end = conn.makeConnectorEnd(perspective, component, lp);
+    			if (end.getIndex() != null && end.getPart() != null)
+    			{
+    				if (end.getPart().getType().isLegacyBean(perspective))
+    					errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.LEGACY_BEAN_BAD_INDEX);    				
+    			}
+    		}
       	
       	if (part1 == null && part2 == null)
       		errors.addError(new ErrorLocation(perspective, component, conn), ErrorCatalog.NO_DIRECT_PORT_CONNECTIONS_ALLOWED);
@@ -373,6 +383,49 @@ public class ComponentErrorChecker
     }
   }
 
+	private void checkNameOverlaps()
+	{
+		// cannot have any name overlaps between ports and attributes (including plural/singular in some cases)
+		Set<String> taken = new HashSet<String>();
+    for (DeltaPair pair : component.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
+    {
+    	DEPort port = pair.getConstituent().asPort();
+    	String name = port.getName();
+    	
+    	checkName(taken, name, port);
+    	if (port.isMany())
+    	{
+    		String singleName = makeSingular(name);
+    		if (!name.equals(singleName))
+    			checkName(taken, singleName, port);
+    	}
+    }
+    
+    for (DeltaPair pair : component.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective))
+    {
+    	DEAttribute attr = pair.getConstituent().asAttribute();
+    	checkName(taken, attr.getName(), attr);
+    }
+	}
+
+  private void checkName(Set<String> taken, String name, DEObject object)
+	{
+  	if (taken.contains(name))
+  	{
+      errors.addError(
+          new ErrorLocation(perspective, component, object), ErrorCatalog.NAME_CONFLICTS);
+  	}
+  	else
+  		taken.add(name);
+	}
+
+	private String makeSingular(String name)
+	{
+  	if (name.endsWith("s") && name.length() > 1)
+  		return name.substring(0, name.length() - 1);
+  	return name;
+	}
+	
 	private void ensureRequiredConnected(DeltaPair partPair)
 	{
 		// if any port is not optional and has required, then it must have at least 1 connector

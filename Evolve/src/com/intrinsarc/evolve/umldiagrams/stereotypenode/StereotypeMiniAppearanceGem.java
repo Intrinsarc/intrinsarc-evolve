@@ -112,7 +112,8 @@ public class StereotypeMiniAppearanceGem implements Gem
           textable,
           text,
           listSelection,
-          unsuppress);
+          unsuppress,
+          true);
     }
     
 		public ToolFigureClassification getToolClassification(

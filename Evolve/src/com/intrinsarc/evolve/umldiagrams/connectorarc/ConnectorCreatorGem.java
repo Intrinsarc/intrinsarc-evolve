@@ -238,7 +238,7 @@ public class ConnectorCreatorGem implements Gem
 		
 		// possibly connected to a part?
 		Element part = findVisualOwnerOfPort(figureFacet);
-		Element port = ClassifierConstituentHelper.getOriginalSubject(figureFacet.getSubject()); 
+		Element port = (Element) figureFacet.getSubject(); 
 		if (part instanceof Property)
 		{
 			Element actualPart = ClassifierConstituentHelper.getOriginalSubject(part);
@@ -251,7 +251,6 @@ public class ConnectorCreatorGem implements Gem
 		else
 			// just have a port
 			end.setRole((ConnectableElement) port);
-
 		
 		return end;
 	}

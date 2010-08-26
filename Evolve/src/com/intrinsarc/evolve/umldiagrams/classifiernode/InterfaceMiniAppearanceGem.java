@@ -201,8 +201,8 @@ public class InterfaceMiniAppearanceGem implements Gem
 		public Object setText(TextableFacet textable, String text,
 				Object listSelection, boolean unsuppress)
 		{
-			return ComponentMiniAppearanceGem.setElementText(figureFacet, textable,
-					text, listSelection, unsuppress);
+			return ComponentMiniAppearanceGem.setElementText(
+					figureFacet, textable, text, listSelection, unsuppress, true);
 		}
 
 		public ToolFigureClassification getToolClassification(

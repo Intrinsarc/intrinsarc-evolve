@@ -104,7 +104,7 @@ public class BackboneGenerationChoice
     
     String stratum = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_STRATUM);
     if (stratum == null || stratum.isEmpty())
-    	stratum = singleStratum.getName();
+    	stratum = CommonRepositoryFunctions.getFullyQualifiedName(singleStratum, "::", GlobalSubjectRepository.repository.getTopLevelModel());
     String component = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_COMPONENT);
     if (component == null || component.isEmpty())
       throw new BackboneGenerationException(CommonRepositoryFunctions.BACKBONE_RUN_COMPONENT + " must be set to an existing component", null);
@@ -116,7 +116,7 @@ public class BackboneGenerationChoice
   {
 		List<String> profile = new ArrayList<String>();
 		if (singleStratum == null)
-			throw new BackboneGenerationException("A single top stratum muse be tagged for hardcoded generation", null);
+			throw new BackboneGenerationException("A single stratum must be tagged for hardcoded generation", null);
 	
 		// get the generation profile
 		String raw = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.GENERATION_PROFILE);

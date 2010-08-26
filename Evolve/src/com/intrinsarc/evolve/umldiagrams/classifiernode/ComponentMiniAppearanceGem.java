@@ -332,7 +332,7 @@ public class ComponentMiniAppearanceGem implements Gem
 		public Object setText(TextableFacet textable, String text,
 				Object listSelection, boolean unsuppress)
 		{
-			return setElementText(figureFacet, textable, text, listSelection, unsuppress);
+			return setElementText(figureFacet, textable, text, listSelection, unsuppress, true);
 		}
 
 		public ToolFigureClassification getToolClassification(
@@ -361,7 +361,8 @@ public class ComponentMiniAppearanceGem implements Gem
 			TextableFacet textable,
 			String text,
 			Object listSelection,
-			boolean unsuppress)
+			boolean unsuppress,
+			boolean changeColor)
 	{
 		NamedElement subject = (NamedElement) figure.getSubject();
 		String oldText = subject.getName();
@@ -385,23 +386,22 @@ public class ComponentMiniAppearanceGem implements Gem
 		GlobalSubjectRepository.repository.markLongRunningTransaction();
 		if (oldText.length() == 0)
 		{
-			changeColor(figure, subject, selected);
+			if (changeColor)
+				changeColor(figure, subject, selected);
 			GlobalSubjectRepository.repository.incrementPersistentDelete(subject);
 			return selected;
 		}
 		else
 		{
 			// just link to the new object
-			changeColor(figure, subject, selected);
-			return sel.getElement();
+			if (changeColor)
+				changeColor(figure, subject, selected);
+			return selected;
 		}
 	}
 
 	private static void changeColor(FigureFacet figure, NamedElement subject, Element selected)
 	{
-		// delete the previous subject
-		GlobalSubjectRepository.repository.incrementPersistentDelete(subject);
-		
 		// find the old element
 		Object obj[] = ClassifierConstituentHelper.findOwningDiagram(
 				(Package) figure.getDiagram().getLinkedObject(),

@@ -113,7 +113,8 @@ public class ModelMiniAppearanceGem implements Gem
           textable,
           text,
           listSelection,
-          unsuppress);
+          unsuppress,
+          false);
     }
 	}
 }

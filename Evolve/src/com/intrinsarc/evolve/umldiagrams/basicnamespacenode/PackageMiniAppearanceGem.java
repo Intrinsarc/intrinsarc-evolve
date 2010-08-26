@@ -484,7 +484,8 @@ public class PackageMiniAppearanceGem implements Gem
           textable,
           text,
           listSelection,
-          unsuppress);
+          unsuppress,
+          false);
     }
   }
   

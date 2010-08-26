@@ -108,7 +108,8 @@ public class ProfileMiniAppearanceGem implements Gem
           textable,
           text,
           listSelection,
-          unsuppress);
+          unsuppress,
+          false);
     }
 	}
 }

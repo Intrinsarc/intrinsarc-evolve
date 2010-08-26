@@ -952,6 +952,7 @@ public class ApplicationWindow extends SmartJFrame
 				detector.checkAllAtHome(strata, 0, strata.size() - 2, null);
 				// check at the top level
 				detector.checkAllInOrder(strata, -1, true, null);
+				count = errors.countErrors();
 
 				// resync diagrams to adorn with the newly discovered errors
 				resyncDiagramsAndBrowser();
@@ -2161,6 +2162,8 @@ public class ApplicationWindow extends SmartJFrame
 
 		// close all content windows, leaving the palette
 		desktop.closeRememberedDockables();
+		errorAdorner.hideErrors();
+		deltaAdorner.setEnabled(false);
 
 		viewRegistry.open(
 				GlobalSubjectRepository.repository.getTopLevelModel(),
@@ -2199,7 +2202,6 @@ public class ApplicationWindow extends SmartJFrame
 					if (name.endsWith(XMLSubjectRepositoryGem.UML2_SUFFIX) || name.endsWith(XMLSubjectRepositoryGem.UML2Z_SUFFIX) || name.endsWith(".xml"))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading XML repository", name, null, -1);
-						long st = System.currentTimeMillis();
 						RepositoryUtility.useXMLRepository(name, true);
 						applicationWindowCoordinator.switchRepository();
 					}

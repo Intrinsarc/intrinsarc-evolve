@@ -400,12 +400,21 @@ stop delta delete on part ports
 \end_layout
 
 \begin_layout Enumerate
-fix to work properly with beans - fwd gen, reverse gen, multiple provided,
- multiple interfaces per port, aliasing, hardcoder
+
+\color green
+fix to work properly with beans - fwd gen, hardcoder, multiple provided,
+ multiple interfaces per port, aliasing,
+\color inherit
+ reverse gen, 
 \end_layout
 
 \begin_layout Enumerate
 connectors ends not moving when class is resized
+\end_layout
+
+\begin_layout Enumerate
+nested strata cause error when generating hardcoded, possibly run also --
+ can't see backbone base
 \end_layout
 
 \begin_layout Enumerate
@@ -415,6 +424,7 @@ problem with error adorner and undo
 \begin_layout Enumerate
 undo of default value attr set with multiple values e.g.
  (105, 10, 10) for Date - event not handled...
+ removemany
 \end_layout
 
 \begin_layout Enumerate
