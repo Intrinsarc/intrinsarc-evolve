@@ -125,6 +125,16 @@ public abstract class ImplementationRefresher
 		}
 	}
 
+	private static final String BB_API = "com.intrinsarc.backbone.runtime.api.";
+	public static String removeRedundantPrefixes(String impl)
+	{    
+    if (impl.startsWith(BB_API))
+    	impl = impl.substring(BB_API.length());
+    if (impl.startsWith("java.lang."))
+    	impl = impl.substring("java.lang.".length());
+    return impl;
+	}
+	
 	private void addMarker(BufferedWriter writer, String marker) throws IOException
 	{
 		writer.write(marker);

@@ -62,14 +62,14 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 		boolean lifecycle = leaf.hasLifecycleCallbacks(perspective);
 		if (mains.size() == 1 || lifecycle)
 		{
-			writer.write("  // main port");		
+			writer.write("\t// main port");		
 			writer.newLine();
 			
 			// if we are inheriting, get the super classes to inherit the implementation from
 			if (useInheritance)
 			{
 				if (inherit != null && !leaf.getImplementationClass(perspective).equals(inherit))
-					writer.write(" extends " + inherit);
+					writer.write(" extends " + removeRedundantPrefixes(inherit));
 			}
 			
 			Set<? extends DEInterface> provided = mains.get(0).getSetProvidedInterfaces();
@@ -79,7 +79,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 			{
 				if (lp++ != 0)
 					writer.write(", ");
-				writer.write(iface.getImplementationClass(perspective));
+				writer.write(removeRedundantPrefixes(iface.getImplementationClass(perspective)));
 			}
 			
 			// do we want lifecycle callbacks?
@@ -97,7 +97,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 		Set<DeltaPair> attrPairs = getAttributePairs(useInheritance);
 		if (!attrPairs.isEmpty())
 		{
-			writer.write("  // attributes");				
+			writer.write("\t// attributes");				
 			writer.newLine();
 			
 			// write all the attributes
@@ -135,7 +135,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 			}
 			
 			writer.newLine();
-			writer.append("  // attribute setters and getters");
+			writer.append("\t// attribute setters and getters");
 			writer.newLine();
 			complexWriter.flush();
 			writer.append(complex.toString());
@@ -170,7 +170,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 					{
 						if (!output[lp])
 						{
-							writer.write("  // required ports");
+							writer.write("\t// required ports");
 							writer.newLine();
 						}
 						output[lp] = true;
@@ -178,7 +178,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 						PortMethodHelper ph = new PortMethodHelper(perspective, leaf, port, required);
 						ph.resolveSetMethodNames();
 						
-						String iname = required.getImplementationClass(perspective);
+						String iname = removeRedundantPrefixes(required.getImplementationClass(perspective));
 						String tname = getAfterLastDot(iname);
 						String pname = port.getName();
 						String vname = first ? pname : pname + "_" + tname + "Required";
@@ -212,7 +212,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 					{
 						if (!output[lp])
 						{
-							writer.write("  // provided ports");
+							writer.write("\t// provided ports");
 							writer.newLine();
 						}
 						output[lp] = true;
@@ -220,7 +220,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 						PortMethodHelper ph = new PortMethodHelper(perspective, leaf, port, provided);
 						ph.resolveGetMethodNames();
 						
-						String iname = provided.getImplementationClass(perspective);
+						String iname = removeRedundantPrefixes(provided.getImplementationClass(perspective));
 						String tname = getAfterLastDot(iname);
 						String pname = port.getName();
 						String vname = pname + (complexPort ? tname : "") + "_Provided";
@@ -250,7 +250,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 		if (output[0] || output[1])
 		{
 			writer.newLine();
-			writer.append("  // port setters and getters");
+			writer.append("\t// port setters and getters");
 			writer.newLine();
 			complexWriter.flush();
 			writer.append(complex.toString());
@@ -339,16 +339,6 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 			if (pair.getOriginal() == parameter.getAttribute())
 				return pair.getConstituent().getName();
 		return null;
-	}
-	
-	private static final String BB_API = "com.intrinsarc.backbone.runtime.api.";
-	public static String removeRedundantPrefixes(String impl)
-	{    
-    if (impl.startsWith(BB_API))
-    	impl = impl.substring(BB_API.length());
-    if (impl.startsWith("java.lang."))
-    	impl = impl.substring("java.lang.".length());
-    return impl;
 	}
 
 	@Override

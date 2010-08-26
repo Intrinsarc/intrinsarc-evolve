@@ -44,10 +44,10 @@ public class InterfaceDefinitionRefresher extends ImplementationRefresher
 		for (String extend : iface.getImplementationInheritances(perspective))
 		{
 			if (start)
-				writer.write("  extends ");
+				writer.write("\textends ");
 			else
 				writer.write(", ");
-			writer.write(extend);
+			writer.write(removeRedundantPrefixes(extend));
 			start = false;
 		}
 		writer.write("{");
