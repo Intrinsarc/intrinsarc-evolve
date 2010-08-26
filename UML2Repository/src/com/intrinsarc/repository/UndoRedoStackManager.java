@@ -90,6 +90,16 @@ public class UndoRedoStackManager
 					el.addAll((List) n.getOldValue());
 				}
 				break;
+			case Notification.ADD_MANY:
+			{
+				Element e = (Element) n.getNotifier();				
+				EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
+				if (n.getOldValue() == null)
+					el.clear();
+				else
+					el.removeAll((List) n.getOldValue());
+			}
+			break;
 			default:
 				throw new IllegalStateException("Cannot handle undo notification: " + n);
 			}
@@ -146,6 +156,14 @@ public class UndoRedoStackManager
 						el.removeAll((List) n.getNewValue());
 				}
 				break;
+			case Notification.ADD_MANY:
+			{
+				Element e = (Element) n.getNotifier();				
+				EList el = (EList) e.eGet((EStructuralFeature) n.getFeature());
+				el.addAll((List) n.getNewValue());
+			}
+			break;
+
 			default:
 				throw new IllegalStateException("Cannot handle redo notification: " + n);
 			}

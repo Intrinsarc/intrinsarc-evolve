@@ -17,7 +17,6 @@ import com.intrinsarc.swing.*;
 public class BeanSubjectCreator
 {
 	public static final ImageIcon BEAN_IMPORT_ICON = IconLoader.loadIcon("bean_import.png");
-	public static final String MAIN_PORT = "main-port";
 
 	private List<BeanClass> toCreate;
 	private org.eclipse.uml2.Package in;
@@ -153,7 +152,7 @@ public class BeanSubjectCreator
 				delete(existing);
 				
 				// handle any attributes
-				List<Property> existingAttrs = me.undeleted_getOwnedAttributes();
+				List<Property> existingAttrs = collectExistingAttributes(me);
 				for (BeanField field : cls.getAttributes())
 				{
 					String className = field.getTypes().get(0).getClassName();
@@ -174,15 +173,21 @@ public class BeanSubjectCreator
 						attr.setReadWrite(PropertyAccessKind.READ_ONLY_LITERAL);
 					
 					// handle lower and upper
-					if (field.isMany() && attr.getUpper() <= 1)
+					if (!field.isMany() && attr.getUpperValue() != null && (attr.getUpper() > 1 || attr.getUpper() < 0))
+					{
+						attr.setUpperValue(null);
+						attr.setLowerValue(null);
+					}
+					if (field.isMany() && (attr.getUpperValue() == null || attr.getUpper() <= 1))
+					{
+						attr.setLowerBound(0);
 						attr.setUpperBound(-1);
-					else
-						attr.setUpperBound(1);
+					}
 				}
 				delete(existingAttrs);
 				
 				// handle any ports
-				List<Port> existingPorts = me.undeleted_getOwnedPorts();
+				List<Port> existingPorts = collectExistingPorts(me);
 				boolean madeMain = true;
 				for (BeanField field : cls.getPorts())
 				{
@@ -203,10 +208,30 @@ public class BeanSubjectCreator
 				}
 				delete(existingPorts);
 				// remove the deltas if we have made a main
-				if (madeMain)
+				if (madeMain && cls.isLegacyBean())
 					delete(me.settable_getDeltaReplacedPorts());
 			}
 		}		
+	}
+
+	private List<Property> collectExistingAttributes(Class me)
+	{
+		List<Property> attrs = new ArrayList<Property>();
+		for (Object obj : me.undeleted_getOwnedAttributes())
+			attrs.add((Property) obj);
+		for (Object obj : me.undeleted_getDeltaReplacedAttributes())
+			attrs.add((Property) ((DeltaReplacedAttribute) obj).getReplacement());
+		return attrs;
+	}
+
+	private List<Port> collectExistingPorts(Class me)
+	{
+		List<Port> ports = new ArrayList<Port>();
+		for (Object obj : me.undeleted_getOwnedPorts())
+			ports.add((Port) obj);
+		for (Object obj : me.undeleted_getDeltaReplacedPorts())
+			ports.add((Port) ((DeltaReplacedPort) obj).getReplacement());
+		return ports;
 	}
 
 	private void delete(List<? extends Element> existing)
@@ -285,7 +310,7 @@ public class BeanSubjectCreator
 					for (Object obj : other.getOwnedPorts())
 					{
 						Port p = (Port) obj;
-						if (p.getUuid().equals(MAIN_PORT))
+						if (isMain(p))
 						{
 							DeltaReplacedPort replace = findDeltaReplacedPort(me);
 							if (replace == null)
@@ -304,7 +329,7 @@ public class BeanSubjectCreator
 						for (Object obj : other.getDeltaReplacedPorts())
 						{
 							DeltaReplacedPort repl = (DeltaReplacedPort) obj;
-							if (repl.getReplaced().getUuid().equals(MAIN_PORT))
+							if (isMain((Port) repl.getReplaced()))
 							{
 								DeltaReplacedPort replace = findDeltaReplacedPort(me);
 								if (replace == null)
@@ -328,6 +353,11 @@ public class BeanSubjectCreator
 		}
 	}
 
+	private boolean isMain(Port port)
+	{
+		return StereotypeUtilities.extractBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_MAIN);
+	}
+
 	private DeltaReplacedPort findDeltaReplacedPort(Class me)
 	{
 		for (Object p : me.undeleted_getDeltaReplacedPorts())
@@ -337,8 +367,6 @@ public class BeanSubjectCreator
 
 	private void setUpPort(BeanClass cls, Map<String, Interface> interfaces, BeanField field, Port port)
 	{
-		if (field.isMain() && cls.isLegacyBean())
-			port.setUuid(MAIN_PORT);
 		port.setName(field.getName());
 		Class type = (Class) port.getOwnedAnonymousType();
 		if (type == null)
@@ -466,7 +494,6 @@ public class BeanSubjectCreator
 		iface.settable_getAppliedBasicStereotypes().add(interfaceStereo);
 		setImplementation(iface, cls.getNode().name);
 		interfaces.put(cls.getNode().name, iface);
-		System.out.println("$$ iface = " + cls.getName() + ", supers = " + cls.getInterfaces());
 	}
 
 	private void createLeaf(Map<String, Class> classes, BeanClass cls)

@@ -407,7 +407,11 @@ fix to work properly with beans - fwd gen, hardcoder, multiple provided,
 \end_layout
 
 \begin_layout Enumerate
-connectors ends not moving when class is resized
+
+\color green
+undo of default value attr set with multiple values e.g.
+ (105, 10, 10) for Date - event not handled...
+ removemany
 \end_layout
 
 \begin_layout Enumerate
@@ -415,9 +419,7 @@ problem with error adorner and undo
 \end_layout
 
 \begin_layout Enumerate
-undo of default value attr set with multiple values e.g.
- (105, 10, 10) for Date - event not handled...
- removemany
+connectors ends not moving when class is resized
 \end_layout
 
 \begin_layout Enumerate
@@ -426,20 +428,11 @@ GWT states fixup for new scheme + must start in first state + refresh current
 \end_layout
 
 \begin_layout Enumerate
-attributes with multiplicity
-\end_layout
 
-\begin_layout Enumerate
-nested strata cause error when generating hardcoded, possibly run also --
- can't see backbone base
-\end_layout
-
-\begin_layout Enumerate
----
-\end_layout
-
-\begin_layout Enumerate
-hanging on load (!), key strokes not registering
+\color green
+key strokes not registering, 
+\color inherit
+hanging on load
 \end_layout
 
 \begin_layout Enumerate
@@ -449,6 +442,14 @@ hanging on load (!), key strokes not registering
 \begin_layout Enumerate
 get rid of dark mark in upper corner of packages/factories when copying
  to word
+\end_layout
+
+\begin_layout Enumerate
+nested strata cannot see backbone base when hardcoding from it
+\end_layout
+
+\begin_layout Enumerate
+attributes with multiplicity
 \end_layout
 
 \begin_layout Enumerate

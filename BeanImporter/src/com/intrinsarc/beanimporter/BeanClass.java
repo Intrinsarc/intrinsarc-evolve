@@ -166,7 +166,6 @@ public class BeanClass
 				String mainName = mains.get(0).getName();
 				BeanField mainPort = new BeanField(this, mainName, types, null);
 				mainPort.setPort(true);
-				mainPort.setMain(true);
 				fields.put(mainName, mainPort);
 			}
 		}
