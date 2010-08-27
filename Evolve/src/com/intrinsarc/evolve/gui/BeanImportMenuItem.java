@@ -135,12 +135,19 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 	{
 		boolean enabled = true;
 		if (getPossibleSingleSelectedPackage() != null)
+		{
 			setText("Import beans into selected package");
+			enabled = !getPossibleSingleSelectedPackage().isReadOnly();
+		}
 		else
 		if (getPossibleCurrentPackage() != null)
+		{
 			setText("Import beans into current package");
+			enabled = !getPossibleCurrentPackage().isReadOnly();
+		}
 		else
 			enabled = false;
+		
 		return enabled;
 	}
 	

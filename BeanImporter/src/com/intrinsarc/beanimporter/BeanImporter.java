@@ -651,12 +651,14 @@ public class BeanImporter
 				{
 					icon = new DecoratedIcon(icon, ERROR_ICON, DecoratedIcon.LEFT, DecoratedIcon.BOTTOM);
 					msg = obj.getBeanClass().getError(finder);
+					name += " - " + msg;
 				}
 				else
 				if (obj.getBeanField() != null && obj.getBeanField().isInError() && tree == featureTree)
 				{
 					icon = new DecoratedIcon(icon, ERROR_ICON, DecoratedIcon.LEFT, DecoratedIcon.BOTTOM);
 					msg = obj.getBeanField().getError();
+					name += " - " + msg;
 				}
 				else
 				if (obj.getBeanField() != null && obj.getBeanField().isIgnore() && tree == featureTree)
@@ -760,14 +762,16 @@ public class BeanImporter
 	  		if (cls.getType() == BeanTypeEnum.INTERFACE) 
 	  		{
 		  		List<String> ifaces = cls.getInterfaces();
-		  		if (ifaces != null)
+		  		if (ifaces != null && !ifaces.isEmpty())
+		  		{
+	  				DefaultMutableTreeNode resembles = new DefaultMutableTreeNode("Resembles");
+	  				root.add(resembles);
 		  			for (String iface : ifaces)
 		  			{
-		  				DefaultMutableTreeNode resembles = new DefaultMutableTreeNode("Resembles");
-		  				root.add(resembles);
 		  				DefaultMutableTreeNode base = new DefaultMutableTreeNode(INTERFACE + iface);
 		  				resembles.add(base);
 		  			}
+		  		}
 	  		}
 	  		else
 	  		if (cls.isBean())

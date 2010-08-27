@@ -415,6 +415,12 @@ undo of default value attr set with multiple values e.g.
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
+popups aren't being cleared properly
+\end_layout
+
+\begin_layout Enumerate
 problem with error adorner and undo
 \end_layout
 
@@ -425,10 +431,6 @@ connectors ends not moving when class is resized
 \begin_layout Enumerate
 GWT states fixup for new scheme + must start in first state + refresh current
  after dispatch
-\end_layout
-
-\begin_layout Enumerate
-popups aren't being cleared properly
 \end_layout
 
 \begin_layout Enumerate
@@ -453,6 +455,10 @@ nested strata cannot see backbone base when hardcoding from it
 \end_layout
 
 \begin_layout Enumerate
+problems with attribute containment + ports when uniconifying a component
+\end_layout
+
+\begin_layout Enumerate
 attributes with multiplicity
 \end_layout
 
@@ -471,6 +477,19 @@ Next up:
 
 \series bold
 team system!
+\end_layout
+
+\begin_layout Itemize
+allow index to be passed to add (e.g.
+ for border layout) - index could be 
+\begin_inset Quotes eld
+\end_inset
+
+North
+\begin_inset Quotes erd
+\end_inset
+
+ etc.
 \end_layout
 
 \begin_layout Itemize
@@ -536,6 +555,8 @@ Documentation:
 \begin_layout Enumerate
 white paper: why evolve and what does it offer? aimed at managers and a
  sales pitch.
+ emphasise how approach builds extensibility and reuse automatically - resolve
+ dilemma between building for use and for reuse.
 \end_layout
 
 \begin_layout Enumerate
@@ -549,11 +570,11 @@ blog from Javalobby, part of a series
 \end_layout
 
 \begin_layout Enumerate
-performance tips: readonly for check once, full screen hide palette
+tips: readonly for check once, full screen hide palette, holding down shift
 \end_layout
 
 \begin_layout Enumerate
-F8 versus shift-F8
+F8 versus shift-F8 - explain variants
 \end_layout
 
 \begin_layout Enumerate

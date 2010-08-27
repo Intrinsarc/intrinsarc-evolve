@@ -743,21 +743,21 @@ public abstract class DEElement extends DEObject
 		// -- this is far cheaper than looking at the entire sub-interface hierarchy in things like the swing beans example
 		for (DEElement candidate : ifaces)
 		{
-			Set<DEElement> chain = new HashSet<DEElement>(candidate.getSuperElementClosure(perspective, inheritanceOnly));
+			Set<DEElement> chain = new LinkedHashSet<DEElement>(candidate.getSuperElementClosure(perspective, inheritanceOnly));
 			chain.add(candidate);
 			if (chain.containsAll(ifaces))
 			{
-				Set<DEElement> ret = new HashSet<DEElement>();
+				Set<DEElement> ret = new LinkedHashSet<DEElement>();
 				ret.add(candidate);
 				return ret;
 			}
 		}
 		
-		Set<DEElement> lowest = new HashSet<DEElement>();
-		Set<DEElement> running = new HashSet<DEElement>(ifaces);
+		Set<DEElement> lowest = new LinkedHashSet<DEElement>();
+		Set<DEElement> running = new LinkedHashSet<DEElement>(ifaces);
 		
 		// find the set of interfaces to consider
-		Set<DEElement> considered = new HashSet<DEElement>();
+		Set<DEElement> considered = new LinkedHashSet<DEElement>();
 		for (DEElement iface : ifaces)
 		{
 			considered.add(iface);
@@ -770,7 +770,7 @@ public abstract class DEElement extends DEObject
 		{
 			// now, look for the best match over the current interface collection
 			int max = 0;
-			Set<DEElement> best = new HashSet<DEElement>();
+			Set<DEElement> best = new LinkedHashSet<DEElement>();
 			for (DEElement consider: considered)
 			{
 				int count = matchTo(perspective, consider, running, inheritanceOnly);

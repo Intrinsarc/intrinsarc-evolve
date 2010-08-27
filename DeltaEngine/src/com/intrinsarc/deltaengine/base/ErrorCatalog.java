@@ -73,7 +73,7 @@ public class ErrorCatalog
 	public static final ErrorDescription SLOT_DEFAULT_BAD = new ErrorDescription("Slot values specified by > must be set via the actual value field");
 	public static final ErrorDescription SLOT_MUST_HAVE_VALUE = new ErrorDescription("All slots must have values");
 	public static final ErrorDescription AT_MOST_ONE_BEAN_MAIN_PORT = new ErrorDescription("Choose a single bean-main from a non-indexed (providing) port");
-	public static final ErrorDescription AT_MOST_ONE_BEAN_NO_NAME_PORT = new ErrorDescription("A component has more than one bean no-name port");
+	public static final ErrorDescription NONAME_PORT_OVERLAP = new ErrorDescription("A bean no-name port have the same interfaces as another");
 	public static final ErrorDescription BEAN_MAIN_NOT_SUITABLE = new ErrorDescription("Port is not suitable for a bean-main port");
 	public static final ErrorDescription BEAN_NO_NAME_NOT_SUITABLE = new ErrorDescription("Port is not suitable for a bean-no-name port");
 	public static final ErrorDescription TURN_OFF_INHERITANCE = new ErrorDescription("Turn off implementation inheritance using no-inheritance");

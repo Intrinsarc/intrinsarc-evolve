@@ -267,10 +267,18 @@ public class BeanClass
 		// is there a no-name port now?
 		if (existing != null && existing.asComponent() != null)
 		{
-			List<DEPort> nonames = existing.asComponent().getBeanNoNamePorts(perspective);
-			if (!nonames.isEmpty())
-				return nonames.get(0).getName();
+			DEComponent exist = existing.asComponent();
+			List<DEPort> nonames = exist.getBeanNoNamePorts(perspective);
+			for (DEPort noname : nonames)
+			{
+				for (DEInterface required : exist.getRequiredInterfaces(perspective, noname))
+				{
+					if (required.getImplementationClass(perspective).equals(type.getClassName()))
+						return noname.getName();
+				}
+			}
 		}
+
 		// default to something with the interface name in it, prepended by a _
 		return last(type.getClassName());
 	}
@@ -317,12 +325,9 @@ public class BeanClass
 			Type types[] = Type.getArgumentTypes(m.desc);
 			valid = types.length == 0;
 			
-			// is this possibly an array get?
-			if (type.getSort() == Type.ARRAY)
-			{
-				many = true;
-				type = type.getElementType();
-			}
+			// if the type is an array type, ignore
+			if (type != null && type.getSort() == Type.ARRAY)
+				return;
 		}
 		else
 		if (mName.startsWith("set"))
@@ -343,7 +348,8 @@ public class BeanClass
 		if (type != null && (set || get))
 		{
 			String fieldName = firstLower(mName.substring(3));
-			if (fieldName.endsWith(_PROVIDED))
+			boolean forceProvided = fieldName.endsWith(_PROVIDED); 
+			if (forceProvided)
 			{
 				fieldName = fieldName.substring(0, fieldName.length() - _PROVIDED.length());
 				// possibly strip off the interface if this is complex provided
@@ -382,6 +388,11 @@ public class BeanClass
 							field.addProvidedType(type);
 					}
 				}
+				
+				// if we have a get() then force it to be an attribute
+				// if we have a get*_Provided() then force it to be a port
+				if (get)
+					field.setCannotChange(true, forceProvided);
 				
 				// if this is one of the interfaces we ignore, then ignore it
 				if (areIgnoring(type.getClassName()))
@@ -657,7 +668,7 @@ public class BeanClass
 		{
 			BeanClass cls = finder.locatePossibleBeanClass(superClass, false);
 			if (cls != null && cls.getType() == BeanTypeEnum.BAD)
-				superClass = null;
+				superClass = null;			
 		}
 	}
 

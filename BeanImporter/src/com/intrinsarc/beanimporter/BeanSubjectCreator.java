@@ -12,6 +12,7 @@ import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
+import com.intrinsarc.uml2deltaengine.*;
 
 
 public class BeanSubjectCreator
@@ -53,13 +54,14 @@ public class BeanSubjectCreator
 			
 			BeanCreatedSubjects created = createOutlines(classes, interfaces);
 			
-			// make the ports, attributes, super-leaves and super-interfaces
+			// make the attributes, super-leaves and super-interfaces
 			createInternals(classes, interfaces);
-			// handle any replaced ports
+			// handle any ports
 			createInternals2(classes, interfaces);
 			
 			// remove any duplicates
 			removeDuplicates(classes);
+			removeRedundantRequireds(classes);
 			return created;
 		}
 		finally
@@ -70,6 +72,8 @@ public class BeanSubjectCreator
 	
 	private void removeDuplicates(Map<String, Class> classes)
 	{
+		// need to clear this out to pick up new constituents just made
+		GlobalDeltaEngine.engine = new UML2DeltaEngine();
 		DEStratum perspective = GlobalDeltaEngine.engine.locateObject(in).asStratum();
 		
 		for (BeanClass cls : toCreate)
@@ -79,24 +83,33 @@ public class BeanSubjectCreator
 				Class me = classes.get(cls.getNode().name);
 				DEComponent comp = GlobalDeltaEngine.engine.locateObject(me).asComponent();
 				
-				removeDuplicateConstituents(perspective, comp, ConstituentTypeEnum.DELTA_ATTRIBUTE);
-				removeDuplicateConstituents(perspective, comp, ConstituentTypeEnum.DELTA_PORT);
+				removeDuplicateConstituents(perspective, comp);
 			}
 		}
 	}
 
-	private void removeDuplicateConstituents(DEStratum perspective, DEComponent comp, ConstituentTypeEnum type)
+	private void removeDuplicateConstituents(DEStratum perspective, DEComponent comp)
 	{
 		// get the names that existed before this
 		Set<String> existingNames = new HashSet<String>();
-		for (DeltaPair pair : comp.getDeltas(type).getConstituents(perspective))
+		for (DeltaPair pair : comp.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective))
+		{
+			if (pair.getConstituent().getParent() != comp)
+				existingNames.add(pair.getConstituent().getName());
+		}
+		for (DeltaPair pair : comp.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getConstituents(perspective))
 		{
 			if (pair.getConstituent().getParent() != comp)
 				existingNames.add(pair.getConstituent().getName());
 		}
 		
 		// if we have these now, then remove
-		for (DeltaPair add : comp.getDeltas(type).getAddObjects())
+		for (DeltaPair add : comp.getDeltas(ConstituentTypeEnum.DELTA_PORT).getAddObjects())
+		{
+			if (existingNames.contains(add.getConstituent().getName()))
+				GlobalSubjectRepository.repository.incrementPersistentDelete((Element) add.getConstituent().getRepositoryObject());
+		}
+		for (DeltaPair add : comp.getDeltas(ConstituentTypeEnum.DELTA_ATTRIBUTE).getAddObjects())
 		{
 			if (existingNames.contains(add.getConstituent().getName()))
 				GlobalSubjectRepository.repository.incrementPersistentDelete((Element) add.getConstituent().getRepositoryObject());
@@ -185,32 +198,7 @@ public class BeanSubjectCreator
 					}
 				}
 				delete(existingAttrs);
-				
-				// handle any ports
-				List<Port> existingPorts = collectExistingPorts(me);
-				boolean madeMain = true;
-				for (BeanField field : cls.getPorts())
-				{
-					Port port = extractPort(existingPorts, field.getName());
-					if (port != null)
-						existingPorts.remove(port);
-
-					// handle replacing main ports differently
-					if (field.isMain() && cls.getSuperClass() != null)
-					{
-						madeMain = false;
-						continue;
-					}
-					
-					if (port == null)
-						port = me.createOwnedPort();
-					setUpPort(cls, interfaces, field, port);
-				}
-				delete(existingPorts);
-/*				// remove the deltas if we have made a main
-				if (madeMain && cls.isLegacyBean())
-					delete(me.settable_getDeltaReplacedPorts());
-*/			}
+			}
 		}		
 	}
 
@@ -298,58 +286,32 @@ public class BeanSubjectCreator
 			Class me = classes.get(cls.getNode().name);
 			
 			// handle any ports
+			List<Port> existingPorts = collectExistingPorts(me);
 			for (BeanField field : cls.getPorts())
 			{
-				// if this is a main, and we have a super, then do a replace
-				if (field.isMain() && cls.getSuperClass() != null)
-				{						
-					// get the replacement element
-					Class other = finder.findClass(classes, cls.getSuperClass());
-					// find the main port so we can replace
-					boolean found = false;
-					for (Object obj : other.getOwnedPorts())
-					{
-						Port p = (Port) obj;
-						if (isMain(p))
-						{
-							DeltaReplacedPort replace = findDeltaReplacedPort(me);
-							if (replace == null)
-								replace = me.createDeltaReplacedPorts();
-							Port port = (Port) replace.getReplacement();
-							if (port == null)
-								port = (Port) replace.createReplacement(UML2Package.eINSTANCE.getPort());
-							replace.setReplaced(p);
-							setUpPort(cls, interfaces, field, port);
-							found = true;
-							break;
-						}
-					}
-					if (!found)
-					{
-						for (Object obj : other.getDeltaReplacedPorts())
-						{
-							DeltaReplacedPort repl = (DeltaReplacedPort) obj;
-							if (isMain((Port) repl.getReplaced()))
-							{
-								DeltaReplacedPort replace = findDeltaReplacedPort(me);
-								if (replace == null)
-									replace = me.createDeltaReplacedPorts();
-								Port port = (Port) replace.createReplacement(UML2Package.eINSTANCE.getPort());
-								replace.setReplaced(repl.getReplaced());
-								setUpPort(cls, interfaces, field, port);
-								found = true;
-								break;
-							}
-						}
-					}
+				Port port = extractPort(existingPorts, field.getName());
+				if (port != null)
+					existingPorts.remove(port);
+
+				// handle replacing main ports differently
+				if (field.isMain() && cls.getSuperClass() != null && port == null)
+				{
+					Class superc = finder.findClass(classes, cls.getSuperClass());
 					
-					if (!found)
-					{
-						Port p = me.createOwnedPort();
-						setUpPort(cls, interfaces, field, p);
-					}
+					// we want to replace a main from the subclass
+					DeltaReplacedPort	delta = me.createDeltaReplacedPorts();
+					Port newMain = (Port) delta.createReplacement(UML2Package.eINSTANCE.getPort());
+					setUpPort(cls, interfaces, field, newMain);
+					delta.setReplaced(findOriginalMain(superc));
+				}
+				else
+				{
+					if (port == null)
+						port = me.createOwnedPort();
+					setUpPort(cls, interfaces, field, port);
 				}
 			}
+			delete(existingPorts);
 		}
 	}
 
@@ -358,10 +320,20 @@ public class BeanSubjectCreator
 		return StereotypeUtilities.extractBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_MAIN);
 	}
 
-	private DeltaReplacedPort findDeltaReplacedPort(Class me)
+	private Port findOriginalMain(Class me)
 	{
 		for (Object p : me.undeleted_getDeltaReplacedPorts())
-			return (DeltaReplacedPort) p;
+		{
+			DeltaReplacedPort delta = (DeltaReplacedPort) p; 
+			if (isMain((Port) delta.getReplacement()))
+			return (Port) delta.getReplaced();
+		}
+		for (Object p : me.undeleted_getOwnedPorts())
+		{
+			Port port = (Port) p;
+			if (isMain(port))
+				return port;
+		}
 		return null;
 	}
 
@@ -378,6 +350,8 @@ public class BeanSubjectCreator
 		// and if it is required (i.e. writable) then set it at [0..1]
 		if (field.isMany())
 		{
+			if (port.getLowerValue() == null)
+				port.setLowerBound(0);
 			if (port.getUpper() <= 1)
 				port.setUpperBound(-1);
 		}
@@ -429,22 +403,31 @@ public class BeanSubjectCreator
 		setUpBeanPortStereotype(cls, field, port);
 	}
 
-	private List<BeanClass> getDependedUponInterfaces(List<BeanClass> toCreate, BeanClass cls)
+	private void removeRedundantRequireds(Map<String, Class> classes)
 	{
-		List<BeanClass> ret = new ArrayList<BeanClass>();
+		// with legacy beans, it is possible to have setXXX(Foo) and setXXX(Bar) which make it look like the port has multiple required interfaces
+		// remove all but one of these to make the bean valid again, just in case they overlap
+		// this is fairly safe, as it is illegal for a legacy bean port to have multiple requireds and this is very rare
 		for (BeanClass create : toCreate)
-		{
-			if (create.getType() == BeanTypeEnum.INTERFACE)
+			if (create.isLegacyBean() && create.getType() == BeanTypeEnum.BEAN)
 			{
-				for (String str : cls.getInterfaces())
-					if (create.getNode().name.equals(str))
+				Class me = classes.get(create.getNode().name);
+				for (Object po : me.undeleted_getOwnedPorts())
+				{
+					Port port = (Port) po;
+					int lp = 0;
+					if (port.getType() != null)
+					for (Object depo : port.getType().undeleted_getOwnedAnonymousDependencies())
 					{
-						ret.add(create);
-						break;
+						Dependency dep = (Dependency) depo;
+						if (dep.undeleted_getDependencyTarget() instanceof Interface)
+						{
+							if (lp++ != 0)
+								GlobalSubjectRepository.repository.incrementPersistentDelete(dep);
+						}
 					}
+				}
 			}
-		}
-		return ret;
 	}
 
 	private BeanCreatedSubjects createOutlines(Map<String, Class> classes, Map<String, Interface> interfaces)
@@ -526,8 +509,6 @@ public class BeanSubjectCreator
 
 	private void setUpBeanPortStereotype(BeanClass cls, BeanField field, Port port)
 	{
-		if (!field.isNoName() && !field.isMain())
-			return;
 		port.settable_getAppliedBasicStereotypes().clear();
 		port.settable_getAppliedBasicStereotypes().add(portStereo);
 		if (cls.isLegacyBean() && field.isMain())

@@ -144,15 +144,26 @@ public class ComponentErrorChecker
     	}
     	
     	// must have at most one no-name port
-    	List<DEPort> nonames = component.getBeanNoNamePorts(perspective); 
-    	if (nonames.size() > 1)
-        errors.addError(
-            new ErrorLocation(perspective, component), ErrorCatalog.AT_MOST_ONE_BEAN_NO_NAME_PORT);
+    	List<DEPort> nonames = component.getBeanNoNamePorts(perspective);
+    	{
+    		Set<DEInterface> existing = new HashSet<DEInterface>();
+      	for (DEPort noname : nonames)
+      	{
+      		Set<? extends DEInterface> required = component.getRequiredInterfaces(perspective, noname);
+      		Set<DEInterface> test = new HashSet<DEInterface>(existing);
+      		test.retainAll(required);
+      		if (!test.isEmpty())
+      		{
+            errors.addError(
+                new ErrorLocation(perspective, component, noname), ErrorCatalog.NONAME_PORT_OVERLAP);      			
+      		}
+      		existing.addAll(required);
+      	}
+    	}
     	
     	// each noname port should have only requires, and be indexed
-    	if (nonames.size() == 1)
+    	for (DEPort noname : nonames)
     	{
-    		DEPort noname = nonames.get(0);
     		if (!noname.getSetProvidedInterfaces().isEmpty() ||
     				noname.getSetRequiredInterfaces().isEmpty() ||
     				!noname.isMany())

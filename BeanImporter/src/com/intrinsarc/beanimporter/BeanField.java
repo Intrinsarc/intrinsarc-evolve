@@ -21,6 +21,7 @@ public class BeanField
 	private boolean noName;
 	private String error;
 	private boolean ignore;
+	private boolean cannotChange;
 
 	public BeanField(BeanClass parent, String name, Type providedType, Type requiredType)
 	{
@@ -236,6 +237,27 @@ public class BeanField
 			else
 				port = true;
 		}
+		
+		if (getTypes().size() > 1)
+		{
+			// remove any primitives from the list of provided/requires
+			removePrimitives(finder, providedTypes);
+			removePrimitives(finder, requiredTypes);
+		}
+	}
+
+	private void removePrimitives(BeanFinder finder, Set<Type> types)
+	{
+		if (types == null)
+			return;
+		
+		Set<Type> expunged = new LinkedHashSet<Type>();		
+		for (Type t : types)
+		{
+			if (finder.refersToPrimitive(t))
+				expunged.add(t);
+		}
+		types.removeAll(expunged);			
 	}
 
 	public BeanClass getBeanClass()
@@ -245,6 +267,9 @@ public class BeanField
 	
 	public boolean canTogglePortOrAttribute(BeanFinder finder)
 	{
+		if (cannotChange)
+			return false;
+		
 		// can only toggle if provided and required are 1 or less
 		// and if both are 1, then both must be the same
 		// also, what they refer to must be a real interface, not a fake interface or primitive
@@ -334,7 +359,7 @@ public class BeanField
 
 	public void fixUpDueToInterfaces(BeanFinder finder, int[] count)
 	{
-		if (getTypes().size() == 1 && !port)
+		if (getTypes().size() == 1 && !port && !cannotChange)
 		{	
 			Type type = getTypes().get(0);
 
@@ -355,7 +380,7 @@ public class BeanField
 				port = true;
 				++count[0];
 			}
-		}
+		}		
 	}
 
 	public boolean isNoName()
@@ -395,5 +420,11 @@ public class BeanField
 	public void removeProvidedType(Type type)
 	{
 		providedTypes.remove(type);
+	}
+
+	public void setCannotChange(boolean cannotChange, boolean port)
+	{
+		this.cannotChange = cannotChange;
+		this.port = port;
 	}
 }
