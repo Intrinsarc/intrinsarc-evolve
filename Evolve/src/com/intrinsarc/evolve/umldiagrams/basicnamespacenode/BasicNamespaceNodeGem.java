@@ -128,20 +128,23 @@ public final class BasicNamespaceNodeGem implements Gem
 		 */
 		public void displayAsIcon(boolean displayAsIcon)
 		{
-			// make the change
-			displayOnlyIcon = displayAsIcon;
+			if (displayOnlyIcon != displayAsIcon)
+			{
+				// make the change
+				displayOnlyIcon = displayAsIcon;
+		
+				contents.getFigureFacet().setShowing(!suppressContents && !displayOnlyIcon);
 	
-			contents.getFigureFacet().setShowing(!suppressContents && !displayOnlyIcon);
-
-			// we are about to autosize, so need to make a resizings command
-			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-			resizings.markForResizing(figureFacet);
-			
-			BasicNamespaceSizeInfo info = makeCurrentSizeInfo();
-			UBounds newBounds = info.makeActualSizes().getOuter();
-			UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
-			resizings.setFocusBounds(centredBounds);			
-			resizings.end();
+				// we are about to autosize, so need to make a resizings command
+				ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+				resizings.markForResizing(figureFacet);
+				
+				BasicNamespaceSizeInfo info = makeCurrentSizeInfo();
+				UBounds newBounds = info.makeActualSizes().getOuter();
+				UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
+				resizings.setFocusBounds(centredBounds);			
+				resizings.end();
+			}
 		}
 	}
   
@@ -575,7 +578,7 @@ public final class BasicNamespaceNodeGem implements Gem
 					coordinator.startTransaction(
 							"displayed " + getFigureName() + (displayOnlyIcon ? " as box" : "as icon"),
 							"displayed " + getFigureName() + (!displayOnlyIcon ? " as box" : "as icon"));
-					DisplayAsIconTransaction.display(figureFacet, !displayOnlyIcon);
+					displayAsIconFacet.displayAsIcon(!displayOnlyIcon);
 					coordinator.commitTransaction();
 				}
 			});
@@ -1121,7 +1124,6 @@ public final class BasicNamespaceNodeGem implements Gem
 	{
 		this.figureFacet = figureFacet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-  	figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
   	figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
 	}
 	

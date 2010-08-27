@@ -234,7 +234,7 @@ public final class ClassifierNodeGem implements Gem
 		showAsState = StereotypeUtilities.isStereotypeApplied(subject, "state");
 
 		// resize, using a text utility
-		DisplayAsIconTransaction.display(figureFacet, shouldDisplayOnlyIcon());
+		displayAsIconFacet.displayAsIcon(shouldDisplayOnlyIcon());
 		figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
 	}
 
@@ -281,22 +281,26 @@ public final class ClassifierNodeGem implements Gem
 		public void displayAsIcon(boolean displayAsIcon)
 		{
 			// make the change
-			displayOnlyIcon = displayAsIcon;
-
-			contents.getFigureFacet().setShowing(isContentsShowing());
-			ports.getFigureFacet().setShowing(!displayOnlyIcon);
-
-			// we are about to autosize, so need to make a resizing
-			ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-			resizings.markForResizing(figureFacet);
-
-			ClassifierSizeInfo info = makeCurrentInfo();
-			UBounds newBounds = info.makeActualSizes().getOuter();
-			UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(),
-					newBounds.getDimension());
-			resizings.setFocusBounds(centredBounds);
-
-			resizings.end();
+			if (displayOnlyIcon != displayAsIcon)
+			{
+				displayOnlyIcon = displayAsIcon;
+	
+				contents.getFigureFacet().setShowing(isContentsShowing());
+				ports.getFigureFacet().setShowing(!displayOnlyIcon);
+				attributesOrSlots.getFigureFacet().setShowing(!displayOnlyIcon);
+				suppressAttributesOrSlots = displayOnlyIcon;
+	
+				// we are about to autosize, so need to make a resizing
+				ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+				resizings.markForResizing(figureFacet);
+	
+				ClassifierSizeInfo info = makeCurrentInfo();
+				UBounds newBounds = info.makeActualSizes().getOuter();
+				UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(),
+						newBounds.getDimension());
+				resizings.setFocusBounds(centredBounds);
+				resizings.end();
+			}
 		}
 	}
 
@@ -1294,7 +1298,7 @@ public final class ClassifierNodeGem implements Gem
 					// toggle the suppress operations flag
 					coordinator.startTransaction("displayed " + getFigureName() + (displayOnlyIcon ? " as box" : " as icon"),
 							"displayed " + getFigureName() + (!displayOnlyIcon ? " as box" : " as icon"));
-					DisplayAsIconTransaction.display(figureFacet, !displayOnlyIcon);
+					displayAsIconFacet.displayAsIcon(!displayOnlyIcon);
 					coordinator.commitTransaction();
 				}
 			});
@@ -1341,7 +1345,6 @@ public final class ClassifierNodeGem implements Gem
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					// toggle the suppress attributes flag
 					coordinator.startTransaction(
 							locked ? "Unlocked visuals" : "Locked visuals", locked ? "Locked visuals" : "Unlocked visuals");
 					locked = !locked;
@@ -1392,6 +1395,7 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all attributes", "un-showed all attributes");
+					suppressFeatures(AttributeCreatorGem.FEATURE_TYPE, false);
 					FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(
 							FeatureCompartmentFacet.class);
 					del.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_ATTRIBUTE));
@@ -1421,6 +1425,7 @@ public final class ClassifierNodeGem implements Gem
 					{
 						// toggle the autosized flag (as a command)
 						coordinator.startTransaction("showed attribute", "un-showed attribute");
+						suppressFeatures(AttributeCreatorGem.FEATURE_TYPE, false);
 						FeatureCompartmentFacet del = attributesOrSlots.getFigureFacet().getDynamicFacet(
 								FeatureCompartmentFacet.class);
 						del.removeDeleted(uuid);
@@ -1538,7 +1543,7 @@ public final class ClassifierNodeGem implements Gem
 					primitiveContents, true, deletedConnectorUuidsFacet, false);
 			showAllItem.setEnabled(
 					(!connectorHelper.isShowingAllConstituents() || !portLinkHelper.isShowingAllConstituents())
-							&& primitiveContents.isShowing());
+							&& primitiveContents.isShowing() && !displayOnlyIcon);
 
 			showAllItem.addActionListener(new ActionListener()
 			{
@@ -1605,7 +1610,7 @@ public final class ClassifierNodeGem implements Gem
 			JMenuItem showAllItem = new JMenuItem("Parts");
 			final ClassPartHelper partHelper = new ClassPartHelper(coordinator, figureFacet, primitiveContents, contents,
 					false);
-			showAllItem.setEnabled(!partHelper.isShowingAllConstituents() && primitiveContents.isShowing());
+			showAllItem.setEnabled(!partHelper.isShowingAllConstituents() && primitiveContents.isShowing() && !displayOnlyIcon);
 
 			showAllItem.addActionListener(new ActionListener()
 			{
@@ -1627,7 +1632,7 @@ public final class ClassifierNodeGem implements Gem
 			// for autosizing
 			JMenuItem showAllItem = new JMenuItem("Ports");
 			final ClassPortHelper portHelper = new ClassPortHelper(figureFacet, primitivePorts, ports, false);
-			showAllItem.setEnabled(!portHelper.isShowingAllConstituents() && primitivePorts.isShowing());
+			showAllItem.setEnabled(!portHelper.isShowingAllConstituents() && primitivePorts.isShowing() && !displayOnlyIcon);
 
 			showAllItem.addActionListener(new ActionListener()
 			{
@@ -1658,6 +1663,7 @@ public final class ClassifierNodeGem implements Gem
 				{
 					// toggle the autosized flag (as a command)
 					coordinator.startTransaction("showed all operations", "un-showed all operations");
+					suppressFeatures(OperationCreatorGem.FEATURE_TYPE, false);
 					FeatureCompartmentFacet ops = operations.getFigureFacet().getDynamicFacet(FeatureCompartmentFacet.class);
 					ops.setToShowAll(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_OPERATION));
 					operationHelper.makeUpdateCommand(false);
@@ -2055,7 +2061,7 @@ public final class ClassifierNodeGem implements Gem
 			if (shouldBeDisplayingOwningPackage == showOwningPackage && newName.equals(name) && owner.equals(newOwner)
 					&& classifierSubject.isAbstract() == isAbstract && subjectActive == isActive
 					&& stereotypeHashcode == actualStereotypeHashcode
-					&& ellipsis == (info.isEllipsis())
+					&& ellipsis == info.isEllipsis()
 					&& displayOnlyIcon == shouldDisplayOnlyIcon() && isElementRetired() == retired
 					&& shouldBeState == showAsState)
 			{
@@ -2469,7 +2475,6 @@ public final class ClassifierNodeGem implements Gem
 	{
 		this.figureFacet = figureFacet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-		figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
 		figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
 		figureFacet.registerDynamicFacet(switchableFacet, SwitchSubjectFacet.class);
 		// override the default autosizing mechanism, which doesn't work for this
@@ -2553,9 +2558,10 @@ public final class ClassifierNodeGem implements Gem
 					false).isShowingAllConstituents();
 			operationEllipsis = !new ClassifierOperationHelper(figureFacet, primitiveOperations, operations)
 					.isShowingAllConstituents();
+			if (!displayOnlyIcon)
+				portsEllipsis = !new ClassPortHelper(figureFacet, primitivePorts, ports, false).isShowingAllConstituents();
 			if (!displayOnlyIcon && !autoSized)
 			{
-				portsEllipsis = !new ClassPortHelper(figureFacet, primitivePorts, ports, false).isShowingAllConstituents();
 				partsEllipsis = !new ClassPartHelper(null, figureFacet, primitiveContents, contents, false)
 						.isShowingAllConstituents();
 				connectorsEllipsis = !new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents, false,

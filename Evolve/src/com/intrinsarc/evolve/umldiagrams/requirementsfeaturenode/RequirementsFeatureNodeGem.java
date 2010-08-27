@@ -192,7 +192,7 @@ public class RequirementsFeatureNodeGem implements Gem
     owner = newOwner;
     
     // resize, using a text utility
-    DisplayAsIconTransaction.display(figureFacet, shouldDisplayOnlyIcon());
+    displayAsIconFacet.displayAsIcon(shouldDisplayOnlyIcon());
     figureFacet.performResizingTransaction(textableFacet.vetTextResizedExtent(name));
   }
 
@@ -203,19 +203,21 @@ public class RequirementsFeatureNodeGem implements Gem
      */
     public void displayAsIcon(boolean displayAsIcon)
     {
-      // make the change
-      displayOnlyIcon = displayAsIcon;
-      
-      // we are about to autosize, so need to make a resizing
-      ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
-      resizings.markForResizing(figureFacet);
-      
-      RequirementsFeatureSizeInfo info = makeCurrentInfo();
-      UBounds newBounds = info.makeActualSizes().getOuter();
-      UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
-      resizings.setFocusBounds(centredBounds);
-      
-      resizings.end();
+    	if (displayOnlyIcon != displayAsIcon)
+    	{
+	      // make the change
+	      displayOnlyIcon = displayAsIcon;
+	      
+	      // we are about to autosize, so need to make a resizing
+	      ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+	      resizings.markForResizing(figureFacet);
+	      
+	      RequirementsFeatureSizeInfo info = makeCurrentInfo();
+	      UBounds newBounds = info.makeActualSizes().getOuter();
+	      UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(), newBounds.getDimension());
+	      resizings.setFocusBounds(centredBounds);
+	      resizings.end();
+    	}
     }
   }
   
@@ -785,7 +787,7 @@ public class RequirementsFeatureNodeGem implements Gem
 							coordinator.startTransaction(
 									"displayed " + getFigureName() + (displayOnlyIcon ? " as box" : " as icon"),
 									"displayed " + getFigureName() + (!displayOnlyIcon ? " as box" : " as icon"));
-							DisplayAsIconTransaction.display(figureFacet, !displayOnlyIcon);
+							displayAsIconFacet.displayAsIcon(!displayOnlyIcon);
 							coordinator.commitTransaction();
 						}
 					});
@@ -1158,7 +1160,6 @@ public class RequirementsFeatureNodeGem implements Gem
 	{
 		this.figureFacet = figureFacet;
 		figureFacet.registerDynamicFacet(textableFacet, TextableFacet.class);
-		figureFacet.registerDynamicFacet(displayAsIconFacet, DisplayAsIconFacet.class);
 		figureFacet.registerDynamicFacet(locationFacet, LocationFacet.class);
 		figureFacet.registerDynamicFacet(switchableFacet, SwitchSubjectFacet.class);
 		// override the default autosizing mechanism, which doesn't work for this
