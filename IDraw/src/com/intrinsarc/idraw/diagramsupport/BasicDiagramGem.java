@@ -390,7 +390,6 @@ public final class BasicDiagramGem implements Gem
 							break;
 					}
 				}
-//				all.setSealed(false);
 			}
 			inUndoRedo = false;
 			sendChangesToListeners();
