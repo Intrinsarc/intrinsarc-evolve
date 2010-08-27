@@ -370,11 +370,16 @@ public class BeanClass
 				else
 				{
 					if (set)
+					{
 						field.addRequiredType(type);
+						if (legacyBean)
+							field.removeProvidedType(type);
+					}
 					else
 					{
 						// if this doesn't have _Provided, then it is an attribute, adjust accordingly
-						field.addProvidedType(type);
+						if (!legacyBean || !field.getRequiredTypes().contains(type))
+							field.addProvidedType(type);
 					}
 				}
 				

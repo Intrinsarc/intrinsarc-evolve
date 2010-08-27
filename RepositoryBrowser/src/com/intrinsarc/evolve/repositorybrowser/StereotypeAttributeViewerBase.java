@@ -1,6 +1,7 @@
 package com.intrinsarc.evolve.repositorybrowser;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public abstract class StereotypeAttributeViewerBase implements UMLAttributeViewe
     colourLine();
   }
 
-  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel, JButton okButton)
+  public void installAttributeEditor(String category, JPanel insetPanel, GridBagConstraints gbcLeft, GridBagConstraints gbcRight, boolean includeLabel, final JButton okButton)
   {
       String name = constituent.getName();
       label = new JLabel(name.length() == 0 ? "(unnamed)" : name);
@@ -53,6 +54,16 @@ public abstract class StereotypeAttributeViewerBase implements UMLAttributeViewe
         insetPanel.add(label, gbcLeft);
 
       editor = installAttributeEditor(insetPanel, gbcLeft, gbcRight, okButton);
+	    editor.addKeyListener(new KeyAdapter()
+	    {
+				public void keyPressed(KeyEvent e)
+				{
+	        if (e.getKeyCode() == KeyEvent.VK_ENTER)
+	        {
+	        	okButton.doClick();
+	        }
+				}
+	    });
       colourLine();
   }
   

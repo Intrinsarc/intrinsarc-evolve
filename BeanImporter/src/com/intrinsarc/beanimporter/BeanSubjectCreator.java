@@ -207,10 +207,10 @@ public class BeanSubjectCreator
 					setUpPort(cls, interfaces, field, port);
 				}
 				delete(existingPorts);
-				// remove the deltas if we have made a main
+/*				// remove the deltas if we have made a main
 				if (madeMain && cls.isLegacyBean())
 					delete(me.settable_getDeltaReplacedPorts());
-			}
+*/			}
 		}		
 	}
 
@@ -502,11 +502,12 @@ public class BeanSubjectCreator
 		if (cl == null)
 		{
 			cl = in.createOwnedClass(cls.getName(), cls.isAbstract());
-			setBooleanProperty(cl, CommonRepositoryFunctions.LEGACY_BEAN);
 		}
 		cl.setComponentKind(ComponentKind.NORMAL_LITERAL);
 		cl.settable_getAppliedBasicStereotypes().clear();
 		cl.settable_getAppliedBasicStereotypes().add(componentStereo);
+		if (cls.isLegacyBean())
+				setBooleanProperty(cl, CommonRepositoryFunctions.LEGACY_BEAN);
 		setImplementation(cl, cls.getNode().name);
 		classes.put(cls.getNode().name, cl);
 	}
@@ -537,8 +538,9 @@ public class BeanSubjectCreator
 
 	private void setBooleanProperty(Element cl, String uuid)
 	{
+		DeltaPair pair = StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(uuid);
     final Property property =
-    	(Property) StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(uuid).getConstituent().getRepositoryObject();
+    	pair != null ? (Property) pair.getConstituent().getRepositoryObject() : null;
     if (property == null)
       return;
 
@@ -549,8 +551,9 @@ public class BeanSubjectCreator
 
 	private void setImplementation(Element cl, String className)
 	{
+		DeltaPair pair = StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(CommonRepositoryFunctions.IMPLEMENTATION_CLASS);
     final Property property =
-    	(Property) StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(CommonRepositoryFunctions.IMPLEMENTATION_CLASS).getConstituent().getRepositoryObject();
+    	pair != null ? (Property) pair.getConstituent().getRepositoryObject() : null;
     if (property == null)
       return;
 		AppliedBasicStereotypeValue value = findOrCreateAppliedValue(cl, property);

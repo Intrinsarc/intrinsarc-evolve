@@ -105,23 +105,18 @@ public class BeanImportMenuItem extends UpdatingJMenuItem
 					{
 						// create (import) the beans in the package
 						BeanSubjectCreator creator = new BeanSubjectCreator(importer.getImportList(), pkg, finder, monitor);
-						try
-						{
-							GlobalSubjectRepository.ignoreUpdates = true;
-							BeanCreatedSubjects created = creator.createSubjects();
-	
-							popupMaker.displayPopup(BEAN_ADD_ICON, "Bean Import...",
-									"Imported " + created.getTotalMade() + " elements; cleared command history",
-									ScreenProperties.getUndoPopupColor(), Color.black, 3000, true,
-									coordinator.getTransactionPosition(), coordinator.getTotalTransactions());
-						}
-						finally
-						{
-							coordinator.startTransaction("", "");
-							coordinator.commitTransaction();
-							coordinator.clearTransactionHistory();
-							GlobalSubjectRepository.ignoreUpdates = false;												
-						}
+						GlobalSubjectRepository.ignoreUpdates = true;
+						BeanCreatedSubjects created = creator.createSubjects();
+
+						coordinator.startTransaction("", "");
+						coordinator.commitTransaction();
+						coordinator.clearTransactionHistory();
+						GlobalSubjectRepository.ignoreUpdates = false;												
+
+						popupMaker.displayPopup(BEAN_ADD_ICON, "Bean Import...",
+								"Imported " + created.getTotalMade() + " elements; cleared command history",
+								ScreenProperties.getUndoPopupColor(), Color.black, 3000, true,
+								coordinator.getTransactionPosition(), coordinator.getTotalTransactions());
 					}
 				}
 				catch (BackboneGenerationException ex)

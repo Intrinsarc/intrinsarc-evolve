@@ -428,6 +428,10 @@ GWT states fixup for new scheme + must start in first state + refresh current
 \end_layout
 
 \begin_layout Enumerate
+popups aren't being cleared properly
+\end_layout
+
+\begin_layout Enumerate
 
 \color green
 key strokes not registering, 
@@ -573,6 +577,10 @@ how to get lifecycle callbacks
 
 \begin_layout Enumerate
 explain primitives
+\end_layout
+
+\begin_layout Enumerate
+retirement + merging
 \end_layout
 
 \begin_layout Standard

@@ -8,8 +8,8 @@ public class BeanField
 {
 	private BeanClass parent;
 	private String name;
-	private List<Type> providedTypes;
-	private List<Type> requiredTypes;
+	private Set<Type> providedTypes;
+	private Set<Type> requiredTypes;
 	private boolean writeable;
 	private boolean readable;
 	private boolean port;
@@ -26,12 +26,12 @@ public class BeanField
 	{
 		this.parent = parent;
 		this.name = name;
-		providedTypes = new ArrayList<Type>();
+		providedTypes = new LinkedHashSet<Type>();
 		if (providedType != null)
 			providedTypes.add(providedType);
 		if (requiredType != null)
 		{
-			requiredTypes = new ArrayList<Type>();
+			requiredTypes = new LinkedHashSet<Type>();
 			requiredTypes.add(requiredType);
 		}
 	}
@@ -40,8 +40,9 @@ public class BeanField
 	{
 		this.parent = parent;
 		this.name = name;
-		this.providedTypes = providedTypes;
-		this.requiredTypes = requiredTypes;
+		this.providedTypes = new LinkedHashSet<Type>(providedTypes);
+		if (requiredTypes != null)
+			this.requiredTypes = new LinkedHashSet<Type>(requiredTypes);
 	}
 
 	public String getName()
@@ -206,7 +207,7 @@ public class BeanField
 	public void fixUpUsingFinder(BeanFinder finder)
 	{
 		// remove any types that are not public
-		List<Type> expunged = new ArrayList<Type>(providedTypes);		
+		Set<Type> expunged = new LinkedHashSet<Type>(providedTypes);		
 		for (Type type : providedTypes)
 		{
 			BeanClass cls = finder.locatePossibleBeanClass(type, port);
@@ -217,7 +218,7 @@ public class BeanField
 
 		if (requiredTypes != null)
 		{
-			expunged = new ArrayList<Type>(requiredTypes);		
+			expunged = new LinkedHashSet<Type>(requiredTypes);		
 			for (Type type : requiredTypes)
 			{
 				BeanClass cls = finder.locatePossibleBeanClass(type, port);
@@ -250,10 +251,12 @@ public class BeanField
 		int pSize = providedTypes.size();
 		int rSize = requiredTypes != null ? requiredTypes.size() : 0;
 		
+		if (pSize + rSize == 0)
+			return false;
 		if (pSize > 1 || rSize > 1)
 			return false;
 		if (pSize == 1 && rSize == 1)
-			if (!providedTypes.get(0).equals(requiredTypes.get(0)))
+			if (!providedTypes.iterator().next().equals(requiredTypes.iterator().next()))
 				return false;
 		return finder.refersToRealInterface(getTypes().get(0));
 	}
@@ -368,7 +371,7 @@ public class BeanField
 	public void addRequiredType(Type type)
 	{
 		if (requiredTypes == null)
-			requiredTypes = new ArrayList<Type>();
+			requiredTypes = new LinkedHashSet<Type>();
 		requiredTypes.add(type);
 	}
 
@@ -379,13 +382,18 @@ public class BeanField
 
 	public List<Type> getProvidedTypes()
 	{
-		return providedTypes;
+		return new ArrayList<Type>(providedTypes);
 	}
 
 	public List<Type> getRequiredTypes()
 	{
 		if (requiredTypes == null)
 			return new ArrayList<Type>();
-		return requiredTypes;
+		return new ArrayList<Type>(requiredTypes);
+	}
+
+	public void removeProvidedType(Type type)
+	{
+		providedTypes.remove(type);
 	}
 }

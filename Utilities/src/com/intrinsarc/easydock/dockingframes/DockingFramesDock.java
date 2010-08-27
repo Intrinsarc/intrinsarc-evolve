@@ -1,7 +1,6 @@
 package com.intrinsarc.easydock.dockingframes;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 
@@ -22,7 +21,6 @@ import com.intrinsarc.easydock.*;
 
 public class DockingFramesDock implements IEasyDock
 {
-	private JFrame frame;
 	private int id;
 	private CControl control;
 	private CWorkingArea area;
@@ -31,7 +29,6 @@ public class DockingFramesDock implements IEasyDock
 
 	public DockingFramesDock(final JFrame frame, boolean disallowNorthDock)
 	{
-		this.frame = frame;
 		control = new CControl(frame);
     CContentArea area2 = control.getContentArea();
     // disallow use of north palette dock
@@ -57,26 +54,6 @@ public class DockingFramesDock implements IEasyDock
 	/** finishSetup() must be called after the frame has been made visible */
 	public void finishSetup()
 	{
-		// save the first workspace dockable, so we can focus it later...
-		if (firstWorkspaceDockable != null)
-			firstWorkspaceDockable.toFront();
-
-		// this is required to repaint the screen so it doesn't have visual glitches sometimes
-		// but it still doesn't work well with metal lnf
-		frame.addComponentListener(new ComponentAdapter()
-		{
-			public void componentShown(ComponentEvent e)
-			{
-				try
-				{
-					Thread.sleep(400);
-					frame.repaint();
-				}
-				catch (Exception e1)
-				{
-				}
-			}			
-		});
 	}
 	
 	public IEasyDockable createWorkspaceDockable(String title, Icon icon, boolean addAsTab, boolean remember, JComponent component)

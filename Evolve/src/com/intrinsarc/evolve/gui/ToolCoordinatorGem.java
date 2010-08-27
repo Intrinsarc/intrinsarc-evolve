@@ -303,10 +303,15 @@ public final class ToolCoordinatorGem implements Gem
             final int myPopupNumber = ++currentPopupNumber;
             
             // add the info to the lightweight popup
-            popupFrame = new JPopupMenu();
-            popupFrame.setBorder(new LineBorder(Color.LIGHT_GRAY));
+            if (old != null)
+            	old.removeAll();
+            popupFrame = old != null ? old : new JPopupMenu();
+            popupFrame.setBorder(null);
             JPanel outer = new JPanel(new BorderLayout());
-            outer.setBorder(BorderFactory.createLineBorder(ScreenProperties.getTransparentColor(), 20));
+            outer.setBorder(
+            		new CompoundBorder(
+            				BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1),
+            				BorderFactory.createLineBorder(ScreenProperties.getTransparentColor(), 20)));
             JLabel label = new JLabel(title, icon, SwingConstants.LEADING);
             label.setBorder(new EmptyBorder(0, 0, 5, 0));
             label.setFont(POPUP_FONT.deriveFont(Font.BOLD));
@@ -353,18 +358,8 @@ public final class ToolCoordinatorGem implements Gem
             popupFrame.setLocation(
             		frame.getLocationOnScreen().x + frame.getWidth() - width - 22,
             		frame.getLocationOnScreen().y + frame.getHeight() - height - 22);
-            popupFrame.setVisible(true);
+          	popupFrame.setVisible(true);
 
-            // remove any previous popup -- do this after the new one is visible to avoid flicker
-            if (old != null)
-	            SwingUtilities.invokeLater(new Runnable()
-	            {
-	            	public void run()
-	            	{
-	              	old.setVisible(false);            		
-	            	}
-	            });
-    
             if (msecsToDisplayFor >= 0)
             {
 	            new Thread(new Runnable()

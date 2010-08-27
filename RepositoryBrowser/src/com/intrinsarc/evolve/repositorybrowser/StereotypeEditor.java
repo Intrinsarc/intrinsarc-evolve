@@ -93,13 +93,15 @@ public class StereotypeEditor
   private UMLAttributeModificationListener modificationListener;
   private int hash;
   private boolean enabled = true;
+	private JButton okButton;
 
-	public StereotypeEditor(Element element, ToolCoordinatorFacet coordinator, UMLAttributeModificationListener modificationListener)
+	public StereotypeEditor(Element element, ToolCoordinatorFacet coordinator, UMLAttributeModificationListener modificationListener, JButton okButton)
 	{
 		this.element = element;
 		this.coordinator = coordinator;
 		this.panel = new JPanel(new BorderLayout());
 		this.modificationListener = modificationListener;
+		this.okButton = okButton;
 	}
 	
 	public JComponent makeVisualComponent()
@@ -181,7 +183,7 @@ public class StereotypeEditor
         viewer = makeViewer(type);
       newViewers.put(type, viewer);
       
-      viewer.installAttributeEditor(type.getConstituentProperty().getDocumentation(), insetPanel, gbcLeft, gbcRight, true, null);
+      viewer.installAttributeEditor(type.getConstituentProperty().getDocumentation(), insetPanel, gbcLeft, gbcRight, true, okButton);
       viewer.getEditor().setEnabled(!readOnly);
     }
     
@@ -251,7 +253,11 @@ public class StereotypeEditor
 		if (hash != makeStereotypeHash())
 			makeVisualComponent();
     else
-      updateViewers(false);
+    {
+    	// should't really force this always, as it's slow but the hash above doesn't
+    	// pick up when we replace the inherited "component" stereotype with another "component" stereotype
+      updateViewers(true);
+    }
     
     // ask the viewers to investigate the change
     for (UMLAttributeViewer viewer : viewers.values())

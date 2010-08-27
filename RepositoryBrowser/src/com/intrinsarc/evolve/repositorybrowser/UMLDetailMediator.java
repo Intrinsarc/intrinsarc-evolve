@@ -115,7 +115,7 @@ public class UMLDetailMediator
     tabs = new JTabbedPane();
     tabs.addTab("Attributes", makeDetailsVisualComponent(true, false, okButton));
     tabs.addTab("References", makeDetailsVisualComponent(false, false, okButton));
-    stereotypeEditor = new StereotypeEditor(element, coordinator, listener);
+    stereotypeEditor = new StereotypeEditor(element, coordinator, listener, okButton);
     tabs.addTab("Stereotypes", stereotypeEditor.makeVisualComponent());
     tabs.addTab("Model", makeMetamodelVisualComponent());
     tabs.addTab("Doc", makeDetailsVisualComponent(true, true, okButton));
