@@ -11,6 +11,7 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=BackboneCommon/src"/>
         <javaElement handleIdentifier="=DeltaEngine/src"/>
         <javaElement handleIdentifier="=BackboneInterpreter/src"/>
     </selectedElements>

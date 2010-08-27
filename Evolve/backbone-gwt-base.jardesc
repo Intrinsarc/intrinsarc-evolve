@@ -11,7 +11,7 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=BackboneCommon/src"/>
         <javaElement handleIdentifier="=BackboneGWTBase/src"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.hopstepjump.backbone.runtime.api"/>
     </selectedElements>
 </jardesc>

@@ -353,10 +353,10 @@ public final class BasicArcPreviewGem implements Gem
 	    if (!offsetPointsWhenMoving)
 	    {
 	      actualPoints.setVirtualPoint(actualPoints.calculateBetterVirtualPoint(actualPoints.getVirtualPoint(), linkableNode));
-	      tellContainer();
 	    }
 	    
 	    tellLinked();
+      tellContainer();
 	  }
 
 		public PreviewFacet getPreviewFacet()

@@ -427,12 +427,15 @@ problem with error adorner and undo
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 connectors ends not moving when class is resized
 \end_layout
 
 \begin_layout Enumerate
-GWT states fixup for new scheme + must start in first state + refresh current
- after dispatch
+
+\color green
+problems with attribute containment + ports when uniconifying a component
 \end_layout
 
 \begin_layout Enumerate
@@ -441,6 +444,11 @@ GWT states fixup for new scheme + must start in first state + refresh current
 key strokes not registering, 
 \color inherit
 hanging on load
+\end_layout
+
+\begin_layout Enumerate
+GWT states fixup for new scheme + must start in first state + refresh current
+ after dispatch
 \end_layout
 
 \begin_layout Enumerate
@@ -454,10 +462,6 @@ get rid of dark mark in upper corner of packages/factories when copying
 
 \begin_layout Enumerate
 nested strata cannot see backbone base when hardcoding from it
-\end_layout
-
-\begin_layout Enumerate
-problems with attribute containment + ports when uniconifying a component
 \end_layout
 
 \begin_layout Enumerate

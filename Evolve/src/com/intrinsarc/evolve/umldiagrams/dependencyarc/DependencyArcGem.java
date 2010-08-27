@@ -41,7 +41,6 @@ public class DependencyArcGem implements Gem
   private String name = "";
   private LinkedTextFacet linkedTextFacet;
   private FigureFacet text;
-  private int stereotypeHash;
   private Color color = Color.BLACK;
   private boolean substitution;
   private boolean resemblance;
@@ -249,18 +248,18 @@ public class DependencyArcGem implements Gem
       moving.connectBasicContainerPreviewFacet(connectorGem.getBasicArcContainerPreviewFacet());
 	    PreviewFacet previewFacet = moving.getPreviewFacet();
 	  
-	      // important to add this as soon as possible to terminate any recursion looking for it from nodes
-	      previews.addPreviewToCache(figureFacet, previewFacet);
-	  
-	      // now we can set the outgoings
-	      previewFacet.setOutgoingsToPeripheral(
-	          figureFacet.getLinkingFacet().hasOutgoingsToPeripheral(previews));
-	  
-	      AnchorFacet node1 = actualArcPoints.getNode1();
-	      AnchorFacet node2 = actualArcPoints.getNode2();
-	      moving.getBasicArcPreviewFacet().setLinkablePreviews(
-	          getPreviewFigureForToolLinkable(previews, node1),
-	          getPreviewFigureForToolLinkable(previews, node2));
+      // important to add this as soon as possible to terminate any recursion looking for it from nodes
+      previews.addPreviewToCache(figureFacet, previewFacet);
+  
+      // now we can set the outgoings
+      previewFacet.setOutgoingsToPeripheral(
+          figureFacet.getLinkingFacet().hasOutgoingsToPeripheral(previews));
+  
+      AnchorFacet node1 = actualArcPoints.getNode1();
+      AnchorFacet node2 = actualArcPoints.getNode2();
+      moving.getBasicArcPreviewFacet().setLinkablePreviews(
+          getPreviewFigureForToolLinkable(previews, node1),
+          getPreviewFigureForToolLinkable(previews, node2));
     }
 
     private AnchorPreviewFacet getPreviewFigureForToolLinkable(PreviewCacheFacet previewFigures, AnchorFacet initial)
@@ -472,9 +471,6 @@ public class DependencyArcGem implements Gem
   			    false);
       }
       
-      // if the stereotypes have changed, force a redraw
-      final int newHash = StereotypeUtilities.calculateStereotypeHash(null, subject);
-			stereotypeHash = newHash;
 			substitution = dependency.isReplacement();
 			resemblance = dependency.isResemblance();
       

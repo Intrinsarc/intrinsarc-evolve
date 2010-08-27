@@ -11,8 +11,6 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.intrinsarc.backbone.runtime.implementation{Terminal.java"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.intrinsarc.backbone.runtime.api"/>
-        <javaElement handleIdentifier="=BackboneInterpreter/src&lt;com.intrinsarc.backbone.runtime.implementation{StateDispatcher.java"/>
+        <javaElement handleIdentifier="=BackboneCommon/src"/>
     </selectedElements>
 </jardesc>
