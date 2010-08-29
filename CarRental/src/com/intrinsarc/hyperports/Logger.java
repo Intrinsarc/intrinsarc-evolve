@@ -3,7 +3,7 @@ package com.intrinsarc.hyperports;
 
 public class Logger
 // start generated code
-  // main port
+	// main port
  implements com.intrinsarc.hyperports.ILogger
 {
 // end generated code

@@ -50,6 +50,8 @@ public class InterfaceDefinitionRefresher extends ImplementationRefresher
 			writer.write(removeRedundantPrefixes(extend));
 			start = false;
 		}
+		if (!start)
+			writer.newLine();
 		writer.write("{");
 		writer.newLine();
 		return new HashMap<String, String>();

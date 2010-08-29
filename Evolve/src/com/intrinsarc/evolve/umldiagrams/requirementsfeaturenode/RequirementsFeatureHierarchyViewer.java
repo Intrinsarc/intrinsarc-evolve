@@ -1,6 +1,7 @@
 package com.intrinsarc.evolve.umldiagrams.requirementsfeaturenode;
 
 import java.awt.*;
+import java.awt.Component;
 import java.awt.event.*;
 import java.util.*;
 
@@ -12,7 +13,7 @@ import org.eclipse.emf.common.util.*;
 import org.eclipse.uml2.*;
 
 import com.intrinsarc.deltaengine.base.*;
-import com.intrinsarc.evolve.repositorybrowser.*;
+import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 
 
@@ -141,6 +142,14 @@ class CompositionRenderer extends DefaultTreeCellRenderer
 
 public class RequirementsFeatureHierarchyViewer
 {
+	private static final String LEAF = "Leaf>";
+	private static final String COMPOSITE = "Composite>";
+	private static final String INTERFACE = "Interface>";
+	
+	public static final ImageIcon LEAF_ICON = IconLoader.loadIcon("leaf.png");
+	public static final ImageIcon COMPOSITE_ICON = IconLoader.loadIcon("composite.png");
+	public static final ImageIcon INTERFACE_ICON = IconLoader.loadIcon("interface.png");
+
 	private org.eclipse.uml2.Package pkg;
 	private RequirementsFeature feature;
 	private JPanel panel;
@@ -168,7 +177,7 @@ public class RequirementsFeatureHierarchyViewer
 		DEObject rObj = GlobalDeltaEngine.engine.locateObject(feature);
 		if (pObj == null || rObj == null)
 			return;
-		DEStratum perspective = pObj.asStratum();
+		final DEStratum perspective = GlobalDeltaEngine.engine.locateObject(pkg).asStratum();
 		DERequirementsFeature req = rObj.asRequirementsFeature();
 		
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode();
@@ -182,18 +191,42 @@ public class RequirementsFeatureHierarchyViewer
 		left.setBackground(Color.WHITE);
 		
 		JPanel implementers = new JPanel(new BorderLayout());
-    final DefaultMutableTreeNode implRoot = new DefaultMutableTreeNode(
-        new UMLTreeUserObject(
-            null,
-            ShortCutType.NONE,
-            null,
-            "Implementing components",
-            false,
-            0,
-            0));
-		
+    final DefaultMutableTreeNode implRoot = new DefaultMutableTreeNode("Implementing components");
+    
 		final JTree list = new JTree(implRoot);
-		list.setCellRenderer(new UMLNodeRendererGem(null).getTreeCellRenderer());
+		list.setCellRenderer(
+				new DefaultTreeCellRenderer()
+				{
+					public Component getTreeCellRendererComponent(
+							JTree tree,
+							Object value,
+							boolean selected,
+							boolean expanded,
+							boolean leaf,
+							int row,
+							boolean hasFocus)
+					{
+						DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
+						String name = (String) node.getUserObject();
+						Icon icon = null;
+						if (name.startsWith(LEAF))
+						{
+							name = name.substring(LEAF.length());
+							icon = LEAF_ICON;
+						}
+						else
+						if (name.startsWith(COMPOSITE))
+						{
+							name = name.substring(LEAF.length());
+							icon = COMPOSITE_ICON;
+						}
+						
+			      setLeafIcon(icon);
+			      setOpenIcon(icon);
+			      setClosedIcon(icon);
+						return super.getTreeCellRendererComponent(tree, name, selected, expanded, leaf, row, hasFocus);
+					}
+				});
 		implementers.add(list, BorderLayout.CENTER);
 		
 		final JScrollPane right = new JScrollPane(implementers);
@@ -245,21 +278,24 @@ public class RequirementsFeatureHierarchyViewer
 									Element elem = (Element) lso;
 									if (!elem.isThisDeleted())
 									{
-										DEElement comp = GlobalDeltaEngine.engine.locateObject(lso).asElement();
-										if (comp != null)
+										DEElement el = GlobalDeltaEngine.engine.locateObject(lso).asElement();
+										if (el != null && elementTracesTo(perspective, el, f)) 
 										{
-									    DefaultMutableTreeNode tn = new DefaultMutableTreeNode(
-									        new UMLTreeUserObject(
-									            (Element) comp.getRepositoryObject(),
-									            ShortCutType.NONE,
-									            null,
-									            comp.getFullyQualifiedName(),
-									            false,
-									            0,
-									            0));
-											
-											implRoot.add(tn);
-										}
+											if (el.asComponent() != null)
+											{
+												DEComponent comp = el.asComponent(); 
+										    DefaultMutableTreeNode tn = new DefaultMutableTreeNode(
+										    		(comp.isLeaf(perspective) ? LEAF : COMPOSITE) + comp.getName(perspective));
+												implRoot.add(tn);												
+											}
+											else
+											if (el.asInterface() != null)
+											{
+										    DefaultMutableTreeNode tn = new DefaultMutableTreeNode(
+										    		INTERFACE + el.getName(perspective));
+												implRoot.add(tn);												
+											}
+										}	
 									}
 								}
 							}
@@ -270,6 +306,18 @@ public class RequirementsFeatureHierarchyViewer
 				
 				((DefaultTreeModel) list.getModel()).reload();
 				right.repaint();
+			}
+
+			private boolean elementTracesTo(DEStratum perspective, DEElement el, RequirementsFeature f)
+			{
+				DERequirementsFeature feature = GlobalDeltaEngine.engine.locateObject(f).asRequirementsFeature();
+				for (DeltaPair pair : el.getDeltas(ConstituentTypeEnum.DELTA_TRACE).getConstituents(perspective))
+				{
+					DETrace trace = pair.getConstituent().asTrace();
+					if (trace.getTarget() == feature)
+						return true;
+				}
+				return false;
 			}
 		});
 		

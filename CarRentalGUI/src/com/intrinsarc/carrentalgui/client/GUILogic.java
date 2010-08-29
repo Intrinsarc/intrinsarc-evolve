@@ -2,21 +2,21 @@ package com.intrinsarc.carrentalgui.client;
 
 import java.util.*;
 
-import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.rpc.*;
 import com.google.gwt.user.client.ui.*;
+import com.intrinsarc.backbone.runtime.api.*;
 
 public class GUILogic
 // start generated code
-  // main port
+	// main port
  implements com.google.gwt.user.client.ui.ChangeListener
 {
-  // required ports
-	private com.intrinsarc.backbone.runtime.api.ICreate create;
+	// required ports
+	private ICreate create;
 	private com.google.gwt.user.client.ui.TextBox text;
 
-  // port setters and getters
-	public void setCreate(com.intrinsarc.backbone.runtime.api.ICreate create) { this.create = create; }
+	// port setters and getters
+	public void setCreate(ICreate create) { this.create = create; }
 	public void setText(com.google.gwt.user.client.ui.TextBox text) { this.text = text; }
 
 // end generated code
@@ -82,14 +82,5 @@ public class GUILogic
 			
 			public void onFailure(Throwable caught) {}
 		});
-	}
-	
-	public void afterInit()
-	{
-		System.out.println("Started up GUI");
-	}
-
-	public void beforeDelete()
-	{
 	}
 }

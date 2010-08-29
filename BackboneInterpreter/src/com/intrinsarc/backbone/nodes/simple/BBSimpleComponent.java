@@ -31,7 +31,7 @@ public class BBSimpleComponent extends BBSimpleElement
 	public BBSimpleComponent(BBSimpleElementRegistry registry, DEComponent complex)
 	{
 		this.complex = complex;
-		rawName = complex.getTopName();
+		rawName = complex.getName(registry.getPerspective());
 		name = registry.makeName(rawName);
 		uuid = complex.getUuid();
 		copyAttributes(registry, complex);

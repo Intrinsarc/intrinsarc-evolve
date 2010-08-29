@@ -7,18 +7,18 @@ import com.intrinsarc.base.*;
 
 public class FactoryExampleRunner
 // start generated code
-  // main port
- implements com.intrinsarc.backbone.runtime.api.IRun
+	// main port
+ implements IRun
 {
-  // required ports
+	// required ports
 	private java.util.List<com.intrinsarc.base.IRentalCarDetails> cars = new java.util.ArrayList<com.intrinsarc.base.IRentalCarDetails>();
-	private com.intrinsarc.backbone.runtime.api.ICreate creator;
+	private ICreate creator;
 
-  // port setters and getters
+	// port setters and getters
 	public void setCar(com.intrinsarc.base.IRentalCarDetails cars, int index) { PortHelper.fill(this.cars, cars, index); }
 	public void addCar(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.fill(this.cars, cars, -1); }
 	public void removeCar(com.intrinsarc.base.IRentalCarDetails cars) { PortHelper.remove(this.cars, cars); }
-	public void setCreator(com.intrinsarc.backbone.runtime.api.ICreate creator) { this.creator = creator; }
+	public void setCreator(ICreate creator) { this.creator = creator; }
 
 // end generated code
 

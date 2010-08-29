@@ -6,24 +6,24 @@ import com.intrinsarc.backbone.runtime.api.*;
 
 public class RentalLogic
 // start generated code
-  // main port
+	// main port
  implements com.google.gwt.user.client.ui.ClickListener
 {
-  // attributes
+	// attributes
 	private Integer carNo;
 
-  // attribute setters and getters
+	// attribute setters and getters
 	public Integer getCarNo() { return carNo; }
 	public void setCarNo(Integer carNo) { this.carNo = carNo;}
 
-  // required ports
+	// required ports
 	private com.google.gwt.user.client.ui.ChangeListener refresh;
 	private com.intrinsarc.carrentalgui.client.IRentalServiceAsync service;
 	private com.google.gwt.user.client.ui.TextBox renter;
-  // provided ports
+	// provided ports
 	private ChangeListenerRenterSetImpl renterSet_Provided = new ChangeListenerRenterSetImpl();
 
-  // port setters and getters
+	// port setters and getters
 	public void setRefresh(com.google.gwt.user.client.ui.ChangeListener refresh) { this.refresh = refresh; }
 	public void setService(com.intrinsarc.carrentalgui.client.IRentalServiceAsync service) { this.service = service; }
 	public void setRenter(com.google.gwt.user.client.ui.TextBox renter) { this.renter = renter; }

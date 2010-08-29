@@ -4,24 +4,24 @@ import com.intrinsarc.backbone.runtime.api.*;
 
 public class Rented
 // start generated code
-  // main port
+	// main port
  implements com.intrinsarc.states.IRentalEvent
 {
-  // attributes
+	// attributes
 	private String renterName = "";
 
-  // attribute setters and getters
+	// attribute setters and getters
 	public String getRenterName() { return renterName; }
 	public void setRenterName(String renterName) { this.renterName = renterName;}
 
-  // required ports
-	private com.intrinsarc.backbone.runtime.api.ITransition out;
-  // provided ports
+	// required ports
+	private ITransition out;
+	// provided ports
 	private ITransitionInImpl in_Provided = new ITransitionInImpl();
 
-  // port setters and getters
-	public void setOut(com.intrinsarc.backbone.runtime.api.ITransition out) { this.out = out; }
-	public com.intrinsarc.backbone.runtime.api.ITransition getIn_Provided() { return in_Provided; }
+	// port setters and getters
+	public void setOut(ITransition out) { this.out = out; }
+	public ITransition getIn_Provided() { return in_Provided; }
 
 // end generated code
 	

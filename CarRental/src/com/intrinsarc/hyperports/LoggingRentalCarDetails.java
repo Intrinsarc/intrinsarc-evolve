@@ -4,13 +4,13 @@ import java.util.*;
 
 public class LoggingRentalCarDetails
 // start generated code
-  // main port
+	// main port
  extends com.intrinsarc.base.RentalCarDetails implements com.intrinsarc.base.IRentalCarDetails
 {
-  // required ports
+	// required ports
 	private com.intrinsarc.hyperports.ILogger logger;
 
-  // port setters and getters
+	// port setters and getters
 	public void setLogger(com.intrinsarc.hyperports.ILogger logger) { this.logger = logger; }
 
 // end generated code
