@@ -84,6 +84,8 @@ public class PaletteManagerGem
   
   public PaletteManagerGem()
   {
+		// check for beta expiry
+		EngineCalculationHandler.checkCalculation();
   }
   
   private class ToolClassificationFacetImpl implements ToolClassificationFacet

@@ -50,20 +50,6 @@ public class Evolve
 
 	public static void main(String args[])
   {
-		if (BetaExpiryHandler.isExpired())
-		{
-    	Object[] options = {"Exit"};
-    	JOptionPane.showOptionDialog(null,
-    	    "Please update to a newer beta at www.intrinsarc.com, or consider a purchase.",
-    	    "Evolve beta copy expired on " + BetaExpiryHandler.getExpiryDate(),
-    	    JOptionPane.OK_OPTION,
-    	    JOptionPane.ERROR_MESSAGE,
-    	    null,
-    	    options,
-    	    options[0]);
-    	System.exit(-1);
-		}
-		
 		// must have at least one arg
 		if (args.length == 0)
 		{

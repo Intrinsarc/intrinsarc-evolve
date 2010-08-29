@@ -79,6 +79,8 @@ public final class ToolCoordinatorGem implements Gem
   
   public ToolCoordinatorGem()
   {
+		// check for beta expiry
+		EngineCalculationHandler.checkCalculation();
   	registerRecreators();
   }
 
