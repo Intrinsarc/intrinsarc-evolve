@@ -931,7 +931,7 @@ public class RequirementsFeatureNodeGem implements Gem
 			}
 
 			// if neither the name or the namespace has changed, or the in-placeness, suppress any command
-			boolean ellipsis = isEllipsisForBody();
+			boolean ellipsis = isEllipsisForBody() && !shouldDisplayOnlyIcon();
 			if (shouldBeDisplayingOwningPackage == showOwningPackage
 			      && newName.equals(name) && owner.equals(newOwner)
             && stereotypeHashcode == actualStereotypeHashcode

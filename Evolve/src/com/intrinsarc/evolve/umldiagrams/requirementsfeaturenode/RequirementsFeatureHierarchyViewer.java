@@ -310,6 +310,9 @@ public class RequirementsFeatureHierarchyViewer
 
 			private boolean elementTracesTo(DEStratum perspective, DEElement el, RequirementsFeature f)
 			{
+				if (!perspective.getCanSeePlusMe().contains(el.getHomeStratum()))
+					return false;
+				
 				DERequirementsFeature feature = GlobalDeltaEngine.engine.locateObject(f).asRequirementsFeature();
 				for (DeltaPair pair : el.getDeltas(ConstituentTypeEnum.DELTA_TRACE).getConstituents(perspective))
 				{
