@@ -19,6 +19,7 @@ public class StateDispatcher implements IStateDispatcher
 	
 	private IEvent proxy;
 	private IEvent current;
+	private boolean primed;
 
 	private InvocationHandler handler = new InvocationHandler()
 	{
@@ -30,20 +31,8 @@ public class StateDispatcher implements IStateDispatcher
 			if (mName.equals("equals"))
 				return proxy == args[0];
 
-			// if current is null, use start
-			if (current == null)
-				dStart.becomeCurrent();
-			
-			// possibly still in start or end?
-			if (current == null || dStart.isCurrent())
-			{
-				dStart.moveToNextState();
-			}
-			for (ITerminal end : dEnd)
-				if (end.isCurrent())
-					end.moveToNextState();
-
 			establishCurrentState();
+					
 			if (current != null)
 			{
 				try
@@ -66,7 +55,21 @@ public class StateDispatcher implements IStateDispatcher
 
 		private void establishCurrentState()
 		{
+			if (!primed)
+			{
+				dStart.moveToNextState();
+				primed = true;
+			}
+
+			for (ITerminal end : dEnd)
+				if (end.isCurrent())
+				{
+					end.moveToNextState();
+					establishCurrentState();
+				}
+
 			// find the next state
+			current = null;
 			for (IEvent e : dDispatch)
 				if (e.isCurrent())
 				{

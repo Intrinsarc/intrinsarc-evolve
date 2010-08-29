@@ -52,23 +52,28 @@ public class StateDispatcherGenerator extends Generator
 	protected void writeToStringMethod(TreeLogger logger, String proxyClassName, JClassType T, SourceWriter writer)
 	{
 		writer.println("private java.util.List<IEvent> dDispatch_IEventRequired = new java.util.ArrayList<IEvent>();");
-		writer.println("public void setDDispatch_IEvent(IEvent event, int index) { PortHelper.fill(this.dDispatch_IEventRequired, event, index); }");	
+		writer.println("public void setDDispatch(IEvent event, int index) { PortHelper.fill(this.dDispatch_IEventRequired, event, index); }");	
+		writer.println("public void addDDispatch(IEvent event) { PortHelper.fill(this.dDispatch_IEventRequired, event, -1); }");	
+		writer.println("public void removeDDispatch(IEvent event) { PortHelper.remove(this.dDispatch_IEventRequired, event); }");	
 		writer.println("private ITerminal dStart_ITerminalRequired;");
-		writer.println("public void setDStart_ITerminal(ITerminal start) { dStart_ITerminalRequired = start; }");
+		writer.println("public void setDStart(ITerminal start) { dStart_ITerminalRequired = start; }");
 		writer.println("private java.util.List<ITerminal> dEnd_ITerminalRequired = new java.util.ArrayList<ITerminal>();");
-		writer.println("public void setDEnd_ITerminal(ITerminal end, int index) { PortHelper.fill(this.dEnd_ITerminalRequired, end, index); }");
+		writer.println("public void setDEnd(ITerminal end, int index) { PortHelper.fill(this.dEnd_ITerminalRequired, end, index); }");
 		writer.println("private boolean currentEntered;");
 		writer.println("private IEvent current;");
+		writer.println("private boolean primed;");
 		
 		writer.println("  private void findNextState()");
 		writer.println("  {");
 		writer.println("    // possibly still in start or end?");
-		writer.println("    com.google.gwt.core.client.GWT.log(\"States = \" + dDispatch_IEventRequired.size(), null);");
-		writer.println("    if (dStart_ITerminalRequired != null && dStart_ITerminalRequired.isCurrent())");
-		writer.println("      dStart_ITerminalRequired.moveToNextState(); if (dEnd_ITerminalRequired != null)");
-		writer.println("    for (ITerminal end : dEnd_ITerminalRequired)");
-		writer.println("      if (end.isCurrent())");
-		writer.println("		     end.moveToNextState();");
+		writer.println("    if (dStart_ITerminalRequired != null && !primed)");
+		writer.println("    {");
+		writer.println("      dStart_ITerminalRequired.moveToNextState(); primed = true;");
+		writer.println("    }");		
+		writer.println("    if (dEnd_ITerminalRequired != null)");
+		writer.println("      for (ITerminal end : dEnd_ITerminalRequired)");
+		writer.println("        if (end.isCurrent())");
+		writer.println("		       end.moveToNextState();");
 		writer.println("    // find the next state");
 		writer.println("    current = null;");
 		writer.println("    for (IEvent e : dDispatch_IEventRequired)");
@@ -80,7 +85,7 @@ public class StateDispatcherGenerator extends Generator
 		writer.println("  }");
 		writer.println();
 		
-		writer.println("public IEvent getDEvents_IEvent(Class<?> required)");
+		writer.println("public IEvent getDEvents_Provided(Class<?> required)");
 		writer.println("{");
 		writer.println("  return new " + T.getQualifiedSourceName() + "()");
 		writer.println("  {");
@@ -88,38 +93,57 @@ public class StateDispatcherGenerator extends Generator
 		getAllMethods(all, T);
 		for (JMethod method : all)
 		{
-			String ret = method.getReturnType().toString();
+			String ret = method.getReturnType().getQualifiedBinaryName();
 			boolean isVoid = ret.equals("void");			
 			writer.print("    public " + ret + " " + method.getName() + "(");
 			int lp = 0;
 			String params = "";
+			String cparams = "";
 			for (JParameter p : method.getParameters())
 			{
 				if (lp != 0)
+				{
 					params += ", ";
+					cparams += ", ";
+				}
 				lp++;
-				params += p.getType() + " param" + lp;
+				params += p.getType().getQualifiedBinaryName() + " param" + lp;
+				cparams += " param" + lp;
 			}
 			writer.println(params + ")");
-			writer.println("{");
-			writer.println("  findNextState();");
-			writer.println("  if (current != null)");
-			writer.println("  {");
-			writer.print("    ");
-			if (!isVoid)
-				writer.print("return ");
+			writer.println("    {");
+			writer.println("      findNextState();");
+			writer.println("      if (current != null)");
+			writer.println("      {");
 			String cast = "(" + T.getQualifiedSourceName() + ")";
-			writer.println("(" + cast + "current)." + method.getName() + "(" + params + ");");
-			writer.println("  }");
-			if (ret.equals("boolean"))
-				writer.println("    return false;");
-			else
 			if (!isVoid)
-				writer.println("    return null;");
-			writer.println("}");
+			{
+				writer.println("        " + ret + " v = (" + cast + "current)." + method.getName() + "(" + cparams + ");");
+				writer.println("        findNextState();");
+				writer.println("        return v;");
+				writer.println("      }");
+			
+				if (ret.equals("boolean"))
+					writer.println("      return false;");
+				else
+				if (ret.equals("int") || ret.equals("short") || ret.equals("long") || ret.equals("float") || ret.equals("double") || ret.equals("byte") || ret.equals("char"))
+					writer.println("      return 0;");
+				else
+					if (ret.equals("long"))
+						writer.println("      return 0;");
+				else
+					writer.println("      return null;");
+			}
+			else
+			{
+				writer.println("        (" + cast + "current)." + method.getName() + "(" + cparams + ");");
+				writer.println("        findNextState();");
+				writer.println("      }");
+			}
+			writer.println("    }");
 		}
-		writer.println("  };\n");
-
+		writer.println("\n  public String toString() { return \"State dispatcher: current state =\" + current; }");
+		writer.println("  };\n");		
 		writer.println("}\n");
 	}
 

@@ -1,8 +1,10 @@
 package com.intrinsarc.backbone.runtime.api;
 
+
 public interface IStateDispatcher
 {
 	public void setDDispatch(IEvent event, int index);	
+	public void addDDispatch(IEvent event);
 	public void removeDDispatch(IEvent event);
 	
 	public void setDStart(ITerminal start);

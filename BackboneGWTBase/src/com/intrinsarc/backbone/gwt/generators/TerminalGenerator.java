@@ -42,6 +42,7 @@ public class TerminalGenerator extends Generator
 			return null;
 		ClassSourceFileComposerFactory composerFactory = new ClassSourceFileComposerFactory(packageName, className);
 		composerFactory.addImplementedInterface("com.intrinsarc.backbone.runtime.api.IStateTerminalComponent");
+		composerFactory.addImplementedInterface("com.intrinsarc.backbone.runtime.api.ITerminal");
 		composerFactory.addImport("com.intrinsarc.backbone.runtime.api.*");
 		return composerFactory.createSourceWriter(context, printWriter);
 	}
@@ -49,50 +50,21 @@ public class TerminalGenerator extends Generator
 	protected void writeToStringMethod(TreeLogger logger, String proxyClassName, JClassType T, SourceWriter writer)
 	{
 		writer.println("private ITransition out_ITransitionRequired;"); 
-		writer.println("public void setOut_ITransition(ITransition out) { out_ITransitionRequired = out; }");
-		writer.println("private ITerminal terminal_ITerminalProvided = new ITerminalImpl();");
-		writer.println("public ITerminal getTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }");
+		writer.println("public void setOut(ITransition out) { out_ITransitionRequired = out; }");
 		writer.println("private boolean current;");
-		writer.println("private boolean fired;");
 		writer.println();
-		writer.println("private class ITerminalImpl implements ITerminal");
-		writer.println("{");
-		writer.println("	public boolean isCurrent() { return false; }");
-		writer.println("	public void moveToNextState() {}");
-		writer.println("}");
+		writer.println("public boolean isCurrent() { return current; }");
+		writer.println("public void moveToNextState() { if (out_ITransitionRequired != null) current = !out_ITransitionRequired.enter(); }");
 		writer.println("");
-		writer.println("private ITransition proxy;");
-		writer.println("public ITransition getIn_ITransition(Class<?> required)");
+		writer.println("public ITransition getIn(Class<?> required)");
 		writer.println("{");
-		writer.println("  return new " + T.getName() + "()");
+		writer.println("  return new ITransition()");
 		writer.println("  {");
-		for (JMethod method : T.getMethods())
-		{
-			String ret = method.getReturnType().toString();
-			writer.print("    public " + ret + " " + method.getName() + "(");
-			int lp = 0;
-			String params = "";
-			for (JParameter p : method.getParameters())
-			{
-				if (lp != 0)
-					params += ", ";
-				lp++;
-				params += p.getType() + " param" + lp;
-			}
-			writer.println(params + ")");
-			writer.println("{");
-			writer.println("  if (out_ITransitionRequired != null)");
-			writer.println("  {");
-			writer.println("    terminal_ITerminalProvided.moveToNextState();");
-			writer.print("    ");
-			if (!ret.equals("void"))
-				writer.print("return ");
-			String cast = "(" + T.getName() + ")";
-			writer.println("(" + cast + "out_ITransitionRequired)." + method.getName() + "(" + params + ");");
-			writer.println("  }");
-			writer.println("    return false;");
-			writer.println("}");
-		}
+		writer.println("  	public boolean enter()");
+		writer.println("  	{");
+		writer.println("  		current = true;");
+		writer.println("  		return true;");
+		writer.println("  	}");
 		writer.println("  };");
 		writer.println("};");
 	}

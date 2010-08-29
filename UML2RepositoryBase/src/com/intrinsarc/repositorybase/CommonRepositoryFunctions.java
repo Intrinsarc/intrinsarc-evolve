@@ -466,7 +466,6 @@ public class CommonRepositoryFunctions
     
     Port startIn = replacePort(uuids, start, in, "in", transition, null, null, null, stereoPort);
     addStereoBooleanValue(uuids, suppressPortGeneration, startIn);
-    createPortLink(uuids, start, in, out);
     deltaDeletePort(uuids, start, events);
     Class end = addLeaf(uuids, impls, stateStereo, END_STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.Terminal");
     createResemblance(uuids, state, end);
@@ -475,7 +474,6 @@ public class CommonRepositoryFunctions
     
     Port endIn = replacePort(uuids, end, in, "in", transition, null, null, null, stereoPort);
     addStereoBooleanValue(uuids, suppressPortGeneration, endIn);
-    createPortLink(uuids, end, in, out);
     deltaDeletePort(uuids, end, events);
     // create the composite state base class
     Class cState = addLeaf(uuids, impls, stateStereo, COMPOSITE_STATE_CLASS, implClass, "");
